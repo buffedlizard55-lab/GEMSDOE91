@@ -290,18 +290,28 @@ def main() -> int:
     ledger = ROOT / "ledger" / "submissions.csv"
     ledger.parent.mkdir(parents=True, exist_ok=True)
     existing = []
+    newline = "\n"
     if ledger.is_file():
+        raw = ledger.read_bytes()
+        newline = "\r\n" if b"\r\n" in raw else "\n"
         with ledger.open(newline="", encoding="utf-8-sig") as fh:
             existing = list(csv.DictReader(fh))
+    # NEVER drop a column another session wrote: the ledger is shared state.
+    # My columns come last; every existing column survives in its original order.
+    fieldnames = list(existing[0].keys()) if existing else []
+    for c in LEDGER_COLS:
+        if c not in fieldnames:
+            fieldnames.append(c)
     ids = {r["id"] for r in existing}
     with ledger.open("w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=LEDGER_COLS, extrasaction="ignore")
+        w = csv.DictWriter(fh, fieldnames=fieldnames, extrasaction="ignore",
+                           lineterminator=newline)
         w.writeheader()
         for r in existing:
-            w.writerow({k: r.get(k, "") for k in LEDGER_COLS})
+            w.writerow({k: r.get(k, "") for k in fieldnames})
         for r in rows:
             if r["id"] not in ids:
-                w.writerow(r)
+                w.writerow({k: r.get(k, "") for k in fieldnames})
 
     out = ROOT / "evidence" / "spacing_axis_20261023.json"
     out.parent.mkdir(parents=True, exist_ok=True)
