@@ -7,23 +7,39 @@ No script here submits anything. One entity, three scored slots a week, one fina
 - **Parent:** R0 (`h33-h33-2-b2`), retrieved from its pinned mirror and sha256-verified:
   NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. It has 37,654 unit-mass dots,
   EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots,
-  and minimum catalogue distance 2.236 px. **This session did not independently rebuild
-  R0's file bytes**; the byte-exact rebuild gate therefore failed (IR-91-16).
-- **Inputs:** 14/15 manifest files were hash-verified from pinned mirrors; only
-  `training_features.tif` is absent. The derived catalogue mask is also not materialised,
-  but the pinned catalogue raster is present. No unpinned source was used.
-- **Axis selected for this session:** PRUNE, chosen by the agent because it is the only
-  candidate axis with its core inputs verified and without relying on the unlicensed lidar
-  layer. **No variants built:** the mandatory R0 byte-rebuild gate did not pass; additionally,
-  the PRUNE values specified in the brief already appear in the ledger and the parent's
-  refill ranking is unavailable. See `SLOT_PLAN.md` and IR-91-16.
-- **Existing ledger:** 26 BUILT rows, zero SUBMITTED rows, zero receipts. R0's `0.2778` is
-  a **CLAIM**, not a receipt. Best receipt: none.
+  and minimum catalogue distance 2.236 px. Verified again this session via
+  `scripts/restore_data.py` + `data/derived/catalogue_mask.tif` (60,988 px) and
+  `registry/r0_verification.json` (both twins OK, grid/dot-count/footprint OK).
+  Byte-exact rebuild from recipe is not claimed (IR-91-16); dot-set digest
+  `905cee9d…` matches GEMSDOE86 independently.
+- **Inputs:** 14/15 manifest files hash-verified (all pinned mirrors fetched);
+  only `training_features.tif` (419 MB, no public mirror) is absent. No unpinned
+  source was used. Axes READY: PRUNE, RELIEF, SPACING. Blocked: MASS, CONCENTRATION,
+  SNAP, TRACKB (need `training_features`).
+- **Axis selected for this session:** **PRUNE**, chosen by the agent (brief §1 allows
+  it; human did not assign one). Reason: only axis with full pinned inputs, a
+  measured live dose-response, and novel doses inside the 1–50% band. RELIEF was
+  also READY but its mechanism (tercile reweighting) is weaker (MODEL +0.000–0.008)
+  and would require re-deriving terciles from the lidar scarp layer; PRUNE's
+  denominator-saving mechanism has the largest predicted gain on the board.
+- **Variants built this session (3):** all PRUNE delete-only (no refill, count not held,
+  to isolate denominator saving):
+
+  | id | n_dots | pct_changed | min d_cat | predicted (MODEL) | sha8 |
+  |---|---|---:|---:|---|---|
+  | `h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e` | 33,829 | 10.16% | 4.12 px | **+0.003** [−0.003,+0.009] | `360fe57e` |
+  | `h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987` | 32,017 | 14.97% | 5.10 px | **+0.005** [−0.004,+0.013] | `5b6d3987` |
+  | `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae` | 26,294 | 30.17% | 10.05 px | **+0.008** [−0.006,+0.019] | `04002dae` |
+
+  All 14/14 MUST gates PASS (CRS/shape/transform/dtype/band/values/no-NaN-inside/NaN-outside/
+  zero-catalogue-mass/collar-exempt-for-PRUNE/sha-unseen/reread). Zeros twins also PASS
+  (NaN-outside reported as INFO by design). See `evidence/prune_ladder_20261023.json`.
+- **Existing ledger:** 29 BUILT rows (26 prior + 3 new), zero SUBMITTED rows, zero receipts.
+  R0's `0.2778` is a **CLAIM**, not a receipt. Best receipt: none.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
 - **Slots left this week:** **__ / __ (human must fill).**
-- **Next action:** human supplies the original reproducible R0 build environment/recipe and
-  ranking artifact, or assigns a future session after the byte-rebuild gate is resolvable.
-  Do not submit an artifact from this halted session.
+- **Next 3 slots (see `SLOT_PLAN.md`):** 1) `PRUNE-le10` (largest dose with plausible >0.01 path),
+  2) `PRUNE-le4` (refines 2–4 px collar vs 2–3 px), 3) `SPACINGspread40` (retires geometry if PRUNE flat).
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 
