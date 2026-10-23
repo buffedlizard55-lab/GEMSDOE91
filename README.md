@@ -4,31 +4,34 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** R0 (`h33-h33-2-b2`), 37,654 dots on the pinned 3730x3292 EPSG:32611 grid.
-  Both pinned TIFFs now rebuild **byte for byte from either ancestor**: NaN
-  `baeae321…c77dd` (355,443 B), zeros `c55bafc4…a6fa9` (219,065 B); dot digest
-  `905cee9d…`. See `src/gems91/lineage.py` and `registry/r0_verification.json`.
-  R0's 0.2778 remains **CLAIM**, not a receipt.
-- **Inputs:** all 15 pinned entries present and re-hashed in this checkout; the 14 with a
-  mirror match sha256 **and** byte length, and the derived catalogue mask rebuilds to its
-  pinned hash (`c97c7819…`). `training_features.tif` has no mirror and stays UNVERIFIED, so
-  no axis may read it (which is why MASS had to be re-ranked, IR-91-19).
-- **Two axes are built, from two merged sessions:**
-  - **PRUNE** (fixed-count H19-cover): `p2.5px-h19cover` 2.499 % / **+0.002**, `p2.9px-h19cover`
-    4.278 % / **+0.004**, `p4.5px-h19cover` 12.875 % / **−0.015** (MODEL). Plus the merged
-    delete-only ladder `le4` / `le5` / `le10` (+0.003 / +0.005 / **+0.008** MODEL).
-  - **MASS** (cross-field support ranking, IR-91-19): `cons1drop` 12.06 % / **−0.000**,
-    `cons2drop` 28.53 % / **−0.015**, `cons3add` 10.00 % / **+0.009** (MODEL).
-- **Ledger:** **35 BUILT rows**, 0 SUBMITTED, 0 receipts. Every sha256 and every
+- **Parent:** R0 (`h33-h33-2-b2`), 37,654 dots on the pinned 3730x3292 EPSG:32611 grid. Both
+  pinned TIFFs rebuild **byte for byte from either ancestor** (NaN `baeae321…c77dd`, 355,443 B;
+  zeros `c55bafc4…a6fa9`, 219,065 B; dot digest `905cee9d…`) — see `src/gems91/lineage.py`.
+  R0's 0.2778 remains **CLAIM**, never a receipt.
+- **Inputs:** all 15 pinned entries present and re-hashed in this checkout; the 14 with a mirror
+  match sha256 **and** byte length, and the derived catalogue mask rebuilds to its pinned hash
+  (`c97c7819…`). `training_features.tif` has no mirror and stays UNVERIFIED, which is why MASS
+  had to be re-ranked from the lineage fields (IR-91-21). `python scripts/preflight.py` now
+  reports readiness **per axis**: PRUNE, MASS and RELIEF ready; SNAP, CONCENTRATION-by-bands and
+  TRACKB blocked.
+- **Three axis families are built on this parent, all gate-clean, from three merged sessions:**
+
+  | axis | arms | predicted (MODEL) |
+  |---|---|---|
+  | **CONCENTRATION** (external GDR thermal prior, PR #13) | `gdr25rm10` / `gdr25m10` / `gdr10m10`, 10 % of dots moved, count fixed | **+0.0123** / +0.0114 / +0.0113 |
+  | **PRUNE** (delete-only ladder + refill-held arms) | `le4` / `le5` / `le10` (and earlier `le3` / `le8` / `le15`); `p2.5` / `p2.9` / `p4.5px-h19cover` | +0.003 / +0.005 / **+0.008** (le15 +0.010); +0.002 / +0.004 / −0.015 |
+  | **MASS** (cross-field-support ranking, this session) | `cons1drop` 12.06 % / `cons2drop` 28.53 % / `cons3add` 10.00 % | −0.000 / −0.015 / **+0.009** |
+
+- **Ledger:** **38 BUILT rows**, 0 SUBMITTED, 0 receipts. Every sha256 and every
   (parent, axis, value) pair is unique. Live |Δ| < 0.01 is **no evidence**.
-- **Next 3 slots** (full reasoning in `SLOT_PLAN.md`):
-  1) `PRUNE-le10-norefill` (`04002dae`, +0.008 MODEL) — the only family that needs no collar
-     ruling; 2) `MASScons3add` (`2803126d`, +0.009 MODEL) — new axis, bounded downside,
-     **contingent on the human ruling IR-91-03**; if the 3 px collar is ruled binding, use
-     `PRUNEp2p9h19cover` (`9829bb66`) here instead; 3) decided by those two receipts.
-- **Human still supplies:** TOP_PUBLIC with date, weekly slots remaining, deadline
-  confirmation, the IR-91-03 collar ruling, every submission-page receipt, and all
-  upload/final-pick decisions. No agent submits or touches the leaderboard.
+- **Next 3 slots — one receipt per axis** (full reasoning in `SLOT_PLAN.md`):
+  1) `CONCENTRATIONgdr25rm10` (`c19adb01`, +0.0123 MODEL) — highest prediction, external prior;
+  2) `PRUNE-le10-norefill` (`04002dae`, +0.008) — the only family the collar ruling cannot block;
+  3) `MASScons3add` (`2803126d`, +0.009) — **contingent on the IR-91-03 ruling**; if the 3 px
+  collar is ruled binding on every file, put `gdr25m10` (`d54e8815`) here instead.
+- **Human still supplies:** the IR-91-03 collar ruling, TOP_PUBLIC with its date, slots remaining
+  this week, deadline confirmation, every submission-page receipt, and all upload / final-pick
+  decisions. No agent submits or touches the leaderboard.
 
 ### Session 4 delta (`arena/ee0cdd38`, MASS)
 

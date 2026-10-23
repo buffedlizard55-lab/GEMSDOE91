@@ -101,3 +101,82 @@ No card claims a live score. The numbers are MODEL projections from the metric
 algebra plus a bracketed denominator. The hide-and-recover PROXY (report only,
 `reports/proxy.json`) came out at 0.0047–0.0050 for all four files with overlapping
 95 % CIs — it cannot separate these doses and is not evidence either way.
+
+---
+
+# Session 2026-10-23 — CONCENTRATION on R0 (GDR thermal-feature prior)
+
+Built by `scripts/build_concentration.py`; numbers in `evidence/concentration_axis_20261023.json`.
+Parent: R0, 37,654 unit dots, claimed 0.2778 (CLAIM). Dot count and mass per dot are fixed in
+every arm; only *where* 3,765 dots sit changes.
+
+## Card — `…-CONCENTRATIONgdr25m10-20261023-08bf80cf` (2.5 km blocks, all thermal features)
+
+**Hypothesis.** At a fixed dot budget the live score rises when 10 % of the dots move from the
+km blocks furthest from any thermal feature into the km blocks closest to one.
+
+**Mechanism.** A dot pays only through kernel credit from truth within 3 px, and it costs
+`0.2·(1 − max_g k)` in the denominator. Springs and hot wells sit on *structure*: they require a
+permeable pathway to depth, which in the Basin and Range is a fault or a fault intersection. If
+new-fault truth is concentrated near those pathways, moving mass there raises T at almost no
+cost in S (the count is unchanged) or in (S − M) (the acceptors land among existing dots, not on
+top of them). Acceptors' mean prior 0.110 versus donors' 5.4 × 10⁻⁶: the dots leave blocks whose
+cells are ~14 km from any thermal feature. The edit is large in space — mean displacement
+1,632 px (163 km), max 3,726 px — because the donors are exactly the featureless part of the
+footprint. It also *empties* 570 of the 5,219 occupied 2.5 km blocks (3,763 dots) and occupies
+409 new ones.
+
+**Non-fault process that could mimic it.** (a) *Land use and access*: wells are drilled in
+valleys, near roads and playas, so the prior partly maps "basin floor", and basin-floor faults
+may be sampled or mapped differently. (b) *Catalogue re-encoding*: 15 % of the thermal features
+sit within 3 px of a mapped trace, so the prior is partly a re-statement of what is already
+masked — this is why the third arm keeps only features >8 px off the map. (c) *Measurement
+effort*: 27,092 CSV rows for 12,570 distinct cells (one well repeated 52 times); de-duplicating
+to one feature per cell removes that, but an inventory is still denser where someone looked.
+
+**Predicted sign and size.** **+0.0114 (MODEL)**, interval **−0.022 … +0.034**. The interval is
+not decoration: +0.034 is 3 × the point estimate, and −0.022 is *measured*, not assumed — if
+truth followed the lineage's own 121,131-px H19-5 field, this same relocation would lose 0.022,
+because the dots no longer cover 8.4 percentage points of that field (88.6 % → 80.2 %). The
+point estimate comes from scoring the arm against its own prior network (9,501 cells within
+1 px of a feature) and claiming a tenth of the +41 % relative gain. That instrument is
+**circular by construction**: it says what happens if the prior is right, nothing more.
+Uniform random truth (9,501 cells) puts the same edit at −0.006. Reported, labelled, and never
+called a score.
+
+**Falsifier.** Live Δ ≤ 0 while the moved fraction (10.00 %), the block-CV change (0.762 →
+0.808 at 2.5 km) and the donor/acceptor prior gap all match the design ⇒ the thermal prior
+carries no transferable information about new-fault location; retire the axis. Live Δ ≥ +0.01
+⇒ it does, and the 20 % dose (`w20`) is the next build. **A live change under 0.01 is no
+evidence** (public chunks only).
+
+**Controls.** Same seed, same 10 %, same placement rules, random block ranking (`null
+diagnostic`, no release, no slot): it already earns +0.0087 of the prior-as-truth +0.114, so
+~8 % of the surrogate gain is generic relocation and the remaining ~92 % is the prior. The
+catalogue hide-and-recover proxy falls 0.006186 → 0.005407 (−12.6 %, PROXY, report-only): the
+edit moves mass away from mapped traces, which is the intended mechanism, but IR-91-15 explains
+why that number does not adjudicate anything. Leakage canary 0.4496 (stop threshold 0.90).
+
+## Card — `…-CONCENTRATIONgdr10m10-20261023-d54e8815` (1 km blocks)
+
+Identical except the block size: +0.0113 (MODEL), −0.021 … +0.034, block CV (1 km) 0.6187 →
+0.6459. It exists to ask whether the prior's information lives at 1 km or 2.5 km; the arms come
+out within 0.0001 of each other, so **it does not** — do not spend a slot on the scale question
+before one 2.5 km arm has a receipt (IR-91-17).
+
+## Card — `…-CONCENTRATIONgdr25rm10-20261023-c19adb01` (2.5 km blocks, remote features only)
+
+Prior built from the 1,406 thermal features more than 8 px from the mapped catalogue.
++0.0123 (MODEL), −0.022 … +0.037; block CV 0.762 → 0.819. This is the cleanest test of the
+mechanism as written — "structure the map has not captured" — and therefore **slot 1**, because
+its prior cannot be a re-statement of the masked catalogue. Its surrogate-truth DTI start is
+lower (0.0359, fewer features) but the relative gain is the largest (+44 %).
+
+## What these cards do not claim
+
+- No live effect has been measured. Every number above is MODEL or PROXY.
+- The co-registered 400 m flight-line geometry, the Faulds inventory and the SGMC control were
+  not used as priors here; only the GDR well/spring inventory, which is public domain and
+  already pinned for "prior layer only".
+- These are one experiment, not three: 10 % moved, same seed, same collar, three ways of
+  choosing high-prior blocks. Only receipts separate them.

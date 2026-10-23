@@ -96,6 +96,10 @@ jobs:
           python scripts/make_catalogue.py
           python scripts/build_prune_ladder.py
           python scripts/build_prune_refill.py --build
+      - name: Rebuild the CONCENTRATION arms from the pinned inputs
+        # Idempotent: an id already in the ledger must come back with the same sha256
+        # or the step fails. Parent + catalogue + GDR prior only.
+        run: python scripts/build_concentration.py --build
       - name: Rebuild the MASS/consensus arms and prove they are deterministic
         run: |
           python scripts/build_mass_consensus.py
