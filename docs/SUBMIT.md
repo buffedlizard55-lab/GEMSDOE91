@@ -179,3 +179,10 @@ python3 scripts/validate_raster.py releases/h33-h33-2-b2-RELIEFr2p12-20261023-6f
    dots: 37,654 unit-mass | cat_mass=0 | min_d_cat=2.2361 px (added_le3px=0) | relocated=4,518 (12.00%; Hamming 9,036=24.00%)
    validators: validate.py=PASS | validate_raster.py=14/14 PASS | sha256_not_spent=PASS | reread_from_disk=PASS
 ```
+
+## Session arena/5b08c5d7 — no upload artifact
+
+No new file, submission name, form note, or format receipt: selected PRUNE
+settings were already built. No new ledger rows. See
+`reports/session-5b08c5d7-preflight.md`; prior upload instructions remain
+conditional on human receipts, quota verification and IR-91-28 resolution.

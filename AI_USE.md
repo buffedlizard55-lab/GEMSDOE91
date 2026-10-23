@@ -398,3 +398,13 @@ slot count, the deadline confirmation, the collar ruling (IR-91-03), and the bli
 3. **Slot expenditure & blind final pick:** Decide which built raster(s) to upload in the 3
    weekly slots (`SLOT_PLAN.md`) and choose the single blind final submission.
 
+
+## 2026-10-23 — arena/5b08c5d7-gemsdoe91
+
+AI selected PRUNE, inspected the manifest/ledger/slot plan, restored pinned inputs
+with anonymous GitHub requests, verified hashes, rebuilt the catalogue and both
+R0 twins, and wrote the preflight stop report plus decision-relevant irregularity.
+No credentials were read, no competition pages fetched, no submissions made,
+and no candidate rasters built. AI identified exhausted prescribed PRUNE values
+and the inherited-collar conflict; the human has not authorized an exception or
+supplied any new live receipts. Local test results are not RECEIPT evidence.
