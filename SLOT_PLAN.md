@@ -1,35 +1,36 @@
-# SLOT PLAN — status after the 2026-10-23 preflight
+# SLOT PLAN — after PRUNE ladder extension (2026-10-23)
 
-**This session stopped before building.** The brief requires an exact R0 rebuild and matching
-sha256. The pinned NaN/zeros files were retrieved and hash-verified, and the dot set is
-reproducible from pinned ancestors, but the original raster bytes cannot be regenerated in
-this environment (IR-91-16). No new variant or submission candidate exists. Do not spend a
-scoring slot until the human supplies the original byte-reproducible build environment or
-confirms a valid alternative parent-identity procedure. The selected axis was PRUNE; all
-requested PRUNE values already occur in the ledger, and the refill ranking is missing.
+**Parent R0** `h33-h33-2-b2` (37,654 dots, 2.236 px collar floor). R0's 0.2778 is CLAIM.
+Three new PRUNE delete-only variants built this session (all 14/14 gates PASS):
 
-## Next three scored slots (conditional on clearing the parent gate and supplying inputs)
+| # | variant | dose | n_dots | % changed | predicted (MODEL) |
+|---|---|---:|---:|---:|---|
+| A | `PRUNE-le4-norefill` | ≤4 px (3825) | 33,829 | 10.16% | +0.003 [−0.003,+0.009] |
+| B | `PRUNE-le5-norefill` | ≤5 px (5637) | 32,017 | 14.97% | +0.005 [−0.004,+0.013] |
+| C | `PRUNE-le10-norefill` | ≤10 px (11360) | 26,294 | 30.17% | +0.008 [−0.006,+0.019] |
 
-| order | candidate | mechanism / predicted result (MODEL) | what the receipt changes |
+Ledger now 29 BUILT, 0 SUBMITTED. TOP_PUBLIC and weekly slots still need human fill.
+
+## Next three scored slots (in order)
+
+| order | candidate | mechanism / predicted result | what the receipt changes |
 |---|---|---|---|
-| 1 | MASS `m05drop` | Remove the lowest-ranked 5% using R0's own ranking; predicted small positive, likely <0.01. Requires reproducible rank. | Gain supports excess mass; loss means the lower tail carries recall. |
-| 2 | MASS `m05add` | Add the next-ranked 5% from the same parent ranking; count rises by 5%; predicted flat-to-negative. | Opposite-sign contrast distinguishes over-mass from under-mass; if both flat, stop tuning mass. |
-| 3 | CONCENTRATION `b25px-m10` | Move 10% from low- to high-prior 25-px blocks (2.5 km), count fixed; report block-density CV before/after. Requires a verified, licensed prior. | Positive ≥0.01 supports block-scale prior transfer; non-positive retires this prior at that scale. |
+| 1 | **PRUNE `le10-norefill`** (`04002dae`) | Largest delete-only dose this session; denominator saving vs new-fault credit. Predicted +0.008 MODEL, only dose with plausible >0.01 path. Tests whether mass far from known faults is background. | If **+0.01 or more** vs R0: field is over-massed away from catalogue; keep pruning (bisection beyond 10 px or refill-held at 10 px once ranking is available). If **|Δ|<0.01**: PRUNE neutral at this dose; try `le4`/`le5` to check monotonicity. If **≤−0.01**: halo carries real truth; stop pruning, add mass at 3–5 px (MASS add) or switch to RELIEF/CONCENTRATION. |
+| 2 | **PRUNE `le4-norefill`** (`360fe57e`) | Refines 3→4 px collar (1,654 new dots, all zero catalogue credit). Predicted +0.003 MODEL. Cleanest test of the 300–400 m band outside the organiser's "within 300 m" clause. | If slot-1 was **positive** but small: `le4` should also be positive and smaller; its gain confirms linearity. If slot-1 was **flat/loss**: `le4` isolates whether the 3–4 px band is the first losing band — its sign locates the optimum inside 4–10 px. |
+| 3 | **SPACING `spread40`** (`6d389309`) | 40% of densest dots to emptiest ring-2 cell (same set/budget as `clump40`/`jitter40` controls). Predicted +0.004 MODEL, bounded ≤0.003 by uniform-truth ceiling. Retires geometry if flat. | If SPACING **flat** (|Δ|<0.01) after PRUNE: arrangement is not a lever; spend remaining slots on block-scale prior (RELIEF or CONCENTRATION with external prior) and on getting a receipt for the baseline. If SPACING **gains** ≥0.01: clusters waste credit; next is spread at 50% / ring-4 or anisotropic packing. |
 
-These are proposed values, not built; check `ledger/submissions.csv` again before construction.
-The existing ledger contains MASS m10/m20 and CONCENTRATION b10/b50/15%-prior rows, so those
-pairs must not be repeated. The 0.01 threshold applies to interpretation, not as a build gate.
+*These are proposed values, not submitted; check `ledger/submissions.csv` for (parent,axis,value) dupes before construction — these three are new and unique.*
 
-## Weeks to deadline
+## Weeks to deadline (deadline unconfirmed: 2026-12-03 on competition page)
 
-- **Now / wk 1:** human supplies byte-reproducible R0 recipe/environment and `training_features.tif`; verify every manifest hash, recreate R0 bytes, and only then build slot 1.
-- **Wk 2:** use the receipt to decide whether to build slot 2; under |Δ| < 0.01 treat the result as no evidence. Submit no more than three scored candidates in the rolling week.
-- **Wk 3–4:** use slot 3 only if its licensed prior is verified and the parent gate still passes; otherwise spend it on a confirmation of the strongest axis.
-- **Wk 5–6 / by 2026-12-03 (deadline unconfirmed):** confirm the best result, make a fallback, validate both from disk, and choose one final file blind. No agent submits.
+- **Now / wk 1:** submit slots 1–2 (PRUNE doses). Paste receipt_score/date into ledger the same day. Treat |Δ|<0.01 as **no evidence** (public chunks only; private chunks may differ). Submit no more than 3 scored files per rolling week (one entity rule).
+- **Wk 2:** submit slot 3 (SPACING) only if PRUNE results are interpretable (|Δ| pattern, not all flat). Otherwise spend slot 3 on a confirmation of the best PRUNE dose (re-validate format from disk, re-upload same file is forbidden — build `le7`/`le8` bisection instead).
+- **Wk 3–4:** combine the two best axes (e.g. PRUNE at winning threshold + RELIEF tercile shift or CONCENTRATION with a licensed prior) if human supplies `training_features.tif` and a licensed prior; otherwise confirm the best single-axis file and build its fallback twin (`-zeros.tif`) and re-validate both from disk.
+- **Wk 5–6 / by 2026-12-03:** choose one final file **blind** (no peeking at private-chunk feedback), plus a fallback, re-validate format of both (`validate_raster.py` must print PASS), and submit the final file. No agent submits.
 
-## Better axes to consider later (not built)
+## Better axes to consider later (not built this session)
 
-1. **MASS-SHAPE at fixed count.** Mechanism: reduce redundant local overlap so dots buy fresh kernel credit without raising total mass. Confounder: genuine fault density is clustered. Falsifier: relocation away from dense clusters lowers live score. Requires a recorded ranking and must be a new (axis,value) pair.
-2. **EDGE-FLOOR.** Mechanism: add support only where independent, multi-band geophysical edges agree, rather than snapping every dot to a single-band maximum. Confounder: survey-line / lithologic boundaries mimic faults. Falsifier: no positive live change versus a matched null at the same count. Requires licensed, shareable, hash-pinned bands.
+1. **MASS-SHAPE at fixed count (refill-held PRUNE).** Mechanism: delete the low-gain `max_px` halo *and* refill to 37,654 from the parent's own marginal-gain ranking, so mass is held constant and only placement changes. Confounder: ranking itself is confounded with catalogue distance. Falsifier: refill-held PRUNE scores *below* delete-only at same dose → mass loss, not placement, drove the prior gain. Requires `training_features.tif` ranking artifact.
+2. **RELIEF tercile shift.** Mechanism: faults concentrate at range-front/piedmont vs basin; move 10–15% of dots from basin to range-front terciles of detrended elevation (from `ext_lidar_scarp_u8.tif` bands). Confounder: lidar scarp signal tracks survey geometry / lithologic contacts, not faults. Falsifier: both directions (basin→range and range→basin) score within 0.01 of each other → relief does not transfer. Blocked this session only by time, not inputs (RELIEF is READY).
 
-**Human must supply:** byte-reproducible R0 build environment/recipe, the training-features raster and its provenance, TOP_PUBLIC/date, weekly slots remaining, and confirmation of the competition deadline. Do not contact competition or leaderboard pages programmatically.
+Human must supply before spending a slot: `TOP_PUBLIC` with date, weekly slots remaining, and confirmation of the competition deadline. Do not contact drivendata.org/leaderboard pages programmatically.

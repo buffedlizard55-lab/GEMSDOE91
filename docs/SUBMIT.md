@@ -1,26 +1,49 @@
 # SUBMIT — what to upload, and what to paste back
 
-**Status 2026-10-23: three files are built and gate-clean** (`releases/`, rebuilt on demand —
-`releases/*.tif` are gitignored, the sha256 contract is `releases/MANIFEST.json`).
-**Nothing has ever been submitted by an agent, and no agent may submit.** One file per slot;
-the `-zeros` twin is the fallback, not an extra entry.
+**Status 2026-10-23 (this session): 3 new PRUNE files built and gate-clean** (`releases/`,
+`releases/MANIFEST.json` is the hash contract; `releases/*.tif` are gitignored and rebuilt
+on demand). **Nothing has ever been submitted by an agent, and no agent may submit.** One
+file per slot; the `-zeros` twin is the fallback, not an extra entry.
 
-## Rebuild first (10–40 s, five inputs, all hash-verified)
+## Rebuild first (15–30 s, pinned inputs only)
 
 ```bash
-python3 scripts/restore_data.py           # fetch + verify every pinned sha256
-python3 scripts/build_spacing.py --build  # rebuild the parent proof and all three arms
-python3 scripts/validate.py releases/<file>.tif   # must print PASS
+python3 scripts/restore_data.py           # fetch + verify every pinned sha256 (14/15 OK; training_features absent)
+python3 scripts/make_catalogue.py         # derive data/derived/catalogue_mask.tif (60,988 px)
+python3 scripts/build_prune_ladder.py     # rebuild the 3 new PRUNE doses (this session)
+python3 scripts/build_spacing.py --build  # rebuild the 3 SPACING arms (prior session)
+python3 scripts/validate.py releases/<file>.tif  # must print PASS (or validate_raster.py)
 ```
 
 The build refuses to proceed unless R0's dot set is reproduced exactly from both pinned
 ancestors, and refuses to write the ledger unless every release passes every hard gate.
 
-## Session-3 files
+## This session — PRUNE ladder extension (3 files, use one per slot)
+
+All three are delete-only PRUNE (no refill). 14/14 MUST gates PASS.
+
+| # | file to upload (primary NaN) | n_dots | % changed | sha256 (must match `releases/MANIFEST.json`) | bytes |
+|---|---|---:|---:|---|---:|
+| 1 | `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif` | 26,294 | 30.17% | `04002dae86db72c3…` | 314,889 |
+| 1f| `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae-zeros.tif` (fallback) | 26,294 | 30.17% | `0842d86618dbe64a…` | 174,857 |
+| 2 | `h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e.tif` | 33,829 | 10.16% | `360fe57edd828639…` | 348,403 |
+| 2f| `h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e-zeros.tif` | 33,829 | 10.16% | `b2c4fa39c78c2f02…` | 204,203 |
+| 3 | `h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987.tif` | 32,017 | 14.97% | `5b6d39870bc0fe98…` | 339,956 |
+| 3f| `h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987-zeros.tif` | 32,017 | 14.97% | `2ecee55250420948…` | 196,443 |
+
+**Form note** (≤140 chars, per file — no score claimed):
+
+```
+Parent R0 h33-h33-2-b2; PRUNE <=10px delete 11360 dots (30.17%), count 26294; pred +0.008 MODEL
+Parent R0 h33-h33-2-b2; PRUNE <=4px delete 3825 dots (10.16%), count 33829; pred +0.003 MODEL
+Parent R0 h33-h33-2-b2; PRUNE <=5px delete 5637 dots (14.97%), count 32017; pred +0.005 MODEL
+```
+
+## Prior session — SPACING (3 files, still available)
 
 | slot rank | file to upload | sha256 (must match `releases/MANIFEST.json`) | bytes |
 |---|---|---|---:|
-| 2 | `…-SPACINGspread40-20261023-6d389309-zeros.tif` | `5c517369be3c807c…` | 226,284 |
+| — | `…-SPACINGspread40-20261023-6d389309-zeros.tif` | `5c517369be3c807c…` | 226,284 |
 | — | `…-SPACINGspread40-20261023-6d389309.tif` (NaN-outside primary) | `6d389309aafaa79d…` | 373,103 |
 | — | `…-SPACINGclump40-20261023-536d32ad-zeros.tif` (control) | `d393c94f38601567…` | 224,741 |
 | — | `…-SPACINGjitter40-20261023-39bb7288-zeros.tif` (null) | `ad6dfa26043f7f19…` | 225,691 |
@@ -52,7 +75,29 @@ python scripts/validate_release.py releases/<id>.tif --axis PRUNE
   assume the twins score identically on the organiser's reader — the ledger's line
   "NaN-outside and zeros-outside twins score identically" was never receipt-backed.
 
-## Format receipt — copy this into the PR/session notes
+## Format receipt — copy this into the PR/session notes (for each file you upload)
+
+```
+candidate: h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae
+sha256:    04002dae86db72c3fc47652bd66e3ec029e432c909cad779039e9e3749ae0839
+bytes:     314889
+validate_raster.py: [PASS] crs/shape/transform/dtype/band_count/values_in_0_1/no_nan_inside/nan_outside/zero_catalogue_mass/sha_unseen/reread_from_disk
+n_dots:    26294  pct_changed: 30.17%  min_dist_catalogue_px: 10.05
+
+candidate: h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e
+sha256:    360fe57edd8286393a180f0ae53c8259899c4344e5bc7f4c4ec20dcdf28530a7
+bytes:     348403
+n_dots:    33829  pct_changed: 10.16%  min_dist_catalogue_px: 4.12
+
+candidate: h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987
+sha256:    5b6d39870bc0fe9813813f231a56e3b9425e7e2ec149e3e2de8f3ae654b14ce8
+bytes:     339956
+n_dots:    32017  pct_changed: 14.97%  min_dist_catalogue_px: 5.10
+```
+
+Full `validate_raster.py` output is in `evidence/prune_ladder_20261023.json` (gates_text per variant). Paste that block for the file you actually upload; UNVERIFIED is not a pass.
+
+## Format receipt (legacy — prior PRUNE R1 reference)
 
 ```
 candidate: h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705
