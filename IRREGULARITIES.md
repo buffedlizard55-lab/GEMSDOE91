@@ -574,3 +574,64 @@ placing any new recipient dot at `d_cat ≤ 3.0 px` violates the `≥ 3 px` new-
 `d_cat > 3.0 px` on **both** donor removal and recipient placement (`collar_le3px = 2,171 → 2,171`,
 `added_dots_le3px = 0` across all three `RELIEF` builds `RECEIPT`).
 
+
+## IR-91-28 — The catalogue hide-and-recover PROXY cannot evaluate any SNAP edit that holds the collar
+
+**Expected** (brief §6): the hide-and-recover PROXY is a REPORT-ONLY instrument that
+measures "if new-fault truth looks like mapped-fault truth a few cells away, which
+arrangement covers it better".
+
+**Actual:** for all four builds this session it returns **exactly 0.006186** —
+`vg1px`, `vg2px`, `vg3px`, the random-shuffle null, and R0 itself to six decimals. This is
+not a small effect; it is a structural blind spot. `proxy.hide_and_recover` scores each
+withheld *catalogue* cell by its distance to the nearest dot within R = 3 px. Every SNAP
+target is required to sit at `d_cat > 3.0 px` (else the edit would move mass into the
+collar), and the 2,171 dots R0 already holds at 2 < d_cat ≤ 3 px are frozen. Therefore the
+only dots that can ever sit within 3 px of a catalogue cell are the frozen ones, which no
+arm changes. The instrument's input is invariant by construction.
+
+**Decision it changes.** (a) Never cite "PROXY Δ = 0.0000" for a collar-holding SNAP arm as
+"no effect" — it is *no measurement*. (b) The instrument must be run on a grid where the
+collar is released (or on the RELIEF/CONCENTRATION-style edits that move mass across the
+whole field), otherwise it cannot adjudicate a SNAP arm. (c) The SGMC off-catalogue control
+and the random-shuffle null in this session are the instruments that do carry information
+here; `docs/MECHANISM_CARDS.md` reports them instead and marks the PROXY as blind.
+
+## IR-91-29 — The `vg3px` arm moves dots further than the brief's own SNAP definition allows
+
+**Expected** (brief §5): "SNAP: move each dot <=2 px to the strongest edge/scarp response in
+its window."
+
+**Actual:** this session built a three-point dose ladder at r = 1, 2 **and 3 px**. The 3 px
+arm moves up to 3.000 px (mean 2.499 px for the movers). This is a deviation from the
+brief's design parameter, not from any competition rule (`<=2 px` appears nowhere in the
+problem page, the metric page or the rules PDF).
+
+**Decision it changes.** `vg3px` is a dose-ladder point and must not be described as a
+spec-compliant SNAP candidate; if the human only wants spec-compliant files, use
+`vg2px` (`h33-h33-2-b2-SNAPvg2px-20261023-353a9dda`) or `vg1px`. The rationale for the
+deviation is stated in the mechanism card: R = 3 px is the kernel reach, so it is the reach
+at which a misplacement costs the most, and without the third point the ladder cannot
+distinguish "the field is wrong" from "the dose is wrong".
+
+## IR-91-30 — SNAP, as specified, is not a *local* edit: ~90 % of the field moves
+
+**Expected** (brief §5): a variant is "one change from a named parent", and except for SNAP
+"a variant must change 1-50 % of R0's dots".
+
+**Actual:** applying SNAP as specified — every dot moves to the strongest response in its
+window — moves 89.78 %, 91.05 % and 91.98 % of the parent's dots (95.3–97.6 % of the dots
+that are legally movable). The parent is dense (mean nearest neighbour 3.74 px) and the
+driver has crests almost everywhere, so nearly every dot finds a better legal cell. R0's
+own spacing floor (0 pairs < 2 px) is *not* preserved for free either: the first two builds
+of this session produced 5,955–15,118 dot pairs closer than 2 px before the target
+selection was made to reserve a 3×3 exclusion around every finalised and every queued dot.
+
+**Decision it changes.** (a) A SNAP arm is a **re-placement of the field onto the driver's
+crests**, not a refinement of a few dots; a live Δ therefore measures "is the crest field a
+better fault map than the lineage field", which is a bigger question than the brief's
+wording implies. (b) Any SNAP build must enforce the parent's 2 px floor explicitly, or it
+silently becomes a SPACING/redundancy experiment as well (mass up, credit saturated).
+`scripts/build_snap_geodetic.py` refuses to write a file whose realised minimum separation
+is < 2.000 px, and `tests/test_snap_vg.py` asserts it. (c) Do not compare a SNAP arm's
+`pct_changed` against the 1–50 % band used for the other axes.

@@ -1,10 +1,41 @@
 # SLOT PLAN — 1 entity, 3 scored slots / rolling week, 1 blind final pick
 
-**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `41` `BUILT` rows across five merged axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
+**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `44` `BUILT` rows across all six axis families, `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
 
 ## Session 5 (`arena/42de3fed-gemsdoe91`) addition: `RELIEF` (`r2p12`, `r2b12`, `b2r12`)
 
 Restoring `training_features` (`gems-geodawn-numerical-features.tif`, sha256 `4371c82e…3bc5` `RECEIPT`) unblocked all six axes (`16/16` manifest checks pass `RECEIPT`). `RELIEF` relocates `4,518` dots (`12.00%` moved; `9,036` symmetric pixel diff = `24.00%` `RECEIPT`) at fixed count (`37,654` `RECEIPT`) and zero catalogue-collar drift (`2,171 -> 2,171` `RECEIPT`) across equal-area terciles `0.90·pct(det_elev) + 0.10·pct(det_elev_slope)`: `RELIEFr2p12` (`6ff08e5c`, `+0.006` `MODEL`), donor-twin `RELIEFr2b12` (`27443c30`, `+0.003` `MODEL`), and directional sign-flip `RELIEFb2r12` (`e1fd28d5`, `+0.005` `MODEL`, `+5.2%` off-catalogue SGMC `PROXY`, [USGS DS-1052](https://pubs.usgs.gov/ds/1052/)).
+
+## Session 6 (`arena/f8d67617-gemsdoe91`) addition: `SNAP` vertical-gradient ladder (`vg1px`, `vg2px`, `vg3px`) — **built, NOT a slot candidate**
+
+The nine SNAP rows already in the ledger all snap to *horizontal* gradients; none used the
+sponsor's vertical-gradient bands (`tmi_vg`, `iso_grav_anom_vg`), whose crest sits closer to
+the top edge of a dipping source than the horizontal-gradient crest does. Three arms, one
+mechanism, r = 1 / 2 / 3 px (Euclidean), count fixed 37,654, collar held at 2,171 → 2,171 by
+freezing R0's inherited 2–3 px dots, spacing floor ≥ 2.000 px enforced (`RECEIPT`):
+
+| id | r | moved | mean disp | driver pct | SGMC Δ `PROXY` | frozen `MODEL` |
+|---|---:|---:|---:|---|---:|---|
+| `…-SNAPvg1px-20261023-97606a78` | 1 px | 89.78 % | 0.898 px | 0.536→0.588 | −0.0033 | +0.002 |
+| `…-SNAPvg2px-20261023-353a9dda` | 2 px | 91.05 % | 1.554 px | 0.536→0.614 | −0.0058 | +0.003 |
+| `…-SNAPvg3px-20261023-435435a3` | 3 px | 91.98 % | 2.298 px | 0.536→0.637 | −0.0098 | +0.004 |
+
+A report-only random-target null at r = 2 (same machinery, no driver) costs −0.0013 on SGMC,
+so the treatment removes **2.5–7.4× more** fault proximity than a coin flip of the same size,
+monotonically with dose, while its own driver objective improves monotonically. **Post-hoc
+expectation: the live sign is negative, Δ ≈ −0.003 … −0.012.** The ladder is a falsification
+test, not a gain. The catalogue hide-and-recover `PROXY` is identically `0.006186` for all
+four builds *including R0* — that is blindness, not "no effect" (IR-91-28).
+
+**What each receipt would change**
+
+- `vg2px` (the only arm both inside the brief's ≤ 2 px spec and matched to the 400 m survey
+  spacing) is the one to spend a slot on **if** the human wants the mechanism question closed:
+  a `Δ ≥ 0` would falsify the SGMC control and would say the withheld truth is offset from the
+  compiled map — that is worth knowing before the final pick. A `Δ ≤ −0.010` closes SNAP-on-VG
+  permanently and makes the SGMC control the repo's primary axis filter.
+- `vg1px`/`vg3px` are ladder points; they only matter once `vg2px` has a receipt, to establish
+  the slope. Do not spend a slot on them first.
 
 ## Next 3 scored slots in order (Week 1: one orthogonal axis per slot)
 
@@ -35,3 +66,8 @@ Restoring `training_features` (`gems-geodawn-numerical-features.tif`, sha256 `43
    - **Mechanism:** Blind geothermal systems localize at fault tips/step-overs with elevated conductive temperature (`ieq_n100a15` AUC `0.5749` `PROXY`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)).
    - **Confounder:** Shallow groundwater outflow plumes advect heat `2–8 km` down-gradient off the fault conduit.
    - **Falsifier:** Thermal-gated step-over reallocation scores `≤` isothermal `RELIEFr2p12` (`6ff08e5c`).
+
+4. **`SNAP-ANTI` — the sign flip of this session's treatment (`|VG|` *minimum*, r = 2 px)**
+   - **Mechanism:** the vertical-gradient crest was 2.5–7.4× *worse* than a random shuffle on the only independent fault map available (USGS SGMC), monotonically with dose. If that control is even roughly right, the lineage's dots sit deliberately *between* geophysical crests — consistent with a thin-sheet / thick-zone source whose surface trace is offset from the potential-field maximum — and moving them away from crests should recover credit.
+   - **Confounder:** the same control could be wrong in the same direction at every dose; a gain would then just mean "the SGMC map prefers flatter gradients", not that the truth does.
+   - **Falsifier:** `SNAP-ANTI` failing to beat `vg2px` by ≥ +0.005 live, with both receipts in hand, retires the VG family entirely rather than escalating it. Build only after `vg2px` has a receipt.

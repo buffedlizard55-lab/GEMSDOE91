@@ -179,3 +179,60 @@ python3 scripts/validate_raster.py releases/h33-h33-2-b2-RELIEFr2p12-20261023-6f
    dots: 37,654 unit-mass | cat_mass=0 | min_d_cat=2.2361 px (added_le3px=0) | relocated=4,518 (12.00%; Hamming 9,036=24.00%)
    validators: validate.py=PASS | validate_raster.py=14/14 PASS | sha256_not_spent=PASS | reread_from_disk=PASS
 ```
+
+---
+
+## Session 6 (`arena/f8d67617-gemsdoe91`) — SNAP vertical-gradient ladder: **built and certified, but recommended against**
+
+Six files (`NaN` primary + `-zeros` fallback for each of three arms) are on disk and pinned in
+`releases/MANIFEST.json`. **This is a falsification test, not a candidate set** (`SLOT_PLAN.md`,
+`ledger/variant-cards-SNAP-vg-20261023.md`): the frozen `MODEL` predictions are +0.002/+0.003/+0.004,
+but the only independent fault map the repo may read (USGS SGMC) says the treatment *loses* 2.5–7.4×
+more fault proximity than a random shuffle of the same size, monotonically with dose.
+
+```bash
+python3 scripts/restore_data.py
+python3 scripts/build_snap_geodetic.py --build          # idempotent: same ids, same bytes
+python3 scripts/validate_raster.py releases/<file>.tif data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif \
+    --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+python3 -m pytest tests/test_snap_vg.py                 # the invariants the arms promise
+```
+
+| use | file (`releases/`) | name | form note (≤140 chars, verified length) |
+|---|---|---|---|
+| **only if closing the mechanism** | `h33-h33-2-b2-SNAPvg2px-20261023-353a9dda.tif` | `h33-h33-2-b2-SNAPvg2px-20261023-353a9dda` | `h33-h33-2-b2; SNAP vg2px: every dot <= 2 px to the |VG| crest (bands 9+11), count 37654; pred +0.003 MODEL` (106) |
+| ladder point | `h33-h33-2-b2-SNAPvg1px-20261023-97606a78.tif` | `…-SNAPvg1px-…-97606a78` | `h33-h33-2-b2; SNAP vg1px: every dot <= 1 px to the |VG| crest (bands 9+11), count 37654; pred +0.002 MODEL` (106) |
+| ladder point, **outside the brief's ≤2 px spec** (IR-91-29) | `h33-h33-2-b2-SNAPvg3px-20261023-435435a3.tif` | `…-SNAPvg3px-…-435435a3` | `h33-h33-2-b2; SNAP vg3px: every dot <= 3 px to the |VG| crest (bands 9+11), count 37654; pred +0.004 MODEL` (106) |
+
+### Session 6 format receipt (`RECEIPT`, re-read from disk after write)
+
+```text
+1. h33-h33-2-b2-SNAPvg1px-20261023-97606a78
+   primary (.tif):        sha256=97606a783b05186fc4406c1f5d5890cbcfde140ba265e672e66b7a3a6ad321fa (372,619 B)
+   fallback (-zeros.tif): sha256=d22deb3858be7c7a8cc55681e8025cb7c1307ac9e1af1eadc9a7313f2cc1ee64 (225,726 B)
+   dots 37,654 | cat_mass 0 | min_d_cat 2.2361 px (2,171 inherited, unchanged) | moved 33,807 (89.78%) | mean disp 0.898 px
+   min nearest-neighbour 2.000 px | driver pct 0.5360 -> 0.5884 | validate_raster 14/14 PASS | gates 2/2 twins PASS
+
+2. h33-h33-2-b2-SNAPvg2px-20261023-353a9dda
+   primary (.tif):        sha256=353a9ddac0385fa66a8bcdd2b6d57ea5676bb85de34d0efce2cebeeedc4e5f4a (372,114 B)
+   fallback (-zeros.tif): sha256=c910a3113912473c27e6a8ed21e16a6855ea8984ecb90eaf4f3fd2b17d3c6dd5 (225,046 B)
+   dots 37,654 | cat_mass 0 | min_d_cat 2.2361 px (2,171 inherited, unchanged) | moved 34,285 (91.05%) | mean disp 1.554 px
+   min nearest-neighbour 2.000 px | driver pct 0.5360 -> 0.6142 | validate_raster 14/14 PASS | gates 2/2 twins PASS
+
+3. h33-h33-2-b2-SNAPvg3px-20261023-435435a3
+   primary (.tif):        sha256=435435a37ec9925b92a3d5bf6b5824e31a41b16a593b6a98d1ef30490462aa51 (370,863 B)
+   fallback (-zeros.tif): sha256=81b14b91c17dbea0cf8920633d813cd76ca1af50e662f1e305ec4d411bffe4be (223,945 B)
+   dots 37,654 | cat_mass 0 | min_d_cat 2.2361 px (2,171 inherited, unchanged) | moved 34,635 (91.98%) | mean disp 2.298 px
+   min nearest-neighbour 2.000 px | driver pct 0.5360 -> 0.6367 | validate_raster 14/14 PASS | gates 2/2 twins PASS
+
+grid (all six): EPSG:32611 | 3730x3292 | 100 m | float32 | 1 band | values {0,1} | NaN outside the footprint
+```
+
+**If you do spend a slot on session 6:** upload `vg2px` and record the receipt next to the
+pre-registered `+0.003` *and* the post-hoc `−0.006` in `ledger/submissions.csv:notes`. A live
+`Δ ≤ −0.010` closes SNAP-on-vertical-gradient for good and promotes the SGMC control to the
+repo's primary axis filter; a live `Δ ≥ 0` falsifies the control, which changes how every other
+control in this repo should be read. **If you would rather not spend a slot on a negative
+expectation, upload nothing from this session** — the files are already certified and can be
+used later.
