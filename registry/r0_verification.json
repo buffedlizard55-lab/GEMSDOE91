@@ -1,0 +1,103 @@
+{
+  "schema": "gems91.r0-verification.v1",
+  "rebuild_kind": "pinned_artifact_retrieval",
+  "checks": {
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "expected": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065,
+      "expected_bytes": 219065,
+      "fetch": "OK parent_r0_zeros",
+      "hash_match": true,
+      "bytes_match": true
+    },
+    "parent_r0_nan": {
+      "path": "data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "expected": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "bytes": 355443,
+      "expected_bytes": 355443,
+      "fetch": "OK parent_r0_nan",
+      "hash_match": true,
+      "bytes_match": true
+    },
+    "anc_d2_8": {
+      "path": "data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "expected": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424,
+      "expected_bytes": 1603424,
+      "fetch": "OK anc_d2_8",
+      "hash_match": true,
+      "bytes_match": true
+    }
+  },
+  "ok": true,
+  "parent_audit": {
+    "nan_twin": {
+      "meta": {
+        "crs": "EPSG:32611",
+        "dtype": "float32",
+        "count": 1,
+        "shape": [
+          3730,
+          3292
+        ],
+        "res": [
+          100.0,
+          100.0
+        ],
+        "bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "nodata": NaN
+      },
+      "finite_px": 5167373,
+      "nonfinite_px": 7111787,
+      "n_positive_px": 37654,
+      "positive_values": [
+        1.0
+      ],
+      "min_finite": 0.0,
+      "max_finite": 1.0
+    },
+    "zeros_twin": {
+      "meta": {
+        "crs": "EPSG:32611",
+        "dtype": "float32",
+        "count": 1,
+        "shape": [
+          3730,
+          3292
+        ],
+        "res": [
+          100.0,
+          100.0
+        ],
+        "bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "finite_px": 12279160,
+      "nonfinite_px": 0,
+      "n_positive_px": 37654,
+      "positive_values": [
+        1.0
+      ],
+      "min_finite": 0.0,
+      "max_finite": 1.0
+    },
+    "grid_matches_pinned": true,
+    "dot_count_37654": true,
+    "footprint_5167373": true,
+    "twins_agree_on_dots": true
+  }
+}

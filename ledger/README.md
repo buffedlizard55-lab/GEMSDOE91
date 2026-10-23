@@ -1,36 +1,61 @@
-# Ledger conventions
+# ledger/
 
-Two files, deliberately separate:
+`submissions.csv` — one row per candidate that has ever been built for this entity.
 
-* **`submissions.csv`** — this session's variants only. One row per variant, as
-  brief §7 asks. `receipt_score` and `receipt_date` are **blank on purpose**:
-  only the human, from the submission page, may fill them. While they are blank
-  every prediction in the file is a MODEL, not a result.
-* **`prior_fleet.csv`** — the aggregate record imported on 2026-10-23 from
-  `buffedlizard55-lab/GEMSDOE86/ledger/submissions.csv` (132 rows, the widest
-  fleet record available), with exact-duplicate sha256 rows collapsed and
-  columns reduced to the ones this session reads. Provenance, not endorsement:
-  the numbers in its `score` column are CLAIMs and **it contains zero receipts**.
+## Provenance
 
-## Column meanings
+The 20 imported rows carry `source = IMPORT:GEMSDOE88 (not built in this session)`. They were
+transcribed on 2026-10-23 from the public repo `buffedlizard55-lab/GEMSDOE88`, which is the
+umbrella repo of this lineage. **Nothing in this session was appended** — no variant was built
+(`../IRREGULARITIES.md` IR-91-02).
 
-| column | meaning |
-|---|---|
-| `id` | `<parent>-<AXIS><value>-<yyyymmdd>-<sha8>`; `sha8` is the first 8 hex of the released file's sha256 |
-| `parent` | the artifact this was built from (only `h33-h33-2-b2-20261004-e5eb6e7e` this session) |
-| `axis`, `value` | the single axis edited and its dose |
-| `n_dots` | emitted unit-mass dots (count is held at 37,654 in every arm) |
-| `pct_changed` | **relocated dots ÷ parent dots**, the prior-session convention (so a dot that moves counts once). The Hamming distance (added + removed ≈ 2× relocated) is in `evidence/spacing_axis_20261023.json` as `hamming_vs_parent` |
-| `pct_relocated` | duplicate of `pct_changed`, kept explicit so the brief's "1–50 % of dots" rule can be checked without ambiguity |
-| `sha256`, `sha256_zeros` | hashes of the NaN-outside primary and the zeros fallback twin |
-| `status` | `BUILT` when the file exists and passes every hard gate |
-| `predicted_change`, `predicted_range` | MODEL projection; a live change under ±0.01 is not evidence |
-| `ranking_basis` | how the edit chose its targets, stated so it can be attacked |
-| `evidence_class` | `MODEL` here; RECEIPT only ever by the human |
+`receipt_score` and `receipt_date` are empty in all 20 rows. There is no receipt anywhere in
+this lineage; R0's 0.2778 is a CLAIM. Do not treat `predicted_change` as a result.
+
+## Columns
+
+`id, parent, axis, value, n_dots, pct_changed, sha256, sha256_zeros, status, predicted_change,
+predicted_range, ranking_basis, receipt_score, receipt_date, source, notes`
+
+- `predicted_change` / `predicted_range` are **MODEL** projections from the build session.
+- `ranking_basis` records what ranked the dots. All three MASS rows say
+  "NOT parent model ranking" — that is why MASS is still an open axis.
+- `receipt_score` is the ONLY place a live score may go, and only copied from the
+  submission-page receipt.
 
 ## Dedupe rules (brief §6)
 
-Collapse only on (a) **exact sha256** and (b) **repeated `(parent, axis, value)`**.
-Two fills of the same dot set (`-nan` / `-zeros`) are one experiment whose twins
-score identically, and the zeros twin is listed as the upload. No
-rank-correlation or dot-overlap "uniqueness" threshold is applied anywhere.
+A candidate is rejected if either holds:
+
+1. its `sha256` or `sha256_zeros` already appears in this file;
+2. its `(parent, axis, value)` triple already appears.
+
+Nothing else is deduped. No overlap threshold, no rank-correlation threshold, no
+dot-position "uniqueness" score — the brief forbids those as gates.
+
+## Appending a row
+
+```bash
+python scripts/validate_release.py releases/<id>.tif --axis <AXIS>   # must print CERTIFIED
+# then append one row; every hash column is mandatory
+```
+
+`tests/test_ledger.py` enforces unique ids, unique hashes, unique triples, the axis vocabulary
+and that `receipt_score` is either empty or a float.
+
+## Session 3 (`arena/a5e7bf22`) — three rows appended
+
+`SPACINGspread40`, `SPACINGclump40`, `SPACINGjitter40`, all built here and marked
+`source = SESSION 3 (this branch)`. The file now has **23 rows and still 0 receipts**.
+
+Two conventions this session adds, both to remove ambiguity:
+
+* `pct_changed` is **relocated dots ÷ parent dots** (the prior-session convention: a
+  dot that moves counts once). `pct_relocated` repeats it explicitly, and the Hamming
+  distance (added + removed ≈ 2× relocated) lives in `evidence/spacing_axis_20261023.json`
+  as `hamming_vs_parent`, so the brief's "1–50 % of dots" rule can be checked either way.
+* `parent` is written as `h33-h33-2-b2-20261004-e5eb6e7e` (the full artifact id) for the
+  session-3 rows, while the imported rows use `h33-h33-2-b2`. **These are the same
+  artifact** — same sha256 `c55bafc4…`. Dedupe on the hash, never on the parent string,
+  or a repeated `(parent, axis, value)` can hide behind two spellings.
+

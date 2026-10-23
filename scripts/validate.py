@@ -16,11 +16,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from gems91 import gates, geom, io  # noqa: E402
+from gems91 import geom, io, release_gates as gates  # noqa: E402
 
 DATA = ROOT / "data"
-TEMPLATE = DATA / "bridge" / "sample_submission.tif"
-CATALOGUE = DATA / "bridge" / "existing_faults.tif"
+TEMPLATE = DATA / "official" / "sample_submission.tif"
+CATALOGUE = DATA / "official" / "existing_faults.tif"
 
 
 def main() -> int:

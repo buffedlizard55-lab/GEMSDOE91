@@ -1,54 +1,83 @@
-# SUBMIT — what the human uploads
+# SUBMIT — what to upload, and what to paste back
 
-The human uploads from their own registered account. Nothing here submits, logs
-in, or reads the leaderboard. **One file per slot**; the `-zeros` twin is the
-fallback, not an extra entry.
+**Status 2026-10-23: three files are built and gate-clean** (`releases/`, rebuilt on demand —
+`releases/*.tif` are gitignored, the sha256 contract is `releases/MANIFEST.json`).
+**Nothing has ever been submitted by an agent, and no agent may submit.** One file per slot;
+the `-zeros` twin is the fallback, not an extra entry.
 
-## The three files built this session
+## Rebuild first (10–40 s, five inputs, all hash-verified)
 
-| slot rank | file to upload | sha256 (verify before upload) | bytes |
-|---|---|---|---|
-| 2 (session build) | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309-zeros.tif` | `5c517369…` (full hash in `ledger/submissions.csv`) | 226,284 |
-| — | `…-SPACINGspread40-20261023-6d389309.tif` (NaN-outside primary) | `6d389309…` | 373,103 |
-| — | `…-SPACINGclump40-20261023-536d32ad-zeros.tif` (control, predicted ≤ 0) | `d393c94f…` | 224,741 |
-| — | `…-SPACINGjitter40-20261023-39bb7288-zeros.tif` (null control) | `ad6dfa26…` | 225,691 |
-
-**Which twin?** Both are accepted by the format gate. Prior sessions report the
-`-nan` and `-zeros` fills score identically; the `-zeros` twin is smaller and is
-the one the ledger lists first. Upload exactly one.
-
-## Name / note fields
-
-**File name** (already on disk, copy it verbatim):
-
-```
-h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309-zeros.tif
+```bash
+python3 scripts/restore_data.py           # fetch + verify every pinned sha256
+python3 scripts/build_spacing.py --build  # rebuild the parent proof and all three arms
+python3 scripts/validate.py releases/<file>.tif   # must print PASS
 ```
 
-**Form note** (≤ 140 characters, no scores claimed):
+The build refuses to proceed unless R0's dot set is reproduced exactly from both pinned
+ancestors, and refuses to write the ledger unless every release passes every hard gate.
+
+## Session-3 files
+
+| slot rank | file to upload | sha256 (must match `releases/MANIFEST.json`) | bytes |
+|---|---|---|---:|
+| 2 | `…-SPACINGspread40-20261023-6d389309-zeros.tif` | `5c517369be3c807c…` | 226,284 |
+| — | `…-SPACINGspread40-20261023-6d389309.tif` (NaN-outside primary) | `6d389309aafaa79d…` | 373,103 |
+| — | `…-SPACINGclump40-20261023-536d32ad-zeros.tif` (control) | `d393c94f38601567…` | 224,741 |
+| — | `…-SPACINGjitter40-20261023-39bb7288-zeros.tif` (null) | `ad6dfa26043f7f19…` | 225,691 |
+
+**Form note** (≤ 140 chars, no score claimed):
 
 ```
-Parent R0 h33-2-b2; move 15,056 dots (39.99%) 2.0-2.24 px to emptier ground, count fixed 37,654; predicted +0.004 MODEL
+Parent R0 h33-2-b2; move 15,056 dots (39.99%) 2.0-2.24 px to emptier ground, count fixed 37,654; pred +0.004 MODEL
 ```
 
-## Before you click submit
+## Slot 1 — rebuild R1, then submit it
 
-1. `python3 scripts/validate.py releases/<file>.tif` → must print `PASS`.
-   It checks, by re-reading the file from disk: CRS EPSG:32611, shape
-   3730×3292, transform `(100, 0, 243350, 0, -100, 4508550)`, float32, one band,
-   values in [0, 1], no NaN inside the footprint, NaN outside (or zeros outside
-   for the twin), zero catalogue mass, minimum catalogue distance > 2.0 px, and
-   that the sha256 is not already in `ledger/submissions.csv`.
-2. Record the receipt. After the submission page returns a score, put it in
-   `ledger/submissions.csv` in `receipt_score` and `receipt_date` for that row.
-   That single edit converts a CLAIM into a RECEIPT and is worth more than
-   another variant — see `SLOT_PLAN.md`, action 0.
-3. If the file fails a check, do **not** upload a hand-edited raster. Re-run
-   `python3 scripts/build_spacing.py --build`; the build refuses to emit a file
-   that fails a gate.
+```bash
+python src/gems91/pinned.py check                 # 15/15 pins OK
+python scripts/preflight.py                       # BUILD ALLOWED
+python scripts/validate_release.py releases/<id>.tif --axis PRUNE
+```
 
-## What is deliberately not here
+- **File:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif`
+- **sha256 must equal** `6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9`
+  (zeros twin `dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f`).
+  If the rebuild does not reproduce that hash, it is a **different file** — log it in
+  `IRREGULARITIES.md` and do not call it R1.
+- **Form note (103 chars, ≤140):**
+  `h33-2-b2; PRUNE <=3px held at 37654 (-2171 in 2-3px, +2171 exact marginal gain >3px); pred +0.005 MODEL`
+- **Which encoding:** upload the `.tif` (NaN outside footprint, spec-literal). Keep
+  `-zeros.tif` as the fallback the rules allow. Note the open risk: **no receipt in this
+  lineage has ever confirmed the all-finite `-zeros` encoding is accepted**, so do not
+  assume the twins score identically on the organiser's reader — the ledger's line
+  "NaN-outside and zeros-outside twins score identically" was never receipt-backed.
 
-No automated upload, no session cookies, no leaderboard polling, no multiple
-accounts. Three scored submissions per rolling week, one entity, one final file
-chosen blind.
+## Format receipt — copy this into the PR/session notes
+
+```
+candidate: h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705
+sha256:    __________________________________________
+bytes:     ______
+validate_release.py: VERDICT = CERTIFIED      (paste the block; UNVERIFIED is not a pass)
+gates: crs/shape/transform/dtype/band_count/values_in_0_1/no_nan_inside/nan_outside/
+       zero_catalogue_mass/collar_ge_3px/sha_unseen=UNSEEN(passed)/reread_from_disk
+n_dots:    37654      min_dist_catalogue_px: ______
+```
+
+## Then, the same day
+
+1. Paste `receipt_score` and `receipt_date` into `ledger/submissions.csv` (never into
+   `predicted_change`).
+2. If the score moves ≥ +0.01, R1 becomes the parent for every later slot. If it moves
+   ≤ −0.01, the 2–3 px shell carries truth and the ≥3 px gate is wrong for this dataset.
+3. If |Δ| < 0.01, record it as **no evidence** and proceed on R1 anyway — it is the only
+   compliant base.
+
+## Do not
+
+- Do not upload the three MASS variants as progress on MASS: `MASSm10plus` is MODEL −0.010
+  and `MASSm20minus` is a nested cut of `MASSm10minus`; both are HOLD upstream, and all
+  three inherit R0's 2–3 px collar.
+- Do not upload a file whose hash is already in `ledger/submissions.csv` (8+ upstream slots
+  were spent on exact repeats), or whose `validate_release.py` verdict is not `CERTIFIED`.
+- Do not submit from any account but the one entity's. One final file, chosen blind.

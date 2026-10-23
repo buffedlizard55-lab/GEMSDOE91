@@ -7,7 +7,7 @@ GitHub commit and checked against `registry/data_manifest.json` **before use**.
 
 Allowed hosts in this sandbox are GitHub, PyPI and npm only.  drivendata.org
 and dropbox.com are never contacted (brief section 4.1); the mirrors are copies
-made by earlier sessions, which is itself a data-use problem (IR-91-03).
+made by earlier sessions, which is itself a data-use problem (IR-91-11).
 
 Usage
 -----
@@ -58,14 +58,18 @@ def main() -> int:
     manifest = json.loads(MANIFEST.read_text())
     bad = 0
     for f in manifest["files"]:
-        dest = ROOT / f["dest"]
+        dest = ROOT / "data" / f.get("local_subpath", f["id"])
+        mirror = f.get("mirror")
         if not dest.is_file():
+            if mirror is None:
+                print(f"skip   {f['id']:<18} no mirror pinned in the manifest")
+                continue
             if args.check:
-                print(f"MISSING {f['id']:<18} {f['dest']}")
+                print(f"MISSING {f['id']:<18} {dest.relative_to(ROOT)}")
                 bad += 1
                 continue
-            url = API.format(repo=f["repo"], path=f["path"], ref=f["ref"])
-            print(f"fetch  {f['id']:<18} {f['repo']}@{f['ref'][:12]} {f['path']}")
+            url = API.format(repo=mirror["repo"], path=mirror["path"], ref=mirror["ref"])
+            print(f"fetch  {f['id']:<18} {mirror['repo']}@{mirror['ref'][:12]} {mirror['path']}")
             blob = fetch(url)
             dest.parent.mkdir(parents=True, exist_ok=True)
             dest.write_bytes(blob)

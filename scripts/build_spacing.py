@@ -40,15 +40,15 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from gems91 import gates, geom, io, moves, proxy  # noqa: E402
+from gems91 import geom, io, moves, proxy, release_gates as gates  # noqa: E402
 
 DATA = ROOT / "data"
-TEMPLATE = DATA / "bridge" / "sample_submission.tif"
-CATALOGUE = DATA / "bridge" / "existing_faults.tif"
-PARENT_NAN = DATA / "parent" / "r0-nan.tif"
-PARENT_ZEROS = DATA / "parent" / "r0-zeros.tif"
-ANC_D28 = DATA / "ancestors" / "d2.8-nan.tif"
-ANC_SOLO = DATA / "ancestors" / "solo-d2.8.tif"
+TEMPLATE = DATA / "official" / "sample_submission.tif"
+CATALOGUE = DATA / "official" / "existing_faults.tif"
+PARENT_NAN = DATA / "registry" / "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif"
+PARENT_ZEROS = DATA / "registry" / "GEMSDOE32__h33-2-b2-zeros.tif"
+ANC_D28 = DATA / "registry" / "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+ANC_SOLO = DATA / "registry" / "GEMSDOE28__h27-4-r1-solo-d2-8.tif"
 
 PARENT_ID = "h33-h33-2-b2-20261004-e5eb6e7e"
 PARENT_DOTS = 37654

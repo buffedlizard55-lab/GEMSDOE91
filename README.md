@@ -1,81 +1,91 @@
-# GEMSDOE91 — SPACING axis on R0
+# GEMSDOE91 — DrivenData GEMS #306 (three sessions, 2026-10-23)
 
-One entity, one lineage. This repository builds and validates candidate rasters
-for the GEMS prize (DrivenData #306). **It never submits.** The human uploads
-from their own registered account.
-
-<!-- CURRENT STATE -->
 ## CURRENT STATE
+
+**One entity. Nothing here submits**; the human uploads from their own account.
 
 | field | value |
 |---|---|
-| **Parent** | `R0 = h33-h33-2-b2-20261004T220000Z-e5eb6e7e` (GEMSDOE32), 37,654 unit dots |
-| **Parent hash** | sha256 `c55bafc4…` (zeros) / `baeae321…` (NaN twin); dot-set digest `905cee9d…`, which matches the digest GEMSDOE86 recorded independently |
-| **Parent rebuild** | **verified**: `d2.8` (44,090) − dots within 2.0 px of the catalogue = 37,654, **0 differing cells**; same result from `solo-d2.8` (40,199). File bytes are *not* re-encodable here (IR-91-04) |
-| **Best receipt** | **NONE.** No row in any ledger has a submission-page receipt. R0's **0.2778 is a CLAIM** |
-| **TOP_PUBLIC** | **not supplied by the human** (needed from the leaderboard, with a date) |
-| **Slots left this week** | **not supplied** (3 per rolling week per entity; confirm on the competition page) |
-| **Axis this session** | **SPACING** — the only axis in brief §1 with zero prior builds |
-| **Built this session** | `SPACINGspread40`, `SPACINGclump40`, `SPACINGjitter40` (39.8–40.0 % of dots relocated, count fixed) |
-| **Deadline** | 2026-12-03, **UNVERIFIED** (user-supplied in the brief; confirm on the page) |
+| **Parent** | `R0 = h33-h33-2-b2` (GEMSDOE32), 37,654 unit dots, EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px |
+| **Parent hash** | sha256 `c55bafc4…` (zeros) / `baeae321…` (NaN twin), **verified against the pin**; dot-set digest `905cee9d…` |
+| **Parent rebuild** | **dot set reproduced exactly** from two independent pinned ancestors (`d2.8` 44,090 and `solo-d2.8` 40,199) by dropping every dot within 2.0 px of the catalogue → 37,654, **0 differing cells**. File *bytes* are not re-encodable here (IR-91-12) |
+| **Best receipt** | **NONE** — 23/23 ledger rows have empty receipt columns. `0.2778` for R0 is a **CLAIM** |
+| **TOP_PUBLIC** | **____ (human, with date)** — upstream GEMSDOE88 carries `0.4413` as a human-supplied 2026-10-22 figure (**CLAIM**), not verified here |
+| **Slots left this week** | **__ / __ (human)** |
+| **Variants built** | **3 this session** (SPACING, below); sessions 1–2 built 0 |
+| **Build status** | **UNBLOCKED.** Sessions 1–2 concluded the build was blocked because the competition rasters were "not public" (IR-91-02). They are reachable: `scripts/restore_data.py` pulls all six from immutable GitHub commits and verifies every sha256 in **3 s / 5 MB**. See IR-91-11 |
+| **Deadline** | 2026-12-03, **UNVERIFIED** (brief-supplied; confirm on the page) |
 
-**Next three slots (details and decision rules in `SLOT_PLAN.md`):**
+### Session 3 delta (`arena/a5e7bf22`, SPACING)
 
-1. `PRUNE-le3p000` (built by GEMSDOE86) — the only axis in the project with a
-   **measured live dose-response** behind it (0.2708 → 0.2778 for 2,545 collar
-   dots, +2.75 × 10⁻⁶ per dot). Re-validate its format before upload; predicted
-   **+0.004 MODEL**.
-2. `SPACINGspread40` — this session's build; closes the last unbuilt axis.
-   Upload the `-zeros` twin. Predicted **+0.004 MODEL** [−0.004, +0.012] and
-   bounded above by construction (≈ 0.003, see the ceiling instrument).
-3. `RELIEF-frontp15` (built by GEMSDOE86) — the only built variant that moves
-   mass rather than deleting it. Predicted **+0.006 MODEL**.
+AXIS chosen here: **SPACING** — the only axis in brief §1 with **zero prior builds**
+(checked across five fleet ledgers: 132 + 129 + 22 + 20 + 5 rows, no `axis=SPACING`).
 
-> **A live change under ±0.01 is not evidence** (brief §5). Every prediction in
-> this ledger sits inside that band, so the three slots above are as much about
-> *which mechanism survives* as about the score.
-<!-- /CURRENT STATE -->
+Three arms, **matched on everything except the treatment**: the same 40 % of dots
+(densest 1 km blocks), the same displacement budget (radius-2 ring, 2.0–2.236 px),
+the same constraints (footprint, parent's 2 px collar floor, no cell reuse, ≥ 2 px
+separation). Only *which* ring cell is chosen differs, ranked by a Gaussian-smoothed
+dot-density potential (σ = 2 px).
 
-## What this session established
+| arm | relocated | mean disp. | density at target | predicted (MODEL) |
+|---|---:|---:|---|---|
+| `SPACINGspread40` | 15,056 (39.99 %) | 2.23 px | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
+| `SPACINGclump40` | 14,973 (39.76 %) | 2.13 px | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
+| `SPACINGjitter40` | 15,038 (39.94 %) | 2.15 px | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
 
-* The parent's **dot set** is reproducible from two independent pinned ancestors
-  (0 differing cells). Its **file bytes** are not reproducible with this
-  sandbox's encoder — recorded, not worked around (IR-91-04).
-* `sample_submission.tif` is **not a blank template**: its positive cells *are*
-  the mapped catalogue. Any check that uses its values is checking the
-  catalogue (IR-91-01).
-* `labels.tif` is byte-identical to `existing_faults.tif`, so it is the
-  catalogue, not new-fault truth (IR-91-02). Consequence: **no local instrument
-  can adjudicate this axis**; the catalogue hide-and-recover proxy sees only the
-  2–3 px collar and its sign on these arms is collar drift, not spacing.
-* The ceiling on any spacing edit at matched count is small: under a uniform
-  truth prior, moving 40 % of dots 2.1–2.2 px changes expected kernel credit by
-  −0.2 % (spread) to −2.4 % (clump). Even the *most favourable* reading caps the
-  live effect near 0.003.
+**The bound is the finding.** Under a uniform truth prior the edit moves expected
+kernel credit by −0.17 % (spread) to −2.4 % (clump), capping the plausible live
+effect near **0.003**. A live change ≥ 0.01 on this axis would be evidence of
+something other than the spacing edit.
 
-## Repository map
+All six files pass every hard gate and are re-read from disk; **no raster is
+committed** — `releases/MANIFEST.json` carries the sha256 of each, and one command
+rebuilds them byte-identically (CI proves it).
 
-| path | what |
+#### Session 1–2 delta (unchanged, preserved)
+
+Sessions 1 and 2 built the harness and **0 variants**: `src/gems91/metric.py` (DTI
+re-derivation), `src/gems91/gates.py` (UNVERIFIED-never-PASS gates), `tools/run_concentration.py`
+(the first count-preserving builder), a synthetic end-to-end fixture, and a fix for a
+real transposed-distance bug (IR-91-06). Session 2 also found that the three imported
+CONCENTRATION rows ranked blocks by *parent dot density* (IR-91-07) — they test
+clustering, not prior transfer.
+
+### Next three slots (details in `SLOT_PLAN.md`)
+
+1. `PRUNE-le3p000` (already built by GEMSDOE86) — the only axis with a **measured live
+   dose-response** behind it (0.2708 → 0.2778 for 2,545 collar dots). MODEL **+0.004**.
+2. `SPACINGspread40` (this session) — closes the last unbuilt axis; if it is flat,
+   geometry stops consuming slots. MODEL **+0.004**.
+3. `RELIEF-frontp15` (already built by GEMSDOE86) — the only built variant that moves
+   mass rather than deleting it. MODEL **+0.006**.
+
+> A live change under ±0.01 is **not evidence**. Every prediction in this ledger sits
+> inside that band: the three slots are about which mechanism survives, not about a
+> score. The ledger's action 0 is to get a receipt.
+
+## What this repo contains
+
+| Path | Purpose |
 |---|---|
-| `registry/data_manifest.json` | every input, pinned to an immutable commit + sha256 |
-| `scripts/restore_data.py` | fetch and verify the pins (`data/` is gitignored) |
-| `scripts/build_spacing.py` | the whole build: lineage proof → 3 arms → gates → ledger → evidence |
-| `scripts/validate.py` | re-run the format gates on any release file |
-| `src/gems91/` | io, geometry, the ring edit, gates, report-only instruments |
-| `ledger/submissions.csv` | this session's variants (human fills `receipt_score`, `receipt_date`) |
-| `ledger/prior_fleet.csv` | imported prior-session record, **0 receipts**, provenance in `ledger/README.md` |
-| `ledger/variant-cards.md` | mechanism cards, written for a structural geologist |
-| `releases/` | `<id>.tif` (NaN outside footprint) and `<id>-zeros.tif` (fallback) |
+| `registry/data_manifest.json` | 15 pinned inputs with sha256 + byte length; 3 re-hashed here |
+| `registry/r0_verification.json` | Parent hash/grid/dot-count evidence (generated) |
+| `registry/preflight.json` | Build-blocked verdict and exactly what is missing |
+| `registry/raster_availability.json` | Which of the 20 ledger rows still have a raster |
+| `registry/candidate_availability.json` | Hash + format status of the retrievable rasters |
+| `src/gems91/metric.py` | DTI re-derivation + exact marginal gain |
+| `src/gems91/gates.py` | The MUST gates; an unprovable gate is `UNVERIFIED`, never `PASS` |
+| `scripts/` | `verify_parent_r0.py`, `preflight.py`, `validate_release.py`, `pinned.py` CLI |
+| `ledger/submissions.csv` | 20 imported rows, provenance in `source`; empty receipt columns |
+| `tools/` | `run_concentration.py` (builder), `pins.py`, `raster_io.py`, `stor.py`, `make_fixture.py` |
+| `tests/` | 53 tests (metric algebra, gates, ledger invariants, builder, preflight) |
 
-## Reproduce
+## Run it
 
 ```bash
-python3 -m pip install -r requirements.txt
-python3 scripts/restore_data.py          # fetch + verify pinned inputs (~3 s, 5 MB)
-python3 scripts/build_spacing.py --build # rebuild the parent proof and all three arms
-python3 -m pytest -q
+pip install -r requirements.txt
+python scripts/verify_parent_r0.py     # fetch pinned parent, verify sha256
+python scripts/preflight.py            # BUILD ALLOWED / BUILD BLOCKED
+python -m pytest                       # 53 tests, no competition data needed
+python -m tools.pins --axis CONCENTRATION   # what an axis still needs, by pinned id
 ```
-
-Evidence classes used here: **RECEIPT** (none exist) | **CLAIM** (owner-reported)
-| **PROXY** (local, report-only) | **MODEL** (projection). No PROXY or MODEL in
-this repository is ever called a score.

@@ -14,15 +14,15 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from gems91 import gates, geom, io  # noqa: E402
+from gems91 import geom, io, release_gates as gates  # noqa: E402
 
 DATA = ROOT / "data"
-TEMPLATE = DATA / "bridge" / "sample_submission.tif"
-CATALOGUE = DATA / "bridge" / "existing_faults.tif"
-PARENT_NAN = DATA / "parent" / "r0-nan.tif"
-PARENT_ZEROS = DATA / "parent" / "r0-zeros.tif"
-ANC_D28 = DATA / "ancestors" / "d2.8-nan.tif"
-ANC_SOLO = DATA / "ancestors" / "solo-d2.8.tif"
+TEMPLATE = DATA / "official" / "sample_submission.tif"
+CATALOGUE = DATA / "official" / "existing_faults.tif"
+PARENT_NAN = DATA / "registry" / "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif"
+PARENT_ZEROS = DATA / "registry" / "GEMSDOE32__h33-2-b2-zeros.tif"
+ANC_D28 = DATA / "registry" / "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+ANC_SOLO = DATA / "registry" / "GEMSDOE28__h27-4-r1-solo-d2-8.tif"
 
 pytestmark = pytest.mark.skipif(
     not all(p.is_file() for p in (TEMPLATE, CATALOGUE, PARENT_NAN, PARENT_ZEROS, ANC_D28, ANC_SOLO)),
@@ -50,7 +50,7 @@ def test_parent_rebuilds_exactly_from_each_ancestor(ancestor):
 
 
 def test_template_carries_the_catalogue_not_zeros():
-    """IR-91-01: the template's positive cells ARE the mapped catalogue."""
+    """IR-91-09: the template's positive cells ARE the mapped catalogue."""
     from gems91 import io as _io
     template = _io.read_grid(TEMPLATE)
     cat = geom.catalogue_mask(_io.read_grid(CATALOGUE))

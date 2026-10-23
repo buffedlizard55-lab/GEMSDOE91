@@ -10,7 +10,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from gems91 import gates, io, proxy  # noqa: E402
+from gems91 import io, proxy, release_gates as gates  # noqa: E402
 
 
 def test_triangular_kernel_is_one_at_the_centre_and_zero_beyond_radius():

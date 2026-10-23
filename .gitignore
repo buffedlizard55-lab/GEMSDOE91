@@ -1,7 +1,20 @@
+# Competition data must never be committed (data-use terms unchecked, and it is
+# large). data/ is the local tree the entrant's machine also uses.
 data/
+
+# Built rasters are the upload artifact, not a repository artifact: this repo
+# does not publish derived copies of competition rasters. Rebuild them with
+#   python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build
+# and check them against releases/MANIFEST.json (sha256), which IS committed.
+releases/*.tif
+releases/*.zip
+releases/_tmp-*.tif
+
+*.part
 .cache/
 __pycache__/
 *.pyc
 .pytest_cache/
 .venv/
 work/
+tests/_tmp/

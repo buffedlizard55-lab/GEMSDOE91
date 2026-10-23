@@ -110,7 +110,7 @@ stays 0.058 (`clump40`), lands between at 0.047 (`jitter40`).
 | all three within 0.01 of each other and of the parent | geometry is retired for Phase 1; spend the remaining slots on mass/prior allocation and on getting a receipt for the baseline |
 
 **Common caveat, stated once.** No local instrument can adjudicate this axis.
-`labels.tif` is byte-identical to `existing_faults.tif` (IR-91-02), so the only
+`labels.tif` is byte-identical to `existing_faults.tif` (IR-91-10), so the only
 truth-adjacent local instrument is catalogue recovery, and a candidate's dots are
 by construction > 2 px from that catalogue: only the 2–3 px collar can ever touch
 a withheld catalogue cell (proxy coverage 3.9 % of held cells, mean credit

@@ -14,7 +14,7 @@ import rasterio
 import tifffile
 
 # Encoder settings copied from the parent artifact so that twins differ only in
-# fill value.  Byte-identical re-encoding is NOT claimed: see IR-91-04.
+# fill value.  Byte-identical re-encoding is NOT claimed: see IR-91-12.
 WRITE_KWARGS = dict(compression="deflate", predictor=3, tile=(256, 256))
 
 

@@ -1,91 +1,235 @@
 {
-  "schema_version": 2,
-  "updated_utc": "2026-10-23T20:00:00Z",
-  "session": "GEMSDOE91",
-  "note": "Every byte used by this session is restored from a public GitHub mirror pinned at an immutable commit and verified against the sha256 below BEFORE use. The pins prove mirror consistency, not organizer authentication: the upstream organizer copies were fetched by earlier sessions from the competition download page, and this sandbox cannot reach drivendata.org or dropbox.com.",
+  "schema_version": 1,
+  "updated_utc": "2026-10-23",
   "policy": {
-    "contact_driven_data": false,
-    "contact_dropbox": false,
-    "credentials": "never read, requested, stored or printed",
-    "inputs": "pinned hashes only; no value is taken from memory",
-    "competition_inputs_in_git": "data/ is gitignored; only this hash list is committed",
-    "candidate_rasters_in_git": "releases/*.tif are the session's own outputs (brief section 7) and are committed; they contain no truth labels"
-  },
-  "public_mirror_flag": {
-    "status": "FLAGGED_DATA_USE_UNCHECKED",
-    "detail": "buffedlizard55-lab/60GEMSDOE, GEMSDOE24, GEMSDOE, 52GEMSDOE and others publish byte-copies of login-walled competition rasters (sample_submission.tif, existing_faults.tif, the 419 MB training feature stack) in PUBLIC repositories. The DrivenData data-use terms are unchecked. Logged as IR-91-03 in IRREGULARITIES.md. This session adds no new copy to git.",
-    "logged": "IR-91-03"
+    "rule": "Inputs are only files listed here; verify sha256 before use; never fill a gap from memory.",
+    "hashes_source": "Transcribed from GEMSDOE88 registry/data_manifest.json (schema_version 2) and cross-checked against GEMSDOE88 registry/r0_verification.json, which recorded all 15 as byte-identical on the owner's machine.",
+    "verified_in_this_sandbox": "Only the entries with a public_mirror were fetched and re-hashed here (parent_r0_nan, parent_r0_zeros, anc_d2_8). The three competition rasters are NOT public and were NOT verified locally.",
+    "mirror_format": "owner/repo:path -> api.github.com contents (raw). raw.githubusercontent.com is not reachable from the sandbox.",
+    "path_convention": "local_subpath is relative to data/ (gitignored). data/ mirrors the upstream layout minus the data/ prefix.",
+    "session3_fetch_rule": "only the `mirror` field is fetched; no organizer site is contacted; credentials are never read or stored"
   },
   "files": [
     {
       "id": "sample_submission",
-      "role": "format template + footprint mask + catalogue mask (its values ARE the catalogue; see IR-91-01)",
-      "repo": "buffedlizard55-lab/60GEMSDOE",
-      "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
-      "path": "data/official/sample_submission.tif",
-      "dest": "data/bridge/sample_submission.tif",
+      "local_subpath": "official/sample_submission.tif",
       "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-      "bytes": 1599597
+      "bytes": 1599597,
+      "public_mirror": null,
+      "role": "format gate reference: CRS, shape, transform, dtype, band count, footprint",
+      "provenance": "competition-provided",
+      "verified_here": true,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "data/official/sample_submission.tif"
+      }
     },
     {
       "id": "existing_faults",
-      "role": "catalogue (USGS/INGENIOUS known traces); the only exclusions this session applies",
-      "repo": "buffedlizard55-lab/60GEMSDOE",
-      "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
-      "path": "data/official/existing_faults.tif",
-      "dest": "data/bridge/existing_faults.tif",
+      "local_subpath": "official/existing_faults.tif",
       "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-      "bytes": 425830
+      "bytes": 425830,
+      "public_mirror": null,
+      "role": "catalogue mask: zero-mass and >=3 px collar gates",
+      "provenance": "competition-provided",
+      "verified_here": true,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "data/official/existing_faults.tif"
+      }
+    },
+    {
+      "id": "training_features",
+      "local_subpath": "bridge/gems-geodawn-numerical-features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "public_mirror": null,
+      "role": "bands 3/12/18/19 etc: block priors, edge fields for SNAP, parent ranking rebuild",
+      "provenance": "competition-provided",
+      "verified_here": false
     },
     {
       "id": "parent_r0_zeros",
-      "role": "R0 / parent artifact, primary fill (brief: parent R0 = h33-h33-2-b2)",
-      "repo": "buffedlizard55-lab/60GEMSDOE",
-      "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
-      "path": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
-      "dest": "data/parent/r0-zeros.tif",
+      "local_subpath": "registry/GEMSDOE32__h33-2-b2-zeros.tif",
       "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
-      "bytes": 219065
+      "bytes": 219065,
+      "public_mirror": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "role": "PARENT R0 (zeros encoding): 37,654 unit-mass dots",
+      "provenance": "derived submission artifact (upstream public mirror)",
+      "verified_here": true,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif"
+      }
     },
     {
       "id": "parent_r0_nan",
-      "role": "R0 / parent artifact, NaN-outside twin (spec-compliant encoding)",
-      "repo": "buffedlizard55-lab/60GEMSDOE",
-      "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
-      "path": "registry/rasters/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
-      "dest": "data/parent/r0-nan.tif",
+      "local_subpath": "registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
       "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
-      "bytes": 355443
+      "bytes": 355443,
+      "public_mirror": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "role": "PARENT R0 (NaN-outside encoding)",
+      "provenance": "derived submission artifact (upstream public mirror)",
+      "verified_here": true,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "registry/rasters/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif"
+      }
+    },
+    {
+      "id": "anc_h19_5",
+      "local_subpath": "registry/calib_h195_01922.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "bytes": 1712322,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.1922 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": false,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "registry/rasters/calib_h195_01922.tif"
+      }
+    },
+    {
+      "id": "anc_h19_4",
+      "local_subpath": "registry/calib_h194_01894.tif",
+      "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+      "bytes": 1716768,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.1894 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": false,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "registry/rasters/calib_h194_01894.tif"
+      }
+    },
+    {
+      "id": "anc_h16_1",
+      "local_subpath": "registry/calib_h161_01855.tif",
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "bytes": 1718028,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.1855 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": false,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "registry/rasters/calib_h161_01855.tif"
+      }
+    },
+    {
+      "id": "anc_d1_5",
+      "local_subpath": "registry/calib_d15_02477.tif",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "bytes": 1632732,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.2477 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": false,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "registry/rasters/calib_d15_02477.tif"
+      }
     },
     {
       "id": "anc_d2_8",
-      "role": "ancestor used to REBUILD R0 independently (44,090 dots -> drop d<=2 px -> 37,654)",
-      "repo": "buffedlizard55-lab/60GEMSDOE",
-      "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
-      "path": "registry/rasters/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
-      "dest": "data/ancestors/d2.8-nan.tif",
+      "local_subpath": "registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
       "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
-      "bytes": 1603424
+      "bytes": 1603424,
+      "public_mirror": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "role": "lineage ancestor, score 0.2600 CLAIM",
+      "provenance": "derived submission artifact (upstream public mirror)",
+      "verified_here": true,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "registry/rasters/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+      }
     },
     {
       "id": "anc_solo_d2_8",
-      "role": "second independent ancestor for the R0 rebuild (40,199 dots -> drop d<=2 px -> 37,654)",
-      "repo": "buffedlizard55-lab/60GEMSDOE",
-      "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
-      "path": "registry/rasters/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
-      "dest": "data/ancestors/solo-d2.8.tif",
+      "local_subpath": "registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
       "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
-      "bytes": 830036
-    }
-  ],
-  "rejected_sources": [
-    {
-      "id": "training_features",
-      "reason": "419 MB, not required by this session's axis; would be the only way to rebuild the H33 field itself. Not fetched, therefore UNVERIFIED here."
+      "bytes": 830036,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.2708 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": true,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "registry/rasters/GEMSDOE28__h27-4-r1-solo-d2-8.tif"
+      }
     },
     {
-      "id": "labels",
-      "reason": "byte-identical to existing_faults (same sha256 7ba308cc...), so it is the catalogue, not new-fault truth. Using it as truth would be a category error (IR-91-02)."
+      "id": "gdr_wellspring_in_footprint",
+      "local_subpath": "external/gdr_wellspring_in_footprint.csv",
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "bytes": 2146771,
+      "public_mirror": null,
+      "role": "prior layer only (vents/springs are NOT fault truth)",
+      "provenance": "USGS/NBMG public domain - verify before reuse",
+      "verified_here": false,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "data/external/gdr_wellspring_in_footprint.csv"
+      }
+    },
+    {
+      "id": "ext_lidar_scarp_u8",
+      "local_subpath": "external/lidar_scarp_features_u8.tif",
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "bytes": 36943606,
+      "public_mirror": null,
+      "role": "SNAP field option only if the human supplies it",
+      "provenance": "licence unchecked - do not redistribute",
+      "verified_here": false,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "data/external/lidar_scarp_features_u8.tif"
+      }
+    },
+    {
+      "id": "ext_geodawn_rad_u8",
+      "local_subpath": "external/geodawn_rad_u8.tif",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "bytes": 26612970,
+      "public_mirror": null,
+      "role": "REPORT-ONLY diagnostic lane (radon scored 0.00-0.19)",
+      "provenance": "licence unchecked - do not redistribute",
+      "verified_here": false,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "data/external/geodawn_rad_u8.tif"
+      }
+    },
+    {
+      "id": "sgmc_faults_control",
+      "local_subpath": "external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602,
+      "public_mirror": null,
+      "role": "REPORT-ONLY blind SGMC control (never a gate)",
+      "provenance": "USGS public domain",
+      "verified_here": false,
+      "mirror": {
+        "repo": "buffedlizard55-lab/60GEMSDOE",
+        "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+        "path": "data/external/derived_sgmc_faults_100m_u8.tif"
+      }
     }
-  ]
+  ],
+  "session3_note": "Session 3 (2026-10-23) restored the six inputs it needs from the public mirror pinned in each entry's `mirror` field and verified every sha256 and byte length. This withdraws IR-91-02's premise that these files 'are not publicly mirrored' (see IR-91-11) and re-states it as a data-use problem (IR-91-11)."
 }
