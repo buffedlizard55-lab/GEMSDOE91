@@ -83,7 +83,12 @@ jobs:
       - run: pip install -r requirements.txt
       # Fetches only what registry/data_manifest.json pins, from immutable GitHub
       # commits, verifying every sha256. No organizer site, no credentials.
+      # GITHUB_TOKEN is the workflow's own short-lived token, supplied by Actions.
+      # It is never read, printed or stored by the code; it only avoids the 60/hour
+      # unauthenticated API limit when restoring 14 pinned blobs.
       - run: python scripts/restore_data.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Build first: releases/*.tif are gitignored, so the gate tests need them.
       - name: Rebuild from the pinned inputs
         run: python scripts/build_spacing.py --build
