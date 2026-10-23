@@ -44,7 +44,7 @@ def test_exact_binary_metric_algebra_matches_reference_metric() -> None:
 
 def test_selected_prune_values_are_distinct_and_within_allowed_change_range() -> None:
     assert run.AXIS == "PRUNE"
-    assert tuple(run.RUN_VALUES) == ("p2p6", "p3p2", "p3p5")
+    assert tuple(run.RUN_VALUES) == ("p2p6", "p3p2", "p3p7")
     assert set(run.RADII) == set(run.RUN_VALUES)
     assert all(2.0 < run.RADII[value] < 4.0 for value in run.RUN_VALUES)
     assert len({run.RADII[v] for v in run.RUN_VALUES}) == 3

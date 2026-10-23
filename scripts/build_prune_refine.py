@@ -2,7 +2,7 @@
 """Build the v2 AXIS=PRUNE radius-refinement experiment from exact parent R0.
 
 This run tests three new PRUNE collar radii, each once globally per the audited
-sibling ledgers: 2.60, 3.20, and 3.50 pixels. Each candidate has exactly R0's
+sibling ledgers: 2.60, 3.20, and 3.70 pixels. Each candidate has exactly R0's
 37,654 dots. The collar is the only intervention: dots at or inside the radius
 are removed and refilled from the pinned H19-5 support at greater catalogue
 distance by exact greedy marginal DTI gain on the prespecified, label-free
@@ -33,12 +33,12 @@ from scripts import build_prune_variants as bpv  # noqa: E402
 AXIS = "PRUNE"
 PARENT = "h33-h33-2-b2"
 DATE = "20261023"
-RUN_VALUES = ("p2p6", "p3p2", "p3p5")
-RADII = {"p2p6": 2.6, "p3p2": 3.2, "p3p5": 3.5}
+RUN_VALUES = ("p2p6", "p3p2", "p3p7")
+RADII = {"p2p6": 2.6, "p3p2": 3.2, "p3p7": 3.7}
 PREDICTIONS = {
     "p2p6": ("+0.001", "[-0.007,+0.009]"),
     "p3p2": ("+0.002", "[-0.009,+0.013]"),
-    "p3p5": ("+0.001", "[-0.012,+0.014]"),
+    "p3p7": ("-0.003", "[-0.013,+0.007]"),
 }
 CARDS = {
     "p2p6": {
@@ -63,12 +63,12 @@ CARDS = {
             "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
         ],
     },
-    "p3p5": {
-        "hypothesis": "A 300–350 m collar may begin to over-prune genuine antithetic splays and relay structures, so the incremental gain should flatten or turn negative relative to a 3.2 px cutoff.",
-        "mechanism": "Remove R0's dots at d_cat <= 3.5 px and use exact marginal gain to refill from H19-5 ridge support beyond 350 m, with count fixed. Compared with 3.2 px, the only changed treatment is the additional 10–30 px of catalogue distance (320–350 m) removed.",
-        "non_fault_mimic": "Broad alluvial-fan/piedmont edges, drainage lineaments, and hanging-wall field gradients can parallel range-front faults 320–350 m away without representing new fault planes.",
-        "predicted_sign_size": "MODEL: +0.001 live DTI vs R0; plausible range -0.012 to +0.014. Predicted marginal response is lower than p3p2; a public change with absolute size below 0.01 is no evidence under the brief.",
-        "falsifier": "A live RECEIPT at least 0.01 above both R0 and p3p2 falsifies the predicted turnover and indicates test faults are depleted in the 300–350 m halo, or the removed dots were predominantly redundant field shoulders.",
+    "p3p7": {
+        "hypothesis": "A 300–370 m collar may begin to over-prune genuine antithetic splays and relay structures, so the incremental gain should flatten or turn negative relative to a 3.2 px cutoff.",
+        "mechanism": "Remove R0's dots at d_cat <= 3.7 px and use exact marginal gain to refill from H19-5 ridge support beyond 370 m, with count fixed. Compared with 3.2 px, the only changed treatment is the additional 50 m of catalogue distance (320–370 m) removed.",
+        "non_fault_mimic": "Broad alluvial-fan/piedmont edges, drainage lineaments, and hanging-wall field gradients can parallel range-front faults 320–370 m away without representing new fault planes.",
+        "predicted_sign_size": "MODEL: -0.003 live DTI vs R0; plausible range -0.013 to +0.007. Predicted marginal response is lower than p3p2; a public change with absolute size below 0.01 is no evidence under the brief.",
+        "falsifier": "A live RECEIPT at least 0.01 above both R0 and p3p2 falsifies the predicted turnover and indicates test faults are depleted in the 300–370 m halo, or the removed dots were predominantly redundant field shoulders.",
         "external_facts": [
             "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
             "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
