@@ -4,35 +4,26 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** `R0 = h33-h33-2-b2` — **verified locally this session**, both encodings.
-  `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros), 37,654 unit-mass dots,
-  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on catalogue,
-  min 2.236 px from it**.
-- **Inputs present and hash-verified: 14 of 15 pinned entries** (`scripts/restore_data.py`,
-  3 s / 5 MB, every sha256 checked). Only `training_features.tif` (419 MB) has no pinned
-  mirror; it is not needed for session 3's axis. Found in public mirrors; see
-  `IRREGULARITIES.md` IR-91-09, which supersedes IR-91-02.
-- **Axis readiness (`scripts/verify_manifest.py`):** PRUNE **READY**; MASS, SNAP,
-  CONCENTRATION, RELIEF, TRACKB blocked on `training_features` / lidar layers.
-- **Best receipt:** **none.** No `receipt_score` exists in this lineage — all 26 ledger
-  rows are blank (20 imported, 3 PRUNE built in session 4, 3 SPACING built in session 3). `0.2778` for R0 is a **CLAIM**, and GEMSDOE32's own manifest records
-  `receipt: null` for it.
+- **Parent:** R0 (`h33-h33-2-b2`), retrieved from its pinned mirror and sha256-verified:
+  NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. It has 37,654 unit-mass dots,
+  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots,
+  and minimum catalogue distance 2.236 px. **This session did not independently rebuild
+  R0's file bytes**; the byte-exact rebuild gate therefore failed (IR-91-16).
+- **Inputs:** 14/15 manifest files were hash-verified from pinned mirrors; only
+  `training_features.tif` is absent. The derived catalogue mask is also not materialised,
+  but the pinned catalogue raster is present. No unpinned source was used.
+- **Axis selected for this session:** PRUNE, chosen by the agent because it is the only
+  candidate axis with its core inputs verified and without relying on the unlicensed lidar
+  layer. **No variants built:** the mandatory R0 byte-rebuild gate did not pass; additionally,
+  the PRUNE values specified in the brief already appear in the ledger and the parent's
+  refill ranking is unavailable. See `SLOT_PLAN.md` and IR-91-16.
+- **Existing ledger:** 26 BUILT rows, zero SUBMITTED rows, zero receipts. R0's `0.2778` is
+  a **CLAIM**, not a receipt. Best receipt: none.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
 - **Slots left this week:** **__ / __ (human must fill).**
-- **AXIS for this session:** **PRUNE**, chosen not assigned. Built as a **delete-only
-  dose ladder**, which is the parent lineage's own operation (measured, not assumed).
-- **Variants built this session: 3, all gated.**
-
-  | id | value | dots | removed | % of R0 | predicted |
-  |---|---|---|---|---|---|
-  | `h33-h33-2-b2-PRUNEle3norefill-…-1209e863` | le3-norefill | 35,483 | 2,171 | 5.77 % | +0.002 |
-  | `h33-h33-2-b2-PRUNEle8norefill-…-e1dd69d0` | le8-norefill | 28,490 | 9,164 | 24.34 % | +0.006 |
-  | `h33-h33-2-b2-PRUNEle15norefill-…-1ca1ff6f` | le15-norefill | 21,989 | 15,665 | 41.60 % | +0.010 |
-
-  All three pass the repo's gates **twice over**: 14/14 in `scripts/validate_raster.py`
-  and `VERDICT: CERTIFIED` in `scripts/validate_release.py`.
-- **Next 3 slots (see `SLOT_PLAN.md`):** the PRUNE ladder le3 → le8 → le15, with
-  `SPACINGspread40` as the alternative at slot 2 if le3 lands below +0.01.
+- **Next action:** human supplies the original reproducible R0 build environment/recipe and
+  ranking artifact, or assigns a future session after the byte-rebuild gate is resolvable.
+  Do not submit an artifact from this halted session.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 
