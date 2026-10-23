@@ -23,7 +23,7 @@ a byte ("is this file one of the pinned inputs?").
 
 | axis | pinned ids | why |
 |---|---|---|
-| CONCENTRATION | `parent_r0_nan`, `existing_faults`, `training_features` | parent dots; collar exclusions; an **external** km-scale prior |
+| CONCENTRATION | `parent_r0_nan`, `existing_faults`, `gdr_wellspring_in_footprint` | parent dots; collar exclusions; an **external** km-scale prior (GDR thermal features, public domain). `training_features` is NOT used — see IR-91-18 |
 | MASS | `parent_r0_nan`, `training_features` | the parent's own marginal-gain ranking |
 | PRUNE | `parent_r0_nan`, `existing_faults`, `training_features` | collar + refill ranking |
 | SNAP | `parent_r0_nan`, `existing_faults`, `training_features` | edge/scarp gradients |
@@ -37,6 +37,14 @@ Check the current state with:
 python -m tools.pins --axis CONCENTRATION   # exit 2 and the missing ids, today
 python scripts/preflight.py                 # the repository-wide verdict
 ```
+
+## Derived priors (IR-91-18)
+
+The CONCENTRATION prior is recomputed, not fetched: `src/gems91/prior.py` turns the pinned GDR
+CSV into `exp(-d/12 px)` over de-duplicated Hot/Warm cells, and
+`registry/derived_priors.json` records the two digests the builder must reproduce
+(`51f294b2…` all features, `6afed3bf…` features >8 px from the catalogue). If a rebuild yields a
+different digest, the input changed — stop, do not "fix" the prior.
 
 ## Prior warning (IR-91-07)
 

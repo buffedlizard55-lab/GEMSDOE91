@@ -1,35 +1,59 @@
-# SLOT PLAN — status after the 2026-10-23 preflight
+# SLOT PLAN — after the 2026-10-23 CONCENTRATION session
 
-**This session stopped before building.** The brief requires an exact R0 rebuild and matching
-sha256. The pinned NaN/zeros files were retrieved and hash-verified, and the dot set is
-reproducible from pinned ancestors, but the original raster bytes cannot be regenerated in
-this environment (IR-91-16). No new variant or submission candidate exists. Do not spend a
-scoring slot until the human supplies the original byte-reproducible build environment or
-confirms a valid alternative parent-identity procedure. The selected axis was PRUNE; all
-requested PRUNE values already occur in the ledger, and the refill ranking is missing.
+**Session result: three gate-clean CONCENTRATION arms on R0, none submitted.** All three move
+10.00 % of R0's dots (3,765) out of the lowest-prior km blocks and into the highest-prior
+ones of an independent, public-domain prior (GDR thermal features). Count fixed at 37,654 in
+every arm, single seed, identical placement rules; only the block scale and the prior set
+differ. Evidence: `evidence/concentration_axis_20261023.json`.
 
-## Next three scored slots (conditional on clearing the parent gate and supplying inputs)
+**The honest read: these are one experiment, not three.** The three arms land within 0.001 of
+each other on every local instrument (predicted +0.0113 … +0.0123; surrogate-truth DTI +41 %,
++41 %, +44 %; lineage-mask bound −0.021 … −0.022). Block scale (1 vs 2.5 km) and the
+"remote-features-only" prior barely change the outcome, so **spending three slots on them
+would buy one number three times** (IR-91-17). Submit one; keep the other two only as
+fallbacks.
 
-| order | candidate | mechanism / predicted result (MODEL) | what the receipt changes |
-|---|---|---|---|
-| 1 | MASS `m05drop` | Remove the lowest-ranked 5% using R0's own ranking; predicted small positive, likely <0.01. Requires reproducible rank. | Gain supports excess mass; loss means the lower tail carries recall. |
-| 2 | MASS `m05add` | Add the next-ranked 5% from the same parent ranking; count rises by 5%; predicted flat-to-negative. | Opposite-sign contrast distinguishes over-mass from under-mass; if both flat, stop tuning mass. |
-| 3 | CONCENTRATION `b25px-m10` | Move 10% from low- to high-prior 25-px blocks (2.5 km), count fixed; report block-density CV before/after. Requires a verified, licensed prior. | Positive ≥0.01 supports block-scale prior transfer; non-positive retires this prior at that scale. |
+**The bet, stated as a decision.** If new-fault truth follows thermal features more closely
+than it follows the mask this lineage was thinned from, the arm gains; if it follows the
+lineage's own H19-5 mask, the arm loses about 0.022 (measured, pessimistic because that mask
+is ~3× denser than truth). Nothing in this repo can tell which; only a receipt can.
 
-These are proposed values, not built; check `ledger/submissions.csv` again before construction.
-The existing ledger contains MASS m10/m20 and CONCENTRATION b10/b50/15%-prior rows, so those
-pairs must not be repeated. The 0.01 threshold applies to interpretation, not as a build gate.
+## Next three scored slots, in order
 
-## Weeks to deadline
+| order | candidate (file in `releases/`) | what the receipt decides |
+|---|---|---|
+| 1 | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` — prior from GDR thermal features **>8 px off the mapped catalogue**, 2.5 km blocks | The only arm whose prior cannot be a re-encoding of the known traces, so it is the cleanest test of "location information the map does not have". Δ ≥ +0.01 ⇒ the prior transfers: scale the dose to 20 % (`w20` values are free). Δ ≤ −0.01 ⇒ the mask carries real recall and this axis is retired. \|Δ\| < 0.01 ⇒ no evidence; do not re-tune the fraction. |
+| 2 | `…-PRUNEle15-norefill-20261023-1ca1ff6f.tif` (built earlier, still unsubmitted) | The only existing file with a *measured-algebra* path past +0.01 (+0.010 MODEL) and no new inputs. Independent of slot 1's outcome: if 1 is flat, this is the fallback with the best expected value. |
+| 3 | `…-CONCENTRATIONgdr25m10-20261023-08bf80cf.tif` (primary scale/target pair, 2.5 km, all features) — **only if slot 1 is ≥ +0.005** | Confirms the mechanism at the wider prior and makes the 1 km arm interpretable. If slot 1 was flat or negative, skip it and use `…-PRUNEle8-norefill-20261023-e1dd69d0.tif` instead. |
 
-- **Now / wk 1:** human supplies byte-reproducible R0 recipe/environment and `training_features.tif`; verify every manifest hash, recreate R0 bytes, and only then build slot 1.
-- **Wk 2:** use the receipt to decide whether to build slot 2; under |Δ| < 0.01 treat the result as no evidence. Submit no more than three scored candidates in the rolling week.
-- **Wk 3–4:** use slot 3 only if its licensed prior is verified and the parent gate still passes; otherwise spend it on a confirmation of the strongest axis.
-- **Wk 5–6 / by 2026-12-03 (deadline unconfirmed):** confirm the best result, make a fallback, validate both from disk, and choose one final file blind. No agent submits.
+Do **not** spend a slot on `gdr10m10` unless both 2.5 km arms are ≥ +0.01: the scale contrast
+is worth less than a dose increase.
 
-## Better axes to consider later (not built)
+## Weeks to the deadline (2026-12-03, still unconfirmed on the competition page)
 
-1. **MASS-SHAPE at fixed count.** Mechanism: reduce redundant local overlap so dots buy fresh kernel credit without raising total mass. Confounder: genuine fault density is clustered. Falsifier: relocation away from dense clusters lowers live score. Requires a recorded ranking and must be a new (axis,value) pair.
-2. **EDGE-FLOOR.** Mechanism: add support only where independent, multi-band geophysical edges agree, rather than snapping every dot to a single-band maximum. Confounder: survey-line / lithologic boundaries mimic faults. Falsifier: no positive live change versus a matched null at the same count. Requires licensed, shareable, hash-pinned bands.
+- **Wk 1 (now):** slot 1 = `gdr25rm10`. Paste the receipt into `ledger/submissions.csv`.
+- **Wk 2:** follow the decision table above; at most one more scored file in the same rolling
+  week as slot 1 (the entity gets three, not three per axis).
+- **Wk 3–4:** if the prior transfers, build the 20 % dose (new `(CONCENTRATION, w20…)` pair,
+  same prior, same seed, same collar) and take it; otherwise combine the two best
+  *independent* levers on whatever parent has the best receipt.
+- **Wk 5–6:** confirm on the best parent, build a fallback, re-validate both from disk
+  (`scripts/validate.py` must print PASS on each), choose the final file blind.
 
-**Human must supply:** byte-reproducible R0 build environment/recipe, the training-features raster and its provenance, TOP_PUBLIC/date, weekly slots remaining, and confirmation of the competition deadline. Do not contact competition or leaderboard pages programmatically.
+## Better axes to propose (not built this session)
+
+1. **PRIOR-BLEND at fixed count.** Combine the thermal prior with the lineage mask
+   (`p = λ·thermal + (1−λ)·mask-smoothed`) instead of replacing one with the other, λ = 0.3.
+   Mechanism: keeps recall on the mask while adding the independent signal; the two bounds
+   above say a blend is the only version of this axis that can win on both truth models.
+   Confounder: λ is a free knob; falsifier: λ = 0.3 and λ = 0.7 disagree in sign.
+2. **COVERAGE-FLOOR.** Move 10 % but only from dots that duplicate an already-covered cell
+   (a second dot within 3 px of the same field cell). Mechanism: spend the relocation on
+   redundant mass only, so the H19-5 coverage loss measured here (88.6 % → 80.2 %) cannot
+   happen. Confounder: pairs are how the lineage buys recall near trace ends.
+3. **COLLAR-RESERVE.** The arms *lowered* the ≤3 px collar count (2,171 → 1,897). Test the
+   opposite: hold the collar and let the collar-adjacent band (3–6 px) carry the thermal
+   prior. Requires a decision on IR-91-03 first.
+
+**Human must supply:** TOP_PUBLIC with a date, this week's slot count, the deadline
+confirmation, R0's receipt for 0.2778, and a ruling on IR-91-03 (the 2 px vs 3 px collar).

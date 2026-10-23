@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T21:00:00Z",
-  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
+  "generated_utc": "2026-10-23T22:10:00Z",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build && python3 scripts/build_concentration.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
   "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
   "files": [
     {
@@ -33,6 +33,36 @@
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309.tif",
       "sha256": "6d389309aafaa79d01ecb2d62e6de89b2030f6d1bfb15f96024c32b5baf00eaa",
       "bytes": 373103
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815-zeros.tif",
+      "sha256": "d498174b5c1314b970d6415ef890e21d854e06f184ef24e4b8956429a49ebbd6",
+      "bytes": 222073
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815.tif",
+      "sha256": "d54e881580e332ef6e43f9178635f06b988e2d4dac67b61fd166c8e61e734395",
+      "bytes": 368830
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf-zeros.tif",
+      "sha256": "a4bfcb64b8fb37ed8a795ff97e2f320d296921e95f2855fea98bb135a7581c9b",
+      "bytes": 222418
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf.tif",
+      "sha256": "08bf80cf443cc68faeb0dd0eca8d0aecf85eb113e7d3094e3a778382bc180369",
+      "bytes": 369066
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01-zeros.tif",
+      "sha256": "a22db57da8faf4825deca79f8bfa35de95a45ac56f37d8e391bac401b01a9a27",
+      "bytes": 222541
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif",
+      "sha256": "c19adb012aec8571fcca393e3401050b01011286cec7282393cbcc0cca6a6e30",
+      "bytes": 369017
     }
   ]
 }

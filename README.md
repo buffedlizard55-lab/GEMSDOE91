@@ -4,26 +4,28 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** R0 (`h33-h33-2-b2`), retrieved from its pinned mirror and sha256-verified:
-  NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. It has 37,654 unit-mass dots,
-  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots,
-  and minimum catalogue distance 2.236 px. **This session did not independently rebuild
-  R0's file bytes**; the byte-exact rebuild gate therefore failed (IR-91-16).
-- **Inputs:** 14/15 manifest files were hash-verified from pinned mirrors; only
-  `training_features.tif` is absent. The derived catalogue mask is also not materialised,
-  but the pinned catalogue raster is present. No unpinned source was used.
-- **Axis selected for this session:** PRUNE, chosen by the agent because it is the only
-  candidate axis with its core inputs verified and without relying on the unlicensed lidar
-  layer. **No variants built:** the mandatory R0 byte-rebuild gate did not pass; additionally,
-  the PRUNE values specified in the brief already appear in the ledger and the parent's
-  refill ranking is unavailable. See `SLOT_PLAN.md` and IR-91-16.
-- **Existing ledger:** 26 BUILT rows, zero SUBMITTED rows, zero receipts. R0's `0.2778` is
-  a **CLAIM**, not a receipt. Best receipt: none.
+- **Parent:** R0 (`h33-h33-2-b2`), fetched from its pinned mirror and sha256-verified:
+  NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. 37,654 unit-mass dots, EPSG:32611,
+  3730×3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots, minimum catalogue
+  distance 2.236 px. **The parent's dot set reproduces exactly** from both pinned ancestors
+  (44,090 → 37,654 and 40,199 → 37,654, 0 differing cells, digest `905cee9d…`); its file
+  *bytes* are still not re-encodable here (IR-91-16), so every artifact carries a sha256 **and**
+  a dot-set digest.
+- **Best receipt:** none. R0's `0.2778` is a **CLAIM**. The ledger's 29 BUILT rows contain zero
+  SUBMITTED rows and zero receipts, so no live effect has ever been measured in this lineage.
+- **This session (CONCENTRATION):** three gate-clean arms, 10.00 % of dots moved from the
+  lowest-prior to the highest-prior km blocks of an independent public-domain prior (GDR
+  thermal features, `gdr_wellspring_in_footprint`), count fixed at 37,654:
+  `…-CONCENTRATIONgdr25rm10-20261023-c19adb01` (**slot 1**, predicted **+0.0123 MODEL**,
+  range −0.022 … +0.037), `…-CONCENTRATIONgdr25m10-20261023-08bf80cf` (+0.0114),
+  `…-CONCENTRATIONgdr10m10-20261023-d54e8815` (+0.0113). All three empty ~570 of 5,219
+  occupied 2.5 km blocks and cost 8.4 pp of coverage of the lineage's own H19-5 mask. They are
+  one experiment, not three (IR-91-17) — submit one.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
-- **Slots left this week:** **__ / __ (human must fill).**
-- **Next action:** human supplies the original reproducible R0 build environment/recipe and
-  ranking artifact, or assigns a future session after the byte-rebuild gate is resolvable.
-  Do not submit an artifact from this halted session.
+- **Slots left this week:** **__ / __ (human must fill).** Deadline 2026-12-03, unconfirmed.
+- **Next 3 slots:** (1) `gdr25rm10`, (2) `…-PRUNEle15-norefill-20261023-1ca1ff6f`,
+  (3) `gdr25m10` only if (1) ≥ +0.005, else `…-PRUNEle8-norefill-20261023-e1dd69d0`.
+  Details and the decision each receipt changes: `SLOT_PLAN.md`.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 

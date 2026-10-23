@@ -1,0 +1,500 @@
+{
+  "generated_utc": "2026-10-23T21:49:00+00:00",
+  "git_sha": "edfdcc985ebf0771bdd6a0a5c79bd9ce0558dcd2",
+  "axis": "CONCENTRATION",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "lineage": {
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "min_catalogue_distance_px": 2.236068,
+    "dots_on_catalogue": 0,
+    "dots_le_3px_catalogue": 2171,
+    "bytes_reproducible_here": false,
+    "rebuilt_from": {
+      "d2.8": {
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    }
+  },
+  "settings": {
+    "frac": 0.1,
+    "seed": 91025,
+    "min_gap_px": 3.0,
+    "low_q": 0.3,
+    "high_q": 0.3,
+    "kappa": 0.1,
+    "band": 0.008,
+    "live_span_CLAIM": 0.2778
+  },
+  "priors": {
+    "all": {
+      "n_cells": 2060,
+      "n_cells_in_footprint": 2060,
+      "frac_le_3px_of_catalogue": 0.15,
+      "frac_gt_8px_of_catalogue": 0.6825,
+      "frac_gt_15px_of_catalogue": 0.5359,
+      "median_dist_catalogue_px": 17.205,
+      "cells_on_catalogue": 50,
+      "kind": "all",
+      "sigma_px": 12.0,
+      "sigma_km": 1.2000000000000002,
+      "remote_min_px": null,
+      "n_features_used": 2060,
+      "n_features_in_footprint": 2060,
+      "prior_digest": "51f294b259ced272a9a121eefae357d6f3c316376182c2b797b32f556992d5ca",
+      "source_csv_sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "derivation": "prior = exp(-d/SIGMA_PX); d = EDT to nearest de-duplicated Hot/Warm cell (one per grid cell, no record multiplicity)",
+      "surrogate_truth_cells": 9501,
+      "surrogate_truth_frac_of_footprint": 0.00184,
+      "r0_credit_on_surrogate": 0.05686
+    },
+    "remote": {
+      "n_cells": 2060,
+      "n_cells_in_footprint": 2060,
+      "frac_le_3px_of_catalogue": 0.15,
+      "frac_gt_8px_of_catalogue": 0.6825,
+      "frac_gt_15px_of_catalogue": 0.5359,
+      "median_dist_catalogue_px": 17.205,
+      "cells_on_catalogue": 50,
+      "kind": "remote",
+      "sigma_px": 12.0,
+      "sigma_km": 1.2000000000000002,
+      "remote_min_px": 8.0,
+      "n_features_used": 1406,
+      "n_features_in_footprint": 1406,
+      "prior_digest": "6afed3bf2b51d1070bed4dfd071d93cde75b252f329cf2f5f5bb9868606beec0",
+      "source_csv_sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "derivation": "prior = exp(-d/SIGMA_PX); d = EDT to nearest de-duplicated Hot/Warm cell (one per grid cell, no record multiplicity)",
+      "surrogate_truth_cells": 6574,
+      "surrogate_truth_frac_of_footprint": 0.00127,
+      "r0_credit_on_surrogate": 0.059704
+    }
+  },
+  "arms": {
+    "gdr25m10": {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf",
+      "value": "gdr25m10",
+      "description": "10% of dots moved from the lowest-prior to the highest-prior 2.5 km blocks of the GDR thermal-feature distance prior",
+      "block_px": 25,
+      "block_km": 2.5,
+      "prior": "all",
+      "n_dots": 37654,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "pct_dots_moved": 9.9989,
+      "frac_achieved": 0.099989,
+      "count_preserved": true,
+      "cv_before": 1.2645747253655188,
+      "cv_after": 1.3396680806313381,
+      "block_density_cv_at_block": {
+        "definition": "proxy.block_density_cv = CV of dots per OCCUPIED block (the definition behind the 0.51-0.59 band)",
+        "before": 0.7622,
+        "after": 0.808
+      },
+      "cv_excursion": false,
+      "moved_displacement_px": {
+        "n": 3765,
+        "mean_px": 1632.4958851687518,
+        "p95_px": 3133.282655613957,
+        "max_px": 3725.76569311598
+      },
+      "donor_block_prior_mean": 5.4098728245051766e-06,
+      "acceptor_block_prior_mean": 0.10954394164539268,
+      "collar": {
+        "min_dist_catalogue_px": 2.23606797749979,
+        "dots_le_3px_after": 1897,
+        "dots_le_3px_before": 2171,
+        "moved_targets_le_3px": 0
+      },
+      "spacing_preserved": {
+        "min_sep_px_enforced": 2.0,
+        "min_nn_px_after": 3.8078,
+        "dots_with_neighbour_lt_2px_after": 0,
+        "dots_with_neighbour_lt_2px_parent": 0
+      },
+      "lineage_mask_bound": {
+        "cells": 121131,
+        "dti_parent": 0.796115,
+        "dti_cand": 0.733639,
+        "delta_if_truth_is_the_lineage_mask": -0.0218,
+        "reading": "H19-5 is the mask the whole lineage was thinned from and it is ~3x denser than truth (R0 scores 0.796 against it vs 0.2778 CLAIM live), so this is a pessimistic downside bound, not a prediction"
+      },
+      "noise_truth_bound": {
+        "cells": 9501,
+        "dti_parent": 0.042066,
+        "dti_cand": 0.041214,
+        "delta_if_prior_is_noise": -0.0056,
+        "reading": "the falsifier's magnitude: if new-fault truth does not follow the thermal prior at all, this is what the same relocation costs"
+      },
+      "surrogate_truth": {
+        "cells": 9501,
+        "dti_parent": 0.041429,
+        "dti_cand": 0.058406,
+        "delta_if_prior_were_truth": 0.1138,
+        "credit_parent": 0.05686,
+        "credit_cand": 0.079243
+      },
+      "proxy": {
+        "proxy_mean_credit": 0.005407,
+        "proxy_mean_credit_ci95": 0.000219,
+        "proxy_coverage": 0.033591,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200
+      },
+      "proxy_delta_vs_r0": -0.000779,
+      "canary": {
+        "canary_auc": 0.4496,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 12329,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8078
+      },
+      "block_density_cv_1km": 0.647,
+      "uniform_truth_credit": {
+        "uniform_truth_mean_credit": 0.06767304,
+        "uniform_truth_cells_uncovered": 4470006,
+        "cells": 5167373
+      },
+      "sha256_nan": "08bf80cf443cc68faeb0dd0eca8d0aecf85eb113e7d3094e3a778382bc180369",
+      "sha256_zeros": "a4bfcb64b8fb37ed8a795ff97e2f320d296921e95f2855fea98bb135a7581c9b",
+      "sha8": "08bf80cf",
+      "dot_set_digest": "c709ba52d549c4218f875eeaa292f2590f62f61f80f10d01fad2de771b42fb1d",
+      "predicted_change_MODEL": 0.0114,
+      "predicted_range": [
+        -0.022,
+        0.034
+      ],
+      "prediction_basis": "surrogate-truth rel change +0.410; floor from noise-truth -0.0056 / lineage-mask -0.0218",
+      "surrogate_dti_null": false,
+      "gates": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true
+      }
+    },
+    "gdr10m10": {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815",
+      "value": "gdr10m10",
+      "description": "same prior and dose at 1 km blocks (scale contrast)",
+      "block_px": 10,
+      "block_km": 1.0,
+      "prior": "all",
+      "n_dots": 37654,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "pct_dots_moved": 9.9989,
+      "frac_achieved": 0.099989,
+      "count_preserved": true,
+      "cv_before": 1.8852048381250681,
+      "cv_after": 1.9536855775798716,
+      "block_density_cv_at_block": {
+        "definition": "proxy.block_density_cv = CV of dots per OCCUPIED block (the definition behind the 0.51-0.59 band)",
+        "before": 0.6187,
+        "after": 0.6459
+      },
+      "cv_excursion": false,
+      "moved_displacement_px": {
+        "n": 3765,
+        "mean_px": 1628.0306095150486,
+        "p95_px": 3116.86927870832,
+        "max_px": 3796.7919353053835
+      },
+      "donor_block_prior_mean": 4.3628586222680565e-06,
+      "acceptor_block_prior_mean": 0.11161653007998942,
+      "collar": {
+        "min_dist_catalogue_px": 2.23606797749979,
+        "dots_le_3px_after": 1911,
+        "dots_le_3px_before": 2171,
+        "moved_targets_le_3px": 0
+      },
+      "spacing_preserved": {
+        "min_sep_px_enforced": 2.0,
+        "min_nn_px_after": 3.8065,
+        "dots_with_neighbour_lt_2px_after": 0,
+        "dots_with_neighbour_lt_2px_parent": 0
+      },
+      "lineage_mask_bound": {
+        "cells": 121131,
+        "dti_parent": 0.796115,
+        "dti_cand": 0.734412,
+        "delta_if_truth_is_the_lineage_mask": -0.0215,
+        "reading": "H19-5 is the mask the whole lineage was thinned from and it is ~3x denser than truth (R0 scores 0.796 against it vs 0.2778 CLAIM live), so this is a pessimistic downside bound, not a prediction"
+      },
+      "noise_truth_bound": {
+        "cells": 9501,
+        "dti_parent": 0.042066,
+        "dti_cand": 0.041003,
+        "delta_if_prior_is_noise": -0.007,
+        "reading": "the falsifier's magnitude: if new-fault truth does not follow the thermal prior at all, this is what the same relocation costs"
+      },
+      "surrogate_truth": {
+        "cells": 9501,
+        "dti_parent": 0.041429,
+        "dti_cand": 0.058239,
+        "delta_if_prior_were_truth": 0.1127,
+        "credit_parent": 0.05686,
+        "credit_cand": 0.079147
+      },
+      "proxy": {
+        "proxy_mean_credit": 0.005447,
+        "proxy_mean_credit_ci95": 0.000235,
+        "proxy_coverage": 0.033936,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200
+      },
+      "proxy_delta_vs_r0": -0.000739,
+      "canary": {
+        "canary_auc": 0.4496,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 12596,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8065
+      },
+      "block_density_cv_1km": 0.6459,
+      "uniform_truth_credit": {
+        "uniform_truth_mean_credit": 0.06763093,
+        "uniform_truth_cells_uncovered": 4471336,
+        "cells": 5167373
+      },
+      "sha256_nan": "d54e881580e332ef6e43f9178635f06b988e2d4dac67b61fd166c8e61e734395",
+      "sha256_zeros": "d498174b5c1314b970d6415ef890e21d854e06f184ef24e4b8956429a49ebbd6",
+      "sha8": "d54e8815",
+      "dot_set_digest": "0a73e67348c292c85ffaece5dcb42b6d17ac1dd011ad30b7c70e7cf1b0e57c35",
+      "predicted_change_MODEL": 0.0113,
+      "predicted_range": [
+        -0.021,
+        0.034
+      ],
+      "prediction_basis": "surrogate-truth rel change +0.406; floor from noise-truth -0.0070 / lineage-mask -0.0215",
+      "surrogate_dti_null": false,
+      "gates": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true
+      }
+    },
+    "gdr25rm10": {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01",
+      "value": "gdr25rm10",
+      "description": "10% moved on a prior built only from GDR thermal features >8 px (800 m) from the mapped catalogue",
+      "block_px": 25,
+      "block_km": 2.5,
+      "prior": "remote",
+      "n_dots": 37654,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "pct_dots_moved": 9.9989,
+      "frac_achieved": 0.099989,
+      "count_preserved": true,
+      "cv_before": 1.2645747253655188,
+      "cv_after": 1.3385550575961864,
+      "block_density_cv_at_block": {
+        "definition": "proxy.block_density_cv = CV of dots per OCCUPIED block (the definition behind the 0.51-0.59 band)",
+        "before": 0.7622,
+        "after": 0.8189
+      },
+      "cv_excursion": false,
+      "moved_displacement_px": {
+        "n": 3765,
+        "mean_px": 1728.4474575520492,
+        "p95_px": 3178.7597795847273,
+        "max_px": 3739.0149772366517
+      },
+      "donor_block_prior_mean": 2.5272063875372977e-07,
+      "acceptor_block_prior_mean": 0.08950792722027012,
+      "collar": {
+        "min_dist_catalogue_px": 2.23606797749979,
+        "dots_le_3px_after": 1912,
+        "dots_le_3px_before": 2171,
+        "moved_targets_le_3px": 0
+      },
+      "spacing_preserved": {
+        "min_sep_px_enforced": 2.0,
+        "min_nn_px_after": 3.8297,
+        "dots_with_neighbour_lt_2px_after": 0,
+        "dots_with_neighbour_lt_2px_parent": 0
+      },
+      "lineage_mask_bound": {
+        "cells": 121131,
+        "dti_parent": 0.796115,
+        "dti_cand": 0.733656,
+        "delta_if_truth_is_the_lineage_mask": -0.0218,
+        "reading": "H19-5 is the mask the whole lineage was thinned from and it is ~3x denser than truth (R0 scores 0.796 against it vs 0.2778 CLAIM live), so this is a pessimistic downside bound, not a prediction"
+      },
+      "noise_truth_bound": {
+        "cells": 6574,
+        "dti_parent": 0.035116,
+        "dti_cand": 0.034569,
+        "delta_if_prior_is_noise": -0.0043,
+        "reading": "the falsifier's magnitude: if new-fault truth does not follow the thermal prior at all, this is what the same relocation costs"
+      },
+      "surrogate_truth": {
+        "cells": 6574,
+        "dti_parent": 0.035872,
+        "dti_cand": 0.051716,
+        "delta_if_prior_were_truth": 0.1227,
+        "credit_parent": 0.059704,
+        "credit_cand": 0.084318
+      },
+      "proxy": {
+        "proxy_mean_credit": 0.005373,
+        "proxy_mean_credit_ci95": 0.000216,
+        "proxy_coverage": 0.033837,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200
+      },
+      "proxy_delta_vs_r0": -0.000813,
+      "canary": {
+        "canary_auc": 0.4496,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 12392,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8297
+      },
+      "block_density_cv_1km": 0.6514,
+      "uniform_truth_credit": {
+        "uniform_truth_mean_credit": 0.06765012,
+        "uniform_truth_cells_uncovered": 4470284,
+        "cells": 5167373
+      },
+      "sha256_nan": "c19adb012aec8571fcca393e3401050b01011286cec7282393cbcc0cca6a6e30",
+      "sha256_zeros": "a22db57da8faf4825deca79f8bfa35de95a45ac56f37d8e391bac401b01a9a27",
+      "sha8": "c19adb01",
+      "dot_set_digest": "08c4d5293ab65c408818f1fefe147056c43f5e39213a5c2f3c73c69d8bc9568a",
+      "predicted_change_MODEL": 0.0123,
+      "predicted_range": [
+        -0.022,
+        0.037
+      ],
+      "prediction_basis": "surrogate-truth rel change +0.442; floor from noise-truth -0.0043 / lineage-mask -0.0218",
+      "surrogate_dti_null": false,
+      "gates": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true
+      }
+    }
+  },
+  "r0": {
+    "proxy": {
+      "proxy_mean_credit": 0.006186,
+      "proxy_mean_credit_ci95": 0.000228,
+      "proxy_coverage": 0.038706,
+      "draws": 5,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200
+    },
+    "redundancy": {
+      "dots_with_neighbour_lt_2p83px": 11415,
+      "dots_with_neighbour_lt_2px": 0,
+      "mean_nn_px": 3.7351
+    },
+    "block_density_cv_1km": 0.6187
+  },
+  "null_diagnostic": {
+    "label": "DIAGNOSTIC ONLY - no release, no ledger row, no slot",
+    "surrogate_dti_parent": 0.041429,
+    "surrogate_dti_null": 0.042723,
+    "delta_if_prior_were_truth": 0.0087,
+    "n_dots_moved": 3765,
+    "pct_dots_moved": 9.9989,
+    "cv_before": 1.2645747253655188,
+    "cv_after": 1.329173065124582,
+    "collar_floor_respected": true
+  }
+}
