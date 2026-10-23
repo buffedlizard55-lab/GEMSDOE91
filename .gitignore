@@ -1,18 +1,21 @@
-# Competition rasters and derived data must never be committed: this repository is
-# PUBLIC and GitHub Pages serves main:/ (see IRREGULARITIES.md item 1).
+# Competition data must never be committed: this repository is PUBLIC and GitHub
+# Pages serves main:/ (see IRREGULARITIES.md IR-91-01). data/ is also large.
 data/
-*.tif
-*.tiff
-*.npy
-*.npz
-releases/
 
-# local env / caches
-.venv/
+# Built rasters are the upload artifact, not source. They stay out of git; only
+# their sha256 goes into ledger/submissions.csv.
+releases/*.tif
+releases/*.zip
+!releases/.gitkeep
+
+*.part
 __pycache__/
 *.pyc
 .pytest_cache/
 .ruff_cache/
 
-# keep the release folder itself, never its contents
-!releases/.gitkeep
+# synthetic test fixtures
+tests/_tmp/
+
+# local virtualenv
+.venv/

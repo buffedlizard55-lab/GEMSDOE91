@@ -60,10 +60,10 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--axis", required=True, choices=["MASS", "PRUNE", "SNAP", "CONCENTRATION"])
     ap.add_argument("--value", required=True, help="axis parameter, e.g. 3 for PRUNE <=3 px")
     ap.add_argument("--id", required=True, help="variant id, e.g. R0-PRUNE3-20261023-ab12cd34")
-    ap.add_argument("--parent", default="data/R0.tif")
-    ap.add_argument("--reference", default="data/sample_submission.tif")
-    ap.add_argument("--catalogue", default="data/catalogue.tif")
-    ap.add_argument("--rank", default="data/features/rank.tif", help="parent's own ranking (MASS, PRUNE refill)")
+    ap.add_argument("--parent", default="data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif")
+    ap.add_argument("--reference", default="data/official/sample_submission.tif")
+    ap.add_argument("--catalogue", default="data/derived/catalogue_mask.tif")
+    ap.add_argument("--rank", default="data/bridge/rank.tif", help="parent's own ranking (MASS, PRUNE refill)")
     ap.add_argument("--driver", default=None, help="edge/response raster for SNAP")
     ap.add_argument("--prior", default=None, help="km-scale prior raster for CONCENTRATION")
     ap.add_argument("--fraction", type=float, default=0.10)
@@ -74,22 +74,28 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--skip-manifest", action="store_true", help="only after the human confirms hashes by hand")
     args = ap.parse_args(argv)
 
-    # STEP 1 -- pinned inputs
+    # STEP 1 -- the inputs THIS axis needs must be pinned, present and hash-verified
     if not args.skip_manifest:
         mp = Path(args.manifest)
         if not mp.exists():
             print("STOP: no manifest. Every input is UNVERIFIED.", file=sys.stderr)
             return 2
-        rows, all_ok = check(load_manifest(mp), ".")
+        manifest = load_manifest(mp)
+        rows, _ = check(manifest, "data")
+        ok_ids = {r["id"] for r in rows if r["status"] == "OK"}
         for r in rows:
-            print(f"[{r['status']:12s}] {r['path']}")
-        if not all_ok:
+            if r["status"] == "OK":
+                print(f"[OK      ] {r['id']}")
+        needs = manifest.get("axis_requirements", {}).get(args.axis, [])
+        missing = [n for n in needs if n not in ok_ids]
+        if missing:
             print(
-                "\nSTOP: inputs are missing or unhashed. Brief section 5 forbids building a variant "
-                "before the parent's sha256 is matched, and section 4.2 forbids using an unverified input.",
+                f"\nSTOP: {args.axis} needs {', '.join(missing)}, which is not pinned, present and "
+                "hash-verified. Brief sections 4.2 and 5 forbid building from an unverified input.",
                 file=sys.stderr,
             )
             return 2
+        print(f"[READY   ] all {len(needs)} inputs required by {args.axis} are hash-verified")
 
     parent_p, ref_p, cat_p = Path(args.parent), Path(args.reference), Path(args.catalogue)
     for p in (parent_p, ref_p, cat_p):

@@ -1,83 +1,70 @@
-# SLOT PLAN — one entity, 3 scored slots/week
+# SLOT PLAN — one entity, 3 scored slots/week, deadline 2026-12-03 (unconfirmed)
 
-Deadline unconfirmed (competition page not fetched; IRREGULARITIES §6). The plan is
-phrased in weeks so it survives a corrected date.
+## Session axis: PRUNE (chosen, not assigned)
 
-## Session axis (chosen, not assigned): PRUNE
+The prior sessions chose MASS and CONCENTRATION; both are still blocked on
+`training_features`. **PRUNE is the only axis whose inputs are now hash-verified in this
+workspace** (`scripts/verify_manifest.py` → `[READY] PRUNE`), which is why it is the axis
+this session executes to receipt quality rather than proposing.
 
-Rationale, now evidenced rather than argued. The last two rungs of the climb are both
-prune-like, and the parent's operation is verified: R0 = solo-d28 (40,199 dots) minus
-the 2,545 dots within ≤2 px of the catalogue, **no refill**. PRUNE is the only axis that
-needs no data product that is missing — MASS needs the parent's ranking, SNAP needs a
-driver band, RELIEF needs lidar. So PRUNE is the axis this session can execute to
-receipt quality.
+Within PRUNE, the brief's own values (≤1, ≤2) are **no-ops on R0**: the parent already sits
+at 2.236 px, so nothing is within 2 px. The only meaningful direction is upward. That makes
+a **delete-only dose ladder** the correct design, not three different edits.
 
-Within PRUNE the brief's own values (≤1, ≤2) are **no-ops** on R0: the parent already
-sits at 2.236 px, so nothing is within 2 px. The only meaningful direction is upward,
-which makes the correct design a **dose-response**, not three different edits:
+The design is backed by a measurement rather than a hunch: **all of R0's credit against the
+catalogue lies within 3 px** (necessarily, since the kernel radius is 3 px). So every dot
+removed between 3 and 15 px earns **zero** credit on known faults while still costing `0.2`
+in the denominator. The ladder therefore isolates exactly one unknown: how much *new-fault*
+credit those dots were earning.
 
-| dose | dots removed | % of R0 | file |
-|---|---|---|---|
-| ≤3 px | 2,171 | 5.77 % | `R0-PRUNE3-20261023` |
-| ≤8 px | 9,164 | 24.34 % | `R0-PRUNE8-20261023` |
-| ≤15 px | 15,665 | 41.60 % | `R0-PRUNE15-20261023` |
+## Next 3 slots — the ladder, in this order
 
-All three are built, gate-clean, in `releases/`. Predictions and falsifiers are in
-`docs/MECHANISM_CARDS.md`.
+| # | build | dots | removed | % R0 | predicted | what the result would change |
+|---|---|---|---|---|---|---|
+| 1 | `PRUNEle3norefill` | 35,483 | 2,171 | 5.77 % | +0.002 | Smallest step off the parent. Most likely below the 0.01 bar, so a flat result is *expected*. A loss means 2 px is already past the optimum and nothing further should be pruned. |
+| 2 | `PRUNEle8norefill` | 28,490 | 9,164 | 24.34 % | +0.006 | Separates denominator saving from new-fault credit. 7,553 of the 9,164 removed dots are zero-credit against the catalogue. |
+| 3 | `PRUNEle15norefill` | 21,989 | 15,665 | 41.60 % | +0.010 | Largest dose inside the 1–50 % band and the only rung with a plausible path past +0.01. |
 
-**What makes this a real experiment:** all of R0's credit against the catalogue lies
-within 3 px, so every dot removed between 3 and 15 px earns *zero* credit on known
-faults and only costs `0.2` in the denominator. The dose therefore isolates one term:
-how much *new-fault* credit those dots were earning. A monotone rise says throw mass
-away; a monotone fall says new faults hug the known traces.
+All three are built and gate-clean (`releases/`). Predictions, confounders and falsifiers
+are in `docs/MECHANISM_CARDS.md`.
 
-## The next three slots
+**This ladder directly tests a recorded disagreement.** The imported `PRUNE/p4px` row
+predicts **−0.009** for removing the 2–4 px collar; the metric algebra says removal *gains*
+because zero-credit dots are pure denominator cost. If `le8`/`le15` gain, that imported
+prediction is wrong. See `IRREGULARITIES.md` IR-91-13.
 
-| # | build | what each result would change |
-|---|---|---|
-| 1 | **`R0-PRUNE3`** — 5.77 % removed | If it gains, the 2 px margin is too tight and the next slot pushes further. If it loses, 2 px is already past the optimum and no later file should prune at all. Predicted +0.002: **most likely below the 0.01 evidence bar**, so a flat result is expected and is not a failure. |
-| 2 | **`R0-PRUNE8`** — 24.34 % removed | Separates "denominator cost" from "new-fault credit". A gain materially larger than slot 1's means the 3–8 px shell is background; a loss means those dots sit on unmapped structure 300–800 m off the known traces. |
-| 3 | **`R0-PRUNE15`** — 41.60 % removed | The only card with a plausible path past +0.01. If it wins, the next axis should keep cutting mass; if all three are flat, **PRUNE is exhausted** and slots 4+ go to CONCENTRATION and RELIEF. |
-
-Order is a deliberate dose ladder: slot 1 is cheap and sharpens the interpretation of
-slots 2–3. Do not reorder.
+**Do not** spend slots on the existing refill-based `p1px`/`p3px`/`p4px` rows: they were
+built by an earlier session and never scored, and their predictions are non-monotone in dose
+(−0.006, +0.005, −0.009), which a single mechanism cannot produce.
 
 ## Weeks to the deadline
 
 | week | plan |
 |---|---|
-| now | Upload the three PRUNE files across the week's slots. Copy every receipt number back into `ledger/submissions.csv`. |
-| wk 2 | Read the ladder. If monotone gain: build PRUNE ≤25 px (needs a cap on removals). If monotone loss: stop pruning; build **MASS +10 %** instead, which needs the parent's ranking (see below). If flat: move to CONCENTRATION. |
-| wk 3–4 | **CONCENTRATION** at block 16 px = 1.6 km, 15 % of dots from lowest-prior to highest-prior blocks, reporting block-density CV before/after (target band 0.51–0.59). Then combine with the best PRUNE dose, one change at a time. |
+| now | Spend this week's slots on the ladder. Copy every receipt number into `ledger/submissions.csv`. |
+| wk 2 | Read the ladder. **Monotone gain** → keep cutting mass; next axis should be MASS-SHAPE at fixed count. **Monotone loss** → new faults hug the known traces; stop pruning and add mass in the 3–8 px band instead. **Flat** → PRUNE is exhausted, move to CONCENTRATION. |
+| wk 3–4 | Whatever the ladder says, the next build needs `training_features` (it unblocks MASS, SNAP and CONCENTRATION). Ask the human to supply it; it is the single highest-value missing input. |
 | wk 5–6 | Confirm the winner, build a fallback, re-validate both formats, re-read both from disk, choose the final file blind from the ledger. |
-
-Slot budget: 3/week. At least 8 historical slots went to exact repeats; `ledger.py
-check` before every build now prevents that. Current week's usage is unknown (README).
 
 ## Better axes (proposed, not built this session)
 
-1. **MASS-SHAPE at fixed count.** Keep 37,654 dots but redistribute from dense clusters
-   to sparse ones. Mechanism: the denominator charges `0.2(S−M)`, so credit already
-   collected by a neighbour is nearly free while fresh credit is not — overlapping dots
-   waste count without buying credit. Confounder: true fault density genuinely varies at
-   km scale, so flattening a real cluster costs recall. Falsifier: check whether removed
-   dots' neighbourhoods were already credited by a neighbour.
-   *Blocked on:* the parent's ranking, which was never stored. Would need rebuilding
-   from GEMSDOE32's recorded recipe and `training_features.tif`.
-2. **MARGINAL-PRUNE by exact gain.** Rank R0's dots by exact marginal gain under a local
-   holdout (`dti.rank_dots`) and drop the bottom 10 %, instead of dropping by distance to
-   catalogue. Mechanism: cut the dots the metric values least. Confounder: the holdout is
-   the catalogue, not new-fault truth, so this can select for already-mapped geometry.
-   Falsifier: the dropped set should not overlap the hide-and-recover positives.
-3. **TRACKB (Phase 2 only).** Strike-consistent traces ≥1 km from the top-ranked dots as
-   GeoJSON + raster, with one evidence paragraph per trace for a geologist. Not a weekly
-   slot candidate — it cannot be scored in Phase 1 in a way that transfers.
+1. **MASS-SHAPE at fixed count.** Keep 37,654 dots but redistribute from dense clusters to
+   sparse ones. Mechanism: the denominator charges `0.2(S−M)`, so credit already collected by
+   a neighbour is nearly free while fresh credit is not — overlapping dots waste count
+   without buying credit. Confounder: true fault density varies at km scale, so flattening a
+   real cluster costs recall. Falsifier: were the removed dots' neighbourhoods already
+   credited by a neighbour? *Blocked on* `training_features`.
+2. **MARGINAL-PRUNE by exact gain.** Rank R0's dots by exact marginal gain
+   (`scripts/dti.py::rank_dots`) and drop the bottom decile instead of dropping by distance to
+   the catalogue. Confounder: the holdout is the catalogue, not new-fault truth. Falsifier:
+   the dropped set should not overlap the hide-and-recover positives.
+3. **TRACKB (Phase 2 only).** Strike-consistent traces ≥1 km as GeoJSON + raster with one
+   evidence paragraph per trace. Cannot be scored in Phase 1 in a way that transfers, so it
+   should not consume a weekly slot unless the human decides otherwise.
 
-## Recommended next step, honestly
+## Honest note on information per slot
 
-The brief's evidence bar is ±0.01 on public chunks. The parent's best single step was
-+0.0070 (CLAIM). **No prune dose of one or two pixels can clear that bar**, so slots 1
-and 2 are refinements and only slot 3 can produce evidence. If you would rather spend
-all three slots on moves that can plausibly exceed 0.01, replace slot 1 with
-CONCENTRATION 15 % and keep slots 2–3 as the upper doses. That is a judgement call
-about information per slot, and it is yours.
+The brief's evidence bar is ±0.01 on public chunks. The parent's best single step was +0.0070
+(CLAIM). **No one-pixel prune step can clear that bar.** If you would rather spend all three
+slots on moves that can plausibly exceed 0.01, replace slot 1 with the upper doses. That is a
+judgement about information per slot, and it is yours, not mine.

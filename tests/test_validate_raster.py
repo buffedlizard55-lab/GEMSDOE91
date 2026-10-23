@@ -161,16 +161,17 @@ def test_catalogue_mass_gate(ref, tmp_path):
 def test_ledger_dedupe(ref, tmp_path):
     cand = good_candidate(ref, tmp_path)
     digest = V.sha256_file(cand)
+    fields = ["id", "sha256", "sha256_zeros", "status"]
     ledger = tmp_path / "subs.csv"
     with open(ledger, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=["id", "sha256", "sha8"])
+        w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader()
-        w.writerow({"id": "x", "sha256": "deadbeef", "sha8": "deadbeef"})
+        w.writerow({"id": "x", "sha256": "deadbeef", "sha256_zeros": "", "status": "SUBMITTED"})
     g = gate_names(V.validate_raster(cand, ref, ledger_csv=ledger))
     assert g["sha256 not already in ledger"].ok
     with open(ledger, "a", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=["id", "sha256", "sha8"])
-        w.writerow({"id": "y", "sha256": digest, "sha8": digest[:8]})
+        w = csv.DictWriter(fh, fieldnames=fields)
+        w.writerow({"id": "y", "sha256": digest, "sha256_zeros": "", "status": "SUBMITTED"})
     g2 = gate_names(V.validate_raster(cand, ref, ledger_csv=ledger))
     assert not g2["sha256 not already in ledger"].ok
 
@@ -198,3 +199,27 @@ def test_transform_mismatch_fails(ref, tmp_path):
     bad = write_tif(tmp_path / "bad_tr.tif", arr, transform=from_origin(600050.0, 4200000.0, 100.0, 100.0))
     g = gate_names(V.validate_raster(bad, ref))
     assert not g["transform matches"].ok
+
+
+def test_ledger_dedupe_ignores_built_rows(ref, tmp_path):
+    """A BUILT row is bookkeeping for the file being certified (brief section 7).
+
+    Counting it would make the gate unsatisfiable in the order the brief prescribes:
+    build -> record -> certify. Only SUBMITTED rows mean the slot was spent.
+    """
+    cand = good_candidate(ref, tmp_path)
+    digest = V.sha256_file(cand)
+    ledger = tmp_path / "subs.csv"
+    with open(ledger, "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=["id", "sha256", "sha256_zeros", "status"])
+        w.writeheader()
+        w.writerow({"id": "x", "sha256": digest, "sha256_zeros": "", "status": "BUILT"})
+    g = gate_names(V.validate_raster(cand, ref, ledger_csv=ledger))
+    assert g["sha256 not already in ledger"].ok
+
+    with open(ledger, "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=["id", "sha256", "sha256_zeros", "status"])
+        w.writeheader()
+        w.writerow({"id": "x", "sha256": digest, "sha256_zeros": "", "status": "SUBMITTED"})
+    g2 = gate_names(V.validate_raster(cand, ref, ledger_csv=ledger))
+    assert not g2["sha256 not already in ledger"].ok

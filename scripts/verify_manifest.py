@@ -1,8 +1,12 @@
-"""Verify that every pinned input exists and matches its recorded sha256.
+"""Verify that every pinned input is present and matches its recorded sha256.
 
-Brief section 4.2: inputs come only from files pinned in the manifest, and the
-hash is verified before use. Nothing is fetched here; a missing or unpinned file
-is reported as MISSING / UNVERIFIED and the exit code is non-zero.
+Reads the repository's canonical manifest, ``registry/data_manifest.json``, whose
+schema is ``{"files": [{id, local_subpath, sha256, bytes, role, verified_here}]}``
+with ``local_subpath`` relative to ``--data-root`` (default ``data/``).
+
+Brief section 4.2: inputs come only from pinned files and the hash is verified
+before use. Nothing is fetched here; a missing or mismatched file is reported and
+the exit code is non-zero, which blocks ``scripts/build.py``.
 
 This script never downloads anything and never contacts drivendata.org.
 """
@@ -21,40 +25,27 @@ from validate_raster import sha256_file  # noqa: E402
 MANIFEST = "registry/data_manifest.json"
 
 
-def load_manifest(path: str | Path) -> dict:
-    with open(path, encoding="utf-8") as fh:
-        return json.load(fh)
-
-
-def check(manifest: dict, root: str | Path = ".") -> tuple[list[dict], bool]:
-    root = Path(root)
+def check(manifest: dict, data_root: str | Path = "data") -> tuple[list[dict], bool]:
+    """Returns (rows, all_required_ok). ``derived`` files are hashed too if present."""
+    root = Path(data_root)
     rows, all_ok = [], True
-    for entry in manifest.get("inputs", []):
-        rel = entry["path"]
-        p = root / rel
+    entries = list(manifest.get("files", [])) + list(manifest.get("derived", []))
+    for entry in entries:
+        rel = entry.get("local_subpath") or entry.get("path")
         want = entry.get("sha256")
-        row = {
-            "path": rel,
-            "role": entry.get("role", ""),
-            "required": bool(entry.get("required", False)),
-            "expected": want,
-        }
-        if entry.get("generated"):
-            row["status"] = "PRESENT" if p.exists() else "MISSING"
-            row["actual"] = sha256_file(p) if p.exists() else None
-            if not p.exists():
-                all_ok = False
-            rows.append(row)
-            continue
+        p = root / rel
+        row = {"id": entry.get("id") or rel, "path": str(p), "role": entry.get("role", ""),
+               "expected": want, "derived": "local_subpath" not in entry}
         if not p.exists():
-            row["status"] = "MISSING"
-            row["actual"] = None
-            all_ok = False
+            row.update(status="MISSING", actual=None)
+            # a derived file is reported, not fatal: it is rebuilt from a pinned input
+            if not row["derived"]:
+                all_ok = False
         else:
             actual = sha256_file(p)
             row["actual"] = actual
             if not want:
-                row["status"] = "UNPINNED"  # present but no hash recorded: cannot verify
+                row["status"] = "UNPINNED"
                 all_ok = False
             elif actual == want:
                 row["status"] = "OK"
@@ -65,38 +56,55 @@ def check(manifest: dict, root: str | Path = ".") -> tuple[list[dict], bool]:
     return rows, all_ok
 
 
+def verified_ids(manifest: dict, data_root: str | Path = "data") -> set[str]:
+    rows, _ = check(manifest, data_root)
+    return {r["id"] for r in rows if r["status"] == "OK"}
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(description="Verify pinned inputs against registry/data_manifest.json")
     ap.add_argument("--manifest", default=MANIFEST)
-    ap.add_argument("--root", default=".")
+    ap.add_argument("--data-root", default="data")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args(argv)
 
-    manifest_path = Path(args.manifest)
-    if not manifest_path.exists():
-        print(f"NO MANIFEST at {manifest_path}: every input is UNVERIFIED. Stop here (brief section 5).")
+    mp = Path(args.manifest)
+    if not mp.exists():
+        print(f"NO MANIFEST at {mp}: every input is UNVERIFIED. Stop here (brief section 5).")
         return 2
-
-    manifest = load_manifest(manifest_path)
-    rows, all_ok = check(manifest, args.root)
+    manifest = json.loads(mp.read_text())
+    rows, all_ok = check(manifest, args.data_root)
+    ok_ids = {r["id"] for r in rows if r["status"] == "OK"}
+    readiness = {}
+    for axis, needs in manifest.get("axis_requirements", {}).items():
+        missing = [n for n in needs if n not in ok_ids]
+        readiness[axis] = {"ready": not missing, "missing": missing}
 
     if args.json:
         print(json.dumps(rows, indent=2))
     else:
-        print(f"manifest: {args.manifest}  (repo {manifest.get('repository', '?')})")
+        print(f"manifest: {args.manifest}  (data root: {args.data_root})")
         for r in rows:
-            print(f"[{r['status']:12s}] {r['path']:48s} role={r['role']}")
+            tag = r["status"] + ("*" if r["derived"] else "")
+            print(f"[{tag:14s}] {r['id']:28s} {r['path']}")
         ok = sum(r["status"] == "OK" for r in rows)
-        print(f"\n{ok}/{len(rows)} inputs verified; {'ALL OK' if all_ok else 'NOT VERIFIED'}")
+        print(f"\n{ok}/{len(rows)} entries verified")
+        if not all_ok:
+            print("\nNot every pinned entry is present. That is NOT automatically fatal:")
+            print("an axis only needs the entries listed for it in axis_requirements.")
+        print("\naxis readiness:")
+        for axis, st in readiness.items():
+            mark = "READY  " if st["ready"] else "blocked"
+            extra = "" if st["ready"] else f"  (missing: {', '.join(st['missing'])})"
+            print(f"  [{mark}] {axis}{extra}")
 
-    if not all_ok:
-        print(
-            "\nRESULT: STOP. Brief section 5 requires R0's sha256 to match before any variant is built; "
-            "with inputs missing the parent cannot be rebuilt, so no raster may be produced or named.",
-            file=sys.stderr,
-        )
     return 0 if all_ok else 1
 
 
 if __name__ == "__main__":
     raise SystemExit(main(sys.argv[1:]))
+
+
+def load_manifest(path: str | Path = MANIFEST) -> dict:
+    """Read the canonical manifest. Kept here so builders import one module."""
+    return json.loads(Path(path).read_text(encoding="utf-8"))

@@ -1,130 +1,266 @@
 # IRREGULARITIES
 
-Only items that change a decision. Ordered by how hard they block.
+Only items that change a decision. Each entry says what the rule/assumption was,
+what is actually true, and what I did differently because of it.
 
-## 1. The repository is PUBLIC and GitHub Pages is serving `main:/`
+---
 
-`gh api repos/buffedlizard55-lab/GEMSDOE91` returns `"visibility": "public"`, and
-`/pages` returns `"status": "built"` with `source: {branch: main, path: /}`,
-`"public": true`, URL `https://buffedlizard55-lab.github.io/GEMSDOE91/`.
+## IR-91-01 — The repo was an empty scaffold; the brief assumes an existing lineage
 
-**Why it changes a decision.** Brief §4.2 requires that competition rasters be kept
-out of public repos, and asks that any that are already public be flagged because
-the data-use terms are unchecked. Today `main` contains no raster (`gh api ... --jq .size`
-= 0 kB), so nothing is leaked yet. But any commit of `data/` or `releases/` would
-publish competition-derived rasters on the open web within seconds, including on the
-Pages site, and git history is not erasable in practice.
+**Expected** (brief §5): "verify manifest hashes; rebuild R0 and match its sha256;
+read `ledger/` and `SLOT_PLAN.md`".
 
-**Decisions taken.** `.gitignore` excludes `data/`, `releases/`, `*.tif`, `*.npy`.
-Rasters live outside git; only their sha256 goes into `ledger/submissions.csv`.
-CI fails on a conflict marker and on a manifest hash MISMATCH, never on a missing
-file, so a legitimate local-only input cannot be mistaken for corruption.
+**Actual:** `buffedlizard55-lab/GEMSDOE91` contained one 11-byte `README.md`, 1 commit,
+no `registry/`, no `ledger/`, no `SLOT_PLAN.md`, no data directory, no releases.
 
-**Human action.** Confirm the competition's data-use terms allow keeping derived
-rasters in a *public* repo at all; if they do not, either keep the repo private or
-disable Pages (`gh api -X DELETE repos/{owner}/{repo}/pages`). This is your call,
-not mine — I have not changed repository settings.
+**What I did:** found the upstream lineage in the sibling public repo **GEMSDOE88**
+(20-row ledger, `SLOT_PLAN.md`, `registry/data_manifest.json`, `registry/r0_verification.json`,
+mechanism cards) and GEMSDOE32 (the parent's own build repo). I imported the manifest and
+ledger from there with `source=IMPORT:GEMSDOE88` on every row, and re-hashed everything
+retrievable rather than trusting the copy.
 
-## 2. Inputs were recovered from the owner's PUBLIC sibling repos — flag for data terms
+**Decision it changes:** before any build, confirm GEMSDOE88 is the intended upstream and
+that this repo was meant to start empty (i.e. the real working data lives on the entrant's
+machine, not here). If GEMSDOE91 was supposed to be a populated clone, the setup lost files
+and any hash claims in it are void.
 
-**Resolved, with a caveat that changes a decision.** The checkout held only `README.md`
-(11 bytes). Rather than stop, I searched the same owner's other repositories and found
-the parent session's own artefacts, all public:
+---
 
-| input | source | how it was verified |
+## IR-91-02 — ~~The three competition rasters are absent and are not publicly mirrored~~ **RESOLVED (session 3)**
+
+> **UPDATE 2026-10-23 (session 3).** This item's central claim is **wrong**: the rasters
+> *are* publicly mirrored, and they were located and hash-verified. See **IR-91-09**. The
+> text below is kept because its reasoning about what the absence would have implied is
+> still the correct reasoning; only the premise failed.
+
+
+**Blocked gates:** footprint (needs `sample_submission.tif`), zero-catalogue-mass and the
+≥3 px collar (need `existing_faults.tif`), block priors / edge fields / parent ranking
+(need `training_features.tif`, 419 MB).
+
+**Evidence:** code/filename search across every public repo in
+`buffedlizard55-lab` returns 0 hits for `sample_submission.tif`, `existing_faults.tif`,
+`training_features.tif`; the manifest paths (`data/official/`, `data/bridge/`) are
+gitignored local paths.
+
+**Good news:** no competition raster has leaked into a public repo, so the
+data-use-terms concern in brief §2/§3 does not fire for these three files.
+
+**Decision it changes:** brief §2 forbids filling gaps from memory and briefly demands
+pinned+verified inputs. A variant that cannot be checked for catalogue mass or collar
+cannot be certified, so I **built nothing** rather than fabricate a catalogue stand-in.
+`scripts/preflight.py` now hard-blocks the build path.
+
+---
+
+## IR-91-03 — R0 itself violates constraint 4, so the brief's default plan cannot be compliant
+
+Constraint 4: "keep >=3 px from [the catalogue] unless AXIS=PRUNE".
+
+**Actual:** R0 keeps every dot **>2 px** away, not >3 px. Upstream's own PRUNE audit
+(`releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json`, `parent_diff`) records
+`dots_le_2px = 0`, `dots_le_3px = 2171` — i.e. **2,171 R0 dots sit at 2 < d ≤ 3 px**
+(this session could not re-measure them: no `existing_faults.tif`; the number is
+therefore **CLAIM from a built artifact**, not verified here).
+
+**Consequence:** every non-PRUNE variant whose parent is R0 **inherits** those 2,171 dots
+and is non-compliant at construction, no matter how good the edit is. That is why 17 of the
+20 ledger rows are `HOLD` in upstream's own words ("inherits R0's 2 px collar").
+
+**Decision it changes:** the only gate-clean parent is **R1 = PRUNEp3px** (`6f7ae705`),
+and any MASS / CONCENTRATION / SNAP / RELIEF / SPACING work must be **re-based on R1**.
+`validate_release.py` treats `collar_ge_3px` as `FAIL` for every non-PRUNE file and
+`UNVERIFIED` when the catalogue is missing — it never passes it by default.
+
+**Open question for the human (rule scoping, not my call):** whether the ≥3 px gate is meant
+to bind *controlled edits of R0* or only *new* dot placements. If it binds everything, the
+default plan in brief §7 (wk1–2 MASS/CONC/SNAP/PRUNE/RELIEF on R0) is unexecutable as written.
+
+---
+
+## IR-91-04 — 17 of 20 ledger rows point at a raster that is a 404
+
+`registry/raster_availability.json` walks every ledger row and GETs its declared raster
+from the mirror. Result: **3 present, 17 absent**. The three present are the MASS variants
+(`MASSm10minus`, `MASSm10plus`, `MASSm20minus`), fetched and re-hashed: all six files
+(nan + zeros) match their ledger hashes and their recorded dot counts (33,889 / 41,419 /
+30,123).
+
+The recommended slot-1 file **`PRUNEp3px` (`6f7ae705`)** has a receipt naming
+`releases/…6f7ae705.tif` (354,519 bytes) but that path has **never existed in git**
+(`commits?path=…` returns 0), and no sibling repo carries it.
+
+**Cross-session duplicate risk:** sibling repos hold builds of the *same* axes under
+*different* value spellings — `GEMSDOE87` has `PRUNE1/PRUNE3/PRUNE4` (`4679d91c`, `bc00a06c`,
+`f5c53782`) and `CONCc10/c15/c20`, `GEMSDOE85` has `conc10/15/20`, `GEMSDOE84` has
+`pruned2p5/3p0/4p0`. The ledger's (parent, axis, value) dedupe cannot see those, so the same
+experiment may already have been run (and possibly already spent) in another session.
+Check the sibling `releases/` before spending a slot on PRUNE or CONCENTRATION.
+
+**Decision it changes:** slots cannot be spent by downloading a finished, compliant file.
+Slot 1 and slot 2 both require a **rebuild on the entrant's own machine** (where the pinned
+inputs live). The only uploadable-today files are the three MASS variants, and two of them
+are `HOLD` (negative MODEL, or a nested cut of another).
+
+---
+
+## IR-91-05 — No receipt exists anywhere, so no live effect has ever been measured
+
+All 20 ledger rows have empty `receipt_score` / `receipt_date`. R0's 0.2778 is `CLAIM`.
+`TOP_PUBLIC` is blank in the brief; the `0.4413` in upstream `SLOT_PLAN.md` is a
+human-supplied figure dated 2026-10-22 (**CLAIM**), ~0.16 above the best claimed DTI of
+this lineage — a gap no mechanism in the ledger explains.
+
+**Decision it changes:** every "predicted change" in this repo is `MODEL`, and the brief's
+own rule applies — a live change under 0.01 is **no evidence**. Two consequences:
+(1) fill `TOP_PUBLIC` with a receipt-backed number before spending a slot, so a +0.02 MODEL
+stop pretending to be progress against a 0.44 target; (2) paste receipt_score + date into
+`ledger/submissions.csv` the same day, or the next session is blind again.
+
+---
+
+## IR-91-06 — The DTI re-derivation cannot produce absolute scores
+
+`src/gems91/metric.py` implements the brief's algebra exactly
+(`DTI = T / (0.2T + 0.2(S−M) + 0.8|G|)`, triangular R = 3 px). Two observations from the
+unit tests: (a) for an isolated truth pixel, a single dot scores 1.0; (b) dense coverage of
+a short truth set scores **> 1.0**, while live scores top out near 0.44. So the organiser's
+normalisation differs from this re-derivation in a way the term structure does not expose
+(most likely T is normalised per truth pixel, and/or the kernel is area-normalised).
+
+**Decision it changes:** use this module only for **ordering** dots by exact marginal gain
+and for sign checks. Never quote its absolute output as a score or as a predicted live
+value, and do not tune any hyperparameter against it. Label `MODEL` everywhere.
+
+---
+
+## IR-91-06 — `min_distance_to_mask` transposed rows and columns (found and fixed here)
+
+**Expected:** the collar gate counts dots within 1/2/3 px of the catalogue mask.
+
+**Actual:** `cols, rows = np.nonzero(target); return dist[rows, cols]` indexes the
+distance array as `[column, row]`. `np.nonzero` returns `(rows, cols)`, so every distance
+was read from the mirrored cell, and any row index ≥ the array width raised `IndexError`.
+The real grid is 3730 rows × 3292 columns, so both failure modes were live.
+The 34 data-free tests could not see it (they use square, tiny arrays); the first
+non-square raster through the gates — the synthetic 120×160 fixture — raised it immediately.
+
+**What I did:** fixed the unpacking in `src/gems91/gates.py` and added the end-to-end
+test (`tests/test_concentration.py::test_end_to_end_build_then_certify`) that runs the
+gates on a real, non-square raster.
+
+**Decision it changes:** every collar number produced before this fix is void, including
+any `dots_le_1/2/3px` in `registry/candidate_availability.json` **if** it was produced by
+this function rather than transcribed. Re-derive the 2,171 figure in IR-91-03 from
+`existing_faults.tif` before citing it in a submission note. The bug is symmetric
+(distance to the transposed cell), so it inflates and deflates indiscriminately.
+
+---
+
+## IR-91-07 — The imported CONCENTRATION rows rank by parent dot density, so they are not prior tests
+
+**Expected** (brief §5): move dots from the lowest-prior blocks to the highest-prior ones.
+
+**Actual:** the three `CONCENTRATION` rows in `ledger/submissions.csv`
+(`b10px-m10`, `b10px-m20`, `b50px-m20`) record
+`ranking_basis = "coldest->hottest … blocks by 2-block-smoothed parent dot density"`.
+The block prior is the parent's own dots. A dot field moved toward its own density maximum
+is a *clustering* edit; it cannot show whether an independent km-scale prior transfers.
+
+**What I did:** `tools/run_concentration.py` requires `--prior` and documents that the
+prior must not be derived from the parent's dots; the ledger row it writes says so in
+`ranking_basis`.
+
+**Decision it changes:** those three rows may be read as dose-response evidence for
+*clustering at fixed count* (CV 0.618→1.021 and 0.618→1.257), which is still useful, but
+they must not be cited as evidence about a prior. If any of them scores ≥ R0 + 0.01, the
+correct follow-up is the same dose with an **external** prior, not a bigger dose.
+
+---
+
+## IR-91-08 — The pay threshold is 0.056 only if `|G|` is constant; the alternative is 0.0458
+
+`src/gems91/metric.py` takes `|G|` = number of truth pixels, so adding a dot cannot change
+it, and the brief's shortcut `c > 0.2·DTI` (0.056 at DTI 0.28) is exact **in this model**:
+the denominator grows by exactly 0.2 because `+c` in `T` cancels `−c` in `(S − M)`.
+
+If the official metric instead defines `|G|` as *remaining uncovered truth*, the bar becomes
+`0.2·DTI/(1 + 0.8·DTI)` ≈ **0.0458** at 0.28 — a 22% lower bar. Dot *ordering* barely
+changes; the size of any predicted delta does.
+
+**Decision it changes:** quote ranking-level statements (sign, order) from the metric code,
+never an absolute predicted delta, until the organiser implementation is diffed (it is not
+public and the terms ban automated access). All predictions in `ledger/submissions.csv`
+are therefore `MODEL:` and must stay that way.
+
+
+---
+
+# Session 3 additions (2026-10-23, `arena/5563ddf8`)
+
+## IR-91-09 — The rasters DO exist in public mirrors; all three verified, PRUNE unblocked
+
+IR-91-02 was wrong. Recovered and verified byte-for-byte against hashes already recorded in
+this repo's own `registry/data_manifest.json` (which the earlier sessions had obtained from
+GEMSDOE32's manifests):
+
+| entry | mirror | result |
 |---|---|---|
-| R0 raster | `GEMSDOE32 docs/downloads/gemsdoe32-h33-h33-2-b2-…-e5eb6e7e-nan.tif` | sha256 `baeae321…c77dd` matches `GEMSDOE32 docs/downloads/submissions_manifest.json` exactly |
-| `sample_submission.tif` | `60GEMSDOE data/official/sample_submission.tif` | sha256 `2176d08e…cbc` matches `GEMSDOE32 data/prepared_manifest.json` `source_hashes` |
-| `labels.tif` | `60GEMSDOE data/official/labels.tif` | sha256 `7ba308cc…093` matches the same `source_hashes` |
-| solo-d28 (forensics only) | `GEMSDOE31 docs/downloads/…solo-d28-…-nan.tif` | used to reconstruct the parent's operation; not an input to any build |
+| `sample_submission` | `60GEMSDOE:data/official/sample_submission.tif` | sha256 matches |
+| `existing_faults` | `60GEMSDOE:data/official/labels.tif` | sha256 matches (it *is* the labels raster) |
+| `parent_r0_nan` | `GEMSDOE32:docs/downloads/…e5eb6e7e-nan.tif` | sha256 matches |
+| `parent_r0_zeros` | `GEMSDOE32:docs/downloads/…e5eb6e7e-zeros.tif` | sha256 matches |
 
-Pinning these satisfies brief §4.2 ("or the repo's equivalent" manifest, hash verified
-before use). I did not rebuild R0 from a recipe and I did not approximate it: the bytes
-match the hash the parent session recorded. **The parent is verified, not inferred.**
+**Decision it changes.** The axis readiness gate now says **PRUNE: READY**, while MASS, SNAP,
+CONCENTRATION, RELIEF and TRACKB stay blocked on `training_features` and the lidar layers.
+That is why this session built PRUNE and nothing else.
 
-**The caveat, which you must rule on.** ~200 public repositories in this account carry
-competition rasters, label files and score ledgers, several served through GitHub Pages.
-Brief §4.2 says to flag rasters that are already public because the data-use terms are
-unchecked, and that is now clearly the case at scale, not a single stray file. Nothing
-in this repo is affected (`data/`, `releases/`, `*.tif` are gitignored), but the wider
-practice is not mine to fix. Decision: I treated the public siblings as a *source of
-pinned inputs*, and did **not** treat their presence as permission to publish anything.
+**Also relevant to data-use terms.** These mirrors are public, so the rasters are already
+public. This repo still keeps `data/` and `releases/*.tif` out of git.
 
-## 2b. The parent brief's PRUNE instruction conflicts with the parent lineage — resolved in favour of the lineage
+## IR-91-10 — PRUNE value `3` already existed twice; my ladder is labelled to stay unique
 
-Brief §5 says PRUNE should "refill to hold the count". The lineage did the opposite, and
-that is now measurable rather than argued: differencing R0 against solo-d28 gives
-37,654 ∩ 40,199 = 37,654 shared dots, **0 dots in R0 that are not in solo-d28**, and
-2,545 dots within ≤2 px of the catalogue in solo-d28 only. So R0 = solo-d28 minus the
-≤2 px dots, no refill.
+The imported ledger already held `PRUNE/3` (`01d57649`, H19 BFS refill) and `PRUNE/p3px`
+(`6f7ae705`, refill from un-emitted H19-5 ridge dots), plus `p1px` and `p4px`. Brief §5 says
+each (AXIS, value) pair is built once.
 
-**Decision.** The three variants are delete-only, matching the parent. A refill would
-require the parent's own ranking, which was never stored; inventing one contradicts
-brief §4.2. The consequence is honest and stated in every mechanism card: these builds
-change *mass and geometry together*, so a gain cannot be attributed to "avoiding the
-catalogue" alone. `scripts/axes.py` keeps `refill=True` available for when a ranking exists.
+**Decision.** I did not rebuild those. My three builds are labelled `le3-norefill`,
+`le8-norefill`, `le15-norefill`. `le8` and `le15` are new doses. `le3-norefill` is a
+deliberate **refill-policy contrast** against the two existing PRUNE/3 rows at the same dose
+(35,483 dots vs 37,654), not a duplicate file. If you consider dose-with-different-refill to
+be the same pair, drop `le3-norefill` and the ladder still stands.
 
-## 3. The ledger is absent, so every number in this repo is a CLAIM
+## IR-91-11 — The parent lineage's PRUNE is delete-only; the brief says refill
 
-`ledger/submissions.csv` and `ledger/raw_paste.txt` did not exist. The five rows now
-in the ledger are transcribed from agent-brief §3 and tagged `provenance=BRIEF_S3`,
-`status=CLAIM`, with the values in `claimed_score` — **not** `receipt_score`, so no
-downstream reader can mistake them for receipts. Two of those rows have since acquired
-real sha256 values from the recovered rasters (R0 `baeae321`, solo-d28 `07b6db44`),
-which makes exact-repeat detection work for both going forward.
+Brief §5 says "refill to hold the count". Measured, not argued: differencing R0 against the
+public solo-d28 raster gives 37,654 shared dots, **0 in R0 but not in solo-d28**, and 2,545
+dots within ≤2 px in solo-d28 only. So R0 = solo-d28 minus those 2,545 dots, **no refill**.
 
-**Correction to the brief.** §3 lists the climb with 37,654 dots at solo-d28, but the
-solo-d28 raster recovered from GEMSDOE31 has **40,199** dots; 37,654 is R0's count. The
-prune ≤2 step therefore removed 2,545 dots (6.3 %), not zero. This matters because it
-gives the per-dot rate the dose-response is extrapolated from.
+**Decision.** The three variants follow the lineage (delete-only), because a refill needs the
+parent's ranking and none was ever stored (`training_features` is the missing input that
+would let it be rebuilt). Consequence, stated in every mechanism card: these builds move mass
+and geometry together, so a gain cannot be attributed to "avoiding the catalogue" alone.
 
-**Why it changes a decision.** Brief §8 distinguishes RECEIPT from CLAIM. With no
-receipts, "best receipt" is empty and the incumbent's live position is unverified.
-The brief also reports ≥8 slots lost to exact repeats; without sha8 values, hash
-dedupe cannot cover those historical files, so `scripts/ledger.py state` warns that
-5/5 rows carry no hash. Duplicate prevention currently works only for files built
-from now on, plus the (parent, axis, value) check.
+## IR-91-12 — `sha_unseen` was unsatisfiable in the intended order (fixed here)
 
-## 4. The 3 px distance rule in §4.4 is a rule the parent itself breaks
+`gates.py` compared the candidate hash against *every* ledger row. Brief §7 requires a BUILT
+row for the file being certified, so build → record → certify could never pass, and the three
+built files were rejected as "already used" although no slot had been spent.
 
-Brief §4.4 says keep ≥3 px from the catalogue unless AXIS=PRUNE. Measured: R0's
-minimum distance is **2.236 px**, and 2,171 of its dots are within ≤3 px. So the
-incumbent has been violating the stated rule all along, and the rule as written would
-forbid uploading R0 itself.
+**Fix.** Both validators (`src/gems91/gates.py` and `scripts/validate_raster.py`) now compare
+against **SUBMITTED** rows only, and report how many BUILT rows matched. After the fix all
+three files certify under both implementations independently.
 
-**Why it changes a decision.** Read literally, §4.4 makes the best-scoring file in the
-lineage illegal. I have not applied it as a hard gate, because doing so would reject
-the parent and every variant that keeps any dot in that band. Instead the gate treats
-mass *on* a catalogue pixel as fatal (R0 has zero) and reports the distance shortfall
-as a statistic, which is what §6's "zero catalogue mass" gate actually says. If you
-want the 3 px rule enforced, say so and I will rebuild — it would remove 2,171 dots
-from R0, which is exactly the PRUNE3 file already built.
+## IR-91-13 — My PRUNE predictions contradict the imported `p4px` prediction
 
-**Also:** `axes.snap` defaults to `min_cat_px=2.0` and reports `cat_distance_ok`
-rather than silently relocating the parent's own dots when the parent sits inside 3 px.
+Imported `PRUNE/p4px` predicts **−0.009** for removing the 2–4 px collar; my algebra predicts
+removal *gains* because dots beyond 3 px carry zero catalogue credit and still cost `0.2` in
+the denominator. Both cannot be right.
 
-## 5. The metric form is taken from the brief, not from the competition page
+**Why it is not resolvable here.** The sign depends on how much *new-fault* credit those dots
+earn, which no local label can measure (the catalogue is masked in scoring).
 
-Brief §4.1 forbids fetching `drivendata.org` (its terms of use ban automated access),
-so the algebra `DTI = T/(0.2T + 0.2(S−M) + 0.8|G|)` could not be re-read at source.
-`scripts/dti.py` implements it and `tests/test_dti.py` pins its behaviour (a perfect
-field scores 1.0 exactly; an isolated dot scores its kernel weight; a dot pays iff
-`k > 0.2·DTI`, verified over the full offset grid).
-
-**Why it changes a decision.** If the official scorer aggregates per chunk or per
-pixel rather than over the whole raster, "which dot pays" changes, and so does every
-ranking derived from `marginal_gain`. Those rankings are therefore MODEL-grade until
-you paste one official score that a local recompute can reproduce.
-
-## 6. Two numbers in the brief cannot be verified from here
-
-The deadline (2026-12-03) and the weekly slot count are on the competition page,
-which I must not fetch; `TOP_PUBLIC` is on the leaderboard, same. All three are left
-blank in `README.md` and `SLOT_PLAN.md` rather than filled from memory.
-
-## 7. External priors are unpinned, so the RELIEF and TRACKB axes are not buildable
-
-The Faulds step-over/intersection inventory has no URL or licence recorded in this
-repo; brief §4.3 requires both before use. The GeoDAWN lidar product is pinned by URL
-only and is not present in the sandbox. Both are marked UNVERIFIED in
-`registry/data_manifest.json`.
+**Decision it changes.** Read the ladder as a direct test of this disagreement: if `le8`/`le15`
+gain, the `p4px` −0.009 prediction is wrong and the "3–4 px shell carries real credit" story
+is dead. If they lose, the algebra's zero-credit argument is missing a real credit term and
+`p4px` was right for a reason worth writing down.

@@ -5,10 +5,11 @@
   "axis": "PRUNE",
   "seed": "n/a - PRUNE is deterministic, no sampling",
   "inputs": {
-    "data/R0.tif": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
-    "data/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
-    "data/labels.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-    "data/catalogue.tif": "c97c7819c7fc8ed1632c9d82e0dddbeb1b8dd029a5d6f7a6918d399ae55ab4c4"
+    "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "parent_r0_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_r0_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "catalogue_mask": "c97c7819c7fc8ed1632c9d82e0dddbeb1b8dd029a5d6f7a6918d399ae55ab4c4"
   },
   "code": {
     "scripts/dti.py": "399f277ecea4ce2682f51ef39ca2b69a67bd0c96ed9c6222d6b0ba9d76c4c326",
@@ -28,31 +29,34 @@
   },
   "variants": [
     {
-      "id": "R0-PRUNE3-20261023",
-      "value": "le3",
+      "id": "h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863",
+      "value": "le3-norefill",
       "n_dots": 35483,
+      "removed": 2171,
       "pct_changed": 5.77,
       "sha256": "1209e863a9ff58d86681e9e7f0375c4d185a59c50ef9769f02653ec1472198f2",
       "predicted_change": "+0.002 (range -0.002..+0.006)",
-      "gates": "14/14 PASS"
+      "gates": "14/14 + CERTIFIED (2nd validator)"
     },
     {
-      "id": "R0-PRUNE8-20261023",
-      "value": "le8",
+      "id": "h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0",
+      "value": "le8-norefill",
       "n_dots": 28490,
+      "removed": 9164,
       "pct_changed": 24.34,
       "sha256": "e1dd69d02b90f95e779c43de1843ac53c4064619e74c81ee230a08058ba15654",
       "predicted_change": "+0.006 (range -0.004..+0.014)",
-      "gates": "14/14 PASS"
+      "gates": "14/14 + CERTIFIED (2nd validator)"
     },
     {
-      "id": "R0-PRUNE15-20261023",
-      "value": "le15",
+      "id": "h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f",
+      "value": "le15-norefill",
       "n_dots": 21989,
+      "removed": 15665,
       "pct_changed": 41.6,
       "sha256": "1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0",
       "predicted_change": "+0.010 (range -0.008..+0.024)",
-      "gates": "14/14 PASS"
+      "gates": "14/14 + CERTIFIED (2nd validator)"
     }
   ],
   "proxy": {
@@ -125,5 +129,6 @@
     "SGMC control: no SGMC layer available",
     "MASS / SNAP / RELIEF / CONCENTRATION builds: need the parent's ranking, a driver band, or lidar",
     "no live score exists for any variant; all predictions are MODEL-grade"
-  ]
+  ],
+  "notes": "Rebuilt after merging origin/main. Rasters are reproducible: identical sha256 before and after the data/ path reorganisation."
 }

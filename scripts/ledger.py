@@ -28,10 +28,11 @@ from pathlib import Path
 LEDGER = "ledger/submissions.csv"
 RAW = "ledger/raw_paste.txt"
 
+# Canonical schema, shared with tests/test_ledger.py and the rest of the repo.
 COLUMNS = [
-    "id", "parent", "axis", "value", "n_dots", "pct_changed", "encoding",
-    "sha256", "sha8", "status", "predicted_change", "claimed_score",
-    "receipt_score", "receipt_date", "site", "name", "provenance", "notes",
+    "id", "parent", "axis", "value", "n_dots", "pct_changed", "sha256",
+    "sha256_zeros", "status", "predicted_change", "predicted_range",
+    "ranking_basis", "receipt_score", "receipt_date", "source", "notes",
 ]
 
 RAW_KEYS = ["site", "name", "score", "encoding", "n_dots", "sha8", "parent", "receipt"]
@@ -135,9 +136,7 @@ def to_ledger_rows(raw_rows: list[dict]) -> list[dict]:
             "predicted_change": "",
             "receipt_score": r.get("score", "") if receipt.startswith("Y") else "",
             "receipt_date": "",
-            "site": r.get("site", ""),
-            "name": r.get("name", ""),
-            "provenance": "RAW_PASTE",
+            "source": f"RAW_PASTE:{r.get('site', '')}",
             "notes": "",
         })
     return rows
@@ -148,7 +147,7 @@ def is_repeat(rows: list[dict], sha256: str | None, parent: str, axis: str, valu
     if sha256:
         s8 = sha256[:8]
         for r in rows:
-            if (r.get("sha256") or "") == sha256 or (r.get("sha8") or "") == s8:
+            if sha256 in ((r.get("sha256") or ""), (r.get("sha256_zeros") or "")) or (r.get("sha8") or "") == s8:
                 reasons.append(f"exact hash already in ledger as {r.get('id')}")
                 break
     if parent and axis:
@@ -198,7 +197,7 @@ def cmd_state(args) -> int:
     if best:
         print(f"  best receipt: {best.get('id')} = {best.get('receipt_score')} ({best.get('receipt_date') or 'no date'})")
     print(f"  slots used this week: {used}/{quota}")
-    missing_hash = sum(1 for r in rows if not (r.get("sha256") or r.get("sha8") or "").strip())
+    missing_hash = sum(1 for r in rows if not (r.get("sha256") or "").strip())
     if missing_hash:
         print(f"  WARNING: {missing_hash} rows carry no hash; exact-repeat detection cannot work for them")
     pairs = [(r.get("parent"), r.get("axis"), r.get("value")) for r in built]
@@ -243,7 +242,6 @@ def cmd_add(args) -> int:
     row = {k: getattr(args, k, "") or "" for k in COLUMNS}
     row["sha8"] = (args.sha256 or "")[:8]
     row["status"] = args.status
-    row["provenance"] = "BUILT_THIS_SESSION"
     rows.append(row)
     write_rows(rows, args.ledger)
     print(f"added {row['id']} ({row['status']}) to {args.ledger}")
@@ -271,7 +269,8 @@ def main(argv: list[str]) -> int:
 
     a = sub.add_parser("add")
     a.add_argument("--id", required=True)
-    for f in ("parent", "axis", "value", "n_dots", "pct_changed", "encoding", "predicted_change", "notes"):
+    for f in ("parent", "axis", "value", "n_dots", "pct_changed", "predicted_change",
+              "predicted_range", "ranking_basis", "source", "notes"):
         a.add_argument(f"--{f.replace('_', '-')}", dest=f, default="")
     a.add_argument("--sha256", required=True)
     a.add_argument("--status", default="BUILT")

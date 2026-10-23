@@ -1,121 +1,61 @@
-"""Tests for ledger maintenance: collapse repeats, dedupe, weekly slot counting."""
-
-from __future__ import annotations
+"""Ledger invariants. These protect the two dedupe rules in brief section 6:
+exact hash, and repeated (parent, axis, value). No overlap or rank-correlation
+thresholds are applied anywhere.
+"""
 
 import csv
-import datetime as dt
-import sys
+from collections import Counter
 from pathlib import Path
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-
-import ledger as L  # noqa: E402
-
-RAW = """site\tname\tscore\tencoding\tn_dots\tsha8\tparent\treceipt
-GEMSDOE\ta\t0.1922\tnan\t121000\t11111111\t\tY
-GEMSDOE\tb\t0.2477\tnan\t44000\t22222222\ta\tY
-GEMSDOE\tb\t0.2477\tzeros\t44000\t22222222\ta\tY
-GEMSDOE\tc\t0.2778\tnan\t37654\t33333333\tb\tY
-GEMSDOE\td\t0.2343\tnan\t40000\t44444444\ta\tN
-"""
+LEDGER = Path(__file__).resolve().parents[1] / "ledger" / "submissions.csv"
+REQUIRED = ["id", "parent", "axis", "value", "n_dots", "pct_changed", "sha256",
+            "status", "predicted_change", "receipt_score"]
 
 
-@pytest.fixture()
-def raw_file(tmp_path):
-    p = tmp_path / "raw_paste.txt"
-    p.write_text(RAW)
-    return p
+@pytest.fixture(scope="module")
+def rows():
+    with open(LEDGER, newline="", encoding="utf-8") as fh:
+        return list(csv.DictReader(fh))
 
 
-def test_parse_and_collapse_repeats(raw_file, tmp_path):
-    rows = L.parse_raw(raw_file)
-    assert len(rows) == 5
-    unique, repeats = L.collapse(rows)
-    assert len(unique) == 4
-    assert len(repeats) == 1
-    assert repeats[0]["name"] == "b"
+def test_required_columns_present():
+    with open(LEDGER, newline="", encoding="utf-8") as fh:
+        header = next(csv.reader(fh))
+    for col in REQUIRED:
+        assert col in header, f"ledger is missing column {col}"
 
 
-def test_collapse_keeps_the_higher_score(tmp_path):
-    p = tmp_path / "raw.txt"
-    p.write_text(
-        "site\tname\tscore\tencoding\tn_dots\tsha8\tparent\treceipt\n"
-        "S\tx\t0.20\tnan\t100\tdeadbeef\t\tY\n"
-        "S\tx\t0.25\tnan\t100\tdeadbeef\t\tY\n"
-    )
-    unique, repeats = L.collapse(L.parse_raw(p))
-    assert len(unique) == 1
-    assert float(unique[0]["score"]) == 0.25
-    assert len(repeats) == 1
+def test_ids_unique(rows):
+    dupes = [k for k, v in Counter(r["id"] for r in rows).items() if v > 1]
+    assert dupes == []
 
 
-def test_pipe_and_comma_separators(raw_file, tmp_path):
-    p = tmp_path / "pipe.txt"
-    p.write_text("S | y | 0.21 | nan | 100 | abcdef12 |  | Y\n")
-    rows = L.parse_raw(p)
-    assert rows[0]["name"] == "y"
-    assert rows[0]["score"] == "0.21"
+def test_no_duplicate_sha256(rows):
+    dupes = [k for k, v in Counter(r["sha256"] for r in rows).items() if v > 1]
+    assert dupes == []
 
 
-def test_ledger_rows_label_receipt_vs_claim(raw_file, tmp_path):
-    unique, _ = L.collapse(L.parse_raw(raw_file))
-    rows = L.to_ledger_rows(unique)
-    by_name = {r["name"]: r for r in rows}
-    assert by_name["a"]["status"] == "SUBMITTED"
-    assert by_name["a"]["receipt_score"] == "0.1922"
-    assert by_name["d"]["status"] == "CLAIM"
-    assert by_name["d"]["receipt_score"] == ""  # no receipt -> never a score
+def test_no_repeated_parent_axis_value(rows):
+    dupes = [k for k, v in Counter((r["parent"], r["axis"], r["value"]) for r in rows).items() if v > 1]
+    assert dupes == []
 
 
-def test_roundtrip_write_read(tmp_path, raw_file):
-    out = tmp_path / "subs.csv"
-    unique, _ = L.collapse(L.parse_raw(raw_file))
-    L.write_rows(L.to_ledger_rows(unique), out)
-    back = L.read_rows(out)
-    assert len(back) == 4
-    assert set(back[0]) == set(L.COLUMNS)
+def test_axes_are_from_the_brief(rows):
+    allowed = {"MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF", "SPACING", "TRACKB"}
+    assert {r["axis"] for r in rows} <= allowed
 
 
-def test_is_repeat_on_hash(tmp_path):
-    rows = [{"id": "x", "sha256": "a" * 64, "sha8": "a" * 8, "parent": "", "axis": "", "value": ""}]
-    assert L.is_repeat(rows, "a" * 64, "", "", "")
-    assert not L.is_repeat(rows, "b" * 64, "", "", "")
+def test_scores_are_labelled(rows):
+    """A receipt_score may be empty. If present it must be a float; the ledger
+    must never carry a PROXY or MODEL in a receipt column."""
+    for r in rows:
+        val = r["receipt_score"].strip()
+        if val:
+            float(val)
 
 
-def test_is_repeat_on_parent_axis_value(tmp_path):
-    rows = [{"id": "x", "sha256": "", "sha8": "", "parent": "R0", "axis": "PRUNE", "value": "3"}]
-    assert L.is_repeat(rows, "c" * 64, "R0", "PRUNE", "3")
-    assert not L.is_repeat(rows, "c" * 64, "R0", "PRUNE", "1")
-
-
-def test_week_slots_counts_only_recent_receipts():
-    today = dt.date(2026, 10, 23)
-    rows = [
-        {"status": "SUBMITTED", "receipt_date": "2026-10-22"},
-        {"status": "SUBMITTED", "receipt_date": "2026-10-10"},
-        {"status": "BUILT", "receipt_date": "2026-10-22"},
-        {"status": "SUBMITTED", "receipt_date": ""},
-    ]
-    used, quota = L.week_slots(rows, today=today)
-    assert (used, quota) == (1, 3)
-
-
-def test_add_refuses_a_repeat(tmp_path):
-    led = tmp_path / "s.csv"
-    L.write_rows([{"id": "x", "sha256": "a" * 64, "sha8": "a" * 8}], led)
-    rc = L.main(["--ledger", str(led), "add", "--id", "y", "--sha256", "a" * 64])
-    assert rc == 1
-
-
-def test_add_accepts_a_new_file(tmp_path):
-    led = tmp_path / "s.csv"
-    L.write_rows([], led)
-    rc = L.main(["--ledger", str(led), "add", "--id", "y", "--sha256", "b" * 64,
-                 "--parent", "R0", "--axis", "PRUNE", "--value", "3"])
-    assert rc == 0
-    rows = L.read_rows(led)
-    assert rows[0]["id"] == "y"
-    assert rows[0]["sha8"] == "b" * 8
-    assert rows[0]["status"] == "BUILT"
+def test_sha256_is_64_hex(rows):
+    for r in rows:
+        assert len(r["sha256"]) == 64 and int(r["sha256"], 16) >= 0

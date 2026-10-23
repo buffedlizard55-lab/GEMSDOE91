@@ -1,70 +1,103 @@
-# SUBMIT — what the human does with a built file
+# SUBMIT — what to upload, and what to paste back
 
-The agent never submits. You upload from your own registered account, one file per
-slot, and the receipt number you copy back is what turns a CLAIM into a RECEIPT.
+**Status 2026-10-23: nothing in this repo is uploadable.** No variant was built
+(`IRREGULARITIES.md` IR-91-01/02/04). This page is the exact procedure for the first
+slot, which must be run on the machine that holds `data/`.
 
-## Before any slot is spent
-
-```bash
-python scripts/verify_manifest.py          # must print ALL OK
-python -m pytest tests/ -q                 # must be green
-python scripts/ledger.py state             # slots used this week; warns on missing hashes
-```
-
-If `verify_manifest.py` does not print ALL OK, nothing else in this file applies:
-R0's sha256 has not been matched and no variant may be built (brief §5).
-
-## Build and gate
+## Slot 1 — rebuild R1, then submit it
 
 ```bash
-python scripts/build.py --axis PRUNE --value 3 --id R0-PRUNE3-20261023-<sha8> \
-    --rank data/features/rank.tif
+python src/gems91/pinned.py check                 # 15/15 pins OK
+python scripts/preflight.py                       # BUILD ALLOWED
+python scripts/validate_release.py releases/<id>.tif --axis PRUNE
 ```
 
-`build.py` writes two files into `releases/` and runs every MUST gate on the first:
+- **File:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif`
+- **sha256 must equal** `6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9`
+  (zeros twin `dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f`).
+  If the rebuild does not reproduce that hash, it is a **different file** — log it in
+  `IRREGULARITIES.md` and do not call it R1.
+- **Form note (103 chars, ≤140):**
+  `h33-2-b2; PRUNE <=3px held at 37654 (-2171 in 2-3px, +2171 exact marginal gain >3px); pred +0.005 MODEL`
+- **Which encoding:** upload the `.tif` (NaN outside footprint, spec-literal). Keep
+  `-zeros.tif` as the fallback the rules allow. Note the open risk: **no receipt in this
+  lineage has ever confirmed the all-finite `-zeros` encoding is accepted**, so do not
+  assume the twins score identically on the organiser's reader — the ledger's line
+  "NaN-outside and zeros-outside twins score identically" was never receipt-backed.
 
-| file | use |
-|---|---|
-| `releases/<id>.tif` | **upload this one.** float32, EPSG:32611, 100 m, one band, values 0/1, NaN outside footprint |
-| `releases/<id>-zeros.tif` | fallback only if the uploader rejects NaN. Fails the "NaN outside" gate *by design* (`--allow-zeros-outside` reports it as INFO). Note the parent session's own manifest marked its **zeros** twin `role: PRIMARY, portal_legal: true`, so zeros is a proven-acceptable upload; the ledger also records that twins score identically. One file per slot either way |
+## Format receipt — copy this into the PR/session notes
 
-Never upload both for one slot — they are twins, not variants, and the ledger records
-previous twins as wasted slots.
+```
+candidate: h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705
+sha256:    __________________________________________
+bytes:     ______
+validate_release.py: VERDICT = CERTIFIED      (paste the block; UNVERIFIED is not a pass)
+gates: crs/shape/transform/dtype/band_count/values_in_0_1/no_nan_inside/nan_outside/
+       zero_catalogue_mass/collar_ge_3px/sha_unseen=UNSEEN(passed)/reread_from_disk
+n_dots:    37654      min_dist_catalogue_px: ______
+```
 
-## The four fields
+## Then, the same day
+
+1. Paste `receipt_score` and `receipt_date` into `ledger/submissions.csv` (never into
+   `predicted_change`).
+2. If the score moves ≥ +0.01, R1 becomes the parent for every later slot. If it moves
+   ≤ −0.01, the 2–3 px shell carries truth and the ≥3 px gate is wrong for this dataset.
+3. If |Δ| < 0.01, record it as **no evidence** and proceed on R1 anyway — it is the only
+   compliant base.
+
+## Do not
+
+- Do not upload the three MASS variants as progress on MASS: `MASSm10plus` is MODEL −0.010
+  and `MASSm20minus` is a nested cut of `MASSm10minus`; both are HOLD upstream, and all
+  three inherit R0's 2–3 px collar.
+- Do not upload a file whose hash is already in `ledger/submissions.csv` (8+ upstream slots
+  were spent on exact repeats), or whose `validate_release.py` verdict is not `CERTIFIED`.
+- Do not submit from any account but the one entity's. One final file, chosen blind.
+
+
+---
+
+## Session 3 — this session's three files, ready to paste
+
+All three are built, gate-clean, and certified by both validators. Upload **one per slot**.
+
+```bash
+# re-verify any of them before uploading
+python scripts/verify_manifest.py                       # expect PRUNE: READY
+python scripts/validate_raster.py releases/R0-PRUNE3-20261023.tif \
+    data/official/sample_submission.tif \
+    --catalogue data/derived/catalogue_mask.tif --parent \
+    data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+python scripts/validate_release.py releases/R0-PRUNE3-20261023.tif \
+    --sample data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif --ledger ledger/submissions.csv
+```
+
+| # | file | name | note (≤140 chars, counted) |
+|---|---|---|---|
+| 1 | `releases/R0-PRUNE3-20261023.tif` | `R0-PRUNE3-20261023` | Parent R0 (37654 dots, >=2.2px catalogue). PRUNE <=3px: delete 2171 dots (5.8%), no refill. Predicted +0.002 (-0.002..+0.006). |
+| 2 | `releases/R0-PRUNE8-20261023.tif` | `R0-PRUNE8-20261023` | Parent R0. PRUNE <=8px: delete 9164 dots (24.3%), no refill; 3-8px shell has zero catalogue credit. Predicted +0.006 (-0.004..+0.014). |
+| 3 | `releases/R0-PRUNE15-20261023.tif` | `R0-PRUNE15-20261023` | Parent R0. PRUNE <=15px: delete 15665 dots (41.6%), no refill; largest dose. Predicted +0.010 (-0.008..+0.024). |
+
+Fallback twins end in `-zeros.tif`; use one encoding per slot, never both.
+The parent session's own manifest marked its **zeros** twin `PRIMARY, portal_legal: true`,
+so zeros is a proven-acceptable encoding if the uploader objects to NaN.
+
+### Field values
 
 | field | value |
 |---|---|
-| file | `releases/<id>.tif` |
-| name | `<parent>-<axis><value>-<yyyymmdd>-<sha8>`, e.g. `R0-PRUNE3-20261023-1a2b3c4d` |
-| note (≤140 chars) | parent; change; predicted change. Example: `parent R0 (37654 dots, >=2px catalogue). PRUNE <=3px, refill to 37654 from parent rank. Predicted +0.005..+0.015, could be negative if new faults sit beside known traces.` |
-| format receipt | paste the gate table from `build.py` output, plus `sha256` |
+| format receipt | paste the `VERDICT: CERTIFIED` JSON from `validate_release.py` plus the sha256 |
+| sha256 (slot 1) | `1209e863a9ff58d86681e9e7f0375c4d185a59c50ef9769f02653ec1472198f2` |
+| sha256 (slot 2) | `e1dd69d02b90f95e779c43de1843ac53c4064619e74c81ee230a08058ba15654` |
+| sha256 (slot 3) | `1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0` |
 
-### Ready-made fields for this session's three files
+### After each score comes back
 
-| file | id | note (≤140 chars, verified) |
-|---|---|---|
-| `releases/R0-PRUNE3-…tif` | `R0-PRUNE3-20261023` | Parent R0 (37654 dots, >=2.2px catalogue). PRUNE <=3px: delete 2171 dots (5.8%), no refill. Predicted +0.002 (-0.002..+0.006). |
-| `releases/R0-PRUNE8-…tif` | `R0-PRUNE8-20261023` | Parent R0. PRUNE <=8px: delete 9164 dots (24.3%), no refill; 3-8px shell has zero catalogue credit. Predicted +0.006 (-0.004..+0.014). |
-| `releases/R0-PRUNE15-…tif` | `R0-PRUNE15-20261023` | Parent R0. PRUNE <=15px: delete 15665 dots (41.6%), no refill; largest dose. Predicted +0.010 (-0.008..+0.024). |
+1. `receipt_score` — the number from the submission page, not a memory of it.
+2. `receipt_date` — ISO date; `scripts/ledger.py state` uses it for weekly slot accounting.
+3. `status` — `SUBMITTED`.
+4. `notes` — if the change was under 0.01, write "no evidence (public chunks only)".
 
-## After the score comes back
-
-Append to `ledger/submissions.csv`, in this order of importance:
-
-1. `receipt_score` — the number from the submission page, not a memory of it
-2. `receipt_date` — ISO date, used for weekly slot accounting
-3. `status` — `SUBMITTED`
-4. `notes` — if the change was under 0.01, write "no evidence" (public chunks only)
-
-Then update the CURRENT STATE block in `README.md`: best receipt, slots left, next
-three slots. Do not edit any other block of the README.
-
-## Interpreting a result
-
-| observed | read it as |
-|---|---|
-| change ≥ +0.01 with a receipt | evidence for the axis; combine it with the runner-up next week |
-| change between −0.01 and +0.01 | **no evidence** — public chunks only; do not promote it |
-| change ≤ −0.01 | the mechanism's predicted sign was wrong; record the falsifier outcome in `SLOT_PLAN.md` |
-| identical score to a previous file | check `ledger.py check`; you likely reused a slot on a twin |
+Then update only the CURRENT STATE block in `README.md`.

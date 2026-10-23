@@ -68,9 +68,9 @@ def mean_ci(values: np.ndarray) -> tuple[float, float, float]:
 
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(description="Hide-and-recover proxy for PRUNE variants (report only).")
-    ap.add_argument("--parent", default="data/R0.tif")
-    ap.add_argument("--reference", default="data/sample_submission.tif")
-    ap.add_argument("--catalogue", default="data/catalogue.tif")
+    ap.add_argument("--parent", default="data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif")
+    ap.add_argument("--reference", default="data/official/sample_submission.tif")
+    ap.add_argument("--catalogue", default="data/derived/catalogue_mask.tif")
     ap.add_argument("--values", default="3,8,15")
     ap.add_argument("--folds", type=int, default=4)
     ap.add_argument("--out", default="reports/proxy.json")

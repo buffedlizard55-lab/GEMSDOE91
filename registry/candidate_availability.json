@@ -1,0 +1,97 @@
+{
+  "schema": "gems91.candidate-availability.v1",
+  "checked_utc": "2026-10-23",
+  "method": "sha256 of each retrievable raster vs its ledger hash; then format gates",
+  "results": {
+    "h33-h33-2-b2-MASSm10minus-20261023-7132935e.tif": {
+      "sha256": "7132935e1210208cfbc5dc02d0d393816b7e6b35a706fce44020a3513b7fa201",
+      "format_verdict": "NOT CERTIFIED (unverified gate)",
+      "failed": [],
+      "unverified": [
+        "no_nan_inside_footprint",
+        "nan_outside_footprint",
+        "zero_catalogue_mass",
+        "collar_ge_3px",
+        "sha_unseen"
+      ],
+      "n_dots": 33889,
+      "note": "already in ledger/submissions.csv: not a new candidate (dedupe). Format gates fail only on the gates that need sample_submission.tif / existing_faults.tif."
+    },
+    "h33-h33-2-b2-MASSm10minus-20261023-7132935e-zeros.tif": {
+      "sha256": "58d9ebdbdd9234d5bbe8e248c1b385d7b7ffb03461c94f9624c2eb02d13ac412",
+      "format_verdict": "NOT CERTIFIED (unverified gate)",
+      "failed": [],
+      "unverified": [
+        "no_nan_inside_footprint",
+        "nan_outside_footprint",
+        "zero_catalogue_mass",
+        "collar_ge_3px",
+        "sha_unseen"
+      ],
+      "n_dots": 33889,
+      "note": "already in ledger/submissions.csv: not a new candidate (dedupe). Format gates fail only on the gates that need sample_submission.tif / existing_faults.tif."
+    },
+    "h33-h33-2-b2-MASSm10plus-20261023-82673b57.tif": {
+      "sha256": "82673b574213e45cce34f26f6c8918f99ba78ef04f1a41ec420f1a8559329474",
+      "format_verdict": "NOT CERTIFIED (unverified gate)",
+      "failed": [],
+      "unverified": [
+        "no_nan_inside_footprint",
+        "nan_outside_footprint",
+        "zero_catalogue_mass",
+        "collar_ge_3px",
+        "sha_unseen"
+      ],
+      "n_dots": 41419,
+      "note": "already in ledger/submissions.csv: not a new candidate (dedupe). Format gates fail only on the gates that need sample_submission.tif / existing_faults.tif."
+    },
+    "h33-h33-2-b2-MASSm10plus-20261023-82673b57-zeros.tif": {
+      "sha256": "384f2a3c802b12823ee4510215d6fe825140ed3842b57e80278fe940c37bc6df",
+      "format_verdict": "NOT CERTIFIED (unverified gate)",
+      "failed": [],
+      "unverified": [
+        "no_nan_inside_footprint",
+        "nan_outside_footprint",
+        "zero_catalogue_mass",
+        "collar_ge_3px",
+        "sha_unseen"
+      ],
+      "n_dots": 41419,
+      "note": "already in ledger/submissions.csv: not a new candidate (dedupe). Format gates fail only on the gates that need sample_submission.tif / existing_faults.tif."
+    },
+    "h33-h33-2-b2-MASSm20minus-20261023-6c73303c.tif": {
+      "sha256": "6c73303cd5055a5af1dc0801a78821db66d8dcd28ab9244d34341c73836e2c4d",
+      "format_verdict": "NOT CERTIFIED (unverified gate)",
+      "failed": [],
+      "unverified": [
+        "no_nan_inside_footprint",
+        "nan_outside_footprint",
+        "zero_catalogue_mass",
+        "collar_ge_3px",
+        "sha_unseen"
+      ],
+      "n_dots": 30123,
+      "note": "already in ledger/submissions.csv: not a new candidate (dedupe). Format gates fail only on the gates that need sample_submission.tif / existing_faults.tif."
+    },
+    "h33-h33-2-b2-MASSm20minus-20261023-6c73303c-zeros.tif": {
+      "sha256": "c31659134bf513a768a1566c0527dc111df60e209ad14eecf7291adab67864f2",
+      "format_verdict": "NOT CERTIFIED (unverified gate)",
+      "failed": [],
+      "unverified": [
+        "no_nan_inside_footprint",
+        "nan_outside_footprint",
+        "zero_catalogue_mass",
+        "collar_ge_3px",
+        "sha_unseen"
+      ],
+      "n_dots": 30123,
+      "note": "already in ledger/submissions.csv: not a new candidate (dedupe). Format gates fail only on the gates that need sample_submission.tif / existing_faults.tif."
+    }
+  },
+  "summary": {
+    "n_retrievable_candidates": 3,
+    "n_ledger_rows": 20,
+    "finding": "17 of 20 ledger rows declare a raster that is a 404 at the mirror; only the three MASS variants are retrievable.",
+    "shippable_tonight": "none certifiable here: footprint and catalogue gates need competition data that is absent."
+  }
+}

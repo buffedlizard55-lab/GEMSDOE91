@@ -1,0 +1,129 @@
+{
+  "schema": "gems91.raster-availability.v1",
+  "checked_utc": "2026-10-23",
+  "method": "HTTP GET of the public mirror path releases/<id>{.tif,-zeros.tif} for every ledger row; 'absent' = 404 at HEAD",
+  "n_rows": 20,
+  "n_raster_present": 3,
+  "table": [
+    {
+      "id": "h33-h33-2-b2-MASSm10minus-20261023-7132935e",
+      "axis": "MASS",
+      "tif": "present",
+      "zeros_tif": "present"
+    },
+    {
+      "id": "h33-h33-2-b2-MASSm10plus-20261023-82673b57",
+      "axis": "MASS",
+      "tif": "present",
+      "zeros_tif": "present"
+    },
+    {
+      "id": "h33-h33-2-b2-MASSm20minus-20261023-6c73303c",
+      "axis": "MASS",
+      "tif": "present",
+      "zeros_tif": "present"
+    },
+    {
+      "id": "h33-h33-2-b2-prune3-20261023-01d57649",
+      "axis": "PRUNE",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-CONCb10px-m10-20261023-89ffd4f3",
+      "axis": "CONCENTRATION",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475",
+      "axis": "CONCENTRATION",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-CONCb50px-m20-20261023-fae2a52f",
+      "axis": "CONCENTRATION",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp1px-20261023-0542a27c",
+      "axis": "PRUNE",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "axis": "PRUNE",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5",
+      "axis": "PRUNE",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98",
+      "axis": "SNAP",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-SNAPw2S2-20261023-60ced8c7",
+      "axis": "SNAP",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-SNAPw2E2-20261023-861cd355",
+      "axis": "SNAP",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6",
+      "axis": "CONCENTRATION",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPg2f35-20261023-4c460fd4",
+      "axis": "SNAP",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPd2f35-20261023-a98ce2b8",
+      "axis": "SNAP",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPd1f35-20261023-33783252",
+      "axis": "SNAP",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-SNAPridge2px-20261023-83d2d231",
+      "axis": "SNAP",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-SNAPpot2px-20261023-fc2548e7",
+      "axis": "SNAP",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    },
+    {
+      "id": "h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4",
+      "axis": "SNAP",
+      "tif": "absent",
+      "zeros_tif": "absent"
+    }
+  ]
+}

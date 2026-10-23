@@ -1,51 +1,97 @@
-# GEMSDOE91
+# GEMSDOE91 — session 2026-10-23 (DrivenData GEMS #306)
 
-Agent workspace for the GEMS Prize (DrivenData #306). One entity, one competitor;
-no script here submits anything.
+No script here submits anything. One entity, three scored slots a week, one final file.
 
-<!-- CURRENT STATE:BEGIN -->
 ## CURRENT STATE
 
-| field | value |
+- **Parent:** `R0 = h33-h33-2-b2` — **verified locally this session**, both encodings.
+  `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros), 37,654 unit-mass dots,
+  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on catalogue,
+  min 2.236 px from it**.
+- **Inputs present and hash-verified: 5 of 16 pinned entries** — `sample_submission`,
+  `existing_faults`, `parent_r0_nan`, `parent_r0_zeros`, plus the derived
+  `catalogue_mask`. Found in public mirrors; see `IRREGULARITIES.md` IR-91-09. This
+  **supersedes IR-91-02**, which said the rasters did not exist publicly.
+- **Axis readiness (`scripts/verify_manifest.py`):** PRUNE **READY**; MASS, SNAP,
+  CONCENTRATION, RELIEF, TRACKB blocked on `training_features` / lidar layers.
+- **Best receipt:** **none.** No `receipt_score` exists in this lineage — all 23 ledger
+  rows are blank. `0.2778` for R0 is a **CLAIM**, and GEMSDOE32's own manifest records
+  `receipt: null` for it.
+- **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
+- **Slots left this week:** **__ / __ (human must fill).**
+- **AXIS for this session:** **PRUNE**, chosen not assigned. Built as a **delete-only
+  dose ladder**, which is the parent lineage's own operation (measured, not assumed).
+- **Variants built this session: 3, all gated.**
+
+  | id | value | dots | removed | % of R0 | predicted |
+  |---|---|---|---|---|---|
+  | `h33-h33-2-b2-PRUNEle3norefill-…-1209e863` | le3-norefill | 35,483 | 2,171 | 5.77 % | +0.002 |
+  | `h33-h33-2-b2-PRUNEle8norefill-…-e1dd69d0` | le8-norefill | 28,490 | 9,164 | 24.34 % | +0.006 |
+  | `h33-h33-2-b2-PRUNEle15norefill-…-1ca1ff6f` | le15-norefill | 21,989 | 15,665 | 41.60 % | +0.010 |
+
+  All three pass the repo's gates **twice over**: 14/14 in `scripts/validate_raster.py`
+  and `VERDICT: CERTIFIED` in `scripts/validate_release.py`.
+- **Next 3 slots (see `SLOT_PLAN.md`):** the ladder, in order le3 → le8 → le15.
+
+### Session 2 delta (`arena/a6416f7b`, same date)
+
+Built on top of the above, after finding that main had moved: **0 variants built**, for the
+same reason as session 1 (no competition rasters locally). What is new:
+
+- `tools/run_concentration.py` — the repository's first *builder*: count-preserving,
+  collar-safe, CV-reporting, refuses any input that is not pinned. It requires an
+  **external** prior and refuses one derived from the parent's own dots, because the three
+  imported CONCENTRATION rows ranked blocks by *parent dot density* (IR-91-07) — those test
+  clustering, not prior transfer.
+- `tools/pins.py` — maps each axis to the manifest ids it needs and verifies bytes.
+- `tools/make_fixture.py` + `tests/test_concentration.py` — a synthetic fixture and an
+  end-to-end build -> certify proof, the first time the gates have run on a real raster.
+- **Fixed a live bug in `src/gems91/gates.py`**: `min_distance_to_mask` transposed rows and
+  columns (IR-91-06). On the real 3730x3292 grid this raised IndexError or returned the
+  distance at the mirrored cell, so every collar count in the lineage audit is suspect.
+
+## What this repo contains
+
+| Path | Purpose |
 |---|---|
-| parent | **R0 VERIFIED** = `h33-h33-2-b2`, 37,654 dots, 0 on catalogue, min 2.236 px. sha256 `baeae321…c77dd` matches the parent repo's own manifest |
-| best receipt | **none yet.** R0's live 0.2778 is a CLAIM — GEMSDOE32's `submissions_manifest.json` records `receipt: null` for it |
-| TOP_PUBLIC | **unfilled by the human** (needs leaderboard value + date); no other target is valid |
-| slots left this week | **unknown** — needs the submission page (`__ / 3`) |
-| next 3 slots | 1. `R0-PRUNE3` (5.77 % removed) · 2. `R0-PRUNE8` (24.34 %) · 3. `R0-PRUNE15` (41.60 %) — all BUILT and gated |
-| status | 3 variants built, gates PASS, awaiting upload. Session axis: **PRUNE** |
-<!-- CURRENT STATE:END -->
+| `registry/data_manifest.json` | 15 pinned inputs with sha256 + byte length; 3 re-hashed here |
+| `registry/r0_verification.json` | Parent hash/grid/dot-count evidence (generated) |
+| `registry/preflight.json` | Build-blocked verdict and exactly what is missing |
+| `registry/raster_availability.json` | Which of the 20 ledger rows still have a raster |
+| `registry/candidate_availability.json` | Hash + format status of the retrievable rasters |
+| `src/gems91/metric.py` | DTI re-derivation + exact marginal gain |
+| `src/gems91/gates.py` | The MUST gates; an unprovable gate is `UNVERIFIED`, never `PASS` |
+| `scripts/` | `verify_parent_r0.py`, `preflight.py`, `validate_release.py`, `pinned.py` CLI |
+| `ledger/submissions.csv` | 20 imported rows, provenance in `source`; empty receipt columns |
+| `tools/` | `run_concentration.py` (builder), `pins.py`, `raster_io.py`, `stor.py`, `make_fixture.py` |
+| `tests/` | 53 tests (metric algebra, gates, ledger invariants, builder, preflight) |
 
-## Layout
-
-| path | what |
-|---|---|
-| `registry/data_manifest.json` | pinned inputs + sha256 — 4/5 verified against the parent repo's recorded hashes |
-| `scripts/verify_manifest.py` | checks presence + hash; exit ≠ 0 blocks any build |
-| `scripts/dti.py` | DTI metric and exact marginal-gain ranking (unit-tested) |
-| `scripts/axes.py` | MASS / PRUNE / SNAP / CONCENTRATION operators |
-| `scripts/build.py` | parent → one axis → release pair → gates → ledger row |
-| `scripts/validate_raster.py` | the MUST-pass gates from brief §6 |
-| `scripts/ledger.py` | collapse raw paste, dedupe on hash and (parent, axis, value) |
-| `ledger/submissions.csv` | one row per variant; the human fills receipt score and date |
-| `docs/MECHANISM_CARDS.md` | one card per variant, for a structural geologist |
-| `reports/proxy.json` | hide-and-recover PROXY — report only, never a gate |
-| `SLOT_PLAN.md` | next three slots and the weeks to 2026-12-03 |
-| `IRREGULARITIES.md` | only items that change a decision |
-| `AI_USE.md` | what the AI wrote, what the human decided |
-
-## Quick start (once inputs exist)
+## Run it
 
 ```bash
-python -m pytest tests/ -q                 # 53 tests
-python scripts/verify_manifest.py          # prints 4/5 verified; ALL OK
-python scripts/build.py --axis PRUNE --value 3 --id R0-PRUNE3-20261023
-python scripts/validate_raster.py releases/R0-PRUNE3-20261023.tif \
-    data/sample_submission.tif --catalogue data/catalogue.tif
+pip install -r requirements.txt
+python scripts/verify_parent_r0.py     # fetch pinned parent, verify sha256
+python scripts/preflight.py            # BUILD ALLOWED / BUILD BLOCKED
+python -m pytest                       # 53 tests, no competition data needed
+python -m tools.pins --axis CONCENTRATION   # what an axis still needs, by pinned id
 ```
 
-The three built files are in `releases/` (gitignored: this repo is public). They are
-reproducible from the pinned inputs with the commands above.
+### Session 3 delta (`arena/5563ddf8`, same date)
 
-Competition rasters are gitignored on purpose: this repository is public and GitHub
-Pages serves `main:/`. See `IRREGULARITIES.md` item 1.
+Main had moved twice while this session ran, so this branch was **rebased onto** the merged
+work rather than replacing it: the `src/gems91` package, `tools/`, `Makefile`, fixtures and
+all 20 imported ledger rows are kept intact.
+
+- **The blocking problem was solved, not worked around.** R0, `sample_submission.tif` and the
+  labels raster were recovered from public mirrors and verified against hashes this repo
+  already carried. No rebuild from a recipe, no approximation.
+- **Parent forensics.** Differencing R0 against solo-d28 proves the lineage's PRUNE is
+  delete-only (0 dots in R0 that are not in solo-d28; 2,545 removed at ≤2 px, none added).
+- **Three buildable variants**, using `scripts/dti.py` + `scripts/axes.py` + `scripts/build.py`.
+- **Two gate implementations now agree** on all three files. Fixing `sha_unseen` to ignore
+  BUILT rows (IR-91-12) is what let them certify; before that the gate was unsatisfiable in
+  the order the brief prescribes.
+- **A real disagreement is recorded, not hidden:** my algebra predicts removal gains, the
+  imported `p4px` row predicts −0.009. IR-91-13.
+- **Honest about power:** the brief's evidence bar is ±0.01 and only `le15` has a plausible
+  path past it. Doses 1 and 2 are refinements.

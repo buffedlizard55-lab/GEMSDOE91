@@ -173,7 +173,7 @@ def validate_raster(
         rep.add(
             "sha256 not already in ledger",
             digest not in seen,
-            f"sha256={digest} {'FOUND' if digest in seen else 'new'} among {len(seen)} ledger hashes",
+            f"sha256={digest} {'FOUND' if digest in seen else 'new'} among {len(seen)} submitted hashes",
         )
 
     # --- parent diff --------------------------------------------------------
@@ -203,14 +203,23 @@ def validate_raster(
     return rep
 
 
-def ledger_hashes(ledger_csv: str | Path) -> set[str]:
-    """Every sha256 already recorded, from either the ``sha256`` or ``sha8`` column."""
+def ledger_hashes(ledger_csv: str | Path, statuses: tuple[str, ...] | None = ("SUBMITTED",)) -> set[str]:
+    """Hashes already recorded in the ledger, from ``sha256``, ``sha256_zeros`` or ``sha8``.
+
+    Only SUBMITTED rows count by default. A BUILT row is the bookkeeping that brief
+    section 7 requires *for the file being certified*, so counting it would make the
+    gate impossible to pass in the order build -> record -> certify.
+    """
     import csv
 
     seen: set[str] = set()
     with open(ledger_csv, newline="", encoding="utf-8") as fh:
         for row in csv.DictReader(fh):
-            for key in ("sha256", "sha8"):
+            if statuses is not None:
+                st = (row.get("status") or "").strip().upper()
+                if st not in statuses:
+                    continue
+            for key in ("sha256", "sha256_zeros", "sha8"):
                 val = (row.get(key) or "").strip()
                 if val and val.lower() not in {"", "na", "none"}:
                     seen.add(val)
