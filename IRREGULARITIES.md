@@ -320,10 +320,7 @@ digest; the dot-set digest is the identity that can be checked across sessions,
 and no lane may claim byte-level reproducibility of the parent. (GEMSDOE86
 logged the same finding as IR-86-PRUNE-01.)
 
-<!-- Numbering: this file is merged from three concurrent sessions; 17–20 are the
-CONCENTRATION / refill sessions, 21–27 are `arena/9cc58e7e` (RELIEF + cross-check), and
-the `b` suffixes disambiguate two numbers that were used twice upstream. -->
-## IR-91-17b — the three CONCENTRATION arms are one experiment, and the axis has a measured downside
+## IR-91-17 — the three CONCENTRATION arms are one experiment, and the axis has a measured downside
 
 Ten percent of the dots moved is all the brief allows, so all three arms move 3,765 dots with
 the same seed, the same collar rule and the same placement logic; they differ only in block
@@ -345,7 +342,7 @@ number is pessimistic (that field is ~3× denser than truth: R0 scores 0.796 aga
 claimed 0.2778 live), but it is *measured*, it exceeds the brief's 0.01 evidence bar in the
 negative direction, and it is now the floor of every predicted range in the ledger.
 
-## IR-91-18b — the pin table named an input this axis does not use, and one it does
+## IR-91-18 — the pin table named an input this axis does not use, and one it does
 
 `tools/pins.AXIS_INPUTS["CONCENTRATION"]` used to require `training_features`
 (`data/bridge/gems-geodawn-numerical-features.tif`, 419 MB, absent, no public mirror).
@@ -427,11 +424,108 @@ and add the entries to `releases/MANIFEST.json` when you do. The two files this 
 recommend (`CONCENTRATIONgdr25rm10`, `PRUNEle15-norefill`) are pinned and were rebuilt
 byte-identically today (IR-91-17 session notes; `releases/MANIFEST.json` has 18 entries here:
 6 CONCENTRATION + 6 delete-only PRUNE + 6 SPACING).
----
 
-# Session 5 additions (2026-10-23, `arena/9cc58e7e`, RELIEF)
+> **Renumbering note (merge of PR #14, second pass).** This session's four items were
+> written as IR-91-17…20 before main gained IR-91-17/18 (R0 bytes; refill feasibility) and
+> then IR-91-19/20 (CONCENTRATION prior; refill arms missing from the manifest). They are
+> now IR-91-21…24 and the cross-references in the code, cards, ledger notes and docs were
+> updated to match.
 
-## IR-91-21 — the missing input was public all along, split on purpose; that is a data-use flag
+## IR-91-21 — The parent's own MASS ranking does not exist in any pinned file
+
+Brief §5: "MASS: drop the lowest-ranked 10% / add the next-ranked 10%, by the parent's own
+ranking (rebuild the ranking from the recorded recipe if it is not stored)."
+
+**Measured:** no stored artifact ranks R0's dots. Every pinned ancestor is **binary** — values
+in {0, 1} only: `calib_h195_01922` (121,131 px), `calib_h194_01894` (123,779), `calib_h161_01855`
+(123,939), `calib_d15_02477` (60,069), the d2.8 raster (44,090) and solo-d28 (40,199). The one
+input that ever carried a continuous score, `training_features.tif` (419 MB), has no mirror in
+any sibling repo and is absent, so it cannot be read at all — the manifest's own policy forbids
+filling the gap from memory.
+
+**Substitution, and exactly what it costs.** MASS is ranked by **cross-field support**: for each
+dot, how many of the three lineage fields emit it (3 / 2 / 1 → 26,913 / 6,200 / 4,541 of R0's
+dots; 0 dots lie outside all three). This is the parent lineage's *own* pinned data, not an
+external prior and not a label, and it is ordinal with whole strata, so no arm needs a tie-break
+inside the ordering it is testing. It is **not** the parent's continuous score and every card
+says so. Consequence: a flat result on these arms cannot distinguish "mass is not a lever" from
+"this particular ordering is uninformative" — that is why the session built both directions.
+
+**Where this disagrees with IR-91-18 (the merged PR's PRUNE session).** That item concludes
+"MASS cannot use H19-5 as a ranking because the pinned ancestor is binary… PRUNE was chosen over
+inventing a MASS ranking". Both halves are right and both are answered here: a *single* binary
+field cannot rank, but the **vote over three** binary fields is a 3-level ordinal ordering built
+only from pinned bytes, with no invented score and no model; and the collar objection is real
+(R0 fails the 3 px gate on its own 2,171 dots, IR-91-03) but it is the *human's* rule to
+interpret — the parent that scores 0.2778 carries the same dots. The arms are therefore built and
+flagged, not withheld; if the human rules the collar binding on every file, these three files are
+not uploadable and the PRUNE queue stands unchanged.
+
+**Also corrected:** `axis_requirements.MASS` in `registry/data_manifest.json` (and
+`tools/pins.py`) declared `training_features` as required, which made the axis permanently
+BLOCKED while the file cannot exist here. It now lists what the build actually reads and hashes:
+`sample_submission`, `parent_r0_nan`, `existing_faults`, `anc_h19_5`, `anc_h19_4`, `anc_h16_1`.
+No sha256 was changed, and `training_features` stays pinned and absent.
+
+## IR-91-22 — Break-even precision is 11.8 %, so every mass edit is a ±0.01 bet
+
+The brief's shortcut ("a dot pays iff credit > 0.2·DTI ≈ 0.056") is exact for *unmatched* mass
+only. Working the algebra for the triangular kernel (R = 3 px, α = 0.2, d = 0.2778):
+
+    E[ΔDTI per dot] ≈ (p·c̄ − γ)/D,    γ = α·d/(1 − α·d) = 0.0556
+
+so an emitted dot is worth its mass iff its **precision** p exceeds γ/c̄ ≈ **11.8 %**
+(c̄ = 0.5 mean credit), equivalently iff it lies within **2.83 px** of a truth pixel. With
+D ∈ [1e4, 3.5e4] (bracketed from a 15–35 % matched fraction), 1,000 dots are worth
+0.002–0.006 of live score.
+
+**Decision it changes.** No MASS dose can be expected to beat +0.01 unless it moves more than
+~2,000 dots of clearly-above-breakeven precision. That is why the arms are 3,765–10,741 dots and
+why the *add* direction is scheduled first: its payoff ratio is (0.5 : 0.0556) ≈ 9:1 per dot,
+while a drop forfeits the whole 0.5 on every dot it gets wrong. It also retires the
+`SPACING`-style edits ab initio — displacement inside 2.83 px cannot change p at all, which is
+consistent with the ≤0.003 bound session 3 derived independently.
+
+## IR-91-23 — The leakage canary has to be a ring test; the plain test is degenerate
+
+The brief's canary: "a single feature with AUC > 0.90 means stop and investigate."
+
+**Measured:** the plain version cannot be run. The three lineage fields — like R0 itself — were
+built with the catalogue masked out: of the 60,988 catalogue pixels, **0** carry any field
+(vote histogram on the catalogue is [60988, 0, 0, 0]). Any AUC computed as
+"catalogue pixels vs background" is therefore an artefact of the mask, not a leak, and
+reporting it as "below threshold" would be a false pass.
+
+**Replacement (implemented in `scripts/instruments.py`):** the 0–3 px ring around known traces
+vs background ≥7 px clear. Result for the session-4 ranking: **AUC 0.526** (7.8 % of ring pixels
+carry support vs 2.6 % of background). So the support ordering is essentially blind to catalogue
+proximity — it is a genuine independent ranking, not a disguised PRUNE, and its failure modes
+are about field construction rather than label leakage.
+
+## IR-91-24 — CONCENTRATION is spent, not untested: R0 already sits in the reported CV band
+
+The brief reports that the best files sit at block-density CV 0.51–0.59.
+
+**Measured on R0:** 10 px (1 km) block density CV = **0.531**; 25 px = 0.791; 50 px = 1.041.
+R0 is already inside the reported band. The four imported CONCENTRATION rows moved CV *away*
+from it — 0.618 → 1.021 (`b10px-m10`), → 1.257 (`b10px-m20`), 0.703 → 1.359 (`b50px-m20`), and
+1.874 → 1.642 for `15pct-1km-grad` — because each concentrated mass into the hottest blocks,
+which raises CV by construction.
+
+**Decision it changes.** Do not spend a slot on a CONCENTRATION arm as specified, and do not
+"fix" it by pushing CV lower with a spacing edit either (that is a SPACING axis, bound ≤0.003).
+The statistic that inspired the axis is already satisfied by the parent, so the axis has no
+headroom left; a future arm would need a *new* mechanism, not a new block size.
+
+**Scope, updated after merging PR #13.** That session did build the *new mechanism* this item
+asked for: a CONCENTRATION prior taken from the external, public-domain GDR thermal layer rather
+than from the parent's own dots. Those three arms (`gdr25rm10`, `gdr25m10`, `gdr10m10`) are
+therefore **not** retired by this measurement, and they report a measured ±: 8.4 pp of H19-5
+coverage cost (88.6 % → 80.2 %) and a −0.022 prediction floor. What still stands is the CV point:
+they move 10 % of mass into the hottest 2.5 km blocks, which raises block-density CV further above
+the 0.51–0.59 band R0 already sits in (0.531), so the mechanism they test is *prior transfer*, not
+the CV statistic that originally motivated the axis. Do not describe them as a CV fix.
+## IR-91-25 — the missing input was public all along, split on purpose; that is a data-use flag
 
 `training_features.tif` (419 MB, pin `4371c82e…`) is stored as **five parts of ≤ 94 MB** at
 `data/bridge/gems-geodawn-numerical-features.tif.part-00{0..4}` in
@@ -449,7 +543,7 @@ the breach (data/ and releases/*.tif stay gitignored), but the human should take
 private before the final submission, and should check the data-use terms before any further
 copying. Recorded, not fixed, because fixing it is the account owner's act.
 
-## IR-91-22 — R0 is spacing-saturated on its own detector support (it constrains three axes)
+## IR-91-26 — R0 is spacing-saturated on its own detector support (it constrains three axes)
 
 Measured, not argued:
 
@@ -467,7 +561,7 @@ null arm; (ii) the imported `MASSm10plus` row claims to have added 3,765 dots in
 is only possible by breaking the spacing floor or placing off support, so its −0.010 prediction
 should be read as an off-support result, not a pure mass result.
 
-## IR-91-23 — the brief's RELIEF direction is a near-no-op on this parent; the axis was re-cut
+## IR-91-27 — the brief's RELIEF direction is a near-no-op on this parent; the axis was re-cut
 
 The brief asks for a basin→range-front shift. On R0 that direction moves mass between terciles
 whose mapped-fault densities are **1.077 %** (basin) and **1.027 %** (range front) — a −5 %
@@ -481,7 +575,7 @@ instead of basin→range-front, and filed the brief's direction with its compute
 rather than spending a build on a no-op. If the human wants the literal brief version, it is a
 one-line change in `scripts/build_relief.py` (`donor_terciles=(0,)`, `target_terciles=(2,)`).
 
-## IR-91-24 — a support preference would have confounded the RELIEF arms (caught before shipping)
+## IR-91-28 — a support preference would have confounded the RELIEF arms (caught before shipping)
 
 The first construction preferred lineage-support recipients, then fell back off support. It
 produced 96 on-support recipients in the narrow arm and 2,409 in the null arm, because the null
@@ -496,7 +590,7 @@ per arm and hold it constant, or the receipt cannot be attributed.
 
 ---
 
-## IR-91-25 — on the only visible truth, every PRUNE dose deletes 100 % of the measurable credit
+## IR-91-29 — on the only visible truth, every PRUNE dose deletes 100 % of the measurable credit
 
 **Assumption behind the ladder** (`SLOT_PLAN.md`, sessions 4 and the parallel PRUNE session):
 deleting the low-gain halo removes mass that earns no credit, so `S - M` falls while `T` holds,
@@ -536,7 +630,7 @@ means; (3) `SPACINGspread40` becomes the co-favoured second slot because it is t
 shipped arm that *raises* the measurable credit (+16 % `T`, +0.00108 proxy) instead of
 destroying it.
 
-## IR-91-26 — R0's 0.2778 CLAIM is 41× what the visible truth supports
+## IR-91-30 — R0's 0.2778 CLAIM is 41× what the visible truth supports
 
 **The claim:** R0 scores 0.2778 (no receipt in any ledger in this lineage — 32 rows, 0 receipts).
 
@@ -563,7 +657,7 @@ first receipt in this lineage should be read for its *sign and size*, not as con
 0.2778. If the human has ever seen a leaderboard row for R0, recording it (with date) settles
 this in one line and is worth a slot in itself.
 
-## IR-91-27 — MASS in the brief's sense is unbuildable from this lineage: no rank is stored
+## IR-91-31 — MASS in the brief's sense is unbuildable from this lineage: no rank is stored
 
 **The rule** (brief §5, MASS): "drop the lowest-ranked 10 % / add the next-ranked 10 %, by the
 parent's own ranking (rebuild the ranking from the recorded recipe if it is not stored)".

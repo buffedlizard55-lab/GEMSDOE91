@@ -725,6 +725,219 @@
       ]
     },
     {
+      "file": "h33-h33-2-b2-MASScons1drop-20261023-fc8f5500.tif",
+      "n_dots": 33113,
+      "dti_proxy": 0.00602992,
+      "delta_vs_parent": -0.00074821,
+      "T": 334.244911,
+      "S": 33113.0,
+      "M": 243.71502,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1420,
+          "share_of_dots": 0.042883,
+          "share_of_mass": 0.042883,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.235384,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 2834,
+          "share_of_dots": 0.085586,
+          "share_of_mass": 0.085586,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 2834
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 5523,
+          "share_of_dots": 0.166792,
+          "share_of_mass": 0.166792,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 5523
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 6941,
+          "share_of_dots": 0.209616,
+          "share_of_mass": 0.209616,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6941
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 7494,
+          "share_of_dots": 0.226316,
+          "share_of_mass": 0.226316,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7494
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 8901,
+          "share_of_dots": 0.268807,
+          "share_of_mass": 0.268807,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8901
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons2drop-20261023-e8871e7f.tif",
+      "n_dots": 26913,
+      "dti_proxy": 0.00515235,
+      "delta_vs_parent": -0.00162577,
+      "T": 279.195815,
+      "S": 26913.0,
+      "M": 204.159582,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1191,
+          "share_of_dots": 0.044254,
+          "share_of_mass": 0.044254,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.234421,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 2330,
+          "share_of_dots": 0.086575,
+          "share_of_mass": 0.086575,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 2330
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 4480,
+          "share_of_dots": 0.166462,
+          "share_of_mass": 0.166462,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 4480
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 5642,
+          "share_of_dots": 0.209638,
+          "share_of_mass": 0.209638,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 5642
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 6114,
+          "share_of_dots": 0.227176,
+          "share_of_mass": 0.227176,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6114
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 7156,
+          "share_of_dots": 0.265894,
+          "share_of_mass": 0.265894,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7156
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons3add-20261023-2803126d.tif",
+      "n_dots": 41419,
+      "dti_proxy": 0.00668873,
+      "delta_vs_parent": -8.939e-05,
+      "T": 381.89304,
+      "S": 41419.0,
+      "M": 277.937953,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1611,
+          "share_of_dots": 0.038895,
+          "share_of_mass": 0.038895,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.237053,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3539,
+          "share_of_dots": 0.085444,
+          "share_of_mass": 0.085444,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3539
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6950,
+          "share_of_dots": 0.167797,
+          "share_of_mass": 0.167797,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6950
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 8691,
+          "share_of_dots": 0.209831,
+          "share_of_mass": 0.209831,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8691
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 9335,
+          "share_of_dots": 0.22538,
+          "share_of_mass": 0.22538,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 9335
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 11293,
+          "share_of_dots": 0.272653,
+          "share_of_mass": 0.272653,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 11293
+        }
+      ]
+    },
+    {
       "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif",
       "n_dots": 26294,
       "dti_proxy": 0.0,

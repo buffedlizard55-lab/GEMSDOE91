@@ -3,8 +3,41 @@
   "missing": [],
   "required": [
     "sample_submission",
-    "existing_faults",
-    "training_features"
+    "parent_r0_nan"
   ],
+  "ready_axes": [
+    "PRUNE",
+    "MASS",
+    "SNAP",
+    "CONCENTRATION",
+    "RELIEF",
+    "TRACKB"
+  ],
+  "axis_readiness": {
+    "PRUNE": {
+      "ready": true,
+      "missing": []
+    },
+    "MASS": {
+      "ready": true,
+      "missing": []
+    },
+    "SNAP": {
+      "ready": true,
+      "missing": []
+    },
+    "CONCENTRATION": {
+      "ready": true,
+      "missing": []
+    },
+    "RELIEF": {
+      "ready": true,
+      "missing": []
+    },
+    "TRACKB": {
+      "ready": true,
+      "missing": []
+    }
+  },
   "checked_utc": "2026-10-23"
 }

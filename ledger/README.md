@@ -109,3 +109,43 @@ mass. Result, in `evidence/predictions_crosscheck_20261023.json`:
 None of this is a score: it is PROXY, report-only, and never a gate. Its job is to keep the
 prediction columns honest until the first receipt exists — which there still is not: **32 rows,
 0 receipts**.
+
+## Session 5 (`arena/9cc58e7e`) — three RELIEF rows appended, still 0 receipts
+
+`RELIEFr2m15`, `RELIEFm2r15`, `RELIEFnull15` — the axis had **no rows at all** before this
+session (PRUNE 7, SNAP 9, CONCENTRATION 4, MASS 3, SPACING 3). The file now has **29 rows**.
+
+* `pct_changed` is the brief's 1–50 % quantity as **relocated ÷ parent dots** (14.9997 %, i.e.
+  5,648 of 37,654 moved); `pct_relocated` repeats it. The Hamming distance against the parent is
+  exactly twice that (29.9995 %), recorded in `evidence/relief_axis_20261023.json` as
+  `hamming_vs_parent`.
+* `ranking_basis` says explicitly that **no ranking was used** — donors are uniform at a fixed
+  seed inside the donor tercile; recipients are the same greedy rule in every arm. This is the
+  opposite of the three imported MASS rows, which invented a ranking and admitted it.
+* `predicted_change` stays MODEL and every row's `receipt_score` is empty. Session 4's PRUNE
+  ladder rows and session 3's SPACING rows are unchanged and still receipt-free.
+
+The PRUNE ladder's three hashes in this file now **reproduce byte for byte** from pinned inputs
+(`make releases`), and every shipped file is listed in `releases/MANIFEST.json`.
+
+## Session 5, continued — the cross-check that reorganises the slot plan (2026-10-23)
+
+`scripts/crosscheck_predictions.py` scores R0 and all 12 shipped pairs against the catalogue —
+the only truth reachable from this sandbox — and splits the metric into credit `T` and unmatched
+mass. Result, in `evidence/predictions_crosscheck_20261023.json`:
+
+* R0 `dti_proxy` **0.006778** (`T` 381.9, `M` 277.9, `|G|` 60,988).
+* **100 % of `T` comes from the 1,611 dots within 3 px of a mapped trace** (mean credit 0.2371);
+  the other 36,043 dots score exactly zero against mapped faults.
+* **All six PRUNE doses compute to `T = 0`, `dti_proxy` 0.000000**, because every dose deletes that
+  band. Their +0.002…+0.010 predictions are therefore conditional on credit from *unmapped*
+  faults, which this instrument cannot see (29).
+* Break-even for deleting a dot: `0.044` credit at DTI 0.2778 and the parent's collar geometry.
+* The RELIEF arm order is reproduced independently (`r2m15 > null15 > m2r15`, all three slightly
+  negative) — an external check on the mechanism cards, worth noting because it was not designed
+  to fit this instrument.
+* `SPACINGspread40` is the only shipped arm that *raises* `T` (381.9 → 442.9, +0.00108 proxy).
+
+None of this is a score: it is PROXY, report-only, and never a gate. Its job is to keep the
+prediction columns honest until the first receipt exists — which there still is not: **32 rows,
+0 receipts**.

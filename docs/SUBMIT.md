@@ -1,114 +1,154 @@
-# SUBMIT — what to upload, and what to paste back
+# SUBMIT — MASS/consensus arms + merged PRUNE/CONCENTRATION queue (2026-10-23)
 
-**Status 2026-10-23: 18 release pairs (36 files) built and gate-clean.** `releases/*.tif` are
-gitignored and rebuilt on demand; the hash contract is `releases/MANIFEST.json` (36 entries, each
-with `axis`, `n_dots`, `sha256`, `bytes`). **No agent has ever submitted anything and none may.**
-One file per slot; the `-zeros` twin is the fallback encoding, **not** a second entry.
+**Status 2026-10-23: 38 BUILT rows, 0 submitted, 0 receipts.** Rasters are not committed;
+`releases/MANIFEST.json` is the sha256 contract and CI rebuilds every file from pinned inputs and
+asserts byte-identity. **No agent submits. One file per slot; the `-zeros` twin is the fallback
+for that same slot, never a second entry.**
 
-## Rebuild and verify (≈4 min, every input hash-checked)
+## SESSION 4 — MASS/consensus: the three files to upload (one per slot)
 
 ```bash
-python3 scripts/restore_data.py       # 15 pins, incl. the 419 MB stack from 5 hash-pinned parts
-make releases                         # catalogue + every builder, then the hash contract
-python3 scripts/update_release_manifest.py --check   # expect: 36 files, 0 problem(s)
-python3 scripts/preflight.py          # expect: BUILD ALLOWED
-python3 scripts/crosscheck_predictions.py            # PROXY table, report-only
+python3 scripts/restore_data.py                 # fetch + verify every pinned sha256
+python3 scripts/make_catalogue.py               # rebuild the mask; must hash to c97c7819…
+python3 scripts/build_mass_consensus.py         # writes the 3 pairs under releases/, ~20 s
+python3 scripts/validate_raster.py releases/<file>.tif data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif \
+    --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+python3 scripts/validate_release.py releases/<file>.tif --axis MASS
 ```
 
-`make releases` fails if a byte moved, if a file on disk is not in the manifest, if a manifest
-entry was not rebuilt, **or if a built file's sha256 is not a row in the ledger**. A hash that
-does not reappear means a *different file* — log it in `IRREGULARITIES.md` before uploading.
+Rebuilds are deterministic (no RNG anywhere) and were verified to reproduce the hashes below.
 
-## Slot ranking (`SLOT_PLAN.md`; the human spends the slots)
+| slot | file | sha256 (NaN-outside) | zeros twin | bytes (NaN) |
+|---|---|---|---|---|
+| **1** | `h33-h33-2-b2-MASScons3add-20261023-2803126d.tif` | `2803126de23b7f3388d2d4db727c2e8a39b499308b6efc61941d4231606f9abd` | `597d6d0e…` | 384,079 |
+| **2** | `h33-h33-2-b2-MASScons1drop-20261023-fc8f5500.tif` | `fc8f5500790eed45fe4957a3a548c55513db09774ecd46c300b67b4cc72d854e` | `9f24d22e…` | 354,433 |
+| 3 (only if 1–2 flat) | `h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f.tif` | `1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0` (rebuild first) | — | — |
+| keep | `h33-h33-2-b2-MASScons2drop-20261023-e8871e7f.tif` | `e8871e7f7bd75b139173e2c93eda3a79f47063e6e71dd4dfef7672cf58c4662f` | — | 328,675 |
 
-| # | file | MODEL | why |
+**Form notes** (≤140 chars each, no score claimed, counted):
+
+```
+1: h33-2-b2; +3765 dots (10.0%) at 3-of-3 cross-field support cells, >=3px off catalogue; pred +0.009 MODEL
+2: h33-2-b2; -4541 single-support dots (12.1%), count 33113, whole stratum; pred -0.000 MODEL
+3: h33-2-b2; delete-only <=15px collar, 21989 dots, no refill; pred +0.010 MODEL
+```
+
+**Format receipt — paste this back with the score:**
+
+```
+candidate: h33-h33-2-b2-MASScons3add-20261023-2803126d
+sha256 (NaN)    : 2803126de23b7f3388d2d4db727c2e8a39b499308b6efc61941d4231606f9abd
+sha256 (zeros)  : 597d6d0ea528c8630e301dfe354b62905534d49f985f5bd92f04a75e51d7e5cf
+n_dots          : 41419        min_dist_catalogue_px: 2.236  (inherited from R0, IR-91-03)
+validate_raster.py  : 14/14 PASS (§6 MUST gates)
+validate_release.py : 14 MUST gates PASS; collar_ge_3px FAIL = inherited, R0 fails it identically (2171 dots, IR-91-03)
+CRS EPSG:32611 | 3730x3292 | 100 m | float32 | 1 band | values {0,1} | NaN outside
+zero catalogue mass: 0 px        ledger sha: new at build time
+```
+
+**Known wrinkle, stated up front:** all three arms inherit R0's 2,171 dots at 2–3 px from the
+catalogue, so the brief's "≥3 px unless PRUNE" is violated by the parent itself, not by the edit
+(IR-91-03). The new mass in slot 1 is ≥3 px by construction. If the human prefers a compliant
+parent, rebase on `PRUNEle3norefill` (35,483 dots) instead — but then the file is a two-change
+build and must not be described as a MASS-only arm.
+
+---
+
+## Rebuild and verify everything (≈3 min, pinned inputs only, every sha256 checked)
+
+```bash
+python3 scripts/restore_data.py                  # fetch + verify every pinned sha256
+python3 scripts/build_concentration.py --build   # 3 CONCENTRATION arms  (this session)
+python3 scripts/make_catalogue.py                # derived catalogue mask (PRUNE needs it)
+python3 scripts/build_prune_ladder.py --build    # PRUNE le4 / le5 / le10
+python3 scripts/build.py --axis PRUNE --value 15 \
+    --id h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f \
+    --catalogue data/derived/catalogue_mask.tif  # le15 (verified to print 1ca1ff6f… today)
+python3 scripts/build_spacing.py --build         # 3 SPACING arms (earlier session)
+python3 scripts/validate.py releases/<file>.tif  # must print PASS
+```
+
+## The next three slots
+
+| slot | upload (NaN-outside primary) | sha256 (must match `releases/MANIFEST.json`) | predicted (MODEL) |
 |---|---|---|---|
-| 1 | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` | **+0.0123** [−0.022, +0.037] | the only prior independent of the catalogue *and* the lineage mask |
-| 2 | `…-PRUNEle15norefill-20261023-1ca1ff6f.tif` | **+0.010** [−0.008, +0.024] | top of the delete-only ladder: one receipt answers the whole family |
-| 3 | conditional | — | `gdr25m10` if slot 1 ≥ +0.005 · `le10` if slot 2 ≥ +0.01 · `SPACINGspread40` if both are flat |
+| 1 | `h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` | `c19adb012aec8571fcca393e3401050b01011286cec7282393cbcc0cca6a6e30` | +0.0123, range −0.022 … +0.037 |
+| 2 | `h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f.tif` | `1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0` | +0.010, range −0.008 … +0.024 |
+| 3 | conditional — `…-CONCENTRATIONgdr25m10-…-08bf80cf.tif` if slot 1 ≥ +0.005; else `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif`; if both flat, `…-SPACINGspread40-…-6d389309.tif` | `08bf80cf443cc68faeb0dd0eca8d0aecf85eb113e7d3094e3a778382bc180369` / `04002dae86db72c3…` / `6d389309aafaa79d…` | +0.0114 / +0.008 / +0.004 |
 
-## Every primary file (NaN encoding; zeros twin in `releases/MANIFEST.json`)
+The decision each receipt changes is in `SLOT_PLAN.md`. Naming is
+`<parent>-<axis><value>-<yyyymmdd>-<sha8>.tif`, parent `h33-h33-2-b2-20261004-e5eb6e7e`.
 
-| axis | dots | file | sha256 (first 16) | bytes |
-|---|---:|---|---|---:|
-| CONCENTRATION | 37,654 | `h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815.tif` | `d54e881580e332ef…` | 368,830 |
-| CONCENTRATION | 37,654 | `h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf.tif` | `08bf80cf443cc68f…` | 369,066 |
-| CONCENTRATION | 37,654 | `h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` | `c19adb012aec8571…` | 369,017 |
-| PRUNE | 37,654 | `h33-h33-2-b2-PRUNEp2p5h19cover-20261023-e6f2000d.tif` | `e6f2000dae956483…` | 355,531 |
-| PRUNE | 37,654 | `h33-h33-2-b2-PRUNEp2p9h19cover-20261023-9829bb66.tif` | `9829bb66c1958a77…` | 354,947 |
-| PRUNE | 37,654 | `h33-h33-2-b2-PRUNEp4p5h19cover-20261023-691438f8.tif` | `691438f85f2cf907…` | 352,689 |
-| PRUNE | 35,483 | `h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863.tif` | `1209e863a9ff58d8…` | 331,161 |
-| PRUNE | 33,829 | `h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e.tif` | `360fe57edd828639…` | 355,396 |
-| PRUNE | 32,017 | `h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987.tif` | `5b6d39870bc0fe98…` | 347,613 |
-| PRUNE | 28,490 | `h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0.tif` | `e1dd69d02b90f95e…` | 311,319 |
-| PRUNE | 26,294 | `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif` | `04002dae86db72c3…` | 321,924 |
-| PRUNE | 21,989 | `h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f.tif` | `1ca1ff6f782d5ba3…` | 291,857 |
-| SPACING | 37,654 | `h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad.tif` | `536d32ad49bdf70a…` | 371,632 |
-| SPACING | 37,654 | `h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288.tif` | `39bb728839d70ab0…` | 372,814 |
-| SPACING | 37,654 | `h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309.tif` | `6d389309aafaa79d…` | 373,103 |
-| RELIEF | 37,654 | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEFm2r15-20261023-3c3e832d.tif` | `3c3e832d4788a2c0…` | 366,272 |
-| RELIEF | 37,654 | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEFnull15-20261023-6c057de2.tif` | `6c057de2ef397991…` | 364,998 |
-| RELIEF | 37,654 | `h33-h33-2-b2-20261004-e5eb6e7e-RELIEFr2m15-20261023-2c3839c9.tif` | `2c3839c9a7aebef8…` | 360,499 |
+**Form notes** (≤140 chars, already in `ledger/submissions.csv:form_note` where present):
 
-Full 64-character sha256 for every file — primaries and zeros twins — is in
-`releases/MANIFEST.json`; `python3 scripts/update_release_manifest.py --check` re-derives every one.
+```
+h33-h33-2-b2-20261004-e5eb6e7e; 10.0% of 37654 dots moved to the highest-prior 2.5 km GDR-thermal blocks [gdr25rm10]; pred +0.0123 MODEL
+h33-2-b2; delete-only, 15,665 dots (41.6%) within <=15px of catalogue removed, no refill, count 21989; pred +0.010 MODEL
+```
 
-## What the cross-check says about the same files (PROXY, report-only)
+## Other gate-clean files (fallbacks, same rules)
+
+| file | n_dots | % changed | predicted (MODEL) | sha256 prefix |
+|---|---:|---:|---|---|
+| `…-CONCENTRATIONgdr25m10-20261023-08bf80cf` | 37,654 | 10.00 | +0.0114 | `08bf80cf…` |
+| `…-CONCENTRATIONgdr10m10-20261023-d54e8815` | 37,654 | 10.00 | +0.0113 | `d54e8815…` |
+| `…-PRUNE-le4-norefill-20261023-360fe57e` | 33,829 | 10.16 | +0.003 | `360fe57e…` |
+| `…-PRUNE-le5-norefill-20261023-5b6d3987` | 32,017 | 14.97 | +0.005 | `5b6d3987…` |
+| `…-PRUNE-le8-norefill-20261023-e1dd69d0` | 28,490 | 24.34 | +0.006 | `e1dd69d0…` |
+| `…-PRUNE-le10-norefill-20261023-04002dae` | 26,294 | 30.17 | +0.008 | `04002dae…` |
+| `…-PRUNE-le3-norefill-20261023-1209e863` | 35,483 | 5.77 | +0.002 | `1209e863…` |
+| `…-SPACINGspread40-20261023-6d389309` | 37,654 | 39.99 (relocated) | +0.004 | `6d389309…` |
+| `…-PRUNE-p2.9px-h19cover-20261023-9829bb66` (refill-held, count 37,654) | 37,654 | 4.3 | +0.004 | `9829bb66…` |
+| `…-PRUNE-p2.5px-h19cover-20261023-e6f2000d` (refill-held) | 37,654 | 3.7 | +0.002 | `e6f2000d…` |
+| `…-PRUNE-p4.5px-h19cover-20261023-691438f8` (refill-held) | 37,654 | 6.6 | **−0.015** | `691438f8…` |
+
+## Format receipt — paste this with the file you upload
+
+```
+candidate: h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01
+sha256:    c19adb012aec8571fcca393e3401050b01011286cec7282393cbcc0cca6a6e30
+bytes:     369017
+scripts/validate.py: PASS        (both encodings tested)
+gates: crs/shape/transform/dtype/band_count/values_in_0_1/no_nan_inside/nan_outside/
+       zero_catalogue_mass/catalogue_floor/count_matches_parent/reread/unit_mass_dots
+n_dots:    37654      min_dist_catalogue_px: 2.236 (unchanged from R0; no new cell inside 3 px)
+```
+
+## After each receipt
+
+1. `receipt_score` + `receipt_date` into `ledger/submissions.csv`, `status` → `SCORED`; never into
+   `predicted_change`. Under |Δ| < 0.01 record "no evidence (public chunks only)".
+2. `≥ +0.01` ⇒ that parent becomes the base for the next slot. `≤ −0.01` on the CONCENTRATION arm
+   ⇒ the thermal prior does not transfer; retire the axis. `≤ −0.01` on a PRUNE arm ⇒ the >3 px
+   halo carries new-fault truth; stop pruning.
+3. Update only the CURRENT STATE block of `README.md`.
+
+## Do not
+
+- Do not upload both twins of one file, or a file whose sha256 is already in the ledger (8+
+  upstream slots went to exact repeats).
+- Do not spend three slots on the CONCENTRATION arms: they are one experiment (IR-91-17). Same for
+  the PRUNE ladder — one receipt on the top dose answers the axis.
+- Do not read the catalogue proxy (CONCENTRATION arms 0.0054 vs R0 0.0062) as a score; it is PROXY
+  and IR-91-15 explains why it cannot adjudicate this axis.
+- Do not submit from any account but the one entity's. One final file, chosen blind.
+
+## Cross-check on the shipped files (PROXY, report-only)
+
+`python3 scripts/crosscheck_predictions.py` → `evidence/predictions_crosscheck_20261023.json`.
+Truth is the 60,988-cell catalogue, the only fault map reachable from this sandbox, so the numbers
+say what each edit does to *observable* reward and nothing about unmapped faults (IR-91-25).
 
 | file | `dti_proxy` | Δ vs R0 |
 |---|---:|---:|
 | R0 | 0.006778 | — |
-| `SPACINGspread40` | 0.007861 | **+0.001083** (only positive arm) |
-| `CONCENTRATIONgdr25rm10` | 0.005937 | −0.000841 |
-| `RELIEFr2m15` | 0.005888 | −0.000890 |
-| `PRUNEp2.5pxh19cover` | 0.001242 | −0.005536 |
-| every delete-only PRUNE dose | 0.000000 | −0.006778 |
+| `…-SPACINGspread40-…-6d389309.tif` | 0.007861 | **+0.00108** |
+| `…-CONCENTRATIONgdr25rm10-…-c19adb01.tif` | 0.005937 | −0.00084 |
+| `…-RELIEFr2m15-…-2c3839c9.tif` | 0.005888 | −0.00089 |
+| `…-PRUNEp2.5pxh19cover-…-e6f2000d.tif` | 0.001242 | −0.00554 |
+| any `PRUNEle*` / `PRUNE-le*` delete-only file | 0.000000 | −0.00678 |
 
-R0 earns **all** of its measurable credit from 1,611 dots inside 3 px of a mapped trace. Nothing
-here is a score: the instrument sees only mapped faults and is blind to the new ones that decide
-the real metric (IR-91-21).
-
-## Form notes (≤140 chars, one per file, no score claimed)
-
-```
-Parent R0 h33-2-b2; CONCENTRATION 10% into top GDR-prior 2.5 km blocks (>8px off catalogue), count fixed 37654; pred +0.012 MODEL
-Parent R0 h33-2-b2; PRUNE <=15px delete-only, 21989 dots (41.6% removed), count not held; predicted +0.010 MODEL
-Parent R0 h33-2-b2; SPACING spread40: 15056 dots (40.0%) to emptiest ring-2 cell, count fixed 37654; pred +0.004 MODEL
-```
-
-## Format receipt — copy this into the ledger / PR after uploading
-
-```
-candidate: <id from releases/MANIFEST.json>
-encoding:  NaN-outside (primary)            zeros twin: kept as fallback
-sha256:    __________________________________________
-bytes:     ______
-validate_raster.py : RESULT = PASS  (14/14 MUST gates)
-validate_release.py: PASS
-n_dots:            ______
-min_dist_catalogue_px: ______   zero_catalogue_mass: yes
-receipt_score:     ______      receipt_date: ____________
-```
-
-## After a score comes back
-
-1. Paste `receipt_score` + `receipt_date` into the ledger row whose `id` carries the sha8, set
-   `status=SUBMITTED`, leave `predicted_change` untouched.
-2. **≥ +0.01** → that axis is live: take its next arm from the fork table in `SLOT_PLAN.md`.
-3. **|Δ| < 0.01** → **no evidence**, not "neutral". Do not refine that axis by a notch.
-4. **≤ −0.01** → the axis is wrong in the direction tested; the fork table says what replaces it.
-5. Update only the CURRENT STATE block of `README.md` and the slot table in `SLOT_PLAN.md`.
-6. Compare against **TOP_PUBLIC** with its date; a change inside the public-chunk noise is not
-   evidence whatever its sign.
-
-## Do not
-
-- Do **not** upload two encodings of the same file, or any file whose sha256 is already in
-  `ledger/submissions.csv` (8+ upstream slots were spent on exact repeats).
-- Do **not** upload a file whose `validate_raster.py` result is not `PASS`.
-- Do **not** submit from any account but the entity's own; at most three scored files a week plus
-  the one final blind choice.
-- Do **not** spend three slots on the CONCENTRATION arms — they are one experiment (IR-91-17) —
-  or any slot on the RELIEF arms, which are interpretable only as a pair.
-- Do **not** contact drivendata.org, the leaderboard, or dropbox.com programmatically from this
-  repo. The human reads the number; the repo records it.
+R0's entire measurable credit comes from 1,611 dots inside 3 px of a mapped trace. Do not upload
+two encodings, do not upload a file whose `validate_raster.py` is not `PASS`, and never treat a
+PROXY number as a score.

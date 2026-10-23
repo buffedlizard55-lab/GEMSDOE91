@@ -1,0 +1,107 @@
+{
+  "schema": "gems91.instruments.v1",
+  "label": "mass-consensus",
+  "note": "REPORT ONLY. Never a gate, never a score.",
+  "arms": {
+    "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif": {
+      "proxy": {
+        "mean_dti_vs_withheld_catalogue": 0.00465,
+        "ci95_halfwidth": 0.00283,
+        "folds": [
+          0.00565,
+          0.00666,
+          0.00319,
+          0.00312
+        ],
+        "n_withheld_positive_folds": [
+          16844,
+          17873,
+          14311,
+          11960
+        ]
+      },
+      "sgmc": {
+        "frac_dots_within_1px": 0.0843,
+        "frac_sgmc_covered": 0.038
+      }
+    },
+    "h33-h33-2-b2-MASScons1drop-20261023-fc8f5500.tif": {
+      "proxy": {
+        "mean_dti_vs_withheld_catalogue": 0.00426,
+        "ci95_halfwidth": 0.00267,
+        "folds": [
+          0.00525,
+          0.00612,
+          0.00272,
+          0.00297
+        ],
+        "n_withheld_positive_folds": [
+          16844,
+          17873,
+          14311,
+          11960
+        ]
+      },
+      "sgmc": {
+        "frac_dots_within_1px": 0.0865,
+        "frac_sgmc_covered": 0.0342
+      }
+    },
+    "h33-h33-2-b2-MASScons2drop-20261023-e8871e7f.tif": {
+      "proxy": {
+        "mean_dti_vs_withheld_catalogue": 0.00382,
+        "ci95_halfwidth": 0.00235,
+        "folds": [
+          0.00468,
+          0.00544,
+          0.00236,
+          0.00279
+        ],
+        "n_withheld_positive_folds": [
+          16844,
+          17873,
+          14311,
+          11960
+        ]
+      },
+      "sgmc": {
+        "frac_dots_within_1px": 0.0881,
+        "frac_sgmc_covered": 0.0284
+      }
+    },
+    "h33-h33-2-b2-MASScons3add-20261023-2803126d.tif": {
+      "proxy": {
+        "mean_dti_vs_withheld_catalogue": 0.00449,
+        "ci95_halfwidth": 0.00276,
+        "folds": [
+          0.00546,
+          0.00643,
+          0.00307,
+          0.00298
+        ],
+        "n_withheld_positive_folds": [
+          16844,
+          17873,
+          14311,
+          11960
+        ]
+      },
+      "sgmc": {
+        "frac_dots_within_1px": 0.0834,
+        "frac_sgmc_covered": 0.0413
+      }
+    }
+  },
+  "canary": {
+    "feature": "cross-field support vote (0-3)",
+    "test": "0-3 px catalogue ring vs background >= 7 px clear",
+    "auc_vs_catalogue_ring": 0.5262,
+    "threshold": 0.9,
+    "verdict": "below threshold",
+    "degenerate_plain_test_note": "AUC of the vote for catalogue-pixel membership is not reportable: the lineage fields are catalogue-masked, so all 60,988 catalogue pixels score vote=0.",
+    "n_ring_px": 383806,
+    "n_background_px": 4599225,
+    "frac_ring_with_support": 0.0784,
+    "frac_background_with_support": 0.0263
+  }
+}

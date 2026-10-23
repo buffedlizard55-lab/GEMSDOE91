@@ -90,10 +90,25 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Build first: releases/*.tif are gitignored, so the gate tests need them.
-      - name: Rebuild every release from the pinned inputs
-        # Catalogue, SPACING, RELIEF, the PRUNE ladder, prune-refill and the
-        # CONCENTRATION arms: one command, every builder, then the hash contract.
-        run: make releases
+      - name: Rebuild all pinned releases
+        run: |
+          python scripts/build_spacing.py --build
+          python scripts/make_catalogue.py
+          python scripts/build_prune_ladder.py
+          python scripts/build_relief.py --build
+          python scripts/build_prune_refill.py --build
+      - name: Rebuild the CONCENTRATION arms from the pinned inputs
+        # Idempotent: an id already in the ledger must come back with the same sha256
+        # or the step fails. Parent + catalogue + GDR prior only.
+        run: python scripts/build_concentration.py --build
+      - name: Rebuild the MASS/consensus arms and prove they are deterministic
+        run: |
+          python scripts/build_mass_consensus.py
+          sha256sum releases/*MASScons*.tif > /tmp/first.txt
+          python scripts/build_mass_consensus.py > /dev/null
+          sha256sum releases/*MASScons*.tif > /tmp/second.txt
+          diff /tmp/first.txt /tmp/second.txt
+          echo "byte-identical across two rebuilds (no RNG in the build)"
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
       - name: Every rebuilt file is byte-identical to its committed manifest

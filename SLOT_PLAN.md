@@ -1,100 +1,157 @@
-# SLOT PLAN — merged across the three 2026-10-23 sessions
+# SLOT PLAN — merged state, 2026-10-23 (CONCENTRATION + PRUNE + MASS)
 
-**Parent R0** `h33-h33-2-b2`: 37,654 unit-mass dots, 2.236 px catalogue floor. R0's `0.2778` is a
-**CLAIM** — 38 ledger rows, **0 receipts**, no live effect has ever been measured in this lineage.
+**Status: 38 BUILT rows, 0 SUBMITTED, 0 receipts.** R0's 0.2778 is a **CLAIM**. Four sessions
+have now produced files on the same parent without a single live number coming back. That is the
+governing fact: every prediction here is MODEL, and a live |Δ| < 0.01 is **no evidence**.
 
-**The board: 18 release pairs, 36 files, all gate-clean, all byte-reproducible in one command**
-(`make releases` → `manifest: 36 files, 0 problem(s)`), every hash cross-checked against the
-ledger. Four axes: PRUNE delete-only (6), PRUNE refill-held (3), CONCENTRATION on the public-domain
-GDR thermal prior (3), SPACING (3), RELIEF (3).
+## Week 1 should measure each axis once, not re-dose one axis
 
-| axis | arms | best MODEL prediction | what it varies |
-|---|---|---|---|
-| CONCENTRATION (GDR prior) | `gdr25rm10`, `gdr25m10`, `gdr10m10` | **+0.0123** [−0.022, +0.037] | *where* mass sits, using a prior independent of the catalogue |
-| PRUNE delete-only | `le3/le4/le5/le8/le10/le15` | **+0.010** [−0.008, +0.024] | how much collar mass is removed |
-| PRUNE refill-held | `p2.5px`, `p2.9px`, `p4.5px` h19cover | +0.004 … **−0.015** | delete *and* refill from the H19-5 coverage |
-| SPACING | `spread40`, `clump40`, `jitter40` | +0.004 [−0.004, +0.012] | arrangement at fixed count |
-| RELIEF | `r2m15`, `m2r15`, `null15` | +0.007 (≡0 against its own null) | which relief tercile holds the mass |
-
-## What the cross-check adds (IR-91-21, IR-91-22)
-
-Scored against the only truth visible from this sandbox — the 60,988-cell catalogue — with the
-metric split into credit `T` and unmatched mass (`evidence/predictions_crosscheck_20261023.json`):
-
-| file | `dti_proxy` | Δ vs R0 | what it means |
-|---|---:|---:|---|
-| R0 (parent) | 0.006778 | — | 100 % of `T` comes from **1,611 dots inside 3 px** of a mapped trace |
-| `SPACINGspread40` | 0.007861 | **+0.001083** | the only shipped arm that *raises* measurable credit |
-| `SPACINGjitter40` | 0.006761 | −0.000017 | null, as designed |
-| `CONCENTRATIONgdr25rm10` | 0.005937 | −0.000841 | the three prior arms agree to 6·10⁻⁶ |
-| `RELIEFr2m15` | 0.005888 | −0.000890 | arm order matches the mechanism cards |
-| `PRUNEp2.5pxh19cover` | 0.001242 | −0.005536 | refill keeps a little collar credit |
-| every delete-only PRUNE dose | 0.000000 | **−0.006778** | all six delete the entire credit-carrying band |
-
-Three consequences, and they are the only places where this instrument overrules the MODEL:
-
-1. The six delete-only doses are **one experiment on one coin**, not a dose-response: they all
-   delete the 0–3 px band, so they lose the same credit and differ only in how much extra mass
-   they remove. One receipt on the top dose answers the family; a second dose only refines *how
-   much* was wasted.
-2. Break-even for deleting a dot is **0.044 credit** (at the claimed 0.2778 and the parent's own
-   collar geometry); the collar dots measure 0.237. The ladder is therefore a bet that the
-   organisers' *unmapped* faults are nowhere near the parent's dots — untestable here, and the
-   first receipt must be read that way.
-3. Where the MODEL's two top candidates are within 0.002 of each other, prefer the one this
-   instrument does **not** penalise. `SPACINGspread40` is currently the only such file.
+Three slots, three different axes, one receipt each — because with zero receipts the repository
+cannot yet distinguish "PRUNE works" from "CONCENTRATION works" from "MASS works". Re-dosing one
+axis before that is spending a slot on a hypothesis that cannot be separated from its neighbours.
 
 ## Next three scored slots, in order
 
-| # | candidate (file in `releases/`) | MODEL | why this slot |
+| # | candidate (built?) | file / sha8 | predicted (MODEL) | what the receipt changes |
+|---|---|---|---|---|
+| 1 | `CONCENTRATION/gdr25rm10` — 10 % of dots moved into the highest-prior 2.5 km blocks, prior **independent** of both the catalogue and the lineage mask (built, merged PR #13) | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01` | **+0.0123** [−0.022, …] | Highest predicted gain on the board and the only arm whose prior is external. ≥ +0.01 ⇒ prior transfer is real and slot 3 becomes a second prior scale; ≤ −0.01 ⇒ block-scale relayout destroys coverage (the measured 88.6 %→80.2 % H19-5 coverage loss is that failure mode). |
+| 2 | `PRUNE/le10-norefill` — delete-only 10 px collar, 26,294 dots (built) | `…-PRUNE-le10-norefill-20261023-04002dae` | **+0.008** [−0.006, +0.019] | The only family exempt from the collar ruling (brief §4.4 exempts AXIS=PRUNE), so this slot cannot be blocked by IR-91-03. ≥ +0.01 ⇒ far-from-catalogue mass is mostly denominator cost; flat ⇒ stop buying PRUNE doses. |
+| 3 | `MASS/cons3add` — add 10 % (3,765 dots) at the best-supported unspent cells, strictly >3 px off the catalogue (built) | `…-MASScons3add-20261023-2803126d` | **+0.009** [−0.002, +0.019] | **Contingent on the IR-91-03 ruling** (see below). Tests whether the d2.8 thinning cut real structure. If the collar is ruled binding on every file, put `gdr25m10` (`d54e8815`, +0.0113) here instead and MASS waits for a PRUNE-rebased parent. |
+
+Do **not** spend a slot on: `MASS/cons2drop` (a nested deeper cut), `p4.5px-h19cover`
+(MODEL −0.015, falsifier only), any further `SPACING` arm (bound ≤0.003), another
+`CONCENTRATION` arm this week (the three GDR arms are one experiment, IR-91-19 of the merged
+PR), `SNAP` ≤2 px (±0.002, nine rows), or `RELIEF` (its declared inputs contain no elevation band).
+
+## The ruling that can block slot 3 (IR-91-03)
+
+R0 keeps 2,171 dots at 2–3 px from the catalogue; **R0 itself fails** the brief's 3 px collar, and
+every non-PRUNE child inherits them. If the collar binds *new mass only*, MASS is testable as
+built. If it binds *every file*, no non-PRUNE child of R0 can ship — and that also affects
+`gdr25rm10`, which is itself a non-PRUNE child (its new cells are >3 px, but it inherits the same
+2,171 dots). The human rules; the PRUNE slot is unaffected either way.
+
+## Weeks to the deadline (2026-12-03, unconfirmed on the competition page)
+
+- **Wk 1:** rule on IR-91-03, fill TOP_PUBLIC + slots, then submit the three files above, one per
+  slot. Paste `receipt_score` + `receipt_date` the same day. 38 builds and no receipts is the
+  largest single weakness in this repository, larger than any axis choice.
+- **Wk 2:** read the three receipts as a *ranking of axes*, not of files. Whichever axis cleared
+  +0.01 gets the next dose; if none did, the honest conclusion is that this parent is at a local
+  optimum and the remaining weeks should go to the final-file choice rather than to new axes.
+- **Wk 3–4:** combine the winning axis with the runner-up only if the receipt supports both;
+  otherwise confirm the winner with a second, independent dose.
+- **Wk 5–6:** confirm the strongest file, build its fallback twin, re-validate both from disk,
+  and choose **one** final file blind. One entity, three scored files a week, no agent submits.
+
+## Proposed axes for later sessions — NOT built here (mechanism / confounder / falsifier)
+
+1. **FRACTIONAL-MASS at fixed geometry.** Emit 0.5 rather than 1.0 on the lowest-support half of
+   R0's dots. Mechanism: mass is nearly free within 2.83 px of truth (a dot's own match discounts
+   its own penalty), so half-credit on doubtful ground keeps ~half the upside and halves the cost.
+   Confounder: the reader may reject non-binary values — the template is binary and this is
+   **unverified**. Falsifier: a validation error, or a score that moves like a pure prune.
+2. **SUPPORT-GRADED REFILL.** Use support-2/1 cells as refill material for a collar prune, holding
+   mass constant while changing its precision mix. Confounder: it is neither a PRUNE (collar not
+   tested) nor a MASS (mass unchanged) — label it honestly. Note the merged finding that
+   fixed-count refill under a preserved d2.8 exclusion is infeasible (IR-91-18); this design would
+   have to drop that exclusion and say so.
+3. **RELIEF with a real elevation band.** `axis_requirements.RELIEF` lists `ext_lidar_scarp_u8`, a
+   scarp-detection product rather than detrended elevation, so the axis as briefed cannot be built
+   from it. Needs the DEM-derived bands the human holds.
+
+**Human must supply:** the IR-91-03 collar ruling (it decides whether slot 3 and `gdr25rm10` are
+uploadable), TOP_PUBLIC with the date it was read, slots remaining this week, the 2026-12-03
+deadline confirmation, and a receipt per slot.
+
+---
+
+## Appendix — the merged sessions' own slot plans (kept verbatim, not superseded silently)
+
+**State.** Parent R0 `h33-h33-2-b2` (37,654 dots, 2.236 px catalogue floor, claimed 0.2778 =
+**CLAIM**, no receipt anywhere). Ledger: 32 BUILT rows, **0 SUBMITTED**, **0 receipts**. Two axes
+were built today on that parent, all gate-clean and byte-reproducible:
+
+| axis | arms built | predicted (MODEL) | what it varies |
 |---|---|---|---|
-| 1 | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` | **+0.0123** [−0.022, +0.037] | The only file whose input is independent of both the catalogue and the lineage mask: if the prior transfers, this is a new source of location information, not a re-cut of the same one. Highest MODEL on the board, and its floor is *measured* (lineage coverage 88.6 % → 80.2 % ⇒ −0.022), not a formality. |
-| 2 | `…-PRUNEle15-norefill-20261023-1ca1ff6f.tif` | **+0.010** [−0.008, +0.024] | Independent of slot 1 (mass vs location). The top of the delete-only ladder, so it answers the whole family in one slot, and it is byte-reproducible here. |
-| 3 | **Conditional** — see the fork | — | Turns two points into a direction, or retires an axis. |
+| PRUNE (delete-only) | `le4` +0.003, `le5` +0.005, `le10` +0.008, plus earlier `le3` +0.002, `le8` +0.006, `le15` +0.010 | +0.002 … +0.010 | how much mass to remove |
+| CONCENTRATION (GDR thermal prior) | `gdr25rm10` **+0.0123** [−0.022,+0.037], `gdr25m10` +0.0114, `gdr10m10` +0.0113 | +0.011 … +0.012 | where the mass sits |
 
-**Do not** spend a slot on `gdr10m10`, `le4`, `le5`, `le8` or `le10` before slots 1–2 return:
-each is a notch inside a question those two slots answer in full. **Do not** spend a slot on the
-three RELIEF arms: ±0.007 each, interpretable only as a *pair*, so two slots for one bit.
-**Do not** repeat a file whose sha256 is already in the ledger.
+**Two things the numbers say, and they shape the slots.**
 
-## The fork, written before any receipt arrives
+1. **PRUNE is a dose ladder, not six experiments** — the six rungs differ only in how much collar
+   mass is deleted, and their predictions are monotone. One receipt anywhere on the ladder
+   (preferably the top) tells you the sign of the whole axis.
+2. **The three CONCENTRATION arms are one experiment, not three** — within 0.001 of each other on
+   every local instrument (IR-91-17). Their floor is *measured*: if truth followed the lineage's
+   own H19-5 field the edit costs −0.022 (mask coverage 88.6 % → 80.2 %); under uniform random
+   truth −0.006; under the prior itself +0.114 before a ×0.1 claim (IR-91-19).
 
-| slot-1 / slot-2 result | reading | slot 3 |
+A third session (#10) added three refill-held PRUNE arms (`p2.5px-h19cover` +0.002, `p2.9px-h19cover` +0.004, `p4.5px-h19cover` **−0.015**): count held, refilled from H19-5 coverage. The negative one at 4.5 px is the first negative PRUNE prediction on the board and marks the collar dose as that axis's risky end. It does not change the ordering below.
+
+So the whole board is **two bets**: *remove mass* (PRUNE) and *move mass to an independent prior*
+(CONCENTRATION). Spend slots to separate those two, not to refine either by a notch.
+
+## Next three scored slots, in order
+
+| order | candidate (file in `releases/`) | what the receipt decides |
 |---|---|---|
-| `gdr25rm10` **≥ +0.01** | the thermal prior transfers | `gdr25m10` (does a wider prior help?) or build `w20` = 20 % dose as a new pair |
-| `gdr25rm10` **≤ −0.01** | the lineage mask carries real recall; prior-chasing is wrong here | stop CONCENTRATION; `PRUNEle10` if slot 2 said mass is the lever, else `SPACINGspread40` |
-| `le15` **≥ +0.01** | mass far from mapped traces is wasted | `le10` for the dose shape, or combine: PRUNE dose + the better CONCENTRATION arm in one file |
-| `le15` **≤ −0.01** | the 3 px halo carries truth; the 300 m clause is about *their* mapping, not the metric | no deeper prune; build the **add-in-collar** arm (3–8 px) and spend slot 3 on it |
-| either **\|Δ\| < 0.01** | **no evidence** (the brief's rule) — not "neutral" | `SPACINGspread40` if it is not already spent (the only proxy-positive file), else hold the slot |
+| 1 | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` (+0.0123; prior from GDR features **>8 px off the catalogue**, 2.5 km blocks) | The only file in the repo that adds *location* information the catalogue and the lineage mask do not contain. Δ ≥ +0.01 ⇒ the prior transfers: build the 20 % dose (`w20`, new pair). Δ ≤ −0.01 ⇒ the lineage mask carries real recall, retire this axis. \|Δ\| < 0.01 ⇒ no evidence; do not re-tune the fraction. |
+| 2 | `…-PRUNEle15-norefill-20261023-1ca1ff6f.tif` (+0.010; verified byte-reproducible today, `scripts/build.py --axis PRUNE --value 15`) | The best expected value among the remove-mass files and independent of slot 1. Δ ≥ +0.01 ⇒ the field is over-massed far from known traces: bisect upwards (`le20`, new pair) or test refill-held once a ranking exists. \|Δ\| < 0.01 ⇒ mass is not the binding constraint at this dose; the sign of `le4` then locates the optimum. Δ ≤ −0.01 ⇒ the >3 px halo carries new-fault truth; stop pruning and spend everything on the prior axis. |
+| 3 | **Conditional.** If slot 1 ≥ +0.005 → `…-CONCENTRATIONgdr25m10-20261023-08bf80cf.tif` (wider prior; makes the 1 km arm interpretable). If slot 1 flat/negative and slot 2 positive → `…-PRUNEle10-norefill-…-04002dae.tif` (fills the 10–15 px gap). If both flat → `…-SPACINGspread40-…-6d389309.tif` (retires arrangement for one slot, bounded ≤0.003). | Turns two single points into a direction: prior-vs-mask for CONCENTRATION, dose shape for PRUNE, or a clean retirement of the geometry axis. |
 
-Whatever the outcome: paste `receipt_score` + `receipt_date` into `ledger/submissions.csv` against
-the row whose `id` carries the sha8, set `status=SUBMITTED`, never overwrite `predicted_change`.
+Do **not** spend a slot on `gdr10m10` or on `le4`/`le5` before a 2.5 km arm and the top PRUNE
+dose have receipts; both are refinements of an unanswered question.
 
-## Weeks to the deadline (2026-12-03, still unconfirmed by a human)
+## Weeks to the deadline (2026-12-03, still unconfirmed on the competition page)
 
-- **Wk 1 (now):** slot 1 = `gdr25rm10`, slot 2 = `le15`. Read both against the fork table the same day.
-- **Wk 2:** slot 3 per the fork. If both came back inside ±0.01, spend nothing on refinements —
-  bank the best receipt and only build if the fork says a direction is live.
-- **Wk 3–4:** combine the two winners into **one** file (a new `(parent, axis, value)` triple, so
-  the ledger stays honest). PRUNE dose + `spread40` is the cheapest combination: arrangement does
-  not change which cells exist near the collar.
-- **Wk 5–6 (by 2026-12-03):** re-validate the final file from disk (`validate_raster.py` → PASS,
-  `update_release_manifest.py --check` → 0 problems), ship it with its `-zeros` twin held back as
-  the fallback, and make the final choice **blind**.
+- **Wk 1 (now):** slot 1 = `gdr25rm10`. Paste `receipt_score` + `receipt_date` the same day.
+- **Wk 2:** slot 2 = `PRUNEle15`. The entity gets three scored files per rolling week; that is
+  two bets and one receipt each — enough to choose a direction.
+- **Wk 3–4:** follow the conditional slot 3. If CONCENTRATION transferred, build the 20 % dose;
+  if PRUNE transferred, bisect. Combine the two axes only if both are ≥ +0.01, and then one
+  change at a time from the better parent.
+- **Wk 5–6:** confirm on the best parent, build the `-zeros` fallback twin, re-validate both from
+  disk (`scripts/validate.py` prints PASS), choose the final file **blind**.
 
-## What would change my mind
+## Better axes to propose (none built)
 
-- **A dated leaderboard row for R0.** It settles IR-91-22 (0.2778 is 41× what the visible truth
-  supports) and recalibrates every prediction in the ledger. Worth asking the human before slots
-  are spent on refinements.
-- **A ranking artifact for the parent's dots.** MASS (drop lowest 10 % / add next 10 % by the
-  parent's own ranking) is unbuildable from this lineage — no rank is stored anywhere and its two
-  thinning branches disagree about 44,461 cells (IR-91-23). A rank artifact makes the axis real.
-- **Any sign that the organisers' truth extends inside 300 m of the catalogue.** That inverts
-  IR-91-21 and makes every PRUNE dose a loss.
+1. **PRIOR-BLEND at fixed count.** `p = λ·thermal + (1−λ)·lineage-mask`, λ = 0.3, instead of
+   replacing one prior with the other. It is the only version of the CONCENTRATION idea that can
+   win under *both* measured truth models. Confounder: λ is a free knob; falsifier: λ = 0.3 and
+   λ = 0.7 disagree in sign.
+2. **COVERAGE-FLOOR.** Move 10 % but only from dots that duplicate an already-covered field cell,
+   so the 8.4 pp H19-5 coverage loss measured today cannot happen.
+3. **RELIEF terciles** (blocked, not time-limited): still needs `training_features.tif` (or a
+   licensed DEM) to define basin/piedmont/range-front terciles.
 
-## What the human must supply
+**Human must supply:** TOP_PUBLIC with a date, this week's slot count, deadline confirmation,
+R0's receipt for 0.2778, and a ruling on IR-91-03 (2 px vs 3 px collar). Do not contact
+drivendata.org or leaderboard pages programmatically; no agent submits.
 
-`TOP_PUBLIC` with its date · slots remaining this week · confirmation of the deadline · any
-leaderboard row for R0 · the parent's ranking artifact if it exists. Do not contact
-drivendata.org, the leaderboard, or dropbox.com from this repo — the human reads the numbers.
+## Cross-check over the whole board (`arena/9cc58e7e`)
+
+The plan above is kept. One measurement changes how much weight each slot can carry, and one
+fallback is added (`evidence/predictions_crosscheck_20261023.json`, IR-91-25).
+
+Scored against the only truth visible here, R0 gets `dti_proxy` 0.006778 and **100 % of its
+credit comes from 1,611 dots inside 3 px of a mapped trace**; every delete-only PRUNE dose deletes
+that band and computes to `T = 0` (−0.00678), the three CONCENTRATION arms sit at −0.00084 (and
+agree to 6·10⁻⁶, which corroborates "one experiment, not three"), the RELIEF arms reproduce their
+card order, and `SPACINGspread40` is the **only** shipped arm that raises measurable credit
+(+0.00108, `T` 381.9 → 442.9).
+
+Three consequences, none of which reorders slots 1–3:
+
+1. **One PRUNE receipt is enough.** Because all six delete-only rungs remove the same collar band,
+   the top rung (`le15`, +0.010) answers the family; a second rung refines *how much* was wasted,
+   not *whether* the mechanism is real. If slot 2 is PRUNE, `le15` is the better spend than `le10`.
+2. **Read a PRUNE receipt as a test of a geometric claim**, not of "dose": it is positive only if
+   the organisers' new faults are far from the parent's dots. Break-even is 0.044 credit per
+   deleted dot; the collar dots measure 0.237.
+3. **Fallback ordering.** If both CONCENTRATION and PRUNE come back inside ±0.01, the next slot is
+   `SPACINGspread40` — it is the only file that is not proxy-negative, and it is arrangement-only,
+   so its sign is independent of both bets.
+
+Nothing about `MASScons3add` changes here: it is a different bet (cross-field support), and its
+own prediction already carries the negative instrument this branch measured for relocation arms.

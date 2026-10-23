@@ -148,6 +148,54 @@
       "ledger_id": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309"
     },
     {
+      "file": "h33-h33-2-b2-MASScons1drop-20261023-fc8f5500-zeros.tif",
+      "sha256": "9f24d22eb52fc59517c8b13e0be39cb37535c993d5cef433b576231749c3e145",
+      "bytes": 206976,
+      "axis": "MASS",
+      "n_dots": 33113,
+      "ledger_id": "h33-h33-2-b2-MASScons1drop-20261023-fc8f5500"
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons1drop-20261023-fc8f5500.tif",
+      "sha256": "fc8f5500790eed45fe4957a3a548c55513db09774ecd46c300b67b4cc72d854e",
+      "bytes": 354433,
+      "axis": "MASS",
+      "n_dots": 33113,
+      "ledger_id": "h33-h33-2-b2-MASScons1drop-20261023-fc8f5500"
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons2drop-20261023-e8871e7f-zeros.tif",
+      "sha256": "d1c8ab018d190f774e313ffd8959e988d0acd4e17de2a7a4ab5035807957f944",
+      "bytes": 180642,
+      "axis": "MASS",
+      "n_dots": 26913,
+      "ledger_id": "h33-h33-2-b2-MASScons2drop-20261023-e8871e7f"
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons2drop-20261023-e8871e7f.tif",
+      "sha256": "e8871e7f7bd75b139173e2c93eda3a79f47063e6e71dd4dfef7672cf58c4662f",
+      "bytes": 328675,
+      "axis": "MASS",
+      "n_dots": 26913,
+      "ledger_id": "h33-h33-2-b2-MASScons2drop-20261023-e8871e7f"
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons3add-20261023-2803126d-zeros.tif",
+      "sha256": "597d6d0ea528c8630e301dfe354b62905534d49f985f5bd92f04a75e51d7e5cf",
+      "bytes": 237471,
+      "axis": "MASS",
+      "n_dots": 41419,
+      "ledger_id": "h33-h33-2-b2-MASScons3add-20261023-2803126d"
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons3add-20261023-2803126d.tif",
+      "sha256": "2803126de23b7f3388d2d4db727c2e8a39b499308b6efc61941d4231606f9abd",
+      "bytes": 384079,
+      "axis": "MASS",
+      "n_dots": 41419,
+      "ledger_id": "h33-h33-2-b2-MASScons3add-20261023-2803126d"
+    },
+    {
       "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae-zeros.tif",
       "sha256": "0842d86618dbe64acf6dfb4137feff423a9dc394b59d153317381fc22b06dbb8",
       "bytes": 174857,

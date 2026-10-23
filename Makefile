@@ -13,7 +13,7 @@ OUT     ?= releases
 CAND    ?=
 LEDGER  ?= ledger/submissions.csv
 
-.PHONY: help install test preflight pins fixture demo concentration releases validate clean
+.PHONY: help install test preflight pins fixture demo concentration mass instruments releases validate clean
 
 help:
 	@sed -n '2,10p' Makefile
@@ -33,6 +33,16 @@ pins:
 
 fixture:
 	$(PY) -m tools.make_fixture --out tests/_tmp/fixture
+
+# MASS/consensus arms (session 4): builds the three pairs and certifies each one.
+# Deterministic; no RNG anywhere. Writes releases/*.tif, which git ignores.
+mass:
+	$(PY) scripts/build_mass_consensus.py
+
+# REPORT-ONLY instruments (PROXY, ring canary, SGMC). Never a gate, never a score.
+instruments:
+	$(PY) scripts/instruments.py --label mass-consensus \
+		$(PARENT) $(shell ls releases/*MASScons*.tif | grep -v zeros)
 
 # End-to-end proof on synthetic rasters: build, then certify with the repo gates.
 # Nothing here is competition data and nothing here may be submitted.
@@ -58,21 +68,6 @@ concentration: pins
 	  --catalogue $(CAT) --prior $(PRIOR) --parent-tag $(TAG) \
 	  --frac $(FRAC) --block-px $(BLOCK) --out-dir $(OUT) --register --ledger $(LEDGER)
 
-# Rebuild every shipped release and check it against releases/MANIFEST.json.
-# This is the contract CI enforces: the same pinned inputs must reproduce the same bytes.
-releases: preflight
-	$(PY) scripts/make_catalogue.py
-	$(PY) scripts/build_spacing.py --build
-	$(PY) scripts/build_relief.py --build
-	$(PY) scripts/build_prune_ladder.py
-	$(PY) scripts/build_prune_refill.py --build
-	$(PY) scripts/build_concentration.py --build
-	$(PY) scripts/build.py --axis PRUNE --value 3  --id h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863  --catalogue $(CAT)
-	$(PY) scripts/build.py --axis PRUNE --value 8  --id h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0  --catalogue $(CAT)
-	$(PY) scripts/build.py --axis PRUNE --value 15 --id h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f --catalogue $(CAT)
-	$(PY) scripts/update_release_manifest.py
-	$(PY) scripts/update_release_manifest.py --check
-
 validate:
 	@test -n "$(CAND)" || (echo "usage: make validate CAND=releases/<id>.tif" && exit 1)
 	$(PY) scripts/validate_release.py $(CAND) --sample $(SAMPLE) --catalogue $(CAT) \
@@ -80,3 +75,20 @@ validate:
 
 clean:
 	rm -rf tests/_tmp .pytest_cache
+
+# Every release in releases/MANIFEST.json, rebuilt from pinned inputs in one go,
+# then the hash contract: a file whose sha256 is not a ledger row, or a manifest
+# entry that did not rebuild, fails the target.
+releases: preflight
+	$(PY) scripts/make_catalogue.py
+	$(PY) scripts/build_spacing.py --build
+	$(PY) scripts/build_relief.py --build
+	$(PY) scripts/build_prune_ladder.py
+	$(PY) scripts/build_prune_refill.py --build
+	$(PY) scripts/build_concentration.py --build
+	$(PY) scripts/build_mass_consensus.py
+	$(PY) scripts/build.py --axis PRUNE --value 3  --id h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863  --catalogue $(CAT)
+	$(PY) scripts/build.py --axis PRUNE --value 8  --id h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0  --catalogue $(CAT)
+	$(PY) scripts/build.py --axis PRUNE --value 15 --id h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f --catalogue $(CAT)
+	$(PY) scripts/update_release_manifest.py
+	$(PY) scripts/update_release_manifest.py --check
