@@ -308,3 +308,22 @@ exact equal-area relief terciles via `R_rel = 0.90·pct(Band 12 det_elev) + 0.10
   T1/T3 mass (`5.67%↔29.67%` Basin, `26.01%↔50.01%` Range), `RELIEF` tercile allocation
   is non-leveraging at `12%` dose and is retired.
 
+---
+
+## RELIEF design notes from `arena/9cc58e7e` (superseded, kept for the reasoning)
+
+Three matched cards were built on the `15 %` dose in that session (`r2m15` range-front → piedmont
+`+0.0070`, `m2r15` the sign flip `−0.0070`, `null15` tercile-neutral `0.0000`), every recipient
+off the lineage's detector support, `d_cat > 3 px`, count fixed `37,654`. When the branches merged,
+the `12 %` triplet that ships (`r2p12` / `r2b12` / `b2r12`) superseded them, so their files are no
+longer in `releases/MANIFEST.json`; the ledger keeps the three rows with a `SUPERSEDED` note and
+the numbers stay in `evidence/relief_axis_20261023.json`.
+
+Two findings from that design are still load-bearing and are not in the shipped cards:
+
+- **The recipients had to leave support by design.** At the parent's own spacing floor only `90`
+  support cells in the entire footprint are legal, so a tercile move that stayed on support could
+  not be built at any dose (`IR-91-28`).
+- **A support preference would have confounded the arms.** The first construction gave the three
+  arms different on-support mixes (`96` vs `2,409` recipients); holding every recipient off support
+  is what makes the null arm tercile-neutral (`IR-91-29`).

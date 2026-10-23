@@ -1,0 +1,1510 @@
+{
+  "label": "PROXY",
+  "note": "DTI with the 60,988-cell catalogue as truth. Not the competition score: unmapped faults are invisible to this instrument, so it over-rewards deleting anything far from a mapped trace. Report-only, never a gate.",
+  "grid": {
+    "height": 3730,
+    "width": 3292,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "truth_cells": 60988
+  },
+  "parent": {
+    "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+    "dti_proxy": 0.00677812,
+    "T": 381.89304,
+    "S": 37654.0,
+    "M": 277.937953,
+    "n_dots": 37654,
+    "bands": [
+      {
+        "lo_px": 0.0,
+        "hi_px": 3.0,
+        "n_dots": 1611,
+        "share_of_dots": 0.042784,
+        "share_of_mass": 0.042784,
+        "share_of_credit": 1.0,
+        "mean_credit_per_dot": 0.237053,
+        "n_dots_with_zero_credit": 0
+      },
+      {
+        "lo_px": 3.0,
+        "hi_px": 5.0,
+        "n_dots": 3237,
+        "share_of_dots": 0.085967,
+        "share_of_mass": 0.085967,
+        "share_of_credit": 0.0,
+        "mean_credit_per_dot": 0.0,
+        "n_dots_with_zero_credit": 3237
+      },
+      {
+        "lo_px": 5.0,
+        "hi_px": 10.0,
+        "n_dots": 6292,
+        "share_of_dots": 0.1671,
+        "share_of_mass": 0.1671,
+        "share_of_credit": 0.0,
+        "mean_credit_per_dot": 0.0,
+        "n_dots_with_zero_credit": 6292
+      },
+      {
+        "lo_px": 10.0,
+        "hi_px": 20.0,
+        "n_dots": 7908,
+        "share_of_dots": 0.210018,
+        "share_of_mass": 0.210018,
+        "share_of_credit": 0.0,
+        "mean_credit_per_dot": 0.0,
+        "n_dots_with_zero_credit": 7908
+      },
+      {
+        "lo_px": 20.0,
+        "hi_px": 40.0,
+        "n_dots": 8454,
+        "share_of_dots": 0.224518,
+        "share_of_mass": 0.224518,
+        "share_of_credit": 0.0,
+        "mean_credit_per_dot": 0.0,
+        "n_dots_with_zero_credit": 8454
+      },
+      {
+        "lo_px": 40.0,
+        "hi_px": null,
+        "n_dots": 10152,
+        "share_of_dots": 0.269613,
+        "share_of_mass": 0.269613,
+        "share_of_credit": 0.0,
+        "mean_credit_per_dot": 0.0,
+        "n_dots_with_zero_credit": 10152
+      }
+    ]
+  },
+  "releases": [
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.0059308,
+      "delta_vs_parent": -0.00084733,
+      "T": 334.13596,
+      "S": 37654.0,
+      "M": 244.453072,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1426,
+          "share_of_dots": 0.037871,
+          "share_of_mass": 0.037871,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.234317,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3019,
+          "share_of_dots": 0.080177,
+          "share_of_mass": 0.080177,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3019
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6297,
+          "share_of_dots": 0.167233,
+          "share_of_mass": 0.167233,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6297
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7986,
+          "share_of_dots": 0.212089,
+          "share_of_mass": 0.212089,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7986
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8618,
+          "share_of_dots": 0.228873,
+          "share_of_mass": 0.228873,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8618
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10308,
+          "share_of_dots": 0.273756,
+          "share_of_mass": 0.273756,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10308
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00593217,
+      "delta_vs_parent": -0.00084596,
+      "T": 334.213601,
+      "S": 37654.0,
+      "M": 244.135807,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1417,
+          "share_of_dots": 0.037632,
+          "share_of_mass": 0.037632,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.23586,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3047,
+          "share_of_dots": 0.080921,
+          "share_of_mass": 0.080921,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3047
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6249,
+          "share_of_dots": 0.165958,
+          "share_of_mass": 0.165958,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6249
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7979,
+          "share_of_dots": 0.211903,
+          "share_of_mass": 0.211903,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7979
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8651,
+          "share_of_dots": 0.22975,
+          "share_of_mass": 0.22975,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8651
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10311,
+          "share_of_dots": 0.273835,
+          "share_of_mass": 0.273835,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10311
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00593736,
+      "delta_vs_parent": -0.00084077,
+      "T": 334.504986,
+      "S": 37654.0,
+      "M": 245.242884,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1426,
+          "share_of_dots": 0.037871,
+          "share_of_mass": 0.037871,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.234576,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 2969,
+          "share_of_dots": 0.07885,
+          "share_of_mass": 0.07885,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 2969
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6153,
+          "share_of_dots": 0.163409,
+          "share_of_mass": 0.163409,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6153
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7999,
+          "share_of_dots": 0.212434,
+          "share_of_mass": 0.212434,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7999
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8515,
+          "share_of_dots": 0.226138,
+          "share_of_mass": 0.226138,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8515
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10592,
+          "share_of_dots": 0.281298,
+          "share_of_mass": 0.281298,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10592
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.0061833,
+      "delta_vs_parent": -0.00059483,
+      "T": 348.370144,
+      "S": 37654.0,
+      "M": 251.826887,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1441,
+          "share_of_dots": 0.03827,
+          "share_of_mass": 0.03827,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.241756,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3205,
+          "share_of_dots": 0.085117,
+          "share_of_mass": 0.085117,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3205
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6540,
+          "share_of_dots": 0.173687,
+          "share_of_mass": 0.173687,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6540
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7870,
+          "share_of_dots": 0.209008,
+          "share_of_mass": 0.209008,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7870
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8452,
+          "share_of_dots": 0.224465,
+          "share_of_mass": 0.224465,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8452
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10146,
+          "share_of_dots": 0.269453,
+          "share_of_mass": 0.269453,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10146
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00676122,
+      "delta_vs_parent": -1.69e-05,
+      "T": 380.941243,
+      "S": 37654.0,
+      "M": 276.528629,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1576,
+          "share_of_dots": 0.041855,
+          "share_of_mass": 0.041855,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.241714,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3198,
+          "share_of_dots": 0.084931,
+          "share_of_mass": 0.084931,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3198
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6356,
+          "share_of_dots": 0.1688,
+          "share_of_mass": 0.1688,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6356
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7930,
+          "share_of_dots": 0.210602,
+          "share_of_mass": 0.210602,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7930
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8452,
+          "share_of_dots": 0.224465,
+          "share_of_mass": 0.224465,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8452
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10142,
+          "share_of_dots": 0.269347,
+          "share_of_mass": 0.269347,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10142
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00786065,
+      "delta_vs_parent": 0.00108253,
+      "T": 442.907899,
+      "S": 37654.0,
+      "M": 324.347057,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1839,
+          "share_of_dots": 0.048839,
+          "share_of_mass": 0.048839,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.240842,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3189,
+          "share_of_dots": 0.084692,
+          "share_of_mass": 0.084692,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3189
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6082,
+          "share_of_dots": 0.161523,
+          "share_of_mass": 0.161523,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6082
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7909,
+          "share_of_dots": 0.210044,
+          "share_of_mass": 0.210044,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7909
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8488,
+          "share_of_dots": 0.225421,
+          "share_of_mass": 0.225421,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8488
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10147,
+          "share_of_dots": 0.26948,
+          "share_of_mass": 0.26948,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10147
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons1drop-20261023-fc8f5500.tif",
+      "n_dots": 33113,
+      "dti_proxy": 0.00602992,
+      "delta_vs_parent": -0.00074821,
+      "T": 334.244911,
+      "S": 33113.0,
+      "M": 243.71502,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1420,
+          "share_of_dots": 0.042883,
+          "share_of_mass": 0.042883,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.235384,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 2834,
+          "share_of_dots": 0.085586,
+          "share_of_mass": 0.085586,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 2834
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 5523,
+          "share_of_dots": 0.166792,
+          "share_of_mass": 0.166792,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 5523
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 6941,
+          "share_of_dots": 0.209616,
+          "share_of_mass": 0.209616,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6941
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 7494,
+          "share_of_dots": 0.226316,
+          "share_of_mass": 0.226316,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7494
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 8901,
+          "share_of_dots": 0.268807,
+          "share_of_mass": 0.268807,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8901
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons2drop-20261023-e8871e7f.tif",
+      "n_dots": 26913,
+      "dti_proxy": 0.00515235,
+      "delta_vs_parent": -0.00162577,
+      "T": 279.195815,
+      "S": 26913.0,
+      "M": 204.159582,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1191,
+          "share_of_dots": 0.044254,
+          "share_of_mass": 0.044254,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.234421,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 2330,
+          "share_of_dots": 0.086575,
+          "share_of_mass": 0.086575,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 2330
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 4480,
+          "share_of_dots": 0.166462,
+          "share_of_mass": 0.166462,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 4480
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 5642,
+          "share_of_dots": 0.209638,
+          "share_of_mass": 0.209638,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 5642
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 6114,
+          "share_of_dots": 0.227176,
+          "share_of_mass": 0.227176,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6114
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 7156,
+          "share_of_dots": 0.265894,
+          "share_of_mass": 0.265894,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7156
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-MASScons3add-20261023-2803126d.tif",
+      "n_dots": 41419,
+      "dti_proxy": 0.00668873,
+      "delta_vs_parent": -8.939e-05,
+      "T": 381.89304,
+      "S": 41419.0,
+      "M": 277.937953,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1611,
+          "share_of_dots": 0.038895,
+          "share_of_mass": 0.038895,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.237053,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3539,
+          "share_of_dots": 0.085444,
+          "share_of_mass": 0.085444,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3539
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6950,
+          "share_of_dots": 0.167797,
+          "share_of_mass": 0.167797,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6950
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 8691,
+          "share_of_dots": 0.209831,
+          "share_of_mass": 0.209831,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8691
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 9335,
+          "share_of_dots": 0.22538,
+          "share_of_mass": 0.22538,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 9335
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 11293,
+          "share_of_dots": 0.272653,
+          "share_of_mass": 0.272653,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 11293
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif",
+      "n_dots": 26294,
+      "dti_proxy": 0.0,
+      "delta_vs_parent": -0.00677812,
+      "T": 0.0,
+      "S": 26294.0,
+      "M": 0.0,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7688,
+          "share_of_dots": 0.292386,
+          "share_of_mass": 0.292386,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7688
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8454,
+          "share_of_dots": 0.321518,
+          "share_of_mass": 0.321518,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8454
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10152,
+          "share_of_dots": 0.386096,
+          "share_of_mass": 0.386096,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10152
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e.tif",
+      "n_dots": 33829,
+      "dti_proxy": 0.0,
+      "delta_vs_parent": -0.00677812,
+      "T": 0.0,
+      "S": 33829.0,
+      "M": 0.0,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 1023,
+          "share_of_dots": 0.03024,
+          "share_of_mass": 0.03024,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 1023
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6292,
+          "share_of_dots": 0.185994,
+          "share_of_mass": 0.185994,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6292
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7908,
+          "share_of_dots": 0.233764,
+          "share_of_mass": 0.233764,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7908
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8454,
+          "share_of_dots": 0.249904,
+          "share_of_mass": 0.249904,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8454
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10152,
+          "share_of_dots": 0.300098,
+          "share_of_mass": 0.300098,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10152
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987.tif",
+      "n_dots": 32017,
+      "dti_proxy": 0.0,
+      "delta_vs_parent": -0.00677812,
+      "T": 0.0,
+      "S": 32017.0,
+      "M": 0.0,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 5503,
+          "share_of_dots": 0.171877,
+          "share_of_mass": 0.171877,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 5503
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7908,
+          "share_of_dots": 0.246994,
+          "share_of_mass": 0.246994,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7908
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8454,
+          "share_of_dots": 0.264047,
+          "share_of_mass": 0.264047,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8454
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10152,
+          "share_of_dots": 0.317082,
+          "share_of_mass": 0.317082,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10152
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f.tif",
+      "n_dots": 21989,
+      "dti_proxy": 0.0,
+      "delta_vs_parent": -0.00677812,
+      "T": 0.0,
+      "S": 21989.0,
+      "M": 0.0,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 3383,
+          "share_of_dots": 0.15385,
+          "share_of_mass": 0.15385,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3383
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8454,
+          "share_of_dots": 0.384465,
+          "share_of_mass": 0.384465,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8454
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10152,
+          "share_of_dots": 0.461685,
+          "share_of_mass": 0.461685,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10152
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863.tif",
+      "n_dots": 35483,
+      "dti_proxy": 0.0,
+      "delta_vs_parent": -0.00677812,
+      "T": 0.0,
+      "S": 35483.0,
+      "M": 0.0,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 2677,
+          "share_of_dots": 0.075445,
+          "share_of_mass": 0.075445,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 2677
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6292,
+          "share_of_dots": 0.177324,
+          "share_of_mass": 0.177324,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6292
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7908,
+          "share_of_dots": 0.222867,
+          "share_of_mass": 0.222867,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7908
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8454,
+          "share_of_dots": 0.238255,
+          "share_of_mass": 0.238255,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8454
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10152,
+          "share_of_dots": 0.286109,
+          "share_of_mass": 0.286109,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10152
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0.tif",
+      "n_dots": 28490,
+      "dti_proxy": 0.0,
+      "delta_vs_parent": -0.00677812,
+      "T": 0.0,
+      "S": 28490.0,
+      "M": 0.0,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 1976,
+          "share_of_dots": 0.069358,
+          "share_of_mass": 0.069358,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 1976
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7908,
+          "share_of_dots": 0.277571,
+          "share_of_mass": 0.277571,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7908
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8454,
+          "share_of_dots": 0.296736,
+          "share_of_mass": 0.296736,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8454
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10152,
+          "share_of_dots": 0.356336,
+          "share_of_mass": 0.356336,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10152
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEp2p5h19cover-20261023-e6f2000d.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00124188,
+      "delta_vs_parent": -0.00553624,
+      "T": 69.944542,
+      "S": 37654.0,
+      "M": 68.457577,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1197,
+          "share_of_dots": 0.031789,
+          "share_of_mass": 0.031789,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.058433,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3647,
+          "share_of_dots": 0.096856,
+          "share_of_mass": 0.096856,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3647
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6292,
+          "share_of_dots": 0.1671,
+          "share_of_mass": 0.1671,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6292
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7910,
+          "share_of_dots": 0.210071,
+          "share_of_mass": 0.210071,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7910
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8455,
+          "share_of_dots": 0.224545,
+          "share_of_mass": 0.224545,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8455
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10153,
+          "share_of_dots": 0.269639,
+          "share_of_mass": 0.269639,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10153
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEp2p9h19cover-20261023-9829bb66.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.0,
+      "delta_vs_parent": -0.00677812,
+      "T": 0.0,
+      "S": 37654.0,
+      "M": 0.0,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 4534,
+          "share_of_dots": 0.120412,
+          "share_of_mass": 0.120412,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 4534
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6356,
+          "share_of_dots": 0.1688,
+          "share_of_mass": 0.1688,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6356
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7987,
+          "share_of_dots": 0.212116,
+          "share_of_mass": 0.212116,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7987
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8525,
+          "share_of_dots": 0.226404,
+          "share_of_mass": 0.226404,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8525
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10252,
+          "share_of_dots": 0.272269,
+          "share_of_mass": 0.272269,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10252
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEp4p5h19cover-20261023-691438f8.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.0,
+      "delta_vs_parent": -0.00677812,
+      "T": 0.0,
+      "S": 37654.0,
+      "M": 0.0,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 0
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 8189,
+          "share_of_dots": 0.21748,
+          "share_of_mass": 0.21748,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8189
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 8761,
+          "share_of_dots": 0.232671,
+          "share_of_mass": 0.232671,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8761
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 9321,
+          "share_of_dots": 0.247543,
+          "share_of_mass": 0.247543,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 9321
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 11383,
+          "share_of_dots": 0.302305,
+          "share_of_mass": 0.302305,
+          "share_of_credit": NaN,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 11383
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00677812,
+      "delta_vs_parent": 0.0,
+      "T": 381.89304,
+      "S": 37654.0,
+      "M": 277.937953,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1611,
+          "share_of_dots": 0.042784,
+          "share_of_mass": 0.042784,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.237053,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3180,
+          "share_of_dots": 0.084453,
+          "share_of_mass": 0.084453,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3180
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6152,
+          "share_of_dots": 0.163382,
+          "share_of_mass": 0.163382,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6152
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7827,
+          "share_of_dots": 0.207866,
+          "share_of_mass": 0.207866,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7827
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8638,
+          "share_of_dots": 0.229405,
+          "share_of_mass": 0.229405,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8638
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10246,
+          "share_of_dots": 0.272109,
+          "share_of_mass": 0.272109,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10246
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2b12-20261023-27443c30.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00677812,
+      "delta_vs_parent": 0.0,
+      "T": 381.89304,
+      "S": 37654.0,
+      "M": 277.937953,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1611,
+          "share_of_dots": 0.042784,
+          "share_of_mass": 0.042784,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.237053,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3251,
+          "share_of_dots": 0.086339,
+          "share_of_mass": 0.086339,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3251
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6292,
+          "share_of_dots": 0.1671,
+          "share_of_mass": 0.1671,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6292
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7960,
+          "share_of_dots": 0.211399,
+          "share_of_mass": 0.211399,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7960
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8322,
+          "share_of_dots": 0.221012,
+          "share_of_mass": 0.221012,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8322
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10218,
+          "share_of_dots": 0.271366,
+          "share_of_mass": 0.271366,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10218
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00677812,
+      "delta_vs_parent": 0.0,
+      "T": 381.89304,
+      "S": 37654.0,
+      "M": 277.937953,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1611,
+          "share_of_dots": 0.042784,
+          "share_of_mass": 0.042784,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.237053,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3318,
+          "share_of_dots": 0.088118,
+          "share_of_mass": 0.088118,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3318
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6463,
+          "share_of_dots": 0.171642,
+          "share_of_mass": 0.171642,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6463
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 8079,
+          "share_of_dots": 0.214559,
+          "share_of_mass": 0.214559,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8079
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8376,
+          "share_of_dots": 0.222446,
+          "share_of_mass": 0.222446,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8376
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 9807,
+          "share_of_dots": 0.26045,
+          "share_of_mass": 0.26045,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 9807
+        }
+      ]
+    }
+  ],
+  "breakeven_credit_per_deleted_dot": {
+    "at_claimed_dti_0.2778": 0.044121,
+    "at_proxy_dti": 0.001018,
+    "note": "credit per dot below this number => deleting it raises DTI. Assumes the deleted dot's max kernel weight to truth m = 0.25, i.e. it sits at the parent's 2.236 px collar; for dots with m = 0 the threshold is 0.0588 at DTI 0.2778."
+  }
+}

@@ -574,3 +574,103 @@ placing any new recipient dot at `d_cat ≤ 3.0 px` violates the `≥ 3 px` new-
 `d_cat > 3.0 px` on **both** donor removal and recipient placement (`collar_le3px = 2,171 → 2,171`,
 `added_dots_le3px = 0` across all three `RELIEF` builds `RECEIPT`).
 
+## IR-91-28 — R0 is spacing-saturated on its own detector support (it constrains three axes)
+
+Measured, not argued:
+
+* R0's minimum nearest-neighbour distance is exactly **2√2 = 2.828 px**, with 11,415 of its
+  37,654 dots at that distance and **none closer** — the parent's own spacing rule is
+  d_nn ≥ 2.8 px, which is what the ancestor names (`d2.8`, `solo-d2.8`) record.
+* Enforcing that rule, the footprint offers **4,136,025** legal recipient cells off the
+  detector's support (`calib_h195`, 121,131 cells) and only **90** legal cells on it.
+
+**Decision it changes.** Any axis that *adds* or *moves* mass at constant count must leave the
+lineament support: the brief's "add the next-ranked 10 %" (MASS-add), any long-range
+CONCENTRATION move, and RELIEF all do. Two consequences: (i) those builds are partly tests of
+"terrain/prior beats lineament evidence", not of the prior alone, so each needs a relocation
+null arm; (ii) the imported `MASSm10plus` row claims to have added 3,765 dots in 2025–26 — that
+is only possible by breaking the spacing floor or placing off support, so its −0.010 prediction
+should be read as an off-support result, not a pure mass result.
+
+## IR-91-29 — a support preference would have confounded the RELIEF arms (caught before shipping)
+
+The first construction preferred lineage-support recipients, then fell back off support. It
+produced 96 on-support recipients in the narrow arm and 2,409 in the null arm, because the null
+arm's donors are spread over all terciles and each vacated dot frees support cells. Two arms
+with different support mixes are not a one-change comparison. Fixed by placing **every**
+recipient off support in all three arms (recorded in the evidence JSON as
+`recipients_off_support_by_design`), after which the null arm's tercile fractions barely move
+(.204/.418/.377 → .205/.417/.378) and the contrast is purely tercile.
+
+**Decision it changes.** Any later axis that relocates mass must report its on/off-support mix
+per arm and hold it constant, or the receipt cannot be attributed.
+
+---
+
+## IR-91-30 — on the only visible truth, every PRUNE dose deletes 100 % of the measurable credit
+
+**Assumption behind the ladder** (`SLOT_PLAN.md`, sessions 4 and the parallel PRUNE session):
+deleting the low-gain halo removes mass that earns no credit, so `S - M` falls while `T` holds,
+and DTI rises with dose (+0.002 → +0.010 MODEL).
+
+**What is actually measurable.** Scoring the parent and all 12 shipped files against the only
+truth reachable from here — the 60,988-cell catalogue carried by `sample_submission.tif` —
+and decomposing the change (`scripts/crosscheck_predictions.py`,
+`evidence/predictions_crosscheck_20261023.json`):
+
+| band to nearest catalogue cell | dots | share of dots | share of credit `T` | mean credit per dot |
+|---|---:|---:|---:|---:|
+| 0–3 px | 1,611 | 4.28 % | **100 %** | 0.2371 |
+| 3–5 px | 3,237 | 8.60 % | 0 % | 0.0000 |
+| 5–10 px | 6,292 | 16.71 % | 0 % | 0.0000 |
+| 10–20 px | 7,908 | 21.00 % | 0 % | 0.0000 |
+| 20–40 px | 8,454 | 22.45 % | 0 % | 0.0000 |
+| ≥ 40 px | 10,152 | 26.96 % | 0 % | 0.0000 |
+
+R0: `dti_proxy` 0.006778, `T` 381.9, `M` 277.9. **Every PRUNE dose from `le3` (which deletes
+exactly the 0–3 px band) to `le15` computes to `T = 0`, `dti_proxy = 0.000000` — a −0.00678
+(−100 %) change on this instrument.** No dose can be justified here as "pure mass relief": each
+one deletes the entire set of dots that provably earns anything at all.
+
+**Break-even, exactly.** Removing a dot of mass 1 with credit `K` and best match `m` raises DTI
+iff `K < 0.2·DTI·(1−m)/(1−0.2·DTI)`. At the claimed live 0.2778 and the parent's own collar
+geometry (`m = 0.25`) that is **0.044 credit per deleted dot** (0.059 if `m = 0`). The 1,611
+collar dots average 0.237 — five times the bar. The other 36,043 dots score exactly zero here,
+but zero *on mapped faults*, which is not evidence about the unmapped ones the metric rewards.
+
+**Decision it changes.** The +0.002…+0.010 ladder is not a general statement about mass; it is
+one conditional claim — *the organisers' new faults are nowhere near the parent's dots* — and the
+only instrument in this sandbox cannot test it. So: (1) no further PRUNE doses are built; six is
+enough to cover the 1–50 % band; (2) the first receipt must be read as a test of that
+assumption, not of "dose", and the fork table in `SLOT_PLAN.md` now says what a flat result
+means; (3) `SPACINGspread40` becomes the co-favoured second slot because it is the **only**
+shipped arm that *raises* the measurable credit (+16 % `T`, +0.00108 proxy) instead of
+destroying it.
+
+## IR-91-31 — R0's 0.2778 CLAIM is 41× what the visible truth supports
+
+**The claim:** R0 scores 0.2778 (no receipt in any ledger in this lineage — 32 rows, 0 receipts).
+
+**The measurement:** the same file scores **0.006778** against the catalogue, under the repo's
+own re-derivation of the brief's algebra (`T` 381.9; `S` 37,654; `M` 277.9; `|G|` 60,988).
+
+**Why the gap cannot be dismissed as "the catalogue is smaller".** `|G|` enters the denominator
+as `0.8·|G|`, so a *larger* real truth count makes DTI *smaller*, not larger. For 0.2778 to be
+real at 37,654 unit-mass dots, the mean kernel credit per dot would have to be ≈1.4 — within
+20 % of the theoretical ceiling for this kernel (≈7.4 per dot, and only if every dot sits in a
+continuously-mapped patch), and roughly 40× the coverage the parent achieves against the only
+fault map available here. That is possible only if the hidden truth is a far denser and more
+"dotted" set than the catalogue, which the brief's own description does not imply.
+
+**Ranked explanations, cheapest first.** (a) The aggregate form of the formula in the brief is a
+misreading and the organiser averages per truth pixel instead — that is IR-91-5, still open, and
+it changes the *scale* of every prediction in the ledger while leaving their *sign* intact;
+(b) R0's 0.2778 came from a different file than the one in `registry/`; (c) the truth really is
+that dense and this instrument is simply blind to it.
+
+**Decision it changes.** Every agent prediction is a **difference** from R0, so the ranking of
+candidates survives either way — but no absolute number here may be quoted as a score, and the
+first receipt in this lineage should be read for its *sign and size*, not as confirmation of
+0.2778. If the human has ever seen a leaderboard row for R0, recording it (with date) settles
+this in one line and is worth a slot in itself.
+

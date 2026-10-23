@@ -95,6 +95,7 @@ jobs:
           python scripts/build_spacing.py --build
           python scripts/make_catalogue.py
           python scripts/build_prune_ladder.py
+          python scripts/build_relief.py --build
           python scripts/build_prune_refill.py --build
       - name: Rebuild the CONCENTRATION arms from the pinned inputs
         # Idempotent: an id already in the ledger must come back with the same sha256
@@ -113,18 +114,7 @@ jobs:
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
       - name: Every rebuilt file is byte-identical to its committed manifest
-        run: |
-          python - <<'PY'
-          import hashlib, json, pathlib
-          for manifest in ("releases/MANIFEST.json", "releases/PRUNE_REFILL_MANIFEST.json"):
-              man = json.load(open(manifest))
-              for f in man["files"]:
-                  p = pathlib.Path("releases") / f["file"]
-                  got = hashlib.sha256(p.read_bytes()).hexdigest()
-                  assert got == f["sha256"], f"{f['file']}: {got} != {f['sha256']}"
-                  assert p.stat().st_size == f["bytes"], f"{f['file']}: byte length differs"
-                  print("byte-identical:", f["file"])
-          PY
+        run: python scripts/update_release_manifest.py --check
       - name: Every release passes the hard gates
         run: |
           for f in releases/*.tif; do python scripts/validate.py "$f" | tail -1; done

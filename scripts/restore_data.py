@@ -77,6 +77,34 @@ def fetch_to(urls: list[str], dest: Path) -> None:
         raise
 
 
+def fetch_bridge(entry: dict, dest: Path) -> None:
+    """Rebuild a pinned input from hash-pinned parts, then verify the whole file.
+
+    GitHub refuses blobs over 100 MB, so the 419 MB feature stack is stored as
+    five parts in a sibling repo (see registry/data_manifest.json -> bridge). Every
+    part is verified before it is written and the concatenation is verified against
+    the whole-file sha256, so a corrupted or swapped part cannot reach a builder.
+    """
+    br = entry["bridge"]
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    print(f"bridge {entry['id']:<18} {len(br['parts'])} parts from {br['repo']}@{br['ref'][:12]}")
+    with tmp.open("wb") as fh:
+        for part in br["parts"]:
+            url = API.format(repo=br["repo"], path=f"{br['dir']}/{part['name']}", ref=br["ref"])
+            blob = fetch(url)
+            got = hashlib.sha256(blob).hexdigest()
+            if got != part["sha256"] or len(blob) != part["bytes"]:
+                tmp.unlink(missing_ok=True)
+                raise SystemExit(f"PART MISMATCH {part['name']}: {got} ({len(blob)} B)")
+            fh.write(blob)
+    got = sha256_file(tmp)
+    if got != entry["sha256"]:
+        tmp.unlink(missing_ok=True)
+        raise SystemExit(f"REASSEMBLED MISMATCH {entry['id']}: {got} != {entry['sha256']}")
+    tmp.replace(dest)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="verify only")
@@ -88,7 +116,13 @@ def main() -> int:
         dest = ROOT / "data" / f.get("local_subpath", f["id"])
         mirror = f.get("mirror")
         if not dest.is_file():
-            if mirror is None:
+            if mirror is None and f.get("bridge"):
+                if args.check:
+                    print(f"MISSING {f['id']:<18} {dest.relative_to(ROOT)} (bridge parts not fetched)")
+                    bad += 1
+                    continue
+                fetch_bridge(f, dest)
+            if mirror is None and not f.get("bridge"):
                 print(f"skip   {f['id']:<18} no mirror pinned in the manifest")
                 continue
             if args.check:

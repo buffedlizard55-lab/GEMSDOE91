@@ -35,3 +35,30 @@ Restoring `training_features` (`gems-geodawn-numerical-features.tif`, sha256 `43
    - **Mechanism:** Blind geothermal systems localize at fault tips/step-overs with elevated conductive temperature (`ieq_n100a15` AUC `0.5749` `PROXY`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)).
    - **Confounder:** Shallow groundwater outflow plumes advect heat `2–8 km` down-gradient off the fault conduit.
    - **Falsifier:** Thermal-gated step-over reallocation scores `≤` isothermal `RELIEFr2p12` (`6ff08e5c`).
+
+## Cross-check over the whole board (`arena/9cc58e7e`)
+
+The order above is kept. One measurement changes how much weight each slot carries, and one
+fallback is added (`evidence/predictions_crosscheck_20261023.json`, `IR-91-30`).
+
+Scored against the only truth visible here, R0 gets `dti_proxy` `0.006778` and **100 % of its
+credit comes from `1,611` dots inside `3 px` of a mapped trace**. Every delete-only PRUNE rung
+deletes that band and computes to `T = 0` (`−0.00678`); the CONCENTRATION trio sits at `−0.00084`
+and agrees to `6·10⁻⁶` (corroborating "one experiment, not three"); the RELIEF trio moves nothing
+that changes observable credit (`0.00000`); `SPACINGspread40` is the **only** shipped arm that
+raises measurable credit (`+0.00108`, `T` `381.9 → 442.9`).
+
+1. **One PRUNE receipt answers the whole ladder.** All six rungs remove the same collar band, so
+   the top rung (`le15`, `+0.010`) is the better spend than a middle rung: a second rung refines
+   *how much* was wasted, not *whether* the mechanism is real.
+2. **Read a PRUNE receipt as a test of a geometric claim**, not of dose: positive only if the
+   organisers' new faults are far from the parent's dots. Break-even is `0.044` credit per deleted
+   dot; the collar dots measure `0.237`.
+3. **Fallback ordering.** If CONCENTRATION, PRUNE and RELIEF all land inside `±0.01`, the next
+   slot is `SPACINGspread40` — the only file that is not proxy-negative, and arrangement-only, so
+   its sign is independent of every other bet.
+
+This branch also built a RELIEF triplet of its own (`r2m15` / `m2r15` / `null15`, `15 %` dose,
+off-support by design). It is **superseded** by the merged `r2p12` / `r2b12` / `b2r12` triplet:
+both ship, neither gets a slot, and the three RELIEF arms that ship are the ones in
+`releases/MANIFEST.json`.

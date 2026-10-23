@@ -179,3 +179,23 @@ python3 scripts/validate_raster.py releases/h33-h33-2-b2-RELIEFr2p12-20261023-6f
    dots: 37,654 unit-mass | cat_mass=0 | min_d_cat=2.2361 px (added_le3px=0) | relocated=4,518 (12.00%; Hamming 9,036=24.00%)
    validators: validate.py=PASS | validate_raster.py=14/14 PASS | sha256_not_spent=PASS | reread_from_disk=PASS
 ```
+
+## Cross-check on the shipped files (`PROXY`, report-only)
+
+`python3 scripts/crosscheck_predictions.py` → `evidence/predictions_crosscheck_20261023.json`.
+Truth is the `60,988`-cell catalogue, the only fault map reachable from this sandbox, so these
+numbers say what each edit does to *observable* reward and nothing about unmapped faults
+(`IR-91-30`).
+
+| file | `dti_proxy` | Δ vs R0 |
+|---|---:|---:|
+| R0 | 0.006778 | — |
+| `…-SPACINGspread40-…-6d389309.tif` | 0.007861 | **+0.00108** |
+| `…-CONCENTRATIONgdr25rm10-…-c19adb01.tif` | 0.005937 | −0.00084 |
+| any `RELIEF*` file | 0.006778 | 0.00000 |
+| `…-PRUNEp2.5pxh19cover-…-e6f2000d.tif` | 0.001242 | −0.00554 |
+| any delete-only `PRUNE` file | 0.000000 | −0.00678 |
+
+R0's entire measurable credit comes from `1,611` dots inside `3 px` of a mapped trace. Never treat
+a `PROXY` number as a score, and note that `make releases` now rebuilds **every** release in the
+repo and fails if a built file's sha256 is not a ledger row.

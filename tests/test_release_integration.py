@@ -5,6 +5,7 @@ them first, so these run there.
 """
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -71,52 +72,20 @@ def test_template_carries_the_catalogue_not_zeros():
 
 
 def test_every_release_passes_every_gate():
+    """Every file listed in releases/MANIFEST.json passes the MUST gates.
+
+    The expected dot count comes from the manifest entry (which records it per
+    file, taken from the ledger), because the PRUNE ladder ships fewer dots than
+    the parent while SPACING and RELIEF hold the count fixed.
+    """
     cat = geom.catalogue_mask(io.read_grid(CATALOGUE))
-    files = sorted((ROOT / "releases").glob("*.tif"))
-    assert files, "no releases built"
-    # Expected dots per release: read ledger if available, else default to 37654.
-    ledger = {}
-    ledger_path = ROOT / "ledger" / "submissions.csv"
-    if ledger_path.is_file():
-        import csv
-        with open(ledger_path, newline="", encoding="utf-8") as fh:
-            for row in csv.DictReader(fh):
-                try:
-                    n = int(row.get("n_dots", "").strip())
-                except Exception:
-                    continue
-                for key in (row.get("sha256", ""), row.get("sha256_zeros", ""), row.get("id", "")):
-                    if key:
-                        ledger[key.strip()] = n
-                        # also map sha8 for short-id lookups
-                        if len(key.strip()) == 8:
-                            ledger[key.strip()] = n
-    for f in files:
+    man = json.loads((ROOT / "releases" / "MANIFEST.json").read_text())
+    assert man["files"], "manifest lists no releases"
+    for entry in man["files"]:
+        f = ROOT / "releases" / entry["file"]
+        assert f.is_file(), f"{f.name} listed in the manifest but not built"
         enc = "zeros" if f.name.endswith("-zeros.tif") else "nan"
-        # Try ledger lookup by file stem sha8 or full sha; fall back to parent count.
-        sha = None
-        try:
-            sha = io.sha256_file(f)
-        except Exception:
-            pass
-        # Extract sha8 from filename: last dash segment before extension
-        stem = f.stem.replace("-zeros", "")
-        sha8 = stem.split("-")[-1] if "-" in stem else ""
-        expect = ledger.get(sha) or ledger.get(sha8) or ledger.get(stem) or 37654
-        # For PRUNE delete-only variants the ledger n_dots is intentionally < 37654;
-        # use it if present, otherwise accept any n_dots that respects the 1-50% rule.
         rep = gates.validate_release(f, template=TEMPLATE, catalogue=cat, encoding=enc,
-                                     expect_dots=expect)
-        if not rep["PASS"] and "count_matches_parent" in rep["failed"]:
-            # Fallback: count_matches_parent is not a MUST gate for delete-only PRUNE
-            # (brief §5 allows 1-50% of dots to change, mass not fixed). Verify the
-            # file still respects the 1-50% band when compared to ledger or parent.
-            n_dots = rep.get("n_dots")
-            pct = abs(n_dots - 37654) / 37654 * 100 if isinstance(n_dots, int) else 0
-            assert 1.0 <= pct <= 50.0 or n_dots == 37654, (f.name, rep["failed"], f"pct {pct}")
-            # Re-check without expect_dots: all other gates must pass.
-            rep2 = gates.validate_release(f, template=TEMPLATE, catalogue=cat, encoding=enc)
-            assert rep2["PASS"], (f.name, rep2["failed"])
-        else:
-            assert rep["PASS"], (f.name, rep["failed"])
+                                     expect_dots=entry["n_dots"])
+        assert rep["PASS"], (f.name, rep["failed"])
         assert rep["min_catalogue_distance_px"] > 2.0
