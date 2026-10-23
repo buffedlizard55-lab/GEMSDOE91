@@ -22,7 +22,19 @@ No script here submits anything. One entity, three scored slots a week, one fina
   | **PRUNE** (delete-only ladder + refill-held arms) | `le4` / `le5` / `le10` (and earlier `le3` / `le8` / `le15`); `p2.5` / `p2.9` / `p4.5px-h19cover` | +0.003 / +0.005 / **+0.008** (le15 +0.010); +0.002 / +0.004 / −0.015 |
   | **MASS** (cross-field-support ranking, this session) | `cons1drop` 12.06 % / `cons2drop` 28.53 % / `cons3add` 10.00 % | −0.000 / −0.015 / **+0.009** |
 
-- **Ledger:** **38 BUILT rows**, 0 SUBMITTED, 0 receipts. Every sha256 and every
+- **Fifth session (`arena/086eff6b`, PRUNE top-of-band):** the 42-50 % region of the brief's
+  1-50 % band was the only unmapped part of the ladder, so three delete-only rungs were built
+  there - `PRUNEle16norefill` 21,279 dots / 43.49 % (**+0.012** MODEL), `PRUNEle18norefill`
+  19,863 / 47.25 % (**+0.013**), `PRUNEle19norefill` 19,204 / 49.00 % (**+0.014**); `le19` is
+  the band limit (le20 = 50.80 %). 14/14 gates PASS on both validators. Two findings change
+  decisions: **IR-91-25** - the PROXY recorded for the PRUNE family is *structurally zero*
+  (a finished PRUNE child can never land credit on a withheld catalogue cell), and on the
+  correct rebuild-based instrument the ladder is monotone and **still rising at the band
+  limit** (R0 .004703 -> le3 .004756 -> le8 .004914 -> le15 .005019 -> le16 .005040 -> le18
+  .005057 -> le19 .005083); **IR-91-26** - the leakage canary fires above the 0.90 stop rule
+  on `le4` (0.9532) and `le5` (0.9290), so those two are investigate-before-submitting,
+  while the three rungs above sit at 0.757-0.785.
+- **Ledger:** **41 BUILT rows**, 0 SUBMITTED, 0 receipts. Every sha256 and every
   (parent, axis, value) pair is unique. Live |Δ| < 0.01 is **no evidence**.
 - **Next 3 slots — one receipt per axis** (full reasoning in `SLOT_PLAN.md`):
   1) `CONCENTRATIONgdr25rm10` (`c19adb01`, +0.0123 MODEL) — highest prediction, external prior;

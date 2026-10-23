@@ -4,17 +4,29 @@
 PRUNE delete-only at fixed thresholds; count not held, to isolate denominator saving.
 Uses axes.prune directly; ranks not needed.
 
-Thresholds chosen to be novel vs ledger (le3, le8, le15 already exist):
- le4  (3825 dots, 10.16%)
- le5  (5637 dots, 14.97%)
- le10 (11360 dots, 30.17%)
+Thresholds chosen to be novel vs the ledger. As of 2026-10-23 the ladder holds
+le3/le4/le5/le8/le10/le15 (delete-only) plus the refill-held p1px/p3px/p4px/prune3
+rows, so the 42-50% region of the brief's 1-50% band is UNMAPPED. This session adds
+the three top-of-band rungs:
+
+ le16 (16375 dots, 43.49%)
+ le18 (17791 dots, 47.25%)
+ le19 (18450 dots, 49.00%)  <- the largest dose the brief's 1-50% rule allows
 
 Each changes 1-50% as required.
 
 Outputs:
  - releases/<id>.tif and <id>-zeros.tif (NaN and zeros twins)
- - ledger rows appended
- - evidence JSON for proxy etc.
+ - ledger rows appended (columns preserved; never drops another session's column)
+ - evidence JSON: gates, rebuild-based hide-and-recover PROXY, removal-side canary
+
+PROXY instrument note (IR-91-17): gems91.proxy.hide_and_recover scores a child
+that was built WITH the whole catalogue against cells withheld from that same
+catalogue. For a PRUNE child that is structurally zero by construction (every
+surviving dot is farther than the collar from every catalogue cell, withheld or
+not), so it carries no information about the PRUNE family. The instrument used
+here rebuilds each dose against the REDUCED catalogue and scores the withheld
+cells, which is what scripts/proxy.py was written to do.
 """
 
 import datetime as dt
@@ -50,14 +62,30 @@ PARENT_ID = "h33-h33-2-b2"
 DATE = dt.date.today().isoformat().replace("-", "")  # yyyymmdd
 DATE_ISO = dt.date.today().isoformat()
 
-# thresholds: (value_str, max_px, predicted_change, predicted_range, notes)
-# predicted bands derived from mechanism cards logic: per zero-credit dot ~ +0.0000006 at mid den, so le4 +0.003 etc.
+# MODEL prediction rule (stated so it can be attacked; see docs/MECHANISM_CARDS.md):
+#   per removed dot, delta_DTI ~ +r, calibrated on the ladder's own existing rows
+#   (le4/le5/le10/le15 => r = 6.4e-7 .. 8.9e-7 per dot; central r = 7.5e-7).
+#   band low  = 0.000 (no dot in the halo carries new-fault credit, but no gain either)
+#   band high = r_hi = 1.8e-6 per dot, the DTI-algebra ceiling for a dot with zero
+#               truth credit: dDTI = 0.2*DTI^2*(1-m)/T with DTI=0.2778 and the
+#               T ~ 8.7e3 implied by the live 0.2778 CLAIM at |G| ~ 3e4, M ~ 1e4.
+R_MID, R_HI = 7.5e-7, 1.8e-6
 VARIANTS = [
-    # (axis value label, max_px, pred, range, ranking_basis)
+    # (axis value label, max_px, predicted_change, predicted_range, ranking_basis)
     ("le4-norefill", 4.0, "+0.003", "[-0.003,+0.009]", "none - delete-only, distance to catalogue"),
     ("le5-norefill", 5.0, "+0.005", "[-0.004,+0.013]", "none - delete-only, distance to catalogue"),
     ("le10-norefill", 10.0, "+0.008", "[-0.006,+0.019]", "none - delete-only, distance to catalogue"),
+    # --- session 2026-10-23 (arena/086eff6b): the unmapped 42-50% region ---
+    ("le16norefill", 16.0, "+0.012", "[+0.000,+0.029]",
+     "none - delete-only, distance to catalogue; r=7.5e-7/dot central, 1.8e-6 ceiling"),
+    ("le18norefill", 18.0, "+0.013", "[+0.000,+0.032]",
+     "none - delete-only, distance to catalogue; r=7.5e-7/dot central, 1.8e-6 ceiling"),
+    ("le19norefill", 19.0, "+0.014", "[+0.000,+0.033]",
+     "none - delete-only, distance to catalogue; largest dose inside the 1-50% band"),
 ]
+# Rebuild-based hide-and-recover PROXY doses (scripts/proxy.py design). Includes the
+# rows already in the ledger so the whole ladder is measured on one instrument.
+PROXY_DOSES = [3, 8, 15, 16, 18, 19]
 
 def sha256_file(p: Path) -> str:
     h = hashlib.sha256()
@@ -65,6 +93,99 @@ def sha256_file(p: Path) -> str:
         for chunk in iter(lambda: fh.read(1<<20), b""):
             h.update(chunk)
     return h.hexdigest()
+
+# ---------------------------------------------------------------- PROXY helpers
+def fold_masks(shape, catalogue, n_folds=4, block=8):
+    """Spatially blocked folds of the catalogue (scripts/proxy.py design).
+
+    Withholding a contiguous block means the pruner is never shown those cells, so
+    they stand in for new-fault truth. Deterministic: no RNG anywhere.
+    """
+    h, w = shape
+    yy, xx = np.mgrid[0:h, 0:w]
+    by = (yy // (100 * block)) % 2
+    bx = (xx // (100 * block)) % 2
+    quad = by * 2 + bx
+    ys, xs = np.nonzero(catalogue > 0)
+    folds = []
+    for f in range(n_folds):
+        mask = np.zeros(shape, dtype=bool)
+        sel = quad[ys, xs] % n_folds == f
+        mask[ys[sel], xs[sel]] = True
+        folds.append(mask)
+    return folds
+
+
+def rebuild_proxy(parent, ref, cat, doses, n_folds=4):
+    """REPORT-ONLY hide-and-recover DTI for every dose, on one instrument.
+
+    For each fold: hide a blocked share of the catalogue, REBUILD the pruned child
+    from the reduced catalogue, and score it against the withheld cells with the
+    exact DTI. R0 is scored the same way, as-is, for a baseline.
+
+    This is the instrument that actually moves for the PRUNE family. The alternative
+    (gems91.proxy.hide_and_recover on the finished child) is identically zero for a
+    PRUNE child - see IR-91-17 - so it is recorded alongside, not instead.
+    """
+    sys.path.insert(0, str(ROOT / "src"))
+    from gems91 import metric as M
+    parent_clean = np.nan_to_num(np.where(np.isfinite(parent), parent, 0.0), nan=0.0)
+    folds = fold_masks(parent.shape, cat)
+    out = {"R0_as_is": [], "n_withheld_per_fold": [int(f.sum()) for f in folds]}
+    for d in doses:
+        out[f"le{int(d)}"] = []
+    for held in folds:
+        if not held.any():
+            continue
+        truth = held.astype(np.uint8)
+        cat_train = np.where(held, 0, cat > 0).astype(np.uint8)
+        out["R0_as_is"].append(M.dti(parent_clean, truth))
+        for d in doses:
+            child = A.prune(parent, ref, cat_train, None, float(d), refill=False).array
+            child_clean = np.nan_to_num(np.where(np.isfinite(child), child, 0.0), nan=0.0)
+            out[f"le{int(d)}"].append(M.dti(child_clean, truth))
+    summary = {}
+    for k, vals in out.items():
+        if not isinstance(vals, list) or not vals:
+            continue
+        arr = np.array(vals, dtype=float)
+        summary[k] = {"mean": float(arr.mean()), "folds": [round(float(x), 6) for x in arr]}
+    summary["n_withheld_per_fold"] = out["n_withheld_per_fold"]
+    summary["delta_vs_R0"] = {k: round(v["mean"] - summary["R0_as_is"]["mean"], 8)
+                              for k, v in summary.items()
+                              if isinstance(v, dict) and "mean" in v and k != "R0_as_is"}
+    return summary
+
+
+def removal_canary(parent_dots, child_dots, cat, draws=3, hold_frac=0.2, block=10, seed=7):
+    """REPORT-ONLY leakage canary for a delete-only edit.
+
+    The brief's canary asks whether the edit is target-proximal by construction.
+    For a deletion the edited dots are the REMOVED ones, so the test is: does
+    "was removed" predict "sits within the kernel radius of a WITHHELD catalogue
+    cell"? A high AUC means the fold structure is spatially confounded with the
+    catalogue and the PROXY above is leaking, not measuring.
+    """
+    from scipy.spatial import cKDTree
+    from gems91.proxy import _auc
+    removed = parent_dots & ~child_dots
+    ys, xs = np.nonzero(parent_dots)
+    pts = np.c_[ys, xs]
+    lab = removed[ys, xs]
+    cys, cxs = np.nonzero(cat > 0)
+    cpts = np.c_[cys, cxs]
+    bid = (cys // block) * 100_000 + (cxs // block)
+    rng = np.random.default_rng(seed)
+    uniq = np.unique(bid)
+    vals = []
+    for _ in range(draws):
+        take = rng.permutation(uniq)[: max(1, int(hold_frac * len(uniq)))]
+        hp = cpts[np.isin(bid, take)]
+        dmin, _ = cKDTree(hp.astype(np.float64)).query(pts.astype(np.float64), k=1,
+                                                      distance_upper_bound=3.0)
+        vals.append(_auc(lab.astype(float), np.isfinite(dmin).astype(float)))
+    return {"canary_auc_removed_vs_withheld": round(float(np.mean(vals)), 4), "draws": draws,
+            "stop_rule": "AUC > 0.90 means the PROXY folds are confounded with the catalogue; investigate before using it"}
 
 def main():
     # verify parent
@@ -113,8 +234,18 @@ def main():
             if r.get(k):
                 existing_hashes.add(r[k].strip())
 
+    # REPORT-ONLY: rebuild-based hide-and-recover DTI for the whole ladder on one
+    # instrument (existing rows included, so the dose-response is comparable).
+    PROXY_TABLE = rebuild_proxy(parent_arr, ref_arr, cat, PROXY_DOSES)
+    print("\nREPORT-ONLY rebuild-based hide-and-recover PROXY (not a score):")
+    for k, v in PROXY_TABLE.items():
+        if isinstance(v, dict) and "mean" in v:
+            print(f"  {k:<10} mean={v['mean']:.6f}")
+    print(f"  delta vs R0: {PROXY_TABLE.get('delta_vs_R0')}")
+
     new_rows = []
-    evidence = {"generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(), "parent": PARENT_ID, "variants": {}}
+    evidence = {"generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(), "parent": PARENT_ID,
+                "proxy_rebuild_based_ladder": PROXY_TABLE, "variants": {}}
 
     for value_str, max_px, pred, pred_range, ranking_basis in VARIANTS:
         print(f"\n=== building PRUNE {value_str} max_px={max_px} ===")
@@ -154,12 +285,23 @@ def main():
         sha_nan = sha256_file(tmp_nan)
         sha_zeros = sha256_file(tmp_zeros)
         sha8 = sha_nan[:8]
-        final_id = f"{PARENT_ID}-PRUNE-{value_str}-{DATE}-{sha8}"
+        # The id carries a date, so a rebuild on a LATER day would mint new names and
+        # break the releases/MANIFEST.json byte-identity gate. If the ledger already
+        # records this (parent, axis, value) with the same bytes, reuse its id.
+        recorded = ledger_by_value.get((PARENT_ID, "PRUNE", value_str))
+        if recorded and recorded.get("sha256") and recorded["sha256"] != sha_nan:
+            print(f"FAIL: {value_str} rebuild sha {sha_nan[:12]} != ledger {recorded['sha256'][:12]}")
+            sys.exit(1)
+        if recorded and recorded.get("id"):
+            final_id = recorded["id"]
+            print(f"  reusing recorded id {final_id} (rebuild is date-independent)")
+        else:
+            final_id = f"{PARENT_ID}-PRUNE-{value_str}-{DATE}-{sha8}"
         final_nan = RELEASES / f"{final_id}.tif"
         final_zeros = RELEASES / f"{final_id}-zeros.tif"
         # Idempotent rebuild: if this exact file already exists in ledger/manifest,
         # verify byte-identity instead of failing on hash collision.
-        existing_for_value = ledger_by_value.get((PARENT_ID, "PRUNE", value_str))
+        existing_for_value = recorded
         if existing_for_value and existing_for_value.get("sha256") == sha_nan:
             # Already built; ensure on-disk file matches (or move tmp into place)
             if final_nan.exists():
@@ -200,28 +342,18 @@ def main():
         # But we use separate logic: allow_zeros_outside makes that gate non-must
         print("zeros", rep_zeros.text())
         # we don't require zeros PASS for ledger, but we check catalogue mass etc.
-        # run proxy instruments (report only)
+        # ---- REPORT-ONLY instruments (never gates) --------------------------
         footprint = np.isfinite(ref_arr)
-        cat_for_proxy = cat_bool
-        # proxy hide-and-recover
-        prox = proxy.hide_and_recover(out_dots, cat_for_proxy, footprint)
+        # (a) the child-as-built proxy: structurally ZERO for a PRUNE child (IR-91-17).
+        #     Kept in the evidence so the zero is visible and explained, not silent.
+        prox_as_built = proxy.hide_and_recover(out_dots, cat_bool, footprint)
+        # (b) the rebuild-based proxy: the instrument that actually moves.
+        prox = PROXY_TABLE.get(f"le{int(max_px)}", {})
+        # (c) removal-side leakage canary
+        canary = removal_canary(parent_dots, out_dots, cat_bool)
         redund = proxy.redundancy(out_dots)
         cv = proxy.block_density_cv(out_dots, footprint, 10)
         uni = proxy.uniform_truth_credit(out_dots, footprint)
-        # canary: moved indicator
-        moved_indicator = parent_dots ^ out_dots  # dots that changed (but PRUNE is deletion, so parent & ~child)
-        # For prune, moved = removed dots? Use out_dots vs parent_dots difference
-        # canary expects moved mask shape same as dot, but we use removed dots as "moved"
-        # Proxy canary uses moved indicator vs withheld catalogue credit
-        # We'll compute canary as in spacing: moved = dots that are in child but not parent plus vice versa?
-        # For delete-only, new dots = 0, removed = parent & ~child
-        # So moved = parent & ~child (the removed set) as moved indicator? But canary expects moved dots in child?
-        # Use child dots for canary? Let's just compute canary on child vs catalogue
-        # We'll create moved mask as removed dots in parent coordinates mapped to child? Simpler: use out_dots & ~parent_dots (added) plus parent_dots & ~out_dots (removed) as moved boolean in footprint shape? But canary function expects moved boolean in same shape as dot, with same coords as dot.
-        # For prune delete-only, there are no added dots, so moved in child is empty, not useful. So we compute canary on the set of removed dots vs remaining?
-        # We'll just compute canary as AUC of removed vs not-removed among parent dots? But proxy.canary expects moved indicator in dot shape.
-        # We'll skip canary for prune and set 0.5
-        canary = {"canary_auc": 0.5, "note": "PRUNE delete-only has no moved dots in child; canary not applicable"}
 
         evidence["variants"][value_str] = {
             "id": final_id,
@@ -232,7 +364,8 @@ def main():
             "sha8": sha8,
             "gates_nan": {g.name: g.ok for g in rep.gates},
             "gates_text": rep.text(),
-            "proxy": prox,
+            "proxy_as_built_structurally_zero": prox_as_built,
+            "proxy_rebuild_based": prox,
             "redundancy": redund,
             "block_cv_1km": cv,
             "uniform_truth": uni,
@@ -283,23 +416,31 @@ def main():
             fieldnames = reader.fieldnames
             existing = list(reader)
         print(f"fieldnames {fieldnames}")
-        # Ensure all new rows have all fieldnames
+        # Idempotent append: a row whose (parent, axis, value) or sha256 is already in
+        # the ledger is bookkeeping that exists, not a new slot. Skipping it is what
+        # lets CI re-run this builder on a fresh checkout without duplicating rows
+        # (the byte-identity check above is what actually proves the rebuild).
+        seen_pairs = {(r.get("parent"), r.get("axis"), r.get("value")) for r in existing}
+        seen_sha = {r.get("sha256") for r in existing} | {r.get("sha256_zeros") for r in existing}
+        to_append = []
         for r in new_rows:
             for fn in fieldnames:
                 if fn not in r:
                     r[fn] = ""
-            # check duplicate
-            if r["sha256"] in existing_hashes:
-                raise SystemExit(f"hash dup {r['sha256']}")
+            key = (r["parent"], r["axis"], r["value"])
+            if key in seen_pairs or r["sha256"] in seen_sha:
+                print(f"  ledger: {r['id']} already recorded - not appending")
+                continue
+            to_append.append(r)
         # write back
         with open(LEDGER, "w", newline="", encoding="utf-8") as fh:
             w = csv.DictWriter(fh, fieldnames=fieldnames, extrasaction="ignore", lineterminator="\n")
             w.writeheader()
             for r in existing:
                 w.writerow({k: r.get(k,"") for k in fieldnames})
-            for r in new_rows:
+            for r in to_append:
                 w.writerow({k: r.get(k,"") for k in fieldnames})
-        print(f"ledger appended {len(new_rows)} rows to {LEDGER}")
+        print(f"ledger appended {len(to_append)} new rows to {LEDGER}")
 
     # write evidence json
     evidence_path = ROOT / "evidence" / f"prune_ladder_{DATE}.json"

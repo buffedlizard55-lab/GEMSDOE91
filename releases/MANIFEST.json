@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T21:35:41.660569+00:00",
-  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build && python3 scripts/build_prune_ladder.py --build && python3 scripts/build_concentration.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
-  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "generated_utc": "2026-10-23T22:15:23.859898+00:00",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with python3 scripts/restore_data.py && python3 scripts/build_prune_ladder.py and every sha256 below must reappear byte for byte.",
+  "parent": "h33-h33-2-b2",
   "files": [
     {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815-zeros.tif",
@@ -73,6 +73,36 @@
       "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif",
       "sha256": "04002dae86db72c3fc47652bd66e3ec029e432c909cad779039e9e3749ae0839",
       "bytes": 321924
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le16norefill-20261023-d98fe63e-zeros.tif",
+      "sha256": "50191db4128c26c81c47c0ac077c0d4c19c85b2a78c235a82b824a281bde6501",
+      "bytes": 151467
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le16norefill-20261023-d98fe63e.tif",
+      "sha256": "d98fe63ee12e1e9fcc960dae6208adc72d2fe5bbff964465aa03923073569670",
+      "bytes": 298216
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le18norefill-20261023-f417474d-zeros.tif",
+      "sha256": "db282d57efe1a715a6c218eafc36a4a79204c144f17f5e9304ec3fb5a8073d1d",
+      "bytes": 144819
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le18norefill-20261023-f417474d.tif",
+      "sha256": "f417474d946acc78896a055a43aad227f03a21545eba974683e4df28a235a71f",
+      "bytes": 291606
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le19norefill-20261023-78dadd57-zeros.tif",
+      "sha256": "77eb721bbe2ca1ef0c561d6221ec637aac3bc69557773271dba3df5b63d1ac82",
+      "bytes": 141725
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le19norefill-20261023-78dadd57.tif",
+      "sha256": "78dadd576643974e11d79310d83e385a5eb512cd80c7b9582e2f03c7fc0d8fe6",
+      "bytes": 288385
     },
     {
       "file": "h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e-zeros.tif",

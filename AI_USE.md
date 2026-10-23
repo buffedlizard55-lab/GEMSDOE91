@@ -357,3 +357,35 @@ MODEL or PROXY number is a score.
 
 **Still decided by the human:** the receipt for each slot, `TOP_PUBLIC` with its date, the weekly
 slot count, the deadline confirmation, the collar ruling (IR-91-03), and the blind final pick.
+
+## Session 4 (`arena/086eff6b`, 2026-10-23) — PRUNE top-of-band rungs
+
+**What the AI wrote.** `scripts/build_prune_ladder.py` was extended (three new doses, the
+rebuild-based PROXY, the removal-side canary, date-independent ids); three rasters and their
+zeros twins were built and gated; `ledger/submissions.csv` gained three rows; `IRREGULARITIES.md`
+gained IR-91-25…IR-91-28; `docs/MECHANISM_CARDS.md` gained cards 4–6; `SLOT_PLAN.md`,
+`docs/SUBMIT.md` and the README CURRENT STATE block were rewritten. No site redesign.
+
+**What the AI decided, and why.**
+1. **Axis = PRUNE.** The human did not assign one. PRUNE was the only axis whose inputs are all
+   pinned *and* hash-verified here (`sample_submission`, `parent_r0_nan`, `existing_faults`);
+   MASS/CONCENTRATION/SNAP/TRACKB are blocked on the absent `training_features.tif`; RELIEF is
+   input-ready through a lidar layer whose licence is unchecked (constraint 3) and whose tercile
+   mechanism is the weakest on the board.
+2. **Doses = le16 / le18 / le19.** The ledger already held le3/le4/le5/le8/le10/le15, so these
+   are the only rungs inside the brief's 1–50 % band that add information; `le19` is the band
+   limit (le20 = 50.80 %).
+3. **Delete-only, no refill.** The brief asks for a refill to hold the count; the parent's own
+   ranking was never stored, so any refill would be arbitrary (IR-91-11).
+4. **The previous session's PROXY was thrown away and re-measured** (IR-91-25) rather than
+   quoted: it is identically zero for a finished PRUNE child.
+
+**What the AI did not do.** No submission, no login, no leaderboard access, no contact with
+drivendata.org or dropbox.com, no credentials read or stored, no label probing, no claim that any
+number here is a score. Every quoted figure is RECEIPT / CLAIM / PROXY / MODEL; there is still no
+receipt in this repository.
+
+**Human decisions still open.** Fill `TOP_PUBLIC` (with date) and this week's slot count; paste
+R0's receipt for 0.2778; confirm the deadline; rule on IR-91-09 (public mirrors of competition
+rasters), IR-91-26 (`le4`/`le5` canary) and the lidar licence; choose the slots and the blind
+final file.

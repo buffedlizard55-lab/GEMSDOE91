@@ -525,3 +525,70 @@ coverage cost (88.6 % → 80.2 %) and a −0.022 prediction floor. What still st
 they move 10 % of mass into the hottest 2.5 km blocks, which raises block-density CV further above
 the 0.51–0.59 band R0 already sits in (0.531), so the mechanism they test is *prior transfer*, not
 the CV statistic that originally motivated the axis. Do not describe them as a CV fix.
+
+# Session 4 additions (2026-10-23, `arena/086eff6b`) — PRUNE top-of-band rungs
+
+## IR-91-25 — the PROXY used by the previous session is structurally zero for PRUNE
+
+`src/gems91/proxy.py::hide_and_recover` scores a **finished** child against cells
+withheld from the catalogue the child was built with. For any PRUNE child that is
+zero by construction: every surviving dot is farther than the collar from *every*
+catalogue cell, withheld or not, so no dot can land kernel credit on a withheld
+cell. Measured here: R0 = 0.006186, `le4`/`le5`/`le10` = **0.000000** exactly
+(`evidence/prune_ladder_20261023.json`, key `proxy_as_built_structurally_zero`).
+The proxy column in the previous session's `evidence/prune_ladder_20261023.json`
+therefore carried **no information**; its `predicted_change` values were not
+derived from it.
+
+**Decision it changes.** This session measures the ladder on the instrument
+`scripts/proxy.py` was written for — rebuild each dose against the *reduced*
+catalogue, then score the withheld cells with the exact DTI. On that instrument
+the ladder is monotone and still rising at the top of the band
+(R0 0.004703 → le3 0.004756 → le8 0.004914 → le15 0.005019 → le16 0.005040 →
+le18 0.005057 → le19 0.005083; +3.80e-4 for le19 vs R0). REPORT-ONLY, never a
+gate: the R0 baseline here (0.004703) is not bit-identical to the earlier run's
+(0.004654), so cross-run comparisons of the absolute value are not valid.
+
+## IR-91-26 — the leakage canary fires above 0.90 on the two smallest PRUNE doses
+
+The brief's canary asks whether the edit is target-proximal by construction. For
+a deletion the edited dots are the **removed** ones, so this session implements it
+as AUC("was removed" vs "within 3 px of a *withheld* catalogue cell"). Results:
+`le4` **0.9532**, `le5` **0.9290** (both above the 0.90 stop rule), `le10` 0.8523,
+`le16` 0.7851, `le18` 0.7661, `le19` 0.7573.
+
+**Investigation.** The builder never sees the withheld cells — the child is
+rebuilt from the reduced catalogue — so this is not the edit reading held-out
+truth. It is a property of the fold construction: withheld blocks are a ~20 %
+spatial subsample of the catalogue, and a dot removed by a *small* collar is
+adjacent to catalogue cells by definition, so "removed" and "near a withheld
+cell" are both consequences of "near the catalogue". The correlation decays as the
+collar widens (the removed set stops being collar-adjacent), which is why only the
+two smallest doses trip it.
+
+**Decision it changes.** `le4`/`le5` (built by the previous session) are flagged
+**investigate-before-submitting**: if either is spent on a slot, read its receipt
+as confounded by collar proximity, not as a clean dose measurement. The three
+rungs built here sit below the threshold. The canary is REPORT-ONLY and is not a
+build gate.
+
+## IR-91-27 — `scripts/ledger.py`'s column list would silently drop four ledger columns
+
+`scripts/ledger.py` defines a 17-column `COLUMNS`, but `ledger/submissions.csv`
+has 21 (`pct_relocated`, `sha8`, `form_note`, `evidence_class`, `date`,
+`source_url` are not in it). `cmd_add`/`write_rows` use
+`extrasaction="ignore"`, so any `ledger.py add` rewrites the file and **loses the
+other sessions' columns**. Not triggered this session (the builder appends with
+the file's own fieldnames), but it is a live footgun.
+
+**Decision it changes.** Do not use `scripts/ledger.py add` until `COLUMNS` is
+derived from the file header. `scripts/ledger.py state|check` are safe.
+
+## IR-91-28 — date-stamped release ids broke rebuild idempotency (fixed here)
+
+`scripts/build_prune_ladder.py` minted ids from `date.today()`, so a CI run on any
+later day would rebuild byte-identical rasters under **new names**, and the
+`releases/MANIFEST.json` byte-identity gate would fail on missing files. Fixed by
+reusing the id already recorded in the ledger for that (parent, axis, value) when
+the rebuilt sha256 matches; a mismatch is a hard stop. Verified: a second run
+reproduces all 18 manifest entries byte for byte.

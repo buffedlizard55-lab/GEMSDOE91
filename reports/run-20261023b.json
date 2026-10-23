@@ -1,0 +1,148 @@
+{
+  "session": "2026-10-23",
+  "git_sha": "3362ec7e35efd088a0c139ee211a47dfd5a098fd",
+  "git_branch": "arena/086eff6b-gemsdoe91",
+  "axis": "PRUNE",
+  "value": "le16norefill / le18norefill / le19norefill (delete-only, no refill)",
+  "seed": "n/a - PRUNE is deterministic, no sampling",
+  "inputs": {
+    "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "parent_r0_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_r0_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "catalogue_mask": "c97c7819c7fc8ed1632c9d82e0dddbeb1b8dd029a5d6f7a6918d399ae55ab4c4"
+  },
+  "code": {
+    "scripts/build_prune_ladder.py": "ec69d9ad22cf6f51baf2f0d02a227a9f52ce285c04c77db2003d6975ecd9da9f",
+    "scripts/axes.py": "587d6a824435dd7284ba936135d1ae70cf90d996feda60f6af1da091f0517268",
+    "scripts/validate_raster.py": "438196998b3862fc798d85799269d6a37044ae1645634bb9160fca8d26c7573a",
+    "scripts/make_catalogue.py": "06fe2a02d0a107ac57d3bf980b099d3925be184cd0f12997860b8521098f73fa",
+    "scripts/restore_data.py": "4a0e7b31b2c2bd3bcf9c3829469d079ba3305ba04a6f66d9b555195e476826e8",
+    "scripts/build_spacing.py": "93dd2abce2bf37ea6f011772239200fa4d2b03dc2cdce0f47d0ab4b454055ac0"
+  },
+  "parent_forensics": {
+    "R0_dots": 37654,
+    "min_catalogue_distance_px": 2.236068,
+    "dots_on_catalogue": 0,
+    "dot_set_reproduced_from": [
+      "d2.8 (44090)",
+      "solo_d2.8 (40199)"
+    ]
+  },
+  "variants": [
+    {
+      "id": "h33-h33-2-b2-PRUNE-le16norefill-20261023-d98fe63e",
+      "value": "le16norefill",
+      "n_dots": "21279",
+      "pct_changed": "43.49",
+      "sha256": "d98fe63ee12e1e9fcc960dae6208adc72d2fe5bbff964465aa03923073569670",
+      "sha256_zeros": "50191db4128c26c81c47c0ac077c0d4c19c85b2a78c235a82b824a281bde6501",
+      "predicted_change": "MODEL:+0.012",
+      "predicted_range": "[+0.000,+0.029]"
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNE-le18norefill-20261023-f417474d",
+      "value": "le18norefill",
+      "n_dots": "19863",
+      "pct_changed": "47.25",
+      "sha256": "f417474d946acc78896a055a43aad227f03a21545eba974683e4df28a235a71f",
+      "sha256_zeros": "db282d57efe1a715a6c218eafc36a4a79204c144f17f5e9304ec3fb5a8073d1d",
+      "predicted_change": "MODEL:+0.013",
+      "predicted_range": "[+0.000,+0.032]"
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNE-le19norefill-20261023-78dadd57",
+      "value": "le19norefill",
+      "n_dots": "19204",
+      "pct_changed": "49.0",
+      "sha256": "78dadd576643974e11d79310d83e385a5eb512cd80c7b9582e2f03c7fc0d8fe6",
+      "sha256_zeros": "77eb721bbe2ca1ef0c561d6221ec637aac3bc69557773271dba3df5b63d1ac82",
+      "predicted_change": "MODEL:+0.014",
+      "predicted_range": "[+0.000,+0.033]"
+    }
+  ],
+  "proxy_rebuild_based_ladder": {
+    "R0_as_is": {
+      "mean": 0.004703187374732384,
+      "folds": [
+        0.005704,
+        0.006714,
+        0.003223,
+        0.003172
+      ]
+    },
+    "n_withheld_per_fold": [
+      16844,
+      17873,
+      14311,
+      11960
+    ],
+    "le3": {
+      "mean": 0.004755997262123444,
+      "folds": [
+        0.005748,
+        0.006765,
+        0.003267,
+        0.003244
+      ]
+    },
+    "le8": {
+      "mean": 0.004913956152613885,
+      "folds": [
+        0.005913,
+        0.007007,
+        0.003359,
+        0.003377
+      ]
+    },
+    "le15": {
+      "mean": 0.005019230531049602,
+      "folds": [
+        0.005918,
+        0.007213,
+        0.003312,
+        0.003634
+      ]
+    },
+    "le16": {
+      "mean": 0.005040291930256348,
+      "folds": [
+        0.005951,
+        0.007248,
+        0.003315,
+        0.003647
+      ]
+    },
+    "le18": {
+      "mean": 0.005056846135087032,
+      "folds": [
+        0.005923,
+        0.007267,
+        0.003327,
+        0.003711
+      ]
+    },
+    "le19": {
+      "mean": 0.005083379058468309,
+      "folds": [
+        0.005948,
+        0.007296,
+        0.00335,
+        0.00374
+      ]
+    },
+    "delta_vs_R0": {
+      "le3": 5.281e-05,
+      "le8": 0.00021077,
+      "le15": 0.00031604,
+      "le16": 0.0003371,
+      "le18": 0.00035366,
+      "le19": 0.00038019
+    }
+  },
+  "notes": [
+    "IR-91-17: the PROXY the previous session recorded for the PRUNE family is structurally zero; re-measured on the rebuild-based instrument.",
+    "IR-91-18: removal-side leakage canary AUC 0.9532 (le4) and 0.9290 (le5) exceed the 0.90 stop rule; le16/le18/le19 are 0.785/0.766/0.757.",
+    "IR-91-20: release ids are now reused from the ledger so a later-day rebuild stays byte-identical."
+  ]
+}

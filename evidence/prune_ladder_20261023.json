@@ -1,6 +1,85 @@
 {
-  "generated_utc": "2026-10-23T21:35:26.760328+00:00",
+  "generated_utc": "2026-10-23T22:14:53.924365+00:00",
   "parent": "h33-h33-2-b2",
+  "proxy_rebuild_based_ladder": {
+    "R0_as_is": {
+      "mean": 0.004703187374732384,
+      "folds": [
+        0.005704,
+        0.006714,
+        0.003223,
+        0.003172
+      ]
+    },
+    "n_withheld_per_fold": [
+      16844,
+      17873,
+      14311,
+      11960
+    ],
+    "le3": {
+      "mean": 0.004755997262123444,
+      "folds": [
+        0.005748,
+        0.006765,
+        0.003267,
+        0.003244
+      ]
+    },
+    "le8": {
+      "mean": 0.004913956152613885,
+      "folds": [
+        0.005913,
+        0.007007,
+        0.003359,
+        0.003377
+      ]
+    },
+    "le15": {
+      "mean": 0.005019230531049602,
+      "folds": [
+        0.005918,
+        0.007213,
+        0.003312,
+        0.003634
+      ]
+    },
+    "le16": {
+      "mean": 0.005040291930256348,
+      "folds": [
+        0.005951,
+        0.007248,
+        0.003315,
+        0.003647
+      ]
+    },
+    "le18": {
+      "mean": 0.005056846135087032,
+      "folds": [
+        0.005923,
+        0.007267,
+        0.003327,
+        0.003711
+      ]
+    },
+    "le19": {
+      "mean": 0.005083379058468309,
+      "folds": [
+        0.005948,
+        0.007296,
+        0.00335,
+        0.00374
+      ]
+    },
+    "delta_vs_R0": {
+      "le3": 5.281e-05,
+      "le8": 0.00021077,
+      "le15": 0.00031604,
+      "le16": 0.0003371,
+      "le18": 0.00035366,
+      "le19": 0.00038019
+    }
+  },
   "variants": {
     "le4-norefill": {
       "id": "h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e",
@@ -34,15 +113,34 @@
         "sha256": true
       },
       "gates_text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=360fe57edd82\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=33829.0 over 33829 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=360fe57edd8286393a180f0ae53c8259899c4344e5bc7f4c4ec20dcdf28530a7 new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 3825 pixels changed (10.16% of parent dots), parent dots=37654 child dots=33829, mass 37654.0 -> 33829.0\n[PASS] sha256: 360fe57edd8286393a180f0ae53c8259899c4344e5bc7f4c4ec20dcdf28530a7",
-      "proxy": {
+      "proxy_as_built_structurally_zero": {
         "proxy_mean_credit": 0.0,
         "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
         "proxy_coverage": 0.0,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       },
+      "proxy_rebuild_based": {},
       "redundancy": {
         "dots_with_neighbour_lt_2p83px": 10079,
         "dots_with_neighbour_lt_2px": 0,
@@ -55,8 +153,9 @@
         "cells": 5167373
       },
       "canary": {
-        "canary_auc": 0.5,
-        "note": "PRUNE delete-only has no moved dots in child; canary not applicable"
+        "canary_auc_removed_vs_withheld": 0.9532,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means the PROXY folds are confounded with the catalogue; investigate before using it"
       },
       "min_dcat_remaining": 4.123105625617661
     },
@@ -92,15 +191,34 @@
         "sha256": true
       },
       "gates_text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=5b6d39870bc0\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=32017.0 over 32017 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=5b6d39870bc0fe9813813f231a56e3b9425e7e2ec149e3e2de8f3ae654b14ce8 new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 5637 pixels changed (14.97% of parent dots), parent dots=37654 child dots=32017, mass 37654.0 -> 32017.0\n[PASS] sha256: 5b6d39870bc0fe9813813f231a56e3b9425e7e2ec149e3e2de8f3ae654b14ce8",
-      "proxy": {
+      "proxy_as_built_structurally_zero": {
         "proxy_mean_credit": 0.0,
         "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
         "proxy_coverage": 0.0,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       },
+      "proxy_rebuild_based": {},
       "redundancy": {
         "dots_with_neighbour_lt_2p83px": 9503,
         "dots_with_neighbour_lt_2px": 0,
@@ -113,8 +231,9 @@
         "cells": 5167373
       },
       "canary": {
-        "canary_auc": 0.5,
-        "note": "PRUNE delete-only has no moved dots in child; canary not applicable"
+        "canary_auc_removed_vs_withheld": 0.929,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means the PROXY folds are confounded with the catalogue; investigate before using it"
       },
       "min_dcat_remaining": 5.0990195135927845
     },
@@ -150,15 +269,34 @@
         "sha256": true
       },
       "gates_text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=04002dae86db\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=26294.0 over 26294 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=04002dae86db72c3fc47652bd66e3ec029e432c909cad779039e9e3749ae0839 new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 11360 pixels changed (30.17% of parent dots), parent dots=37654 child dots=26294, mass 37654.0 -> 26294.0\n[PASS] sha256: 04002dae86db72c3fc47652bd66e3ec029e432c909cad779039e9e3749ae0839",
-      "proxy": {
+      "proxy_as_built_structurally_zero": {
         "proxy_mean_credit": 0.0,
         "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
         "proxy_coverage": 0.0,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       },
+      "proxy_rebuild_based": {},
       "redundancy": {
         "dots_with_neighbour_lt_2p83px": 7887,
         "dots_with_neighbour_lt_2px": 0,
@@ -171,10 +309,269 @@
         "cells": 5167373
       },
       "canary": {
-        "canary_auc": 0.5,
-        "note": "PRUNE delete-only has no moved dots in child; canary not applicable"
+        "canary_auc_removed_vs_withheld": 0.8523,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means the PROXY folds are confounded with the catalogue; investigate before using it"
       },
       "min_dcat_remaining": 10.04987562112089
+    },
+    "le16norefill": {
+      "id": "h33-h33-2-b2-PRUNE-le16norefill-20261023-d98fe63e",
+      "max_px": 16.0,
+      "stats": {
+        "n_parent_dots": 37654,
+        "removed": 16375,
+        "refilled": 0,
+        "n_dots": 21279,
+        "pct_changed": 43.49,
+        "min_dist_catalogue_px": 16.03,
+        "cat_distance_ok": true
+      },
+      "sha256": "d98fe63ee12e1e9fcc960dae6208adc72d2fe5bbff964465aa03923073569670",
+      "sha256_zeros": "50191db4128c26c81c47c0ac077c0d4c19c85b2a78c235a82b824a281bde6501",
+      "sha8": "d98fe63e",
+      "gates_nan": {
+        "band count == 1": true,
+        "dtype float32": true,
+        "CRS matches": true,
+        "shape matches": true,
+        "transform matches": true,
+        "re-read from disk matches in-memory band": true,
+        "no NaN/Inf inside footprint": true,
+        "NaN outside footprint": true,
+        "values in [0,1]": true,
+        "mass present": true,
+        "zero catalogue mass": true,
+        "sha256 not already in ledger": true,
+        "parent-diff statistics recorded": true,
+        "sha256": true
+      },
+      "gates_text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=d98fe63ee12e\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=21279.0 over 21279 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=d98fe63ee12e1e9fcc960dae6208adc72d2fe5bbff964465aa03923073569670 new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 16375 pixels changed (43.49% of parent dots), parent dots=37654 child dots=21279, mass 37654.0 -> 21279.0\n[PASS] sha256: d98fe63ee12e1e9fcc960dae6208adc72d2fe5bbff964465aa03923073569670",
+      "proxy_as_built_structurally_zero": {
+        "proxy_mean_credit": 0.0,
+        "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
+        "proxy_coverage": 0.0,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "proxy_rebuild_based": {
+        "mean": 0.005040291930256348,
+        "folds": [
+          0.005951,
+          0.007248,
+          0.003315,
+          0.003647
+        ]
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 6334,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8817
+      },
+      "block_cv_1km": 0.6282,
+      "uniform_truth": {
+        "uniform_truth_mean_credit": 0.03840079,
+        "uniform_truth_cells_uncovered": 4765750,
+        "cells": 5167373
+      },
+      "canary": {
+        "canary_auc_removed_vs_withheld": 0.7851,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means the PROXY folds are confounded with the catalogue; investigate before using it"
+      },
+      "min_dcat_remaining": 16.0312195418814
+    },
+    "le18norefill": {
+      "id": "h33-h33-2-b2-PRUNE-le18norefill-20261023-f417474d",
+      "max_px": 18.0,
+      "stats": {
+        "n_parent_dots": 37654,
+        "removed": 17791,
+        "refilled": 0,
+        "n_dots": 19863,
+        "pct_changed": 47.25,
+        "min_dist_catalogue_px": 18.03,
+        "cat_distance_ok": true
+      },
+      "sha256": "f417474d946acc78896a055a43aad227f03a21545eba974683e4df28a235a71f",
+      "sha256_zeros": "db282d57efe1a715a6c218eafc36a4a79204c144f17f5e9304ec3fb5a8073d1d",
+      "sha8": "f417474d",
+      "gates_nan": {
+        "band count == 1": true,
+        "dtype float32": true,
+        "CRS matches": true,
+        "shape matches": true,
+        "transform matches": true,
+        "re-read from disk matches in-memory band": true,
+        "no NaN/Inf inside footprint": true,
+        "NaN outside footprint": true,
+        "values in [0,1]": true,
+        "mass present": true,
+        "zero catalogue mass": true,
+        "sha256 not already in ledger": true,
+        "parent-diff statistics recorded": true,
+        "sha256": true
+      },
+      "gates_text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=f417474d946a\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=19863.0 over 19863 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=f417474d946acc78896a055a43aad227f03a21545eba974683e4df28a235a71f new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 17791 pixels changed (47.25% of parent dots), parent dots=37654 child dots=19863, mass 37654.0 -> 19863.0\n[PASS] sha256: f417474d946acc78896a055a43aad227f03a21545eba974683e4df28a235a71f",
+      "proxy_as_built_structurally_zero": {
+        "proxy_mean_credit": 0.0,
+        "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
+        "proxy_coverage": 0.0,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "proxy_rebuild_based": {
+        "mean": 0.005056846135087032,
+        "folds": [
+          0.005923,
+          0.007267,
+          0.003327,
+          0.003711
+        ]
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 5895,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8775
+      },
+      "block_cv_1km": 0.629,
+      "uniform_truth": {
+        "uniform_truth_mean_credit": 0.03584599,
+        "uniform_truth_cells_uncovered": 4792656,
+        "cells": 5167373
+      },
+      "canary": {
+        "canary_auc_removed_vs_withheld": 0.7661,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means the PROXY folds are confounded with the catalogue; investigate before using it"
+      },
+      "min_dcat_remaining": 18.027756377319946
+    },
+    "le19norefill": {
+      "id": "h33-h33-2-b2-PRUNE-le19norefill-20261023-78dadd57",
+      "max_px": 19.0,
+      "stats": {
+        "n_parent_dots": 37654,
+        "removed": 18450,
+        "refilled": 0,
+        "n_dots": 19204,
+        "pct_changed": 49.0,
+        "min_dist_catalogue_px": 19.03,
+        "cat_distance_ok": true
+      },
+      "sha256": "78dadd576643974e11d79310d83e385a5eb512cd80c7b9582e2f03c7fc0d8fe6",
+      "sha256_zeros": "77eb721bbe2ca1ef0c561d6221ec637aac3bc69557773271dba3df5b63d1ac82",
+      "sha8": "78dadd57",
+      "gates_nan": {
+        "band count == 1": true,
+        "dtype float32": true,
+        "CRS matches": true,
+        "shape matches": true,
+        "transform matches": true,
+        "re-read from disk matches in-memory band": true,
+        "no NaN/Inf inside footprint": true,
+        "NaN outside footprint": true,
+        "values in [0,1]": true,
+        "mass present": true,
+        "zero catalogue mass": true,
+        "sha256 not already in ledger": true,
+        "parent-diff statistics recorded": true,
+        "sha256": true
+      },
+      "gates_text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=78dadd576643\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=19204.0 over 19204 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=78dadd576643974e11d79310d83e385a5eb512cd80c7b9582e2f03c7fc0d8fe6 new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 18450 pixels changed (49.00% of parent dots), parent dots=37654 child dots=19204, mass 37654.0 -> 19204.0\n[PASS] sha256: 78dadd576643974e11d79310d83e385a5eb512cd80c7b9582e2f03c7fc0d8fe6",
+      "proxy_as_built_structurally_zero": {
+        "proxy_mean_credit": 0.0,
+        "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
+        "proxy_coverage": 0.0,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "proxy_rebuild_based": {
+        "mean": 0.005083379058468309,
+        "folds": [
+          0.005948,
+          0.007296,
+          0.00335,
+          0.00374
+        ]
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 5694,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8883
+      },
+      "block_cv_1km": 0.6305,
+      "uniform_truth": {
+        "uniform_truth_mean_credit": 0.03465614,
+        "uniform_truth_cells_uncovered": 4805016,
+        "cells": 5167373
+      },
+      "canary": {
+        "canary_auc_removed_vs_withheld": 0.7573,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means the PROXY folds are confounded with the catalogue; investigate before using it"
+      },
+      "min_dcat_remaining": 19.026297590440446
     }
   }
 }
