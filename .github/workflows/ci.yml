@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy scipy rasterio pytest
+      - name: Unit tests
+        run: python -m pytest tests/ -q
+      - name: No conflict markers in tracked files
+        run: |
+          if git grep -nE '^(<<<<<<<|=======|>>>>>>>)' -- . ; then
+            echo "conflict markers found"; exit 1
+          fi
+      - name: Manifest status (informational; fails only on a hash MISMATCH)
+        run: |
+          python scripts/verify_manifest.py || true
+          python - <<'PY'
+          import json, subprocess, sys
+          out = subprocess.run([sys.executable, "scripts/verify_manifest.py", "--json"],
+                               capture_output=True, text=True)
+          rows = json.loads(out.stdout)
+          bad = [r for r in rows if r["status"] == "HASH_MISMATCH"]
+          if bad:
+              print("HASH MISMATCH:", bad); sys.exit(1)
+          print(f"{len(rows)} inputs: {sum(r['status']=='OK' for r in rows)} verified, "
+                f"{sum(r['status']=='MISSING' for r in rows)} missing (expected until the human pins them)")
+          PY

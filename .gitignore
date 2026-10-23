@@ -1,0 +1,18 @@
+# Competition rasters and derived data must never be committed: this repository is
+# PUBLIC and GitHub Pages serves main:/ (see IRREGULARITIES.md item 1).
+data/
+*.tif
+*.tiff
+*.npy
+*.npz
+releases/
+
+# local env / caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# keep the release folder itself, never its contents
+!releases/.gitkeep
