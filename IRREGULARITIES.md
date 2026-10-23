@@ -574,3 +574,17 @@ placing any new recipient dot at `d_cat ≤ 3.0 px` violates the `≥ 3 px` new-
 `d_cat > 3.0 px` on **both** donor removal and recipient placement (`collar_le3px = 2,171 → 2,171`,
 `added_dots_le3px = 0` across all three `RELIEF` builds `RECEIPT`).
 
+
+## IR-91-28 — strict brief blocks new PRUNE builds and inherited-collar exemption
+
+Session `arena/5b08c5d7-gemsdoe91` (2026-10-23) independently verified 16/16
+manifest entries and byte-exactly rebuilt R0. Selected PRUNE has no unused radius
+in the brief's explicit <=1/<=2/<=3 px menu: ledger p1px and p3px/3 already
+exist, while <=2 is R0. No alias values or repeated builds are permitted.
+IR-91-27's grandfathering of 2,171 inherited collar dots is not explicitly
+allowed by the new brief's hard >=3 px constraint on non-PRUNE axes.
+**Decision:** zero variants, no new ledger rows, no upload recommendation until
+an unused PRUNE radius is authorized or the inherited-collar exception is made
+explicit. See `reports/session-5b08c5d7-preflight.md`. Local validation is not a
+submission RECEIPT; existing documentation's use of that label for local tests
+must not be interpreted as live-score evidence.
