@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  unit:
+    name: unit tests (no data)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pytest -q tests/test_geometry.py tests/test_instruments.py
+
+  integration:
+    name: lineage + gates (pinned inputs restored)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -r requirements.txt
+      # Restores the pinned inputs from immutable GitHub commits and verifies
+      # every sha256 against registry/data_manifest.json. No organizer site is
+      # contacted, no credential is used.
+      - run: python scripts/restore_data.py
+      - run: python -m pytest -q
+      - name: rebuild and re-validate every release
+        run: |
+          python scripts/build_spacing.py --build
+          for f in releases/*.tif; do python scripts/validate.py "$f" > /dev/null; done
+          python scripts/validate.py releases/*spread40*[0-9a-f].tif | tail -1

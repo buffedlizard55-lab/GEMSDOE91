@@ -1,0 +1,133 @@
+site,name,score,encoding,n_dots,sha8,parent,receipt,id,axis,value,pct_changed,sha256,status,predicted_change,evidence_class
+GEMSDOE32,h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros,0.2778,zeros,37654,c55bafc4,h27-4-r1-solo-d2-8,N,,PRUNE,2,,c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9,HISTORICAL,,CLAIM
+GEMSDOE,gems-submission-20260925T001403Z-7f00890a,0.1563,unknown,,7f00890a,,N,,,,,,HISTORICAL,,CLAIM
+6GEMSDOE,gems6_hgb88-topk03_33cec71ff0,0.0286,unknown,,33cec71f,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE3,pindrop-v4-nodes-20260925T152420Z-f347b70daa,0.1193,unknown,,f347b70d,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE3,pindrop-v4-discovery-20260925T152423Z-37f9d5b855,0.0830,unknown,,37f9d5b8,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE3,pindrop-v4-ridge-20260925T152422Z-4e03fc9705,0.1152,unknown,,4e03fc97,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE2,gemsdoe2-dual-family-union-20260925T160406Z-f68e590f,0.1560,unknown,,f68e590f,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE4,gems-submission-20260926T163915Z-237f0063,0.0343,unknown,,237f0063,,N,,,,,,HISTORICAL,,CLAIM
+7GEMSDOE,lidarscarp-ridge-top2pct-36c3a3f341c8,0.1461,unknown,,36c3a3f3,,N,,,,,,HISTORICAL,,CLAIM
+8GEMSDOE,Hedge-v2_submission,0.1563,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE9,2314b599,0.0107,unknown,,2314b599,,N,,,,,,HISTORICAL,,CLAIM
+11GEMSDOE,gems-structural-area06-v1,0.0202,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+12GEMSDOE,r7-nms3-dem10-scarp_0c9199f14e62,0.1294,unknown,,0c9199f1,,N,,,,,,HISTORICAL,,CLAIM
+15GEMSDOE,gems-tso1-20260929T005627Z-conj_alteration_mag,0.0782,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+14GEMSDOE,GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f,0.0020,unknown,,e96e942f,,N,,,,,,HISTORICAL,,CLAIM
+17GEMSDOE,17GEMSDOE_F-ensemble-2pct_20260930T050626Z,0.0187,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+18GEMSDOE,H19-C_20260930T212401Z_c11e495e,0.0297,unknown,,c11e495e,,N,,,,,,HISTORICAL,,CLAIM
+19GEMSDOE,h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan,0.1894,nan,,691e4dfa,,N,,,,,,HISTORICAL,,CLAIM
+19GEMSDOE,h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan,0.1922,nan,,e27054cf,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE10,h16-continuation-20260927T065521077735Z-3431b83c7c,0.0461,unknown,,3431b83c,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE10,h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686,0.0921,unknown,,ffc91a16,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE10,h28-dotted-ridge-20260928T020256236880Z-6452ae1d00,0.1839,unknown,,6452ae1d,,N,,,,,,HISTORICAL,,CLAIM
+13GEMSDOE,20261001_r13-lattice-s5_v2_nan-outside,0.0904,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+16GEMSDOE,h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan,0.1855,nan,,df20f65e,,N,,,,,,HISTORICAL,,CLAIM
+16GEMSDOE,h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan,0.0976,nan,,c502dfab,,N,,,,,,HISTORICAL,,CLAIM
+16GEMSDOE,h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan,0.0360,nan,,aef8f42c,,N,,,,,,HISTORICAL,,CLAIM
+20GEMSDOE,h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan,0.1890,nan,,be0e8f6b,,N,,,,,,HISTORICAL,,CLAIM
+20GEMSDOE,h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan,0.1859,nan,,824ce73a,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE22,h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan,0.1002,nan,,e2ec4b49,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE22,h23-b-dti-optimal-emission-10pct-20261002-86176698-nan,0.0748,nan,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE23,h30-arrangement-matched-habitat-20261002-0d4e02e8-nan,0.1352,nan,,0d4e02e8,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE24,h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan,0.2477,nan,,989f5950,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE25,dotted-h19-5-d2-8-20261002-e56ea318af89-nan,0.2600,nan,,e56ea318,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE26,dilcond-oof-v1-20261003-47629f496133-nan,0.1223,nan,,47629f49,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE27,topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan,0.2449,nan,,5512495c,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE30,d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca,0.2600,unknown,,91eae1ca,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE31,h27-4-solo-d28-20261004-8acb75e1-nan,0.2708,nan,40199,ab023001,,N,,,,,ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73,HISTORICAL,,CLAIM
+GEMSDOE33,h33d-analog-tip-stepover-r30-20261004-cb490425926e,0.2632,unknown,41865,87f857d5,,N,,,,,87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757,HISTORICAL,,CLAIM
+GEMSDOE34,h34-scatter-q50-arr-matched-20261004T223317Z,0.0778,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE35,h35-06-aaa86efb25-20261004T225420098147Z-candidate,0.0418,unknown,,aaa86efb,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE36,anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros,0.2750,zeros,38854,e1589102,,N,,,,,e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a,HISTORICAL,,CLAIM
+GEMSDOE37,h6-physics-dotted-80k-20261005T055000Z-0bef9211631c,0.1193,unknown,,0bef9211,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE38,D-step-3p0-07pct-tipProt-20261005-ecfbf59e2b48-zero,0.0763,unknown,,ecfbf59e,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE42,xscale-worm-persistence-20261006T000541Z-nan,0.0581,nan,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE43,sup01-hgb21-sep40-n40000-20261006-bc2e4e9a8d6f-nan,0.0424,nan,,bc2e4e9a,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE45,h51-km-faultzone-20261006-zeros,0.0106,zeros,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE49,gate_ortho_w0.25-40k-20261006T213721Z-nan,0.2376,nan,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE28,h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan,0.2649,nan,,31e35eee,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE28,h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan,0.2710,nan,37660,5556aa14,,N,,,,,5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641,HISTORICAL,,CLAIM
+GEMSDOE28,h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan,0.2707,nan,37860,81d5b87b,,N,,,,,81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783,HISTORICAL,,CLAIM
+GEMSDOE29,efd28-repro-20261003-1cc7dc534d51-nan,0.2600,nan,,1cc7dc53,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE29,repo-c0-habitat-emission-20261003-a4d439b07426-nan,0.0041,nan,,a4d439b0,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE29,sgmc-off-catalogue-44k-20261003-c8dcd780e3fd-nan,0.0512,nan,,c8dcd780,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE29,wormrank-d28-20261003-59dcaf6dd11d-zeros,0.2560,zeros,,59dcaf6d,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE29,wormsurv-filter-20261003-921f10960d6e-zeros,0.0532,zeros,,921f1096,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE29,xfit-c0-habitat-20261003-ca879db0089a-zeros,0.0439,zeros,,ca879db0,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE29,xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros,0.0356,zeros,,9edb34b9,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE46,r11f-scarp-radiometric-fusion-00e049b51218-zeros,0.1589,zeros,,00e049b5,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE46,r12-scarp-rad-concordance-23e807e2de9f-zeros,0.0843,zeros,,23e807e2,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE39,h40-e-disc-h40e-30k-zeros,0.0339,zeros,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE40,h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1-hard,0.0397,unknown,,785c4f5d,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE40,h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros,0.0984,zeros,,f28e5cff,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE41,h42-submission-primary,0.0245,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE44,h46-twostageAB_20261006T160000Z_b0cfe956-zeros,0.0715,zeros,,b0cfe956,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE47,h60-lidarscarp-s2p0-20261007-nanoutside,0.0430,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE48,h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8,0.2296,unknown,,b79c4c61,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE50,h59-sharpened-scarp-scatter-90k-20261007T171954Z-allfinite,0.0764,allfinite,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE51,h53-twostage-20261008T040951Z-9a0b32c871,0.1047,unknown,,9a0b32c8,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE52,h97b-candidate,0.0856,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE53,h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros,0.0159,zeros,,49bec522,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE54,h54c-manifest-edge-20261009T025732Z-73454bc5,0.0449,unknown,,73454bc5,,N,,,,,,HISTORICAL,,CLAIM
+55GEMSDOE,tensor_full-n16000-sep3-20261009T211747Z-nan,0.0290,nan,,,,N,,,,,,HISTORICAL,,CLAIM
+56GEMSDOE,h56-final-dotted-ridge-d2p8-20261009T190421Z,0.0658,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+57GEMSDOE,h57r-joint-strata-38000-20261010T214547Z-00cf5b2066f1-zeros,0.0254,zeros,,00cf5b20,,N,,,,,,HISTORICAL,,CLAIM
+58GEMSDOE,ml-binary-ridge-20261012T000000Z,0.0180,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+59GEMSDOE,h59j-coherence-consensus-dotted-20261011T043000Z,0.0499,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+60GEMSDOE,h73-chi-coherent-corridor-12000-20261011T195818Z-zeros,0.0351,zeros,,,,N,,,,,,HISTORICAL,,CLAIM
+61GEMSDOE,h61a-basement-step-20000dots-20261011T012029Z-eb2ae4bb024b-zeros,0.0009,zeros,,eb2ae4bb,,N,,,,,,HISTORICAL,,CLAIM
+61GEMSDOE,h61o-vardepth-none-40000dots-20261011T160711Z-28d4fac611ea-zeros-zeros,0.0751,zeros,,28d4fac6,,N,,,,,,HISTORICAL,,CLAIM
+62GEMSDOE,datum-lahontan-strain-gauge-defensible-440dots-zeros,0.0000,zeros,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE63,cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros,0.2303,zeros,54864,886e4705,,N,,,,,886e470530d8b23a4967a7f8d9f55df5fb39441ff7b544490cab457d076731f7,HISTORICAL,,CLAIM
+GEMSDOE64,h64-lidar-scarp-cv-20261011T220000Z,0.0383,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE65,sar-em-propensity-half-20261011T223500Z-5e4660cd-zeros,0.0431,zeros,,5e4660cd,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE66,gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros,0.1152,zeros,37654,7c7d30c2,,N,,,,,7c7d30c22c17571e24927c8c2c435725e5c8396bd6724446ecc60663d5972b7e,HISTORICAL,,CLAIM
+GEMSDOE67,h67a-orientip-lane-29447dots-20261012T021226Z-allfinite,0.0356,allfinite,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE67,ovtr-ml-cover-tau3p0-20261012-nan,0.1426,nan,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE68,gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-nan,0.0437,nan,,849a0f04,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE69,h69-joint-relayramp-pullapart-38669-20261020T201504Z-f29b6df5,0.0053,unknown,,f29b6df5,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE70,gems70-p5-dual-submod300-oof38k-20261020,0.2478,unknown,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE71,gems71-hydro-conduit-38800-20261020T120000Z-zeros,0.0558,zeros,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE72,gemsdoe72-h72-1-sgmc-offcatalogue-20261020T195456Z-6e6525e5-zeros,0.0492,zeros,,6e6525e5,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE73,gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros,0.1917,zeros,37654,fab28aa2,,N,,,,,fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249,HISTORICAL,,CLAIM
+GEMSDOE74,gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros,0.0669,zeros,,,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE75,gems75-trlt-radon-loco-ridge-20261021-zeros,0.1627,zeros,36800,e04df46e,,N,,,,,e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71,HISTORICAL,,CLAIM
+GEMSDOE76,gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros,0.1555,unknown,37654,d706807d,,N,,,,,d706807d42d1b21f6417483cd7aeb04a410d62accd5a66c6b2a6ab0dc16662af,HISTORICAL,,CLAIM
+GEMSDOE77,gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros,0.0964,zeros,,d97b248e,,N,,,,,,HISTORICAL,,CLAIM
+GEMSDOE76,gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros,,zeros,39200,54c97839,,N,,,,,54c978399d0a875ba89aacc465e7efd8644420e6ba1dfa7c0a1390328be2c514,HISTORICAL,,NO-EVIDENCE
+GEMSDOE78,gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros,,zeros,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE79,gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros,,zeros,,50a5d749,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE80,gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros,0.0943,zeros,51667,a3c14d76,,N,,,,,a3c14d76d1f58802c8bd3f13378cbeb037ad3618d5fbd9dbf5f5a0dae4a35ede,HISTORICAL,,CLAIM
+GEMSDOE81,gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros,0.0041,zeros,44090,9798fe7f,,N,,,,,9798fe7f4a68c7b8efbb9f3f03945ab800177b993abe671e4d174282e0675508,HISTORICAL,,CLAIM
+GEMSDOE82,gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros,,zeros,37654,120810fe,,N,,,,,120810feffb4688c364f2bb49a3d2624dcbb53fdc294892c68957f65fbaba131,HISTORICAL,,NO-EVIDENCE
+GEMSDOE83,gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros,,zeros,37654,79f14dc8,,N,,,,,79f14dc84cd7760cb44645bc090ed2d33dbcfe789cec844fd83753fcff1082a2,HISTORICAL,,NO-EVIDENCE
+GEMSDOE84,site:GEMSDOE84,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE85,site:GEMSDOE85,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE86,site:GEMSDOE86,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE87,site:GEMSDOE87,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE88,site:GEMSDOE88,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE86,h33-h33-2-b2-prune3-20261023-withdrawn,,nan,35483,,,N,h33-h33-2-b2-prune3-20261023-withdrawn,PRUNE,3,5.7657,,WITHDRAWN,"-0.003 (95% range -0.010..+0.004). MODEL. Mechanism: the 2-3 px collar holds 5.8% of the dots at 2.1x the background density but is NOT evidence-poor (tmi_hg percentile 0.528 vs 0.542 elsewhere), and the organiser says new truth can sit within 300 m of known traces, so most of these dots still carry new-fault credit; only the masked-sliver redundancy argues for a gain.",MODEL
+GEMSDOE86,h33-h33-2-b2-prune4-20261023-de4c2a98,,nan,33829,de4c2a98,h33-h33-2-b2,N,h33-h33-2-b2-prune4-20261023-de4c2a98,PRUNE,4,10.1583,de4c2a98bd13c518697442655c0a3980ba51d6712216c2ea0e330dc01924ebc5,BUILT,"-0.008 (95% range -0.025..+0.003). MODEL. Mechanism: extends the same deletion to the 3-4 px ring (1,654 more dots at 1.9x background density) where a dot's whole kernel sits in unmasked terrain, so the lost coverage is no longer excusable as masked.",MODEL
+GEMSDOE86,h33-h33-2-b2-prune3r-20261023-8c20bd7e,,nan,37654,8c20bd7e,h33-h33-2-b2,N,h33-h33-2-b2-prune3r-20261023-8c20bd7e,PRUNE,3r,11.5313,8c20bd7eeaf1a1518b7d7f4711613169bd1ab00c4a4b3d74c87bf2b70d552c2e,BUILT,"-0.003 (95% range -0.012..+0.006). MODEL. Mechanism: identical count to R0, identical deletions to prune3, collar pushed just past 3 px (mean move 1.14 px). Reads out whether any prune3 effect is mass or collar position.",MODEL
+GEMSDOE86,h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f,,zeros,37654,e0e2888f,h33-h33-2-b2-20261004-e5eb6e7e,N,h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp15-20261023-e0e2888f,RELIEF,front+15pct,14.9997,e0e2888f98156e34347bbeb928c978590bf0cf0fa1ecd698719fc6dd8d31ea47,BUILT,"+0.0017 (quadrant range -0.0022..+0.0112; 3/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score.",MODEL
+GEMSDOE86,h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e,,zeros,37654,b20ef72e,h33-h33-2-b2-20261004-e5eb6e7e,N,h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontp10-20261023-b20ef72e,RELIEF,front+10pct,9.9989,b20ef72e9f18fffe16f292db9e3ea517963b85be3dcf8469939e93e604f955ad,BUILT,"+0.0010 (quadrant range -0.0009..+0.0068; 3/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score.",MODEL
+GEMSDOE86,h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e,,zeros,37654,1b26223e,h33-h33-2-b2-20261004-e5eb6e7e,N,h33-h33-2-b2-20261004-e5eb6e7e-RELIEF-frontm10-20261023-1b26223e,RELIEF,front-10pct,9.9989,1b26223ec7888a78b4c7b6ef78c9680ae29491691ab3e5ed0c53083f10450669,BUILT,"-0.0089 (quadrant range -0.0160..-0.0009; 0/4 quadrants agree). MODEL: SGMC-extra surrogate, not a score.",MODEL
+GEMSDOE86,h33-h33-2-b2-prune3-20261023-01d57649,,nan,37654,01d57649,h33-h33-2-b2,N,h33-h33-2-b2-prune3-20261023-01d57649,PRUNE,3,11.531311,4131e37133a3c5a874c42fb7c975ec4ecb7b4be946b794ff9c9852afa575e225,BUILT,"-0.004 (MODEL). Drop the 2-3 px collar and refill the count from the H19-5 field; ridge-level spacing falls from 3.735 to 3.550 px, so PRUNE and spacing are not separable in this design.",MODEL
+GEMSDOE86,h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p236-20261023-82b3f1f4,,zeros,36713,82b3f1f4,h33-h33-2-b2,N,h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p236-20261023-82b3f1f4,PRUNE,<=2.2361px,2.4991,82b3f1f4024ab09a5fbaf03da89e040c67acc869e6daee2c3663e6fc9b84eb6b,BUILT,+0.001 MODEL,MODEL
+GEMSDOE86,h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-6ff38618,,zeros,36043,6ff38618,h33-h33-2-b2,N,h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le2p828-20261023-6ff38618,PRUNE,<=2.8284px,4.2784,6ff3861845856a00af22c489472ae27d8a37366fbcf503bf5a0091c673b140fc,BUILT,+0.003 MODEL,MODEL
+GEMSDOE86,h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b,,zeros,35483,a438e92b,h33-h33-2-b2,N,h33-h33-2-b2-20261004-e5eb6e7e-PRUNE-le3p000-20261023-a438e92b,PRUNE,<=3.0000px,5.7657,a438e92b79dfb7f9f1763c40ffb2d42dd60e45697dfc06fc49efae067d3c1a22,BUILT,+0.004 MODEL,MODEL
+GEMSDOE86,h33-h33-2-b2-massminus10-20261023-42b4c5c8,,nan,33889,42b4c5c8,h33-h33-2-b2,N,h33-h33-2-b2-massminus10-20261023-42b4c5c8,MASS,minus10pct,9.9989,42b4c5c8f7087b8699057d888bdd00c775c4812c8ed37b5abf6d1a351aae2779,BUILT,"-0.003 (MODEL, band -0.012..+0.006). Dropping the traversal-tail 10% saves the false-positive mass of average ridge dots but deletes the only cover of the small late-visited southern ridges; at DTI 0.28 a dot must earn credit > 0.056 to pay, so the net is near the bar and slightly negative.",MODEL
+GEMSDOE86,h33-h33-2-b2-massplus10-20261023-a5888761,,nan,41419,a5888761,h33-h33-2-b2,N,h33-h33-2-b2-massplus10-20261023-a5888761,MASS,plus10pct,9.9989,a5888761dd03239e21d71c125649f7da4bd4480ae1a83106854dd7cd49eef481,BUILT,"-0.006 (MODEL, band -0.016..+0.002). The next-ranked cells were suppressed by the 2.8 px rule, so ~99% sit within one kernel radius of an existing dot: their marginal truth credit is mostly already claimed (max operator), while each still pays close to full false-positive mass.",MODEL
+GEMSDOE86,h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r1p000-20261023-0e09c2b7,,zeros,37654,0e09c2b7,h33-h33-2-b2,N,h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r1p000-20261023-0e09c2b7,SNAP,1,96.9193,0e09c2b7800c302a7c840f0c38b3b3808f82eca242d7292d547f68a5098404be,BUILT,-0.004 (MODEL; band -0.012..+0.004; algebra bracket +0.000..+0.086). n=36494 dots moved 1.00 px mean; nearest-neighbour 3.735->3.522 px; dots closer than 2 px to a neighbour 0->3448,MODEL
+GEMSDOE86,h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-20261023-e7473403,,zeros,37654,e7473403,h33-h33-2-b2,N,h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-20261023-e7473403,SNAP,2,98.4384,e74734031f478edafc55017d0002e72fe1930dd32c237c9341833732028f5743,BUILT,-0.006 (MODEL; band -0.020..+0.006; algebra bracket +0.000..+0.157). n=37066 dots moved 1.79 px mean; nearest-neighbour 3.735->3.345 px; dots closer than 2 px to a neighbour 0->8341,MODEL
+GEMSDOE86,h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15,,zeros,37654,17fe2f15,h33-h33-2-b2,N,h33-h33-2-b2-20261004-e5eb6e7e-SNAP-r2p000-grav-20261023-17fe2f15,SNAP,2-grav,99.7796,17fe2f1573bb35d557d5a6c79a52df743b211f57be0ed5888fbf0ef5dd1d9823,BUILT,-0.004 (MODEL; band -0.016..+0.006; algebra bracket +0.000..+0.173). n=37571 dots moved 1.95 px mean; nearest-neighbour 3.735->3.615 px; dots closer than 2 px to a neighbour 0->2085,MODEL
+GEMSDOE86,h33-h33-2-b2-snap-hg2-20261023-1ced061c,,zeros,37654,1ced061c,h33-h33-2-b2,N,h33-h33-2-b2-snap-hg2-20261023-1ced061c,SNAP,hg2,33.94,43f7ef51c7d2ad60366c4048867e53db1f1ee9735947cf41cf7c6b72815a8622,BUILT-DUPLICATE,"MODEL: live change in [-0.005, +0.015], central +0.004. Below the 0.01 evidence floor this is a mechanism probe, not a score play.",MODEL
+GEMSDOE86,h33-h33-2-b2-snap-vg2-20261023-af1f0f2f,,zeros,37654,af1f0f2f,h33-h33-2-b2,N,h33-h33-2-b2-snap-vg2-20261023-af1f0f2f,SNAP,vg2,39.59,75c88f294fae1f66364205998b95b0593ea403761fdf2026febcf666d13e8086,BUILT-DUPLICATE,"MODEL: live change in [-0.008, +0.015], central +0.003.",MODEL
+GEMSDOE86,h33-h33-2-b2-snap-cons2-20261023-fed241ac,,zeros,37654,fed241ac,h33-h33-2-b2,N,h33-h33-2-b2-snap-cons2-20261023-fed241ac,SNAP,cons2,45.93,fb0a6ac2e6431a2ba5425de89ba761c5e2814c737eb679442ab45e006a5ac0bc,BUILT-DUPLICATE,"MODEL: live change in [-0.005, +0.015], central +0.005; expected to be the most stable of the three if any of them works.",MODEL
+GEMSDOE86,h33-h33-2-b2-snapr1-20261023-withdrawn,,nan,37654,,h33-h33-2-b2,N,h33-h33-2-b2-snapr1-20261023-withdrawn,SNAP,r1,96.8901,,WITHDRAWN,"-0.002 (MODEL, band -0.008..+0.003). One-pixel hill-climb: 96.9% of dots step 1 px for a median edge-percentile gain of only 0.025, and 28.4% of dots end with a neighbour closer than the parent's 2.8 px floor. Mostly swapping near-equal cells; the SGMC control moves the same way (-0.0032).",MODEL
+GEMSDOE86,h33-h33-2-b2-snapr2-20261023-withdrawn,,nan,37654,,h33-h33-2-b2,N,h33-h33-2-b2-snapr2-20261023-withdrawn,SNAP,r2,98.4092,,WITHDRAWN,"-0.006 (MODEL, band -0.018..+0.006). Strongest dose: 98.4% of dots move (mean 1.77 px, median gain 0.042), 40.1% acquire a sub-2.8 px neighbour, and the SGMC control is worst here (-0.0089). Unconditional window-argmax mostly chases gradient noise and clusters onto crests, redundant under the max-kernel. A dose-escalation instrument, not a slot candidate.",MODEL
+GEMSDOE86,h33-h33-2-b2-snapr2g10-20261023-8ca1d869,,nan,37654,8ca1d869,h33-h33-2-b2,N,h33-h33-2-b2-snapr2g10-20261023-8ca1d869,SNAP,r2g10,17.4722,8ca1d8690aa835c8e8e823db2965a5ca357c9132452ae5a205403a6380082d2e,BUILT-DUPLICATE,"-0.001 (MODEL, band -0.007..+0.008). Only the 17.5% of dots whose window holds a decisively stronger edge (>=0.10 percentile, median realised gain 0.142) move, mean 1.95 px; 82.5% of the parent is untouched. This is the only SNAP form worth a live test if the crest hypothesis must be settled, but the SGMC control is still slightly negative (-0.0021), so the centre is ~zero, not positive.",MODEL
+GEMSDOE86,gems86-h33-2b2-prune3-20261023-e4027684,,nan,37654,e4027684,h33-h33-2-b2,N,gems86-h33-2b2-prune3-20261023-e4027684,PRUNE,collar3px,11.531,f0f3d620144478038a53b8fa40ba10b39aba80f82f5a4c5614f35b2de2b097d2,BUILT-DUPLICATE,"+0.004 (MODEL). Widen the catalogue collar from the parent's 2 px to 3 px and refill to hold the count. DUPLICATE of (PRUNE,3) already in the ledger; not a slot candidate.",MODEL
+GEMSDOE86,gems86-h33-2b2-conc15-20261023-2b883f2d,,nan,37654,2b883f2d,h33-h33-2-b2,N,gems86-h33-2b2-conc15-20261023-2b883f2d,CONCENTRATION,b1km-move15,29.999,09aaa696e1f0fce6ea010a0c125e64bf6df9a1dff18bcf547dffae94b928e6f5,BUILT,"+0.006 (range +0.003..+0.010, MODEL). Move 15% of dots out of the lowest-prior 1 km blocks into the highest-prior fifth, count fixed, placement geometric only. Block-density CV 0.6235 -> 0.7644, i.e. away from the reported 0.51-0.59 band, which is the stated falsifier.",MODEL
+GEMSDOE86,gems86-h33-2b2-snap2-20261023-6ec42a92,,nan,37654,6ec42a92,h33-h33-2-b2,N,gems86-h33-2b2-snap2-20261023-6ec42a92,SNAP,2px,179.954,accdb5754a85d720b3eb9d9ad2f8c5c3936113c86cdfad8bde94cb3090d88ae9,BUILT-DUPLICATE,"+0.004 (MODEL). Move each dot <= 2 px to the strongest TMI/DEM edge response. DUPLICATE of (SNAP,2) already in the ledger; that arm's own instrument reads negative against a random-response null, so this is not a slot candidate.",MODEL
