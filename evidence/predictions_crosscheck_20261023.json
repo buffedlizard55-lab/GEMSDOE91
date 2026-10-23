@@ -299,219 +299,6 @@
       ]
     },
     {
-      "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFm2r15-20261023-3c3e832d.tif",
-      "n_dots": 37654,
-      "dti_proxy": 0.00582285,
-      "delta_vs_parent": -0.00095527,
-      "T": 328.054542,
-      "S": 37654.0,
-      "M": 238.205512,
-      "bands": [
-        {
-          "lo_px": 0.0,
-          "hi_px": 3.0,
-          "n_dots": 1372,
-          "share_of_dots": 0.036437,
-          "share_of_mass": 0.036437,
-          "share_of_credit": 1.0,
-          "mean_credit_per_dot": 0.239107,
-          "n_dots_with_zero_credit": 0
-        },
-        {
-          "lo_px": 3.0,
-          "hi_px": 5.0,
-          "n_dots": 2751,
-          "share_of_dots": 0.07306,
-          "share_of_mass": 0.07306,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 2751
-        },
-        {
-          "lo_px": 5.0,
-          "hi_px": 10.0,
-          "n_dots": 5387,
-          "share_of_dots": 0.143066,
-          "share_of_mass": 0.143066,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 5387
-        },
-        {
-          "lo_px": 10.0,
-          "hi_px": 20.0,
-          "n_dots": 6984,
-          "share_of_dots": 0.185478,
-          "share_of_mass": 0.185478,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 6984
-        },
-        {
-          "lo_px": 20.0,
-          "hi_px": 40.0,
-          "n_dots": 9323,
-          "share_of_dots": 0.247597,
-          "share_of_mass": 0.247597,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 9323
-        },
-        {
-          "lo_px": 40.0,
-          "hi_px": null,
-          "n_dots": 11837,
-          "share_of_dots": 0.314362,
-          "share_of_mass": 0.314362,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 11837
-        }
-      ]
-    },
-    {
-      "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFnull15-20261023-6c057de2.tif",
-      "n_dots": 37654,
-      "dti_proxy": 0.00574358,
-      "delta_vs_parent": -0.00103455,
-      "T": 323.585332,
-      "S": 37654.0,
-      "M": 236.371243,
-      "bands": [
-        {
-          "lo_px": 0.0,
-          "hi_px": 3.0,
-          "n_dots": 1371,
-          "share_of_dots": 0.03641,
-          "share_of_mass": 0.03641,
-          "share_of_credit": 1.0,
-          "mean_credit_per_dot": 0.236021,
-          "n_dots_with_zero_credit": 0
-        },
-        {
-          "lo_px": 3.0,
-          "hi_px": 5.0,
-          "n_dots": 2940,
-          "share_of_dots": 0.078079,
-          "share_of_mass": 0.078079,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 2940
-        },
-        {
-          "lo_px": 5.0,
-          "hi_px": 10.0,
-          "n_dots": 5577,
-          "share_of_dots": 0.148112,
-          "share_of_mass": 0.148112,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 5577
-        },
-        {
-          "lo_px": 10.0,
-          "hi_px": 20.0,
-          "n_dots": 7185,
-          "share_of_dots": 0.190816,
-          "share_of_mass": 0.190816,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 7185
-        },
-        {
-          "lo_px": 20.0,
-          "hi_px": 40.0,
-          "n_dots": 8712,
-          "share_of_dots": 0.23137,
-          "share_of_mass": 0.23137,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 8712
-        },
-        {
-          "lo_px": 40.0,
-          "hi_px": null,
-          "n_dots": 11869,
-          "share_of_dots": 0.315212,
-          "share_of_mass": 0.315212,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 11869
-        }
-      ]
-    },
-    {
-      "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFr2m15-20261023-2c3839c9.tif",
-      "n_dots": 37654,
-      "dti_proxy": 0.00588789,
-      "delta_vs_parent": -0.00089023,
-      "T": 331.718921,
-      "S": 37654.0,
-      "M": 241.78682,
-      "bands": [
-        {
-          "lo_px": 0.0,
-          "hi_px": 3.0,
-          "n_dots": 1407,
-          "share_of_dots": 0.037367,
-          "share_of_mass": 0.037367,
-          "share_of_credit": 1.0,
-          "mean_credit_per_dot": 0.235763,
-          "n_dots_with_zero_credit": 0
-        },
-        {
-          "lo_px": 3.0,
-          "hi_px": 5.0,
-          "n_dots": 3171,
-          "share_of_dots": 0.084214,
-          "share_of_mass": 0.084214,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 3171
-        },
-        {
-          "lo_px": 5.0,
-          "hi_px": 10.0,
-          "n_dots": 6125,
-          "share_of_dots": 0.162665,
-          "share_of_mass": 0.162665,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 6125
-        },
-        {
-          "lo_px": 10.0,
-          "hi_px": 20.0,
-          "n_dots": 8033,
-          "share_of_dots": 0.213337,
-          "share_of_mass": 0.213337,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 8033
-        },
-        {
-          "lo_px": 20.0,
-          "hi_px": 40.0,
-          "n_dots": 8782,
-          "share_of_dots": 0.233229,
-          "share_of_mass": 0.233229,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 8782
-        },
-        {
-          "lo_px": 40.0,
-          "hi_px": null,
-          "n_dots": 10136,
-          "share_of_dots": 0.269188,
-          "share_of_mass": 0.269188,
-          "share_of_credit": 0.0,
-          "mean_credit_per_dot": 0.0,
-          "n_dots_with_zero_credit": 10136
-        }
-      ]
-    },
-    {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad.tif",
       "n_dots": 37654,
       "dti_proxy": 0.0061833,
@@ -1498,6 +1285,219 @@
           "share_of_credit": NaN,
           "mean_credit_per_dot": 0.0,
           "n_dots_with_zero_credit": 11383
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00677812,
+      "delta_vs_parent": 0.0,
+      "T": 381.89304,
+      "S": 37654.0,
+      "M": 277.937953,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1611,
+          "share_of_dots": 0.042784,
+          "share_of_mass": 0.042784,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.237053,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3180,
+          "share_of_dots": 0.084453,
+          "share_of_mass": 0.084453,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3180
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6152,
+          "share_of_dots": 0.163382,
+          "share_of_mass": 0.163382,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6152
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7827,
+          "share_of_dots": 0.207866,
+          "share_of_mass": 0.207866,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7827
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8638,
+          "share_of_dots": 0.229405,
+          "share_of_mass": 0.229405,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8638
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10246,
+          "share_of_dots": 0.272109,
+          "share_of_mass": 0.272109,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10246
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2b12-20261023-27443c30.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00677812,
+      "delta_vs_parent": 0.0,
+      "T": 381.89304,
+      "S": 37654.0,
+      "M": 277.937953,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1611,
+          "share_of_dots": 0.042784,
+          "share_of_mass": 0.042784,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.237053,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3251,
+          "share_of_dots": 0.086339,
+          "share_of_mass": 0.086339,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3251
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6292,
+          "share_of_dots": 0.1671,
+          "share_of_mass": 0.1671,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6292
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 7960,
+          "share_of_dots": 0.211399,
+          "share_of_mass": 0.211399,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 7960
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8322,
+          "share_of_dots": 0.221012,
+          "share_of_mass": 0.221012,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8322
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 10218,
+          "share_of_dots": 0.271366,
+          "share_of_mass": 0.271366,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 10218
+        }
+      ]
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif",
+      "n_dots": 37654,
+      "dti_proxy": 0.00677812,
+      "delta_vs_parent": 0.0,
+      "T": 381.89304,
+      "S": 37654.0,
+      "M": 277.937953,
+      "bands": [
+        {
+          "lo_px": 0.0,
+          "hi_px": 3.0,
+          "n_dots": 1611,
+          "share_of_dots": 0.042784,
+          "share_of_mass": 0.042784,
+          "share_of_credit": 1.0,
+          "mean_credit_per_dot": 0.237053,
+          "n_dots_with_zero_credit": 0
+        },
+        {
+          "lo_px": 3.0,
+          "hi_px": 5.0,
+          "n_dots": 3318,
+          "share_of_dots": 0.088118,
+          "share_of_mass": 0.088118,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 3318
+        },
+        {
+          "lo_px": 5.0,
+          "hi_px": 10.0,
+          "n_dots": 6463,
+          "share_of_dots": 0.171642,
+          "share_of_mass": 0.171642,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 6463
+        },
+        {
+          "lo_px": 10.0,
+          "hi_px": 20.0,
+          "n_dots": 8079,
+          "share_of_dots": 0.214559,
+          "share_of_mass": 0.214559,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8079
+        },
+        {
+          "lo_px": 20.0,
+          "hi_px": 40.0,
+          "n_dots": 8376,
+          "share_of_dots": 0.222446,
+          "share_of_mass": 0.222446,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 8376
+        },
+        {
+          "lo_px": 40.0,
+          "hi_px": null,
+          "n_dots": 9807,
+          "share_of_dots": 0.26045,
+          "share_of_mass": 0.26045,
+          "share_of_credit": 0.0,
+          "mean_credit_per_dot": 0.0,
+          "n_dots_with_zero_credit": 9807
         }
       ]
     }

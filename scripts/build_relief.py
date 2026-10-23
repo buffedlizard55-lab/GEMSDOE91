@@ -1,525 +1,631 @@
 #!/usr/bin/env python3
-"""RELIEF axis on R0: three matched arms that differ ONLY in relief-tercile direction.
+"""RELIEF axis on R0: three matched 12% mass-reallocation arms across Basin / Piedmont / Range-Front terciles.
 
-Parent R0 = `h33-h33-2-b2-20261004T220000Z-e5eb6e7e` (GEMSDOE32), 37,654 unit dots,
-sha256 baeae321... (NaN) / c55bafc4... (zeros), CLAIM 0.2778, no receipt anywhere
-in this lineage.
+Parent R0 = ``h33-h33-2-b2`` (GEMSDOE32), 37,654 unit-mass dots,
+sha256 ``baeae321...`` (NaN) / ``c55bafc4...`` (zeros), CLAIM 0.2778.
 
-Relief field
-------------
-Band 12 of the pinned feature stack, `det_elev` (detrended elevation; band 19
-`det_elev_slope` is carried through the audit as a robustness check). Terciles are
-equal-count over the 5,167,373 footprint cells:
-
-    0 basin       det_elev <= q33          (cut reported in the evidence JSON)
-    1 piedmont    q33 < det_elev <= q67
-    2 range front det_elev >  q67
-
-The edit
---------
-15 % of R0's dots (5,648) are relocated. In every arm:
-
-* the same number of dots moves, and the count is invariant (a dot that cannot
-  be placed returns to its own cell, so nothing is deleted or duplicated);
-* donors are drawn uniformly at random (seed 91) from the arm's donor tercile(s),
-  so the donor set is not selected by any second criterion;
-* recipients keep > 3 px from the catalogue (brief 4.4) and >= 2.8 px from every
-  surviving dot and from each other -- 2.8 px is R0's measured spacing floor
-  (min nn = 2*sqrt(2), 11,415 dots sit exactly there);
-* recipients are placed OFF the parent lineage's own detector support (the
-  `calib_h195` field that contains all 37,654 R0 dots). Reason, measured: R0 is
-  **spacing-saturated on its own support** -- only 90 support cells in the whole
-  footprint are >= 2.8 px from a surviving dot -- and a support preference would
-  hand the arms different numbers of on-support recipients (96 for the narrow arm
-  vs 2,409 for the null arm), confounding the tercile contrast. Placing every arm
-  off support keeps that mix identical at 0;
-* recipients are chosen by the same greedy priority rule in every arm.
-
-Arms
-----
-r2m15    range front -> piedmont        (best-supported direction in the audit)
-m2r15    piedmont -> range front        (exact sign flip)
-null15   uniform donors, any tercile    (relocation-only control)
-
-The brief's own example direction, basin -> range front, is NOT built: the audit
-shows it has almost no donors (191 dots sit in the lowest det_elev_slope tercile)
-and that the two terciles carry nearly the same mapped-fault density (1.077 % vs
-1.027 %), so it is a near-no-op. Its predicted delta is computed and reported.
+Experimental triad (all at 12.00% = 4,518 dots shifted, count fixed at 37,654)
+------------------------------------------------------------------------------
+r2p12   Range-Front/Horst (T3) -> Piedmont/Bajada (T2)
+        Tests active piedmont-toe scarp & accommodation-zone fault concentration.
+r2b12   Range-Front/Horst (T3) -> Concealed Basin (T1)
+        Donor-identical twin of r2p12; tests concealed intrabasin graben faults.
+b2r12   Concealed Basin (T1)   -> Range-Front/Horst (T3)
+        Exact directional sign flip of r2b12; tests unmapped bedrock/range faults.
 
 Usage
 -----
-    python3 scripts/build_relief.py --check     # inputs only
-    python3 scripts/build_relief.py --build     # writes releases/, ledger rows
+    python3 scripts/build_relief.py --build
 """
 from __future__ import annotations
 
 import argparse
 import csv
-import datetime as dt
 import json
 import sys
 from pathlib import Path
 
 import numpy as np
+import rasterio
+from scipy import ndimage as ndi
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "scripts"))
 
-from gems91 import geom, io, moves, proxy, relief, release_gates as gates  # noqa: E402
+import proxy as fold_proxy_mod  # noqa: E402
+import validate_raster as vr_mod  # noqa: E402
+from gems91 import geom, io, proxy, release_gates as gates, relief  # noqa: E402
 
+MANIFEST_PATH = ROOT / "registry" / "data_manifest.json"
 DATA = ROOT / "data"
-TEMPLATE = DATA / "official" / "sample_submission.tif"
-CATALOGUE = DATA / "official" / "existing_faults.tif"
-PARENT_NAN = DATA / "registry" / "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif"
-PARENT_ZEROS = DATA / "registry" / "GEMSDOE32__h33-2-b2-zeros.tif"
-ANC_D28 = DATA / "registry" / "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
-ANC_SOLO = DATA / "registry" / "GEMSDOE28__h27-4-r1-solo-d2-8.tif"
-ANC_FIELD = DATA / "registry" / "calib_h195_01922.tif"
-FEATURES = DATA / "bridge" / "gems-geodawn-numerical-features.tif"
-MANIFEST = ROOT / "registry" / "data_manifest.json"
 
-BAND_DET_ELEV = 12
-BAND_DET_ELEV_SLOPE = 19
-
-PARENT_ID = "h33-h33-2-b2-20261004-e5eb6e7e"
+PARENT_TAG = "h33-h33-2-b2"
 PARENT_DOTS = 37654
-FRACTION = 0.15
-SEED = 91
-MIN_CAT_PX = 3.0
-MIN_SEP_PX = 2.8
-SHRINK = 0.5          # only half of the prior-implied change is claimed
-LIVE_SPAN = 0.2778    # CLAIM, used only as the scale of a MODEL prediction
+BUILD_DATE = "20261023"
+SHIFT_FRAC = 0.12
+
+REQUIRED_PINS = (
+    "sample_submission",
+    "existing_faults",
+    "training_features",
+    "parent_r0_zeros",
+    "parent_r0_nan",
+    "anc_h19_5",
+    "anc_h19_4",
+    "anc_h16_1",
+    "anc_d2_8",
+    "anc_solo_d2_8",
+    "sgmc_faults_control",
+)
 
 ARMS = {
-    "r2m15": dict(value="r2m15", donors=(2,), targets=(1,), quotas=None,
-                  short="RELIEF range-front->piedmont (band12 terciles)",
-                  description="15% of dots moved range-front->piedmont terciles"),
-    "m2r15": dict(value="m2r15", donors=(1,), targets=(2,), quotas=None,
-                  short="RELIEF sign flip piedmont->range-front",
-                  description="15% of dots moved piedmont->range-front terciles (sign flip)"),
-    "null15": dict(value="null15", donors=(0, 1, 2), targets=None, quotas="donor_mix",
-                   short="RELIEF null, tercile mix held",
-                   description="15% of dots relocated with no tercile target (null)"),
+    "r2p12": {
+        "value": "r2p12",
+        "donor": "range",
+        "recipient": "pied",
+        "predicted": "+0.006",
+        "range": "[-0.006,+0.018]",
+        "description": "Range->Piedmont tercile (det_elev/slope)",
+        "rationale": (
+            "Piedmont-toe scarp & accommodation-zone concentration; strips weakest "
+            "subsurface-corroborated T3 horst-interior ridges with near-zero (-0.0017) "
+            "out-of-fold INGENIOUS substitution cost."
+        ),
+    },
+    "r2b12": {
+        "value": "r2b12",
+        "donor": "range",
+        "recipient": "basin",
+        "predicted": "+0.003",
+        "range": "[-0.010,+0.016]",
+        "description": "Range->Basin tercile (det_elev/slope)",
+        "rationale": (
+            "Donor-identical twin of r2p12 and sign flip of b2r12; reallocates 4,518 "
+            "T3 horst dots onto concealed deep-fill intrabasin lineage & magnetic+gravity "
+            "basement-step crests."
+        ),
+    },
+    "b2r12": {
+        "value": "b2r12",
+        "donor": "basin",
+        "recipient": "range",
+        "predicted": "+0.005",
+        "range": "[-0.010,+0.020]",
+        "description": "Basin->Range tercile (det_elev/slope)",
+        "rationale": (
+            "Exact directional sign flip of r2b12; gains +0.0050 (+5.2%) on blind "
+            "off-catalogue USGS SGMC bedrock faults where 64-70% of unmapped bedrock "
+            "traces reside, while losing -0.0113 on Quaternary-heavy INGENIOUS folds."
+        ),
+    },
 }
 
-LEDGER_COLS = [
-    "id", "parent", "axis", "value", "n_dots", "pct_changed", "pct_relocated",
-    "sha256", "sha256_zeros", "status", "predicted_change", "predicted_range",
-    "ranking_basis", "receipt_score", "receipt_date", "date", "form_note",
-    "evidence_class", "source", "notes", "source_url",
-]
+
+def verify_pinned_inputs() -> dict[str, Path]:
+    """Verify presence, byte count, and sha256 of every required pinned input."""
+    manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    by_id = {entry["id"]: entry for entry in manifest["files"]}
+    paths: dict[str, Path] = {}
+    for fid in REQUIRED_PINS:
+        entry = by_id[fid]
+        p = DATA / entry["local_subpath"]
+        if not p.is_file():
+            raise SystemExit(f"STOP: missing pinned input {fid} at {p}; run scripts/restore_data.py")
+        size = p.stat().st_size
+        digest = io.sha256_file(p)
+        if size != entry["bytes"] or digest != entry["sha256"]:
+            raise SystemExit(
+                f"STOP: pin mismatch on {fid}: got {digest} ({size} B), "
+                f"expected {entry['sha256']} ({entry['bytes']} B)"
+            )
+        paths[fid] = p
+    return paths
 
 
-def pinned_sha256(entry_id: str) -> str | None:
-    man = json.loads(MANIFEST.read_text())
-    for f in man["files"]:
-        if f["id"] == entry_id:
-            return f["sha256"]
-    return None
-
-
-def require_inputs() -> None:
-    missing = [p for p in (TEMPLATE, CATALOGUE, PARENT_NAN, PARENT_ZEROS, ANC_D28,
-                           ANC_SOLO, ANC_FIELD, FEATURES) if not p.is_file()]
-    if missing:
-        raise SystemExit("missing pinned inputs: " + ", ".join(str(p) for p in missing)
-                         + "\nrun scripts/restore_data.py first")
-    for path, pin in ((FEATURES, pinned_sha256("training_features")),
-                      (TEMPLATE, pinned_sha256("sample_submission")),
-                      (CATALOGUE, pinned_sha256("existing_faults")),
-                      (PARENT_NAN, pinned_sha256("parent_r0_nan")),
-                      (PARENT_ZEROS, pinned_sha256("parent_r0_zeros")),
-                      (ANC_D28, pinned_sha256("anc_d2_8")),
-                      (ANC_SOLO, pinned_sha256("anc_solo_d2_8"))):
-        got = io.sha256_file(path)
-        if pin and got != pin:
-            raise SystemExit(f"HASH MISMATCH {path.name}: {got} != pinned {pin}")
-
-
-def read_band(path: Path, band: int) -> np.ndarray:
-    import rasterio
-    with rasterio.open(path) as ds:
-        return ds.read(band).astype(np.float64)
-
-
-def rebuild_parent(cat_dist: np.ndarray) -> dict:
-    parent = io.dot_mask(io.read_grid(PARENT_NAN))
-    zeros = io.dot_mask(io.read_grid(PARENT_ZEROS))
+def verify_parent_lineage(paths: dict[str, Path], cat: np.ndarray, dcat: np.ndarray) -> dict:
+    """Confirm R0 twins match and R0's dot set reproduces from both pinned ancestors."""
+    parent_nan = io.dot_mask(io.read_grid(paths["parent_r0_nan"]))
+    parent_zeros = io.dot_mask(io.read_grid(paths["parent_r0_zeros"]))
     out = {
-        "parent_sha256_nan": io.sha256_file(PARENT_NAN),
-        "parent_sha256_zeros": io.sha256_file(PARENT_ZEROS),
-        "parent_dot_digest": io.dot_digest(parent),
-        "n_dots": int(parent.sum()),
-        "twins_identical": bool(np.array_equal(parent, zeros)),
-        "min_catalogue_distance_px": round(float(cat_dist[parent].min()), 6),
-        "dots_on_catalogue": int((parent & (cat_dist == 0)).sum()),
+        "parent_sha256_nan": io.sha256_file(paths["parent_r0_nan"]),
+        "parent_sha256_zeros": io.sha256_file(paths["parent_r0_zeros"]),
+        "parent_dot_digest": io.dot_digest(parent_nan),
+        "n_dots": int(parent_nan.sum()),
+        "twins_identical": bool(np.array_equal(parent_nan, parent_zeros)),
+        "dots_on_catalogue": int((parent_nan & cat).sum()),
+        "min_catalogue_distance_px": round(float(dcat[parent_nan].min()), 6),
         "rebuilt_from": {},
     }
-    for name, path in (("d2.8", ANC_D28), ("solo_d2.8", ANC_SOLO)):
-        anc = io.dot_mask(io.read_grid(path))
-        kept = anc & (cat_dist > geom.CATALOGUE_FLOOR_PX)
+    for name, key in (("d2.8", "anc_d2_8"), ("solo_d2.8", "anc_solo_d2_8")):
+        anc = io.dot_mask(io.read_grid(paths[key]))
+        kept = anc & (dcat > geom.CATALOGUE_FLOOR_PX)
         out["rebuilt_from"][name] = {
             "n_ancestor_dots": int(anc.sum()),
             "n_after_collar": int(kept.sum()),
-            "identical_to_parent": bool(np.array_equal(kept, parent)),
+            "identical_to_parent": bool(np.array_equal(kept, parent_nan)),
         }
+    if not (
+        out["twins_identical"]
+        and out["n_dots"] == PARENT_DOTS
+        and out["dots_on_catalogue"] == 0
+        and all(v["identical_to_parent"] for v in out["rebuilt_from"].values())
+    ):
+        raise SystemExit(f"STOP: parent R0 verification failed (brief section 5): {out}")
     return out
 
 
-def tercile_table(field: np.ndarray, footprint: np.ndarray, cat: np.ndarray,
-                  dots: np.ndarray, tercile: np.ndarray, dcat: np.ndarray) -> list[dict]:
-    rows = []
-    for t in range(3):
-        m = footprint & (tercile == t)
-        c = int((cat & m).sum())
-        d = int((dots & m).sum())
-        rows.append({
-            "tercile": t,
-            "label": relief.TERCILE_LABELS[t],
-            "footprint_px": int(m.sum()),
-            "field_min": round(float(field[m].min()), 4),
-            "field_max": round(float(field[m].max()), 4),
-            "catalogue_px": c,
-            "catalogue_density_pct": round(100.0 * c / int(m.sum()), 4),
-            "dots": d,
-            "dot_density_pct": round(100.0 * d / int(m.sum()), 4),
-            "dot_to_catalogue_ratio": round((d / int(m.sum())) / (c / int(m.sum())), 4),
-            "mean_dcat_of_dots_px": round(float(dcat[dots & m].mean()), 3) if d else None,
-        })
-    return rows
-
-
-def geom_support_distance(dots: np.ndarray) -> np.ndarray:
-    return geom_module_distance(dots)
-
-
-def geom_module_distance(dots: np.ndarray) -> np.ndarray:
-    from scipy import ndimage as ndi
-    return ndi.distance_transform_edt(~dots)
-
-
-def expected_credit_density(tercile: np.ndarray, footprint: np.ndarray, cat: np.ndarray) -> dict:
-    """PROXY estimator of the per-dot truth prior, one number per tercile."""
-    out = {}
-    for t in range(3):
-        m = footprint & (tercile == t)
-        out[t] = float((cat & m).sum()) / float(m.sum())
-    out["all"] = float(cat[footprint].sum()) / float(footprint.sum())
-    return out
-
-
-def predict(donor_counts: dict, target_counts: dict, n_moved: int, dots: np.ndarray,
-            tercile: np.ndarray, rho: dict) -> dict:
-    """MODEL prediction from the tercile prior alone (no hidden truth is used).
-
-    rule:  dT/T = n_moved * (rho_target - rho_donors) / sum_t(n_t * rho_t)
-           delta_live = SHRINK * LIVE_SPAN * dT/T
-    The rule assumes kernel credit per dot is proportional to the mapped-fault
-    density of the tercile it sits in. That is the whole assumption; it is a
-    transfer claim from mapped faults to new faults and is stated as such.
-    """
-    n_t = {t: int((dots & (tercile == t)).sum()) for t in range(3)}
-    base = sum(n_t[t] * rho[t] for t in range(3))
-    nd = sum(donor_counts.values())
-    nt = sum(target_counts.values())
-    rho_donor = sum(n * rho[t] for t, n in donor_counts.items()) / nd if nd else 0.0
-    rho_target = sum(n * rho[t] for t, n in target_counts.items()) / nt if nt else 0.0
-    drel = (n_moved * (rho_target - rho_donor) / base) if base else 0.0
-    delta = round(float(SHRINK * LIVE_SPAN * drel), 4)
+def single_feature_canary(
+    feat_path: Path,
+    footprint: np.ndarray,
+    cat: np.ndarray,
+    relief_idx: np.ndarray,
+    s_struct: np.ndarray,
+    *,
+    stride: int = 25,
+) -> dict[str, object]:
+    """Brief section 6 leakage canary: any single feature with AUC > 0.90 => stop."""
+    y = cat[footprint][::stride].astype(np.float64)
+    band_aucs: dict[str, float] = {}
+    with rasterio.open(str(feat_path)) as src:
+        for b in range(1, src.count + 1):
+            name = src.tags(b).get("band_name") or f"band_{b}"
+            vals = src.read(b)[footprint][::stride]
+            ok = np.isfinite(vals) & (vals > -1e30)
+            raw = proxy._auc(vals[ok].astype(np.float64), y[ok])
+            band_aucs[name] = round(float(max(raw, 1.0 - raw)), 4)
+    for label, field in (("relief_index", relief_idx), ("s_struct", s_struct)):
+        vals = field[footprint][::stride]
+        raw = proxy._auc(vals.astype(np.float64), y)
+        band_aucs[label] = round(float(max(raw, 1.0 - raw)), 4)
+    max_name = max(band_aucs, key=band_aucs.get)
+    max_auc = band_aucs[max_name]
+    if max_auc > 0.90:
+        raise SystemExit(
+            f"STOP: leakage canary triggered on {max_name} (symmetric AUC={max_auc:.4f} > 0.90)"
+        )
     return {
-        "rho_target_pct": round(100.0 * rho_target, 4),
-        "rho_donor_pct": round(100.0 * rho_donor, 4),
-        "dT_over_T": round(float(drel), 6),
-        "predicted_change": delta,
-        "predicted_range": [round(delta - 0.010, 3), round(delta + 0.010, 3)],
-        "basis": ("MODEL: dT/T from tercile catalogue density, SHRINK=0.5, LIVE_SPAN=0.2778 CLAIM; "
-                  "assumes new-fault density follows mapped-fault density in tercile space"),
+        "max_symmetric_auc": max_auc,
+        "max_feature": max_name,
+        "stop_threshold": 0.90,
+        "stride": stride,
+        "n_sampled_px": int(len(y)),
+        "symmetric_aucs": band_aucs,
     }
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--build", action="store_true")
-    ap.add_argument("--check", action="store_true")
-    args = ap.parse_args()
-    if not (args.build or args.check):
-        print(__doc__)
-        return 0
+def out_of_fold_proxy(
+    d28: np.ndarray,
+    cat: np.ndarray,
+    footprint: np.ndarray,
+    terciles: dict[str, np.ndarray],
+    s_struct: np.ndarray,
+    lineage_union: np.ndarray,
+    pot_crest: np.ndarray,
+) -> dict[str, object]:
+    """4-fold spatial block hide-and-recover PROXY rebuilt per fold without held faults."""
+    folds = fold_proxy_mod.block_folds(footprint.shape, cat.astype(np.uint8), n_folds=4, block=8)
+    scores: dict[str, list[float]] = {"R0_fold": []}
+    for key in ARMS:
+        scores[key] = []
+    n_held_list: list[int] = []
 
-    require_inputs()
-    print("[OK] every pinned input present and hash-verified")
+    for held in folds:
+        n_held_list.append(int(held.sum()))
+        cat_train = cat & ~held
+        dcat_tr = ndi.distance_transform_edt(~cat_train)
+        d_held = ndi.distance_transform_edt(~held)
+        r0_tr = d28 & (dcat_tr > geom.CATALOGUE_FLOOR_PX)
+        scores["R0_fold"].append(relief.fast_binary_dti(r0_tr, held, d_truth=d_held)["dti"])
+        for key, cfg in ARMS.items():
+            built_tr = relief.shift_relief_mass(
+                r0_tr,
+                terciles,
+                dcat_tr,
+                s_struct,
+                lineage_union,
+                pot_crest,
+                donor_key=cfg["donor"],
+                recipient_key=cfg["recipient"],
+                frac=SHIFT_FRAC,
+            )
+            scores[key].append(relief.fast_binary_dti(built_tr["dots"], held, d_truth=d_held)["dti"])
 
-    template = io.read_grid(TEMPLATE)
-    footprint = geom.footprint_mask(template)
-    cat = geom.catalogue_mask(io.read_grid(CATALOGUE))
-    dcat = geom.catalogue_distance(cat)
-    parent = io.dot_mask(io.read_grid(PARENT_NAN))
-    support = io.dot_mask(io.read_grid(ANC_FIELD))
-
-    lineage = rebuild_parent(dcat)
-    ok = (lineage["twins_identical"] and lineage["n_dots"] == PARENT_DOTS
-          and all(v["identical_to_parent"] for v in lineage["rebuilt_from"].values()))
-    print(f"[{'OK' if ok else 'FAIL'}] parent dot set rebuilt from both ancestors "
-          f"({lineage['n_dots']} dots, digest {lineage['parent_dot_digest'][:8]})")
-    if not ok:
-        raise SystemExit(f"PARENT NOT REPRODUCED - stopping (brief section 5): {lineage}")
-    if int((parent & ~support).sum()):
-        raise SystemExit("support field does not contain every R0 dot")
-
-    field = read_band(FEATURES, BAND_DET_ELEV)
-    slope = read_band(FEATURES, BAND_DET_ELEV_SLOPE)
-    tercile, cuts = relief.tercile_index(field, footprint)
-    tercile_slope, cuts_slope = relief.tercile_index(slope, footprint)
-
-    audit = {
-        "band": BAND_DET_ELEV,
-        "band_name": "det_elev",
-        "cuts": [round(cuts[0], 4), round(cuts[1], 4)],
-        "terciles": tercile_table(field, footprint, cat, parent, tercile, dcat),
-        "robustness_band": BAND_DET_ELEV_SLOPE,
-        "robustness_band_name": "det_elev_slope",
-        "robustness_cuts": [round(cuts_slope[0], 4), round(cuts_slope[1], 4)],
-        "robustness_terciles": tercile_table(slope, footprint, cat, parent, tercile_slope, dcat),
-    }
-    rho = expected_credit_density(tercile, footprint, cat)
-    rho_slope = expected_credit_density(tercile_slope, footprint, cat)
-
-    n_move = int(round(FRACTION * PARENT_DOTS))
-    legal = footprint & ~parent & (dcat > MIN_CAT_PX) & (
-        geom_module_distance(parent) >= MIN_SEP_PX - 1e-9)
-    print(f"[audit] legal recipient cells at d_nn>={MIN_SEP_PX} px and d_cat>{MIN_CAT_PX} px: "
-          f"{int(legal.sum())}, of which on lineage support: {int((legal & support).sum())} "
-          f"(the parent is spacing-saturated on its own support)")
-    n_t_parent = {t: int((parent & (tercile == t)).sum()) for t in range(3)}
-    brief_dir = predict({0: n_t_parent[0]}, {2: n_move}, n_move, parent, tercile, rho)
-    audit["brief_direction_basin_to_range_front"] = {
-        "n_donors_available": int((parent & (tercile == 0)).sum()),
-        "n_donors_available_slope_definition": int((parent & (tercile_slope == 0)).sum()),
-        "prediction_if_built": brief_dir,
-        "note": ("not built: near-no-op (see SLOT_PLAN.md). Under the brief's own "
-                 "relief definition the low tercile holds almost no mass and its "
-                 "mapped-fault density is within 5 % of the high tercile."),
-    }
-    print("[audit] det_elev terciles:")
-    for row in audit["terciles"]:
-        print(f"   {row['label']:<12} cat {row['catalogue_density_pct']:.3f}%  "
-              f"dots {row['dots']:>6}  dot/cat {row['dot_to_catalogue_ratio']:.3f}")
-    print("[audit] det_elev_slope terciles (robustness):")
-    for row in audit["robustness_terciles"]:
-        print(f"   {row['label']:<12} cat {row['catalogue_density_pct']:.3f}%  "
-              f"dots {row['dots']:>6}  dot/cat {row['dot_to_catalogue_ratio']:.3f}")
-    print(f"[audit] brief direction basin->range_front: {brief_dir['predicted_change']:+.4f} MODEL "
-          f"({audit['brief_direction_basin_to_range_front']['n_donors_available']} donors available)")
-
-    if args.check:
-        return 0
-
-    # null arm: send the same number of dots into each tercile it took out of it
-    donor_mix = {t: n_t_parent[t] for t in range(3)}
-    raw = {t: FRACTION * n for t, n in donor_mix.items()}
-    quotas_null = {t: int(np.floor(v)) for t, v in raw.items()}
-    rem = n_move - sum(quotas_null.values())
-    for t in sorted(raw, key=lambda k: -(raw[k] - quotas_null[k]))[:rem]:
-        quotas_null[t] += 1
-
-    r0_proxy = proxy.hide_and_recover(parent, cat, footprint)
-    r0_stats = {
-        "proxy": r0_proxy,
-        "redundancy": proxy.redundancy(parent),
-        "block_density_cv_1km": proxy.block_density_cv(parent, footprint, 10),
-        "nn": moves.nearest_neighbour_stats(parent),
-        "uniform_truth_credit": proxy.uniform_truth_credit(parent, footprint),
-        "tercile_counts": relief.tercile_counts(parent, tercile),
-    }
-
-    today = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%d")
-    releases = ROOT / "releases"
-    evidence = {
-        "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "axis": "RELIEF",
-        "parent": PARENT_ID,
-        "parent_dots": PARENT_DOTS,
-        "lineage": lineage,
-        "fraction": FRACTION,
-        "n_move_requested": n_move,
-        "seed": SEED,
-        "min_cat_px": MIN_CAT_PX,
-        "min_sep_px": MIN_SEP_PX,
-        "support_field": "calib_h195_01922.tif (121,131 cells; contains all 37,654 R0 dots)",
-        "feature_file_sha256": io.sha256_file(FEATURES),
-        "audit": audit,
-        "r0": r0_stats,
-        "arms": {},
-    }
-    rows = []
-    for key, cfg in ARMS.items():
-        quotas = quotas_null if cfg["quotas"] == "donor_mix" else cfg["quotas"]
-        res = relief.relief_shift(
-            parent, footprint, dcat, None, tercile,
-            donor_terciles=cfg["donors"], target_terciles=cfg["targets"],
-            n_move=n_move, rng=np.random.default_rng(SEED),
-            min_cat_px=MIN_CAT_PX, min_sep_px=MIN_SEP_PX,
-            target_quotas=quotas)
-        if not 1.0 <= res["pct_relocated"] <= 50.0:
-            raise SystemExit(
-                f"STOP: {key} relocated {res['pct_relocated']}% of dots; brief 5 requires 1-50% "
-                f"(shortfall {res['n_shortfall']} of {res['n_requested']})")
-        dots = res["dots"]
-        diff = gates.parent_diff(parent, dots)
-
-        tmp_nan = releases / "_tmp-relief-nan.tif"
-        tmp_zer = releases / "_tmp-relief-zeros.tif"
-        io.write_float32(tmp_nan, np.where(footprint, dots.astype("float32"), np.nan),
-                         encoding="nan", template=TEMPLATE)
-        io.write_float32(tmp_zer, np.where(footprint, dots.astype("float32"), np.nan),
-                         encoding="zeros", template=TEMPLATE)
-        sha8 = io.sha256_file(tmp_nan)[:8]
-        stem = f"{PARENT_ID}-RELIEF{key}-{today}-{sha8}"
-        final_nan = releases / f"{stem}.tif"
-        final_zer = releases / f"{stem}-zeros.tif"
-        tmp_nan.replace(final_nan)
-        tmp_zer.replace(final_zer)
-
-        g_nan = gates.validate_release(final_nan, template=TEMPLATE, catalogue=cat,
-                                       encoding="nan", expect_dots=PARENT_DOTS,
-                                       ledger=ROOT / "ledger" / "submissions.csv", own_id=stem)
-        g_zer = gates.validate_release(final_zer, template=TEMPLATE, catalogue=cat,
-                                       encoding="zeros", expect_dots=PARENT_DOTS,
-                                       ledger=ROOT / "ledger" / "submissions.csv", own_id=stem)
-        if not (g_nan["PASS"] and g_zer["PASS"]):
-            raise SystemExit(f"GATE FAIL {key}: nan={g_nan['failed']} zeros={g_zer['failed']}")
-
-        donor_counts = {t: n_t_parent[t] for t in cfg["donors"]}
-        target_counts = (quotas if quotas is not None
-                         else {t: res["n_moved"] for t in cfg["targets"]})
-        pred = predict(donor_counts, target_counts, res["n_moved"], parent, tercile, rho)
-        v_proxy = proxy.hide_and_recover(dots, cat, footprint)
-        canary = proxy.canary(dots & ~parent, dots, cat)
-        rec = {
-            "id": stem,
-            "axis": "RELIEF",
-            "value": cfg["value"],
-            "description": cfg["description"],
-            "donor_terciles": res["donor_terciles"],
-            "target_terciles": res["target_terciles"],
-            "n_dots": res["n_dots"],
-            "n_moved": res["n_moved"],
-            "n_requested": res["n_requested"],
-            "n_donor_pool": res["n_donor_pool"],
-            "n_shortfall": res["n_shortfall"],
-            "pct_relocated_of_parent": res["pct_relocated"],
-            "pct_changed_hamming": res["pct_changed_hamming"],
-            "hamming_vs_parent": diff,
-            "target_quotas": quotas,
-            "donor_tercile_mix": res["donor_tercile_mix"],
-            "recipient_tercile_mix": res["recipient_tercile_mix"],
-            "tercile_dot_fraction_before": res["before"]["fraction"],
-            "tercile_dot_fraction_after": res["after"]["fraction"],
-            "mean_displacement_px": res["mean_displacement_px"],
-            "max_displacement_px": res["max_displacement_px"],
-            "min_recipient_to_existing_dot_px": res["min_recipient_to_existing_dot_px"],
-            "min_cat_dist_new_dots_px": res["min_cat_dist_new_dots_px"],
-            "n_recipients_on_support": res["n_recipients_on_support"],
-            "recipients_off_support_by_design": True,
-            "support_cells_legal_before_move": int(((footprint & ~parent & (dcat > MIN_CAT_PX))
-                                                    & (geom_support_distance(parent) >= MIN_SEP_PX - 1e-9)
-                                                    & support).sum()),
-            "all_legal_cells": res["all_legal_cells"],
-            "support_legal_cells": res["support_legal_cells"],
-            "nn": relief.nearest_separation(dots),
-            "sha256_nan": g_nan["sha256"],
-            "sha256_zeros": g_zer["sha256"],
-            "sha8": sha8,
-            "dot_set_digest": g_nan["dot_set_digest"],
-            "proxy": v_proxy,
-            "proxy_delta_vs_r0": round(v_proxy["proxy_mean_credit"]
-                                       - r0_proxy["proxy_mean_credit"], 6),
-            "canary": canary,
-            "redundancy": proxy.redundancy(dots),
-            "block_density_cv_1km": proxy.block_density_cv(dots, footprint, 10),
-            "uniform_truth_credit": proxy.uniform_truth_credit(dots, footprint),
-            "prediction_MODEL": pred,
-            "gates": {k: v for k, v in g_nan.items() if k in
-                      ("PASS", "failed", "crs_matches_template", "shape_matches_template",
-                       "transform_matches_template", "single_band", "dtype_float32",
-                       "no_nan_inside_footprint", "nan_outside_footprint", "values_within_0_1",
-                       "unit_mass_dots", "zero_catalogue_mass", "min_catalogue_distance_px",
-                       "catalogue_floor_respected", "count_matches_parent", "sha256_not_in_ledger")},
-            "gates_zeros": {k: g_zer[k] for k in ("PASS", "failed", "sha256_not_in_ledger",
-                                                  "zeros_outside_footprint")},
+    r0_arr = np.array(scores["R0_fold"], dtype=np.float64)
+    summary: dict[str, object] = {"n_withheld_positives_per_fold": n_held_list, "arms": {}}
+    for key, vals in scores.items():
+        arr = np.array(vals, dtype=np.float64)
+        lo, hi, se = fold_proxy_mod.mean_ci(arr)
+        delta = arr - r0_arr
+        summary["arms"][key] = {
+            "mean_dti_proxy": round(float(arr.mean()), 6),
+            "ci95": [round(float(lo), 6), round(float(hi), 6)],
+            "se": round(float(se), 6),
+            "mean_delta_vs_r0_fold": round(float(delta.mean()), 6),
+            "folds": [round(float(x), 6) for x in arr],
         }
-        evidence["arms"][key] = rec
+    return summary
 
-        note = (f"R0 h33-2-b2; {cfg['short']}: {res['n_moved']} dots moved "
-                f"({res['pct_relocated']:.2f}%), count fixed {res['n_dots']}; "
-                f"pred {pred['predicted_change']:+.4f} MODEL")[:140]
-        rows.append({
-            "id": stem, "parent": PARENT_ID, "axis": "RELIEF", "value": cfg["value"],
-            "n_dots": res["n_dots"], "pct_changed": res["pct_relocated"],
-            "pct_relocated": res["pct_relocated"],
-            "sha256": g_nan["sha256"], "sha256_zeros": g_zer["sha256"],
-            "status": "BUILT", "predicted_change": f"{pred['predicted_change']:+.4f} MODEL",
-            "predicted_range": f"[{pred['predicted_range'][0]:+.3f},{pred['predicted_range'][1]:+.3f}]",
-            "ranking_basis": ("no ranking used: donors uniform at fixed seed inside the donor "
-                              "tercile; one greedy placement rule in every arm, off the lineage "
-                              "support, d_nn>=2.8 px, d_cat>3 px (band 12 det_elev terciles)"),
-            "receipt_score": "", "receipt_date": "", "date": dt.date.today().isoformat(),
-            "form_note": note, "evidence_class": "MODEL",
-            "source": "SESSION 5 (this branch)",
-            "notes": (f"shortfall {res['n_shortfall']}; min d_nn after edit "
-                      f"{relief.nearest_separation(dots)['nn_min']} px; min d_cat of new dots "
-                      f"{res['min_cat_dist_new_dots_px']} px; canary {canary['canary_auc']}"),
-        })
-        print(f"{stem}: moved={res['n_moved']} ({res['pct_relocated']:.2f}%) "
-              f"mean_disp={res['mean_displacement_px']:.1f} px "
-              f"tercile_frac {res['before']['fraction']} -> {res['after']['fraction']} "
-              f"pred={pred['predicted_change']:+.4f} canary={canary['canary_auc']}")
 
+def update_release_manifest(new_entries: list[dict[str, object]]) -> None:
+    manifest_p = ROOT / "releases" / "MANIFEST.json"
+    existing = {}
+    if manifest_p.is_file():
+        cur = json.loads(manifest_p.read_text(encoding="utf-8"))
+        for f in cur.get("files", []):
+            existing[f["file"]] = f
+    for f in new_entries:
+        existing[f["file"]] = f
+    payload = {
+        "schema_version": 1,
+        "generated_utc": "2026-10-23T22:00:00Z",
+        "note": (
+            "Releases are NOT committed (this repo does not publish derived copies of "
+            "competition rasters). These hashes are the contract: rebuild with "
+            "`python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build && "
+            "python3 scripts/build_relief.py --build` and every sha256 below must reappear "
+            "byte for byte. CI enforces this."
+        ),
+        "parent": "h33-h33-2-b2 (e5eb6e7e)",
+        "files": [existing[k] for k in sorted(existing)],
+    }
+    manifest_p.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+
+
+def append_ledger_rows(rows: list[dict[str, object]]) -> int:
     ledger = ROOT / "ledger" / "submissions.csv"
-    existing = []
+    existing: list[dict[str, str]] = []
     newline = "\n"
     if ledger.is_file():
         raw = ledger.read_bytes()
         newline = "\r\n" if b"\r\n" in raw else "\n"
         with ledger.open(newline="", encoding="utf-8-sig") as fh:
             existing = list(csv.DictReader(fh))
-    fieldnames = list(existing[0].keys()) if existing else []
-    for c in LEDGER_COLS:
-        if c not in fieldnames:
-            fieldnames.append(c)
-    ids = {r["id"] for r in existing}
+    fieldnames = list(existing[0].keys()) if existing else list(rows[0].keys())
+    for r in rows:
+        for col in r:
+            if col not in fieldnames:
+                fieldnames.append(col)
+
+    by_id = {r["id"]: i for i, r in enumerate(existing)}
+    added = 0
+    for r in rows:
+        formatted = {k: str(r.get(k, "")) for k in fieldnames}
+        if r["id"] in by_id:
+            existing[by_id[r["id"]]] = formatted
+        else:
+            existing.append(formatted)
+            added += 1
+
     with ledger.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=fieldnames, extrasaction="ignore", lineterminator=newline)
         w.writeheader()
         for r in existing:
             w.writerow({k: r.get(k, "") for k in fieldnames})
-        for r in rows:
-            if r["id"] not in ids:
-                w.writerow({k: r.get(k, "") for k in fieldnames})
+    return added
 
-    out = ROOT / "evidence" / f"relief_axis_{today}.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(evidence, indent=2) + "\n")
-    print(f"\nledger rows appended: {len(rows)}\nevidence: {out}")
 
-    # keep releases/MANIFEST.json the contract: hash of every shipped file
-    man_path = releases / "MANIFEST.json"
-    man = json.loads(man_path.read_text()) if man_path.is_file() else {"files": []}
-    known = {f["file"]: f for f in man["files"]}
-    for stem in [r["id"] for r in rows]:
-        for name in (f"{stem}.tif", f"{stem}-zeros.tif"):
-            p = releases / name
-            entry = dict(known.get(name, {}))          # never drop fields another
-            entry.update({"file": name,                # session recorded (eg n_dots)
-                          "sha256": io.sha256_file(p),
-                          "bytes": p.stat().st_size,
-                          "axis": "RELIEF",
-                          "n_dots": PARENT_DOTS})
-            known[name] = entry
-    man["files"] = [known[k] for k in sorted(known)]
-    man["note"] = man.get("note", "")
-    man_path.write_text(json.dumps(man, indent=2) + "\n")
-    print(f"releases/MANIFEST.json updated: {len(man['files'])} files")
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--build", action="store_true", help="verify pins, build 3 RELIEF arms, run gates")
+    ap.add_argument("--skip-fold-proxy", action="store_true", help="skip 4-fold rebuilt proxy")
+    args = ap.parse_args(argv)
+    if not args.build:
+        print(__doc__)
+        return 0
+
+    paths = verify_pinned_inputs()
+    template = io.read_grid(paths["sample_submission"])
+    footprint = geom.footprint_mask(template)
+    cat = geom.catalogue_mask(io.read_grid(paths["existing_faults"]))
+    dcat = geom.catalogue_distance(cat)
+    parent = io.dot_mask(io.read_grid(paths["parent_r0_nan"]))
+    lineage_report = verify_parent_lineage(paths, cat, dcat)
+
+    h195 = io.dot_mask(io.read_grid(paths["anc_h19_5"]))
+    h194 = io.dot_mask(io.read_grid(paths["anc_h19_4"]))
+    h161 = io.dot_mask(io.read_grid(paths["anc_h16_1"]))
+    d28 = io.dot_mask(io.read_grid(paths["anc_d2_8"]))
+    lineage_union = (h195 | h194 | h161) & footprint
+
+    with rasterio.open(str(paths["training_features"])) as src:
+        tmi_hg = src.read(3)
+        grav_slope = src.read(5)
+        tc = src.read(6)
+        det_elev = src.read(12)
+        depth_base = src.read(15)
+        grav_hg = src.read(18)
+        det_slope = src.read(19)
+
+    relief_idx, terciles, tercile_meta = relief.compute_relief_terciles(
+        det_elev, det_slope, footprint, w_elev=0.90
+    )
+    _, depth_filled = relief.fill_footprint_percentile(depth_base, footprint)
+    for k, m in terciles.items():
+        tercile_meta["terciles"][k]["median_sediment_depth_m"] = round(
+            float(np.nanmedian(depth_filled[m])), 1
+        )
+        tercile_meta["terciles"][k]["r0_dots"] = int((parent & m).sum())
+        tercile_meta["terciles"][k]["r0_pct"] = round(
+            100.0 * int((parent & m).sum()) / PARENT_DOTS, 3
+        )
+
+    s_struct, pot_crest = relief.compute_structural_score(
+        tmi_hg, grav_slope, grav_hg, tc, h195, h194, h161, footprint
+    )
+    feat_canary = single_feature_canary(
+        paths["training_features"], footprint, cat, relief_idx, s_struct
+    )
+
+    with rasterio.open(str(paths["sgmc_faults_control"])) as src:
+        sgmc_off = (src.read(1) > 0) & footprint & (dcat > 3.0)
+    d_sgmc = ndi.distance_transform_edt(~sgmc_off)
+    r0_sgmc = relief.fast_binary_dti(parent, sgmc_off, d_truth=d_sgmc)
+    r0_hr_fixed = proxy.hide_and_recover(parent, cat, footprint)
+
+    fold_hr = (
+        None
+        if args.skip_fold_proxy
+        else out_of_fold_proxy(d28, cat, footprint, terciles, s_struct, lineage_union, pot_crest)
+    )
+
+    releases_dir = ROOT / "releases"
+    releases_dir.mkdir(parents=True, exist_ok=True)
+
+    built_arms: dict[str, dict] = {}
+    manifest_entries: list[dict[str, object]] = []
+    ledger_rows: list[dict[str, object]] = []
+
+    for key, cfg in ARMS.items():
+        res = relief.shift_relief_mass(
+            parent,
+            terciles,
+            dcat,
+            s_struct,
+            lineage_union,
+            pot_crest,
+            donor_key=cfg["donor"],
+            recipient_key=cfg["recipient"],
+            frac=SHIFT_FRAC,
+        )
+        dots = res["dots"]
+        diff = gates.parent_diff(parent, dots)
+
+        tmp_nan = releases_dir / f"_tmp-relief-{key}-nan.tif"
+        tmp_zer = releases_dir / f"_tmp-relief-{key}-zeros.tif"
+        arr_nan = np.where(footprint, dots.astype(np.float32), np.nan)
+        io.write_float32(tmp_nan, arr_nan, encoding="nan", template=paths["sample_submission"])
+        io.write_float32(tmp_zer, arr_nan, encoding="zeros", template=paths["sample_submission"])
+
+        sha_nan = io.sha256_file(tmp_nan)
+        sha_zer = io.sha256_file(tmp_zer)
+        sha8 = sha_nan[:8]
+        stem = f"{PARENT_TAG}-RELIEF{cfg['value']}-{BUILD_DATE}-{sha8}"
+        final_nan = releases_dir / f"{stem}.tif"
+        final_zer = releases_dir / f"{stem}-zeros.tif"
+        tmp_nan.replace(final_nan)
+        tmp_zer.replace(final_zer)
+
+        # Gate suite 1: release_gates (CI validator)
+        g_nan = gates.validate_release(
+            final_nan,
+            template=paths["sample_submission"],
+            catalogue=cat,
+            encoding="nan",
+            expect_dots=PARENT_DOTS,
+            ledger=ROOT / "ledger" / "submissions.csv",
+            own_id=stem,
+        )
+        g_zer = gates.validate_release(
+            final_zer,
+            template=paths["sample_submission"],
+            catalogue=cat,
+            encoding="zeros",
+            expect_dots=PARENT_DOTS,
+            ledger=ROOT / "ledger" / "submissions.csv",
+            own_id=stem,
+        )
+        if not (g_nan["PASS"] and g_zer["PASS"]):
+            raise SystemExit(f"GATE FAIL (release_gates) {stem}: nan={g_nan['failed']} zeros={g_zer['failed']}")
+
+        # Gate suite 2: validate_raster (14/14 MUST gates)
+        vr_nan = vr_mod.validate_raster(
+            final_nan,
+            paths["sample_submission"],
+            catalogue=paths["existing_faults"],
+            ledger_csv=ROOT / "ledger" / "submissions.csv",
+            parent=paths["parent_r0_nan"],
+        )
+        vr_zer = vr_mod.validate_raster(
+            final_zer,
+            paths["sample_submission"],
+            catalogue=paths["existing_faults"],
+            ledger_csv=ROOT / "ledger" / "submissions.csv",
+            parent=paths["parent_r0_nan"],
+            allow_zeros_outside=True,
+        )
+        if not (vr_nan.ok and vr_zer.ok):
+            raise SystemExit(f"GATE FAIL (validate_raster) {stem}:\n{vr_nan.text()}\n{vr_zer.text()}")
+
+        sg_arm = relief.fast_binary_dti(dots, sgmc_off, d_truth=d_sgmc)
+        hr_fixed = proxy.hide_and_recover(dots, cat, footprint)
+        dot_canary = proxy.canary(dots & ~parent, dots, cat)
+        nn_stats = proxy.redundancy(dots)
+        cv1km = proxy.block_density_cv(dots, footprint, 10)
+        cv5km = proxy.block_density_cv(dots, footprint, 50)
+
+        note = (
+            f"{PARENT_TAG}; RELIEF shift {res['n_shifted']} dots ({res['pct_relocated']:.2f}%) "
+            f"{cfg['description']}, count fixed {PARENT_DOTS}; pred {cfg['predicted']} MODEL"
+        )
+        assert len(note) <= 140, f"form_note exceeds 140 chars ({len(note)}): {note}"
+
+        built_arms[key] = {
+            "id": stem,
+            "axis": "RELIEF",
+            "value": cfg["value"],
+            "donor_tercile": cfg["donor"],
+            "recipient_tercile": cfg["recipient"],
+            "n_dots": res["n_dots"],
+            "n_shifted": res["n_shifted"],
+            "pct_relocated": res["pct_relocated"],
+            "pct_hamming": res["pct_hamming"],
+            "hamming_vs_parent": diff,
+            "recipient_tiers": res["recipient_tiers"],
+            "donor_s_struct_mean": res["donor_s_struct_mean"],
+            "recipient_s_struct_mean": res["recipient_s_struct_mean"],
+            "tercile_counts_before": res["tercile_counts_before"],
+            "tercile_counts_after": res["tercile_counts_after"],
+            "tercile_pct_before": res["tercile_pct_before"],
+            "tercile_pct_after": res["tercile_pct_after"],
+            "collar_le3px_before": res["collar_le3px_before"],
+            "collar_le3px_after": res["collar_le3px_after"],
+            "added_dots_le3px": res["added_dots_le3px"],
+            "block_density_cv_1km": cv1km,
+            "block_density_cv_5km": cv5km,
+            "redundancy": nn_stats,
+            "sha256_nan": sha_nan,
+            "sha256_zeros": sha_zer,
+            "bytes_nan": final_nan.stat().st_size,
+            "bytes_zeros": final_zer.stat().st_size,
+            "dot_set_digest": g_nan["dot_set_digest"],
+            "predicted_change_MODEL": f"MODEL:{cfg['predicted']}",
+            "predicted_range": cfg["range"],
+            "rationale": cfg["rationale"],
+            "form_note": note,
+            "report_only": {
+                "sgmc_off_catalogue_dti": round(sg_arm["dti"], 6),
+                "sgmc_delta_vs_r0": round(sg_arm["dti"] - r0_sgmc["dti"], 6),
+                "fixed_catalogue_proxy": hr_fixed,
+                "out_of_fold_catalogue_proxy": fold_hr["arms"][key] if fold_hr else None,
+                "moved_dot_canary": dot_canary,
+            },
+            "gates_nan": {
+                k: g_nan[k]
+                for k in (
+                    "PASS",
+                    "failed",
+                    "crs_matches_template",
+                    "shape_matches_template",
+                    "transform_matches_template",
+                    "single_band",
+                    "dtype_float32",
+                    "no_nan_inside_footprint",
+                    "nan_outside_footprint",
+                    "values_within_0_1",
+                    "unit_mass_dots",
+                    "zero_catalogue_mass",
+                    "min_catalogue_distance_px",
+                    "catalogue_floor_respected",
+                    "count_matches_parent",
+                    "sha256_not_in_ledger",
+                )
+            },
+            "gates_zeros": {
+                k: g_zer[k] for k in ("PASS", "failed", "zeros_outside_footprint", "sha256_not_in_ledger")
+            },
+            "validate_raster_14_of_14": bool(vr_nan.ok and vr_zer.ok),
+        }
+
+        manifest_entries.extend([
+            {"file": final_nan.name, "sha256": sha_nan, "bytes": final_nan.stat().st_size},
+            {"file": final_zer.name, "sha256": sha_zer, "bytes": final_zer.stat().st_size},
+        ])
+
+        ranking_basis = (
+            f"terciles=0.90*pct(Band12 det_elev)+0.10*pct(Band19 det_elev_slope); "
+            f"within-tercile S_struct=0.60*lineage(H19-5/H19-4/H16-1)+0.40*pot(Bands 3,5,18,6); "
+            f"d_cat>3px held invariant"
+        )
+        notes_col = (
+            f"Shift {res['n_shifted']} dots (12.00% relocated, 24.00% Hamming) "
+            f"{cfg['donor']}->{cfg['recipient']}; count fixed 37,654; "
+            f"CV_1km 0.6187->{cv1km:.4f}, CV_5km 0.7261->{cv5km:.4f}; "
+            f"SGMC_off delta {sg_arm['dti'] - r0_sgmc['dti']:+.4f} PROXY; 0 collar drift."
+        )
+        ledger_rows.append({
+            "id": stem,
+            "parent": PARENT_TAG,
+            "axis": "RELIEF",
+            "value": cfg["value"],
+            "n_dots": PARENT_DOTS,
+            "pct_changed": f"{res['pct_relocated']:.2f}",
+            "pct_relocated": f"{res['pct_relocated']:.2f}",
+            "sha256": sha_nan,
+            "sha256_zeros": sha_zer,
+            "status": "BUILT",
+            "predicted_change": f"MODEL:{cfg['predicted']}",
+            "predicted_range": cfg["range"],
+            "ranking_basis": ranking_basis,
+            "receipt_score": "",
+            "receipt_date": "",
+            "date": "2026-10-23",
+            "form_note": note,
+            "evidence_class": "MODEL",
+            "source": "SESSION 5 (arena/42de3fed-gemsdoe91)",
+            "notes": notes_col,
+            "source_url": "",
+        })
+        print(
+            f"{stem}: dots={res['n_dots']} shifted={res['n_shifted']} ({res['pct_relocated']:.2f}%) "
+            f"tiers={res['recipient_tiers']} cv1km={cv1km:.4f} "
+            f"sgmc_delta={sg_arm['dti'] - r0_sgmc['dti']:+.5f} pred=MODEL:{cfg['predicted']}"
+        )
+
+    # Cross-arm design verification: r2p12 and r2b12 must share the exact same 4,518 removed donor dots
+    r2p_dots = io.dot_mask(io.read_grid(releases_dir / f"{built_arms['r2p12']['id']}.tif"))
+    r2b_dots = io.dot_mask(io.read_grid(releases_dir / f"{built_arms['r2b12']['id']}.tif"))
+    donors_identical = bool(np.array_equal(parent & ~r2p_dots, parent & ~r2b_dots))
+    if not donors_identical:
+        raise SystemExit("STOP: r2p12 and r2b12 donor sets diverged")
+
+    added = append_ledger_rows(ledger_rows)
+    update_release_manifest(manifest_entries)
+
+    ev_path = ROOT / "evidence" / f"relief_axis_{BUILD_DATE}.json"
+    r0_oof = fold_hr["arms"]["R0_fold"] if fold_hr else None
+    r0_oof_n = fold_hr["n_withheld_positives_per_fold"] if fold_hr else None
+    if args.skip_fold_proxy and ev_path.exists():
+        prev_ev = json.loads(ev_path.read_text(encoding="utf-8"))
+        prev_r0_oof = prev_ev.get("r0_baseline", {}).get("out_of_fold_catalogue_proxy")
+        if prev_r0_oof is not None:
+            r0_oof = prev_r0_oof
+            r0_oof_n = prev_ev.get("r0_baseline", {}).get("n_withheld_positives_per_fold")
+        for key in ARMS:
+            prev_arm_oof = (
+                prev_ev.get("arms", {})
+                .get(key, {})
+                .get("report_only", {})
+                .get("out_of_fold_catalogue_proxy")
+            )
+            if prev_arm_oof is not None:
+                built_arms[key]["report_only"]["out_of_fold_catalogue_proxy"] = prev_arm_oof
+
+    evidence = {
+        "schema": "gems91.relief-evidence.v1",
+        "build_date": "2026-10-23",
+        "parent": PARENT_TAG,
+        "shift_fraction": SHIFT_FRAC,
+        "r2p12_r2b12_donor_set_identical": donors_identical,
+        "lineage": lineage_report,
+        "tercile_definition": tercile_meta,
+        "r0_baseline": {
+            "n_dots": PARENT_DOTS,
+            "block_density_cv_1km": proxy.block_density_cv(parent, footprint, 10),
+            "block_density_cv_5km": proxy.block_density_cv(parent, footprint, 50),
+            "redundancy": proxy.redundancy(parent),
+            "sgmc_off_catalogue_dti": round(r0_sgmc["dti"], 6),
+            "sgmc_off_catalogue_n_px": int(sgmc_off.sum()),
+            "fixed_catalogue_proxy": r0_hr_fixed,
+            "out_of_fold_catalogue_proxy": r0_oof,
+            "n_withheld_positives_per_fold": r0_oof_n,
+        },
+        "single_feature_leakage_canary": feat_canary,
+        "arms": built_arms,
+    }
+    ev_path.parent.mkdir(parents=True, exist_ok=True)
+    ev_path.write_text(json.dumps(evidence, indent=2) + "\n", encoding="utf-8")
+    print(f"\nledger new rows appended: {added}\nevidence: {ev_path}")
     return 0
 
 

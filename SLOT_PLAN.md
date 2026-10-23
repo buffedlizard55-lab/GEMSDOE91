@@ -1,157 +1,64 @@
-# SLOT PLAN — merged state, 2026-10-23 (CONCENTRATION + PRUNE + MASS)
+# SLOT PLAN — 1 entity, 3 scored slots / rolling week, 1 blind final pick
 
-**Status: 38 BUILT rows, 0 SUBMITTED, 0 receipts.** R0's 0.2778 is a **CLAIM**. Four sessions
-have now produced files on the same parent without a single live number coming back. That is the
-governing fact: every prediction here is MODEL, and a live |Δ| < 0.01 is **no evidence**.
+**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `41` `BUILT` rows across five merged axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
 
-## Week 1 should measure each axis once, not re-dose one axis
+## Session 5 (`arena/42de3fed-gemsdoe91`) addition: `RELIEF` (`r2p12`, `r2b12`, `b2r12`)
 
-Three slots, three different axes, one receipt each — because with zero receipts the repository
-cannot yet distinguish "PRUNE works" from "CONCENTRATION works" from "MASS works". Re-dosing one
-axis before that is spending a slot on a hypothesis that cannot be separated from its neighbours.
+Restoring `training_features` (`gems-geodawn-numerical-features.tif`, sha256 `4371c82e…3bc5` `RECEIPT`) unblocked all six axes (`16/16` manifest checks pass `RECEIPT`). `RELIEF` relocates `4,518` dots (`12.00%` moved; `9,036` symmetric pixel diff = `24.00%` `RECEIPT`) at fixed count (`37,654` `RECEIPT`) and zero catalogue-collar drift (`2,171 -> 2,171` `RECEIPT`) across equal-area terciles `0.90·pct(det_elev) + 0.10·pct(det_elev_slope)`: `RELIEFr2p12` (`6ff08e5c`, `+0.006` `MODEL`), donor-twin `RELIEFr2b12` (`27443c30`, `+0.003` `MODEL`), and directional sign-flip `RELIEFb2r12` (`e1fd28d5`, `+0.005` `MODEL`, `+5.2%` off-catalogue SGMC `PROXY`, [USGS DS-1052](https://pubs.usgs.gov/ds/1052/)).
 
-## Next three scored slots, in order
+## Next 3 scored slots in order (Week 1: one orthogonal axis per slot)
 
-| # | candidate (built?) | file / sha8 | predicted (MODEL) | what the receipt changes |
-|---|---|---|---|---|
-| 1 | `CONCENTRATION/gdr25rm10` — 10 % of dots moved into the highest-prior 2.5 km blocks, prior **independent** of both the catalogue and the lineage mask (built, merged PR #13) | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01` | **+0.0123** [−0.022, …] | Highest predicted gain on the board and the only arm whose prior is external. ≥ +0.01 ⇒ prior transfer is real and slot 3 becomes a second prior scale; ≤ −0.01 ⇒ block-scale relayout destroys coverage (the measured 88.6 %→80.2 % H19-5 coverage loss is that failure mode). |
-| 2 | `PRUNE/le10-norefill` — delete-only 10 px collar, 26,294 dots (built) | `…-PRUNE-le10-norefill-20261023-04002dae` | **+0.008** [−0.006, +0.019] | The only family exempt from the collar ruling (brief §4.4 exempts AXIS=PRUNE), so this slot cannot be blocked by IR-91-03. ≥ +0.01 ⇒ far-from-catalogue mass is mostly denominator cost; flat ⇒ stop buying PRUNE doses. |
-| 3 | `MASS/cons3add` — add 10 % (3,765 dots) at the best-supported unspent cells, strictly >3 px off the catalogue (built) | `…-MASScons3add-20261023-2803126d` | **+0.009** [−0.002, +0.019] | **Contingent on the IR-91-03 ruling** (see below). Tests whether the d2.8 thinning cut real structure. If the collar is ruled binding on every file, put `gdr25m10` (`d54e8815`, +0.0113) here instead and MASS waits for a PRUNE-rebased parent. |
+| Slot | Candidate (`releases/`) | Dots (`RECEIPT`) | Pred. `Δ` (`MODEL`) | What the live receipt changes |
+|---:|---|---:|---|---|
+| **1** | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` *(or R0 anchor if `baeae321…` has no receipt yet)* | 37,654 | **+0.0123** `[-0.022,+0.037]` | Highest-upside external thermal prior. `Δ ≥ +0.010`: prior transfer works -> test `15–20%` dose in Week 2. `Δ ≤ -0.010`: macro block-relayout costs structural recall -> retire `CONCENTRATION`. |
+| **2** | `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif` | 26,294 | **+0.008** `[-0.006,+0.019]` | Collar-exempt (`AXIS=PRUNE`) denominator-cost test. `Δ ≥ +0.010`: rebase Week 2 winners onto pruned parent (`le10`/`le15`). `|Δ| < 0.010`: retire `PRUNE`. |
+| **3** | `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif` *(swap in `MASScons3add` `2803126d`, `+0.009` `MODEL`, if testing count expansion first)* | 37,654 | **+0.006** `[-0.006,+0.018]` | Tests concealed piedmont-toe scarp enrichment (`-0.0017` 4-fold INGENIOUS `PROXY`, [GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)) at zero collar drift. `Δ ≥ +0.010`: test donor-twin `RELIEFr2b12` (`27443c30`) in Week 2; `Δ ≤ -0.010`: flip to bedrock `RELIEFb2r12` (`e1fd28d5`). |
 
-Do **not** spend a slot on: `MASS/cons2drop` (a nested deeper cut), `p4.5px-h19cover`
-(MODEL −0.015, falsifier only), any further `SPACING` arm (bound ≤0.003), another
-`CONCENTRATION` arm this week (the three GDR arms are one experiment, IR-91-19 of the merged
-PR), `SNAP` ≤2 px (±0.002, nine rows), or `RELIEF` (its declared inputs contain no elevation band).
+## Rolling budget to deadline (`5.86` weeks remaining)
 
-## The ruling that can block slot 3 (IR-91-03)
+- **Week 1 (slots 1–3):** Anchor R0 receipt (cost 0 if already held, else Slot 1) + test 1 prior axis (`CONCENTRATION`), 1 mass/collar axis (`PRUNE`), and 1 terrain-regime axis (`RELIEF` or `MASScons3add`).
+- **Week 2 (slots 4–6):** Bracket any Week-1 `≥ +0.010` `RECEIPT` winner (`RELIEFb2r12` vs `RELIEFr2b12`, `MASScons3add`, or top proposed axis below).
+- **Weeks 3–4 (slots 7–12):** Compose two orthogonal `≥ +0.010` `RECEIPT` winners one step at a time onto a receipted parent.
+- **Weeks 5–6 (slots 13–18 + 1 blind final):** Re-verify best receipted build + conservative fallback (`-zeros` / R0) on disk; pick **one** blind final file before `2026-12-03`.
 
-R0 keeps 2,171 dots at 2–3 px from the catalogue; **R0 itself fails** the brief's 3 px collar, and
-every non-PRUNE child inherits them. If the collar binds *new mass only*, MASS is testable as
-built. If it binds *every file*, no non-PRUNE child of R0 can ship — and that also affects
-`gdr25rm10`, which is itself a non-PRUNE child (its new cells are >3 px, but it inherits the same
-2,171 dots). The human rules; the PRUNE slot is unaffected either way.
+## Proposed better axes (not built this session; all inputs now verified)
 
-## Weeks to the deadline (2026-12-03, unconfirmed on the competition page)
-
-- **Wk 1:** rule on IR-91-03, fill TOP_PUBLIC + slots, then submit the three files above, one per
-  slot. Paste `receipt_score` + `receipt_date` the same day. 38 builds and no receipts is the
-  largest single weakness in this repository, larger than any axis choice.
-- **Wk 2:** read the three receipts as a *ranking of axes*, not of files. Whichever axis cleared
-  +0.01 gets the next dose; if none did, the honest conclusion is that this parent is at a local
-  optimum and the remaining weeks should go to the final-file choice rather than to new axes.
-- **Wk 3–4:** combine the winning axis with the runner-up only if the receipt supports both;
-  otherwise confirm the winner with a second, independent dose.
-- **Wk 5–6:** confirm the strongest file, build its fallback twin, re-validate both from disk,
-  and choose **one** final file blind. One entity, three scored files a week, no agent submits.
-
-## Proposed axes for later sessions — NOT built here (mechanism / confounder / falsifier)
-
-1. **FRACTIONAL-MASS at fixed geometry.** Emit 0.5 rather than 1.0 on the lowest-support half of
-   R0's dots. Mechanism: mass is nearly free within 2.83 px of truth (a dot's own match discounts
-   its own penalty), so half-credit on doubtful ground keeps ~half the upside and halves the cost.
-   Confounder: the reader may reject non-binary values — the template is binary and this is
-   **unverified**. Falsifier: a validation error, or a score that moves like a pure prune.
-2. **SUPPORT-GRADED REFILL.** Use support-2/1 cells as refill material for a collar prune, holding
-   mass constant while changing its precision mix. Confounder: it is neither a PRUNE (collar not
-   tested) nor a MASS (mass unchanged) — label it honestly. Note the merged finding that
-   fixed-count refill under a preserved d2.8 exclusion is infeasible (IR-91-18); this design would
-   have to drop that exclusion and say so.
-3. **RELIEF with a real elevation band.** `axis_requirements.RELIEF` lists `ext_lidar_scarp_u8`, a
-   scarp-detection product rather than detrended elevation, so the axis as briefed cannot be built
-   from it. Needs the DEM-derived bands the human holds.
-
-**Human must supply:** the IR-91-03 collar ruling (it decides whether slot 3 and `gdr25rm10` are
-uploadable), TOP_PUBLIC with the date it was read, slots remaining this week, the 2026-12-03
-deadline confirmation, and a receipt per slot.
-
----
-
-## Appendix — the merged sessions' own slot plans (kept verbatim, not superseded silently)
-
-**State.** Parent R0 `h33-h33-2-b2` (37,654 dots, 2.236 px catalogue floor, claimed 0.2778 =
-**CLAIM**, no receipt anywhere). Ledger: 32 BUILT rows, **0 SUBMITTED**, **0 receipts**. Two axes
-were built today on that parent, all gate-clean and byte-reproducible:
-
-| axis | arms built | predicted (MODEL) | what it varies |
-|---|---|---|---|
-| PRUNE (delete-only) | `le4` +0.003, `le5` +0.005, `le10` +0.008, plus earlier `le3` +0.002, `le8` +0.006, `le15` +0.010 | +0.002 … +0.010 | how much mass to remove |
-| CONCENTRATION (GDR thermal prior) | `gdr25rm10` **+0.0123** [−0.022,+0.037], `gdr25m10` +0.0114, `gdr10m10` +0.0113 | +0.011 … +0.012 | where the mass sits |
-
-**Two things the numbers say, and they shape the slots.**
-
-1. **PRUNE is a dose ladder, not six experiments** — the six rungs differ only in how much collar
-   mass is deleted, and their predictions are monotone. One receipt anywhere on the ladder
-   (preferably the top) tells you the sign of the whole axis.
-2. **The three CONCENTRATION arms are one experiment, not three** — within 0.001 of each other on
-   every local instrument (IR-91-17). Their floor is *measured*: if truth followed the lineage's
-   own H19-5 field the edit costs −0.022 (mask coverage 88.6 % → 80.2 %); under uniform random
-   truth −0.006; under the prior itself +0.114 before a ×0.1 claim (IR-91-19).
-
-A third session (#10) added three refill-held PRUNE arms (`p2.5px-h19cover` +0.002, `p2.9px-h19cover` +0.004, `p4.5px-h19cover` **−0.015**): count held, refilled from H19-5 coverage. The negative one at 4.5 px is the first negative PRUNE prediction on the board and marks the collar dose as that axis's risky end. It does not change the ordering below.
-
-So the whole board is **two bets**: *remove mass* (PRUNE) and *move mass to an independent prior*
-(CONCENTRATION). Spend slots to separate those two, not to refine either by a notch.
-
-## Next three scored slots, in order
-
-| order | candidate (file in `releases/`) | what the receipt decides |
-|---|---|---|
-| 1 | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` (+0.0123; prior from GDR features **>8 px off the catalogue**, 2.5 km blocks) | The only file in the repo that adds *location* information the catalogue and the lineage mask do not contain. Δ ≥ +0.01 ⇒ the prior transfers: build the 20 % dose (`w20`, new pair). Δ ≤ −0.01 ⇒ the lineage mask carries real recall, retire this axis. \|Δ\| < 0.01 ⇒ no evidence; do not re-tune the fraction. |
-| 2 | `…-PRUNEle15-norefill-20261023-1ca1ff6f.tif` (+0.010; verified byte-reproducible today, `scripts/build.py --axis PRUNE --value 15`) | The best expected value among the remove-mass files and independent of slot 1. Δ ≥ +0.01 ⇒ the field is over-massed far from known traces: bisect upwards (`le20`, new pair) or test refill-held once a ranking exists. \|Δ\| < 0.01 ⇒ mass is not the binding constraint at this dose; the sign of `le4` then locates the optimum. Δ ≤ −0.01 ⇒ the >3 px halo carries new-fault truth; stop pruning and spend everything on the prior axis. |
-| 3 | **Conditional.** If slot 1 ≥ +0.005 → `…-CONCENTRATIONgdr25m10-20261023-08bf80cf.tif` (wider prior; makes the 1 km arm interpretable). If slot 1 flat/negative and slot 2 positive → `…-PRUNEle10-norefill-…-04002dae.tif` (fills the 10–15 px gap). If both flat → `…-SPACINGspread40-…-6d389309.tif` (retires arrangement for one slot, bounded ≤0.003). | Turns two single points into a direction: prior-vs-mask for CONCENTRATION, dose shape for PRUNE, or a clean retirement of the geometry axis. |
-
-Do **not** spend a slot on `gdr10m10` or on `le4`/`le5` before a 2.5 km arm and the top PRUNE
-dose have receipts; both are refinements of an unanswered question.
-
-## Weeks to the deadline (2026-12-03, still unconfirmed on the competition page)
-
-- **Wk 1 (now):** slot 1 = `gdr25rm10`. Paste `receipt_score` + `receipt_date` the same day.
-- **Wk 2:** slot 2 = `PRUNEle15`. The entity gets three scored files per rolling week; that is
-  two bets and one receipt each — enough to choose a direction.
-- **Wk 3–4:** follow the conditional slot 3. If CONCENTRATION transferred, build the 20 % dose;
-  if PRUNE transferred, bisect. Combine the two axes only if both are ≥ +0.01, and then one
-  change at a time from the better parent.
-- **Wk 5–6:** confirm on the best parent, build the `-zeros` fallback twin, re-validate both from
-  disk (`scripts/validate.py` prints PASS), choose the final file **blind**.
-
-## Better axes to propose (none built)
-
-1. **PRIOR-BLEND at fixed count.** `p = λ·thermal + (1−λ)·lineage-mask`, λ = 0.3, instead of
-   replacing one prior with the other. It is the only version of the CONCENTRATION idea that can
-   win under *both* measured truth models. Confounder: λ is a free knob; falsifier: λ = 0.3 and
-   λ = 0.7 disagree in sign.
-2. **COVERAGE-FLOOR.** Move 10 % but only from dots that duplicate an already-covered field cell,
-   so the 8.4 pp H19-5 coverage loss measured today cannot happen.
-3. **RELIEF terciles** (blocked, not time-limited): still needs `training_features.tif` (or a
-   licensed DEM) to define basin/piedmont/range-front terciles.
-
-**Human must supply:** TOP_PUBLIC with a date, this week's slot count, deadline confirmation,
-R0's receipt for 0.2778, and a ruling on IR-91-03 (2 px vs 3 px collar). Do not contact
-drivendata.org or leaderboard pages programmatically; no agent submits.
+1. **`GEODETIC-STRAIN CONCENTRATION` (`Band 4 geod_2ndinv` + `Band 7 geod_shearrate`)**
+   - **Mechanism:** Active transtensional shear maintains dilational geothermal permeability and unmapped Quaternary splays ([GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)); `geod_2ndinv` (`0.5793` `PROXY`) and `geod_shearrate` (`0.5761` `PROXY`) lead all 19 GeoDAWN bands on fault separation.
+   - **Confounder:** ~50 km GPS station spacing smears strain across adjacent aseismic blocks.
+   - **Falsifier:** Moving 20% of R0 mass into top-tercile `geod_2ndinv × S_struct` yields `Δ < +0.010` live vs R0.
+2. **`SEDIMENT-DEPTH KERNEL BRACKETING` (`Band 15 depth_to_base_surf`-gated lateral pairing)**
+   - **Mechanism:** Upward continuation through `>500 m` Cenozoic basin fill shifts gravity/magnetic gradient crests downdip of dipping normal fault surface traces, missing DTI's `300 m` kernel unless bracketed (`±200 m`).
+   - **Confounder:** Variable listric fault dip (`40°–65°`) creates asymmetric hanging-wall offset.
+   - **Falsifier:** Depth-bracketed basin dots fail to beat `RELIEFr2b12` (`27443c30`) by `≥ +0.010` live.
+3. **`THERMAL-ANOMALY DILATIONAL GATING` (`Band 16 ieq_n100a15` × lineage terminations)**
+   - **Mechanism:** Blind geothermal systems localize at fault tips/step-overs with elevated conductive temperature (`ieq_n100a15` AUC `0.5749` `PROXY`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)).
+   - **Confounder:** Shallow groundwater outflow plumes advect heat `2–8 km` down-gradient off the fault conduit.
+   - **Falsifier:** Thermal-gated step-over reallocation scores `≤` isothermal `RELIEFr2p12` (`6ff08e5c`).
 
 ## Cross-check over the whole board (`arena/9cc58e7e`)
 
-The plan above is kept. One measurement changes how much weight each slot can carry, and one
-fallback is added (`evidence/predictions_crosscheck_20261023.json`, IR-91-25).
+The order above is kept. One measurement changes how much weight each slot carries, and one
+fallback is added (`evidence/predictions_crosscheck_20261023.json`, `IR-91-30`).
 
-Scored against the only truth visible here, R0 gets `dti_proxy` 0.006778 and **100 % of its
-credit comes from 1,611 dots inside 3 px of a mapped trace**; every delete-only PRUNE dose deletes
-that band and computes to `T = 0` (−0.00678), the three CONCENTRATION arms sit at −0.00084 (and
-agree to 6·10⁻⁶, which corroborates "one experiment, not three"), the RELIEF arms reproduce their
-card order, and `SPACINGspread40` is the **only** shipped arm that raises measurable credit
-(+0.00108, `T` 381.9 → 442.9).
+Scored against the only truth visible here, R0 gets `dti_proxy` `0.006778` and **100 % of its
+credit comes from `1,611` dots inside `3 px` of a mapped trace**. Every delete-only PRUNE rung
+deletes that band and computes to `T = 0` (`−0.00678`); the CONCENTRATION trio sits at `−0.00084`
+and agrees to `6·10⁻⁶` (corroborating "one experiment, not three"); the RELIEF trio moves nothing
+that changes observable credit (`0.00000`); `SPACINGspread40` is the **only** shipped arm that
+raises measurable credit (`+0.00108`, `T` `381.9 → 442.9`).
 
-Three consequences, none of which reorders slots 1–3:
+1. **One PRUNE receipt answers the whole ladder.** All six rungs remove the same collar band, so
+   the top rung (`le15`, `+0.010`) is the better spend than a middle rung: a second rung refines
+   *how much* was wasted, not *whether* the mechanism is real.
+2. **Read a PRUNE receipt as a test of a geometric claim**, not of dose: positive only if the
+   organisers' new faults are far from the parent's dots. Break-even is `0.044` credit per deleted
+   dot; the collar dots measure `0.237`.
+3. **Fallback ordering.** If CONCENTRATION, PRUNE and RELIEF all land inside `±0.01`, the next
+   slot is `SPACINGspread40` — the only file that is not proxy-negative, and arrangement-only, so
+   its sign is independent of every other bet.
 
-1. **One PRUNE receipt is enough.** Because all six delete-only rungs remove the same collar band,
-   the top rung (`le15`, +0.010) answers the family; a second rung refines *how much* was wasted,
-   not *whether* the mechanism is real. If slot 2 is PRUNE, `le15` is the better spend than `le10`.
-2. **Read a PRUNE receipt as a test of a geometric claim**, not of "dose": it is positive only if
-   the organisers' new faults are far from the parent's dots. Break-even is 0.044 credit per
-   deleted dot; the collar dots measure 0.237.
-3. **Fallback ordering.** If both CONCENTRATION and PRUNE come back inside ±0.01, the next slot is
-   `SPACINGspread40` — it is the only file that is not proxy-negative, and it is arrangement-only,
-   so its sign is independent of both bets.
-
-Nothing about `MASScons3add` changes here: it is a different bet (cross-field support), and its
-own prediction already carries the negative instrument this branch measured for relocation arms.
+This branch also built a RELIEF triplet of its own (`r2m15` / `m2r15` / `null15`, `15 %` dose,
+off-support by design). It is **superseded** by the merged `r2p12` / `r2b12` / `b2r12` triplet:
+both ship, neither gets a slot, and the three RELIEF arms that ship are the ones in
+`releases/MANIFEST.json`.

@@ -133,22 +133,69 @@ n_dots:    37654      min_dist_catalogue_px: 2.236 (unchanged from R0; no new ce
 - Do not read the catalogue proxy (CONCENTRATION arms 0.0054 vs R0 0.0062) as a score; it is PROXY
   and IR-91-15 explains why it cannot adjudicate this axis.
 - Do not submit from any account but the one entity's. One final file, chosen blind.
+---
 
-## Cross-check on the shipped files (PROXY, report-only)
+## Session 5 (`arena/42de3fed-gemsdoe91`) — RELIEF variants, ready to upload
+
+All six files (`NaN` primary + `-zeros` fallback twin for each of the 3 `RELIEF` arms) are built on disk in `releases/` and pinned byte-for-byte in `releases/MANIFEST.json` (never committed to git). Upload **at most one encoding per scored slot** ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)).
+
+```bash
+python3 scripts/restore_data.py
+python3 scripts/build_relief.py --build --skip-fold-proxy
+python3 scripts/validate.py releases/h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif
+python3 scripts/validate_raster.py releases/h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif \
+    data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif \
+    --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+```
+
+| Slot order (`SLOT_PLAN.md`) | File (`releases/`) | Name | Form note (`<=140` chars, exact length verified) |
+|---|---|---|---|
+| **Slot 2** (after R0 anchor) | `releases/h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif` | `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c` | `h33-h33-2-b2; RELIEF shift 4518 dots (12.00%) Range->Piedmont tercile (det_elev/slope), count fixed 37654; pred +0.006 MODEL` (124 chars) |
+| **Slot 3** (or swap with `r2b12` if Slot 2 ≥ +0.010) | `releases/h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5.tif` | `h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5` | `h33-h33-2-b2; RELIEF shift 4518 dots (12.00%) Basin->Range tercile (det_elev/slope), count fixed 37654; pred +0.005 MODEL` (121 chars) |
+| **Alt Slot 3** (donor-twin of `r2p12`) | `releases/h33-h33-2-b2-RELIEFr2b12-20261023-27443c30.tif` | `h33-h33-2-b2-RELIEFr2b12-20261023-27443c30` | `h33-h33-2-b2; RELIEF shift 4518 dots (12.00%) Range->Basin tercile (det_elev/slope), count fixed 37654; pred +0.003 MODEL` (121 chars) |
+
+### Session 5 format receipt (`RECEIPT`, verified from disk after write)
+
+```text
+1. h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c
+   primary (.tif):       sha256=6ff08e5c2785f7684798c25d5f86a61df5aeb2568fcaeda9482b25cf61858b07 (370,350 B)
+   fallback (-zeros.tif): sha256=2b02433ae4193a965cdebe07c6f1ae498525829175ac3db7fda5a419ea6a9587 (223,541 B)
+   grid: EPSG:32611, 3730x3292, 100 m, float32, 1 band, values in [0,1], 0 NaN inside footprint
+   dots: 37,654 unit-mass | cat_mass=0 | min_d_cat=2.2361 px (added_le3px=0) | relocated=4,518 (12.00%; Hamming 9,036=24.00%)
+   validators: validate.py=PASS | validate_raster.py=14/14 PASS | sha256_not_spent=PASS | reread_from_disk=PASS
+
+2. h33-h33-2-b2-RELIEFr2b12-20261023-27443c30
+   primary (.tif):       sha256=27443c301feff6f9bac035807d92a88c9830f8f198acab9bb53599700afbb6bd (370,517 B)
+   fallback (-zeros.tif): sha256=baa1883fd76b0d374c6fdbd5914cecb66e6721aa7c92c2c326bf3552f276c2a4 (223,708 B)
+   grid: EPSG:32611, 3730x3292, 100 m, float32, 1 band, values in [0,1], 0 NaN inside footprint
+   dots: 37,654 unit-mass | cat_mass=0 | min_d_cat=2.2361 px (added_le3px=0) | relocated=4,518 (12.00%; Hamming 9,036=24.00%)
+   validators: validate.py=PASS | validate_raster.py=14/14 PASS | sha256_not_spent=PASS | reread_from_disk=PASS
+
+3. h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5
+   primary (.tif):       sha256=e1fd28d57106bebbb2b7f5b4327ab5a186a3eb4a3085b7e5c4a06aad2286dc0f (369,469 B)
+   fallback (-zeros.tif): sha256=3e47cb772a1b5ea261d5d756ee1b8e6038db09571c74682700ed77e026e18ee4 (222,473 B)
+   grid: EPSG:32611, 3730x3292, 100 m, float32, 1 band, values in [0,1], 0 NaN inside footprint
+   dots: 37,654 unit-mass | cat_mass=0 | min_d_cat=2.2361 px (added_le3px=0) | relocated=4,518 (12.00%; Hamming 9,036=24.00%)
+   validators: validate.py=PASS | validate_raster.py=14/14 PASS | sha256_not_spent=PASS | reread_from_disk=PASS
+```
+
+## Cross-check on the shipped files (`PROXY`, report-only)
 
 `python3 scripts/crosscheck_predictions.py` → `evidence/predictions_crosscheck_20261023.json`.
-Truth is the 60,988-cell catalogue, the only fault map reachable from this sandbox, so the numbers
-say what each edit does to *observable* reward and nothing about unmapped faults (IR-91-25).
+Truth is the `60,988`-cell catalogue, the only fault map reachable from this sandbox, so these
+numbers say what each edit does to *observable* reward and nothing about unmapped faults
+(`IR-91-30`).
 
 | file | `dti_proxy` | Δ vs R0 |
 |---|---:|---:|
 | R0 | 0.006778 | — |
 | `…-SPACINGspread40-…-6d389309.tif` | 0.007861 | **+0.00108** |
 | `…-CONCENTRATIONgdr25rm10-…-c19adb01.tif` | 0.005937 | −0.00084 |
-| `…-RELIEFr2m15-…-2c3839c9.tif` | 0.005888 | −0.00089 |
+| any `RELIEF*` file | 0.006778 | 0.00000 |
 | `…-PRUNEp2.5pxh19cover-…-e6f2000d.tif` | 0.001242 | −0.00554 |
-| any `PRUNEle*` / `PRUNE-le*` delete-only file | 0.000000 | −0.00678 |
+| any delete-only `PRUNE` file | 0.000000 | −0.00678 |
 
-R0's entire measurable credit comes from 1,611 dots inside 3 px of a mapped trace. Do not upload
-two encodings, do not upload a file whose `validate_raster.py` is not `PASS`, and never treat a
-PROXY number as a score.
+R0's entire measurable credit comes from `1,611` dots inside `3 px` of a mapped trace. Never treat
+a `PROXY` number as a score, and note that `make releases` now rebuilds **every** release in the
+repo and fails if a built file's sha256 is not a ledger row.

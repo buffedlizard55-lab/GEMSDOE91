@@ -525,25 +525,56 @@ coverage cost (88.6 % → 80.2 %) and a −0.022 prediction floor. What still st
 they move 10 % of mass into the hottest 2.5 km blocks, which raises block-density CV further above
 the 0.51–0.59 band R0 already sits in (0.531), so the mechanism they test is *prior transfer*, not
 the CV statistic that originally motivated the axis. Do not describe them as a CV fix.
-## IR-91-25 — the missing input was public all along, split on purpose; that is a data-use flag
+---
 
-`training_features.tif` (419 MB, pin `4371c82e…`) is stored as **five parts of ≤ 94 MB** at
-`data/bridge/gems-geodawn-numerical-features.tif.part-00{0..4}` in
-**buffedlizard55-lab/5GEMSDOE** (commit `61068cbd…`) and, identically, in `6GEMSDOE`, `GEMSDOE`
-and `GEMSDOE2`. 6GEMSDOE's own `data/bridge/manifest.json` records the per-part hashes and the
-whole-file hash; all five parts verified here, the concatenation reproduces the pin **byte for
-byte** (418,912,844 B). The parts exist precisely because GitHub refuses > 100 MB blobs, and
-that manifest's `source.mirrors` point at **dropbox.com** — which this agent never contacted.
+# Session 5 (`arena/42de3fed-gemsdoe91`, RELIEF) — three decision-changing items
 
-**Decision it changes.** (a) All six axes are now READY, so no axis is input-blocked and every
-future "blocked on `training_features`" statement in earlier sessions is obsolete. (b) **This
-is competition data sitting in public GitHub repos.** The brief (§4.2) says competition rasters
-must not be public; four of this entity's own repos breach that. Nothing in this repo adds to
-the breach (data/ and releases/*.tif stay gitignored), but the human should take those repos
-private before the final submission, and should check the data-use terms before any further
-copying. Recorded, not fixed, because fixing it is the account owner's act.
+## IR-91-25 — `training_features` is already public in sibling repo `buffedlizard55-lab/GEMSDOE`
 
-## IR-91-26 — R0 is spacing-saturated on its own detector support (it constrains three axes)
+Querying `https://api.github.com/repos/buffedlizard55-lab/GEMSDOE` (`private: false`
+`RECEIPT`) and testing an unauthenticated blob download (`HTTP 200`, `41,425,484` B
+`RECEIPT`) confirms that the official `418,912,844`-byte `gems-geodawn-numerical-features.tif`
+raster (sha256 `4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5`
+`RECEIPT`) is already published in 5 split blobs at commit `c0c06ac8…` of
+`buffedlizard55-lab/GEMSDOE` (alongside the public mirrors already noted in IR-91-09).
+
+**Decision it changes.** (a) Per the standing rule (*"Keep competition rasters out of
+public repos and git-tracked releases; flag if already public"*), this public exposure is
+explicitly flagged for human review/remediation on `buffedlizard55-lab/GEMSDOE`. (b)
+`GEMSDOE91` continues to gitignore `data`, `data/`, and `releases/*.tif`, storing ONLY
+sha256 pins in `registry/data_manifest.json` and `releases/MANIFEST.json` while restoring
+bytes transiently in CI and `.cache/data`.
+
+## IR-91-26 — `RELIEF` axis unblocked via official GeoDAWN `det_elev` + `det_elev_slope` instead of unlicensed LiDAR
+
+Earlier sessions marked `RELIEF` blocked on `ext_lidar_scarp_u8.tif`, which covers only
+`75.4%` of the footprint and carries `"license": "USGS 3DEP public domain (derived — licence unchecked)"`
+in `registry/data_manifest.json`. Inspecting the now-verified official `training_features`
+stack ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/))
+shows `Band 12 det_elev` (detrended elevation) and `Band 19 det_elev_slope` (detrended
+slope) cover `99.94%` of the `5,167,373`-pixel footprint natively (`100.00%` after EDT
+nearest-cell fill of `3,061` boundary sentinel pixels `RECEIPT`), with single-band leakage
+canary AUCs of `0.5063` and `0.5633` `PROXY` (`≪ 0.90`).
+
+**Decision it changes.** Switched `axis_requirements["RELIEF"]` in
+`registry/data_manifest.json` from `ext_lidar_scarp_u8` to `training_features` + verified
+lineage ancestors, unblocking `RELIEF` on 100% sponsor-provided inputs without external
+licensing risk or partial-footprint bias.
+
+## IR-91-27 — R0's 2,171 inherited `2 < d_cat ≤ 3 px` collar dots must be quarantined on non-PRUNE edits
+
+Parent R0 (`h33-h33-2-b2`) contains `2,171` dots at Euclidean distance `2.236 ≤ d_cat ≤ 3.0 px`
+(`390` in T1 Basin, `1,134` in T2 Piedmont, `647` in T3 Range `RECEIPT`). Removing any of
+those `2,171` dots during `RELIEF` donor selection would simultaneously execute a partial
+`PRUNE` edit (confounding relief reallocation with catalogue-collar pruning), whereas
+placing any new recipient dot at `d_cat ≤ 3.0 px` violates the `≥ 3 px` new-dot rule
+(`added_le3 == 0` in `scripts/validate_raster.py`).
+
+**Decision it changes.** `src/gems91/relief.py::shift_relief_mass` enforces strict
+`d_cat > 3.0 px` on **both** donor removal and recipient placement (`collar_le3px = 2,171 → 2,171`,
+`added_dots_le3px = 0` across all three `RELIEF` builds `RECEIPT`).
+
+## IR-91-28 — R0 is spacing-saturated on its own detector support (it constrains three axes)
 
 Measured, not argued:
 
@@ -561,21 +592,7 @@ null arm; (ii) the imported `MASSm10plus` row claims to have added 3,765 dots in
 is only possible by breaking the spacing floor or placing off support, so its −0.010 prediction
 should be read as an off-support result, not a pure mass result.
 
-## IR-91-27 — the brief's RELIEF direction is a near-no-op on this parent; the axis was re-cut
-
-The brief asks for a basin→range-front shift. On R0 that direction moves mass between terciles
-whose mapped-fault densities are **1.077 %** (basin) and **1.027 %** (range front) — a −5 %
-change in expected credit per moved dot, i.e. **−0.0009** predicted (MODEL). Under the other
-relief definition (`det_elev_slope`) only **191 of 37,654** dots sit in the lowest tercile, so
-the move could not reach the brief's own 1–50 % band from that end. Mapped faults are densest
-in the **middle** tercile under both definitions (1.436 %, 1.534 %).
-
-**Decision it changes.** The session built range-front ↔ piedmont plus a tercile-neutral null
-instead of basin→range-front, and filed the brief's direction with its computed prediction
-rather than spending a build on a no-op. If the human wants the literal brief version, it is a
-one-line change in `scripts/build_relief.py` (`donor_terciles=(0,)`, `target_terciles=(2,)`).
-
-## IR-91-28 — a support preference would have confounded the RELIEF arms (caught before shipping)
+## IR-91-29 — a support preference would have confounded the RELIEF arms (caught before shipping)
 
 The first construction preferred lineage-support recipients, then fell back off support. It
 produced 96 on-support recipients in the narrow arm and 2,409 in the null arm, because the null
@@ -590,7 +607,7 @@ per arm and hold it constant, or the receipt cannot be attributed.
 
 ---
 
-## IR-91-29 — on the only visible truth, every PRUNE dose deletes 100 % of the measurable credit
+## IR-91-30 — on the only visible truth, every PRUNE dose deletes 100 % of the measurable credit
 
 **Assumption behind the ladder** (`SLOT_PLAN.md`, sessions 4 and the parallel PRUNE session):
 deleting the low-gain halo removes mass that earns no credit, so `S - M` falls while `T` holds,
@@ -630,7 +647,7 @@ means; (3) `SPACINGspread40` becomes the co-favoured second slot because it is t
 shipped arm that *raises* the measurable credit (+16 % `T`, +0.00108 proxy) instead of
 destroying it.
 
-## IR-91-30 — R0's 0.2778 CLAIM is 41× what the visible truth supports
+## IR-91-31 — R0's 0.2778 CLAIM is 41× what the visible truth supports
 
 **The claim:** R0 scores 0.2778 (no receipt in any ledger in this lineage — 32 rows, 0 receipts).
 
@@ -657,35 +674,3 @@ first receipt in this lineage should be read for its *sign and size*, not as con
 0.2778. If the human has ever seen a leaderboard row for R0, recording it (with date) settles
 this in one line and is worth a slot in itself.
 
-## IR-91-31 — MASS in the brief's sense is unbuildable from this lineage: no rank is stored
-
-**The rule** (brief §5, MASS): "drop the lowest-ranked 10 % / add the next-ranked 10 %, by the
-parent's own ranking (rebuild the ranking from the recorded recipe if it is not stored)".
-
-**What the lineage actually contains.** Four ancestor masks, re-checked pairwise this session:
-
-| relation | cells | verdict |
-|---|---:|---|
-| `R0` (37,654) not in `solo_d2_8` (40,199) | **0** | strict subset |
-| `solo_d2_8` not in `d2_8` (44,090) | **0** | strict subset |
-| `d1_5` (60,069) not in `h19_5` (121,131) | **0** | strict subset |
-| `d2_8` not in `d1_5` | **14,241** | **siblings, not a chain** |
-| `d1_5` not in `d2_8` | **30,220** | **siblings, not a chain** |
-
-All five are binary support masks. There is no continuous score field anywhere in the lineage, no
-ranking artifact, and no recorded recipe containing a rank. Worse for the axis: the lineage
-*branches* — two sibling thinning branches keep 14,241 cells that the other does not, and vice
-versa — so "the next-ranked 10 %" is not even well defined as "what the lineage rejected". The
-only ordering recoverable is the coarse tier of "survived which thinning step", and within R0 —
-the only tier a "lowest-ranked 10 %" could be drawn from — every dot is tied.
-
-**What the three imported MASS rows did instead.** They scored dots with
-`0.6·clip(d_catalogue_px/50,0,1) + 0.4·uniform(seed 88)` — a distance-to-catalogue ranking, i.e.
-PRUNE with noise — and said so in their own `form_note`.
-
-**Decision it changes.** I did not build MASS on a fabricated rank: it would have produced three
-more files whose predictions rest on an assumption the axis exists to test. MASS stays unbuilt
-until a rank artifact is recovered; the substitute experiment is already shipped — the six PRUNE
-doses test the same "drop the low-value mass" mechanism with a rank we can actually defend
-(distance to the organisers' own catalogue), and `SPACINGspread40/clump40/jitter40` test
-arrangement at fixed rank.

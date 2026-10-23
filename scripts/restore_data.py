@@ -27,6 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "registry" / "data_manifest.json"
 API = "https://api.github.com/repos/{repo}/contents/{path}?ref={ref}"
+BLOB_API = "https://api.github.com/repos/{repo}/git/blobs/{sha}"
 
 
 def sha256_file(path: Path) -> str:
@@ -37,7 +38,7 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
-def fetch(url: str) -> bytes:
+def _request(url: str) -> urllib.request.Request:
     req = urllib.request.Request(url, headers={
         "Accept": "application/vnd.github.raw",
         "User-Agent": "gemsdoe91-restore/1",
@@ -46,16 +47,33 @@ def fetch(url: str) -> bytes:
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
     if token:  # never printed, never logged, never written
         req.add_header("Authorization", f"Bearer {token}")
+    return req
+
+
+def fetch_to(urls: list[str], dest: Path) -> None:
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    tmp.parent.mkdir(parents=True, exist_ok=True)
     try:
-        with urllib.request.urlopen(req, timeout=120) as resp:
-            return resp.read()
-    except urllib.error.HTTPError as exc:
-        if exc.code in (403, 429):
-            raise SystemExit(
-                f"GitHub API refused the fetch ({exc.code}). This is the unauthenticated "
-                "rate limit, not a missing pin: re-run with GH_TOKEN set (CI supplies the "
-                "workflow token automatically) or wait for the hourly window to reset."
-            ) from exc
+        with tmp.open("wb") as out:
+            for url in urls:
+                try:
+                    with urllib.request.urlopen(_request(url), timeout=180) as resp:
+                        while True:
+                            chunk = resp.read(1 << 20)
+                            if not chunk:
+                                break
+                            out.write(chunk)
+                except urllib.error.HTTPError as exc:
+                    if exc.code in (403, 429):
+                        raise SystemExit(
+                            f"GitHub API refused the fetch ({exc.code}). This is the unauthenticated "
+                            "rate limit, not a missing pin: re-run with GH_TOKEN set (CI supplies the "
+                            "workflow token automatically) or wait for the hourly window to reset."
+                        ) from exc
+                    raise
+        tmp.replace(dest)
+    except BaseException:
+        tmp.unlink(missing_ok=True)
         raise
 
 
@@ -111,11 +129,14 @@ def main() -> int:
                 print(f"MISSING {f['id']:<18} {dest.relative_to(ROOT)}")
                 bad += 1
                 continue
-            url = API.format(repo=mirror["repo"], path=mirror["path"], ref=mirror["ref"])
-            print(f"fetch  {f['id']:<18} {mirror['repo']}@{mirror['ref'][:12]} {mirror['path']}")
-            blob = fetch(url)
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            dest.write_bytes(blob)
+            if "blobs" in mirror:
+                urls = [BLOB_API.format(repo=mirror["repo"], sha=s) for s in mirror["blobs"]]
+                label = f"{len(urls)} git blobs"
+            else:
+                urls = [API.format(repo=mirror["repo"], path=mirror["path"], ref=mirror["ref"])]
+                label = mirror["path"]
+            print(f"fetch  {f['id']:<18} {mirror['repo']}@{mirror['ref'][:12]} {label}")
+            fetch_to(urls, dest)
         got = sha256_file(dest)
         ok = got == f["sha256"] and dest.stat().st_size == f["bytes"]
         print(f"{'ok     ' if ok else 'MISMATCH'} {f['id']:<18} {got[:16]} {dest.stat().st_size:>9} B")
