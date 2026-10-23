@@ -4,34 +4,38 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** `R0 = h33-h33-2-b2` — **independently rebuilt byte-exactly this session** from
-  each of two pinned ancestors. NaN `baeae321…c77dd` / 355,443 B and zeros
-  `c55bafc4…a6fa9` / 219,065 B both match. R0 has 37,654 unit dots, zero catalogue mass,
-  and minimum catalogue distance 2.236 px. See `registry/r0_verification.json` and IR-91-17.
-- **Inputs:** 14 of 15 pinned entries restored and SHA-256 verified. Only the 419 MB
-  `training_features.tif` is absent; it was not approximated. The used H19-5, catalogue,
-  template, ancestors and SGMC inputs all match their pins.
-- **Best receipt:** **none.** All 29 ledger rows have blank `receipt_score`; R0's 0.2778
-  is **CLAIM**, not a receipt. No result in this session is a live score.
-- **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
-- **Slots left this week:** **__ / total __ (human must fill).**
-- **Axis:** **PRUNE**, chosen by the agent. Fixed-count refill uses exact iterative
-  marginal-DTI coverage on parent-lineage H19-5 support. It is not new truth or a new
-  physical-signal field. No-inhibition spacing drift is measured in IR-91-18 and the cards.
-- **Variants built at clean code SHA `6093377`: 3; all six encodings gated.**
+- **Parent:** R0 (`h33-h33-2-b2`), 37,654 dots on the pinned 3730×3292 EPSG:32611 grid.
+  Both pinned TIFFs now rebuild **byte for byte from either ancestor**: NaN
+  `baeae321…c77dd` (355,443 B), zeros `c55bafc4…a6fa9` (219,065 B); dot digest
+  `905cee9d…`. See `src/gems91/lineage.py` and `registry/r0_verification.json`.
+  R0's 0.2778 remains **CLAIM**, not a receipt.
+- **Inputs:** 14/15 pinned inputs hash-verified; `training_features.tif` has no pinned
+  mirror and remains UNVERIFIED. No unpinned or reconstructed raster was used.
+- **Axis selected this session:** **PRUNE**, fixed count / H19-cover, chosen by the agent.
+  Three new variants hold N=37,654, change 2.50–12.88%, and differ only in collar dose:
 
-  | value | sha8 | relocated | % of R0 | dots | predicted change |
-  |---|---|---:|---:|---:|---:|
-  | `PRUNEp2p5h19cover` | `e6f2000d` | 941 | 2.499070% | 37,654 | +0.002 MODEL |
-  | `PRUNEp2p9h19cover` | `9829bb66` | 1,611 | 4.278430% | 37,654 | +0.004 MODEL |
-  | `PRUNEp4p5h19cover` | `691438f8` | 4,848 | 12.875126% | 37,654 | −0.015 MODEL |
+  | value | relocated | prediction (MODEL) | sha8 |
+  |---|---:|---:|---|
+  | `p2.5px-h19cover` | 941 (2.499070%) | **+0.002** | `e6f2000d` |
+  | `p2.9px-h19cover` | 1,611 (4.278430%) | **+0.004** | `9829bb66` |
+  | `p4.5px-h19cover` | 4,848 (12.875126%) | **−0.015** | `691438f8` |
 
-  Every file passes `scripts/validate.py`; every NaN primary is also `CERTIFIED` by
-  `scripts/validate_release.py`. Full tests pass. Hashes and byte lengths are pinned in
-  `releases/PRUNE_REFILL_MANIFEST.json`; evidence is `evidence/prune_refill_axis_20261023.json`.
-- **Next 3 slots:** p2.5 → p2.9 if non-negative → p4.5 only as a receipt-dependent
-  falsifier. The third is predicted to lose and is not an automatic upload. See
-  `SLOT_PLAN.md`, `ledger/prune-refill-cards.md`, and `docs/SUBMIT.md`.
+  All six NaN/zeros encodings pass every hard gate; all three NaN primaries are
+  independently `CERTIFIED`. Exact hashes and sizes are in
+  `releases/PRUNE_REFILL_MANIFEST.json`; evidence and predictions were preregistered.
+- **Merged PRUNE ladder:** main also contributes unused delete-only `le4`, `le5`, and
+  `le10` variants (MODEL +0.003/+0.005/+0.008). They are complementary mass-loss tests,
+  not duplicates of the fixed-count doses. CI rebuilds both manifests and every raster.
+- **Ledger:** **32 BUILT rows** (26 prior + 3 ladder + 3 fixed-count), zero SUBMITTED
+  rows and zero receipts. All hashes and `(parent, axis, value)` pairs are unique.
+- **Next three slots:** 1) `PRUNE-le10-norefill` (`04002dae`, +0.008 MODEL), the largest
+  positive dose; 2) `PRUNEp2p9h19cover` (`9829bb66`, +0.004 MODEL), the complementary
+  fixed-count test; 3) `PRUNE-le4-norefill` (`360fe57e`, +0.003 MODEL) to bracket the
+  response. `p2.5` is the smaller-dose fallback; `p4.5` is a conditional falsifier,
+  **not** an automatic upload. Live |Δ|<0.01 is no evidence. See `SLOT_PLAN.md`.
+- **Human still supplies:** TOP_PUBLIC with date, weekly slots remaining, deadline
+  confirmation, every submission-page receipt, and all upload/final-pick decisions.
+  No agent submits or accesses the leaderboard.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 

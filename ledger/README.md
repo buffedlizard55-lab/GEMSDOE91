@@ -62,7 +62,8 @@ Two conventions this session adds, both to remove ambiguity:
 ## Session `arena/a52f2ac7` — fixed-count PRUNE / H19-cover
 
 Three rows appended: `p2.5px-h19cover`, `p2.9px-h19cover`, and `p4.5px-h19cover`.
-The file now has **29 rows and still zero receipts**. Each new row holds 37,654 dots,
+The merged ledger also retains main's `le4-norefill`, `le5-norefill`, and `le10-norefill`
+rows, for **32 rows and still zero receipts**. Each fixed-count row holds 37,654 dots,
 records relocated-dot percentage (the symmetric-difference percentage is in the evidence
 JSON), and carries `source = SESSION arena/a52f2ac7 PRUNE-H19COVER`. Predictions were frozen
 before report-only instruments. Exact rebuilds with the same id must reproduce both hashes;

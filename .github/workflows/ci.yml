@@ -93,6 +93,8 @@ jobs:
       - name: Rebuild all pinned releases
         run: |
           python scripts/build_spacing.py --build
+          python scripts/make_catalogue.py
+          python scripts/build_prune_ladder.py
           python scripts/build_prune_refill.py --build
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
