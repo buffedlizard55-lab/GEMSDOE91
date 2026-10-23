@@ -4,44 +4,54 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** R0 (`h33-h33-2-b2`), fetched from its pinned mirror and sha256-verified:
-  NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. 37,654 unit-mass dots, EPSG:32611,
-  3730×3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots, minimum catalogue
-  distance 2.236 px. **The parent's dot set reproduces exactly** from both pinned ancestors
-  (44,090 → 37,654 and 40,199 → 37,654, 0 differing cells, digest `905cee9d…`). Its file
-  *bytes* are not re-encodable here (IR-91-16), so every artifact carries a sha256 **and** a
-  dot-set digest.
-- **Best receipt:** none. R0's `0.2778` is a **CLAIM**. The ledger has 32 BUILT rows, zero
-  SUBMITTED rows and zero receipts, so no live effect has ever been measured in this lineage.
-- **Inputs:** 14/15 manifest entries hash-verified from pinned mirrors; `training_features.tif`
-  (419 MB, no public mirror) is absent and unused. Buildable today: PRUNE, SPACING,
-  CONCENTRATION (via the public-domain GDR thermal prior, IR-91-18). Blocked: MASS (needs a
-  label-derived ranking), RELIEF, SNAP, TRACKB.
-- **Two axes were built on 2026-10-23, on the same parent, and both are gate-clean:**
+- **Parent:** R0 (`h33-h33-2-b2`), 37,654 dots on the pinned 3730x3292 EPSG:32611 grid. Both
+  pinned TIFFs rebuild **byte for byte from either ancestor** (NaN `baeae321…c77dd`, 355,443 B;
+  zeros `c55bafc4…a6fa9`, 219,065 B; dot digest `905cee9d…`) — see `src/gems91/lineage.py`.
+  R0's 0.2778 remains **CLAIM**, never a receipt.
+- **Inputs:** all 15 pinned entries present and re-hashed in this checkout; the 14 with a mirror
+  match sha256 **and** byte length, and the derived catalogue mask rebuilds to its pinned hash
+  (`c97c7819…`). `training_features.tif` has no mirror and stays UNVERIFIED, which is why MASS
+  had to be re-ranked from the lineage fields (IR-91-21). `python scripts/preflight.py` now
+  reports readiness **per axis**: PRUNE, MASS and RELIEF ready; SNAP, CONCENTRATION-by-bands and
+  TRACKB blocked.
+- **Three axis families are built on this parent, all gate-clean, from three merged sessions:**
 
-  | session | arms | predicted (MODEL) |
+  | axis | arms | predicted (MODEL) |
   |---|---|---|
-  | PRUNE ladder (le4/le5/le10; earlier le3/le8/le15) | delete-only, 10.2 / 15.0 / 30.2 % of dots removed | +0.003 / +0.005 / +0.008 (le15 +0.010) |
-  | CONCENTRATION (this session) | 10.00 % of dots moved into the highest-prior 2.5 km blocks (`gdr25rm10` >8 px prior, `gdr25m10`, `gdr10m10` 1 km) | **+0.0123 / +0.0114 / +0.0113** |
+  | **CONCENTRATION** (external GDR thermal prior, PR #13) | `gdr25rm10` / `gdr25m10` / `gdr10m10`, 10 % of dots moved, count fixed | **+0.0123** / +0.0114 / +0.0113 |
+  | **PRUNE** (delete-only ladder + refill-held arms) | `le4` / `le5` / `le10` (and earlier `le3` / `le8` / `le15`); `p2.5` / `p2.9` / `p4.5px-h19cover` | +0.003 / +0.005 / **+0.008** (le15 +0.010); +0.002 / +0.004 / −0.015 |
+  | **MASS** (cross-field-support ranking, this session) | `cons1drop` 12.06 % / `cons2drop` 28.53 % / `cons3add` 10.00 % | −0.000 / −0.015 / **+0.009** |
 
-  CONCENTRATION details: count fixed at 37,654, seed 91025, no new cell inside 3 px of the
-  catalogue, R0's 2.0 px minimum separation preserved. It empties ~570 of 5,219 occupied
-  2.5 km blocks and costs 8.4 pp of coverage of the lineage's own H19-5 field (88.6 % → 80.2 %),
-  which is why its predicted range floor is **−0.022**, a measured number, not a formality
-  (IR-91-19). The three arms are one experiment, not three (IR-91-17).
-- **Third session (#10, same day):** three *refill-held* PRUNE arms on the same parent
-  (`p2.5px-h19cover` +0.002, `p2.9px-h19cover` +0.004, `p4.5px-h19cover` −0.015). They hold
-  the count at 37,654 and refill from H19-5 coverage, so they separate "delete mass" from
-  "move mass"; the −0.015 at 4.5 px is the first *negative* PRUNE prediction on the board
-  and it marks the collar dose as the risky end of that axis. They do not change the slot
-  ordering below: one receipt on the top delete-only dose still answers the axis.
-- **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
-- **Slots left this week:** **__ / __ (human must fill).** Deadline 2026-12-03, unconfirmed.
-- **Next 3 slots (one merged plan, `SLOT_PLAN.md`):** 1) `CONCENTRATIONgdr25rm10-…-c19adb01`
-  (the only file whose prior is independent of both the catalogue and the lineage mask),
-  2) `PRUNEle15-norefill-…-1ca1ff6f` (+0.010; verified byte-reproducible today), 3) `gdr25m10`
-  if slot 1 ≥ +0.005, else `PRUNEle10-norefill-…-04002dae`. Do not spend three slots on the
-  CONCENTRATION arms.
+- **Ledger:** **38 BUILT rows**, 0 SUBMITTED, 0 receipts. Every sha256 and every
+  (parent, axis, value) pair is unique. Live |Δ| < 0.01 is **no evidence**.
+- **Next 3 slots — one receipt per axis** (full reasoning in `SLOT_PLAN.md`):
+  1) `CONCENTRATIONgdr25rm10` (`c19adb01`, +0.0123 MODEL) — highest prediction, external prior;
+  2) `PRUNE-le10-norefill` (`04002dae`, +0.008) — the only family the collar ruling cannot block;
+  3) `MASScons3add` (`2803126d`, +0.009) — **contingent on the IR-91-03 ruling**; if the 3 px
+  collar is ruled binding on every file, put `gdr25m10` (`d54e8815`) here instead.
+- **Human still supplies:** the IR-91-03 collar ruling, TOP_PUBLIC with its date, slots remaining
+  this week, deadline confirmation, every submission-page receipt, and all upload / final-pick
+  decisions. No agent submits or touches the leaderboard.
+
+### Session 4 delta (`arena/ee0cdd38`, MASS)
+
+- **All pinned inputs restored and verified**, including the derived catalogue mask, which
+  rebuilds byte-identically from `existing_faults`. The repo can now certify real files.
+- **New builder:** `src/gems91/consensus.py` + `scripts/build_mass_consensus.py`, plus
+  `scripts/instruments.py` for the three report-only instruments (PROXY, canary, SGMC).
+- **The axis that could not be built as briefed:** the parent's continuous MASS ranking does
+  not exist in any pinned file (all ancestors are binary; `training_features` is absent), so
+  MASS is ranked by cross-field support over the pinned lineage fields (IR-91-17).
+- **Three gate-clean arms** (all §6 MUST gates; the §4.4 collar is inherited, IR-91-03),
+  whole-strata drops so no arm needs a tie-break: `cons1drop`
+  (33,113 dots, MODEL −0.000), `cons2drop` (26,913, MODEL −0.015), `cons3add`
+  (41,419, MODEL +0.009 — the only arm with a plausible path past +0.01).
+- **Two findings that change the plan.** R0's 10 px block-density CV is already **0.531**,
+  inside the reported 0.51–0.59 best-file band, and all four existing CONCENTRATION rows move
+  CV *up* to 1.02–1.36 (IR-91-20) — that axis is spent, not untested. And the canary must be a
+  **ring** test: the lineage fields are catalogue-masked, so the plain AUC is degenerate
+  (IR-91-19). The ring canary is 0.526 — the support ordering knows nothing about catalogue
+  proximity, which is what makes it a real MASS test rather than a disguised PRUNE.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 

@@ -24,7 +24,10 @@ DATA_ROOT = Path("data")
 # Which pinned inputs each axis needs. Extra ids beyond the parent exist because an
 # axis that only reads the parent is not testing a mechanism, it is re-spending a slot.
 AXIS_INPUTS: dict[str, list[str]] = {
-    "MASS": ["parent_r0_nan", "training_features"],
+    # MASS ranks by cross-field support over the lineage's own pinned fields, because
+    # the parent's continuous ranking is not recoverable (IR-91-17). training_features
+    # is not read: it has no mirror and is absent.
+    "MASS": ["parent_r0_nan", "existing_faults", "anc_h19_5", "anc_h19_4", "anc_h16_1"],
     "CONCENTRATION": ["parent_r0_nan", "existing_faults", "training_features"],
     "SNAP": ["parent_r0_nan", "existing_faults", "training_features"],
     "PRUNE": ["parent_r0_nan", "existing_faults", "training_features"],

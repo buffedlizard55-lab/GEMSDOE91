@@ -325,3 +325,35 @@ the lineage's own field — never the withheld truth).
 4. Paste every submission-page receipt into the ledger and make the final/fallback choices blind.
 5. Supply the pinned `training_features.tif` if future MASS / RELIEF / independent-prior work is
    wanted. It was not needed for, or approximated in, this session.
+
+## Session 4 (2026-10-23, `arena/ee0cdd38`) — MASS / cross-field support
+
+**What the AI wrote.** `src/gems91/consensus.py` (support count, whole-stratum drop, ranked add,
+deterministic tie-breaks, frame/diff helpers), `scripts/build_mass_consensus.py` (builds the three
+arms, writes both encodings, re-reads from disk, runs both gate implementations),
+`scripts/instruments.py` (PROXY, ring canary, SGMC control — report only), `tests/test_consensus.py`,
+the manifest/`tools/pins.py` MASS input correction, ledger rows, mechanism cards, `SLOT_PLAN.md`,
+`README.md` CURRENT STATE, `docs/SUBMIT.md`, and IR-91-21…20. The AI also rebuilt the catalogue mask
+and re-verified all 15 pinned hashes.
+
+**What the AI decided, and the human may overturn.**
+1. **Axis = MASS, ranked by cross-field support.** The brief's own ranking is unrecoverable
+   (IR-91-21). The AI chose the lineage's three pinned fields rather than inventing a model score,
+   and built both directions so a flat result is still interpretable.
+2. **Three arms, not five.** Whole strata only (`cons1drop`, `cons2drop`) plus one add
+   (`cons3add`), so no arm needs an arbitrary tie-break inside the ordering being tested.
+3. **Slot order: add first.** Justified by the 9:1 payoff ratio per dot (IR-91-22), not by taste.
+4. **The parent's 2 px collar was left intact** (IR-91-03); the arms inherit it and say so in
+   every card, rather than silently rebasing on R1 — a rebase would make each file a two-change
+   build and break "differs ONLY on the axis".
+5. **The canary was redefined, not skipped** (IR-91-21): the plain test is degenerate because the
+   lineage fields are catalogue-masked. The replacement is reported as 0.526.
+6. **CONCENTRATION was retired rather than re-dosed** (IR-91-22), on a measurement of R0's own
+   block-density CV (0.531) against the reported best-file band (0.51–0.59).
+
+**What the AI did not do.** No submission, no leaderboard or competition-site access, no
+credentials, no external data beyond the pinned manifest, no label probing, and no claim that any
+MODEL or PROXY number is a score.
+
+**Still decided by the human:** the receipt for each slot, `TOP_PUBLIC` with its date, the weekly
+slot count, the deadline confirmation, the collar ruling (IR-91-03), and the blind final pick.
