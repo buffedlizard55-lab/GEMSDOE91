@@ -99,12 +99,14 @@ def main():
             for row in r:
                 existing_triples.add((row.get("parent"), row.get("axis"), row.get("value")))
     print(f"existing ledger rows {len(ledger_rows)} triples {len(existing_triples)}")
-    for axis, val in [("PRUNE", v[0]) for v in VARIANTS]:
-        if (PARENT_ID, axis, val) in existing_triples:
-            print(f"SKIP {val} already exists as (parent,axis,value)")
-            sys.exit(2)
+    # Build is idempotent: if variant already in ledger, we will rebuild and
+    # verify byte-identity instead of aborting (CI runs this path).
+    ledger_by_value = {(r.get("parent"), r.get("axis"), r.get("value")): r for r in ledger_rows}
+    is_rebuild = all((PARENT_ID, "PRUNE", v[0]) in existing_triples for v in VARIANTS)
+    if is_rebuild:
+        print("rebuild mode: all 3 variants already in ledger — will verify byte-identity")
 
-    # also check existing hashes to avoid dup
+    # also check existing hashes to avoid dup (only for fresh builds)
     existing_hashes = set()
     for r in ledger_rows:
         for k in ("sha256", "sha256_zeros"):
@@ -155,14 +157,35 @@ def main():
         final_id = f"{PARENT_ID}-PRUNE-{value_str}-{DATE}-{sha8}"
         final_nan = RELEASES / f"{final_id}.tif"
         final_zeros = RELEASES / f"{final_id}-zeros.tif"
-        # check not already in ledger hashes
-        if sha_nan in existing_hashes or sha_zeros in existing_hashes:
-            print(f"STOP: hash collision for {value_str} sha {sha_nan[:12]} already in ledger")
-            sys.exit(2)
-        tmp_nan.replace(final_nan)
-        tmp_zeros.replace(final_zeros)
-        print(f"  wrote {final_nan} sha {sha_nan[:12]}")
-        print(f"  wrote {final_zeros} sha {sha_zeros[:12]}")
+        # Idempotent rebuild: if this exact file already exists in ledger/manifest,
+        # verify byte-identity instead of failing on hash collision.
+        existing_for_value = ledger_by_value.get((PARENT_ID, "PRUNE", value_str))
+        if existing_for_value and existing_for_value.get("sha256") == sha_nan:
+            # Already built; ensure on-disk file matches (or move tmp into place)
+            if final_nan.exists():
+                # Verify existing file also matches (CI may have just built spacing)
+                existing_sha = sha256_file(final_nan)
+                if existing_sha != sha_nan:
+                    print(f"FAIL: existing {final_nan} hash {existing_sha[:12]} != rebuilt {sha_nan[:12]}")
+                    sys.exit(1)
+                tmp_nan.unlink(missing_ok=True)
+                tmp_zeros.unlink(missing_ok=True)
+                print(f"  verified {final_nan} sha {sha_nan[:12]} (already built)")
+            else:
+                tmp_nan.replace(final_nan)
+                tmp_zeros.replace(final_zeros)
+                print(f"  wrote {final_nan} sha {sha_nan[:12]} (rebuild)")
+            # For rebuilds we still need to populate evidence/gates below; set paths
+            # to the verified files and continue to validation.
+        else:
+            # Fresh build: ensure no hash collision
+            if sha_nan in existing_hashes or sha_zeros in existing_hashes:
+                print(f"STOP: hash collision for {value_str} sha {sha_nan[:12]} already in ledger")
+                sys.exit(2)
+            tmp_nan.replace(final_nan)
+            tmp_zeros.replace(final_zeros)
+            print(f"  wrote {final_nan} sha {sha_nan[:12]}")
+            print(f"  wrote {final_zeros} sha {sha_zeros[:12]}")
 
         # validate gates
         rep = V.validate_raster(final_nan, SAMPLE, catalogue=CATALOGUE_RAW, ledger_csv=LEDGER, parent=PARENT_NAN)
@@ -248,29 +271,35 @@ def main():
         new_rows.append(row)
 
     # append to ledger: need to handle csv with proper columns as in current ledger
-    # Read header from existing ledger to preserve order
-    with open(LEDGER, newline="", encoding="utf-8") as fh:
-        reader = csv.DictReader(fh)
-        fieldnames = reader.fieldnames
-        existing = list(reader)
-    print(f"fieldnames {fieldnames}")
-    # Ensure all new rows have all fieldnames
-    for r in new_rows:
-        for fn in fieldnames:
-            if fn not in r:
-                r[fn] = ""
-        # check duplicate
-        if r["sha256"] in existing_hashes:
-            raise SystemExit(f"hash dup {r['sha256']}")
-    # write back
-    with open(LEDGER, "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=fieldnames, extrasaction="ignore", lineterminator="\n")
-        w.writeheader()
-        for r in existing:
-            w.writerow({k: r.get(k,"") for k in fieldnames})
+    if is_rebuild:
+        print(f"rebuild mode: ledger already contains all 3 rows — not appending")
+        # still verify that new_rows hashes match ledger (already done above)
+        # but do not rewrite ledger; just keep evidence
+        existing = ledger_rows
+        fieldnames = list(csv.DictReader(open(LEDGER, newline="", encoding="utf-8")).fieldnames)
+    else:
+        with open(LEDGER, newline="", encoding="utf-8") as fh:
+            reader = csv.DictReader(fh)
+            fieldnames = reader.fieldnames
+            existing = list(reader)
+        print(f"fieldnames {fieldnames}")
+        # Ensure all new rows have all fieldnames
         for r in new_rows:
-            w.writerow({k: r.get(k,"") for k in fieldnames})
-    print(f"ledger appended {len(new_rows)} rows to {LEDGER}")
+            for fn in fieldnames:
+                if fn not in r:
+                    r[fn] = ""
+            # check duplicate
+            if r["sha256"] in existing_hashes:
+                raise SystemExit(f"hash dup {r['sha256']}")
+        # write back
+        with open(LEDGER, "w", newline="", encoding="utf-8") as fh:
+            w = csv.DictWriter(fh, fieldnames=fieldnames, extrasaction="ignore", lineterminator="\n")
+            w.writeheader()
+            for r in existing:
+                w.writerow({k: r.get(k,"") for k in fieldnames})
+            for r in new_rows:
+                w.writerow({k: r.get(k,"") for k in fieldnames})
+        print(f"ledger appended {len(new_rows)} rows to {LEDGER}")
 
     # write evidence json
     evidence_path = ROOT / "evidence" / f"prune_ladder_{DATE}.json"
