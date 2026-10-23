@@ -1,0 +1,48 @@
+{
+  "schema": "gems91.derived-priors.v1",
+  "note": "Derived inputs are NOT fetched; they are recomputed deterministically from pinned sources. These digests are the contract: scripts/build_concentration.py rebuilds each prior and refuses to use a different one. Digest = sha256(shape str + float32 payload).",
+  "source": {
+    "id": "gdr_wellspring_in_footprint",
+    "local_subpath": "external/gdr_wellspring_in_footprint.csv",
+    "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+    "license": "USGS/NBMG Geothermal Data Repository, public domain (US Government work); pinned as 'prior layer only' in registry/data_manifest.json"
+  },
+  "derivation": {
+    "script": "src/gems91/prior.py",
+    "builder": "scripts/build_concentration.py",
+    "steps": [
+      "keep rows whose thermalclass contains Hot or Warm",
+      "de-duplicate to one feature per (row, col) grid cell (records are measurements, not features)",
+      "prior = exp(-d / sigma_px), d = Euclidean distance in cells to the nearest kept feature",
+      "set NaN outside the sample_submission footprint"
+    ],
+    "sigma_px": 12.0,
+    "sigma_km": 1.2,
+    "remote_min_px": 8.0
+  },
+  "priors": [
+    {
+      "kind": "all",
+      "features_used": 2060,
+      "remote_min_px": null,
+      "array_digest": "51f294b259ced272a9a121eefae357d6f3c316376182c2b797b32f556992d5ca",
+      "used_by": ["CONCENTRATIONgdr25m10", "CONCENTRATIONgdr10m10"]
+    },
+    {
+      "kind": "remote",
+      "features_used": 1406,
+      "remote_min_px": 8.0,
+      "array_digest": "6afed3bf2b51d1070bed4dfd071d93cde75b252f329cf2f5f5bb9868606beec0",
+      "used_by": ["CONCENTRATIONgdr25rm10"]
+    }
+  ],
+  "diagnostics": {
+    "rows_in_csv": 27092,
+    "distinct_cells": 12570,
+    "hot_or_warm_cells": 2060,
+    "frac_hot_or_warm_within_3px_of_catalogue": 0.15,
+    "frac_beyond_8px": 0.6825,
+    "median_dist_to_catalogue_px": 17.205,
+    "consistency_check": "median distance recomputed from the pinned catalogue equals the CSV's own dist_known_fault_px column (17.2 px), so both refer to the same catalogue raster"
+  }
+}

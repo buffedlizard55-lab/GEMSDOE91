@@ -4,38 +4,44 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** R0 (`h33-h33-2-b2`), 37,654 dots on the pinned 3730×3292 EPSG:32611 grid.
-  Both pinned TIFFs now rebuild **byte for byte from either ancestor**: NaN
-  `baeae321…c77dd` (355,443 B), zeros `c55bafc4…a6fa9` (219,065 B); dot digest
-  `905cee9d…`. See `src/gems91/lineage.py` and `registry/r0_verification.json`.
-  R0's 0.2778 remains **CLAIM**, not a receipt.
-- **Inputs:** 14/15 pinned inputs hash-verified; `training_features.tif` has no pinned
-  mirror and remains UNVERIFIED. No unpinned or reconstructed raster was used.
-- **Axis selected this session:** **PRUNE**, fixed count / H19-cover, chosen by the agent.
-  Three new variants hold N=37,654, change 2.50–12.88%, and differ only in collar dose:
+- **Parent:** R0 (`h33-h33-2-b2`), fetched from its pinned mirror and sha256-verified:
+  NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. 37,654 unit-mass dots, EPSG:32611,
+  3730×3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots, minimum catalogue
+  distance 2.236 px. **The parent's dot set reproduces exactly** from both pinned ancestors
+  (44,090 → 37,654 and 40,199 → 37,654, 0 differing cells, digest `905cee9d…`). Its file
+  *bytes* are not re-encodable here (IR-91-16), so every artifact carries a sha256 **and** a
+  dot-set digest.
+- **Best receipt:** none. R0's `0.2778` is a **CLAIM**. The ledger has 32 BUILT rows, zero
+  SUBMITTED rows and zero receipts, so no live effect has ever been measured in this lineage.
+- **Inputs:** 14/15 manifest entries hash-verified from pinned mirrors; `training_features.tif`
+  (419 MB, no public mirror) is absent and unused. Buildable today: PRUNE, SPACING,
+  CONCENTRATION (via the public-domain GDR thermal prior, IR-91-18). Blocked: MASS (needs a
+  label-derived ranking), RELIEF, SNAP, TRACKB.
+- **Two axes were built on 2026-10-23, on the same parent, and both are gate-clean:**
 
-  | value | relocated | prediction (MODEL) | sha8 |
-  |---|---:|---:|---|
-  | `p2.5px-h19cover` | 941 (2.499070%) | **+0.002** | `e6f2000d` |
-  | `p2.9px-h19cover` | 1,611 (4.278430%) | **+0.004** | `9829bb66` |
-  | `p4.5px-h19cover` | 4,848 (12.875126%) | **−0.015** | `691438f8` |
+  | session | arms | predicted (MODEL) |
+  |---|---|---|
+  | PRUNE ladder (le4/le5/le10; earlier le3/le8/le15) | delete-only, 10.2 / 15.0 / 30.2 % of dots removed | +0.003 / +0.005 / +0.008 (le15 +0.010) |
+  | CONCENTRATION (this session) | 10.00 % of dots moved into the highest-prior 2.5 km blocks (`gdr25rm10` >8 px prior, `gdr25m10`, `gdr10m10` 1 km) | **+0.0123 / +0.0114 / +0.0113** |
 
-  All six NaN/zeros encodings pass every hard gate; all three NaN primaries are
-  independently `CERTIFIED`. Exact hashes and sizes are in
-  `releases/PRUNE_REFILL_MANIFEST.json`; evidence and predictions were preregistered.
-- **Merged PRUNE ladder:** main also contributes unused delete-only `le4`, `le5`, and
-  `le10` variants (MODEL +0.003/+0.005/+0.008). They are complementary mass-loss tests,
-  not duplicates of the fixed-count doses. CI rebuilds both manifests and every raster.
-- **Ledger:** **32 BUILT rows** (26 prior + 3 ladder + 3 fixed-count), zero SUBMITTED
-  rows and zero receipts. All hashes and `(parent, axis, value)` pairs are unique.
-- **Next three slots:** 1) `PRUNE-le10-norefill` (`04002dae`, +0.008 MODEL), the largest
-  positive dose; 2) `PRUNEp2p9h19cover` (`9829bb66`, +0.004 MODEL), the complementary
-  fixed-count test; 3) `PRUNE-le4-norefill` (`360fe57e`, +0.003 MODEL) to bracket the
-  response. `p2.5` is the smaller-dose fallback; `p4.5` is a conditional falsifier,
-  **not** an automatic upload. Live |Δ|<0.01 is no evidence. See `SLOT_PLAN.md`.
-- **Human still supplies:** TOP_PUBLIC with date, weekly slots remaining, deadline
-  confirmation, every submission-page receipt, and all upload/final-pick decisions.
-  No agent submits or accesses the leaderboard.
+  CONCENTRATION details: count fixed at 37,654, seed 91025, no new cell inside 3 px of the
+  catalogue, R0's 2.0 px minimum separation preserved. It empties ~570 of 5,219 occupied
+  2.5 km blocks and costs 8.4 pp of coverage of the lineage's own H19-5 field (88.6 % → 80.2 %),
+  which is why its predicted range floor is **−0.022**, a measured number, not a formality
+  (IR-91-19). The three arms are one experiment, not three (IR-91-17).
+- **Third session (#10, same day):** three *refill-held* PRUNE arms on the same parent
+  (`p2.5px-h19cover` +0.002, `p2.9px-h19cover` +0.004, `p4.5px-h19cover` −0.015). They hold
+  the count at 37,654 and refill from H19-5 coverage, so they separate "delete mass" from
+  "move mass"; the −0.015 at 4.5 px is the first *negative* PRUNE prediction on the board
+  and it marks the collar dose as the risky end of that axis. They do not change the slot
+  ordering below: one receipt on the top delete-only dose still answers the axis.
+- **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
+- **Slots left this week:** **__ / __ (human must fill).** Deadline 2026-12-03, unconfirmed.
+- **Next 3 slots (one merged plan, `SLOT_PLAN.md`):** 1) `CONCENTRATIONgdr25rm10-…-c19adb01`
+  (the only file whose prior is independent of both the catalogue and the lineage mask),
+  2) `PRUNEle15-norefill-…-1ca1ff6f` (+0.010; verified byte-reproducible today), 3) `gdr25m10`
+  if slot 1 ≥ +0.005, else `PRUNEle10-norefill-…-04002dae`. Do not spend three slots on the
+  CONCENTRATION arms.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 
