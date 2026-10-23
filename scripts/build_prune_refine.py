@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Build the v2 AXIS=PRUNE radius-refinement experiment from exact parent R0.
 
-This run tests three new PRUNE collar radii, each once globally per the audited
-sibling ledgers: 2.60, 3.20, and 3.70 pixels. Each candidate has exactly R0's
-37,654 dots. The collar is the only intervention: dots at or inside the radius
+This run tests one globally unbuilt PRUNE collar radius (2.60 px) after auditing
+main and active sibling PR branches for repeated (parent, axis, value) pairs.
+The candidate has exactly R0's 37,654 dots. The collar is the only intervention: dots at or inside the radius
 are removed and refilled from the pinned H19-5 support at greater catalogue
 distance by exact greedy marginal DTI gain on the prespecified, label-free
 physical corroboration field.
@@ -33,13 +33,9 @@ from scripts import build_prune_variants as bpv  # noqa: E402
 AXIS = "PRUNE"
 PARENT = "h33-h33-2-b2"
 DATE = "20261023"
-RUN_VALUES = ("p2p6", "p3p2", "p3p7")
-RADII = {"p2p6": 2.6, "p3p2": 3.2, "p3p7": 3.7}
-PREDICTIONS = {
-    "p2p6": ("+0.001", "[-0.007,+0.009]"),
-    "p3p2": ("+0.002", "[-0.009,+0.013]"),
-    "p3p7": ("-0.003", "[-0.013,+0.007]"),
-}
+RUN_VALUES = ("p2p6",)
+RADII = {"p2p6": 2.6}
+PREDICTIONS = {"p2p6": ("+0.001", "[-0.007,+0.009]")}
 CARDS = {
     "p2p6": {
         "hypothesis": "A narrow, roughly 224–260 m exclusion around already mapped faults removes near-trace magnetic/gravity shoulders that are more likely to be field or digitization halos than independent new faults; a 2.6 px constant-count replacement should be neutral to slightly positive relative to R0.",
@@ -49,29 +45,6 @@ CARDS = {
         "falsifier": "A live RECEIPT at least 0.01 below R0 falsifies the halo-dominated interpretation at 2.6 px and indicates that near-trace splays or offset mapped geometry contribute useful new-fault truth.",
         "external_facts": [
             "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
-            "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
-        ],
-    },
-    "p3p2": {
-        "hypothesis": "Extending the collar just beyond the 300 m triangular-kernel radius may still help if geophysical side-lobes create redundant dots between 300 and 320 m, but the expected gain is small because the R0 collar is already near the kernel radius.",
-        "mechanism": "At fixed count, remove all R0 dots with d_cat <= 3.2 px and refill from un-emitted H19-5 ridge support strictly outside 3.2 px by exact marginal DTI gain. The test isolates the 300–320 m portion of the collar while preserving mass and parent lineage.",
-        "non_fault_mimic": "Normal-fault hanging-wall/down-dip potential-field gradients may peak 300–320 m from mapped surface traces without indicating a separate fault; alternatively a true antithetic splay may occur at this offset.",
-        "predicted_sign_size": "MODEL: +0.002 live DTI vs R0; plausible range -0.009 to +0.013. A public change with absolute size below 0.01 is no evidence under the brief.",
-        "falsifier": "A live RECEIPT at least 0.01 below R0 falsifies the hypothesis that remaining 300–320 m collar dots are mostly redundant halos and supports useful new-fault geometry in that band.",
-        "external_facts": [
-            "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
-            "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
-        ],
-    },
-    "p3p7": {
-        "hypothesis": "A 300–370 m collar may begin to over-prune genuine antithetic splays and relay structures, so the incremental gain should flatten or turn negative relative to a 3.2 px cutoff.",
-        "mechanism": "Remove R0's dots at d_cat <= 3.7 px and use exact marginal gain to refill from H19-5 ridge support beyond 370 m, with count fixed. Compared with 3.2 px, the only changed treatment is the additional 50 m of catalogue distance (320–370 m) removed.",
-        "non_fault_mimic": "Broad alluvial-fan/piedmont edges, drainage lineaments, and hanging-wall field gradients can parallel range-front faults 320–370 m away without representing new fault planes.",
-        "predicted_sign_size": "MODEL: -0.003 live DTI vs R0; plausible range -0.013 to +0.007. Predicted marginal response is lower than p3p2; a public change with absolute size below 0.01 is no evidence under the brief.",
-        "falsifier": "A live RECEIPT at least 0.01 above both R0 and p3p2 falsifies the predicted turnover and indicates test faults are depleted in the 300–370 m halo, or the removed dots were predominantly redundant field shoulders.",
-        "external_facts": [
-            "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
-            "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
             "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
         ],
     },
