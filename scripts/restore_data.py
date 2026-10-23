@@ -46,8 +46,17 @@ def fetch(url: str) -> bytes:
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
     if token:  # never printed, never logged, never written
         req.add_header("Authorization", f"Bearer {token}")
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        return resp.read()
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            return resp.read()
+    except urllib.error.HTTPError as exc:
+        if exc.code in (403, 429):
+            raise SystemExit(
+                f"GitHub API refused the fetch ({exc.code}). This is the unauthenticated "
+                "rate limit, not a missing pin: re-run with GH_TOKEN set (CI supplies the "
+                "workflow token automatically) or wait for the hourly window to reset."
+            ) from exc
+        raise
 
 
 def main() -> int:

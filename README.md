@@ -8,14 +8,14 @@ No script here submits anything. One entity, three scored slots a week, one fina
   `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros), 37,654 unit-mass dots,
   EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on catalogue,
   min 2.236 px from it**.
-- **Inputs present and hash-verified: 5 of 16 pinned entries** — `sample_submission`,
-  `existing_faults`, `parent_r0_nan`, `parent_r0_zeros`, plus the derived
-  `catalogue_mask`. Found in public mirrors; see `IRREGULARITIES.md` IR-91-09. This
-  **supersedes IR-91-02**, which said the rasters did not exist publicly.
+- **Inputs present and hash-verified: 14 of 15 pinned entries** (`scripts/restore_data.py`,
+  3 s / 5 MB, every sha256 checked). Only `training_features.tif` (419 MB) has no pinned
+  mirror; it is not needed for session 3's axis. Found in public mirrors; see
+  `IRREGULARITIES.md` IR-91-09, which supersedes IR-91-02.
 - **Axis readiness (`scripts/verify_manifest.py`):** PRUNE **READY**; MASS, SNAP,
   CONCENTRATION, RELIEF, TRACKB blocked on `training_features` / lidar layers.
-- **Best receipt:** **none.** No `receipt_score` exists in this lineage — all 23 ledger
-  rows are blank. `0.2778` for R0 is a **CLAIM**, and GEMSDOE32's own manifest records
+- **Best receipt:** **none.** No `receipt_score` exists in this lineage — all 26 ledger
+  rows are blank (20 imported, 3 PRUNE built in session 4, 3 SPACING built in session 3). `0.2778` for R0 is a **CLAIM**, and GEMSDOE32's own manifest records
   `receipt: null` for it.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
 - **Slots left this week:** **__ / __ (human must fill).**
@@ -31,7 +31,8 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
   All three pass the repo's gates **twice over**: 14/14 in `scripts/validate_raster.py`
   and `VERDICT: CERTIFIED` in `scripts/validate_release.py`.
-- **Next 3 slots (see `SLOT_PLAN.md`):** the ladder, in order le3 → le8 → le15.
+- **Next 3 slots (see `SLOT_PLAN.md`):** the PRUNE ladder le3 → le8 → le15, with
+  `SPACINGspread40` as the alternative at slot 2 if le3 lands below +0.01.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 
