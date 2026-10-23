@@ -179,3 +179,15 @@ python3 scripts/validate_raster.py releases/h33-h33-2-b2-RELIEFr2p12-20261023-6f
    dots: 37,654 unit-mass | cat_mass=0 | min_d_cat=2.2361 px (added_le3px=0) | relocated=4,518 (12.00%; Hamming 9,036=24.00%)
    validators: validate.py=PASS | validate_raster.py=14/14 PASS | sha256_not_spent=PASS | reread_from_disk=PASS
 ```
+
+---
+
+## Session 6 TRACKB (Phase 2 only — upload ONLY if the human explicitly decides)
+
+| File (`releases/`) | Name | Form note |
+|---|---|---|
+| `h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38.tif` (+ `-zeros.tif` fallback, GeoJSON `...-8343ab38-traces.geojson`) | `h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38` | `h33-h33-2-b2; TRACKB t1k10: relocate 10.0% lowest-S off-trace dots onto >= 1 km traces; pred +0.004 MODEL` |
+| `h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b.tif` | `h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b` | same note with `t1k20`, `20.0%`, `+0.005` |
+| `h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a.tif` | `h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a` | same note with `t2k10`, `>= 2 km`, `+0.002` |
+
+Format receipt (RECEIPT, re-read from disk): all three 37,654 dots, EPSG:32611 3730x3292 float32 1-band, values in [0,1], NaN outside footprint (zeros twin = 0 outside), catalogue mass 0, min d_cat 2.236 px, release_gates PASS + validate_raster 14/14 PASS (`gems91.gates` collar_ge_3px FAILs identically on R0 itself — 2,171 inherited 2-3 px dots, IR-91-03/IR-91-28; zero TRACKB-added dots are <=3 px), sha256 as in file names / `evidence/trackb_axis_20261023.json`. Rebuild: `python3 scripts/restore_data.py && python3 scripts/build_trackb.py --build` (byte-identical, verified twice).

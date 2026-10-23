@@ -574,3 +574,19 @@ placing any new recipient dot at `d_cat ≤ 3.0 px` violates the `≥ 3 px` new-
 `d_cat > 3.0 px` on **both** donor removal and recipient placement (`collar_le3px = 2,171 → 2,171`,
 `added_dots_le3px = 0` across all three `RELIEF` builds `RECEIPT`).
 
+
+## IR-91-28 — TRACKB trace densification confounds strike with spacing; its PROXY is invariant
+
+TRACKB targets sampled every 1.2 px along a trace cannot respect R0's ~2.8 px dot spacing
+(support dots already occupy the trace every ~3 px), so the three Session-6 arms use a 1 px
+minimum separation. Any live or Phase-2 difference therefore mixes "dots lie on a strike-
+consistent trace" with "dots are denser along lines"; it is disclosed on every card, not
+hidden. Separately, the catalogue hide-and-recover PROXY is mathematically invariant for
+these arms (every added/removed dot is >3 px from the catalogue and earns it zero credit),
+so it is reported as uninformative rather than quoted as a number.
+
+**Gate note.** `scripts/validate_release.py` (`gems91.gates`) reports `collar_ge_3px` FAIL on all three arms *and on R0 itself* (2,171 inherited dots at 2-3 px, IR-91-03); no TRACKB-added dot is <=3 px, and `validate_raster.py` passes 14/14. This does not block TRACKB, but the human's IR-91-03 ruling still governs any upload.
+
+**Decision it changes.** TRACKB files are Phase-2/expert-review candidates only; they do not
+enter the weekly slot queue unless the human explicitly decides, and no PROXY claim is made
+for them.

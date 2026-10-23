@@ -398,3 +398,23 @@ slot count, the deadline confirmation, the collar ruling (IR-91-03), and the bli
 3. **Slot expenditure & blind final pick:** Decide which built raster(s) to upload in the 3
    weekly slots (`SLOT_PLAN.md`) and choose the single blind final submission.
 
+
+---
+
+# Session 6 disclosure (`arena/0ed37053-gemsdoe91`, TRACKB, 2026-10-23)
+
+## What the AI wrote and decided
+- Chose **TRACKB** without prompting: it was the only axis with zero ledger rows (all weekly
+  axes already had (axis,value) builds; repeating one would violate the dedupe rule).
+- Wrote `src/gems91/trackb.py`, `scripts/build_trackb.py`, `tests/test_trackb.py`; built three
+  count-fixed arms (t1k10/t1k20/t2k10), each with NaN+zeros rasters and a GeoJSON whose every
+  trace carries an evidence paragraph; recorded IR-91-28 (spacing confound; invariant PROXY).
+- A gate caught a real bug during the build (37622 vs 37654 dots from duplicate rounded
+  target pixels); the build stopped, was fixed, and rebuilt byte-identically (same sha8s).
+- No submission, login, leaderboard access, credentials, drivendata.org/dropbox.com contact,
+  or label probing. Inputs only from the 16/16 hash-verified manifest pins.
+
+## Human decisions still required
+1. Whether any TRACKB file ever spends a weekly slot (default: no — Phase 2 only).
+2. `TOP_PUBLIC` + date, slots left, R0 receipt, deadline confirmation (unchanged from Session 5).
+3. Blind final pick.

@@ -1,0 +1,151 @@
+{
+  "schema": "gems91.trackb-evidence.v1",
+  "build_date": "2026-10-23",
+  "parent": "h33-h33-2-b2",
+  "lineage": {
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "dots_on_catalogue": 0,
+    "min_catalogue_distance_px": 2.236068,
+    "rebuilt_from": {
+      "d2.8": {
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    }
+  },
+  "ranking": "S_struct; parent ranking unrecoverable (IR-91-21)",
+  "r0_hide_recover_proxy": {
+    "proxy_mean_credit": 0.006186,
+    "proxy_mean_credit_ci95": 0.000228,
+    "proxy_mean_credit_ci95_interval": [
+      0.005958,
+      0.006413
+    ],
+    "proxy_coverage": 0.038706,
+    "draws": 5,
+    "hold_frac": 0.2,
+    "block_px": 10,
+    "n_held_per_draw": 12200,
+    "n_withheld_positives_per_draw": [
+      12200,
+      12198,
+      12199,
+      12200,
+      12201
+    ],
+    "mean_credit_per_draw": [
+      0.006038136218637152,
+      0.006201889947509195,
+      0.006582695130310594,
+      0.0062188384485118405,
+      0.00588596849724877
+    ]
+  },
+  "arms": {
+    "t1k10": {
+      "id": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38",
+      "value": "t1k10",
+      "n_traces": 2214,
+      "support_dots": 12989,
+      "n_relocated": 3765,
+      "pct_relocated": 10.0,
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "sha256": "8343ab3895736250bd53c8afced208b61bb4eee7416aecf31ab6d0932c56b816",
+      "sha256_zeros": "46a5fb8c5f68e0e270bb308316ffdd8ee430cfe3a34cb2663c6b8c89482fcc0a",
+      "geojson": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38-traces.geojson",
+      "geojson_sha256": "007f5de8e61a4a652eb06f42f9bfddfb40a0733923d91919d27b15fb20071042",
+      "predicted_change_MODEL": "MODEL:+0.004",
+      "predicted_range": "[-0.008,+0.016]",
+      "gates": {
+        "nan_PASS": true,
+        "zeros_PASS": true,
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "report_only_proxy_hide_recover": {
+        "note": "hide-and-recover invariant by construction: added and removed dots are all >3 px from catalogue, so neither earns catalogue credit; PROXY is uninformative for TRACKB (report only)"
+      }
+    },
+    "t1k20": {
+      "id": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b",
+      "value": "t1k20",
+      "n_traces": 2214,
+      "support_dots": 12989,
+      "n_relocated": 7531,
+      "pct_relocated": 20.0,
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 7531,
+        "removed": 7531,
+        "changed": 15062,
+        "pct_changed_of_parent": 40.0011
+      },
+      "sha256": "ab72339bf8fbdb042cfe5022e4511ab3f2589e5db5bdef78f0a75228981b97dd",
+      "sha256_zeros": "68e1310c3978205308acd99d7e3308146c31a892395b68805045422cff675c58",
+      "geojson": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b-traces.geojson",
+      "geojson_sha256": "fb03769e783035f9dc208c367ee7494e24056929650256f2bac925434bcbb25d",
+      "predicted_change_MODEL": "MODEL:+0.005",
+      "predicted_range": "[-0.012,+0.022]",
+      "gates": {
+        "nan_PASS": true,
+        "zeros_PASS": true,
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "report_only_proxy_hide_recover": {
+        "note": "hide-and-recover invariant by construction: added and removed dots are all >3 px from catalogue, so neither earns catalogue credit; PROXY is uninformative for TRACKB (report only)"
+      }
+    },
+    "t2k10": {
+      "id": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a",
+      "value": "t2k10",
+      "n_traces": 675,
+      "support_dots": 6040,
+      "n_relocated": 3765,
+      "pct_relocated": 10.0,
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "sha256": "6d16fd7a597daabb3fdfc59d638b759bc2fea619c5f5a793bd318675b4499652",
+      "sha256_zeros": "c7b22af01bef6d137885fb9a7f548ab4dad50c9bc27f7fef5f83567a836cdab6",
+      "geojson": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a-traces.geojson",
+      "geojson_sha256": "ba49a430bcfa471bb36c3b29c90391b8a94cdb1ffb63c44d7e832f1a9e951f4f",
+      "predicted_change_MODEL": "MODEL:+0.002",
+      "predicted_range": "[-0.008,+0.012]",
+      "gates": {
+        "nan_PASS": true,
+        "zeros_PASS": true,
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "report_only_proxy_hide_recover": {
+        "note": "hide-and-recover invariant by construction: added and removed dots are all >3 px from catalogue, so neither earns catalogue credit; PROXY is uninformative for TRACKB (report only)"
+      }
+    }
+  },
+  "trace_counts": {
+    "t1k10": 2214,
+    "t1k20": 2214,
+    "t2k10": 675
+  }
+}

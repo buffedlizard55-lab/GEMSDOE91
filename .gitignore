@@ -25,3 +25,6 @@ tests/_tmp/
 .cache/
 work/
 releases/_tmp-*.tif
+
+# TRACKB trace GeoJSON is a derived candidate geometry (same policy as rasters)
+releases/*.geojson

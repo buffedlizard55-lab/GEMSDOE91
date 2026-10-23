@@ -1,6 +1,6 @@
 # SLOT PLAN — 1 entity, 3 scored slots / rolling week, 1 blind final pick
 
-**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `41` `BUILT` rows across five merged axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
+**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `44` `BUILT` rows across six merged axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
 
 ## Session 5 (`arena/42de3fed-gemsdoe91`) addition: `RELIEF` (`r2p12`, `r2b12`, `b2r12`)
 
@@ -35,3 +35,7 @@ Restoring `training_features` (`gems-geodawn-numerical-features.tif`, sha256 `43
    - **Mechanism:** Blind geothermal systems localize at fault tips/step-overs with elevated conductive temperature (`ieq_n100a15` AUC `0.5749` `PROXY`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)).
    - **Confounder:** Shallow groundwater outflow plumes advect heat `2–8 km` down-gradient off the fault conduit.
    - **Falsifier:** Thermal-gated step-over reallocation scores `≤` isothermal `RELIEFr2p12` (`6ff08e5c`).
+
+## Session 6 (`arena/0ed37053-gemsdoe91`) addition: `TRACKB` (Phase 2 only — does NOT change the queue above)
+
+Three count-fixed trace-densification arms built and gated (`8343ab38` t1k10 `+0.004` MODEL, `ab72339b` t1k20 `+0.005`, `6d16fd7a` t2k10 `+0.002`), each with a GeoJSON of >=1 km strike-consistent traces carrying one evidence paragraph per trace (2,214 / 2,214 / 675 traces). They spend **no** weekly slot unless the human decides; their value is Phase-2 expert review. Spacing confound and invariant PROXY: IR-91-28. What would change this: a human ruling that Phase-2 trace review outweighs a weekly DTI read, in which case `t1k10` goes first (lowest dose, full trace set).

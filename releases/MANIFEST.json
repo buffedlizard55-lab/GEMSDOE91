@@ -123,6 +123,36 @@
       "file": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif",
       "sha256": "6ff08e5c2785f7684798c25d5f86a61df5aeb2568fcaeda9482b25cf61858b07",
       "bytes": 370350
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38-zeros.tif",
+      "sha256": "46a5fb8c5f68e0e270bb308316ffdd8ee430cfe3a34cb2663c6b8c89482fcc0a",
+      "bytes": 222351
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38.tif",
+      "sha256": "8343ab3895736250bd53c8afced208b61bb4eee7416aecf31ab6d0932c56b816",
+      "bytes": 368235
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b-zeros.tif",
+      "sha256": "68e1310c3978205308acd99d7e3308146c31a892395b68805045422cff675c58",
+      "bytes": 218784
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b.tif",
+      "sha256": "ab72339bf8fbdb042cfe5022e4511ab3f2589e5db5bdef78f0a75228981b97dd",
+      "bytes": 363690
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a-zeros.tif",
+      "sha256": "c7b22af01bef6d137885fb9a7f548ab4dad50c9bc27f7fef5f83567a836cdab6",
+      "bytes": 222462
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a.tif",
+      "sha256": "6d16fd7a597daabb3fdfc59d638b759bc2fea619c5f5a793bd318675b4499652",
+      "bytes": 368108
     }
   ]
 }
