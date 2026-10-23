@@ -1,0 +1,14 @@
+{
+  "verdict": "BUILD BLOCKED",
+  "missing": [
+    "sample_submission",
+    "existing_faults",
+    "training_features"
+  ],
+  "required": [
+    "sample_submission",
+    "existing_faults",
+    "training_features"
+  ],
+  "checked_utc": "2026-10-23"
+}

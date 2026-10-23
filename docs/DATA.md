@@ -1,49 +1,54 @@
-# Data handling
+# Data handling (merged repository conventions)
 
-## Rules this repository obeys
+The manifest schema is `registry/data_manifest.json` with `schema_version: 1` and a `files`
+list. Paths are `local_subpath`, relative to the gitignored `data/` tree. `scripts/preflight.py`
+owns the build verdict; `tools/pins.py` is the narrow check a builder makes before it reads
+a byte ("is this file one of the pinned inputs?").
 
-1. **Nothing is built from memory.** Every input must be pinned in
-   `registry/data_manifest.json` with a sha256; `tools/preflight.py` refuses the build
-   otherwise.
-2. **No competition raster is committed.** The repo is public and the competition
-   data-use terms cannot be verified from this sandbox
-   (`https://www.drivendata.org/termsofuse/`). `data/` and `releases/*.tif` are
-   `.gitignore`d; only recipes, hashes, ledger rows and receipts are committed.
-3. **No automated access to the competition site.** The terms ban it. The human
-   downloads, stores and submits; the agent only reads local files.
-4. **External data** is used only if it is licensed for this challenge and shareable
-   with the sponsor. Preference order: public-domain USGS / NBMG products. Every
-   external layer needs `url` + `license` fields filled in the manifest before use.
+## Rules
 
-## Inputs this harness expects
+1. **Nothing is built from memory.** An input is usable only if its sha256 appears in the
+   manifest; `tools/pins.check_paths` refuses anything else, and the builder refuses to
+   write a raster when it is blocked.
+2. **No competition raster is committed.** The repo is public and the data-use terms are
+   unchecked. `data/` and `releases/*.tif` are ignored; only recipes, hashes, ledger rows
+   and receipts travel.
+3. **No automated access to the competition site.** The terms ban it. The human downloads,
+   stores and submits; the agent reads local files only.
+4. **External data** only if licensed for this challenge and shareable with the sponsor,
+   with URL + licence recorded next to the entry. The manifest's `external/` entries are
+   the working example.
 
-| id | what it must be | why |
+## What each axis needs (pinned ids)
+
+| axis | pinned ids | why |
 |---|---|---|
-| `sample_submission` | the organiser's raster: float32, EPSG:32611, 100 m, 1 band | CRS/transform/dtype gates, footprint |
-| `R0_parent` | `h33-h33-2-b2.tif` exactly, unit mass per dot | the parent of every variant |
-| `R0_ranking` | the ranking R0 was built from (dot id → rank/score), or the script + labels that rebuild it | MASS, PRUNE refill, TRACKB |
-| `catalogue_mask` | binary mask of known USGS/INGENIOUS traces, pixel-exact, same grid | gates G6/G7, PRUNE |
-| `km_prior` | km-scale prior **not** derived from the parent's dots | CONCENTRATION |
-| `tmi_gradient`, `gravity_gradient` | gradient magnitude of the provided TMI / gravity bands | SNAP |
-| `detrended_elevation` | DEM with a regional trend removed | RELIEF |
+| CONCENTRATION | `parent_r0_nan`, `existing_faults`, `training_features` | parent dots; collar exclusions; an **external** km-scale prior |
+| MASS | `parent_r0_nan`, `training_features` | the parent's own marginal-gain ranking |
+| PRUNE | `parent_r0_nan`, `existing_faults`, `training_features` | collar + refill ranking |
+| SNAP | `parent_r0_nan`, `existing_faults`, `training_features` | edge/scarp gradients |
+| RELIEF | `parent_r0_nan`, `existing_faults`, `training_features` | detrended elevation terciles |
+| SPACING | `parent_r0_nan`, `existing_faults` | count-matched relayout |
+| TRACKB | `parent_r0_nan`, `existing_faults`, `training_features` | traces + evidence |
 
-## How to pin an input (human, on their own machine)
+Check the current state with:
 
 ```bash
-sha256sum data/sample_submission.tif data/h33-h33-2-b2.tif data/catalogue_mask.tif
-# paste into registry/data_manifest.json  ->  "sha256": "<64 hex>"
-# for the parent also set "parent_sha256_expected" to the same value
-make preflight   # must print CLEAR for the axis you intend to run
+python -m tools.pins --axis CONCENTRATION   # exit 2 and the missing ids, today
+python scripts/preflight.py                 # the repository-wide verdict
 ```
 
-`preflight` additionally checks that every raster input shares the sample's CRS, height,
-width and transform — a catalogue mask on a shifted grid silently produces a *wrong*
-zero-mass gate, which is worse than no gate.
+## Prior warning (IR-91-07)
+
+For CONCENTRATION the prior must **not** be derived from the parent's own dots. The three
+imported CONCENTRATION rows used a 2-block-smoothed parent dot density, which turns the
+axis into a clustering edit and cannot test whether an independent prior transfers. Use a
+band of `training_features.tif` that was not built from the dot field, or a catalogue
+density computed on blocks excluded from the parent's ranking.
 
 ## Why the parent hash matters more than it looks
 
-A parent that has been through a float64→float32 round trip, a re-compression, or a
-nodata re-assignment is a *different raster* with a different sha256 but visually
-identical dots. Brief §5 forbids approximating the parent. `preflight` therefore
-requires `parent_sha256_expected` to be recorded; if it is absent, "R0 was reproduced"
-cannot be claimed and the run stops.
+A parent that survived a float64→float32 round trip, a re-compression, or a nodata
+re-assignment is a different raster with a different sha256 but visually identical dots.
+The verified twins for R0 are `caeae…`/`baeae321…` — see `registry/r0_verification.json`;
+never regenerate them, always fetch and re-hash.

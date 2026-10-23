@@ -51,7 +51,7 @@ from scipy import ndimage
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from tools import preflight, raster_io, stor  # noqa: E402
+from tools import pins, raster_io, stor  # noqa: E402
 
 AXIS = "CONCENTRATION"
 
@@ -276,7 +276,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dry-run", action="store_true", help="compute and report, write nothing")
     ap.add_argument("--ledger", type=Path, default=stor.LEDGER,
                     help="ledger to append to (default ledger/submissions.csv)")
-    ap.add_argument("--manifest", type=Path, default=preflight.MANIFEST)
+    ap.add_argument("--manifest", type=Path, default=pins.MANIFEST)
     ap.add_argument("--allow-unpinned", action="store_true",
                     help="skip the manifest/sha256 preflight; ONLY for the synthetic fixture")
     ap.add_argument("--register", action="store_true",
@@ -284,11 +284,15 @@ def main(argv: list[str] | None = None) -> int:
                          "synthetic or scratch run cannot pollute ledger/submissions.csv)")
     args = ap.parse_args(argv)
 
+    inputs = [args.parent, args.sample, args.catalogue, args.prior]
     if not args.allow_unpinned:
-        clear, _ = preflight.check(AXIS, args.manifest)
-        if not clear:
-            print("REFUSING TO BUILD: preflight is BLOCKED (see the lines above). Pin every "
-                  "input in registry/data_manifest.json with its sha256 first.", file=sys.stderr)
+        clear, reasons = pins.check_axis(AXIS, args.manifest)
+        ok_paths, results = pins.check_paths(inputs, args.manifest)
+        for r in reasons + [f"{r['path']}: {r['detail']}" for r in results if not r["ok"]]:
+            print(f"[BLOCKED] {r}", file=sys.stderr)
+        if not (clear and ok_paths):
+            print("REFUSING TO BUILD: every input must be pinned in registry/data_manifest.json "
+                  "and byte-identical to its pin (brief section 4.2).", file=sys.stderr)
             return 2
 
     missing = [str(p) for p in (args.parent, args.sample, args.catalogue, args.prior) if not p.exists()]
@@ -326,16 +330,23 @@ def main(argv: list[str] | None = None) -> int:
         print("not registered in the ledger (pass --register after the gates pass)")
         return 0
     row = stor.ledger_row(
-        id=final_stem, parent=args.parent_tag, axis=AXIS, value=stats["value"],
+        id=final_stem,
+        sha256_zeros=written["sha256_zeros"],
+        ranking_basis=(
+            "km-scale blocks (block_px reported in notes) ranked by an EXTERNAL prior raster; "
+            "the prior must not be derived from the parent's own dots"
+        ), parent=args.parent_tag, axis=AXIS, value=stats["value"],
         n_dots=stats["n_dots_candidate"], pct_changed=round(stats["pct_dots_moved"], 3),
         sha256=written["sha256"], status="BUILT",
-        predicted_change=stor.PREDICTED[AXIS], script="tools/run_concentration.py",
-        note=f"frac={args.frac} blk={args.block_px} seed={args.seed} moved={stats['n_dots_moved']} "
-             f"cv={stats['cv_before']:.3f}->{stats['cv_after']:.3f}",
+        predicted_change=stor.PREDICTED[AXIS], predicted_range="MODEL:[-0.006,+0.020]",
+        notes=f"frac={args.frac} blk={args.block_px} seed={args.seed} moved={stats['n_dots_moved']} "
+              f"cv={stats['cv_before']:.3f}->{stats['cv_after']:.3f} "
+              f"gap>={stats['min_gap_px']}px count_fixed={stats['count_preserved']}",
     )
     stor.append_ledger(row, args.ledger)
     print(f"\nbuilt {final_stem}  sha256={written['sha256']}")
-    print("next: python -m tools.validate_submission --candidate ... --parent ... --catalogue ... --ledger ledger/submissions.csv")
+    print(f"next: python -m scripts.validate_release {written['primary']} "
+          f"--catalogue data/official/existing_faults.tif --ledger ledger/submissions.csv")
     return 0
 
 

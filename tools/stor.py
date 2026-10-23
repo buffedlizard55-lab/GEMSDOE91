@@ -16,37 +16,38 @@ Status vocabulary
 from __future__ import annotations
 
 import csv
-import datetime as _dt
 from pathlib import Path
 
 LEDGER = Path("ledger/submissions.csv")
 
+# The ledger schema is owned by the merged repository (ledger/README.md). Do not
+# add columns here: an extra column silently corrupts every downstream reader.
 COLUMNS = [
-    "id", "parent", "axis", "value", "n_dots", "pct_changed", "sha256", "sha8",
-    "status", "predicted_change", "receipt_score", "receipt_date", "built_utc",
-    "git_sha", "script", "note",
+    "id", "parent", "axis", "value", "n_dots", "pct_changed", "sha256", "sha256_zeros",
+    "status", "predicted_change", "predicted_range", "ranking_basis",
+    "receipt_score", "receipt_date", "source", "notes",
 ]
 
-PREDICTED = {  # MODEL texts; replace with measured text once a receipt exists
-    "MASS": "+0.006 to +0.015 (adding mass near truth raises T at linear cost in S)",
-    "CONCENTRATION": "+0.004 to +0.020 (fixed-count mass moved to high-prior km blocks)",
-    "SNAP": "+0.000 to +0.010 (same count, better centring on the response; uncertain sign)",
-    "PRUNE": "+0.003 to +0.012 (removing near-catalogue dots lowers S and M together)",
-    "RELIEF": "+0.000 to +0.008 (tercile reweighting; weak mechanism, cheap test)",
-    "SPACING": "-0.010 to +0.005 (lowest priority; spacing is not the binding constraint)",
-    "TRACKB": "n/a (Phase 2 deliverable, not a weekly slot)",
+# Ledger invariant (tests/test_ledger.py: test_scores_are_labelled): every prediction
+# must carry its evidence label. These are MODEL projections, never results.
+PREDICTED = {
+    "MASS": "MODEL:+0.006..+0.015 (mass near truth raises T at linear cost in S)",
+    "CONCENTRATION": "MODEL:+0.004..+0.020 (fixed-count mass moved to high-prior km blocks)",
+    "SNAP": "MODEL:-0.000..+0.010 (same count, better centring; sign uncertain)",
+    "PRUNE": "MODEL:+0.003..+0.012 (removing near-catalogue dots lowers S and M together)",
+    "RELIEF": "MODEL:+0.000..+0.008 (tercile reweighting; weak mechanism, cheap test)",
+    "SPACING": "MODEL:-0.010..+0.005 (lowest priority; spacing is not the binding constraint)",
+    "TRACKB": "MODEL:n/a (Phase 2 deliverable, not a weekly slot)",
 }
 
 
 def ledger_row(**kw) -> dict:
     row = {c: "" for c in COLUMNS}
-    row["built_utc"] = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    row["git_sha"] = kw.pop("git_sha", None) or _git_sha()
+    row["source"] = f"BUILT:tools/run_concentration.py@{_git_sha()}"
     for k, v in kw.items():
         if k not in row:
             raise KeyError(f"unknown ledger column {k!r}; known: {COLUMNS}")
         row[k] = v
-    row["sha8"] = (row["sha256"] or "")[:8]
     if row["axis"] in PREDICTED and not row["predicted_change"]:
         row["predicted_change"] = PREDICTED[row["axis"]]
     return row
@@ -68,7 +69,7 @@ def append_ledger(row: dict, path: Path = LEDGER) -> Path:
     existing = read_ledger(path)
     if row.get("sha256"):
         for r in existing:
-            if r.get("sha256") == row["sha256"]:
+            if row["sha256"] in (r.get("sha256"), r.get("sha256_zeros")):
                 raise SystemExit(
                     f"refusing to append: sha256 {row['sha256'][:12]} already in the ledger as "
                     f"{r.get('id')} (exact repeat, brief section 3)."

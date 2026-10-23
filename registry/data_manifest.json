@@ -1,82 +1,163 @@
 {
-  "schema": "gemsdoe91-data-manifest/1",
+  "schema_version": 1,
   "updated_utc": "2026-10-23",
-  "note": "Every input a build reads must be pinned here with its sha256 before the build is allowed to write a release. Paths are relative to the repository root. No competition raster is committed to this repository (public repo, data-use terms unchecked); only the hashes travel.",
-  "inputs": [
+  "policy": {
+    "rule": "Inputs are only files listed here; verify sha256 before use; never fill a gap from memory.",
+    "hashes_source": "Transcribed from GEMSDOE88 registry/data_manifest.json (schema_version 2) and cross-checked against GEMSDOE88 registry/r0_verification.json, which recorded all 15 as byte-identical on the owner's machine.",
+    "verified_in_this_sandbox": "Only the entries with a public_mirror were fetched and re-hashed here (parent_r0_nan, parent_r0_zeros, anc_d2_8). The three competition rasters are NOT public and were NOT verified locally.",
+    "mirror_format": "owner/repo:path -> api.github.com contents (raw). raw.githubusercontent.com is not reachable from the sandbox.",
+    "path_convention": "local_subpath is relative to data/ (gitignored). data/ mirrors the upstream layout minus the data/ prefix."
+  },
+  "files": [
     {
       "id": "sample_submission",
-      "path": "data/sample_submission.tif",
-      "kind": "competition",
-      "sha256": null,
-      "required_by": ["format gates", "footprint"],
-      "source": "DrivenData #306 download page (human downloads, human stores)",
-      "license": "competition data-use terms - do not redistribute"
+      "local_subpath": "official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "public_mirror": null,
+      "role": "format gate reference: CRS, shape, transform, dtype, band count, footprint",
+      "provenance": "competition-provided",
+      "verified_here": false
     },
     {
-      "id": "R0_parent",
-      "path": "data/h33-h33-2-b2.tif",
-      "kind": "competition-derived",
-      "sha256": null,
-      "required_by": ["MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF"],
-      "parent_sha256_expected": null,
-      "source": "GEMSDOE32 lineage, owner-reported 37,654 unit-mass dots, CLAIM 0.2778",
-      "license": "competition-derived - do not redistribute",
-      "notes": "The build is refused unless the raster's byte sha256 equals parent_sha256_expected. A float-rounded or re-encoded parent is a different parent; never approximate it (brief section 5)."
+      "id": "existing_faults",
+      "local_subpath": "official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "public_mirror": null,
+      "role": "catalogue mask: zero-mass and >=3 px collar gates",
+      "provenance": "competition-provided",
+      "verified_here": false
     },
     {
-      "id": "R0_ranking",
-      "path": "data/h33-h33-2-b2-ranking.parquet",
-      "kind": "derived",
-      "sha256": null,
-      "required_by": ["MASS", "PRUNE (refill)", "TRACKB"],
-      "source": "the ranking that produced R0, or the recipe that rebuilds it",
-      "license": "competition-derived",
-      "notes": "Absent. A ranking by marginal gain needs the truth labels the parent was ranked against, so it cannot be reconstructed from the raster alone. Without it MASS and PRUNE-with-refill are not one-change edits and must not be built."
+      "id": "training_features",
+      "local_subpath": "bridge/gems-geodawn-numerical-features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "public_mirror": null,
+      "role": "bands 3/12/18/19 etc: block priors, edge fields for SNAP, parent ranking rebuild",
+      "provenance": "competition-provided",
+      "verified_here": false
     },
     {
-      "id": "catalogue_mask",
-      "path": "data/catalogue_mask.tif",
-      "kind": "competition",
-      "sha256": null,
-      "required_by": ["catalogue gates G6 G7", "PRUNE", "CONCENTRATION"],
-      "source": "USGS/INGENIOUS traces as distributed with the competition (pixel-exact mask of the training labels)",
-      "license": "competition data-use terms"
+      "id": "parent_r0_zeros",
+      "local_subpath": "registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065,
+      "public_mirror": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "role": "PARENT R0 (zeros encoding): 37,654 unit-mass dots",
+      "provenance": "derived submission artifact (upstream public mirror)",
+      "verified_here": true
     },
     {
-      "id": "tmi_gradient",
-      "path": "data/tmi_gradient.tif",
-      "kind": "derived",
-      "sha256": null,
-      "required_by": ["SNAP"],
-      "source": "gradient of the provided TMI band",
-      "license": "competition data-use terms"
+      "id": "parent_r0_nan",
+      "local_subpath": "registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "bytes": 355443,
+      "public_mirror": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "role": "PARENT R0 (NaN-outside encoding)",
+      "provenance": "derived submission artifact (upstream public mirror)",
+      "verified_here": true
     },
     {
-      "id": "gravity_gradient",
-      "path": "data/gravity_gradient.tif",
-      "kind": "derived",
-      "sha256": null,
-      "required_by": ["SNAP"],
-      "source": "gradient of the provided gravity band",
-      "license": "competition data-use terms"
+      "id": "anc_h19_5",
+      "local_subpath": "registry/calib_h195_01922.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "bytes": 1712322,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.1922 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": false
     },
     {
-      "id": "detrended_elevation",
-      "path": "data/detrended_elevation.tif",
-      "kind": "derived",
-      "sha256": null,
-      "required_by": ["RELIEF"],
-      "source": "detrended DEM used for the basin / piedmont / range-front terciles",
-      "license": "competition data-use terms"
+      "id": "anc_h19_4",
+      "local_subpath": "registry/calib_h194_01894.tif",
+      "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+      "bytes": 1716768,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.1894 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": false
     },
     {
-      "id": "km_prior",
-      "path": "data/prior_kmscale.tif",
-      "kind": "derived",
-      "sha256": null,
-      "required_by": ["CONCENTRATION"],
-      "source": "must NOT be derived from the parent's own dots; use a smoothed multi-layer model, catalogue density on blocks excluded from the parent, or the Faulds interaction prior",
-      "license": "inherit from inputs"
+      "id": "anc_h16_1",
+      "local_subpath": "registry/calib_h161_01855.tif",
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "bytes": 1718028,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.1855 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": false
+    },
+    {
+      "id": "anc_d1_5",
+      "local_subpath": "registry/calib_d15_02477.tif",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "bytes": 1632732,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.2477 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": false
+    },
+    {
+      "id": "anc_d2_8",
+      "local_subpath": "registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424,
+      "public_mirror": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "role": "lineage ancestor, score 0.2600 CLAIM",
+      "provenance": "derived submission artifact (upstream public mirror)",
+      "verified_here": true
+    },
+    {
+      "id": "anc_solo_d2_8",
+      "local_subpath": "registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "bytes": 830036,
+      "public_mirror": null,
+      "role": "lineage ancestor, score 0.2708 CLAIM",
+      "provenance": "derived submission artifact",
+      "verified_here": false
+    },
+    {
+      "id": "gdr_wellspring_in_footprint",
+      "local_subpath": "external/gdr_wellspring_in_footprint.csv",
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "bytes": 2146771,
+      "public_mirror": null,
+      "role": "prior layer only (vents/springs are NOT fault truth)",
+      "provenance": "USGS/NBMG public domain - verify before reuse",
+      "verified_here": false
+    },
+    {
+      "id": "ext_lidar_scarp_u8",
+      "local_subpath": "external/lidar_scarp_features_u8.tif",
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "bytes": 36943606,
+      "public_mirror": null,
+      "role": "SNAP field option only if the human supplies it",
+      "provenance": "licence unchecked - do not redistribute",
+      "verified_here": false
+    },
+    {
+      "id": "ext_geodawn_rad_u8",
+      "local_subpath": "external/geodawn_rad_u8.tif",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "bytes": 26612970,
+      "public_mirror": null,
+      "role": "REPORT-ONLY diagnostic lane (radon scored 0.00-0.19)",
+      "provenance": "licence unchecked - do not redistribute",
+      "verified_here": false
+    },
+    {
+      "id": "sgmc_faults_control",
+      "local_subpath": "external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602,
+      "public_mirror": null,
+      "role": "REPORT-ONLY blind SGMC control (never a gate)",
+      "provenance": "USGS public domain",
+      "verified_here": false
     }
   ]
 }

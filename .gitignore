@@ -1,14 +1,17 @@
-# competition data and derived rasters must not enter a public repo
+# Competition data must never be committed (data-use terms unchecked, and it is
+# large). data/ is the local tree the entrant's machine also uses.
 data/
+
+# Built rasters are committed by the human when a slot is actually going to be
+# spent (they are the upload artifact). Left ignored by default so this repo
+# does not accumulate binaries with no receipt.
 releases/*.tif
-*.tif
-*.tiff
+releases/*.zip
 
-# python
-.venv/
+*.part
 __pycache__/
-*.pyc
 .pytest_cache/
+.ruff_cache/
 
-# scratch
+# synthetic test fixtures
 tests/_tmp/

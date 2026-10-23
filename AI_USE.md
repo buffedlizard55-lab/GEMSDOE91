@@ -1,42 +1,70 @@
-# AI_USE — disclosure required by the competition rules
+# AI use disclosure
 
-Rules reference: `https://docs.nlr.gov/docs/fy26osti/96647.pdf` (generative-AI disclosure).
-This file separates what the AI *wrote* from what the **human decided**. Update it at
-every session; do not let the AI write the "human decided" column.
+Required by the competition rules (NLR rules PDF, reproducible code + generative-AI
+disclosure) — https://docs.nlr.gov/docs/fy26osti/96647.pdf
 
-## Session 2026-10-23 — agent (`arena/a6416f7b-gemsdoe91`)
+## What the AI wrote (this session, 2026-10-23)
 
-### Written by the AI
+- All code: `src/gems91/{metric,gates,pinned}.py`, `scripts/*.py`, `tests/*`, CI workflow.
+- The DTI re-derivation and its unit tests, including the finding that the formula admits
+  scores > 1.0 while live scores top out near 0.44, i.e. **absolute values from this module
+  are not scores** (IR-91-06).
+- All documents: this file, `IRREGULARITIES.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md`,
+  `README.md` (CURRENT STATE), `ledger/README.md`.
+- All verification runs: parent hash/grid/dot-count audit, the 15-entry manifest,
+  the 20-row ledger import, the raster-availability sweep (3 present / 17 absent),
+  and the hash + format check of the six retrievable MASS rasters.
 
-- `tools/dti.py` — DTI algebra, triangular kernel, credit map, exact marginal-gain
-  ranking, greedy selector, plus the unit tests that pin the algebra's assumptions.
-- `tools/validate_submission.py` — all MUST gates, the report-only proxy and
-  leakage-canary machinery.
-- `tools/run_concentration.py` — the CONCENTRATION axis builder and its mechanism card.
-- `tools/preflight.py`, `tools/stor.py`, `tools/raster_io.py`, `tools/make_fixture.py`.
-- `tests/` (49 tests, all on synthetic rasters).
-- `SLOT_PLAN.md`, `IRREGULARITIES.md`, `docs/*`, `registry/data_manifest.json` (all
-  hashes `null`), `Makefile`, `.github/workflows/ci.yml`, `.gitignore`.
-- Session axis choice: **CONCENTRATION** (brief §1 delegates this to the agent when
-  the human does not assign one).
+## What the AI did NOT do
 
-### Decided by the human (fill in; blank = not decided)
+- It did **not** build a candidate raster. No variant was produced because the three
+  competition rasters are absent and a variant cannot be certified without them
+  (IR-91-02). Nothing here approximates or reconstructs the parent.
+- It did **not** fetch drivendata.org, contact dropbox.com, log in, scrape the leaderboard
+  or submit. Those are the entrant's acts, from the entrant's account.
+- It did **not** invent a score. Every number carries a label: RECEIPT (none yet),
+  CLAIM (owner-reported), PROXY (local holdout), MODEL (projection).
 
-| decision | human's answer |
-|---|---|
-| TOP_PUBLIC (number + date read from the leaderboard) | |
-| Slots remaining this week / total | |
-| Deadline confirmed on the competition page (y/n) | |
-| Which reading of the catalogue buffer is the real gate (I-3) | |
-| Whether the official metric treats `|G|` as constant (I-5) | |
-| Where the parent raster + its ranking come from (I-1, I-4) | |
-| Which file to submit, and the submission-window day | |
-| Accept/override the agent's axis choice | |
+## What the human decided / must decide
 
-### What the AI did NOT do
+1. **TOP_PUBLIC** with a date and a receipt (blank in the brief; upstream's 0.4413 is a CLAIM).
+2. **Slots left** this week, and which slot (if any) goes to slot 1 in `SLOT_PLAN.md`.
+3. Whether the ≥3 px collar (constraint 4) binds controlled edits of R0 or only new dots —
+   this decides whether the brief's default week-1 plan is executable at all (IR-91-03).
+4. Whether GEMSDOE88 is the intended upstream lineage (IR-91-01).
+5. Supplying the three pinned competition rasters, or confirming a rebuild happens on the
+   entrant's machine.
+6. Every submission, and the final blind file choice.
 
-- Did not read, scrape, log into or submit anything on the competition site.
-- Did not fabricate a parent raster, a score, a receipt, a licence or an external dataset.
-- Did not contact dropbox.com or any non-allowlisted host.
-- Did not claim any number as a score: every figure produced is labelled MODEL or PROXY.
-- Did not build a variant. No raster left `releases/`.
+## Provenance of imported material
+
+`ledger/submissions.csv` and `registry/data_manifest.json` were transcribed from the public
+repo `buffedlizard55-lab/GEMSDOE88` (session of 2026-10-23) and are marked
+`IMPORT:GEMSDOE88`. Hashes in the ledger are upstream claims except where this session
+recomputed them: the three `anc`-ladder rasters and both R0 twins were fetched and re-hashed
+(`registry/r0_verification.json`); the six MASS rasters were fetched and re-hashed
+(`registry/candidate_availability.json`). The three competition rasters could not be verified
+in this sandbox and are marked as such.
+
+---
+
+## Session 2 (`arena/a6416f7b`, same date) — delta on top of the above
+
+**Written by the AI in session 2:** `tools/run_concentration.py` (the CONCENTRATION builder
+and its mechanism card), `tools/pins.py`, `tools/raster_io.py`, `tools/stor.py`,
+`tools/make_fixture.py`, `tests/test_concentration.py`, the session-2 addendum in
+`SLOT_PLAN.md`, IR-91-06/07/08 in `IRREGULARITIES.md`, `docs/MECHANISMS.md`,
+`docs/DATA.md`, and the one-line fix in `src/gems91/gates.py` (IR-91-06). It also chose the
+session axis (CONCENTRATION) because the brief lets the agent pick when the human does not.
+
+**Not done by the AI in session 2:** no candidate raster was built (same missing rasters as
+session 1), no submission, no score, no leaderboard access.
+
+**Human still has to decide (adds to the list above):**
+
+7. Which collar reading binds (2 px as R0 was built, or 3 px as §4.4 states) — IR-91-03,
+   now sharper because IR-91-06 voided the existing collar counts.
+8. Whether the three imported CONCENTRATION rows count as "CONC already tried" (they should
+   not — IR-91-07).
+9. The external prior for CONCENTRATION: which band(s) of `training_features.tif`, and the
+   block size (5 km default, 1 km if the dose-response is the goal).

@@ -1,54 +1,66 @@
-# GEMSDOE91 — GEMS Prize (DrivenData #306) candidate-build harness
+# GEMSDOE91 — session 2026-10-23 (DrivenData GEMS #306)
 
-One human, one registered entity, three scored slots a week. This repository builds
-and validates candidate rasters. **It never submits and never contacts the
-competition site.**
+## CURRENT STATE
 
-<!-- CURRENT STATE -->
-## CURRENT STATE (2026-10-23)
+- **Parent:** `R0 = h33-h33-2-b2` (GEMSDOE32) — **hash-verified here** (both encodings),
+  37,654 unit-mass dots, EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px.
+- **Best receipt:** **none.** There is no `receipt_score` in this lineage — 20/20 ledger
+  rows are blank. `0.2778` for R0 is a **CLAIM**, not a receipt.
+- **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
+  Upstream GEMSDOE88 carries `0.4413` as a human-supplied 2026-10-22 figure (**CLAIM**);
+  this session did not verify it and does not adopt it.
+- **Slots left this week:** **__ / __ (human must fill).**
+- **Variants built this session:** **0.** Build blocked — see `IRREGULARITIES.md` IR-91-01/02/04.
+  A preflight gate (`scripts/preflight.py`) refuses to start a build without
+  `sample_submission.tif`, `existing_faults.tif`, `training_features.tif`.
+- **AXIS for this session:** **MASS** — chosen here, not assigned. Still genuinely untested:
+  the three existing MASS variants were ranked by a synthetic distance heuristic
+  (`ranking_basis` = "NOT parent model ranking"), so no MASS result exists yet.
+- **Next 3 slots (see `SLOT_PLAN.md`):**
+  1. Rebuild and submit **R1 = PRUNE p3px** (`6f7ae705`) — the only fully collared file.
+  2. **MASS m10minus on R1**, ranked by R1's own model (the brief's MASS recipe, first run).
+  3. Conditional: **CONCENTRATION b10px-m20 on R1** if slot 1 lands ≥ R0 + 0.01, else
+     **SNAP scarp2px on R1**.
 
-- **Parent:** R0 = `h33-h33-2-b2` (GEMSDOE32) — **not reproducible in this checkout**:
-  the raster is absent and no sha256 is pinned. Nothing was built.
-- **Best receipt-backed score:** none. `0.2778` on R0 is a **CLAIM** (owner-reported,
-  no receipt in `ledger/`). There is no `ledger/raw_paste.txt` to rebuild from.
-- **TOP_PUBLIC:** `____` (human must fill from the leaderboard, with date).
-- **Slots left this week:** `__ / __`. Deadline 2026-12-03 (unconfirmed here — the
-  competition site is not readable from this sandbox, see `IRREGULARITIES.md` I-6).
-- **Session axis (agent-chosen):** CONCENTRATION. Built and tested; **0 variants
-  produced** because preflight blocks on missing inputs.
-- **Next 3 slots:** (1) CONCENTRATION f10-blk50 — tests whether km-scale prior
-  carries transferable signal at fixed count; (2) CONCENTRATION f20-blk50 only if
-  (1) moves ≥ 0.01, otherwise spend the slot on PRUNE ≤3 px (needs `R0_ranking`);
-  (3) SNAP ≤2 px (needs TMI + gravity gradients). See `SLOT_PLAN.md`.
-- **Blocking ask:** put `data/sample_submission.tif`, `data/h33-h33-2-b2.tif`,
-  `data/catalogue_mask.tif` and `data/prior_kmscale.tif` in `data/`, pin their
-  sha256 in `registry/data_manifest.json`, then `make preflight`.
+### Session 2 delta (`arena/a6416f7b`, same date)
 
-<!-- /CURRENT STATE -->
+Built on top of the above, after finding that main had moved: **0 variants built**, for the
+same reason as session 1 (no competition rasters locally). What is new:
 
-## What is here
+- `tools/run_concentration.py` — the repository's first *builder*: count-preserving,
+  collar-safe, CV-reporting, refuses any input that is not pinned. It requires an
+  **external** prior and refuses one derived from the parent's own dots, because the three
+  imported CONCENTRATION rows ranked blocks by *parent dot density* (IR-91-07) — those test
+  clustering, not prior transfer.
+- `tools/pins.py` — maps each axis to the manifest ids it needs and verifies bytes.
+- `tools/make_fixture.py` + `tests/test_concentration.py` — a synthetic fixture and an
+  end-to-end build -> certify proof, the first time the gates have run on a real raster.
+- **Fixed a live bug in `src/gems91/gates.py`**: `min_distance_to_mask` transposed rows and
+  columns (IR-91-06). On the real 3730x3292 grid this raised IndexError or returned the
+  distance at the mirrored cell, so every collar count in the lineage audit is suspect.
 
-| path | purpose |
+## What this repo contains
+
+| Path | Purpose |
 |---|---|
-| `tools/dti.py` | DTI algebra, kernel credit, exact marginal-gain ranking (MODEL, assumptions documented) |
-| `tools/validate_submission.py` | the MUST gates (format, catalogue, dedupe, parent diff) + report-only proxies |
-| `tools/run_concentration.py` | the CONCENTRATION axis builder (mechanism card in the docstring) |
-| `tools/preflight.py` | refuses to build until every input is pinned and hash-verified |
-| `tools/stor.py` | `ledger/submissions.csv` schema, dedupe rules |
-| `tools/make_fixture.py` | synthetic fixture so the gates are testable without competition data |
-| `registry/data_manifest.json` | pinned input hashes (currently all `null` = nothing may be built) |
-| `docs/` | `DATA.md`, `SUBMIT.md`, `MECHANISMS.md` |
-| `SLOT_PLAN.md`, `IRREGULARITIES.md`, `AI_USE.md` | the plan, the contradictions, the disclosure |
+| `registry/data_manifest.json` | 15 pinned inputs with sha256 + byte length; 3 re-hashed here |
+| `registry/r0_verification.json` | Parent hash/grid/dot-count evidence (generated) |
+| `registry/preflight.json` | Build-blocked verdict and exactly what is missing |
+| `registry/raster_availability.json` | Which of the 20 ledger rows still have a raster |
+| `registry/candidate_availability.json` | Hash + format status of the retrievable rasters |
+| `src/gems91/metric.py` | DTI re-derivation + exact marginal gain |
+| `src/gems91/gates.py` | The MUST gates; an unprovable gate is `UNVERIFIED`, never `PASS` |
+| `scripts/` | `verify_parent_r0.py`, `preflight.py`, `validate_release.py`, `pinned.py` CLI |
+| `ledger/submissions.csv` | 20 imported rows, provenance in `source`; empty receipt columns |
+| `tools/` | `run_concentration.py` (builder), `pins.py`, `raster_io.py`, `stor.py`, `make_fixture.py` |
+| `tests/` | 53 tests (metric algebra, gates, ledger invariants, builder, preflight) |
 
-## Quick start
+## Run it
 
 ```bash
-make install test          # 49 tests on synthetic data, no competition files needed
-make preflight             # exits 2 and lists exactly what is missing today
-# after the inputs land and are pinned:
-make concentration         # writes releases/…  (not registered)
-make validate CAND=releases/<id>.tif
+pip install -r requirements.txt
+python scripts/verify_parent_r0.py     # fetch pinned parent, verify sha256
+python scripts/preflight.py            # BUILD ALLOWED / BUILD BLOCKED
+python -m pytest                       # 53 tests, no competition data needed
+python -m tools.pins --axis CONCENTRATION   # what an axis still needs, by pinned id
 ```
-
-Rasters are **not** committed: the repo is public and the competition data-use terms
-are unchecked. Only recipes, hashes and receipts travel.
