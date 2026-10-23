@@ -221,8 +221,21 @@ def test_axis_input_matrix_points_at_pinned_ids():
         assert "parent_r0_nan" in needed
 
 
-def test_current_checkout_cannot_build_concentration():
-    """Both the pins and the preflight verdict must agree: blocked, no build."""
+def test_concentration_readiness_matches_the_pins_on_disk():
+    """pins.check_axis must agree with what is actually present and hash-verified.
+
+    Session 2 asserted the checkout was *blocked*. That premise stopped being true
+    on 2026-10-23, when the pinned feature stack was restored from its hash-pinned
+    parts (see IRREGULARITIES.md IR-91-17): the assertion now checks the invariant
+    "clear if and only if every required pin verifies locally", which is true on
+    both a data machine and a bare CI checkout.
+    """
     clear, reasons = pins.check_axis("CONCENTRATION")
-    assert not clear
-    assert any("training_features" in r for r in reasons)
+    manifest = pins.load(pins.MANIFEST)
+    needed = pins.AXIS_INPUTS["CONCENTRATION"]
+    entries = {f["id"]: f for f in manifest["files"] if f["id"] in needed}
+    on_disk = all(pins.resolve(i, manifest).is_file() for i in needed)
+    assert set(entries) == set(needed), "an axis input is not pinned"
+    assert clear == on_disk, (clear, on_disk, reasons)
+    if not clear:
+        assert reasons

@@ -101,3 +101,82 @@ No card claims a live score. The numbers are MODEL projections from the metric
 algebra plus a bracketed denominator. The hide-and-recover PROXY (report only,
 `reports/proxy.json`) came out at 0.0047–0.0050 for all four files with overlapping
 95 % CIs — it cannot separate these doses and is not evidence either way.
+
+---
+
+# Session 5 (2026-10-23) — RELIEF: three matched cards
+
+All three arms use the **same** treatment machinery; only the tercile direction differs.
+Count fixed at 37,654. Donors are drawn uniformly at random (seed 91) from the stated donor
+tercile. Recipients are placed by one rule in every arm: greedy priority dart throwing, cells
+visited from most isolated to least, `d_cat > 3 px`, `d_nn >= 2.8 px`, **off** the parent's
+detector support. Terciles are equal-count thirds of band 12 `det_elev` over the 5,167,373
+footprint cells (cuts −143.06 m, +38.59 m).
+
+**Why off support, in one line:** R0 is spacing-saturated on its own support — only 90 support
+cells in the whole footprint are ≥ 2.8 px from one of its dots — and a support preference gave
+the arms different mixes (96 vs 2,409 on-support recipients), which would have been a second
+change. See IR-91-18.
+
+**The audit that fixes the sign (PROXY, catalogue only).** Mapped-fault density by tercile:
+
+| tercile | det_elev | det_elev_slope | R0 dots | dot/catalogue ratio (det_elev) |
+|---|---|---|---|---|
+| basin | 1.077 % | 0.710 % | 7,696 | 0.415 |
+| piedmont | **1.436 %** | **1.534 %** | 15,744 | 0.636 |
+| range front | 1.027 % | 1.298 % | 14,214 | 0.803 |
+
+## Card 4 — `RELIEFr2m15` (range front → piedmont, 5,648 dots)
+
+- **Hypothesis.** At a fixed dot budget, the live score rises when mass moves out of the
+  highest-relief third and into the middle third, because mapped faults are ~40 % denser there
+  per unit area under both relief definitions.
+- **Mechanism.** The metric pays kernel credit at truth pixels and charges global mass in the
+  denominator. Count is fixed, so `S` does not move; only the credit per dot changes. The
+  middle third is the piedmont/alluvial-fan belt where scarps are both exposed and unmasked by
+  basin fill — the terrain position where a mapped trace is most likely in the first place.
+- **Non-fault process that could mimic it.** Relief controls *detectability*: the lineage's
+  H19-5 detector fires more in the piedmont regardless of faults, so moving mass there may
+  simply re-join the detector's own bias (that is why the null arm exists). Second mimic: the
+  catalogue's own mapping effort was higher on accessible piedmont ground, so the audit's
+  density contrast may be an artefact of historical mapping, not of fault density.
+- **Predicted live change.** **+0.0070** MODEL, range −0.003 to +0.017 (rule: `dT/T` from
+  tercile catalogue density × 0.5 shrink × the 0.2778 CLAIM). Read it against `null15`, not
+  against R0.
+- **Falsifier.** `r2m15 − null15` ≤ 0 on a live pair of receipts ⇒ terrain tercile carries no
+  transferable information beyond "dots left the detector's support". Retire RELIEF; do not
+  tune the fraction afterwards.
+
+## Card 5 — `RELIEFm2r15` (piedmont → range front, 5,648 dots)
+
+- **Hypothesis.** The exact sign flip, built so that a *mechanism* can be distinguished from
+  "change of any kind": if both directions gain equally, the axis is measuring relocation
+  noise, not relief.
+- **Predicted live change.** **−0.0070** MODEL, range −0.017 to +0.003.
+- **Falsifier.** Both arms gain ⇒ the relief direction is not the operative variable; the
+  off-support relocation is. Both lose ⇒ the parent's support is where the value is, and every
+  future axis must keep its dots on support.
+- **Note on the geology.** Piedmont→range-front is not absurd: the range front is where the
+  master faults are, and the catalogue may under-sample it because steep terrain is harder to
+  map. This card is the one that would gain if that under-sampling story is right.
+
+## Card 6 — `RELIEFnull15` (tercile-neutral relocation, 5,648 dots)
+
+- **What it is.** Donors uniform across all terciles; recipients split across terciles in the
+  same proportions, so the tercile fractions are preserved (.204/.418/.377 → .205/.417/.378)
+  while 15 % of the dots still move, off support, by the same rule and with long displacements
+  (mean 107 px).
+- **Why it is not optional.** It is the control for the only two things the arms change that
+  are *not* the tercile: leaving the detector support, and long-range displacement.
+- **Predicted live change.** **0.0000** MODEL, range −0.010 to +0.010.
+- **Falsifier.** A null arm that moves ≥ +0.01 says the parent's dot set carries avoidable
+  cost purely from its *positions relative to nothing* — which would be a more important
+  finding than the axis itself, and would redirect the next slot to re-spacing, not relief.
+
+## Shared caveats
+
+- The hide-and-recover PROXY is **blind here**: 0.005302 / 0.005263 / 0.005169 for the three
+  arms vs 0.006186 for R0 (Δ ≈ −0.0009 each, non-overlapping CIs but ~15 % of one dot's
+  credit). It only sees the 2–3 px collar (IR-91-15) and cannot adjudicate this axis.
+- Leakage canary 0.4244 in all three arms, far below the 0.90 stop rule.
+- No card claims a score. Nothing here has a receipt.

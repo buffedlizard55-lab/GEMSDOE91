@@ -34,9 +34,24 @@ a byte ("is this file one of the pinned inputs?").
 Check the current state with:
 
 ```bash
-python -m tools.pins --axis CONCENTRATION   # exit 2 and the missing ids, today
-python scripts/preflight.py                 # the repository-wide verdict
+python -m tools.pins --axis CONCENTRATION   # every pinned id present and hashed
+python scripts/preflight.py                 # the repository-wide verdict: BUILD ALLOWED
 ```
+
+## Restoring the 419 MB stack (`training_features`)
+
+GitHub refuses blobs over 100 MB, so the competition feature stack is stored as **five
+hash-pinned parts** in a sibling repo and reassembled by `scripts/restore_data.py`:
+
+```
+data/bridge/gems-geodawn-numerical-features.tif.part-000 … part-004   (each <= 94 MB)
+```
+
+Every part is verified against `registry/data_manifest.json → bridge.parts` **before** it is
+written, and the concatenation is verified against the whole-file pin `4371c82e…` before it is
+moved into place. A swapped or truncated part cannot reach a builder. The five parts are also
+public in `6GEMSDOE`, `GEMSDOE` and `GEMSDOE2` — that is a data-use flag, not a convenience
+(IRREGULARITIES.md IR-91-17).
 
 ## Prior warning (IR-91-07)
 
@@ -50,5 +65,7 @@ density computed on blocks excluded from the parent's ranking.
 
 A parent that survived a float64→float32 round trip, a re-compression, or a nodata
 re-assignment is a different raster with a different sha256 but visually identical dots.
-The verified twins for R0 are `caeae…`/`baeae321…` — see `registry/r0_verification.json`;
-never regenerate them, always fetch and re-hash.
+The verified twins for R0 are `baeae321…` (NaN) and `c55bafc4…` (zeros) — see
+`registry/r0_verification.json`; never regenerate them, always fetch and re-hash. The parent's
+**bytes** are not re-encodable in this sandbox (IR-91-16), so every artifact also carries a
+dot-set digest, and `releases/MANIFEST.json` pins both the sha256 and the dot count per file.

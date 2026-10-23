@@ -1,0 +1,572 @@
+{
+  "generated_utc": "2026-10-23T21:46:23+00:00",
+  "axis": "RELIEF",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "parent_dots": 37654,
+  "lineage": {
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "min_catalogue_distance_px": 2.236068,
+    "dots_on_catalogue": 0,
+    "rebuilt_from": {
+      "d2.8": {
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    }
+  },
+  "fraction": 0.15,
+  "n_move_requested": 5648,
+  "seed": 91,
+  "min_cat_px": 3.0,
+  "min_sep_px": 2.8,
+  "support_field": "calib_h195_01922.tif (121,131 cells; contains all 37,654 R0 dots)",
+  "feature_file_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "audit": {
+    "band": 12,
+    "band_name": "det_elev",
+    "cuts": [
+      -143.0627,
+      38.5885
+    ],
+    "terciles": [
+      {
+        "tercile": 0,
+        "label": "basin",
+        "footprint_px": 1722458,
+        "field_min": -3.4028234663852886e+38,
+        "field_max": -143.0627,
+        "catalogue_px": 18556,
+        "catalogue_density_pct": 1.0773,
+        "dots": 7696,
+        "dot_density_pct": 0.4468,
+        "dot_to_catalogue_ratio": 0.4147,
+        "mean_dcat_of_dots_px": 28.462
+      },
+      {
+        "tercile": 1,
+        "label": "piedmont",
+        "footprint_px": 1722457,
+        "field_min": -143.0626,
+        "field_max": 38.5883,
+        "catalogue_px": 24735,
+        "catalogue_density_pct": 1.436,
+        "dots": 15744,
+        "dot_density_pct": 0.914,
+        "dot_to_catalogue_ratio": 0.6365,
+        "mean_dcat_of_dots_px": 27.786
+      },
+      {
+        "tercile": 2,
+        "label": "range_front",
+        "footprint_px": 1722458,
+        "field_min": 38.5886,
+        "field_max": 1469.9127,
+        "catalogue_px": 17697,
+        "catalogue_density_pct": 1.0274,
+        "dots": 14214,
+        "dot_density_pct": 0.8252,
+        "dot_to_catalogue_ratio": 0.8032,
+        "mean_dcat_of_dots_px": 30.627
+      }
+    ],
+    "robustness_band": 19,
+    "robustness_band_name": "det_elev_slope",
+    "robustness_cuts": [
+      1.7966,
+      8.0937
+    ],
+    "robustness_terciles": [
+      {
+        "tercile": 0,
+        "label": "basin",
+        "footprint_px": 1722457,
+        "field_min": -3.4028234663852886e+38,
+        "field_max": 1.7966,
+        "catalogue_px": 12221,
+        "catalogue_density_pct": 0.7095,
+        "dots": 191,
+        "dot_density_pct": 0.0111,
+        "dot_to_catalogue_ratio": 0.0156,
+        "mean_dcat_of_dots_px": 32.968
+      },
+      {
+        "tercile": 1,
+        "label": "piedmont",
+        "footprint_px": 1722458,
+        "field_min": 1.7966,
+        "field_max": 8.0937,
+        "catalogue_px": 26414,
+        "catalogue_density_pct": 1.5335,
+        "dots": 20396,
+        "dot_density_pct": 1.1841,
+        "dot_to_catalogue_ratio": 0.7722,
+        "mean_dcat_of_dots_px": 28.491
+      },
+      {
+        "tercile": 2,
+        "label": "range_front",
+        "footprint_px": 1722458,
+        "field_min": 8.0937,
+        "field_max": 62.6459,
+        "catalogue_px": 22353,
+        "catalogue_density_pct": 1.2977,
+        "dots": 17067,
+        "dot_density_pct": 0.9909,
+        "dot_to_catalogue_ratio": 0.7635,
+        "mean_dcat_of_dots_px": 29.556
+      }
+    ],
+    "brief_direction_basin_to_range_front": {
+      "n_donors_available": 7696,
+      "n_donors_available_slope_definition": 191,
+      "prediction_if_built": {
+        "rho_target_pct": 1.0274,
+        "rho_donor_pct": 1.0773,
+        "dT_over_T": -0.00619,
+        "predicted_change": -0.0009,
+        "predicted_range": [
+          -0.011,
+          0.009
+        ],
+        "basis": "MODEL: dT/T from tercile catalogue density, SHRINK=0.5, LIVE_SPAN=0.2778 CLAIM; assumes new-fault density follows mapped-fault density in tercile space"
+      },
+      "note": "not built: near-no-op (see SLOT_PLAN.md). Under the brief's own relief definition the low tercile holds almost no mass and its mapped-fault density is within 5 % of the high tercile."
+    }
+  },
+  "r0": {
+    "proxy": {
+      "proxy_mean_credit": 0.006186,
+      "proxy_mean_credit_ci95": 0.000228,
+      "proxy_coverage": 0.038706,
+      "draws": 5,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200
+    },
+    "redundancy": {
+      "dots_with_neighbour_lt_2p83px": 11415,
+      "dots_with_neighbour_lt_2px": 0,
+      "mean_nn_px": 3.7351
+    },
+    "block_density_cv_1km": 0.6187,
+    "nn": {
+      "nn_min": 2.8284271247461903,
+      "nn_median": 3.0,
+      "nn_p90": 5.0990195135927845,
+      "pairs_lt_2p83": 11415,
+      "pairs_lt_2px": 0
+    },
+    "uniform_truth_credit": {
+      "uniform_truth_mean_credit": 0.06793884,
+      "uniform_truth_cells_uncovered": 4459783,
+      "cells": 5167373
+    },
+    "tercile_counts": {
+      "basin": 7696,
+      "piedmont": 15744,
+      "range_front": 14214,
+      "n_dots": 37654,
+      "fraction": {
+        "basin": 0.204387,
+        "piedmont": 0.418123,
+        "range_front": 0.37749
+      }
+    }
+  },
+  "arms": {
+    "r2m15": {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFr2m15-20261023-2c3839c9",
+      "axis": "RELIEF",
+      "value": "r2m15",
+      "description": "15% of dots moved range-front->piedmont terciles",
+      "donor_terciles": [
+        "range_front"
+      ],
+      "target_terciles": [
+        "piedmont"
+      ],
+      "n_dots": 37654,
+      "n_moved": 5648,
+      "n_requested": 5648,
+      "n_donor_pool": 14214,
+      "n_shortfall": 0,
+      "pct_relocated_of_parent": 14.9997,
+      "pct_changed_hamming": 29.9995,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 5648,
+        "removed": 5648,
+        "changed": 11296,
+        "pct_changed_of_parent": 29.9995
+      },
+      "target_quotas": null,
+      "donor_tercile_mix": {
+        "range_front": 5648
+      },
+      "recipient_tercile_mix": {
+        "basin": 0,
+        "piedmont": 5648,
+        "range_front": 0
+      },
+      "tercile_dot_fraction_before": {
+        "basin": 0.204387,
+        "piedmont": 0.418123,
+        "range_front": 0.37749
+      },
+      "tercile_dot_fraction_after": {
+        "basin": 0.204387,
+        "piedmont": 0.56812,
+        "range_front": 0.227492
+      },
+      "mean_displacement_px": 180.1369,
+      "max_displacement_px": 235.8008,
+      "min_recipient_to_existing_dot_px": 108.0046,
+      "min_cat_dist_new_dots_px": 3.1623,
+      "n_recipients_on_support": null,
+      "recipients_off_support_by_design": true,
+      "support_cells_legal_before_move": 90,
+      "all_legal_cells": 1302568,
+      "support_legal_cells": null,
+      "nn": {
+        "nn_min": 2.8284,
+        "nn_p01": 2.8284,
+        "nn_median": 3.0,
+        "dots_with_nn_lt_2p8": 0
+      },
+      "sha256_nan": "2c3839c9a7aebef82bf096ac64cd21639031f52e43baf3a8fcf4773e362a984a",
+      "sha256_zeros": "59671cea89c07c948f19f89ef8c18a195d3788c372cedeb2ef30e06cca8e97c5",
+      "sha8": "2c3839c9",
+      "dot_set_digest": "9b157f58d56576580f9631a0471bb2966d3bbb5f571893c862cca87e33b7e55f",
+      "proxy": {
+        "proxy_mean_credit": 0.005302,
+        "proxy_mean_credit_ci95": 0.000174,
+        "proxy_coverage": 0.033214,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200
+      },
+      "proxy_delta_vs_r0": -0.000884,
+      "canary": {
+        "canary_auc": 0.4244,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 13932,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.801
+      },
+      "block_density_cv_1km": 0.8411,
+      "uniform_truth_credit": {
+        "uniform_truth_mean_credit": 0.06701852,
+        "uniform_truth_cells_uncovered": 4497811,
+        "cells": 5167373
+      },
+      "prediction_MODEL": {
+        "rho_target_pct": 1.436,
+        "rho_donor_pct": 1.0274,
+        "dT_over_T": 0.050717,
+        "predicted_change": 0.007,
+        "predicted_range": [
+          -0.003,
+          0.017
+        ],
+        "basis": "MODEL: dT/T from tercile catalogue density, SHRINK=0.5, LIVE_SPAN=0.2778 CLAIM; assumes new-fault density follows mapped-fault density in tercile space"
+      },
+      "gates": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true,
+        "zeros_outside_footprint": true
+      }
+    },
+    "m2r15": {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFm2r15-20261023-3c3e832d",
+      "axis": "RELIEF",
+      "value": "m2r15",
+      "description": "15% of dots moved piedmont->range-front terciles (sign flip)",
+      "donor_terciles": [
+        "piedmont"
+      ],
+      "target_terciles": [
+        "range_front"
+      ],
+      "n_dots": 37654,
+      "n_moved": 5648,
+      "n_requested": 5648,
+      "n_donor_pool": 15744,
+      "n_shortfall": 0,
+      "pct_relocated_of_parent": 14.9997,
+      "pct_changed_hamming": 29.9995,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 5648,
+        "removed": 5648,
+        "changed": 11296,
+        "pct_changed_of_parent": 29.9995
+      },
+      "target_quotas": null,
+      "donor_tercile_mix": {
+        "piedmont": 5648
+      },
+      "recipient_tercile_mix": {
+        "basin": 0,
+        "piedmont": 0,
+        "range_front": 5648
+      },
+      "tercile_dot_fraction_before": {
+        "basin": 0.204387,
+        "piedmont": 0.418123,
+        "range_front": 0.37749
+      },
+      "tercile_dot_fraction_after": {
+        "basin": 0.204387,
+        "piedmont": 0.268126,
+        "range_front": 0.527487
+      },
+      "mean_displacement_px": 56.3406,
+      "max_displacement_px": 132.9135,
+      "min_recipient_to_existing_dot_px": 29.6985,
+      "min_cat_dist_new_dots_px": 3.1623,
+      "n_recipients_on_support": null,
+      "recipients_off_support_by_design": true,
+      "support_cells_legal_before_move": 90,
+      "all_legal_cells": 1360291,
+      "support_legal_cells": null,
+      "nn": {
+        "nn_min": 2.8284,
+        "nn_p01": 2.8284,
+        "nn_median": 3.0,
+        "dots_with_nn_lt_2p8": 0
+      },
+      "sha256_nan": "3c3e832d4788a2c01fc7018c72a78964b0513f0c29e65670506f913764f81f75",
+      "sha256_zeros": "231741727ea7f85fd8bec649f64977409eb262f7249fb3ce1c8dbef4a2d22396",
+      "sha8": "3c3e832d",
+      "dot_set_digest": "9d2c7db3d79d47c2d7c1c874630a371dfe65d11bb8b6fb1c0d80625e784518fd",
+      "proxy": {
+        "proxy_mean_credit": 0.005263,
+        "proxy_mean_credit_ci95": 8.6e-05,
+        "proxy_coverage": 0.032936,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200
+      },
+      "proxy_delta_vs_r0": -0.000923,
+      "canary": {
+        "canary_auc": 0.4244,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 12506,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8321
+      },
+      "block_density_cv_1km": 0.7909,
+      "uniform_truth_credit": {
+        "uniform_truth_mean_credit": 0.06729328,
+        "uniform_truth_cells_uncovered": 4482040,
+        "cells": 5167373
+      },
+      "prediction_MODEL": {
+        "rho_target_pct": 1.0274,
+        "rho_donor_pct": 1.436,
+        "dT_over_T": -0.050717,
+        "predicted_change": -0.007,
+        "predicted_range": [
+          -0.017,
+          0.003
+        ],
+        "basis": "MODEL: dT/T from tercile catalogue density, SHRINK=0.5, LIVE_SPAN=0.2778 CLAIM; assumes new-fault density follows mapped-fault density in tercile space"
+      },
+      "gates": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true,
+        "zeros_outside_footprint": true
+      }
+    },
+    "null15": {
+      "id": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFnull15-20261023-6c057de2",
+      "axis": "RELIEF",
+      "value": "null15",
+      "description": "15% of dots relocated with no tercile target (null)",
+      "donor_terciles": [
+        "basin",
+        "piedmont",
+        "range_front"
+      ],
+      "target_terciles": null,
+      "n_dots": 37654,
+      "n_moved": 5648,
+      "n_requested": 5648,
+      "n_donor_pool": 37654,
+      "n_shortfall": 0,
+      "pct_relocated_of_parent": 14.9997,
+      "pct_changed_hamming": 29.9995,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 5648,
+        "removed": 5648,
+        "changed": 11296,
+        "pct_changed_of_parent": 29.9995
+      },
+      "target_quotas": {
+        "0": 1154,
+        "1": 2362,
+        "2": 2132
+      },
+      "donor_tercile_mix": {
+        "basin": 1129,
+        "piedmont": 2402,
+        "range_front": 2117
+      },
+      "recipient_tercile_mix": {
+        "basin": 1154,
+        "piedmont": 2362,
+        "range_front": 2132
+      },
+      "tercile_dot_fraction_before": {
+        "basin": 0.204387,
+        "piedmont": 0.418123,
+        "range_front": 0.37749
+      },
+      "tercile_dot_fraction_after": {
+        "basin": 0.205051,
+        "piedmont": 0.417061,
+        "range_front": 0.377888
+      },
+      "mean_displacement_px": 107.4712,
+      "max_displacement_px": 209.6592,
+      "min_recipient_to_existing_dot_px": 37.6431,
+      "min_cat_dist_new_dots_px": 3.1623,
+      "n_recipients_on_support": null,
+      "recipients_off_support_by_design": true,
+      "support_cells_legal_before_move": 90,
+      "all_legal_cells": 4199585,
+      "support_legal_cells": null,
+      "nn": {
+        "nn_min": 2.8284,
+        "nn_p01": 2.8284,
+        "nn_median": 3.0,
+        "dots_with_nn_lt_2p8": 0
+      },
+      "sha256_nan": "6c057de2ef3979912ca38c4daf08e5853a8406a44d29d6184628c50af77cac32",
+      "sha256_zeros": "bfa4f67ef74294fa4e008be6b7bad5275e9695310d5f3f49727aceb4ce8b4447",
+      "sha8": "6c057de2",
+      "dot_set_digest": "6a8473589f9dee4c01807104a6dc9722eeccfe598124f0cb08e0d71462efa98a",
+      "proxy": {
+        "proxy_mean_credit": 0.005169,
+        "proxy_mean_credit_ci95": 0.000141,
+        "proxy_coverage": 0.032362,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200
+      },
+      "proxy_delta_vs_r0": -0.001017,
+      "canary": {
+        "canary_auc": 0.4244,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 12593,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8275
+      },
+      "block_density_cv_1km": 0.805,
+      "uniform_truth_credit": {
+        "uniform_truth_mean_credit": 0.06721577,
+        "uniform_truth_cells_uncovered": 4481290,
+        "cells": 5167373
+      },
+      "prediction_MODEL": {
+        "rho_target_pct": 1.2085,
+        "rho_donor_pct": 1.2085,
+        "dT_over_T": 4e-06,
+        "predicted_change": 0.0,
+        "predicted_range": [
+          -0.01,
+          0.01
+        ],
+        "basis": "MODEL: dT/T from tercile catalogue density, SHRINK=0.5, LIVE_SPAN=0.2778 CLAIM; assumes new-fault density follows mapped-fault density in tercile space"
+      },
+      "gates": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true,
+        "zeros_outside_footprint": true
+      }
+    }
+  }
+}

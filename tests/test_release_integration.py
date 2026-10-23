@@ -5,6 +5,7 @@ them first, so these run there.
 """
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
@@ -59,12 +60,20 @@ def test_template_carries_the_catalogue_not_zeros():
 
 
 def test_every_release_passes_every_gate():
+    """Every file listed in releases/MANIFEST.json passes the MUST gates.
+
+    The expected dot count comes from the manifest entry (which records it per
+    file, taken from the ledger), because the PRUNE ladder ships fewer dots than
+    the parent while SPACING and RELIEF hold the count fixed.
+    """
     cat = geom.catalogue_mask(io.read_grid(CATALOGUE))
-    files = sorted((ROOT / "releases").glob("*.tif"))
-    assert files, "no releases built"
-    for f in files:
+    man = json.loads((ROOT / "releases" / "MANIFEST.json").read_text())
+    assert man["files"], "manifest lists no releases"
+    for entry in man["files"]:
+        f = ROOT / "releases" / entry["file"]
+        assert f.is_file(), f"{f.name} listed in the manifest but not built"
         enc = "zeros" if f.name.endswith("-zeros.tif") else "nan"
         rep = gates.validate_release(f, template=TEMPLATE, catalogue=cat, encoding=enc,
-                                     expect_dots=37654)
+                                     expect_dots=entry["n_dots"])
         assert rep["PASS"], (f.name, rep["failed"])
         assert rep["min_catalogue_distance_px"] > 2.0

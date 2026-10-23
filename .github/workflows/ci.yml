@@ -90,8 +90,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Build first: releases/*.tif are gitignored, so the gate tests need them.
-      - name: Rebuild from the pinned inputs
-        run: python scripts/build_spacing.py --build
+      - name: Rebuild every release from the pinned inputs (spacing, relief, prune ladder)
+        run: make releases
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
       - name: Every rebuilt file is byte-identical to releases/MANIFEST.json

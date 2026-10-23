@@ -1,130 +1,79 @@
 # SUBMIT — what to upload, and what to paste back
 
-**Status 2026-10-23: three files are built and gate-clean** (`releases/`, rebuilt on demand —
-`releases/*.tif` are gitignored, the sha256 contract is `releases/MANIFEST.json`).
-**Nothing has ever been submitted by an agent, and no agent may submit.** One file per slot;
-the `-zeros` twin is the fallback, not an extra entry.
+**Status 2026-10-23 (session 5): 9 release pairs are built and gate-clean** (`releases/`,
+rebuilt on demand — `releases/*.tif` are gitignored; the hash contract is
+`releases/MANIFEST.json`, 18 files). **No agent has ever submitted anything and none may.**
+One file per slot; the `-zeros` twin is the fallback encoding, not a second entry.
 
-## Rebuild first (10–40 s, five inputs, all hash-verified)
-
-```bash
-python3 scripts/restore_data.py           # fetch + verify every pinned sha256
-python3 scripts/build_spacing.py --build  # rebuild the parent proof and all three arms
-python3 scripts/validate.py releases/<file>.tif   # must print PASS
-```
-
-The build refuses to proceed unless R0's dot set is reproduced exactly from both pinned
-ancestors, and refuses to write the ledger unless every release passes every hard gate.
-
-## Session-3 files
-
-| slot rank | file to upload | sha256 (must match `releases/MANIFEST.json`) | bytes |
-|---|---|---|---:|
-| 2 | `…-SPACINGspread40-20261023-6d389309-zeros.tif` | `5c517369be3c807c…` | 226,284 |
-| — | `…-SPACINGspread40-20261023-6d389309.tif` (NaN-outside primary) | `6d389309aafaa79d…` | 373,103 |
-| — | `…-SPACINGclump40-20261023-536d32ad-zeros.tif` (control) | `d393c94f38601567…` | 224,741 |
-| — | `…-SPACINGjitter40-20261023-39bb7288-zeros.tif` (null) | `ad6dfa26043f7f19…` | 225,691 |
-
-**Form note** (≤ 140 chars, no score claimed):
-
-```
-Parent R0 h33-2-b2; move 15,056 dots (39.99%) 2.0-2.24 px to emptier ground, count fixed 37,654; pred +0.004 MODEL
-```
-
-## Slot 1 — rebuild R1, then submit it
+## Rebuild and verify (2–3 min, all inputs hash-checked)
 
 ```bash
-python src/gems91/pinned.py check                 # 15/15 pins OK
-python scripts/preflight.py                       # BUILD ALLOWED
-python scripts/validate_release.py releases/<id>.tif --axis PRUNE
+python3 scripts/restore_data.py       # 15 pins, incl. the 419 MB stack from 5 hash-pinned parts
+make releases                         # spacing + relief + prune ladder, then hashes vs MANIFEST
+python3 scripts/preflight.py          # expect: BUILD ALLOWED
+python3 scripts/verify_manifest.py    # expect: 15/16 verified (catalogue_mask is derived)
 ```
 
-- **File:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif`
-- **sha256 must equal** `6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9`
-  (zeros twin `dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f`).
-  If the rebuild does not reproduce that hash, it is a **different file** — log it in
-  `IRREGULARITIES.md` and do not call it R1.
-- **Form note (103 chars, ≤140):**
-  `h33-2-b2; PRUNE <=3px held at 37654 (-2171 in 2-3px, +2171 exact marginal gain >3px); pred +0.005 MODEL`
-- **Which encoding:** upload the `.tif` (NaN outside footprint, spec-literal). Keep
-  `-zeros.tif` as the fallback the rules allow. Note the open risk: **no receipt in this
-  lineage has ever confirmed the all-finite `-zeros` encoding is accepted**, so do not
-  assume the twins score identically on the organiser's reader — the ledger's line
-  "NaN-outside and zeros-outside twins score identically" was never receipt-backed.
+`make releases` prints `manifest verified: 18 files` and exits non-zero if any byte moved.
+A hash that does not reappear means a **different file** — log it in `IRREGULARITIES.md`
+before uploading anything.
 
-## Format receipt — copy this into the PR/session notes
-
-```
-candidate: h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705
-sha256:    __________________________________________
-bytes:     ______
-validate_release.py: VERDICT = CERTIFIED      (paste the block; UNVERIFIED is not a pass)
-gates: crs/shape/transform/dtype/band_count/values_in_0_1/no_nan_inside/nan_outside/
-       zero_catalogue_mass/collar_ge_3px/sha_unseen=UNSEEN(passed)/reread_from_disk
-n_dots:    37654      min_dist_catalogue_px: ______
-```
-
-## Then, the same day
-
-1. Paste `receipt_score` and `receipt_date` into `ledger/submissions.csv` (never into
-   `predicted_change`).
-2. If the score moves ≥ +0.01, R1 becomes the parent for every later slot. If it moves
-   ≤ −0.01, the 2–3 px shell carries truth and the ≥3 px gate is wrong for this dataset.
-3. If |Δ| < 0.01, record it as **no evidence** and proceed on R1 anyway — it is the only
-   compliant base.
-
-## Do not
-
-- Do not upload the three MASS variants as progress on MASS: `MASSm10plus` is MODEL −0.010
-  and `MASSm20minus` is a nested cut of `MASSm10minus`; both are HOLD upstream, and all
-  three inherit R0's 2–3 px collar.
-- Do not upload a file whose hash is already in `ledger/submissions.csv` (8+ upstream slots
-  were spent on exact repeats), or whose `validate_release.py` verdict is not `CERTIFIED`.
-- Do not submit from any account but the one entity's. One final file, chosen blind.
-
-
----
-
-## Session 3 — this session's three files, ready to paste
-
-All three are built, gate-clean, and certified by both validators. Upload **one per slot**.
-
-```bash
-# re-verify any of them before uploading
-python scripts/verify_manifest.py                       # expect PRUNE: READY
-python scripts/validate_raster.py releases/R0-PRUNE3-20261023.tif \
-    data/official/sample_submission.tif \
-    --catalogue data/derived/catalogue_mask.tif --parent \
-    data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
-python scripts/validate_release.py releases/R0-PRUNE3-20261023.tif \
-    --sample data/official/sample_submission.tif \
-    --catalogue data/official/existing_faults.tif --ledger ledger/submissions.csv
-```
-
-| # | file | name | note (≤140 chars, counted) |
-|---|---|---|---|
-| 1 | `releases/R0-PRUNE3-20261023.tif` | `R0-PRUNE3-20261023` | Parent R0 (37654 dots, >=2.2px catalogue). PRUNE <=3px: delete 2171 dots (5.8%), no refill. Predicted +0.002 (-0.002..+0.006). |
-| 2 | `releases/R0-PRUNE8-20261023.tif` | `R0-PRUNE8-20261023` | Parent R0. PRUNE <=8px: delete 9164 dots (24.3%), no refill; 3-8px shell has zero catalogue credit. Predicted +0.006 (-0.004..+0.014). |
-| 3 | `releases/R0-PRUNE15-20261023.tif` | `R0-PRUNE15-20261023` | Parent R0. PRUNE <=15px: delete 15665 dots (41.6%), no refill; largest dose. Predicted +0.010 (-0.008..+0.024). |
-
-Fallback twins end in `-zeros.tif`; use one encoding per slot, never both.
-The parent session's own manifest marked its **zeros** twin `PRIMARY, portal_legal: true`,
-so zeros is a proven-acceptable encoding if the uploader objects to NaN.
-
-### Field values
+## Slot 1 — the recommendation (`SLOT_PLAN.md`)
 
 | field | value |
 |---|---|
-| format receipt | paste the `VERDICT: CERTIFIED` JSON from `validate_release.py` plus the sha256 |
-| sha256 (slot 1) | `1209e863a9ff58d86681e9e7f0375c4d185a59c50ef9769f02653ec1472198f2` |
-| sha256 (slot 2) | `e1dd69d02b90f95e779c43de1843ac53c4064619e74c81ee230a08058ba15654` |
-| sha256 (slot 3) | `1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0` |
+| file | `releases/h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f.tif` |
+| fallback | `…-1ca1ff6f-zeros.tif` (one encoding per slot, never both) |
+| sha256 (NaN) | `1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0` |
+| sha256 (zeros) | `28273f12207fbdda4ac75ffd1902e5cf38807cefe6951d34999f2d15a94330e0` |
+| dots | 21,989 (parent 37,654; 15,665 deleted, 41.60 %, **no refill**) |
+| form note (≤140) | `h33-2-b2; PRUNE <=15px delete-only, 21989 dots (41.6% removed), count not held; predicted +0.010 MODEL` |
+| predicted | **+0.010** [−0.008, +0.024] MODEL — the largest on the ledger |
 
-### After each score comes back
+## The RELIEF triplet built this session (do **not** spend a slot on it yet)
 
-1. `receipt_score` — the number from the submission page, not a memory of it.
-2. `receipt_date` — ISO date; `scripts/ledger.py state` uses it for weekly slot accounting.
-3. `status` — `SUBMITTED`.
-4. `notes` — if the change was under 0.01, write "no evidence (public chunks only)".
+| arm | file suffix | sha256 (NaN) | predicted |
+|---|---|---|---|
+| range→piedmont | `…-RELIEFr2m15-20261023-2c3839c9.tif` | `2c3839c9…` | +0.0070 |
+| piedmont→range | `…-RELIEFm2r15-20261023-3c3e832d.tif` | `3c3e832d…` | −0.0070 |
+| null | `…-RELIEFnull15-20261023-6c057de2.tif` | `6c057de2…` | 0.0000 |
 
-Then update only the CURRENT STATE block in `README.md`.
+They are matched (same 5,648 moves, same placement rule, count fixed 37,654, every new dot
+> 3 px from the catalogue). They are **not** slot candidates this week: each prediction is
+±0.007, below the 0.01 evidence bar, and the arm is only interpretable as
+`r2m15 − null15`. Full hashes: `releases/MANIFEST.json`; numbers: `evidence/relief_axis_20261023.json`.
+
+## Format receipt — copy this into the PR / session notes after uploading
+
+```
+candidate: h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f
+encoding:  NaN-outside (primary)            zeros twin: kept as fallback
+sha256:    __________________________________________
+bytes:     ______
+validate_raster.py : RESULT = PASS  (14/14 MUST gates)
+validate_release.py: PASS (count_matches_parent False is expected for a delete-only arm)
+n_dots:            21989
+min_dist_catalogue_px: ______   zero_catalogue_mass: yes
+receipt_score:     ______      receipt_date: ____________
+```
+
+## After the score comes back
+
+1. Paste `receipt_score` and `receipt_date` into the row whose `id` ends `1ca1ff6f` in
+   `ledger/submissions.csv`, and set `status=SUBMITTED`. Never write a score into
+   `predicted_change`.
+2. **Gain ≥ +0.01** → mass is the lever: next slot `…-PRUNEle8norefill-…-e1dd69d0.tif`
+   (or a new deeper dose), and R1 becomes the parent for later builds.
+3. **|Δ| < 0.01** → no evidence; PRUNE is exhausted, move to CONCENTRATION on a feature-stack
+   prior (see `SLOT_PLAN.md`).
+4. **Loss ≥ 0.01** → the ≥ 3 px collar is wrong for this dataset; build the **add-in-collar**
+   arm (3–8 px) instead.
+5. Update only the CURRENT STATE block of `README.md`.
+
+## Do not
+
+- Do **not** upload two encodings of the same file, or any file whose sha256 is already in
+  `ledger/submissions.csv` (8+ upstream slots were spent on exact repeats).
+- Do **not** upload a file whose `validate_raster.py` result is not `PASS`.
+- Do **not** submit from any account but the entity's own, and do not submit more than the
+  three scored files a week plus the one final blind choice.

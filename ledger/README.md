@@ -59,3 +59,21 @@ Two conventions this session adds, both to remove ambiguity:
   artifact** — same sha256 `c55bafc4…`. Dedupe on the hash, never on the parent string,
   or a repeated `(parent, axis, value)` can hide behind two spellings.
 
+
+## Session 5 (`arena/9cc58e7e`) — three RELIEF rows appended, still 0 receipts
+
+`RELIEFr2m15`, `RELIEFm2r15`, `RELIEFnull15` — the axis had **no rows at all** before this
+session (PRUNE 7, SNAP 9, CONCENTRATION 4, MASS 3, SPACING 3). The file now has **29 rows**.
+
+* `pct_changed` is the brief's 1–50 % quantity as **relocated ÷ parent dots** (14.9997 %, i.e.
+  5,648 of 37,654 moved); `pct_relocated` repeats it. The Hamming distance against the parent is
+  exactly twice that (29.9995 %), recorded in `evidence/relief_axis_20261023.json` as
+  `hamming_vs_parent`.
+* `ranking_basis` says explicitly that **no ranking was used** — donors are uniform at a fixed
+  seed inside the donor tercile; recipients are the same greedy rule in every arm. This is the
+  opposite of the three imported MASS rows, which invented a ranking and admitted it.
+* `predicted_change` stays MODEL and every row's `receipt_score` is empty. Session 4's PRUNE
+  ladder rows and session 3's SPACING rows are unchanged and still receipt-free.
+
+The PRUNE ladder's three hashes in this file now **reproduce byte for byte** from pinned inputs
+(`make releases`), and all 18 shipped files are listed in `releases/MANIFEST.json`.

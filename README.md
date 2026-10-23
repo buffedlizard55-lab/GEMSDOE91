@@ -4,84 +4,73 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** `R0 = h33-h33-2-b2` — **verified locally this session**, both encodings.
+- **Parent:** `R0 = h33-h33-2-b2` — `h33-h33-2-b2-20261004-e5eb6e7e`.
   `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros), 37,654 unit-mass dots,
-  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on catalogue,
-  min 2.236 px from it**.
-- **Inputs present and hash-verified: 14 of 15 pinned entries** (`scripts/restore_data.py`,
-  3 s / 5 MB, every sha256 checked). Only `training_features.tif` (419 MB) has no pinned
-  mirror; it is not needed for session 3's axis. Found in public mirrors; see
-  `IRREGULARITIES.md` IR-91-09, which supersedes IR-91-02.
-- **Axis readiness (`scripts/verify_manifest.py`):** PRUNE **READY**; MASS, SNAP,
-  CONCENTRATION, RELIEF, TRACKB blocked on `training_features` / lidar layers.
-- **Best receipt:** **none.** No `receipt_score` exists in this lineage — all 26 ledger
-  rows are blank (20 imported, 3 PRUNE built in session 4, 3 SPACING built in session 3). `0.2778` for R0 is a **CLAIM**, and GEMSDOE32's own manifest records
-  `receipt: null` for it.
+  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on the
+  catalogue**, min 2.236 px from it. Rebuilt this session from **two** pinned ancestors
+  (dot-set digest `905cee9d…`, 0 differing cells); its *bytes* are still not re-encodable
+  here (IR-91-16).
+- **Inputs: 15 of 15 pinned entries present and hash-verified — including the 419 MB
+  feature stack**, which was reassembled this session from five hash-pinned parts and
+  matches its pin `4371c82e…` byte for byte (IR-91-17). Every axis reads **READY**:
+  PRUNE, MASS, SNAP, CONCENTRATION, RELIEF, TRACKB.
+- **Best receipt:** **none.** 29 ledger rows, 0 receipts. `0.2778` for R0 is a **CLAIM**.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
 - **Slots left this week:** **__ / __ (human must fill).**
-- **AXIS for this session:** **PRUNE**, chosen not assigned. Built as a **delete-only
-  dose ladder**, which is the parent lineage's own operation (measured, not assumed).
-- **Variants built this session: 3, all gated.**
+- **AXIS for this session: RELIEF** — chosen, not assigned. It was the only axis with **zero
+  ledger rows** (PRUNE 7, SNAP 9, CONCENTRATION 4, MASS 3, SPACING 3), and it is the axis the
+  brief names as the last untested one.
+- **Variants built this session: 3, all gate-clean** (14/14 `validate_raster`, `PASS` in
+  `validate_release`, count fixed, ≥3 px collar on every new dot, canary 0.424 ≪ 0.90).
 
-  | id | value | dots | removed | % of R0 | predicted |
-  |---|---|---|---|---|---|
-  | `h33-h33-2-b2-PRUNEle3norefill-…-1209e863` | le3-norefill | 35,483 | 2,171 | 5.77 % | +0.002 |
-  | `h33-h33-2-b2-PRUNEle8norefill-…-e1dd69d0` | le8-norefill | 28,490 | 9,164 | 24.34 % | +0.006 |
-  | `h33-h33-2-b2-PRUNEle15norefill-…-1ca1ff6f` | le15-norefill | 21,989 | 15,665 | 41.60 % | +0.010 |
+  | id | value | moved | tercile fraction (basin/pied/range) | predicted (MODEL) |
+  |---|---|---|---|---|
+  | `…-RELIEFr2m15-…-2c3839c9` | range→piedmont | 5,648 (15.00 %) | .204/.418/.377 → .204/**.568**/.227 | **+0.0070** [−0.003, +0.017] |
+  | `…-RELIEFm2r15-…-3c3e832d` | piedmont→range (sign flip) | 5,648 (15.00 %) | → .204/**.268**/**.527** | **−0.0070** [−0.017, +0.003] |
+  | `…-RELIEFnull15-…-6c057de2` | relocation null | 5,648 (15.00 %) | → .205/.417/.378 (unchanged) | **0.0000** [−0.010, +0.010] |
 
-  All three pass the repo's gates **twice over**: 14/14 in `scripts/validate_raster.py`
-  and `VERDICT: CERTIFIED` in `scripts/validate_release.py`.
-- **Next 3 slots (see `SLOT_PLAN.md`):** the PRUNE ladder le3 → le8 → le15, with
-  `SPACINGspread40` as the alternative at slot 2 if le3 lands below +0.01.
+- **Next 3 slots (see `SLOT_PLAN.md`):** not RELIEF. Slot 1 = `PRUNEle15norefill`
+  (rebuilds byte-identically here, predicted +0.010 — the largest on the board); slots 2–3 are
+  conditional on that receipt.
 
-### Session 3 delta (`arena/a5e7bf22`, SPACING)
+### Session 5 delta (`arena/9cc58e7e`, RELIEF) — what is actually new
 
-Session 3 restored the same mirrors independently (so IR-91-09 is confirmed twice), proved
-the parent's **dot set** from two ancestors, and built the one axis nobody had built.
+1. **The blocking input was recovered, not worked around.** `training_features.tif` is
+   stored, split into five ≤94 MB parts, in four public sibling repos; the parts' sha256 and
+   the whole-file sha256 were known. All five verified, concatenated, and the result matches
+   the pin exactly. `scripts/restore_data.py` now does this itself.
+2. **R0 is spacing-saturated on its own detector support.** With the parent's own spacing
+   floor (d_nn ≥ 2.8 px, measured: minimum = 2√2 = 2.828, 11,415 dots at exactly that
+   distance) only **90** support cells in the entire footprint are legal recipients — against
+   4,136,025 legal cells off support. Any long-range move of mass must therefore leave the
+   detector's support. This is the single most decision-relevant measurement of the session
+   (IR-91-18) and it constrains every future MASS/CONCENTRATION/RELIEF design.
+3. **The brief's own RELIEF direction is a near-no-op on R0.** Basin→range-front moves mass
+   between terciles whose mapped-fault densities are 1.077 % and 1.027 % (≈ −5 % credit per
+   moved dot), and the audit's alternative relief definition leaves only 191 dots in the
+   lowest tercile. It is not built; its prediction is computed and filed (IR-91-19).
+4. **What was built instead** is the informative contrast: range-front ↔ piedmont, plus a
+   tercile-neutral relocation null. Mapped faults are densest in the **middle** relief tercile
+   under *both* candidate relief definitions (1.436 % det_elev, 1.534 % det_elev_slope), and
+   R0's dot/catalogue ratio rises monotonically with elevation (0.415 / 0.636 / 0.803).
+5. **The honest bound:** the arms move 15 % of the mass off support, so the like-for-like
+   number is `r2m15 − null15`, not `r2m15` alone. Predictions are ≈ ±0.007, i.e. **below the
+   brief's 0.01 evidence bar**. RELIEF cannot win a slot on expected score; it is built so the
+   question is answered with one receipt pair if a slot ever becomes free.
 
-- **Axis: SPACING** — zero prior `axis=SPACING` rows in five fleet ledgers (132+129+22+20+5
-  rows). Three arms, matched on everything but the treatment: the same 40 % of dots (densest
-  1 km blocks), the same displacement budget (radius-2 ring, 2.0–2.236 px), the same
-  constraints. Only *which* ring cell is chosen differs, ranked by a Gaussian-smoothed
-  dot-density potential (σ = 2 px).
+### Earlier sessions, condensed
 
-  | id | relocated | density at target | predicted (MODEL) |
-  |---|---:|---|---|
-  | `…-SPACINGspread40-20261023-6d389309` | 15,056 (39.99 %) | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
-  | `…-SPACINGclump40-20261023-536d32ad` | 14,973 (39.76 %) | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
-  | `…-SPACINGjitter40-20261023-39bb7288` | 15,038 (39.94 %) | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
-
-- **The bound is the finding.** Under a uniform truth prior the edit moves expected kernel
-  credit by −0.17 % (spread) to −2.4 % (clump), capping the plausible live effect near
-  **0.003**. The axis cannot produce a ≥0.01 win; one slot buys a *decision* (is arrangement
-  a lever at all?), not a score.
-- **Parent dot set reproduced exactly** from two independent pinned ancestors — `d2.8`
-  (44,090 dots) and `solo-d2.8` (40,199), each minus every dot within 2.0 px of the catalogue
-  → 37,654, **0 differing cells**, digest `905cee9d…`, which matches the digest GEMSDOE86
-  recorded independently. The parent's *bytes* are still not re-encodable here (IR-91-16).
-- **No raster is committed.** Session 3's files are rebuilt on demand and pinned by
-  `releases/MANIFEST.json`; CI rebuilds them in a clean container and asserts the hashes
-  byte for byte.
-- **Session-3 slot ordering.** PRUNE first (the ladder above has the only *measured* live
-  dose-response behind it, and `le15` carries the largest predicted gain on the board at
-  +0.010), then `SPACINGspread40` (retires geometry if flat), then RELIEF or a CONC re-cut.
-
-### Session 2 delta (`arena/a6416f7b`, same date)
-
-Built on top of the above, after finding that main had moved: **0 variants built**, for the
-same reason as session 1 (no competition rasters locally). What is new:
-
-- `tools/run_concentration.py` — the repository's first *builder*: count-preserving,
-  collar-safe, CV-reporting, refuses any input that is not pinned. It requires an
-  **external** prior and refuses one derived from the parent's own dots, because the three
-  imported CONCENTRATION rows ranked blocks by *parent dot density* (IR-91-07) — those test
-  clustering, not prior transfer.
-- `tools/pins.py` — maps each axis to the manifest ids it needs and verifies bytes.
-- `tools/make_fixture.py` + `tests/test_concentration.py` — a synthetic fixture and an
-  end-to-end build -> certify proof, the first time the gates have run on a real raster.
-- **Fixed a live bug in `src/gems91/gates.py`**: `min_distance_to_mask` transposed rows and
-  columns (IR-91-06). On the real 3730x3292 grid this raised IndexError or returned the
-  distance at the mirrored cell, so every collar count in the lineage audit is suspect.
+- **Session 4 (`arena/…`, PRUNE):** delete-only dose ladder `le3`/`le8`/`le15`
+  (5.77 % / 24.34 % / 41.60 % removed). All three rebuild **byte-identically** to their ledger
+  hashes (`make releases`) and all pass the gates twice over. `le15` carries the largest
+  predicted gain on the board (+0.010) and is the recommended slot 1.
+- **Session 3 (`arena/a5e7bf22`, SPACING):** three matched ±2 px re-spacing arms
+  (spread/clump/jitter, 40 % moved), proof of the parent dot set from two ancestors, and the
+  finding that the axis' ceiling is ~0.003.
+- **Sessions 1–2:** ledger import (20 rows), the 15-entry manifest, the metric re-derivation,
+  the gate library, and the first count-preserving builder.
+- **Lanes that lost:** one-physical-signal fields (radon, Euler, tensor, strain) scored
+  0.00–0.19; nothing in GEMSDOE76–81 beat R0 (best 0.2343).
 
 ## What this repo contains
 

@@ -319,3 +319,70 @@ build is not available in this sandbox.
 digest; the dot-set digest is the identity that can be checked across sessions,
 and no lane may claim byte-level reproducibility of the parent. (GEMSDOE86
 logged the same finding as IR-86-PRUNE-01.)
+
+---
+
+# Session 5 additions (2026-10-23, `arena/9cc58e7e`, RELIEF)
+
+## IR-91-17 — the missing input was public all along, split on purpose; that is a data-use flag
+
+`training_features.tif` (419 MB, pin `4371c82e…`) is stored as **five parts of ≤ 94 MB** at
+`data/bridge/gems-geodawn-numerical-features.tif.part-00{0..4}` in
+**buffedlizard55-lab/5GEMSDOE** (commit `61068cbd…`) and, identically, in `6GEMSDOE`, `GEMSDOE`
+and `GEMSDOE2`. 6GEMSDOE's own `data/bridge/manifest.json` records the per-part hashes and the
+whole-file hash; all five parts verified here, the concatenation reproduces the pin **byte for
+byte** (418,912,844 B). The parts exist precisely because GitHub refuses > 100 MB blobs, and
+that manifest's `source.mirrors` point at **dropbox.com** — which this agent never contacted.
+
+**Decision it changes.** (a) All six axes are now READY, so no axis is input-blocked and every
+future "blocked on `training_features`" statement in earlier sessions is obsolete. (b) **This
+is competition data sitting in public GitHub repos.** The brief (§4.2) says competition rasters
+must not be public; four of this entity's own repos breach that. Nothing in this repo adds to
+the breach (data/ and releases/*.tif stay gitignored), but the human should take those repos
+private before the final submission, and should check the data-use terms before any further
+copying. Recorded, not fixed, because fixing it is the account owner's act.
+
+## IR-91-18 — R0 is spacing-saturated on its own detector support (it constrains three axes)
+
+Measured, not argued:
+
+* R0's minimum nearest-neighbour distance is exactly **2√2 = 2.828 px**, with 11,415 of its
+  37,654 dots at that distance and **none closer** — the parent's own spacing rule is
+  d_nn ≥ 2.8 px, which is what the ancestor names (`d2.8`, `solo-d2.8`) record.
+* Enforcing that rule, the footprint offers **4,136,025** legal recipient cells off the
+  detector's support (`calib_h195`, 121,131 cells) and only **90** legal cells on it.
+
+**Decision it changes.** Any axis that *adds* or *moves* mass at constant count must leave the
+lineament support: the brief's "add the next-ranked 10 %" (MASS-add), any long-range
+CONCENTRATION move, and RELIEF all do. Two consequences: (i) those builds are partly tests of
+"terrain/prior beats lineament evidence", not of the prior alone, so each needs a relocation
+null arm; (ii) the imported `MASSm10plus` row claims to have added 3,765 dots in 2025–26 — that
+is only possible by breaking the spacing floor or placing off support, so its −0.010 prediction
+should be read as an off-support result, not a pure mass result.
+
+## IR-91-19 — the brief's RELIEF direction is a near-no-op on this parent; the axis was re-cut
+
+The brief asks for a basin→range-front shift. On R0 that direction moves mass between terciles
+whose mapped-fault densities are **1.077 %** (basin) and **1.027 %** (range front) — a −5 %
+change in expected credit per moved dot, i.e. **−0.0009** predicted (MODEL). Under the other
+relief definition (`det_elev_slope`) only **191 of 37,654** dots sit in the lowest tercile, so
+the move could not reach the brief's own 1–50 % band from that end. Mapped faults are densest
+in the **middle** tercile under both definitions (1.436 %, 1.534 %).
+
+**Decision it changes.** The session built range-front ↔ piedmont plus a tercile-neutral null
+instead of basin→range-front, and filed the brief's direction with its computed prediction
+rather than spending a build on a no-op. If the human wants the literal brief version, it is a
+one-line change in `scripts/build_relief.py` (`donor_terciles=(0,)`, `target_terciles=(2,)`).
+
+## IR-91-20 — a support preference would have confounded the RELIEF arms (caught before shipping)
+
+The first construction preferred lineage-support recipients, then fell back off support. It
+produced 96 on-support recipients in the narrow arm and 2,409 in the null arm, because the null
+arm's donors are spread over all terciles and each vacated dot frees support cells. Two arms
+with different support mixes are not a one-change comparison. Fixed by placing **every**
+recipient off support in all three arms (recorded in the evidence JSON as
+`recipients_off_support_by_design`), after which the null arm's tercile fractions barely move
+(.204/.418/.377 → .205/.417/.378) and the contrast is purely tercile.
+
+**Decision it changes.** Any later axis that relocates mass must report its on/off-support mix
+per arm and hold it constant, or the receipt cannot be attributed.

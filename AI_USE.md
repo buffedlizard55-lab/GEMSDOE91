@@ -3,6 +3,32 @@
 Required by the competition rules (NLR rules PDF, reproducible code + generative-AI
 disclosure) — https://docs.nlr.gov/docs/fy26osti/96647.pdf
 
+## Session 5 (2026-10-23, `arena/9cc58e7e`) — RELIEF
+
+**What the AI wrote.** `src/gems91/relief.py` (the tercile operator), `scripts/build_relief.py`
+(builder, audit, gates, ledger rows), `tests/test_relief.py` (7 tests on synthetic rasters), the
+bridge-reassembly branch in `scripts/restore_data.py`, the `make releases` target, the CI step,
+and every document updated this session (`README.md` CURRENT STATE, `SLOT_PLAN.md`,
+`docs/SUBMIT.md`, `docs/MECHANISM_CARDS.md` cards 4-6, `IRREGULARITIES.md` IR-91-17..20, this
+file, `ledger/README.md`).
+
+**What the AI did.** Recovered the 419 MB feature stack from five hash-pinned public parts and
+verified it against the manifest pin; rebuilt R0's dot set from two ancestors (0 differing
+cells); audited the relief prior against the mapped catalogue; built and gated three matched
+RELIEF arms; chose the session axis, the tercile definitions, the fraction, the seed and the
+control design; wrote the predictions, which are MODEL and explicitly below the brief's 0.01
+evidence bar.
+
+**What the AI did NOT do.** It did not submit, log in, scrape the leaderboard, contact
+drivendata.org or dropbox.com, and did not choose the final file. It did not claim any score:
+there are still **0 receipts** in this lineage.
+
+**What the human must decide.** TOP_PUBLIC (value + date), slots left this week, whether to
+spend slot 1 on the PRUNE `le15` arm as recommended, whether to take the four public repos that
+hold competition rasters private (IR-91-17), and the final blind choice.
+
+## Earlier sessions
+
 ## What the AI wrote (this session, 2026-10-23)
 
 - All code: `src/gems91/{metric,gates,pinned}.py`, `scripts/*.py`, `tests/*`, CI workflow.

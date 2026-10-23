@@ -1,38 +1,134 @@
 {
   "schema_version": 1,
   "generated_utc": "2026-10-23T21:00:00Z",
-  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build && python3 scripts/build_relief.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
   "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
   "files": [
     {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFm2r15-20261023-3c3e832d-zeros.tif",
+      "sha256": "231741727ea7f85fd8bec649f64977409eb262f7249fb3ce1c8dbef4a2d22396",
+      "bytes": 219309,
+      "axis": "RELIEF",
+      "n_dots": 37654
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFm2r15-20261023-3c3e832d.tif",
+      "sha256": "3c3e832d4788a2c01fc7018c72a78964b0513f0c29e65670506f913764f81f75",
+      "bytes": 366272,
+      "axis": "RELIEF",
+      "n_dots": 37654
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFnull15-20261023-6c057de2-zeros.tif",
+      "sha256": "bfa4f67ef74294fa4e008be6b7bad5275e9695310d5f3f49727aceb4ce8b4447",
+      "bytes": 217614,
+      "axis": "RELIEF",
+      "n_dots": 37654
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFnull15-20261023-6c057de2.tif",
+      "sha256": "6c057de2ef3979912ca38c4daf08e5853a8406a44d29d6184628c50af77cac32",
+      "bytes": 364998,
+      "axis": "RELIEF",
+      "n_dots": 37654
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFr2m15-20261023-2c3839c9-zeros.tif",
+      "sha256": "59671cea89c07c948f19f89ef8c18a195d3788c372cedeb2ef30e06cca8e97c5",
+      "bytes": 213077,
+      "axis": "RELIEF",
+      "n_dots": 37654
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFr2m15-20261023-2c3839c9.tif",
+      "sha256": "2c3839c9a7aebef82bf096ac64cd21639031f52e43baf3a8fcf4773e362a984a",
+      "bytes": 360499,
+      "axis": "RELIEF",
+      "n_dots": 37654
+    },
+    {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad-zeros.tif",
       "sha256": "d393c94f386015678e6f99f0c2a1a556aecd7cf733d59777b788f9a0423c80e7",
-      "bytes": 224741
+      "bytes": 224741,
+      "n_dots": 37654,
+      "axis": "SPACING"
     },
     {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad.tif",
       "sha256": "536d32ad49bdf70ade796eb6d3ba2e303c2622239cd4253c27c2ff96f1bfc60a",
-      "bytes": 371632
+      "bytes": 371632,
+      "n_dots": 37654,
+      "axis": "SPACING"
     },
     {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288-zeros.tif",
       "sha256": "ad6dfa26043f7f195feba63852422efcc674da3eb448d4c42fc42858d26dd0d2",
-      "bytes": 225691
+      "bytes": 225691,
+      "n_dots": 37654,
+      "axis": "SPACING"
     },
     {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288.tif",
       "sha256": "39bb728839d70ab08ddee645a270c1f693b69e1252f7961dadb3e4a758a95df6",
-      "bytes": 372814
+      "bytes": 372814,
+      "n_dots": 37654,
+      "axis": "SPACING"
     },
     {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309-zeros.tif",
       "sha256": "5c517369be3c807c592e5dacfc9f7419a464f324c6d6a80f7eb6e0e5c6634d4e",
-      "bytes": 226284
+      "bytes": 226284,
+      "n_dots": 37654,
+      "axis": "SPACING"
     },
     {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309.tif",
       "sha256": "6d389309aafaa79d01ecb2d62e6de89b2030f6d1bfb15f96024c32b5baf00eaa",
-      "bytes": 373103
+      "bytes": 373103,
+      "n_dots": 37654,
+      "axis": "SPACING"
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f-zeros.tif",
+      "sha256": "28273f12207fbdda4ac75ffd1902e5cf38807cefe6951d34999f2d15a94330e0",
+      "bytes": 239337,
+      "axis": "PRUNE",
+      "n_dots": 21989
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f.tif",
+      "sha256": "1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0",
+      "bytes": 291857,
+      "axis": "PRUNE",
+      "n_dots": 21989
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863-zeros.tif",
+      "sha256": "b4e5c5246dd24c2b6af710c01d6345f68dbed2a9834f1ce60ec0c777295b3582",
+      "bytes": 278508,
+      "axis": "PRUNE",
+      "n_dots": 35483
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863.tif",
+      "sha256": "1209e863a9ff58d86681e9e7f0375c4d185a59c50ef9769f02653ec1472198f2",
+      "bytes": 331161,
+      "axis": "PRUNE",
+      "n_dots": 35483
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0-zeros.tif",
+      "sha256": "42c54d214b77aac590fb66f3ce6785b23085ce99d74339b866b1469960a79ba3",
+      "bytes": 258813,
+      "axis": "PRUNE",
+      "n_dots": 28490
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0.tif",
+      "sha256": "e1dd69d02b90f95e779c43de1843ac53c4064619e74c81ee230a08058ba15654",
+      "bytes": 311319,
+      "axis": "PRUNE",
+      "n_dots": 28490
     }
   ]
 }

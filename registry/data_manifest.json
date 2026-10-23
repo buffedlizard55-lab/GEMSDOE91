@@ -43,8 +43,42 @@
       "public_mirror": null,
       "role": "bands 3/12/18/19 etc: block priors, edge fields for SNAP, parent ranking rebuild",
       "provenance": "competition-provided",
-      "verified_here": false,
-      "local_present": false
+      "verified_here": true,
+      "local_present": true,
+      "bridge": {
+        "repo": "buffedlizard55-lab/5GEMSDOE",
+        "ref": "61068cbdf9e89bdc7e76a7c2f8040d6fbdbdbc24",
+        "dir": "data/bridge",
+        "whole_name": "gems-geodawn-numerical-features.tif",
+        "parts": [
+          {
+            "name": "gems-geodawn-numerical-features.tif.part-000",
+            "bytes": 94371840,
+            "sha256": "0a330f8951af6c921029e25c84a579319d2db554d62d30d894d6ddc97f98cff7"
+          },
+          {
+            "name": "gems-geodawn-numerical-features.tif.part-001",
+            "bytes": 94371840,
+            "sha256": "3c98037b2c997e3bbfcdfc2d9a982e8b820a77410dd7404b05cdb80594922c50"
+          },
+          {
+            "name": "gems-geodawn-numerical-features.tif.part-002",
+            "bytes": 94371840,
+            "sha256": "c375c4dbc40c59bbaece572b5e348700b75935f9a30c879c82b6417e0836f31c"
+          },
+          {
+            "name": "gems-geodawn-numerical-features.tif.part-003",
+            "bytes": 94371840,
+            "sha256": "b164159e6d0cb2595bc9f63a948af2646b124114a9c5921880c7516092137320"
+          },
+          {
+            "name": "gems-geodawn-numerical-features.tif.part-004",
+            "bytes": 41425484,
+            "sha256": "fa0a6f9c936fac1d6f20ca37f5929b2d60bf7a80f3d477dcab886f941aee2696"
+          }
+        ],
+        "note": "GitHub's 100 MB blob limit forced the 419 MB competition stack into five parts. Part hashes and the whole-file sha256 were both re-verified here on 2026-10-23; concatenating them reproduces the pinned sha256 exactly. The same five parts exist in 6GEMSDOE, GEMSDOE and GEMSDOE2 at the same paths - see IRREGULARITIES.md IR-91-17 for the data-use flag that raises."
+      }
     },
     {
       "id": "parent_r0_zeros",
@@ -150,8 +184,8 @@
       "public_mirror": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
       "role": "lineage ancestor, score 0.2600 CLAIM",
       "provenance": "derived submission artifact (upstream public mirror)",
-      "verified_here": false,
-      "local_present": false,
+      "verified_here": true,
+      "local_present": true,
       "verified_upstream": true,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
@@ -240,7 +274,7 @@
       }
     }
   ],
-  "session_note": "Inputs present and hash-verified in this workspace on 2026-10-23 from the owner's public sibling repos, then placed at the local_subpath this manifest already declares. Recovered: sample_submission (60GEMSDOE data/official), existing_faults = the training labels (60GEMSDOE data/official/labels.tif, same sha256), parent_r0_nan (GEMSDOE32 docs/downloads). Still absent: training_features, the lidar/radar external layers, SGMC control, ancestors other than solo-d28 (fetched separately for forensics only, not pinned here).",
+  "session_note": "Session 5 (2026-10-23): training_features recovered from hash-pinned parts in buffedlizard55-lab/5GEMSDOE and verified against this manifest's own pin; all 15 entries are now present and verified in this workspace. catalogue_mask (derived, not pinned) is rebuilt by scripts/make_catalogue.py when a builder needs it.",
   "derived": [
     {
       "path": "derived/catalogue_mask.tif",
