@@ -1,6 +1,65 @@
 # SUBMIT — what to upload, and what to paste back
 
-**Status 2026-10-23: three files are built and gate-clean** (`releases/`, rebuilt on demand —
+**Status 2026-10-23 (session 4): the MASS/consensus arms are built, gate-clean and certified by
+every §6 MUST gate — they are the current slot candidates (section below). **The §4.4 collar is
+inherited from R0 and cannot be cleared without turning a file into a PRUNE arm (IR-91-03); the
+human must rule on that before uploading.** The PRUNE and SPACING files described further down
+are still rebuild-on-demand and unchanged.**
+**Nothing has ever been submitted by an agent, and no agent may submit.** One file per slot;
+the `-zeros` twin is the fallback, not an extra entry.
+
+---
+
+## SESSION 4 — MASS/consensus: the three files to upload (one per slot)
+
+```bash
+python3 scripts/restore_data.py                 # fetch + verify every pinned sha256
+python3 scripts/make_catalogue.py               # rebuild the mask; must hash to c97c7819…
+python3 scripts/build_mass_consensus.py         # writes the 3 pairs under releases/, ~20 s
+python3 scripts/validate_raster.py releases/<file>.tif data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif \
+    --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+python3 scripts/validate_release.py releases/<file>.tif --axis MASS
+```
+
+Rebuilds are deterministic (no RNG anywhere) and were verified to reproduce the hashes below.
+
+| slot | file | sha256 (NaN-outside) | zeros twin | bytes (NaN) |
+|---|---|---|---|---|
+| **1** | `h33-h33-2-b2-MASScons3add-20261023-2803126d.tif` | `2803126de23b7f3388d2d4db727c2e8a39b499308b6efc61941d4231606f9abd` | `597d6d0e…` | 384,079 |
+| **2** | `h33-h33-2-b2-MASScons1drop-20261023-fc8f5500.tif` | `fc8f5500790eed45fe4957a3a548c55513db09774ecd46c300b67b4cc72d854e` | `9f24d22e…` | 354,433 |
+| 3 (only if 1–2 flat) | `h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f.tif` | `1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0` (rebuild first) | — | — |
+| keep | `h33-h33-2-b2-MASScons2drop-20261023-e8871e7f.tif` | `e8871e7f7bd75b139173e2c93eda3a79f47063e6e71dd4dfef7672cf58c4662f` | — | 328,675 |
+
+**Form notes** (≤140 chars each, no score claimed, counted):
+
+```
+1: h33-2-b2; +3765 dots (10.0%) at 3-of-3 cross-field support cells, >=3px off catalogue; pred +0.009 MODEL
+2: h33-2-b2; -4541 single-support dots (12.1%), count 33113, whole stratum; pred -0.000 MODEL
+3: h33-2-b2; delete-only <=15px collar, 21989 dots, no refill; pred +0.010 MODEL
+```
+
+**Format receipt — paste this back with the score:**
+
+```
+candidate: h33-h33-2-b2-MASScons3add-20261023-2803126d
+sha256 (NaN)    : 2803126de23b7f3388d2d4db727c2e8a39b499308b6efc61941d4231606f9abd
+sha256 (zeros)  : 597d6d0ea528c8630e301dfe354b62905534d49f985f5bd92f04a75e51d7e5cf
+n_dots          : 41419        min_dist_catalogue_px: 2.236  (inherited from R0, IR-91-03)
+validate_raster.py  : 14/14 PASS (§6 MUST gates)
+validate_release.py : 14 MUST gates PASS; collar_ge_3px FAIL = inherited, R0 fails it identically (2171 dots, IR-91-03)
+CRS EPSG:32611 | 3730x3292 | 100 m | float32 | 1 band | values {0,1} | NaN outside
+zero catalogue mass: 0 px        ledger sha: new at build time
+```
+
+**Known wrinkle, stated up front:** all three arms inherit R0's 2,171 dots at 2–3 px from the
+catalogue, so the brief's "≥3 px unless PRUNE" is violated by the parent itself, not by the edit
+(IR-91-03). The new mass in slot 1 is ≥3 px by construction. If the human prefers a compliant
+parent, rebase on `PRUNEle3norefill` (35,483 dots) instead — but then the file is a two-change
+build and must not be described as a MASS-only arm.
+
+---
+ (`releases/`, rebuilt on demand —
 `releases/*.tif` are gitignored, the sha256 contract is `releases/MANIFEST.json`).
 **Nothing has ever been submitted by an agent, and no agent may submit.** One file per slot;
 the `-zeros` twin is the fallback, not an extra entry.

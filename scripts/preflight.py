@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Preflight: can a build start here at all?
+"""Preflight: can a build start here at all, and for which axis?
 
-A build needs three competition rasters (format reference, catalogue, feature
-stack). This session found none of them locally and none publicly. This script
-is the honest gate in front of every build: it verifies presence + sha256 and
-prints why a build is blocked when it is.
+A build needs the pinned inputs of the axis it implements, and no others. The
+verdict is therefore reported **per axis** from the manifest's
+``axis_requirements``: an absent entry blocks only the axes that read it (brief
+section 4.2). A stale global verdict is what stalled sessions 1-3 while every
+input the repository actually needed was already pinned and fetchable.
 
-Exit 0 = BUILD ALLOWED, 1 = BUILD BLOCKED.
+Exit 0 = at least one axis is ready, 1 = no axis is ready.
 """
 
 from __future__ import annotations
@@ -19,7 +20,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from gems91.pinned import load_manifest, local_path_for, verify_entry  # noqa: E402
 
-REQUIRED_FOR_BUILD = ["sample_submission", "existing_faults", "training_features"]
+# The repository-wide minimum: the format reference plus the parent.
+REQUIRED_FOR_BUILD = ["sample_submission", "parent_r0_nan"]
 
 
 def main() -> int:
@@ -35,20 +37,39 @@ def main() -> int:
         if not ok:
             missing.append(fid)
 
+    # Per-axis readiness, from the manifest's own requirement table.
+    ok_ids = {fid for fid in by_id
+              if verify_entry(by_id[fid], local_path_for(by_id[fid], root))[0]}
+    readiness = {}
+    for axis, needs in man.get("axis_requirements", {}).items():
+        gap = [n for n in needs if n not in ok_ids]
+        readiness[axis] = {"ready": not gap, "missing": gap}
+    ready_axes = [a for a, st in readiness.items() if st["ready"]]
+
     verdict = "BUILD ALLOWED" if not missing else "BUILD BLOCKED"
     print("\n".join(lines))
     print(f"\n{verdict}: {len(REQUIRED_FOR_BUILD) - len(missing)}/{len(REQUIRED_FOR_BUILD)} "
           f"required inputs verified")
     if missing:
-        print("missing: " + ", ".join(missing))
-        print("These files are competition data. They are not in this repo and are not "
-              "publicly mirrored; they must come from the entrant's own machine.")
+        print("missing (repository-wide): " + ", ".join(missing))
+    print("\naxis readiness:")
+    for axis, st in readiness.items():
+        mark = "READY  " if st["ready"] else "blocked"
+        extra = "" if st["ready"] else f"  (missing: {', '.join(st['missing'])})"
+        print(f"  [{mark}] {axis}{extra}")
+    if ready_axes:
+        print(f"\n{len(ready_axes)} axis/axes can build here: {', '.join(ready_axes)}")
+    else:
+        print("\nNo axis has all of its pinned inputs; a build cannot start.")
     Path("registry").mkdir(exist_ok=True)
     Path("registry/preflight.json").write_text(json.dumps(
-        {"verdict": verdict, "missing": missing,
+        {"verdict": "BUILD ALLOWED" if ready_axes else "BUILD BLOCKED",
+         "missing": missing,
          "required": REQUIRED_FOR_BUILD,
+         "ready_axes": ready_axes,
+         "axis_readiness": readiness,
          "checked_utc": "2026-10-23"}, indent=2) + "\n", encoding="utf-8")
-    return 0 if not missing else 1
+    return 0 if ready_axes else 1
 
 
 if __name__ == "__main__":

@@ -319,3 +319,79 @@ build is not available in this sandbox.
 digest; the dot-set digest is the identity that can be checked across sessions,
 and no lane may claim byte-level reproducibility of the parent. (GEMSDOE86
 logged the same finding as IR-86-PRUNE-01.)
+
+## IR-91-17 — The parent's own MASS ranking does not exist in any pinned file
+
+Brief §5: "MASS: drop the lowest-ranked 10% / add the next-ranked 10%, by the parent's own
+ranking (rebuild the ranking from the recorded recipe if it is not stored)."
+
+**Measured:** no stored artifact ranks R0's dots. Every pinned ancestor is **binary** — values
+in {0, 1} only: `calib_h195_01922` (121,131 px), `calib_h194_01894` (123,779), `calib_h161_01855`
+(123,939), `calib_d15_02477` (60,069), the d2.8 raster (44,090) and solo-d28 (40,199). The one
+input that ever carried a continuous score, `training_features.tif` (419 MB), has no mirror in
+any sibling repo and is absent, so it cannot be read at all — the manifest's own policy forbids
+filling the gap from memory.
+
+**Substitution, and exactly what it costs.** MASS is ranked by **cross-field support**: for each
+dot, how many of the three lineage fields emit it (3 / 2 / 1 → 26,913 / 6,200 / 4,541 of R0's
+dots; 0 dots lie outside all three). This is the parent lineage's *own* pinned data, not an
+external prior and not a label, and it is ordinal with whole strata, so no arm needs a tie-break
+inside the ordering it is testing. It is **not** the parent's continuous score and every card
+says so. Consequence: a flat result on these arms cannot distinguish "mass is not a lever" from
+"this particular ordering is uninformative" — that is why the session built both directions.
+
+**Also corrected:** `axis_requirements.MASS` in `registry/data_manifest.json` (and
+`tools/pins.py`) declared `training_features` as required, which made the axis permanently
+BLOCKED while the file cannot exist here. It now lists what the build actually reads and hashes:
+`sample_submission`, `parent_r0_nan`, `existing_faults`, `anc_h19_5`, `anc_h19_4`, `anc_h16_1`.
+No sha256 was changed, and `training_features` stays pinned and absent.
+
+## IR-91-18 — Break-even precision is 11.8 %, so every mass edit is a ±0.01 bet
+
+The brief's shortcut ("a dot pays iff credit > 0.2·DTI ≈ 0.056") is exact for *unmatched* mass
+only. Working the algebra for the triangular kernel (R = 3 px, α = 0.2, d = 0.2778):
+
+    E[ΔDTI per dot] ≈ (p·c̄ − γ)/D,    γ = α·d/(1 − α·d) = 0.0556
+
+so an emitted dot is worth its mass iff its **precision** p exceeds γ/c̄ ≈ **11.8 %**
+(c̄ = 0.5 mean credit), equivalently iff it lies within **2.83 px** of a truth pixel. With
+D ∈ [1e4, 3.5e4] (bracketed from a 15–35 % matched fraction), 1,000 dots are worth
+0.002–0.006 of live score.
+
+**Decision it changes.** No MASS dose can be expected to beat +0.01 unless it moves more than
+~2,000 dots of clearly-above-breakeven precision. That is why the arms are 3,765–10,741 dots and
+why the *add* direction is scheduled first: its payoff ratio is (0.5 : 0.0556) ≈ 9:1 per dot,
+while a drop forfeits the whole 0.5 on every dot it gets wrong. It also retires the
+`SPACING`-style edits ab initio — displacement inside 2.83 px cannot change p at all, which is
+consistent with the ≤0.003 bound session 3 derived independently.
+
+## IR-91-19 — The leakage canary has to be a ring test; the plain test is degenerate
+
+The brief's canary: "a single feature with AUC > 0.90 means stop and investigate."
+
+**Measured:** the plain version cannot be run. The three lineage fields — like R0 itself — were
+built with the catalogue masked out: of the 60,988 catalogue pixels, **0** carry any field
+(vote histogram on the catalogue is [60988, 0, 0, 0]). Any AUC computed as
+"catalogue pixels vs background" is therefore an artefact of the mask, not a leak, and
+reporting it as "below threshold" would be a false pass.
+
+**Replacement (implemented in `scripts/instruments.py`):** the 0–3 px ring around known traces
+vs background ≥7 px clear. Result for the session-4 ranking: **AUC 0.526** (7.8 % of ring pixels
+carry support vs 2.6 % of background). So the support ordering is essentially blind to catalogue
+proximity — it is a genuine independent ranking, not a disguised PRUNE, and its failure modes
+are about field construction rather than label leakage.
+
+## IR-91-20 — CONCENTRATION is spent, not untested: R0 already sits in the reported CV band
+
+The brief reports that the best files sit at block-density CV 0.51–0.59.
+
+**Measured on R0:** 10 px (1 km) block density CV = **0.531**; 25 px = 0.791; 50 px = 1.041.
+R0 is already inside the reported band. The four imported CONCENTRATION rows moved CV *away*
+from it — 0.618 → 1.021 (`b10px-m10`), → 1.257 (`b10px-m20`), 0.703 → 1.359 (`b50px-m20`), and
+1.874 → 1.642 for `15pct-1km-grad` — because each concentrated mass into the hottest blocks,
+which raises CV by construction.
+
+**Decision it changes.** Do not spend a slot on a CONCENTRATION arm as specified, and do not
+"fix" it by pushing CV lower with a spacing edit either (that is a SPACING axis, bound ≤0.003).
+The statistic that inspired the axis is already satisfied by the parent, so the axis has no
+headroom left; a future arm would need a *new* mechanism, not a new block size.

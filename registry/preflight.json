@@ -1,14 +1,46 @@
 {
-  "verdict": "BUILD BLOCKED",
-  "missing": [
-    "sample_submission",
-    "existing_faults",
-    "training_features"
-  ],
+  "verdict": "BUILD ALLOWED",
+  "missing": [],
   "required": [
     "sample_submission",
-    "existing_faults",
-    "training_features"
+    "parent_r0_nan"
   ],
+  "ready_axes": [
+    "PRUNE",
+    "MASS",
+    "RELIEF"
+  ],
+  "axis_readiness": {
+    "PRUNE": {
+      "ready": true,
+      "missing": []
+    },
+    "MASS": {
+      "ready": true,
+      "missing": []
+    },
+    "SNAP": {
+      "ready": false,
+      "missing": [
+        "training_features"
+      ]
+    },
+    "CONCENTRATION": {
+      "ready": false,
+      "missing": [
+        "training_features"
+      ]
+    },
+    "RELIEF": {
+      "ready": true,
+      "missing": []
+    },
+    "TRACKB": {
+      "ready": false,
+      "missing": [
+        "training_features"
+      ]
+    }
+  },
   "checked_utc": "2026-10-23"
 }

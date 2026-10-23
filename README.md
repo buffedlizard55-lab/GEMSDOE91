@@ -5,25 +5,48 @@ No script here submits anything. One entity, three scored slots a week, one fina
 ## CURRENT STATE
 
 - **Parent:** R0 (`h33-h33-2-b2`), retrieved from its pinned mirror and sha256-verified:
-  NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. It has 37,654 unit-mass dots,
-  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots,
-  and minimum catalogue distance 2.236 px. **This session did not independently rebuild
-  R0's file bytes**; the byte-exact rebuild gate therefore failed (IR-91-16).
-- **Inputs:** 14/15 manifest files were hash-verified from pinned mirrors; only
-  `training_features.tif` is absent. The derived catalogue mask is also not materialised,
-  but the pinned catalogue raster is present. No unpinned source was used.
-- **Axis selected for this session:** PRUNE, chosen by the agent because it is the only
-  candidate axis with its core inputs verified and without relying on the unlicensed lidar
-  layer. **No variants built:** the mandatory R0 byte-rebuild gate did not pass; additionally,
-  the PRUNE values specified in the brief already appear in the ledger and the parent's
-  refill ranking is unavailable. See `SLOT_PLAN.md` and IR-91-16.
-- **Existing ledger:** 26 BUILT rows, zero SUBMITTED rows, zero receipts. R0's `0.2778` is
-  a **CLAIM**, not a receipt. Best receipt: none.
+  NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. 37,654 unit-mass dots, EPSG:32611,
+  3730x3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots, minimum
+  catalogue distance 2.236 px. This session again reproduced R0's **dot set** exactly
+  from both pinned ancestors (0 differing cells); its **bytes** are still not
+  re-encodable here (IR-91-16).
+- **Inputs:** all 15 pinned entries restored and re-hashed this session — sha256 **and**
+  byte length match for the 14 that have a mirror; the derived catalogue mask rebuilds
+  to its pinned hash (`c97c7819…`). Only `training_features.tif` is absent (no mirror),
+  so no axis may read it.
+- **Axis built this session:** **MASS**, ranked by **cross-field support** over the three
+  pinned lineage fields (H19.5 + H19.4 + H16.1), because the parent's own continuous
+  ranking is not recoverable from pinned bytes (IR-91-17). Three variants, all new
+  (axis, value) pairs; all pass the brief's §6 MUST gates under both implementations, and all
+  inherit R0's 2–3 px catalogue collar (IR-91-03 — R0 itself fails that gate):
+  `cons1drop` (33,113 dots, 12.06 % removed), `cons2drop` (26,913, 28.53 %),
+  `cons3add` (41,419, 10.00 % added).
+- **Best receipt: none.** 29 ledger rows are BUILT, 0 are SUBMITTED, 0 have a receipt.
+  R0's 0.2778 is a **CLAIM**.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
 - **Slots left this week:** **__ / __ (human must fill).**
-- **Next action:** human supplies the original reproducible R0 build environment/recipe and
-  ranking artifact, or assigns a future session after the byte-rebuild gate is resolvable.
-  Do not submit an artifact from this halted session.
+- **Next 3 slots:** 1) `MASScons3add` (MODEL +0.009), 2) `MASScons1drop` (MODEL −0.000, the
+  paired opposite direction), 3) `PRUNEle15norefill` (MODEL +0.010, only if 1–2 are flat).
+  See `SLOT_PLAN.md`; form notes and format receipts in `docs/SUBMIT.md`.
+
+### Session 4 delta (`arena/ee0cdd38`, MASS)
+
+- **All pinned inputs restored and verified**, including the derived catalogue mask, which
+  rebuilds byte-identically from `existing_faults`. The repo can now certify real files.
+- **New builder:** `src/gems91/consensus.py` + `scripts/build_mass_consensus.py`, plus
+  `scripts/instruments.py` for the three report-only instruments (PROXY, canary, SGMC).
+- **The axis that could not be built as briefed:** the parent's continuous MASS ranking does
+  not exist in any pinned file (all ancestors are binary; `training_features` is absent), so
+  MASS is ranked by cross-field support over the pinned lineage fields (IR-91-17).
+- **Three certified arms**, whole-strata drops so no arm needs a tie-break: `cons1drop`
+  (33,113 dots, MODEL −0.000), `cons2drop` (26,913, MODEL −0.015), `cons3add`
+  (41,419, MODEL +0.009 — the only arm with a plausible path past +0.01).
+- **Two findings that change the plan.** R0's 10 px block-density CV is already **0.531**,
+  inside the reported 0.51–0.59 best-file band, and all four existing CONCENTRATION rows move
+  CV *up* to 1.02–1.36 (IR-91-20) — that axis is spent, not untested. And the canary must be a
+  **ring** test: the lineage fields are catalogue-masked, so the plain AUC is degenerate
+  (IR-91-19). The ring canary is 0.526 — the support ordering knows nothing about catalogue
+  proximity, which is what makes it a real MASS test rather than a disguised PRUNE.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 

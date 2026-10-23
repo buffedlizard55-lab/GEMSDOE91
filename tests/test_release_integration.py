@@ -58,13 +58,34 @@ def test_template_carries_the_catalogue_not_zeros():
     assert not np.array_equal(np.isfinite(template), np.ones_like(cat))
 
 
+def _ledger_dot_counts() -> dict[str, int]:
+    """sha256 -> n_dots from the ledger, so a count-CHANGING axis is not forced to 37,654."""
+    import csv
+
+    out: dict[str, int] = {}
+    with (ROOT / "ledger" / "submissions.csv").open(newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            n = (row.get("n_dots") or "").strip()
+            if not n:
+                continue
+            for key in ("sha256", "sha256_zeros"):
+                h = (row.get(key) or "").strip()
+                if h:
+                    out[h] = int(n)
+    return out
+
+
 def test_every_release_passes_every_gate():
     cat = geom.catalogue_mask(io.read_grid(CATALOGUE))
     files = sorted((ROOT / "releases").glob("*.tif"))
     assert files, "no releases built"
+    counts = _ledger_dot_counts()
     for f in files:
         enc = "zeros" if f.name.endswith("-zeros.tif") else "nan"
+        # Count-preserving axes must still carry the parent's 37,654 dots; a MASS
+        # arm does not, so its own ledger count is the expectation.
+        expect = counts.get(io.sha256_file(f), 37654)
         rep = gates.validate_release(f, template=TEMPLATE, catalogue=cat, encoding=enc,
-                                     expect_dots=37654)
+                                     expect_dots=expect)
         assert rep["PASS"], (f.name, rep["failed"])
         assert rep["min_catalogue_distance_px"] > 2.0
