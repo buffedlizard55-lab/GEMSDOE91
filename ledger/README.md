@@ -59,3 +59,12 @@ Two conventions this session adds, both to remove ambiguity:
   artifact** — same sha256 `c55bafc4…`. Dedupe on the hash, never on the parent string,
   or a repeated `(parent, axis, value)` can hide behind two spellings.
 
+## Session `arena/a52f2ac7` — fixed-count PRUNE / H19-cover
+
+Three rows appended: `p2.5px-h19cover`, `p2.9px-h19cover`, and `p4.5px-h19cover`.
+The file now has **29 rows and still zero receipts**. Each new row holds 37,654 dots,
+records relocated-dot percentage (the symmetric-difference percentage is in the evidence
+JSON), and carries `source = SESSION arena/a52f2ac7 PRUNE-H19COVER`. Predictions were frozen
+before report-only instruments. Exact rebuilds with the same id must reproduce both hashes;
+they do not create another experiment or another slot.
+

@@ -4,35 +4,34 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** `R0 = h33-h33-2-b2` — **verified locally this session**, both encodings.
-  `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros), 37,654 unit-mass dots,
-  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on catalogue,
-  min 2.236 px from it**.
-- **Inputs present and hash-verified: 14 of 15 pinned entries** (`scripts/restore_data.py`,
-  3 s / 5 MB, every sha256 checked). Only `training_features.tif` (419 MB) has no pinned
-  mirror; it is not needed for session 3's axis. Found in public mirrors; see
-  `IRREGULARITIES.md` IR-91-09, which supersedes IR-91-02.
-- **Axis readiness (`scripts/verify_manifest.py`):** PRUNE **READY**; MASS, SNAP,
-  CONCENTRATION, RELIEF, TRACKB blocked on `training_features` / lidar layers.
-- **Best receipt:** **none.** No `receipt_score` exists in this lineage — all 26 ledger
-  rows are blank (20 imported, 3 PRUNE built in session 4, 3 SPACING built in session 3). `0.2778` for R0 is a **CLAIM**, and GEMSDOE32's own manifest records
-  `receipt: null` for it.
+- **Parent:** `R0 = h33-h33-2-b2` — **independently rebuilt byte-exactly this session** from
+  each of two pinned ancestors. NaN `baeae321…c77dd` / 355,443 B and zeros
+  `c55bafc4…a6fa9` / 219,065 B both match. R0 has 37,654 unit dots, zero catalogue mass,
+  and minimum catalogue distance 2.236 px. See `registry/r0_verification.json` and IR-91-17.
+- **Inputs:** 14 of 15 pinned entries restored and SHA-256 verified. Only the 419 MB
+  `training_features.tif` is absent; it was not approximated. The used H19-5, catalogue,
+  template, ancestors and SGMC inputs all match their pins.
+- **Best receipt:** **none.** All 29 ledger rows have blank `receipt_score`; R0's 0.2778
+  is **CLAIM**, not a receipt. No result in this session is a live score.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
-- **Slots left this week:** **__ / __ (human must fill).**
-- **AXIS for this session:** **PRUNE**, chosen not assigned. Built as a **delete-only
-  dose ladder**, which is the parent lineage's own operation (measured, not assumed).
-- **Variants built this session: 3, all gated.**
+- **Slots left this week:** **__ / total __ (human must fill).**
+- **Axis:** **PRUNE**, chosen by the agent. Fixed-count refill uses exact iterative
+  marginal-DTI coverage on parent-lineage H19-5 support. It is not new truth or a new
+  physical-signal field. No-inhibition spacing drift is measured in IR-91-18 and the cards.
+- **Variants built at clean code SHA `6093377`: 3; all six encodings gated.**
 
-  | id | value | dots | removed | % of R0 | predicted |
-  |---|---|---|---|---|---|
-  | `h33-h33-2-b2-PRUNEle3norefill-…-1209e863` | le3-norefill | 35,483 | 2,171 | 5.77 % | +0.002 |
-  | `h33-h33-2-b2-PRUNEle8norefill-…-e1dd69d0` | le8-norefill | 28,490 | 9,164 | 24.34 % | +0.006 |
-  | `h33-h33-2-b2-PRUNEle15norefill-…-1ca1ff6f` | le15-norefill | 21,989 | 15,665 | 41.60 % | +0.010 |
+  | value | sha8 | relocated | % of R0 | dots | predicted change |
+  |---|---|---:|---:|---:|---:|
+  | `PRUNEp2p5h19cover` | `e6f2000d` | 941 | 2.499070% | 37,654 | +0.002 MODEL |
+  | `PRUNEp2p9h19cover` | `9829bb66` | 1,611 | 4.278430% | 37,654 | +0.004 MODEL |
+  | `PRUNEp4p5h19cover` | `691438f8` | 4,848 | 12.875126% | 37,654 | −0.015 MODEL |
 
-  All three pass the repo's gates **twice over**: 14/14 in `scripts/validate_raster.py`
-  and `VERDICT: CERTIFIED` in `scripts/validate_release.py`.
-- **Next 3 slots (see `SLOT_PLAN.md`):** the PRUNE ladder le3 → le8 → le15, with
-  `SPACINGspread40` as the alternative at slot 2 if le3 lands below +0.01.
+  Every file passes `scripts/validate.py`; every NaN primary is also `CERTIFIED` by
+  `scripts/validate_release.py`. Full tests pass. Hashes and byte lengths are pinned in
+  `releases/PRUNE_REFILL_MANIFEST.json`; evidence is `evidence/prune_refill_axis_20261023.json`.
+- **Next 3 slots:** p2.5 → p2.9 if non-negative → p4.5 only as a receipt-dependent
+  falsifier. The third is predicted to lose and is not an automatic upload. See
+  `SLOT_PLAN.md`, `ledger/prune-refill-cards.md`, and `docs/SUBMIT.md`.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 
