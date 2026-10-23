@@ -221,8 +221,8 @@ def test_axis_input_matrix_points_at_pinned_ids():
         assert "parent_r0_nan" in needed
 
 
-def test_current_checkout_cannot_build_concentration():
-    """Both the pins and the preflight verdict must agree: blocked, no build."""
-    clear, reasons = pins.check_axis("CONCENTRATION")
+def test_current_checkout_cannot_build_concentration(tmp_path):
+    """When data_root lacks the competition rasters, pins block the build."""
+    clear, reasons = pins.check_axis("CONCENTRATION", data_root=tmp_path)
     assert not clear
     assert any("training_features" in r for r in reasons)

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T21:35:41.660569+00:00",
-  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build && python3 scripts/build_prune_ladder.py --build && python3 scripts/build_concentration.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
-  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "generated_utc": "2026-10-23T22:00:00Z",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build && python3 scripts/build_relief.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
+  "parent": "h33-h33-2-b2 (e5eb6e7e)",
   "files": [
     {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815-zeros.tif",
@@ -93,6 +93,36 @@
       "file": "h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987.tif",
       "sha256": "5b6d39870bc0fe9813813f231a56e3b9425e7e2ec149e3e2de8f3ae654b14ce8",
       "bytes": 347613
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5-zeros.tif",
+      "sha256": "3e47cb772a1b5ea261d5d756ee1b8e6038db09571c74682700ed77e026e18ee4",
+      "bytes": 222473
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5.tif",
+      "sha256": "e1fd28d57106bebbb2b7f5b4327ab5a186a3eb4a3085b7e5c4a06aad2286dc0f",
+      "bytes": 369469
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2b12-20261023-27443c30-zeros.tif",
+      "sha256": "baa1883fd76b0d374c6fdbd5914cecb66e6721aa7c92c2c326bf3552f276c2a4",
+      "bytes": 223708
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2b12-20261023-27443c30.tif",
+      "sha256": "27443c301feff6f9bac035807d92a88c9830f8f198acab9bb53599700afbb6bd",
+      "bytes": 370517
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c-zeros.tif",
+      "sha256": "2b02433ae4193a965cdebe07c6f1ae498525829175ac3db7fda5a419ea6a9587",
+      "bytes": 223541
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif",
+      "sha256": "6ff08e5c2785f7684798c25d5f86a61df5aeb2568fcaeda9482b25cf61858b07",
+      "bytes": 370350
     }
   ]
 }

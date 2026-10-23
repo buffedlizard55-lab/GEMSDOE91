@@ -4,103 +4,23 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** R0 (`h33-h33-2-b2`), 37,654 dots on the pinned 3730x3292 EPSG:32611 grid. Both
-  pinned TIFFs rebuild **byte for byte from either ancestor** (NaN `baeae321…c77dd`, 355,443 B;
-  zeros `c55bafc4…a6fa9`, 219,065 B; dot digest `905cee9d…`) — see `src/gems91/lineage.py`.
-  R0's 0.2778 remains **CLAIM**, never a receipt.
-- **Inputs:** all 15 pinned entries present and re-hashed in this checkout; the 14 with a mirror
-  match sha256 **and** byte length, and the derived catalogue mask rebuilds to its pinned hash
-  (`c97c7819…`). `training_features.tif` has no mirror and stays UNVERIFIED, which is why MASS
-  had to be re-ranked from the lineage fields (IR-91-21). `python scripts/preflight.py` now
-  reports readiness **per axis**: PRUNE, MASS and RELIEF ready; SNAP, CONCENTRATION-by-bands and
-  TRACKB blocked.
-- **Three axis families are built on this parent, all gate-clean, from three merged sessions:**
+- **Parent:** `R0 = h33-h33-2-b2`, `37,654` unit-mass dots (`RECEIPT`) on the pinned `3730×3292` `EPSG:32611` (`100 m`, `float32`, footprint `5,167,373` px, `0` dots on catalogue, min `2.236 px`) grid. Both pinned TIFFs rebuild byte for byte from either ancestor (`baeae321…c77dd`, `355,443` B; `c55bafc4…6fa9`, `219,065` B; dot digest `905cee9d…`). R0's `0.2778` / `0.3698` remains an unreceipted **CLAIM**.
+- **Inputs (`15/15` pinned + `catalogue_px.tif` = `16/16` hash-verified `RECEIPT`):** `scripts/restore_data.py` now restores `training_features` (`gems-geodawn-numerical-features.tif`, `418,912,844` B, sha256 `4371c82e…3bc5` `RECEIPT`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)) from 5 pinned git blobs (`IR-91-25`) and unblocks **all 6 axes** (`MASS`, `CONCENTRATION`, `SNAP`, `PRUNE`, `RELIEF`, `TRACKB`; `scripts/preflight.py` → `BUILD ALLOWED`).
+- **Ledger (`41` `BUILT` rows, `0` `SUBMITTED`, `0` live `RECEIPT`s):** `|Δ| < 0.01` = no evidence. **TOP_PUBLIC:** `____` (human must fill, with date). **Slots left this week:** `__ / 3` (`5.86` rolling weeks to unconfirmed `2026-12-03` deadline).
+- **Session 5 (`arena/42de3fed-gemsdoe91`) — `RELIEF` axis built and certified (`IR-91-26`, `IR-91-27`):** Relocates `4,518` dots (`12.00%` moved; `9,036` pixel symmetric diff = `24.00%` `RECEIPT`) at fixed count (`37,654` `RECEIPT`) and zero catalogue-collar drift (`2,171 → 2,171` `RECEIPT`) across equal-area relief terciles `0.90·pct(det_elev) + 0.10·pct(det_elev_slope)` (single-band leakage canary max AUC `0.5793` `PROXY` `≪ 0.90`):
 
-  | axis | arms | predicted (MODEL) |
-  |---|---|---|
-  | **CONCENTRATION** (external GDR thermal prior, PR #13) | `gdr25rm10` / `gdr25m10` / `gdr10m10`, 10 % of dots moved, count fixed | **+0.0123** / +0.0114 / +0.0113 |
-  | **PRUNE** (delete-only ladder + refill-held arms) | `le4` / `le5` / `le10` (and earlier `le3` / `le8` / `le15`); `p2.5` / `p2.9` / `p4.5px-h19cover` | +0.003 / +0.005 / **+0.008** (le15 +0.010); +0.002 / +0.004 / −0.015 |
-  | **MASS** (cross-field-support ranking, this session) | `cons1drop` 12.06 % / `cons2drop` 28.53 % / `cons3add` 10.00 % | −0.000 / −0.015 / **+0.009** |
+  | id | value | dots (`RECEIPT`) | T1 / T2 / T3 share (`RECEIPT`) | 4-fold `PROXY` Δ ([GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)) | SGMC `PROXY` Δ ([USGS DS-1052](https://pubs.usgs.gov/ds/1052/)) | predicted (`MODEL`) |
+  |---|---|---:|---|---|---|---|
+  | `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c` | `r2p12` (`range->pied`) | 37,654 | 17.7 / 56.3 / 26.0% | −0.0017 | −0.0049 | **+0.006** `[−0.006, +0.018]` |
+  | `h33-h33-2-b2-RELIEFr2b12-20261023-27443c30` | `r2b12` (`range->basin`) | 37,654 | 29.7 / 44.3 / 26.0% | −0.0032 | −0.0091 | **+0.003** `[−0.010, +0.016]` |
+  | `h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5` | `b2r12` (`basin->range`) | 37,654 | 5.7 / 44.3 / 50.0% | −0.0113 | **+0.0050** | **+0.005** `[−0.010, +0.020]` |
 
-- **Ledger:** **38 BUILT rows**, 0 SUBMITTED, 0 receipts. Every sha256 and every
-  (parent, axis, value) pair is unique. Live |Δ| < 0.01 is **no evidence**.
-- **Next 3 slots — one receipt per axis** (full reasoning in `SLOT_PLAN.md`):
-  1) `CONCENTRATIONgdr25rm10` (`c19adb01`, +0.0123 MODEL) — highest prediction, external prior;
-  2) `PRUNE-le10-norefill` (`04002dae`, +0.008) — the only family the collar ruling cannot block;
-  3) `MASScons3add` (`2803126d`, +0.009) — **contingent on the IR-91-03 ruling**; if the 3 px
-  collar is ruled binding on every file, put `gdr25m10` (`d54e8815`) here instead.
-- **Human still supplies:** the IR-91-03 collar ruling, TOP_PUBLIC with its date, slots remaining
-  this week, deadline confirmation, every submission-page receipt, and all upload / final-pick
-  decisions. No agent submits or touches the leaderboard.
-
-### Session 4 delta (`arena/ee0cdd38`, MASS)
-
-- **All pinned inputs restored and verified**, including the derived catalogue mask, which
-  rebuilds byte-identically from `existing_faults`. The repo can now certify real files.
-- **New builder:** `src/gems91/consensus.py` + `scripts/build_mass_consensus.py`, plus
-  `scripts/instruments.py` for the three report-only instruments (PROXY, canary, SGMC).
-- **The axis that could not be built as briefed:** the parent's continuous MASS ranking does
-  not exist in any pinned file (all ancestors are binary; `training_features` is absent), so
-  MASS is ranked by cross-field support over the pinned lineage fields (IR-91-17).
-- **Three gate-clean arms** (all §6 MUST gates; the §4.4 collar is inherited, IR-91-03),
-  whole-strata drops so no arm needs a tie-break: `cons1drop`
-  (33,113 dots, MODEL −0.000), `cons2drop` (26,913, MODEL −0.015), `cons3add`
-  (41,419, MODEL +0.009 — the only arm with a plausible path past +0.01).
-- **Two findings that change the plan.** R0's 10 px block-density CV is already **0.531**,
-  inside the reported 0.51–0.59 best-file band, and all four existing CONCENTRATION rows move
-  CV *up* to 1.02–1.36 (IR-91-20) — that axis is spent, not untested. And the canary must be a
-  **ring** test: the lineage fields are catalogue-masked, so the plain AUC is degenerate
-  (IR-91-19). The ring canary is 0.526 — the support ordering knows nothing about catalogue
-  proximity, which is what makes it a real MASS test rather than a disguised PRUNE.
-
-### Session 3 delta (`arena/a5e7bf22`, SPACING)
-
-Session 3 restored the same mirrors independently (so IR-91-09 is confirmed twice), proved
-the parent's **dot set** from two ancestors, and built the one axis nobody had built.
-
-- **Axis: SPACING** — zero prior `axis=SPACING` rows in five fleet ledgers (132+129+22+20+5
-  rows). Three arms, matched on everything but the treatment: the same 40 % of dots (densest
-  1 km blocks), the same displacement budget (radius-2 ring, 2.0–2.236 px), the same
-  constraints. Only *which* ring cell is chosen differs, ranked by a Gaussian-smoothed
-  dot-density potential (σ = 2 px).
-
-  | id | relocated | density at target | predicted (MODEL) |
-  |---|---:|---|---|
-  | `…-SPACINGspread40-20261023-6d389309` | 15,056 (39.99 %) | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
-  | `…-SPACINGclump40-20261023-536d32ad` | 14,973 (39.76 %) | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
-  | `…-SPACINGjitter40-20261023-39bb7288` | 15,038 (39.94 %) | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
-
-- **The bound is the finding.** Under a uniform truth prior the edit moves expected kernel
-  credit by −0.17 % (spread) to −2.4 % (clump), capping the plausible live effect near
-  **0.003**. The axis cannot produce a ≥0.01 win; one slot buys a *decision* (is arrangement
-  a lever at all?), not a score.
-- **Parent dot set reproduced exactly** from two independent pinned ancestors — `d2.8`
-  (44,090 dots) and `solo-d2.8` (40,199), each minus every dot within 2.0 px of the catalogue
-  → 37,654, **0 differing cells**, digest `905cee9d…`, which matches the digest GEMSDOE86
-  recorded independently. The parent's *bytes* are still not re-encodable here (IR-91-16).
-- **No raster is committed.** Session 3's files are rebuilt on demand and pinned by
-  `releases/MANIFEST.json`; CI rebuilds them in a clean container and asserts the hashes
-  byte for byte.
-- **Session-3 slot ordering.** PRUNE first (the ladder above has the only *measured* live
-  dose-response behind it, and `le15` carries the largest predicted gain on the board at
-  +0.010), then `SPACINGspread40` (retires geometry if flat), then RELIEF or a CONC re-cut.
-
-### Session 2 delta (`arena/a6416f7b`, same date)
-
-Built on top of the above, after finding that main had moved: **0 variants built**, for the
-same reason as session 1 (no competition rasters locally). What is new:
-
-- `tools/run_concentration.py` — the repository's first *builder*: count-preserving,
-  collar-safe, CV-reporting, refuses any input that is not pinned. It requires an
-  **external** prior and refuses one derived from the parent's own dots, because the three
-  imported CONCENTRATION rows ranked blocks by *parent dot density* (IR-91-07) — those test
-  clustering, not prior transfer.
-- `tools/pins.py` — maps each axis to the manifest ids it needs and verifies bytes.
-- `tools/make_fixture.py` + `tests/test_concentration.py` — a synthetic fixture and an
-  end-to-end build -> certify proof, the first time the gates have run on a real raster.
-- **Fixed a live bug in `src/gems91/gates.py`**: `min_distance_to_mask` transposed rows and
-  columns (IR-91-06). On the real 3730x3292 grid this raised IndexError or returned the
-  distance at the mirrored cell, so every collar count in the lineage audit is suspect.
+- **Merged fleet summary across sessions (`SLOT_PLAN.md`):**
+  - **CONCENTRATION** (PR #13, GDR thermal prior): `gdr25rm10` (`c19adb01`, `+0.0123` `MODEL`), `gdr25m10` (`+0.0114`), `gdr10m10` (`+0.0113`).
+  - **PRUNE** (PRs #4/#9/#10): delete-only `le3..le15` (`+0.002..+0.010` `MODEL`, `le10` `04002dae` `+0.008`) + fixed-count `p2.5`/`p2.9`/`p4.5px-h19cover`.
+  - **MASS** (PR #14, lineage support): `cons1drop` (`−0.000` `MODEL`), `cons2drop` (`−0.015`), `cons3add` (`2803126d`, `+0.009`).
+  - **SPACING** (PR #3, radius-2 ring): `spread40` (`6d389309`, `+0.0042` `MODEL`), `clump40` (`−0.0023`), `jitter40` (`0.000`).
+- **Next 3 scored slots (`SLOT_PLAN.md`):** (1) `CONCENTRATIONgdr25rm10` (`c19adb01`, or R0 anchor if unreceipted) → (2) `PRUNE-le10-norefill` (`04002dae`) → (3) `RELIEFr2p12` (`6ff08e5c`, or `MASScons3add` `2803126d`).
 
 ## What this repo contains
 

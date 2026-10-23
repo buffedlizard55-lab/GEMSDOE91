@@ -525,3 +525,52 @@ coverage cost (88.6 % → 80.2 %) and a −0.022 prediction floor. What still st
 they move 10 % of mass into the hottest 2.5 km blocks, which raises block-density CV further above
 the 0.51–0.59 band R0 already sits in (0.531), so the mechanism they test is *prior transfer*, not
 the CV statistic that originally motivated the axis. Do not describe them as a CV fix.
+---
+
+# Session 5 (`arena/42de3fed-gemsdoe91`, RELIEF) — three decision-changing items
+
+## IR-91-25 — `training_features` is already public in sibling repo `buffedlizard55-lab/GEMSDOE`
+
+Querying `https://api.github.com/repos/buffedlizard55-lab/GEMSDOE` (`private: false`
+`RECEIPT`) and testing an unauthenticated blob download (`HTTP 200`, `41,425,484` B
+`RECEIPT`) confirms that the official `418,912,844`-byte `gems-geodawn-numerical-features.tif`
+raster (sha256 `4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5`
+`RECEIPT`) is already published in 5 split blobs at commit `c0c06ac8…` of
+`buffedlizard55-lab/GEMSDOE` (alongside the public mirrors already noted in IR-91-09).
+
+**Decision it changes.** (a) Per the standing rule (*"Keep competition rasters out of
+public repos and git-tracked releases; flag if already public"*), this public exposure is
+explicitly flagged for human review/remediation on `buffedlizard55-lab/GEMSDOE`. (b)
+`GEMSDOE91` continues to gitignore `data`, `data/`, and `releases/*.tif`, storing ONLY
+sha256 pins in `registry/data_manifest.json` and `releases/MANIFEST.json` while restoring
+bytes transiently in CI and `.cache/data`.
+
+## IR-91-26 — `RELIEF` axis unblocked via official GeoDAWN `det_elev` + `det_elev_slope` instead of unlicensed LiDAR
+
+Earlier sessions marked `RELIEF` blocked on `ext_lidar_scarp_u8.tif`, which covers only
+`75.4%` of the footprint and carries `"license": "USGS 3DEP public domain (derived — licence unchecked)"`
+in `registry/data_manifest.json`. Inspecting the now-verified official `training_features`
+stack ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/))
+shows `Band 12 det_elev` (detrended elevation) and `Band 19 det_elev_slope` (detrended
+slope) cover `99.94%` of the `5,167,373`-pixel footprint natively (`100.00%` after EDT
+nearest-cell fill of `3,061` boundary sentinel pixels `RECEIPT`), with single-band leakage
+canary AUCs of `0.5063` and `0.5633` `PROXY` (`≪ 0.90`).
+
+**Decision it changes.** Switched `axis_requirements["RELIEF"]` in
+`registry/data_manifest.json` from `ext_lidar_scarp_u8` to `training_features` + verified
+lineage ancestors, unblocking `RELIEF` on 100% sponsor-provided inputs without external
+licensing risk or partial-footprint bias.
+
+## IR-91-27 — R0's 2,171 inherited `2 < d_cat ≤ 3 px` collar dots must be quarantined on non-PRUNE edits
+
+Parent R0 (`h33-h33-2-b2`) contains `2,171` dots at Euclidean distance `2.236 ≤ d_cat ≤ 3.0 px`
+(`390` in T1 Basin, `1,134` in T2 Piedmont, `647` in T3 Range `RECEIPT`). Removing any of
+those `2,171` dots during `RELIEF` donor selection would simultaneously execute a partial
+`PRUNE` edit (confounding relief reallocation with catalogue-collar pruning), whereas
+placing any new recipient dot at `d_cat ≤ 3.0 px` violates the `≥ 3 px` new-dot rule
+(`added_le3 == 0` in `scripts/validate_raster.py`).
+
+**Decision it changes.** `src/gems91/relief.py::shift_relief_mass` enforces strict
+`d_cat > 3.0 px` on **both** donor removal and recipient placement (`collar_le3px = 2,171 → 2,171`,
+`added_dots_le3px = 0` across all three `RELIEF` builds `RECEIPT`).
+

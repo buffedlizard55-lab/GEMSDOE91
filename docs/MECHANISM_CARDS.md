@@ -180,3 +180,131 @@ lower (0.0359, fewer features) but the relative gain is the largest (+44 %).
   already pinned for "prior layer only".
 - These are one experiment, not three: 10 % moved, same seed, same collar, three ways of
   choosing high-prior blocks. Only receipts separate them.
+---
+
+# Mechanism cards — RELIEF tercile reallocation, parent R0 (Session 5, 2026-10-23)
+
+For a structural geologist. One card per build (`evidence/relief_axis_20261023.json`).
+Parent **R0** = `h33-h33-2-b2` (`37,654` unit-mass dots `RECEIPT`, sha256 `baeae321…c77dd`
+primary / `c55bafc4…6fa9` zeros, live baseline `0.2778` `CLAIM` in earlier repo notes
+or `0.3698` `CLAIM` in `SLOT_PLAN.md`; unreceipted in `ledger/submissions.csv`).
+
+## Shared structural setup, measured on the GeoDAWN / INGENIOUS stack
+
+Using official GEMS `training_features` (`gems-geodawn-numerical-features.tif`, sha256
+`4371c82e…3bc5` `RECEIPT`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)),
+we partition the `5,167,373`-pixel (`51,674 km²`) Great Basin evaluation footprint into
+exact equal-area relief terciles via `R_rel = 0.90·pct(Band 12 det_elev) + 0.10·pct(Band 19 det_elev_slope)`:
+
+| Tercile | Footprint px (`RECEIPT`) | Med. `det_elev` (`RECEIPT`) | Med. slope (`RECEIPT`) | Med. sediment depth (`RECEIPT`) | R0 dots (`RECEIPT`) | R0 share (`RECEIPT`) |
+|---|---:|---:|---:|---:|---:|---:|
+| **T1 Basin floor** (`basin`) | 1,722,459 (33.33%) | −220.9 m | 0.93° | 559.9 m | 6,654 | 17.67% |
+| **T2 Piedmont / bajada** (`pied`) | 1,722,456 (33.33%) | −75.6 m | 3.20° | 327.6 m | 16,689 | 44.32% |
+| **T3 Range-front / horst** (`range`) | 1,722,458 (33.33%) | +211.1 m | 13.83° | 98.9 m | 14,311 | 38.01% |
+
+**Experimental controls held fixed across all three arms:**
+1. **Total mass fixed** at `37,654` unit dots (`S = 37,654` `RECEIPT`), isolating spatial
+   relief allocation from `MASS`.
+2. **Exact dose fixed** at `4,518` relocated dots (`12.00%` of parent dots moved; `9,036`
+   symmetric pixel changes = `24.00%` `RECEIPT`, inside the `1–50%` non-SNAP band).
+3. **Zero catalogue-collar drift**: R0's `2,171` inherited dots in `2.236 ≤ d_cat ≤ 3.0 px`
+   are quarantined (`0` removed, `0` added; `collar_le3px = 2,171` before and after
+   `RECEIPT`), preventing confounding with `PRUNE`.
+4. **2×2 experimental geometry**: `r2p12` and `r2b12` drop the **exact same 4,518 T3
+   donor pixels** (`r2p12_r2b12_donor_set_identical = true` `RECEIPT`), while `r2b12` and
+   `b2r12` form an **exact directional sign flip** between T3 Range and T1 Basin.
+5. **Report-only local instruments** (never gates):
+   - Single-band leakage canary across all 19 `training_features` bands: max symmetric
+     Mann-Whitney AUC = `0.5793` `PROXY` (`Band 4 geod_2ndinv`; `det_elev = 0.5063`,
+     `det_elev_slope = 0.5633`, `relief_index = 0.5007`, all `≪ 0.90` stop rule).
+   - 4-fold spatial-block rebuilt hide-and-recover `PROXY` (`n = 16,844 / 17,873 / 14,311 / 11,960`
+     withheld INGENIOUS fault pixels per quadrant, [GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)):
+     `R0 = 0.1133` (95% CI `[0.0538, 0.1728]` `PROXY`).
+   - Off-catalogue USGS SGMC bedrock fault control (`62,122` pixels > 300 m from masked
+     INGENIOUS faults, [USGS DS-1052](https://pubs.usgs.gov/ds/1052/)): `R0 = 0.0954` `PROXY`.
+
+---
+
+## Card 4 — `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c` (`range -> pied`, 12.00% relocated)
+
+- **Hypothesis.** Unmapped Great Basin geothermal-controlling faults in the sponsor's
+  withheld post-2022 truth set concentrate disproportionately along T2 piedmont-toe
+  scarps, range-front synthetic step-overs, and relay ramps masked by thin (`~100–350 m`)
+  alluvial fans, whereas R0 over-allocates `38.01%` of its mass into T3 bedrock horst
+  interiors where topographic-slope edge detectors fire on unfaulted erosional ridges.
+- **Mechanism.** Strips the `4,518` weakest-corroborated T3 horst dots (`d_cat > 3 px`,
+  mean `S_struct = 0.530` `PROXY`) and places `4,518` unit dots onto corroborated T2
+  piedmont-bajada structural traces (`2,686` on `d ≥ 2.8 px` multi-ancestor lineage +
+  `1,832` on `d ≥ 2.0 px` lineage infill, mean `S_struct = 0.631` `PROXY`, `0` pairs
+  `< 2 px`). Shifts tercile shares from `17.67 / 44.32 / 38.01%` to
+  `17.67 / 56.32 / 26.01%` (`Basin / Piedmont / Range` `RECEIPT`). Under DTI's `300 m`
+  triangular kernel (`alpha = 0.2`, `beta = 0.8`), swapping horst false-positive ridges
+  for synthetic piedmont step-overs raises numerator `T` at constant `S = 37,654` while
+  incurring almost zero substitution loss on INGENIOUS-style Quaternary fault geometry
+  (4-fold rebuilt `PROXY` delta `−0.0017`, `0.1116` vs `0.1133`, 95% CI `[0.0543, 0.1689]`).
+- **Non-fault mimic.** Coalescing alluvial-fan apron toes, Pleistocene pluvial-lake
+  shorelines (Lahontan/Bonneville highstands), and shallow bedrock pediment-alluvium
+  onlap contacts produce strike-parallel gravity/magnetic horizontal-gradient inflections
+  and subtle break-in-slope lineaments across T2 bajadas without brittle offset.
+- **Predicted live change.** **+0.006 `MODEL`** (plausible band `−0.006` to `+0.018`
+  `MODEL`; note `|Δ| < 0.01` = no evidence under the competition's noise/resolution bar).
+- **Falsifier.** Live DTI delta `≤ −0.010` vs R0 (proving the stripped T3 horst dots
+  carried real unmapped bedrock fault credit), OR `b2r12` outscoring `r2p12` by `≥ +0.010`
+  (proving withheld truth is exhumed bedrock-dominated rather than piedmont-concealed).
+
+## Card 5 — `h33-h33-2-b2-RELIEFr2b12-20261023-27443c30` (`range -> basin`, 12.00% relocated)
+
+- **Hypothesis.** Because subaerial range fronts and upper bajadas have been mapped for
+  decades in USGS QFF and NBMG quadrangles, the highest-value *unmapped* geothermal
+  conduits lie concealed beneath deep (`~560 m` median) T1 playal/alluvial basin fill as
+  intrabasin antithetic grabens, accommodation-zone transfer faults, and blind basement
+  horsts detectable only in GeoDAWN magnetic (`tmi_hg`) and isostatic gravity (`iso_grav_anom_slope`, `iso_grav_anom_hg`) gradients.
+- **Mechanism.** **Donor-identical twin of `r2p12`** (removes the exact same `4,518` T3
+  horst dots `RECEIPT`) and **exact directional sign flip of `b2r12`**, placing all
+  `4,518` dots onto T1 basin-floor structural targets (`954` on `d ≥ 2.8 px` lineage +
+  `1,791` on `d ≥ 2.0 px` lineage + `1,773` on `d ≥ 2.8 px` dual magnetic+gravity
+  potential-field crests where `pct(tmi_hg) ≥ 0.80` and `max(pct(grav_slope), pct(|grav_hg|)) ≥ 0.80`,
+  `0` pairs `< 2 px` `RECEIPT`). Shifts tercile shares to `29.67 / 44.32 / 26.01%` `RECEIPT`.
+  4-fold rebuilt `PROXY` is `0.1101` (`−0.0032` vs R0, 95% CI `[0.0559, 0.1643]`);
+  off-catalogue SGMC bedrock `PROXY` drops `−0.0091` (`0.0863` vs `0.0954`) as expected
+  because state geologic maps rarely map blind playal faults.
+- **Non-fault mimic.** Buried Cenozoic volcanic paleochannels, compacted axial fluvial/playa
+  facies boundaries, and reversely magnetized basaltic sills or pluton margins within
+  basin fill generate sharp potential-field horizontal-gradient crests (`tmi_hg` +
+  `iso_grav_anom_hg`) without Quaternary or geothermal fault slip.
+- **Predicted live change.** **+0.003 `MODEL`** (band `−0.010` to `+0.016` `MODEL`;
+  `|Δ| < 0.01` = no evidence). Higher upside if sponsor truth relies on 3D gravity/MT/well
+  inversions, higher downside if sponsor truth is surface-rupture/LiDAR mapping.
+- **Falsifier.** Since `r2p12` and `r2b12` remove the **exact same 4,518 T3 dots**, their
+  live difference `DTI(r2b12) − DTI(r2p12)` cancels donor loss identically: if
+  `DTI(r2b12) − DTI(r2p12) ≤ −0.010`, deep-basin potential-field crests are net mimics
+  relative to piedmont-toe traces and basin-floor enrichment is falsified.
+
+## Card 6 — `h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5` (`basin -> range`, 12.00% relocated)
+
+- **Hypothesis.** Withheld sponsor truth resembles detailed 1:24k–1:100k bedrock
+  quadrangle mapping (cross-range accommodation faults, intra-horst relay splays, and
+  exhumed footwall damage zones) where `64–70%` of off-catalogue USGS SGMC bedrock fault
+  traces reside (`RECEIPT` on `sgmc_faults_px.tif`), whereas R0's T1 basin-floor dots sit
+  on unverified geophysical anomalies that the sponsor's surface/LiDAR truth never labels
+  as faults.
+- **Mechanism.** **Exact directional sign flip of `r2b12`**: strips `4,518` T1 basin-floor
+  dots (`67.9%` of R0's off-collar T1 dots, reducing T1 share from `17.67%` to `5.67%`
+  `RECEIPT`) and places `4,518` dots onto corroborated T3 range-front/horst lineage
+  ridges (`3,036` at `d ≥ 2.8 px` + `1,482` at `d ≥ 2.0 px`, raising T3 share from
+  `38.01%` to `50.01%`, `0` pairs `< 2 px` `RECEIPT`). On independent off-catalogue USGS
+  SGMC bedrock faults (`62,122` px `PROXY`), `b2r12` is the **only** arm that improves over
+  R0 (`0.1003` vs `0.0954`, `+0.0050` / `+5.2%` `PROXY`), whereas on INGENIOUS Quaternary-heavy
+  4-fold recovery it loses `−0.0113` (`0.1020` vs `0.1133`, 95% CI `[0.0523, 0.1518]` `PROXY`).
+- **Non-fault mimic.** Differential erosion along tilted volcanic/ash-flow tuff cooling
+  units, carbonate cliff-forming strata, intrusive stock contacts, and glacial/fluvial
+  canyon walls in T3 horsts creates crisp topographic and radiometric/magnetic edges that
+  mimic intra-range brittle faults.
+- **Predicted live change.** **+0.005 `MODEL`** (band `−0.010` to `+0.020` `MODEL`;
+  `|Δ| < 0.01` = no evidence).
+- **Falsifier.** If `DTI(b2r12) − DTI(r2b12) ≤ −0.010`, withheld truth is concealed
+  basin/piedmont-dominated rather than bedrock-dominated, falsifying horst enrichment; if
+  both `r2b12` and `b2r12` move by `|Δ| < 0.010` across a `24 percentage-point` swing in
+  T1/T3 mass (`5.67%↔29.67%` Basin, `26.01%↔50.01%` Range), `RELIEF` tercile allocation
+  is non-leveraging at `12%` dose and is retired.
+
