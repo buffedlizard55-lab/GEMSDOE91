@@ -57,11 +57,13 @@ jobs:
       # Fetches only what registry/data_manifest.json pins, from immutable GitHub
       # commits, verifying every sha256. No organizer site, no credentials.
       - run: python scripts/restore_data.py
-      - name: Parent dot set reproduces from both ancestors
+      # Build first: releases/*.tif are gitignored, so the gate tests need them.
+      - name: Rebuild from the pinned inputs
+        run: python scripts/build_spacing.py --build
+      - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
-      - name: Rebuild and check every release against releases/MANIFEST.json
+      - name: Every rebuilt file is byte-identical to releases/MANIFEST.json
         run: |
-          python scripts/build_spacing.py --build
           python - <<'PY'
           import hashlib, json, pathlib
           man = json.load(open("releases/MANIFEST.json"))
@@ -71,4 +73,6 @@ jobs:
               assert got == f["sha256"], f"{f['file']}: {got} != {f['sha256']}"
               print("byte-identical:", f["file"])
           PY
+      - name: Every release passes the hard gates
+        run: |
           for f in releases/*.tif; do python scripts/validate.py "$f" | tail -1; done
