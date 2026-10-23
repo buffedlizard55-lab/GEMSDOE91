@@ -8,24 +8,34 @@ No script here submits anything. One entity, three scored slots a week, one fina
   NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. 37,654 unit-mass dots, EPSG:32611,
   3730×3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots, minimum catalogue
   distance 2.236 px. **The parent's dot set reproduces exactly** from both pinned ancestors
-  (44,090 → 37,654 and 40,199 → 37,654, 0 differing cells, digest `905cee9d…`); its file
-  *bytes* are still not re-encodable here (IR-91-16), so every artifact carries a sha256 **and**
-  a dot-set digest.
-- **Best receipt:** none. R0's `0.2778` is a **CLAIM**. The ledger's 29 BUILT rows contain zero
+  (44,090 → 37,654 and 40,199 → 37,654, 0 differing cells, digest `905cee9d…`). Its file
+  *bytes* are not re-encodable here (IR-91-16), so every artifact carries a sha256 **and** a
+  dot-set digest.
+- **Best receipt:** none. R0's `0.2778` is a **CLAIM**. The ledger has 32 BUILT rows, zero
   SUBMITTED rows and zero receipts, so no live effect has ever been measured in this lineage.
-- **This session (CONCENTRATION):** three gate-clean arms, 10.00 % of dots moved from the
-  lowest-prior to the highest-prior km blocks of an independent public-domain prior (GDR
-  thermal features, `gdr_wellspring_in_footprint`), count fixed at 37,654:
-  `…-CONCENTRATIONgdr25rm10-20261023-c19adb01` (**slot 1**, predicted **+0.0123 MODEL**,
-  range −0.022 … +0.037), `…-CONCENTRATIONgdr25m10-20261023-08bf80cf` (+0.0114),
-  `…-CONCENTRATIONgdr10m10-20261023-d54e8815` (+0.0113). All three empty ~570 of 5,219
-  occupied 2.5 km blocks and cost 8.4 pp of coverage of the lineage's own H19-5 mask. They are
-  one experiment, not three (IR-91-17) — submit one.
+- **Inputs:** 14/15 manifest entries hash-verified from pinned mirrors; `training_features.tif`
+  (419 MB, no public mirror) is absent and unused. Buildable today: PRUNE, SPACING,
+  CONCENTRATION (via the public-domain GDR thermal prior, IR-91-18). Blocked: MASS (needs a
+  label-derived ranking), RELIEF, SNAP, TRACKB.
+- **Two axes were built on 2026-10-23, on the same parent, and both are gate-clean:**
+
+  | session | arms | predicted (MODEL) |
+  |---|---|---|
+  | PRUNE ladder (le4/le5/le10; earlier le3/le8/le15) | delete-only, 10.2 / 15.0 / 30.2 % of dots removed | +0.003 / +0.005 / +0.008 (le15 +0.010) |
+  | CONCENTRATION (this session) | 10.00 % of dots moved into the highest-prior 2.5 km blocks (`gdr25rm10` >8 px prior, `gdr25m10`, `gdr10m10` 1 km) | **+0.0123 / +0.0114 / +0.0113** |
+
+  CONCENTRATION details: count fixed at 37,654, seed 91025, no new cell inside 3 px of the
+  catalogue, R0's 2.0 px minimum separation preserved. It empties ~570 of 5,219 occupied
+  2.5 km blocks and costs 8.4 pp of coverage of the lineage's own H19-5 field (88.6 % → 80.2 %),
+  which is why its predicted range floor is **−0.022**, a measured number, not a formality
+  (IR-91-19). The three arms are one experiment, not three (IR-91-17).
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
 - **Slots left this week:** **__ / __ (human must fill).** Deadline 2026-12-03, unconfirmed.
-- **Next 3 slots:** (1) `gdr25rm10`, (2) `…-PRUNEle15-norefill-20261023-1ca1ff6f`,
-  (3) `gdr25m10` only if (1) ≥ +0.005, else `…-PRUNEle8-norefill-20261023-e1dd69d0`.
-  Details and the decision each receipt changes: `SLOT_PLAN.md`.
+- **Next 3 slots (one merged plan, `SLOT_PLAN.md`):** 1) `CONCENTRATIONgdr25rm10-…-c19adb01`
+  (the only file whose prior is independent of both the catalogue and the lineage mask),
+  2) `PRUNEle15-norefill-…-1ca1ff6f` (+0.010; verified byte-reproducible today), 3) `gdr25m10`
+  if slot 1 ≥ +0.005, else `PRUNEle10-norefill-…-04002dae`. Do not spend three slots on the
+  CONCENTRATION arms.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 

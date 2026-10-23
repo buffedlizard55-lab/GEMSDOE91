@@ -91,10 +91,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Build first: releases/*.tif are gitignored, so the gate tests need them.
       - name: Rebuild from the pinned inputs
-        run: python scripts/build_spacing.py --build
+        run: |
+          python scripts/build_spacing.py --build
+          python scripts/make_catalogue.py
+          python scripts/build_prune_ladder.py
       - name: Rebuild the CONCENTRATION arms from the pinned inputs
-        # Idempotent: an id that is already in the ledger must come back with the
-        # same sha256 or the step fails. GDR prior + parent + catalogue only.
+        # Idempotent: an id already in the ledger must come back with the same sha256
+        # or the step fails. Parent + catalogue + GDR prior only.
         run: python scripts/build_concentration.py --build
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
