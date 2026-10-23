@@ -380,3 +380,47 @@ floors are computed instead and reported in the same JSON:
 `point − 0.008` as in earlier sessions. A reader should treat these candidates as
 **coin-flips with a −0.02 tail**, which is exactly how `SLOT_PLAN.md` orders them and why slot
 2 is a PRUNE file rather than the second arm of the same axis.
+
+---
+
+## IR-91-17 — R0 byte reproduction is now solved; IR-91-16 is superseded
+
+The missing encoder setting was compression **level 9**, not a different libtiff build.
+Using the recorded `deflate / predictor=3 / zlevel=9 / tiled 256` profile on the catalogue
+grid, this session independently rebuilt R0 from each pinned ancestor and reproduced both
+files exactly: NaN `baeae321…` / 355,443 B and zeros `c55bafc4…` / 219,065 B. Recipe source:
+<https://github.com/buffedlizard55-lab/GEMSDOE86/blob/d423f858abf6cb2e63edf67773ed5650d507f78c/scripts/run_prune_ladder.py>.
+
+**Decision it changes.** The brief's stop gate is passed by an actual independent recompute,
+not pinned-artifact retrieval or an approximation. `scripts/verify_parent_r0.py` and the new
+builder both fail unless both byte hashes match. Dot-set digests remain useful, but the old
+"file bytes are not reproducible" statement no longer applies.
+
+## IR-91-18 — Fixed-count refill cannot preserve d2.8; PRUNE is the only clean R0 axis here
+
+A dry feasibility test retained the parent's d2.8 exclusion and found only **722 / 621 / 498**
+legal H19-5 refill cells for the required **941 / 1,611 / 4,848** additions. Even the smallest
+nonzero fixed-count collar is therefore infeasible under that extra constraint. Separately,
+MASS cannot use H19-5 as a ranking because the pinned ancestor is binary, and a non-PRUNE
+child inherits R0's 2,171 dots inside the 3 px gate.
+
+**Decision it changes.** The session uses the lineage's recorded no-inhibition PRUNE refill,
+with exact iterative marginal-DTI coverage and no spacing objective. Nearest-neighbour drift
+is reported as a confound on every card; it is not hidden or called a pure collar-only result.
+PRUNE was chosen over inventing a MASS ranking or shipping a non-compliant non-PRUNE child.
+
+## IR-91-20 — the refill-held PRUNE arms are in the ledger but not in the release manifest
+
+Session #10 built three *fixed-count* PRUNE arms (`p2.5px-h19cover`, `p2.9px-h19cover`,
+`p4.5px-h19cover`) and recorded their sha256 in `ledger/submissions.csv`, but
+`releases/MANIFEST.json` on `main` lists only the twelve SPACING and delete-only PRUNE files.
+The CI byte-identity check iterates that manifest, so those three files are not rebuilt-and-hashed
+by CI; their identity rests on the ledger row alone.
+
+**Decision it changes.** This session's slot plan does not send a refill-held arm, so nothing
+here depends on it — but do not upload one without first running
+`python3 scripts/build_prune_refill.py --build` and comparing the output sha256 to the ledger,
+and add the entries to `releases/MANIFEST.json` when you do. The two files this session *does*
+recommend (`CONCENTRATIONgdr25rm10`, `PRUNEle15-norefill`) are pinned and were rebuilt
+byte-identically today (IR-91-17 session notes; `releases/MANIFEST.json` has 18 entries here:
+6 CONCENTRATION + 6 delete-only PRUNE + 6 SPACING).

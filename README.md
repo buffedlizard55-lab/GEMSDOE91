@@ -29,6 +29,12 @@ No script here submits anything. One entity, three scored slots a week, one fina
   2.5 km blocks and costs 8.4 pp of coverage of the lineage's own H19-5 field (88.6 % → 80.2 %),
   which is why its predicted range floor is **−0.022**, a measured number, not a formality
   (IR-91-19). The three arms are one experiment, not three (IR-91-17).
+- **Third session (#10, same day):** three *refill-held* PRUNE arms on the same parent
+  (`p2.5px-h19cover` +0.002, `p2.9px-h19cover` +0.004, `p4.5px-h19cover` −0.015). They hold
+  the count at 37,654 and refill from H19-5 coverage, so they separate "delete mass" from
+  "move mass"; the −0.015 at 4.5 px is the first *negative* PRUNE prediction on the board
+  and it marks the collar dose as the risky end of that axis. They do not change the slot
+  ordering below: one receipt on the top delete-only dose still answers the axis.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
 - **Slots left this week:** **__ / __ (human must fill).** Deadline 2026-12-03, unconfirmed.
 - **Next 3 slots (one merged plan, `SLOT_PLAN.md`):** 1) `CONCENTRATIONgdr25rm10-…-c19adb01`

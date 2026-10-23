@@ -19,6 +19,8 @@ were built today on that parent, all gate-clean and byte-reproducible:
    own H19-5 field the edit costs −0.022 (mask coverage 88.6 % → 80.2 %); under uniform random
    truth −0.006; under the prior itself +0.114 before a ×0.1 claim (IR-91-19).
 
+A third session (#10) added three refill-held PRUNE arms (`p2.5px-h19cover` +0.002, `p2.9px-h19cover` +0.004, `p4.5px-h19cover` **−0.015**): count held, refilled from H19-5 coverage. The negative one at 4.5 px is the first negative PRUNE prediction on the board and marks the collar dose as that axis's risky end. It does not change the ordering below.
+
 So the whole board is **two bets**: *remove mass* (PRUNE) and *move mass to an independent prior*
 (CONCENTRATION). Spend slots to separate those two, not to refine either by a notch.
 

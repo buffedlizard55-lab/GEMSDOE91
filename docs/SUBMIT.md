@@ -1,4 +1,4 @@
-# SUBMIT — what to upload, and what to paste back
+# SUBMIT — combined PRUNE queue (2026-10-23)
 
 **Status 2026-10-23: 32 BUILT rows, 0 submitted, 0 receipts.** Rasters are not committed;
 `releases/MANIFEST.json` is the sha256 contract and CI rebuilds every file from pinned inputs and
@@ -49,6 +49,9 @@ h33-2-b2; delete-only, 15,665 dots (41.6%) within <=15px of catalogue removed, n
 | `…-PRUNE-le10-norefill-20261023-04002dae` | 26,294 | 30.17 | +0.008 | `04002dae…` |
 | `…-PRUNE-le3-norefill-20261023-1209e863` | 35,483 | 5.77 | +0.002 | `1209e863…` |
 | `…-SPACINGspread40-20261023-6d389309` | 37,654 | 39.99 (relocated) | +0.004 | `6d389309…` |
+| `…-PRUNE-p2.9px-h19cover-20261023-9829bb66` (refill-held, count 37,654) | 37,654 | 4.3 | +0.004 | `9829bb66…` |
+| `…-PRUNE-p2.5px-h19cover-20261023-e6f2000d` (refill-held) | 37,654 | 3.7 | +0.002 | `e6f2000d…` |
+| `…-PRUNE-p4.5px-h19cover-20261023-691438f8` (refill-held) | 37,654 | 6.6 | **−0.015** | `691438f8…` |
 
 ## Format receipt — paste this with the file you upload
 
