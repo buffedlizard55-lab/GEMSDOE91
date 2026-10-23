@@ -22,6 +22,23 @@
   3. Conditional: **CONCENTRATION b10px-m20 on R1** if slot 1 lands ≥ R0 + 0.01, else
      **SNAP scarp2px on R1**.
 
+### Session 2 delta (`arena/a6416f7b`, same date)
+
+Built on top of the above, after finding that main had moved: **0 variants built**, for the
+same reason as session 1 (no competition rasters locally). What is new:
+
+- `tools/run_concentration.py` — the repository's first *builder*: count-preserving,
+  collar-safe, CV-reporting, refuses any input that is not pinned. It requires an
+  **external** prior and refuses one derived from the parent's own dots, because the three
+  imported CONCENTRATION rows ranked blocks by *parent dot density* (IR-91-07) — those test
+  clustering, not prior transfer.
+- `tools/pins.py` — maps each axis to the manifest ids it needs and verifies bytes.
+- `tools/make_fixture.py` + `tests/test_concentration.py` — a synthetic fixture and an
+  end-to-end build -> certify proof, the first time the gates have run on a real raster.
+- **Fixed a live bug in `src/gems91/gates.py`**: `min_distance_to_mask` transposed rows and
+  columns (IR-91-06). On the real 3730x3292 grid this raised IndexError or returned the
+  distance at the mirrored cell, so every collar count in the lineage audit is suspect.
+
 ## What this repo contains
 
 | Path | Purpose |
@@ -35,7 +52,8 @@
 | `src/gems91/gates.py` | The MUST gates; an unprovable gate is `UNVERIFIED`, never `PASS` |
 | `scripts/` | `verify_parent_r0.py`, `preflight.py`, `validate_release.py`, `pinned.py` CLI |
 | `ledger/submissions.csv` | 20 imported rows, provenance in `source`; empty receipt columns |
-| `tests/` | 34 data-free tests (metric algebra, gates, ledger invariants) |
+| `tools/` | `run_concentration.py` (builder), `pins.py`, `raster_io.py`, `stor.py`, `make_fixture.py` |
+| `tests/` | 53 tests (metric algebra, gates, ledger invariants, builder, preflight) |
 
 ## Run it
 
@@ -43,5 +61,6 @@
 pip install -r requirements.txt
 python scripts/verify_parent_r0.py     # fetch pinned parent, verify sha256
 python scripts/preflight.py            # BUILD ALLOWED / BUILD BLOCKED
-python -m pytest                       # 34 tests, no competition data needed
+python -m pytest                       # 53 tests, no competition data needed
+python -m tools.pins --axis CONCENTRATION   # what an axis still needs, by pinned id
 ```

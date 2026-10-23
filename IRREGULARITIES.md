@@ -125,3 +125,64 @@ normalisation differs from this re-derivation in a way the term structure does n
 **Decision it changes:** use this module only for **ordering** dots by exact marginal gain
 and for sign checks. Never quote its absolute output as a score or as a predicted live
 value, and do not tune any hyperparameter against it. Label `MODEL` everywhere.
+
+---
+
+## IR-91-06 — `min_distance_to_mask` transposed rows and columns (found and fixed here)
+
+**Expected:** the collar gate counts dots within 1/2/3 px of the catalogue mask.
+
+**Actual:** `cols, rows = np.nonzero(target); return dist[rows, cols]` indexes the
+distance array as `[column, row]`. `np.nonzero` returns `(rows, cols)`, so every distance
+was read from the mirrored cell, and any row index ≥ the array width raised `IndexError`.
+The real grid is 3730 rows × 3292 columns, so both failure modes were live.
+The 34 data-free tests could not see it (they use square, tiny arrays); the first
+non-square raster through the gates — the synthetic 120×160 fixture — raised it immediately.
+
+**What I did:** fixed the unpacking in `src/gems91/gates.py` and added the end-to-end
+test (`tests/test_concentration.py::test_end_to_end_build_then_certify`) that runs the
+gates on a real, non-square raster.
+
+**Decision it changes:** every collar number produced before this fix is void, including
+any `dots_le_1/2/3px` in `registry/candidate_availability.json` **if** it was produced by
+this function rather than transcribed. Re-derive the 2,171 figure in IR-91-03 from
+`existing_faults.tif` before citing it in a submission note. The bug is symmetric
+(distance to the transposed cell), so it inflates and deflates indiscriminately.
+
+---
+
+## IR-91-07 — The imported CONCENTRATION rows rank by parent dot density, so they are not prior tests
+
+**Expected** (brief §5): move dots from the lowest-prior blocks to the highest-prior ones.
+
+**Actual:** the three `CONCENTRATION` rows in `ledger/submissions.csv`
+(`b10px-m10`, `b10px-m20`, `b50px-m20`) record
+`ranking_basis = "coldest->hottest … blocks by 2-block-smoothed parent dot density"`.
+The block prior is the parent's own dots. A dot field moved toward its own density maximum
+is a *clustering* edit; it cannot show whether an independent km-scale prior transfers.
+
+**What I did:** `tools/run_concentration.py` requires `--prior` and documents that the
+prior must not be derived from the parent's dots; the ledger row it writes says so in
+`ranking_basis`.
+
+**Decision it changes:** those three rows may be read as dose-response evidence for
+*clustering at fixed count* (CV 0.618→1.021 and 0.618→1.257), which is still useful, but
+they must not be cited as evidence about a prior. If any of them scores ≥ R0 + 0.01, the
+correct follow-up is the same dose with an **external** prior, not a bigger dose.
+
+---
+
+## IR-91-08 — The pay threshold is 0.056 only if `|G|` is constant; the alternative is 0.0458
+
+`src/gems91/metric.py` takes `|G|` = number of truth pixels, so adding a dot cannot change
+it, and the brief's shortcut `c > 0.2·DTI` (0.056 at DTI 0.28) is exact **in this model**:
+the denominator grows by exactly 0.2 because `+c` in `T` cancels `−c` in `(S − M)`.
+
+If the official metric instead defines `|G|` as *remaining uncovered truth*, the bar becomes
+`0.2·DTI/(1 + 0.8·DTI)` ≈ **0.0458** at 0.28 — a 22% lower bar. Dot *ordering* barely
+changes; the size of any predicted delta does.
+
+**Decision it changes:** quote ranking-level statements (sign, order) from the metric code,
+never an absolute predicted delta, until the organiser implementation is diffed (it is not
+public and the terms ban automated access). All predictions in `ledger/submissions.csv`
+are therefore `MODEL:` and must stay that way.

@@ -111,7 +111,12 @@ def min_distance_to_mask(mask: np.ndarray, target: np.ndarray, max_px: int = 8) 
     mm = mask.astype(bool)
     for dr, dc, d in _offset_distances(max_px):
         dist = np.where(_has_neighbour(mm, dr, dc), np.minimum(dist, d), dist)
-    cols, rows = np.nonzero(target)
+    # np.nonzero returns (rows, cols) in array-axis order. Naming these "cols, rows"
+    # transposed the lookup: it raised IndexError whenever a row index exceeded the
+    # array width (the real grid is 3730x3292, so that is a live failure) and
+    # otherwise silently returned the distance at the transposed cell - i.e. the
+    # collar counts were wrong on every non-square raster.
+    rows, cols = np.nonzero(target)
     return dist[rows, cols]
 
 

@@ -14,6 +14,21 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Unit tests (no competition data required)
         run: python -m pytest
+      - name: End-to-end build then certify (synthetic fixture, no competition data)
+        run: |
+          make demo
+          CAND=$(ls tests/_tmp/releases/*.tif | grep -v zeros | head -1)
+          python scripts/validate_release.py "$CAND" \
+            --sample tests/_tmp/fixture/sample_submission.tif \
+            --catalogue tests/_tmp/fixture/catalogue_mask.tif \
+            --ledger ledger/submissions.csv
+      - name: No competition raster is committed
+        run: |
+          if git ls-files | grep -E '\.tiff?$'; then
+            echo "::error::a raster is tracked in git; competition data must not be committed"
+            exit 1
+          fi
+          echo "no rasters tracked"
       - name: Ledger invariants
         run: python -m pytest tests/test_ledger.py
       - name: Manifest is well formed

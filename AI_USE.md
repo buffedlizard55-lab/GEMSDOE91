@@ -45,3 +45,26 @@ recomputed them: the three `anc`-ladder rasters and both R0 twins were fetched a
 (`registry/r0_verification.json`); the six MASS rasters were fetched and re-hashed
 (`registry/candidate_availability.json`). The three competition rasters could not be verified
 in this sandbox and are marked as such.
+
+---
+
+## Session 2 (`arena/a6416f7b`, same date) — delta on top of the above
+
+**Written by the AI in session 2:** `tools/run_concentration.py` (the CONCENTRATION builder
+and its mechanism card), `tools/pins.py`, `tools/raster_io.py`, `tools/stor.py`,
+`tools/make_fixture.py`, `tests/test_concentration.py`, the session-2 addendum in
+`SLOT_PLAN.md`, IR-91-06/07/08 in `IRREGULARITIES.md`, `docs/MECHANISMS.md`,
+`docs/DATA.md`, and the one-line fix in `src/gems91/gates.py` (IR-91-06). It also chose the
+session axis (CONCENTRATION) because the brief lets the agent pick when the human does not.
+
+**Not done by the AI in session 2:** no candidate raster was built (same missing rasters as
+session 1), no submission, no score, no leaderboard access.
+
+**Human still has to decide (adds to the list above):**
+
+7. Which collar reading binds (2 px as R0 was built, or 3 px as §4.4 states) — IR-91-03,
+   now sharper because IR-91-06 voided the existing collar counts.
+8. Whether the three imported CONCENTRATION rows count as "CONC already tried" (they should
+   not — IR-91-07).
+9. The external prior for CONCENTRATION: which band(s) of `training_features.tif`, and the
+   block size (5 km default, 1 km if the dose-response is the goal).
