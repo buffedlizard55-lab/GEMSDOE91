@@ -387,3 +387,12 @@ Resolved by union: 38 ledger rows (no duplicate id / sha256 / (parent, axis, val
 reproducible files in the release manifest, and a CI that rebuilds SPACING, PRUNE and MASS.
 Both sides' rows survive with their original provenance strings. Anyone reading a `main`
 document should check `SLOT_PLAN.md` and IR-91-19 before following the PRUNE order.
+
+**Addendum (same day, merge 2):** `main` then landed a PRUNE-**refill** axis (#10,
+`evidence/prune_refill_axis_20261023.json`). Those files keep the count fixed, so the
+denominator saving and the credit loss are traded one-for-one and the instrument's verdict is
+not transferable from the delete-only rungs above. It has **not** been measured with the
+calibrated instrument; treat its predictions as uncalibrated until it is.
+
+**Merge 2 housekeeping:** 41 ledger rows after the second union, still no duplicate id /
+sha256 / (parent, axis, value). CI rebuilds SPACING, PRUNE (delete-only + refill) and MASS.

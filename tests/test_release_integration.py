@@ -51,6 +51,18 @@ def test_parent_rebuilds_exactly_from_each_ancestor(ancestor):
     assert np.array_equal(rebuilt, parent)
 
 
+def test_parent_rebuilds_byte_exactly_from_recorded_recipe():
+    from gems91 import lineage
+    proof = lineage.prove_r0_byte_rebuild(
+        parent_nan=PARENT_NAN, parent_zeros=PARENT_ZEROS,
+        ancestor_d28=ANC_D28, ancestor_solo=ANC_SOLO,
+        sample=TEMPLATE, catalogue=CATALOGUE,
+        work_dir=ROOT / "tests" / "_tmp" / "r0-byte-proof")
+    assert proof["ok"], proof
+    assert proof["byte_rebuilds"]["nan"]["hash_match"]
+    assert proof["byte_rebuilds"]["zeros"]["hash_match"]
+
+
 def test_template_carries_the_catalogue_not_zeros():
     """IR-91-09: the template's positive cells ARE the mapped catalogue."""
     from gems91 import io as _io

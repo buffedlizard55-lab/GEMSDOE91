@@ -1,4 +1,4 @@
-# SLOT PLAN — after PRUNE ladder extension (2026-10-23)
+# SLOT PLAN — combined PRUNE queue (2026-10-23)
 
 **Status: no receipt exists anywhere in this lineage.** R0's 0.2778 is a CLAIM.
 `TOP_PUBLIC` and "slots left" are still blank — the human must fill both.
