@@ -1,14 +1,7 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-10-23",
-  "policy": {
-    "rule": "Inputs are only files listed here; verify sha256 before use; never fill a gap from memory.",
-    "hashes_source": "Transcribed from GEMSDOE88 registry/data_manifest.json (schema_version 2) and cross-checked against GEMSDOE88 registry/r0_verification.json, which recorded all 15 as byte-identical on the owner's machine.",
-    "verified_in_this_sandbox": "Only the entries with a public_mirror were fetched and re-hashed here (parent_r0_nan, parent_r0_zeros, anc_d2_8). The three competition rasters are NOT public and were NOT verified locally.",
-    "mirror_format": "owner/repo:path -> api.github.com contents (raw). raw.githubusercontent.com is not reachable from the sandbox.",
-    "path_convention": "local_subpath is relative to data/ (gitignored). data/ mirrors the upstream layout minus the data/ prefix.",
-    "session3_fetch_rule": "only the `mirror` field is fetched; no organizer site is contacted; credentials are never read or stored"
-  },
+  "updated_utc": "2026-10-23T19:40:00Z",
+  "policy": "{'rule': 'Inputs are only files listed here; verify sha256 before use; never fill a gap from memory.', 'hashes_source': \"Transcribed from GEMSDOE88 registry/data_manifest.json (schema_version 2) and cross-checked against GEMSDOE88 registry/r0_verification.json, which recorded all 15 as byte-identical on the owner's machine.\", 'verified_in_this_sandbox': 'Only the entries with a public_mirror were fetched and re-hashed here (parent_r0_nan, parent_r0_zeros, anc_d2_8). The three competition rasters are NOT public and were NOT verified locally.', 'mirror_format': 'owner/repo:path -> api.github.com contents (raw). raw.githubusercontent.com is not reachable from the sandbox.', 'path_convention': 'local_subpath is relative to data/ (gitignored). data/ mirrors the upstream layout minus the data/ prefix.'}",
   "files": [
     {
       "id": "sample_submission",
@@ -19,6 +12,7 @@
       "role": "format gate reference: CRS, shape, transform, dtype, band count, footprint",
       "provenance": "competition-provided",
       "verified_here": true,
+      "local_present": true,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -34,6 +28,7 @@
       "role": "catalogue mask: zero-mass and >=3 px collar gates",
       "provenance": "competition-provided",
       "verified_here": true,
+      "local_present": true,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -48,7 +43,8 @@
       "public_mirror": null,
       "role": "bands 3/12/18/19 etc: block priors, edge fields for SNAP, parent ranking rebuild",
       "provenance": "competition-provided",
-      "verified_here": false
+      "verified_here": false,
+      "local_present": false
     },
     {
       "id": "parent_r0_zeros",
@@ -59,6 +55,7 @@
       "role": "PARENT R0 (zeros encoding): 37,654 unit-mass dots",
       "provenance": "derived submission artifact (upstream public mirror)",
       "verified_here": true,
+      "local_present": true,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -74,6 +71,7 @@
       "role": "PARENT R0 (NaN-outside encoding)",
       "provenance": "derived submission artifact (upstream public mirror)",
       "verified_here": true,
+      "local_present": true,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -89,6 +87,7 @@
       "role": "lineage ancestor, score 0.1922 CLAIM",
       "provenance": "derived submission artifact",
       "verified_here": false,
+      "local_present": false,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -104,6 +103,7 @@
       "role": "lineage ancestor, score 0.1894 CLAIM",
       "provenance": "derived submission artifact",
       "verified_here": false,
+      "local_present": false,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -119,6 +119,7 @@
       "role": "lineage ancestor, score 0.1855 CLAIM",
       "provenance": "derived submission artifact",
       "verified_here": false,
+      "local_present": false,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -134,6 +135,7 @@
       "role": "lineage ancestor, score 0.2477 CLAIM",
       "provenance": "derived submission artifact",
       "verified_here": false,
+      "local_present": false,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -148,7 +150,9 @@
       "public_mirror": "buffedlizard55-lab/GEMSDOE32:docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
       "role": "lineage ancestor, score 0.2600 CLAIM",
       "provenance": "derived submission artifact (upstream public mirror)",
-      "verified_here": true,
+      "verified_here": false,
+      "local_present": false,
+      "verified_upstream": true,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -163,7 +167,8 @@
       "public_mirror": null,
       "role": "lineage ancestor, score 0.2708 CLAIM",
       "provenance": "derived submission artifact",
-      "verified_here": true,
+      "verified_here": false,
+      "local_present": false,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -179,6 +184,7 @@
       "role": "prior layer only (vents/springs are NOT fault truth)",
       "provenance": "USGS/NBMG public domain - verify before reuse",
       "verified_here": false,
+      "local_present": false,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -194,6 +200,7 @@
       "role": "SNAP field option only if the human supplies it",
       "provenance": "licence unchecked - do not redistribute",
       "verified_here": false,
+      "local_present": false,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -209,6 +216,7 @@
       "role": "REPORT-ONLY diagnostic lane (radon scored 0.00-0.19)",
       "provenance": "licence unchecked - do not redistribute",
       "verified_here": false,
+      "local_present": false,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -224,6 +232,7 @@
       "role": "REPORT-ONLY blind SGMC control (never a gate)",
       "provenance": "USGS public domain",
       "verified_here": false,
+      "local_present": false,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
@@ -231,5 +240,52 @@
       }
     }
   ],
-  "session3_note": "Session 3 (2026-10-23) restored the six inputs it needs from the public mirror pinned in each entry's `mirror` field and verified every sha256 and byte length. This withdraws IR-91-02's premise that these files 'are not publicly mirrored' (see IR-91-11) and re-states it as a data-use problem (IR-91-11)."
+  "session_note": "Inputs present and hash-verified in this workspace on 2026-10-23 from the owner's public sibling repos, then placed at the local_subpath this manifest already declares. Recovered: sample_submission (60GEMSDOE data/official), existing_faults = the training labels (60GEMSDOE data/official/labels.tif, same sha256), parent_r0_nan (GEMSDOE32 docs/downloads). Still absent: training_features, the lidar/radar external layers, SGMC control, ancestors other than solo-d28 (fetched separately for forensics only, not pinned here).",
+  "derived": [
+    {
+      "path": "derived/catalogue_mask.tif",
+      "sha256": "c97c7819c7fc8ed1632c9d82e0dddbeb1b8dd029a5d6f7a6918d399ae55ab4c4",
+      "from": "existing_faults",
+      "builder": "scripts/make_catalogue.py",
+      "note": "uint8 1 where existing_faults>0; 60,988 pixels",
+      "id": "catalogue_mask"
+    }
+  ],
+  "axis_requirements": {
+    "PRUNE": [
+      "sample_submission",
+      "parent_r0_nan",
+      "existing_faults"
+    ],
+    "MASS": [
+      "sample_submission",
+      "parent_r0_nan",
+      "existing_faults",
+      "training_features"
+    ],
+    "SNAP": [
+      "sample_submission",
+      "parent_r0_nan",
+      "existing_faults",
+      "training_features"
+    ],
+    "CONCENTRATION": [
+      "sample_submission",
+      "parent_r0_nan",
+      "existing_faults",
+      "training_features"
+    ],
+    "RELIEF": [
+      "sample_submission",
+      "parent_r0_nan",
+      "existing_faults",
+      "ext_lidar_scarp_u8"
+    ],
+    "TRACKB": [
+      "sample_submission",
+      "parent_r0_nan",
+      "existing_faults",
+      "training_features"
+    ]
+  }
 }

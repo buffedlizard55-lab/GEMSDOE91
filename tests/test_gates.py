@@ -175,14 +175,30 @@ def test_missing_sample_submission_is_unverified(data):
 
 
 def test_ledger_dedupe_flags_known_hash(data, tmp_path):
+    """A hash on a SUBMITTED row means the slot was spent: refuse to reuse it."""
     ledger = tmp_path / "ledger.csv"
     with open(ledger, "w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["id", "sha256", "sha256_zeros"])
-        w.writerow(["other", sha256_file(data["cand"]), ""])
+        w.writerow(["id", "sha256", "sha256_zeros", "status"])
+        w.writerow(["other", sha256_file(data["cand"]), "", "SUBMITTED"])
     rep = validate(data["cand"], sample_submission=data["sample"],
                    catalogue=data["catalogue"], ledger_csv=ledger, reread=False)
     assert rep.gates["sha_unseen"] == "FAIL"
+
+
+def test_ledger_dedupe_allows_the_files_own_built_row(data, tmp_path):
+    """A BUILT row is the bookkeeping brief section 7 requires for this very file.
+
+    Counting it would make build -> record -> certify impossible to pass (IR-91-12).
+    """
+    ledger = tmp_path / "ledger.csv"
+    with open(ledger, "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["id", "sha256", "sha256_zeros", "status"])
+        w.writerow(["self", sha256_file(data["cand"]), "", "BUILT"])
+    rep = validate(data["cand"], sample_submission=data["sample"],
+                   catalogue=data["catalogue"], ledger_csv=ledger, reread=False)
+    assert rep.gates["sha_unseen"] == "PASS"
 
 
 def test_min_distance_to_mask_exactness():

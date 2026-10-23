@@ -81,3 +81,50 @@ n_dots:    37654      min_dist_catalogue_px: ______
 - Do not upload a file whose hash is already in `ledger/submissions.csv` (8+ upstream slots
   were spent on exact repeats), or whose `validate_release.py` verdict is not `CERTIFIED`.
 - Do not submit from any account but the one entity's. One final file, chosen blind.
+
+
+---
+
+## Session 3 — this session's three files, ready to paste
+
+All three are built, gate-clean, and certified by both validators. Upload **one per slot**.
+
+```bash
+# re-verify any of them before uploading
+python scripts/verify_manifest.py                       # expect PRUNE: READY
+python scripts/validate_raster.py releases/R0-PRUNE3-20261023.tif \
+    data/official/sample_submission.tif \
+    --catalogue data/derived/catalogue_mask.tif --parent \
+    data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+python scripts/validate_release.py releases/R0-PRUNE3-20261023.tif \
+    --sample data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif --ledger ledger/submissions.csv
+```
+
+| # | file | name | note (≤140 chars, counted) |
+|---|---|---|---|
+| 1 | `releases/R0-PRUNE3-20261023.tif` | `R0-PRUNE3-20261023` | Parent R0 (37654 dots, >=2.2px catalogue). PRUNE <=3px: delete 2171 dots (5.8%), no refill. Predicted +0.002 (-0.002..+0.006). |
+| 2 | `releases/R0-PRUNE8-20261023.tif` | `R0-PRUNE8-20261023` | Parent R0. PRUNE <=8px: delete 9164 dots (24.3%), no refill; 3-8px shell has zero catalogue credit. Predicted +0.006 (-0.004..+0.014). |
+| 3 | `releases/R0-PRUNE15-20261023.tif` | `R0-PRUNE15-20261023` | Parent R0. PRUNE <=15px: delete 15665 dots (41.6%), no refill; largest dose. Predicted +0.010 (-0.008..+0.024). |
+
+Fallback twins end in `-zeros.tif`; use one encoding per slot, never both.
+The parent session's own manifest marked its **zeros** twin `PRIMARY, portal_legal: true`,
+so zeros is a proven-acceptable encoding if the uploader objects to NaN.
+
+### Field values
+
+| field | value |
+|---|---|
+| format receipt | paste the `VERDICT: CERTIFIED` JSON from `validate_release.py` plus the sha256 |
+| sha256 (slot 1) | `1209e863a9ff58d86681e9e7f0375c4d185a59c50ef9769f02653ec1472198f2` |
+| sha256 (slot 2) | `e1dd69d02b90f95e779c43de1843ac53c4064619e74c81ee230a08058ba15654` |
+| sha256 (slot 3) | `1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0` |
+
+### After each score comes back
+
+1. `receipt_score` — the number from the submission page, not a memory of it.
+2. `receipt_date` — ISO date; `scripts/ledger.py state` uses it for weekly slot accounting.
+3. `status` — `SUBMITTED`.
+4. `notes` — if the change was under 0.01, write "no evidence (public chunks only)".
+
+Then update only the CURRENT STATE block in `README.md`.

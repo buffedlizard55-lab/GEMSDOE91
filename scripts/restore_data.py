@@ -7,7 +7,7 @@ GitHub commit and checked against `registry/data_manifest.json` **before use**.
 
 Allowed hosts in this sandbox are GitHub, PyPI and npm only.  drivendata.org
 and dropbox.com are never contacted (brief section 4.1); the mirrors are copies
-made by earlier sessions, which is itself a data-use problem (IR-91-11).
+made by earlier sessions, which is itself a data-use problem (IR-91-09).
 
 Usage
 -----

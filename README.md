@@ -1,68 +1,86 @@
-# GEMSDOE91 — DrivenData GEMS #306 (three sessions, 2026-10-23)
+# GEMSDOE91 — session 2026-10-23 (DrivenData GEMS #306)
+
+No script here submits anything. One entity, three scored slots a week, one final file.
 
 ## CURRENT STATE
 
-**One entity. Nothing here submits**; the human uploads from their own account.
+- **Parent:** `R0 = h33-h33-2-b2` — **verified locally this session**, both encodings.
+  `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros), 37,654 unit-mass dots,
+  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on catalogue,
+  min 2.236 px from it**.
+- **Inputs present and hash-verified: 5 of 16 pinned entries** — `sample_submission`,
+  `existing_faults`, `parent_r0_nan`, `parent_r0_zeros`, plus the derived
+  `catalogue_mask`. Found in public mirrors; see `IRREGULARITIES.md` IR-91-09. This
+  **supersedes IR-91-02**, which said the rasters did not exist publicly.
+- **Axis readiness (`scripts/verify_manifest.py`):** PRUNE **READY**; MASS, SNAP,
+  CONCENTRATION, RELIEF, TRACKB blocked on `training_features` / lidar layers.
+- **Best receipt:** **none.** No `receipt_score` exists in this lineage — all 23 ledger
+  rows are blank. `0.2778` for R0 is a **CLAIM**, and GEMSDOE32's own manifest records
+  `receipt: null` for it.
+- **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
+- **Slots left this week:** **__ / __ (human must fill).**
+- **AXIS for this session:** **PRUNE**, chosen not assigned. Built as a **delete-only
+  dose ladder**, which is the parent lineage's own operation (measured, not assumed).
+- **Variants built this session: 3, all gated.**
 
-| field | value |
-|---|---|
-| **Parent** | `R0 = h33-h33-2-b2` (GEMSDOE32), 37,654 unit dots, EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px |
-| **Parent hash** | sha256 `c55bafc4…` (zeros) / `baeae321…` (NaN twin), **verified against the pin**; dot-set digest `905cee9d…` |
-| **Parent rebuild** | **dot set reproduced exactly** from two independent pinned ancestors (`d2.8` 44,090 and `solo-d2.8` 40,199) by dropping every dot within 2.0 px of the catalogue → 37,654, **0 differing cells**. File *bytes* are not re-encodable here (IR-91-12) |
-| **Best receipt** | **NONE** — 23/23 ledger rows have empty receipt columns. `0.2778` for R0 is a **CLAIM** |
-| **TOP_PUBLIC** | **____ (human, with date)** — upstream GEMSDOE88 carries `0.4413` as a human-supplied 2026-10-22 figure (**CLAIM**), not verified here |
-| **Slots left this week** | **__ / __ (human)** |
-| **Variants built** | **3 this session** (SPACING, below); sessions 1–2 built 0 |
-| **Build status** | **UNBLOCKED.** Sessions 1–2 concluded the build was blocked because the competition rasters were "not public" (IR-91-02). They are reachable: `scripts/restore_data.py` pulls all six from immutable GitHub commits and verifies every sha256 in **3 s / 5 MB**. See IR-91-11 |
-| **Deadline** | 2026-12-03, **UNVERIFIED** (brief-supplied; confirm on the page) |
+  | id | value | dots | removed | % of R0 | predicted |
+  |---|---|---|---|---|---|
+  | `h33-h33-2-b2-PRUNEle3norefill-…-1209e863` | le3-norefill | 35,483 | 2,171 | 5.77 % | +0.002 |
+  | `h33-h33-2-b2-PRUNEle8norefill-…-e1dd69d0` | le8-norefill | 28,490 | 9,164 | 24.34 % | +0.006 |
+  | `h33-h33-2-b2-PRUNEle15norefill-…-1ca1ff6f` | le15-norefill | 21,989 | 15,665 | 41.60 % | +0.010 |
+
+  All three pass the repo's gates **twice over**: 14/14 in `scripts/validate_raster.py`
+  and `VERDICT: CERTIFIED` in `scripts/validate_release.py`.
+- **Next 3 slots (see `SLOT_PLAN.md`):** the ladder, in order le3 → le8 → le15.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 
-AXIS chosen here: **SPACING** — the only axis in brief §1 with **zero prior builds**
-(checked across five fleet ledgers: 132 + 129 + 22 + 20 + 5 rows, no `axis=SPACING`).
+Session 3 restored the same mirrors independently (so IR-91-09 is confirmed twice), proved
+the parent's **dot set** from two ancestors, and built the one axis nobody had built.
 
-Three arms, **matched on everything except the treatment**: the same 40 % of dots
-(densest 1 km blocks), the same displacement budget (radius-2 ring, 2.0–2.236 px),
-the same constraints (footprint, parent's 2 px collar floor, no cell reuse, ≥ 2 px
-separation). Only *which* ring cell is chosen differs, ranked by a Gaussian-smoothed
-dot-density potential (σ = 2 px).
+- **Axis: SPACING** — zero prior `axis=SPACING` rows in five fleet ledgers (132+129+22+20+5
+  rows). Three arms, matched on everything but the treatment: the same 40 % of dots (densest
+  1 km blocks), the same displacement budget (radius-2 ring, 2.0–2.236 px), the same
+  constraints. Only *which* ring cell is chosen differs, ranked by a Gaussian-smoothed
+  dot-density potential (σ = 2 px).
 
-| arm | relocated | mean disp. | density at target | predicted (MODEL) |
-|---|---:|---:|---|---|
-| `SPACINGspread40` | 15,056 (39.99 %) | 2.23 px | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
-| `SPACINGclump40` | 14,973 (39.76 %) | 2.13 px | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
-| `SPACINGjitter40` | 15,038 (39.94 %) | 2.15 px | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
+  | id | relocated | density at target | predicted (MODEL) |
+  |---|---:|---|---|
+  | `…-SPACINGspread40-20261023-6d389309` | 15,056 (39.99 %) | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
+  | `…-SPACINGclump40-20261023-536d32ad` | 14,973 (39.76 %) | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
+  | `…-SPACINGjitter40-20261023-39bb7288` | 15,038 (39.94 %) | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
 
-**The bound is the finding.** Under a uniform truth prior the edit moves expected
-kernel credit by −0.17 % (spread) to −2.4 % (clump), capping the plausible live
-effect near **0.003**. A live change ≥ 0.01 on this axis would be evidence of
-something other than the spacing edit.
+- **The bound is the finding.** Under a uniform truth prior the edit moves expected kernel
+  credit by −0.17 % (spread) to −2.4 % (clump), capping the plausible live effect near
+  **0.003**. The axis cannot produce a ≥0.01 win; one slot buys a *decision* (is arrangement
+  a lever at all?), not a score.
+- **Parent dot set reproduced exactly** from two independent pinned ancestors — `d2.8`
+  (44,090 dots) and `solo-d2.8` (40,199), each minus every dot within 2.0 px of the catalogue
+  → 37,654, **0 differing cells**, digest `905cee9d…`, which matches the digest GEMSDOE86
+  recorded independently. The parent's *bytes* are still not re-encodable here (IR-91-16).
+- **No raster is committed.** Session 3's files are rebuilt on demand and pinned by
+  `releases/MANIFEST.json`; CI rebuilds them in a clean container and asserts the hashes
+  byte for byte.
+- **Session-3 slot ordering.** PRUNE first (the ladder above has the only *measured* live
+  dose-response behind it, and `le15` carries the largest predicted gain on the board at
+  +0.010), then `SPACINGspread40` (retires geometry if flat), then RELIEF or a CONC re-cut.
 
-All six files pass every hard gate and are re-read from disk; **no raster is
-committed** — `releases/MANIFEST.json` carries the sha256 of each, and one command
-rebuilds them byte-identically (CI proves it).
+### Session 2 delta (`arena/a6416f7b`, same date)
 
-#### Session 1–2 delta (unchanged, preserved)
+Built on top of the above, after finding that main had moved: **0 variants built**, for the
+same reason as session 1 (no competition rasters locally). What is new:
 
-Sessions 1 and 2 built the harness and **0 variants**: `src/gems91/metric.py` (DTI
-re-derivation), `src/gems91/gates.py` (UNVERIFIED-never-PASS gates), `tools/run_concentration.py`
-(the first count-preserving builder), a synthetic end-to-end fixture, and a fix for a
-real transposed-distance bug (IR-91-06). Session 2 also found that the three imported
-CONCENTRATION rows ranked blocks by *parent dot density* (IR-91-07) — they test
-clustering, not prior transfer.
-
-### Next three slots (details in `SLOT_PLAN.md`)
-
-1. `PRUNE-le3p000` (already built by GEMSDOE86) — the only axis with a **measured live
-   dose-response** behind it (0.2708 → 0.2778 for 2,545 collar dots). MODEL **+0.004**.
-2. `SPACINGspread40` (this session) — closes the last unbuilt axis; if it is flat,
-   geometry stops consuming slots. MODEL **+0.004**.
-3. `RELIEF-frontp15` (already built by GEMSDOE86) — the only built variant that moves
-   mass rather than deleting it. MODEL **+0.006**.
-
-> A live change under ±0.01 is **not evidence**. Every prediction in this ledger sits
-> inside that band: the three slots are about which mechanism survives, not about a
-> score. The ledger's action 0 is to get a receipt.
+- `tools/run_concentration.py` — the repository's first *builder*: count-preserving,
+  collar-safe, CV-reporting, refuses any input that is not pinned. It requires an
+  **external** prior and refuses one derived from the parent's own dots, because the three
+  imported CONCENTRATION rows ranked blocks by *parent dot density* (IR-91-07) — those test
+  clustering, not prior transfer.
+- `tools/pins.py` — maps each axis to the manifest ids it needs and verifies bytes.
+- `tools/make_fixture.py` + `tests/test_concentration.py` — a synthetic fixture and an
+  end-to-end build -> certify proof, the first time the gates have run on a real raster.
+- **Fixed a live bug in `src/gems91/gates.py`**: `min_distance_to_mask` transposed rows and
+  columns (IR-91-06). On the real 3730x3292 grid this raised IndexError or returned the
+  distance at the mirrored cell, so every collar count in the lineage audit is suspect.
 
 ## What this repo contains
 
@@ -89,3 +107,23 @@ python scripts/preflight.py            # BUILD ALLOWED / BUILD BLOCKED
 python -m pytest                       # 53 tests, no competition data needed
 python -m tools.pins --axis CONCENTRATION   # what an axis still needs, by pinned id
 ```
+
+### Session 3 delta (`arena/5563ddf8`, same date)
+
+Main had moved twice while this session ran, so this branch was **rebased onto** the merged
+work rather than replacing it: the `src/gems91` package, `tools/`, `Makefile`, fixtures and
+all 20 imported ledger rows are kept intact.
+
+- **The blocking problem was solved, not worked around.** R0, `sample_submission.tif` and the
+  labels raster were recovered from public mirrors and verified against hashes this repo
+  already carried. No rebuild from a recipe, no approximation.
+- **Parent forensics.** Differencing R0 against solo-d28 proves the lineage's PRUNE is
+  delete-only (0 dots in R0 that are not in solo-d28; 2,545 removed at ≤2 px, none added).
+- **Three buildable variants**, using `scripts/dti.py` + `scripts/axes.py` + `scripts/build.py`.
+- **Two gate implementations now agree** on all three files. Fixing `sha_unseen` to ignore
+  BUILT rows (IR-91-12) is what let them certify; before that the gate was unsatisfiable in
+  the order the brief prescribes.
+- **A real disagreement is recorded, not hidden:** my algebra predicts removal gains, the
+  imported `p4px` row predicts −0.009. IR-91-13.
+- **Honest about power:** the brief's evidence bar is ±0.01 and only `le15` has a plausible
+  path past it. Doses 1 and 2 are refinements.

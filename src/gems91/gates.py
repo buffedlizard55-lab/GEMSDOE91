@@ -214,11 +214,21 @@ def validate(path: str | Path,
         rep.add("collar_ge_3px", None, "existing_faults.tif absent")
 
     # --- ledger dedupe -----------------------------------------------------
+    # A BUILT row is bookkeeping for the file being certified (brief section 7), so it
+    # must NOT count as "already used". Only a SUBMITTED row means the slot was spent.
+    # Comparing against every row made the gate impossible to pass in the intended
+    # order (build -> record -> certify), so the comparison is status-aware.
     if ledger_csv is not None and Path(ledger_csv).exists():
         rows = list(csv.DictReader(open(ledger_csv, newline="", encoding="utf-8")))
-        rep.add("sha_unseen", rep.sha256 not in {r.get("sha256", "") for r in rows},
-                f"{len(rows)} ledger rows scanned")
-        rep.add("sha_unseen_zeros", rep.sha256 not in {r.get("sha256_zeros", "") for r in rows})
+        submitted = [r for r in rows if (r.get("status") or "").strip().upper() == "SUBMITTED"]
+        built_same = [r for r in rows
+                      if (r.get("status") or "").strip().upper() == "BUILT"
+                      and rep.sha256 in (r.get("sha256", ""), r.get("sha256_zeros", ""))]
+        spent = {r.get("sha256", "") for r in submitted}
+        spent_z = {r.get("sha256_zeros", "") for r in submitted}
+        rep.add("sha_unseen", rep.sha256 not in spent,
+                f"{len(rows)} ledger rows, {len(submitted)} submitted, {len(built_same)} built-row match(es)")
+        rep.add("sha_unseen_zeros", rep.sha256 not in spent_z)
     else:
         rep.add("sha_unseen", None, "ledger absent")
 

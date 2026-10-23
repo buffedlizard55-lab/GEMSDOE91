@@ -1,29 +1,47 @@
-# SLOT_PLAN — 1 entity, 3 slots/week, one blind final file by 2026-12-03
+# SLOT PLAN — one entity, 3 scored slots/week, deadline 2026-12-03 (unconfirmed)
 
-**Slots left this week: __ / __ (human).** **TOP_PUBLIC: ____ (human, with date).**
-**Best receipt: none** — 23/23 ledger rows have empty receipt columns (IR-91-05).
-`R0 = h33-h33-2-b2` verified: 37,654 dots, twins `c55bafc4…` / `baeae321…`, and — new in
-session 3 — its **dot set is reproduced exactly from two independent ancestors** (0 differing
-cells; IR-91-12). Session axis: **SPACING**, the only axis with zero prior builds.
+## Session axis: PRUNE (chosen, not assigned)
 
-## Step 0 — already done (sessions 1–2 thought it was impossible)
+The prior sessions chose MASS and CONCENTRATION; both are still blocked on
+`training_features`. **PRUNE is the only axis whose inputs are now hash-verified in this
+workspace** (`scripts/verify_manifest.py` → `[READY] PRUNE`), which is why it is the axis
+this session executes to receipt quality rather than proposing.
 
-Sessions 1–2 declared **BUILD BLOCKED** because `sample_submission.tif`, `existing_faults.tif`
-and the ancestors were "not publicly mirrored" (IR-91-02). They are: `scripts/restore_data.py`
-pulls all of them from immutable GitHub commits and verifies every sha256 in **3 s / 5 MB**.
-The premise is withdrawn (IR-91-11) — and re-stated as the data-use problem it actually is.
-`training_features.tif` (419 MB) is the only input with no pinned mirror and is not needed for
-this axis.
+Within PRUNE, the brief's own values (≤1, ≤2) are **no-ops on R0**: the parent already sits
+at 2.236 px, so nothing is within 2 px. The only meaningful direction is upward. That makes
+a **delete-only dose ladder** the correct design, not three different edits.
 
-**Action 0, costing no slot:** have the human paste R0's receipt (0.2778) and `TOP_PUBLIC`
-into the ledger. Until then every MODEL below is unscaled and the 0.01 evidence floor cannot
-be applied to anything.
+The design is backed by a measurement rather than a hunch: **all of R0's credit against the
+catalogue lies within 3 px** (necessarily, since the kernel radius is 3 px). So every dot
+removed between 3 and 15 px earns **zero** credit on known faults while still costing `0.2`
+in the denominator. The ladder therefore isolates exactly one unknown: how much *new-fault*
+credit those dots were earning.
 
-## What session 3 measured, and why it caps the axis
+## Next 3 slots — the ladder, in this order
 
-The SPACING arms are matched on everything but the treatment: same 40 % of dots (densest 1 km
-blocks), same displacement budget (radius-2 ring, 2.0–2.236 px), same constraints. Only the
-choice of ring cell differs, ranked by a Gaussian-smoothed density potential (σ = 2 px).
+| # | build | dots | removed | % R0 | predicted | what the result would change |
+|---|---|---|---|---|---|---|
+| 1 | `PRUNEle3norefill` | 35,483 | 2,171 | 5.77 % | +0.002 | Smallest step off the parent. Most likely below the 0.01 bar, so a flat result is *expected*. A loss means 2 px is already past the optimum and nothing further should be pruned. |
+| 2 | `PRUNEle8norefill` | 28,490 | 9,164 | 24.34 % | +0.006 | Separates denominator saving from new-fault credit. 7,553 of the 9,164 removed dots are zero-credit against the catalogue. |
+| 3 | `PRUNEle15norefill` | 21,989 | 15,665 | 41.60 % | +0.010 | Largest dose inside the 1–50 % band and the only rung with a plausible path past +0.01. |
+
+All three are built and gate-clean (`releases/`). Predictions, confounders and falsifiers
+are in `docs/MECHANISM_CARDS.md`.
+
+**This ladder directly tests a recorded disagreement.** The imported `PRUNE/p4px` row
+predicts **−0.009** for removing the 2–4 px collar; the metric algebra says removal *gains*
+because zero-credit dots are pure denominator cost. If `le8`/`le15` gain, that imported
+prediction is wrong. See `IRREGULARITIES.md` IR-91-13.
+
+**Do not** spend slots on the existing refill-based `p1px`/`p3px`/`p4px` rows: they were
+built by an earlier session and never scored, and their predictions are non-monotone in dose
+(−0.006, +0.005, −0.009), which a single mechanism cannot produce.
+
+## Session-3 addendum: the SPACING axis, and where it belongs
+
+Built here, matched on everything but the treatment (same 40 % of dots, same radius-2
+displacement budget, same constraints), with a **null** arm (`jitter40`) and a **sign flip**
+(`clump40`) so any live difference is attributable to spacing direction:
 
 | arm | relocated | density at target | predicted (MODEL) |
 |---|---:|---|---|
@@ -31,168 +49,44 @@ choice of ring cell differs, ranked by a Gaussian-smoothed density potential (σ
 | `SPACINGclump40` | 14,973 (39.76 %) | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
 | `SPACINGjitter40` | 15,038 (39.94 %) | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
 
-Under a uniform truth prior the edit changes expected kernel credit by −0.17 % (spread) to
-−2.4 % (clump), so **the plausible live effect is ≤ 0.003**. That is the useful result: the
-axis cannot produce a ≥ 0.01 win, so one slot buys a *decision* (is arrangement a lever at
-all?) rather than a score.
+The uniform-truth ceiling (−0.17 % to −2.4 % of expected credit) caps the plausible live
+effect near **0.003**: this axis cannot win a slot on expected score. It earns one only as a
+retirement test — a flat result says arrangement is not a lever and frees every later slot.
 
-## The next three slots, in order (session-3 ordering)
+**Where it sits relative to the PRUNE ladder above.** Slot 1 stays PRUNE (`le3`, the ladder's
+first rung, +0.002). Slot 2 should be the ladder's **`le15`** rung (+0.010, the largest
+predicted gain in the ledger) *if* `le3` lands ≥ +0.01; otherwise slot 2 is
+**`SPACINGspread40`**. Do not spend a slot on `clump40` or `jitter40` (controls), and do not
+build a fourth SPACING dose before the first receipt exists.
 
-| # | candidate | why this one | what the receipt decides |
-|---|---|---|---|
-| **1** | `PRUNE-le3p000` (built by GEMSDOE86; re-validate before upload) | the only axis in the project with a **measured live dose-response**: 0.2708 → 0.2778 for 2,545 collar dots, +2.75 × 10⁻⁶ per dot — an order of magnitude above the metric's own zero-credit estimate. Also the only file that satisfies constraint 4 at all. | **≥ +0.01** → the collar is not exhausted; cut a 4 px rung and adopt the 3 px collar as R1. **≤ −0.01** → the 2–3 px shell carries real truth; IR-91-13 becomes the binding argument. **abs < 0.01** → no evidence; PRUNE closes for Phase 1 |
-| **2** | `SPACINGspread40` (this session; rebuild then upload the `-zeros` twin) | closes the last unbuilt axis, with its null and sign-flip controls already built and matched | **≥ +0.01** → arrangement carries signal; next cut is spread at 50 % and ring-4. **abs < 0.01** → **geometry is retired**: no more slots on SPACING, MASS or SNAP. **≤ −0.01** → the parent's clusters are real structure; protect them |
-| **3** | `RELIEF-frontp15` (GEMSDOE86) **or** `CONC b10px-m20 on R1` if slot 1 promoted R1 | the only built variants that move mass between places instead of deleting it | **≥ +0.01** → build RELIEF-ADD (count raised) and combine with PRUNE. Otherwise the final file is the better of PRUNE and RELIEF plus whichever arm separates from 0 |
+## Weeks to the deadline
 
-Do **not** spend a slot on: `SPACINGclump40` / `SPACINGjitter40` (controls), `MASSm10plus`
-(MODEL −0.010, HOLD), `MASSm20minus` (nested in `m10minus`), `PRUNEp1px` (re-legalises the
-1–2 px shell), any SNAP arm (prior sessions measured its proxy as negative and its dose is not
-separable from a jitter null), or any exact repeat (8+ slots were wasted this way upstream).
+| week | plan |
+|---|---|
+| now | Spend this week's slots on the ladder. Copy every receipt number into `ledger/submissions.csv`. |
+| wk 2 | Read the ladder. **Monotone gain** → keep cutting mass; next axis should be MASS-SHAPE at fixed count. **Monotone loss** → new faults hug the known traces; stop pruning and add mass in the 3–8 px band instead. **Flat** → PRUNE is exhausted, move to CONCENTRATION. |
+| wk 3–4 | Whatever the ladder says, the next build needs `training_features` (it unblocks MASS, SNAP and CONCENTRATION). Ask the human to supply it; it is the single highest-value missing input. |
+| wk 5–6 | Confirm the winner, build a fallback, re-validate both formats, re-read both from disk, choose the final file blind from the ledger. |
 
-## Better axes (proposals only — none built this session)
+## Better axes (proposed, not built this session)
 
-- **Anisotropic packing (structure-tensor, σ = 3 px).** 2 px along-strike, 4 px across-strike
-  at matched area density, using the catalogue's local orientation. *Confounder:* the parent
-  is already line-like, so it may be a no-op; new faults may be oblique to mapped strands.
-  *Falsifier:* no separation from `jitter40` in two independent draws.
-- **Ring-4 spacing (4 px, 25 % of dots).** Tests whether the ceiling above is a dose artefact:
-  if 2 px is capped at 0.003 but 4 px is not, the mechanism is real and merely under-dosed.
-  *Falsifier:* live effect stays flat while uniform-truth credit moves > 1 %.
-- **Receipt-first calibration.** No axis at all: re-submit the parent to convert 0.2778 from
-  CLAIM to RECEIPT and re-anchor every MODEL in the ledger. Cheapest information per slot in
-  the project, and the only action that lets the 0.01 floor do any work.
+1. **MASS-SHAPE at fixed count.** Keep 37,654 dots but redistribute from dense clusters to
+   sparse ones. Mechanism: the denominator charges `0.2(S−M)`, so credit already collected by
+   a neighbour is nearly free while fresh credit is not — overlapping dots waste count
+   without buying credit. Confounder: true fault density varies at km scale, so flattening a
+   real cluster costs recall. Falsifier: were the removed dots' neighbourhoods already
+   credited by a neighbour? *Blocked on* `training_features`.
+2. **MARGINAL-PRUNE by exact gain.** Rank R0's dots by exact marginal gain
+   (`scripts/dti.py::rank_dots`) and drop the bottom decile instead of dropping by distance to
+   the catalogue. Confounder: the holdout is the catalogue, not new-fault truth. Falsifier:
+   the dropped set should not overlap the hide-and-recover positives.
+3. **TRACKB (Phase 2 only).** Strike-consistent traces ≥1 km as GeoJSON + raster with one
+   evidence paragraph per trace. Cannot be scored in Phase 1 in a way that transfers, so it
+   should not consume a weekly slot unless the human decides otherwise.
 
-## Weeks to the deadline (2026-10-30 → 2026-12-03, ~15 slots)
+## Honest note on information per slot
 
-- **Wk 2 (4–6):** finish MASS on R1 (slot 2) and CONC on R1 (slot 3); if both are flat,
-  switch to the two never-built axes, RELIEF (elevation-tercile mass shift) and SPACING
-  (Poisson-disk vs lattice at matched count).
-- **Wk 3–4 (7–12):** combine the two axes that cleared +0.01, on R1, one change at a time.
-  Re-validate format of every candidate from disk on the day it is uploaded.
-- **Wk 5–6 (13–18):** confirm the leader, build `TRACKB` traces for Phase 2 (GeoJSON + raster,
-  one evidence paragraph per trace, ≥1 km strike-consistent), then freeze **one** final file
-  plus **one** `-zeros` fallback and re-run `scripts/validate_release.py` on both.
-
-## Proposed better axes (not built this session)
-
-1. **FRACTIONAL MASS** (a MASS value, not a new letter): in the 2.5–3.5 px shell emit dots at
-   `p ≈ 0.33` instead of all-or-nothing. *Mechanism:* the triangular kernel pays 1/3 credit at
-   3 px while the (S−M) penalty scales with `p`, so a partial dot dominates both "1" and "0"
-   near the collar — this is the only way to buy collar-adjacent credit without violating
-   constraint 4. *Confounder:* the organiser may threshold tiny values, and the mass
-   normalisation is unverified (IR-91-06). *Falsifier:* < +0.01 live over R1.
-2. **RELIEF** (never built by anyone in this lineage): move 10–15% of mass between basin /
-   piedmont / range-front terciles of detrended elevation at fixed count. *Mechanism:* new
-   faults concentrate at range fronts and basin margins. *Confounder:* Lake Lahontan
-   shorelines sit at 1,212–1,334 m and mimic scarps. *Falsifier:* < +0.01 over R1.
-3. **DIP_OFFSET_ASYM** (carried from upstream, credit theirs): back-project gravity HG and
-   basement gradient updip by `z·cot 60°` before snapping. *Confounder:* sub-horizontal
-   basalt caprock margins. *Falsifier:* < +0.01 over R1-SNAPscarp2px.
-
----
-
-## Session 2 addendum (`arena/a6416f7b`, 2026-10-23) — what changes in the order above
-
-**Nothing in the first three slots is cancelled.** Two things are now known that were not:
-
-1. **A builder exists for CONCENTRATION only** (`tools/run_concentration.py`). The plan's
-   slot 1 and slot 2 (`MASS m10minus`, and PRUNE-with-refill) still have **no builder**;
-   building them is not a slot cost, it is an hour of work plus the `training_features.tif`
-   ranking rebuild. Slot 1 as written cannot start without it.
-2. **The three imported CONCENTRATION rows are clustering edits, not prior tests**
-   (IR-91-07): their block prior is the parent's own dot density. So "CONC was already
-   tried" is false, and "CONC worked" would be over-read. If a CONC result is wanted, run
-   the *external-prior* version at the low dose (10%, 5 km blocks), which is exactly what
-   the builder does.
-
-**Order I would run, given the above (unchanged ranking, one addition):**
-
-| slot | file | why now |
-|---|---|---|
-| 1 | `PRUNEp3px` (rebuild, sha `6f7ae705…`) | still the only collar-compliant base; unchanged |
-| 2 | `R1-MASS m10minus` on **R1** | needs the R1 ranking, which the builder must emit as a sidecar (`ranking_basis` is the trap identified in IR-91-07) |
-| 3 | `R1-CONC f10-blk50` **external prior** | the builder is ready; it is the only axis whose code and tests already exist |
-
-**Hypotheses worth a slot after that (mechanism · confounder · falsifier):**
-
-- **EDGE-FLOOR** — mass just *outside* the collar may be where new-fault truth adjacent to
-  known traces lives (forum: new fault can lie within 300 m of known geometry). Confounder:
-  collar proximity tracks survey quality. Falsifier: matched count, same marginal-gain
-  ranking, dots pushed to 3–6 px vs dots pulled away — if the far version wins, the
-  adjacency story is wrong.
-- **DENSITY-CAP** — T saturates at 1 per truth pixel, so over-dense clusters buy nothing;
-  the 0.51–0.59 CV band reported for the best files is consistent with even coverage.
-  Confounder: CV correlates with how much of the grid the prior marks high. Falsifier: two
-  files at matched count, CV 0.55 vs 1.2, same prior; if the tighter one wins, spacing is
-  causal and CONCENTRATION should be dosed *down*, not up.
-- **AMBIGUITY-BUDGET** — one dot per plausible trace position (400 m line spacing ≈ 2–3 px
-  positional uncertainty) instead of one per confident pixel. Confounder: it is SPACING
-  renamed. Falsifier: a jitter-only twin (±1 px of every dot, same count) — if jitter is
-  free, positional uncertainty is not what the metric is paying for.
-
-
-- **Wk 2 (4–6):** finish MASS on R1 (slot 2) and CONC on R1 (slot 3); if both are flat,
-  switch to the two never-built axes, RELIEF (elevation-tercile mass shift) and SPACING
-  (Poisson-disk vs lattice at matched count).
-- **Wk 3–4 (7–12):** combine the two axes that cleared +0.01, on R1, one change at a time.
-  Re-validate format of every candidate from disk on the day it is uploaded.
-- **Wk 5–6 (13–18):** confirm the leader, build `TRACKB` traces for Phase 2 (GeoJSON + raster,
-  one evidence paragraph per trace, ≥1 km strike-consistent), then freeze **one** final file
-  plus **one** `-zeros` fallback and re-run `scripts/validate_release.py` on both.
-
-## Proposed better axes (not built this session)
-
-1. **FRACTIONAL MASS** (a MASS value, not a new letter): in the 2.5–3.5 px shell emit dots at
-   `p ≈ 0.33` instead of all-or-nothing. *Mechanism:* the triangular kernel pays 1/3 credit at
-   3 px while the (S−M) penalty scales with `p`, so a partial dot dominates both "1" and "0"
-   near the collar — this is the only way to buy collar-adjacent credit without violating
-   constraint 4. *Confounder:* the organiser may threshold tiny values, and the mass
-   normalisation is unverified (IR-91-06). *Falsifier:* < +0.01 live over R1.
-2. **RELIEF** (never built by anyone in this lineage): move 10–15% of mass between basin /
-   piedmont / range-front terciles of detrended elevation at fixed count. *Mechanism:* new
-   faults concentrate at range fronts and basin margins. *Confounder:* Lake Lahontan
-   shorelines sit at 1,212–1,334 m and mimic scarps. *Falsifier:* < +0.01 over R1.
-3. **DIP_OFFSET_ASYM** (carried from upstream, credit theirs): back-project gravity HG and
-   basement gradient updip by `z·cot 60°` before snapping. *Confounder:* sub-horizontal
-   basalt caprock margins. *Falsifier:* < +0.01 over R1-SNAPscarp2px.
-
----
-
-## Session 2 addendum (`arena/a6416f7b`, 2026-10-23) — what changes in the order above
-
-**Nothing in the first three slots is cancelled.** Two things are now known that were not:
-
-1. **A builder exists for CONCENTRATION only** (`tools/run_concentration.py`). The plan's
-   slot 1 and slot 2 (`MASS m10minus`, and PRUNE-with-refill) still have **no builder**;
-   building them is not a slot cost, it is an hour of work plus the `training_features.tif`
-   ranking rebuild. Slot 1 as written cannot start without it.
-2. **The three imported CONCENTRATION rows are clustering edits, not prior tests**
-   (IR-91-07): their block prior is the parent's own dot density. So "CONC was already
-   tried" is false, and "CONC worked" would be over-read. If a CONC result is wanted, run
-   the *external-prior* version at the low dose (10%, 5 km blocks), which is exactly what
-   the builder does.
-
-**Order I would run, given the above (unchanged ranking, one addition):**
-
-| slot | file | why now |
-|---|---|---|
-| 1 | `PRUNEp3px` (rebuild, sha `6f7ae705…`) | still the only collar-compliant base; unchanged |
-| 2 | `R1-MASS m10minus` on **R1** | needs the R1 ranking, which the builder must emit as a sidecar (`ranking_basis` is the trap identified in IR-91-07) |
-| 3 | `R1-CONC f10-blk50` **external prior** | the builder is ready; it is the only axis whose code and tests already exist |
-
-**Hypotheses worth a slot after that (mechanism · confounder · falsifier):**
-
-- **EDGE-FLOOR** — mass just *outside* the collar may be where new-fault truth adjacent to
-  known traces lives (forum: new fault can lie within 300 m of known geometry). Confounder:
-  collar proximity tracks survey quality. Falsifier: matched count, same marginal-gain
-  ranking, dots pushed to 3–6 px vs dots pulled away — if the far version wins, the
-  adjacency story is wrong.
-- **DENSITY-CAP** — T saturates at 1 per truth pixel, so over-dense clusters buy nothing;
-  the 0.51–0.59 CV band reported for the best files is consistent with even coverage.
-  Confounder: CV correlates with how much of the grid the prior marks high. Falsifier: two
-  files at matched count, CV 0.55 vs 1.2, same prior; if the tighter one wins, spacing is
-  causal and CONCENTRATION should be dosed *down*, not up.
-- **AMBIGUITY-BUDGET** — one dot per plausible trace position (400 m line spacing ≈ 2–3 px
-  positional uncertainty) instead of one per confident pixel. Confounder: it is SPACING
-  renamed. Falsifier: a jitter-only twin (±1 px of every dot, same count) — if jitter is
-  free, positional uncertainty is not what the metric is paying for.
+The brief's evidence bar is ±0.01 on public chunks. The parent's best single step was +0.0070
+(CLAIM). **No one-pixel prune step can clear that bar.** If you would rather spend all three
+slots on moves that can plausibly exceed 0.01, replace slot 1 with the upper doses. That is a
+judgement about information per slot, and it is yours, not mine.
