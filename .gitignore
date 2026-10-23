@@ -1,17 +1,21 @@
-# Competition data must never be committed (data-use terms unchecked, and it is
-# large). data/ is the local tree the entrant's machine also uses.
+# Competition data must never be committed: this repository is PUBLIC and GitHub
+# Pages serves main:/ (see IRREGULARITIES.md IR-91-01). data/ is also large.
 data/
 
-# Built rasters are committed by the human when a slot is actually going to be
-# spent (they are the upload artifact). Left ignored by default so this repo
-# does not accumulate binaries with no receipt.
+# Built rasters are the upload artifact, not source. They stay out of git; only
+# their sha256 goes into ledger/submissions.csv.
 releases/*.tif
 releases/*.zip
+!releases/.gitkeep
 
 *.part
 __pycache__/
+*.pyc
 .pytest_cache/
 .ruff_cache/
 
 # synthetic test fixtures
 tests/_tmp/
+
+# local virtualenv
+.venv/

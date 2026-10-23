@@ -68,3 +68,58 @@ session 1), no submission, no score, no leaderboard access.
    not — IR-91-07).
 9. The external prior for CONCENTRATION: which band(s) of `training_features.tif`, and the
    block size (5 km default, 1 km if the dose-response is the goal).
+
+
+---
+
+## Session 3 addition — 2026-10-23, `arena/5563ddf8`
+
+### Written by the AI
+
+- `scripts/dti.py` — DTI metric + exact marginal gain, unit-tested (53 tests here alone).
+- `scripts/axes.py` — MASS / PRUNE / SNAP / CONCENTRATION operators with invariant checks.
+- `scripts/validate_raster.py`, `scripts/verify_manifest.py`, `scripts/ledger.py`,
+  `scripts/build.py`, `scripts/make_catalogue.py`, `scripts/proxy.py`.
+- The three PRUNE releases and their mechanism cards.
+- The axis choice (PRUNE) — chosen, because the brief forbids asking.
+- Fix to `src/gems91/gates.py` `sha_unseen` (IR-91-12) and the corresponding change in
+  `scripts/validate_raster.py`.
+
+### Input recovery — disclosed in full
+
+The repo held only `README.md`. The AI searched the owner's public sibling repositories and
+recovered `sample_submission.tif`, the labels raster (`existing_faults`) and both R0
+encodings, verifying each sha256 against hashes already recorded in this repo's manifest.
+Nothing was rebuilt from a description and nothing was filled from memory. This **corrects**
+IR-91-02, which had concluded the rasters were not publicly available.
+
+### Judgements the AI made that the human should check
+
+1. **Delete-only, not refill.** The brief says PRUNE should refill to hold the count. The AI
+   followed the measured parent behaviour instead (IR-91-11), because a refill needs a
+   ranking that was never stored.
+2. **`le3-norefill` at a dose already covered twice.** Kept as a refill-policy contrast and
+   labelled so it cannot collide (IR-91-10). Drop it if you prefer.
+3. **`sha_unseen` now ignores BUILT rows** (IR-91-12). Without this, no file could be both
+   recorded per §7 and certified.
+4. **Predictions contradict an imported row** (IR-91-13). The AI did not quietly retune its
+   numbers to match `p4px`.
+
+### Decided by the human (still open)
+
+1. **Fill `TOP_PUBLIC`** and this week's slot count in `README.md`.
+2. **Confirm the deadline** on the competition page (2026-12-03 is unverified here).
+3. **Supply `training_features.tif`** — it is the single input that unblocks MASS, SNAP,
+   CONCENTRATION and the parent's own ranking.
+4. **Rule on the 3 px collar rule** (IR-91-03): R0 itself breaks it at 2.236 px.
+5. **Rule on public mirrors of competition data** (IR-91-09).
+6. **Own the receipts.** Paste each submission-page receipt number into
+   `ledger/submissions.csv`; until then every number in this repo, including R0's 0.2778,
+   is a CLAIM.
+
+### Standing disclosure for the rules
+
+> Rasters were produced by scripts in this repository under human direction. An AI assistant
+> wrote the metric implementation, the axis operators, the validation gates and the analysis
+> text; the human selected the axis, supplied the inputs and made every decision about what
+> was submitted. Local checks are proxies; the live scores are the human's own receipts.

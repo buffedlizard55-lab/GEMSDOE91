@@ -26,7 +26,13 @@ and any hash claims in it are void.
 
 ---
 
-## IR-91-02 — The three competition rasters are absent and are not publicly mirrored
+## IR-91-02 — ~~The three competition rasters are absent and are not publicly mirrored~~ **RESOLVED (session 3)**
+
+> **UPDATE 2026-10-23 (session 3).** This item's central claim is **wrong**: the rasters
+> *are* publicly mirrored, and they were located and hash-verified. See **IR-91-09**. The
+> text below is kept because its reasoning about what the absence would have implied is
+> still the correct reasoning; only the premise failed.
+
 
 **Blocked gates:** footprint (needs `sample_submission.tif`), zero-catalogue-mass and the
 ≥3 px collar (need `existing_faults.tif`), block priors / edge fields / parent ranking
@@ -186,3 +192,75 @@ changes; the size of any predicted delta does.
 never an absolute predicted delta, until the organiser implementation is diffed (it is not
 public and the terms ban automated access). All predictions in `ledger/submissions.csv`
 are therefore `MODEL:` and must stay that way.
+
+
+---
+
+# Session 3 additions (2026-10-23, `arena/5563ddf8`)
+
+## IR-91-09 — The rasters DO exist in public mirrors; all three verified, PRUNE unblocked
+
+IR-91-02 was wrong. Recovered and verified byte-for-byte against hashes already recorded in
+this repo's own `registry/data_manifest.json` (which the earlier sessions had obtained from
+GEMSDOE32's manifests):
+
+| entry | mirror | result |
+|---|---|---|
+| `sample_submission` | `60GEMSDOE:data/official/sample_submission.tif` | sha256 matches |
+| `existing_faults` | `60GEMSDOE:data/official/labels.tif` | sha256 matches (it *is* the labels raster) |
+| `parent_r0_nan` | `GEMSDOE32:docs/downloads/…e5eb6e7e-nan.tif` | sha256 matches |
+| `parent_r0_zeros` | `GEMSDOE32:docs/downloads/…e5eb6e7e-zeros.tif` | sha256 matches |
+
+**Decision it changes.** The axis readiness gate now says **PRUNE: READY**, while MASS, SNAP,
+CONCENTRATION, RELIEF and TRACKB stay blocked on `training_features` and the lidar layers.
+That is why this session built PRUNE and nothing else.
+
+**Also relevant to data-use terms.** These mirrors are public, so the rasters are already
+public. This repo still keeps `data/` and `releases/*.tif` out of git.
+
+## IR-91-10 — PRUNE value `3` already existed twice; my ladder is labelled to stay unique
+
+The imported ledger already held `PRUNE/3` (`01d57649`, H19 BFS refill) and `PRUNE/p3px`
+(`6f7ae705`, refill from un-emitted H19-5 ridge dots), plus `p1px` and `p4px`. Brief §5 says
+each (AXIS, value) pair is built once.
+
+**Decision.** I did not rebuild those. My three builds are labelled `le3-norefill`,
+`le8-norefill`, `le15-norefill`. `le8` and `le15` are new doses. `le3-norefill` is a
+deliberate **refill-policy contrast** against the two existing PRUNE/3 rows at the same dose
+(35,483 dots vs 37,654), not a duplicate file. If you consider dose-with-different-refill to
+be the same pair, drop `le3-norefill` and the ladder still stands.
+
+## IR-91-11 — The parent lineage's PRUNE is delete-only; the brief says refill
+
+Brief §5 says "refill to hold the count". Measured, not argued: differencing R0 against the
+public solo-d28 raster gives 37,654 shared dots, **0 in R0 but not in solo-d28**, and 2,545
+dots within ≤2 px in solo-d28 only. So R0 = solo-d28 minus those 2,545 dots, **no refill**.
+
+**Decision.** The three variants follow the lineage (delete-only), because a refill needs the
+parent's ranking and none was ever stored (`training_features` is the missing input that
+would let it be rebuilt). Consequence, stated in every mechanism card: these builds move mass
+and geometry together, so a gain cannot be attributed to "avoiding the catalogue" alone.
+
+## IR-91-12 — `sha_unseen` was unsatisfiable in the intended order (fixed here)
+
+`gates.py` compared the candidate hash against *every* ledger row. Brief §7 requires a BUILT
+row for the file being certified, so build → record → certify could never pass, and the three
+built files were rejected as "already used" although no slot had been spent.
+
+**Fix.** Both validators (`src/gems91/gates.py` and `scripts/validate_raster.py`) now compare
+against **SUBMITTED** rows only, and report how many BUILT rows matched. After the fix all
+three files certify under both implementations independently.
+
+## IR-91-13 — My PRUNE predictions contradict the imported `p4px` prediction
+
+Imported `PRUNE/p4px` predicts **−0.009** for removing the 2–4 px collar; my algebra predicts
+removal *gains* because dots beyond 3 px carry zero catalogue credit and still cost `0.2` in
+the denominator. Both cannot be right.
+
+**Why it is not resolvable here.** The sign depends on how much *new-fault* credit those dots
+earn, which no local label can measure (the catalogue is masked in scoring).
+
+**Decision it changes.** Read the ladder as a direct test of this disagreement: if `le8`/`le15`
+gain, the `p4px` −0.009 prediction is wrong and the "3–4 px shell carries real credit" story
+is dead. If they lose, the algebra's zero-credit argument is missing a real credit term and
+`p4px` was right for a reason worth writing down.
