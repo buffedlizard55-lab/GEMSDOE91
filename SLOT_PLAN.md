@@ -1,53 +1,86 @@
 # SLOT PLAN — combined PRUNE queue (2026-10-23)
 
-**Parent R0:** `h33-h33-2-b2`, 37,654 dots; both encodings now rebuild byte-exactly.
-R0's 0.2778 is **CLAIM**. Ledger: **32 BUILT, 0 SUBMITTED, 0 receipts**. All predictions
-below are **MODEL**, not scores; live |Δ|<0.01 is **no evidence**. TOP_PUBLIC, remaining
-weekly slots, and the deadline still require human confirmation.
+**Status: no receipt exists anywhere in this lineage.** R0's 0.2778 is a CLAIM.
+`TOP_PUBLIC` and "slots left" are still blank — the human must fill both.
 
-## Next three scored slots, in order
+## What session 5 changed about this plan
 
-| order | candidate / sha8 | changed; N | prediction | decision it buys |
-|---|---|---:|---:|---|
-| 1 | **`PRUNE-le10-norefill` / `04002dae`** | 30.17%; 26,294 | **+0.008** [−0.006,+0.019] | Largest positive delete-only dose. Tests whether far-from-catalogue mass is mostly denominator cost. |
-| 2 | **`PRUNEp2p9h19cover` / `9829bb66`** | 4.278430%; 37,654 | **+0.004** [−0.005,+0.013] | Complementary fixed-count test: move the below-3 px tail to exact marginal-DTI H19-5 cells without changing mass. |
-| 3 | **`PRUNE-le4-norefill` / `360fe57e`** | 10.16%; 33,829 | **+0.003** [−0.003,+0.009] | Brackets the large-dose result and isolates the 3–4 px collar. |
+Session 5 built the MASS axis (three arms, `ledger/submissions.csv`) and, in doing so,
+built the first **calibrated** local instrument this fleet has had. It changes two
+things:
 
-Upload one encoding per slot; the zeros twin is a fallback, never another entry. Full
-filenames, SHA-256 values, byte lengths, and ≤140-character notes are in `docs/SUBMIT.md`
-and the two release manifests.
+1. **Mass removal outside the masked collar is not free.** Every earlier prediction in
+   this lineage assumed a dot far from the catalogue earns ~nothing, so deleting it
+   only saves `0.2` of denominator. Measured on an independent unmasked fault map, a
+   deleted dot earns **0.14–0.19 credit**, i.e. 3× the `0.2·DTI ≈ 0.056` break-even.
+2. **Therefore the whole PRUNE ladder is mis-ordered — including the four rungs added in
+   the PRUNE-extension session that landed on `main` (IR-91-19).** Six rungs, measured with
+   the same instrument at their own doses:
 
-## Receipt conditions
+| ledger file | dots | change vs R0 | instrument ΔT | MODEL prediction |
+|---|---:|---:|---:|---|
+| `PRUNE le3-norefill` (`1209e863`) | 35,483 | 5.77 % | −139.1 | **−0.001** [−0.008, +0.007] |
+| `PRUNE le4-norefill` (`360fe57e`) | 33,829 | 10.16 % | −388.8 | **−0.009** [−0.022, +0.007] |
+| `PRUNE le5-norefill` (`5b6d3987`) | 32,017 | 14.97 % | −724.1 | **−0.020** [−0.042, +0.005] |
+| `PRUNE le8-norefill` (`e1dd69d0`) | 28,490 | 24.34 % | −1,306.2 | **−0.038** [−0.075, +0.004] |
+| `PRUNE le10-norefill` (`04002dae`) | 26,294 | 30.17 % | −1,621.8 | **−0.048** [−0.092, +0.004] |
+| `PRUNE le15-norefill` (`1ca1ff6f`) | 21,989 | 41.60 % | −2,286.0 | **−0.068** [−0.129, +0.003] |
 
-- **Slot 1 ≥ R0 + 0.01:** mass far from known faults is costly. Keep slot 2 as the
-  mass-held contrast; use slot 3 to locate the lower dose rather than escalating blindly.
-- **Slot 1 flat:** this is no evidence. Slot 2 still tests placement at fixed mass, but do
-  not claim a PRUNE dose-response from flat public chunks.
-- **Slot 1 ≤ R0 − 0.01:** the 10 px halo carries truth; stop wide pruning. Replace slot 2
-  with the smaller **`p2.5` (`e6f2000d`, +0.002 MODEL)** if a below-3 px test is still worth
-  a slot. Do not use `p4.5`.
-- **After slots 1–2:** use `le4` only if it can distinguish a dose/placement hypothesis.
-  If both receipts are losses, leave the third slot unused rather than spending it on a
-  predicted loser. **`p4.5` (`691438f8`, −0.015 MODEL)** is only an explicit falsifier for
-  unexpectedly strong fixed-count gains; it is not in the default queue.
+**The measurement is monotone: every rung past 3 px is a predicted loss, and the loss grows
+with dose.** The extension session's `+0.003 / +0.005 / +0.008` (and its recommendation to
+submit `le10` first) came from assuming the 3–15 px shell is credit-free. It is not: those
+dots carry 0.10–0.15 credit each against a 0.056 break-even. Only `le3` is a coin flip, and
+that is because it is the only rung that is (almost) purely masked collar.
 
-## Weeks to deadline (human must confirm date)
+## The next three slots, in order
 
-- **Now:** human confirms TOP_PUBLIC/date and rolling-week capacity, then submits slot 1.
-  Paste score/date into the ledger the same day. One entity, at most three scored files per
-  rolling week; no agent submissions or leaderboard automation.
-- **Following slots:** apply the conditions above. Never use catalogue hide/recover,
-  SGMC, or the leakage canary as a score gate; they are report-only diagnostics.
-- **Later:** with a verified ranking input, test MASS-SHAPE/refill at the winning collar.
-  Otherwise use a licensed external prior for CONCENTRATION, or a one-way SPACING/RELIEF
-  follow-up. No lattice/region-isolated test-location designs.
-- **By the real deadline:** human re-verifies and blind-picks one final file plus a local
-  fallback. There is still no R0 receipt, so do not call any variant receipt-proven best.
+| # | file | what it is | predicted | what the result changes |
+|---|---|---|---|---|
+| 1 | **R0 itself** (`h33-h33-2-b2`, `c55bafc4…`) | the incumbent, resubmitted once | 0.2778 CLAIM → **a RECEIPT** | Nothing is measurable until this exists. Every prediction in five ledgers is unanchored to a real number, and the `le3`/`MASSsup10plus` results are only interpretable as *differences* from R0. **This is the highest-value slot in the whole plan and costs no building.** |
+| 2 | `MASSsup10plus` (`…e23e5141`, 39,023 dots) | +3,540 highest-rank cells, ≥ 3 px collar | −0.002 [−0.007, +0.003] | The only arm whose *sign* the instrument does not settle: new credit 0.041/dot sits just under the 0.056 bar. A gain says the live metric tolerates unmatched mass far better than the algebra implies → reopen additions everywhere. A loss retires the "more mass" direction. |
+| 3 | **the pure collar delete** = `R0 & (d_cat > 3)` | 35,483 dots, 5.77 % | −0.001 [−0.008, +0.007] | One number that settles the largest open question in the fleet: does deleting credit-free mass pay? It is the *measured* version of the parent's own best-ever step (+0.0070 CLAIM). **Caveat:** session 4's file (`…1209e863`) is not reproducible here — the same recipe gives 35,483 dots but sha `f848cf2d…`, so a rebuild must be entered as a NEW row (value `le3-rebuilt`), not as session 4's file (IR-91-18). |
 
-## Mechanism limits
+Do **not** spend slot 2 or 3 on `le8` / `le15` / `sup24minus`: all three are predicted
+losses of 3–7 points and the fleet has already spent 8 slots on exact repeats.
 
-The fixed-count refill cannot preserve R0's inherited d2.8 inhibition spacing at these
-counts: only 722/621/498 legal cells remain versus 941/1,611/4,848 needed. The disclosed
-PRUNE amendment therefore drops that extra rule and measures nearest-neighbour drift;
-`SLOT_PLAN.md` and the mechanism cards carry this limitation. Delete-only variants instead
-confound placement with mass loss. The two families are complementary, not interchangeable.
+**Slots 1–3 are one week's quota.** If R0's receipt lands above TOP_PUBLIC, stop
+climbing and start defending.
+
+## Weeks to the deadline (2026-12-03, ~6 weeks)
+
+| week | plan |
+|---|---|
+| now | Slots as above. Copy every receipt number into `receipt_score` + `receipt_date`. |
+| wk 2 | Read the receipts against this table. If `le3` gains ≥ +0.01 → the withheld truth really is much sparser than any unmasked map, and the next three slots go to the upper PRUNE doses. If it is flat → mass is not the lever; stop pruning. |
+| wk 3–4 | Whatever happens, the next axis needs an **independent fault-density prior resampled to 1 km blocks** (see below). Ask the human for `training_features.tif` again *and* for a licence check on any new external layer. |
+| wk 5–6 | Choose the final file **blind** from the ledger, build a zeros fallback, re-validate both formats, re-read both from disk, and do not touch the winner afterwards. |
+
+## Better axes (proposed, NOT built this session)
+
+1. **PRIOR-MASS: rank dots by exact marginal gain against an independent fault map.**
+   On the restrained SGMC instrument 87.9 % of R0's dots carry **zero** credit and the
+   mean is 0.065, so a gain-ranked drop of the bottom decile is close to free
+   (`+0.010` projected at 10 %, `+0.021` at 20 %). This is the one measured direction
+   with a positive expectation. It is *not* built here because it would consume the
+   only blind control this repo has. Mechanism: credit is a max over dots, so a dot
+   that adds nothing to the max is pure denominator. Confounder: SGMC is a compilation
+   of *mapped* faults, so the ranking would push mass away from known traces — exactly
+   what the live mask already does. Falsifier: build **both** arms (gain-ranked and
+   its sign flip) and require the pair to separate by ≥ 0.01.
+2. **MASS-SHAPE at fixed count through the collar.** Every file in this lineage now
+   sits ≥ 3.16 px from the catalogue, and the organizers say new faults can sit within
+   300 m of known traces. Nobody has tested mass *at* 3–4 px without touching the
+   catalogue. Falsifier: if 3–4 px mass scores at or below background, the organizer's
+   "new faults near known traces" statement does not survive the mask, and the collar
+   should be widened, not narrowed.
+3. **TRACKB (Phase 2 only).** Unchanged: strike-consistent traces ≥ 1 km as GeoJSON +
+   raster with one evidence paragraph each. Not a Phase-1 slot candidate.
+
+## Two housekeeping rules this session adds
+
+* A **`-zeros` twin is not gate-clean under `scripts/validate_release.py`**: it fails
+  `nan_outside_footprint` by design. It passes 13/13 under
+  `gems91.release_gates` with `zeros_outside_footprint` substituted. Upload the NaN
+  primary; keep the zeros twin as the rules-allowed fallback.
+* **Never mark a candidate BUILT without `collar_ge_3px`.** Six draft rows from this
+  session are `SUPERSEDED-DRAFT` for exactly that reason (IR-91-03).

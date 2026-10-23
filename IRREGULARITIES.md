@@ -322,28 +322,77 @@ logged the same finding as IR-86-PRUNE-01.)
 
 ---
 
-## IR-91-17 — R0 byte reproduction is now solved; IR-91-16 is superseded
+## IR-91-16 — MASS was executed without `training_features`, on a substituted ranking
 
-The missing encoder setting was compression **level 9**, not a different libtiff build.
-Using the recorded `deflate / predictor=3 / zlevel=9 / tiled 256` profile on the catalogue
-grid, this session independently rebuilt R0 from each pinned ancestor and reproduced both
-files exactly: NaN `baeae321…` / 355,443 B and zeros `c55bafc4…` / 219,065 B. Recipe source:
-<https://github.com/buffedlizard55-lab/GEMSDOE86/blob/d423f858abf6cb2e63edf67773ed5650d507f78c/scripts/run_prune_ladder.py>.
+The declared MASS input list is `[parent_r0_nan, training_features]` and `training_features.tif`
+is still absent (no mirror, 419 MB). `ledger/README.md` records that every earlier MASS row used
+a ranking that was explicitly *not* the parent's ("0.6*clip(d_catalogue/50)+0.4*uniform(seed88)").
 
-**Decision it changes.** The brief's stop gate is passed by an actual independent recompute,
-not pinned-artifact retrieval or an approximation. `scripts/verify_parent_r0.py` and the new
-builder both fail unless both byte hashes match. Dot-set digests remain useful, but the old
-"file bytes are not reproducible" statement no longer applies.
+**What this session did instead:** ranked each dot by `gaussian_filter(anc_h19_5, σ = 1 px)` —
+the parent's own **generation field**, a pinned, hash-verified input. That is a rank the parent's
+lineage actually produced, but it is **not** the trained marginal-gain ranking the brief asks for.
 
-## IR-91-18 — Fixed-count refill cannot preserve d2.8; PRUNE is the only clean R0 axis here
+**Decision it changes:** the three MASS rows are comparable to each other and reproducible, but
+they cannot claim to be the brief's MASS. Do not cite them as "the parent's own ranking". The
+field rank carries AUC 0.54 for "dot within 3 px of an independent mapped fault" — weak.
 
-A dry feasibility test retained the parent's d2.8 exclusion and found only **722 / 621 / 498**
-legal H19-5 refill cells for the required **941 / 1,611 / 4,848** additions. Even the smallest
-nonzero fixed-count collar is therefore infeasible under that extra constraint. Separately,
-MASS cannot use H19-5 as a ranking because the pinned ancestor is binary, and a non-PRUNE
-child inherits R0's 2,171 dots inside the 3 px gate.
+## IR-91-17 — the SGMC control had to be restricted before it could be trusted
 
-**Decision it changes.** The session uses the lineage's recorded no-inhibition PRUNE refill,
-with exact iterative marginal-DTI coverage and no spacing objective. Nearest-neighbour drift
-is reported as a confound on every card; it is not hidden or called a pure collar-only result.
-PRUNE was chosen over inventing a MASS ranking or shipping a non-compliant non-PRUNE child.
+Scoring the exact DTI against `sgmc_faults_control` **reverses the parent's own winning steps**:
+0.15244 (H19-5) → 0.13766 (d2.8) → 0.10774 (solo) → **0.08938 (R0)**, while the live CLAIM rises
+0.1922 → 0.2600 → 0.2708 → 0.2778. The raw instrument pays for mass sitting on faults the
+organizers mask.
+
+Restricting the control to cells more than 3 px from the catalogue repairs the sign on both
+collar steps (+0.00112, +0.00009 against live +0.0108, +0.0070) but not the field→dots step, and
+its magnitudes are 10–80× too small. It is therefore used for **signs only**, with magnitudes
+rescaled through the lineage's own per-dot economics (2.76e-6 per zero-credit dot → den ≈ 19,877).
+
+**Decision it changes:** every prior-session prediction built on "dots far from the catalogue
+earn nothing" is now suspect. The pending PRUNE `le8`/`le15` rungs measure −0.038 / −0.068 on
+this instrument. `SLOT_PLAN.md` re-orders accordingly. If a receipt ever contradicts this, the
+instrument is the thing to re-examine, not the receipt.
+
+## IR-91-18 — session 4's PRUNE `le3-norefill` is not byte-reproducible here
+
+`h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863` (35,483 dots, sha `1209e863…`) has no build
+script in this repo. Reconstructing the treatment (`R0 & d_cat > 3`) gives **the same 35,483
+dots** but sha `f848cf2d…`, i.e. a different encoding or a different dot set — unresolvable
+without session 4's writer.
+
+**Decision it changes:** the slot-3 file must be rebuilt and entered as a **new ledger row**
+(`value = le3-rebuilt`), never as session 4's row. Same treatment, different bytes.
+
+---
+
+## IR-91-19 — two sessions measured the same PRUNE ladder and disagree on its sign
+
+The PRUNE-extension session (merged to `main` as #9) predicts **+0.003 / +0.005 / +0.008** for
+`le4` / `le5` / `le10` and recommends submitting `le10` first. This session measures the same
+six rungs with the calibrated SGMC instrument (IR-91-17) and gets **−0.009 / −0.020 / −0.048**
+for those three, i.e. the recommendation is the worst-measured dose.
+
+The two cannot both be right, and the disagreement is a single assumption: whether the dots at
+3–15 px from the catalogue earn new-fault credit. The extension session assumes ~zero (pure
+denominator saving); this session measures 0.10–0.15 credit per deleted dot against a 0.056
+break-even.
+
+**Decision it changes:** do not spend a slot on `le4`/`le5`/`le10` on the strength of the
+`+0.008` prediction. `le3` is the only rung whose sign is genuinely unsettled, and it is also
+the cheapest test of the assumption — one receipt on `le3` decides the whole ladder.
+
+## IR-91-20 — `main` and this branch both edited `releases/MANIFEST.json`, `ci.yml`, the ledger and the slot plan
+
+Resolved by union: 38 ledger rows (no duplicate id / sha256 / (parent, axis, value)), 18
+reproducible files in the release manifest, and a CI that rebuilds SPACING, PRUNE and MASS.
+Both sides' rows survive with their original provenance strings. Anyone reading a `main`
+document should check `SLOT_PLAN.md` and IR-91-19 before following the PRUNE order.
+
+**Addendum (same day, merge 2):** `main` then landed a PRUNE-**refill** axis (#10,
+`evidence/prune_refill_axis_20261023.json`). Those files keep the count fixed, so the
+denominator saving and the credit loss are traded one-for-one and the instrument's verdict is
+not transferable from the delete-only rungs above. It has **not** been measured with the
+calibrated instrument; treat its predictions as uncalibrated until it is.
+
+**Merge 2 housekeeping:** 41 ledger rows after the second union, still no duplicate id /
+sha256 / (parent, axis, value). CI rebuilds SPACING, PRUNE (delete-only + refill) and MASS.

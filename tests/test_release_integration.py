@@ -5,6 +5,8 @@ them first, so these run there.
 """
 from __future__ import annotations
 
+import csv
+import json
 import sys
 from pathlib import Path
 
@@ -71,52 +73,36 @@ def test_template_carries_the_catalogue_not_zeros():
 
 
 def test_every_release_passes_every_gate():
+    """Every reproducible release passes the gates of its OWN encoding and ledger row.
+
+    Session 3 assumed every release holds the parent's dot count; MASS arms
+    deliberately do not, so the count is checked against the ledger row that owns
+    the hash. Files absent from `releases/MANIFEST.json` are audit-only withdrawn
+    drafts (ledger status SUPERSEDED-DRAFT) and are not required to be present.
+    """
     cat = geom.catalogue_mask(io.read_grid(CATALOGUE))
+    manifest = json.loads((ROOT / "releases" / "MANIFEST.json").read_text())
+    stated = {f["file"]: f["sha256"] for f in manifest["files"]}
+    with (ROOT / "ledger" / "submissions.csv").open(newline="", encoding="utf-8-sig") as fh:
+        rows = list(csv.DictReader(fh))
+    by_sha = {r["sha256"]: r for r in rows}
+    by_sha_zeros = {r.get("sha256_zeros"): r for r in rows if r.get("sha256_zeros")}
     files = sorted((ROOT / "releases").glob("*.tif"))
     assert files, "no releases built"
-    # Expected dots per release: read ledger if available, else default to 37654.
-    ledger = {}
-    ledger_path = ROOT / "ledger" / "submissions.csv"
-    if ledger_path.is_file():
-        import csv
-        with open(ledger_path, newline="", encoding="utf-8") as fh:
-            for row in csv.DictReader(fh):
-                try:
-                    n = int(row.get("n_dots", "").strip())
-                except Exception:
-                    continue
-                for key in (row.get("sha256", ""), row.get("sha256_zeros", ""), row.get("id", "")):
-                    if key:
-                        ledger[key.strip()] = n
-                        # also map sha8 for short-id lookups
-                        if len(key.strip()) == 8:
-                            ledger[key.strip()] = n
     for f in files:
+        if f.name not in stated:
+            continue                       # withdrawn draft: audit trail only
         enc = "zeros" if f.name.endswith("-zeros.tif") else "nan"
-        # Try ledger lookup by file stem sha8 or full sha; fall back to parent count.
-        sha = None
-        try:
-            sha = io.sha256_file(f)
-        except Exception:
-            pass
-        # Extract sha8 from filename: last dash segment before extension
-        stem = f.stem.replace("-zeros", "")
-        sha8 = stem.split("-")[-1] if "-" in stem else ""
-        expect = ledger.get(sha) or ledger.get(sha8) or ledger.get(stem) or 37654
-        # For PRUNE delete-only variants the ledger n_dots is intentionally < 37654;
-        # use it if present, otherwise accept any n_dots that respects the 1-50% rule.
-        rep = gates.validate_release(f, template=TEMPLATE, catalogue=cat, encoding=enc,
-                                     expect_dots=expect)
-        if not rep["PASS"] and "count_matches_parent" in rep["failed"]:
-            # Fallback: count_matches_parent is not a MUST gate for delete-only PRUNE
-            # (brief §5 allows 1-50% of dots to change, mass not fixed). Verify the
-            # file still respects the 1-50% band when compared to ledger or parent.
-            n_dots = rep.get("n_dots")
-            pct = abs(n_dots - 37654) / 37654 * 100 if isinstance(n_dots, int) else 0
-            assert 1.0 <= pct <= 50.0 or n_dots == 37654, (f.name, rep["failed"], f"pct {pct}")
-            # Re-check without expect_dots: all other gates must pass.
-            rep2 = gates.validate_release(f, template=TEMPLATE, catalogue=cat, encoding=enc)
-            assert rep2["PASS"], (f.name, rep2["failed"])
-        else:
-            assert rep["PASS"], (f.name, rep["failed"])
-        assert rep["min_catalogue_distance_px"] > 2.0
+        # Look the file up in the ledger by full sha256 (nan) / sha256_zeros (twin)
+        # and check the count against ITS OWN row: MASS and PRUNE arms change the
+        # count on purpose; SPACING arms hold it at the parent's 37,654.
+        rep = gates.validate_release(f, template=TEMPLATE, catalogue=cat, encoding=enc)
+        assert rep["PASS"], (f.name, rep["failed"])
+        row = (by_sha_zeros if enc == "zeros" else by_sha).get(stated[f.name])
+        assert row is not None, f"{f.name}: no ledger row owns this hash"
+        assert rep["n_dots"] == int(row["n_dots"]), f.name
+        # MASS arms carry the brief-4.4 collar (>= 3 px). SPACING arms predate
+        # IR-91-03 and inherit R0's 2.236 px floor, so they are held to the parent's
+        # own floor and are still not submittable without a collar edit.
+        floor = 3.0 if row.get("axis") == "MASS" else 2.0
+        assert rep["min_catalogue_distance_px"] > floor, (f.name, rep["min_catalogue_distance_px"])

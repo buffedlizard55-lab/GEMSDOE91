@@ -259,32 +259,47 @@ none was given.
 
 ---
 
-# Session disclosure (`arena/a52f2ac7`, fixed-count PRUNE / H19-cover)
+# Session 5 (2026-10-23, `arena/7dffc20d`) — MASS
 
-## What the AI wrote and decided
+## What the AI wrote
 
-- Chose **PRUNE** without prompting for an axis. R0's inherited 2–3 px dots make a direct
-  non-PRUNE child fail the collar gate; H19-5 is binary and cannot supply a MASS ranking.
-- Wrote `src/gems91/lineage.py`, `prune_refill.py`, `scripts/build_prune_refill.py`, their
-  unit/integration tests, the exact-greedy refill algorithm, and the byte-exact R0 verifier.
-  The encoder recipe came from the pinned-commit source linked in IR-91-17.
-- Froze three doses and MODEL predictions in `registry/prune_refill_preregistration.json`
-  before computing any PROXY or SGMC result. Built three NaN/zeros release pairs and wrote
-  their evidence, ledger rows, mechanism cards, slot plan and submission instructions.
-- Chose the no-inhibition refill only after measuring that d2.8 made every fixed-count dose
-  infeasible. Reported nearest-neighbour drift rather than presenting the edit as spacing-free.
-- Merged main's later `le4`/`le5`/`le10` ladder without dropping either builder or any ledger
-  row. Chose the combined default queue `le10 → p2.9 → le4`; kept `p2.5` as fallback and
-  `p4.5` as a conditional negative-prediction falsifier. CI now checks both release manifests.
-- No submission, login, leaderboard access, credential access, label probe, or contact with
-  drivendata.org / dropbox.com occurred. Inputs came only from hash-verified manifest pins.
+* `scripts/build_mass.py` — the whole builder: pin checks, parent proof, ranking, three arms,
+  gates, ledger and evidence writer. Written by the AI, reviewed by nobody yet.
+* `tests/test_mass_axis.py` — unit tests for the pure functions (ranking, prediction algebra,
+  greedy separation). No competition data required.
+* The session-5 sections of `docs/MECHANISM_CARDS.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md`,
+  `README.md` (CURRENT STATE), `IRREGULARITIES.md` (IR-91-16/17/18), `ledger/README.md`.
+* `evidence/mass_axis_20261023.json` — every number quoted in those documents.
 
-## Human decisions still required
+## What the AI decided, and the human should check
 
-1. Supply `TOP_PUBLIC` with its date, this week's remaining slots, and the R0 receipt if available.
-2. Confirm the 2026-12-03 deadline on the competition page; the agent did not fetch it.
-3. Decide whether the conditional third `le4` slot justifies a receipt under `SLOT_PLAN.md`.
-   The separate `p4.5` falsifier has a negative preregistered prediction; its default is unused.
-4. Paste every submission-page receipt into the ledger and make the final/fallback choices blind.
-5. Supply the pinned `training_features.tif` if future MASS / RELIEF / independent-prior work is
-   wanted. It was not needed for, or approximated in, this session.
+1. **Axis = MASS**, chosen because `ledger/README.md` documents it as the one open axis and the
+   brief allows the agent to pick the session axis.
+2. **Ranking = the parent's generation field**, not the trained marginal-gain ranking (absent).
+   Logged as IR-91-16; the arms are not "the parent's own ranking" in the brief's sense.
+3. **Common collar normalisation in all three arms** (2,171 dots at ≤ 3 px). Without it no
+   R0-derived file can pass `collar_ge_3px` (IR-91-03), so the arms would be unshippable. The
+   edit is identical in every arm, which is what keeps the comparison clean — but it is a PRUNE
+   edit bundled into a MASS build, and the human may prefer to re-base on R1 instead.
+4. **The SGMC instrument was restricted** (drop cells ≤ 3 px from the catalogue) after the raw
+   version was shown to reverse the lineage's own winning steps (IR-91-17). The restriction was
+   chosen *after* seeing that reversal, so it is a post-hoc instrument choice — the calibration
+   table is in the evidence file for anyone who wants to disagree with it.
+5. **Predictions were flipped twice inside the session** (positive → negative) as the instrument
+   was calibrated. Both earlier drafts and their predictions are still in the ledger, marked
+   `SUPERSEDED-DRAFT`, so the flip can be audited rather than taken on trust.
+6. **No slot candidate was produced with a positive expectation.** The AI did not manufacture
+   one; the honest recommendation is to spend slot 1 on R0 to get the first receipt.
+
+## What the AI did NOT do
+
+* No fetch from drivendata.org or dropbox.com; no credentials read, written or logged.
+* Nothing submitted; no login, no scraping, no leaderboard automation.
+* No label probing: the SGMC compilation is a public USGS map, not the withheld truth, and no
+  file was built to isolate a region or a pattern.
+* No file was edited after being certified.
+
+## Still the human's decisions
+
+`TOP_PUBLIC` and the slot count; R0's receipt; the deadline; the 3 px collar ruling (IR-91-03);
+whether the substituted MASS ranking is acceptable (IR-91-16); and the blind final pick.
