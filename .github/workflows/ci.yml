@@ -110,6 +110,9 @@ jobs:
           echo "byte-identical across two rebuilds (no RNG in the build)"
       - name: Rebuild the RELIEF arms from the pinned inputs
         run: python scripts/build_relief.py --build --skip-fold-proxy
+      # ~90 s: 19-band leakage canary is the slow part; deterministic, no RNG.
+      - name: Rebuild the SNAP arms from the pinned inputs
+        run: python scripts/build_snap.py --build
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
       - name: Every rebuilt file is byte-identical to its committed manifest

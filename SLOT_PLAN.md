@@ -1,10 +1,33 @@
 # SLOT PLAN — 1 entity, 3 scored slots / rolling week, 1 blind final pick
 
-**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `41` `BUILT` rows across five merged axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
+**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `44` `BUILT` rows across six merged axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`, `SNAP`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
 
 ## Session 5 (`arena/42de3fed-gemsdoe91`) addition: `RELIEF` (`r2p12`, `r2b12`, `b2r12`)
 
 Restoring `training_features` (`gems-geodawn-numerical-features.tif`, sha256 `4371c82e…3bc5` `RECEIPT`) unblocked all six axes (`16/16` manifest checks pass `RECEIPT`). `RELIEF` relocates `4,518` dots (`12.00%` moved; `9,036` symmetric pixel diff = `24.00%` `RECEIPT`) at fixed count (`37,654` `RECEIPT`) and zero catalogue-collar drift (`2,171 -> 2,171` `RECEIPT`) across equal-area terciles `0.90·pct(det_elev) + 0.10·pct(det_elev_slope)`: `RELIEFr2p12` (`6ff08e5c`, `+0.006` `MODEL`), donor-twin `RELIEFr2b12` (`27443c30`, `+0.003` `MODEL`), and directional sign-flip `RELIEFb2r12` (`e1fd28d5`, `+0.005` `MODEL`, `+5.2%` off-catalogue SGMC `PROXY`, [USGS DS-1052](https://pubs.usgs.gov/ds/1052/)).
+
+## Session 6 (`arena/9b8f7d01-gemsdoe91`) addition: `SNAP` (`s2c`, `s2q75`, `s2f`)
+
+First SNAP build in the repo. Shared driver = bands 3 `tmi_hg` + 18 `iso_grav_anom_hg`,
+600 m high-pass, 1.5 px smoothing; radius 2 px; targets `> 3 px` off-catalogue; R0's
+2,171 collar dots quarantined (`0` collar drift `RECEIPT`); count fixed 37,654.
+Measured dose: 2,047 / 4,495 / 35,174 dots moved, mean displacement 0.080 / 0.237 / 1.733 px.
+
+**The axis fails its control.** The catalogue PROXY cannot move by construction (targets
+floored at 3 px; only the quarantined collar sits closer, IR-91-28), so the only independent
+locator is the off-catalogue USGS SGMC map, and there the sign is negative and grows with dose
+(`+0.00008`, `−0.00234`, `−0.00926` ΔDTI). With `DTI = T/(0.2T + 0.2(S−M) + 0.8|G|)`, a live
+`+0.01` needs `ΔT/T ≈ +3.6 %`; the arms deliver `+0.08 %`, `−2.5 %`, `−9.8 %` on SGMC.
+
+| id | rule | `MODEL` prediction | what the receipt would change |
+|---|---|---|---|
+| `…-SNAPs2c-…-86b27de1` | 3×3 crest, 5.44 % moved | **+0.000** `[−0.006,+0.006]` | `≥ +0.006`: local crests carry locational signal → raise the dose in Week 2. `≤ −0.006`: gradient crests sit off-trace at this scale → retire SNAP. |
+| `…-SNAPs2q75-…-8aa75390` | window max, gain ≥ p75, 11.94 % | **−0.004** `[−0.012,+0.005]` | Beating `s2c` by `≥ +0.006` would mean the negative SGMC signal is a mapped-fault artefact; otherwise it confirms the control. |
+| `…-SNAPs2f-…-c2391234` | full window max, 93.41 % moved | **−0.014** `[−0.028,+0.004]` | Pre-registered extreme: a re-layout, not a snap (IR-91-29). Live `≥ 0` would refute the SGMC transfer for new faults; `≈ −0.014` retires SNAP. |
+
+**Slot guidance:** SNAP stays out of the top 3. If the human wants an axis-retirement test, spend
+one slot on `s2c` (predicted no change); `s2f` is a negative control, not a slot candidate.
+The three arms are one dose-response experiment — do not spend three slots on them.
 
 ## Next 3 scored slots in order (Week 1: one orthogonal axis per slot)
 
@@ -20,6 +43,18 @@ Restoring `training_features` (`gems-geodawn-numerical-features.tif`, sha256 `43
 - **Week 2 (slots 4–6):** Bracket any Week-1 `≥ +0.010` `RECEIPT` winner (`RELIEFb2r12` vs `RELIEFr2b12`, `MASScons3add`, or top proposed axis below).
 - **Weeks 3–4 (slots 7–12):** Compose two orthogonal `≥ +0.010` `RECEIPT` winners one step at a time onto a receipted parent.
 - **Weeks 5–6 (slots 13–18 + 1 blind final):** Re-verify best receipted build + conservative fallback (`-zeros` / R0) on disk; pick **one** blind final file before `2026-12-03`.
+
+4. **`SNAP-2` — downdip-offset crest snap (`sign-flipped` SNAP)**
+   - **Mechanism:** SNAP failed its control because a horizontal-gradient maximum sits *downdip*
+     of the fault trace when the source dips or is magnetised (upward continuation); the session's
+     monotone negative SGMC response is exactly what that offset predicts. If the offset is real,
+     moving dots 1-2 px **away** from the crest, toward the basin, should recover credit where
+     moving onto the crest lost it.
+   - **Confounder:** the offset varies with dip (40-65 deg) and depth to basement, so a constant
+     shift over-corrects on steep, shallow sources; pixel noise maxima are still in the driver.
+   - **Falsifier:** a 10 % / 20 % downdip-shift ladder (count fixed, collar quarantined) that does
+     not beat `SNAPs2c` (`86b27de1`) by `>= +0.006` on the off-catalogue SGMC control and is not
+     `>= +0.010` live — then the gradient field is simply a worse locator and SNAP is closed.
 
 ## Proposed better axes (not built this session; all inputs now verified)
 
