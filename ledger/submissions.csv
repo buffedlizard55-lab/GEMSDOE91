@@ -1,0 +1,2 @@
+id,parent,axis,value,n_dots,pct_changed,sha256,status,predicted_change,receipt_score,date,description
+h33-h33-2-b2-PRUNEp2p6-20261023-d7ebdd61,h33-h33-2-b2,PRUNE,p2p6,37654,2.50,d7ebdd616d15f5b2f7ac34a7805c82605cf6eae1b51651b9bf773261d54f1e92,BUILT,"MODEL:+0.001 [-0.007,+0.009]",,,"Fixed N=37,654; remove R0 dots at d_cat≤2.6px and exact-marginal refill on H19-5 support at d_cat>2.6px."
