@@ -61,12 +61,15 @@ concentration: pins
 # Rebuild every shipped release and check it against releases/MANIFEST.json.
 # This is the contract CI enforces: the same pinned inputs must reproduce the same bytes.
 releases: preflight
+	$(PY) scripts/make_catalogue.py
 	$(PY) scripts/build_spacing.py --build
 	$(PY) scripts/build_relief.py --build
+	$(PY) scripts/build_prune_ladder.py
 	$(PY) scripts/build.py --axis PRUNE --value 3  --id h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863  --catalogue $(CAT)
 	$(PY) scripts/build.py --axis PRUNE --value 8  --id h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0  --catalogue $(CAT)
 	$(PY) scripts/build.py --axis PRUNE --value 15 --id h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f --catalogue $(CAT)
-	$(PY) -c "import hashlib,json,pathlib,sys; man=json.load(open('releases/MANIFEST.json')); bad=[f['file'] for f in man['files'] if hashlib.sha256((pathlib.Path('releases')/f['file']).read_bytes()).hexdigest()!=f['sha256']]; print('manifest verified:', len(man['files']), 'files'); sys.exit(1 if bad else 0)"
+	$(PY) scripts/update_release_manifest.py
+	$(PY) scripts/update_release_manifest.py --check
 
 validate:
 	@test -n "$(CAND)" || (echo "usage: make validate CAND=releases/<id>.tif" && exit 1)

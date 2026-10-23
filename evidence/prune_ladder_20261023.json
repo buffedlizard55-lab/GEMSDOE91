@@ -1,0 +1,180 @@
+{
+  "generated_utc": "2026-10-23T21:35:26.760328+00:00",
+  "parent": "h33-h33-2-b2",
+  "variants": {
+    "le4-norefill": {
+      "id": "h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e",
+      "max_px": 4.0,
+      "stats": {
+        "n_parent_dots": 37654,
+        "removed": 3825,
+        "refilled": 0,
+        "n_dots": 33829,
+        "pct_changed": 10.16,
+        "min_dist_catalogue_px": 4.12,
+        "cat_distance_ok": true
+      },
+      "sha256": "360fe57edd8286393a180f0ae53c8259899c4344e5bc7f4c4ec20dcdf28530a7",
+      "sha256_zeros": "b2c4fa39c78c2f02cd17bcf932ca910369be6b7c222ec0f3e4fde6da3f001be4",
+      "sha8": "360fe57e",
+      "gates_nan": {
+        "band count == 1": true,
+        "dtype float32": true,
+        "CRS matches": true,
+        "shape matches": true,
+        "transform matches": true,
+        "re-read from disk matches in-memory band": true,
+        "no NaN/Inf inside footprint": true,
+        "NaN outside footprint": true,
+        "values in [0,1]": true,
+        "mass present": true,
+        "zero catalogue mass": true,
+        "sha256 not already in ledger": true,
+        "parent-diff statistics recorded": true,
+        "sha256": true
+      },
+      "gates_text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=360fe57edd82\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=33829.0 over 33829 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=360fe57edd8286393a180f0ae53c8259899c4344e5bc7f4c4ec20dcdf28530a7 new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 3825 pixels changed (10.16% of parent dots), parent dots=37654 child dots=33829, mass 37654.0 -> 33829.0\n[PASS] sha256: 360fe57edd8286393a180f0ae53c8259899c4344e5bc7f4c4ec20dcdf28530a7",
+      "proxy": {
+        "proxy_mean_credit": 0.0,
+        "proxy_mean_credit_ci95": 0.0,
+        "proxy_coverage": 0.0,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 10079,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.7918
+      },
+      "block_cv_1km": 0.6256,
+      "uniform_truth": {
+        "uniform_truth_mean_credit": 0.06104141,
+        "uniform_truth_cells_uncovered": 4529809,
+        "cells": 5167373
+      },
+      "canary": {
+        "canary_auc": 0.5,
+        "note": "PRUNE delete-only has no moved dots in child; canary not applicable"
+      },
+      "min_dcat_remaining": 4.123105625617661
+    },
+    "le5-norefill": {
+      "id": "h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987",
+      "max_px": 5.0,
+      "stats": {
+        "n_parent_dots": 37654,
+        "removed": 5637,
+        "refilled": 0,
+        "n_dots": 32017,
+        "pct_changed": 14.97,
+        "min_dist_catalogue_px": 5.1,
+        "cat_distance_ok": true
+      },
+      "sha256": "5b6d39870bc0fe9813813f231a56e3b9425e7e2ec149e3e2de8f3ae654b14ce8",
+      "sha256_zeros": "2ecee552504209488ab5d2a0066dbd87f19cd4b1baea3003a4c34935b78e20c2",
+      "sha8": "5b6d3987",
+      "gates_nan": {
+        "band count == 1": true,
+        "dtype float32": true,
+        "CRS matches": true,
+        "shape matches": true,
+        "transform matches": true,
+        "re-read from disk matches in-memory band": true,
+        "no NaN/Inf inside footprint": true,
+        "NaN outside footprint": true,
+        "values in [0,1]": true,
+        "mass present": true,
+        "zero catalogue mass": true,
+        "sha256 not already in ledger": true,
+        "parent-diff statistics recorded": true,
+        "sha256": true
+      },
+      "gates_text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=5b6d39870bc0\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=32017.0 over 32017 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=5b6d39870bc0fe9813813f231a56e3b9425e7e2ec149e3e2de8f3ae654b14ce8 new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 5637 pixels changed (14.97% of parent dots), parent dots=37654 child dots=32017, mass 37654.0 -> 32017.0\n[PASS] sha256: 5b6d39870bc0fe9813813f231a56e3b9425e7e2ec149e3e2de8f3ae654b14ce8",
+      "proxy": {
+        "proxy_mean_credit": 0.0,
+        "proxy_mean_credit_ci95": 0.0,
+        "proxy_coverage": 0.0,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 9503,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8178
+      },
+      "block_cv_1km": 0.6261,
+      "uniform_truth": {
+        "uniform_truth_mean_credit": 0.05777401,
+        "uniform_truth_cells_uncovered": 4563597,
+        "cells": 5167373
+      },
+      "canary": {
+        "canary_auc": 0.5,
+        "note": "PRUNE delete-only has no moved dots in child; canary not applicable"
+      },
+      "min_dcat_remaining": 5.0990195135927845
+    },
+    "le10-norefill": {
+      "id": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae",
+      "max_px": 10.0,
+      "stats": {
+        "n_parent_dots": 37654,
+        "removed": 11360,
+        "refilled": 0,
+        "n_dots": 26294,
+        "pct_changed": 30.17,
+        "min_dist_catalogue_px": 10.05,
+        "cat_distance_ok": true
+      },
+      "sha256": "04002dae86db72c3fc47652bd66e3ec029e432c909cad779039e9e3749ae0839",
+      "sha256_zeros": "0842d86618dbe64acf6dfb4137feff423a9dc394b59d153317381fc22b06dbb8",
+      "sha8": "04002dae",
+      "gates_nan": {
+        "band count == 1": true,
+        "dtype float32": true,
+        "CRS matches": true,
+        "shape matches": true,
+        "transform matches": true,
+        "re-read from disk matches in-memory band": true,
+        "no NaN/Inf inside footprint": true,
+        "NaN outside footprint": true,
+        "values in [0,1]": true,
+        "mass present": true,
+        "zero catalogue mass": true,
+        "sha256 not already in ledger": true,
+        "parent-diff statistics recorded": true,
+        "sha256": true
+      },
+      "gates_text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=04002dae86db\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=26294.0 over 26294 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=04002dae86db72c3fc47652bd66e3ec029e432c909cad779039e9e3749ae0839 new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 11360 pixels changed (30.17% of parent dots), parent dots=37654 child dots=26294, mass 37654.0 -> 26294.0\n[PASS] sha256: 04002dae86db72c3fc47652bd66e3ec029e432c909cad779039e9e3749ae0839",
+      "proxy": {
+        "proxy_mean_credit": 0.0,
+        "proxy_mean_credit_ci95": 0.0,
+        "proxy_coverage": 0.0,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 7887,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8632
+      },
+      "block_cv_1km": 0.6268,
+      "uniform_truth": {
+        "uniform_truth_mean_credit": 0.04744725,
+        "uniform_truth_cells_uncovered": 4671254,
+        "cells": 5167373
+      },
+      "canary": {
+        "canary_auc": 0.5,
+        "note": "PRUNE delete-only has no moved dots in child; canary not applicable"
+      },
+      "min_dcat_remaining": 10.04987562112089
+    }
+  }
+}

@@ -386,3 +386,105 @@ recipient off support in all three arms (recorded in the evidence JSON as
 
 **Decision it changes.** Any later axis that relocates mass must report its on/off-support mix
 per arm and hold it constant, or the receipt cannot be attributed.
+
+---
+
+## IR-91-21 — on the only visible truth, every PRUNE dose deletes 100 % of the measurable credit
+
+**Assumption behind the ladder** (`SLOT_PLAN.md`, sessions 4 and the parallel PRUNE session):
+deleting the low-gain halo removes mass that earns no credit, so `S - M` falls while `T` holds,
+and DTI rises with dose (+0.002 → +0.010 MODEL).
+
+**What is actually measurable.** Scoring the parent and all 12 shipped files against the only
+truth reachable from here — the 60,988-cell catalogue carried by `sample_submission.tif` —
+and decomposing the change (`scripts/crosscheck_predictions.py`,
+`evidence/predictions_crosscheck_20261023.json`):
+
+| band to nearest catalogue cell | dots | share of dots | share of credit `T` | mean credit per dot |
+|---|---:|---:|---:|---:|
+| 0–3 px | 1,611 | 4.28 % | **100 %** | 0.2371 |
+| 3–5 px | 3,237 | 8.60 % | 0 % | 0.0000 |
+| 5–10 px | 6,292 | 16.71 % | 0 % | 0.0000 |
+| 10–20 px | 7,908 | 21.00 % | 0 % | 0.0000 |
+| 20–40 px | 8,454 | 22.45 % | 0 % | 0.0000 |
+| ≥ 40 px | 10,152 | 26.96 % | 0 % | 0.0000 |
+
+R0: `dti_proxy` 0.006778, `T` 381.9, `M` 277.9. **Every PRUNE dose from `le3` (which deletes
+exactly the 0–3 px band) to `le15` computes to `T = 0`, `dti_proxy = 0.000000` — a −0.00678
+(−100 %) change on this instrument.** No dose can be justified here as "pure mass relief": each
+one deletes the entire set of dots that provably earns anything at all.
+
+**Break-even, exactly.** Removing a dot of mass 1 with credit `K` and best match `m` raises DTI
+iff `K < 0.2·DTI·(1−m)/(1−0.2·DTI)`. At the claimed live 0.2778 and the parent's own collar
+geometry (`m = 0.25`) that is **0.044 credit per deleted dot** (0.059 if `m = 0`). The 1,611
+collar dots average 0.237 — five times the bar. The other 36,043 dots score exactly zero here,
+but zero *on mapped faults*, which is not evidence about the unmapped ones the metric rewards.
+
+**Decision it changes.** The +0.002…+0.010 ladder is not a general statement about mass; it is
+one conditional claim — *the organisers' new faults are nowhere near the parent's dots* — and the
+only instrument in this sandbox cannot test it. So: (1) no further PRUNE doses are built; six is
+enough to cover the 1–50 % band; (2) the first receipt must be read as a test of that
+assumption, not of "dose", and the fork table in `SLOT_PLAN.md` now says what a flat result
+means; (3) `SPACINGspread40` becomes the co-favoured second slot because it is the **only**
+shipped arm that *raises* the measurable credit (+16 % `T`, +0.00108 proxy) instead of
+destroying it.
+
+## IR-91-22 — R0's 0.2778 CLAIM is 41× what the visible truth supports
+
+**The claim:** R0 scores 0.2778 (no receipt in any ledger in this lineage — 32 rows, 0 receipts).
+
+**The measurement:** the same file scores **0.006778** against the catalogue, under the repo's
+own re-derivation of the brief's algebra (`T` 381.9; `S` 37,654; `M` 277.9; `|G|` 60,988).
+
+**Why the gap cannot be dismissed as "the catalogue is smaller".** `|G|` enters the denominator
+as `0.8·|G|`, so a *larger* real truth count makes DTI *smaller*, not larger. For 0.2778 to be
+real at 37,654 unit-mass dots, the mean kernel credit per dot would have to be ≈1.4 — within
+20 % of the theoretical ceiling for this kernel (≈7.4 per dot, and only if every dot sits in a
+continuously-mapped patch), and roughly 40× the coverage the parent achieves against the only
+fault map available here. That is possible only if the hidden truth is a far denser and more
+"dotted" set than the catalogue, which the brief's own description does not imply.
+
+**Ranked explanations, cheapest first.** (a) The aggregate form of the formula in the brief is a
+misreading and the organiser averages per truth pixel instead — that is IR-91-5, still open, and
+it changes the *scale* of every prediction in the ledger while leaving their *sign* intact;
+(b) R0's 0.2778 came from a different file than the one in `registry/`; (c) the truth really is
+that dense and this instrument is simply blind to it.
+
+**Decision it changes.** Every agent prediction is a **difference** from R0, so the ranking of
+candidates survives either way — but no absolute number here may be quoted as a score, and the
+first receipt in this lineage should be read for its *sign and size*, not as confirmation of
+0.2778. If the human has ever seen a leaderboard row for R0, recording it (with date) settles
+this in one line and is worth a slot in itself.
+
+## IR-91-23 — MASS in the brief's sense is unbuildable from this lineage: no rank is stored
+
+**The rule** (brief §5, MASS): "drop the lowest-ranked 10 % / add the next-ranked 10 %, by the
+parent's own ranking (rebuild the ranking from the recorded recipe if it is not stored)".
+
+**What the lineage actually contains.** Four ancestor masks, re-checked pairwise this session:
+
+| relation | cells | verdict |
+|---|---:|---|
+| `R0` (37,654) not in `solo_d2_8` (40,199) | **0** | strict subset |
+| `solo_d2_8` not in `d2_8` (44,090) | **0** | strict subset |
+| `d1_5` (60,069) not in `h19_5` (121,131) | **0** | strict subset |
+| `d2_8` not in `d1_5` | **14,241** | **siblings, not a chain** |
+| `d1_5` not in `d2_8` | **30,220** | **siblings, not a chain** |
+
+All five are binary support masks. There is no continuous score field anywhere in the lineage, no
+ranking artifact, and no recorded recipe containing a rank. Worse for the axis: the lineage
+*branches* — two sibling thinning branches keep 14,241 cells that the other does not, and vice
+versa — so "the next-ranked 10 %" is not even well defined as "what the lineage rejected". The
+only ordering recoverable is the coarse tier of "survived which thinning step", and within R0 —
+the only tier a "lowest-ranked 10 %" could be drawn from — every dot is tied.
+
+**What the three imported MASS rows did instead.** They scored dots with
+`0.6·clip(d_catalogue_px/50,0,1) + 0.4·uniform(seed 88)` — a distance-to-catalogue ranking, i.e.
+PRUNE with noise — and said so in their own `form_note`.
+
+**Decision it changes.** I did not build MASS on a fabricated rank: it would have produced three
+more files whose predictions rest on an assumption the axis exists to test. MASS stays unbuilt
+until a rank artifact is recovered; the substitute experiment is already shipped — the six PRUNE
+doses test the same "drop the low-value mass" mechanism with a rank we can actually defend
+(distance to the organisers' own catalogue), and `SPACINGspread40/clump40/jitter40` test
+arrangement at fixed rank.

@@ -14,12 +14,17 @@ No script here submits anything. One entity, three scored slots a week, one fina
   feature stack**, which was reassembled this session from five hash-pinned parts and
   matches its pin `4371c82e…` byte for byte (IR-91-17). Every axis reads **READY**:
   PRUNE, MASS, SNAP, CONCENTRATION, RELIEF, TRACKB.
-- **Best receipt:** **none.** 29 ledger rows, 0 receipts. `0.2778` for R0 is a **CLAIM**.
+- **Best receipt:** **none.** **32** ledger rows, 0 receipts. `0.2778` for R0 is a **CLAIM**.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
 - **Slots left this week:** **__ / __ (human must fill).**
 - **AXIS for this session: RELIEF** — chosen, not assigned. It was the only axis with **zero
-  ledger rows** (PRUNE 7, SNAP 9, CONCENTRATION 4, MASS 3, SPACING 3), and it is the axis the
-  brief names as the last untested one.
+  ledger rows** (PRUNE 10 now, SNAP 9, CONCENTRATION 4, MASS 3, SPACING 3). MASS was checked first
+  and ruled out for a documented reason, not for time: the lineage stores no rank at all, and its
+  two thinning branches disagree about 44,461 cells, so "the parent's own ranking" cannot be
+  reconstructed (IR-91-23).
+- **Shipped and reproducible: 12 release pairs (24 files)**, all listed with axis and dot count
+  in `releases/MANIFEST.json` and all rebuilt by `make releases`: SPACING ×3, RELIEF ×3,
+  PRUNE delete-only ×6 (`le3`, `le4`, `le5`, `le8`, `le10`, `le15`).
 - **Variants built this session: 3, all gate-clean** (14/14 `validate_raster`, `PASS` in
   `validate_release`, count fixed, ≥3 px collar on every new dot, canary 0.424 ≪ 0.90).
 
@@ -29,9 +34,23 @@ No script here submits anything. One entity, three scored slots a week, one fina
   | `…-RELIEFm2r15-…-3c3e832d` | piedmont→range (sign flip) | 5,648 (15.00 %) | → .204/**.268**/**.527** | **−0.0070** [−0.017, +0.003] |
   | `…-RELIEFnull15-…-6c057de2` | relocation null | 5,648 (15.00 %) | → .205/.417/.378 (unchanged) | **0.0000** [−0.010, +0.010] |
 
-- **Next 3 slots (see `SLOT_PLAN.md`):** not RELIEF. Slot 1 = `PRUNEle15norefill`
-  (rebuilds byte-identically here, predicted +0.010 — the largest on the board); slots 2–3 are
-  conditional on that receipt.
+- **Cross-check (new, and it reorganises the plan):** scored against the only truth visible here,
+  R0 gets `dti_proxy` 0.006778 and **100 % of its measurable credit comes from 1,611 dots inside
+  3 px of a mapped trace**; every PRUNE dose deletes that band, so all six compute to `T = 0`.
+  `SPACINGspread40` is the only shipped arm that *raises* measurable credit (+16 %). The PRUNE
+  ladder is therefore one conditional claim about unmapped faults, not a dose-response
+  (IR-91-21), and 0.2778 sits 41× above what this instrument supports (IR-91-22).
+- **Next 3 slots (see `SLOT_PLAN.md`):** slot 1 = **`PRUNEle15norefill`** (the only file whose
+  MODEL range crosses +0.01), slot 2 = **`SPACINGspread40`** (the only credit-adding arm), slot 3 =
+  conditional on slot 1's sign. RELIEF waits; `le3`/`le4`/`le5`/`le8` wait behind them.
+
+### Parallel session merged (`arena/f40e8bcd`, PRUNE ladder extension)
+
+A second session landed while this one ran and is merged here, not replaced: three further
+delete-only doses — `PRUNE-le4` (33,829 dots, 10.16 %), `PRUNE-le5` (32,017, 14.97 %) and
+`PRUNE-le10` (26,294, 30.17 %) — plus `scripts/build_prune_ladder.py`, its own evidence file and
+CI wiring. All six delete-only doses now rebuild byte-identically under one command. The two
+sessions disagreed only about which dose goes first; `SLOT_PLAN.md` resolves it towards `le10`.
 
 ### Session 5 delta (`arena/9cc58e7e`, RELIEF) — what is actually new
 
@@ -60,10 +79,10 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ### Earlier sessions, condensed
 
-- **Session 4 (`arena/…`, PRUNE):** delete-only dose ladder `le3`/`le8`/`le15`
-  (5.77 % / 24.34 % / 41.60 % removed). All three rebuild **byte-identically** to their ledger
-  hashes (`make releases`) and all pass the gates twice over. `le15` carries the largest
-  predicted gain on the board (+0.010) and is the recommended slot 1.
+- **Sessions 4 + parallel (`PRUNE`):** six delete-only doses, `le3`/`le4`/`le5`/`le8`/`le10`/
+  `le15` (5.77 % → 41.60 % removed). All rebuild **byte-identically** to their ledger hashes and
+  all pass the gates twice over. Predictions rise monotonically with dose, +0.002 → +0.010 —
+  which is exactly why the receipt from one middle dose is worth more than another build.
 - **Session 3 (`arena/a5e7bf22`, SPACING):** three matched ±2 px re-spacing arms
   (spread/clump/jitter, 40 % moved), proof of the parent dot set from two ancestors, and the
   finding that the axis' ceiling is ~0.003.
@@ -76,17 +95,17 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 | Path | Purpose |
 |---|---|
-| `registry/data_manifest.json` | 15 pinned inputs with sha256 + byte length; 3 re-hashed here |
+| `registry/data_manifest.json` | 15 pinned inputs with sha256 + byte length; all re-hashed here |
 | `registry/r0_verification.json` | Parent hash/grid/dot-count evidence (generated) |
-| `registry/preflight.json` | Build-blocked verdict and exactly what is missing |
+| `registry/preflight.json` | Build verdict (`BUILD ALLOWED`, 15/15 pins verified) |
 | `registry/raster_availability.json` | Which of the 20 ledger rows still have a raster |
 | `registry/candidate_availability.json` | Hash + format status of the retrievable rasters |
 | `src/gems91/metric.py` | DTI re-derivation + exact marginal gain |
 | `src/gems91/gates.py` | The MUST gates; an unprovable gate is `UNVERIFIED`, never `PASS` |
-| `scripts/` | `verify_parent_r0.py`, `preflight.py`, `validate_release.py`, `pinned.py` CLI |
-| `ledger/submissions.csv` | 20 imported rows, provenance in `source`; empty receipt columns |
+| `scripts/` | `build.py` / `build_spacing.py` / `build_relief.py` / `build_prune_ladder.py`, `validate_raster.py`, `validate_release.py`, `update_release_manifest.py`, `crosscheck_predictions.py`, `preflight.py`, `restore_data.py` |
+| `ledger/submissions.csv` | 32 rows (20 imported, 12 built here), provenance in `source`; receipt columns empty |
 | `tools/` | `run_concentration.py` (builder), `pins.py`, `raster_io.py`, `stor.py`, `make_fixture.py` |
-| `tests/` | 53 tests (metric algebra, gates, ledger invariants, builder, preflight) |
+| `tests/` | 137 tests (metric algebra, gates, ledger invariants, builders, relief, release integration) |
 
 ## Run it
 
@@ -94,11 +113,11 @@ No script here submits anything. One entity, three scored slots a week, one fina
 pip install -r requirements.txt
 python scripts/verify_parent_r0.py     # fetch pinned parent, verify sha256
 python scripts/preflight.py            # BUILD ALLOWED / BUILD BLOCKED
-python -m pytest                       # 53 tests, no competition data needed
+python -m pytest                       # 137 tests; the release tests need the built files
 python -m tools.pins --axis CONCENTRATION   # what an axis still needs, by pinned id
 ```
 
-### Session 3 delta (`arena/5563ddf8`, same date)
+### Earlier session delta (`arena/5563ddf8`, same date)
 
 Main had moved twice while this session ran, so this branch was **rebased onto** the merged
 work rather than replacing it: the `src/gems91` package, `tools/`, `Makefile`, fixtures and
