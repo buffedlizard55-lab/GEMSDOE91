@@ -8,7 +8,10 @@
   "ready_axes": [
     "PRUNE",
     "MASS",
-    "RELIEF"
+    "SNAP",
+    "CONCENTRATION",
+    "RELIEF",
+    "TRACKB"
   ],
   "axis_readiness": {
     "PRUNE": {
@@ -20,26 +23,20 @@
       "missing": []
     },
     "SNAP": {
-      "ready": false,
-      "missing": [
-        "training_features"
-      ]
+      "ready": true,
+      "missing": []
     },
     "CONCENTRATION": {
-      "ready": false,
-      "missing": [
-        "training_features"
-      ]
+      "ready": true,
+      "missing": []
     },
     "RELIEF": {
       "ready": true,
       "missing": []
     },
     "TRACKB": {
-      "ready": false,
-      "missing": [
-        "training_features"
-      ]
+      "ready": true,
+      "missing": []
     }
   },
   "checked_utc": "2026-10-23"

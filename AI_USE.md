@@ -398,3 +398,22 @@ slot count, the deadline confirmation, the collar ruling (IR-91-03), and the bli
 3. **Slot expenditure & blind final pick:** Decide which built raster(s) to upload in the 3
    weekly slots (`SLOT_PLAN.md`) and choose the single blind final submission.
 
+
+## Session 6 (2026-10-23, `arena/9b8f7d01-gemsdoe91`) — SNAP axis
+
+**AI wrote:** `src/gems91/snap.py` (driver preparation + deterministic snap operator),
+`scripts/build_snap.py`, `tests/test_snap.py` (9 tests), `docs/MECHANISM_CARDS_SNAP.md`,
+the SNAP sections of `SLOT_PLAN.md` / `docs/SUBMIT.md` / `README.md` (CURRENT STATE) /
+`IRREGULARITIES.md` (IR-91-28..30), and all three release files and their `-zeros` twins.
+The AI chose the session axis (`SNAP`, the only weekly-slot axis absent from the ledger; the
+brief says not to ask the human to choose an axis).
+
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read or print credentials,
+scrape a leaderboard, or invent a score. The parent was rebuilt byte-exact from pinned
+ancestors before any variant was built; every input was sha256-verified first. The catalogue
+PROXY and SGMC control are labelled `PROXY`/report-only and are never called scores.
+
+**Human decides:** whether a SNAP slot is bought at all (the AI's recommendation is no; SNAP
+is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
+one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
+single blind final file.
