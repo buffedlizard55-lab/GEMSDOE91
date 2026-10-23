@@ -8,7 +8,7 @@ fallback, not an extra entry.
 
 | slot rank | file to upload | sha256 (verify before upload) | bytes |
 |---|---|---|---|
-| 1 | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309-zeros.tif` | `5c517369…` (full hash in `ledger/submissions.csv`) | 226,284 |
+| 2 (session build) | `releases/h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309-zeros.tif` | `5c517369…` (full hash in `ledger/submissions.csv`) | 226,284 |
 | — | `…-SPACINGspread40-20261023-6d389309.tif` (NaN-outside primary) | `6d389309…` | 373,103 |
 | — | `…-SPACINGclump40-20261023-536d32ad-zeros.tif` (control, predicted ≤ 0) | `d393c94f…` | 224,741 |
 | — | `…-SPACINGjitter40-20261023-39bb7288-zeros.tif` (null control) | `ad6dfa26…` | 225,691 |

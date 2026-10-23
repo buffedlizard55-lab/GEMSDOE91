@@ -41,9 +41,15 @@ canary 0.36–0.46 (no target proximity); all gates pass on all six files.
 | # | file (upload the `-zeros` twin) | why this one | decision rule |
 |---|---|---|---|
 | 0 | *no slot* — supply facts | R0's receipt for 0.2778, `TOP_PUBLIC` + date, and slots remaining. Without them every MODEL in this ledger is unscaled and the 0.01 floor cannot be applied | — |
-| 1 | `releases/h33-…-SPACINGspread40-20261023-6d389309-zeros.tif` | closes the last unbuilt axis; the only arm whose mechanism predicts a *sign* and whose null control is built and matched | ≥ +0.010 → arrangement carries signal; next cut is spread at 2 px on 50 % and a larger ring. Flat (|Δ| < 0.010) → **geometry is retired**; no further slots on SPACING, MASS or SNAP. ≤ −0.010 → the parent's clusters are real structure; protect them |
-| 2 | `PRUNE-le3p000` (built by GEMSDOE86; re-validate before upload) | the only axis with a **measured live dose-response**: 0.2708 → 0.2778 for 2,545 collar dots, +2.75 × 10⁻⁶ per dot, an order of magnitude above the metric's own zero-credit estimate | ≥ +0.010 → the collar is not exhausted; cut a 4 px rung. Flat or ≤ −0.010 → PRUNE closes for Phase 1 |
-| 3 | `RELIEF-frontp15` (built by GEMSDOE86) **or** `CONCENTRATION conc15` if slot 1 was flat | the only built variants that move mass between places instead of deleting it; if slot 1 retires geometry, allocation is the remaining lever | RELIEF ≥ +0.010 → build RELIEF-ADD (count raised) and combine with PRUNE. Otherwise the final file is `PRUNE-le3p000` + whichever of the three separates from 0 |
+| 1 | `PRUNE-le3p000` (built by GEMSDOE86; re-validate before upload) | the only axis in the project with a **measured live dose-response**: 0.2708 → 0.2778 for 2,545 collar dots, +2.75 × 10⁻⁶ per dot — an order of magnitude above the metric's own zero-credit estimate. It is the best *bet*, and this session's build is not | ≥ +0.010 → the collar is not exhausted; next week a 4 px rung. Flat or ≤ −0.010 → PRUNE closes for Phase 1 |
+| 2 | `releases/h33-…-SPACINGspread40-20261023-6d389309-zeros.tif` | closes the last unbuilt axis; the only arm whose mechanism predicts a *sign* and whose null control is built and matched | ≥ +0.010 → arrangement carries signal; next cut is spread at 50 % and a larger ring. Flat (abs change < 0.010) → **geometry is retired**; no further slots on SPACING, MASS or SNAP. ≤ −0.010 → the parent's clusters are real structure; protect them |
+| 3 | `RELIEF-frontp15` (built by GEMSDOE86) **or** `CONCENTRATION conc15` if slot 2 was flat | the only built variants that move mass between places instead of deleting it; if slot 2 retires geometry, allocation is the remaining lever | RELIEF ≥ +0.010 → build RELIEF-ADD (count raised) and combine with PRUNE. Otherwise the final file is the better of PRUNE and RELIEF plus whichever arm separates from 0 |
+
+**Why slot 1 is not this session's build.** `spread40` is predicted +0.004, the
+same as `PRUNE-le3p000`, but its effect is *bounded* near 0.003 by the uniform-
+truth ceiling and it has no live anchor behind it. Slot 1 goes to the axis whose
+prediction rests on a measured rate; SPACING takes slot 2 because it is the only
+axis that can still be *retired*, and retiring it frees every remaining slot.
 
 **Do not spend a slot on:** `SPACINGclump40` and `SPACINGjitter40` (controls,
 predicted ≤ 0), the other two PRUNE rungs, either MASS rung, or any SNAP arm —
@@ -52,10 +58,11 @@ separable from a random-jitter null.
 
 ## Calendar to the deadline
 
-- **wk 1.** Slot 1 `SPACINGspread40`. One decisive read on whether arrangement
-  matters at all.
-- **wk 2.** Slot 2 `PRUNE-le3p000`. The collar's last rung.
-- **wk 3.** Slot 3 `RELIEF-frontp15` (or `conc15` if slot 1 retired geometry).
+- **wk 1.** Slot 1 `PRUNE-le3p000`. The collar's last rung, on the only
+  measured rate the project has.
+- **wk 2.** Slot 2 `SPACINGspread40`. One decisive read on whether arrangement
+  matters at all — and if it does not, geometry stops consuming slots.
+- **wk 3.** Slot 3 `RELIEF-frontp15` (or `conc15` if slot 2 retired geometry).
 - **wk 4.** Re-cut the surviving axis at a second value, preregistered first.
 - **wk 5.** Combine the two survivors into **one attributable edit**.
 - **wk 6.** Confirm both finalists, re-validate both formats, choose the final

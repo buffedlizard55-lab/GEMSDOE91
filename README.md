@@ -21,14 +21,15 @@ from their own registered account.
 
 **Next three slots (details and decision rules in `SLOT_PLAN.md`):**
 
-1. `SPACINGspread40` — upload the `-zeros` twin. Closes the last unbuilt axis;
-   predicted **+0.004 MODEL** [−0.004, +0.012], and bounded above by construction
-   (see the ceiling instrument below).
-2. `PRUNE-le3p000` (already built by GEMSDOE86) — the only axis with a measured
-   live dose-response behind it (0.2708 → 0.2778 for 2,545 collar dots).
-   Re-validate its format before upload; predicted **+0.004 MODEL**.
-3. `RELIEF-frontp15` (already built by GEMSDOE86) — the only built variant that
-   moves mass rather than deleting it. Predicted **+0.006 MODEL**.
+1. `PRUNE-le3p000` (built by GEMSDOE86) — the only axis in the project with a
+   **measured live dose-response** behind it (0.2708 → 0.2778 for 2,545 collar
+   dots, +2.75 × 10⁻⁶ per dot). Re-validate its format before upload; predicted
+   **+0.004 MODEL**.
+2. `SPACINGspread40` — this session's build; closes the last unbuilt axis.
+   Upload the `-zeros` twin. Predicted **+0.004 MODEL** [−0.004, +0.012] and
+   bounded above by construction (≈ 0.003, see the ceiling instrument).
+3. `RELIEF-frontp15` (built by GEMSDOE86) — the only built variant that moves
+   mass rather than deleting it. Predicted **+0.006 MODEL**.
 
 > **A live change under ±0.01 is not evidence** (brief §5). Every prediction in
 > this ledger sits inside that band, so the three slots above are as much about
