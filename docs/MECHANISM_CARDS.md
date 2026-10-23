@@ -180,3 +180,62 @@ lower (0.0359, fewer features) but the relative gain is the largest (+44 %).
   already pinned for "prior layer only".
 - These are one experiment, not three: 10 % moved, same seed, same collar, three ways of
   choosing high-prior blocks. Only receipts separate them.
+
+---
+
+# Session 4 cards — the unmapped 42–50 % region of the PRUNE band
+
+Parent R0 (`h33-h33-2-b2`, 37,654 dots, catalogue floor 2.236 px). All three cards
+are the **same operation** as cards 1–3 — delete every dot whose Euclidean distance
+to a mapped fault is ≤ *D* px, nothing refilled, count not held — at the three
+doses the brief's 1–50 % band still left open. Doses are set by the ledger, not by
+taste: `le3/le4/le5/le8/le10/le15` were already built, so 43.49 %, 47.25 % and
+49.00 % are the only rungs that add information.
+
+## Card 4 — `PRUNE-le16norefill` (≤16 px, 16,375 dots, 43.49 %)
+
+- **Hypothesis.** Mass whose kernel cannot touch a mapped fault is almost pure
+  denominator: it adds to `S` while adding nothing to `T`. Past ~1.5 km from any
+  trace the parent's dots are, on the catalogue's own geometry, unmappable
+  structure, and deleting them should raise DTI.
+- **Mechanism.** `DTI = T / (0.2T + 0.2(S−M) + 0.8|G|)`. Deleting a dot with
+  `max_g k = m` and unique credit `t` moves DTI by
+  `0.2·DTI²·[(1−m) − t·(1−0.2·DTI)/(t·DTI)]/T`, i.e. `+0.2·DTI²/T` when the dot
+  earns nothing. At the 0.2778 CLAIM that is ≈ +1.8e-6 per dead dot; the ladder's
+  own rows calibrate the realised rate at 6.4e-7–8.9e-7.
+- **Non-fault mimic.** Survey-line and flight-line geometry: GeoDAWN Area 2 was
+  flown at 400 m spacing, so a *density* artefact of the acquisition grid looks
+  exactly like "mass far from mapped faults". If the gain is an artefact of the
+  flight lines it will not survive Phase 2's expert-expanded labels.
+- **Predicted sign and size.** **+0.012 MODEL** [+0.000, +0.029]: central rate
+  7.5e-7 × 16,375 removed dots; the ceiling is 1.8e-6 × 16,375.
+- **Falsifier.** Live Δ ≤ −0.01 vs R0 ⇒ the 1.5–1.6 km halo carries new-fault
+  truth and the delete-only family is wrong; stop pruning and spend the remaining
+  slots on placement (RELIEF / CONCENTRATION with a licensed prior).
+
+## Card 5 — `PRUNE-le18norefill` (≤18 px, 17,791 dots, 47.25 %)
+
+Same hypothesis, mechanism, mimic and falsifier as card 4; the dose is what
+differs. **Predicted +0.013 MODEL** [+0.000, +0.032]. Its job is the *slope*: if
+le16 → le18 is flat while le15 → le16 rose, the response has rolled over inside
+the band and the optimum is near 41–44 %, not at the band limit.
+
+## Card 6 — `PRUNE-le19norefill` (≤19 px, 18,450 dots, 49.00 %)
+
+The largest dose the brief's 1–50 % rule permits (le20 would be 50.80 %).
+**Predicted +0.014 MODEL** [+0.000, +0.033]. Two things it buys that no other file
+can: (i) it is the only measurement of the *band limit*, so a positive result
+argues for a follow-up session that prunes past 50 % with a different parent;
+(ii) it halves the parent's mass (37,654 → 19,204 dots, 0.37 % of the footprint),
+so it is the cleanest read on the mass confound the brief warns about — the best
+files in the fleet use 37–44 k dots, and this file deliberately does not.
+
+## What these cards do not claim
+
+No receipt exists for any of them; R0's 0.2778 is a CLAIM. The PROXY
+(`evidence/prune_ladder_20261023.json` → `proxy_rebuild_based_ladder`) is
+monotone across the whole ladder with **no saturation** at the top
+(marginal +1.2e-8 to +4.0e-8 DTI per removed dot), but it measures recovery of
+*catalogue-like* structure, and the competition masks exactly those pixels — so
+it cannot be quoted as a score, and its sign is not a gate. The canary is REPORT-
+ONLY and fires above 0.90 on `le4`/`le5`, not on these three (IR-91-26).

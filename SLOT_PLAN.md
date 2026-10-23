@@ -128,3 +128,23 @@ dose have receipts; both are refinements of an unanswered question.
 **Human must supply:** TOP_PUBLIC with a date, this week's slot count, deadline confirmation,
 R0's receipt for 0.2778, and a ruling on IR-91-03 (2 px vs 3 px collar). Do not contact
 drivendata.org or leaderboard pages programmatically; no agent submits.
+
+## Session 4 addendum (`arena/086eff6b`) — the top of the PRUNE band
+
+Three more delete-only rungs, at the only doses the 1–50 % band left open:
+`le16norefill` (16,375 removed, 43.49 %, **+0.012** MODEL), `le18norefill` (17,791, 47.25 %,
+**+0.013**), `le19norefill` (18,450, 49.00 %, **+0.014**). `le19` is the band limit; `le20`
+would be 50.80 % and is therefore out of bounds. All gate-clean on both validators.
+
+They matter for one reason: **the ladder has not rolled over.** On the rebuild-based
+hide-and-recover instrument the marginal gain per removed dot is flat from le3 to le19
+(+1.2e-8 to +4.0e-8 DTI per dot, no saturation), so the optimum is at or beyond the band
+limit — and `le19` is also the cleanest read on the mass confound, because it halves the
+parent's mass (37,654 → 19,204 dots, 0.37 % of the footprint) while the fleet's best files
+use 37–44 k dots.
+
+Slot advice: if a mid-ladder receipt comes back positive, spend the next slot on `le19`
+rather than another interior rung. If `le19` comes back ≤ −0.01, the far halo carries truth,
+the delete-only family is finished, and the remaining slots belong to the refill-held arms
+and to CONCENTRATION. Two caveats carried forward: `le4`/`le5` have canary AUCs above 0.90
+(IR-91-26), and no receipt exists anywhere, so every number here is MODEL.

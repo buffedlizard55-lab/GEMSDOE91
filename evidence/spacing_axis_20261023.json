@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-23T19:48:19+00:00",
+  "generated_utc": "2026-10-23T22:11:55+00:00",
   "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
   "lineage": {
     "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
@@ -26,11 +26,29 @@
     "proxy": {
       "proxy_mean_credit": 0.006186,
       "proxy_mean_credit_ci95": 0.000228,
+      "proxy_mean_credit_ci95_interval": [
+        0.005958,
+        0.006413
+      ],
       "proxy_coverage": 0.038706,
       "draws": 5,
       "hold_frac": 0.2,
       "block_px": 10,
-      "n_held_per_draw": 12200
+      "n_held_per_draw": 12200,
+      "n_withheld_positives_per_draw": [
+        12200,
+        12198,
+        12199,
+        12200,
+        12201
+      ],
+      "mean_credit_per_draw": [
+        0.006038136218637152,
+        0.006201889947509195,
+        0.006582695130310594,
+        0.0062188384485118405,
+        0.00588596849724877
+      ]
     },
     "redundancy": {
       "dots_with_neighbour_lt_2p83px": 11415,
@@ -83,11 +101,29 @@
       "proxy": {
         "proxy_mean_credit": 0.007124,
         "proxy_mean_credit_ci95": 0.000253,
+        "proxy_mean_credit_ci95_interval": [
+          0.006871,
+          0.007377
+        ],
         "proxy_coverage": 0.044133,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0074388166740724905,
+          0.006782616498837823,
+          0.00713144723996742,
+          0.007374968233514625,
+          0.006891220883620016
+        ]
       },
       "collar_drift": {
         "mean_dcat_moved_source_px": 30.6109,
@@ -177,11 +213,29 @@
       "proxy": {
         "proxy_mean_credit": 0.005684,
         "proxy_mean_credit_ci95": 0.000144,
+        "proxy_mean_credit_ci95_interval": [
+          0.00554,
+          0.005829
+        ],
         "proxy_coverage": 0.035493,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.005715228625186479,
+          0.005570034528182861,
+          0.005918074332387144,
+          0.005728506045982327,
+          0.005490655228648197
+        ]
       },
       "collar_drift": {
         "mean_dcat_moved_source_px": 30.6616,
@@ -271,11 +325,29 @@
       "proxy": {
         "proxy_mean_credit": 0.006294,
         "proxy_mean_credit_ci95": 0.000198,
+        "proxy_mean_credit_ci95_interval": [
+          0.006096,
+          0.006493
+        ],
         "proxy_coverage": 0.039083,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.006351668245134064,
+          0.006285393475136698,
+          0.006192450387215556,
+          0.006629478531934393,
+          0.006013314142591672
+        ]
       },
       "collar_drift": {
         "mean_dcat_moved_source_px": 30.6344,

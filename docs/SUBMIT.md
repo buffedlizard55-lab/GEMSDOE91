@@ -133,3 +133,45 @@ n_dots:    37654      min_dist_catalogue_px: 2.236 (unchanged from R0; no new ce
 - Do not read the catalogue proxy (CONCENTRATION arms 0.0054 vs R0 0.0062) as a score; it is PROXY
   and IR-91-15 explains why it cannot adjudicate this axis.
 - Do not submit from any account but the one entity's. One final file, chosen blind.
+
+---
+
+## Session 4 — three PRUNE top-of-band rungs, ready to paste
+
+Built 2026-10-23 on `arena/086eff6b` from the pinned, sha256-verified parent. All three pass
+14/14 MUST gates on **both** validators, with zero catalogue mass, sha256 unseen in the ledger,
+parent-diff recorded and a re-read from disk. Upload **one file per slot**; the `-zeros.tif` twin
+is the fallback, never a second entry.
+
+```bash
+python scripts/build_prune_ladder.py     # rebuilds all six rungs and verifies the bytes
+python scripts/validate_release.py releases/<id>.tif --axis PRUNE   # VERDICT: CERTIFIED
+```
+
+| # | file to upload | name | note (≤140 chars) |
+|---|---|---|---|
+| 1 | `releases/h33-h33-2-b2-PRUNE-le16norefill-20261023-d98fe63e.tif` | `h33-h33-2-b2-PRUNE-le16norefill-20261023-d98fe63e` | Parent R0 h33-h33-2-b2; PRUNE <=16px delete 16375 dots (43.49%), count 21279; pred +0.012 MODEL |
+| 2 | `releases/h33-h33-2-b2-PRUNE-le18norefill-20261023-f417474d.tif` | `h33-h33-2-b2-PRUNE-le18norefill-20261023-f417474d` | Parent R0 h33-h33-2-b2; PRUNE <=18px delete 17791 dots (47.25%), count 19863; pred +0.013 MODEL |
+| 3 | `releases/h33-h33-2-b2-PRUNE-le19norefill-20261023-78dadd57.tif` | `h33-h33-2-b2-PRUNE-le19norefill-20261023-78dadd57` | Parent R0 h33-h33-2-b2; PRUNE <=19px delete 18450 dots (49.00%), count 19204; pred +0.014 MODEL |
+
+| variant | sha256 (NaN twin) | sha256 (zeros twin) | bytes NaN/zeros | dots / % changed |
+|---|---|---|---|---|
+| `le16norefill` | `d98fe63ee12e1e9fcc960dae6208adc72d2fe5bbff964465aa03923073569670` | `50191db4128c26c81c47c0ac077c0d4c19c85b2a78c235a82b824a281bde6501` | 298,216 / 151,467 | 21279 / 43.49 % |
+| `le18norefill` | `f417474d946acc78896a055a43aad227f03a21545eba974683e4df28a235a71f` | `db282d57efe1a715a6c218eafc36a4a79204c144f17f5e9304ec3fb5a8073d1d` | 291,606 / 144,819 | 19863 / 47.25 % |
+| `le19norefill` | `78dadd576643974e11d79310d83e385a5eb512cd80c7b9582e2f03c7fc0d8fe6` | `77eb721bbe2ca1ef0c561d6221ec637aac3bc69557773271dba3df5b63d1ac82` | 288,385 / 141,725 | 19204 / 49.0 % |
+
+### Format receipt — copy into the PR/session notes
+
+```
+candidate: h33-h33-2-b2-PRUNEle19norefill-20261023-78dadd57
+sha256:    78dadd576643974e11d79310d83e385a5eb512cd80c7b9582e2f03c7fc0d8fe6
+bytes:     288,385   (NaN-outside primary; zeros twin 141,725 B, sha 77eb721b…)
+validate_release.py --axis PRUNE : VERDICT = CERTIFIED
+validate_raster.py              : 14/14 PASS (re-read from disk matches)
+grid: EPSG:32611 3730x3292 100 m float32 1 band, transform of sample_submission.tif
+n_dots: 19204   min_dist_catalogue_px: 19.03   dots_on_catalogue: 0
+parent-diff: 18450 pixels changed = 49.00% of R0's 37654 dots (mass 37654 -> 19204)
+```
+
+Read `le4`/`le5` receipts as confounded by collar proximity: their canary AUCs are 0.9532 and
+0.9290, above the 0.90 stop rule (IR-91-26).
