@@ -1,0 +1,19 @@
+# Local environments and caches
+.venv/
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+__pycache__/
+*.py[cod]
+*.so
+
+# Competition input rasters & external bulk datasets NEVER enter git tracking
+# (Brief v2 Hard Constraint §4.2: keep competition rasters out of public repos)
+/data/
+/work/
+*.partial
+Unselected files/
+# Candidate rasters and fallbacks are local deliverables only, not public Git artifacts.
+/releases/*.tif
+/releases/*.zip
