@@ -1,0 +1,129 @@
+{
+  "session": "2026-10-23",
+  "git_sha": "9b9a6aef7e4fd2eb2449815604f4c15253303e2f",
+  "git_branch": "arena/5563ddf8-gemsdoe91",
+  "axis": "PRUNE",
+  "seed": "n/a - PRUNE is deterministic, no sampling",
+  "inputs": {
+    "data/R0.tif": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "data/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "data/labels.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "data/catalogue.tif": "c97c7819c7fc8ed1632c9d82e0dddbeb1b8dd029a5d6f7a6918d399ae55ab4c4"
+  },
+  "code": {
+    "scripts/dti.py": "399f277ecea4ce2682f51ef39ca2b69a67bd0c96ed9c6222d6b0ba9d76c4c326",
+    "scripts/axes.py": "587d6a824435dd7284ba936135d1ae70cf90d996feda60f6af1da091f0517268",
+    "scripts/build.py": "545b78ff5d52bafe886be0741510cf5625841fa4ace9d420cc48cf33b75f6a83",
+    "scripts/validate_raster.py": "e28556366e6919f9ff4447a3f253b57e1d62337be216374e4097e1e88140b5ef",
+    "scripts/make_catalogue.py": "d4d2326ce64bb3e5351e106d5f80607604a645cc55c46cdf0a20b988fdf87ba6"
+  },
+  "parent_forensics": {
+    "R0_dots": 37654,
+    "solo_d28_dots": 40199,
+    "shared": 37654,
+    "only_in_R0": 0,
+    "only_in_solo_d28": 2545,
+    "operation": "R0 = solo-d28 minus dots within <=2 px of catalogue, no refill",
+    "source": "GEMSDOE31 docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif"
+  },
+  "variants": [
+    {
+      "id": "R0-PRUNE3-20261023",
+      "value": "le3",
+      "n_dots": 35483,
+      "pct_changed": 5.77,
+      "sha256": "1209e863a9ff58d86681e9e7f0375c4d185a59c50ef9769f02653ec1472198f2",
+      "predicted_change": "+0.002 (range -0.002..+0.006)",
+      "gates": "14/14 PASS"
+    },
+    {
+      "id": "R0-PRUNE8-20261023",
+      "value": "le8",
+      "n_dots": 28490,
+      "pct_changed": 24.34,
+      "sha256": "e1dd69d02b90f95e779c43de1843ac53c4064619e74c81ee230a08058ba15654",
+      "predicted_change": "+0.006 (range -0.004..+0.014)",
+      "gates": "14/14 PASS"
+    },
+    {
+      "id": "R0-PRUNE15-20261023",
+      "value": "le15",
+      "n_dots": 21989,
+      "pct_changed": 41.6,
+      "sha256": "1ca1ff6f782d5ba3c95ec1f9b70b029359b636b826d69316d6e9c60f740dafd0",
+      "predicted_change": "+0.010 (range -0.008..+0.024)",
+      "gates": "14/14 PASS"
+    }
+  ],
+  "proxy": {
+    "le3": {
+      "mean": 0.004706075848921238,
+      "ci95": [
+        0.0018812002879735408,
+        0.007530951409868935
+      ],
+      "se": 0.0008876428036688794,
+      "folds": [
+        0.005698,
+        0.006706,
+        0.003235,
+        0.003186
+      ]
+    },
+    "le8": {
+      "mean": 0.004862024760229809,
+      "ci95": [
+        0.0019454278411019112,
+        0.007778621679357707
+      ],
+      "se": 0.000916463826674961,
+      "folds": [
+        0.00586,
+        0.006945,
+        0.003325,
+        0.003319
+      ]
+    },
+    "le15": {
+      "mean": 0.004964262759136133,
+      "ci95": [
+        0.0020061414296546204,
+        0.007922384088617646
+      ],
+      "se": 0.0009295117798437774,
+      "folds": [
+        0.005862,
+        0.007148,
+        0.003276,
+        0.003571
+      ]
+    },
+    "R0_as_is": {
+      "mean": 0.00465409922929519,
+      "ci95": [
+        0.0018207782438317828,
+        0.007487420214758596
+      ],
+      "se": 0.0008902965560673686,
+      "folds": [
+        0.005655,
+        0.006655,
+        0.003191,
+        0.003116
+      ]
+    },
+    "n_withheld_positives_per_fold": [
+      16844,
+      17873,
+      14311,
+      11960
+    ],
+    "note": "PROXY, not a score. Withheld positives are known catalogue geometry; the competition masks those pixels, so this measures recall of catalogue-like structure only. Never a gate."
+  },
+  "not_done": [
+    "leakage canary: needs the feature stack (training_features.tif), which is not in this workspace",
+    "SGMC control: no SGMC layer available",
+    "MASS / SNAP / RELIEF / CONCENTRATION builds: need the parent's ranking, a driver band, or lidar",
+    "no live score exists for any variant; all predictions are MODEL-grade"
+  ]
+}
