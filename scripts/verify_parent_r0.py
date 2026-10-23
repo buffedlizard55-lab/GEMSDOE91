@@ -10,10 +10,11 @@ What this does, precisely:
    dtype, band count, value set, dot count, footprint size.
 3. Writes registry/r0_verification.json as evidence.
 
-What this does NOT do: independently re-derive R0 from the H33 recipe. That
-needs training_features.tif (419 MB, not public) plus the H33 build script.
-The distinction matters and is recorded in the output under
-"rebuild_kind": "pinned_artifact_retrieval" vs "independent_recompute".
+It then independently re-derives R0's dot set from two pinned ancestors and
+re-encodes both twins with the recorded deflate/predictor-3/zlevel-9/256-tile
+profile.  Both rebuilt SHA-256 values must match the parent pins.  This is an
+"independent_recompute" of the recorded R0 operation, not a claim to rebuild
+the older H33 feature model (whose feature stack is absent).
 """
 
 from __future__ import annotations
@@ -27,6 +28,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from gems91.pinned import fetch, load_manifest, local_path_for, sha256_file  # noqa: E402
+from gems91 import lineage  # noqa: E402
 
 import rasterio  # noqa: E402
 
@@ -102,6 +104,21 @@ def main() -> int:
                               "twins_agree_on_dots": r0["n_positive_px"] == audit_zeros["n_positive_px"]}
     report["ok"] &= bool(grid_ok and n_ok and footprint_ok)
 
+    # The brief requires an actual rebuild, not only retrieval of a pinned file.
+    # The recorded zlevel=9 encoder plus either pinned ancestor reproduces both
+    # TIFFs byte for byte.  If any required input is absent this fails closed;
+    # run scripts/restore_data.py first.  Never approximate the parent.
+    proof = lineage.prove_r0_byte_rebuild(
+        parent_nan=twins["parent_r0_nan"], parent_zeros=twins["parent_r0_zeros"],
+        ancestor_d28=twins["anc_d2_8"],
+        ancestor_solo=local_path_for(by_id["anc_solo_d2_8"], data_root),
+        sample=local_path_for(by_id["sample_submission"], data_root),
+        catalogue=local_path_for(by_id["existing_faults"], data_root),
+        work_dir=Path("work") / "r0-verification")
+    report["rebuild_kind"] = "independent_recompute"
+    report["independent_recompute"] = proof
+    report["ok"] &= bool(proof["ok"])
+
     Path("registry").mkdir(exist_ok=True)
     Path("registry/r0_verification.json").write_text(
         json.dumps(report, indent=2) + "\n", encoding="utf-8")
@@ -109,6 +126,7 @@ def main() -> int:
     print(json.dumps({"ok": report["ok"], "rebuild_kind": report["rebuild_kind"],
                       "grid_matches_pinned": grid_ok, "dot_count_37654": n_ok,
                       "footprint_5167373": footprint_ok,
+                      "byte_exact_rebuild": proof["ok"],
                       "hashes": {k: v["sha256"][:12] for k, v in report["checks"].items()}},
                      indent=2))
     if not report["ok"]:

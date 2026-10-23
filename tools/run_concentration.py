@@ -100,8 +100,16 @@ def block_prior(prior: np.ndarray, footprint: np.ndarray, block_px: int) -> np.n
     return out
 
 
+# integer offsets strictly closer than 2.0 px: the 4 side neighbours and the 4
+# diagonals plus the 4 knight-free distance-2 cells.  R0 has NO dot pair closer
+# than 2.0 px, so honouring this set keeps the parent's own spacing rule while
+# only the spatial distribution of the dots changes.
+_SEP_OFFSETS = [(dr, dc) for dr in range(-2, 3) for dc in range(-2, 3)
+                if 0 < (dr * dr + dc * dc) <= 4.0]
+
+
 def _valid_target(r: int, c: int, *, footprint, catalogue_dist, occupied: set, min_gap: float,
-                  shape) -> bool:
+                  shape, min_sep: float = 0.0) -> bool:
     nrow, ncol = shape
     if not (0 <= r < nrow and 0 <= c < ncol):
         return False
@@ -109,7 +117,13 @@ def _valid_target(r: int, c: int, *, footprint, catalogue_dist, occupied: set, m
         return False
     if catalogue_dist[r, c] <= min_gap:
         return False
-    return (r, c) not in occupied
+    if (r, c) in occupied:
+        return False
+    if min_sep > 0.0:
+        for dr, dc in _SEP_OFFSETS:
+            if (r + dr, c + dc) in occupied:
+                return False
+    return True
 
 
 def build_concentration(
@@ -124,6 +138,7 @@ def build_concentration(
     min_gap_px: float = 3.0,
     jitter_px: int = 4,
     seed: int = 0,
+    min_sep_px: float = 0.0,
 ) -> tuple[np.ndarray, dict]:
     """Return (new unit-mass band, statistics). Pure function; no file I/O."""
     if not (0.10 <= frac <= 0.20):
@@ -193,7 +208,8 @@ def build_concentration(
             r = r0 + int(rng.integers(-jitter_px, jitter_px + 1))
             c = c0 + int(rng.integers(-jitter_px, jitter_px + 1))
             if _valid_target(r, c, footprint=footprint, catalogue_dist=catalogue_dist,
-                             occupied=occ, min_gap=min_gap_px, shape=footprint.shape):
+                             occupied=occ, min_gap=min_gap_px, shape=footprint.shape,
+                             min_sep=min_sep_px):
                 occ.add((r, c))
                 pairs.append((tuple(d), (r, c)))
                 placed += 1
@@ -237,6 +253,7 @@ def build_concentration(
         "p95_displacement_px": moved_disp["p95_px"],
         "seed": seed,
         "min_gap_px": min_gap_px,
+        "min_sep_px": min_sep_px,
         "jitter_px": jitter_px,
         "donor_block_prior_mean": float(np.nanmean(bp[dots[movers][:, 0] // block_px, dots[movers][:, 1] // block_px])),
         "acceptor_block_prior_mean": float(np.nanmean(bp[new_dots[:, 0] // block_px, new_dots[:, 1] // block_px])),

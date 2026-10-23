@@ -119,6 +119,116 @@ therefore tracks collar drift, which is why it is reported and not believed.
 
 ---
 
+# Variant cards — MASS axis on R0, cross-field support (built 2026-10-23, session 4)
+
+For a structural geologist. Three builds, one axis, one parent, one ranking.
+Nothing here is a score: every number labelled MODEL comes from the DTI algebra in
+`src/gems91/metric.py`, and R0's 0.2778 is a **CLAIM** (no receipt exists).
+
+## Why the ranking is not the parent's own
+
+Brief §5 says to rank by "the parent's own ranking". It cannot be rebuilt: every
+pinned ancestor (`calib_h195_01922`, `calib_h194_01894`, `calib_h161_01855`,
+`calib_d15_02477`, d2.8, solo-d28) is **binary**, and `training_features.tif` — the
+only input that ever carried a continuous score — has no public mirror and is absent
+(IR-91-21). What the lineage does carry, pinned and hash-verified, is its support
+structure. Measured on the parent's 37,654 dots:
+
+| cross-field support | dots | share | reading |
+|---|---:|---:|---|
+| 3 of 3 fields (H19.5 + H19.4 + H16.1) | 26,913 | 71.5 % | three independent hand-drawn interpretations agree |
+| 2 of 3 | 6,200 | 16.5 % | |
+| 1 of 3 (H19.5 only) | 4,541 | 12.1 % | single-interpretation support |
+| 0 of 3 | 0 | — | every R0 dot is inside at least one field |
+
+Support is an ordinal precision proxy, not a score. Whole strata are removed so no
+arm needs an arbitrary tie-break inside the ordering under test. The add arm ranks by
+support, then by distance from the nearest existing dot (the d2.8 thinning suppressed
+77,041 field pixels on a *spacing* rule, so the cells it dropped beside survivors are
+exactly what a "was the thinning too aggressive" test should retry), then row-major.
+
+## The metric arithmetic that sizes every arm
+
+For the triangular kernel (R = 3 px, α = 0.2) the per-dot change in DTI at precision
+`p` (chance the nearest truth pixel is within 2.83 px) and mean credit `c̄` is
+
+    E[ΔDTI] ≈ (p·c̄ − γ)/D,     γ = α·d/(1 − α·d) = 0.0556 at d = 0.2778
+
+so **a dot is worth emitting iff its precision exceeds 11.8 %** (at c̄ = 0.5), and
+equivalently iff it is within 2.83 px of a truth pixel. Every arm below is therefore a
+bet on one number — the precision of the mass it moves — and a ±0.01 live move is the
+whole dynamic range of the axis (D ∈ [1e4, 3.5e4], so 1,000 dots ≈ 0.002–0.006).
+
+Two controls say what the ranking is *not*. (a) A canary on the 0–3 px catalogue ring
+gives AUC **0.526**: the support ordering is essentially blind to proximity to known
+traces, so it is not a disguised PRUNE — the lineage's fields, like R0 itself, are
+catalogue-masked (0 of 60,988 catalogue pixels carry any field). (b) SGMC overlap is
+8.4 % (R0) → 8.4–8.8 % (arms): no arm starts tracking a public state map.
+The catalogue hide-and-recover PROXY separates nothing: 0.00465 (R0) vs
+0.00449/0.00426/0.00382, CI ±0.002–0.003 over 4 spatial folds. As reported by prior
+sessions, that instrument has never tracked live scores reliably (n = 12–14,
+r = −0.87 to +0.54); it is not evidence here either way.
+
+---
+
+## 1. `MASScons1drop` — drop the single-interpretation stratum
+
+- **Hypothesis.** The 4,541 dots that only H19.5 supports are drawn from the
+  lowest-precision part of R0; removing them raises precision-weighted score.
+- **Mechanism.** 4,541 dots leave `S` by 4,541 and leave `T` by whatever credit they
+  earned. First-order that is +4,541·0.0556/D = +0.007 to +0.025 if the stratum is
+  pure noise, and −0.020 to −0.006 if its precision is 25 %. Break-even is p = 11.8 %.
+- **Non-fault process that mimics it.** H19.4 and H16.1 are *different interpretations
+  of the same geophysics*, not independent observers. Their disagreement may mark
+  survey-quality or lithology boundaries (a contact, a basalt flow edge, an alluvial
+  margin) rather than fault candidates — in which case the "disagreed" dots are
+  exactly the ones that were right.
+- **Predicted sign and size.** MODEL **−0.0002** [−0.013, +0.007], ×0.64–2.25 for
+  denominator uncertainty. Deliberately near zero: the arm is a measurement of the
+  stratum's precision, not a bet on its sign.
+- **Falsifier.** A live change ≥ +0.01 says single-field mass is net-negative and the
+  ordering is usable; ≤ −0.01 says the unique-interpretation dots carry real credit
+  and this ranking must not be used to cut.
+
+## 2. `MASScons2drop` — the next whole stratum
+
+- **Hypothesis.** If support is informative, the slope continues: dropping both
+  low-support strata (10,741 dots, 28.5 %) should gain roughly twice as much as arm 1.
+- **Mechanism.** Same arithmetic at 2.4× the dose, so the same precision is amplified:
+  at p = 18 % it is −0.015, at p = 8 % it is +0.009.
+- **Non-fault process that mimics it.** Redundancy. R0's median nearest-neighbour
+  distance is 3.0 px, so many of these dots share a truth pixel with a neighbour;
+  removing one of a redundant pair costs `T` far less than `S`, which would make a
+  drop look good even when the pair was right. If arm 1 is flat and arm 2 gains, this
+  is the more likely explanation than support, because arm 2 exposes more pairs.
+- **Predicted sign and size.** MODEL **−0.015** [−0.044, +0.009], ×0.64–2.25.
+- **Falsifier.** A gain here, with arm 1 flat, points at redundancy rather than
+  precision — distinguishable later by a count-matched variant (SPACING) rather than
+  another drop.
+
+## 3. `MASScons3add` — add 10 % at the best-supported unspent cells
+
+- **Hypothesis.** The lineage thinned 121,131 field pixels down to 37,654 dots on a
+  spacing rule (d2.8), not on a precision rule. The 46,827 three-way-agreed cells that
+  sit ≥ 3 px from the catalogue and are not yet dots are the best remaining mass.
+- **Mechanism.** Each added dot pays iff its precision exceeds 11.8 %. Adding 3,765
+  dots at p = 22 % is +0.009; at p = 10 % it is −0.002. Unlike the drops, this arm
+  cannot lose much: the downside is bounded by the unmatched-mass cost per dot
+  (0.0556), while the upside per matched dot is c̄ ≈ 0.5 — a 9:1 payoff ratio.
+- **Non-fault process that mimics it.** Junction and step-over thickenings: three-way
+  agreement concentrates exactly where several traces, or a thick fault zone, occupy
+  the same 100 m cell. Those are real fault pixels, but they are also where R0 is
+  already densest, so the added mass may be redundant (costs `S`, earns credit already
+  earned by a neighbour) rather than new.
+- **Predicted sign and size.** MODEL **+0.0086** [−0.002, +0.019], ×0.64–2.25. This is
+  the arm on the board with a plausible path past +0.01, and the only one whose
+  failure is cheap.
+- **Falsifier.** A live change ≤ −0.005 retires the support ordering in the *add*
+  direction and says the thinning was not over-aggressive; combined with a negative
+  arm 1/2 it says the ordering carries no usable precision signal at all, and MASS
+  should be closed rather than re-dosed.
+---
+
 # Variant cards — RELIEF axis on R0 (Session 5, built 2026-10-23)
 
 Full structural-geologist mechanism cards and equal-area tercile diagnostics live in

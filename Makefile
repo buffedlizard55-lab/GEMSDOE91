@@ -13,7 +13,7 @@ OUT     ?= releases
 CAND    ?=
 LEDGER  ?= ledger/submissions.csv
 
-.PHONY: help install test preflight pins fixture demo concentration validate clean
+.PHONY: help install test preflight pins fixture demo concentration mass instruments validate clean
 
 help:
 	@sed -n '2,10p' Makefile
@@ -33,6 +33,16 @@ pins:
 
 fixture:
 	$(PY) -m tools.make_fixture --out tests/_tmp/fixture
+
+# MASS/consensus arms (session 4): builds the three pairs and certifies each one.
+# Deterministic; no RNG anywhere. Writes releases/*.tif, which git ignores.
+mass:
+	$(PY) scripts/build_mass_consensus.py
+
+# REPORT-ONLY instruments (PROXY, ring canary, SGMC). Never a gate, never a score.
+instruments:
+	$(PY) scripts/instruments.py --label mass-consensus \
+		$(PARENT) $(shell ls releases/*MASScons*.tif | grep -v zeros)
 
 # End-to-end proof on synthetic rasters: build, then certify with the repo gates.
 # Nothing here is competition data and nothing here may be submitted.

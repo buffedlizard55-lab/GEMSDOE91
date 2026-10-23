@@ -1,6 +1,6 @@
 {
   "schema": "gems91.r0-verification.v1",
-  "rebuild_kind": "pinned_artifact_retrieval",
+  "rebuild_kind": "independent_recompute",
   "checks": {
     "parent_r0_zeros": {
       "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
@@ -99,5 +99,51 @@
     "dot_count_37654": true,
     "footprint_5167373": true,
     "twins_agree_on_dots": true
+  },
+  "independent_recompute": {
+    "ok": true,
+    "rebuild_kind": "independent_recompute",
+    "encoder": "deflate predictor=3 zlevel=9 tiled=256; catalogue grid profile",
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "min_catalogue_distance_px": 2.23606797749979,
+    "dots_on_catalogue": 0,
+    "rebuilt_from": {
+      "d2.8": {
+        "path": "data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "path": "data/registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    },
+    "byte_rebuilds": {
+      "nan": {
+        "path": "work/r0-verification/r0-rebuild-nan.tif",
+        "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "expected_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "bytes": 355443,
+        "expected_bytes": 355443,
+        "hash_match": true,
+        "bytes_match": true
+      },
+      "zeros": {
+        "path": "work/r0-verification/r0-rebuild-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "expected_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "bytes": 219065,
+        "expected_bytes": 219065,
+        "hash_match": true,
+        "bytes_match": true
+      }
+    }
   }
 }

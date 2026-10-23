@@ -1,0 +1,215 @@
+{
+  "schema": "gems91.mass-consensus.v1",
+  "date": "20261023",
+  "parent": "data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+  "parent_dots": 37654,
+  "field_ids": [
+    "anc_h19_5",
+    "anc_h19_4",
+    "anc_h16_1"
+  ],
+  "field_paths": {
+    "anc_h19_5": "data/registry/calib_h195_01922.tif",
+    "anc_h19_4": "data/registry/calib_h194_01894.tif",
+    "anc_h16_1": "data/registry/calib_h161_01855.tif"
+  },
+  "consensus_histogram_parent": [
+    0,
+    4541,
+    6200,
+    26913
+  ],
+  "prediction_model": {
+    "gamma": 0.05882851213417475,
+    "cbar": 0.5,
+    "D_bracket": [
+      10000.0,
+      35000.0
+    ]
+  },
+  "variants": [
+    {
+      "value": "cons1drop",
+      "arm": "drop",
+      "stats": {
+        "n_parent_dots": 37654,
+        "n_dots": 33113,
+        "added": 0,
+        "removed": 4541,
+        "changed": 4541,
+        "pct_changed": 12.0598
+      },
+      "prediction": {
+        "predicted": -0.0002,
+        "range": [
+          -0.0134,
+          0.0068
+        ],
+        "d_scale": [
+          0.64,
+          2.25
+        ],
+        "gamma_breakeven_credit": 0.0588,
+        "breakeven_precision": 0.1177
+      },
+      "mechanism_note": "single-field-support dots are the lowest-precision stratum",
+      "min_dcat_px": 2.23606797749979,
+      "dots_2_3px_from_catalogue": 1911,
+      "id": "h33-h33-2-b2-MASScons1drop-20261023-fc8f5500",
+      "sha256": "fc8f5500790eed45fe4957a3a548c55513db09774ecd46c300b67b4cc72d854e",
+      "sha256_zeros": "9f24d22eb52fc59517c8b13e0be39cb37535c993d5cef433b576231749c3e145",
+      "dot_set_digest": "471acdcac3ce599be80c7b14371c8ba3e59cc40a8e423c05ac2b8fc5f151d698",
+      "n_dots": 33113,
+      "gates_scripts": {
+        "pass": true,
+        "zeros_pass": true,
+        "text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=fc8f5500790e\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=33113.0 over 33113 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=fc8f5500790eed45fe4957a3a548c55513db09774ecd46c300b67b4cc72d854e new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 4541 pixels changed (12.06% of parent dots), parent dots=37654 child dots=33113, mass 37654.0 -> 33113.0\n[PASS] sha256: fc8f5500790eed45fe4957a3a548c55513db09774ecd46c300b67b4cc72d854e"
+      },
+      "gates_pkg": {
+        "pass": true,
+        "failed": [],
+        "zeros_pass": true,
+        "zeros_failed": [],
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "gates_must": {
+        "pass": true,
+        "failed": [],
+        "n_gates": 14,
+        "verdict": "NOT CERTIFIED (failed gate)"
+      },
+      "collar": {
+        "dots_le_3px": 1911,
+        "parent_dots_le_3px": 2171,
+        "inherited_not_caused_by_edit": true
+      },
+      "all_gates_pass": true,
+      "files": [
+        "releases/h33-h33-2-b2-MASScons1drop-20261023-fc8f5500.tif",
+        "releases/h33-h33-2-b2-MASScons1drop-20261023-fc8f5500-zeros.tif"
+      ]
+    },
+    {
+      "value": "cons2drop",
+      "arm": "drop",
+      "stats": {
+        "n_parent_dots": 37654,
+        "n_dots": 26913,
+        "added": 0,
+        "removed": 10741,
+        "changed": 10741,
+        "pct_changed": 28.5255
+      },
+      "prediction": {
+        "predicted": -0.0149,
+        "range": [
+          -0.0435,
+          0.009
+        ],
+        "d_scale": [
+          0.64,
+          2.25
+        ],
+        "gamma_breakeven_credit": 0.0588,
+        "breakeven_precision": 0.1177
+      },
+      "mechanism_note": "dose escalation on the same ordering; identifies its slope",
+      "min_dcat_px": 2.23606797749979,
+      "dots_2_3px_from_catalogue": 1591,
+      "id": "h33-h33-2-b2-MASScons2drop-20261023-e8871e7f",
+      "sha256": "e8871e7f7bd75b139173e2c93eda3a79f47063e6e71dd4dfef7672cf58c4662f",
+      "sha256_zeros": "d1c8ab018d190f774e313ffd8959e988d0acd4e17de2a7a4ab5035807957f944",
+      "dot_set_digest": "dd9782b2cc742063c6e5f3cd564591ef9178e1463dc71417e482d006bbf46dfb",
+      "n_dots": 26913,
+      "gates_scripts": {
+        "pass": true,
+        "zeros_pass": true,
+        "text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=e8871e7f7bd7\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=26913.0 over 26913 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=e8871e7f7bd75b139173e2c93eda3a79f47063e6e71dd4dfef7672cf58c4662f new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 10741 pixels changed (28.53% of parent dots), parent dots=37654 child dots=26913, mass 37654.0 -> 26913.0\n[PASS] sha256: e8871e7f7bd75b139173e2c93eda3a79f47063e6e71dd4dfef7672cf58c4662f"
+      },
+      "gates_pkg": {
+        "pass": true,
+        "failed": [],
+        "zeros_pass": true,
+        "zeros_failed": [],
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "gates_must": {
+        "pass": true,
+        "failed": [],
+        "n_gates": 14,
+        "verdict": "NOT CERTIFIED (failed gate)"
+      },
+      "collar": {
+        "dots_le_3px": 1591,
+        "parent_dots_le_3px": 2171,
+        "inherited_not_caused_by_edit": true
+      },
+      "all_gates_pass": true,
+      "files": [
+        "releases/h33-h33-2-b2-MASScons2drop-20261023-e8871e7f.tif",
+        "releases/h33-h33-2-b2-MASScons2drop-20261023-e8871e7f-zeros.tif"
+      ]
+    },
+    {
+      "value": "cons3add",
+      "arm": "add",
+      "stats": {
+        "n_parent_dots": 37654,
+        "n_dots": 41419,
+        "added": 3765,
+        "removed": 0,
+        "changed": 3765,
+        "pct_changed": 9.9989
+      },
+      "prediction": {
+        "predicted": 0.0086,
+        "range": [
+          -0.0015,
+          0.0194
+        ],
+        "d_scale": [
+          0.64,
+          2.25
+        ],
+        "gamma_breakeven_credit": 0.0588,
+        "breakeven_precision": 0.1177
+      },
+      "mechanism_note": "highest-support unspent cells; tests whether the thinning overshot",
+      "min_dcat_px": 2.23606797749979,
+      "dots_2_3px_from_catalogue": 2171,
+      "id": "h33-h33-2-b2-MASScons3add-20261023-2803126d",
+      "sha256": "2803126de23b7f3388d2d4db727c2e8a39b499308b6efc61941d4231606f9abd",
+      "sha256_zeros": "597d6d0ea528c8630e301dfe354b62905534d49f985f5bd92f04a75e51d7e5cf",
+      "dot_set_digest": "b89eff27f790524409ef2b95fdc8fd104955811cd525da4f07ae896df869ac49",
+      "n_dots": 41419,
+      "gates_scripts": {
+        "pass": true,
+        "zeros_pass": true,
+        "text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=2803126de23b\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[PASS] NaN outside footprint: 0 finite of 7111787 outside pixels\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=41419.0 over 41419 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=2803126de23b7f3388d2d4db727c2e8a39b499308b6efc61941d4231606f9abd new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 3765 pixels changed (10.00% of parent dots), parent dots=37654 child dots=41419, mass 37654.0 -> 41419.0\n[PASS] sha256: 2803126de23b7f3388d2d4db727c2e8a39b499308b6efc61941d4231606f9abd"
+      },
+      "gates_pkg": {
+        "pass": true,
+        "failed": [],
+        "zeros_pass": true,
+        "zeros_failed": [],
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "gates_must": {
+        "pass": true,
+        "failed": [],
+        "n_gates": 14,
+        "verdict": "NOT CERTIFIED (failed gate)"
+      },
+      "collar": {
+        "dots_le_3px": 2171,
+        "parent_dots_le_3px": 2171,
+        "inherited_not_caused_by_edit": true
+      },
+      "all_gates_pass": true,
+      "files": [
+        "releases/h33-h33-2-b2-MASScons3add-20261023-2803126d.tif",
+        "releases/h33-h33-2-b2-MASScons3add-20261023-2803126d-zeros.tif"
+      ]
+    }
+  ]
+}

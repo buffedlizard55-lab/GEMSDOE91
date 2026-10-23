@@ -320,11 +320,216 @@ digest; the dot-set digest is the identity that can be checked across sessions,
 and no lane may claim byte-level reproducibility of the parent. (GEMSDOE86
 logged the same finding as IR-86-PRUNE-01.)
 
+## IR-91-17 — the three CONCENTRATION arms are one experiment, and the axis has a measured downside
+
+Ten percent of the dots moved is all the brief allows, so all three arms move 3,765 dots with
+the same seed, the same collar rule and the same placement logic; they differ only in block
+size (1 vs 2.5 km) and in whether thermal features within 8 px of the catalogue are allowed
+in the prior. The consequences:
+
+* their predicted changes are +0.0114, +0.0113 and +0.0123 (MODEL), i.e. inside each other's
+  uncertainty by an order of magnitude;
+* their block-CV changes and donor/acceptor prior gaps are effectively identical;
+* the surrogate-truth DTI gains are +41 %, +41 %, +44 %.
+
+**Decision it changes.** Three slots would buy one number three times. `SLOT_PLAN.md` sends
+**one** arm (`gdr25rm10`) and keeps the other two as conditional fallbacks. This is the second
+session in a row where the honest recommendation is to spend fewer slots than were built.
+
+The same session measured the axis's downside: the arms drop coverage of the lineage's own
+H19-5 field from 88.6 % to 80.2 % of its 121,131 px, which under H19-5-as-truth is −0.022. That
+number is pessimistic (that field is ~3× denser than truth: R0 scores 0.796 against it versus a
+claimed 0.2778 live), but it is *measured*, it exceeds the brief's 0.01 evidence bar in the
+negative direction, and it is now the floor of every predicted range in the ledger.
+
+## IR-91-18 — the pin table named an input this axis does not use, and one it does
+
+`tools/pins.AXIS_INPUTS["CONCENTRATION"]` used to require `training_features`
+(`data/bridge/gems-geodawn-numerical-features.tif`, 419 MB, absent, no public mirror).
+`scripts/build_concentration.py` therefore cannot use `check_axis`; it verifies the inputs it
+actually reads, by sha256, through `pins.check_paths`: `parent_r0_nan`, `parent_r0_zeros`,
+`sample_submission`, `existing_faults`, `anc_d2_8`, `anc_solo_d2_8`, `anc_h19_5` and
+`gdr_wellspring_in_footprint`. Two consequences to keep straight:
+
+1. The prior is **derived**, not pinned: `prior = exp(-d / 12 px)` over de-duplicated Hot/Warm
+   GDR feature cells, with the parameters and the array digest (`51f294b2…`, `6afed3bf…`) in
+   `registry/derived_priors.json` and the evidence JSON. Rebuilds reproduce it exactly from the
+   pinned CSV, which is why no new 12 MB raster had to be added to the manifest.
+2. `training_features` remains **absent and unverified**. No band from it was used, and no
+   number in this session depends on it. RELIEF and SNAP remain blocked on it.
+
+**Decision it changes.** CONCENTRATION is buildable without the unlicensed lidar layer and
+without the 419 MB feature stack; that, plus the licence status of the source
+(USGS/NBMG GDR inventory, public domain, already pinned as "prior layer only"), is why it was
+chosen over SNAP/RELIEF for this session.
+
+## IR-91-19 — the session's own prediction instrument is circular, and the floor is not
+
+The headline MODEL prediction scores each candidate against the prior network *itself* as a
+surrogate truth set and claims a tenth of the result. By construction that instrument cannot
+say anything about whether the prior is right; it answers "what if it were". Two independent
+floors are computed instead and reported in the same JSON:
+
+| alternative truth model | cells | Δ live if that model is truth |
+|---|---:|---:|
+| the prior network (circular; optimistic) | 9,501 | +0.114 (before the κ = 0.1 shrink) |
+| uniform-random cells of the same count | 9,501 | −0.006 |
+| the lineage's own H19-5 field | 121,131 | −0.022 |
+
+**Decision it changes.** The ledger's `predicted_range` floor is the measured worst case, not
+`point − 0.008` as in earlier sessions. A reader should treat these candidates as
+**coin-flips with a −0.02 tail**, which is exactly how `SLOT_PLAN.md` orders them and why slot
+2 is a PRUNE file rather than the second arm of the same axis.
+
+---
+
+## IR-91-17 — R0 byte reproduction is now solved; IR-91-16 is superseded
+
+The missing encoder setting was compression **level 9**, not a different libtiff build.
+Using the recorded `deflate / predictor=3 / zlevel=9 / tiled 256` profile on the catalogue
+grid, this session independently rebuilt R0 from each pinned ancestor and reproduced both
+files exactly: NaN `baeae321…` / 355,443 B and zeros `c55bafc4…` / 219,065 B. Recipe source:
+<https://github.com/buffedlizard55-lab/GEMSDOE86/blob/d423f858abf6cb2e63edf67773ed5650d507f78c/scripts/run_prune_ladder.py>.
+
+**Decision it changes.** The brief's stop gate is passed by an actual independent recompute,
+not pinned-artifact retrieval or an approximation. `scripts/verify_parent_r0.py` and the new
+builder both fail unless both byte hashes match. Dot-set digests remain useful, but the old
+"file bytes are not reproducible" statement no longer applies.
+
+## IR-91-18 — Fixed-count refill cannot preserve d2.8; PRUNE is the only clean R0 axis here
+
+A dry feasibility test retained the parent's d2.8 exclusion and found only **722 / 621 / 498**
+legal H19-5 refill cells for the required **941 / 1,611 / 4,848** additions. Even the smallest
+nonzero fixed-count collar is therefore infeasible under that extra constraint. Separately,
+MASS cannot use H19-5 as a ranking because the pinned ancestor is binary, and a non-PRUNE
+child inherits R0's 2,171 dots inside the 3 px gate.
+
+**Decision it changes.** The session uses the lineage's recorded no-inhibition PRUNE refill,
+with exact iterative marginal-DTI coverage and no spacing objective. Nearest-neighbour drift
+is reported as a confound on every card; it is not hidden or called a pure collar-only result.
+PRUNE was chosen over inventing a MASS ranking or shipping a non-compliant non-PRUNE child.
+
+## IR-91-20 — the refill-held PRUNE arms are in the ledger but not in the release manifest
+
+Session #10 built three *fixed-count* PRUNE arms (`p2.5px-h19cover`, `p2.9px-h19cover`,
+`p4.5px-h19cover`) and recorded their sha256 in `ledger/submissions.csv`, but
+`releases/MANIFEST.json` on `main` lists only the twelve SPACING and delete-only PRUNE files.
+The CI byte-identity check iterates that manifest, so those three files are not rebuilt-and-hashed
+by CI; their identity rests on the ledger row alone.
+
+**Decision it changes.** This session's slot plan does not send a refill-held arm, so nothing
+here depends on it — but do not upload one without first running
+`python3 scripts/build_prune_refill.py --build` and comparing the output sha256 to the ledger,
+and add the entries to `releases/MANIFEST.json` when you do. The two files this session *does*
+recommend (`CONCENTRATIONgdr25rm10`, `PRUNEle15-norefill`) are pinned and were rebuilt
+byte-identically today (IR-91-17 session notes; `releases/MANIFEST.json` has 18 entries here:
+6 CONCENTRATION + 6 delete-only PRUNE + 6 SPACING).
+
+> **Renumbering note (merge of PR #14, second pass).** This session's four items were
+> written as IR-91-17…20 before main gained IR-91-17/18 (R0 bytes; refill feasibility) and
+> then IR-91-19/20 (CONCENTRATION prior; refill arms missing from the manifest). They are
+> now IR-91-21…24 and the cross-references in the code, cards, ledger notes and docs were
+> updated to match.
+
+## IR-91-21 — The parent's own MASS ranking does not exist in any pinned file
+
+Brief §5: "MASS: drop the lowest-ranked 10% / add the next-ranked 10%, by the parent's own
+ranking (rebuild the ranking from the recorded recipe if it is not stored)."
+
+**Measured:** no stored artifact ranks R0's dots. Every pinned ancestor is **binary** — values
+in {0, 1} only: `calib_h195_01922` (121,131 px), `calib_h194_01894` (123,779), `calib_h161_01855`
+(123,939), `calib_d15_02477` (60,069), the d2.8 raster (44,090) and solo-d28 (40,199). The one
+input that ever carried a continuous score, `training_features.tif` (419 MB), has no mirror in
+any sibling repo and is absent, so it cannot be read at all — the manifest's own policy forbids
+filling the gap from memory.
+
+**Substitution, and exactly what it costs.** MASS is ranked by **cross-field support**: for each
+dot, how many of the three lineage fields emit it (3 / 2 / 1 → 26,913 / 6,200 / 4,541 of R0's
+dots; 0 dots lie outside all three). This is the parent lineage's *own* pinned data, not an
+external prior and not a label, and it is ordinal with whole strata, so no arm needs a tie-break
+inside the ordering it is testing. It is **not** the parent's continuous score and every card
+says so. Consequence: a flat result on these arms cannot distinguish "mass is not a lever" from
+"this particular ordering is uninformative" — that is why the session built both directions.
+
+**Where this disagrees with IR-91-18 (the merged PR's PRUNE session).** That item concludes
+"MASS cannot use H19-5 as a ranking because the pinned ancestor is binary… PRUNE was chosen over
+inventing a MASS ranking". Both halves are right and both are answered here: a *single* binary
+field cannot rank, but the **vote over three** binary fields is a 3-level ordinal ordering built
+only from pinned bytes, with no invented score and no model; and the collar objection is real
+(R0 fails the 3 px gate on its own 2,171 dots, IR-91-03) but it is the *human's* rule to
+interpret — the parent that scores 0.2778 carries the same dots. The arms are therefore built and
+flagged, not withheld; if the human rules the collar binding on every file, these three files are
+not uploadable and the PRUNE queue stands unchanged.
+
+**Also corrected:** `axis_requirements.MASS` in `registry/data_manifest.json` (and
+`tools/pins.py`) declared `training_features` as required, which made the axis permanently
+BLOCKED while the file cannot exist here. It now lists what the build actually reads and hashes:
+`sample_submission`, `parent_r0_nan`, `existing_faults`, `anc_h19_5`, `anc_h19_4`, `anc_h16_1`.
+No sha256 was changed, and `training_features` stays pinned and absent.
+
+## IR-91-22 — Break-even precision is 11.8 %, so every mass edit is a ±0.01 bet
+
+The brief's shortcut ("a dot pays iff credit > 0.2·DTI ≈ 0.056") is exact for *unmatched* mass
+only. Working the algebra for the triangular kernel (R = 3 px, α = 0.2, d = 0.2778):
+
+    E[ΔDTI per dot] ≈ (p·c̄ − γ)/D,    γ = α·d/(1 − α·d) = 0.0556
+
+so an emitted dot is worth its mass iff its **precision** p exceeds γ/c̄ ≈ **11.8 %**
+(c̄ = 0.5 mean credit), equivalently iff it lies within **2.83 px** of a truth pixel. With
+D ∈ [1e4, 3.5e4] (bracketed from a 15–35 % matched fraction), 1,000 dots are worth
+0.002–0.006 of live score.
+
+**Decision it changes.** No MASS dose can be expected to beat +0.01 unless it moves more than
+~2,000 dots of clearly-above-breakeven precision. That is why the arms are 3,765–10,741 dots and
+why the *add* direction is scheduled first: its payoff ratio is (0.5 : 0.0556) ≈ 9:1 per dot,
+while a drop forfeits the whole 0.5 on every dot it gets wrong. It also retires the
+`SPACING`-style edits ab initio — displacement inside 2.83 px cannot change p at all, which is
+consistent with the ≤0.003 bound session 3 derived independently.
+
+## IR-91-23 — The leakage canary has to be a ring test; the plain test is degenerate
+
+The brief's canary: "a single feature with AUC > 0.90 means stop and investigate."
+
+**Measured:** the plain version cannot be run. The three lineage fields — like R0 itself — were
+built with the catalogue masked out: of the 60,988 catalogue pixels, **0** carry any field
+(vote histogram on the catalogue is [60988, 0, 0, 0]). Any AUC computed as
+"catalogue pixels vs background" is therefore an artefact of the mask, not a leak, and
+reporting it as "below threshold" would be a false pass.
+
+**Replacement (implemented in `scripts/instruments.py`):** the 0–3 px ring around known traces
+vs background ≥7 px clear. Result for the session-4 ranking: **AUC 0.526** (7.8 % of ring pixels
+carry support vs 2.6 % of background). So the support ordering is essentially blind to catalogue
+proximity — it is a genuine independent ranking, not a disguised PRUNE, and its failure modes
+are about field construction rather than label leakage.
+
+## IR-91-24 — CONCENTRATION is spent, not untested: R0 already sits in the reported CV band
+
+The brief reports that the best files sit at block-density CV 0.51–0.59.
+
+**Measured on R0:** 10 px (1 km) block density CV = **0.531**; 25 px = 0.791; 50 px = 1.041.
+R0 is already inside the reported band. The four imported CONCENTRATION rows moved CV *away*
+from it — 0.618 → 1.021 (`b10px-m10`), → 1.257 (`b10px-m20`), 0.703 → 1.359 (`b50px-m20`), and
+1.874 → 1.642 for `15pct-1km-grad` — because each concentrated mass into the hottest blocks,
+which raises CV by construction.
+
+**Decision it changes.** Do not spend a slot on a CONCENTRATION arm as specified, and do not
+"fix" it by pushing CV lower with a spacing edit either (that is a SPACING axis, bound ≤0.003).
+The statistic that inspired the axis is already satisfied by the parent, so the axis has no
+headroom left; a future arm would need a *new* mechanism, not a new block size.
+
+**Scope, updated after merging PR #13.** That session did build the *new mechanism* this item
+asked for: a CONCENTRATION prior taken from the external, public-domain GDR thermal layer rather
+than from the parent's own dots. Those three arms (`gdr25rm10`, `gdr25m10`, `gdr10m10`) are
+therefore **not** retired by this measurement, and they report a measured ±: 8.4 pp of H19-5
+coverage cost (88.6 % → 80.2 %) and a −0.022 prediction floor. What still stands is the CV point:
+they move 10 % of mass into the hottest 2.5 km blocks, which raises block-density CV further above
+the 0.51–0.59 band R0 already sits in (0.531), so the mechanism they test is *prior transfer*, not
+the CV statistic that originally motivated the axis. Do not describe them as a CV fix.
 ---
 
 # Session 5 (`arena/42de3fed-gemsdoe91`, RELIEF) — three decision-changing items
 
-## IR-91-17 — `training_features` is already public in sibling repo `buffedlizard55-lab/GEMSDOE`
+## IR-91-25 — `training_features` is already public in sibling repo `buffedlizard55-lab/GEMSDOE`
 
 Querying `https://api.github.com/repos/buffedlizard55-lab/GEMSDOE` (`private: false`
 `RECEIPT`) and testing an unauthenticated blob download (`HTTP 200`, `41,425,484` B
@@ -340,7 +545,7 @@ explicitly flagged for human review/remediation on `buffedlizard55-lab/GEMSDOE`.
 sha256 pins in `registry/data_manifest.json` and `releases/MANIFEST.json` while restoring
 bytes transiently in CI and `.cache/data`.
 
-## IR-91-18 — `RELIEF` axis unblocked via official GeoDAWN `det_elev` + `det_elev_slope` instead of unlicensed LiDAR
+## IR-91-26 — `RELIEF` axis unblocked via official GeoDAWN `det_elev` + `det_elev_slope` instead of unlicensed LiDAR
 
 Earlier sessions marked `RELIEF` blocked on `ext_lidar_scarp_u8.tif`, which covers only
 `75.4%` of the footprint and carries `"license": "USGS 3DEP public domain (derived — licence unchecked)"`
@@ -356,7 +561,7 @@ canary AUCs of `0.5063` and `0.5633` `PROXY` (`≪ 0.90`).
 lineage ancestors, unblocking `RELIEF` on 100% sponsor-provided inputs without external
 licensing risk or partial-footprint bias.
 
-## IR-91-19 — R0's 2,171 inherited `2 < d_cat ≤ 3 px` collar dots must be quarantined on non-PRUNE edits
+## IR-91-27 — R0's 2,171 inherited `2 < d_cat ≤ 3 px` collar dots must be quarantined on non-PRUNE edits
 
 Parent R0 (`h33-h33-2-b2`) contains `2,171` dots at Euclidean distance `2.236 ≤ d_cat ≤ 3.0 px`
 (`390` in T1 Basin, `1,134` in T2 Piedmont, `647` in T3 Range `RECEIPT`). Removing any of

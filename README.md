@@ -4,28 +4,23 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** `R0 = h33-h33-2-b2` — **verified locally and rebuilt from two independent pinned ancestors** (`d2.8` and `solo-d2.8` minus `d_cat ≤ 2.0 px` → exact `37,654` unit-mass dots `RECEIPT`, digest `905cee9d…`). `baeae321…c77dd` (NaN) and `c55bafc4…6fa9` (zeros), `EPSG:32611`, `3730×3292`, `100 m`, `float32`, footprint `5,167,373` px, `0` dots on catalogue, min `2.236 px` from it (`RECEIPT`).
-- **Inputs present and hash-verified: 15 of 15 pinned entries (`16/16` including `catalogue_px.tif`, `RECEIPT`)** via `scripts/restore_data.py` + `scripts/verify_manifest.py` (`scripts/preflight.py` → `BUILD ALLOWED: 3/3`). `training_features` (`418,912,844` B, sha256 `4371c82e…3bc5` `RECEIPT`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)) is now restored from 5 pinned git blobs; public-mirror status is flagged in `IRREGULARITIES.md` IR-91-17.
-- **Axis readiness (`scripts/verify_manifest.py`):** **ALL 6 AXES READY** (`MASS`, `CONCENTRATION`, `SNAP`, `PRUNE`, `RELIEF`, `SPACING`).
-- **Best receipt:** **none.** All `29` ledger rows in `ledger/submissions.csv` have `status=BUILT` and blank `receipt_score`/`receipt_date` (`20` imported, `3` SPACING, `3` PRUNE, `3` RELIEF). R0's `0.2778` / `0.3698` remains an unreceipted **CLAIM**.
-- **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
-- **Slots left this week:** **__ / 3 (human must fill; 1 entity, 5.86 rolling weeks to unconfirmed 2026-12-03 deadline).**
-- **AXIS for Session 5 (`arena/42de3fed-gemsdoe91`):** **RELIEF** (`0` prior ledger rows). Reallocates `4,518` dots (`12.00%` relocated; `9,036` pixel symmetric diff = `24.00%` `RECEIPT`) at fixed count (`37,654` `RECEIPT`) and zero catalogue-collar drift (`2,171 → 2,171` `RECEIPT`) across equal-area relief terciles `0.90·pct(det_elev) + 0.10·pct(det_elev_slope)`:
+- **Parent:** `R0 = h33-h33-2-b2`, `37,654` unit-mass dots (`RECEIPT`) on the pinned `3730×3292` `EPSG:32611` (`100 m`, `float32`, footprint `5,167,373` px, `0` dots on catalogue, min `2.236 px`) grid. Both pinned TIFFs rebuild byte for byte from either ancestor (`baeae321…c77dd`, `355,443` B; `c55bafc4…6fa9`, `219,065` B; dot digest `905cee9d…`). R0's `0.2778` / `0.3698` remains an unreceipted **CLAIM**.
+- **Inputs (`15/15` pinned + `catalogue_px.tif` = `16/16` hash-verified `RECEIPT`):** `scripts/restore_data.py` now restores `training_features` (`gems-geodawn-numerical-features.tif`, `418,912,844` B, sha256 `4371c82e…3bc5` `RECEIPT`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)) from 5 pinned git blobs (`IR-91-25`) and unblocks **all 6 axes** (`MASS`, `CONCENTRATION`, `SNAP`, `PRUNE`, `RELIEF`, `TRACKB`; `scripts/preflight.py` → `BUILD ALLOWED`).
+- **Ledger (`41` `BUILT` rows, `0` `SUBMITTED`, `0` live `RECEIPT`s):** `|Δ| < 0.01` = no evidence. **TOP_PUBLIC:** `____` (human must fill, with date). **Slots left this week:** `__ / 3` (`5.86` rolling weeks to unconfirmed `2026-12-03` deadline).
+- **Session 5 (`arena/42de3fed-gemsdoe91`) — `RELIEF` axis built and certified (`IR-91-26`, `IR-91-27`):** Relocates `4,518` dots (`12.00%` moved; `9,036` pixel symmetric diff = `24.00%` `RECEIPT`) at fixed count (`37,654` `RECEIPT`) and zero catalogue-collar drift (`2,171 → 2,171` `RECEIPT`) across equal-area relief terciles `0.90·pct(det_elev) + 0.10·pct(det_elev_slope)` (single-band leakage canary max AUC `0.5793` `PROXY` `≪ 0.90`):
 
-  | id | value | dots (`RECEIPT`) | relocated (`RECEIPT`) | T1 / T2 / T3 share (`RECEIPT`) | 4-fold `PROXY` Δ | SGMC `PROXY` Δ ([USGS DS-1052](https://pubs.usgs.gov/ds/1052/)) | predicted (`MODEL`) |
-  |---|---|---:|---:|---|---|---|---|
-  | `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c` | `r2p12` (`range->pied`) | 37,654 | 4,518 (12.00%) | 17.7 / 56.3 / 26.0% | −0.0017 | −0.0049 | **+0.006** `[−0.006, +0.018]` |
-  | `h33-h33-2-b2-RELIEFr2b12-20261023-27443c30` | `r2b12` (`range->basin`) | 37,654 | 4,518 (12.00%) | 29.7 / 44.3 / 26.0% | −0.0032 | −0.0091 | **+0.003** `[−0.010, +0.016]` |
-  | `h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5` | `b2r12` (`basin->range`) | 37,654 | 4,518 (12.00%) | 5.7 / 44.3 / 50.0% | −0.0113 | **+0.0050** | **+0.005** `[−0.010, +0.020]` |
+  | id | value | dots (`RECEIPT`) | T1 / T2 / T3 share (`RECEIPT`) | 4-fold `PROXY` Δ ([GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)) | SGMC `PROXY` Δ ([USGS DS-1052](https://pubs.usgs.gov/ds/1052/)) | predicted (`MODEL`) |
+  |---|---|---:|---|---|---|---|
+  | `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c` | `r2p12` (`range->pied`) | 37,654 | 17.7 / 56.3 / 26.0% | −0.0017 | −0.0049 | **+0.006** `[−0.006, +0.018]` |
+  | `h33-h33-2-b2-RELIEFr2b12-20261023-27443c30` | `r2b12` (`range->basin`) | 37,654 | 29.7 / 44.3 / 26.0% | −0.0032 | −0.0091 | **+0.003** `[−0.010, +0.016]` |
+  | `h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5` | `b2r12` (`basin->range`) | 37,654 | 5.7 / 44.3 / 50.0% | −0.0113 | **+0.0050** | **+0.005** `[−0.010, +0.020]` |
 
-  All 6 rasters (`NaN` primary + `-zeros` twin) pass `gems91.release_gates.validate_release` (`PASS`) and `scripts/validate_raster.py` (`14/14` `RECEIPT`), are re-verified from disk, and are pinned byte-for-byte in `releases/MANIFEST.json` (no `.tif` committed to git). Single-band leakage canary across all 19 GeoDAWN bands has max symmetric AUC = `0.5793` `PROXY` (`≪ 0.90`).
-- **Next 3 slots (see `SLOT_PLAN.md`):** Slot 1 `R0` anchor (unless human already holds an exact receipt for `baeae321…c77dd`) → Slot 2 `RELIEFr2p12` (`6ff08e5c`) → Slot 3 `RELIEFb2r12` (`e1fd28d5`, or `RELIEFr2b12` if Slot 2 gains `≥ +0.010`).
-
-### Earlier session deltas (`PRUNE`, `SPACING`, `CONCENTRATION` infra)
-
-- **Session 4 (`PRUNE`):** Delete-only dose ladder `PRUNEle3norefill` (`35,483` dots `RECEIPT`, `+0.002` `MODEL`), `PRUNEle8norefill` (`28,490` `RECEIPT`, `+0.006` `MODEL`), `PRUNEle15norefill` (`21,989` `RECEIPT`, `+0.010` `MODEL`).
-- **Session 3 (`arena/a5e7bf22`, `SPACING`):** Matched radius-2 local spacing arms `SPACINGspread40` (`6d389309`, `+0.0042` `MODEL`), `SPACINGclump40` (`536d32ad`, `−0.0023` `MODEL`), `SPACINGjitter40` (`39bb7288`, `0.000` `MODEL`).
-- **Session 2 (`arena/a6416f7b`):** Added `tools/run_concentration.py`, `tools/pins.py`, and fixed row/column transpose in `src/gems91/gates.py` (IR-91-06).
+- **Merged fleet summary across sessions (`SLOT_PLAN.md`):**
+  - **CONCENTRATION** (PR #13, GDR thermal prior): `gdr25rm10` (`c19adb01`, `+0.0123` `MODEL`), `gdr25m10` (`+0.0114`), `gdr10m10` (`+0.0113`).
+  - **PRUNE** (PRs #4/#9/#10): delete-only `le3..le15` (`+0.002..+0.010` `MODEL`, `le10` `04002dae` `+0.008`) + fixed-count `p2.5`/`p2.9`/`p4.5px-h19cover`.
+  - **MASS** (PR #14, lineage support): `cons1drop` (`−0.000` `MODEL`), `cons2drop` (`−0.015`), `cons3add` (`2803126d`, `+0.009`).
+  - **SPACING** (PR #3, radius-2 ring): `spread40` (`6d389309`, `+0.0042` `MODEL`), `clump40` (`−0.0023`), `jitter40` (`0.000`).
+- **Next 3 scored slots (`SLOT_PLAN.md`):** (1) `CONCENTRATIONgdr25rm10` (`c19adb01`, or R0 anchor if unreceipted) → (2) `PRUNE-le10-norefill` (`04002dae`) → (3) `RELIEFr2p12` (`6ff08e5c`, or `MASScons3add` `2803126d`).
 
 ## What this repo contains
 
