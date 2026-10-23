@@ -40,11 +40,22 @@
       "local_subpath": "bridge/gems-geodawn-numerical-features.tif",
       "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
       "bytes": 418912844,
-      "public_mirror": null,
-      "role": "bands 3/12/18/19 etc: block priors, edge fields for SNAP, parent ranking rebuild",
-      "provenance": "competition-provided",
-      "verified_here": false,
-      "local_present": false
+      "public_mirror": "buffedlizard55-lab/GEMSDOE:data/bridge/gems-geodawn-numerical-features.tif.part-000..004",
+      "role": "bands 3/5/6/12/18/19 etc: detrended-elevation terciles for RELIEF, block priors, edge fields for SNAP",
+      "provenance": "competition-provided (upstream 5-blob split mirror; see IR-91-17)",
+      "verified_here": true,
+      "local_present": true,
+      "mirror": {
+        "repo": "buffedlizard55-lab/GEMSDOE",
+        "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+        "blobs": [
+          "f34e5143d5e7c10014b5cfe01c85d01bcede4c0a",
+          "4bd98099ae505f63cc6c3733954f259974efd290",
+          "d6f883ba8822207ac2765445737ecd2ecdfd2914",
+          "976977b4ac84c4c9b6fec72495c4e512341de872",
+          "41a7bb7b7603c1e7669d8cc8405cfeb5efb5cf0c"
+        ]
+      }
     },
     {
       "id": "parent_r0_zeros",
@@ -279,7 +290,10 @@
       "sample_submission",
       "parent_r0_nan",
       "existing_faults",
-      "ext_lidar_scarp_u8"
+      "anc_h19_5",
+      "anc_h19_4",
+      "anc_h16_1",
+      "training_features"
     ],
     "TRACKB": [
       "sample_submission",

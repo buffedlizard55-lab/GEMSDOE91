@@ -116,3 +116,67 @@ by construction > 2 px from that catalogue: only the 2–3 px collar can ever to
 a withheld catalogue cell (proxy coverage 3.9 % of held cells, mean credit
 0.006 ≈ two orders of magnitude below a real DTI). Its sign on these arms
 therefore tracks collar drift, which is why it is reported and not believed.
+
+---
+
+# Variant cards — RELIEF axis on R0 (Session 5, built 2026-10-23)
+
+Full structural-geologist mechanism cards and equal-area tercile diagnostics live in
+[`docs/MECHANISM_CARDS.md`](../docs/MECHANISM_CARDS.md) and
+[`evidence/relief_axis_20261023.json`](../evidence/relief_axis_20261023.json).
+All three arms hold total mass fixed at `37,654` unit dots (`RECEIPT`), relocate
+exactly `4,518` dots (`12.00%` moved; `9,036` pixel symmetric diff = `24.00%`
+`RECEIPT`), keep `0` pairs `< 2 px`, and quarantine R0's `2,171` inherited
+`2 < d_cat ≤ 3 px` collar dots (`0` removed, `0` added `RECEIPT`) across relief
+terciles `R_rel = 0.90·pct(det_elev) + 0.10·pct(det_elev_slope)` from official
+`training_features` ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)).
+
+### 1. `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c` (`range -> pied`, 12.00%)
+- **Hypothesis.** Unmapped geothermal-controlling faults concentrate along T2
+  piedmont-toe scarps, synthetic range-front step-overs, and thin-alluvium relay
+  ramps (`~328 m` median basin depth `RECEIPT`), whereas R0 over-weights T3 horst
+  erosional ridges (`38.01%` of R0).
+- **Mechanism.** Strips `4,518` lowest-corroborated T3 dots (`d_cat > 3 px`) and
+  places `4,518` dots on T2 lineage ridges (`2,686` at `d ≥ 2.8 px`, `1,832` at
+  `d ≥ 2.0 px`); tercile shares shift `17.67 / 44.32 / 38.01% -> 17.67 / 56.32 / 26.01%`
+  (`RECEIPT`). 4-fold rebuilt `PROXY` delta `−0.0017` (`0.1116` vs `0.1133`);
+  off-catalogue SGMC `PROXY` delta `−0.0049` (`0.0905` vs `0.0954`,
+  [USGS DS-1052](https://pubs.usgs.gov/ds/1052/)).
+- **Non-fault mimic.** Coalescing alluvial-fan toes, Pleistocene pluvial-lake
+  shorelines, and shallow pediment-alluvium onlap contacts.
+- **Predicted live change.** **+0.006 `MODEL`** (`[-0.006, +0.018]`; `|Δ| < 0.01` = no evidence).
+- **Falsifier.** Live delta `≤ −0.010` vs R0, or `b2r12` beating `r2p12` by `≥ +0.010`.
+
+### 2. `h33-h33-2-b2-RELIEFr2b12-20261023-27443c30` (`range -> basin`, 12.00%)
+- **Hypothesis.** Because subaerial range fronts are largely mapped, concealed
+  intrabasin grabens, transfer zones, and basement horst steps beneath deep
+  (`~560 m` median `RECEIPT`) T1 basin fill carry the highest density of unmapped
+  geothermal conduits.
+- **Mechanism.** **Donor-identical twin of `r2p12`** (drops the exact same `4,518`
+  T3 dots `RECEIPT`) and **sign flip of `b2r12`**; places `4,518` dots into T1
+  (`954` `d ≥ 2.8` lineage, `1,791` `d ≥ 2.0` lineage, `1,773` `d ≥ 2.8` dual
+  magnetic+gravity horizontal-gradient crests); terciles `29.67 / 44.32 / 26.01%`
+  (`RECEIPT`). 4-fold rebuilt `PROXY` delta `−0.0032` (`0.1101`); SGMC `PROXY`
+  delta `−0.0091` (`0.0863`).
+- **Non-fault mimic.** Buried volcanic paleochannels, axial fluvial/playa facies
+  transitions, and intrabasin basaltic sills/pluton edges.
+- **Predicted live change.** **+0.003 `MODEL`** (`[-0.010, +0.016]`; `|Δ| < 0.01` = no evidence).
+- **Falsifier.** `DTI(r2b12) − DTI(r2p12) ≤ −0.010` (donor loss cancels identically,
+  isolating deep-basin geophysical crests as net mimics vs piedmont traces).
+
+### 3. `h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5` (`basin -> range`, 12.00%)
+- **Hypothesis.** Withheld sponsor truth reflects detailed 1:24k–1:100k bedrock
+  fault mapping (`64–70%` of off-catalogue SGMC traces sit in T3 `RECEIPT`), while
+  T1 basin-floor dots sit on unverified geophysical gradients absent from surface truth.
+- **Mechanism.** **Exact directional sign flip of `r2b12`**: moves `4,518` T1 dots
+  (`17.67% -> 5.67%` Basin) onto corroborated T3 lineage ridges (`3,036` at
+  `d ≥ 2.8 px`, `1,482` at `d ≥ 2.0 px`; `38.01% -> 50.01%` Range `RECEIPT`).
+  Sole arm gaining on off-catalogue USGS SGMC bedrock faults (`+0.0050` / `+5.2%`,
+  `0.1003` vs `0.0954` `PROXY`), while trading `−0.0113` on Quaternary-heavy
+  INGENIOUS 4-fold recovery (`0.1020` `PROXY`, [GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)).
+- **Non-fault mimic.** Differential erosion of tilted ash-flow tuffs, carbonate
+  cliffs, intrusive contacts, and canyon walls in exhumed horsts.
+- **Predicted live change.** **+0.005 `MODEL`** (`[-0.010, +0.020]`; `|Δ| < 0.01` = no evidence).
+- **Falsifier.** `DTI(b2r12) − DTI(r2b12) ≤ −0.010` falsifies bedrock enrichment;
+  `|Δ| < 0.010` on both `r2b12` and `b2r12` across a `24 pp` T1/T3 swing retires `RELIEF`.
+

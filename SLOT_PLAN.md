@@ -1,92 +1,37 @@
-# SLOT PLAN — one entity, 3 scored slots/week, deadline 2026-12-03 (unconfirmed)
+# SLOT PLAN — 1 entity, 3 scored slots / rolling week, 1 blind final pick
 
-## Session axis: PRUNE (chosen, not assigned)
+**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). Never use multi-account feedback; record every live score in `ledger/submissions.csv` (`|Δ| < 0.01` = no evidence).
 
-The prior sessions chose MASS and CONCENTRATION; both are still blocked on
-`training_features`. **PRUNE is the only axis whose inputs are now hash-verified in this
-workspace** (`scripts/verify_manifest.py` → `[READY] PRUNE`), which is why it is the axis
-this session executes to receipt quality rather than proposing.
+## Session 5 axis built: `RELIEF` (`r2p12`, `r2b12`, `b2r12`)
 
-Within PRUNE, the brief's own values (≤1, ≤2) are **no-ops on R0**: the parent already sits
-at 2.236 px, so nothing is within 2 px. The only meaningful direction is upward. That makes
-a **delete-only dose ladder** the correct design, not three different edits.
+Restoring `training_features` (`gems-geodawn-numerical-features.tif`, sha256 `4371c82e…3bc5` `RECEIPT`) unblocked all six axes (`16/16` manifest checks pass `RECEIPT`). `RELIEF` had `0` prior builds and tests the central structural-geology ambiguity of Great Basin fault truth at fixed mass (`37,654` dots `RECEIPT`), fixed `12.00%` relocation (`4,518` dots; `24.00%` symmetric pixel diff `RECEIPT`), and zero catalogue-collar drift (`2,171 -> 2,171` `RECEIPT`): **concealed piedmont/basin faults vs exhumed horst bedrock faults**.
 
-The design is backed by a measurement rather than a hunch: **all of R0's credit against the
-catalogue lies within 3 px** (necessarily, since the kernel radius is 3 px). So every dot
-removed between 3 and 15 px earns **zero** credit on known faults while still costing `0.2`
-in the denominator. The ladder therefore isolates exactly one unknown: how much *new-fault*
-credit those dots were earning.
+## Next 3 scored slots in order (Week 1: `2026-10-23` to `2026-10-30`)
 
-## Next 3 slots — the ladder, in this order
+| Slot | File (`releases/` or `data/registry/`) | Dots (`RECEIPT`) | Change vs R0 (`RECEIPT`) | Pred. `Δ` (`MODEL`) | What the live receipt changes |
+|---:|---|---:|---|---|---|
+| **1** | `data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif` (**R0**) | 37,654 | 0.00% (anchor) | `0.2778` / `0.3698` `CLAIM` | Replaces unverified `CLAIM` with first `RECEIPT` baseline. *(Skip to Slot 2 if human already holds an exact receipt for `baeae321…c77dd`, promoting `RELIEFr2b12` into Slot 3.)* |
+| **2** | `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif` | 37,654 | 12.00% moved (`range->pied`) | **+0.006 `MODEL`** `[-0.006,+0.018]` | `Δ ≥ +0.010`: withheld truth favors concealed piedmont-toe scarps/relay ramps -> spend Slot 3 on donor-twin `RELIEFr2b12` (`27443c30`) to test deeper basin fill. `Δ ≤ -0.010`: T3 horst donors carried real bedrock truth -> keep Slot 3 on `RELIEFb2r12`. |
+| **3** | `h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5.tif` | 37,654 | 12.00% moved (`basin->range`) | **+0.005 `MODEL`** `[-0.010,+0.020]` | `Δ ≥ +0.010`: withheld truth tracks 1:24k–1:100k exhumed bedrock faults (`+5.2%` SGMC `PROXY`, [USGS DS-1052](https://pubs.usgs.gov/ds/1052/)) -> scale `b2r` to 20–25% in Week 2. Both Slot 2 & 3 `|Δ| < 0.010`: retire `RELIEF`; pivot Week 2 to `PRUNEle15norefill` (`+0.010` `MODEL`) + strain/mass axes below. |
 
-| # | build | dots | removed | % R0 | predicted | what the result would change |
-|---|---|---|---|---|---|---|
-| 1 | `PRUNEle3norefill` | 35,483 | 2,171 | 5.77 % | +0.002 | Smallest step off the parent. Most likely below the 0.01 bar, so a flat result is *expected*. A loss means 2 px is already past the optimum and nothing further should be pruned. |
-| 2 | `PRUNEle8norefill` | 28,490 | 9,164 | 24.34 % | +0.006 | Separates denominator saving from new-fault credit. 7,553 of the 9,164 removed dots are zero-credit against the catalogue. |
-| 3 | `PRUNEle15norefill` | 21,989 | 15,665 | 41.60 % | +0.010 | Largest dose inside the 1–50 % band and the only rung with a plausible path past +0.01. |
+## Rolling budget to deadline (`5.86` weeks remaining)
 
-All three are built and gate-clean (`releases/`). Predictions, confounders and falsifiers
-are in `docs/MECHANISM_CARDS.md`.
+- **Week 1 (slots 1–3):** Anchor R0 + bracket `RELIEF` (`r2p12` vs `b2r12` or `r2b12`).
+- **Week 2 (slots 4–6):** Test mass/collar orthogonal lever (`PRUNEle15norefill`, `21,989` dots `RECEIPT`, `+0.010` `MODEL`) + winning `RELIEF` direction at `24%` dose + top proposed axis below.
+- **Weeks 3–4 (slots 7–12):** Combine orthogonal ≥`+0.010` `RECEIPT` winners one step at a time (only after parent receipts exist) + calibrate total `MASS` (`alpha=0.2`, `beta=0.8`).
+- **Weeks 5–6 (slots 13–18 + 1 blind final):** Freeze best receipted build + one conservative hedge (`R0` or minimal-edit winner); re-verify sha256 on disk before blind final selection (`2026-12-03`).
 
-**This ladder directly tests a recorded disagreement.** The imported `PRUNE/p4px` row
-predicts **−0.009** for removing the 2–4 px collar; the metric algebra says removal *gains*
-because zero-credit dots are pure denominator cost. If `le8`/`le15` gain, that imported
-prediction is wrong. See `IRREGULARITIES.md` IR-91-13.
+## Proposed better axes (not built this session; all inputs now verified)
 
-**Do not** spend slots on the existing refill-based `p1px`/`p3px`/`p4px` rows: they were
-built by an earlier session and never scored, and their predictions are non-monotone in dose
-(−0.006, +0.005, −0.009), which a single mechanism cannot produce.
-
-## Session-3 addendum: the SPACING axis, and where it belongs
-
-Built here, matched on everything but the treatment (same 40 % of dots, same radius-2
-displacement budget, same constraints), with a **null** arm (`jitter40`) and a **sign flip**
-(`clump40`) so any live difference is attributable to spacing direction:
-
-| arm | relocated | density at target | predicted (MODEL) |
-|---|---:|---|---|
-| `SPACINGspread40` | 15,056 (39.99 %) | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
-| `SPACINGclump40` | 14,973 (39.76 %) | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
-| `SPACINGjitter40` | 15,038 (39.94 %) | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
-
-The uniform-truth ceiling (−0.17 % to −2.4 % of expected credit) caps the plausible live
-effect near **0.003**: this axis cannot win a slot on expected score. It earns one only as a
-retirement test — a flat result says arrangement is not a lever and frees every later slot.
-
-**Where it sits relative to the PRUNE ladder above.** Slot 1 stays PRUNE (`le3`, the ladder's
-first rung, +0.002). Slot 2 should be the ladder's **`le15`** rung (+0.010, the largest
-predicted gain in the ledger) *if* `le3` lands ≥ +0.01; otherwise slot 2 is
-**`SPACINGspread40`**. Do not spend a slot on `clump40` or `jitter40` (controls), and do not
-build a fourth SPACING dose before the first receipt exists.
-
-## Weeks to the deadline
-
-| week | plan |
-|---|---|
-| now | Spend this week's slots on the ladder. Copy every receipt number into `ledger/submissions.csv`. |
-| wk 2 | Read the ladder. **Monotone gain** → keep cutting mass; next axis should be MASS-SHAPE at fixed count. **Monotone loss** → new faults hug the known traces; stop pruning and add mass in the 3–8 px band instead. **Flat** → PRUNE is exhausted, move to CONCENTRATION. |
-| wk 3–4 | Whatever the ladder says, the next build needs `training_features` (it unblocks MASS, SNAP and CONCENTRATION). Ask the human to supply it; it is the single highest-value missing input. |
-| wk 5–6 | Confirm the winner, build a fallback, re-validate both formats, re-read both from disk, choose the final file blind from the ledger. |
-
-## Better axes (proposed, not built this session)
-
-1. **MASS-SHAPE at fixed count.** Keep 37,654 dots but redistribute from dense clusters to
-   sparse ones. Mechanism: the denominator charges `0.2(S−M)`, so credit already collected by
-   a neighbour is nearly free while fresh credit is not — overlapping dots waste count
-   without buying credit. Confounder: true fault density varies at km scale, so flattening a
-   real cluster costs recall. Falsifier: were the removed dots' neighbourhoods already
-   credited by a neighbour? *Blocked on* `training_features`.
-2. **MARGINAL-PRUNE by exact gain.** Rank R0's dots by exact marginal gain
-   (`scripts/dti.py::rank_dots`) and drop the bottom decile instead of dropping by distance to
-   the catalogue. Confounder: the holdout is the catalogue, not new-fault truth. Falsifier:
-   the dropped set should not overlap the hide-and-recover positives.
-3. **TRACKB (Phase 2 only).** Strike-consistent traces ≥1 km as GeoJSON + raster with one
-   evidence paragraph per trace. Cannot be scored in Phase 1 in a way that transfers, so it
-   should not consume a weekly slot unless the human decides otherwise.
-
-## Honest note on information per slot
-
-The brief's evidence bar is ±0.01 on public chunks. The parent's best single step was +0.0070
-(CLAIM). **No one-pixel prune step can clear that bar.** If you would rather spend all three
-slots on moves that can plausibly exceed 0.01, replace slot 1 with the upper doses. That is a
-judgement about information per slot, and it is yours, not mine.
+1. **`GEODETIC-STRAIN CONCENTRATION` (`Band 4 geod_2ndinv` + `Band 7 geod_shearrate`)**
+   - **Mechanism:** Active transtensional shear maintains dilational fracture permeability and unmapped Quaternary splays ([GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)); `geod_2ndinv` (`0.5793` `PROXY`) and `geod_shearrate` (`0.5761` `PROXY`) have the highest truth-adjacent signal among all 19 GeoDAWN bands.
+   - **Confounder:** Coarse GPS station spacing smears strain across adjacent aseismic blocks.
+   - **Falsifier:** Reallocating 20% of R0 mass into top-tercile `geod_2ndinv × S_struct` yields `Δ < +0.010` live vs R0.
+2. **`SEDIMENT-DEPTH KERNEL BRACKETING` (`Band 15 depth_to_base_surf`-gated lateral pairing)**
+   - **Mechanism:** Upward continuation through `>500 m` Cenozoic fill shifts gravity/magnetic horizontal-gradient crests downdip of dipping normal fault surface traces, missing DTI's `300 m` kernel unless bracketed (`±200 m`).
+   - **Confounder:** Variable listric fault dip (`40°–65°`) creates asymmetric hanging-wall offset.
+   - **Falsifier:** Depth-bracketed basin dots fail to beat `RELIEFr2b12` (`27443c30`, `+0.003` `MODEL`) by `≥ +0.010` live.
+3. **`THERMAL-ANOMALY DILATIONAL GATING` (`Band 16 ieq_n100a15` × lineage terminations)**
+   - **Mechanism:** Blind geothermal systems localize at fault tips/step-overs with elevated shallow conductive temperature (`ieq_n100a15` AUC `0.5749` `PROXY`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)).
+   - **Confounder:** Lateral groundwater outflow plumes advect heat `2–8 km` off the structural conduit.
+   - **Falsifier:** Thermal-weighted step-over reallocation scores `≤` isothermal `RELIEFr2p12` (`6ff08e5c`).

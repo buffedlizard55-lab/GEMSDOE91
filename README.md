@@ -4,84 +4,28 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** `R0 = h33-h33-2-b2` — **verified locally this session**, both encodings.
-  `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros), 37,654 unit-mass dots,
-  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on catalogue,
-  min 2.236 px from it**.
-- **Inputs present and hash-verified: 14 of 15 pinned entries** (`scripts/restore_data.py`,
-  3 s / 5 MB, every sha256 checked). Only `training_features.tif` (419 MB) has no pinned
-  mirror; it is not needed for session 3's axis. Found in public mirrors; see
-  `IRREGULARITIES.md` IR-91-09, which supersedes IR-91-02.
-- **Axis readiness (`scripts/verify_manifest.py`):** PRUNE **READY**; MASS, SNAP,
-  CONCENTRATION, RELIEF, TRACKB blocked on `training_features` / lidar layers.
-- **Best receipt:** **none.** No `receipt_score` exists in this lineage — all 26 ledger
-  rows are blank (20 imported, 3 PRUNE built in session 4, 3 SPACING built in session 3). `0.2778` for R0 is a **CLAIM**, and GEMSDOE32's own manifest records
-  `receipt: null` for it.
+- **Parent:** `R0 = h33-h33-2-b2` — **verified locally and rebuilt from two independent pinned ancestors** (`d2.8` and `solo-d2.8` minus `d_cat ≤ 2.0 px` → exact `37,654` unit-mass dots `RECEIPT`, digest `905cee9d…`). `baeae321…c77dd` (NaN) and `c55bafc4…6fa9` (zeros), `EPSG:32611`, `3730×3292`, `100 m`, `float32`, footprint `5,167,373` px, `0` dots on catalogue, min `2.236 px` from it (`RECEIPT`).
+- **Inputs present and hash-verified: 15 of 15 pinned entries (`16/16` including `catalogue_px.tif`, `RECEIPT`)** via `scripts/restore_data.py` + `scripts/verify_manifest.py` (`scripts/preflight.py` → `BUILD ALLOWED: 3/3`). `training_features` (`418,912,844` B, sha256 `4371c82e…3bc5` `RECEIPT`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)) is now restored from 5 pinned git blobs; public-mirror status is flagged in `IRREGULARITIES.md` IR-91-17.
+- **Axis readiness (`scripts/verify_manifest.py`):** **ALL 6 AXES READY** (`MASS`, `CONCENTRATION`, `SNAP`, `PRUNE`, `RELIEF`, `SPACING`).
+- **Best receipt:** **none.** All `29` ledger rows in `ledger/submissions.csv` have `status=BUILT` and blank `receipt_score`/`receipt_date` (`20` imported, `3` SPACING, `3` PRUNE, `3` RELIEF). R0's `0.2778` / `0.3698` remains an unreceipted **CLAIM**.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
-- **Slots left this week:** **__ / __ (human must fill).**
-- **AXIS for this session:** **PRUNE**, chosen not assigned. Built as a **delete-only
-  dose ladder**, which is the parent lineage's own operation (measured, not assumed).
-- **Variants built this session: 3, all gated.**
+- **Slots left this week:** **__ / 3 (human must fill; 1 entity, 5.86 rolling weeks to unconfirmed 2026-12-03 deadline).**
+- **AXIS for Session 5 (`arena/42de3fed-gemsdoe91`):** **RELIEF** (`0` prior ledger rows). Reallocates `4,518` dots (`12.00%` relocated; `9,036` pixel symmetric diff = `24.00%` `RECEIPT`) at fixed count (`37,654` `RECEIPT`) and zero catalogue-collar drift (`2,171 → 2,171` `RECEIPT`) across equal-area relief terciles `0.90·pct(det_elev) + 0.10·pct(det_elev_slope)`:
 
-  | id | value | dots | removed | % of R0 | predicted |
-  |---|---|---|---|---|---|
-  | `h33-h33-2-b2-PRUNEle3norefill-…-1209e863` | le3-norefill | 35,483 | 2,171 | 5.77 % | +0.002 |
-  | `h33-h33-2-b2-PRUNEle8norefill-…-e1dd69d0` | le8-norefill | 28,490 | 9,164 | 24.34 % | +0.006 |
-  | `h33-h33-2-b2-PRUNEle15norefill-…-1ca1ff6f` | le15-norefill | 21,989 | 15,665 | 41.60 % | +0.010 |
+  | id | value | dots (`RECEIPT`) | relocated (`RECEIPT`) | T1 / T2 / T3 share (`RECEIPT`) | 4-fold `PROXY` Δ | SGMC `PROXY` Δ ([USGS DS-1052](https://pubs.usgs.gov/ds/1052/)) | predicted (`MODEL`) |
+  |---|---|---:|---:|---|---|---|---|
+  | `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c` | `r2p12` (`range->pied`) | 37,654 | 4,518 (12.00%) | 17.7 / 56.3 / 26.0% | −0.0017 | −0.0049 | **+0.006** `[−0.006, +0.018]` |
+  | `h33-h33-2-b2-RELIEFr2b12-20261023-27443c30` | `r2b12` (`range->basin`) | 37,654 | 4,518 (12.00%) | 29.7 / 44.3 / 26.0% | −0.0032 | −0.0091 | **+0.003** `[−0.010, +0.016]` |
+  | `h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5` | `b2r12` (`basin->range`) | 37,654 | 4,518 (12.00%) | 5.7 / 44.3 / 50.0% | −0.0113 | **+0.0050** | **+0.005** `[−0.010, +0.020]` |
 
-  All three pass the repo's gates **twice over**: 14/14 in `scripts/validate_raster.py`
-  and `VERDICT: CERTIFIED` in `scripts/validate_release.py`.
-- **Next 3 slots (see `SLOT_PLAN.md`):** the PRUNE ladder le3 → le8 → le15, with
-  `SPACINGspread40` as the alternative at slot 2 if le3 lands below +0.01.
+  All 6 rasters (`NaN` primary + `-zeros` twin) pass `gems91.release_gates.validate_release` (`PASS`) and `scripts/validate_raster.py` (`14/14` `RECEIPT`), are re-verified from disk, and are pinned byte-for-byte in `releases/MANIFEST.json` (no `.tif` committed to git). Single-band leakage canary across all 19 GeoDAWN bands has max symmetric AUC = `0.5793` `PROXY` (`≪ 0.90`).
+- **Next 3 slots (see `SLOT_PLAN.md`):** Slot 1 `R0` anchor (unless human already holds an exact receipt for `baeae321…c77dd`) → Slot 2 `RELIEFr2p12` (`6ff08e5c`) → Slot 3 `RELIEFb2r12` (`e1fd28d5`, or `RELIEFr2b12` if Slot 2 gains `≥ +0.010`).
 
-### Session 3 delta (`arena/a5e7bf22`, SPACING)
+### Earlier session deltas (`PRUNE`, `SPACING`, `CONCENTRATION` infra)
 
-Session 3 restored the same mirrors independently (so IR-91-09 is confirmed twice), proved
-the parent's **dot set** from two ancestors, and built the one axis nobody had built.
-
-- **Axis: SPACING** — zero prior `axis=SPACING` rows in five fleet ledgers (132+129+22+20+5
-  rows). Three arms, matched on everything but the treatment: the same 40 % of dots (densest
-  1 km blocks), the same displacement budget (radius-2 ring, 2.0–2.236 px), the same
-  constraints. Only *which* ring cell is chosen differs, ranked by a Gaussian-smoothed
-  dot-density potential (σ = 2 px).
-
-  | id | relocated | density at target | predicted (MODEL) |
-  |---|---:|---|---|
-  | `…-SPACINGspread40-20261023-6d389309` | 15,056 (39.99 %) | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
-  | `…-SPACINGclump40-20261023-536d32ad` | 14,973 (39.76 %) | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
-  | `…-SPACINGjitter40-20261023-39bb7288` | 15,038 (39.94 %) | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
-
-- **The bound is the finding.** Under a uniform truth prior the edit moves expected kernel
-  credit by −0.17 % (spread) to −2.4 % (clump), capping the plausible live effect near
-  **0.003**. The axis cannot produce a ≥0.01 win; one slot buys a *decision* (is arrangement
-  a lever at all?), not a score.
-- **Parent dot set reproduced exactly** from two independent pinned ancestors — `d2.8`
-  (44,090 dots) and `solo-d2.8` (40,199), each minus every dot within 2.0 px of the catalogue
-  → 37,654, **0 differing cells**, digest `905cee9d…`, which matches the digest GEMSDOE86
-  recorded independently. The parent's *bytes* are still not re-encodable here (IR-91-16).
-- **No raster is committed.** Session 3's files are rebuilt on demand and pinned by
-  `releases/MANIFEST.json`; CI rebuilds them in a clean container and asserts the hashes
-  byte for byte.
-- **Session-3 slot ordering.** PRUNE first (the ladder above has the only *measured* live
-  dose-response behind it, and `le15` carries the largest predicted gain on the board at
-  +0.010), then `SPACINGspread40` (retires geometry if flat), then RELIEF or a CONC re-cut.
-
-### Session 2 delta (`arena/a6416f7b`, same date)
-
-Built on top of the above, after finding that main had moved: **0 variants built**, for the
-same reason as session 1 (no competition rasters locally). What is new:
-
-- `tools/run_concentration.py` — the repository's first *builder*: count-preserving,
-  collar-safe, CV-reporting, refuses any input that is not pinned. It requires an
-  **external** prior and refuses one derived from the parent's own dots, because the three
-  imported CONCENTRATION rows ranked blocks by *parent dot density* (IR-91-07) — those test
-  clustering, not prior transfer.
-- `tools/pins.py` — maps each axis to the manifest ids it needs and verifies bytes.
-- `tools/make_fixture.py` + `tests/test_concentration.py` — a synthetic fixture and an
-  end-to-end build -> certify proof, the first time the gates have run on a real raster.
-- **Fixed a live bug in `src/gems91/gates.py`**: `min_distance_to_mask` transposed rows and
-  columns (IR-91-06). On the real 3730x3292 grid this raised IndexError or returned the
-  distance at the mirrored cell, so every collar count in the lineage audit is suspect.
+- **Session 4 (`PRUNE`):** Delete-only dose ladder `PRUNEle3norefill` (`35,483` dots `RECEIPT`, `+0.002` `MODEL`), `PRUNEle8norefill` (`28,490` `RECEIPT`, `+0.006` `MODEL`), `PRUNEle15norefill` (`21,989` `RECEIPT`, `+0.010` `MODEL`).
+- **Session 3 (`arena/a5e7bf22`, `SPACING`):** Matched radius-2 local spacing arms `SPACINGspread40` (`6d389309`, `+0.0042` `MODEL`), `SPACINGclump40` (`536d32ad`, `−0.0023` `MODEL`), `SPACINGjitter40` (`39bb7288`, `0.000` `MODEL`).
+- **Session 2 (`arena/a6416f7b`):** Added `tools/run_concentration.py`, `tools/pins.py`, and fixed row/column transpose in `src/gems91/gates.py` (IR-91-06).
 
 ## What this repo contains
 

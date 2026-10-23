@@ -175,3 +175,45 @@ none was given.
 4. Rule on the 3 px collar rule (IR-91-03).
 5. Rule on public mirrors of competition data (IR-91-09).
 6. Choose which file goes in which slot, and the blind final pick.
+
+---
+
+# Session 5 disclosure (`arena/42de3fed-gemsdoe91`, RELIEF, 2026-10-23)
+
+## What the AI wrote and executed in Session 5
+
+- **Axis selection & experimental design:** Autonomously selected `RELIEF` (`0` prior ledger
+  rows; `0` open sibling PRs, whereas open PR #7 targets `PRUNE`) per user instruction not
+  to prompt on axis choice, designing a `12.00%`-relocation (`4,518`-dot) 3-arm structural
+  bracket (`r2p12`, donor-identical twin `r2b12`, and directional sign-flip `b2r12`) at
+  constant count (`37,654`) and zero collar drift (`2,171 → 2,171`).
+- **Code & tests:** `src/gems91/relief.py`, `scripts/build_relief.py`, `tests/test_relief.py`,
+  streaming multi-blob support in `scripts/restore_data.py`, `training_features` 5-blob pin
+  and `axis_requirements["RELIEF"]` update in `registry/data_manifest.json`, empty-`data_root`
+  isolation in `tests/test_concentration.py`, `.gitignore` symlink rule, and the `lineage`
+  job extension in `.github/workflows/ci.yml`.
+- **Candidate rasters & evidence:** Rebuilt and certified 6 GeoTIFFs (`NaN` primary +
+  `-zeros` twin for `RELIEFr2p12`, `RELIEFr2b12`, `RELIEFb2r12`) in `releases/` (gitignored;
+  sha256 contract recorded in `releases/MANIFEST.json`), `evidence/relief_axis_20261023.json`,
+  `registry/preflight.json`, 3 `BUILT` rows in `ledger/submissions.csv`, and Session 5 updates
+  to `docs/MECHANISM_CARDS.md`, `ledger/variant-cards.md`, `SLOT_PLAN.md`, `README.md`
+  (`CURRENT STATE` block only), `docs/SUBMIT.md`, `IRREGULARITIES.md` (`IR-91-17..19`), and
+  this file.
+
+## What the AI did NOT do
+
+- Never submitted any file, never contacted `dropbox.com` or fetched `drivendata.org`, and
+  never read, requested, stored, or printed credentials or scraped leaderboards.
+- Never committed `.tif` rasters or `data/` to git; flagged pre-existing public exposure of
+  `training_features` in `buffedlizard55-lab/GEMSDOE` (IR-91-17).
+- Never treated `PROXY` or `MODEL` values as live scores.
+
+## What remains human-decided
+
+1. **Portal facts & receipts:** Supply `TOP_PUBLIC` (score + date), remaining weekly slots,
+   confirmed Phase 1 deadline (`2026-12-03` unconfirmed), and R0's live `RECEIPT` (`baeae321…c77dd`).
+2. **Upstream mirror visibility:** Decide whether to make `buffedlizard55-lab/GEMSDOE` (and
+   other public mirrors flagged in IR-91-09 / IR-91-17) private per sponsor rules ([NLR Rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)).
+3. **Slot expenditure & blind final pick:** Decide which built raster(s) to upload in the 3
+   weekly slots (`SLOT_PLAN.md`) and choose the single blind final submission.
+

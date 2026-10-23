@@ -1,10 +1,6 @@
 {
-  "verdict": "BUILD BLOCKED",
-  "missing": [
-    "sample_submission",
-    "existing_faults",
-    "training_features"
-  ],
+  "verdict": "BUILD ALLOWED",
+  "missing": [],
   "required": [
     "sample_submission",
     "existing_faults",

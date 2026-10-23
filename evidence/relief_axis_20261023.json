@@ -1,0 +1,505 @@
+{
+  "schema": "gems91.relief-evidence.v1",
+  "build_date": "2026-10-23",
+  "parent": "h33-h33-2-b2",
+  "shift_fraction": 0.12,
+  "r2p12_r2b12_donor_set_identical": true,
+  "lineage": {
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "dots_on_catalogue": 0,
+    "min_catalogue_distance_px": 2.236068,
+    "rebuilt_from": {
+      "d2.8": {
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    }
+  },
+  "tercile_definition": {
+    "formula": "0.90*pct(det_elev) + 0.10*pct(det_elev_slope)",
+    "q33": 0.332564,
+    "q67": 0.664343,
+    "terciles": {
+      "basin": {
+        "footprint_px": 1722459,
+        "footprint_pct": 33.333,
+        "median_det_elev_m": -220.93,
+        "median_det_slope_deg": 0.93,
+        "median_sediment_depth_m": 559.9,
+        "r0_dots": 6654,
+        "r0_pct": 17.671
+      },
+      "pied": {
+        "footprint_px": 1722456,
+        "footprint_pct": 33.333,
+        "median_det_elev_m": -75.6,
+        "median_det_slope_deg": 3.2,
+        "median_sediment_depth_m": 327.6,
+        "r0_dots": 16689,
+        "r0_pct": 44.322
+      },
+      "range": {
+        "footprint_px": 1722458,
+        "footprint_pct": 33.333,
+        "median_det_elev_m": 211.08,
+        "median_det_slope_deg": 13.83,
+        "median_sediment_depth_m": 98.9,
+        "r0_dots": 14311,
+        "r0_pct": 38.007
+      }
+    }
+  },
+  "r0_baseline": {
+    "n_dots": 37654,
+    "block_density_cv_1km": 0.6187,
+    "block_density_cv_5km": 0.7261,
+    "redundancy": {
+      "dots_with_neighbour_lt_2p83px": 11415,
+      "dots_with_neighbour_lt_2px": 0,
+      "mean_nn_px": 3.7351
+    },
+    "sgmc_off_catalogue_dti": 0.095386,
+    "sgmc_off_catalogue_n_px": 62122,
+    "fixed_catalogue_proxy": {
+      "proxy_mean_credit": 0.006186,
+      "proxy_mean_credit_ci95": 0.000228,
+      "proxy_coverage": 0.038706,
+      "draws": 5,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200
+    },
+    "out_of_fold_catalogue_proxy": {
+      "mean_dti_proxy": 0.113286,
+      "ci95": [
+        0.053797,
+        0.172774
+      ],
+      "se": 0.018693,
+      "mean_delta_vs_r0_fold": 0.0,
+      "folds": [
+        0.150556,
+        0.136363,
+        0.098117,
+        0.068105
+      ]
+    },
+    "n_withheld_positives_per_fold": [
+      16844,
+      17873,
+      14311,
+      11960
+    ]
+  },
+  "single_feature_leakage_canary": {
+    "max_symmetric_auc": 0.5793,
+    "max_feature": "geod_2ndinv",
+    "stop_threshold": 0.9,
+    "stride": 25,
+    "n_sampled_px": 206695,
+    "symmetric_aucs": {
+      "mag_anom": 0.5085,
+      "rtp": 0.5067,
+      "tmi_hg": 0.5302,
+      "geod_2ndinv": 0.5793,
+      "iso_grav_anom_slope": 0.5282,
+      "tc": 0.5611,
+      "geod_shearrate": 0.5761,
+      "geod_dilaterate": 0.532,
+      "tmi_vg": 0.5183,
+      "deq_n100a15": 0.5598,
+      "iso_grav_anom_vg": 0.5275,
+      "det_elev": 0.5063,
+      "iso_grav_anom": 0.5356,
+      "tmi": 0.5114,
+      "depth_to_base_surf": 0.5037,
+      "ieq_n100a15": 0.5749,
+      "cond_surf": 0.5079,
+      "iso_grav_anom_hg": 0.5025,
+      "det_elev_slope": 0.5633,
+      "relief_index": 0.5007,
+      "s_struct": 0.515
+    }
+  },
+  "arms": {
+    "r2p12": {
+      "id": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c",
+      "axis": "RELIEF",
+      "value": "r2p12",
+      "donor_tercile": "range",
+      "recipient_tercile": "pied",
+      "n_dots": 37654,
+      "n_shifted": 4518,
+      "pct_relocated": 11.9987,
+      "pct_hamming": 23.9975,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 4518,
+        "removed": 4518,
+        "changed": 9036,
+        "pct_changed_of_parent": 23.9975
+      },
+      "recipient_tiers": {
+        "lineage_d2p8": 2686,
+        "lineage_d2p0": 1832,
+        "geophys_crest_d2p8": 0
+      },
+      "donor_s_struct_mean": 0.530232,
+      "recipient_s_struct_mean": 0.630719,
+      "tercile_counts_before": {
+        "basin": 6654,
+        "pied": 16689,
+        "range": 14311
+      },
+      "tercile_counts_after": {
+        "basin": 6654,
+        "pied": 21207,
+        "range": 9793
+      },
+      "tercile_pct_before": {
+        "basin": 17.671,
+        "pied": 44.322,
+        "range": 38.007
+      },
+      "tercile_pct_after": {
+        "basin": 17.671,
+        "pied": 56.321,
+        "range": 26.008
+      },
+      "collar_le3px_before": 2171,
+      "collar_le3px_after": 2171,
+      "added_dots_le3px": 0,
+      "block_density_cv_1km": 0.6497,
+      "block_density_cv_5km": 0.7497,
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 14027,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.6593
+      },
+      "sha256_nan": "6ff08e5c2785f7684798c25d5f86a61df5aeb2568fcaeda9482b25cf61858b07",
+      "sha256_zeros": "2b02433ae4193a965cdebe07c6f1ae498525829175ac3db7fda5a419ea6a9587",
+      "bytes_nan": 370350,
+      "bytes_zeros": 223541,
+      "dot_set_digest": "c96dfd8af3680c3f4ec67d40523f267148d46e0e8a4e8aa783d78bc89be5509c",
+      "predicted_change_MODEL": "MODEL:+0.006",
+      "predicted_range": "[-0.006,+0.018]",
+      "rationale": "Piedmont-toe scarp & accommodation-zone concentration; strips weakest subsurface-corroborated T3 horst-interior ridges with near-zero (-0.0017) out-of-fold INGENIOUS substitution cost.",
+      "form_note": "h33-h33-2-b2; RELIEF shift 4518 dots (12.00%) Range->Piedmont tercile (det_elev/slope), count fixed 37654; pred +0.006 MODEL",
+      "report_only": {
+        "sgmc_off_catalogue_dti": 0.09049,
+        "sgmc_delta_vs_r0": -0.004896,
+        "fixed_catalogue_proxy": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200
+        },
+        "out_of_fold_catalogue_proxy": {
+          "mean_dti_proxy": 0.111575,
+          "ci95": [
+            0.054279,
+            0.168871
+          ],
+          "se": 0.018004,
+          "mean_delta_vs_r0_fold": -0.001711,
+          "folds": [
+            0.145849,
+            0.136029,
+            0.096218,
+            0.068204
+          ]
+        },
+        "moved_dot_canary": {
+          "canary_auc": 0.4395,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        }
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "zeros_outside_footprint": true,
+        "sha256_not_in_ledger": true
+      },
+      "validate_raster_14_of_14": true
+    },
+    "r2b12": {
+      "id": "h33-h33-2-b2-RELIEFr2b12-20261023-27443c30",
+      "axis": "RELIEF",
+      "value": "r2b12",
+      "donor_tercile": "range",
+      "recipient_tercile": "basin",
+      "n_dots": 37654,
+      "n_shifted": 4518,
+      "pct_relocated": 11.9987,
+      "pct_hamming": 23.9975,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 4518,
+        "removed": 4518,
+        "changed": 9036,
+        "pct_changed_of_parent": 23.9975
+      },
+      "recipient_tiers": {
+        "lineage_d2p8": 954,
+        "lineage_d2p0": 1791,
+        "geophys_crest_d2p8": 1773
+      },
+      "donor_s_struct_mean": 0.530232,
+      "recipient_s_struct_mean": 0.49602,
+      "tercile_counts_before": {
+        "basin": 6654,
+        "pied": 16689,
+        "range": 14311
+      },
+      "tercile_counts_after": {
+        "basin": 11172,
+        "pied": 16689,
+        "range": 9793
+      },
+      "tercile_pct_before": {
+        "basin": 17.671,
+        "pied": 44.322,
+        "range": 38.007
+      },
+      "tercile_pct_after": {
+        "basin": 29.67,
+        "pied": 44.322,
+        "range": 26.008
+      },
+      "collar_le3px_before": 2171,
+      "collar_le3px_after": 2171,
+      "added_dots_le3px": 0,
+      "block_density_cv_1km": 0.6612,
+      "block_density_cv_5km": 0.7717,
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 13765,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.668
+      },
+      "sha256_nan": "27443c301feff6f9bac035807d92a88c9830f8f198acab9bb53599700afbb6bd",
+      "sha256_zeros": "baa1883fd76b0d374c6fdbd5914cecb66e6721aa7c92c2c326bf3552f276c2a4",
+      "bytes_nan": 370517,
+      "bytes_zeros": 223708,
+      "dot_set_digest": "7b67e9d077e3424552996b833f66f595ae0e5449c2ea4fa8585fd98b2e996bb3",
+      "predicted_change_MODEL": "MODEL:+0.003",
+      "predicted_range": "[-0.010,+0.016]",
+      "rationale": "Donor-identical twin of r2p12 and sign flip of b2r12; reallocates 4,518 T3 horst dots onto concealed deep-fill intrabasin lineage & magnetic+gravity basement-step crests.",
+      "form_note": "h33-h33-2-b2; RELIEF shift 4518 dots (12.00%) Range->Basin tercile (det_elev/slope), count fixed 37654; pred +0.003 MODEL",
+      "report_only": {
+        "sgmc_off_catalogue_dti": 0.086256,
+        "sgmc_delta_vs_r0": -0.00913,
+        "fixed_catalogue_proxy": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200
+        },
+        "out_of_fold_catalogue_proxy": {
+          "mean_dti_proxy": 0.110132,
+          "ci95": [
+            0.055937,
+            0.164326
+          ],
+          "se": 0.017029,
+          "mean_delta_vs_r0_fold": -0.003154,
+          "folds": [
+            0.143174,
+            0.132384,
+            0.095977,
+            0.068991
+          ]
+        },
+        "moved_dot_canary": {
+          "canary_auc": 0.4395,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        }
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "zeros_outside_footprint": true,
+        "sha256_not_in_ledger": true
+      },
+      "validate_raster_14_of_14": true
+    },
+    "b2r12": {
+      "id": "h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5",
+      "axis": "RELIEF",
+      "value": "b2r12",
+      "donor_tercile": "basin",
+      "recipient_tercile": "range",
+      "n_dots": 37654,
+      "n_shifted": 4518,
+      "pct_relocated": 11.9987,
+      "pct_hamming": 23.9975,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 4518,
+        "removed": 4518,
+        "changed": 9036,
+        "pct_changed_of_parent": 23.9975
+      },
+      "recipient_tiers": {
+        "lineage_d2p8": 3036,
+        "lineage_d2p0": 1482,
+        "geophys_crest_d2p8": 0
+      },
+      "donor_s_struct_mean": 0.68906,
+      "recipient_s_struct_mean": 0.580362,
+      "tercile_counts_before": {
+        "basin": 6654,
+        "pied": 16689,
+        "range": 14311
+      },
+      "tercile_counts_after": {
+        "basin": 2136,
+        "pied": 16689,
+        "range": 18829
+      },
+      "tercile_pct_before": {
+        "basin": 17.671,
+        "pied": 44.322,
+        "range": 38.007
+      },
+      "tercile_pct_after": {
+        "basin": 5.673,
+        "pied": 44.322,
+        "range": 50.005
+      },
+      "collar_le3px_before": 2171,
+      "collar_le3px_after": 2171,
+      "added_dots_le3px": 0,
+      "block_density_cv_1km": 0.6445,
+      "block_density_cv_5km": 0.7908,
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 13343,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.7012
+      },
+      "sha256_nan": "e1fd28d57106bebbb2b7f5b4327ab5a186a3eb4a3085b7e5c4a06aad2286dc0f",
+      "sha256_zeros": "3e47cb772a1b5ea261d5d756ee1b8e6038db09571c74682700ed77e026e18ee4",
+      "bytes_nan": 369469,
+      "bytes_zeros": 222473,
+      "dot_set_digest": "b3f57019d155fe0a2c306f45a102e5e4c88ce35855afbe4d7b1a93580733f521",
+      "predicted_change_MODEL": "MODEL:+0.005",
+      "predicted_range": "[-0.010,+0.020]",
+      "rationale": "Exact directional sign flip of r2b12; gains +0.0050 (+5.2%) on blind off-catalogue USGS SGMC bedrock faults where 64-70% of unmapped bedrock traces reside, while losing -0.0113 on Quaternary-heavy INGENIOUS folds.",
+      "form_note": "h33-h33-2-b2; RELIEF shift 4518 dots (12.00%) Basin->Range tercile (det_elev/slope), count fixed 37654; pred +0.005 MODEL",
+      "report_only": {
+        "sgmc_off_catalogue_dti": 0.100348,
+        "sgmc_delta_vs_r0": 0.004962,
+        "fixed_catalogue_proxy": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200
+        },
+        "out_of_fold_catalogue_proxy": {
+          "mean_dti_proxy": 0.102001,
+          "ci95": [
+            0.052251,
+            0.151751
+          ],
+          "se": 0.015633,
+          "mean_delta_vs_r0_fold": -0.011284,
+          "folds": [
+            0.130323,
+            0.125177,
+            0.087816,
+            0.06469
+          ]
+        },
+        "moved_dot_canary": {
+          "canary_auc": 0.4395,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        }
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "zeros_outside_footprint": true,
+        "sha256_not_in_ledger": true
+      },
+      "validate_raster_14_of_14": true
+    }
+  }
+}
