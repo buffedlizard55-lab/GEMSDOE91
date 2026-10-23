@@ -175,3 +175,50 @@ none was given.
 4. Rule on the 3 px collar rule (IR-91-03).
 5. Rule on public mirrors of competition data (IR-91-09).
 6. Choose which file goes in which slot, and the blind final pick.
+
+---
+
+# Session 5 (2026-10-23, `arena/7dffc20d`) — MASS
+
+## What the AI wrote
+
+* `scripts/build_mass.py` — the whole builder: pin checks, parent proof, ranking, three arms,
+  gates, ledger and evidence writer. Written by the AI, reviewed by nobody yet.
+* `tests/test_mass_axis.py` — unit tests for the pure functions (ranking, prediction algebra,
+  greedy separation). No competition data required.
+* The session-5 sections of `docs/MECHANISM_CARDS.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md`,
+  `README.md` (CURRENT STATE), `IRREGULARITIES.md` (IR-91-16/17/18), `ledger/README.md`.
+* `evidence/mass_axis_20261023.json` — every number quoted in those documents.
+
+## What the AI decided, and the human should check
+
+1. **Axis = MASS**, chosen because `ledger/README.md` documents it as the one open axis and the
+   brief allows the agent to pick the session axis.
+2. **Ranking = the parent's generation field**, not the trained marginal-gain ranking (absent).
+   Logged as IR-91-16; the arms are not "the parent's own ranking" in the brief's sense.
+3. **Common collar normalisation in all three arms** (2,171 dots at ≤ 3 px). Without it no
+   R0-derived file can pass `collar_ge_3px` (IR-91-03), so the arms would be unshippable. The
+   edit is identical in every arm, which is what keeps the comparison clean — but it is a PRUNE
+   edit bundled into a MASS build, and the human may prefer to re-base on R1 instead.
+4. **The SGMC instrument was restricted** (drop cells ≤ 3 px from the catalogue) after the raw
+   version was shown to reverse the lineage's own winning steps (IR-91-17). The restriction was
+   chosen *after* seeing that reversal, so it is a post-hoc instrument choice — the calibration
+   table is in the evidence file for anyone who wants to disagree with it.
+5. **Predictions were flipped twice inside the session** (positive → negative) as the instrument
+   was calibrated. Both earlier drafts and their predictions are still in the ledger, marked
+   `SUPERSEDED-DRAFT`, so the flip can be audited rather than taken on trust.
+6. **No slot candidate was produced with a positive expectation.** The AI did not manufacture
+   one; the honest recommendation is to spend slot 1 on R0 to get the first receipt.
+
+## What the AI did NOT do
+
+* No fetch from drivendata.org or dropbox.com; no credentials read, written or logged.
+* Nothing submitted; no login, no scraping, no leaderboard automation.
+* No label probing: the SGMC compilation is a public USGS map, not the withheld truth, and no
+  file was built to isolate a region or a pattern.
+* No file was edited after being certified.
+
+## Still the human's decisions
+
+`TOP_PUBLIC` and the slot count; R0's receipt; the deadline; the 3 px collar ruling (IR-91-03);
+whether the substituted MASS ranking is acceptable (IR-91-16); and the blind final pick.

@@ -101,3 +101,118 @@ No card claims a live score. The numbers are MODEL projections from the metric
 algebra plus a bracketed denominator. The hide-and-recover PROXY (report only,
 `reports/proxy.json`) came out at 0.0047–0.0050 for all four files with overlapping
 95 % CIs — it cannot separate these doses and is not evidence either way.
+
+---
+
+# Session 5 — MASS axis on R0 (three arms, one ranking)
+
+Parent **R0** = `h33-h33-2-b2-20261004-e5eb6e7e` (GEMSDOE32), 37,654 unit dots,
+sha256 `baeae321…` (nan) / `c55bafc4…` (zeros), dot-set digest `905cee9d…`,
+reproduced here from **both** pinned ancestors before any edit. 0.2778 is a **CLAIM**.
+
+## The ranking, and why it is not the one the brief asks for
+
+The brief asks for the parent's *own* ranking. R0's marginal-gain ranking needs
+`training_features.tif` (419 MB, never mirrored, still absent — IR-91-16). What the
+lineage *does* pin is the field every dot was thinned from: `anc_h19_5`, 121,131 px.
+Rank = `gaussian_filter(H19-5, σ = 1 px)` at the dot, i.e. **how much of the parent's
+own generation field the dot sits in**. Ties are broken row-major; the largest tie
+group is 0.03 % of the dots.
+
+*(A triangular-kernel support version was built first and withdrawn: 4,849 dots tie at
+exactly 1.0, and the row-major tie-break pushed the drop to the north — mean row 808
+against 1,325. It is in the ledger as `…-triDraft`.)*
+
+That ranking carries a **weak but positive** signal about real faults: AUC 0.54 for
+"this dot is within 3 px of an independent mapped fault" (SGMC compilation).
+
+## One edit that is not part of the axis
+
+R0 has 1,611 dots closer than 3 px to the catalogue (2,171 at ≤ 3 px), so **every**
+R0-derived file fails constraint 4 at construction (IR-91-03). All three arms
+therefore drop those collar dots identically. It is the same edit in each arm, so the
+arms still differ only on MASS — but both percentages are recorded: axis dose and
+total change against R0. Consequence for the *prediction*: the common edit removes
+100 % of R0's 277.9 units of catalogue credit, which the organizers mask anyway.
+
+## The instrument, and why the raw version had to be thrown away
+
+`sgmc_faults_control` scores every candidate with the exact DTI algebra. **Raw SGMC
+runs backwards against the lineage's own winning steps**:
+
+| file | dots | DTI vs SGMC | DTI vs SGMC minus 3 px of catalogue | live (CLAIM) |
+|---|---:|---:|---:|---:|
+| H19-5 field | 121,131 | 0.15244 | 0.09917 | 0.1922 |
+| d2.8 | 44,090 | 0.13766 | 0.09417 | 0.2600 |
+| solo | 40,199 | 0.10774 | 0.09530 | 0.2708 |
+| **R0** | 37,654 | **0.08938** | 0.09539 | **0.2778** |
+
+The raw instrument falls monotonically while the live score rises: it pays for mass
+sitting on mapped faults that the organizers **mask**. Restricting it to cells > 3 px
+from the catalogue (the mask analogue) restores the sign on both collar steps
+(+0.00112, +0.00009 against live +0.0108, +0.0070). It does *not* explain the
+field→dots step. So: the restrained version is used for signs only, and its magnitude
+is rescaled through the lineage's own per-dot economics (den = 19,877, T = 5,452 from
+the two collar steps; 2.76e-6 per zero-credit dot).
+
+---
+
+## Card 1 — `MASSsup10minus` (−3,765 dots by field rank, + common collar)
+
+- **Hypothesis.** The dots in the thinnest parts of the parent's own field are the
+  ones the generator's sampling barely supported; they cost `0.2` in the denominator
+  and should be the cheapest mass to give up.
+- **Mechanism.** Delete the bottom decile; the denominator falls by `0.2 × 3,765`.
+  It pays iff the removed dots' credit is under `0.2 · DTI ≈ 0.056` each.
+- **What could mimic it.** Fault tips and isolated splays are *also* low-support: a
+  short unmapped trace is exactly what a sparse part of the field looks like. And the
+  max-kernel means an isolated dot's credit is uniquely its own while a dot in a dense
+  patch shares its truth with neighbours — so "redundant-looking" is the opposite of
+  "low-support".
+- **Measured.** Removed dots carry **0.185 credit each** on the restrained instrument
+  (696.7 / 3,765) — 3× the break-even. Predicted live change **−0.018**
+  [−0.039, +0.007]; −0.008 if the live denominator sits at the bracket's other end
+  (42,800).
+- **Falsifier.** A live result **above** +0.01 would mean the withheld new-fault truth
+  is far sparser than any unmasked fault map here (credit per dot under 0.056), i.e.
+  the whole lineage has been paying for mass it does not need. That would make PRUNE
+  the axis to press, not retire.
+
+## Card 2 — `MASSsup24minus` (−9,164 dots, dose-matched to PRUNE `le8`)
+
+- **Hypothesis.** Same mechanism at 2.4× the dose, and the one experiment that
+  separates *which* dots go from *how many*: `le8-norefill` removes 9,164 dots chosen
+  by distance to the catalogue, this removes 9,164 chosen by field rank.
+- **Mechanism.** Pure dose response. If the ranking mattered, the two files' outcomes
+  would differ; if not, they move together.
+- **What could mimic it.** Nothing new — the confounder is the same sparse-field one.
+- **Measured.** 0.145 credit per removed dot (1,327 / 9,164) against `le8`'s 0.143
+  (1,306.2 / 9,164) on the same instrument: **the two rankings are
+  indistinguishable**. Predicted **−0.034** [−0.071, +0.009]; −0.016 at the wide-den
+  bracket.
+- **Falsifier.** `sup24minus` beating `le8` by more than 0.01 live would say the
+  ranking carries real information; they measuring the same would say MASS is a pure
+  dose axis and the choice of dots is noise.
+
+## Card 3 — `MASSsup10plus` (+3,765 cells by field rank, + common collar)
+
+- **Hypothesis.** The 2.83 px suppression rule inherited from Poisson-disk thinking
+  may be leaving usable coverage on the table: on line-like truth, a dot 2 px off a
+  neighbour covers truth cells the neighbour reaches only at weight ≈ 0.07.
+- **Mechanism.** Add the highest-rank undotted cells that are ≥ 3 px from the
+  catalogue and ≥ 2 px from every dot (greedy). Each pays `0.2(1 − M)`.
+- **What could mimic it.** Any coverage that only looks fresh: the mean new credit is
+  0.041 per added dot on the restrained instrument, **below** the 0.056 bar, because
+  these cells are by construction inside a neighbour's shadow.
+- **Measured.** dT = +39.1 for 3,540 added dots. Predicted **−0.002**
+  [−0.007, +0.003] — a wash, not a win.
+- **Falsifier.** A live gain above +0.01 here means the live metric is far more
+  forgiving of unmatched mass than the algebra says, or that the truth is much denser
+  under these ridges than any map shows. Either would reopen MASS+.
+
+## What none of these cards claim
+
+No card claims a live score. All three are MODEL projections. The catalogue
+hide-and-recover PROXY is **undefined** on these files, not zero: every dot is now
+> 3 px from the catalogue by construction, so the proxy (which only ever sees the 2–3 px
+collar) has zero coverage. That is a limitation of the instrument, not evidence.

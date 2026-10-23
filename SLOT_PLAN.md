@@ -1,92 +1,80 @@
 # SLOT PLAN — one entity, 3 scored slots/week, deadline 2026-12-03 (unconfirmed)
 
-## Session axis: PRUNE (chosen, not assigned)
+**Status: no receipt exists anywhere in this lineage.** R0's 0.2778 is a CLAIM.
+`TOP_PUBLIC` and "slots left" are still blank — the human must fill both.
 
-The prior sessions chose MASS and CONCENTRATION; both are still blocked on
-`training_features`. **PRUNE is the only axis whose inputs are now hash-verified in this
-workspace** (`scripts/verify_manifest.py` → `[READY] PRUNE`), which is why it is the axis
-this session executes to receipt quality rather than proposing.
+## What session 5 changed about this plan
 
-Within PRUNE, the brief's own values (≤1, ≤2) are **no-ops on R0**: the parent already sits
-at 2.236 px, so nothing is within 2 px. The only meaningful direction is upward. That makes
-a **delete-only dose ladder** the correct design, not three different edits.
+Session 5 built the MASS axis (three arms, `ledger/submissions.csv`) and, in doing so,
+built the first **calibrated** local instrument this fleet has had. It changes two
+things:
 
-The design is backed by a measurement rather than a hunch: **all of R0's credit against the
-catalogue lies within 3 px** (necessarily, since the kernel radius is 3 px). So every dot
-removed between 3 and 15 px earns **zero** credit on known faults while still costing `0.2`
-in the denominator. The ladder therefore isolates exactly one unknown: how much *new-fault*
-credit those dots were earning.
+1. **Mass removal outside the masked collar is not free.** Every earlier prediction in
+   this lineage assumed a dot far from the catalogue earns ~nothing, so deleting it
+   only saves `0.2` of denominator. Measured on an independent unmasked fault map, a
+   deleted dot earns **0.14–0.19 credit**, i.e. 3× the `0.2·DTI ≈ 0.056` break-even.
+2. **Therefore the pending PRUNE ladder (session 4) is mis-ordered.** Measured with the
+   same instrument at its own doses:
 
-## Next 3 slots — the ladder, in this order
+| ledger file | dots | change vs R0 | instrument ΔT | MODEL prediction |
+|---|---:|---:|---:|---|
+| `PRUNE le3-norefill` (1209e863) | 35,483 | 5.77 % | −139.1 | **−0.001** [−0.008, +0.007] |
+| `PRUNE le8-norefill` (e1dd69d0) | 28,490 | 24.34 % | −1,306.2 | **−0.038** [−0.075, +0.004] |
+| `PRUNE le15-norefill` (1ca1ff6f) | 21,989 | 41.60 % | −2,286.0 | **−0.068** [−0.129, +0.003] |
 
-| # | build | dots | removed | % R0 | predicted | what the result would change |
-|---|---|---|---|---|---|---|
-| 1 | `PRUNEle3norefill` | 35,483 | 2,171 | 5.77 % | +0.002 | Smallest step off the parent. Most likely below the 0.01 bar, so a flat result is *expected*. A loss means 2 px is already past the optimum and nothing further should be pruned. |
-| 2 | `PRUNEle8norefill` | 28,490 | 9,164 | 24.34 % | +0.006 | Separates denominator saving from new-fault credit. 7,553 of the 9,164 removed dots are zero-credit against the catalogue. |
-| 3 | `PRUNEle15norefill` | 21,989 | 15,665 | 41.60 % | +0.010 | Largest dose inside the 1–50 % band and the only rung with a plausible path past +0.01. |
+Rung 1 is a coin flip; rungs 2 and 3 are predicted losses of 4–7 points. Session 4's
+`+0.006 / +0.010` came from assuming the 3–15 px shell is credit-free; the measurement
+says it is not.
 
-All three are built and gate-clean (`releases/`). Predictions, confounders and falsifiers
-are in `docs/MECHANISM_CARDS.md`.
+## The next three slots, in order
 
-**This ladder directly tests a recorded disagreement.** The imported `PRUNE/p4px` row
-predicts **−0.009** for removing the 2–4 px collar; the metric algebra says removal *gains*
-because zero-credit dots are pure denominator cost. If `le8`/`le15` gain, that imported
-prediction is wrong. See `IRREGULARITIES.md` IR-91-13.
+| # | file | what it is | predicted | what the result changes |
+|---|---|---|---|---|
+| 1 | **R0 itself** (`h33-h33-2-b2`, `c55bafc4…`) | the incumbent, resubmitted once | 0.2778 CLAIM → **a RECEIPT** | Nothing is measurable until this exists. Every prediction in five ledgers is unanchored to a real number, and the `le3`/`MASSsup10plus` results are only interpretable as *differences* from R0. **This is the highest-value slot in the whole plan and costs no building.** |
+| 2 | `MASSsup10plus` (`…e23e5141`, 39,023 dots) | +3,540 highest-rank cells, ≥ 3 px collar | −0.002 [−0.007, +0.003] | The only arm whose *sign* the instrument does not settle: new credit 0.041/dot sits just under the 0.056 bar. A gain says the live metric tolerates unmatched mass far better than the algebra implies → reopen additions everywhere. A loss retires the "more mass" direction. |
+| 3 | **the pure collar delete** = `R0 & (d_cat > 3)` | 35,483 dots, 5.77 % | −0.001 [−0.008, +0.007] | One number that settles the largest open question in the fleet: does deleting credit-free mass pay? It is the *measured* version of the parent's own best-ever step (+0.0070 CLAIM). **Caveat:** session 4's file (`…1209e863`) is not reproducible here — the same recipe gives 35,483 dots but sha `f848cf2d…`, so a rebuild must be entered as a NEW row (value `le3-rebuilt`), not as session 4's file (IR-91-18). |
 
-**Do not** spend slots on the existing refill-based `p1px`/`p3px`/`p4px` rows: they were
-built by an earlier session and never scored, and their predictions are non-monotone in dose
-(−0.006, +0.005, −0.009), which a single mechanism cannot produce.
+Do **not** spend slot 2 or 3 on `le8` / `le15` / `sup24minus`: all three are predicted
+losses of 3–7 points and the fleet has already spent 8 slots on exact repeats.
 
-## Session-3 addendum: the SPACING axis, and where it belongs
+**Slots 1–3 are one week's quota.** If R0's receipt lands above TOP_PUBLIC, stop
+climbing and start defending.
 
-Built here, matched on everything but the treatment (same 40 % of dots, same radius-2
-displacement budget, same constraints), with a **null** arm (`jitter40`) and a **sign flip**
-(`clump40`) so any live difference is attributable to spacing direction:
-
-| arm | relocated | density at target | predicted (MODEL) |
-|---|---:|---|---|
-| `SPACINGspread40` | 15,056 (39.99 %) | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
-| `SPACINGclump40` | 14,973 (39.76 %) | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
-| `SPACINGjitter40` | 15,038 (39.94 %) | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
-
-The uniform-truth ceiling (−0.17 % to −2.4 % of expected credit) caps the plausible live
-effect near **0.003**: this axis cannot win a slot on expected score. It earns one only as a
-retirement test — a flat result says arrangement is not a lever and frees every later slot.
-
-**Where it sits relative to the PRUNE ladder above.** Slot 1 stays PRUNE (`le3`, the ladder's
-first rung, +0.002). Slot 2 should be the ladder's **`le15`** rung (+0.010, the largest
-predicted gain in the ledger) *if* `le3` lands ≥ +0.01; otherwise slot 2 is
-**`SPACINGspread40`**. Do not spend a slot on `clump40` or `jitter40` (controls), and do not
-build a fourth SPACING dose before the first receipt exists.
-
-## Weeks to the deadline
+## Weeks to the deadline (2026-12-03, ~6 weeks)
 
 | week | plan |
 |---|---|
-| now | Spend this week's slots on the ladder. Copy every receipt number into `ledger/submissions.csv`. |
-| wk 2 | Read the ladder. **Monotone gain** → keep cutting mass; next axis should be MASS-SHAPE at fixed count. **Monotone loss** → new faults hug the known traces; stop pruning and add mass in the 3–8 px band instead. **Flat** → PRUNE is exhausted, move to CONCENTRATION. |
-| wk 3–4 | Whatever the ladder says, the next build needs `training_features` (it unblocks MASS, SNAP and CONCENTRATION). Ask the human to supply it; it is the single highest-value missing input. |
-| wk 5–6 | Confirm the winner, build a fallback, re-validate both formats, re-read both from disk, choose the final file blind from the ledger. |
+| now | Slots as above. Copy every receipt number into `receipt_score` + `receipt_date`. |
+| wk 2 | Read the receipts against this table. If `le3` gains ≥ +0.01 → the withheld truth really is much sparser than any unmasked map, and the next three slots go to the upper PRUNE doses. If it is flat → mass is not the lever; stop pruning. |
+| wk 3–4 | Whatever happens, the next axis needs an **independent fault-density prior resampled to 1 km blocks** (see below). Ask the human for `training_features.tif` again *and* for a licence check on any new external layer. |
+| wk 5–6 | Choose the final file **blind** from the ledger, build a zeros fallback, re-validate both formats, re-read both from disk, and do not touch the winner afterwards. |
 
-## Better axes (proposed, not built this session)
+## Better axes (proposed, NOT built this session)
 
-1. **MASS-SHAPE at fixed count.** Keep 37,654 dots but redistribute from dense clusters to
-   sparse ones. Mechanism: the denominator charges `0.2(S−M)`, so credit already collected by
-   a neighbour is nearly free while fresh credit is not — overlapping dots waste count
-   without buying credit. Confounder: true fault density varies at km scale, so flattening a
-   real cluster costs recall. Falsifier: were the removed dots' neighbourhoods already
-   credited by a neighbour? *Blocked on* `training_features`.
-2. **MARGINAL-PRUNE by exact gain.** Rank R0's dots by exact marginal gain
-   (`scripts/dti.py::rank_dots`) and drop the bottom decile instead of dropping by distance to
-   the catalogue. Confounder: the holdout is the catalogue, not new-fault truth. Falsifier:
-   the dropped set should not overlap the hide-and-recover positives.
-3. **TRACKB (Phase 2 only).** Strike-consistent traces ≥1 km as GeoJSON + raster with one
-   evidence paragraph per trace. Cannot be scored in Phase 1 in a way that transfers, so it
-   should not consume a weekly slot unless the human decides otherwise.
+1. **PRIOR-MASS: rank dots by exact marginal gain against an independent fault map.**
+   On the restrained SGMC instrument 87.9 % of R0's dots carry **zero** credit and the
+   mean is 0.065, so a gain-ranked drop of the bottom decile is close to free
+   (`+0.010` projected at 10 %, `+0.021` at 20 %). This is the one measured direction
+   with a positive expectation. It is *not* built here because it would consume the
+   only blind control this repo has. Mechanism: credit is a max over dots, so a dot
+   that adds nothing to the max is pure denominator. Confounder: SGMC is a compilation
+   of *mapped* faults, so the ranking would push mass away from known traces — exactly
+   what the live mask already does. Falsifier: build **both** arms (gain-ranked and
+   its sign flip) and require the pair to separate by ≥ 0.01.
+2. **MASS-SHAPE at fixed count through the collar.** Every file in this lineage now
+   sits ≥ 3.16 px from the catalogue, and the organizers say new faults can sit within
+   300 m of known traces. Nobody has tested mass *at* 3–4 px without touching the
+   catalogue. Falsifier: if 3–4 px mass scores at or below background, the organizer's
+   "new faults near known traces" statement does not survive the mask, and the collar
+   should be widened, not narrowed.
+3. **TRACKB (Phase 2 only).** Unchanged: strike-consistent traces ≥ 1 km as GeoJSON +
+   raster with one evidence paragraph each. Not a Phase-1 slot candidate.
 
-## Honest note on information per slot
+## Two housekeeping rules this session adds
 
-The brief's evidence bar is ±0.01 on public chunks. The parent's best single step was +0.0070
-(CLAIM). **No one-pixel prune step can clear that bar.** If you would rather spend all three
-slots on moves that can plausibly exceed 0.01, replace slot 1 with the upper doses. That is a
-judgement about information per slot, and it is yours, not mine.
+* A **`-zeros` twin is not gate-clean under `scripts/validate_release.py`**: it fails
+  `nan_outside_footprint` by design. It passes 13/13 under
+  `gems91.release_gates` with `zeros_outside_footprint` substituted. Upload the NaN
+  primary; keep the zeros twin as the rules-allowed fallback.
+* **Never mark a candidate BUILT without `collar_ge_3px`.** Six draft rows from this
+  session are `SUPERSEDED-DRAFT` for exactly that reason (IR-91-03).

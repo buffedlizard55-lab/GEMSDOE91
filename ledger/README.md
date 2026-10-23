@@ -59,3 +59,23 @@ Two conventions this session adds, both to remove ambiguity:
   artifact** — same sha256 `c55bafc4…`. Dedupe on the hash, never on the parent string,
   or a repeated `(parent, axis, value)` can hide behind two spellings.
 
+
+## Session 5 (`arena/7dffc20d`) — MASS, 12 rows added, still 0 receipts
+
+Three **BUILT** rows are the slot candidates: `MASSsup10minus` (`7e7084af`),
+`MASSsup24minus` (`e086e259`), `MASSsup10plus` (`e23e5141`). They were produced by
+`scripts/build_mass.py` and each is CERTIFIED by `scripts/validate_release.py`.
+
+Six rows are **SUPERSEDED-DRAFT** and must never be counted as candidates or as slots:
+
+* `…-sup10minus-triDraft`, `…-sup24minus-triDraft`, `…-sup10plus-triDraft` — the first draft
+  ranked dots by triangular-kernel field support. 4,849 dots tied at 1.0 and the row-major
+  tie-break pushed the drop to the north of the map (mean row 808 vs 1,325).
+* `…-sup10minus-noCollarDraft`, `…-sup24minus-noCollarDraft`, `…-sup10plus-noCollarDraft` —
+  built on R0 without the brief-4.4 collar normalisation, so they fail `collar_ge_3px` and
+  could never be submitted (IR-91-03).
+
+Convention this session adds: a **draft that is withdrawn inside the same session** keeps its
+row (audit trail) but gets `status = SUPERSEDED-DRAFT`, a distinct `value` suffix so the
+`(parent, axis, value)` dedupe stays clean, and a `notes` field saying why. Its raster is not
+listed in `releases/MANIFEST.json`, because the current build script does not reproduce it.

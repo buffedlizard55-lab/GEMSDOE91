@@ -1,20 +1,57 @@
 # SUBMIT — what to upload, and what to paste back
 
-**Status 2026-10-23: three files are built and gate-clean** (`releases/`, rebuilt on demand —
-`releases/*.tif` are gitignored, the sha256 contract is `releases/MANIFEST.json`).
-**Nothing has ever been submitted by an agent, and no agent may submit.** One file per slot;
-the `-zeros` twin is the fallback, not an extra entry.
+**Status 2026-10-23 (session 5): three MASS files are built, CERTIFIED and hash-recorded.**
+Nothing here submits anything; the human uploads from their own account, one file per slot,
+and copies the receipt number back into `ledger/submissions.csv` → `receipt_score` +
+`receipt_date`. `releases/*.tif` are gitignored; `releases/MANIFEST.json` is the hash contract.
 
-## Rebuild first (10–40 s, five inputs, all hash-verified)
+## Rebuild (≈3 min, eight pinned inputs, every sha256 verified)
 
 ```bash
-python3 scripts/restore_data.py           # fetch + verify every pinned sha256
-python3 scripts/build_spacing.py --build  # rebuild the parent proof and all three arms
-python3 scripts/validate.py releases/<file>.tif   # must print PASS
+python3 scripts/restore_data.py          # fetch + verify every pinned sha256
+python3 scripts/build_mass.py --build    # rebuilds R0 proof + the three MASS arms
+python3 scripts/validate_release.py releases/<file>.tif    # must print CERTIFIED
 ```
 
-The build refuses to proceed unless R0's dot set is reproduced exactly from both pinned
-ancestors, and refuses to write the ledger unless every release passes every hard gate.
+The build refuses to run if any input is unpinned, refuses to write if R0 does not come
+back exactly from both ancestors, and refuses to record a file that fails a gate.
+
+## The three slot candidates, in plan order
+
+| slot | file | sha256 (check against `releases/MANIFEST.json`) | dots |
+|---|---|---|---:|
+| 2 | `…-MASSsup10plus-20261023-e23e5141.tif` | `e23e5141…` | 39,023 |
+| 3 | *(rebuild)* `R0 & (d_cat > 3)` — see IR-91-18 | 35,483 dots; new hash ≠ `1209e863…` | 35,483 |
+| — | `…-MASSsup10minus-20261023-7e7084af.tif` (do not spend a slot) | `7e7084af…` | 31,854 |
+| — | `…-MASSsup24minus-20261023-e086e259.tif` (do not spend a slot) | `e086e259…` | 26,672 |
+
+**Slot 1 of the plan is R0 itself**, uploaded unchanged, purely to obtain the receipt that
+this lineage has never had. Nothing needs to be built for it.
+
+**Form note** (≤ 140 chars, no score claimed) for `sup10plus`:
+
+```
+R0 h33-2-b2 + common 3px collar; add 3540 highest field-rank cells, count 39023; pred -0.002 MODEL
+```
+
+## Which encoding
+
+Upload the `.tif` (NaN outside the footprint — spec-literal). Keep the `-zeros.tif` twin as
+the rules-allowed fallback, but note: **`validate_release.py` fails the zeros twin on
+`nan_outside_footprint` by design** (it passes 13/13 in `gems91.release_gates` with
+`zeros_outside_footprint` substituted). No receipt in this lineage has ever confirmed that
+the two encodings score identically.
+
+## Format receipt — copy into the PR/session notes
+
+```
+candidate: h33-h33-2-b2-20261004-e5eb6e7e-MASSsup10plus-20261023-e23e5141
+sha256:    __________________________________________
+bytes:     ______
+verdict:   CERTIFIED (scripts/validate_release.py, 2026-10-23) — 14/14 gates
+```
+
+---
 
 ## Session-3 files
 

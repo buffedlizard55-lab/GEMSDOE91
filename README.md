@@ -4,35 +4,47 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** `R0 = h33-h33-2-b2` — **verified locally this session**, both encodings.
-  `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros), 37,654 unit-mass dots,
-  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on catalogue,
-  min 2.236 px from it**.
-- **Inputs present and hash-verified: 14 of 15 pinned entries** (`scripts/restore_data.py`,
-  3 s / 5 MB, every sha256 checked). Only `training_features.tif` (419 MB) has no pinned
-  mirror; it is not needed for session 3's axis. Found in public mirrors; see
-  `IRREGULARITIES.md` IR-91-09, which supersedes IR-91-02.
-- **Axis readiness (`scripts/verify_manifest.py`):** PRUNE **READY**; MASS, SNAP,
-  CONCENTRATION, RELIEF, TRACKB blocked on `training_features` / lidar layers.
-- **Best receipt:** **none.** No `receipt_score` exists in this lineage — all 26 ledger
-  rows are blank (20 imported, 3 PRUNE built in session 4, 3 SPACING built in session 3). `0.2778` for R0 is a **CLAIM**, and GEMSDOE32's own manifest records
-  `receipt: null` for it.
+- **Parent:** `R0 = h33-h33-2-b2` (`h33-h33-2-b2-20261004-e5eb6e7e`) — **reproduced this
+  session from BOTH pinned ancestors**, `d2.8` and `solo-d2.8`, each minus every dot within
+  2.0 px of the catalogue → 37,654 dots, digest `905cee9d…`, 0 differing cells.
+  Twins: `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros). 0 dots on the catalogue,
+  min distance **2.236 px**, 2,171 dots at ≤ 3 px.
+- **Inputs:** 15 of 16 pinned entries verified here (`scripts/restore_data.py`); only
+  `training_features.tif` (419 MB) has no mirror. SGMC control, lidar scarp, radon,
+  wellsprings and GDR are all present and hash-checked.
+- **Best receipt:** **none.** 35 ledger rows, **0 receipts**. `0.2778` is a **CLAIM**.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
 - **Slots left this week:** **__ / __ (human must fill).**
-- **AXIS for this session:** **PRUNE**, chosen not assigned. Built as a **delete-only
-  dose ladder**, which is the parent lineage's own operation (measured, not assumed).
-- **Variants built this session: 3, all gated.**
+- **AXIS this session: MASS** (chosen, not assigned — the one axis `ledger/README.md`
+  documents as still open). Built with the parent's own **generation field** as the
+  ranking (`anc_h19_5`, gaussian σ = 1 px), because `training_features` is absent (IR-91-16).
+- **Variants built: 3, all CERTIFIED** (`scripts/validate_release.py`) and 14/14 in
+  `gems91.release_gates`. All three carry the *same* brief-4.4 collar normalisation
+  (2,171 dots at ≤ 3 px deleted identically), so they differ only on MASS (IR-91-03).
 
-  | id | value | dots | removed | % of R0 | predicted |
-  |---|---|---|---|---|---|
-  | `h33-h33-2-b2-PRUNEle3norefill-…-1209e863` | le3-norefill | 35,483 | 2,171 | 5.77 % | +0.002 |
-  | `h33-h33-2-b2-PRUNEle8norefill-…-e1dd69d0` | le8-norefill | 28,490 | 9,164 | 24.34 % | +0.006 |
-  | `h33-h33-2-b2-PRUNEle15norefill-…-1ca1ff6f` | le15-norefill | 21,989 | 15,665 | 41.60 % | +0.010 |
+  | id (suffix) | change vs R0 | dots | predicted (MODEL) |
+  |---|---|---:|---|
+  | `MASSsup10minus-…-7e7084af` | −3,765 by field rank + collar | 31,854 | **−0.018** [−0.039, +0.007] |
+  | `MASSsup24minus-…-e086e259` | −9,164 by field rank + collar (dose-matched to PRUNE le8) | 26,672 | **−0.034** [−0.071, +0.009] |
+  | `MASSsup10plus-…-e23e5141` | +3,540 highest-rank cells, ≥ 3 px collar | 39,023 | **−0.002** [−0.007, +0.003] |
 
-  All three pass the repo's gates **twice over**: 14/14 in `scripts/validate_raster.py`
-  and `VERDICT: CERTIFIED` in `scripts/validate_release.py`.
-- **Next 3 slots (see `SLOT_PLAN.md`):** the PRUNE ladder le3 → le8 → le15, with
-  `SPACINGspread40` as the alternative at slot 2 if le3 lands below +0.01.
+- **The session's real output is an instrument, not a file.** The independent SGMC fault
+  map, *restricted to cells > 3 px from the catalogue*, reproduces the sign of the
+  parent's own winning steps; the raw version reverses it. On that instrument every
+  mass-removal edit outside the collar is a **loss**, because a deleted dot carries
+  0.14–0.19 credit against 0.056 break-even. That re-orders the slot plan: the pending
+  PRUNE `le8`/`le15` rungs are predicted −0.038 / −0.068. See `SLOT_PLAN.md`.
+- **Next 3 slots:** (1) **R0 itself, for a receipt** — nothing in five ledgers is anchored
+  to a real number; (2) `MASSsup10plus` (the only unsettled sign); (3) the pure collar
+  delete.
+
+### Session 5 delta (`arena/7dffc20d`, MASS)
+
+Built `scripts/build_mass.py` (one ranking, one code path, 3 arms), `evidence/mass_axis_20261023.json`,
+three mechanism cards, and the SGMC instrument calibration. Six draft MASS rows in the ledger are
+`SUPERSEDED-DRAFT` (two withdrawn draft generations, both before any receipt); the three `BUILT`
+rows above are the only slot candidates. Session 3's SPACING files were **rebuilt here byte for
+byte** (`6d389309`, `536d32ad`, `39bb7288`) as a reproducibility check.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 

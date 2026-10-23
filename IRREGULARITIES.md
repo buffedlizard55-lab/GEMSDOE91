@@ -319,3 +319,46 @@ build is not available in this sandbox.
 digest; the dot-set digest is the identity that can be checked across sessions,
 and no lane may claim byte-level reproducibility of the parent. (GEMSDOE86
 logged the same finding as IR-86-PRUNE-01.)
+
+---
+
+## IR-91-16 — MASS was executed without `training_features`, on a substituted ranking
+
+The declared MASS input list is `[parent_r0_nan, training_features]` and `training_features.tif`
+is still absent (no mirror, 419 MB). `ledger/README.md` records that every earlier MASS row used
+a ranking that was explicitly *not* the parent's ("0.6*clip(d_catalogue/50)+0.4*uniform(seed88)").
+
+**What this session did instead:** ranked each dot by `gaussian_filter(anc_h19_5, σ = 1 px)` —
+the parent's own **generation field**, a pinned, hash-verified input. That is a rank the parent's
+lineage actually produced, but it is **not** the trained marginal-gain ranking the brief asks for.
+
+**Decision it changes:** the three MASS rows are comparable to each other and reproducible, but
+they cannot claim to be the brief's MASS. Do not cite them as "the parent's own ranking". The
+field rank carries AUC 0.54 for "dot within 3 px of an independent mapped fault" — weak.
+
+## IR-91-17 — the SGMC control had to be restricted before it could be trusted
+
+Scoring the exact DTI against `sgmc_faults_control` **reverses the parent's own winning steps**:
+0.15244 (H19-5) → 0.13766 (d2.8) → 0.10774 (solo) → **0.08938 (R0)**, while the live CLAIM rises
+0.1922 → 0.2600 → 0.2708 → 0.2778. The raw instrument pays for mass sitting on faults the
+organizers mask.
+
+Restricting the control to cells more than 3 px from the catalogue repairs the sign on both
+collar steps (+0.00112, +0.00009 against live +0.0108, +0.0070) but not the field→dots step, and
+its magnitudes are 10–80× too small. It is therefore used for **signs only**, with magnitudes
+rescaled through the lineage's own per-dot economics (2.76e-6 per zero-credit dot → den ≈ 19,877).
+
+**Decision it changes:** every prior-session prediction built on "dots far from the catalogue
+earn nothing" is now suspect. The pending PRUNE `le8`/`le15` rungs measure −0.038 / −0.068 on
+this instrument. `SLOT_PLAN.md` re-orders accordingly. If a receipt ever contradicts this, the
+instrument is the thing to re-examine, not the receipt.
+
+## IR-91-18 — session 4's PRUNE `le3-norefill` is not byte-reproducible here
+
+`h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863` (35,483 dots, sha `1209e863…`) has no build
+script in this repo. Reconstructing the treatment (`R0 & d_cat > 3`) gives **the same 35,483
+dots** but sha `f848cf2d…`, i.e. a different encoding or a different dot set — unresolvable
+without session 4's writer.
+
+**Decision it changes:** the slot-3 file must be rebuilt and entered as a **new ledger row**
+(`value = le3-rebuilt`), never as session 4's row. Same treatment, different bytes.
