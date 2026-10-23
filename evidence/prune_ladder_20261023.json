@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-23T21:35:26.760328+00:00",
+  "generated_utc": "2026-10-23T22:08:17.670677+00:00",
   "parent": "h33-h33-2-b2",
   "variants": {
     "le4-norefill": {
@@ -37,11 +37,29 @@
       "proxy": {
         "proxy_mean_credit": 0.0,
         "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
         "proxy_coverage": 0.0,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       },
       "redundancy": {
         "dots_with_neighbour_lt_2p83px": 10079,
@@ -95,11 +113,29 @@
       "proxy": {
         "proxy_mean_credit": 0.0,
         "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
         "proxy_coverage": 0.0,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       },
       "redundancy": {
         "dots_with_neighbour_lt_2p83px": 9503,
@@ -153,11 +189,29 @@
       "proxy": {
         "proxy_mean_credit": 0.0,
         "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
         "proxy_coverage": 0.0,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
       },
       "redundancy": {
         "dots_with_neighbour_lt_2p83px": 7887,

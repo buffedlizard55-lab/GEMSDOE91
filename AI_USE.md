@@ -282,3 +282,72 @@ none was given.
 4. Rule on the 3 px collar rule (IR-91-03).
 5. Rule on public mirrors of competition data (IR-91-09).
 6. Choose which file goes in which slot, and the blind final pick.
+
+## Session 2026-10-23 (CONCENTRATION, `arena/8182164e-gemsdoe91`)
+
+**Written by the AI, reviewed by no one yet.**
+
+* `src/gems91/prior.py` — derives a km-scale prior from the pinned GDR thermal-feature CSV
+  (de-duplication to one feature per cell, Hot/Warm only, `exp(-d/12 px)`, hashable output).
+* `scripts/build_concentration.py` — three arms, the parent reproduction proof, a memory-frugal
+  DTI implementation (`dti_parts_f32`, checked against `gems91.metric.components` in tests), the
+  model-prediction rule, the null diagnostic, gate runs, ledger rows and the evidence JSON.
+* `tools/run_concentration.py` — one new parameter, `min_sep_px`, so acceptors honour R0's own
+  2.0 px minimum dot separation (without it 2,150 new dots landed within 2 px of a neighbour,
+  which would have changed spacing as well as location — two changes in one file). Default 0.0,
+  so previous behaviour and tests are unchanged.
+* `tests/test_prior.py` — 7 unit tests, no competition data required.
+
+**Judgements the AI made alone (the human should check them).**
+
+1. **Axis: CONCENTRATION**, because every other buildable axis was either already spent
+   (`PRUNE` values 1/2/3/4 and the 3/8/15 ladder) or blocked on an absent input (`MASS` needs a
+   ranking that requires labels; RELIEF/SNAP need `training_features`). CONCENTRATION was also
+   the only axis whose inputs are all pinned *and* public domain.
+2. **The prior is the GDR thermal inventory**, used against the manifest's "prior layer only"
+   label and the brief's allowance for a fault-interaction prior. Vents are not fault truth; the
+   mechanism card states the mimic (land use / mapping effort) and the arm that drops
+   near-catalogue features to reduce it.
+3. **10 % (the low end of the brief's band)**, because concentration raises the block CV away
+   from the 0.51–0.59 band of the best historical files (R0 is already 0.619 at 1 km).
+4. **A negative floor in every predicted range** (IR-91-19) instead of an arbitrary ± band.
+5. **The 3 px collar was not applied to existing dots**: R0 has 2,171 dots within 3 px (IR-91-03).
+   The edit adds none (`moved_targets_le_3px = 0`) and in fact reduces the count to 1,897. The
+   human still owns the IR-91-03 ruling.
+
+**Not done by the AI.** No submission, no login, no leaderboard access, no scraping, no
+credentials; drivendata.org and dropbox.com were never contacted; no competition raster was
+committed; no label probing (the three truth models it did use are the prior, a random set and
+the lineage's own field — never the withheld truth).
+
+---
+
+# Session disclosure (`arena/a52f2ac7`, fixed-count PRUNE / H19-cover)
+
+## What the AI wrote and decided
+
+- Chose **PRUNE** without prompting for an axis. R0's inherited 2–3 px dots make a direct
+  non-PRUNE child fail the collar gate; H19-5 is binary and cannot supply a MASS ranking.
+- Wrote `src/gems91/lineage.py`, `prune_refill.py`, `scripts/build_prune_refill.py`, their
+  unit/integration tests, the exact-greedy refill algorithm, and the byte-exact R0 verifier.
+  The encoder recipe came from the pinned-commit source linked in IR-91-17.
+- Froze three doses and MODEL predictions in `registry/prune_refill_preregistration.json`
+  before computing any PROXY or SGMC result. Built three NaN/zeros release pairs and wrote
+  their evidence, ledger rows, mechanism cards, slot plan and submission instructions.
+- Chose the no-inhibition refill only after measuring that d2.8 made every fixed-count dose
+  infeasible. Reported nearest-neighbour drift rather than presenting the edit as spacing-free.
+- Merged main's later `le4`/`le5`/`le10` ladder without dropping either builder or any ledger
+  row. Chose the combined default queue `le10 → p2.9 → le4`; kept `p2.5` as fallback and
+  `p4.5` as a conditional negative-prediction falsifier. CI now checks both release manifests.
+- No submission, login, leaderboard access, credential access, label probe, or contact with
+  drivendata.org / dropbox.com occurred. Inputs came only from hash-verified manifest pins.
+
+## Human decisions still required
+
+1. Supply `TOP_PUBLIC` with its date, this week's remaining slots, and the R0 receipt if available.
+2. Confirm the 2026-12-03 deadline on the competition page; the agent did not fetch it.
+3. Decide whether the conditional third `le4` slot justifies a receipt under `SLOT_PLAN.md`.
+   The separate `p4.5` falsifier has a negative preregistered prediction; its default is unused.
+4. Paste every submission-page receipt into the ledger and make the final/fallback choices blind.
+5. Supply the pinned `training_features.tif` if future MASS / RELIEF / independent-prior work is
+   wanted. It was not needed for, or approximated in, this session.

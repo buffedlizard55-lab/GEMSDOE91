@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-23T21:46:23+00:00",
+  "generated_utc": "2026-10-23T22:07:50+00:00",
   "axis": "RELIEF",
   "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
   "parent_dots": 37654,
@@ -147,11 +147,29 @@
     "proxy": {
       "proxy_mean_credit": 0.006186,
       "proxy_mean_credit_ci95": 0.000228,
+      "proxy_mean_credit_ci95_interval": [
+        0.005958,
+        0.006413
+      ],
       "proxy_coverage": 0.038706,
       "draws": 5,
       "hold_frac": 0.2,
       "block_px": 10,
-      "n_held_per_draw": 12200
+      "n_held_per_draw": 12200,
+      "n_withheld_positives_per_draw": [
+        12200,
+        12198,
+        12199,
+        12200,
+        12201
+      ],
+      "mean_credit_per_draw": [
+        0.006038136218637152,
+        0.006201889947509195,
+        0.006582695130310594,
+        0.0062188384485118405,
+        0.00588596849724877
+      ]
     },
     "redundancy": {
       "dots_with_neighbour_lt_2p83px": 11415,
@@ -251,11 +269,29 @@
       "proxy": {
         "proxy_mean_credit": 0.005302,
         "proxy_mean_credit_ci95": 0.000174,
+        "proxy_mean_credit_ci95_interval": [
+          0.005127,
+          0.005476
+        ],
         "proxy_coverage": 0.033214,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.005101782790593678,
+          0.0054370786010825775,
+          0.00555171559657557,
+          0.005310166589300033,
+          0.005107728101526748
+        ]
       },
       "proxy_delta_vs_r0": -0.000884,
       "canary": {
@@ -377,11 +413,29 @@
       "proxy": {
         "proxy_mean_credit": 0.005263,
         "proxy_mean_credit_ci95": 8.6e-05,
+        "proxy_mean_credit_ci95_interval": [
+          0.005177,
+          0.005349
+        ],
         "proxy_coverage": 0.032936,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.005424245252014738,
+          0.005267949872288604,
+          0.00525389870298253,
+          0.005184931831513114,
+          0.005184402546060312
+        ]
       },
       "proxy_delta_vs_r0": -0.000923,
       "canary": {
@@ -509,11 +563,29 @@
       "proxy": {
         "proxy_mean_credit": 0.005169,
         "proxy_mean_credit_ci95": 0.000141,
+        "proxy_mean_credit_ci95_interval": [
+          0.005028,
+          0.00531
+        ],
         "proxy_coverage": 0.032362,
         "draws": 5,
         "hold_frac": 0.2,
         "block_px": 10,
-        "n_held_per_draw": 12200
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.005085598114439406,
+          0.005263261320196627,
+          0.0053493383891392455,
+          0.005207480484838286,
+          0.004938195862809415
+        ]
       },
       "proxy_delta_vs_r0": -0.001017,
       "canary": {

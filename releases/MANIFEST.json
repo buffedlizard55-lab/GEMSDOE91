@@ -4,6 +4,54 @@
   "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && make releases` and every sha256 below must reappear byte for byte. CI enforces this.",
   "files": [
     {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815-zeros.tif",
+      "sha256": "d498174b5c1314b970d6415ef890e21d854e06f184ef24e4b8956429a49ebbd6",
+      "bytes": 222073,
+      "axis": "CONCENTRATION",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815"
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815.tif",
+      "sha256": "d54e881580e332ef6e43f9178635f06b988e2d4dac67b61fd166c8e61e734395",
+      "bytes": 368830,
+      "axis": "CONCENTRATION",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815"
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf-zeros.tif",
+      "sha256": "a4bfcb64b8fb37ed8a795ff97e2f320d296921e95f2855fea98bb135a7581c9b",
+      "bytes": 222418,
+      "axis": "CONCENTRATION",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf"
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf.tif",
+      "sha256": "08bf80cf443cc68faeb0dd0eca8d0aecf85eb113e7d3094e3a778382bc180369",
+      "bytes": 369066,
+      "axis": "CONCENTRATION",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf"
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01-zeros.tif",
+      "sha256": "a22db57da8faf4825deca79f8bfa35de95a45ac56f37d8e391bac401b01a9a27",
+      "bytes": 222541,
+      "axis": "CONCENTRATION",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01"
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif",
+      "sha256": "c19adb012aec8571fcca393e3401050b01011286cec7282393cbcc0cca6a6e30",
+      "bytes": 369017,
+      "axis": "CONCENTRATION",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01"
+    },
+    {
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-RELIEFm2r15-20261023-3c3e832d-zeros.tif",
       "sha256": "231741727ea7f85fd8bec649f64977409eb262f7249fb3ce1c8dbef4a2d22396",
       "bytes": 219309,
@@ -194,6 +242,54 @@
       "axis": "PRUNE",
       "n_dots": 28490,
       "ledger_id": "h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0"
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEp2p5h19cover-20261023-e6f2000d-zeros.tif",
+      "sha256": "2a9358331ebfdff2ae0c6a96dd2ea246da97e8e5c47f50f5c347b580bd18fa5a",
+      "bytes": 219135,
+      "axis": "PRUNE",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-PRUNEp2p5h19cover-20261023-e6f2000d"
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEp2p5h19cover-20261023-e6f2000d.tif",
+      "sha256": "e6f2000dae956483cb1bfe48b2e975556c8305fb114ee953c873b815fb91425b",
+      "bytes": 355531,
+      "axis": "PRUNE",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-PRUNEp2p5h19cover-20261023-e6f2000d"
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEp2p9h19cover-20261023-9829bb66-zeros.tif",
+      "sha256": "125c036e1e64d1f99c2fc8016862d69d43e80f151f640d6994e09cae82cd7bc1",
+      "bytes": 218666,
+      "axis": "PRUNE",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-PRUNEp2p9h19cover-20261023-9829bb66"
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEp2p9h19cover-20261023-9829bb66.tif",
+      "sha256": "9829bb66c1958a779d361998908bd7482b136a8e38cf0f8cd7091a768864bab5",
+      "bytes": 354947,
+      "axis": "PRUNE",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-PRUNEp2p9h19cover-20261023-9829bb66"
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEp4p5h19cover-20261023-691438f8-zeros.tif",
+      "sha256": "d182055228e4a966bd582fe2750252fe90d57742e84d172070280ecf62d93566",
+      "bytes": 216584,
+      "axis": "PRUNE",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-PRUNEp4p5h19cover-20261023-691438f8"
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNEp4p5h19cover-20261023-691438f8.tif",
+      "sha256": "691438f85f2cf907c9cba0db12440e3d1591f9717138851d2e41b05095644dd5",
+      "bytes": 352689,
+      "axis": "PRUNE",
+      "n_dots": 37654,
+      "ledger_id": "h33-h33-2-b2-PRUNEp4p5h19cover-20261023-691438f8"
     }
   ]
 }

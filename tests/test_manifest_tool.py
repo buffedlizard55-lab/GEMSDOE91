@@ -40,9 +40,11 @@ def test_manifest_entries_are_complete_and_unique():
     for f in files:
         assert set(f) >= {"file", "sha256", "bytes", "axis", "n_dots"}, f["file"]
         assert len(f["sha256"]) == 64, f["file"]
-        assert f["axis"] in {"PRUNE", "SPACING", "RELIEF"}, f["file"]
+        assert f["axis"] in {"PRUNE", "SPACING", "RELIEF", "CONCENTRATION"}, f["file"]
         # a release is either the parent's dot count (count-preserving) or fewer (delete-only)
         assert isinstance(f["n_dots"], int) and 0 < f["n_dots"] <= 37_654, f["file"]
+        # ... and never more than the parent: this lineage has no arm that adds dots
+        assert f["n_dots"] <= 37_654, f["file"]
 
 
 def test_every_manifest_hash_is_a_ledger_row():

@@ -4,29 +4,36 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** `R0 = h33-h33-2-b2` — `h33-h33-2-b2-20261004-e5eb6e7e`.
-  `baeae321…c77dd` (NaN) and `c55bafc4…a6fa9` (zeros), 37,654 unit-mass dots,
-  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, **0 dots on the
-  catalogue**, min 2.236 px from it. Rebuilt this session from **two** pinned ancestors
-  (dot-set digest `905cee9d…`, 0 differing cells); its *bytes* are still not re-encodable
-  here (IR-91-16).
-- **Inputs: 15 of 15 pinned entries present and hash-verified — including the 419 MB
-  feature stack**, which was reassembled this session from five hash-pinned parts and
-  matches its pin `4371c82e…` byte for byte (IR-91-17). Every axis reads **READY**:
-  PRUNE, MASS, SNAP, CONCENTRATION, RELIEF, TRACKB.
-- **Best receipt:** **none.** **32** ledger rows, 0 receipts. `0.2778` for R0 is a **CLAIM**.
+- **Parent:** R0 = `h33-h33-2-b2` (`h33-h33-2-b2-20261004-e5eb6e7e`), NaN `baeae321…c77dd`,
+  zeros `c55bafc4…a6fa9`. 37,654 unit-mass dots, EPSG:32611, 3730×3292, 100 m, float32,
+  footprint 5,167,373 px, **zero catalogue dots**, minimum catalogue distance 2.236 px. The dot
+  set reproduces exactly from both pinned ancestors (44,090 → 37,654 and 40,199 → 37,654,
+  0 differing cells, digest `905cee9d…`); its *bytes* are not re-encodable here (IR-91-16), so
+  every artifact carries a sha256 **and** a dot-set digest.
+- **Best receipt: none.** 38 ledger rows, **0 SUBMITTED, 0 receipts**. `0.2778` for R0 is a
+  **CLAIM** — and IR-91-22 measures it 41× above what the only visible truth supports.
+- **Inputs: 15/15 pinned entries present and hash-verified**, including the 419 MB feature stack,
+  which was reassembled this session from five hash-pinned parts and matches its pin `4371c82e…`
+  byte for byte (IR-91-17b). Every axis reads **READY**; only MASS remains unbuildable, for a
+  documented reason, not for lack of data (IR-91-23).
+- **Shipped and reproducible: 18 release pairs / 36 files**, all in `releases/MANIFEST.json` with
+  `axis` and `n_dots`, all rebuilt and hash-checked by `make releases`
+  (`manifest: 36 files, 0 problem(s)`): CONCENTRATION ×3, PRUNE delete-only ×6, PRUNE refill-held
+  ×3, SPACING ×3, RELIEF ×3.
+- **Cross-check (new, and it reorganises the plan).** Scored against the only truth visible here,
+  R0 gets `dti_proxy` **0.006778**, and **100 % of its measurable credit comes from 1,611 dots
+  inside 3 px of a mapped trace**; every delete-only PRUNE dose deletes that band and computes to
+  `T = 0`. `SPACINGspread40` is the only shipped arm that *raises* measurable credit (+0.0011).
+  The three CONCENTRATION arms agree to 6·10⁻⁶ and sit ~−0.0008, the RELIEF arms reproduce their
+  predicted order (IR-91-21). Break-even for deleting a dot is 0.044 credit; the collar dots
+  measure 0.237 — so the ladder is one bet on unmapped-fault geometry, not a dose-response.
 - **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
-- **Slots left this week:** **__ / __ (human must fill).**
-- **AXIS for this session: RELIEF** — chosen, not assigned. It was the only axis with **zero
-  ledger rows** (PRUNE 10 now, SNAP 9, CONCENTRATION 4, MASS 3, SPACING 3). MASS was checked first
-  and ruled out for a documented reason, not for time: the lineage stores no rank at all, and its
-  two thinning branches disagree about 44,461 cells, so "the parent's own ranking" cannot be
-  reconstructed (IR-91-23).
-- **Shipped and reproducible: 12 release pairs (24 files)**, all listed with axis and dot count
-  in `releases/MANIFEST.json` and all rebuilt by `make releases`: SPACING ×3, RELIEF ×3,
-  PRUNE delete-only ×6 (`le3`, `le4`, `le5`, `le8`, `le10`, `le15`).
-- **Variants built this session: 3, all gate-clean** (14/14 `validate_raster`, `PASS` in
-  `validate_release`, count fixed, ≥3 px collar on every new dot, canary 0.424 ≪ 0.90).
+- **Slots left this week:** **__ / __ (human must fill).** Deadline 2026-12-03, unconfirmed.
+- **Next 3 slots (merged plan, `SLOT_PLAN.md`):** 1) `CONCENTRATIONgdr25rm10-…-c19adb01`
+  (**+0.0123**, the only prior independent of both the catalogue and the lineage mask),
+  2) `PRUNEle15-norefill-…-1ca1ff6f` (+0.010, answers the whole delete-only family in one slot),
+  3) conditional on their signs — `gdr25m10` / `le10` / `SPACINGspread40`, per the fork table.
+  Do not spend slots on `gdr10m10`, `le4`, `le5`, `le8` or the RELIEF arms.
 
   | id | value | moved | tercile fraction (basin/pied/range) | predicted (MODEL) |
   |---|---|---|---|---|

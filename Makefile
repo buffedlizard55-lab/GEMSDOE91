@@ -65,6 +65,8 @@ releases: preflight
 	$(PY) scripts/build_spacing.py --build
 	$(PY) scripts/build_relief.py --build
 	$(PY) scripts/build_prune_ladder.py
+	$(PY) scripts/build_prune_refill.py --build
+	$(PY) scripts/build_concentration.py --build
 	$(PY) scripts/build.py --axis PRUNE --value 3  --id h33-h33-2-b2-PRUNEle3norefill-20261023-1209e863  --catalogue $(CAT)
 	$(PY) scripts/build.py --axis PRUNE --value 8  --id h33-h33-2-b2-PRUNEle8norefill-20261023-e1dd69d0  --catalogue $(CAT)
 	$(PY) scripts/build.py --axis PRUNE --value 15 --id h33-h33-2-b2-PRUNEle15norefill-20261023-1ca1ff6f --catalogue $(CAT)

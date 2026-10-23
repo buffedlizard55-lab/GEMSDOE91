@@ -1,0 +1,659 @@
+{
+  "schema": "gems91.prune-h19cover-evidence.v1",
+  "generated_utc": "2026-10-23T22:08:45+00:00",
+  "git_sha": "5ce21dcc969409cf5e0d2340d44d0043eb534cb3",
+  "git_dirty_at_build": true,
+  "seed": {
+    "builder": null,
+    "proxy": 91,
+    "canary": 7
+  },
+  "parent": "h33-h33-2-b2",
+  "axis": "PRUNE",
+  "fixed_count": 37654,
+  "preregistration": {
+    "path": "registry/prune_refill_preregistration.json",
+    "sha256": "abb2c4be798b68c6254424ed526b12eb83fd478fef8a93ae047d22d8ee4a2a9f"
+  },
+  "inputs": {
+    "sample_submission": {
+      "path": "data/official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "path": "data/official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "parent_r0_nan": {
+      "path": "data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "bytes": 355443
+    },
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    },
+    "anc_d2_8": {
+      "path": "data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424
+    },
+    "anc_solo_d2_8": {
+      "path": "data/registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "bytes": 830036
+    },
+    "anc_h19_5": {
+      "path": "data/registry/calib_h195_01922.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "bytes": 1712322
+    },
+    "sgmc_faults_control": {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602
+    }
+  },
+  "lineage": {
+    "ok": true,
+    "rebuild_kind": "independent_recompute",
+    "encoder": "deflate predictor=3 zlevel=9 tiled=256; catalogue grid profile",
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "min_catalogue_distance_px": 2.23606797749979,
+    "dots_on_catalogue": 0,
+    "rebuilt_from": {
+      "d2.8": {
+        "path": "/home/user/GEMSDOE91/data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "path": "/home/user/GEMSDOE91/data/registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    },
+    "byte_rebuilds": {
+      "nan": {
+        "path": "/home/user/GEMSDOE91/work/r0-prune-refill-proof/r0-rebuild-nan.tif",
+        "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "expected_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "bytes": 355443,
+        "expected_bytes": 355443,
+        "hash_match": true,
+        "bytes_match": true
+      },
+      "zeros": {
+        "path": "/home/user/GEMSDOE91/work/r0-prune-refill-proof/r0-rebuild-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "expected_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "bytes": 219065,
+        "expected_bytes": 219065,
+        "hash_match": true,
+        "bytes_match": true
+      }
+    }
+  },
+  "r0": {
+    "proxy": {
+      "proxy_mean_credit": 0.006119,
+      "proxy_mean_credit_ci95": 0.000158,
+      "proxy_mean_credit_ci95_interval": [
+        0.005961,
+        0.006277
+      ],
+      "proxy_coverage": 0.038742,
+      "draws": 10,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200,
+      "n_withheld_positives_per_draw": [
+        12200,
+        12198,
+        12199,
+        12200,
+        12201,
+        12202,
+        12207,
+        12199,
+        12201,
+        12205
+      ],
+      "mean_credit_per_draw": [
+        0.006038136218637152,
+        0.006201889947509195,
+        0.006582695130310594,
+        0.0062188384485118405,
+        0.00588596849724877,
+        0.005632150879327866,
+        0.006114320321166393,
+        0.006346714754543257,
+        0.006041097768501387,
+        0.006128934897580557
+      ]
+    },
+    "sgmc_control": {
+      "evidence_class": "PROXY (SGMC control; not a score)",
+      "n_control_positives": 62122,
+      "mean_credit": 0.08881937,
+      "coverage": 0.20052477
+    },
+    "nearest_neighbour": {
+      "min_px": 2.828427,
+      "mean_px": 3.735098,
+      "median_px": 3.0,
+      "p05_px": 2.828427,
+      "p95_px": 7.211103,
+      "pairs_below_2px": 0,
+      "pairs_below_2p8px": 0
+    },
+    "block_density_cv_1km": 0.6187
+  },
+  "variants": {
+    "p2.5px-h19cover": {
+      "id": "h33-h33-2-b2-PRUNEp2p5h19cover-20261023-e6f2000d",
+      "parent": "h33-h33-2-b2",
+      "axis": "PRUNE",
+      "value": "p2.5px-h19cover",
+      "threshold_px": 2.5,
+      "threshold_m": 250.0,
+      "n_dots": 37654,
+      "n_removed": 941,
+      "n_added": 941,
+      "pct_changed": 2.49907,
+      "pct_symmetric_difference": 4.998141,
+      "sha256": "e6f2000dae956483cb1bfe48b2e975556c8305fb114ee953c873b815fb91425b",
+      "sha256_zeros": "2a9358331ebfdff2ae0c6a96dd2ea246da97e8e5c47f50f5c347b580bd18fa5a",
+      "bytes": 355531,
+      "bytes_zeros": 219135,
+      "dot_set_digest": "4efcd94d892aec5be1007a19d2f45c5465ac6cc17af4b1305372afba3446f06b",
+      "refill_dot_digest": "b2fa28ded82e9a5ff396805bbc9f1638210a050036dc75d3a893de124886ac63",
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 941,
+        "removed": 941,
+        "changed": 1882,
+        "pct_changed_of_parent": 4.9981
+      },
+      "refill": {
+        "n_add": 941,
+        "n_candidates_before_separation": 64067,
+        "n_candidates": 64067,
+        "n_selected": 941,
+        "min_separation_px": null,
+        "selection_rule": "exact iterative marginal-DTI order on H19-5 support; delta_T heap key is exactly monotone",
+        "support_credit_before": 74608.74479550062,
+        "support_credit_after": 76829.05319406536,
+        "support_credit_added": 2220.308398564739,
+        "exact_objective_delta_MODEL": 0.017137504584989305
+      },
+      "removed_catalogue_distance_px": {
+        "mean": 2.236068,
+        "max": 2.236068
+      },
+      "added_catalogue_distance_px": {
+        "mean": 3.07579,
+        "min": 2.828427
+      },
+      "nearest_neighbour": {
+        "min_px": 1.0,
+        "mean_px": 3.699653,
+        "median_px": 3.0,
+        "p05_px": 2.828427,
+        "p95_px": 7.211103,
+        "pairs_below_2px": 176,
+        "pairs_below_2p8px": 987
+      },
+      "nearest_neighbour_drift_vs_r0": {
+        "mean_px": -0.035445,
+        "median_px": 0.0,
+        "p05_px": 0.0
+      },
+      "block_density_cv_1km": 0.6187,
+      "proxy": {
+        "proxy_mean_credit": 0.001142,
+        "proxy_mean_credit_ci95": 3.5e-05,
+        "proxy_mean_credit_ci95_interval": [
+          0.001108,
+          0.001177
+        ],
+        "proxy_coverage": 0.019974,
+        "draws": 10,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201,
+          12202,
+          12207,
+          12199,
+          12201,
+          12205
+        ],
+        "mean_credit_per_draw": [
+          0.0011016291170668105,
+          0.0011721380229942722,
+          0.0011907946092430427,
+          0.001186009219650651,
+          0.0010171656402501621,
+          0.0011201966121854477,
+          0.0011197377784784822,
+          0.001204859112501819,
+          0.0011671624166925824,
+          0.00114335058205461
+        ]
+      },
+      "proxy_delta_vs_r0": -0.004977,
+      "leakage_canary": {
+        "canary_auc": 0.7064,
+        "draws": 5,
+        "stop_rule": "AUC > 0.90 means investigate before shipping",
+        "evaluation": "REPORT ONLY; <=0.90"
+      },
+      "sgmc_control": {
+        "evidence_class": "PROXY (SGMC control; not a score)",
+        "n_control_positives": 62122,
+        "mean_credit": 0.08912422,
+        "coverage": 0.20060526
+      },
+      "sgmc_delta_vs_r0": 0.00030485,
+      "predicted_change": "MODEL:+0.002",
+      "predicted_range": [
+        -0.006,
+        0.01
+      ],
+      "hypothesis_preregistered": "The 2.236 px shell still contains redundant immediate-flank detections; relocating that small dose to uncovered parent-lineage ridges will retain useful coverage while reducing catalogue-side-lobe mass.",
+      "form_note": "R0 h33-2-b2; PRUNE<=2.5px: relocate 941 dots (2.50%) to exact-gain H19-5 cells, N=37654; pred +0.002 MODEL",
+      "form_note_chars": 106,
+      "gates_nan": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.8284271247461903,
+        "catalogue_floor_respected": true,
+        "sha256": "e6f2000dae956483cb1bfe48b2e975556c8305fb114ee953c873b815fb91425b",
+        "dot_set_digest": "4efcd94d892aec5be1007a19d2f45c5465ac6cc17af4b1305372afba3446f06b",
+        "n_dots": 37654,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "gates_zeros": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "zeros_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.8284271247461903,
+        "catalogue_floor_respected": true,
+        "sha256": "2a9358331ebfdff2ae0c6a96dd2ea246da97e8e5c47f50f5c347b580bd18fa5a",
+        "dot_set_digest": "4efcd94d892aec5be1007a19d2f45c5465ac6cc17af4b1305372afba3446f06b",
+        "n_dots": 37654,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      }
+    },
+    "p2.9px-h19cover": {
+      "id": "h33-h33-2-b2-PRUNEp2p9h19cover-20261023-9829bb66",
+      "parent": "h33-h33-2-b2",
+      "axis": "PRUNE",
+      "value": "p2.9px-h19cover",
+      "threshold_px": 2.9,
+      "threshold_m": 290.0,
+      "n_dots": 37654,
+      "n_removed": 1611,
+      "n_added": 1611,
+      "pct_changed": 4.27843,
+      "pct_symmetric_difference": 8.55686,
+      "sha256": "9829bb66c1958a779d361998908bd7482b136a8e38cf0f8cd7091a768864bab5",
+      "sha256_zeros": "125c036e1e64d1f99c2fc8016862d69d43e80f151f640d6994e09cae82cd7bc1",
+      "bytes": 354947,
+      "bytes_zeros": 218666,
+      "dot_set_digest": "65b79cf84463c382aed56205a357140b83b744adc8e6e1c97c98f4eeed5aaa84",
+      "refill_dot_digest": "66b408c3e8bff4fb598bb7bf4f39b311954378f6911ba30cd2e128b91390df44",
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 1611,
+        "removed": 1611,
+        "changed": 3222,
+        "pct_changed_of_parent": 8.5569
+      },
+      "refill": {
+        "n_add": 1611,
+        "n_candidates_before_separation": 62556,
+        "n_candidates": 62556,
+        "n_selected": 1611,
+        "min_separation_px": null,
+        "selection_rule": "exact iterative marginal-DTI order on H19-5 support; delta_T heap key is exactly monotone",
+        "support_credit_before": 73082.52110392854,
+        "support_credit_after": 76066.68027292237,
+        "support_credit_added": 2984.159168993836,
+        "exact_objective_delta_MODEL": 0.02312775960377833
+      },
+      "removed_catalogue_distance_px": {
+        "mean": 2.482425,
+        "max": 2.828427
+      },
+      "added_catalogue_distance_px": {
+        "mean": 8.893265,
+        "min": 3.0
+      },
+      "nearest_neighbour": {
+        "min_px": 1.0,
+        "mean_px": 3.630953,
+        "median_px": 3.0,
+        "p05_px": 2.236068,
+        "p95_px": 7.071068,
+        "pairs_below_2px": 830,
+        "pairs_below_2p8px": 2410
+      },
+      "nearest_neighbour_drift_vs_r0": {
+        "mean_px": -0.104145,
+        "median_px": 0.0,
+        "p05_px": -0.592359
+      },
+      "block_density_cv_1km": 0.6255,
+      "proxy": {
+        "proxy_mean_credit": 0.0,
+        "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
+        "proxy_coverage": 0.0,
+        "draws": 10,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201,
+          12202,
+          12207,
+          12199,
+          12201,
+          12205
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "proxy_delta_vs_r0": -0.006119,
+      "leakage_canary": {
+        "canary_auc": null,
+        "draws": 5,
+        "stop_rule": "AUC > 0.90 means investigate before shipping",
+        "evaluation": "NOT ESTIMABLE: withheld-credit class empty"
+      },
+      "sgmc_control": {
+        "evidence_class": "PROXY (SGMC control; not a score)",
+        "n_control_positives": 62122,
+        "mean_credit": 0.08910143,
+        "coverage": 0.19988088
+      },
+      "sgmc_delta_vs_r0": 0.00028206,
+      "predicted_change": "MODEL:+0.004",
+      "predicted_range": [
+        -0.005,
+        0.013
+      ],
+      "hypothesis_preregistered": "Adding the 2.828 px shell should provide the largest below-3px benefit before the separately built 3px collar; fixed count separates relocation from the earlier delete-only mass effect.",
+      "form_note": "R0 h33-2-b2; PRUNE<=2.9px: relocate 1611 dots (4.28%) to exact-gain H19-5 cells, N=37654; pred +0.004 MODEL",
+      "form_note_chars": 107,
+      "gates_nan": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 3.0,
+        "catalogue_floor_respected": true,
+        "sha256": "9829bb66c1958a779d361998908bd7482b136a8e38cf0f8cd7091a768864bab5",
+        "dot_set_digest": "65b79cf84463c382aed56205a357140b83b744adc8e6e1c97c98f4eeed5aaa84",
+        "n_dots": 37654,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "gates_zeros": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "zeros_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 3.0,
+        "catalogue_floor_respected": true,
+        "sha256": "125c036e1e64d1f99c2fc8016862d69d43e80f151f640d6994e09cae82cd7bc1",
+        "dot_set_digest": "65b79cf84463c382aed56205a357140b83b744adc8e6e1c97c98f4eeed5aaa84",
+        "n_dots": 37654,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      }
+    },
+    "p4.5px-h19cover": {
+      "id": "h33-h33-2-b2-PRUNEp4p5h19cover-20261023-691438f8",
+      "parent": "h33-h33-2-b2",
+      "axis": "PRUNE",
+      "value": "p4.5px-h19cover",
+      "threshold_px": 4.5,
+      "threshold_m": 450.0,
+      "n_dots": 37654,
+      "n_removed": 4848,
+      "n_added": 4848,
+      "pct_changed": 12.875126,
+      "pct_symmetric_difference": 25.750252,
+      "sha256": "691438f85f2cf907c9cba0db12440e3d1591f9717138851d2e41b05095644dd5",
+      "sha256_zeros": "d182055228e4a966bd582fe2750252fe90d57742e84d172070280ecf62d93566",
+      "bytes": 352689,
+      "bytes_zeros": 216584,
+      "dot_set_digest": "8d2ef0d3b59d4bf9933f0d1db2041de73b90f5d4d6dce93fab0e0f95b51001f6",
+      "refill_dot_digest": "d4bacb155dbf13a095a349fc36d1637defa314e97562155b5fff7800a8bb6bdc",
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 4848,
+        "removed": 4848,
+        "changed": 9696,
+        "pct_changed_of_parent": 25.7503
+      },
+      "refill": {
+        "n_add": 4848,
+        "n_candidates_before_separation": 56541,
+        "n_candidates": 56541,
+        "n_selected": 4848,
+        "min_separation_px": null,
+        "selection_rule": "exact iterative marginal-DTI order on H19-5 support; delta_T heap key is exactly monotone",
+        "support_credit_before": 66008.13360671332,
+        "support_credit_after": 71507.77245482786,
+        "support_credit_added": 5499.63884811454,
+        "exact_objective_delta_MODEL": 0.043524840442806356
+      },
+      "removed_catalogue_distance_px": {
+        "mean": 3.293029,
+        "max": 4.472136
+      },
+      "added_catalogue_distance_px": {
+        "mean": 26.484645,
+        "min": 5.0
+      },
+      "nearest_neighbour": {
+        "min_px": 1.0,
+        "mean_px": 3.265738,
+        "median_px": 3.0,
+        "p05_px": 1.414214,
+        "p95_px": 6.708204,
+        "pairs_below_2px": 4594,
+        "pairs_below_2p8px": 10069
+      },
+      "nearest_neighbour_drift_vs_r0": {
+        "mean_px": -0.46936,
+        "median_px": 0.0,
+        "p05_px": -1.414213
+      },
+      "block_density_cv_1km": 0.6547,
+      "proxy": {
+        "proxy_mean_credit": 0.0,
+        "proxy_mean_credit_ci95": 0.0,
+        "proxy_mean_credit_ci95_interval": [
+          0.0,
+          0.0
+        ],
+        "proxy_coverage": 0.0,
+        "draws": 10,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201,
+          12202,
+          12207,
+          12199,
+          12201,
+          12205
+        ],
+        "mean_credit_per_draw": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "proxy_delta_vs_r0": -0.006119,
+      "leakage_canary": {
+        "canary_auc": null,
+        "draws": 5,
+        "stop_rule": "AUC > 0.90 means investigate before shipping",
+        "evaluation": "NOT ESTIMABLE: withheld-credit class empty"
+      },
+      "sgmc_control": {
+        "evidence_class": "PROXY (SGMC control; not a score)",
+        "n_control_positives": 62122,
+        "mean_credit": 0.08550663,
+        "coverage": 0.19249219
+      },
+      "sgmc_delta_vs_r0": -0.00331274,
+      "predicted_change": "MODEL:-0.015",
+      "predicted_range": [
+        -0.03,
+        0.003
+      ],
+      "hypothesis_preregistered": "Beyond the existing 4.3px bracket, removal of genuine secondary splays is expected to dominate refill gains. This is an upper falsification bracket, not a first-choice upload.",
+      "form_note": "R0 h33-2-b2; PRUNE<=4.5px: relocate 4848 dots (12.88%) to exact-gain H19-5 cells, N=37654; pred -0.015 MODEL",
+      "form_note_chars": 108,
+      "gates_nan": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 5.0,
+        "catalogue_floor_respected": true,
+        "sha256": "691438f85f2cf907c9cba0db12440e3d1591f9717138851d2e41b05095644dd5",
+        "dot_set_digest": "8d2ef0d3b59d4bf9933f0d1db2041de73b90f5d4d6dce93fab0e0f95b51001f6",
+        "n_dots": 37654,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "gates_zeros": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "zeros_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 5.0,
+        "catalogue_floor_respected": true,
+        "sha256": "d182055228e4a966bd582fe2750252fe90d57742e84d172070280ecf62d93566",
+        "dot_set_digest": "8d2ef0d3b59d4bf9933f0d1db2041de73b90f5d4d6dce93fab0e0f95b51001f6",
+        "n_dots": 37654,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      }
+    }
+  },
+  "code_sha256": {
+    "scripts/build_prune_refill.py": "fc1331a26e27a5e0e13d5ef0cc38a4e77a85243d9077ed3309ced14da938cc5f",
+    "src/gems91/prune_refill.py": "a55fd5ad46692194dc5ab63a9db55be3a1eaf375e5fb36740f321be8f2fb5b1d",
+    "src/gems91/lineage.py": "6bf9e56cd0fafe5ac070763c6ef6aa3ca0dc58eef2ca24c3c2fac7cd03518500",
+    "src/gems91/proxy.py": "4aa0a38fe1f3af6fc38608e4e22462d52918afd416664ef21d9c91be4636153a"
+  },
+  "note": "PROXY and SGMC are report-only, never gates or prediction inputs. Predictions were frozen first."
+}
