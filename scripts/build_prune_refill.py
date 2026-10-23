@@ -13,7 +13,6 @@ from __future__ import annotations
 import argparse
 import csv
 import datetime as dt
-import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -238,8 +237,16 @@ def main() -> int:
 
         variant_proxy = proxy.hide_and_recover(dots, cat, footprint, draws=10, seed=91)
         canary = proxy.canary(added, dots, cat, draws=5, seed=7)
-        if np.isfinite(canary["canary_auc"]) and canary["canary_auc"] > 0.90:
+        raw_auc = canary["canary_auc"]
+        if not np.isfinite(raw_auc):
+            # At collars >3 px no added dot can touch withheld catalogue truth;
+            # one AUC class is empty, so the honest report is not estimable.
+            canary["canary_auc"] = None
+            canary["evaluation"] = "NOT ESTIMABLE: withheld-credit class empty"
+        elif raw_auc > 0.90:
             raise SystemExit(f"LEAKAGE CANARY STOP for {stem}: {canary}")
+        else:
+            canary["evaluation"] = "REPORT ONLY; <=0.90"
         variant_sgmc = sgmc_control(dots, sgmc_extra)
         diff = gates.parent_diff(parent, dots)
         nn = nearest_neighbour_stats(dots)
@@ -303,6 +310,10 @@ def main() -> int:
         print(f"{stem}: moved={n_add} ({pct_changed:.4f}%), pred={pred:+.3f} MODEL, "
               f"proxy={variant_proxy['proxy_mean_credit']:.6f}, SGMC={variant_sgmc['mean_credit']:.6f}")
 
+    # Serialize before touching shared state: a reporting error must not leave a
+    # partially registered set of candidates.
+    evidence_json = json.dumps(evidence, indent=2, allow_nan=False) + "\n"
+
     # Register only after all variants and both encodings have passed every gate.
     existing_ids = {r.get("id") for r in rows}
     for new in ledger_rows:
@@ -323,7 +334,7 @@ def main() -> int:
             writer.writerow({key: row.get(key, "") for key in fieldnames})
 
     EVIDENCE.parent.mkdir(parents=True, exist_ok=True)
-    EVIDENCE.write_text(json.dumps(evidence, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    EVIDENCE.write_text(evidence_json, encoding="utf-8")
     RELEASE_MANIFEST.write_text(json.dumps({
         "schema": "gems91.prune-h19cover-release-manifest.v1",
         "generated_utc": evidence["generated_utc"], "git_sha": git_sha,
