@@ -126,6 +126,16 @@ IR-91-02, which had concluded the rasters were not publicly available.
 
 ---
 
+## Session 4 stop note (2026-10-23)
+
+The AI selected PRUNE without asking the human, as instructed. It installed the pinned
+Python requirements, verified all locally available manifest hashes, and retrieved the
+pinned R0 files; it did not independently reproduce the parent's byte hash from a recipe.
+Because the brief makes byte-exact R0 rebuild a start gate, the AI stopped before building
+variants. No competition raster was generated, no score was predicted for a new variant,
+and nothing was submitted. The human supplied the instruction to choose an axis; the
+specific choice (PRUNE) and the stop decision were made by the AI.
+
 # Session 3 disclosure (`arena/a5e7bf22`, SPACING)
 
 ## What the AI wrote in session 3
