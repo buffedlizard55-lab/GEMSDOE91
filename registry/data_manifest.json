@@ -1,0 +1,82 @@
+{
+  "schema": "gemsdoe91-data-manifest/1",
+  "updated_utc": "2026-10-23",
+  "note": "Every input a build reads must be pinned here with its sha256 before the build is allowed to write a release. Paths are relative to the repository root. No competition raster is committed to this repository (public repo, data-use terms unchecked); only the hashes travel.",
+  "inputs": [
+    {
+      "id": "sample_submission",
+      "path": "data/sample_submission.tif",
+      "kind": "competition",
+      "sha256": null,
+      "required_by": ["format gates", "footprint"],
+      "source": "DrivenData #306 download page (human downloads, human stores)",
+      "license": "competition data-use terms - do not redistribute"
+    },
+    {
+      "id": "R0_parent",
+      "path": "data/h33-h33-2-b2.tif",
+      "kind": "competition-derived",
+      "sha256": null,
+      "required_by": ["MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF"],
+      "parent_sha256_expected": null,
+      "source": "GEMSDOE32 lineage, owner-reported 37,654 unit-mass dots, CLAIM 0.2778",
+      "license": "competition-derived - do not redistribute",
+      "notes": "The build is refused unless the raster's byte sha256 equals parent_sha256_expected. A float-rounded or re-encoded parent is a different parent; never approximate it (brief section 5)."
+    },
+    {
+      "id": "R0_ranking",
+      "path": "data/h33-h33-2-b2-ranking.parquet",
+      "kind": "derived",
+      "sha256": null,
+      "required_by": ["MASS", "PRUNE (refill)", "TRACKB"],
+      "source": "the ranking that produced R0, or the recipe that rebuilds it",
+      "license": "competition-derived",
+      "notes": "Absent. A ranking by marginal gain needs the truth labels the parent was ranked against, so it cannot be reconstructed from the raster alone. Without it MASS and PRUNE-with-refill are not one-change edits and must not be built."
+    },
+    {
+      "id": "catalogue_mask",
+      "path": "data/catalogue_mask.tif",
+      "kind": "competition",
+      "sha256": null,
+      "required_by": ["catalogue gates G6 G7", "PRUNE", "CONCENTRATION"],
+      "source": "USGS/INGENIOUS traces as distributed with the competition (pixel-exact mask of the training labels)",
+      "license": "competition data-use terms"
+    },
+    {
+      "id": "tmi_gradient",
+      "path": "data/tmi_gradient.tif",
+      "kind": "derived",
+      "sha256": null,
+      "required_by": ["SNAP"],
+      "source": "gradient of the provided TMI band",
+      "license": "competition data-use terms"
+    },
+    {
+      "id": "gravity_gradient",
+      "path": "data/gravity_gradient.tif",
+      "kind": "derived",
+      "sha256": null,
+      "required_by": ["SNAP"],
+      "source": "gradient of the provided gravity band",
+      "license": "competition data-use terms"
+    },
+    {
+      "id": "detrended_elevation",
+      "path": "data/detrended_elevation.tif",
+      "kind": "derived",
+      "sha256": null,
+      "required_by": ["RELIEF"],
+      "source": "detrended DEM used for the basin / piedmont / range-front terciles",
+      "license": "competition data-use terms"
+    },
+    {
+      "id": "km_prior",
+      "path": "data/prior_kmscale.tif",
+      "kind": "derived",
+      "sha256": null,
+      "required_by": ["CONCENTRATION"],
+      "source": "must NOT be derived from the parent's own dots; use a smoothed multi-layer model, catalogue density on blocks excluded from the parent, or the Faulds interaction prior",
+      "license": "inherit from inputs"
+    }
+  ]
+}

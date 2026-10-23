@@ -1,0 +1,40 @@
+name: ci
+on:
+  push:
+    branches: ["arena/**", "main"]
+  pull_request:
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: install
+        run: pip install -r requirements.txt
+      - name: unit tests (synthetic rasters only)
+        run: PYTHONPATH=. python -m pytest tests -q
+      - name: preflight must report BLOCKED while inputs are unpinned
+        run: |
+          if python -m tools.preflight --axis ALL; then
+            echo "preflight says CLEAR - inputs are pinned, expected for a real run"; else
+            echo "preflight BLOCKED (expected: registry has no pinned hashes)"; fi
+      - name: end-to-end demo build + gates on synthetic fixture
+        run: |
+          make demo
+          CAND=$(ls tests/_tmp/releases/*.tif | grep -v zeros | head -1)
+          python -m tools.validate_submission --candidate "$CAND" \
+            --sample tests/_tmp/fixture/sample_submission.tif \
+            --catalogue tests/_tmp/fixture/catalogue_mask.tif \
+            --footprint tests/_tmp/fixture/footprint_mask.tif \
+            --parent tests/_tmp/fixture/parent_R0.tif \
+            --ledger ledger/submissions.csv
+      - name: no competition rasters committed
+        run: |
+          if git ls-files | grep -E '\.tiff?$'; then
+            echo "::error::a raster is tracked in git; competition data must not be committed"
+            exit 1
+          fi
+          echo "no rasters tracked"

@@ -1,0 +1,14 @@
+# competition data and derived rasters must not enter a public repo
+data/
+releases/*.tif
+*.tif
+*.tiff
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# scratch
+tests/_tmp/
