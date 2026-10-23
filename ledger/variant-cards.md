@@ -131,7 +131,7 @@ Brief §5 says to rank by "the parent's own ranking". It cannot be rebuilt: ever
 pinned ancestor (`calib_h195_01922`, `calib_h194_01894`, `calib_h161_01855`,
 `calib_d15_02477`, d2.8, solo-d28) is **binary**, and `training_features.tif` — the
 only input that ever carried a continuous score — has no public mirror and is absent
-(IR-91-17). What the lineage does carry, pinned and hash-verified, is its support
+(IR-91-19). What the lineage does carry, pinned and hash-verified, is its support
 structure. Measured on the parent's 37,654 dots:
 
 | cross-field support | dots | share | reading |

@@ -65,14 +65,21 @@ def hide_and_recover(dot: np.ndarray, catalogue: np.ndarray, footprint: np.ndarr
     mu = np.array([o["mean_credit"] for o in out])
     cv = np.array([o["coverage"] for o in out])
     half = 1.96 * mu.std(ddof=1) / np.sqrt(len(mu)) if len(mu) > 1 else 0.0
+    mean = float(mu.mean())
+    half = float(half)
     return {
-        "proxy_mean_credit": round(float(mu.mean()), 6),
-        "proxy_mean_credit_ci95": round(float(half), 6),
+        "proxy_mean_credit": round(mean, 6),
+        # Backward-compatible half-width; the explicit interval avoids the old
+        # key's ambiguity in new evidence files.
+        "proxy_mean_credit_ci95": round(half, 6),
+        "proxy_mean_credit_ci95_interval": [round(mean - half, 6), round(mean + half, 6)],
         "proxy_coverage": round(float(cv.mean()), 6),
         "draws": draws,
         "hold_frac": hold_frac,
         "block_px": block,
         "n_held_per_draw": int(out[0]["n_held"]),
+        "n_withheld_positives_per_draw": [int(o["n_held"]) for o in out],
+        "mean_credit_per_draw": [float(o["mean_credit"]) for o in out],
     }
 
 

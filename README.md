@@ -4,30 +4,31 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** R0 (`h33-h33-2-b2`), retrieved from its pinned mirror and sha256-verified:
-  NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. 37,654 unit-mass dots, EPSG:32611,
-  3730x3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots, minimum
-  catalogue distance 2.236 px. This session again reproduced R0's **dot set** exactly
-  from both pinned ancestors (0 differing cells); its **bytes** are still not
-  re-encodable here (IR-91-16).
-- **Inputs:** all 15 pinned entries restored and re-hashed this session — sha256 **and**
-  byte length match for the 14 that have a mirror; the derived catalogue mask rebuilds
-  to its pinned hash (`c97c7819…`). Only `training_features.tif` is absent (no mirror),
-  so no axis may read it.
-- **Axis built this session:** **MASS**, ranked by **cross-field support** over the three
-  pinned lineage fields (H19.5 + H19.4 + H16.1), because the parent's own continuous
-  ranking is not recoverable from pinned bytes (IR-91-17). Three variants, all new
-  (axis, value) pairs; all pass the brief's §6 MUST gates under both implementations, and all
-  inherit R0's 2–3 px catalogue collar (IR-91-03 — R0 itself fails that gate):
-  `cons1drop` (33,113 dots, 12.06 % removed), `cons2drop` (26,913, 28.53 %),
-  `cons3add` (41,419, 10.00 % added).
-- **Best receipt: none.** 29 ledger rows are BUILT, 0 are SUBMITTED, 0 have a receipt.
-  R0's 0.2778 is a **CLAIM**.
-- **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
-- **Slots left this week:** **__ / __ (human must fill).**
-- **Next 3 slots:** 1) `MASScons3add` (MODEL +0.009), 2) `MASScons1drop` (MODEL −0.000, the
-  paired opposite direction), 3) `PRUNEle15norefill` (MODEL +0.010, only if 1–2 are flat).
-  See `SLOT_PLAN.md`; form notes and format receipts in `docs/SUBMIT.md`.
+- **Parent:** R0 (`h33-h33-2-b2`), 37,654 dots on the pinned 3730x3292 EPSG:32611 grid.
+  Both pinned TIFFs now rebuild **byte for byte from either ancestor**: NaN
+  `baeae321…c77dd` (355,443 B), zeros `c55bafc4…a6fa9` (219,065 B); dot digest
+  `905cee9d…`. See `src/gems91/lineage.py` and `registry/r0_verification.json`.
+  R0's 0.2778 remains **CLAIM**, not a receipt.
+- **Inputs:** all 15 pinned entries present and re-hashed in this checkout; the 14 with a
+  mirror match sha256 **and** byte length, and the derived catalogue mask rebuilds to its
+  pinned hash (`c97c7819…`). `training_features.tif` has no mirror and stays UNVERIFIED, so
+  no axis may read it (which is why MASS had to be re-ranked, IR-91-19).
+- **Two axes are built, from two merged sessions:**
+  - **PRUNE** (fixed-count H19-cover): `p2.5px-h19cover` 2.499 % / **+0.002**, `p2.9px-h19cover`
+    4.278 % / **+0.004**, `p4.5px-h19cover` 12.875 % / **−0.015** (MODEL). Plus the merged
+    delete-only ladder `le4` / `le5` / `le10` (+0.003 / +0.005 / **+0.008** MODEL).
+  - **MASS** (cross-field support ranking, IR-91-19): `cons1drop` 12.06 % / **−0.000**,
+    `cons2drop` 28.53 % / **−0.015**, `cons3add` 10.00 % / **+0.009** (MODEL).
+- **Ledger:** **35 BUILT rows**, 0 SUBMITTED, 0 receipts. Every sha256 and every
+  (parent, axis, value) pair is unique. Live |Δ| < 0.01 is **no evidence**.
+- **Next 3 slots** (full reasoning in `SLOT_PLAN.md`):
+  1) `PRUNE-le10-norefill` (`04002dae`, +0.008 MODEL) — the only family that needs no collar
+     ruling; 2) `MASScons3add` (`2803126d`, +0.009 MODEL) — new axis, bounded downside,
+     **contingent on the human ruling IR-91-03**; if the 3 px collar is ruled binding, use
+     `PRUNEp2p9h19cover` (`9829bb66`) here instead; 3) decided by those two receipts.
+- **Human still supplies:** TOP_PUBLIC with date, weekly slots remaining, deadline
+  confirmation, the IR-91-03 collar ruling, every submission-page receipt, and all
+  upload/final-pick decisions. No agent submits or touches the leaderboard.
 
 ### Session 4 delta (`arena/ee0cdd38`, MASS)
 
@@ -38,7 +39,8 @@ No script here submits anything. One entity, three scored slots a week, one fina
 - **The axis that could not be built as briefed:** the parent's continuous MASS ranking does
   not exist in any pinned file (all ancestors are binary; `training_features` is absent), so
   MASS is ranked by cross-field support over the pinned lineage fields (IR-91-17).
-- **Three certified arms**, whole-strata drops so no arm needs a tie-break: `cons1drop`
+- **Three gate-clean arms** (all §6 MUST gates; the §4.4 collar is inherited, IR-91-03),
+  whole-strata drops so no arm needs a tie-break: `cons1drop`
   (33,113 dots, MODEL −0.000), `cons2drop` (26,913, MODEL −0.015), `cons3add`
   (41,419, MODEL +0.009 — the only arm with a plausible path past +0.01).
 - **Two findings that change the plan.** R0's 10 px block-density CV is already **0.531**,

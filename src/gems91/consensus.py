@@ -9,7 +9,7 @@ survives in the pinned set is **binary** (values in {0,1}: `calib_h195_01922`,
 `calib_h194_01894`, `calib_h161_01855`, `calib_d15_02477`, the d2.8 raster and
 solo-d28), and `training_features.tif` -- the only input that would carry a
 continuous score -- has no public mirror and is absent.  So no stored artifact
-ranks R0's dots.  See IRREGULARITIES.md IR-91-17.
+ranks R0's dots.  See IRREGULARITIES.md IR-91-19.
 
 What is available, and is pinned and hash-verified, is the *support structure*
 that generated the parent: R0's dot set is contained in three independently built

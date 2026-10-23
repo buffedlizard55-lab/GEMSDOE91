@@ -59,7 +59,7 @@ DATE = dt.date.today().strftime("%Y%m%d")
 # where p is the dot's precision (chance the nearest truth pixel is within
 # 2.83 px), cbar the mean credit earned when it is, D the DTI denominator and
 # dTI the claimed 0.2778.  gamma = 0.0556: that is the break-even credit, which
-# is why a dot pays iff it is within 2.83 px of truth (IR-91-18).
+# is why a dot pays iff it is within 2.83 px of truth (IR-91-20).
 GAMMA = 0.2 * 0.2778 / (1.0 - 0.2 * 0.2778)
 CBAR = 0.50          # mean triangular-kernel credit for a dot inside 2.83 px
 D_BRACKET = (1.0e4, 3.5e4)   # DTI denominator, bracketed from 0.15-0.35 matched fraction

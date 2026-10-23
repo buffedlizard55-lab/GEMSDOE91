@@ -320,7 +320,41 @@ digest; the dot-set digest is the identity that can be checked across sessions,
 and no lane may claim byte-level reproducibility of the parent. (GEMSDOE86
 logged the same finding as IR-86-PRUNE-01.)
 
-## IR-91-17 — The parent's own MASS ranking does not exist in any pinned file
+---
+
+## IR-91-17 — R0 byte reproduction is now solved; IR-91-16 is superseded
+
+The missing encoder setting was compression **level 9**, not a different libtiff build.
+Using the recorded `deflate / predictor=3 / zlevel=9 / tiled 256` profile on the catalogue
+grid, this session independently rebuilt R0 from each pinned ancestor and reproduced both
+files exactly: NaN `baeae321…` / 355,443 B and zeros `c55bafc4…` / 219,065 B. Recipe source:
+<https://github.com/buffedlizard55-lab/GEMSDOE86/blob/d423f858abf6cb2e63edf67773ed5650d507f78c/scripts/run_prune_ladder.py>.
+
+**Decision it changes.** The brief's stop gate is passed by an actual independent recompute,
+not pinned-artifact retrieval or an approximation. `scripts/verify_parent_r0.py` and the new
+builder both fail unless both byte hashes match. Dot-set digests remain useful, but the old
+"file bytes are not reproducible" statement no longer applies.
+
+## IR-91-18 — Fixed-count refill cannot preserve d2.8; PRUNE is the only clean R0 axis here
+
+A dry feasibility test retained the parent's d2.8 exclusion and found only **722 / 621 / 498**
+legal H19-5 refill cells for the required **941 / 1,611 / 4,848** additions. Even the smallest
+nonzero fixed-count collar is therefore infeasible under that extra constraint. Separately,
+MASS cannot use H19-5 as a ranking because the pinned ancestor is binary, and a non-PRUNE
+child inherits R0's 2,171 dots inside the 3 px gate.
+
+**Decision it changes.** The session uses the lineage's recorded no-inhibition PRUNE refill,
+with exact iterative marginal-DTI coverage and no spacing objective. Nearest-neighbour drift
+is reported as a confound on every card; it is not hidden or called a pure collar-only result.
+PRUNE was chosen over inventing a MASS ranking or shipping a non-compliant non-PRUNE child.
+
+
+> **Renumbering note (merge of PR #14).** This session's items were written as
+> IR-91-17…20 before main gained IR-91-17 (R0 bytes reproduced) and IR-91-18
+> (fixed-count refill infeasible); they are renumbered here and the cross-references
+> in the code, ledger and cards were updated to match.
+
+## IR-91-19 — The parent's own MASS ranking does not exist in any pinned file
 
 Brief §5: "MASS: drop the lowest-ranked 10% / add the next-ranked 10%, by the parent's own
 ranking (rebuild the ranking from the recorded recipe if it is not stored)."
@@ -340,13 +374,23 @@ inside the ordering it is testing. It is **not** the parent's continuous score a
 says so. Consequence: a flat result on these arms cannot distinguish "mass is not a lever" from
 "this particular ordering is uninformative" — that is why the session built both directions.
 
+**Where this disagrees with IR-91-18 (the merged PR's PRUNE session).** That item concludes
+"MASS cannot use H19-5 as a ranking because the pinned ancestor is binary… PRUNE was chosen over
+inventing a MASS ranking". Both halves are right and both are answered here: a *single* binary
+field cannot rank, but the **vote over three** binary fields is a 3-level ordinal ordering built
+only from pinned bytes, with no invented score and no model; and the collar objection is real
+(R0 fails the 3 px gate on its own 2,171 dots, IR-91-03) but it is the *human's* rule to
+interpret — the parent that scores 0.2778 carries the same dots. The arms are therefore built and
+flagged, not withheld; if the human rules the collar binding on every file, these three files are
+not uploadable and the PRUNE queue stands unchanged.
+
 **Also corrected:** `axis_requirements.MASS` in `registry/data_manifest.json` (and
 `tools/pins.py`) declared `training_features` as required, which made the axis permanently
 BLOCKED while the file cannot exist here. It now lists what the build actually reads and hashes:
 `sample_submission`, `parent_r0_nan`, `existing_faults`, `anc_h19_5`, `anc_h19_4`, `anc_h16_1`.
 No sha256 was changed, and `training_features` stays pinned and absent.
 
-## IR-91-18 — Break-even precision is 11.8 %, so every mass edit is a ±0.01 bet
+## IR-91-20 — Break-even precision is 11.8 %, so every mass edit is a ±0.01 bet
 
 The brief's shortcut ("a dot pays iff credit > 0.2·DTI ≈ 0.056") is exact for *unmatched* mass
 only. Working the algebra for the triangular kernel (R = 3 px, α = 0.2, d = 0.2778):
@@ -365,7 +409,7 @@ while a drop forfeits the whole 0.5 on every dot it gets wrong. It also retires 
 `SPACING`-style edits ab initio — displacement inside 2.83 px cannot change p at all, which is
 consistent with the ≤0.003 bound session 3 derived independently.
 
-## IR-91-19 — The leakage canary has to be a ring test; the plain test is degenerate
+## IR-91-21 — The leakage canary has to be a ring test; the plain test is degenerate
 
 The brief's canary: "a single feature with AUC > 0.90 means stop and investigate."
 
@@ -381,7 +425,7 @@ carry support vs 2.6 % of background). So the support ordering is essentially bl
 proximity — it is a genuine independent ranking, not a disguised PRUNE, and its failure modes
 are about field construction rather than label leakage.
 
-## IR-91-20 — CONCENTRATION is spent, not untested: R0 already sits in the reported CV band
+## IR-91-22 — CONCENTRATION is spent, not untested: R0 already sits in the reported CV band
 
 The brief reports that the best files sit at block-density CV 0.51–0.59.
 
