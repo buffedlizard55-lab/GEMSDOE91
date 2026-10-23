@@ -4,42 +4,38 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 ## CURRENT STATE
 
-- **Parent:** R0 (`h33-h33-2-b2`), retrieved from its pinned mirror and sha256-verified:
-  NaN `baeae321…c77dd`, zeros `c55bafc4…a6fa9`. It has 37,654 unit-mass dots,
-  EPSG:32611, 3730×3292, 100 m, float32, footprint 5,167,373 px, zero catalogue dots,
-  and minimum catalogue distance 2.236 px. Verified again this session via
-  `scripts/restore_data.py` + `data/derived/catalogue_mask.tif` (60,988 px) and
-  `registry/r0_verification.json` (both twins OK, grid/dot-count/footprint OK).
-  Byte-exact rebuild from recipe is not claimed (IR-91-16); dot-set digest
-  `905cee9d…` matches GEMSDOE86 independently.
-- **Inputs:** 14/15 manifest files hash-verified (all pinned mirrors fetched);
-  only `training_features.tif` (419 MB, no public mirror) is absent. No unpinned
-  source was used. Axes READY: PRUNE, RELIEF, SPACING. Blocked: MASS, CONCENTRATION,
-  SNAP, TRACKB (need `training_features`).
-- **Axis selected for this session:** **PRUNE**, chosen by the agent (brief §1 allows
-  it; human did not assign one). Reason: only axis with full pinned inputs, a
-  measured live dose-response, and novel doses inside the 1–50% band. RELIEF was
-  also READY but its mechanism (tercile reweighting) is weaker (MODEL +0.000–0.008)
-  and would require re-deriving terciles from the lidar scarp layer; PRUNE's
-  denominator-saving mechanism has the largest predicted gain on the board.
-- **Variants built this session (3):** all PRUNE delete-only (no refill, count not held,
-  to isolate denominator saving):
+- **Parent:** R0 (`h33-h33-2-b2`), 37,654 dots on the pinned 3730×3292 EPSG:32611 grid.
+  Both pinned TIFFs now rebuild **byte for byte from either ancestor**: NaN
+  `baeae321…c77dd` (355,443 B), zeros `c55bafc4…a6fa9` (219,065 B); dot digest
+  `905cee9d…`. See `src/gems91/lineage.py` and `registry/r0_verification.json`.
+  R0's 0.2778 remains **CLAIM**, not a receipt.
+- **Inputs:** 14/15 pinned inputs hash-verified; `training_features.tif` has no pinned
+  mirror and remains UNVERIFIED. No unpinned or reconstructed raster was used.
+- **Axis selected this session:** **PRUNE**, fixed count / H19-cover, chosen by the agent.
+  Three new variants hold N=37,654, change 2.50–12.88%, and differ only in collar dose:
 
-  | id | n_dots | pct_changed | min d_cat | predicted (MODEL) | sha8 |
-  |---|---|---:|---:|---|---|
-  | `h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e` | 33,829 | 10.16% | 4.12 px | **+0.003** [−0.003,+0.009] | `360fe57e` |
-  | `h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987` | 32,017 | 14.97% | 5.10 px | **+0.005** [−0.004,+0.013] | `5b6d3987` |
-  | `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae` | 26,294 | 30.17% | 10.05 px | **+0.008** [−0.006,+0.019] | `04002dae` |
+  | value | relocated | prediction (MODEL) | sha8 |
+  |---|---:|---:|---|
+  | `p2.5px-h19cover` | 941 (2.499070%) | **+0.002** | `e6f2000d` |
+  | `p2.9px-h19cover` | 1,611 (4.278430%) | **+0.004** | `9829bb66` |
+  | `p4.5px-h19cover` | 4,848 (12.875126%) | **−0.015** | `691438f8` |
 
-  All 14/14 MUST gates PASS (CRS/shape/transform/dtype/band/values/no-NaN-inside/NaN-outside/
-  zero-catalogue-mass/collar-exempt-for-PRUNE/sha-unseen/reread). Zeros twins also PASS
-  (NaN-outside reported as INFO by design). See `evidence/prune_ladder_20261023.json`.
-- **Existing ledger:** 29 BUILT rows (26 prior + 3 new), zero SUBMITTED rows, zero receipts.
-  R0's `0.2778` is a **CLAIM**, not a receipt. Best receipt: none.
-- **TOP_PUBLIC:** **____ (human must fill from the leaderboard, with date).**
-- **Slots left this week:** **__ / __ (human must fill).**
-- **Next 3 slots (see `SLOT_PLAN.md`):** 1) `PRUNE-le10` (largest dose with plausible >0.01 path),
-  2) `PRUNE-le4` (refines 2–4 px collar vs 2–3 px), 3) `SPACINGspread40` (retires geometry if PRUNE flat).
+  All six NaN/zeros encodings pass every hard gate; all three NaN primaries are
+  independently `CERTIFIED`. Exact hashes and sizes are in
+  `releases/PRUNE_REFILL_MANIFEST.json`; evidence and predictions were preregistered.
+- **Merged PRUNE ladder:** main also contributes unused delete-only `le4`, `le5`, and
+  `le10` variants (MODEL +0.003/+0.005/+0.008). They are complementary mass-loss tests,
+  not duplicates of the fixed-count doses. CI rebuilds both manifests and every raster.
+- **Ledger:** **32 BUILT rows** (26 prior + 3 ladder + 3 fixed-count), zero SUBMITTED
+  rows and zero receipts. All hashes and `(parent, axis, value)` pairs are unique.
+- **Next three slots:** 1) `PRUNE-le10-norefill` (`04002dae`, +0.008 MODEL), the largest
+  positive dose; 2) `PRUNEp2p9h19cover` (`9829bb66`, +0.004 MODEL), the complementary
+  fixed-count test; 3) `PRUNE-le4-norefill` (`360fe57e`, +0.003 MODEL) to bracket the
+  response. `p2.5` is the smaller-dose fallback; `p4.5` is a conditional falsifier,
+  **not** an automatic upload. Live |Δ|<0.01 is no evidence. See `SLOT_PLAN.md`.
+- **Human still supplies:** TOP_PUBLIC with date, weekly slots remaining, deadline
+  confirmation, every submission-page receipt, and all upload/final-pick decisions.
+  No agent submits or accesses the leaderboard.
 
 ### Session 3 delta (`arena/a5e7bf22`, SPACING)
 

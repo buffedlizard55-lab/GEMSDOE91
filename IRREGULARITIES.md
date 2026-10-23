@@ -319,3 +319,31 @@ build is not available in this sandbox.
 digest; the dot-set digest is the identity that can be checked across sessions,
 and no lane may claim byte-level reproducibility of the parent. (GEMSDOE86
 logged the same finding as IR-86-PRUNE-01.)
+
+---
+
+## IR-91-17 — R0 byte reproduction is now solved; IR-91-16 is superseded
+
+The missing encoder setting was compression **level 9**, not a different libtiff build.
+Using the recorded `deflate / predictor=3 / zlevel=9 / tiled 256` profile on the catalogue
+grid, this session independently rebuilt R0 from each pinned ancestor and reproduced both
+files exactly: NaN `baeae321…` / 355,443 B and zeros `c55bafc4…` / 219,065 B. Recipe source:
+<https://github.com/buffedlizard55-lab/GEMSDOE86/blob/d423f858abf6cb2e63edf67773ed5650d507f78c/scripts/run_prune_ladder.py>.
+
+**Decision it changes.** The brief's stop gate is passed by an actual independent recompute,
+not pinned-artifact retrieval or an approximation. `scripts/verify_parent_r0.py` and the new
+builder both fail unless both byte hashes match. Dot-set digests remain useful, but the old
+"file bytes are not reproducible" statement no longer applies.
+
+## IR-91-18 — Fixed-count refill cannot preserve d2.8; PRUNE is the only clean R0 axis here
+
+A dry feasibility test retained the parent's d2.8 exclusion and found only **722 / 621 / 498**
+legal H19-5 refill cells for the required **941 / 1,611 / 4,848** additions. Even the smallest
+nonzero fixed-count collar is therefore infeasible under that extra constraint. Separately,
+MASS cannot use H19-5 as a ranking because the pinned ancestor is binary, and a non-PRUNE
+child inherits R0's 2,171 dots inside the 3 px gate.
+
+**Decision it changes.** The session uses the lineage's recorded no-inhibition PRUNE refill,
+with exact iterative marginal-DTI coverage and no spacing objective. Nearest-neighbour drift
+is reported as a confound on every card; it is not hidden or called a pure collar-only result.
+PRUNE was chosen over inventing a MASS ranking or shipping a non-compliant non-PRUNE child.

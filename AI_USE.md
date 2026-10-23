@@ -256,3 +256,35 @@ none was given.
 4. Rule on the 3 px collar rule (IR-91-03).
 5. Rule on public mirrors of competition data (IR-91-09).
 6. Choose which file goes in which slot, and the blind final pick.
+
+---
+
+# Session disclosure (`arena/a52f2ac7`, fixed-count PRUNE / H19-cover)
+
+## What the AI wrote and decided
+
+- Chose **PRUNE** without prompting for an axis. R0's inherited 2–3 px dots make a direct
+  non-PRUNE child fail the collar gate; H19-5 is binary and cannot supply a MASS ranking.
+- Wrote `src/gems91/lineage.py`, `prune_refill.py`, `scripts/build_prune_refill.py`, their
+  unit/integration tests, the exact-greedy refill algorithm, and the byte-exact R0 verifier.
+  The encoder recipe came from the pinned-commit source linked in IR-91-17.
+- Froze three doses and MODEL predictions in `registry/prune_refill_preregistration.json`
+  before computing any PROXY or SGMC result. Built three NaN/zeros release pairs and wrote
+  their evidence, ledger rows, mechanism cards, slot plan and submission instructions.
+- Chose the no-inhibition refill only after measuring that d2.8 made every fixed-count dose
+  infeasible. Reported nearest-neighbour drift rather than presenting the edit as spacing-free.
+- Merged main's later `le4`/`le5`/`le10` ladder without dropping either builder or any ledger
+  row. Chose the combined default queue `le10 → p2.9 → le4`; kept `p2.5` as fallback and
+  `p4.5` as a conditional negative-prediction falsifier. CI now checks both release manifests.
+- No submission, login, leaderboard access, credential access, label probe, or contact with
+  drivendata.org / dropbox.com occurred. Inputs came only from hash-verified manifest pins.
+
+## Human decisions still required
+
+1. Supply `TOP_PUBLIC` with its date, this week's remaining slots, and the R0 receipt if available.
+2. Confirm the 2026-12-03 deadline on the competition page; the agent did not fetch it.
+3. Decide whether the conditional third `le4` slot justifies a receipt under `SLOT_PLAN.md`.
+   The separate `p4.5` falsifier has a negative preregistered prediction; its default is unused.
+4. Paste every submission-page receipt into the ledger and make the final/fallback choices blind.
+5. Supply the pinned `training_features.tif` if future MASS / RELIEF / independent-prior work is
+   wanted. It was not needed for, or approximated in, this session.
