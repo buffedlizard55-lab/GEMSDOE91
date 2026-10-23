@@ -1,4 +1,4 @@
-# SLOT PLAN — one entity, 3 scored slots/week, deadline 2026-12-03 (unconfirmed)
+# SLOT PLAN — after PRUNE ladder extension (2026-10-23)
 
 **Status: no receipt exists anywhere in this lineage.** R0's 0.2778 is a CLAIM.
 `TOP_PUBLIC` and "slots left" are still blank — the human must fill both.
@@ -13,18 +13,24 @@ things:
    this lineage assumed a dot far from the catalogue earns ~nothing, so deleting it
    only saves `0.2` of denominator. Measured on an independent unmasked fault map, a
    deleted dot earns **0.14–0.19 credit**, i.e. 3× the `0.2·DTI ≈ 0.056` break-even.
-2. **Therefore the pending PRUNE ladder (session 4) is mis-ordered.** Measured with the
-   same instrument at its own doses:
+2. **Therefore the whole PRUNE ladder is mis-ordered — including the four rungs added in
+   the PRUNE-extension session that landed on `main` (IR-91-19).** Six rungs, measured with
+   the same instrument at their own doses:
 
 | ledger file | dots | change vs R0 | instrument ΔT | MODEL prediction |
 |---|---:|---:|---:|---|
-| `PRUNE le3-norefill` (1209e863) | 35,483 | 5.77 % | −139.1 | **−0.001** [−0.008, +0.007] |
-| `PRUNE le8-norefill` (e1dd69d0) | 28,490 | 24.34 % | −1,306.2 | **−0.038** [−0.075, +0.004] |
-| `PRUNE le15-norefill` (1ca1ff6f) | 21,989 | 41.60 % | −2,286.0 | **−0.068** [−0.129, +0.003] |
+| `PRUNE le3-norefill` (`1209e863`) | 35,483 | 5.77 % | −139.1 | **−0.001** [−0.008, +0.007] |
+| `PRUNE le4-norefill` (`360fe57e`) | 33,829 | 10.16 % | −388.8 | **−0.009** [−0.022, +0.007] |
+| `PRUNE le5-norefill` (`5b6d3987`) | 32,017 | 14.97 % | −724.1 | **−0.020** [−0.042, +0.005] |
+| `PRUNE le8-norefill` (`e1dd69d0`) | 28,490 | 24.34 % | −1,306.2 | **−0.038** [−0.075, +0.004] |
+| `PRUNE le10-norefill` (`04002dae`) | 26,294 | 30.17 % | −1,621.8 | **−0.048** [−0.092, +0.004] |
+| `PRUNE le15-norefill` (`1ca1ff6f`) | 21,989 | 41.60 % | −2,286.0 | **−0.068** [−0.129, +0.003] |
 
-Rung 1 is a coin flip; rungs 2 and 3 are predicted losses of 4–7 points. Session 4's
-`+0.006 / +0.010` came from assuming the 3–15 px shell is credit-free; the measurement
-says it is not.
+**The measurement is monotone: every rung past 3 px is a predicted loss, and the loss grows
+with dose.** The extension session's `+0.003 / +0.005 / +0.008` (and its recommendation to
+submit `le10` first) came from assuming the 3–15 px shell is credit-free. It is not: those
+dots carry 0.10–0.15 credit each against a 0.056 break-even. Only `le3` is a coin flip, and
+that is because it is the only rung that is (almost) purely masked collar.
 
 ## The next three slots, in order
 

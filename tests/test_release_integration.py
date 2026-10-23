@@ -81,8 +81,16 @@ def test_every_release_passes_every_gate():
         if f.name not in stated:
             continue                       # withdrawn draft: audit trail only
         enc = "zeros" if f.name.endswith("-zeros.tif") else "nan"
+        # Look the file up in the ledger by full sha256 (nan) / sha256_zeros (twin)
+        # and check the count against ITS OWN row: MASS and PRUNE arms change the
+        # count on purpose; SPACING arms hold it at the parent's 37,654.
         rep = gates.validate_release(f, template=TEMPLATE, catalogue=cat, encoding=enc)
-        row = (by_sha_zeros if enc == "zeros" else by_sha)[stated[f.name]]
         assert rep["PASS"], (f.name, rep["failed"])
+        row = (by_sha_zeros if enc == "zeros" else by_sha).get(stated[f.name])
+        assert row is not None, f"{f.name}: no ledger row owns this hash"
         assert rep["n_dots"] == int(row["n_dots"]), f.name
-        assert rep["n_dots"] == rep["n_dots"]  # re-read from disk inside the gate
+        # MASS arms carry the brief-4.4 collar (>= 3 px). SPACING arms predate
+        # IR-91-03 and inherit R0's 2.236 px floor, so they are held to the parent's
+        # own floor and are still not submittable without a collar edit.
+        floor = 3.0 if row.get("axis") == "MASS" else 2.0
+        assert rep["min_catalogue_distance_px"] > floor, (f.name, rep["min_catalogue_distance_px"])

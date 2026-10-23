@@ -362,3 +362,28 @@ without session 4's writer.
 
 **Decision it changes:** the slot-3 file must be rebuilt and entered as a **new ledger row**
 (`value = le3-rebuilt`), never as session 4's row. Same treatment, different bytes.
+
+---
+
+## IR-91-19 — two sessions measured the same PRUNE ladder and disagree on its sign
+
+The PRUNE-extension session (merged to `main` as #9) predicts **+0.003 / +0.005 / +0.008** for
+`le4` / `le5` / `le10` and recommends submitting `le10` first. This session measures the same
+six rungs with the calibrated SGMC instrument (IR-91-17) and gets **−0.009 / −0.020 / −0.048**
+for those three, i.e. the recommendation is the worst-measured dose.
+
+The two cannot both be right, and the disagreement is a single assumption: whether the dots at
+3–15 px from the catalogue earn new-fault credit. The extension session assumes ~zero (pure
+denominator saving); this session measures 0.10–0.15 credit per deleted dot against a 0.056
+break-even.
+
+**Decision it changes:** do not spend a slot on `le4`/`le5`/`le10` on the strength of the
+`+0.008` prediction. `le3` is the only rung whose sign is genuinely unsettled, and it is also
+the cheapest test of the assumption — one receipt on `le3` decides the whole ladder.
+
+## IR-91-20 — `main` and this branch both edited `releases/MANIFEST.json`, `ci.yml`, the ledger and the slot plan
+
+Resolved by union: 38 ledger rows (no duplicate id / sha256 / (parent, axis, value)), 18
+reproducible files in the release manifest, and a CI that rebuilds SPACING, PRUNE and MASS.
+Both sides' rows survive with their original provenance strings. Anyone reading a `main`
+document should check `SLOT_PLAN.md` and IR-91-19 before following the PRUNE order.
