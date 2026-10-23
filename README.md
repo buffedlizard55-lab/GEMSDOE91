@@ -33,6 +33,38 @@ No script here submits anything. One entity, three scored slots a week, one fina
   and `VERDICT: CERTIFIED` in `scripts/validate_release.py`.
 - **Next 3 slots (see `SLOT_PLAN.md`):** the ladder, in order le3 → le8 → le15.
 
+### Session 3 delta (`arena/a5e7bf22`, SPACING)
+
+Session 3 restored the same mirrors independently (so IR-91-09 is confirmed twice), proved
+the parent's **dot set** from two ancestors, and built the one axis nobody had built.
+
+- **Axis: SPACING** — zero prior `axis=SPACING` rows in five fleet ledgers (132+129+22+20+5
+  rows). Three arms, matched on everything but the treatment: the same 40 % of dots (densest
+  1 km blocks), the same displacement budget (radius-2 ring, 2.0–2.236 px), the same
+  constraints. Only *which* ring cell is chosen differs, ranked by a Gaussian-smoothed
+  dot-density potential (σ = 2 px).
+
+  | id | relocated | density at target | predicted (MODEL) |
+  |---|---:|---|---|
+  | `…-SPACINGspread40-20261023-6d389309` | 15,056 (39.99 %) | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
+  | `…-SPACINGclump40-20261023-536d32ad` | 14,973 (39.76 %) | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
+  | `…-SPACINGjitter40-20261023-39bb7288` | 15,038 (39.94 %) | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
+
+- **The bound is the finding.** Under a uniform truth prior the edit moves expected kernel
+  credit by −0.17 % (spread) to −2.4 % (clump), capping the plausible live effect near
+  **0.003**. The axis cannot produce a ≥0.01 win; one slot buys a *decision* (is arrangement
+  a lever at all?), not a score.
+- **Parent dot set reproduced exactly** from two independent pinned ancestors — `d2.8`
+  (44,090 dots) and `solo-d2.8` (40,199), each minus every dot within 2.0 px of the catalogue
+  → 37,654, **0 differing cells**, digest `905cee9d…`, which matches the digest GEMSDOE86
+  recorded independently. The parent's *bytes* are still not re-encodable here (IR-91-16).
+- **No raster is committed.** Session 3's files are rebuilt on demand and pinned by
+  `releases/MANIFEST.json`; CI rebuilds them in a clean container and asserts the hashes
+  byte for byte.
+- **Session-3 slot ordering.** PRUNE first (the ladder above has the only *measured* live
+  dose-response behind it, and `le15` carries the largest predicted gain on the board at
+  +0.010), then `SPACINGspread40` (retires geometry if flat), then RELIEF or a CONC re-cut.
+
 ### Session 2 delta (`arena/a6416f7b`, same date)
 
 Built on top of the above, after finding that main had moved: **0 variants built**, for the

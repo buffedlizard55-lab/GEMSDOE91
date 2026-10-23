@@ -1,8 +1,35 @@
 # SUBMIT — what to upload, and what to paste back
 
-**Status 2026-10-23: nothing in this repo is uploadable.** No variant was built
-(`IRREGULARITIES.md` IR-91-01/02/04). This page is the exact procedure for the first
-slot, which must be run on the machine that holds `data/`.
+**Status 2026-10-23: three files are built and gate-clean** (`releases/`, rebuilt on demand —
+`releases/*.tif` are gitignored, the sha256 contract is `releases/MANIFEST.json`).
+**Nothing has ever been submitted by an agent, and no agent may submit.** One file per slot;
+the `-zeros` twin is the fallback, not an extra entry.
+
+## Rebuild first (10–40 s, five inputs, all hash-verified)
+
+```bash
+python3 scripts/restore_data.py           # fetch + verify every pinned sha256
+python3 scripts/build_spacing.py --build  # rebuild the parent proof and all three arms
+python3 scripts/validate.py releases/<file>.tif   # must print PASS
+```
+
+The build refuses to proceed unless R0's dot set is reproduced exactly from both pinned
+ancestors, and refuses to write the ledger unless every release passes every hard gate.
+
+## Session-3 files
+
+| slot rank | file to upload | sha256 (must match `releases/MANIFEST.json`) | bytes |
+|---|---|---|---:|
+| 2 | `…-SPACINGspread40-20261023-6d389309-zeros.tif` | `5c517369be3c807c…` | 226,284 |
+| — | `…-SPACINGspread40-20261023-6d389309.tif` (NaN-outside primary) | `6d389309aafaa79d…` | 373,103 |
+| — | `…-SPACINGclump40-20261023-536d32ad-zeros.tif` (control) | `d393c94f38601567…` | 224,741 |
+| — | `…-SPACINGjitter40-20261023-39bb7288-zeros.tif` (null) | `ad6dfa26043f7f19…` | 225,691 |
+
+**Form note** (≤ 140 chars, no score claimed):
+
+```
+Parent R0 h33-2-b2; move 15,056 dots (39.99%) 2.0-2.24 px to emptier ground, count fixed 37,654; pred +0.004 MODEL
+```
 
 ## Slot 1 — rebuild R1, then submit it
 

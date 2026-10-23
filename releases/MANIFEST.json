@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-23T21:00:00Z",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "files": [
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad-zeros.tif",
+      "sha256": "d393c94f386015678e6f99f0c2a1a556aecd7cf733d59777b788f9a0423c80e7",
+      "bytes": 224741
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad.tif",
+      "sha256": "536d32ad49bdf70ade796eb6d3ba2e303c2622239cd4253c27c2ff96f1bfc60a",
+      "bytes": 371632
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288-zeros.tif",
+      "sha256": "ad6dfa26043f7f195feba63852422efcc674da3eb448d4c42fc42858d26dd0d2",
+      "bytes": 225691
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288.tif",
+      "sha256": "39bb728839d70ab08ddee645a270c1f693b69e1252f7961dadb3e4a758a95df6",
+      "bytes": 372814
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309-zeros.tif",
+      "sha256": "5c517369be3c807c592e5dacfc9f7419a464f324c6d6a80f7eb6e0e5c6634d4e",
+      "bytes": 226284
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309.tif",
+      "sha256": "6d389309aafaa79d01ecb2d62e6de89b2030f6d1bfb15f96024c32b5baf00eaa",
+      "bytes": 373103
+    }
+  ]
+}

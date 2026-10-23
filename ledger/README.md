@@ -4,7 +4,7 @@
 
 ## Provenance
 
-All 20 rows carry `source = IMPORT:GEMSDOE88 (not built in this session)`. They were
+The 20 imported rows carry `source = IMPORT:GEMSDOE88 (not built in this session)`. They were
 transcribed on 2026-10-23 from the public repo `buffedlizard55-lab/GEMSDOE88`, which is the
 umbrella repo of this lineage. **Nothing in this session was appended** — no variant was built
 (`../IRREGULARITIES.md` IR-91-02).
@@ -42,3 +42,20 @@ python scripts/validate_release.py releases/<id>.tif --axis <AXIS>   # must prin
 
 `tests/test_ledger.py` enforces unique ids, unique hashes, unique triples, the axis vocabulary
 and that `receipt_score` is either empty or a float.
+
+## Session 3 (`arena/a5e7bf22`) — three rows appended
+
+`SPACINGspread40`, `SPACINGclump40`, `SPACINGjitter40`, all built here and marked
+`source = SESSION 3 (this branch)`. The file now has **23 rows and still 0 receipts**.
+
+Two conventions this session adds, both to remove ambiguity:
+
+* `pct_changed` is **relocated dots ÷ parent dots** (the prior-session convention: a
+  dot that moves counts once). `pct_relocated` repeats it explicitly, and the Hamming
+  distance (added + removed ≈ 2× relocated) lives in `evidence/spacing_axis_20261023.json`
+  as `hamming_vs_parent`, so the brief's "1–50 % of dots" rule can be checked either way.
+* `parent` is written as `h33-h33-2-b2-20261004-e5eb6e7e` (the full artifact id) for the
+  session-3 rows, while the imported rows use `h33-h33-2-b2`. **These are the same
+  artifact** — same sha256 `c55bafc4…`. Dedupe on the hash, never on the parent string,
+  or a repeated `(parent, axis, value)` can hide behind two spellings.
+

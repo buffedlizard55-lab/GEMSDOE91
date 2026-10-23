@@ -19,3 +19,8 @@ tests/_tmp/
 
 # local virtualenv
 .venv/
+
+# session 3
+.cache/
+work/
+releases/_tmp-*.tif

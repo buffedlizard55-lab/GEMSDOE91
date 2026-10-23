@@ -37,6 +37,28 @@ prediction is wrong. See `IRREGULARITIES.md` IR-91-13.
 built by an earlier session and never scored, and their predictions are non-monotone in dose
 (−0.006, +0.005, −0.009), which a single mechanism cannot produce.
 
+## Session-3 addendum: the SPACING axis, and where it belongs
+
+Built here, matched on everything but the treatment (same 40 % of dots, same radius-2
+displacement budget, same constraints), with a **null** arm (`jitter40`) and a **sign flip**
+(`clump40`) so any live difference is attributable to spacing direction:
+
+| arm | relocated | density at target | predicted (MODEL) |
+|---|---:|---|---|
+| `SPACINGspread40` | 15,056 (39.99 %) | 0.066 → **0.035** | **+0.0042** [−0.004, +0.012] |
+| `SPACINGclump40` | 14,973 (39.76 %) | 0.066 → 0.058 | **−0.0023** [−0.010, +0.006] |
+| `SPACINGjitter40` | 15,038 (39.94 %) | 0.066 → 0.047 | **0.000** (null) [−0.008, +0.008] |
+
+The uniform-truth ceiling (−0.17 % to −2.4 % of expected credit) caps the plausible live
+effect near **0.003**: this axis cannot win a slot on expected score. It earns one only as a
+retirement test — a flat result says arrangement is not a lever and frees every later slot.
+
+**Where it sits relative to the PRUNE ladder above.** Slot 1 stays PRUNE (`le3`, the ladder's
+first rung, +0.002). Slot 2 should be the ladder's **`le15`** rung (+0.010, the largest
+predicted gain in the ledger) *if* `le3` lands ≥ +0.01; otherwise slot 2 is
+**`SPACINGspread40`**. Do not spend a slot on `clump40` or `jitter40` (controls), and do not
+build a fourth SPACING dose before the first receipt exists.
+
 ## Weeks to the deadline
 
 | week | plan |

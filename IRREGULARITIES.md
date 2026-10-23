@@ -264,3 +264,58 @@ earn, which no local label can measure (the catalogue is masked in scoring).
 gain, the `p4px` −0.009 prediction is wrong and the "3–4 px shell carries real credit" story
 is dead. If they lose, the algebra's zero-credit argument is missing a real credit term and
 `p4px` was right for a reason worth writing down.
+
+---
+
+# Session 3 (`arena/a5e7bf22`, SPACING) — three items not covered above
+
+Numbered after IR-91-13. Item IR-91-11 in session 3's own draft (mirrors exist) was a
+duplicate of IR-91-09 and is dropped; session 3's collar item was a duplicate of IR-91-03.
+
+## IR-91-14 — the format template is not blank: its values ARE the catalogue
+
+`sample_submission.tif` (sha256 `2176d08e…`) has **60,988 positive cells, and
+that set is exactly the positive-cell set of `existing_faults.tif`**
+(`np.array_equal(template > 0, catalogue == 1)` → True, 60,988 = 60,988).
+It is not an all-zeros raster: it is the mapped catalogue as float32, with NaN
+outside the footprint (7,111,787 cells).
+
+**Decision it changes.** (a) The template may be used for footprint, CRS,
+transform, shape and dtype — never as a value reference, a null baseline, or a
+container of "no mass inside". (b) Any "zeros inside the footprint" check must
+be built from the NaN mask, not from `template == 0`. (c) Shipping the template
+unchanged would emit mass on the catalogue and is a hard-constraint violation
+(brief §4.4), not a trivial no-op.
+
+## IR-91-15 — `labels.tif` is the catalogue, so no local instrument can see new faults
+
+`labels.tif` and `existing_faults.tif` are **byte-identical** (both sha256
+`7ba308cc…`, 425,830 B) in every public mirror checked. Whatever the file is
+called, its content is the mapped USGS/INGENIOUS trace.
+
+**Decision it changes.** The only truth-adjacent local instrument available to
+this project is *catalogue* recovery. A candidate's dots sit > 2 px from that
+catalogue by construction, so the instrument can only observe the 2–3 px collar
+(3.9 % of withheld cells; mean credit 0.006). It therefore **cannot adjudicate
+the SPACING axis** — on this axis its sign is collar drift, not spacing — and it
+must stay a REPORT-ONLY number. Reported, not gated, not believed.
+
+## IR-91-16 — the parent's dot set is reproducible; its file bytes are not
+
+R0's support is reproduced **exactly** from two independent pinned ancestors —
+`gems25-dotted-h19-5-d2-8…-nan.tif` (44,090 dots) minus every dot with
+Euclidean distance ≤ 2.0 px to the catalogue → 37,654 dots, **0 differing
+cells**; and `GEMSDOE28__h27-4-r1-solo-d2-8.tif` (40,199 dots) → the same 37,654
+cells. R0's dot-set digest `905cee9d…` independently matches the digest
+GEMSDOE86 recorded, so both sessions are editing the same set.
+
+The parent's **bytes** are not reproducible here: 36 encoder configurations
+(deflate/zlib/lzw × predictor 2/3 × planar/contig × tiled 256/unstripped) were
+tried against the pinned NaN twin (`baeae321…`, 355,443 B); the closest output
+was 318,257 B and no configuration matched. The original writer's libtiff/zlib
+build is not available in this sandbox.
+
+**Decision it changes.** Every artifact carries **both** a sha256 and a dot-set
+digest; the dot-set digest is the identity that can be checked across sessions,
+and no lane may claim byte-level reproducibility of the parent. (GEMSDOE86
+logged the same finding as IR-86-PRUNE-01.)

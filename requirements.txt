@@ -1,7 +1,6 @@
-# Runtime for the gates and metric.
-# Install where the competition rasters live:
-#   pip install -r requirements.txt
 numpy>=1.26
+scipy>=1.11
+tifffile==2026.3.3
+imagecodecs>=2024.6
 rasterio>=1.3
 pytest>=8.0
-scipy>=1.11  # distance transforms / KD-trees in tools/

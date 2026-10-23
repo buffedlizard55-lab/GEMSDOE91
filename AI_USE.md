@@ -123,3 +123,55 @@ IR-91-02, which had concluded the rasters were not publicly available.
 > wrote the metric implementation, the axis operators, the validation gates and the analysis
 > text; the human selected the axis, supplied the inputs and made every decision about what
 > was submitted. Local checks are proxies; the live scores are the human's own receipts.
+
+---
+
+# Session 3 disclosure (`arena/a5e7bf22`, SPACING)
+
+## What the AI wrote in session 3
+
+* `src/gems91/io.py`, `geom.py`, `moves.py`, `proxy.py`, `release_gates.py` — raster IO,
+  geometry, the ring edit, the report-only instruments, and the gates the build ships through.
+  (`gates.py` was left untouched as session 1–2 wrote it.)
+* `scripts/restore_data.py`, `scripts/build_spacing.py`, `scripts/validate.py`.
+* The three SPACING rasters and their `-zeros` twins, produced by that code with fixed seeds
+  (91 for the arms, 7 for the canary) from pinned inputs. The rasters are **not committed**;
+  `releases/MANIFEST.json` pins their sha256 and CI rebuilds them byte for byte.
+* `ledger/variant-cards.md` (three mechanism cards), `evidence/spacing_axis_20261023.json`,
+  the session-3 sections of `README.md`, `SLOT_PLAN.md` and `IRREGULARITIES.md`, and the
+  session-3 rows of `ledger/submissions.csv`.
+
+The AI **chose the session's axis** (SPACING) because brief §1 leaves the choice to it and
+every other axis already had prior builds; it did not overrule a human preference, because
+none was given.
+
+## What the AI did not do, and never did
+
+* No submission, no login, no scraping, no leaderboard access, no credentials read,
+  requested, stored or printed.
+* No contact with drivendata.org or dropbox.com (brief §4.1). Inputs came from immutable
+  GitHub commits; the data-use status of those mirrors is flagged in IR-91-09.
+* No fabricated numbers: every quoted score is labelled RECEIPT / CLAIM / PROXY / MODEL, and
+  **no receipt exists in this repository**.
+* No label probing, no region-isolated or patterned files (brief §4.5).
+
+## Judgements the AI made that the human should check
+
+1. **SPACING before a receipt.** The axis is predicted flat and bounded near 0.003 by the
+   uniform-truth ceiling. If you would rather spend the slot on expected score, take the
+   PRUNE ladder instead — the plan says so explicitly.
+2. **Releases are not committed.** The repo already forbade rasters in git; the AI followed
+   that rule and made `releases/MANIFEST.json` + a CI rebuild the contract instead.
+3. **The parent's 2 px collar was preserved, not widened to 3 px**, so the parent is not
+   silently replaced. IR-91-03 is the human's call.
+4. **`pct_changed` counts a relocated dot once** (prior-session convention); the Hamming
+   distance is recorded separately in the evidence file.
+
+## Decided by the human (still open)
+
+1. Fill `TOP_PUBLIC` (with a date) and this week's slot count.
+2. **Paste R0's receipt** for 0.2778 — action 0, costing no slot.
+3. Confirm the deadline on the competition page.
+4. Rule on the 3 px collar rule (IR-91-03).
+5. Rule on public mirrors of competition data (IR-91-09).
+6. Choose which file goes in which slot, and the blind final pick.
