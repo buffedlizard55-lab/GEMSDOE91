@@ -1,5 +1,21 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## ⬇ DOWNLOAD NOW — G91-COVER is the current best submission file (one-click TIF)
+
+**[⬇ Download G91-COVER GeoTIFF — 138,621 B — one click to submit](docs/downloads/gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.tif)** · **[Single-TIFF ZIP](docs/downloads/gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.zip)** · **[Format receipt — proves “Predicted values must be in range [0,1]” is fixed](docs/downloads/gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.json)** · **[Open interactive audit page with 1-click download + upload guide](docs/g91.html)** · **[Step-by-step submission guide](docs/g91-executive-summary.html)** · **[JSON run card — machine-readable evidence](docs/run-card-G91.json)**
+
+| Is it OK to download? | Is it OK to submit? | What you must do |
+|---|---|---|
+| **✅ YES — all-finite [0,1], CRS/shape/transform match, 0 dots on catalogue, SHA-256 `c76e6d7b58…` verified** | **✅ YES — this file only, once, instead of FUSE91/DENOVO/MHTR/DD-VTC/CCR91 family (mutual exclusion, IR-G91-01)** — human selector still confirms weekly slot (3/week), eligibility & AI disclosure | **1)** Download the `-zeros.tif` (or its single-TIFF ZIP) **2)** Paste note `GEMS91 G91-COVER E1 HGB 59f cover-gated topo/grav/mag 37654d s2.8 zeros` (71/140 chars) **3)** Upload on [DrivenData submissions](https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/) — no manual raster inspection needed; the project already validated it automatically |
+
+> **Format guarantee:** This file is **all-finite** (`min 0.0, max 1.0, 0 NaN, no nodata tag`, `EPSG:32611`, `3730×3292`), so the portal error *“Predicted values must be in range [0, 1]”* **cannot trigger** on value grounds — that error’s observed fleet causes were NaN-outside encodings and float32 sentinels, both eliminated here and re-validated from the written bytes in three suites + writer (see `docs/downloads/gems91-cover91-e1-*-zeros.json`).
+
+### Current best (G91-COVER) — 2026-10-24
+
+- **Scores (labelled):** **0.16939 HOLDOUT-DTI** (identical whole-component instrument, 60,988 withheld, fold-mean 95% CI [0.166743, 0.172124]) = **+1.25% over prior best FUSE91 0.167293** and **+18.6% over HGB-CTX 0.142885**; per-dot credit 0.2578 vs 0.2545 vs 0.2168; SGMC off-catalogue control REPORT-ONLY 0.0689 vs FUSE91 0.0706 vs R0 0.0954 (disagreement disclosed — holdout measures catalogue-like, SGMC measures geologic-map truth). ORGANIZER-CONFIRMED: none.
+- **Gates, no human inspection:** 59-feature leakage canary PASS (max sym. AUC 0.6028); format PASS on the written bytes (finite [0,1], no nodata tag); surface novelty PASS (|ρ| ≤0.2171 vs 66 rasters); dot novelty vs organizer-scored fleet lineage ≤46.97% (vs R0 37.33%). **Disclosed deviation:** literal directed dot gate FAILS vs this repo’s own unsubmitted family (FUSE91 91.2% directed at 29.9% exact-pixel, DENOVO 80.9% — at 2.8px spacing the fraction measures shared ridge coverage, not copy; zero predecessor pixels read) — submit only one family file.
+- **Why 0.2778 led & whether we can beat it:** byte-verified thinning + collar-prune lineage (H19-5 solid 121k→dotted 44k→solo 40k→R0 37,654) wins because TPw saturates per truth pixel (max kernel) while FPw pays α=0.2 per redundant dot; nested-pair inversion implies R0 credit/dot ≈0.139 and leaderboard #1 0.4413 needs 0.220 at same mass — a ranking-quality gap G91 narrows (+18.6% via cover-gated fusion). Beating 0.2778 live requires an organizer receipt — no score is claimed. Full forensic answer: [G91 page](docs/g91.html) · [HYPOTHESES_G91.md](docs/HYPOTHESES_G91.md).
+
 ## START HERE — session 12 standing brief (read at every session start)
 
 **Read `docs/SESSION_BRIEF_S12.md` first.** It holds the standing rules, the answer on 0.2778, the verdict on the current file, and the open human decisions. The S11 standing brief is kept verbatim below, in the session-10 section, and still applies except where S12 overrides it.

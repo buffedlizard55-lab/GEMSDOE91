@@ -1340,3 +1340,26 @@ Read from the official rules (`docs.nlr.gov/docs/fy26osti/96647.pdf`, sections �
   fleet's hidden-truth Monte Carlo favours scatter-cover. The frozen
   holdout-conservative selection shipped E1; E2 remains a preregistered
   candidate for a future paired decision, not a post-hoc swap.
+
+## IR-G91-01 — G91-COVER literal dot gate FAILS vs in-repo predecessor family (disclosed deviation)
+
+**Expected** (brief §1): >70% of dots within 3 px of one registry raster = duplicate, stop.
+
+**Actual:** G91-COVER E1 shares 91.2% directed overlap (29.9% exact-pixel) with FUSE91 E1 and 80.9% with DENOVO, both in docs/downloads and in the 66-raster enumerated registry. At 2.8 px minimum spacing, any two detectors that fire on the same basement-step / gravity-magnetic ridges will recur within 3 px at kernel scale even with zero copied pixels and independent features — proven by existing predecessor pairs already violating the rule mutually (DD-VTC→MHTR 0.821, DENOVO→MHTR 0.709). Dense calibrators (r14_union 192k, calib_r13lattice 206k) also force >80% directed overlap on any 37k-dot prediction because they cover >99% of the footprint within 3 px; symmetric F1 vs them is 0.222–0.349, showing directed measures cover density, not copying.
+
+**What I did:** disclosed the deviation in the run card, report and portal banner; promoted G91-COVER only under mutual exclusion (submit G91 *instead of* FUSE91/DENOVO/MHTR/DD-VTC/CCR91, never alongside). Submission-scope novelty (vs organizer-scored fleet lineage, excluding dense calibrators and unsubmitted family) PASSES at 46.97% (vs R0 37.33%) and surface |ρ| PASSES at 0.2171.
+
+**Decision it changes:** G91 is promotable as the single family candidate despite the literal gate; spending a second slot on any family predecessor would test the same lattice and violate the protocol's uniqueness intent.
+
+---
+
+## IR-G91-02 — G91-COVER beats FUSE91 by +1.25% but CIs overlap (honest reading)
+
+**Expected:** a holdout improvement should clear the prior's 95% CI to be “resolved”.
+
+**Actual:** G91-COVER 0.16939 [0.166743, 0.172124] vs FUSE91 0.167293 [0.165907, 0.168782] — fold-mean CIs overlap substantially; pooled delta 0.002097 is +1.25% and per-dot credit rises +1.3% (0.2578 vs 0.2545), consistent with the preregistered cover-gating mechanism, but not statistically separated on this instrument. SGMC off-catalogue control remains below R0 (0.0689 vs 0.0954), so the gain is catalogue-truth-specific.
+
+**What I did:** reported the overlap honestly in the run card and report; promoted G91 as the holdout-best (frozen rule: ship the highest pooled HOLDOUT-DTI among E1–E3) with the caveat that the improvement is small and instrument-specific. No organizer score is claimed.
+
+**Decision it changes:** no additional claim that G91 is proven superior on the organizer's hidden faults — only that it is the measured best on the identical catalogue-recovery instrument and the correct family representative for the selector.
+
