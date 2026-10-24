@@ -65,6 +65,36 @@
       "bytes": 373103
     },
     {
+      "file": "h33-h33-2-b2-CONCENTRATIONres1km-m20-20261024-d9a0fcc4-zeros.tif",
+      "sha256": "bcdb048210295e409b13228bdc6b9740c9f5704d135a6deec70e32e5613d622e",
+      "bytes": 222930
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONres1km-m20-20261024-d9a0fcc4.tif",
+      "sha256": "d9a0fcc4afde8d9a6a9502bc36301057181e92bf77e0135899ad936fa44ea13f",
+      "bytes": 369832
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONst1km-m10-20261024-45d1f4e9-zeros.tif",
+      "sha256": "7db0cd229bfd0d30a52d9ec7ce0a4d712eaa8560f30af7ceca3c6f06e34faa30",
+      "bytes": 222785
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONst1km-m10-20261024-45d1f4e9.tif",
+      "sha256": "45d1f4e9d4beed04e34e62da43b5d02080c4cdb60edba8d50b98bf96976c3b30",
+      "bytes": 369544
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONst1km-m20-20261024-ba313f84-zeros.tif",
+      "sha256": "28bd585ba8b9289ea47749235f7a65d482f644be0560110d3b49455126a0e195",
+      "bytes": 220494
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONst1km-m20-20261024-ba313f84.tif",
+      "sha256": "ba313f841ef91cfd9fbd2a9b739fa0cc8f823b8de4121104bc9eab644e957347",
+      "bytes": 367210
+    },
+    {
       "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae-zeros.tif",
       "sha256": "0842d86618dbe64acf6dfb4137feff423a9dc394b59d153317381fc22b06dbb8",
       "bytes": 174857

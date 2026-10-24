@@ -1,7 +1,6 @@
 # SLOT PLAN — 1 entity, 3 scored slots / rolling week, 1 blind final pick
 
-**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `47` `BUILT` rows across six merged axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
-**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `47` `BUILT` rows across six merged axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`, `SNAP`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
+**Calendar (`2026-10-23` UTC):** `41 days` (`5.86` rolling 7-day weeks = `15–18` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `50` `BUILT` rows across six merged axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`, `SNAP`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
 
 ## Session 5 (`arena/42de3fed-gemsdoe91`) addition: `RELIEF` (`r2p12`, `r2b12`, `b2r12`)
 
@@ -37,6 +36,15 @@ The three arms are one dose-response experiment — do not spend three slots on 
 | **1** | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` *(or R0 anchor if `baeae321…` has no receipt yet)* | 37,654 | **+0.0123** `[-0.022,+0.037]` | Highest-upside external thermal prior. `Δ ≥ +0.010`: prior transfer works -> test `15–20%` dose in Week 2. `Δ ≤ -0.010`: macro block-relayout costs structural recall -> retire `CONCENTRATION`. |
 | **2** | `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif` | 26,294 | **+0.008** `[-0.006,+0.019]` | Collar-exempt (`AXIS=PRUNE`) denominator-cost test. `Δ ≥ +0.010`: rebase Week 2 winners onto pruned parent (`le10`/`le15`). `|Δ| < 0.010`: retire `PRUNE`. |
 | **3** | `h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif` *(swap in `MASScons3add` `2803126d`, `+0.009` `MODEL`, if testing count expansion first)* | 37,654 | **+0.006** `[-0.006,+0.018]` | Tests concealed piedmont-toe scarp enrichment (`-0.0017` 4-fold INGENIOUS `PROXY`, [GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)) at zero collar drift. `Δ ≥ +0.010`: test donor-twin `RELIEFr2b12` (`27443c30`) in Week 2; `Δ ≤ -0.010`: flip to bedrock `RELIEFb2r12` (`e1fd28d5`). |
+
+**Where the session-8 arms sit (below the table, on purpose).** The three new CONCENTRATION
+rows (`st1km-m10` `45d1f4e9` `+0.0062`, `st1km-m20` `ba313f84` `+0.0116`, `res1km-m20` `d9a0fcc4`
+`+0.0114`, all MODEL) are **not** in the top 3. Two of them predict `≤ 0.01`, the catalogue PROXY
+is identically invariant for all three, and the only independent locator (off-catalogue SGMC) is
+negative for all three. `res1km-m20` is the first reserve if slot 1's receipt shows the 1 km CV band
+matters: it is the only CONCENTRATION arm ever built that moves the parent's 1 km occupied-block CV
+*into* the reported `0.51-0.59` band (`0.6187 → 0.5867`) and it is 2.4× gentler than its
+matched-dose twin on the blind SGMC control.
 
 ## Rolling budget to deadline (`5.86` weeks remaining)
 
@@ -75,3 +83,26 @@ The three arms are one dose-response experiment — do not spend three slots on 
 ## Session 7 (`arena/0ed37053-gemsdoe91`) addition: `TRACKB` (Phase 2 only — does NOT change the queue above)
 
 Three count-fixed trace-densification arms built and gated (`8343ab38` t1k10 `+0.004` MODEL, `ab72339b` t1k20 `+0.005`, `6d16fd7a` t2k10 `+0.002`), each with a GeoJSON of >=1 km strike-consistent traces carrying one evidence paragraph per trace (2,214 / 2,214 / 675 traces). They spend **no** weekly slot unless the human decides; their value is Phase-2 expert review. Spacing confound and invariant PROXY: IR-91-31. What would change this: a human ruling that Phase-2 trace review outweighs a weekly DTI read, in which case `t1k10` goes first (lowest dose, full trace set).
+
+## Session 8 (`arena/bc249fc7-gemsdoe91`) addition: `CONCENTRATION` dose bracket + residual allocator
+
+Three arms, one prior family, one seed, count fixed, collar quarantined (`scripts/build_concentration_struct.py`,
+`src/gems91/concentration.py`, evidence `evidence/concentration_struct_20261024.json`). The prior is
+the same three GeoDAWN bands the existing `15pct-1km-grad` row names, taken as averaged percentile
+ranks at 1 km blocks; the third arm subtracts the parent's own occupancy rank (structural rank vs
+occupancy rank correlation is only `+0.0524`).
+
+| id | value | dose | 1 km CV | `MODEL` pred | SGMC (blind) ΔDTI | what the receipt changes |
+|---|---|---:|---|---:|---:|---|
+| `…-CONCENTRATIONst1km-m10-20261024-45d1f4e9` | `st1km-m10` | 10 % | 0.6187 → 0.6468 | **+0.0062** `[-0.024,+0.019]` | −0.0078 | ≥ +0.010: dose transfers below the fleet's 15 % point → spend Week 2 on the 20 % arm and a PRUNE pairing. ≤ 0: retire structural CONCENTRATION. |
+| `…-CONCENTRATIONst1km-m20-20261024-ba313f84` | `st1km-m20` | 20 % | 0.6187 → 0.6794 | **+0.0116** `[-0.049,+0.035]` | −0.0133 | Beating `st1km-m10` by ≥ +0.005 makes dose a lever; flat/negative ends re-dosing of any shell-tested prior. Worst SGMC of the three. |
+| `…-CONCENTRATIONres1km-m20-20261024-d9a0fcc4` | `res1km-m20` | 20 % | **0.6187 → 0.5867 (in band)** | **+0.0114** `[-0.052,+0.034]` | −0.0055 | Beating `st1km-m20` live says the parent over-serves blocks (and supports PRUNE's delete-only read, IR-91-33). Losing says the CV band is not causal and should leave the brief's diagnostics. |
+
+**Null diagnostic (no raster, no slot):** uniform-random block ranking at the same 20 % dose gives
+surrogate `-0.0079`, i.e. random relocation *loses*. Unlike the GDR family (whose null reproduced
+~70 % of its gain) the structural prior's gain is not a relocation artefact — but the independent
+SGMC control is negative for all three, so the honest prior on any of them is "wide, sign unknown".
+
+**Throughput:** these three were built in one pass (100 s). Building a further CONCENTRATION value
+is not on the critical path; the binding constraint remains the **0 live receipts**, so the top 3
+above stand.
