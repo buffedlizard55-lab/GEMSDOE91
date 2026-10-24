@@ -81,7 +81,17 @@ def verify(with_data=False):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--with-data', action='store_true')
-    args = ap.parse_args(); print(json.dumps(verify(args.with_data), indent=2, allow_nan=False))
+    args = ap.parse_args()
+    try:
+        report = verify(args.with_data)
+    except (FileNotFoundError, ValueError, KeyError, zipfile.BadZipFile) as exc:
+        # Missing local references are a blocked validation, not a traceback or
+        # an implicit pass. Preserve the reason for CLI/CI consumers.
+        report = dict(status='BLOCKED', submission_ready=False, error=str(exc))
+        print(json.dumps(report, indent=2, allow_nan=False))
+        return 1
+    print(json.dumps(report, indent=2, allow_nan=False))
+    return 0
 
 
-if __name__ == '__main__': main()
+if __name__ == '__main__': raise SystemExit(main())

@@ -19,7 +19,8 @@ def good():
         'holdout_dti': {'status': 'COMPLETED', 'label': 'HOLDOUT-DTI', 'value': .2,
             'ci95': [.1, .3], 'withheld_positives': 100, 'split_sha256': 'synthetic',
             'evaluator_version': 'synthetic-v1', 'paired_best': {'delta': .02, 'ci95': [.01, .03]}},
-        'comparable_prior_holdout_best': {'split_sha256': 'synthetic', 'evaluator_version': 'synthetic-v1'},
+        'comparable_prior_holdout_best': {'split_sha256': 'synthetic', 'evaluator_version': 'synthetic-v1',
+            'value': .18, 'ci95': [.1, .25], 'withheld_positives': 100},
         'selector_approval': True, 'selector_receipt': {'weekly_cap_verified': True, 'slot_available': True}}
 
 
@@ -64,3 +65,28 @@ def test_partial_or_empty_registry_fails(good):
         card = copy.deepcopy(good)
         card['registry_comparison']['final'][key] = value
         assert not gates(card)['novelty']
+
+
+@pytest.mark.parametrize('key,value', [
+    ('value', None), ('value', .21), ('value', float('nan')),
+    ('ci95', None), ('ci95', [.3, .1]),
+    ('withheld_positives', 99), ('withheld_positives', True),
+])
+def test_baseline_must_be_measured_and_comparable(good, key, value):
+    good['comparable_prior_holdout_best'][key] = value
+    assert not gates(good)['beats_comparable_best']
+
+
+def test_positive_but_inconsistent_delta_is_blocked(good):
+    good['holdout_dti']['paired_best']['delta'] = .025
+    assert not submission_ready(good)
+
+
+def test_delta_outside_its_interval_is_blocked(good):
+    good['holdout_dti']['paired_best']['ci95'] = [.03, .04]
+    assert not submission_ready(good)
+
+
+def test_matching_rounded_float_delta_passes(good):
+    good['holdout_dti']['paired_best']['delta'] = .0200000001
+    assert submission_ready(good)

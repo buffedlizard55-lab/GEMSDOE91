@@ -1,0 +1,47 @@
+{
+  "evaluator_version": "gems91-hide-recover-v1.0",
+  "max_allowed_auc": 0.9,
+  "n_features_tested": 6,
+  "worst_feature": "ccr_residual_gravity_joint",
+  "worst_symmetric_auc": 0.56006,
+  "flagged_features": [],
+  "all_pass": true,
+  "features": {
+    "ccr_cond_depth_residual": {
+      "mean_raw_auc": 0.49837,
+      "mean_symmetric_auc": 0.52379,
+      "max_fold_symmetric_auc": 0.54433,
+      "pass": true
+    },
+    "ccr_residual_grad_200m": {
+      "mean_raw_auc": 0.51232,
+      "mean_symmetric_auc": 0.51232,
+      "max_fold_symmetric_auc": 0.52733,
+      "pass": true
+    },
+    "ccr_residual_dog_1km": {
+      "mean_raw_auc": 0.50047,
+      "mean_symmetric_auc": 0.51716,
+      "max_fold_symmetric_auc": 0.52426,
+      "pass": true
+    },
+    "ccr_residual_gravity_alignment": {
+      "mean_raw_auc": 0.51769,
+      "mean_symmetric_auc": 0.5248,
+      "max_fold_symmetric_auc": 0.54022,
+      "pass": true
+    },
+    "ccr_residual_gravity_joint": {
+      "mean_raw_auc": 0.53109,
+      "mean_symmetric_auc": 0.53109,
+      "max_fold_symmetric_auc": 0.56006,
+      "pass": true
+    },
+    "ccr_concealed_contact_joint": {
+      "mean_raw_auc": 0.51025,
+      "mean_symmetric_auc": 0.51366,
+      "max_fold_symmetric_auc": 0.54538,
+      "pass": true
+    }
+  }
+}

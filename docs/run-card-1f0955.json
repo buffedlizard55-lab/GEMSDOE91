@@ -1,0 +1,46 @@
+{
+  "review_id": "1f0955-20261024",
+  "hypothesis": "Not tested: required assigned method paragraph absent.",
+  "mechanism": "Engineering review and shared readiness consistency hardening only.",
+  "named_non_fault_process": "Not applicable to this review; CED historical mimic: intrusive lithological contact.",
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "evaluator_version": null,
+  "withheld_positives": null,
+  "correlation_overlap_vs_registry": null,
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": "NOT GENERATED",
+    "existing_research_artifact": {
+      "status": "PASS",
+      "sha256": "a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee",
+      "bytes": 120391,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "scope": "sample + footprint + catalogue",
+      "submission_ready": false,
+      "caveat": "Format validation cannot override science, novelty or selector gates."
+    }
+  },
+  "submission_name": null,
+  "note": "Review only: no assigned lane, no new experiment, no new submission. Existing TIFF remains research-only.",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "slots_used": 0,
+  "submission_ready": false
+}

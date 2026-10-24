@@ -74,6 +74,36 @@ def test_readme_contains_full_starting_brief_and_visible_negative_download():
         assert requirement in brief
 
 
+def test_artifact_verifier_reports_missing_inputs_as_blocked_json(monkeypatch, capsys):
+    verifier = module('verify_current_artifact')
+    monkeypatch.setattr(verifier, 'verify', lambda _with_data: (_ for _ in ()).throw(
+        FileNotFoundError('missing pinned sample')))
+    monkeypatch.setattr(sys, 'argv', ['verify_current_artifact.py', '--with-data'])
+    assert verifier.main() == 1
+    report = json.loads(capsys.readouterr().out)
+    assert report == {'status': 'BLOCKED', 'submission_ready': False,
+                      'error': 'missing pinned sample'}
+
+
+def test_preflight_global_verdict_uses_axis_readiness_and_current_date(monkeypatch, tmp_path, capsys):
+    preflight = module('preflight')
+    entries = [{'id': 'sample_submission'}, {'id': 'parent_r0_nan'}, {'id': 'extra'}]
+    monkeypatch.setattr(preflight, 'load_manifest', lambda: {
+        'files': entries,
+        'axis_requirements': {'AXIS': ['sample_submission', 'parent_r0_nan', 'extra']},
+    })
+    monkeypatch.setattr(preflight, 'local_path_for', lambda _entry, _root: tmp_path/'unused')
+    monkeypatch.setattr(preflight, 'verify_entry', lambda entry, _path:
+                        (entry['id'] != 'extra', 'pinned' if entry['id'] != 'extra' else 'missing'))
+    monkeypatch.chdir(tmp_path)
+    assert preflight.main() == 1
+    text = capsys.readouterr().out
+    assert 'BUILD BLOCKED' in text
+    saved = json.loads((tmp_path/'registry/preflight.json').read_text())
+    assert saved['verdict'] == 'BUILD BLOCKED'
+    assert saved['checked_utc'] == preflight.datetime.now(preflight.timezone.utc).date().isoformat()
+
+
 def test_registry_cannot_self_index_candidate_or_escape_repository():
     restore = module('restore_registry')
     with pytest.raises(ValueError, match='self-comparison'):

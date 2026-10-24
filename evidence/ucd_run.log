@@ -1,0 +1,39 @@
+withheld 60988
+canary grav_grad 0.58871 True
+E1 HOLDOUT-DTI 0.080042 CI [0.073299, 0.089448]
+E1 SGMC 0.079142 uniq True rho 0.02843 ov 0.21683
+E2 HOLDOUT-DTI 0.113442 CI [0.103611, 0.12111]
+E2 SGMC 0.083364 uniq True rho 0.06965 ov 0.27051
+Traceback (most recent call last):
+  File "/home/user/GEMSDOE91/scripts/run_ucd_lane.py", line 110, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/home/user/GEMSDOE91/scripts/run_ucd_lane.py", line 94, in main
+    bundle=SW.write_validated_submission_bundle(dots,stem_prefix='gems91-ucd91',date_tag='20261024T190000Z',template_path=TPL,catalogue_path=CAT,downloads_dir=ROOT/'docs/downloads')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/GEMSDOE91/scripts/submission_writer.py", line 158, in write_validated_submission_bundle
+    rg_nan = RG.validate_release(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/GEMSDOE91/src/gems91/release_gates.py", line 34, in validate_release
+    arr = io.read_grid(path)                       # gate: re-read from disk after writing
+          ^^^^^^^^^^^^^^^^^^
+  File "/home/user/GEMSDOE91/src/gems91/io.py", line 30, in read_grid
+    return tifffile.imread(str(path)).astype("float32")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/tifffile/tifffile.py", line 1261, in imread
+    return tif.asarray(
+           ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/tifffile/tifffile.py", line 4641, in asarray
+    result = page0.asarray(
+             ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/tifffile/tifffile.py", line 9360, in asarray
+    for _ in self.segments(
+  File "/usr/local/lib/python3.11/dist-packages/tifffile/tifffile.py", line 9152, in segments
+    yield decode(segment)
+          ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/tifffile/tifffile.py", line 9136, in decode
+    return func(decode_func(*args, **decodeargs))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/tifffile/tifffile.py", line 8424, in decode_raise_predictor
+    raise ValueError(msg)
+ValueError: <PREDICTOR.FLOATINGPOINT: 3> requires the 'imagecodecs' package

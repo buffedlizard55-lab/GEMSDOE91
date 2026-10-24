@@ -1,0 +1,7 @@
+[18:22:05] Loading pinned footprint/catalogue/control rasters
+[18:22:12] Building/reusing 49 static, 16 MHTR, and 6 new CCR cached features
+[18:26:40] CCR leakage canary: 6 features, worst symmetric AUC=0.56006
+[18:26:41] Available registry scope: 75 paths (frozen inventory is missing 2 pins)
+[18:26:41] Experiment E1: CCR-joint: S11-E2 learner/emitter plus all six compensated-conductivity residual features
+[18:33:16] E1 HOLDOUT-DTI=0.202116 CI=[0.191589, 0.213715] (n=60988); surface rho=0.22224; dot overlap=0.99769
+[18:33:37] CCR91 NEGATIVE: gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif; sha256=ab500a3caa50f00ec0855dc88006a2d3e31f5e5f4cde726ef391e30f6eb4cd6b

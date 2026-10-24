@@ -3,8 +3,8 @@
   "repo": "buffedlizard55-lab/GEMSDOE91",
   "branch": "arena/5b9fd3e1-gemsdoe91",
   "generated_utc": "2026-10-24T08:16:22Z",
-  "verdict": "promote",
-  "ok_to_download_and_submit": true,
+  "verdict": "negative",
+  "ok_to_download_and_submit": false,
   "winning_experiment": "E1",
   "hypothesis_id": "H91-1",
   "hypothesis": "Dip-Deprojected Verduzco Tilt + Multi-Scale Openness + 1D-Ridge Submodular 300m DTI",
@@ -326,9 +326,9 @@
     "max_surface_abs_rank_corr": 0.21353,
     "surface_closest_raster": "hedge_v2_01563.tif",
     "max_dots_abs_rank_corr": 0.07157,
-    "max_3px_dot_overlap": 0.63167,
-    "dots_closest_raster": "GEMSDOE63__cvarlw-thin-s3p17-54864.tif",
-    "uniqueness_pass": true,
+    "max_3px_dot_overlap": 0.9974479166666667,
+    "dots_closest_raster": "calib_r13lattice_00904.tif",
+    "uniqueness_pass": false,
     "protocol_lattice_diagnostic": {
       "reference": "calib_r13lattice_00904.tif",
       "reference_dots": 206895,
@@ -337,7 +337,11 @@
       "min_possible_directed_overlap_for_38400_dots": 0.82685,
       "symmetric_f1_overlap_upper_bound": 0.31309,
       "note": "Per IR-CED-003, calib_r13lattice_00904.tif covers 99.8713% of Nevada within 3 px, forcing >82.68% literal directed overlap on any 38,400-dot prediction despite <=0.3131 symmetric F1 overlap."
-    }
+    },
+    "historical_v1_0_uniqueness_pass": true,
+    "uniqueness_gate_version": "gems91-directed-registry-v1.1",
+    "strict_revalidation_receipt": "evidence/strict_directed_revalidation_20261024.json",
+    "current_verdict": "DUPLICATE"
   },
   "submission": {
     "candidate_id": "gems91-ddvtc-e1-20261024T120000Z-df50cc0c",
@@ -367,5 +371,13 @@
       "range_0_1_portal_safe": true
     }
   },
-  "fleet_selector_note": "Passes 13/13 technical, [0,1] range, 52-feature leakage canary, and 20-real-raster uniqueness gates (0.174030 HOLDOUT-DTI, highest in GEMSDOE91). Fleet-level selector_approval awaits human verification of weekly DrivenData slot allowance and IR-CED-003 calib_r13lattice_00904.tif synthetic-cover policy."
+  "fleet_selector_note": "Passes 13/13 technical, [0,1] range, 52-feature leakage canary, and 20-real-raster uniqueness gates (0.174030 HOLDOUT-DTI, highest in GEMSDOE91). Fleet-level selector_approval awaits human verification of weekly DrivenData slot allowance and IR-CED-003 calib_r13lattice_00904.tif synthetic-cover policy.",
+  "historical_verdict_before_directed_gate_fix": "promote",
+  "current_policy_revalidation": {
+    "date_utc": "2026-10-24",
+    "status": "FAIL",
+    "reason": "99.7448% of candidate dots are within 3 px of the pinned lattice; limit 70%.",
+    "ok_to_submit": false,
+    "receipt": "evidence/strict_directed_revalidation_20261024.json"
+  }
 }
