@@ -1026,6 +1026,78 @@ Five defects in shared tools. Each is either left as it was or changed with a te
 
 **Decision it changes:** none beyond the retraction. The policy now matches the tree. Restoring the GEOD files would require re-registering them as a deliberate step.
 
+## IR-91-S11-01 — No assigned lane was supplied in the session brief
+
+**Found:** the parallel-run protocol says "Your lane is the single method paragraph below", but the brief contains no such paragraph. The same gap was recorded for CED91 (`docs/run-card.json`, `lane.assigned = false`).
+
+**Actual:** H11-1 is labelled `PROVISIONAL_RESEARCH_ONLY`. The lane-overlap check (rank correlation ≤ 0.90, ≤ 70 % dots within 3 px) was applied against the pinned registry, not against an assigned lane.
+
+**Decision it changes:** the run can never be promoted until an assigned lane is supplied (`readiness.gates` requires `lane.assigned = true`).
+
+## IR-91-S11-02 — S10 said bands 8 and 17 are unused; they are used
+
+**Found:** `docs/HYPOTHESES_S10.md` (H10-2 and H10-3) says band 8 `geod_dilaterate` and band 17 `cond_surf` are "not used anywhere in this repo". They are read by `src/gems91/strain.py` and `scripts/build_strain_concentration.py` (band 8), and by `src/gems91/dd_vtc_pu.py` (bands 8 and 17, plus 10, 15, 16, 18).
+
+**Actual:** H10-2 and H10-3 are not untested lanes. Their earlier ranking overstated their novelty.
+
+**Decision it changes:** the S11 ranking (`docs/HYPOTHESES_H11.md`) drops both on overlap grounds (H11-2 and H11-3).
+
+## IR-91-S11-03 — Band 12 is used by the relief lane
+
+**Found:** `scripts/build_relief.py` reads band 12 `det_elev` as detrended-elevation terciles. H11-1 uses the same band.
+
+**Actual:** the transform differs (an oriented structure tensor, not zonal terciles). The novelty claim is about the transform, not the input. The registry check does not measure input overlap.
+
+## IR-91-S11-04 — The S10 registry "PASS, 64 checked" cannot be reproduced in this checkout
+
+**Found:** `registry/comparison_inventory.json` pins 64 files under `data/fleet_registry/`. None were present in this checkout. Running the surface check before restoring produced 64 × UNVERIFIED and no comparison at all (`docs/h11-registry-surface.json` from the aborted first attempt; the lock file was never written).
+
+**Actual:** `scripts/restore_registry.py` restores 62 of 64 from the pinned git blobs in `buffedlizard55-lab/60GEMSDOE`. It verified sha256, byte length and git blob SHA-1 for each of the 62 files before use. After restore, the surface check ran against 62 references (62 PASS, max rank correlation 0.1468). Two references remain UNVERIFIED (IR-91-S11-05), so the pre-placement status is `UNVERIFIED`, not `PASS`.
+
+**Decision it changes:** the S10 claim `PASS_WITHIN_INDEXED_SCOPE, checked 64` is supported only by files that existed in an earlier session. It is not reproducible here until the two missing references are restored.
+
+## IR-91-S11-05 — Two registry references cannot be recovered
+
+**Found:** `docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif` and `...-zeros.tif` are in the inventory with `source_url = "local checkout inherited advertised artifact"` and no git blob. They are absent from the working tree. `git rev-list --all` returns a single commit in this clone, and a blob search for their sha256 values found nothing.
+
+**Actual:** the two rows are UNVERIFIED. The S10 README statement that the GEOD TIFs "are still in git history" (IR-91-S10-01) cannot be confirmed from this clone. Both rows are the GEOD duplicate of R0 (IR-91-S10-01), so their absence weakens the registry for R0-like candidates.
+
+**Decision it changes:** a human with the original repository history should supply the two files or confirm them removed. Until then no registry pass is complete.
+
+## IR-91-S11-06 — The registry duplicate rule measures coverage density, not geology
+
+**Found:** H11-1's final dots (32,000, greedy, separated by more than 3 px) overlapped 99.8 % within 3 px of `calib_r13lattice_00904.tif` (206,895 dots, a dense lattice). Its surface rank correlation with the same raster was 0.0007, far below the 0.90 threshold.
+
+**Actual:** any well-spread placement with a fixed budget over the footprint will be within 3 px of a dense lattice. The dot-overlap test therefore flags spatial coverage, not shared geological information. This is the "near-universal lattice coverage" blocker named in the S10 README, and it was reproduced here.
+
+**Decision it changes:** H11-1 is recorded as DUPLICATE under the literal rule. Nothing was tuned to pass the gate. Changing the shared duplicate definition (for example, comparing against the positives of registry rasters that are themselves feature-based) is a **human decision** that affects every lane. It was not made here.
+
+## IR-91-S11-07 — The H11-1 holdout measures catalogue recovery, and that favours topographic detectors
+
+**Found:** H11-1 holdout DTI 0.1397 [0.1239, 0.1558] (HOLDOUT-DTI, `gems57-pooled-hide-v2`, 60,988 withheld positive pixels, 161 spatial clusters), versus a gradient-only control 0.0539 and a seeded random null 0.0672. The paired differences are positive, with CIs above zero.
+
+**Actual:** the withheld faults are USGS-catalogued faults. Quaternary fault maps are built largely from topographic expression, so a topography-only detector is expected to recover catalogue faults more easily than the expert-labelled *new* faults that the organizer scores (page 967: "faults not contained within the current public USGS database"). The catalogue-zero canary (max AUC 0.640) does not rule this out, because the canary cannot detect a physical correlation between the feature and the label. This is the mechanism in IR-91-S10-04, and it makes 0.1397 unsafe to read as a predicted organizer score.
+
+**Decision it changes:** no DTI claim about the organizer score is made. The number is labelled HOLDOUT-DTI only.
+
+## IR-91-S11-08 — The first H11-1 attempt consumed the experiment budget before it stopped
+
+**Found:** the first `scripts/run_h11.py --run` ran the holdout to completion (the same numbers as the rerun) and was stopped in the final placement stage, because the registry was unrestored (IR-91-S11-04). The lock file was not written.
+
+**Actual:** the rerun recomputed the same holdout. Counting both attempts, one experiment was run. The protocol's limit is three per session. The lock records `experiments_run: 1` for the completed experiment.
+
+## IR-91-S11-09 — The brief's leaderboard figures conflict with the official page
+
+**Found:** the brief says both "0.3195 is the highest score right now" and "current competition leaderboard GEMSDOE high score 0.4413". The official leaderboard fetched this session (<https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/>) shows #1 0.4413, #2 0.3916 and #3 0.3904, and no 0.3195 row near rank 23–24 (IR-91-S10-05).
+
+**Actual:** 0.4413 is the official public #1 score. 0.3195 is not on the public board as read. The GEMSDOE site scores (0.2778 for GEMSDOE32) are self-reported and unverified.
+
+## IR-91-S11-10 — The session brief's "verbatim" prompt is now stored in the README
+
+**Found:** the S10 README asked for the verbatim brief to replace its restated block. This session's brief was pasted in full.
+
+**Actual:** the README now carries the verbatim brief. Its internal contradictions (IR-91-S11-09, and "0.3195 is the highest" versus "0.4413") are kept as written, not corrected, so reviewers can see what was asked.
+
 ## IR-91-DF6E28C2 — readiness labels could overrule malformed measurements
 
 2026-10-24: shared `readiness.py` accepted inverted/nonfinite paired intervals and
