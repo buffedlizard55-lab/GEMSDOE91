@@ -842,6 +842,18 @@ to attempt the switch; this is unverified until it executes. CI/Pages were
 queued without runners at the observed check. Neither a local PASS nor merge
 is a successful public-deployment receipt.
 
+## IR-CED-009 — H91's reported 20-raster uniqueness pass was invalid; direct lattice overlap is 99.7448%
+
+**Expected:** the literal parallel-run stop rule applies to every checked registry raster: full-footprint surface Spearman `>0.90` or more than `70%` of final candidate dots within 3 px means duplicate. Dense references receive no symmetric-F1 exception; a partial inventory cannot certify uniqueness.
+
+**Actual:** the historical H91 checker (a) scanned a curated 20-raster set and omitted `data/fleet_registry`, (b) sampled every fifth flattened footprint value for rank correlation, and (c) substituted symmetric 3-px F1 whenever the reference had more than `1.5 ×` the candidate positive count. The stored H91 E1 TIFF has **38,302 / 38,400** dots within 3 px of the hash-pinned `calib_r13lattice_00904.tif`: directed overlap **0.9974479166666667**, so the literal duplicate threshold fires. Its final-dot-raster Spearman against the lattice is `-0.00047682895378441`; this is not the missing continuous-surface correlation. The H91 surface file was not retained, so that phase is UNVERIFIED. The 20-raster `<=0.63167` result was never a complete clearance. The CED TIFF is also a duplicate: **31,972 / 32,000** within 3 px (**0.999125**). Both stored TIFFs pass local format/range validation only.
+
+The indexed raster came from `buffedlizard55-lab/60GEMSDOE@02563d07fb85d2f4d35887503d380d34d4017197`, Git blob `81c802618e6d46c6d62289d856ae74439439bbc6`, SHA256 `b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2`. It is a pinned public sibling-repository mirror, not an organizer-authenticated source or a complete universal inventory.
+
+**Implementation repair:** restored `vendor/gems57/uniqueness.py` byte-for-byte from `GEMSDOE78@30f1ab9400f92036b0bc613425f1b5b6046f3897` (Git blob `478c9001dc9c323cd50ba820f53c71dc2f80f221`, SHA256 `9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef`) and added it to `registry/template_pin.json`. The H91 checker and local novelty adapter now delegate measurements to this shared module; the symmetric-F1 exception is removed, path-only inventories fail closed, and the historical runner stops on a duplicate/incomplete scope. H91 run card, registry evidence, artifact policy and generated Pages copy now say **negative / NOT OK TO SUBMIT**.
+
+**Decision it changes:** do not upload H91 or CED; do not spend a slot or run more experiments on this evidence. The previous 20-raster approval language in this file's historical `IR-H91-05` paragraph is superseded by this entry. No geological experiment or slot was used in this re-audit. See `docs/REVIEW-H91-REVALIDATION.md` and `evidence/h91_lattice_reaudit_20261024.json`.
+
 ---
 
 ## IR-H91-01 — `scripts/dti.py` and `vendor/gems57` use competition `max_j` kernel credit (`<= 1.0`), matching DrivenData's worked example

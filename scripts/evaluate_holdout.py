@@ -1,18 +1,9 @@
-#!/usr/bin/env python3
-"""Shared hide-and-recover holdout evaluator, single-feature leakage canary,
-and registry lane-drift / uniqueness checker for GEMSDOE91.
+"""Historical H91-local holdout evaluator and feature-alone canary.
 
-PARALLEL-RUN PROTOCOL compliance:
-  - Rule 1 (LANE): checks BOTH the continuous surface before placement
-    (Spearman |rho| <= 0.90) AND final emitted dots (fraction of candidate dots
-    within <= 3.0 px of any registry raster's dots <= 0.70).
-  - Rule 2 (REUSE, DON'T REBUILD): delegates DTI scoring directly to the
-    repository's canonical `scripts/dti.py` (alpha=0.2, beta=0.8, R=300 m = 3 px
-    triangular kernel, T = sum_g max_j p_j * k(||j - g||)).
-  - Rule 3 (LABEL EVERY NUMBER): every output score is stamped with
-    `HOLDOUT-DTI`, `evaluator_version`, `n_withheld_positives`, and `ci_95`.
-  - Rule 4 (LEAKAGE CANARY): tests every single feature alone on the holdout
-    folds and fails closed if any symmetric ROC-AUC > 0.90.
+This module is retained for provenance and small regression tests; it is not
+`vendor.gems57.evaluate_holdout.py` and its H91 scores are not comparable to the
+pinned shared evaluator. Registry measurements are a thin adapter to
+`vendor.gems57.uniqueness`; path-only subsets can never certify uniqueness.
 """
 
 from __future__ import annotations
@@ -27,7 +18,6 @@ from typing import Iterable
 import numpy as np
 import rasterio
 from scipy import ndimage as ndi
-from scipy.spatial import cKDTree
 from scipy.stats import rankdata
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,6 +26,8 @@ if str(SCRIPTS_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPTS_DIR))
 if str(ROOT / "src") not in sys.path:
     sys.path.insert(0, str(ROOT / "src"))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 import dti as D  # noqa: E402
 
@@ -433,137 +425,238 @@ def check_registry_uniqueness(
     surface_fp: np.ndarray,
     candidate_dots: np.ndarray,
     footprint: np.ndarray,
-    registry_paths: Iterable[str | Path],
+    registry_paths: Iterable[str | Path] | dict | str | Path,
     *,
     max_rank_corr: float = MAX_SURFACE_RANK_CORR,
     max_dot_overlap_3px: float = MAX_DOT_OVERLAP_3PX,
-    corr_stride: int = 5,
+    corr_stride: int = 1,
 ) -> dict:
-    """Rule 1 LANE / UNIQUENESS GATE:
-    Checks BOTH:
-      1. Continuous surface BEFORE placement: |Spearman rho| vs every registry raster <= 0.90
-      2. Final emitted dots AFTER placement: fraction of candidate dots within <= 3.0 px
-         of any registry raster's positive pixels <= 0.70.
+    """Compatibility adapter to the pinned shared literal uniqueness gate.
+
+    Historical H91 supplied a curated list and applied symmetric F1 to dense
+    references. That was not the standing rule. Measurements delegate to
+    ``vendor.gems57.uniqueness.compare_array_to_registry``: exact full-footprint
+    ranks, directed candidate-dot overlap at 3 px, and no density exception.
+    The adapter applies the rank threshold to continuous surfaces and the
+    directed-overlap threshold to emitted dots. A path list is diagnostic only
+    and cannot certify uniqueness without a complete-inventory certificate.
     """
-    cand_bool = (np.nan_to_num(candidate_dots, nan=0.0) > 0) & footprint
-    cy, cx = np.nonzero(cand_bool)
-    cand_pts = np.c_[cy, cx].astype(np.float64)
-    n_cand = int(cand_pts.shape[0])
-    if n_cand == 0:
-        raise ValueError("candidate has 0 emitted dots inside footprint")
+    import json
 
-    # Subsample footprint deterministically for fast exact rank correlation (N ~ 1.03M pixels)
-    s_sub = np.asarray(surface_fp[::corr_stride], dtype=np.float64)
-    r_surf = rankdata(s_sub, method="average")
-    r_surf_c = r_surf - r_surf.mean()
-    r_surf_norm = float(np.linalg.norm(r_surf_c))
+    if max_rank_corr != 0.90 or max_dot_overlap_3px != 0.70 or corr_stride != 1:
+        raise ValueError("The shared protocol fixes full-footprint rho at 0.90 and 3px directed overlap at 0.70")
 
-    # Also rank-correlate final binary dot raster on footprint
-    dots_fp = cand_bool[footprint][::corr_stride].astype(np.float64)
-    r_dots = rankdata(dots_fp, method="average")
-    r_dots_c = r_dots - r_dots.mean()
-    r_dots_norm = float(np.linalg.norm(r_dots_c))
+    from vendor.gems57.uniqueness import compare_array_to_registry
 
-    cand_tree = cKDTree(cand_pts)
-    comparisons = []
-    max_surf_rho = 0.0
-    max_surf_name = ""
-    max_dot_rho = 0.0
-    max_overlap_fwd = 0.0
-    max_overlap_name = ""
-    max_overlap_mutual = 0.0
+    fp = np.asarray(footprint)
+    if fp.ndim != 2 or fp.dtype != np.dtype(bool) or not fp.any():
+        raise ValueError("nonempty 2-D boolean footprint required")
+    surface_values = np.asarray(surface_fp, dtype=np.float32)
+    if surface_values.shape == fp.shape:
+        surface = surface_values
+    elif surface_values.ndim == 1 and surface_values.size == int(fp.sum()):
+        surface = np.zeros(fp.shape, dtype=np.float32)
+        surface[fp] = surface_values
+    else:
+        raise ValueError("surface must be a footprint-sized vector or full 2-D grid")
+    dots = np.asarray(candidate_dots, dtype=np.float32)
+    if dots.shape != fp.shape:
+        raise ValueError("candidate dots and footprint grids differ")
 
-    seen_names: set[str] = set()
-    for rp in sorted(Path(p) for p in registry_paths):
-        if not rp.is_file() or rp.name in seen_names:
-            continue
-        seen_names.add(rp.name)
-        with rasterio.open(rp) as src:
-            reg_arr = np.nan_to_num(src.read(1), nan=0.0, posinf=0.0, neginf=0.0)
-        if reg_arr.shape != footprint.shape:
-            continue
-
-        reg_fp = reg_arr[footprint][::corr_stride].astype(np.float64)
-        r_reg = rankdata(reg_fp, method="average")
-        r_reg_c = r_reg - r_reg.mean()
-        r_reg_norm = float(np.linalg.norm(r_reg_c))
-
-        surf_rho = (
-            abs(float(np.dot(r_surf_c, r_reg_c)) / (r_surf_norm * r_reg_norm))
-            if (r_surf_norm > 0 and r_reg_norm > 0)
-            else 0.0
-        )
-        dot_rho = (
-            abs(float(np.dot(r_dots_c, r_reg_c)) / (r_dots_norm * r_reg_norm))
-            if (r_dots_norm > 0 and r_reg_norm > 0)
-            else 0.0
-        )
-
-        reg_pos = (reg_arr > 0) & footprint
-        ry, rx = np.nonzero(reg_pos)
-        n_reg = int(ry.size)
-        if n_reg > 0:
-            reg_pts = np.c_[ry, rx].astype(np.float64)
-            reg_tree = cKDTree(reg_pts)
-            d_c2r, _ = reg_tree.query(cand_pts, k=1, distance_upper_bound=3.000001)
-            fwd_ov = float(np.isfinite(d_c2r).mean())
-            d_r2c, _ = cand_tree.query(reg_pts, k=1, distance_upper_bound=3.000001)
-            rev_ov = float(np.isfinite(d_r2c).mean())
-            mut_ov = min(fwd_ov, rev_ov)
+    # Normalize legacy inventory shapes only; all measurements and duplicate
+    # decisions remain in the pinned shared module.
+    if isinstance(registry_paths, dict):
+        index = dict(registry_paths)
+    elif isinstance(registry_paths, (str, Path)) and str(registry_paths).lower().endswith(".json"):
+        raw = json.loads(Path(registry_paths).read_text(encoding="utf-8"))
+        if "rasters" in raw:
+            index = raw
+        elif "files" in raw:
+            index = {
+                "complete_accessible_scan": bool(raw.get("complete_universal_registry", False)),
+                "errors": list(raw.get("missing_scope", [])),
+                "rasters": [
+                    {
+                        "repo_first": raw.get("scope", "pinned registry inventory"),
+                        "sources": [item.get("source_url", item["path"])],
+                        "cache_file": item["path"],
+                        "sha256": item.get("sha256"),
+                    }
+                    for item in raw["files"]
+                ],
+            }
         else:
-            fwd_ov = rev_ov = mut_ov = 0.0
+            raise ValueError("registry JSON must contain rasters or files")
+    else:
+        paths = [Path(registry_paths)] if isinstance(registry_paths, (str, Path)) else [Path(x) for x in registry_paths]
+        unique_paths = []
+        seen = set()
+        for path in sorted(paths):
+            resolved = path.resolve()
+            if resolved not in seen:
+                seen.add(resolved)
+                unique_paths.append(resolved)
+        index = {
+            "complete_accessible_scan": False,
+            "errors": ["Curated local path list has no complete-registry certificate; diagnostic only"],
+            "rasters": [
+                {
+                    "repo_first": "local diagnostic inventory",
+                    "sources": [path.name],
+                    "cache_file": str(path),
+                    "sha256": None,
+                }
+                for path in unique_paths
+            ],
+        }
 
-        # For standard dot submissions (n_reg <= 1.5 * n_cand, covering R0, GEMSDOE28..76),
-        # enforce strict one-way `cand_within_3px_of_reg <= 0.70`. For dense calibration
-        # blankets / ribbons (> 1.5 * n_cand, e.g. 69,281-dot calib_h28ridge covering 1.42M px
-        # or 227k-px hedge_v2), use symmetric F1 3-px overlap so whole-map blankets don't
-        # trivially swallow smaller dot sets while true clones still score > 0.90.
-        f1_ov = (2.0 * fwd_ov * rev_ov / (fwd_ov + rev_ov)) if (fwd_ov + rev_ov) > 0 else 0.0
-        eff_dot_ov = fwd_ov if n_reg <= int(1.5 * n_cand) else f1_ov
-        is_dup = (surf_rho > max_rank_corr) or (dot_rho > max_rank_corr) or (eff_dot_ov > max_dot_overlap_3px)
-        comparisons.append({
-            "registry_raster": rp.name,
-            "n_registry_positive": n_reg,
-            "surface_abs_rank_corr": round(surf_rho, 5),
-            "dots_abs_rank_corr": round(dot_rho, 5),
-            "cand_within_3px_of_reg": round(fwd_ov, 5),
-            "reg_within_3px_of_cand": round(rev_ov, 5),
-            "f1_dot_overlap_3px": round(f1_ov, 5),
-            "mutual_min_overlap_3px": round(mut_ov, 5),
-            "effective_dot_overlap_3px": round(eff_dot_ov, 5),
-            "duplicate_flag": bool(is_dup),
+    surface_report = compare_array_to_registry(surface, index, fp)
+    dots_report = compare_array_to_registry(dots, index, fp)
+    surface_rows = surface_report["rows"]
+    dot_rows = dots_report["rows"]
+
+    def _max_abs_rho(rows):
+        available = [r for r in rows if "error" not in r and r.get("spearman_full_footprint") is not None]
+        if not available:
+            return None, ""
+        row = max(available, key=lambda r: abs(float(r["spearman_full_footprint"])))
+        return abs(float(row["spearman_full_footprint"])), row.get("submission", "")
+
+    def _max_overlap(rows):
+        available = [r for r in rows if "error" not in r and r.get("my_dots_within_3px_of_theirs") is not None]
+        if not available:
+            return None, ""
+        row = max(available, key=lambda r: float(r["my_dots_within_3px_of_theirs"]))
+        return float(row["my_dots_within_3px_of_theirs"]), row.get("submission", "")
+
+    surface_rho, surface_name = _max_abs_rho(surface_rows)
+    dots_rho, _ = _max_abs_rho(dot_rows)
+    overlap, overlap_name = _max_overlap(dot_rows)
+
+    # compare_array_to_registry is a general raster comparator and reports both
+    # rank and support-overlap flags for every input. The protocol assigns the
+    # rank threshold to the continuous surface and directed overlap to emitted
+    # dots; treating a positive-valued score surface as a dot mask would make
+    # every broad surface look like a duplicate. Keep the shared measurements,
+    # but apply each literal threshold only to its designated representation.
+    surface_rank_duplicate = any(
+        "error" not in row and row.get("spearman_full_footprint") is not None
+        and abs(float(row["spearman_full_footprint"])) > max_rank_corr
+        for row in surface_rows
+    )
+    dot_overlap_duplicate = any(
+        "error" not in row and row.get("my_dots_within_3px_of_theirs") is not None
+        and float(row["my_dots_within_3px_of_theirs"]) > max_dot_overlap_3px
+        for row in dot_rows
+    )
+    exact_dot_duplicate = any(
+        "error" not in row and (row.get("identical_bytes") or row.get("identical_decoded_predictions"))
+        for row in dot_rows
+    )
+    duplicate = bool(surface_rank_duplicate or dot_overlap_duplicate or exact_dot_duplicate)
+    complete = bool(surface_report["complete_accessible_scan"] and dots_report["complete_accessible_scan"])
+    errors = list(surface_report.get("source_errors", []))
+    errors.extend(dots_report.get("source_errors", []))
+    errors.extend(
+        f"{row.get('submission', row.get('file', 'unknown'))}: {row['error']}"
+        for row in surface_rows + dot_rows if "error" in row
+    )
+    measurement_unverified = []
+    for row in surface_rows:
+        if "error" not in row and row.get("spearman_full_footprint") is None:
+            measurement_unverified.append(
+                f"{row.get('submission', row.get('file', 'unknown'))}: continuous-surface rank correlation unavailable"
+            )
+    for row in dot_rows:
+        if "error" not in row and row.get("my_dots_within_3px_of_theirs") is None:
+            measurement_unverified.append(
+                f"{row.get('submission', row.get('file', 'unknown'))}: final-dot overlap unavailable"
+            )
+
+    surface_measurements = []
+    for row in surface_rows:
+        if "error" in row:
+            surface_measurements.append({"submission": row.get("submission", ""), "error": row["error"]})
+            continue
+        rho = row.get("spearman_full_footprint")
+        surface_measurements.append({
+            "submission": row.get("submission", ""),
+            "file": row.get("file", ""),
+            "sha256": row.get("sha256"),
+            "spearman_full_footprint": rho,
+            "surface_rank_measurement_status": "MEASURED" if rho is not None else "UNVERIFIED",
+            "surface_rank_duplicate": bool(rho is not None and abs(float(rho)) > max_rank_corr),
+            "positive_support_overlap_diagnostic_only": row.get("my_dots_within_3px_of_theirs"),
+        })
+    dot_measurements = []
+    for row in dot_rows:
+        if "error" in row:
+            dot_measurements.append({"submission": row.get("submission", ""), "error": row["error"]})
+            continue
+        dot_overlap_value = row.get("my_dots_within_3px_of_theirs")
+        dot_measurements.append({
+            "submission": row.get("submission", ""),
+            "file": row.get("file", ""),
+            "sha256": row.get("sha256"),
+            "my_dots_within_3px_of_theirs": dot_overlap_value,
+            "dot_overlap_measurement_status": "MEASURED" if dot_overlap_value is not None else "UNVERIFIED",
+            "dot_overlap_duplicate": bool(dot_overlap_value is not None and float(dot_overlap_value) > max_dot_overlap_3px),
+            "spearman_full_footprint_diagnostic_only": row.get("spearman_full_footprint"),
+            "identical_bytes": row.get("identical_bytes", False),
+            "identical_decoded_predictions": row.get("identical_decoded_predictions", False),
         })
 
-        if surf_rho > max_surf_rho:
-            max_surf_rho = surf_rho
-            max_surf_name = rp.name
-        if dot_rho > max_dot_rho:
-            max_dot_rho = dot_rho
-        if eff_dot_ov > max_overlap_fwd:
-            max_overlap_fwd = eff_dot_ov
-            max_overlap_name = rp.name
-        if mut_ov > max_overlap_mutual:
-            max_overlap_mutual = mut_ov
-
-    any_dup = any(c["duplicate_flag"] for c in comparisons)
     return {
-        "n_registry_rasters_checked": len(comparisons),
-        "max_allowed_rank_corr": max_rank_corr,
-        "max_allowed_dot_overlap_3px": max_dot_overlap_3px,
-        "surface_max_abs_rank_corr": round(max_surf_rho, 5),
-        "surface_closest_raster": max_surf_name,
-        "dots_max_abs_rank_corr": round(max_dot_rho, 5),
-        "dots_max_3px_overlap": round(max_overlap_fwd, 5),
-        "dots_closest_raster": max_overlap_name,
-        "dots_max_mutual_3px_overlap": round(max_overlap_mutual, 5),
-        "is_duplicate": bool(any_dup),
-        "uniqueness_pass": not any_dup,
-        "comparisons": comparisons,
+        "n_registry_rasters_checked": int(min(surface_report["registry_rasters_checked"], dots_report["registry_rasters_checked"])),
+        "registry_rasters_expected": max(surface_report["registry_rasters_expected"], dots_report["registry_rasters_expected"]),
+        "registry_inventory_complete": complete,
+        "registry_source_errors": errors,
+        "registry_measurement_unverified": measurement_unverified,
+        "surface_max_abs_rank_corr": surface_rho,
+        "surface_closest_raster": surface_name,
+        "dots_abs_rank_corr": dots_rho,
+        "dots_max_3px_overlap": overlap,
+        "dots_closest_raster": overlap_name,
+        "surface_rank_duplicate": surface_rank_duplicate,
+        "dot_overlap_duplicate": dot_overlap_duplicate,
+        "exact_dot_duplicate": exact_dot_duplicate,
+        "is_duplicate": duplicate,
+        "uniqueness_pass": bool(complete and not errors and not measurement_unverified and not duplicate
+                                and surface_report["candidate_rank_variation"]
+                                and dots_report["my_dots"] > 0),
+        "binding_rule": "literal-all-rasters; continuous-surface |Spearman| > 0.90 or final-dot directed 3px overlap > 0.70",
+        "surface_report": {
+            "protocol_phase": "continuous_surface",
+            "binding_metric": "full-footprint absolute Spearman correlation",
+            "measurements": surface_measurements,
+        },
+        "dots_report": {
+            "protocol_phase": "final_candidate_dots",
+            "binding_metric": "directed candidate-dot overlap within 3 px",
+            "measurements": dot_measurements,
+        },
     }
 
-
 def default_registry_paths() -> list[Path]:
-    paths = sorted((ROOT / "data" / "registry").glob("*.tif"))
-    paths += sorted((ROOT / "data" / "registry_siblings").glob("*.tif"))
-    # Exclude exact NaN/zeros twin duplicates of the same R0 dot set? Keep both — both pass!
+    """Return locally present comparison rasters for diagnostics, never clearance.
+
+    The pinned public comparison inventory also contains entries that are not
+    restored locally; the checker receives a path list only as a diagnostic and
+    therefore reports ``registry_inventory_complete=False``.
+    """
+    roots = [
+        ROOT / "data" / "registry",
+        ROOT / "data" / "registry_siblings",
+        ROOT / "data" / "fleet_registry",
+    ]
+    paths = []
+    seen = set()
+    for root in roots:
+        if not root.exists():
+            continue
+        for path in sorted(root.rglob("*.tif")):
+            resolved = path.resolve()
+            if resolved not in seen:
+                seen.add(resolved)
+                paths.append(resolved)
     return paths

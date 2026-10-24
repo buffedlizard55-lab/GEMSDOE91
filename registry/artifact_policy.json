@@ -29,13 +29,13 @@
       "path": "docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif",
       "sha256": "0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119",
       "status": "current_research_only",
-      "reason": "H91-1 E1 dip-deprojected Verduzco candidate (0.174030 HOLDOUT-DTI, 13/13 technical & 20-real-raster uniqueness gates PASS; awaits human fleet-selector review of calib_r13lattice synthetic cover & weekly slot cap)."
+      "reason": "DUPLICATE: H91 research artifact; local format checks pass, but direct literal overlap is 99.7448% (38,302/38,400 dots) within 3 px of pinned calib_r13lattice_00904.tif (strict stop threshold >70%). NOT OK TO SUBMIT; no selector approval."
     },
     {
       "path": "docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip",
       "sha256": "bb8979945d08b1434f0fdda3fd8ff0e704dbb3b274150845c2ba1a781abb5acc",
       "status": "current_research_only",
-      "reason": "H91-1 E1 dip-deprojected Verduzco candidate (0.174030 HOLDOUT-DTI, 13/13 technical & 20-real-raster uniqueness gates PASS; awaits human fleet-selector review of calib_r13lattice synthetic cover & weekly slot cap)."
+      "reason": "DUPLICATE: H91 research artifact; local format checks pass, but direct literal overlap is 99.7448% (38,302/38,400 dots) within 3 px of pinned calib_r13lattice_00904.tif (strict stop threshold >70%). NOT OK TO SUBMIT; no selector approval."
     }
   ]
 }

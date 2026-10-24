@@ -3,10 +3,11 @@ import pytest
 from src.gems91.novelty import surface_check, dot_check
 
 
-def test_monotonic_duplicate():
+def test_shared_surface_measurement_uses_absolute_rank_correlation():
     x = np.arange(100.).reshape(10, 10)
     assert surface_check(x, x ** 2, np.ones_like(x, bool))['status'] == 'DUPLICATE'
-    assert surface_check(x, -x, np.ones_like(x, bool))['status'] == 'PASS'
+    # The pinned shared gate treats |rho| > 0.90 as a duplicate in either direction.
+    assert surface_check(x, -x, np.ones_like(x, bool))['status'] == 'DUPLICATE'
 
 
 def test_constant_not_pass():

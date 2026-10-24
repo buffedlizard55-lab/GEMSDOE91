@@ -135,7 +135,7 @@ def test_pooled_holdout_and_submodular_beats_ribbon(tmp_path: Path) -> None:
     assert res_sub["holdout_dti"] > res_rib["holdout_dti"]
 
 
-def test_registry_uniqueness_catches_clone_and_passes_novel(tmp_path: Path) -> None:
+def test_registry_uniqueness_catches_clone_and_fails_closed_on_partial_inventory(tmp_path: Path) -> None:
     tpl_path, _, footprint, _ = _make_mini_template_and_cat(tmp_path)
     reg_dir = tmp_path / "reg"
     reg_dir.mkdir()
@@ -152,14 +152,89 @@ def test_registry_uniqueness_catches_clone_and_passes_novel(tmp_path: Path) -> N
         dst.write(r0, 1)
 
     dup_check = EH.check_registry_uniqueness(r0[footprint], r0, footprint, [r0_path], corr_stride=1)
+    assert dup_check["is_duplicate"] is True
     assert dup_check["uniqueness_pass"] is False
+    assert dup_check["registry_inventory_complete"] is False
+    assert dup_check["dots_max_3px_overlap"] == 1.0
 
     novel = np.zeros(footprint.shape, dtype=np.float32)
     novel[12, 60] = 1.0
     novel[68, 12] = 1.0
     novel[70, 70] = 1.0
     ok_check = EH.check_registry_uniqueness((novel * 0.5)[footprint], novel, footprint, [r0_path], corr_stride=1)
-    assert ok_check["uniqueness_pass"] is True
+    assert ok_check["is_duplicate"] is False
+    # A local path list is not a complete registry certificate, even when no
+    # duplicate was observed in the one available raster.
+    assert ok_check["uniqueness_pass"] is False
+    assert ok_check["registry_inventory_complete"] is False
+
+    # The shared comparator returns both metrics for any array. A broad-valued
+    # continuous surface can have 100% positive-support overlap with a dense
+    # reference; only its full-footprint rank correlation is binding here.
+    smooth = np.zeros(footprint.shape, dtype=np.float32)
+    smooth[footprint] = np.linspace(0.001, 0.999, int(footprint.sum()), dtype=np.float32)
+    dense = np.zeros_like(smooth)
+    dense[footprint] = 1.0
+    dense_path = reg_dir / "dense-surface-reference.tif"
+    with rasterio.open(dense_path, "w", **profile) as dst:
+        dst.write(dense, 1)
+    surface_check = EH.check_registry_uniqueness(smooth, np.zeros_like(novel), footprint, [dense_path])
+    assert surface_check["surface_rank_duplicate"] is False
+    assert surface_check["dot_overlap_duplicate"] is False
+    assert surface_check["is_duplicate"] is False
+    assert surface_check["uniqueness_pass"] is False  # inventory remains partial
+    assert surface_check["surface_report"]["protocol_phase"] == "continuous_surface"
+    surface_measurement = surface_check["surface_report"]["measurements"][0]
+    assert surface_measurement["positive_support_overlap_diagnostic_only"] == 1.0
+    assert surface_measurement["surface_rank_duplicate"] is False
+    assert "duplicate_count" not in surface_check["surface_report"]
+    assert surface_check["dots_report"]["protocol_phase"] == "final_candidate_dots"
+    assert surface_check["dots_report"]["measurements"][0]["dot_overlap_duplicate"] is False
+
+    # An undefined Spearman comparison against a constant registry raster is
+    # not a uniqueness pass, even with a complete hash-verified test inventory.
+    import hashlib
+
+    empty_path = reg_dir / "empty-reference.tif"
+    with rasterio.open(empty_path, "w", **profile) as dst:
+        dst.write(np.zeros_like(smooth), 1)
+    complete_test_index = {
+        "complete_accessible_scan": True,
+        "errors": [],
+        "rasters": [{
+            "repo_first": "test fixture",
+            "sources": [empty_path.name],
+            "cache_file": str(empty_path),
+            "sha256": hashlib.sha256(empty_path.read_bytes()).hexdigest(),
+        }],
+    }
+    unverified_check = EH.check_registry_uniqueness(smooth, novel, footprint, complete_test_index)
+    assert unverified_check["registry_inventory_complete"] is True
+    assert unverified_check["is_duplicate"] is False
+    assert unverified_check["registry_measurement_unverified"]
+    assert unverified_check["uniqueness_pass"] is False
+
+
+def test_literal_directed_overlap_has_no_dense_reference_exception(tmp_path: Path) -> None:
+    tpl_path, _, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    reg_dir = tmp_path / "reg"
+    reg_dir.mkdir()
+    with rasterio.open(tpl_path) as src:
+        profile = src.profile.copy()
+    profile.update(nodata=None)
+
+    dense = np.zeros(footprint.shape, dtype=np.float32)
+    dense[10:70, 10:70] = 1.0
+    dense_path = reg_dir / "dense.tif"
+    with rasterio.open(dense_path, "w", **profile) as dst:
+        dst.write(dense, 1)
+
+    candidate = np.zeros_like(dense)
+    candidate[20, 20] = candidate[40, 40] = candidate[60, 60] = 1.0
+    report = EH.check_registry_uniqueness(candidate[footprint], candidate, footprint, [dense_path])
+    assert report["is_duplicate"] is True
+    assert report["dots_max_3px_overlap"] == 1.0
+    assert report["uniqueness_pass"] is False
 
 
 def test_gdr_blind_geothermometer_parser_handles_whitespace_and_blind_90c(tmp_path: Path) -> None:
@@ -244,7 +319,7 @@ def test_submission_writer_enforces_range_0_1_collar_and_zip_sha(tmp_path: Path)
         )
 
 
-def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
+def test_negative_run_card_artifact_and_pages_integrity() -> None:
     import base64
     import hashlib
     import html
@@ -252,6 +327,9 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
     import json
     import re
     import subprocess
+
+    subprocess.run([sys.executable, "scripts/build_pages_site.py"], cwd=ROOT, check=True)
+    subprocess.run([sys.executable, "scripts/render_portal.py"], cwd=ROOT, check=True)
 
     rc_ev = json.loads((ROOT / "evidence" / "run_card.json").read_text(encoding="utf-8"))
     rc_docs = json.loads((ROOT / "docs" / "data" / "run_card.json").read_text(encoding="utf-8"))
@@ -262,47 +340,92 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
     rc_js = json.loads(js_raw[len("window.GEMS91_RUN_CARD = ") :].rstrip(";\n "))
     assert rc_js == rc_ev
 
-    # Protocol Rule 1-6 invariants
-    assert rc_ev["verdict"] in {"promote", "negative"}
-    assert rc_ev["ok_to_download_and_submit"] is True
-    assert rc_ev["budget"]["experiments_run"] <= 3
+    # A negative run card is explicit; technical PASS never overrides novelty.
+    assert rc_ev["verdict"] == "negative"
+    assert rc_ev["ok_to_download_and_submit"] is False
+    assert rc_ev["ok_to_download_for_research"] is True
+    assert rc_ev["ok_to_submit"] is False
+    assert rc_ev["budget"]["experiments_run"] == 3
+    assert rc_ev["budget"]["experiments_run"] <= rc_ev["budget"]["max_experiments"] <= 3
     assert rc_ev["budget"]["wall_clock_seconds"] <= 7200
     assert rc_ev["leakage_canary"]["all_pass"] is True
     assert rc_ev["leakage_canary"]["worst_symmetric_auc"] <= 0.90
-    assert rc_ev["registry_uniqueness"]["uniqueness_pass"] is True
-    assert rc_ev["registry_uniqueness"]["max_surface_abs_rank_corr"] <= 0.90
-    assert rc_ev["registry_uniqueness"]["max_3px_dot_overlap"] <= 0.70
+    uniq = rc_ev["registry_uniqueness"]
+    witness = uniq["direct_lattice_witness"]
+    assert uniq["complete_accessible_scan"] is False
+    assert uniq["uniqueness_pass"] is False
+    assert uniq["is_duplicate"] is True
+    assert witness["candidate_dots_within_3px"] == 38302
+    assert witness["candidate_dots"] == 38400
+    assert witness["directed_overlap"] == pytest.approx(38302 / 38400)
+    assert witness["directed_overlap"] > witness["overlap_limit_strict_greater_than"]
+    assert witness["continuous_surface_spearman_full_footprint"] is None
+    assert witness["continuous_surface_correlation_status"] == "UNVERIFIED"
+    assert rc_ev["submission_action"].startswith("NOT OK TO SUBMIT;")
+    assert rc_ev["promotion_blockers"]
+    assert "not promoted" in rc_ev["winning_experiment_status"]
+
+    # Scores retain their evidence class and comparability boundary.
+    holdout = rc_ev["scores"]["primary_holdout"]
+    assert holdout["label"] == "HOLDOUT-DTI"
+    assert holdout["evaluator_version"] == "gems91-hide-recover-v1.0"
+    assert holdout["n_withheld_positives"] == 60988
+    assert len(holdout["ci_95"]) == 2
+    assert "not comparable" in holdout["comparability"]
+    assert rc_ev["scores"]["fleet_benchmark_reference"]["label"] == "USER-REPORTED-UNVERIFIED"
 
     sub = rc_ev["submission"]
-    assert 1 <= len(sub["recommended_form_note"]) <= 140
-    assert sub["recommended_form_note_length"] == len(sub["recommended_form_note"])
-    assert sub["all_12279160_cells_finite"] is True
+    assert sub["status"] == "RESEARCH-ONLY; NOT OK TO SUBMIT"
+    assert 1 <= len(sub["submission_note"]) <= 140
+    assert sub["submission_note_length"] == len(sub["submission_note"])
+    assert sub["all_cells_finite"] is True
     assert sub["nodata_zeros_tif"] is None
     assert sub["min_value"] == 0.0
     assert sub["max_value"] == 1.0
     assert sub["dots_le_3px"] == 0
     assert sub["min_catalogue_distance_px"] > 3.0
+    assert sub["validator_results"]["format_report_ok"] is True
+    assert sub["validator_results"]["vendor_template_validate_all_checks_passed"] is True
+    assert all(sub["validator_results"]["vendor_template_checks"].values())
+    assert sub["writer_validators"]["gems91_gates_verdict"] == "CERTIFIED"
+    assert all(sub["writer_validators"][key] is True for key in (
+        "release_gates_nan_pass", "release_gates_zeros_pass",
+        "validate_raster_nan_pass", "validate_raster_zeros_pass", "range_0_1_portal_safe"))
 
-    # Decode browser JS GeoTIFF bundle & compare byte-for-byte with ZIP & SHA-256
+    # Post-hoc evidence must bind to both stored research artifacts and the pinned template.
+    re_audit = json.loads((ROOT / "evidence" / "h91_lattice_reaudit_20261024.json").read_text(encoding="utf-8"))
+    assert re_audit["registry_witness"]["git_blob_sha1"] == "81c802618e6d46c6d62289d856ae74439439bbc6"
+    assert re_audit["method_source"]["git_blob_sha1"] == "478c9001dc9c323cd50ba820f53c71dc2f80f221"
+    assert hashlib.sha256((ROOT / "vendor/gems57/uniqueness.py").read_bytes()).hexdigest() == re_audit["method_source"]["sha256"]
+    assert re_audit["artifacts"][0]["witness_comparison"]["directed_overlap"] == pytest.approx(38302 / 38400)
+    assert re_audit["artifacts"][1]["witness_comparison"]["directed_overlap"] == pytest.approx(31972 / 32000)
+    registry_summary = json.loads((ROOT / "evidence" / "registry_uniqueness.json").read_text(encoding="utf-8"))
+    assert registry_summary["is_duplicate"] is True
+    assert registry_summary["uniqueness_pass"] is False
+    assert registry_summary["complete_accessible_scan"] is False
+    assert registry_summary["h91_literal_lattice_witness"]["continuous_surface_spearman_full_footprint"] is None
+    assert registry_summary["h91_literal_lattice_witness"]["continuous_surface_correlation_status"] == "UNVERIFIED"
+
+    tif_path = ROOT / "docs" / "downloads" / sub["research_tif"]
+    tif_bytes = tif_path.read_bytes()
+    assert hashlib.sha256(tif_bytes).hexdigest() == sub["sha256_tif"]
+    assert len(tif_bytes) == sub["bytes_tif"]
+
+    # The historical browser bundle, ZIP and direct GeoTIFF all carry identical bytes.
     bundle_txt = (ROOT / "docs" / "downloads" / "h91_submission_bundle.js").read_text(encoding="utf-8")
     payload_line = [ln for ln in bundle_txt.splitlines() if ln.startswith("window.GEMS91_SUBMISSION_BUNDLE = ")]
     assert len(payload_line) == 1
     bundle_obj = json.loads(payload_line[0][len("window.GEMS91_SUBMISSION_BUNDLE = ") :].rstrip(";\n "))
-    tif_bytes = base64.b64decode(bundle_obj["primary_zeros"]["base64"])
-    assert len(tif_bytes) == sub["bytes_zeros_tif"]
-    assert hashlib.sha256(tif_bytes).hexdigest() == sub["sha256_zeros_tif"]
+    bundled_tif = base64.b64decode(bundle_obj["primary_zeros"]["base64"])
+    assert bundled_tif == tif_bytes
+    assert hashlib.sha256(base64.b64decode(bundle_obj["companion_nan"]["base64"])).hexdigest() == sub["sha256_nan_tif"]
 
-    nan_bytes = base64.b64decode(bundle_obj["companion_nan"]["base64"])
-    assert hashlib.sha256(nan_bytes).hexdigest() == sub["sha256_nan_tif"]
-
-    zip_path = ROOT / "docs" / "downloads" / sub["recommended_zip_download"]
-    assert zip_path.exists()
-    assert hashlib.sha256(zip_path.read_bytes()).hexdigest() == sub["sha256_zeros_zip"]
+    zip_path = ROOT / "docs" / "downloads" / sub["research_zip"]
+    assert hashlib.sha256(zip_path.read_bytes()).hexdigest() == sub["sha256_zip"]
     with zipfile.ZipFile(zip_path, "r") as zf:
-        assert zf.namelist() == [sub["recommended_upload_file"]]
-        assert zf.read(sub["recommended_upload_file"]) == tif_bytes
+        assert zf.namelist() == [tif_path.name]
+        assert zf.read(tif_path.name) == tif_bytes
 
-    # Inspect decoded GeoTIFF raster directly in memory via rasterio MemoryFile
     with rasterio.MemoryFile(io.BytesIO(tif_bytes)) as memfile:
         with memfile.open() as ds:
             assert ds.count == 1
@@ -316,22 +439,20 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
             assert float(arr.max()) == 1.0
             assert int((arr > 0).sum()) == sub["n_dots"]
 
-    # Check direct downloadable GeoTIFF in docs/downloads/ matches bundle & policy
-    direct_tif = ROOT / "docs" / "downloads" / sub["recommended_upload_file"]
-    assert direct_tif.exists()
-    assert direct_tif.read_bytes() == tif_bytes
-
-    # Check H91 GitHub Pages HTML files and local asset links
-    for html_rel in [
-        Path("docs/h91-ddvtc.html"),
-        Path("docs/h91-executive-summary.html"),
-    ]:
+    # Both H91 pages use a visibly negative, research-only verdict and valid local links.
+    for html_rel in (Path("docs/h91-ddvtc.html"), Path("docs/h91-executive-summary.html")):
         hp = ROOT / html_rel
-        assert hp.exists(), f"Missing {html_rel}"
         html_txt = hp.read_text(encoding="utf-8")
-        assert sub["candidate_id"] in html_txt
-        assert sub["sha256_zeros_tif"] in html_txt
-        assert sub["recommended_form_note"] in html.unescape(html_txt)
+        decoded = html.unescape(html_txt)
+        assert sub["candidate_id"] in decoded
+        assert sub["sha256_tif"] in decoded
+        assert "OK TO SUBMIT: NO" in decoded
+        assert "DUPLICATE" in decoded
+        assert "0.174030" in decoded
+        assert "gems91-hide-recover-v1.0" in decoded
+        assert "PROMOTED" not in decoded
+        assert "20/20 REAL RASTERS UNIQUE" not in decoded
+        assert "drivendata.org/competitions/306/competition-doe-gems/submissions" not in decoded
         for attr_match in re.finditer(r'(?:href|src)="([^"]+)"', html_txt):
             target = attr_match.group(1)
             if target.startswith(("http://", "https://", "#", "mailto:", "javascript:")):
@@ -342,13 +463,16 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
             resolved = (hp.parent / clean_rel).resolve()
             assert resolved.exists(), f"Broken link {target!r} in {html_rel} -> {resolved}"
             rel_to_root = resolved.relative_to(ROOT)
-            ign = subprocess.run(
-                ["git", "check-ignore", "-q", str(rel_to_root)], cwd=ROOT
-            )
+            ign = subprocess.run(["git", "check-ignore", "-q", str(rel_to_root)], cwd=ROOT)
             assert ign.returncode != 0, f"GitHub Pages asset {rel_to_root} is gitignored!"
 
-    # Main portal links directly to H91 pages
     main_idx = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
     assert "h91-ddvtc.html" in main_idx and "h91-executive-summary.html" in main_idx
+    assert "NOT OK TO SUBMIT" in main_idx
+    assert "99.7448%" in main_idx
 
+    for item in json.loads((ROOT / "registry/artifact_policy.json").read_text())["files"]:
+        if "ddvtc" in item["path"].lower():
+            assert item["status"] == "current_research_only"
+            assert "DUPLICATE" in item["reason"]
 

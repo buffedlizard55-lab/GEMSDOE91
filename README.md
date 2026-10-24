@@ -1,13 +1,19 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
-## SESSION 10 STATUS (2026-10-24, branch `arena/5e09be50-gemsdoe91`) — read this first
+## Current review status (2026-10-24; branch `arena/8ac4c974-gemsdoe91`) — read this first
+
+**H91 verdict: NOT OK TO SUBMIT. The existing TIFF may be downloaded for research only. No new unique submission TIFF was produced or approved in this review.** The stored H91 file has 38,302/38,400 dots (99.7448%) within 3 px of a pinned lattice witness, over the strict 70% duplicate threshold. CED91 also fails that literal witness. The assigned method lane is unresolved; no new experiment, holdout rerun, competition slot, upload, or organizer receipt occurred. The reported `0.2778` and `0.4413` figures remain user-reported/unverified here, and are not projections or verified scores. See the [three-pass H91 revalidation](docs/REVIEW-H91-REVALIDATION.md), [machine-readable re-audit](evidence/h91_lattice_reaudit_20261024.json), and [H91 run card](evidence/run_card.json).
+
+## Historical Session 10 status (2026-10-24, branch `arena/5e09be50-gemsdoe91`)
+
+> The following is an archived prior-session record, not the current branch or this review's source verification. Its competition-page, leaderboard, rules, and eligibility statements were not re-verified in the H91 re-audit; use the current limitations and source register instead.
 
 **Verdict: NOT OK TO DOWNLOAD OR SUBMIT ANY FILE from this session.**
 - Status board: [`docs/s10-status.html`](docs/s10-status.html) · executive summary (how to submit, gates, errors): [`docs/s10-executive-summary.html`](docs/s10-executive-summary.html) · run card: [`docs/run-card-S10.json`](docs/run-card-S10.json) · hypotheses and ranking: [`docs/HYPOTHESES_S10.md`](docs/HYPOTHESES_S10.md) · irregularities: [`IRREGULARITIES.md`](IRREGULARITIES.md) (IR-91-S10-01 to -10).
 - The one file built this session (`gems91-s10-basementridge-K60988-20261024-74b1f6f1.tif`, sha256 `74b1f6f1…dd36`) lives in the **gitignored** `outputs/s10/`. It is **not** published. It fails the pre-registered control: holdout-DTI **0.0173** [0.0126, 0.0218] vs random placement **0.0288** [0.0217, 0.0342] (HOLDOUT-DTI, evaluator `S10-holdout-v1`, 60,988 withheld positives). Not promoted to a slot.
 - The three-experiment budget (E1 candidate, E2 ablation, E3 null) is spent. A new session is needed for any further experiment.
 - The GEOD duplicate (93.2 % of dots within 3 px of R0) was removed from Pages downloads. It is still in git history (IR-91-S10-01).
-- Official sources were read this session: [competition page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) (metric, format, features, label sources), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) (#1 = 0.4413, public), [NLR official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf) (three submissions/week; AI disclosure; eligibility).
+- The previous branch claimed that these official sources were read: [competition page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) (metric, format, features, label sources), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) (#1 = 0.4413, public), and [NLR official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf) (submission allowance, AI disclosure, eligibility). **This is an archived claim, not independently verified in the current review.**
 - The organizer metric was checked by hand against `scripts/dti.py`: with alpha + beta = 1 the two forms are algebraically identical. The numerical scorer has not been run against an organizer receipt.
 
 ### Decisions only the human can make (nothing below was decided by the agent)
@@ -47,13 +53,12 @@
 This is a **new parent-free prediction file**, not a renamed previous submission. It passes all local format/range checks, but **fails the protocol's final-dot duplicate gate** against a near-universal lattice reference. A protocol-unique, approved competition submission has **not** been achieved. The run stopped rather than weakening the rule. No weekly slot was selected or used.
 
 
-### Parallel First-Principles Discovery Lane (`H91-DDVTC`, Branch `arena/5b9fd3e1-gemsdoe91`)
+### Historical H91-DDVTC artifact — research only, NOT OK TO SUBMIT
 
-- **[Download H91-1 Certified Range-Safe GeoTIFF (`216 KB`)](docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif)** · **[Single-TIFF ZIP (`181 KB`)](docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip)** · **[H91 Interactive Audit Portal](docs/h91-ddvtc.html)** · **[H91 Submission Walkthrough](docs/h91-executive-summary.html)** · **[H91 JSON Run Card](evidence/run_card.json)**
-- **Candidate ID:** `gems91-ddvtc-e1-20261024T120000Z-df50cc0c` · **SHA-256 (`-zeros.tif`):** `0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119`
-- **Form Note (`117/140` chars):** `GEMS91 E1 (H91-1): Dip-deproj Verduzco grav/RTP tilt+openness+claycap+1D-ridge 300m submod (38400d >3px, [0,1] zeros)`
-- **Out-of-Fold Score:** **`0.174030` `HOLDOUT-DTI`** (`95% CI [0.161841, 0.184791]`, `n_withheld = 60,988`, `gems91-hide-recover-v1.0`, **`+25.2%` lift over `B0 = 0.138999`** with non-overlapping 95% CIs — highest out-of-fold `HOLDOUT-DTI` in `GEMSDOE91`).
-- **Automated Gate Status:** **`13/13` technical, `[0, 1]` range (`min=0.0, max=1.0, nodata=None, 0 NaNs`), sterile-collar (`> 3.0 px`), 52-feature leakage canary (`<= 0.6610`), and `20/20` real-fault-raster uniqueness (`<= 63.17%`; `42.59%` vs `R0`, `13.57%` vs `CED91`, `51.52%` vs `DENOVO`) gates PASSED.** Under shared repo policy (`IR-CED-003`), spending a weekly DrivenData slot awaits human fleet-selector review of weekly allowance (`<= 3/wk`) and the synthetic `calib_r13lattice_00904.tif` (`99.8713%` footprint cover) policy.
+- **[Download H91 GeoTIFF for research](docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif)** · [single-TIFF ZIP](docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip) · [corrected H91 audit](docs/h91-ddvtc.html) · [H91 research guide](docs/h91-executive-summary.html) · [machine-readable run card](evidence/run_card.json) · [registry re-audit](evidence/h91_lattice_reaudit_20261024.json).
+- **Verdict: `negative`. OK TO DOWNLOAD FOR RESEARCH: YES. OK TO SUBMIT: NO.** The stored TIFF passes local format/range checks but is a literal registry duplicate: **38,302/38,400 dots (99.7448%)** fall within 3 px of pinned `calib_r13lattice_00904.tif`, above the strict 70% threshold. The earlier 20-raster pass is withdrawn: its checker omitted `data/fleet_registry` and substituted symmetric F1 for dense references.
+- **Historical HOLDOUT-DTI:** `0.174030`, 95% CI `[0.161841, 0.184791]`, `n_withheld=60,988`, evaluator `gems91-hide-recover-v1.0`. This lane-local evaluator/split is not comparable to CED's pinned `gems57-pooled-hide-v2`; it is not an organizer score or a promotion result. The continuous H91 surface was not retained, so its lattice rank correlation is unverified.
+- GeoTIFF SHA-256: `0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119`. The form name/note in the card are historical identifiers only; do not upload them. No H91 competition slot was used.
 
 ### Current measured result — 2026-10-24
 
@@ -70,7 +75,7 @@ The project performs inspection automatically. No human inspector is needed to d
 
 ## Start every session here
 
-**Read this README, including the original user brief below, before working.** Then read the latest `docs/run-card.json`, `IRREGULARITIES.md`, `LIMITATIONS.md`, and `docs/REVIEW-CED91.md`. Historical MODEL/PROXY projections and archived slot queues are not comparable HOLDOUT-DTI or organizer receipts. Do not rerun or tune the stopped CED experiment to evade a failed gate.
+**Read this README, including the original user brief below, before working.** Then read the latest `docs/run-card.json`, `IRREGULARITIES.md`, `LIMITATIONS.md`, `docs/REVIEW-CED91.md`, and `docs/REVIEW-H91-REVALIDATION.md`. Historical MODEL/PROXY projections and archived slot queues are not comparable HOLDOUT-DTI or organizer receipts. Do not rerun or tune a stopped experiment to evade a failed gate.
 
 Core values applied to this project:
 
@@ -80,7 +85,7 @@ Core values applied to this project:
 ## What changed
 
 1. Recovered and SHA256-verified the existing cached feature stack and other pinned inputs autonomously through immutable GitHub mirrors. Raw data remain ignored.
-2. Located and reused the actual shared template from `GEMSDOE78@30f1ab9400f92036b0bc613425f1b5b6046f3897`. `evaluate_holdout.py`, `spatial.py`, `metric.py` and `submission_writer.py` are copied **unmodified**, with hashes in `registry/template_pin.json`.
+2. Located and reused the actual shared template from `GEMSDOE78@30f1ab9400f92036b0bc613425f1b5b6046f3897`. `evaluate_holdout.py`, `spatial.py`, `metric.py`, `submission_writer.py`, and `uniqueness.py` are pinned byte-for-byte in `registry/template_pin.json`; the previously omitted `uniqueness.py` was restored and hash-verified from that same commit.
 3. Preregistered [four geological hypotheses](docs/HYPOTHESES_CED.md). Tested only the first: two-scale magnetic–gravity edge-centroid displacement, with no copied parent dots or catalogue-derived features.
 4. Used buffered whole-component spatial folds, exact visible-fault masking, pooled DTI and paired physical-cluster bootstrap intervals. Every raw/transformed feature received a feature-alone leakage canary.
 5. Generated a finite [0,1] TIFF and one-TIFF ZIP through the shared writer, re-read them and stopped on the literal duplicate rule. Negative results remain downloadable research deliverables, not approved submissions.
@@ -106,6 +111,7 @@ python scripts/restore_data.py --only sample_submission,existing_faults
 python scripts/verify_current_artifact.py --with-data
 python scripts/check_artifact_policy.py
 python -m pytest
+python scripts/build_pages_site.py
 python scripts/render_portal.py
 
 # Source-feed refresh only: no training, placement, scoring or competition upload.
@@ -135,37 +141,29 @@ Resolve the missing assigned lane and near-universal lattice coverage in the **s
 
 ---
 
-## H91-DDVTC PhD Forensic Analysis, 5 Geological Hypotheses & 3-Experiment Results (`arena/5b9fd3e1-gemsdoe91`)
+## Historical H91 hypotheses and measurements — not a current submission lane
 
-### 1. Why `GEMSDOE32` Scored `0.2778` (Reported) — and Why `H91` Solves Dip-Offset & 2-D Kernel Bias
-Under DrivenData's asymmetric **Distance-Tolerant Tversky Index** (`alpha = 0.2`, `beta = 0.8`, `R = 300 m = 3 px` triangular kernel `k(d) = max(0, 1 - d/3)`), truth credit is a **maximum** (`T = sum_{g in G} max_j p_j k(||j-g||_2)`), whereas every unmatched unit of predicted mass adds `0.2 * (S - M)` to the denominator. Pinned raster forensics confirm `GEMSDOE32` (`h33-h33-2-b2`, `37,654` dots) progressed from `H19-5` (`121,131` px multi-physics gate) -> `d >= 2.8` Poisson disk thinning (`44,090` dots) -> `solo` isolated-speckle pruning (`40,199` dots) -> `d_cat > 2.0 px` catalogue-collar deletion (`37,654` dots).
+A previous branch recorded five geological ideas (`docs/HYPOTHESES_H91.md`) and three H91 experiment arms. The current review does **not** treat H91 as the assigned method lane, and no new H91 experiment was run. The H91 artifact is a research file only; see the [post-hoc registry audit](docs/REVIEW-H91-REVALIDATION.md).
 
-First-principles lanes left four quantitative geological & geometric errors unsolved (`docs/HYPOTHESES_H91.md`, `IR-H91-01`..`IR-H91-05`):
-1. **Normal-Fault Plan-View Dip-Offset (`200–1,000 m > 300 m` DTI kernel):** Great Basin normal faults dip `50–60 deg` into hanging-wall basins; where `B15 (depth_to_base_surf)` is `300–1,400 m`, basement gravity/magnetic contacts sit `2–10 px` downdip of the surface fault trace.
-2. **Unsigned `Band 6 (tc)` Terrain Correction (`[11.8, 25.6]` mGal):** Not a signed Verduzco tilt (`IR-H91-04`). True depth-normalized Verduzco tilt angles must be synthesized as `atan2(B11, B05)` and `atan2(B09, |grad B02|)` and projected updip along `-grad G_6(B13)` by `B15 * cot(55 deg)`.
-3. **`212` Discarded Blind `>= 90 C` Geothermometer Cells (`IR-H91-02`):** `Cold`/`NULL` wells in `gdr_wellspring_in_footprint.csv` with quartz/chalcedony/Na-K-Ca geothermometry `>= 90 C` mark blind fault-hosted hydrothermal outflow plumes (while column `dist_known_fault_px` leaks global fault distance and is strictly banned per `IR-H91-03`).
-4. **`3.5x` 2-D vs 1-D Submodular Kernel Area Bias (`IR-H91-05`):** Over a 2-D disk (`r <= 3 px`, 29 cells), `sum K = 10.61`, vs `3.00` along a 1-px fault line (7 cells). Bayes prior-shift calibration + 4-axis 1-D ridge NMS prevents 2-D mountain blocks from out-scoring crisp 1-px fault traces (`0.030 -> 0.174030 HOLDOUT-DTI`).
+### Why a reported high DTI might rise after thinning — mechanism, not confirmed cause
 
-### 2. Five Ranked Novel Geological Hypotheses (`docs/HYPOTHESES_H91.md`)
+The repository’s shared DTI form gives each truth pixel maximum nearby prediction credit, while unmatched prediction mass contributes false-positive cost. Consequently, removing redundant or unmatched dots can plausibly improve DTI; removing a useful dot can also reduce recall. Pinned raster lineage supports that the GEMSDOE32 `h33-h33-2-b2` artifact has 37,654 dots and descends through sparsification/collar steps. That lineage does not prove which step caused a live score. The cited `0.2778` and other leaderboard highs are **USER-REPORTED-UNVERIFIED** here: no organizer receipt, live leaderboard, or official competition page was fetched. They are not used as verified benchmarks or as targets for projected scores.
 
-| Rank | ID | Hypothesis & Exact Layers | Named Non-Fault Mimic Rejected | Outcome |
+The historical H91 result `0.174030` is **HOLDOUT-DTI** (95% CI `[0.161841, 0.184791]`, 60,988 withheld positives, evaluator `gems91-hide-recover-v1.0`). It came from a lane-local evaluator/writer and is not comparable to the current pinned `gems57-pooled-hide-v2` CED result. It is not ORGANIZER-CONFIRMED. Its former 20-raster uniqueness pass was invalid as clearance: the checker omitted `data/fleet_registry` and replaced directed overlap by symmetric F1 for dense references. The exact stored H91 TIFF has 99.7448% directed overlap with the pinned lattice witness, exceeding the 70% duplicate threshold; **NOT OK TO SUBMIT**.
+
+### Five distinct archived H91 hypotheses (proposal status, not current authorization)
+
+| Rank | ID | Geological signature and layers | Named non-fault mimic | Historical outcome |
 | :--- | :--- | :--- | :--- | :--- |
-| **1** | **`H91-1`** | **Dip-Deprojected Verduzco Tilt + Multi-Scale Openness + Clay-Cap Edge + 1-D Ridge Submodular DTI** (`B02, B05, B09, B11, B12, B13, B15, B17, B19`) | Pleistocene Lake Lahontan wave-cut shorelines | **`E1` Winner (`0.174030 HOLDOUT-DTI`)** |
-| **2** | **`H91-2`** | **Andersonian 12-Azimuth Slip/Dilation Ridge + `212` Blind `>= 90 C` Geothermometer GDR Conduits + Subsurface-Gated PU** (`B04, B07, B08, B16` + GDR #1391) | Alluvial-fan channels & shallow lateral outflow plumes | **`E2` Tested (`0.166750 HOLDOUT-DTI`)** |
-| **3** | **`H91-3`** | **Hydrothermal Magnetite-Destruction Trough (`G_8 - G_1.5 > 0` on `B02`) + `300m–1.2km` Clay-Cap DoG (`B17`) + Seismic Swarm Conduit (`B10, B16`)** | Unaltered positive-RTP Miocene basaltic dikes & broad playas | **`E3` Tested (`0.171231 HOLDOUT-DTI`)** |
-| **4** | **`H91-4`** | **Sentinel-1 InSAR Seasonal Aquifer-Baffle Phase Discontinuity** (NASA ASF DAAC ARIA/OPERA) | Circular agricultural pumping bowls | Documented Future (host allowlist) |
-| **5** | **`H91-5`** | **EarthScope 3-D MT Phase-Tensor Skew (`beta_MT > 3 deg`) + Radiometric `K/Th`** (EarthScope SPUD + USGS) | Unfaulted felsic ash-flow tuff calderas | Documented Future (host allowlist) |
+| 1 | `H91-1` | Dip-deprojected Verduzco tilt, multi-scale openness and 1-D ridge allocation (`B02, B05, B09, B11, B12, B13, B15, B17, B19`) | Pleistocene Lake Lahontan wave-cut shorelines | Historical `E1` HOLDOUT-DTI 0.174030 under H91-local evaluator; artifact DUPLICATE |
+| 2 | `H91-2` | Andersonian slip/dilation ridge plus blind geothermometer cells and subsurface-gated PU (`B04, B07, B08, B16`, GDR lead) | Alluvial-fan channels and shallow lateral outflow plumes | Historical `E2` HOLDOUT-DTI 0.166750; final raster not independently re-audited |
+| 3 | `H91-3` | Magnetic trough, clay-cap edge and seismic conduit (`B02, B10, B16, B17`) | Unaltered basaltic dikes and broad playas | Historical `E3` HOLDOUT-DTI 0.171231; final raster not independently re-audited |
+| 4 | `H91-4` | Sentinel-1 InSAR seasonal aquifer-baffle phase discontinuity | Circular agricultural pumping bowls | Unrun proposal; external-source availability/licence not verified |
+| 5 | `H91-5` | EarthScope 3-D MT phase-tensor skew plus radiometric K/Th | Unfaulted felsic ash-flow tuff | Unrun proposal; external-source availability/licence not verified |
 
-### 3. `H91` 3-Experiment Holdout & Control Summary (`gems91-hide-recover-v1.0`, `n_withheld = 60,988`)
+All three H91 DTI values are measured historical outputs, not forecasts; the cross-arm lift is not a shared-protocol comparison. The formerly advertised “63.17% uniqueness” describes only the old incomplete 20-raster diagnostic. `scripts/run_h91_lane.py` is now a historical runner: it uses local holdout/writer code, delegates uniqueness to the pinned shared module, refuses incomplete inventory, stops on a duplicate, and cannot promote without the missing shared-evaluator, assigned-lane, comparable-best, complete-registry, and selector gates. Do not rerun it as a new experiment.
 
-| Arm | Features | `HOLDOUT-DTI` (95% CI) | Lift vs `B0` | Zero-SGMC Off-Cat Control (`n=62,122`) | Real-Raster Max 3-px Overlap (`20` Rasters) |
-| :--- | :---: | :--- | :---: | :---: | :---: |
-| **`B0`** (Raw-19 OOF + `d>=2.8`) | 19 | `0.138999` `[0.125320, 0.150206]` | Baseline | — | — |
-| **`E1` (`H91-1` Winner)** | **34** | **`0.174030` `[0.161841, 0.184791]`** | **`+0.035031` (`+25.2%`)** | **`0.082886`** | **`63.17% <= 70%`** (`42.59%` vs `R0`) |
-| **`E2` (`H91-1 + H91-2`)** | 47 | `0.166750` `[0.156968, 0.179240]` | `+0.027751` (`+20.0%`) | `0.078329` | `60.96% <= 70%` |
-| **`E3` (`H91-1 + H91-2 + H91-3`)** | 52 | `0.171231` `[0.160648, 0.183326]` | `+0.032232` (`+23.2%`) | `0.076514` | `61.07% <= 70%` |
-
-Reproduce `H91`: `.venv/bin/python scripts/run_h91_lane.py && .venv/bin/python scripts/build_pages_site.py`.
+The CED preregistration has four separate hypotheses, with one tested and three unrun; it remains a provisional lane because no method paragraph was assigned. See [`docs/HYPOTHESES_CED.md`](docs/HYPOTHESES_CED.md). No hypothesis was promoted from this review.
 
 ---
 

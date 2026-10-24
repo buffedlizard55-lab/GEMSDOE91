@@ -1,24 +1,14 @@
 #!/usr/bin/env python3
-"""Execute the GEMSDOE91 First-Principles Discovery Lane (`H91-1`..`H91-3`).
+"""Historical H91 research runner; not a current submission pipeline.
 
-Strictly enforces `PARALLEL-RUN PROTOCOL`:
-  - Rule 1 (Lane / Uniqueness): Verifies continuous surface |Spearman rho| <= 0.90
-    AND final emitted 3-px dot overlap <= 0.70 against all pinned registry &
-    sibling rasters (`17` rasters total). Logs duplicate and halts if breached.
-  - Rule 2 (Shared Infrastructure): Reuses `scripts/dti.py`, `scripts/evaluate_holdout.py`,
-    `scripts/submission_writer.py`, `src/gems91/io.py`, `src/gems91/gates.py`,
-    `src/gems91/release_gates.py`, and `scripts/validate_raster.py`.
-  - Rule 3 (Score Provenance): Labels every holdout score `HOLDOUT-DTI` with
-    evaluator version, withheld positive count, and 95% block-bootstrap CI;
-    labels historical receipts `ORGANIZER-CONFIRMED`; emits zero projections.
-  - Rule 4 (Leakage Canary First): Runs single-feature symmetric ROC-AUC canary
-    across all 52 features (49 static + 3 fold-safe visible-catalogue) BEFORE
-    scoring any model (`AUC > 0.90` fails closed).
-  - Rule 5 (Run Card): Writes structured JSON Run Card to `evidence/run_card.json`
-    and `docs/data/run_card.json`.
-  - Rule 6 (Budget Cap): Executes strictly 3 pre-registered experiments (`E1`,
-    `E2`, `E3`) against zero-feature-engineering reference `B0`, well inside
-    the 3-experiment / 2-hour cap.
+Retained only for provenance and regression tests. H91 used lane-local holdout
+and writer code rather than the pinned shared template. Its uniqueness adapter
+now delegates to the shared literal comparison, refuses to clear a curated or
+incomplete registry, and stops immediately on a duplicate, incomplete scope,
+or unverified required measurement.
+No H91 result from this runner can be promoted without a separately assigned
+lane, shared-template evaluation, comparable-best evidence, complete registry,
+and selector receipt. Do not re-run it as a new experiment in this review.
 """
 
 from __future__ import annotations
@@ -66,6 +56,10 @@ MAX_EXPERIMENTS = 3
 def _log(msg: str) -> None:
     now = datetime.now(timezone.utc).strftime("%H:%M:%S")
     print(f"[{now}] {msg}", flush=True)
+
+
+def _fmt_measurement(value: float | None) -> str:
+    return "UNMEASURED" if value is None else f"{float(value):.4f}"
 
 
 def _fold_active_and_eligible(
@@ -417,11 +411,33 @@ def main() -> int:
             f"  [{spec['exp_id']}] HOLDOUT-DTI = {holdout_res['holdout_dti']:.6f} "
             f"(95% CI {holdout_res['ci_95']}, delta_vs_B0={rec['delta_vs_b0_holdout_dti']:+.6f}) | "
             f"SGMC-Control DTI = {sgmc_res['dti']:.6f} (delta_vs_R0={rec['delta_vs_r0_sgmc_dti']:+.6f}) | "
-            f"Uniq={uniq_res['uniqueness_pass']} (max_ov={uniq_res['dots_max_3px_overlap']:.4f} vs {uniq_res['dots_closest_raster']}) "
+            f"Uniq={uniq_res['uniqueness_pass']} (max_ov={_fmt_measurement(uniq_res['dots_max_3px_overlap'])} vs {uniq_res['dots_closest_raster']}) "
             f"[{elapsed_s:.1f}s]"
         )
 
-        # Primary selection criterion: highest HOLDOUT-DTI among Rule-1-unique arms!
+        # The parallel protocol says stop on a measured duplicate; incomplete
+        # inventory is also fail-closed and must not consume another arm.
+        if not uniq_res["uniqueness_pass"]:
+            EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
+            (EVIDENCE_DIR / "h91_registry_stop.json").write_text(
+                json.dumps({
+                    "evidence_class": "REGISTRY-MEASUREMENT",
+                    "experiment_id": spec["exp_id"],
+                    "duplicate": bool(uniq_res["is_duplicate"]),
+                    "registry_inventory_complete": bool(uniq_res["registry_inventory_complete"]),
+                    "measurement_unverified": uniq_res.get("registry_measurement_unverified", []),
+                    "uniqueness_pass": False,
+                    "measurement": uniq_res,
+                    "action": "stop; no later H91 arm or submission artifact is authorized",
+                }, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            raise RuntimeError(
+                "H91 stopped: duplicate, incomplete inventory, or unverified uniqueness measurement; "
+                "do not continue the parallel run or promote a candidate"
+            )
+
+        # Primary selection criterion: highest HOLDOUT-DTI among fully cleared arms.
         if uniq_res["uniqueness_pass"] and (
             best_exp is None or holdout_res["holdout_dti"] > best_exp["holdout"]["holdout_dti"]
         ):
@@ -446,8 +462,8 @@ def main() -> int:
         f"HOLDOUT-DTI={best_exp['holdout']['holdout_dti']:.6f}, "
         f"Uniqueness pass={uniqueness['uniqueness_pass']} "
         f"(rasters_checked={uniqueness['n_registry_rasters_checked']}, "
-        f"max_surface_rank_corr={uniqueness['surface_max_abs_rank_corr']:.4f} <= 0.90, "
-        f"max_3px_dot_overlap={uniqueness['dots_max_3px_overlap']:.4f} <= 0.70)"
+        f"max_surface_rank_corr={_fmt_measurement(uniqueness['surface_max_abs_rank_corr'])} <= 0.90, "
+        f"max_3px_dot_overlap={_fmt_measurement(uniqueness['dots_max_3px_overlap'])} <= 0.70)"
     )
 
     # 7. Write & Triple-Certify Submission GeoTIFFs + ZIP + Browser Base64 Bundle
@@ -479,8 +495,9 @@ def main() -> int:
         sub_note = sub_note[:140]
     assert len(sub_note) <= 140
 
-    # Determine promote vs negative verdict strictly from objective gates:
-    # Beats B0 on HOLDOUT-DTI, passes Leakage Canary, passes Uniqueness, passes all 3 Validator Suites
+    # No H91 promotion is possible from this historical runner. Its method lane
+    # is not assigned, its evaluator/writer are lane-local rather than the pinned
+    # shared template, and no separate selector receipt is supplied here.
     beats_b0 = best_exp["holdout"]["holdout_dti"] > b0_holdout["holdout_dti"]
     all_validators_pass = (
         sub_audit["validators"]["gems91_gates_verdict"] == "CERTIFIED"
@@ -490,7 +507,23 @@ def main() -> int:
         and sub_audit["validators"]["validate_raster_zeros_pass"]
         and sub_audit["validators"]["range_0_1_portal_safe"]
     )
-    verdict = "promote" if (beats_b0 and canary["all_pass"] and uniqueness["uniqueness_pass"] and all_validators_pass) else "negative"
+    promotion_blockers = [
+        "assigned method lane is not recorded",
+        "H91 holdout and writer are not the pinned shared template implementation",
+        "no separate selector approval receipt is supplied",
+        "H91 holdout is not established as comparable to the current best",
+    ]
+    if not uniqueness.get("registry_inventory_complete", False):
+        promotion_blockers.append("registry inventory is incomplete")
+    if uniqueness.get("is_duplicate", False):
+        promotion_blockers.append("literal registry duplicate threshold fired")
+    if not beats_b0:
+        promotion_blockers.append("candidate does not beat its recorded B0 holdout")
+    if not canary["all_pass"]:
+        promotion_blockers.append("feature-alone leakage canary failed")
+    if not all_validators_pass:
+        promotion_blockers.append("local artifact validation failed")
+    verdict = "negative" if promotion_blockers else "promote"
 
     total_elapsed_s = round(time.perf_counter() - t0, 2)
 
@@ -502,6 +535,9 @@ def main() -> int:
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "verdict": verdict,
         "ok_to_download_and_submit": bool(verdict == "promote"),
+        "promotion_blockers": promotion_blockers,
+        "ok_to_download_for_research": True,
+        "ok_to_submit": bool(verdict == "promote"),
         "winning_experiment": best_exp["exp_id"],
         "hypothesis_id": best_exp["hypothesis_id"],
         "hypothesis": best_exp["title"],
@@ -534,8 +570,9 @@ def main() -> int:
             },
             "fleet_benchmark_reference": {
                 "candidate": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (GEMSDOE32 R0)",
-                "label": "ORGANIZER-CONFIRMED",
+                "label": "USER-REPORTED-UNVERIFIED",
                 "score": 0.2778,
+                "source_note": "Historical public-page figure; no organizer receipt was verified by this runner.",
             },
             "blind_sgmc_offcatalogue_control": {
                 "label": "SGMC-OFFCAT-CONTROL-DTI (zero-shot external USGS geological map, >3px off-catalogue)",
@@ -555,6 +592,9 @@ def main() -> int:
             "max_3px_dot_overlap": uniqueness["dots_max_3px_overlap"],
             "dots_closest_raster": uniqueness["dots_closest_raster"],
             "uniqueness_pass": uniqueness["uniqueness_pass"],
+            "complete_accessible_scan": uniqueness.get("registry_inventory_complete", False),
+            "is_duplicate": uniqueness.get("is_duplicate", False),
+            "binding_rule": uniqueness.get("binding_rule", "literal-all-rasters"),
         },
         "submission": {
             "candidate_id": cand_id,

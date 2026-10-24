@@ -65,5 +65,16 @@
     "validate_raster_nan_pass": true,
     "validate_raster_zeros_pass": true,
     "range_0_1_portal_safe": true
-  }
+  },
+  "posthoc_submission_status": "NOT OK TO SUBMIT",
+  "posthoc_registry_evidence": "../data/h91_lattice_reaudit_20261024.json",
+  "posthoc_registry_duplicate": {
+    "reference": "calib_r13lattice_00904.tif",
+    "directed_overlap": 0.9974479166666667,
+    "candidate_dots_within_3px": 38302,
+    "candidate_dot_count": 38400,
+    "threshold": 0.7,
+    "status": "DUPLICATE"
+  },
+  "validator_scope_note": "The validators certify local format/range only. Their CERTIFIED/PASS results do not override the posthoc literal registry duplicate or constitute organizer acceptance."
 }

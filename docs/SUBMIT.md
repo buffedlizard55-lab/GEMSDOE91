@@ -20,6 +20,19 @@ never infer scores from projections, a filename or a third-party page.
 Previous upload queues and model forecasts are archived, not active advice:
 [historical instructions](archive/SUBMIT-before-CED91.md).
 
+## H91 historical artifact — NOT OK TO SUBMIT
+
+The H91 E1 file remains available as a research artifact, not as an upload
+recommendation. The pinned shared checker measured **38,302/38,400 dots within
+3 px (99.7448%)** of `calib_r13lattice_00904.tif`, above the strict >70%
+duplicate threshold. Its earlier 20-raster pass is withdrawn because the local
+checker omitted `data/fleet_registry` and used symmetric F1 for dense references.
+See [`docs/h91-ddvtc.html`](h91-ddvtc.html), the
+[machine-readable re-audit](data/h91_lattice_reaudit_20261024.json), and
+[`docs/REVIEW-H91-REVALIDATION.md`](REVIEW-H91-REVALIDATION.md). The H91
+`0.174030` is historical HOLDOUT-DTI from `gems91-hide-recover-v1.0`, not an
+organizer receipt and not comparable to the pinned shared CED evaluator.
+
 ## DENOVO file pointer (merged 2026-10-24)
 
 `docs/denovo.html` presents a second unsubmitted file

@@ -1,43 +1,60 @@
 {
-  "verdict": "BUILD ALLOWED",
-  "missing": [],
+  "verdict": "BUILD BLOCKED",
+  "missing": [
+    "parent_r0_nan"
+  ],
   "required": [
     "sample_submission",
     "parent_r0_nan"
   ],
-  "ready_axes": [
-    "PRUNE",
-    "MASS",
-    "SNAP",
-    "CONCENTRATION",
-    "RELIEF",
-    "TRACKB"
-  ],
+  "ready_axes": [],
   "axis_readiness": {
     "PRUNE": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "parent_r0_nan"
+      ]
     },
     "MASS": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "parent_r0_nan",
+        "anc_h19_5",
+        "anc_h19_4",
+        "anc_h16_1"
+      ]
     },
     "SNAP": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "parent_r0_nan",
+        "training_features"
+      ]
     },
     "CONCENTRATION": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "parent_r0_nan",
+        "training_features"
+      ]
     },
     "RELIEF": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "parent_r0_nan",
+        "anc_h19_5",
+        "anc_h19_4",
+        "anc_h16_1",
+        "training_features"
+      ]
     },
     "TRACKB": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "parent_r0_nan",
+        "training_features"
+      ]
     }
   },
-  "checked_utc": "2026-10-23"
+  "checked_utc": "2026-10-24"
 }

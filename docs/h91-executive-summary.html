@@ -1,183 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>H91 Executive Summary &amp; Submission Guide — GEMSDOE91</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <title>H91 research guide — do not submit · GEMSDOE91</title>
+  <link rel="stylesheet" href="assets/portal.css">
+  <style>
+    .audit-flag{border:2px solid #9f2f2f;background:#fff1f1;color:#641d1d;padding:1rem;border-radius:.6rem}
+    .audit-good{border:1px solid #9b7c2b;background:#fff9e9;color:#58440d;padding:1rem;border-radius:.6rem}
+    .audit-table{width:100%;border-collapse:collapse}
+    .audit-table th,.audit-table td{border-bottom:1px solid #ccd4dc;padding:.65rem;text-align:left;vertical-align:top}
+    .audit-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}
+    .research-download{display:inline-block;margin:.35rem .5rem .35rem 0;padding:.75rem 1rem;border:1px solid #405b70;border-radius:.4rem;text-decoration:none}
+    .small-note{font-size:.9rem;opacity:.85}
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <span class="brand-badge">GEMSDOE91</span>
-        <span>H91 Executive Summary &amp; DrivenData Submission Walkthrough</span>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">&larr; Main Portal</a>
-        <a href="h91-ddvtc.html">&larr; H91 Full Technical Audit</a>
-        <a href="h91-executive-summary.html" class="active">H91 Executive Summary &amp; How to Submit</a>
-        <a href="#walkthrough">5-Step Upload Guide</a>
-        <a href="#range-error-proof">Why [0, 1] Error Cannot Occur</a>
-        <a href="#roadmap">Roadmap to 0.32–0.44+</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <!-- TOP AUTOMATED VERDICT & 1-CLICK DOWNLOAD -->
-    <section id="verdict-hero" class="verdict-hero">
-      <div class="verdict-pill-row">
-        <span id="verdict-pill" class="verdict-pill">AUTOMATED TECHNICAL GATES: 13/13 PASSED — 20/20 REAL RASTERS UNIQUE</span>
-        <span id="sha-live-badge" class="sha-live-badge">Verifying WebCrypto SHA-256…</span>
-      </div>
-      <h1 class="verdict-title">H91 Executive Verdict: 13/13 Technical Gates Certified</h1>
-      <p class="verdict-subtitle">
-        Candidate <code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c</code> is a <strong>100% genuinely novel first-principles geological discovery GeoTIFF</strong>
-        (not a copy or perturbation of any prior submission). It achieved <strong><code>0.1740</code> <span class="tag tag-holdout">HOLDOUT-DTI</span></strong>
-        (<code>+25.2%</code> over the raw 19-band baseline <code>0.1390</code>, highest out-of-fold score in <code>GEMSDOE91</code>), passed all 52 leakage canaries, passed 20-real-raster uniqueness
-        (<code>57.4%</code> novel dots &gt; 300 m from <code>GEMSDOE32 0.2778</code>), and is certified free of the DrivenData <code>[0, 1]</code> range rejection.
-        <br><em>Before spending a weekly DrivenData slot:</em> verify weekly allowance (&le;3/wk) and human fleet-selector policy on <code>calib_r13lattice_00904.tif</code> (<code>IR-CED-003</code>).
-      </p>
-
-      <div class="cta-row">
-        <button id="btn-download-zeros-tif" class="btn btn-primary" type="button">
-          &#11015; Step 1: 1-Click WebCrypto-Verified .TIF (211 KB)
-        </button>
-        <a href="downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif" download="gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif" class="btn btn-outline-accent">
-          &#11015; Direct Raw .TIF (211 KB)
-        </a>
-        <a href="downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip" download="gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip" class="btn btn-outline-accent">
-          &#11015; Direct .ZIP (177 KB)
-        </a>
-        <a href="https://www.drivendata.org/competitions/306/submissions/" target="_blank" rel="noopener" class="btn btn-secondary">
-          Open DrivenData Upload Portal &#8599;
-        </a>
-      </div>
-    </section>
-
-    <!-- 5-STEP SUBMISSION WALKTHROUGH -->
-    <section id="walkthrough" class="section-card">
-      <h2>Step-by-Step: How to Submit to DrivenData GEMS (#306)</h2>
-      <div class="step-list">
-        <div class="step-item">
-          <div class="step-num">1</div>
-          <div>
-            <strong>Click the green Download Certified .TIF button above</strong><br>
-            Your browser verifies the exact 256-bit SHA-256 digest (<code>0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119</code>) via WebCrypto and saves
-            <code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif</code> (<code>216,356</code> bytes).
-            <em>(You may alternatively upload <code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip</code> directly — DrivenData accepts both single-band <code>.tif</code> and single-member <code>.zip</code>.)</em>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <div>
-            <strong>Open the DrivenData Submissions Page</strong><br>
-            Navigate to <a href="https://www.drivendata.org/competitions/306/submissions/" target="_blank" rel="noopener">https://www.drivendata.org/competitions/306/submissions/</a>
-            (requires competition sign-in; note DrivenData enforces a rolling 3-submissions-per-day cap).
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">3</div>
-          <div>
-            <strong>Attach <code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif</code></strong><br>
-            Drag and drop <code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif</code> into the file selector. Do <strong>not</strong> re-save or open-and-export the GeoTIFF in desktop GIS software beforehand, so its exact <code>EPSG:32611</code> grid and <code>nodata=None</code> header remain untouched.
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">4</div>
-          <div>
-            <strong>Paste the Unique Identifier &amp; Optional Comment (&le; 140 characters)</strong>
-            <div class="copy-grid" style="margin-top:0.55rem;">
-              <div class="copy-box">
-                <div class="copy-box-header">
-                  <span>Unique Submission Name</span>
-                  <button class="copy-btn" type="button" data-copy-target="exec-id">Copy Name</button>
-                </div>
-                <div id="exec-id" class="copy-val">gems91-ddvtc-e1-20261024T120000Z-df50cc0c</div>
-              </div>
-              <div class="copy-box">
-                <div class="copy-box-header">
-                  <span>Optional Comment / Note (117 / 140 chars)</span>
-                  <button class="copy-btn" type="button" data-copy-target="exec-note">Copy Note</button>
-                </div>
-                <div id="exec-note" class="copy-val">GEMS91 E1 (H91-1): Dip-deproj Verduzco grav/RTP tilt+openness+claycap+1D-ridge 300m submod (38400d &gt;3px, [0,1] zeros)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="step-item">
-          <div class="step-num">5</div>
-          <div>
-            <strong>Submit &amp; Record Organizer Receipt</strong><br>
-            Once DrivenData finishes scoring (~30–90 seconds), record the exact 4-decimal score solely as <code>ORGANIZER-CONFIRMED</code>.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY THE [0, 1] PORTAL ERROR WILL NOT OCCUR -->
-    <section id="range-error-proof" class="section-card">
-      <h2>Why the DrivenData <code>"Predicted values must be in range [0, 1]"</code> Error Cannot Occur</h2>
-      <p>
-        Forensic inspection across the <code>GEMSDOE</code> fleet uncovered two distinct mechanisms that previously triggered DrivenData's
-        <code>"Predicted values must be in range [0, 1]"</code> rejection:
-      </p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Failure Mechanism</th>
-              <th>Root Cause in Raw Data / Earlier Builds</th>
-              <th>Automated Prevention in <code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif</code></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1. Float32 Sentinel Bleed</strong></td>
-              <td><code>gems-geodawn-numerical-features.tif</code> contains <code>3,061</code> cells inside the valid footprint carrying <code>-3.4028235e+38</code>. Unmasked convolutions bleed negative values into predictions.</td>
-              <td>Every band is scrubbed at read time via nearest-finite Euclidean Distance Transform before any filter runs, and <code>submission_writer.py</code> asserts <code>min &ge; 0.0</code> and <code>max &le; 1.0</code>.</td>
-            </tr>
-            <tr>
-              <td><strong>2. Outside-Footprint <code>NaN</code> Rejection</strong></td>
-              <td><code>sample_submission.tif</code> stores <code>7,111,787</code> outside-footprint cells as <code>NaN</code>. If the portal validator runs <code> (arr &gt;= 0) &amp; (arr &lt;= 1) </code> before masking <code>NaN</code>, <code>NaN</code> evaluates to <code>False</code>.</td>
-              <td>Primary upload file <code>-zeros.tif</code> sets outside-footprint cells to <code>0.0</code> with <code>nodata=None</code>: <strong>all <code>12,279,160</code> cells are finite</strong> (<code>12,240,760</code> exact <code>0.0</code> + <code>38,400</code> exact <code>1.0</code>).</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- EXECUTIVE SCIENTIFIC SUMMARY & ROADMAP -->
-    <section id="roadmap" class="section-card">
-      <h2>Executive Scientific Summary, Limitations &amp; Next Steps Toward <code>0.32–0.44+</code></h2>
-      <h3>What Made This Run Different</h3>
-      <ul>
-        <li><strong>Broke out of the <code>R0</code> perturbation local maximum:</strong> Prior <code>GEMSDOE91</code> candidates edited <code>GEMSDOE32</code>'s frozen <code>37,654</code> dots (<code>80%–100%</code> overlap). <code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c</code> is built 100% from first-principles physics &amp; out-of-fold ML, placing <strong>57.4% of its <code>38,400</code> dots in newly discovered structural locations</strong>.</li>
-        <li><strong>Solved the 200–1,000 m normal-fault dip-offset error (<code>H91-1</code>):</strong> Synthesized true signed Verduzco gravity/magnetic tilts and projected basement contacts updip along <code>&minus;&nabla;G<sub>6</sub>(B13)</code> by <code>B15 &middot; cot(55&deg;)</code>, lifting <code>HOLDOUT-DTI</code> from <code>0.1390</code> (<code>B0</code>) to <strong><code>0.1740</code> (+25.2%)</strong>.</li>
-        <li><strong>Solved the 2-D mountain-blob submodular pathology:</strong> Discovered and fixed a <code>3.5&times;</code> area-vs-length kernel bias where 2-D mountain blocks out-scored 1-D fault polylines, cutting allocator runtime 60&times; (~1.0s) and jumping <code>HOLDOUT-DTI</code> from <code>0.030</code> to <code>0.1740</code>.</li>
-      </ul>
-
-      <h3>Current Limitations &amp; Concrete Next Steps</h3>
-      <ul>
-        <li><strong>Tabular + Hand-Crafted Multi-Scale receptive field vs Deep 2-D Context:</strong> Sponsor U-Net (<code>0.3195</code>) and top leaderboard entries (<code>0.4413</code>) learn kilometer-scale 2-D curvilinear fault-network topology end-to-end. Training a multi-scale ConvNeXt/U-Net directly on our dip-deprojected Verduzco stack with differentiable soft-DTI loss (<code>&alpha;=0.2, &beta;=0.8</code>) on GPU hardware is the highest-leverage next step.</li>
-        <li><strong>Sandbox Network Allowlist Blocked Open InSAR &amp; 3-D MT Ingestion:</strong> Hypotheses <code>H91-4</code> (Sentinel-1 InSAR aquifer-baffle step discontinuities from NASA ASF DAAC) and <code>H91-5</code> (EarthScope 3-D MT phase-tensor skew) are verified public-domain datasets ready to ingest on an internet-enabled workstation.</li>
-        <li><strong>Catalogue Exposure Bias in Validation:</strong> <code>existing_faults.tif</code> under-represents blind sub-playa hydrothermal conduits, which penalized <code>E2</code>/<code>E3</code>'s aggressive basin re-weighting by <code>0.0028–0.0073</code> on exposed-catalogue holdout despite recovering <code>212</code> blind &ge;90&deg;C geothermometer cells. A dedicated live leaderboard A/B between <code>E1</code> (pure dip-deprojected geophysics) and <code>E3</code> (hydrothermal magnetite-destruction + PU) is warranted once a daily submission slot opens.</li>
-      </ul>
-    </section>
-
-    <footer class="footer">
-      <div><strong>GEMSDOE91 &middot; H91-DDVTC</strong> &middot; <a href="h91-ddvtc.html">&larr; Return to H91 Full Technical Audit &amp; Run Card</a> &middot; <a href="index.html">Main Portal</a></div>
-      <div>Verified against DrivenData #306 &amp; DOE Official Rules <code>96647.pdf</code></div>
-    </footer>
-  </main>
-
-  <script src="data/run_card.js"></script>
-  <script src="downloads/h91_submission_bundle.js"></script>
-  <script src="assets/app.js"></script>
-</body>
-</html>
+<header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Research portal</a><a href="h91-ddvtc.html">H91 audit</a><a href="h91-executive-summary.html">H91 guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main" class="wrap"><section class="hero"><div><span class="eyebrow">H91 STATUS · RESEARCH ONLY</span><h1>Do not submit this file.</h1><p class="lead">The existing H91 GeoTIFF passes local format checks but fails the literal duplicate rule.</p></div>
+  <div class="audit-flag"><strong>OK TO DOWNLOAD FOR RESEARCH: YES</strong><br><strong>OK TO SUBMIT: NO</strong><p>Verdict: <strong>DUPLICATE</strong>. 38,302/38,400 dots (99.7448%) overlap the pinned lattice within 3 px; the limit is &gt;70%.</p></div>
+</section>
+<section class="section"><h2>Current status</h2><p>There is no approved H91 submission. A format PASS does not undo a duplicate, establish a comparable holdout best, confirm a method lane, or substitute for an organizer receipt. The H91 number is a historical <strong>HOLDOUT-DTI</strong> from <code>gems91-hide-recover-v1.0</code>, not an organizer score.</p>
+<p><a class="research-download" href="h91-ddvtc.html">Read the full H91 audit</a> <a class="research-download" href="data/run_card.json">Open the machine-readable run card</a></p></section>
+<section class="section"><h2>Process for a future, separately cleared candidate</h2>
+<ol><li>Read the current project README and the assigned method paragraph. If no single lane is recorded, do not launch an experiment.</li>
+<li>Use the pinned shared feature stack, holdout evaluator, spatial-fold utilities, and submission writer. Test each feature alone; any AUC above 0.90 is leakage until proven otherwise.</li>
+<li>Hide whole fault components, buffer training from withheld segments, mask visible catalogue pixels exactly, and compute pooled HOLDOUT-DTI with the specified 300 m triangular kernel. Record evaluator, withheld-positive count, and 95% CI.</li>
+<li>Run the literal registry checks on the continuous surface and the final candidate dots using a complete, hash-verified inventory. Stop on rank correlation &gt;0.90 or directed 3-pixel dot overlap &gt;70%; an incomplete scan is not a pass.</li>
+<li>Re-read the written TIFF and ZIP; check the exact sample grid, one float32 band, finite [0,1] values and catalogue/footprint constraints. Format validity is not science or organizer acceptance.</li>
+<li>Use a file only if the current run card explicitly says <strong>OK TO SUBMIT</strong>, every automated gate is true, and a separate selector receipt confirms current allowance. Verify the file SHA-256 before any account action.</li>
+<li>After an actual organizer receipt, label its score <strong>ORGANIZER-CONFIRMED</strong> and retain the receipt, date, and file hash. Never present a projection as a score.</li></ol>
+</section>
+<section class="section"><h2>About the range error</h2><p>The historical H91 TIFF is one float32 band on the pinned EPSG:32611 grid, all values finite and within [0,1]. This local check does not prove why a prior organizer upload reported “Predicted values must be in range [0, 1]” and does not guarantee portal acceptance. No organizer form was accessible or exercised here.</p></section>
+<section class="section"><h2>Reported leaderboard figures</h2><p>The repository has a user-reported <code>0.2778</code> comparison, but no organizer receipt or live leaderboard page was fetched during this review. Under the DTI form used by the local shared metric, unmatched prediction mass contributes false-positive cost; pruning redundant mass can plausibly help, but the files available here do not establish why a live entry scored as reported. This explanation is a mechanism hypothesis, not a confirmed causal result or score projection.</p><p>The H91 <code>0.174030</code> is a HOLDOUT-DTI estimate under its own evaluator and is not directly comparable to the current shared-template CED result. No actual score receipt exists for H91.</p></section>
+<section class="section"><h2>Research download (not upload-cleared)</h2><p><a class="research-download" download href="downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif">Download H91 GeoTIFF for research</a> <a class="research-download" download href="downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip">Download H91 ZIP for research</a></p><p class="small-note">SHA-256: <code class="audit-mono">0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119</code>. Do not upload this file.</p></section></main>
+<footer class="wrap small-note">GEMSDOE91 · Historical H91 artifact review · No competition upload is performed by this site.</footer>
+</body></html>

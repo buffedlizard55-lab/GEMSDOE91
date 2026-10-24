@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
@@ -68,7 +69,7 @@ def main() -> int:
          "required": REQUIRED_FOR_BUILD,
          "ready_axes": ready_axes,
          "axis_readiness": readiness,
-         "checked_utc": "2026-10-23"}, indent=2) + "\n", encoding="utf-8")
+         "checked_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d")}, indent=2) + "\n", encoding="utf-8")
     return 0 if ready_axes else 1
 
 
