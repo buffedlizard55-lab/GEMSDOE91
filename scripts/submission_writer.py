@@ -60,6 +60,7 @@ def write_validated_submission_bundle(
     releases_dir: str | Path = ROOT / "releases",
     downloads_dir: str | Path | None = ROOT / "docs" / "downloads",
     floor_px: float = 3.0,
+    bundle_js_filename: str = "h91_submission_bundle.js",
 ) -> dict:
     """Write, hash-stamp, re-read, and triple-validate a candidate GeoTIFF pair
     (NaN-outside `.tif` + all-finite `-zeros.tif` + single-member `.zip` +
@@ -235,7 +236,9 @@ def write_validated_submission_bundle(
         # Browser-decodable exact `.tif` bundle (verified via WebCrypto SHA-256 in browser)
         b64_zeros = base64.b64encode(final_zeros.read_bytes()).decode("ascii")
         b64_nan = base64.b64encode(final_nan.read_bytes()).decode("ascii")
-        b64_js_path = dl_dir / "h91_submission_bundle.js"
+        if Path(bundle_js_filename).name != bundle_js_filename:
+            raise ValueError("bundle_js_filename must be a plain filename")
+        b64_js_path = dl_dir / bundle_js_filename
         payload = {
             "candidate_id": cand_id,
             "primary_zeros": {

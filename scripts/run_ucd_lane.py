@@ -43,7 +43,7 @@ def main():
     cache=DATA/'derived'; cache.mkdir(parents=True,exist_ok=True)
     def tomem(fl,nl,fn):
         p=cache/fn; n=int(footprint.sum())
-        mm=np.memmap(p,dtype=np.float32,mode='w+',shape=(n,len(fl))); 
+        mm=np.memmap(p,dtype=np.float32,mode='w+',shape=(n,len(fl)));
         for j,f in enumerate(fl): mm[:,j]=f[footprint]
         mm.flush(); return np.memmap(p,dtype=np.float32,mode='r',shape=(n,len(fl))),nl
     X1,n1=tomem(feats,names,'ucd_e1.dat'); X2,n2=tomem(feats2,names2,'ucd_e2.dat')
@@ -91,7 +91,7 @@ def main():
         if best is None or hr['holdout_dti']>best[0]['holdout']['holdout_dti']: best=(rec,dots,surf)
     rec,dots,surf=best
     promote = rec['holdout']['holdout_dti']>BEST_PRIOR and rec['uniqueness']['pass']
-    bundle=SW.write_validated_submission_bundle(dots,stem_prefix='gems91-ucd91',date_tag='20261024T190000Z',template_path=TPL,catalogue_path=CAT,downloads_dir=ROOT/'docs/downloads')
+    bundle=SW.write_validated_submission_bundle(dots,stem_prefix='gems91-ucd91',date_tag='20261024T190000Z',template_path=TPL,catalogue_path=CAT,downloads_dir=ROOT/'docs/downloads',bundle_js_filename='ucd91_submission_bundle.js')
     print('bundle',json.dumps(bundle)[:2000],flush=True)
     sha=hashlib.sha256((ROOT/'docs/downloads'/bundle['zeros_tif']).read_bytes()).hexdigest() if isinstance(bundle.get('zeros_tif'),str) and (ROOT/'docs/downloads'/bundle['zeros_tif']).exists() else bundle.get('sha256_zeros','')
     card={'schema':'gems91.run-card.v2','run_id':'UCD91-20261024','hypothesis':'UCD-1/UCD-2 upward-continuation magnetic depth-persistence (docs/HYPOTHESES_UCD91.md)',

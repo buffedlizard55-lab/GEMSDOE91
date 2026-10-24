@@ -1,6 +1,22 @@
 """MTD91 unit checks — no holdout, no network."""
+import json
+from pathlib import Path
+
 import numpy as np
 from gems91.mtd import features_from_bands, surface_e1, emit_dots
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_mtd_run_card_does_not_replace_shared_h91_page_data():
+    shared = json.loads((ROOT / 'docs/data/run_card.json').read_text())
+    evidence = json.loads((ROOT / 'evidence/run_card.json').read_text())
+    mtd = json.loads((ROOT / 'docs/run-card-MTD91.json').read_text())
+    assert shared == evidence
+    assert mtd['run_id'] == 'MTD91-e1-20261024'
+    assert mtd['verdict'] == 'negative'
+    assert mtd['ok_to_submit'] is False
 
 
 def test_features_finite_and_ranged():

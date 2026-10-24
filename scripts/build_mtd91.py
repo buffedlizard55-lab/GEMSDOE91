@@ -201,6 +201,7 @@ def main() -> int:
         template_path=SAMPLE,
         catalogue_path=CAT,
         parent_compare_path=None,
+        bundle_js_filename="mtd91_submission_bundle.js",
     )
     sha = audit["primary_zeros_tif"]["sha256"]
     short = sha[:8]
@@ -255,7 +256,7 @@ def main() -> int:
         "created_utc": now(),
     }
     dump(ROOT / "docs/run-card-MTD91.json", card)
-    dump(ROOT / "docs/data/run_card.json", card)
+    dump(ROOT / "docs/data/run_card_MTD91.json", card)
     print(json.dumps({k: card[k] for k in ("verdict", "holdout_dti", "ok_to_submit", "submission_name")}, indent=2))
     return 0
 
