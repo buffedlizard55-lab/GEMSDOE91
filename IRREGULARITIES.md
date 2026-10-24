@@ -1016,3 +1016,12 @@ Five defects in shared tools. Each is either left as it was or changed with a te
 **Actual:** the S10 holdouts E1 (0.0173), E2 (0.0101) and E3 (0.0288) were computed by the private code at commit `82252a1`. That code is removed from the tree in this merge; the path now holds `main`'s shared file. No shared-protocol score exists for H10-1. `main` reports 0.174030 (H91-DDVTC) and 0.06215 (CED91) under the shared protocol. These are quoted from `main`'s `index.html` and were not re-verified here. Changes made to contain the fork: the `pooled_dti` unit test was retired, because scoring now lives in the shared evaluator and `main`'s `tests/test_h91_holdout_and_writer.py` covers `build_segment_buffered_folds` and `score_pooled_holdout`; the AUC tests use the shared `fast_mann_whitney_auc`; the input pin check moved into `scripts/build_basement_step.py`.
 
 **Decision it changes:** the statement "H10-1 fails its random-placement control" holds only under the private 3 px protocol. Under the shared 10 px protocol H10-1 is unscored. Scoring it there would be a fourth experiment; the budget is three. Needs user approval (or a decision to close H10-1 on the private result). No submission slot is affected: none is recommended under either protocol.
+
+
+## IR-91-S10-12 — The artifact policy still registered the two retracted GEOD TIFs after they were removed from the tree
+
+**Found:** the CI step `scripts/check_artifact_policy.py` (main's `ci.yml`, job `tests`) requires `registry/artifact_policy.json` to match the tracked artifacts exactly. After the GEOD removal (`git rm`, IR-91-S10-01), the policy still listed both GEOD TIFs, and the check failed: `Artifact-policy/files mismatch`.
+
+**Actual:** the two entries (`legacy_quarantined`) were removed from `registry/artifact_policy.json`. Nothing else in the policy changed. The GEOD hashes stay in `ledger/submissions.csv`, in `docs/run-card-S10.json` and in IR-91-S10-01. The files are not in git on this branch; they remain in history on `main`.
+
+**Decision it changes:** none beyond the retraction. The policy now matches the tree. Restoring the GEOD files would require re-registering them as a deliberate step.
