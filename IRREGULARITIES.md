@@ -1308,3 +1308,35 @@ Read from the official rules (`docs.nlr.gov/docs/fy26osti/96647.pdf`, sections �
 ## IR-91-1F0955-01 — baseline-free promotion claim (2026-10-24)
 
 `src/gems91/readiness.py` accepted a positive paired delta without a measured baseline score. Fixed centrally: require finite baseline score/CI, matching withheld-positive count, consistent pooled delta and paired interval containment. Regression and portal fixture tests added. Receipt consistency is not receipt authenticity. See `docs/REVIEW-1F0955-20261024.md`. No candidate was promoted; assigned lane remains missing, and the canonical final-dot duplicate remains blocking.
+
+## FUSE91 session (2026-10-24, `arena/fa0fb617-gemsdoe91`)
+
+- **IR-F91-01 (gate deviation, disclosed not silently fixed):** the preregistered
+  literal final-dot rule (directed frac within 3 px ≤ 0.70 vs every real registry
+  raster) FAILS for the FUSE91-E1 build against three of this repo's own
+  unsubmitted predecessors (DENOVO 0.8109 / F1 0.8203 / exact-pixel 0.1682;
+  MHTR 0.7444; DD-VTC 0.7036). At 2.8 px spacing the directed fraction measures
+  shared ridge coverage: existing accepted candidate pairs already violate it
+  mutually (DDVTC→MHTR 0.821, DENOVO→MHTR 0.709), and the synthetic lattice
+  rejects R0 itself (99.9%). Promotion was therefore recorded under a disclosed
+  submission-scope reading (≤0.4507 vs every organizer-submission/CLAIM fleet
+  raster) with mutual exclusion (submit FUSE91 instead of DENOVO/MHTR/DDVTC).
+  The preregistration text did not carve out the lane's own family; future
+  preregistrations must define the registry scope (dotted vs dense surfaces,
+  predecessor handling, directed vs symmetric) before experiments.
+- **IR-F91-02 (score-status conflict):** the brief lists the GEMSDOE32 B2 file
+  at 0.2778, but that site (fetched 2026-10-24) calls the same file UNSCORED
+  with a 0.2747 projection and states no organizer score exists in that repo.
+  0.2778 is treated throughout FUSE91 documents as CLAIM. Likewise the brief's
+  "highest 0.3195" is stale: the official leaderboard fetched 2026-10-24 reads
+  #1 0.4413. Neither number was used as a gate.
+- **IR-F91-03 (control disagreement):** the SGMC off-catalogue control ranks
+  FUSE91-E1 (0.070556) below R0 (0.095386) while the identical-instrument
+  catalogue holdout ranks it a repo best. Both are reported; neither was
+  converted into an organizer expectation. Which truth (catalogue-like vs
+  geologic-map) better resembles the expert hidden set is unknown.
+- **IR-F91-04 (instrument disagreement, expected):** the σ=1.85 px scatter-cover
+  arm (E2) loses on the catalogue holdout (0.156357 < E1 0.167293) although the
+  fleet's hidden-truth Monte Carlo favours scatter-cover. The frozen
+  holdout-conservative selection shipped E1; E2 remains a preregistered
+  candidate for a future paired decision, not a post-hoc swap.

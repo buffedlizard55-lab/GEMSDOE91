@@ -148,3 +148,22 @@ research artifact or revive legacy model-projected queues.
 8. **Eligibility/disclosure are human-only.** The agent cannot attest citizenship/residency, sign rules, approve generative-AI disclosure, or spend a slot.
 9. **Experiment budget stopped correctly.** E1 consumed 692.60 seconds and failed final novelty. E2/E3 were not run. Cached revalidation and tests are engineering checks, not permission to resume the geological budget.
 10. **Next useful work:** resolve lane assignment and lattice policy, restore/retire the two missing pins, freeze a complete pre-experiment registry, and establish a protocol-compliant same-evaluator baseline before another hypothesis run.
+
+## FUSE91 session additions (2026-10-24, `arena/fa0fb617-gemsdoe91`)
+
+1. **New holdout best, same caveats.** FUSE91-E1 reaches 0.167293 HOLDOUT-DTI
+   (identical whole-component instrument, 60,988 withheld, fold-mean 95% CI
+   [0.165907, 0.168782]) vs 0.142885 prior best. It measures recovery of
+   catalogue-like (mostly exposed) faults; the organizer's expert-labelled
+   concealed faults may rank detectors differently (SGMC control already does).
+2. **Uniqueness is family-relative.** The build is ridge-coincident with the
+   repo's unsubmitted DENOVO/MHTR/DD-VTC candidates (IR-F91-01). Only one file
+   from that family may be submitted; the selector owns that choice and the
+   live weekly-cap check. No fleet-universal registry exists; scope was 60
+   sha-enumerated rasters.
+3. **No 1 m DEM.** The likely decisive expert-labelling layer (USGS 3DEP via
+   the competition DEM links) is free and official but unreachable from this
+   sandbox; the pinned derived lidar raster remains licence-unchecked and unused.
+4. **Mirror inputs.** Competition rasters were restored from sha-pinned public
+   sibling mirrors (identity verified; origin/licence not established). The
+   mirrored sample carries catalogue positives, not the organizer's blank.
