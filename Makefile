@@ -13,7 +13,7 @@ OUT     ?= releases
 CAND    ?=
 LEDGER  ?= ledger/submissions.csv
 
-.PHONY: help install test preflight pins fixture demo concentration mass instruments validate clean
+.PHONY: help install test preflight pins fixture demo concentration mass instruments redcov validate clean
 
 help:
 	@sed -n '2,10p' Makefile
@@ -38,6 +38,11 @@ fixture:
 # Deterministic; no RNG anywhere. Writes releases/*.tif, which git ignores.
 mass:
 	$(PY) scripts/build_mass_consensus.py
+
+# SPACING/redcov arms (session 9): redundancy->coverage relocation at fixed count.
+# Needs no training_features; verifies its 10 pinned inputs before building.
+redcov:
+	$(PY) scripts/build_redcov.py --build
 
 # REPORT-ONLY instruments (PROXY, ring canary, SGMC). Never a gate, never a score.
 instruments:

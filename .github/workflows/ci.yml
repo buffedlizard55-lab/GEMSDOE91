@@ -24,7 +24,10 @@ jobs:
             --ledger ledger/submissions.csv
       - name: No competition raster is committed
         run: |
-          if git ls-files | grep -E '\.tiff?$'; then
+          # Narrow exemption (2026-10-24, IR-91-39): PR #31 (human-coauthored) deliberately
+          # hosts the two GEOD portal downloads under docs/downloads/. Every OTHER tracked
+          # raster still hard-fails. Remove this exemption if the portal decision is reversed.
+          if git ls-files | grep -E '\.tiff?$' | grep -v '^docs/downloads/'; then
             echo "::error::a raster is tracked in git; competition data must not be committed"
             exit 1
           fi
@@ -115,6 +118,14 @@ jobs:
       # ~90 s: 19-band leakage canary is the slow part; deterministic, no RNG.
       - name: Rebuild the SNAP arms from the pinned inputs
         run: python scripts/build_snap.py --build
+      - name: Rebuild the SPACING/redcov arms and prove they are deterministic
+        run: |
+          python scripts/build_redcov.py --build
+          sha256sum releases/*SPACINGredcov*.tif > /tmp/redcov_first.txt
+          python scripts/build_redcov.py --build > /dev/null
+          sha256sum releases/*SPACINGredcov*.tif > /tmp/redcov_second.txt
+          diff /tmp/redcov_first.txt /tmp/redcov_second.txt
+          echo "byte-identical across two rebuilds (no RNG in the build)"
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
       - name: Every rebuilt file is byte-identical to its committed manifest

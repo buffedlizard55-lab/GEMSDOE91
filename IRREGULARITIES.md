@@ -681,3 +681,122 @@ No compliant baseline or full surface/dot registry comparison is present. The
 GEMSDOE32 source explicitly disclaims organizer scores. See
 `docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
 submission advice is superseded by the fail-closed executive summary.
+
+# Session 9 (`arena/ed1ccddf-gemsdoe91`, SPACING/redcov) — three decision-changing items
+
+(Renumbered at merge: the collar session merged first as Session 8 and took IR-91-36/34;
+these items were drafted as 33/34/35 in parallel and are 35/36/37 here.)
+
+## IR-91-36 — MASS is measured exhausted at every ranking the pinned inputs support
+
+**Expected** (brief §7 default plan): week 1–2 starts with MASS — drop/add the lowest/next-ranked
+10 % by the parent's ranking. The parent's ranking does not exist (IR-91-21), so this session
+screened every ranking the pinned bytes *can* construct, scoring each decile by surrogate
+precision (fraction of dots within 2.83 px of the independent off-catalogue SGMC map,
+[USGS DS-1052](https://pubs.usgs.gov/ds/1052/); off-collar base rate 12.17 %, `PROXY`):
+
+| ranking | bottom-decile precision | top-decile precision |
+|---|---:|---:|
+| cross-field vote (consensus) | 0.1009 | 0.1432 |
+| `S_struct` (RELIEF/TRACKB score) | 0.1126 | 0.1065 |
+| potential-field part of `S_struct` alone | 0.1548 | 0.0985 |
+| neighbours within 5 px | 0.1057 | 0.1270 |
+| distance to catalogue | 0.1562 (nearest) | 0.0858 (farthest) |
+
+Break-even at the CLAIMED live DTI is 11.8 % (IR-91-22). Every bottom decile lands within
+~2 points of it, so every constructible MASS edit predicts |Δ| ≲ 0.002 at the mid denominator —
+five times under the brief's 0.01 evidence bar. Two sharper facts: (a) the potential-field
+component *anti*-ranks (its top decile is the worst population measured), consistent with SNAP's
+negative control (IR-91-28..30), so `S_struct`-ranked MASS would have been an expensive way to
+relearn SNAP; (b) a continuous-`S_struct` bottom decile is 94 % vote≤1 dots, i.e. it *is*
+`MASS/cons1drop` with a tie-break — building it would duplicate an existing (axis, mechanism)
+while pretending novelty.
+
+**Decision it changes:** this session did not build MASS, and the fleet's cons arms should be
+treated as one already-built experiment, not a queue. If a MASS slot is ever bought,
+`cons3add` (add side, vote-ranked) is the only arm whose screened precision clears break-even;
+do not spend slots distinguishing `cons1drop`/`cons2drop`/`m10minus` from each other.
+
+## IR-91-37 — This session's axis was selected by screening on the report-only SGMC control
+
+Disclosed plainly because it changes how much the prediction may be trusted. Before building,
+eight mechanism-backed families were screened with the *exact* DTI metric against the SGMC
+off-catalogue control (fixed-count relT: catalogue-density concentration −1.1 %/−1.6 %, tip
+extension −6.3 %, redundancy-donor+tip-recipient −1.5 %, redcov +7.5 %/+8.8 %/+4.1 % prototype).
+redcov is therefore the *maximum* of a screened set, and its surrogate delta is biased upward
+by selection. Mitigations applied: families were chosen on mechanism before screening; SGMC was
+never used to rank or place a single dot (donors = parent geometry, recipients = lineage vote +
+coverage distance); the prediction applies the fleet's 0.5 shrink *and* a −0.008 widened
+downside (`+0.011 [−0.003, +0.021]`); the full log, including failures, is in
+`evidence/redcov_axis_20261024.json`. SGMC remains report-only and gated nothing.
+
+Session 8 (merged in parallel) adds a structural caveat that partly applies here: the
+SGMC-off-catalogue control cannot reward collar placement at all (IR-91-33), so it is
+generous to far-field moves. redcov is less exposed than a collar-mirror arm — its donors
+and recipients have near-identical catalogue distance (medians 22.8 vs 23.3 px), so the
+screened gain is a spacing effect measured at matched d_cat, not a "move away" effect —
+but a live truth set much sparser than SGMC's 62,122 px would still shrink it.
+
+**Decision it changes:** treat `+0.011` as an upper-middle estimate, not a point forecast. A
+redcov10 receipt ≤ 0.000 retires the whole coverage family (redcov20, and proposals 1–2 in
+`SLOT_PLAN.md`) without further slots; only ≥ +0.010 licenses the dose bracket.
+
+## IR-91-38 — 53 BUILT rows, 0 receipts: further build sessions have near-zero marginal value
+
+**Actual:** nine sessions, 53 gate-clean candidate files, every (axis) in the brief built at
+three or more values — and `receipt_score` empty on every row. R0's 0.2778 is still `CLAIM`;
+`TOP_PUBLIC` is still blank; slot usage is unrecorded. Each new session (this one included) is
+forced to re-derive the same queue from `MODEL`s anchored to an unverified number, and the
+fleet is now large enough that *selection among built files by receipt* dominates any plausible
+51st file (largest honest predicted spread across the top queue ≈ 0.013 `MODEL`).
+
+**Decision it changes:** the plan in `SLOT_PLAN.md` now leads with this item. Recommended human
+action before any session 10: submit the Week-1 queue (R0 anchor if unreceipted, then the merged queue in `SLOT_PLAN.md`: redcov10,
+PRUNE-le10, cons3add as slots allow), paste `receipt_score` + `receipt_date` + `TOP_PUBLIC`
+(with date) into the ledger/README, and record slots used. Until then, the highest-value "build"
+is no build.
+
+**Merge note (protocol conflict, human to rule).** The audit merged hours later (IR-91-35,
+`docs/REVIEW-20261024.md`) operates under a parallel-run protocol requiring novelty stops
+(surface rank correlation > 0.90, dot proximity overlap > 70 % within 3 px) and a buffered
+segment-retraining holdout, and prepends a "NOT OK TO SUBMIT" banner for its run. Brief v2,
+under which this session and the whole 53-file fleet were built, explicitly forbids
+rank-correlation/dot-overlap uniqueness thresholds (controlled 1–50 % edits of a named parent
+differ by design in only 10–20 % of dots, so redcov10 would trip the audit's stop while being
+exactly what brief v2 §5 asks for). Neither protocol is the official rule set; which one
+governs slot spending is the human's decision, recorded here rather than resolved by either
+session deleting the other's work.
+
+## IR-91-39 — Candidate TIFFs were committed to a public repo + Pages path (PR #30); de-tracked here
+
+**Actual:** PR #30 (Session 9-GEOD, merged to main while this session resolved merges) committed
+`docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21{,-zeros}.tif` — full candidate rasters
+on the competition grid — to this **public** repository, in a directory served by GitHub Pages.
+That breaks the repo's own hard rules (`.gitignore` policy comment; CI step "No competition
+raster is committed", which greps `git ls-files` for `*.tif`) and brief §4.2 (competition
+rasters out of public repos; data-use terms unchecked). The same PR's ledger row used
+axis `GEOD`, outside the brief's axis set enforced by `tests/test_ledger.py`, so main's test
+suite was red on two counts before this merge.
+
+**What this merge did:** removed the two TIFFs from git tracking (files remain rebuildable via
+`scripts/build_geod.py`; sha256 `bff9fd21…` stays in the ledger/manifest), added
+`docs/downloads/*.tif` to `.gitignore`, and normalised the ledger axis to `CONCENTRATION`
+(it is the SLOT_PLAN-proposed geodetic-strain CONCENTRATION; id and hashes unchanged, repair
+noted in the row). The GEOD session's scripts, evidence and site pages are untouched — only its
+download links now 404 until a human rebuilds locally.
+
+**Decision it changes:** human to confirm the de-tracking (restore only if the competition
+data-use terms are checked and allow public posting of derived candidate rasters), and to note
+that roughly a day of public exposure already happened via git history + Pages — removal from
+HEAD does not purge history.
+(Also in this merge: the two GEOD entries PR #30 added to `releases/MANIFEST.json` were
+removed from that file — no CI step runs `scripts/build_geod.py`, so the entries made the
+lineage job's byte-identity check unsatisfiable. The arm's hashes remain in
+`ledger/submissions.csv` and `evidence/geod_axis_20261024.json`; re-add the entries together
+with a CI build step if GEOD is ever queued.)
+**Superseded in part (same day):** PR #31 (human-coauthored) deliberately promoted the GEOD
+portal — widening the ledger axis set to include `GEOD` and requiring working TIFF downloads
+when `submission_ready` — so at merge #4 this session deferred: downloads re-tracked, axis
+restored to `GEOD`, portal pages taken from main, and the CI no-raster step gained a narrow
+`docs/downloads/`-only exemption citing this item. The exposure question itself is unchanged
+and remains the human's to close against the competition data-use terms.

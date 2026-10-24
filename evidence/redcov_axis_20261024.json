@@ -1,0 +1,493 @@
+{
+  "schema": "gems91.redcov-evidence.v1",
+  "build_date": "2026-10-24",
+  "session": "SESSION 9 (arena/ed1ccddf-gemsdoe91)",
+  "axis": "SPACING",
+  "parent": "h33-h33-2-b2",
+  "rule": {
+    "donors": "top-frac off-collar dots by kernel-overlap redundancy sum_{0<d<6px}(1-d/6)",
+    "recipients": "eligible (footprint, d_cat>3px, vote>=min_vote, not a donor cell) ranked by distance to nearest surviving dot desc, greedy >=2.8px",
+    "collar_policy": "dots at d_cat<=3px quarantined in place (IR-91-27)",
+    "ranking_basis": "donors=top kernel-overlap redundancy sum(1-d/6px) among d_cat>3px dots (parent geometry only); recipients=lineage vote>=N (anc_h19_5/h19_4/h16_1) cells farthest from surviving dots, >=2.8px spacing, d_cat>3px, collar quarantined (IR-91-27); NOT parent model ranking (IR-91-21)"
+  },
+  "prediction_model": {
+    "formula": "live = CLAIMED_LIVE(0.2778) * relT_on_SGMC_control * SHRINK",
+    "shrink": 0.5,
+    "range": "[0.5*point - 0.008, unshrunk] -- downside widened for screen-selection (IR-91-37)"
+  },
+  "deterministic_rebuild": true,
+  "lineage": {
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "dots_on_catalogue": 0,
+    "min_catalogue_distance_px": 2.236068,
+    "collar_2_to_3px": 2171,
+    "rebuilt_from": {
+      "d2.8": {
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    }
+  },
+  "r0_baseline": {
+    "n_dots": 37654,
+    "sgmc_off_catalogue_dti": 0.095386,
+    "sgmc_T": 5517.637,
+    "sgmc_off_catalogue_n_px": 62122,
+    "fixed_catalogue_proxy": {
+      "proxy_mean_credit": 0.006186,
+      "proxy_mean_credit_ci95": 0.000228,
+      "proxy_mean_credit_ci95_interval": [
+        0.005958,
+        0.006413
+      ],
+      "proxy_coverage": 0.038706,
+      "draws": 5,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200,
+      "n_withheld_positives_per_draw": [
+        12200,
+        12198,
+        12199,
+        12200,
+        12201
+      ],
+      "mean_credit_per_draw": [
+        0.006038136218637152,
+        0.006201889947509195,
+        0.006582695130310594,
+        0.0062188384485118405,
+        0.00588596849724877
+      ]
+    },
+    "block_density_cv_1km": 0.6187,
+    "block_density_cv_5km": 0.7261,
+    "redundancy": {
+      "dots_with_neighbour_lt_2p83px": 11415,
+      "dots_with_neighbour_lt_2px": 0,
+      "mean_nn_px": 3.7351
+    }
+  },
+  "vote_ring_leakage_canary": {
+    "feature": "lineage vote (0-3)",
+    "test": "0-3px catalogue ring vs >=7px background",
+    "symmetric_auc": 0.5257,
+    "stop_threshold": 0.9,
+    "stride": 17
+  },
+  "session_screen_log_PROXY": {
+    "note": "Every family screened on the SGMC control this session before choosing the axis (IR-91-37). PROXY only; none of these numbers is a score or a gate.",
+    "mass_bottom_decile_precision_vs_breakeven_0.118": {
+      "s_struct": 0.1126,
+      "vote": 0.1009,
+      "nbr5": 0.1057,
+      "far_dcat": 0.0858,
+      "conclusion": "every MASS ranking lands within ~2pp of break-even; predicted |live delta| < 0.002 at mid denominator (IR-91-36)"
+    },
+    "fixed_count_exact_sgmc_relT": {
+      "catalogue_density_concentration_10pct_1km": -0.0114,
+      "catalogue_density_concentration_20pct_1km": -0.0161,
+      "tip_extension_swap10": -0.0625,
+      "redundancy_donors_plus_tip_recipients10": -0.0151,
+      "redcov_prototype_with_donor_refill_allowed_10": 0.0746,
+      "redcov_prototype_20": 0.0877,
+      "redcov_prototype_10_vote2": 0.0406
+    }
+  },
+  "arms": {
+    "redcov10": {
+      "id": "h33-h33-2-b2-SPACINGredcov10-20261024-8113d448",
+      "axis": "SPACING",
+      "value": "redcov10",
+      "stats": {
+        "n_parent_dots": 37654,
+        "n_dots": 37654,
+        "n_moved": 3765,
+        "pct_relocated": 9.9989,
+        "pct_changed_symdiff": 19.9979,
+        "donor_redundancy_min": 1.5301,
+        "donor_redundancy_median": 1.7291,
+        "kept_redundancy_max_offcollar": 1.5301,
+        "recipient_dist_to_survivor_min_px": 4.4721,
+        "recipient_dist_to_survivor_median_px": 6.4031,
+        "donor_vote_histogram": [
+          0,
+          454,
+          566,
+          2745
+        ],
+        "recipient_vote_histogram": [
+          0,
+          2444,
+          980,
+          341
+        ],
+        "donor_dcat_median_px": 22.825,
+        "recipient_dcat_median_px": 23.259,
+        "donor_cells_reused_as_recipients": 0,
+        "min_vote": 1,
+        "frac": 0.1
+      },
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "sha256_nan": "8113d448424d3a039cdca240517411f03b8370c9ac2534ecc3afcb2197a2f4ad",
+      "sha256_zeros": "ed6d54b61aecf314a3508ddf8db202b8fc830715f283068bc011ee312f803625",
+      "bytes_nan": 374483,
+      "bytes_zeros": 227217,
+      "dot_set_digest": "6a59a781966a64e6e173a41d864cf2ae7bafa13ca08509a84e85ba78b49a35a4",
+      "predicted_change_MODEL": "MODEL:+0.011",
+      "predicted_range": "[-0.003,+0.021]",
+      "prediction_detail": {
+        "predicted": "+0.011",
+        "point_unrounded": 0.01069,
+        "range": "[-0.003,+0.021]",
+        "formula": "0.2778(CLAIM) * relT_SGMC * 0.5 shrink; range=[0.5*point-0.008, unshrunk]"
+      },
+      "rationale": "Base arm: 10% of dots moved from kernel-redundant clusters to the supported cells furthest from any dot. Least invasive arm with near-maximal screened coverage gain; CV enters the reported best-file band.",
+      "form_note": "h33-h33-2-b2; SPACING redcov10: 3765 dots (10.0%) redundant->uncovered, count fixed; pred MODEL:+0.011",
+      "report_only": {
+        "sgmc_off_catalogue_dti": 0.10259,
+        "sgmc_delta_vs_r0": 0.007204,
+        "sgmc_T": 5942.182,
+        "sgmc_T_rel_change": 0.076943,
+        "fixed_catalogue_proxy": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_mean_credit_ci95_interval": [
+            0.005958,
+            0.006413
+          ],
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200,
+          "n_withheld_positives_per_draw": [
+            12200,
+            12198,
+            12199,
+            12200,
+            12201
+          ],
+          "mean_credit_per_draw": [
+            0.006038136218637152,
+            0.006201889947509195,
+            0.006582695130310594,
+            0.0062188384485118405,
+            0.00588596849724877
+          ]
+        },
+        "proxy_delta_vs_r0": 0.0,
+        "moved_dot_canary": {
+          "canary_auc": 0.4496,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        },
+        "redundancy": {
+          "dots_with_neighbour_lt_2p83px": 8098,
+          "dots_with_neighbour_lt_2px": 0,
+          "mean_nn_px": 4.0694
+        },
+        "block_density_cv_1km": 0.556,
+        "block_density_cv_5km": 0.6659
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "zeros_outside_footprint": true,
+        "sha256_not_in_ledger": true
+      },
+      "validate_raster_14_of_14": true
+    },
+    "redcov20": {
+      "id": "h33-h33-2-b2-SPACINGredcov20-20261024-191caf71",
+      "axis": "SPACING",
+      "value": "redcov20",
+      "stats": {
+        "n_parent_dots": 37654,
+        "n_dots": 37654,
+        "n_moved": 7531,
+        "pct_relocated": 20.0005,
+        "pct_changed_symdiff": 40.0011,
+        "donor_redundancy_min": 1.2873,
+        "donor_redundancy_median": 1.5301,
+        "kept_redundancy_max_offcollar": 1.2869,
+        "recipient_dist_to_survivor_min_px": 3.6056,
+        "recipient_dist_to_survivor_median_px": 5.099,
+        "donor_vote_histogram": [
+          0,
+          891,
+          1132,
+          5508
+        ],
+        "recipient_vote_histogram": [
+          0,
+          3751,
+          1803,
+          1977
+        ],
+        "donor_dcat_median_px": 21.541,
+        "recipient_dcat_median_px": 23.345,
+        "donor_cells_reused_as_recipients": 0,
+        "min_vote": 1,
+        "frac": 0.2
+      },
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 7531,
+        "removed": 7531,
+        "changed": 15062,
+        "pct_changed_of_parent": 40.0011
+      },
+      "sha256_nan": "191caf713b5996ea5032b6ee10e494143409561e74422b875769aa8455060e1b",
+      "sha256_zeros": "822657030a6cf0edad92f31a903f1b427af2b0bf9bbb4c09724fd19c194a572d",
+      "bytes_nan": 375253,
+      "bytes_zeros": 227975,
+      "dot_set_digest": "905219698b439053defd00858b411696ce6e583083a144153ab084f306543e72",
+      "predicted_change_MODEL": "MODEL:+0.013",
+      "predicted_range": "[-0.002,+0.026]",
+      "prediction_detail": {
+        "predicted": "+0.013",
+        "point_unrounded": 0.01277,
+        "range": "[-0.002,+0.026]",
+        "formula": "0.2778(CLAIM) * relT_SGMC * 0.5 shrink; range=[0.5*point-0.008, unshrunk]"
+      },
+      "rationale": "Dose arm: same rule at 20%. Screened relT flattens (+8.8% vs +7.5% at 10%), so this is the week-2 bracket if redcov10 receipts >= +0.01, not a first slot.",
+      "form_note": "h33-h33-2-b2; SPACING redcov20: 7531 dots (20.0%) redundant->uncovered, count fixed; pred MODEL:+0.013",
+      "report_only": {
+        "sgmc_off_catalogue_dti": 0.103991,
+        "sgmc_delta_vs_r0": 0.008605,
+        "sgmc_T": 6024.976,
+        "sgmc_T_rel_change": 0.091949,
+        "fixed_catalogue_proxy": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_mean_credit_ci95_interval": [
+            0.005958,
+            0.006413
+          ],
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200,
+          "n_withheld_positives_per_draw": [
+            12200,
+            12198,
+            12199,
+            12200,
+            12201
+          ],
+          "mean_credit_per_draw": [
+            0.006038136218637152,
+            0.006201889947509195,
+            0.006582695130310594,
+            0.0062188384485118405,
+            0.00588596849724877
+          ]
+        },
+        "proxy_delta_vs_r0": 0.0,
+        "moved_dot_canary": {
+          "canary_auc": 0.3991,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        },
+        "redundancy": {
+          "dots_with_neighbour_lt_2p83px": 6674,
+          "dots_with_neighbour_lt_2px": 0,
+          "mean_nn_px": 4.1435
+        },
+        "block_density_cv_1km": 0.5511,
+        "block_density_cv_5km": 0.6698
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "zeros_outside_footprint": true,
+        "sha256_not_in_ledger": true
+      },
+      "validate_raster_14_of_14": true
+    },
+    "redcov10v2": {
+      "id": "h33-h33-2-b2-SPACINGredcov10v2-20261024-9ae05686",
+      "axis": "SPACING",
+      "value": "redcov10v2",
+      "stats": {
+        "n_parent_dots": 37654,
+        "n_dots": 37654,
+        "n_moved": 3765,
+        "pct_relocated": 9.9989,
+        "pct_changed_symdiff": 19.9979,
+        "donor_redundancy_min": 1.5301,
+        "donor_redundancy_median": 1.7291,
+        "kept_redundancy_max_offcollar": 1.5301,
+        "recipient_dist_to_survivor_min_px": 3.0,
+        "recipient_dist_to_survivor_median_px": 4.1231,
+        "donor_vote_histogram": [
+          0,
+          454,
+          566,
+          2745
+        ],
+        "recipient_vote_histogram": [
+          0,
+          0,
+          2540,
+          1225
+        ],
+        "donor_dcat_median_px": 22.825,
+        "recipient_dcat_median_px": 22.472,
+        "donor_cells_reused_as_recipients": 0,
+        "min_vote": 2,
+        "frac": 0.1
+      },
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "sha256_nan": "9ae05686ebfa0877007259def668274d99eda5325fdf70fa810abe110065645c",
+      "sha256_zeros": "1f5131c024221edf8e78ed850e0c23df8b47e637fedc22acbf6a300b84ed47fd",
+      "bytes_nan": 373076,
+      "bytes_zeros": 225756,
+      "dot_set_digest": "87ab461c278482236d77f99595aec83dfb650943194b37d6cb37ea9476e3a26a",
+      "predicted_change_MODEL": "MODEL:+0.006",
+      "predicted_range": "[-0.005,+0.012]",
+      "prediction_detail": {
+        "predicted": "+0.006",
+        "point_unrounded": 0.0059,
+        "range": "[-0.005,+0.012]",
+        "formula": "0.2778(CLAIM) * relT_SGMC * 0.5 shrink; range=[0.5*point-0.008, unshrunk]"
+      },
+      "rationale": "Support bracket: recipients restricted to >=2-field support. Screens worse than redcov10 (recipients sit closer to existing dots), so it exists to decompose coverage vs support if redcov10 receipts near zero.",
+      "form_note": "h33-h33-2-b2; SPACING redcov10v2: 3765 dots (10.0%) redundant->uncovered, count fixed; pred MODEL:+0.006",
+      "report_only": {
+        "sgmc_off_catalogue_dti": 0.099358,
+        "sgmc_delta_vs_r0": 0.003972,
+        "sgmc_T": 5751.86,
+        "sgmc_T_rel_change": 0.04245,
+        "fixed_catalogue_proxy": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_mean_credit_ci95_interval": [
+            0.005958,
+            0.006413
+          ],
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200,
+          "n_withheld_positives_per_draw": [
+            12200,
+            12198,
+            12199,
+            12200,
+            12201
+          ],
+          "mean_credit_per_draw": [
+            0.006038136218637152,
+            0.006201889947509195,
+            0.006582695130310594,
+            0.0062188384485118405,
+            0.00588596849724877
+          ]
+        },
+        "proxy_delta_vs_r0": 0.0,
+        "moved_dot_canary": {
+          "canary_auc": 0.4496,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        },
+        "redundancy": {
+          "dots_with_neighbour_lt_2p83px": 8247,
+          "dots_with_neighbour_lt_2px": 0,
+          "mean_nn_px": 3.8785
+        },
+        "block_density_cv_1km": 0.5749,
+        "block_density_cv_5km": 0.6959
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "zeros_outside_footprint": true,
+        "sha256_not_in_ledger": true
+      },
+      "validate_raster_14_of_14": true
+    }
+  }
+}
