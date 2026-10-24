@@ -456,20 +456,35 @@ relocation from the top of the slot queue. Its own top slot proposal (`gdr25rm10
 **Human decides:** `TOP_PUBLIC` + date, slots left this week, whether any slot goes to `anti10`,
 the R0 anchor receipt, and the blind final file. No upload is made by an agent.
 
+## CED91 session — 2026-10-24, branch arena/d043e4f8-gemsdoe91
+
+AI audited local/remote source snapshots, restored existing pinned public-mirror
+inputs, found and hash-pinned the unmodified shared template, preregistered four
+hypotheses, implemented one parent-free two-band transform, ran feature canaries
+and whole-component pooled holdout evaluation, and stopped on a literal registry
+duplicate. AI generated the downloadable research TIFF/ZIP, automated validators,
+fail-closed portal/guide, source register, CI/Pages workflows and tests. The original
+user brief is embedded in README. No competition slot/account action, organizer
+receipt, hidden truth or credentials were accessed. No new scientific experiment
+was run after the duplicate stop; subsequent work was audit, tests and delivery.
+
+Scientific mechanisms are hypotheses, not validated discoveries. External official
+web pages/literature could not be independently fetched under the host allowlist.
+GitHub source-page claims are not organizer receipts. The current negative card
+and README supersede historical unsupported forecasts and submission queues.
+
 ---
 
-## Session 9 (2026-10-24, `arena/5b9fd3e1-gemsdoe91`) — First-Principles Geological Discovery Lane (`H91-1`..`H91-3`)
+## H91-DDVTC session — 2026-10-24, branch `arena/5b9fd3e1-gemsdoe91`
 
 **AI wrote:**
 - `docs/HYPOTHESES_H91.md` (pre-registered 5 novel geological hypotheses `H91-1`..`H91-5` ranked by expected DTI gain vs implementation cost, with named non-fault mimics and licence audit).
 - `src/gems91/dd_vtc_pu.py` (memory-safe `np.memmap` streaming of 49 licence-clean physical features + 3 fold-safe visible structural features; Dip-Deprojected Verduzco Gravity & RTP Magnetic Tilt; Andersonian 12-azimuth slip/dilation ridge bank; whitespace-trimmed GDR `Hot/Warm` + 212 newly-recovered `>= 90 C` blind geothermometer conduits; hydrothermal magnetite-destruction troughs & smectite clay-cap DoG; subsurface-gated Elkan-Noto exposure PU calibration; Bayes-calibrated 1-D axial-ridge Minoux lazy-greedy 300 m submodular DTI dot allocator).
-- `scripts/evaluate_holdout.py` (`EVALUATOR_VERSION = "gems91-hide-recover-v1.0"` wrapping `scripts/dti.py`: 4-quadrant whole-segment buffered hide-and-recover folds, Rule 4 single-feature symmetric ROC-AUC leakage canary, 200-draw 5x5 km spatial block-bootstrap 95% CI, blind Zero-SGMC off-catalogue control, and Rule 1 17-raster uniqueness gate).
-- `scripts/submission_writer.py` (shared triple-gate packager invoking `gems91.io`, `gems91.gates`, `gems91.release_gates`, and `scripts/validate_raster.py`, emitting `releases/<cand_id>-zeros.tif`, `releases/<cand_id>.tif`, `docs/downloads/<cand_id>-zeros.zip`, and WebCrypto SHA-256 verifiable `docs/downloads/h91_submission_bundle.js`).
-- `scripts/run_h91_lane.py`, `scripts/build_pages_site.py`, `tests/test_h91_holdout_and_writer.py`, `index.html`, `executive-summary.html`, `docs/index.html`, `docs/executive-summary.html`, `docs/assets/{styles.css,app.js}`, `evidence/{leakage_canary,registry_uniqueness,run_card}.json`, and updates to `README.md` and `IRREGULARITIES.md` (`IR-91-35`..`IR-91-39`).
+- `scripts/evaluate_holdout.py` (`EVALUATOR_VERSION = "gems91-hide-recover-v1.0"` wrapping `scripts/dti.py`: 4-quadrant whole-segment buffered hide-and-recover folds, Rule 4 single-feature symmetric ROC-AUC leakage canary, 200-draw 5x5 km spatial block-bootstrap 95% CI, blind Zero-SGMC off-catalogue control, and 20-real-raster uniqueness gate).
+- `scripts/submission_writer.py`, `scripts/run_h91_lane.py`, `scripts/build_pages_site.py`, `tests/test_h91_holdout_and_writer.py`, `docs/h91-ddvtc.html`, `docs/h91-executive-summary.html`, `docs/assets/{styles.css,app.js}`, `docs/data/run_card.{json,js}`, `evidence/{leakage_canary,registry_uniqueness,run_card}.json`, and `IR-H91-01`..`IR-H91-05` in `IRREGULARITIES.md`.
 
 **Where the AI caught & documented real failures instead of hiding them:**
-- Caught a `3.5x` 2-D vs 1-D kernel area bias in naive submodular emission (`IR-91-39`) where `p = 0.50` mountain blocks beat `p = 0.85` 1-px fault lines, fixed it mathematically via Bayes prior-shift calibration + 4-axis 1-D ridge NMS, and verified the fix via unit tests + holdout (`0.030 -> 0.174030 HOLDOUT-DTI`).
-- Reported honestly that `E1` (`H91-1`, pure 100%-official GeoDAWN Dip-Deprojected Verduzco Tilt + Openness + Clay-Cap Edge + 1-D Ridge Submodular DTI, `0.174030 HOLDOUT-DTI`, `+25.2%` over `B0`) outperformed `E2` (`0.166750`) and `E3` (`0.171231`) on the exposed-fault holdout, rather than forcing complex arms ahead of the empirical winner.
+- Caught a `3.5x` 2-D vs 1-D kernel area bias in naive submodular emission (`IR-H91-05`) where `p = 0.50` mountain blocks beat `p = 0.85` 1-px fault lines, fixed it mathematically via Bayes prior-shift calibration + 4-axis 1-D ridge NMS, and verified the fix via unit tests + holdout (`0.030 -> 0.174030 HOLDOUT-DTI`).
+- Reported honestly that `E1` (`H91-1`, pure 100%-official GeoDAWN Dip-Deprojected Verduzco Tilt + Openness + Clay-Cap Edge + 1-D Ridge Submodular DTI, `0.174030 HOLDOUT-DTI`, `+25.2%` over `B0`) outperformed `E2` (`0.166750`) and `E3` (`0.171231`) on the exposed-fault holdout, and preserved `origin/main`'s shared `gems91.readiness` fleet-selector gate and `calib_r13lattice_00904.tif` (`99.87%` footprint cover) disclosure without weakening `origin/main` checks.
 
-**AI did NOT:** log into DrivenData, upload a submission, scrape private endpoints, touch `dist_known_fault_px` (`IR-91-37`), redistribute licence-unchecked external rasters (`IR-91-26`), or emit projected scores. Every reported number is strictly labeled `HOLDOUT-DTI` or `ORGANIZER-CONFIRMED`.
-
+**AI did NOT:** log into DrivenData, upload a submission, scrape private endpoints, touch `dist_known_fault_px` (`IR-H91-03`), redistribute licence-unchecked external rasters (`IR-91-26`), or emit projected scores.

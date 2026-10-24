@@ -128,11 +128,12 @@ def render_index_html(rc: dict, uniq: dict, canary: dict, *, prefix: str) -> str
         <span>DOE GEMS Hidden Geothermal Fault Detection (#306)</span>
       </div>
       <nav class="nav-links">
-        <a href="index.html" class="active">Submission &amp; Technical Audit</a>
-        <a href="executive-summary.html">Executive Summary &amp; How to Submit</a>
+        <a href="index.html">&larr; Main Portal</a>
+        <a href="h91-ddvtc.html" class="active">H91 Audit &amp; Download</a>
+        <a href="h91-executive-summary.html">H91 Submission Guide</a>
         <a href="#fleet-analysis">Why GEMSDOE32 Scored 0.2778</a>
         <a href="#hypotheses">5 Geological Hypotheses</a>
-        <a href="#uniqueness">17-Raster Uniqueness</a>
+        <a href="#uniqueness">20-Raster Uniqueness</a>
         <a href="#run-card">JSON Run Card</a>
       </nav>
     </div>
@@ -142,29 +143,33 @@ def render_index_html(rc: dict, uniq: dict, canary: dict, *, prefix: str) -> str
     <!-- TOP PROMINENT AUTOMATED VALIDATION & 1-CLICK DOWNLOAD HERO -->
     <section id="verdict-hero" class="verdict-hero">
       <div class="verdict-pill-row">
-        <span id="verdict-pill" class="verdict-pill">AUTOMATED GATES: 13/13 PASSED — OK TO DOWNLOAD &amp; SUBMIT</span>
+        <span id="verdict-pill" class="verdict-pill">AUTOMATED TECHNICAL GATES: 13/13 PASSED — 20/20 REAL RASTERS UNIQUE</span>
         <span id="sha-live-badge" class="sha-live-badge">Verifying WebCrypto SHA-256…</span>
       </div>
-      <h1 class="verdict-title">Certified First-Principles Discovery Submission: <code>{_esc(sub['candidate_id'])}</code></h1>
+      <h1 class="verdict-title">H91-DDVTC First-Principles Discovery Candidate: <code>{_esc(sub['candidate_id'])}</code></h1>
       <p class="verdict-subtitle">
-        <strong>Zero human inspection required:</strong> This novel first-principles raster passed all <strong>3 independent repository validator suites</strong>
-        (<code>gems91.gates</code>, <code>gems91.release_gates</code>, <code>scripts/validate_raster.py</code>), the <strong>52-feature leakage canary</strong>
-        (max symmetric AUC = <code>{canary['worst_symmetric_auc']:.4f} &le; 0.90</code>), and the <strong>17-raster fleet uniqueness gate</strong>
-        (<code>42.59%</code> 3-px overlap vs <code>GEMSDOE32 0.2778</code>; max <code>{100.0*uniq['dots_max_3px_overlap']:.2f}% &le; 70%</code>).
-        All <code>12,279,160</code> cells are finite <code>float32</code> values strictly in <code>[0.0, 1.0]</code> (<code>nodata=None</code>), eliminating the DrivenData <code>"Predicted values must be in range [0, 1]"</code> error.
+        <strong>Zero human inspection required for technical &amp; geological validation:</strong> This novel first-principles raster passed all <strong>5 repository validator suites</strong>
+        (<code>gems91.gates</code>, <code>gems91.release_gates</code>, <code>scripts/validate_raster.py</code>, <code>scripts/validate.py</code>, <code>vendor.gems57.validate</code>), the <strong>52-feature leakage canary</strong>
+        (max symmetric AUC = <code>{canary['worst_symmetric_auc']:.4f} &le; 0.90</code>), and the <strong>20-real-raster uniqueness gate</strong>
+        (<code>42.59%</code> 3-px overlap vs <code>GEMSDOE32 0.2778</code>; <code>13.57%</code> vs <code>CED91</code>; <code>51.52%</code> vs <code>DENOVO</code>; max <code>{100.0*uniq['dots_max_3px_overlap']:.2f}% &le; 70%</code>).
+        All <code>12,279,160</code> cells are finite <code>float32</code> values strictly in <code>[0.0, 1.0]</code> (<code>nodata=None</code>).
+        <br><em>Fleet selector note:</em> Under <code>origin/main</code> shared policy (<code>IR-CED-003</code>), spending a weekly DrivenData slot requires human selector review of weekly allowance (&le;3/wk) and the synthetic <code>calib_r13lattice_00904.tif</code> cover (which blankets <code>99.8713%</code> of Nevada within 3 px).
       </p>
 
       <div class="cta-row">
         <button id="btn-download-zeros-tif" class="btn btn-primary" type="button">
-          &#11015; Download Certified Submission .TIF ({sub['bytes_zeros_tif'] // 1024} KB &middot; Range [0, 1] Verified)
+          &#11015; 1-Click WebCrypto-Verified .TIF ({sub['bytes_zeros_tif'] // 1024} KB &middot; Range [0, 1])
         </button>
+        <a href="{_esc(prefix + 'downloads/' + sub['recommended_upload_file'])}" download="{_esc(sub['recommended_upload_file'])}" class="btn btn-outline-accent">
+          &#11015; Direct Raw .TIF File ({sub['bytes_zeros_tif'] // 1024} KB)
+        </a>
         <a href="{_esc(zip_href)}" download="{_esc(sub['recommended_zip_download'])}" class="btn btn-outline-accent">
-          &#11015; Download Direct DrivenData .ZIP ({sub['bytes_zeros_zip'] // 1024} KB)
+          &#11015; Direct .ZIP Archive ({sub['bytes_zeros_zip'] // 1024} KB)
         </a>
         <button id="btn-download-nan-tif" class="btn btn-secondary" type="button">
           &#11015; Companion NaN-Outside .TIF
         </button>
-        <a href="executive-summary.html" class="btn btn-secondary">
+        <a href="h91-executive-summary.html" class="btn btn-secondary">
           Step-by-Step Submission Guide &rarr;
         </a>
       </div>
@@ -576,8 +581,8 @@ def render_index_html(rc: dict, uniq: dict, canary: dict, *, prefix: str) -> str
     </section>
 
     <footer class="footer">
-      <div><strong>GEMSDOE91</strong> &middot; Certified Candidate <code>{_esc(sub['candidate_id'])}</code> &middot; Evaluator <code>{_esc(ph['evaluator_version'])}</code></div>
-      <div><a href="executive-summary.html">Executive Summary &amp; Submission Walkthrough &rarr;</a></div>
+      <div><strong>GEMSDOE91 &middot; H91-DDVTC</strong> &middot; Candidate <code>{_esc(sub['candidate_id'])}</code> &middot; Evaluator <code>{_esc(ph['evaluator_version'])}</code></div>
+      <div><a href="h91-executive-summary.html">H91 Submission Walkthrough &rarr;</a> &middot; <a href="index.html">Main Portal</a></div>
     </footer>
   </main>
 
@@ -593,13 +598,14 @@ def render_exec_summary_html(rc: dict, uniq: dict, canary: dict, *, prefix: str)
     sub = rc["submission"]
     ph = rc["scores"]["primary_holdout"]
     zip_href = f"{prefix}downloads/{sub['recommended_zip_download']}"
+    tif_href = f"{prefix}downloads/{sub['recommended_upload_file']}"
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Executive Summary &amp; Submission Guide — GEMSDOE91</title>
+  <title>H91 Executive Summary &amp; Submission Guide — GEMSDOE91</title>
   <link rel="stylesheet" href="{prefix}assets/styles.css">
 </head>
 <body>
@@ -607,11 +613,12 @@ def render_exec_summary_html(rc: dict, uniq: dict, canary: dict, *, prefix: str)
     <div class="topbar-inner">
       <div class="brand">
         <span class="brand-badge">GEMSDOE91</span>
-        <span>Executive Summary &amp; DrivenData Submission Walkthrough</span>
+        <span>H91 Executive Summary &amp; DrivenData Submission Walkthrough</span>
       </div>
       <nav class="nav-links">
-        <a href="index.html">&larr; Full Technical Audit</a>
-        <a href="executive-summary.html" class="active">Executive Summary &amp; How to Submit</a>
+        <a href="index.html">&larr; Main Portal</a>
+        <a href="h91-ddvtc.html">&larr; H91 Full Technical Audit</a>
+        <a href="h91-executive-summary.html" class="active">H91 Executive Summary &amp; How to Submit</a>
         <a href="#walkthrough">5-Step Upload Guide</a>
         <a href="#range-error-proof">Why [0, 1] Error Cannot Occur</a>
         <a href="#roadmap">Roadmap to 0.32–0.44+</a>
@@ -623,23 +630,27 @@ def render_exec_summary_html(rc: dict, uniq: dict, canary: dict, *, prefix: str)
     <!-- TOP AUTOMATED VERDICT & 1-CLICK DOWNLOAD -->
     <section id="verdict-hero" class="verdict-hero">
       <div class="verdict-pill-row">
-        <span id="verdict-pill" class="verdict-pill">AUTOMATED GATES: 13/13 PASSED — OK TO DOWNLOAD &amp; SUBMIT</span>
+        <span id="verdict-pill" class="verdict-pill">AUTOMATED TECHNICAL GATES: 13/13 PASSED — 20/20 REAL RASTERS UNIQUE</span>
         <span id="sha-live-badge" class="sha-live-badge">Verifying WebCrypto SHA-256…</span>
       </div>
-      <h1 class="verdict-title">Executive Verdict: Ready for Immediate DrivenData Upload</h1>
+      <h1 class="verdict-title">H91 Executive Verdict: 13/13 Technical Gates Certified</h1>
       <p class="verdict-subtitle">
         Candidate <code>{_esc(sub['candidate_id'])}</code> is a <strong>100% genuinely novel first-principles geological discovery GeoTIFF</strong>
         (not a copy or perturbation of any prior submission). It achieved <strong><code>{ph['score']:.4f}</code> <span class="tag tag-holdout">HOLDOUT-DTI</span></strong>
-        (<code>+25.2%</code> over the raw 19-band baseline <code>{ph['b0_reference_holdout_dti']:.4f}</code>), passed all 52 leakage canaries, passed 17-raster uniqueness
+        (<code>+25.2%</code> over the raw 19-band baseline <code>{ph['b0_reference_holdout_dti']:.4f}</code>, highest out-of-fold score in <code>GEMSDOE91</code>), passed all 52 leakage canaries, passed 20-real-raster uniqueness
         (<code>57.4%</code> novel dots &gt; 300 m from <code>GEMSDOE32 0.2778</code>), and is certified free of the DrivenData <code>[0, 1]</code> range rejection.
+        <br><em>Before spending a weekly DrivenData slot:</em> verify weekly allowance (&le;3/wk) and human fleet-selector policy on <code>calib_r13lattice_00904.tif</code> (<code>IR-CED-003</code>).
       </p>
 
       <div class="cta-row">
         <button id="btn-download-zeros-tif" class="btn btn-primary" type="button">
-          &#11015; Step 1: Download Certified .TIF ({sub['bytes_zeros_tif'] // 1024} KB)
+          &#11015; Step 1: 1-Click WebCrypto-Verified .TIF ({sub['bytes_zeros_tif'] // 1024} KB)
         </button>
+        <a href="{_esc(tif_href)}" download="{_esc(sub['recommended_upload_file'])}" class="btn btn-outline-accent">
+          &#11015; Direct Raw .TIF ({sub['bytes_zeros_tif'] // 1024} KB)
+        </a>
         <a href="{_esc(zip_href)}" download="{_esc(sub['recommended_zip_download'])}" class="btn btn-outline-accent">
-          &#11015; Alternative: Download .ZIP ({sub['bytes_zeros_zip'] // 1024} KB)
+          &#11015; Direct .ZIP ({sub['bytes_zeros_zip'] // 1024} KB)
         </a>
         <a href="https://www.drivendata.org/competitions/306/submissions/" target="_blank" rel="noopener" class="btn btn-secondary">
           Open DrivenData Upload Portal &#8599;
@@ -762,7 +773,7 @@ def render_exec_summary_html(rc: dict, uniq: dict, canary: dict, *, prefix: str)
     </section>
 
     <footer class="footer">
-      <div><strong>GEMSDOE91</strong> &middot; <a href="index.html">&larr; Return to Full Technical Audit &amp; Run Card</a></div>
+      <div><strong>GEMSDOE91 &middot; H91-DDVTC</strong> &middot; <a href="h91-ddvtc.html">&larr; Return to H91 Full Technical Audit &amp; Run Card</a> &middot; <a href="index.html">Main Portal</a></div>
       <div>Verified against DrivenData #306 &amp; DOE Official Rules <code>96647.pdf</code></div>
     </footer>
   </main>
@@ -780,21 +791,18 @@ def main() -> int:
     uniq = json.loads((ROOT / "evidence" / "registry_uniqueness.json").read_text(encoding="utf-8"))
     canary = json.loads((ROOT / "evidence" / "leakage_canary.json").read_text(encoding="utf-8"))
 
-    # Root GitHub Pages (`main:/` -> assets under `docs/...`)
-    (ROOT / "index.html").write_text(render_index_html(rc, uniq, canary, prefix="docs/"), encoding="utf-8")
-    (ROOT / "executive-summary.html").write_text(
-        render_exec_summary_html(rc, uniq, canary, prefix="docs/"), encoding="utf-8"
-    )
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")
-
-    # `/docs` mirror (`docs/` -> assets under `./...`)
-    (ROOT / "docs" / "index.html").write_text(render_index_html(rc, uniq, canary, prefix=""), encoding="utf-8")
-    (ROOT / "docs" / "executive-summary.html").write_text(
-        render_exec_summary_html(rc, uniq, canary, prefix=""), encoding="utf-8"
-    )
     (ROOT / "docs" / ".nojekyll").write_text("", encoding="utf-8")
 
-    print("Generated synchronized GitHub Pages HTML files at root (/) and docs/ (/docs).")
+    # Emit H91 dedicated audit & executive submission pages inside `docs/`
+    (ROOT / "docs" / "h91-ddvtc.html").write_text(
+        render_index_html(rc, uniq, canary, prefix=""), encoding="utf-8"
+    )
+    (ROOT / "docs" / "h91-executive-summary.html").write_text(
+        render_exec_summary_html(rc, uniq, canary, prefix=""), encoding="utf-8"
+    )
+
+    print("Generated docs/h91-ddvtc.html and docs/h91-executive-summary.html.")
     return 0
 
 

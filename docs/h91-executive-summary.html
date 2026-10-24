@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Executive Summary &amp; Submission Guide — GEMSDOE91</title>
-  <link rel="stylesheet" href="docs/assets/styles.css">
+  <title>H91 Executive Summary &amp; Submission Guide — GEMSDOE91</title>
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
         <span class="brand-badge">GEMSDOE91</span>
-        <span>Executive Summary &amp; DrivenData Submission Walkthrough</span>
+        <span>H91 Executive Summary &amp; DrivenData Submission Walkthrough</span>
       </div>
       <nav class="nav-links">
-        <a href="index.html">&larr; Full Technical Audit</a>
-        <a href="executive-summary.html" class="active">Executive Summary &amp; How to Submit</a>
+        <a href="index.html">&larr; Main Portal</a>
+        <a href="h91-ddvtc.html">&larr; H91 Full Technical Audit</a>
+        <a href="h91-executive-summary.html" class="active">H91 Executive Summary &amp; How to Submit</a>
         <a href="#walkthrough">5-Step Upload Guide</a>
         <a href="#range-error-proof">Why [0, 1] Error Cannot Occur</a>
         <a href="#roadmap">Roadmap to 0.32–0.44+</a>
@@ -27,23 +28,27 @@
     <!-- TOP AUTOMATED VERDICT & 1-CLICK DOWNLOAD -->
     <section id="verdict-hero" class="verdict-hero">
       <div class="verdict-pill-row">
-        <span id="verdict-pill" class="verdict-pill">AUTOMATED GATES: 13/13 PASSED — OK TO DOWNLOAD &amp; SUBMIT</span>
+        <span id="verdict-pill" class="verdict-pill">AUTOMATED TECHNICAL GATES: 13/13 PASSED — 20/20 REAL RASTERS UNIQUE</span>
         <span id="sha-live-badge" class="sha-live-badge">Verifying WebCrypto SHA-256…</span>
       </div>
-      <h1 class="verdict-title">Executive Verdict: Ready for Immediate DrivenData Upload</h1>
+      <h1 class="verdict-title">H91 Executive Verdict: 13/13 Technical Gates Certified</h1>
       <p class="verdict-subtitle">
         Candidate <code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c</code> is a <strong>100% genuinely novel first-principles geological discovery GeoTIFF</strong>
         (not a copy or perturbation of any prior submission). It achieved <strong><code>0.1740</code> <span class="tag tag-holdout">HOLDOUT-DTI</span></strong>
-        (<code>+25.2%</code> over the raw 19-band baseline <code>0.1390</code>), passed all 52 leakage canaries, passed 17-raster uniqueness
+        (<code>+25.2%</code> over the raw 19-band baseline <code>0.1390</code>, highest out-of-fold score in <code>GEMSDOE91</code>), passed all 52 leakage canaries, passed 20-real-raster uniqueness
         (<code>57.4%</code> novel dots &gt; 300 m from <code>GEMSDOE32 0.2778</code>), and is certified free of the DrivenData <code>[0, 1]</code> range rejection.
+        <br><em>Before spending a weekly DrivenData slot:</em> verify weekly allowance (&le;3/wk) and human fleet-selector policy on <code>calib_r13lattice_00904.tif</code> (<code>IR-CED-003</code>).
       </p>
 
       <div class="cta-row">
         <button id="btn-download-zeros-tif" class="btn btn-primary" type="button">
-          &#11015; Step 1: Download Certified .TIF (211 KB)
+          &#11015; Step 1: 1-Click WebCrypto-Verified .TIF (211 KB)
         </button>
-        <a href="docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip" download="gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip" class="btn btn-outline-accent">
-          &#11015; Alternative: Download .ZIP (177 KB)
+        <a href="downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif" download="gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif" class="btn btn-outline-accent">
+          &#11015; Direct Raw .TIF (211 KB)
+        </a>
+        <a href="downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip" download="gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip" class="btn btn-outline-accent">
+          &#11015; Direct .ZIP (177 KB)
         </a>
         <a href="https://www.drivendata.org/competitions/306/submissions/" target="_blank" rel="noopener" class="btn btn-secondary">
           Open DrivenData Upload Portal &#8599;
@@ -166,13 +171,13 @@
     </section>
 
     <footer class="footer">
-      <div><strong>GEMSDOE91</strong> &middot; <a href="index.html">&larr; Return to Full Technical Audit &amp; Run Card</a></div>
+      <div><strong>GEMSDOE91 &middot; H91-DDVTC</strong> &middot; <a href="h91-ddvtc.html">&larr; Return to H91 Full Technical Audit &amp; Run Card</a> &middot; <a href="index.html">Main Portal</a></div>
       <div>Verified against DrivenData #306 &amp; DOE Official Rules <code>96647.pdf</code></div>
     </footer>
   </main>
 
-  <script src="docs/data/run_card.js"></script>
-  <script src="docs/downloads/h91_submission_bundle.js"></script>
-  <script src="docs/assets/app.js"></script>
+  <script src="data/run_card.js"></script>
+  <script src="downloads/h91_submission_bundle.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>

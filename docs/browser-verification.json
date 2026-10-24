@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "scope": "Delivery/UI engineering checks, not a competition score or scientific experiment",
+  "checked_utc": "2026-10-24T08:06:04.162Z",
+  "browser": "153.0.8010.0",
+  "pages_root_redirect_tested": true,
+  "desktop": {
+    "width": 1440,
+    "height": 1000
+  },
+  "mobile": {
+    "width": 390,
+    "height": 844
+  },
+  "download_sha256": "a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee",
+  "copy_status": "Clipboard unavailable. The text is selected; copy it with your keyboard.",
+  "console_or_http_errors": [],
+  "mobile_overflow": false,
+  "accessibility": [
+    {
+      "page": "index.html",
+      "violations": []
+    },
+    {
+      "page": "executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "research.html",
+      "violations": []
+    }
+  ]
+}

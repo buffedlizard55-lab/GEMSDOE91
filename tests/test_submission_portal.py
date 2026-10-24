@@ -1,0 +1,128 @@
+"""Research downloads may exist with a negative verdict; upload approval may not.
+
+Contract: links resolve, file identities are verified, and the portal cannot
+confuse local format validity with protocol/scientific/selector clearance.
+"""
+import copy
+import hashlib
+from html.parser import HTMLParser
+import importlib.util
+import json
+from pathlib import Path
+import subprocess
+import sys
+from urllib.parse import unquote, urlsplit
+import pytest
+from gems91.readiness import gates, submission_ready
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class Page(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.links=[]; self.ids=set(); self.text=[]; self.downloads=[]; self.states=[]
+    def handle_starttag(self, tag, attrs):
+        a=dict(attrs)
+        if 'id' in a: self.ids.add(a['id'])
+        if tag in ('a','link') and 'href' in a: self.links.append(a['href'])
+        if tag=='script' and 'src' in a: self.links.append(a['src'])
+        if tag=='a' and 'download' in a: self.downloads.append(a.get('href'))
+        if 'data-submission-ready' in a: self.states.append(a['data-submission-ready'])
+    def handle_data(self, data): self.text.append(data)
+
+
+def load_card():
+    return json.loads((ROOT/'docs/run-card.json').read_text())
+
+
+def test_all_local_page_links_assets_and_fragments_resolve():
+    for name in ('index.html','docs/index.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
+        path=ROOT/name; parser=Page(); parser.feed(path.read_text())
+        for href in parser.links:
+            u=urlsplit(href)
+            if u.scheme or u.netloc: continue
+            target=(path.parent/unquote(u.path)).resolve() if u.path else path
+            assert target.is_file(), (name,href)
+            assert target.is_relative_to(ROOT)
+            if u.fragment and target.suffix=='.html':
+                other=Page(); other.feed(target.read_text()); assert u.fragment in other.ids
+
+
+def test_negative_research_download_is_not_advertised_as_approved_submission():
+    card=load_card(); a=card['artifact']
+    for name in ('index.html','executive-summary.html'):
+        p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
+        assert p.states==['false']
+        assert 'NOT OK TO SUBMIT' in text
+        assert 'research' in text.lower()
+        assert a['file'] in p.downloads and a['zip'] in p.downloads
+        assert all(x in (a['file'],a['zip']) for x in p.downloads)
+        assert 'bff9fd21.tif' not in text
+
+
+def test_card_is_a_measured_negative_not_an_empty_placeholder_or_fake_score():
+    card=load_card(); h=card['holdout_dti']
+    assert not card['submission_ready'] and not submission_ready(card)
+    assert card['verdict']=='negative' and card['experiments_run']==1
+    assert card['slots_used']==0 and card['organizer_confirmed'] is None
+    assert h['label']=='HOLDOUT-DTI' and h['evaluator_version']=='gems57-pooled-hide-v2'
+    assert h['withheld_positives']==60988
+    assert h['ci95'][0] < h['value'] < h['ci95'][1]
+    assert h['paired_control']['ci95'][0] < 0 < h['paired_control']['ci95'][1]
+    assert 0<len(card['note'])<=140 and len(card['submission_name'])<=140
+    p=ROOT/'docs'/card['artifact']['file']
+    assert hashlib.sha256(p.read_bytes()).hexdigest()==card['raster_sha256']
+    assert card['registry_comparison']['final']['status']=='DUPLICATE'
+    assert not gates(card)['novelty']
+
+
+def test_readiness_requires_all_independent_gates_not_just_format():
+    assert not submission_ready({})
+    c=load_card(); c['submission_ready']=True
+    assert not submission_ready(c)
+    # Synthetic policy fixture, not a claimed actual promoted experiment.
+    good=copy.deepcopy(c)
+    good['lane']['assigned']=True
+    good['registry_comparison'].update(complete_universal_registry=True,
+        preplacement={'status':'PASS_WITHIN_INDEXED_SCOPE'},final={'status':'PASS_WITHIN_INDEXED_SCOPE'})
+    good['comparable_prior_holdout_best']={'evaluator_version':'gems57-pooled-hide-v2','split_sha256':'fixture'}
+    good['holdout_dti'].update(split_sha256='fixture',paired_best={'delta':.01,'ci95':[.001,.02]})
+    good['selector_approval']=True
+    good['selector_receipt']={'weekly_cap_verified':True,'slot_available':True}
+    assert submission_ready(good)
+    for mutate in (
+        lambda x:x['validator_output'].update(status='UNVERIFIED'),
+        lambda x:x['canaries'].update(status='LEAKAGE_SUSPECTED'),
+        lambda x:x['registry_comparison']['final'].update(status='DUPLICATE'),
+        lambda x:x['registry_comparison'].update(complete_universal_registry=False),
+        lambda x:x['lane'].update(assigned=False),
+        lambda x:x.update(comparable_prior_holdout_best=None),
+        lambda x:x['holdout_dti']['paired_best'].update(ci95=[-.001,.02]),
+        lambda x:x['selector_receipt'].update(slot_available=False),
+    ):
+        changed=copy.deepcopy(good); mutate(changed); assert not submission_ready(changed)
+
+
+def test_portal_render_is_reproducible():
+    names=['index.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    before={n:(ROOT/'docs'/n).read_bytes() for n in names}
+    subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
+    assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'
+
+
+def test_download_zip_and_byte_identity_are_revalidated():
+    spec=importlib.util.spec_from_file_location('artifact_check',ROOT/'scripts/verify_current_artifact.py')
+    mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+    result=mod.verify()
+    assert result['status']=='PASS' and not result['submission_ready']
+    with pytest.raises(ValueError): mod.published_path('../README.md')
+
+
+def test_source_register_never_treats_unfetched_page_as_organizer_receipt():
+    sources=json.loads((ROOT/'docs/sources.json').read_text())
+    assert len(sources)>=10
+    for s in sources: assert s['url'].startswith('https://') and s['verification']
+    fleet=json.loads((ROOT/'docs/fleet-audit.json').read_text())
+    assert len(fleet['rows'])==92
+    assert not fleet['complete_universal_registry']
+    assert all(not r['organizer_confirmed_scores'] for r in fleet['rows'])

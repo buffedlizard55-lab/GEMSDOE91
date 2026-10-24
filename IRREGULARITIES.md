@@ -672,34 +672,203 @@ as a *matched-dose difference* between two arms rather than as an absolute gain.
 `CONCENTRATIONgdr25rm10` (`c019adb01`, `+0.0123` `MODEL`) loses its top slot: its prediction is
 a 0.1 × shrinkage of the prior scored against itself, the same circularity in a different dress.
 
+## IR-91-36 — The 2026-10-24 prompt names no single lane paragraph, and two of its leaderboard numbers conflict
+
+**Expected:** the parallel-run protocol says "your lane is the single method paragraph below",
+and quotes one current top score.
+**Actual:** the prompt as delivered contains no single method paragraph (it repeats the full
+fleet brief twice), and quotes both "current high score 0.4413" and "0.3195 is the highest
+score right now". The official leaderboard fetched 2026-10-24 reads #1 0.4413, #2 0.3916,
+#3 0.3904 (LEADERBOARD-READ); 0.3195 was #2 in GEMSDOE32's verified 2026-10-04 read.
+**Numbering note (merge 2026-10-24):** main's parallel GEOD/review session took IR-91-35 while
+this branch was in flight, so this branch's items were renumbered 35-40 -> 36-41 on merge;
+cross-references in this lane's docs/code were updated to match.
+**Decision it changes.** The lane is self-assigned and stated up front (DENOVO, de novo surface;
+`src/gems91/denovo.py` + experiment preregistrations in `scripts/build_denovo.py`), and the
+duplicate test (rank-correlation > 0.90 or > 70% of dots within 3 px of one registry raster) is
+applied to the surface and the final dots (max 0.1133 / 40.41% — not a duplicate). All three
+leaderboard numbers are reported with their dates and sources, never silently picked.
+
+## IR-91-37 — `src/gems91/metric.py` computed a different metric from the organiser's (fixed here)
+
+**Expected:** two metric implementations in one repo agree.
+**Actual:** `metric.py` summed `p*k` over all dots near a truth pixel; the organiser's published
+definition (fetched 2026-10-24) takes the per-truth-pixel **max** (`TPw`, capped at 1), and
+`scripts/dti.py` already did that. The summed version can exceed DTI = 1 — the old test
+`test_dense_coverage_can_exceed_one` documented exactly that symptom without naming it a bug.
+**Decision it changes.** Fixed once in `metric.py` (per parallel-run protocol §2), with the
+official worked example (`TPw 3.00, FPw 1.89, FNw 2.00 -> 0.60`) pinned in tests; both
+implementations now agree to <1e-9 on random fields. Convergence on merge (2026-10-24): the CED
+lane independently found the same summed-credit bug, cited it under the same number IR-91-37, and
+replaced `metric.py` with an adapter to the pinned shared template (`vendor/gems57`), which
+supersedes this branch's local fix; `scripts/dti.py` (this lane's evaluator of record) agrees with
+the template algebra. Note on merge (2026-10-24): the GEOD
+lane that landed on main in parallel quotes `gems91.metric v1` (the summed version) for its
+holdout 0.00077 — that number overstates credit wherever dot kernels overlap and should be
+recomputed with `scripts/dti.py` before reuse; its file gates are unaffected. Any overlapping-dot `T` previously
+computed via `metric.py` is overstated and must be recomputed before reuse. The protocol's
+named files `evaluate_holdout.py` / `submission_writer.py` do not exist in this repo; the
+equivalents used are `scripts/dti.py` + `scripts/build_denovo.py` (holdout) and
+`gems91.io.write_float32` (writer) — no private fork was created.
+
+## IR-91-38 — R0-as-is and d2.8-as-is are not honest holdout baselines
+
+**Expected:** score the parent on the same holdout as the candidate.
+**Actual:** R0 was pruned against the *full* catalogue, so on withheld segments it scores
+0.006452 by construction (IR-91-28 class); d2.8-as-is scores 0.156058 partly because 8,607 of
+its dots sit ≤3 px from the full catalogue including withheld pixels, and it spends 44,090
+dots against the candidate's 37,654. Neither is a like-for-like bar.
+**Decision it changes.** Promotion is judged against same-protocol methods (random 0.070827,
+TRI3 0.091215, SUP 0.097146) and per-dot credit (HGB-CTX 0.2168 > d2.8 0.2077); the d2.8 number
+is carried as a labelled leakage-flattered reference, never as "the holdout best".
+
+## IR-91-39 — The two local instruments disagree about the DENOVO file
+
+**Expected:** holdout and the SGMC off-catalogue control rank candidates the same way.
+**Actual:** the blocked holdout puts HGB-CTX first of the honest methods, but the SGMC
+off-catalogue control (62,122 px) scores it 0.068703 vs R0's 0.095386. Converted through the
+metric algebra the MODEL live range is ~0.20-0.29, spanning R0's 0.2778 CLAIM.
+**Decision it changes.** The file is promoted for **one** weekly slot as the unique-lane test
+and explicitly *not* recommended as the blind final; the site states both readings. The
+receipt, whichever way it lands, adjudicates the instruments.
+
+## IR-91-40 — The highest-ceiling hypothesis (1 m DEM scarps) is blocked in this sandbox
+
+**Expected:** candidate H4 (scarp features re-derived from the competition's `1m_DEM_links.csv`
+-> USGS 3DEP, free/official/public domain) could be validated before proposing it.
+**Actual:** the sandbox may only reach GitHub/PyPI/npm hosts, the DrivenData data page needs a
+login, and the pinned derived copy `ext_lidar_scarp_u8` carries "licence unchecked — do not
+redistribute" with unverified provenance and only 75% footprint coverage. Its bands' pixelwise
+canary AUCs here are 0.52-0.55 (diagnostic only; pixelwise AUC understates line detectors).
+**Decision it changes.** H4 is proposed as *not viable from this sandbox* and named as the next
+lane for an unrestricted machine: download the official DEM tiles, re-derive scarp features
+with recorded provenance, pin hashes, then rerun this session's holdout with the scarp channels
+added to HGB-CTX. The submitted file uses sponsor bands only.
+
+## IR-91-41 — Publishing the submission .tif in `docs/downloads/` amends the no-rasters-in-git rule
+
+**Expected:** repo policy (docs/DATA.md rule 2, CI gate) tracked no `.tif` at all.
+**Actual:** the brief requires an obvious one-click download from the GitHub Pages site, and the
+fleet's working precedent (GEMSDOE32, whose download scored 0.2778 CLAIM) publishes its own
+derived submission under `docs/downloads/`. A derived {0,1} prediction is the entrant's own
+work product, not competition input data.
+**Decision it changes.** `.gitignore` and CI now allow `.tif`/`.zip` only under
+`docs/downloads/`; competition input rasters remain forbidden everywhere and `data/` remains
+ignored. Only the all-finite zeros primary is published (202,693 B) with its audit JSON.
+## IR-91-35 — 2026-10-24 parallel-run protocol cannot certify legacy axes
+
+No lane paragraph or shared template path supplied. All pinned input files absent
+in this fresh checkout. Existing hide-and-recover is fixed-dot mean credit, not
+buffered segment retraining with pooled DTI. Historical build readiness is stale.
+No compliant baseline or full surface/dot registry comparison is present. The
+GEMSDOE32 source explicitly disclaims organizer scores. See
+`docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
+submission advice is superseded by the fail-closed executive summary.
+
+## IR-CED-001 — contradictory active approval claims and stale run cards
+
+At this branch's starting commit, the landing page advertised “Download & submit”
+while `docs/run-card.json` reported no experiment and no TIFF. The advertised GEOD
+file also exceeded the prompt's 70% near-dot threshold. Concurrent upstream work
+subsequently labelled the old file promoted without a compliant pooled holdout.
+This session preserves inherited artifacts/history but replaces active approval
+claims with a single evidence-derived fail-closed policy and measured negative
+CED91 card. Tests now distinguish a downloadable **research** file from an
+approved submission; they require real bytes and working local links in both cases.
+
+## IR-CED-002 — the legacy local metric summed max-kernel truth credit
+
+`src/gems91/metric.py` used addition instead of max at each truth cell. Its own
+old test expected dense perfect predictions to exceed one. Two builder-specific
+`dti_parts_f32` routines reproduced that bug. All three are now adapters to the
+unchanged pinned shared max-credit metric. Legacy deltas from incompatible/wrong
+instruments are not a compliant baseline and do not support promotion. This is
+not a private modification of `vendor/gems57`; its hashes remain upstream-exact.
+
+## IR-CED-003 — literal novelty rule meets a near-universal lattice cover
+
+CED91 cleared all 64 indexed pre-placement surface comparisons. Final comparison
+27 (`calib_r13lattice_00904.tif`) gave 0.999125 directed overlap within 3 px and
+triggered DUPLICATE. The reference's own 3-pixel cover reaches 99.8713% of the
+footprint (`docs/parent-forensics.json`). A low rank correlation cannot override
+that literal rule. The run stopped; no exemption, registry removal, threshold
+change or additional geological experiment followed. This is a protocol conflict
+for owner/shared-selector review, not proof of copied geology. The TIFF remains
+a format-valid research deliverable, explicitly NOT OK TO SUBMIT.
+
+## IR-CED-004 — ancestor deletion counts conflated in earlier prose
+
+Pinned forensics find R0 deletes 6,436 of the 44,090-dot d2.8 ancestor or 2,545 of
+the 40,199-dot solo-d2.8 ancestor. Both rebuild R0 exactly at distance >2 px; neither
+adds dots. Earlier prose attached the second deletion count to the first ancestor.
+Active analysis now uses measured counts and does not claim a universal spacing
+optimum, established causality for the reported score, or an authenticated receipt.
+
+## IR-CED-005 — no assigned method, complete registry or comparable best
+
+The user prompt contains no single assigned lane paragraph. A parent-free CED
+lane was preregistered as **provisional research only**, with assignment unverified
+and promotion disabled. The 64-file pinned registry is not universal: the 92-page
+GitHub audit indexes 2,529 raster file entries across source snapshots, including
+repeats and data. No complete raster comparison is claimed. No independently
+comparable prior holdout best is recorded. These are additional explicit blockers,
+not reasons to invent a score or ask for credentials.
+
+## IR-CED-006 — external source and legacy data-placement claims
+
+Official non-GitHub hosts, including the rules PDF and live organizer allowance,
+are outside this sandbox's allowlist. Links are labelled source leads unless
+actually fetched. The user prompt's download/prepare shell commands are absent
+from this checkout; claiming a ready GPU training pipeline from them was wrong.
+The existing pinned restore script did recover and hash-verify the cached input
+stack on CPU. No new external data or GPU is needed by the tested CED method.
+Raw rasters remain ignored; existing public mirrors still need distribution-rights
+review. A hash pin is identity evidence, not official authentication or permission.
+
+## IR-CED-007 — Concurrent outputs were outside the new artifact allowlist
+
+PR32 merged after PR34, preserving the CED negative portal but adding a separate
+DENOVO TIFF/ZIP without updating `artifact_policy.json`. Those files are now
+hash-pinned as `parallel_quarantined`, not removed, rebuilt, or promoted. Its
+pre-merge promotion advice is preserved as historical; current policy is blocked.
+Different holdout instruments and seven-file comparisons do not waive common gates.
+
+## IR-CED-008 — Pages configuration permission and runner queue
+
+After the published REST quota reset, reading Pages succeeded; updating the
+legacy publisher to Actions was denied with 403 “Resource not accessible by
+integration”. The existing workflow's declared Pages-write token is configured
+to attempt the switch; this is unverified until it executes. CI/Pages were
+queued without runners at the observed check. Neither a local PASS nor merge
+is a successful public-deployment receipt.
+
 ---
 
-## IR-91-35 — `src/gems91/metric.py` sums kernel credit (`> 1.0`) while competition DTI (`scripts/dti.py`) takes `max_j` (`<= 1.0`)
+## IR-H91-01 — `scripts/dti.py` and `vendor/gems57` use competition `max_j` kernel credit (`<= 1.0`), matching DrivenData's worked example
 
-**Expected:** both DTI modules in the repository implement the same competition formula.
-**Actual:** `src/gems91/metric.py` sums kernel contributions across nearby predicted pixels (allowing scores `> 1.0`, locked by `tests/test_metric.py`), whereas DrivenData's published worked example (`TP=3.00, FP=1.89, FN=2.00 -> 0.6026`) uses `TP_w = sum_g max_j p_j k(||j-g||_2)` (`scripts/dti.py`, strictly in `[0, 1]`).
-**Decision it changes.** Keep `src/gems91/metric.py` untouched so existing regression tests continue to pass; route `scripts/evaluate_holdout.py` (`gems91-hide-recover-v1.0`) exclusively through `scripts/dti.py`.
+**Expected:** all DTI modules in the repository implement DrivenData's published worked example (`TP=3.00, FP=1.89, FN=2.00 -> 0.6026`).
+**Actual:** `scripts/evaluate_holdout.py` (`gems91-hide-recover-v1.0`) routes all `HOLDOUT-DTI` calculations exclusively through `scripts/dti.py` (`TP_w = sum_g max_j p_j k(||j-g||_2) <= |G|`), agreeing with `origin/main`'s `IR-CED-002` fix.
 
-## IR-91-36 — `src/gems91/prior.py` drops `'Hot '` trailing-space rows and 212 blind `>= 90 C` geothermometer cells
+## IR-H91-02 — `src/gems91/prior.py` drops `'Hot '` trailing-space rows and 212 blind `>= 90 C` geothermometer cells
 
 **Expected:** filtering `data/external/gdr_wellspring_in_footprint.csv` ([DOE GDR #1391](https://gdr.openei.org/submissions/1391)) captures all geothermal upflow indicators in the footprint.
 **Actual:** `121` rows carry `'Hot '` with a trailing space, and **`212` unique footprint grid cells** labeled `Cold`/`NULL`/blank carry dissolved quartz, chalcedony, or Na-K-Ca chemical geothermometers `>= 90 C` — the geochemical signature of blind fault-hosted hydrothermal plumes cooled conductively in shallow aquifers.
 **Decision it changes.** Leave `src/gems91/prior.py` untouched so `registry/derived_priors.json` sha256 pins remain valid; implement whitespace-trimmed `Hot/Warm` (`2,060` cells) + blind `>= 90 C` geothermometer (`212` cells) extraction in `src/gems91/dd_vtc_pu.py`.
 
-## IR-91-37 — `gdr_wellspring_in_footprint.csv` carries a leaky `dist_known_fault_px` column on all 27,092 rows
+## IR-H91-03 — `gdr_wellspring_in_footprint.csv` carries a leaky `dist_known_fault_px` column on all 27,092 rows
 
 **Expected:** external well/spring attributes are independent of withheld holdout fault segments.
 **Actual:** column `dist_known_fault_px` in `gdr_wellspring_in_footprint.csv` was precomputed against the full global `existing_faults.tif` raster (`27,092 / 27,092` rows populated). Ingesting it in a hide-and-recover fold leaks exact Euclidean distance to withheld fault traces.
 **Decision it changes.** Explicitly ban `dist_known_fault_px` in `src/gems91/dd_vtc_pu.py` and verify every engineered feature through `evaluate_holdout.run_leakage_canary` (`52/52` symmetric AUC `<= 0.6610 <= 0.90`).
 
-## IR-91-38 — GeoDAWN `Band 6` (`tc`) is unsigned gravity terrain correction (`[11.8, 25.6]` mGal), not signed Verduzco tilt
+## IR-H91-04 — GeoDAWN `Band 6` (`tc`) is unsigned gravity terrain correction (`[11.8, 25.6]` mGal), not signed Verduzco tilt
 
 **Expected:** shorthand naming `tc` in sibling lanes sometimes treated Band 6 as a zero-crossing tilt contact indicator.
 **Actual:** Band 6 is strictly positive `[11.82, 25.60]` inside the footprint (`median = 17.44` on catalogue faults vs `18.49` background). By contrast, `Band 11` (`iso_grav_anom_vg`) is signed and flips polarity across fault contacts (`+0.0824` median on faults vs `-0.0739` background), while `Band 5` (`iso_grav_anom_slope`) is unsigned `[0.0288, 0.27]`.
 **Decision it changes.** Synthesize true depth-normalized Verduzco tilt angles `atan2(B11, B05)` and `atan2(B09, |grad B02|)` in `H91-1` (`dd_vtc_pu.py`) and project them updip by `B15 * cot(55 deg)` along `-grad G_6(B13)`.
 
-## IR-91-39 — 2-D vs 1-D submodular kernel area bias (`10.61` vs `3.00`) and 1.42M-pixel calibration blankets
+## IR-H91-05 — 2-D vs 1-D submodular kernel area bias (`10.61` vs `3.00`) and synthetic calibration covers
 
 **Expected:** maximizing `sum_g p(g) max_j K(||j-g||_2)` over 2-D posterior maps selects 1-px fault ridges, and one-way 3-px dot overlap compares peer dot sets symmetrically.
-**Actual:** (1) over a 2-D disk (`r <= 3 px`, 29 cells), `sum K = 10.61`, whereas along a 1-px fault line (7 cells), `sum K = 3.00` — a `3.5x` area bias that causes uncalibrated 2-D submodular allocators to pack `p = 0.50` mountain blocks (`0.50 * 10.61 = 5.31`) ahead of `p = 0.85` 1-D fault lines (`0.85 * 3.00 = 2.55`), collapsing `HOLDOUT-DTI` to `0.030`; (2) external calibration probe `calib_h28ridge_01839.tif` (`69,281` spaced dots = `1.8x` candidate count) covers `1,415,571` pixels (`27.4%` of the entire footprint) within `3 px`.
-**Decision it changes.** Apply Bayes prior-shift calibration + 4-axis 1-D directional ridge NMS + background floor subtraction in `submodular_dti_emit` (lifting `E1` `HOLDOUT-DTI` to `0.174030` in `~1.0s`/fold), and use symmetric harmonic-mean (`F1`) 3-px overlap when a reference calibration blanket has `> 1.5x` candidate positive count while preserving strict one-way overlap for all peer dot submissions (`<= 1.5x`).
+**Actual:** (1) over a 2-D disk (`r <= 3 px`, 29 cells), `sum K = 10.61`, whereas along a 1-px fault line (7 cells), `sum K = 3.00` — a `3.5x` area bias that causes uncalibrated 2-D submodular allocators to pack `p = 0.50` mountain blocks (`0.50 * 10.61 = 5.31`) ahead of `p = 0.85` 1-D fault lines (`0.85 * 3.00 = 2.55`), collapsing `HOLDOUT-DTI` to `0.030`; (2) synthetic calibration blankets (`calib_h28ridge_01839.tif` covering `27.4%` of footprint, and `calib_r13lattice_00904.tif` covering `99.8713%` of footprint per `IR-CED-003`) asymmetrically overlap smaller `38k` dot sets.
+**Decision it changes.** Apply Bayes prior-shift calibration + 4-axis 1-D directional ridge NMS + background floor subtraction in `submodular_dti_emit` (lifting `E1` `HOLDOUT-DTI` to `0.174030` in `~1.0s`/fold), check `E1` against all `20` real fault-prediction rasters (`<= 63.17%`), and register `E1`'s `.tif` and `.zip` in `registry/artifact_policy.json` as `current_research_only` pending human fleet-selector review of `calib_r13lattice_00904.tif` and the weekly 3-slot allowance.

@@ -30,3 +30,15 @@ releases/_tmp-*.tif
 
 # TRACKB trace GeoJSON is a derived candidate geometry (same policy as rasters)
 releases/*.geojson
+
+# Static Pages staging, browser tooling and test reports
+_site/
+.playwright-cli/
+node_modules/
+playwright-report/
+test-results/
+
+# Our own derived submission artifacts are published for one-click download
+# (NOT competition input data; see IR-91-41). Only this path may hold a .tif.
+!docs/downloads/*.tif
+!docs/downloads/*.zip

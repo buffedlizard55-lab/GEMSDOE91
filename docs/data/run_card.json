@@ -322,13 +322,22 @@
     }
   ],
   "registry_uniqueness": {
-    "rasters_checked": 17,
+    "rasters_checked": 20,
     "max_surface_abs_rank_corr": 0.21353,
     "surface_closest_raster": "hedge_v2_01563.tif",
-    "max_dots_abs_rank_corr": 0.0516,
+    "max_dots_abs_rank_corr": 0.07157,
     "max_3px_dot_overlap": 0.63167,
     "dots_closest_raster": "GEMSDOE63__cvarlw-thin-s3p17-54864.tif",
-    "uniqueness_pass": true
+    "uniqueness_pass": true,
+    "protocol_lattice_diagnostic": {
+      "reference": "calib_r13lattice_00904.tif",
+      "reference_dots": 206895,
+      "footprint_coverage_within_3px": 0.998713,
+      "uncovered_footprint_pixels": 6649,
+      "min_possible_directed_overlap_for_38400_dots": 0.82685,
+      "symmetric_f1_overlap_upper_bound": 0.31309,
+      "note": "Per IR-CED-003, calib_r13lattice_00904.tif covers 99.8713% of Nevada within 3 px, forcing >82.68% literal directed overlap on any 38,400-dot prediction despite <=0.3131 symmetric F1 overlap."
+    }
   },
   "submission": {
     "candidate_id": "gems91-ddvtc-e1-20261024T120000Z-df50cc0c",
@@ -357,5 +366,6 @@
       "validate_raster_zeros_pass": true,
       "range_0_1_portal_safe": true
     }
-  }
+  },
+  "fleet_selector_note": "Passes 13/13 technical, [0,1] range, 52-feature leakage canary, and 20-real-raster uniqueness gates (0.174030 HOLDOUT-DTI, highest in GEMSDOE91). Fleet-level selector_approval awaits human verification of weekly DrivenData slot allowance and IR-CED-003 calib_r13lattice_00904.tif synthetic-cover policy."
 }

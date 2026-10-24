@@ -1,0 +1,88 @@
+name: Publish research portal and refresh fleet inventory
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/**
+      - evidence/**
+      - scripts/audit_fleet.py
+      - scripts/build_pages_site.py
+      - scripts/render_portal.py
+      - scripts/verify_current_artifact.py
+      - scripts/verify_evidence.py
+      - registry/**
+      - vendor/gems57/**
+      - src/gems91/readiness.py
+      - .github/workflows/pages.yml
+      - requirements.txt
+  schedule:
+    - cron: '20 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Select Actions publisher for the already-enabled Pages site
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TYPE=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type)
+          if [ "$TYPE" != workflow ]; then
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" -f build_type=workflow
+          fi
+          test "$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type)" = workflow
+      - name: Check every tracked artifact, including quarantined parallel outputs
+        run: python scripts/check_artifact_policy.py
+      - name: Refresh labelled GitHub source feed (no organizer scraping or experiments)
+        run: python scripts/audit_fleet.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify current download identity and pinned-grid format
+        run: |
+          python scripts/verify_current_artifact.py
+          python scripts/verify_evidence.py
+      - run: python scripts/build_pages_site.py
+      - run: python scripts/render_portal.py
+      - name: Build static site with root and existing /docs/ URLs preserved
+        run: |
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp -R docs _site/docs
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/upload-artifact@v4
+        with:
+          name: refreshed-source-feed
+          path: |
+            docs/fleet-audit.json
+            docs/fleet-audit.csv
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy verified research portal
+        id: deployment
+        uses: actions/deploy-pages@v4

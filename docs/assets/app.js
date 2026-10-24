@@ -112,7 +112,7 @@
     if (hero && pill) {
       if (allGreen) {
         hero.classList.remove("is-hold");
-        pill.textContent = "AUTOMATED GATES: " + gateStatus.passed + "/" + gateStatus.total + " PASSED — OK TO DOWNLOAD & SUBMIT";
+        pill.textContent = "AUTOMATED TECHNICAL GATES: " + gateStatus.passed + "/" + gateStatus.total + " PASSED — 20/20 REAL RASTERS UNIQUE";
       } else {
         hero.classList.add("is-hold");
         const reason = !gateStatus.ok ? gateStatus.failed.join(", ") : "WebCrypto SHA check pending/failed";

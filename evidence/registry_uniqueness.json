@@ -1,10 +1,10 @@
 {
-  "n_registry_rasters_checked": 17,
+  "n_registry_rasters_checked": 20,
   "max_allowed_rank_corr": 0.9,
   "max_allowed_dot_overlap_3px": 0.7,
   "surface_max_abs_rank_corr": 0.21353,
   "surface_closest_raster": "hedge_v2_01563.tif",
-  "dots_max_abs_rank_corr": 0.0516,
+  "dots_max_abs_rank_corr": 0.07157,
   "dots_max_3px_overlap": 0.63167,
   "dots_closest_raster": "GEMSDOE63__cvarlw-thin-s3p17-54864.tif",
   "dots_max_mutual_3px_overlap": 0.45999,
@@ -214,6 +214,51 @@
       "mutual_min_overlap_3px": 0.28264,
       "effective_dot_overlap_3px": 0.38,
       "duplicate_flag": false
+    },
+    {
+      "registry_raster": "gems91-ced-v1-20261024-d35670b28c81.tif",
+      "n_registry_positive": 32000,
+      "surface_abs_rank_corr": 0.0035,
+      "dots_abs_rank_corr": 0.0035,
+      "cand_within_3px_of_reg": 0.13568,
+      "reg_within_3px_of_cand": 0.21788,
+      "f1_dot_overlap_3px": 0.16722,
+      "mutual_min_overlap_3px": 0.13568,
+      "effective_dot_overlap_3px": 0.13568,
+      "duplicate_flag": false
+    },
+    {
+      "registry_raster": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
+      "n_registry_positive": 37654,
+      "surface_abs_rank_corr": 0.07157,
+      "dots_abs_rank_corr": 0.07157,
+      "cand_within_3px_of_reg": 0.51521,
+      "reg_within_3px_of_cand": 0.67746,
+      "f1_dot_overlap_3px": 0.5853,
+      "mutual_min_overlap_3px": 0.51521,
+      "effective_dot_overlap_3px": 0.51521,
+      "duplicate_flag": false
+    },
+    {
+      "registry_raster": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
+      "n_registry_positive": 37654,
+      "surface_abs_rank_corr": 0.03763,
+      "dots_abs_rank_corr": 0.03763,
+      "cand_within_3px_of_reg": 0.42898,
+      "reg_within_3px_of_cand": 0.47034,
+      "f1_dot_overlap_3px": 0.44871,
+      "mutual_min_overlap_3px": 0.42898,
+      "effective_dot_overlap_3px": 0.42898,
+      "duplicate_flag": false
     }
-  ]
+  ],
+  "protocol_lattice_diagnostic": {
+    "reference": "calib_r13lattice_00904.tif",
+    "reference_dots": 206895,
+    "footprint_coverage_within_3px": 0.998713,
+    "uncovered_footprint_pixels": 6649,
+    "min_possible_directed_overlap_for_38400_dots": 0.82685,
+    "symmetric_f1_overlap_upper_bound": 0.31309,
+    "note": "Per IR-CED-003, calib_r13lattice_00904.tif covers 99.8713% of Nevada within 3 px, forcing >82.68% literal directed overlap on any 38,400-dot prediction despite <=0.3131 symmetric F1 overlap."
+  }
 }

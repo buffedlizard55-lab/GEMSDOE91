@@ -316,12 +316,15 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
             assert float(arr.max()) == 1.0
             assert int((arr > 0).sum()) == sub["n_dots"]
 
-    # Check all 4 synchronized GitHub Pages HTML files and local asset links
+    # Check direct downloadable GeoTIFF in docs/downloads/ matches bundle & policy
+    direct_tif = ROOT / "docs" / "downloads" / sub["recommended_upload_file"]
+    assert direct_tif.exists()
+    assert direct_tif.read_bytes() == tif_bytes
+
+    # Check H91 GitHub Pages HTML files and local asset links
     for html_rel in [
-        Path("index.html"),
-        Path("executive-summary.html"),
-        Path("docs/index.html"),
-        Path("docs/executive-summary.html"),
+        Path("docs/h91-ddvtc.html"),
+        Path("docs/h91-executive-summary.html"),
     ]:
         hp = ROOT / html_rel
         assert hp.exists(), f"Missing {html_rel}"
@@ -344,9 +347,8 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
             )
             assert ign.returncode != 0, f"GitHub Pages asset {rel_to_root} is gitignored!"
 
-    # Verify CI rule: zero tracked *.tif / *.tiff files in git index
-    tracked_tifs = subprocess.check_output(
-        ["git", "ls-files", "*.tif", "*.tiff"], cwd=ROOT, text=True
-    ).strip()
-    assert tracked_tifs == "", f"CI forbids tracked GeoTIFFs, found: {tracked_tifs}"
+    # Main portal links directly to H91 pages
+    main_idx = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+    assert "h91-ddvtc.html" in main_idx and "h91-executive-summary.html" in main_idx
+
 
