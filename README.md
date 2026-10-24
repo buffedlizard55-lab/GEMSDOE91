@@ -1,5 +1,21 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## START HERE — session 12 standing brief (read at every session start)
+
+**Read `docs/SESSION_BRIEF_S12.md` first.** It holds the standing rules, the answer on 0.2778, the verdict on the current file, and the open human decisions. The S11 standing brief is kept verbatim below, in the session-10 section, and still applies except where S12 overrides it.
+
+- **Current verdict (automated, fail-closed):** the S11-MHTR candidate may be downloaded as research only. It is **NOT** cleared for submission. See the computed status board at the top of `docs/executive-summary.html` (all candidates). `docs/index.html` is the MTD91 lane's landing page on `main` and is not overwritten by the CED renderer (see the test contract in `tests/test_submission_portal.py`).
+- **Session 12 result:** H12-1 (gravity–magnetic edge co-location, `evidence/h12/run_card_S12.json`) is **negative**: HOLDOUT-DTI `0.113042` (CI `[0.102124, 0.123819]`), below B0 `0.138999` and the S11 candidate `0.206406`. Its gravity-only control scores the same.
+- **Latest lane on `main` (CCR91, PR #51):** negative, research download only. HOLDOUT-DTI `0.202116` is below the `0.206406` gate. It is on the status board in `docs/executive-summary.html` and on `docs/index.html`.
+- **Other lanes now on `main`:** UCD91 E2 `0.113442` HOLDOUT-DTI (CI `[0.103611, 0.121110]`) and MTD91 E1 `0.023903` HOLDOUT-DTI (CI `[0.021318, 0.026004]`). Both are negative, research download only, from their own run cards. They were not re-run in this session.
+- **Reproduction:** in an isolated copy, the H91 and S11 lanes reproduce the published holdouts (H91-1 E1 `0.174030`, S11 E1 `0.202272`, S11 E2 `0.206406`). See `docs/SESSION_BRIEF_S12.md`.
+- **Core values applied:** Maximize P(Win) (falsifiable discovery, honest negatives) and Own the Outcome (automatic inspection, provenance, blockers stated).
+- **Irregularities:** `IRREGULARITIES.md` `IR-91-S12-01..11`. Limitations: `LIMITATIONS.md`, "Session 12 additions".
+
+## SESSION 11 DISCOVERY LANE (`S11-MHTR`, 2026-10-24, branch `arena/8d9056a3-gemsdoe91`) — NEW #1 `HOLDOUT-DTI` (`0.206406`) & BLIND `SGMC` (`0.097623`)
+
+> **CURRENT SESSION REVIEW — 2026-10-24 / `arena/a0841715-gemsdoe91`: NEGATIVE; NOT OK TO SUBMIT.** This session ran no experiment, generated no TIFF and used no slot because the assigned lane paragraph is not identifiable. See [`docs/REVIEW-A0841715-20261024.md`](docs/REVIEW-A0841715-20261024.md) and [`docs/run-card-arena-a0841715.json`](docs/run-card-arena-a0841715.json).
+
 > ## CURRENT SESSION — CCR91 (2026-10-24; branch `arena/02c6b911-gemsdoe91`)
 >
 > **A NEW, METHOD-UNIQUE GEOTIFF WAS GENERATED. OK TO DOWNLOAD FOR RESEARCH: YES. OK TO SUBMIT: NO.**
@@ -1000,7 +1016,7 @@ The project performs inspection automatically. No human inspector is needed to d
 
 ## Start every session here
 
-**Read this README, including the original user brief below, before working.** Then read the latest `docs/run-card.json`, `IRREGULARITIES.md`, `LIMITATIONS.md`, and `docs/REVIEW-CED91.md`. Historical MODEL/PROXY projections and archived slot queues are not comparable HOLDOUT-DTI or organizer receipts. Do not rerun or tune the stopped CED experiment to evade a failed gate.
+**Read this README, including the original user brief below, before working.** Session 12 onward, also read `docs/SESSION_BRIEF_S12.md` (the current standing brief). Then read the latest `docs/run-card.json`, `IRREGULARITIES.md`, `LIMITATIONS.md`, and `docs/REVIEW-CED91.md`. Historical MODEL/PROXY projections and archived slot queues are not comparable HOLDOUT-DTI or organizer receipts. Do not rerun or tune the stopped CED experiment to evade a failed gate.
 
 Core values applied to this project:
 

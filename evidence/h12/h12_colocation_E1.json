@@ -1,0 +1,168 @@
+{
+  "experiment_id": "H12-1-E1",
+  "hypothesis": "H12-1: co-located gravity and magnetic horizontal-gradient maxima mark fault-scale contacts without catalogue information",
+  "pre_registered_parameters": {
+    "score": "max(z(tmi_hg),0) * max(z(hypot(B11,B18)),0)",
+    "robust_z": "(x - median)/(IQR/1.349) over footprint-valid pixels",
+    "spacing_px": 3.05,
+    "quotas": "S11 lane fold quotas (48,000 total)",
+    "tuned_on_holdout": false
+  },
+  "labels": {
+    "holdout_metric": "HOLDOUT-DTI",
+    "organizer_confirmed": null
+  },
+  "results": {
+    "E1_colocation_mag_x_grav": {
+      "holdout_dti": 0.113042,
+      "ci_95": [
+        0.102124,
+        0.123819
+      ],
+      "metric_label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_withheld_positives": 60988,
+      "dots_placed": {
+        "0": 11287,
+        "1": 13855,
+        "2": 12564,
+        "3": 10294
+      },
+      "registry_uniqueness_pass": true,
+      "registry_uniqueness": {
+        "n_registry_rasters_checked": 8,
+        "max_allowed_rank_corr": 0.9,
+        "max_allowed_dot_overlap_3px": 0.7,
+        "surface_max_abs_rank_corr": 0.03474,
+        "surface_closest_raster": "calib_h161_01855.tif",
+        "dots_max_abs_rank_corr": 0.00211,
+        "dots_max_3px_overlap": 0.24834,
+        "dots_closest_raster": "calib_h161_01855.tif",
+        "dots_max_mutual_3px_overlap": 0.22494,
+        "is_duplicate": false,
+        "uniqueness_pass": true
+      }
+    },
+    "C_random_placement": {
+      "holdout_dti": 0.039281,
+      "ci_95": [
+        0.036582,
+        0.042025
+      ],
+      "metric_label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_withheld_positives": 60988,
+      "dots_placed": {
+        "0": 11287,
+        "1": 13855,
+        "2": 12564,
+        "3": 10294
+      },
+      "registry_uniqueness_pass": true,
+      "registry_uniqueness": {
+        "n_registry_rasters_checked": 8,
+        "max_allowed_rank_corr": 0.9,
+        "max_allowed_dot_overlap_3px": 0.7,
+        "surface_max_abs_rank_corr": 0.00292,
+        "surface_closest_raster": "calib_h195_01922.tif",
+        "dots_max_abs_rank_corr": 0.00487,
+        "dots_max_3px_overlap": 0.1923,
+        "dots_closest_raster": "calib_h161_01855.tif",
+        "dots_max_mutual_3px_overlap": 0.17881,
+        "is_duplicate": false,
+        "uniqueness_pass": true
+      }
+    },
+    "C_gravity_only": {
+      "holdout_dti": 0.113965,
+      "ci_95": [
+        0.09951,
+        0.127143
+      ],
+      "metric_label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_withheld_positives": 60988,
+      "dots_placed": {
+        "0": 11287,
+        "1": 13855,
+        "2": 12564,
+        "3": 10294
+      },
+      "registry_uniqueness_pass": true,
+      "registry_uniqueness": {
+        "n_registry_rasters_checked": 8,
+        "max_allowed_rank_corr": 0.9,
+        "max_allowed_dot_overlap_3px": 0.7,
+        "surface_max_abs_rank_corr": 0.02009,
+        "surface_closest_raster": "calib_h161_01855.tif",
+        "dots_max_abs_rank_corr": 0.00336,
+        "dots_max_3px_overlap": 0.16799,
+        "dots_closest_raster": "calib_h161_01855.tif",
+        "dots_max_mutual_3px_overlap": 0.1494,
+        "is_duplicate": false,
+        "uniqueness_pass": true
+      }
+    },
+    "C_magnetic_only": {
+      "holdout_dti": 0.104154,
+      "ci_95": [
+        0.092042,
+        0.115508
+      ],
+      "metric_label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_withheld_positives": 60988,
+      "dots_placed": {
+        "0": 11287,
+        "1": 13855,
+        "2": 12564,
+        "3": 10294
+      },
+      "registry_uniqueness_pass": true,
+      "registry_uniqueness": {
+        "n_registry_rasters_checked": 8,
+        "max_allowed_rank_corr": 0.9,
+        "max_allowed_dot_overlap_3px": 0.7,
+        "surface_max_abs_rank_corr": 0.03291,
+        "surface_closest_raster": "calib_h161_01855.tif",
+        "dots_max_abs_rank_corr": 0.0019,
+        "dots_max_3px_overlap": 0.24818,
+        "dots_closest_raster": "calib_h161_01855.tif",
+        "dots_max_mutual_3px_overlap": 0.22499,
+        "is_duplicate": false,
+        "uniqueness_pass": true
+      }
+    }
+  },
+  "leakage_canary": {
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "max_allowed_auc": 0.9,
+    "n_features_tested": 3,
+    "worst_feature": "z_grav",
+    "worst_symmetric_auc": 0.57138,
+    "flagged_features": [],
+    "all_pass": true,
+    "features": {
+      "z_mag": {
+        "mean_raw_auc": 0.50762,
+        "mean_symmetric_auc": 0.52617,
+        "max_fold_symmetric_auc": 0.55011,
+        "pass": true
+      },
+      "z_grav": {
+        "mean_raw_auc": 0.53484,
+        "mean_symmetric_auc": 0.53738,
+        "max_fold_symmetric_auc": 0.57138,
+        "pass": true
+      },
+      "colocation": {
+        "mean_raw_auc": 0.51386,
+        "mean_symmetric_auc": 0.51386,
+        "max_fold_symmetric_auc": 0.52025,
+        "pass": true
+      }
+    }
+  },
+  "runtime_s": 103.5,
+  "run_at_utc": "2026-10-24T18:20:52+00:00"
+}
