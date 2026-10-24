@@ -7,6 +7,9 @@ on:
       - scripts/audit_fleet.py
       - scripts/render_portal.py
       - scripts/verify_current_artifact.py
+      - scripts/verify_evidence.py
+      - registry/**
+      - vendor/gems57/**
       - src/gems91/readiness.py
       - .github/workflows/pages.yml
       - requirements.txt

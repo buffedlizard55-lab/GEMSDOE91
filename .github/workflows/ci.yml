@@ -84,10 +84,13 @@ jobs:
       - run: npm ci --prefix tools/browser
       - name: Real download, desktop/mobile and accessibility checks
         run: |
-          python3 -m http.server 8000 --bind 0.0.0.0 --directory docs > "$RUNNER_TEMP/portal-http.log" 2>&1 &
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp -R docs _site/docs
+          python3 -m http.server 8000 --bind 0.0.0.0 --directory _site > "$RUNNER_TEMP/portal-http.log" 2>&1 &
           SERVER_PID=$!
           trap 'kill "$SERVER_PID"' EXIT
-          node tools/browser/smoke.cjs
+          PORTAL_BASE_URL=http://127.0.0.1:8000/docs/ PORTAL_ENTRY_URL=http://127.0.0.1:8000/ node tools/browser/smoke.cjs
       - uses: actions/upload-artifact@v4
         with:
           name: portal-browser-verification

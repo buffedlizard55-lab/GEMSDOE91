@@ -34,6 +34,10 @@ async function main() {
     page.on('response', response => {
       if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
     });
+    if (process.env.PORTAL_ENTRY_URL) {
+      await page.goto(process.env.PORTAL_ENTRY_URL, { waitUntil: 'networkidle' });
+      await page.waitForURL(new URL('index.html', baseURL).href);
+    }
     await page.goto(baseURL, { waitUntil: 'networkidle' });
     if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
       throw new Error('Missing fail-closed negative submission state');
@@ -72,6 +76,7 @@ async function main() {
       scope: 'Delivery/UI engineering checks, not a competition score or scientific experiment',
       checked_utc: new Date().toISOString(),
       browser: browser.version(),
+      pages_root_redirect_tested: Boolean(process.env.PORTAL_ENTRY_URL),
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
       download_sha256: digest,
