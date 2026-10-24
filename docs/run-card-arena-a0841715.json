@@ -45,7 +45,7 @@
   "weekly_slots_used": 0,
   "organizer_confirmed": null,
   "engineering_checks": {
-    "pytest": "PASS: 287 passed, 7 skipped (missing pinned raster inputs), 29 rasterio deprecation warnings",
+    "pytest": "PASS after merging current main parent: 297 passed, 7 skipped (missing pinned raster inputs), 29 rasterio deprecation warnings",
     "verify_evidence.py": "PASS; 0 geological experiments rerun; submission_ready false",
     "check_artifact_policy.py": "PASS; 10 explicitly registered artifacts; no raw raster/archive tracked",
     "preflight.py": "BUILD BLOCKED; no axis has all pinned inputs",
