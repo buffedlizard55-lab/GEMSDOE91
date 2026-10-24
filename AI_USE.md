@@ -433,3 +433,32 @@ PROXY and SGMC control are labelled `PROXY`/report-only and are never called sco
 is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
 one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
 single blind final file.
+
+## Session 8 — `arena/bc249fc7-gemsdoe91`, CONCENTRATION dose bracket + residual allocator (2026-10-24)
+
+**AI wrote:** `src/gems91/concentration.py` (percentile/structural/residual priors,
+collar-quarantined block reallocation), `scripts/build_concentration_struct.py` (driver, gates,
+evidence, ledger, manifest), `tests/test_concentration_struct.py` (10 tests) and
+`tests/test_metric_conventions.py` (4 tests), `docs/MECHANISM_CARDS_CONC24.md`, the session-8
+sections of `README.md` (CURRENT STATE), `SLOT_PLAN.md` and `docs/SUBMIT.md`, `IR-91-33`, and all
+three release rasters with their `-zeros` twins.
+
+**AI decided (the brief says the agent picks the axis, not the human):** AXIS = `CONCENTRATION`,
+with the values `st1km-m10`, `st1km-m20`, `res1km-m20`. The choice was justified from the ledger
+and the previous session's own evidence file, not from a hunch: all seven existing CONCENTRATION
+rows move mass toward their prior, all push the 1 km occupied-block CV away from the `0.51-0.59`
+band the brief reports, and the GDR family's null diagnostic reproduced ~70 % of its predicted gain
+with a random block ranking. The two questions built here (does the *dose* survive; is the parent's
+own clumping information or noise) are the ones that evidence left open.
+
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read, request or print credentials,
+scrape a leaderboard, or invent a score. Every pinned input was sha256-verified before use; R0 was
+rebuilt byte-exact from both ancestors before any variant was built; the label-blind catalogue
+PROXY and the USGS SGMC map are labelled PROXY/report-only and are never called scores.
+
+**Human decides:** whether any of these three is uploaded at all (the AI's recommendation is **no**
+for Week 1 — none predicts above `+0.0116` and all three are negative on the only independent
+locator), `TOP_PUBLIC` with date, slots remaining this week, the confirm of the 2026-12-03 deadline,
+and the single blind final file. The AI also could not verify the brief's `0.51-0.59`
+block-density-CV claim against any file in this repo: the only files with that number are the ones
+this session measured, and they use a stated definition (occupied 1 km blocks).

@@ -23,7 +23,7 @@ a byte ("is this file one of the pinned inputs?").
 
 | axis | pinned ids | why |
 |---|---|---|
-| CONCENTRATION | `parent_r0_nan`, `existing_faults`, `gdr_wellspring_in_footprint` | parent dots; collar exclusions; an **external** km-scale prior (GDR thermal features, public domain). `training_features` is NOT used — see IR-91-18 |
+| CONCENTRATION | `parent_r0_nan`, `existing_faults`, `gdr_wellspring_in_footprint`, `training_features` | parent dots; collar exclusions; an **external** km-scale prior (GDR thermal features, public domain). `training_features` is used only by the session-8 structural/residual priors (bands 3/5/18), never by the GDR family — see IR-91-18 and `docs/MECHANISM_CARDS_CONC24.md` |
 | MASS | `parent_r0_nan`, `training_features` | the parent's own marginal-gain ranking |
 | PRUNE | `parent_r0_nan`, `existing_faults`, `training_features` | collar + refill ranking |
 | SNAP | `parent_r0_nan`, `existing_faults`, `training_features` | edge/scarp gradients |

@@ -238,3 +238,45 @@ USGS DS-1052): R0 0.095386 -> +0.00008 / -0.00234 / -0.00926.  Leakage canary ma
 **Do not** upload more than one SNAP arm for the "information" of it — they are one dose-response
 experiment. If a SNAP receipt is bought, `s2c` is the only arm whose prediction is compatible with
 no change, and `≤ −0.006` retires the axis.
+
+---
+
+# SESSION 8 — CONCENTRATION dose bracket + residual allocator (2026-10-24)
+
+**Status: `50` BUILT rows, 0 submitted, 0 receipts.** These three files are **not** in the top 3
+slots (see `SLOT_PLAN.md`); they are the reserve set behind Week 1. Nothing here is a score.
+
+Build them (deterministic, ~100 s, no RNG beyond the fixed seed):
+
+```bash
+python3 scripts/restore_data.py                       # 15/15 pinned sha256 verified
+python3 scripts/build_concentration_struct.py --build # 3 arms -> releases/, ledger, MANIFEST
+python3 scripts/validate_raster.py releases/<file>.tif data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif \
+    --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+```
+
+| slot | file (NaN outside footprint) | sha256 | zeros twin sha256 | dots | form note (≤140 chars) |
+|---|---|---|---:|---:|---|
+| reserve A | `h33-h33-2-b2-CONCENTRATIONres1km-m20-20261024-d9a0fcc4.tif` | `d9a0fcc4afde8d9a6a9502bc36301057181e92bf77e0135899ad936fa44ea13f` | `bcdb048210295e409b13228bdc6b9740c9f5704d135a6deec70e32e5613d622e` | 37,654 | `h33-h33-2-b2; CONCENTRATIONres1km-m20: 20.0% of 37654 dots reallocated across 1 km blocks (residual prior); pred +0.0114 MODEL` |
+| reserve B | `h33-h33-2-b2-CONCENTRATIONst1km-m20-20261024-ba313f84.tif` | `ba313f841ef91cfd9fbd2a9b739fa0cc8f823b8de4121104bc9eab644e957347` | `28bd585ba8b9289ea47749235f7a65d482f644be0560110d3b49455126a0e195` | 37,654 | `h33-h33-2-b2; CONCENTRATIONst1km-m20: 20.0% of 37654 dots reallocated across 1 km blocks (struct prior); pred +0.0116 MODEL` |
+| reserve C | `h33-h33-2-b2-CONCENTRATIONst1km-m10-20261024-45d1f4e9.tif` | `45d1f4e9d4beed04e34e62da43b5d02080c4cdb60edba8d50b98bf96976c3b30` | `7db0cd229bfd0d30a52d9ec7ce0a4d712eaa8560f30af7ceca3c6f06e34faa30` | 37,654 | `h33-h33-2-b2; CONCENTRATIONst1km-m10: 10.0% of 37654 dots reallocated across 1 km blocks (struct prior); pred +0.0062 MODEL` |
+
+Upload exactly one of the pair per slot; the `-zeros` twin is the fallback for that same slot.
+
+**Format receipt — paste this back with the score:**
+
+```
+candidate: <file name above>
+sha256:    <the sha256 in the same row>
+bytes:     NaN 369544-369832 / zeros 222785-222930 (read from `ls -l releases/`)
+checks:    CRS EPSG:32611, 3730x3292, 100 m, float32, 1 band, values in [0,1],
+           no NaN inside footprint, NaN outside, 0 dots on catalogue,
+           min catalogue distance 2.236 px, 37,654 unit-mass dots
+gates:     release_gates 16/16 PASS + validate_raster 14/14 PASS, both encodings
+```
+
+**What a receipt on any of these would decide.** `res1km-m20` ≥ `st1km-m20` ⇒ the parent
+over-serves 1 km blocks, which also argues the delete-only PRUNE arms are right; `st1km-m20` >
+`res1km-m20` ⇒ the residual is a dilution and the brief's `0.51-0.59` CV band carries no signal.
+Any arm ≥ +0.010 ⇒ structural CONCENTRATION is a lever worth pairing with PRUNE in Week 2.

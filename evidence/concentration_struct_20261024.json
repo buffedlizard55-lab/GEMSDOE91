@@ -1,0 +1,617 @@
+{
+  "schema": "gems91.concentration-struct-evidence.v1",
+  "generated_utc": "2026-10-24T05:23:27+00:00",
+  "git_sha": "30954e6fa21a73149f5457f57e551ddd8acd4000",
+  "git_sha_short": "30954e6",
+  "axis": "CONCENTRATION",
+  "session": "arena/bc249fc7-gemsdoe91 (session 8)",
+  "parent": "h33-h33-2-b2",
+  "lineage": {
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "dots_on_catalogue": 0,
+    "min_catalogue_distance_px": 2.236068,
+    "rebuilt_from": {
+      "d2.8": {
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    }
+  },
+  "settings": {
+    "block_px": 10,
+    "low_q": 0.3,
+    "high_q": 0.3,
+    "min_gap_px": 3.0,
+    "min_sep_px": 2.0,
+    "jitter_px": 4,
+    "anchor_frac": 0.8,
+    "seed": 91034,
+    "kappa": 0.1,
+    "band": 0.008,
+    "live_span_CLAIM": 0.2778,
+    "collar_quarantined_px": 3.0
+  },
+  "prior": {
+    "kind": "structural",
+    "bands": {
+      "3": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+      "5": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+      "18": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change"
+    },
+    "band_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "definition": "mean percentile rank (ties averaged) of the three bands inside the footprint; NaN outside; block-mean at 1 km inside the edit",
+    "percentile_min": 0.033712,
+    "percentile_max": 0.985647,
+    "percentile_mean_inside_footprint": 0.5
+  },
+  "residual_prior": {
+    "definition": "residual = rank_pct(structural block mean) - rank_pct(dots per block); occupied blocks only, NaN elsewhere",
+    "n_blocks_total": 123090,
+    "n_blocks_occupied": 15976,
+    "n_blocks_usable": 15976,
+    "occupancy_mean_dots_per_occupied_block": 2.3569,
+    "occupancy_p95_dots_per_occupied_block": 5.0,
+    "residual_min": -0.994,
+    "residual_max": 0.8117,
+    "corr_struct_occupancy": 0.0524
+  },
+  "instruments": {
+    "surrogate_truth": {
+      "kind": "top structural cells, same cell count as the mapped catalogue",
+      "n_cells": 60988,
+      "catalogue_cells": 60988,
+      "threshold_percentile": 1.18,
+      "reading": "MODEL upper bound: 'what if new-fault truth followed this prior'"
+    },
+    "noise_truth": {
+      "kind": "uniform random footprint cells, same count, seed 91034",
+      "n_cells": 60988
+    },
+    "lineage_mask": {
+      "kind": "H19-5 ancestor field (121,131 px), pessimistic superset",
+      "n_cells": 121131
+    },
+    "sgmc_control": {
+      "kind": "USGS SGMC bedrock faults, off-catalogue (>3 px), report only",
+      "n_cells": 62122
+    }
+  },
+  "metric_conventions": {
+    "sum_conv": "gems91.metric.components: T sums credit from EVERY dot into each truth cell; DTI is unbounded above (2 dots on one isolated truth cell = 1.667)",
+    "cell_conv": "gems91.relief.fast_binary_dti: each truth cell takes its nearest dot's credit; DTI <= 1",
+    "why_it_matters": "this axis moves mass between over- and under-served blocks; under the sum convention redundancy never costs anything, under the cell convention an uncovered cell is the only thing that pays"
+  },
+  "r0": {
+    "n_dots": 37654,
+    "proxy": {
+      "proxy_mean_credit": 0.006186,
+      "proxy_mean_credit_ci95": 0.000228,
+      "proxy_mean_credit_ci95_interval": [
+        0.005958,
+        0.006413
+      ],
+      "proxy_coverage": 0.038706,
+      "draws": 5,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200,
+      "n_withheld_positives_per_draw": [
+        12200,
+        12198,
+        12199,
+        12200,
+        12201
+      ],
+      "mean_credit_per_draw": [
+        0.006038136218637152,
+        0.006201889947509195,
+        0.006582695130310594,
+        0.0062188384485118405,
+        0.00588596849724877
+      ]
+    },
+    "redundancy": {
+      "dots_with_neighbour_lt_2p83px": 11415,
+      "dots_with_neighbour_lt_2px": 0,
+      "mean_nn_px": 3.7351
+    },
+    "cv_1km_occupied_blocks": 0.6187,
+    "cv_table": {
+      "5px_0.5km": {
+        "cv_occupied_blocks": 0.3989,
+        "position": "below the 0.51-0.59 band (more even than the best historical files)"
+      },
+      "10px_1.0km": {
+        "cv_occupied_blocks": 0.6187,
+        "position": "above the 0.51-0.59 band (clumpier than the best historical files)"
+      },
+      "25px_2.5km": {
+        "cv_occupied_blocks": 0.7622,
+        "position": "above the 0.51-0.59 band (clumpier than the best historical files)"
+      },
+      "50px_5.0km": {
+        "cv_occupied_blocks": 0.7261,
+        "position": "above the 0.51-0.59 band (clumpier than the best historical files)"
+      }
+    },
+    "dti_surrogate_sumconv": 0.132688,
+    "dti_surrogate_cellconv": 0.111478,
+    "dti_lineage_mask_cellconv": 0.683527,
+    "dti_sgmc_cellconv": 0.095386,
+    "dti_catalogue_sumconv": 0.006778,
+    "dti_catalogue_cellconv": 0.006709
+  },
+  "arms": {
+    "st1km-m10": {
+      "id": "h33-h33-2-b2-CONCENTRATIONst1km-m10-20261024-45d1f4e9",
+      "value": "st1km-m10",
+      "description": "10% of dots moved from the lowest- to the highest-structure 1 km blocks (3-band geophysical prior)",
+      "prior": "struct",
+      "prior_digest": "95e3a821061e7835ba67473f5a835b451935211b79a90f2492259474fc942846",
+      "block_px": 10,
+      "block_km": 1.0,
+      "frac_requested": 0.1,
+      "frac_achieved": 0.099989,
+      "n_dots": 37654,
+      "count_preserved": true,
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "pct_dots_changed": 19.9979,
+      "pct_dots_moved": 9.9989,
+      "n_moved": 3765,
+      "n_unplaced": 0,
+      "moved_displacement_px": {
+        "n": 3765,
+        "mean_px": 1652.1304,
+        "p50_px": 1662.6139,
+        "p95_px": 2950.8115,
+        "max_px": 3746.1022
+      },
+      "donor_block_prior_mean": 0.28568,
+      "acceptor_block_prior_mean": 0.566449,
+      "block_density_cv": {
+        "definition_occupied_blocks": "proxy.block_density_cv: CV of dots per OCCUPIED 1 km block, the definition the 0.51-0.59 band is quoted against",
+        "before": 0.6187,
+        "after": 0.6468,
+        "position_before": "above the 0.51-0.59 band (clumpier than the best historical files)",
+        "position_after": "above the 0.51-0.59 band (clumpier than the best historical files)",
+        "moved_toward_band": false,
+        "definition_footprint_blocks": {
+          "before": 1.885205,
+          "after": 1.956317,
+          "note": "CV of dots per footprint cell across every block that intersects the footprint (run_concentration.block_cv); the parent sits at 1.885 at 1 km, so the 0.51-0.59 band does NOT refer to this definition"
+        }
+      },
+      "collar": {
+        "dots_le_3px_before": 2171,
+        "dots_le_3px_after": 2171,
+        "moved_targets_le_3px": 0,
+        "donors_excluded_by_quarantine": 2171
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 12337,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.857
+      },
+      "proxy": {
+        "proxy_mean_credit": 0.006186,
+        "proxy_mean_credit_ci95": 0.000228,
+        "proxy_mean_credit_ci95_interval": [
+          0.005958,
+          0.006413
+        ],
+        "proxy_coverage": 0.038706,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.006038136218637152,
+          0.006201889947509195,
+          0.006582695130310594,
+          0.0062188384485118405,
+          0.00588596849724877
+        ]
+      },
+      "proxy_delta_vs_r0": 0.0,
+      "canary": {
+        "canary_auc": 0.4496,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "sgmc_control": {
+        "n_cells": 62122,
+        "dti_parent": 0.095386,
+        "dti_candidate": 0.087551,
+        "delta_dti": -0.007836,
+        "delta_if_live": -0.0228
+      },
+      "surrogate_truth": {
+        "n_cells": 60988,
+        "dti_parent_cell_conv": 0.111478,
+        "dti_candidate_cell_conv": 0.136199,
+        "rel_change_cell_conv": 0.221759,
+        "dti_parent_sum_conv": 0.132688,
+        "dti_candidate_sum_conv": 0.165636,
+        "rel_change_sum_conv": 0.24831,
+        "delta_if_prior_were_truth_cell_conv": 0.0616,
+        "delta_if_prior_were_truth_sum_conv": 0.069
+      },
+      "noise_truth_bound": {
+        "dti_parent": 0.063373,
+        "dti_candidate": 0.062967,
+        "delta_if_prior_is_noise": -0.0018
+      },
+      "lineage_mask_bound": {
+        "n_cells": 121131,
+        "dti_parent": 0.683527,
+        "dti_candidate": 0.624117,
+        "delta_if_truth_is_lineage_mask": -0.0241
+      },
+      "predicted_change_MODEL": 0.0062,
+      "predicted_range": [
+        -0.024,
+        0.019
+      ],
+      "prediction_basis": "per-cell surrogate rel change +0.2218; floor from uniform-noise truth -0.0018 and the H19-5 lineage mask -0.0241; ceiling 3x point",
+      "sha256_nan": "45d1f4e9d4beed04e34e62da43b5d02080c4cdb60edba8d50b98bf96976c3b30",
+      "sha256_zeros": "7db0cd229bfd0d30a52d9ec7ce0a4d712eaa8560f30af7ceca3c6f06e34faa30",
+      "sha8": "45d1f4e9",
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "min_catalogue_distance_px": 2.23606797749979,
+        "zero_catalogue_mass": true,
+        "count_matches_parent": true,
+        "unit_mass_dots": true,
+        "nan_outside_footprint": true,
+        "no_nan_inside_footprint": true,
+        "values_within_0_1": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true
+      },
+      "validator": {
+        "ok": true,
+        "checks_passed": 14,
+        "checks_total": 14
+      }
+    },
+    "st1km-m20": {
+      "id": "h33-h33-2-b2-CONCENTRATIONst1km-m20-20261024-ba313f84",
+      "value": "st1km-m20",
+      "description": "same prior at 20% (dose bracket around the fleet's 15% point)",
+      "prior": "struct",
+      "prior_digest": "95e3a821061e7835ba67473f5a835b451935211b79a90f2492259474fc942846",
+      "block_px": 10,
+      "block_km": 1.0,
+      "frac_requested": 0.2,
+      "frac_achieved": 0.200005,
+      "n_dots": 37654,
+      "count_preserved": true,
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 7530,
+        "removed": 7530,
+        "changed": 15060,
+        "pct_changed_of_parent": 39.9958
+      },
+      "pct_dots_changed": 39.9958,
+      "pct_dots_moved": 20.0005,
+      "n_moved": 7531,
+      "n_unplaced": 0,
+      "moved_displacement_px": {
+        "n": 7531,
+        "mean_px": 1636.0521,
+        "p50_px": 1636.2457,
+        "p95_px": 2974.3846,
+        "max_px": 3790.1352
+      },
+      "donor_block_prior_mean": 0.330845,
+      "acceptor_block_prior_mean": 0.596573,
+      "block_density_cv": {
+        "definition_occupied_blocks": "proxy.block_density_cv: CV of dots per OCCUPIED 1 km block, the definition the 0.51-0.59 band is quoted against",
+        "before": 0.6187,
+        "after": 0.6794,
+        "position_before": "above the 0.51-0.59 band (clumpier than the best historical files)",
+        "position_after": "above the 0.51-0.59 band (clumpier than the best historical files)",
+        "moved_toward_band": false,
+        "definition_footprint_blocks": {
+          "before": 1.885205,
+          "after": 2.035924,
+          "note": "CV of dots per footprint cell across every block that intersects the footprint (run_concentration.block_cv); the parent sits at 1.885 at 1 km, so the 0.51-0.59 band does NOT refer to this definition"
+        }
+      },
+      "collar": {
+        "dots_le_3px_before": 2171,
+        "dots_le_3px_after": 2171,
+        "moved_targets_le_3px": 0,
+        "donors_excluded_by_quarantine": 2171
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 13459,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8714
+      },
+      "proxy": {
+        "proxy_mean_credit": 0.006186,
+        "proxy_mean_credit_ci95": 0.000228,
+        "proxy_mean_credit_ci95_interval": [
+          0.005958,
+          0.006413
+        ],
+        "proxy_coverage": 0.038706,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.006038136218637152,
+          0.006201889947509195,
+          0.006582695130310594,
+          0.0062188384485118405,
+          0.00588596849724877
+        ]
+      },
+      "proxy_delta_vs_r0": 0.0,
+      "canary": {
+        "canary_auc": 0.3991,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "sgmc_control": {
+        "n_cells": 62122,
+        "dti_parent": 0.095386,
+        "dti_candidate": 0.082098,
+        "delta_dti": -0.013288,
+        "delta_if_live": -0.0387
+      },
+      "surrogate_truth": {
+        "n_cells": 60988,
+        "dti_parent_cell_conv": 0.111478,
+        "dti_candidate_cell_conv": 0.15809,
+        "rel_change_cell_conv": 0.418121,
+        "dti_parent_sum_conv": 0.132688,
+        "dti_candidate_sum_conv": 0.196164,
+        "rel_change_sum_conv": 0.478379,
+        "delta_if_prior_were_truth_cell_conv": 0.1162,
+        "delta_if_prior_were_truth_sum_conv": 0.1329
+      },
+      "noise_truth_bound": {
+        "dti_parent": 0.063373,
+        "dti_candidate": 0.061702,
+        "delta_if_prior_is_noise": -0.0073
+      },
+      "lineage_mask_bound": {
+        "n_cells": 121131,
+        "dti_parent": 0.683527,
+        "dti_candidate": 0.563638,
+        "delta_if_truth_is_lineage_mask": -0.0487
+      },
+      "predicted_change_MODEL": 0.0116,
+      "predicted_range": [
+        -0.049,
+        0.035
+      ],
+      "prediction_basis": "per-cell surrogate rel change +0.4181; floor from uniform-noise truth -0.0073 and the H19-5 lineage mask -0.0487; ceiling 3x point",
+      "sha256_nan": "ba313f841ef91cfd9fbd2a9b739fa0cc8f823b8de4121104bc9eab644e957347",
+      "sha256_zeros": "28bd585ba8b9289ea47749235f7a65d482f644be0560110d3b49455126a0e195",
+      "sha8": "ba313f84",
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "min_catalogue_distance_px": 2.23606797749979,
+        "zero_catalogue_mass": true,
+        "count_matches_parent": true,
+        "unit_mass_dots": true,
+        "nan_outside_footprint": true,
+        "no_nan_inside_footprint": true,
+        "values_within_0_1": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true
+      },
+      "validator": {
+        "ok": true,
+        "checks_passed": 14,
+        "checks_total": 14
+      }
+    },
+    "res1km-m20": {
+      "id": "h33-h33-2-b2-CONCENTRATIONres1km-m20-20261024-d9a0fcc4",
+      "value": "res1km-m20",
+      "description": "20% moved on the RESIDUAL prior: structural rank minus the parent's own occupancy rank, so over-served blocks pay",
+      "prior": "residual",
+      "prior_digest": "9eb3675e50025cac640ea9af39406725d18c7b7d5e48e29c47ccbd06e0314e0f",
+      "block_px": 10,
+      "block_km": 1.0,
+      "frac_requested": 0.2,
+      "frac_achieved": 0.200005,
+      "n_dots": 37654,
+      "count_preserved": true,
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 7530,
+        "removed": 7530,
+        "changed": 15060,
+        "pct_changed_of_parent": 39.9958
+      },
+      "pct_dots_changed": 39.9958,
+      "pct_dots_moved": 20.0005,
+      "n_moved": 7531,
+      "n_unplaced": 0,
+      "moved_displacement_px": {
+        "n": 7531,
+        "mean_px": 1598.5075,
+        "p50_px": 1578.0928,
+        "p95_px": 2945.2728,
+        "max_px": 3843.4552
+      },
+      "donor_block_prior_mean": -0.674062,
+      "acceptor_block_prior_mean": 0.045631,
+      "block_density_cv": {
+        "definition_occupied_blocks": "proxy.block_density_cv: CV of dots per OCCUPIED 1 km block, the definition the 0.51-0.59 band is quoted against",
+        "before": 0.6187,
+        "after": 0.5867,
+        "position_before": "above the 0.51-0.59 band (clumpier than the best historical files)",
+        "position_after": "inside the 0.51-0.59 band",
+        "moved_toward_band": true,
+        "definition_footprint_blocks": {
+          "before": 1.885205,
+          "after": 1.887229,
+          "note": "CV of dots per footprint cell across every block that intersects the footprint (run_concentration.block_cv); the parent sits at 1.885 at 1 km, so the 0.51-0.59 band does NOT refer to this definition"
+        }
+      },
+      "collar": {
+        "dots_le_3px_before": 2171,
+        "dots_le_3px_after": 2171,
+        "moved_targets_le_3px": 0,
+        "donors_excluded_by_quarantine": 2171
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 12486,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.6892
+      },
+      "proxy": {
+        "proxy_mean_credit": 0.006186,
+        "proxy_mean_credit_ci95": 0.000228,
+        "proxy_mean_credit_ci95_interval": [
+          0.005958,
+          0.006413
+        ],
+        "proxy_coverage": 0.038706,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.006038136218637152,
+          0.006201889947509195,
+          0.006582695130310594,
+          0.0062188384485118405,
+          0.00588596849724877
+        ]
+      },
+      "proxy_delta_vs_r0": 0.0,
+      "canary": {
+        "canary_auc": 0.3991,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "sgmc_control": {
+        "n_cells": 62122,
+        "dti_parent": 0.095386,
+        "dti_candidate": 0.089851,
+        "delta_dti": -0.005535,
+        "delta_if_live": -0.0161
+      },
+      "surrogate_truth": {
+        "n_cells": 60988,
+        "dti_parent_cell_conv": 0.111478,
+        "dti_candidate_cell_conv": 0.157084,
+        "rel_change_cell_conv": 0.409099,
+        "dti_parent_sum_conv": 0.132688,
+        "dti_candidate_sum_conv": 0.195491,
+        "rel_change_sum_conv": 0.47331,
+        "delta_if_prior_were_truth_cell_conv": 0.1136,
+        "delta_if_prior_were_truth_sum_conv": 0.1315
+      },
+      "noise_truth_bound": {
+        "dti_parent": 0.063373,
+        "dti_candidate": 0.063586,
+        "delta_if_prior_is_noise": 0.0009
+      },
+      "lineage_mask_bound": {
+        "n_cells": 121131,
+        "dti_parent": 0.683527,
+        "dti_candidate": 0.554588,
+        "delta_if_truth_is_lineage_mask": -0.0524
+      },
+      "predicted_change_MODEL": 0.0114,
+      "predicted_range": [
+        -0.052,
+        0.034
+      ],
+      "prediction_basis": "per-cell surrogate rel change +0.4091; floor from uniform-noise truth +0.0009 and the H19-5 lineage mask -0.0524; ceiling 3x point",
+      "sha256_nan": "d9a0fcc4afde8d9a6a9502bc36301057181e92bf77e0135899ad936fa44ea13f",
+      "sha256_zeros": "bcdb048210295e409b13228bdc6b9740c9f5704d135a6deec70e32e5613d622e",
+      "sha8": "d9a0fcc4",
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "min_catalogue_distance_px": 2.23606797749979,
+        "zero_catalogue_mass": true,
+        "count_matches_parent": true,
+        "unit_mass_dots": true,
+        "nan_outside_footprint": true,
+        "no_nan_inside_footprint": true,
+        "values_within_0_1": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true
+      },
+      "validator": {
+        "ok": true,
+        "checks_passed": 14,
+        "checks_total": 14
+      }
+    }
+  },
+  "null_diagnostic": {
+    "label": "DIAGNOSTIC ONLY - no release, no ledger row, no slot",
+    "design": "same dose (20%), same blocks, same seed, same collar quarantine; block ranking is uniform random instead of the structural prior",
+    "n_moved": 7531,
+    "pct_dots_moved": 20.0005,
+    "cv_before": 0.6187,
+    "cv_after": 0.6863,
+    "dti_parent_cell_conv": 0.111478,
+    "dti_null_cell_conv": 0.108299,
+    "delta_if_prior_were_truth_cell_conv": -0.0079
+  }
+}

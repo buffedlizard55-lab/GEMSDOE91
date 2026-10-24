@@ -637,3 +637,35 @@ row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on fl
 (explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
 float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic
 demo but must not be used to build a release.
+
+## IR-91-33 — The repo carries two incompatible definitions of `T`, and the fleet's marginal-gain rankings use the unbounded one
+
+**Measured (`tests/test_metric_conventions.py`, pinned):** with one isolated truth cell, two unit
+dots (one on the cell, one 1 px away) read **DTI `1.388889`** under `gems91.metric.components`
+(used by `marginal_gain`, the PRUNE p-ladder and the session-3/4 predictions) and **`0.9375`**
+under `gems91.relief.fast_binary_dti` (used by every SGMC and lineage-mask control in the fleet);
+three such dots read `1.666667` vs `0.882353`. The first sums the credit of *every* dot into each
+truth cell, the second gives each truth cell the credit of its **nearest** dot. Two dots at 1 px
+from an isolated truth cell cannot both be right. On R0 against the same 60,988-cell structural
+surrogate the two conventions read `0.132688` (sum) and `0.111478` (per-cell); on the mapped
+catalogue `0.006778` and `0.006709`. Note that a [0,1] raster cannot stack two dots on one cell,
+so the disagreement is about *nearby* dots sharing a truth cell's kernel, which R0 has in bulk
+(11,415 of 37,654 dots have a neighbour < 2.83 px).
+
+**Which one is the organizer's?** Unverified — this is a MODEL either way. The brief's algebra
+("T = kernel credit") does not disambiguate. Boundedness does: the competition score is a
+fraction and R0's CLAIM is `0.2778`, whereas the sum convention admits scores above 1 and makes
+unbounded stacking a winning move. That asymmetry cannot hold for the organizer's metric.
+
+**What changes:** (1) delete-only PRUNE arms are **undersold** by the sum convention — under the
+per-cell reading, removing a dot whose truth cells are covered by its neighbours loses no `T` and
+frees `0.2` of denominator, which is why `le10`/`le15` are the most positive rows in the ledger;
+(2) no MASS "add mass beside existing dots" or SPACING "clump" arm may be justified by the sum
+convention's reward for multiplicity (`SPACINGclump40`'s `-0.0023` MODEL overstates the penalty
+under the per-cell reading);
+(3) every prediction this session reports **both** conventions.
+
+**Why it is not a blocker this week:** for the three CONCENTRATION edits built in session 8 the
+two conventions agree in sign and to within ~10-25 % of magnitude (`+0.2218` vs `+0.2483` at
+10 %; `+0.4181` vs `+0.4784` at 20 %; `+0.4091` vs `+0.4733` for the residual arm), so no slot
+decision changes. It decides the *next* build, not this one.

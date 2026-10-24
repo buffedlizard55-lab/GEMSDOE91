@@ -100,6 +100,10 @@ jobs:
         # Idempotent: an id already in the ledger must come back with the same sha256
         # or the step fails. Parent + catalogue + GDR prior only.
         run: python scripts/build_concentration.py --build
+      - name: Rebuild the session-8 CONCENTRATION arms from the pinned inputs
+        # Dose bracket + residual allocator. Deterministic (fixed seed 91034); must reproduce
+        # the three sha256 in releases/MANIFEST.json and the three ledger rows byte for byte.
+        run: python scripts/build_concentration_struct.py --build
       - name: Rebuild the MASS/consensus arms and prove they are deterministic
         run: |
           python scripts/build_mass_consensus.py
