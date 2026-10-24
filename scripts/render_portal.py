@@ -30,6 +30,73 @@ def f(value, digits=5):
     return 'not measured' if value is None else format(value, f'.{digits}f')
 
 
+# Session 12: one computed status board for every current candidate file. Every
+# value is read from disk at render time (SHA-256, raster format, shared gates);
+# nothing is typed in. Download is research-only; submission is never offered here.
+EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292), 'transform_origin': (243350.0, 4508550.0), 'pixel_m': 100.0}
+BOARD_ROWS = (
+    ('CED91 (research negative)', 'docs/run-card.json', 'docs/downloads/gems91-ced-v1-20261024-d35670b28c81.tif', 'executive-summary.html'),
+    ('S11-MHTR E2 (holdout 0.206406)', 'docs/run-card-S11.json', 'docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif', 's11-mhtr.html'),
+    ('ASC91 E3 (holdout 0.116767, negative)', 'docs/run-card-ASC91.json', 'docs/downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif', 'asc91.html'),
+)
+
+
+def _raster_format(path):
+    import hashlib
+    import numpy as np
+    import rasterio
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    with rasterio.open(path) as s:
+        a = s.read(1)
+        finite = np.isfinite(a)
+        ok = (s.count == 1 and s.dtypes[0] == 'float32' and str(s.crs) == EXPECTED_GRID['crs']
+              and (s.height, s.width) == EXPECTED_GRID['shape']
+              and abs(s.transform.c - EXPECTED_GRID['transform_origin'][0]) < 1e-6
+              and abs(s.transform.f - EXPECTED_GRID['transform_origin'][1]) < 1e-6
+              and abs(s.transform.a - EXPECTED_GRID['pixel_m']) < 1e-9
+              and bool(finite.all()) and float(a.min()) >= 0.0 and float(a.max()) <= 1.0)
+    return digest, bool(ok)
+
+
+def status_board():
+    rows = []
+    for label, card_path, tif_path, page in BOARD_ROWS:
+        card = json.loads((ROOT / card_path).read_text())
+        g = gates(card)
+        failing = [k for k, v in g.items() if v is not True]
+        tif = ROOT / tif_path
+        if tif.is_file():
+            digest, fmt_ok = _raster_format(tif)
+            file_cell = f'<code>{escape(tif_path.split("/")[-1])}</code><br><small>SHA-256 {digest[:16]}…{digest[-8:]}</small>'
+            dl = ('<span class="badge">YES · research only</span>' if fmt_ok
+                  else '<span class="badge bad">NO · format check failed</span>')
+            fmt = 'PASS (re-read from disk)' if fmt_ok else 'FAIL'
+            # No download attribute here: the portal may advertise only its current artifact as a download.
+            link = f'<a href="{escape(page, quote=True)}">open audit page</a>' if fmt_ok else ''
+        else:
+            file_cell, dl, fmt, link = '<em>file not present</em>', '<span class="badge bad">NO</span>', 'not checked', ''
+        rows.append(
+            f'<tr><td>{escape(label)}</td><td>{file_cell}</td><td>{dl} {link}</td><td>{fmt}</td>'
+            f'<td><span class="badge bad">NO</span></td><td>{escape(", ".join(failing) or "none")}</td></tr>'
+        )
+    return (
+        '<section class="section" id="status-board" data-status-board="computed"><div class="card">'
+        '<span class="eyebrow">STATUS BOARD · COMPUTED FROM FILES AT RENDER TIME</span>'
+        '<h2>Can I download it? Can I submit it?</h2>'
+        '<p><strong>Download</strong> = a research copy that passed the local format check; it is not a submission. '
+        '<strong>Submit</strong> = the shared fail-closed gate (<code>src/gems91/readiness.py</code>) must pass every check, '
+        'and a human selector must approve a weekly slot (3 per week, rules §3.2). No file passes that gate today.</p>'
+        '<div class="table-scroll"><table><thead><tr><th>Candidate</th><th>File</th><th>OK to download (research)?</th>'
+        '<th>Format re-read</th><th>OK to submit?</th><th>Failing shared gates</th></tr></thead><tbody>'
+        + ''.join(rows) +
+        '</tbody></table></div>'
+        '<p><small>Before any download is used: confirm eligibility and data rights (rules §1.3 and A.5). '
+        'Human-only steps: eligibility attestation, generative-AI disclosure, lane assignment, selector approval. '
+        'A "format" failure on a row means its run card lacks the fields the shared gate reads (IR-91-S12-02); the file itself re-reads PASS.</small></p>'
+        '</div></section>'
+    )
+
+
 def render():
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
     actual = verify_artifact()
@@ -71,13 +138,14 @@ def render():
         asc_card = f'''<section class="section"><div class="card"><span class="eyebrow">PARALLEL LANE / ASC91 ANTISYMMETRIC STEP ({f(ah['value'],6)} HOLDOUT-DTI — NEGATIVE)</span><h2>Cross-Fault Step Matched Filter: Real Signal, Below the Bar</h2><p>Branch <code>arena/5486e004-gemsdoe91</code> ran three preregistered experiments on the one signature symmetric detectors cancel — an odd-symmetric level <em>step</em> across the trace (bands 12/13/2/15/17, 8 strike azimuths, polarity + modal-azimuth concordance). The E3 winner scored <strong>{f(ah['value'],6)} HOLDOUT-DTI</strong> (fold-mean 95% CI {f(ah['ci95'][0],6)}–{f(ah['ci95'][1],6)}; {ah['withheld_positives']} withheld positives; identical whole-component instrument; random control 0.070827) — below the same-instrument best HGB-CTX <strong>{f(ap['pooled'],6)}</strong>. The unique file <code>{escape(asc['submission_name'])}-zeros.tif</code> passes format (all-finite [0,1]), leakage canary and both novelty phases (|ρ| ≤ {f(an['surface_before_placement']['max_abs_spearman_sample'],4)}; ≤ {100*an['final_dots']['max_frac_within_3px']:.2f}% within 3 px) but <strong>fails the promotion gate: NOT OK TO SUBMIT</strong>. No slot used; the step×context fusion is preregistered for a future session.</p><p><a class="button outline" href="asc91.html">Open ASC91 Evidence &amp; Research Download ↗</a> <a class="button outline" href="asc91-executive-summary.html">Open ASC91 Step-by-Step Guide ↗</a> <a class="button outline" href="run-card-ASC91.json">JSON Run Card ↗</a></p></div></section>'''
     else:
         asc_card = ''
-    home = f'''<section class="hero"><div><span class="eyebrow">GEMS PRIZE / AUDITABLE GEOTHERMAL RESEARCH</span><h1>Find faults.<br>Test the evidence.<br>Earn the next step.</h1><p class="lead">A parent-free magnetic–gravity experiment, evaluated before any competition slot is touched.</p>{status}<p class="small">One experiment completed. No competition slot used.<br>Unique bytes do not mean unique predictions.</p></div>{callout}</section>
+    board = status_board()
+    home = board + f'''<section class="hero"><div><span class="eyebrow">GEMS PRIZE / AUDITABLE GEOTHERMAL RESEARCH</span><h1>Find faults.<br>Test the evidence.<br>Earn the next step.</h1><p class="lead">A parent-free magnetic–gravity experiment, evaluated before any competition slot is touched.</p>{status}<p class="small">One experiment completed. No competition slot used.<br>Unique bytes do not mean unique predictions.</p></div>{callout}</section>
 <div class="banner"><strong>The download is for research, not competition upload.</strong> The TIFF passes range and geospatial checks, but fails the literal duplicate-overlap gate. Automated inspection has finished; no human inspector is needed to reach this negative verdict.</div>
 {metrics}{s11_card}{h91_card}{asc_card}<section class="section"><div class="section-head"><h2>What we tested</h2><a href="HYPOTHESES_CED.md">Read the preregistration ↗</a></div><div class="twocol"><div><h3>Concealed contacts, without inherited dots</h3><p>Compare the local magnetic and gravity edge centroids at two scales. Persistent, aligned but displaced edges may reveal a buried contact without a surface scarp.</p><p class="small">Hypothesis, not a geological discovery. Intrusive lithologic contacts and survey seams can mimic it. The target is fault mapping for geothermal exploration—not direct vent classification.</p></div><div class="diagram"><span class="node">Cached magnetic + gravity</span><span>→</span><span class="node">Two-scale edge displacement</span><span>→</span><span class="node">Canary + registry check</span><span>→</span><span class="node">Buffered whole-component holdout</span><span>→</span><span class="node">New dots + validated TIFF</span></div></div></section>
 <section class="section"><div class="section-head"><h2>Measured performance, not a projection</h2><a href="ced-holdout.json">Full fold evidence ↗</a></div><div class="table-scroll"><table><thead><tr><th>HOLDOUT-DTI arm</th><th>Pooled DTI</th><th>95% CI</th><th>Withheld positives / evaluator</th></tr></thead><tbody><tr><td>CED91 candidate</td><td>{f(h.get('value'))}</td><td>{interval}</td><td>{h.get('withheld_positives')} / {escape(h['evaluator_version'])}</td></tr><tr><td>Matched magnetic-only control</td><td>{f(control.get('dti'))}</td><td>{'–'.join(f(x) for x in control.get('ci95',[]))}</td><td>{control.get('withheld_positive_pixels')} / {escape(h['evaluator_version'])}</td></tr><tr><td>Paired candidate − control</td><td>{f(paired.get('delta'))}</td><td>{dci}</td><td>Same withheld positives / same evaluator</td></tr></tbody></table></div><p class="small">The paired interval includes zero: no statistically resolved improvement. Four fixed spatial quadrants; whole fault components hidden; buffered training exclusion; exact visible-pixel masking; pooled 300 m triangular-kernel DTI. Paired physical-cluster bootstrap intervals are conditional on this instrument, not leaderboard intervals.</p></section>
 <section class="section"><div class="twocol"><div class="card"><h3>Why submission is blocked</h3><ul class="checklist">{gate_list}</ul><p>No stale forecast, byte-level hash or format PASS can override a failed science or novelty gate.</p><a href="executive-summary.html">See the exact submission process ↗</a></div>{copy}</div></section>
 <section class="section"><div class="twocol"><div><span class="eyebrow">PREVIOUS BEST / CAUSAL CLAIMS WITHDRAWN</span><h2>What the old result can—and cannot—tell us</h2><p>The previous GEMSDOE32 artifact pruned near-catalogue dots from an existing sparse field. Reduced redundant prediction mass is a plausible explanation for an improvement, not proof of optimal spacing or a better fault locator.</p><p>Its published page explicitly says no organizer score exists there. The reported benchmark and conflicting leaderboard highs in the brief are not verified receipts. We cannot responsibly promise to exceed them.</p><a href="research.html">Read the forensic findings and official-source register ↗</a></div><div class="card"><span class="eyebrow">SOURCE FEED / NOT A LIVE LEADERBOARD</span><h3>Fleet snapshots, with provenance</h3><p>{feed_ok} of {feed_total} fleet repository pages fetched through GitHub at {feed_updated} UTC. The inventory records immutable commits, download links, evidence excerpts and fetch failures—not inferred official scores.</p><p class="small">Daily refresh is configured through GitHub Actions; freshness is labelled from the latest completed inventory, not browser load time. Private and unindexed files remain outside scope.</p><a href="fleet-audit.csv">Download the audit table ↗</a><br><a href="fleet-audit.json">Inspect complete machine-readable snapshots ↗</a></div></div></section>'''
-    guide = f'''<section class="hero"><div><span class="eyebrow">EXECUTIVE SUMMARY / SUBMISSION GUIDE</span><h1>Download is easy.<br>Approval is separate.</h1><p class="lead">Current answer: research download is available; competition submission is blocked.</p>{status}</div>{callout}</section>
+    guide = board + f'''<section class="hero"><div><span class="eyebrow">EXECUTIVE SUMMARY / SUBMISSION GUIDE</span><h1>Download is easy.<br>Approval is separate.</h1><p class="lead">Current answer: research download is available; competition submission is blocked.</p>{status}</div>{callout}</section>
 <section class="section"><h2>What to do with the current file</h2><div class="banner"><strong>Do not upload this candidate to a weekly competition slot.</strong> Its format passed, but its predictions fail the registry-overlap rule. No automated competition upload is performed.</div>{metrics}<p>The project performed the inspection automatically. The negative result is conclusive under the current protocol; it does not wait for an expert to inspect an image.</p></section>
 <section class="section"><h2>Exact process for a future approved candidate</h2><div class="step"><b>1</b><div><h3>Generate and test inside the project</h3><p>Read the README brief and assigned lane. Restore pinned cached inputs. Use the shared evaluator and writer. Test each feature alone, then evaluate whole hidden fault components with buffers. Compare the surface and final dots against the complete registry.</p></div></div><div class="step"><b>2</b><div><h3>Require every automated gate</h3><p>The on-disk TIFF must have one float32 band, finite [0,1] values, matching CRS, shape and transform, and zero outside-footprint/catalogue mass. The candidate must beat the comparable prior best, clear literal novelty thresholds and receive a separate selector receipt with the live weekly allowance checked.</p></div></div><div class="step"><b>3</b><div><h3>Use the file, not the report</h3><p>Only after the site explicitly says “OK TO SUBMIT”, download the <code>.tif</code> or its single-TIFF <code>.zip</code>. Do not upload this guide, a JSON receipt, a PDF, a training-feature stack, or a diagnostic NaN encoding. Verify the displayed SHA256.</p></div></div><div class="step"><b>4</b><div><h3>Upload on the organizer's authenticated page</h3><p>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">competition submissions</a>, choose New submission, select the approved file and paste its short note. The organizer page may redirect or change; this project has not verified its live form or allowance. This step is an account action, not a manual scientific inspection.</p></div></div><div class="step"><b>5</b><div><h3>Record the actual receipt</h3><p>A score becomes ORGANIZER-CONFIRMED only when copied from the submission-page receipt with file identity and date. Never turn a holdout estimate or projection into a live score. No such receipt exists in this run.</p></div></div></section>
 <section class="section"><div class="twocol"><div class="card"><h3>“Predicted values must be in range [0,1]”</h3><p>This error alone does not establish its cause. The writer now rejects nonfinite, sentinel and out-of-range model outputs rather than silently clipping or repairing them. It writes an all-finite TIFF with zeros outside the footprint and no invalid nodata tag, then re-reads and validates both TIFF and ZIP.</p><p>That removes measured local range/format defects; it does not guarantee organizer acceptance.</p><a href="{escape(a['receipt']) if a else 'run-card.json'}">Actual format receipt ↗</a></div><div class="card"><h3>Current gates</h3><ul class="checklist">{gate_list}</ul><p class="small">A missing check is blocked, never assumed passed. Weekly cap and deadline must come from the live organizer page; historical text is not a confirmation.</p></div></div></section>{copy}'''

@@ -1,5 +1,15 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## START HERE — session 12 standing brief (read at every session start)
+
+**Read `docs/SESSION_BRIEF_S12.md` first.** It holds the standing rules, the answer on 0.2778, the verdict on the current file, and the open human decisions. The S11 standing brief is kept verbatim below, in the session-10 section, and still applies except where S12 overrides it.
+
+- **Current verdict (automated, fail-closed):** the S11-MHTR candidate may be downloaded as research only. It is **NOT** cleared for submission. See `docs/index.html` (status board) and `docs/executive-summary.html`.
+- **Session 12 result:** H12-1 (gravity–magnetic edge co-location, `evidence/h12/run_card_S12.json`) is **negative**: HOLDOUT-DTI `0.113042` (CI `[0.102124, 0.123819]`), below B0 `0.138999` and the S11 candidate `0.206406`. Its gravity-only control scores the same.
+- **Reproduction:** in an isolated copy, the H91 and S11 lanes reproduce the published holdouts (H91-1 E1 `0.174030`, S11 E1 `0.202272`, S11 E2 `0.206406`). See `docs/SESSION_BRIEF_S12.md`.
+- **Core values applied:** Maximize P(Win) (falsifiable discovery, honest negatives) and Own the Outcome (automatic inspection, provenance, blockers stated).
+- **Irregularities:** `IRREGULARITIES.md` `IR-91-S12-01..11`. Limitations: `LIMITATIONS.md`, "Session 12 additions".
+
 ## SESSION 11 DISCOVERY LANE (`S11-MHTR`, 2026-10-24, branch `arena/8d9056a3-gemsdoe91`) — NEW #1 `HOLDOUT-DTI` (`0.206406`) & BLIND `SGMC` (`0.097623`)
 
 - **[Download S11-MHTR E2 Certified Range-Safe GeoTIFF (`253 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif)** · **[Single-TIFF ZIP (`218 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip)** · **[Format Audit Receipt (`.json`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-audit.json)**
@@ -977,7 +987,7 @@ The project performs inspection automatically. No human inspector is needed to d
 
 ## Start every session here
 
-**Read this README, including the original user brief below, before working.** Then read the latest `docs/run-card.json`, `IRREGULARITIES.md`, `LIMITATIONS.md`, and `docs/REVIEW-CED91.md`. Historical MODEL/PROXY projections and archived slot queues are not comparable HOLDOUT-DTI or organizer receipts. Do not rerun or tune the stopped CED experiment to evade a failed gate.
+**Read this README, including the original user brief below, before working.** Session 12 onward, also read `docs/SESSION_BRIEF_S12.md` (the current standing brief). Then read the latest `docs/run-card.json`, `IRREGULARITIES.md`, `LIMITATIONS.md`, and `docs/REVIEW-CED91.md`. Historical MODEL/PROXY projections and archived slot queues are not comparable HOLDOUT-DTI or organizer receipts. Do not rerun or tune the stopped CED experiment to evade a failed gate.
 
 Core values applied to this project:
 

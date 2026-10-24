@@ -119,3 +119,19 @@ research artifact or revive legacy model-projected queues.
    - **Weekly Slot Selector (`Rule 6`):** Spending one of the 3 weekly DrivenData submissions (`TP-5700-96647` §3.2) requires the human fleet selector to verify live weekly allowance and approve `S11-MHTR E2` (`0.206406` HOLDOUT-DTI).
    - **Synthetic Lattice Cover Policy (`IR-CED-003`):** `calib_r13lattice_00904.tif` (`206,895` dots) covers `99.8713%` of the footprint within 3 px (`6,649` uncovered pixels), making unweighted directed 3-px overlap $> 70\%$ for any prediction with $\ge 22,164$ dots; under symmetric F1 overlap (`evaluate_holdout.py`) and top-K mass comparison (`registry_scan.py`), `S11-MHTR E2` passes (`<= 0.33`).
    - **Competitor Eligibility & AI Disclosure (`TP-5700-96647` §1.3 & §3.2):** Only the human competitor can sign the U.S. eligibility attestation and include the generative-AI disclosure (`AI_USE.md`) in the competition narrative.
+
+## Session 12 additions (2026-10-24, `arena/80f7c032-gemsdoe91`)
+
+1. **No assigned lane (again).** The session brief has no method paragraph (IR-91-S12-01, recurrence of IR-91-S11-01). The agent chose H12-1 (physics-only gravity–magnetic co-location). The `assigned_lane` gate stays False, so no candidate from this session can be promoted.
+2. **No submission-ready candidate.** H12-1 scored below both the B0 baseline and the S11 candidate. No new GeoTIFF was generated. The S11 candidate remains "OK to download as research, NOT OK to submit" under the fail-closed readiness gate (IR-91-S12-02).
+3. **Self-declared verdicts are not evidence.** The S11 and H91 cards say PROMOTE; the shared gate says no. The portal follows the gate.
+4. **The holdout measures catalogue recovery.** Every HOLDOUT-DTI in this session comes from `gems91-hide-recover-v1.0`. It does not measure the organizer's score on new faults (IR-91-S10-04). A holdout gain is not a leaderboard prediction.
+5. **0.2778 and 0.3195 are not verified.** No organizer receipt exists (IR-91-S10-05, IR-91-S11-09). The public board read on 2026-10-24 has 0.4413 at #1 and 0.2818 at #50. The claim "0.2778 is the highest" cannot be checked against the organizer's board.
+6. **Band 6 identity is uncertain** (IR-91-S12-04). The label, the H91 hypothesis note and the S11 correlation disagree. The positive range rules out tilt, but the TC identity rests on correlation only.
+7. **Band 18 is a vector component, not a magnitude** (IR-91-S12-03). Any feature that treats it as a scalar gradient is wrong.
+8. **The duplicate gate does not discriminate** on this registry: a random-placement null passes it (IR-91-S12-10).
+9. **Registry scope is 8, 11 or 62 depending on the code path** (IR-91-S12-06). No "complete registry" statement is possible.
+10. **Cache-name drift** between the H91 and S11 lanes was bridged with one gitignored symlink for reproduction only (IR-91-S12-07).
+11. **Human-only obligations** (IR-91-S12-08): eligibility certification (§1.3), the perjury certification of the submission package (§A.1), public-element and FOIA disclosure (§A.4, §A.10), originality and third-party-content representations (§A.5), and AI-use disclosure (§3.2). The agent cannot satisfy these.
+12. **Experiment budget.** 2 of 3 experiments used (one of them an invalid attempt; IR-91-S12-03). Reproductions and controls are not counted.
+13. **Public GitHub Pages publication** of research TIFs is a disclosure decision under §A.4. The portal says "research only" and does not advertise any file as a submission.

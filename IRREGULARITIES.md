@@ -1159,3 +1159,89 @@ provenance/registry prevent the requested unique submission in this run.
 
 **Decision it changes:** In `S11-MHTR` (`src/gems91/mhtr_coda.py`), the OOF `HistGradientBoosting` + `LogisticRegression` ensemble is trained strictly on label-free geophysical, Marussi-Hessian, topographic-curvature, radiometric-contact, and 1 km corridor features. Removing `fc_vis_*` from tree splits and applying Two-Regime Marussi/Radiometric Submodular Allocation lifted out-of-fold `HOLDOUT-DTI` from `0.174030` (`H91-1 E1`) to **`0.206406`** (`S11-MHTR E2`, `95% CI [0.193796, 0.220176]`, non-overlapping CIs) and lifted blind off-catalogue USGS SGMC DTI from `0.082886` to **`0.097623`**.
 
+
+---
+
+# Session 12 (`arena/80f7c032-gemsdoe91`, 2026-10-24) — new IDs use the `S12` prefix
+
+Existing IDs were not renumbered. The file already contains duplicate `IR-91-S11-01..03` entries (see IR-91-S12-09), so every reference below uses an S12 number.
+
+## IR-91-S12-01 — The brief's lane paragraph is missing again; this session chose its own lane
+
+**Expected:** a single assigned method paragraph (protocol item 1), so that the duplicate check and the `assigned_lane` gate can be applied.
+**Actual:** the session brief contains no lane paragraph. This is the same defect as IR-91-S11-01. The agent chose **H12-1** (physics-only gravity–magnetic edge co-location) as its lane and recorded that choice in `evidence/h12/run_card_S12.json`.
+**Decision it changes:** the `assigned_lane` gate in `src/gems91/readiness.py` stays False. No candidate from this session can clear the readiness gate until a human assigns a lane.
+
+## IR-91-S12-02 — The S11 run card says `promote`, but the shared fail-closed gate says no; the H91 card also self-declares PROMOTE
+
+**Expected:** a card that says `verdict: promote` is consistent with the shared readiness policy (`src/gems91/readiness.py`).
+**Actual:** `docs/run-card-S11.json` has `verdict: "promote"` and `validator_output.validators.gems91_gates_verdict: "CERTIFIED"`. Run through `gates()`, all six checks are False. The card lacks the `canaries`, `lane`, `registry_comparison`, `holdout_dti` and `comparable_prior_holdout_best` fields that the gate reads. The lane gate also fails for the real reason in IR-91-S12-01. The S11 README says "All 4 repository validator suites … PASSED", which is true for the format checks and not for the readiness gate. The H91 lane's own run (isolated copy, `gems91-ddvtc-e1`) also prints `Verdict: PROMOTE`.
+**Decision it changes:** the portal shows **NO** for submission. Self-declared verdicts in run cards are not evidence. Only `readiness.submission_ready()` decides, and it fails closed.
+
+## IR-91-S12-03 — H12-1 attempt A used the wrong gravity term; its holdout line was seen before it was stopped
+
+**Expected:** the gravity horizontal-gradient magnitude is `hypot(B11, B18)`, since (B11, B18) is the 2-D gravity gradient vector (IR-91-S11-02).
+**Actual:** the first run used `|B18|` alone. Its first holdout line (`0.116884`, CI `[0.107308, 0.127679]`) was printed before the run was stopped and the term corrected. That line is recorded as an **invalid** attempt, not as a result. It counts against the 3-experiment budget.
+**Decision it changes:** the reported H12-1 result is attempt B (`0.113042`) only. Attempt B has the same folds, quotas and evaluator as attempt A. Its values differ, so attempt A is not used for any decision.
+
+## IR-91-S12-04 — Band 6 has three conflicting identities; the measured range does not match the stated mGal range
+
+**Expected:** one identity for `Band 06 (tc)` in `training_features.tif`.
+**Actual:** three sources disagree.
+- The band description says "Tilt angle or total curvature — magnetic field derivative".
+- `IR-H91-04` says "unsigned gravity terrain correction ([11.8, 25.6] mGal)".
+- `IR-91-S11-01` (second series) says radiometric total count, r = 0.99677 with GeoDAWN Band 4 'TC'. It also cites the official DrivenData figure `gems_tc_tmi.png`, which was **not re-verified this session**.
+
+Measured this session (footprint, finite values): min 2.9534, p1 7.7223, median 18.4817, p99 29.1005, max 88.5665, **no negative values**. A tilt angle would be signed, so the tilt label is wrong. The stated mGal range [11.8, 25.6] is not reproduced by the measured percentiles. The Pearson correlation with the TC grid (0.9971 vs 0.99677 reported) and with `hypot(B11, B18)` vs B5 (0.9470 vs 0.9467) differ in the fourth digit, and that difference is not explained. The positivity of the band supports the TC identity over tilt. The identity rests on correlation only.
+**Decision it changes:** a tilt zero-contour on band 6 is not a valid method (it would be a zero-contour of a positive count). Any feature built on band 6 must be labelled radiometric TC until the identity is confirmed against the organizer's documentation.
+
+## IR-91-S12-05 — `run_h91_lane.py` labels the 0.2778 benchmark `ORGANIZER-CONFIRMED`
+
+**Expected:** labels follow IR-91-S10-05 and the protocol (ORGANIZER-CONFIRMED needs a receipt).
+**Actual:** `scripts/run_h91_lane.py` line 244 prints `[R0 Benchmark 0.2778 ORGANIZER-CONFIRMED]`, and its header comment (line 13) calls it a "historical receipt". No receipt exists (IR-91-S10-05). The H91 reproduction (isolated copy) printed the same label.
+**Decision it changes:** the label is wrong and should read `CLAIM — unverified`. It was **not** changed in this session, because that script is a published reproduction path. This session's own numbers (`evidence/h12/`) label 0.2778 as a CLAIM. A human should approve the one-line label fix.
+
+## IR-91-S12-06 — Registry scope is reported three different ways
+
+**Expected:** one registry for the duplicate check.
+**Actual:** the shared helper `EH.default_registry_paths()` returns **8** rasters (`data/registry/*.tif`). The S11 lane's `_collect_registry_paths()` reports **11**. IR-91-ASC-03 and the README's "62 of 64" describe other scopes. The H12 run uses the 8-raster scope, which is the default of `EH.default_registry_paths()` used by `check_registry_uniqueness`. Whether the shared readiness gate uses the same scope was not verified.
+**Decision it changes:** no "complete registry" claim is possible. `complete_universal_registry` stays False, and the novelty gate fails.
+
+## IR-91-S12-07 — Cache-name drift between the H91 and S11 lanes
+
+**Expected:** the S11 lane reads the full-catalogue fold features under the name the H91 lane writes.
+**Actual:** `run_s11_lane.py` (line 274) reads `h91_fold_cat_full.dat`. `run_h91_lane.py` (line 249) writes `h91_full_cat_features.dat`. Both files are float32 `(n_fp, 3)`, 62,008,476 bytes. For the isolated reproduction only, a symlink `h91_fold_cat_full.dat → h91_full_cat_features.dat` was created in the gitignored `data/derived/`. It was accepted **only if** the S11 reproduction gives the published numbers. E1 reproduces (`0.202272`). The E2/E3 outputs and the candidate SHA-256 `dbfe7dfc…88b15` are the decisive check (see the reproduction block in `docs/SESSION_BRIEF_S12.md`).
+**Decision it changes:** the substitution is a reproduction step, not a fix. The lanes should use one name. A human should choose which name is canonical.
+
+## IR-91-S12-08 — Rules items that only a human can satisfy or decide
+
+Read from the official rules (`docs.nlr.gov/docs/fy26osti/96647.pdf`, sections §1.3, §3.3–3.7, Appendix A.1–A.5, A.10, A.13). Each item below is a human decision or action.
+- **§A.1 signatory:** a human signatory must certify under penalty of perjury that the submission is true and that the competitor is eligible (§1.3). The agent cannot sign or attest.
+- **§A.4 public elements:** elements designated public "become publicly available" and are licensed for public display. Publishing a TIF or ZIP on the GitHub Pages site is a public release. Whether that is intended, and whether the design note or any file needs marking under A.4, is a human decision.
+- **§A.5 representations:** the submission must be an original work, with third-party content disclosed. The inputs include GeoDAWN (USGS, CC0 1.0), INGENIOUS labels (DOI 10.15121/1881483) and USGS DS-1052 (SGMC). The `geodawn_rad_u8` and `lidar_scarp_u8` inputs remain "licence unchecked" (IR-91-26). A human must review them before any representation is signed.
+- **§3.2 / AI use:** AI use must be disclosed in the narrative (see `AI_USE.md`). Not yet reviewed against this session's work.
+- **§A.10 FOIA:** submission materials become DOE records and may be disclosed under FOIA unless marked (§A.4).
+
+## IR-91-S12-09 — Duplicate IR IDs in `IRREGULARITIES.md`
+
+**Found:** `IR-91-S11-01`, `-02` and `-03` each appear twice (around lines 1049–1065 and 1134–1154). `IR-91-06`, `IR-91-17` and `IR-91-18` also repeat in the earlier blocks.
+**Actual:** cross-references cannot be resolved unambiguously by number alone. This session's entries use the `S12` prefix and no existing ID was renumbered.
+**Decision it changes:** none directly. A renumbering pass should be a deliberate human-approved change.
+
+## IR-91-S12-10 — The duplicate gate does not discriminate on this registry
+
+**Expected:** the duplicate check (ρ > 0.90 or > 70% within 3 px) separates a duplicate from a novel placement.
+**Actual:** in this session's runs, the **random-placement null** (score 0.039281) passes the same gate as the co-location candidate. Surface max |ρ| is 0.0347 for E1 and 0.0029 for the random null. Dot 3 px overlap is 0.248 for E1 and 0.192 for the null. The gate passes both, so it cannot show that E1 is novel in any useful sense. This repeats IR-91-S11-06 (coverage density, not geology).
+**Decision it changes:** the gate is recorded as PASS for E1 and is not treated as evidence of novelty.
+
+## IR-91-S12-11 — The portal's download policy is a tested invariant, and the status board has to follow it
+
+**Found:** a status board that linked each candidate's `.tif` with a `download` attribute made `p.downloads` list three files. `tests/test_submission_portal.py` requires only the current artifact to be advertised as a download. The board's relative links were also wrong for a page inside `docs/`.
+**Actual:** the board now shows SHA-256, format status and the verdict, and links only to each candidate's own audit page (`s11-mhtr.html`, `asc91.html`, `executive-summary.html`). It does not carry a `download` attribute. The download for the current artifact stays in the existing download section.
+**Decision it changes:** a research file is downloadable from its audit page, not from the status board. The verdict is "YES · research only" for download and "NO" for submit. This is an intended change of design, and the test is kept as it is.
+
+## IR-91-S12-12 — `run_s11_lane.py` crashes at its last step when run outside a git checkout
+
+**Found:** the S11 reproduction (isolated copy, no `.git`) completed all three experiments and wrote the candidate bundle. It then failed at `subprocess.run(["git", "checkout", "--", "docs/downloads/h91_submission_bundle.js"], check=True)` (line 486), and the `docs/downloads` copy step did not run.
+**Actual:** the bundle files in `releases/` are correct and byte-identical to the published candidate (see `docs/SESSION_BRIEF_S12.md`). The defect is the git dependency in a reproduction path. Nothing was overwritten in the published repository.
+**Decision it changes:** none for the candidate. Reproduction runs need either a git checkout or the `git checkout` line replaced by a file restore. A human should choose that fix.
