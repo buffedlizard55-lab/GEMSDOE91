@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_utc": "2026-10-23T23:30:00Z",
-  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_snap.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_snap.py --build` and every sha256 below must reappear byte for byte. CI enforces this. The 2026-10-24 MASS expansion arms are written LZW-compressed through the opt-in `compress=` argument of tools/raster_io.write_submission (session 8); every earlier builder is byte-unchanged.",
   "parent": "h33-h33-2-b2 (e5eb6e7e)",
   "files": [
     {
@@ -73,6 +73,36 @@
       "file": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif",
       "sha256": "bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158",
       "bytes": 356859
+    },
+    {
+      "file": "h33-h33-2-b2-MASSa12adj-20261024-d3de6292-zeros.tif",
+      "sha256": "baa2bfe02e9318e74b1262922e93395dd236972249969d7cf0c14d930c11c976",
+      "bytes": 803178
+    },
+    {
+      "file": "h33-h33-2-b2-MASSa12adj-20261024-d3de6292.tif",
+      "sha256": "d3de62927a2f4ebce48a1c8ebd750a9a42b0ab591c51c7a4eef595767951d523",
+      "bytes": 1569225
+    },
+    {
+      "file": "h33-h33-2-b2-MASSa12spc-20261024-d466d2ac-zeros.tif",
+      "sha256": "add821bf4a6ba6da2a1ca12397796033a2f8a0e54ef4874afea6e3224e8dcc99",
+      "bytes": 803579
+    },
+    {
+      "file": "h33-h33-2-b2-MASSa12spc-20261024-d466d2ac.tif",
+      "sha256": "d466d2ac87c765240a2dea218b42ec94fd137186459aee0fb7c61df7a64f7af1",
+      "bytes": 1569693
+    },
+    {
+      "file": "h33-h33-2-b2-MASSa25adj-20261024-c658eb33-zeros.tif",
+      "sha256": "a73e963bd8149c3fabfee75e79ed3ff4ac9d3969b6b99018018adc3889d1433f",
+      "bytes": 810678
+    },
+    {
+      "file": "h33-h33-2-b2-MASSa25adj-20261024-c658eb33.tif",
+      "sha256": "c658eb330951f84e3cbc47036f392e89ef8ee93edf7ad568c63477f79b10b3f1",
+      "bytes": 1577381
     },
     {
       "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae-zeros.tif",

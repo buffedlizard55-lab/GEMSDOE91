@@ -1,11 +1,63 @@
 > **Superseded for promotion eligibility (2026-10-24).** Historical build instructions below are not approval to submit. See [current executive summary](executive-summary.html) and [protocol audit](REVIEW-20261024.md).
 
-# SUBMIT — MASS/consensus arms + merged PRUNE/CONCENTRATION queue (2026-10-23)
+# SUBMIT — MASS expansion arms (2026-10-24) over the 2026-10-23 queue
 
-**Status 2026-10-23: 38 BUILT rows, 0 submitted, 0 receipts.** Rasters are not committed;
-`releases/MANIFEST.json` is the sha256 contract and CI rebuilds every file from pinned inputs and
-asserts byte-identity. **No agent submits. One file per slot; the `-zeros` twin is the fallback
-for that same slot, never a second entry.**
+**Status 2026-10-24: 53 BUILT/GATED rows, 0 submitted, 0 receipts.** Rasters are not committed;
+`releases/MANIFEST.json` is the sha256 contract. **No agent submits. One file per slot; the
+`-zeros` twin is the fallback for that same slot, never a second entry.**
+
+## SESSION 8 — MASS expansion: the three files to upload (one per slot)
+
+```bash
+python3 scripts/restore_data.py                    # fetch + verify every pinned sha256
+python3 scripts/build_mass_expand.py --check       # 8 pins + parent hash, prints the cell pools
+python3 scripts/build_mass_expand.py --build       # writes the 3 pairs, runs both gate modules
+python3 scripts/validate_release.py releases/<file>.tif --axis MASS
+python3 scripts/validate_raster.py releases/<file>.tif data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif
+```
+
+Rebuilds are deterministic (fixed seed `91024`) and were reproduced during this session.
+
+| slot | file | dots | sha256 (NaN-outside) | sha256 (zeros twin) |
+|---|---|---:|---|---|
+| **1** | `h33-h33-2-b2-MASSa25adj-20261024-c658eb33.tif` | 47,068 | `c658eb330951f84e3cbc47036f392e89ef8ee93edf7ad568c63477f79b10b3f1` | `a73e963bd8149c3fabfee75e79ed3ff4ac9d3969b6b99018018adc3889d1433f` |
+| **2** | `h33-h33-2-b2-MASSa12adj-20261024-d3de6292.tif` | 42,361 | `d3de62927a2f4ebce48a1c8ebd750a9a42b0ab591c51c7a4eef595767951d523` | `baa2bfe02e9318e74b1262922e93395dd236972249969d7cf0c14d930c11c976` |
+| **3** | `h33-h33-2-b2-MASSa12spc-20261024-d466d2ac.tif` | 42,361 | `d466d2ac87c765240a2dea218b42ec94fd137186459aee0fb7c61df7a64f7af1` | `add821bf4a6ba6da2a1ca12397796033a2f8a0e54ef4874afea6e3224e8dcc99` |
+
+**Form notes** (≤140 chars each, no score claimed):
+
+```
+1: h33-2-b2; +9414 dots (25.0%) on vote-3 lineage-field cells 8-adjacent to accepted dots; pred +0.017 MODEL
+2: h33-2-b2; +4707 dots (12.5%) same rule as slot 1, half dose; pred +0.009 MODEL
+3: h33-2-b2; +4707 dots (12.5%) spaced, no 8-adjacency, R0 texture kept; pred +0.005 MODEL
+```
+
+**Format receipt (identical block for each file; paste back with the score):**
+
+```
+candidate       : h33-h33-2-b2-MASSa25adj-20261024-c658eb33
+sha256 (NaN)    : c658eb330951f84e3cbc47036f392e89ef8ee93edf7ad568c63477f79b10b3f1
+sha256 (zeros)  : a73e963bd8149c3fabfee75e79ed3ff4ac9d3969b6b99018018adc3889d1433f
+n_dots          : 47068      added: 9414 (0 removed)   seed: 91024
+min_dist_catalogue_px: 2.236 (inherited from R0, IR-91-03); NEW dots: 3.162 min
+release_gates.validate_release : 13/13 PASS (NaN build) and 13/13 PASS (zeros build)
+validate_raster.py             : 14/14 PASS both encodings (the -zeros twin needs allow_zeros_outside)
+gems91.gates.validate          : all PASS except collar_ge_3px, which R0 fails identically (2171 dots)
+CRS EPSG:32611 | 3730x3292 | 100 m | float32 | 1 band | values {0,1} | NaN outside footprint
+zero catalogue mass: 0 px | sha256 unseen in the ledger at build time | re-read from disk: PASS
+```
+
+**Known wrinkle, stated up front:** all three arms inherit R0's 2,171 dots at 2–3 px from the
+catalogue, so §4.4 is violated by the parent, not by the edit; the edit adds **zero** dots
+inside 3 px (min added→catalogue `3.162 px`). IR-91-03 remains the human's ruling.
+
+---
+
+# SUBMIT (session 4, 2026-10-23) — MASS/consensus arms + merged PRUNE/CONCENTRATION queue
+
+**Historical (2026-10-23): 38 BUILT rows, 0 submitted, 0 receipts.** Kept for the format-receipt
+template and the older queue; superseded by the session-8 section above.
 
 ## SESSION 4 — MASS/consensus: the three files to upload (one per slot)
 

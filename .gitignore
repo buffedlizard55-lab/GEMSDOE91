@@ -28,3 +28,6 @@ releases/_tmp-*.tif
 
 # TRACKB trace GeoJSON is a derived candidate geometry (same policy as rasters)
 releases/*.geojson
+# IR-91-38: a parallel session committed competition-derived rasters here; the brief
+# (4.2, 7) says competition rasters stay out of public repos. Never again.
+docs/downloads/*.tif

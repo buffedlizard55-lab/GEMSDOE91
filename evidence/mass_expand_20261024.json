@@ -1,0 +1,494 @@
+{
+  "schema": "gems91.mass-expand.v1",
+  "generated_utc": "2026-10-24T05:29:34+00:00",
+  "git_sha": "30954e6",
+  "axis": "MASS",
+  "parent": "h33-h33-2-b2",
+  "parent_dots": 37654,
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "ranking_basis": "lineage field anc_h19_5 (121,131 px) restricted to cells R0 does not use, vote==3 over anc_h19_5/h19_4/h16_1, seeded tie-break",
+  "seed": 91024,
+  "arms": {
+    "a12adj": {
+      "value": "a12adj",
+      "id": "h33-h33-2-b2-MASSa12adj-20261024-d3de6292",
+      "sha256": "d3de62927a2f4ebce48a1c8ebd750a9a42b0ab591c51c7a4eef595767951d523",
+      "sha256_zeros": "baa2bfe02e9318e74b1262922e93395dd236972249969d7cf0c14d930c11c976",
+      "n_dots": 42361,
+      "pool": "adj",
+      "n_add": 4707,
+      "stats": {
+        "n_dots_parent": 37654,
+        "n_added": 4707,
+        "n_removed": 0,
+        "n_dots_candidate": 42361,
+        "pct_changed_of_parent": 12.5007,
+        "added_distance_to_nearest_parent_dot_px": {
+          "min": 1.0,
+          "mean": 1.1398311771002438,
+          "max": 1.4142135623730951,
+          "frac_8_adjacent": 1.0
+        },
+        "added_distance_to_catalogue_px": {
+          "min": 3.1622776601683795,
+          "mean": 30.981223073954435
+        },
+        "parent_dots_with_8_neighbour": 0,
+        "candidate_dots_with_8_neighbour": 9449,
+        "axis": "MASS",
+        "pool": "adj",
+        "min_gap_px": 3.0,
+        "selection": {
+          "n_requested": 4707,
+          "n_selected": 4707,
+          "shortfall": 0,
+          "pool_size": 40764,
+          "forbid_mutual_adjacency": false,
+          "seed": 91024
+        },
+        "vote_threshold": 3,
+        "pool_sizes": {
+          "adj": 40764,
+          "spaced": 5261,
+          "eligible": 46025
+        },
+        "added_cells_head": [
+          [
+            0,
+            1085
+          ],
+          [
+            1,
+            989
+          ],
+          [
+            1,
+            1232
+          ],
+          [
+            1,
+            1873
+          ],
+          [
+            2,
+            930
+          ]
+        ]
+      },
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 42361,
+        "added": 4707,
+        "removed": 0,
+        "changed": 4707,
+        "pct_changed_of_parent": 12.5007
+      },
+      "gates_nan": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "sha256": "d3de62927a2f4ebce48a1c8ebd750a9a42b0ab591c51c7a4eef595767951d523",
+        "dot_set_digest": "f875147dee27cede9bff0481feef7a373f00668807af0ac5ef103cd366f98328",
+        "n_dots": 42361,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "gates_zeros": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "zeros_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "sha256": "baa2bfe02e9318e74b1262922e93395dd236972249969d7cf0c14d930c11c976",
+        "dot_set_digest": "f875147dee27cede9bff0481feef7a373f00668807af0ac5ef103cd366f98328",
+        "n_dots": 42361,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "both_gates_pass": true,
+      "model_prediction": {
+        "n_added": 4707,
+        "pool": "adj",
+        "point": 0.0087,
+        "delta_dti_range": [
+          -0.0043,
+          0.0424
+        ],
+        "breakeven_precision": 0.0182,
+        "fleet_per_dot": 1.85e-06,
+        "note": "MODEL, never a score; the point is the fleet calibration, the range is the algebra sweep"
+      },
+      "gems91_gates_report_only": {
+        "verdict": "NOT CERTIFIED (failed gate)",
+        "gates": {
+          "file_exists": "PASS",
+          "crs": "PASS",
+          "shape": "PASS",
+          "transform": "PASS",
+          "dtype": "PASS",
+          "band_count": "PASS",
+          "values_in_0_1": "PASS",
+          "no_nan_inside_footprint": "PASS",
+          "nan_outside_footprint": "PASS",
+          "zero_catalogue_mass": "PASS",
+          "collar_ge_3px": "FAIL",
+          "sha_unseen": "PASS",
+          "sha_unseen_zeros": "PASS",
+          "reread_from_disk": "PASS"
+        },
+        "inherited_collar_note": "collar_ge_3px fails on the 2,171 R0 dots inherited at 2<d<=3 px (IR-91-03). The edit itself adds 0 dots within 3 px (min added->catalogue 3.162 px)."
+      },
+      "sgmc_report_only": {
+        "sgmc_only_px": 62122,
+        "parent_frac_within_1px": 0.0566,
+        "added_frac_within_1px": 0.0667,
+        "parent_frac_within_2px": 0.0933,
+        "added_frac_within_2px": 0.1033,
+        "parent_frac_within_3px": 0.1313,
+        "added_frac_within_3px": 0.1404
+      }
+    },
+    "a25adj": {
+      "value": "a25adj",
+      "id": "h33-h33-2-b2-MASSa25adj-20261024-c658eb33",
+      "sha256": "c658eb330951f84e3cbc47036f392e89ef8ee93edf7ad568c63477f79b10b3f1",
+      "sha256_zeros": "a73e963bd8149c3fabfee75e79ed3ff4ac9d3969b6b99018018adc3889d1433f",
+      "n_dots": 47068,
+      "pool": "adj",
+      "n_add": 9414,
+      "stats": {
+        "n_dots_parent": 37654,
+        "n_added": 9414,
+        "n_removed": 0,
+        "n_dots_candidate": 47068,
+        "pct_changed_of_parent": 25.0013,
+        "added_distance_to_nearest_parent_dot_px": {
+          "min": 1.0,
+          "mean": 1.1371911926364255,
+          "max": 1.4142135623730951,
+          "frac_8_adjacent": 1.0
+        },
+        "added_distance_to_catalogue_px": {
+          "min": 3.1622776601683795,
+          "mean": 30.925503018275254
+        },
+        "parent_dots_with_8_neighbour": 0,
+        "candidate_dots_with_8_neighbour": 18221,
+        "axis": "MASS",
+        "pool": "adj",
+        "min_gap_px": 3.0,
+        "selection": {
+          "n_requested": 9414,
+          "n_selected": 9414,
+          "shortfall": 0,
+          "pool_size": 40764,
+          "forbid_mutual_adjacency": false,
+          "seed": 91024
+        },
+        "vote_threshold": 3,
+        "pool_sizes": {
+          "adj": 40764,
+          "spaced": 5261,
+          "eligible": 46025
+        },
+        "added_cells_head": [
+          [
+            0,
+            1085
+          ],
+          [
+            0,
+            1252
+          ],
+          [
+            0,
+            3207
+          ],
+          [
+            1,
+            989
+          ],
+          [
+            1,
+            1232
+          ]
+        ]
+      },
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 47068,
+        "added": 9414,
+        "removed": 0,
+        "changed": 9414,
+        "pct_changed_of_parent": 25.0013
+      },
+      "gates_nan": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "sha256": "c658eb330951f84e3cbc47036f392e89ef8ee93edf7ad568c63477f79b10b3f1",
+        "dot_set_digest": "ee4d17f399e8fc10a158b6ff2c0c0e7458138197cf04c00586330f7c86af4f06",
+        "n_dots": 47068,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "gates_zeros": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "zeros_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "sha256": "a73e963bd8149c3fabfee75e79ed3ff4ac9d3969b6b99018018adc3889d1433f",
+        "dot_set_digest": "ee4d17f399e8fc10a158b6ff2c0c0e7458138197cf04c00586330f7c86af4f06",
+        "n_dots": 47068,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "both_gates_pass": true,
+      "model_prediction": {
+        "n_added": 9414,
+        "pool": "adj",
+        "point": 0.0174,
+        "delta_dti_range": [
+          -0.0086,
+          0.0847
+        ],
+        "breakeven_precision": 0.0182,
+        "fleet_per_dot": 1.85e-06,
+        "note": "MODEL, never a score; the point is the fleet calibration, the range is the algebra sweep"
+      },
+      "gems91_gates_report_only": {
+        "verdict": "NOT CERTIFIED (failed gate)",
+        "gates": {
+          "file_exists": "PASS",
+          "crs": "PASS",
+          "shape": "PASS",
+          "transform": "PASS",
+          "dtype": "PASS",
+          "band_count": "PASS",
+          "values_in_0_1": "PASS",
+          "no_nan_inside_footprint": "PASS",
+          "nan_outside_footprint": "PASS",
+          "zero_catalogue_mass": "PASS",
+          "collar_ge_3px": "FAIL",
+          "sha_unseen": "PASS",
+          "sha_unseen_zeros": "PASS",
+          "reread_from_disk": "PASS"
+        },
+        "inherited_collar_note": "collar_ge_3px fails on the 2,171 R0 dots inherited at 2<d<=3 px (IR-91-03). The edit itself adds 0 dots within 3 px (min added->catalogue 3.162 px)."
+      },
+      "sgmc_report_only": {
+        "sgmc_only_px": 62122,
+        "parent_frac_within_1px": 0.0566,
+        "added_frac_within_1px": 0.0658,
+        "parent_frac_within_2px": 0.0933,
+        "added_frac_within_2px": 0.1023,
+        "parent_frac_within_3px": 0.1313,
+        "added_frac_within_3px": 0.1406
+      }
+    },
+    "a12spc": {
+      "value": "a12spc",
+      "id": "h33-h33-2-b2-MASSa12spc-20261024-d466d2ac",
+      "sha256": "d466d2ac87c765240a2dea218b42ec94fd137186459aee0fb7c61df7a64f7af1",
+      "sha256_zeros": "add821bf4a6ba6da2a1ca12397796033a2f8a0e54ef4874afea6e3224e8dcc99",
+      "n_dots": 42361,
+      "pool": "spaced",
+      "n_add": 4707,
+      "stats": {
+        "n_dots_parent": 37654,
+        "n_added": 4707,
+        "n_removed": 0,
+        "n_dots_candidate": 42361,
+        "pct_changed_of_parent": 12.5007,
+        "added_distance_to_nearest_parent_dot_px": {
+          "min": 2.0,
+          "mean": 2.1419140407668347,
+          "max": 18.439088914585774,
+          "frac_8_adjacent": 0.0
+        },
+        "added_distance_to_catalogue_px": {
+          "min": 3.1622776601683795,
+          "mean": 30.41593633992593
+        },
+        "parent_dots_with_8_neighbour": 0,
+        "candidate_dots_with_8_neighbour": 0,
+        "axis": "MASS",
+        "pool": "spaced",
+        "min_gap_px": 3.0,
+        "selection": {
+          "n_requested": 4707,
+          "n_selected": 4707,
+          "shortfall": 0,
+          "pool_size": 5261,
+          "forbid_mutual_adjacency": true,
+          "seed": 91024
+        },
+        "vote_threshold": 3,
+        "pool_sizes": {
+          "adj": 40764,
+          "spaced": 5261,
+          "eligible": 46025
+        },
+        "added_cells_head": [
+          [
+            0,
+            858
+          ],
+          [
+            0,
+            1868
+          ],
+          [
+            2,
+            2412
+          ],
+          [
+            3,
+            1056
+          ],
+          [
+            3,
+            2673
+          ]
+        ]
+      },
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 42361,
+        "added": 4707,
+        "removed": 0,
+        "changed": 4707,
+        "pct_changed_of_parent": 12.5007
+      },
+      "gates_nan": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "sha256": "d466d2ac87c765240a2dea218b42ec94fd137186459aee0fb7c61df7a64f7af1",
+        "dot_set_digest": "b420221dc0b70f2dd69395703a4dba44949b203112da8bbf92f481451f955476",
+        "n_dots": 42361,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "gates_zeros": {
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "zeros_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "sha256": "add821bf4a6ba6da2a1ca12397796033a2f8a0e54ef4874afea6e3224e8dcc99",
+        "dot_set_digest": "b420221dc0b70f2dd69395703a4dba44949b203112da8bbf92f481451f955476",
+        "n_dots": 42361,
+        "sha256_not_in_ledger": true,
+        "PASS": true,
+        "failed": []
+      },
+      "both_gates_pass": true,
+      "model_prediction": {
+        "n_added": 4707,
+        "pool": "spaced",
+        "point": 0.0052,
+        "delta_dti_range": [
+          -0.0026,
+          0.0254
+        ],
+        "breakeven_precision": 0.0182,
+        "fleet_per_dot": 1.85e-06,
+        "note": "MODEL, never a score; the point is the fleet calibration, the range is the algebra sweep"
+      },
+      "gems91_gates_report_only": {
+        "verdict": "NOT CERTIFIED (failed gate)",
+        "gates": {
+          "file_exists": "PASS",
+          "crs": "PASS",
+          "shape": "PASS",
+          "transform": "PASS",
+          "dtype": "PASS",
+          "band_count": "PASS",
+          "values_in_0_1": "PASS",
+          "no_nan_inside_footprint": "PASS",
+          "nan_outside_footprint": "PASS",
+          "zero_catalogue_mass": "PASS",
+          "collar_ge_3px": "FAIL",
+          "sha_unseen": "PASS",
+          "sha_unseen_zeros": "PASS",
+          "reread_from_disk": "PASS"
+        },
+        "inherited_collar_note": "collar_ge_3px fails on the 2,171 R0 dots inherited at 2<d<=3 px (IR-91-03). The edit itself adds 0 dots within 3 px (min added->catalogue 3.162 px)."
+      },
+      "sgmc_report_only": {
+        "sgmc_only_px": 62122,
+        "parent_frac_within_1px": 0.0566,
+        "added_frac_within_1px": 0.0544,
+        "parent_frac_within_2px": 0.0933,
+        "added_frac_within_2px": 0.0865,
+        "parent_frac_within_3px": 0.1313,
+        "added_frac_within_3px": 0.1215
+      }
+    }
+  },
+  "leakage_canary": {
+    "feature": "cross-field support vote (0-3)",
+    "auc_vs_catalogue_ring": 0.529,
+    "n_ring_px": 446585,
+    "n_background_px": 11354477,
+    "threshold": 0.9,
+    "verdict": "below threshold"
+  },
+  "report_only_note": "SGMC and the canary are instruments, never gates. The catalogue hide-and-recover proxy is invariant by construction here: every added cell is >3 px from the catalogue and no parent dot moves."
+}

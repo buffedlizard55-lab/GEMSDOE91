@@ -39,6 +39,11 @@ fixture:
 mass:
 	$(PY) scripts/build_mass_consensus.py
 
+# MASS expansion arms (session 8): +12.5 %/+25 % adjacent and +12.5 % spaced, from the
+# lineage field's unused cells. Fixed seed 91024; verifies 8 pins and the parent hash first.
+mass-expand:
+	$(PY) scripts/build_mass_expand.py --build
+
 # REPORT-ONLY instruments (PROXY, ring canary, SGMC). Never a gate, never a score.
 instruments:
 	$(PY) scripts/instruments.py --label mass-consensus \
