@@ -91,7 +91,7 @@
     ],
     "reproductions_not_counted_against_budget": [
       "H91 lane in isolated copy (/home/user/repro-s11): E1 0.174030, E2 0.166750 reproduce the published values. E3 is recorded in its own log. B0 0.138999 and SGMC R0 0.095386 also reproduce.",
-      "S11 lane in isolated copy: see reproduction block below."
+      "S11 lane in isolated copy: E1 0.202272, E2 0.206406 (winner) and E3 0.205989 reproduce the published values; SGMC control E2 0.097623. The isolated candidate is byte-identical to the published docs/downloads TIF (see reproduction block below)."
     ]
   },
   "leakage_canary": {
@@ -121,7 +121,7 @@
     "0.4413": "ORGANIZER-CONFIRMED (public leaderboard row #1, DrivenData leaderboard read 2026-10-24; not a personal submission receipt)",
     "0.2778": "CLAIM \u2014 unverified; no organizer receipt in this repository (IR-91-S10-05)",
     "0.3195": "CLAIM \u2014 unverified; not on the public board as read (IR-91-S10-05, IR-91-S11-09)",
-    "0.206406": "HOLDOUT-DTI \u2014 S11-MHTR E2 as recorded in its own run card; reproduction in progress (see reproduction block)",
+    "0.206406": "HOLDOUT-DTI \u2014 S11-MHTR E2; reproduced in an isolated copy this session and matches the published value (see reproduction block)",
     "0.138999": "HOLDOUT-DTI \u2014 B0 reference, reproduced in isolated copy this session"
   },
   "verdict": "negative",
