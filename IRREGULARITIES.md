@@ -637,3 +637,67 @@ row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on fl
 (explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
 float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic
 demo but must not be used to build a release.
+
+# Session 8 (`arena/ed1ccddf-gemsdoe91`, SPACING/redcov) — three decision-changing items
+
+## IR-91-33 — MASS is measured exhausted at every ranking the pinned inputs support
+
+**Expected** (brief §7 default plan): week 1–2 starts with MASS — drop/add the lowest/next-ranked
+10 % by the parent's ranking. The parent's ranking does not exist (IR-91-21), so this session
+screened every ranking the pinned bytes *can* construct, scoring each decile by surrogate
+precision (fraction of dots within 2.83 px of the independent off-catalogue SGMC map,
+[USGS DS-1052](https://pubs.usgs.gov/ds/1052/); off-collar base rate 12.17 %, `PROXY`):
+
+| ranking | bottom-decile precision | top-decile precision |
+|---|---:|---:|
+| cross-field vote (consensus) | 0.1009 | 0.1432 |
+| `S_struct` (RELIEF/TRACKB score) | 0.1126 | 0.1065 |
+| potential-field part of `S_struct` alone | 0.1548 | 0.0985 |
+| neighbours within 5 px | 0.1057 | 0.1270 |
+| distance to catalogue | 0.1562 (nearest) | 0.0858 (farthest) |
+
+Break-even at the CLAIMED live DTI is 11.8 % (IR-91-22). Every bottom decile lands within
+~2 points of it, so every constructible MASS edit predicts |Δ| ≲ 0.002 at the mid denominator —
+five times under the brief's 0.01 evidence bar. Two sharper facts: (a) the potential-field
+component *anti*-ranks (its top decile is the worst population measured), consistent with SNAP's
+negative control (IR-91-28..30), so `S_struct`-ranked MASS would have been an expensive way to
+relearn SNAP; (b) a continuous-`S_struct` bottom decile is 94 % vote≤1 dots, i.e. it *is*
+`MASS/cons1drop` with a tie-break — building it would duplicate an existing (axis, mechanism)
+while pretending novelty.
+
+**Decision it changes:** this session did not build MASS, and the fleet's cons arms should be
+treated as one already-built experiment, not a queue. If a MASS slot is ever bought,
+`cons3add` (add side, vote-ranked) is the only arm whose screened precision clears break-even;
+do not spend slots distinguishing `cons1drop`/`cons2drop`/`m10minus` from each other.
+
+## IR-91-34 — This session's axis was selected by screening on the report-only SGMC control
+
+Disclosed plainly because it changes how much the prediction may be trusted. Before building,
+eight mechanism-backed families were screened with the *exact* DTI metric against the SGMC
+off-catalogue control (fixed-count relT: catalogue-density concentration −1.1 %/−1.6 %, tip
+extension −6.3 %, redundancy-donor+tip-recipient −1.5 %, redcov +7.5 %/+8.8 %/+4.1 % prototype).
+redcov is therefore the *maximum* of a screened set, and its surrogate delta is biased upward
+by selection. Mitigations applied: families were chosen on mechanism before screening; SGMC was
+never used to rank or place a single dot (donors = parent geometry, recipients = lineage vote +
+coverage distance); the prediction applies the fleet's 0.5 shrink *and* a −0.008 widened
+downside (`+0.011 [−0.003, +0.021]`); the full log, including failures, is in
+`evidence/redcov_axis_20261024.json`. SGMC remains report-only and gated nothing.
+
+**Decision it changes:** treat `+0.011` as an upper-middle estimate, not a point forecast. A
+redcov10 receipt ≤ 0.000 retires the whole coverage family (redcov20, and proposals 1–2 in
+`SLOT_PLAN.md`) without further slots; only ≥ +0.010 licenses the dose bracket.
+
+## IR-91-35 — 50 BUILT rows, 0 receipts: further build sessions have near-zero marginal value
+
+**Actual:** eight sessions, 50 gate-clean candidate files, every (axis) in the brief built at
+three or more values — and `receipt_score` empty on every row. R0's 0.2778 is still `CLAIM`;
+`TOP_PUBLIC` is still blank; slot usage is unrecorded. Each new session (this one included) is
+forced to re-derive the same queue from `MODEL`s anchored to an unverified number, and the
+fleet is now large enough that *selection among built files by receipt* dominates any plausible
+51st file (largest honest predicted spread across the top queue ≈ 0.013 `MODEL`).
+
+**Decision it changes:** the plan in `SLOT_PLAN.md` now leads with this item. Recommended human
+action before any session 9: submit the Week-1 queue (R0 anchor if unreceipted, then redcov10,
+gdr25rm10, PRUNE-le10 as slots allow), paste `receipt_score` + `receipt_date` + `TOP_PUBLIC`
+(with date) into the ledger/README, and record slots used. Until then, the highest-value "build"
+is no build.

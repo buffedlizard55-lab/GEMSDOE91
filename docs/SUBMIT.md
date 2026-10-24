@@ -238,3 +238,48 @@ USGS DS-1052): R0 0.095386 -> +0.00008 / -0.00234 / -0.00926.  Leakage canary ma
 **Do not** upload more than one SNAP arm for the "information" of it — they are one dose-response
 experiment. If a SNAP receipt is bought, `s2c` is the only arm whose prediction is compatible with
 no change, and `≤ −0.006` retires the axis.
+
+## Session 8 (`arena/ed1ccddf-gemsdoe91`, 2026-10-24) — SPACING/redcov (new slot 1)
+
+Rebuild (pinned inputs only, every sha256 checked; ~1 min, no `training_features` needed):
+
+```bash
+python3 scripts/restore_data.py
+python3 scripts/build_redcov.py --build   # byte-identical on rebuild; CI proves it twice
+```
+
+| File (`releases/`) | Rule | Form note (≤140 chars, exact length) | `MODEL` |
+|---|---|---|---|
+| `h33-h33-2-b2-SPACINGredcov10-20261024-8113d448.tif` | 3,765 most kernel-redundant dots → supported cells furthest from survivors, count fixed | `h33-h33-2-b2; SPACING redcov10: 3765 dots (10.0%) redundant->uncovered, count fixed; pred MODEL:+0.011` (102) | +0.011 `[-0.003,+0.021]` |
+| `h33-h33-2-b2-SPACINGredcov20-20261024-191caf71.tif` | same rule, 7,531 dots (dose; spend only if redcov10 ≥ +0.010) | `h33-h33-2-b2; SPACING redcov20: 7531 dots (20.0%) redundant->uncovered, count fixed; pred MODEL:+0.013` (102) | +0.013 `[-0.002,+0.026]` |
+| `h33-h33-2-b2-SPACINGredcov10v2-20261024-9ae05686.tif` | recipients restricted to ≥2-field support (mechanism decomposition) | `h33-h33-2-b2; SPACING redcov10v2: 3765 dots (10.0%) redundant->uncovered, count fixed; pred MODEL:+0.006` (104) | +0.006 `[-0.005,+0.012]` |
+
+Upload the NaN-outside `.tif` (one file per slot); the `-zeros.tif` twin is the fallback only.
+**Order:** R0 anchor first *if* no receipt is held for `baeae321…`, then `redcov10`. The three
+arms are one dose/support ladder — do not spend three slots on them (see `SLOT_PLAN.md`).
+
+### Session 8 format receipt (`RECEIPT`, re-read from disk after write)
+
+```text
+1. h33-h33-2-b2-SPACINGredcov10-20261024-8113d448
+   primary (.tif)        sha256=8113d448424d3a039cdca240517411f03b8370c9ac2534ecc3afcb2197a2f4ad (374,483 B)
+   fallback (-zeros.tif) sha256=ed6d54b61aecf314a3508ddf8db202b8fc830715f283068bc011ee312f803625 (227,217 B)
+   dots 37,654 unit-mass | cat_mass 0 | collar 2,171 -> 2,171 | moved 3,765 (10.00% relocated, 20.00% symdiff)
+   CV_1km 0.6187 -> 0.5560 | mean NN 3.74 -> 4.07 px | recipient distance to survivor: median 6.40 px, min 4.47 px
+   gates: release_gates PASS (nan + zeros) | validate_raster 14/14 PASS | validate.py PASS | reread_from_disk PASS
+2. h33-h33-2-b2-SPACINGredcov20-20261024-191caf71
+   primary (.tif)        sha256=191caf713b5996ea5032b6ee10e494143409561e74422b875769aa8455060e1b (375,253 B)
+   fallback (-zeros.tif) sha256=822657030a6cf0edad92f31a903f1b427af2b0bf9bbb4c09724fd19c194a572d (227,975 B)
+   dots 37,654 unit-mass | cat_mass 0 | collar 2,171 -> 2,171 | moved 7,531 (20.00% relocated, 40.00% symdiff)
+   CV_1km 0.6187 -> 0.5511 | gates: release_gates PASS (nan + zeros) | validate_raster 14/14 PASS | validate.py PASS
+3. h33-h33-2-b2-SPACINGredcov10v2-20261024-9ae05686
+   primary (.tif)        sha256=9ae05686ebfa0877007259def668274d99eda5325fdf70fa810abe110065645c (373,076 B)
+   fallback (-zeros.tif) sha256=1f5131c024221edf8e78ed850e0c23df8b47e637fedc22acbf6a300b84ed47fd (225,756 B)
+   dots 37,654 unit-mass | cat_mass 0 | collar 2,171 -> 2,171 | moved 3,765 (10.00% relocated, 20.00% symdiff)
+   CV_1km 0.6187 -> 0.5749 | gates: release_gates PASS (nan + zeros) | validate_raster 14/14 PASS | validate.py PASS
+PROXY (report only, never a score): catalogue hide-and-recover 0.006186 [0.005958, 0.006413],
+5 draws, 12,198-12,201 withheld positives/draw -- identical for R0 and all arms BY CONSTRUCTION
+(all donors/recipients >3 px from catalogue). SGMC off-catalogue exact DTI (62,122 px,
+USGS DS-1052): R0 0.095386 -> redcov10 +0.00720 (relT +7.69%) / redcov20 +0.00861 / redcov10v2 +0.00397.
+Leakage canaries: vote ring AUC 0.5257; moved-dot AUC 0.40-0.45 (stop > 0.90).
+```

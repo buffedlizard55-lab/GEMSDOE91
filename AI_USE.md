@@ -433,3 +433,44 @@ PROXY and SGMC control are labelled `PROXY`/report-only and are never called sco
 is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
 one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
 single blind final file.
+
+# Session 8 disclosure (`arena/ed1ccddf-gemsdoe91`, SPACING/redcov, 2026-10-24)
+
+## What the AI wrote and executed in Session 8
+
+Restored all 15 pinned inputs from the manifest mirrors and verified every sha256
+(`scripts/restore_data.py`: all pinned inputs verified `RECEIPT`); rebuilt parent R0
+byte-exact from both pinned ancestors (`scripts/verify_parent_r0.py`: `ok: true`,
+`byte_exact_rebuild: true`) before building anything; re-ran the full prior fleet through
+CI's lineage sequence (27 arms × 2 encodings byte-identical to `releases/MANIFEST.json`,
+175 tests passed) to prove no regressions.
+
+**AI chose the session axis** (brief: do not ask the human). It first screened MASS — the
+brief's week-1 default — and measured it exhausted at every ranking the pinned inputs
+support (IR-91-33), then screened eight mechanism-backed families with the exact DTI
+metric on the report-only SGMC control and picked SPACING/redcov, disclosing the
+selection-on-surrogate bias and shrinking the prediction for it (IR-91-34). AI code this
+session: `src/gems91/redcov.py`, `scripts/build_redcov.py`, `tests/test_redcov.py`, the CI
+determinism step, the Makefile target, and the regenerated `evidence/redcov_axis_20261024.json`
+(contains the full screen log, including families that failed). Human-readable additions by
+the AI: `ledger/variant-cards-REDCOV-20261024.md`, the `SLOT_PLAN.md` rewrite (condensing the
+multi-session append log into the brief's ≤1-page forward plan — history remains in
+README/evidence/ledger notes), IR-91-33..35, the README CURRENT STATE edits, and the
+Session 8 section of `docs/SUBMIT.md`. The fleet rebuild's ledger/evidence churn was
+deliberately reverted to byte-identical history except this session's 3 ledger rows
+(including restoring three TRACKB rows whose builder hardcodes "SESSION 6" against the
+committed "SESSION 7").
+
+## What the AI did NOT do
+
+No submission, no contact with drivendata.org or dropbox.com, no credentials read/requested/
+stored/printed, no leaderboard access, no invented score. Catalogue hide-and-recover and SGMC
+numbers are labelled `PROXY` everywhere; predictions are `MODEL` against the unreceipted
+0.2778 `CLAIM`. SGMC screened *families*; it never ranked or placed an individual dot.
+
+## What remains human-decided
+
+Whether an R0-anchor slot is needed (do you hold a receipt for `baeae321…`?); submission order
+and every upload; `TOP_PUBLIC` + date; slots remaining; pasting `receipt_score`/`receipt_date`
+into `ledger/submissions.csv` the same day (IR-91-35 recommends no session 9 until then);
+whether `redcov20`/`redcov10v2` or a TRACKB file ever spends a slot; the single blind final file.
