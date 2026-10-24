@@ -297,4 +297,4 @@ terciles `R_rel = 0.90·pct(det_elev) + 0.10·pct(det_elev_slope)` from official
 - `h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38` — 2,214 traces >=1 km; relocate 10.0% (3,765) lowest-S off-trace dots onto traces; +0.004 MODEL [-0.008,+0.016]. GeoJSON `8343ab38-traces.geojson` (sha256 007f5de8...), one evidence paragraph per trace.
 - `h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b` — same traces, 20.0% (7,531) relocated; +0.005 MODEL [-0.012,+0.022].
 - `h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a` — 675 traces >=2 km; 10.0% relocated; +0.002 MODEL [-0.008,+0.012].
-- All: 37,654 dots, zero catalogue mass, min d_cat 2.236 px, both gate suites PASS. Spacing confound + invariant PROXY: IR-91-28.
+- All: 37,654 dots, zero catalogue mass, min d_cat 2.236 px, both gate suites PASS. Spacing confound + invariant PROXY: IR-91-31.

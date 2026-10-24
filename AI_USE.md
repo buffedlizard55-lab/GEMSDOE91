@@ -401,14 +401,14 @@ slot count, the deadline confirmation, the collar ruling (IR-91-03), and the bli
 
 ---
 
-# Session 6 disclosure (`arena/0ed37053-gemsdoe91`, TRACKB, 2026-10-23)
+# Session 7 disclosure (`arena/0ed37053-gemsdoe91`, TRACKB, 2026-10-23)
 
 ## What the AI wrote and decided
 - Chose **TRACKB** without prompting: it was the only axis with zero ledger rows (all weekly
   axes already had (axis,value) builds; repeating one would violate the dedupe rule).
 - Wrote `src/gems91/trackb.py`, `scripts/build_trackb.py`, `tests/test_trackb.py`; built three
   count-fixed arms (t1k10/t1k20/t2k10), each with NaN+zeros rasters and a GeoJSON whose every
-  trace carries an evidence paragraph; recorded IR-91-28 (spacing confound; invariant PROXY).
+  trace carries an evidence paragraph; recorded IR-91-31 (spacing confound; invariant PROXY).
 - A gate caught a real bug during the build (37622 vs 37654 dots from duplicate rounded
   target pixels); the build stopped, was fixed, and rebuilt byte-identically (same sha8s).
 - No submission, login, leaderboard access, credentials, drivendata.org/dropbox.com contact,
@@ -418,3 +418,18 @@ slot count, the deadline confirmation, the collar ruling (IR-91-03), and the bli
 1. Whether any TRACKB file ever spends a weekly slot (default: no — Phase 2 only).
 2. `TOP_PUBLIC` + date, slots left, R0 receipt, deadline confirmation (unchanged from Session 5).
 3. Blind final pick.
+## Session 6 (2026-10-23, `arena/9b8f7d01-gemsdoe91`) — SNAP axis
+**AI wrote:** `src/gems91/snap.py` (driver preparation + deterministic snap operator),
+`scripts/build_snap.py`, `tests/test_snap.py` (9 tests), `docs/MECHANISM_CARDS_SNAP.md`,
+the SNAP sections of `SLOT_PLAN.md` / `docs/SUBMIT.md` / `README.md` (CURRENT STATE) /
+`IRREGULARITIES.md` (IR-91-28..30), and all three release files and their `-zeros` twins.
+The AI chose the session axis (`SNAP`, the only weekly-slot axis absent from the ledger; the
+brief says not to ask the human to choose an axis).
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read or print credentials,
+scrape a leaderboard, or invent a score. The parent was rebuilt byte-exact from pinned
+ancestors before any variant was built; every input was sha256-verified first. The catalogue
+PROXY and SGMC control are labelled `PROXY`/report-only and are never called scores.
+**Human decides:** whether a SNAP slot is bought at all (the AI's recommendation is no; SNAP
+is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
+one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
+single blind final file.

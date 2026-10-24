@@ -180,7 +180,7 @@ def main() -> int:
         "uniform_truth_credit": proxy.uniform_truth_credit(parent, footprint),
     }
 
-    today = "20261023"  # pinned fleet build date (IR-91-29)
+    today = "20261023"  # pinned fleet build date (IR-91-32)
     releases = ROOT / "releases"
     rows, evidence = [], {"generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                           "parent": PARENT_ID, "lineage": lineage, "r0": r0_stats,
