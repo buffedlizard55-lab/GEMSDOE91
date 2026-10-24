@@ -1,5 +1,11 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+> **UCD91 SESSION (2026-10-24, branch `arena/ad5f4b68-gemsdoe91`): ⛔ NOT OK TO SUBMIT — unique TIF built, verdict NEGATIVE.**
+> New lane UCD (upward-continuation TMI persistence; 5 ranked hypotheses in [`docs/HYPOTHESES_UCD91.md`](docs/HYPOTHESES_UCD91.md)): E1 HOLDOUT-DTI 0.080042, E2 (+basement step) **0.113442** [0.103611,0.12111] (evaluator `gems91-hide-recover-v1.0`, 60,988 withheld) — below pre-registered gate 0.206406 (S11-MHTR). Canary PASS (0.58871<0.90), uniqueness PASS (|ρ|≤0.06965, ≤27.05% dots≤3px), all 3 validator suites PASS (all-finite [0,1], EPSG:32611, 3730×3292, 48,000 dots).
+> **Research download only:** [gems91-ucd91-20261024T190000Z-df735405-zeros.tif](docs/downloads/gems91-ucd91-20261024T190000Z-df735405-zeros.tif) (sha256 `949953f8…54952d`) · [verdict page](docs/ucd91.html) · [executive summary](docs/ucd91-executive-summary.html) · [run card](docs/run-card-UCD91.json). Do NOT spend a weekly slot. No ORGANIZER-CONFIRMED score claimed; 0.2778/0.4413 in brief are not HOLDOUT-DTI.
+
+
+> **CURRENT CHECKOUT REVIEW (2026-10-24; branch `arena/9971ddbb-gemsdoe91`): NOT OK TO SUBMIT.** No new experiment or TIFF was produced in this review. The assigned method paragraph required by the parallel-run protocol is absent, so a new lane was not selected. The current root [`docs/run-card.json`](docs/run-card.json) records CED91 as negative: final-dot duplicate gate failed and `submission_ready` is false. An existing CED91 TIFF is available **for research download only, not competition upload**: [download TIFF](docs/downloads/gems91-ced-v1-20261024-d35670b28c81.tif). The current branch-specific review, candidate queue, limitations and run card are in [`docs/REVIEW-ARENA-9971DD-20261024.md`](docs/REVIEW-ARENA-9971DD-20261024.md). No weekly slot was used.
 > **MTD91 (2026-10-24, branch `arena/9f196bb4-gemsdoe91`): NOT OK TO SUBMIT.**
 > Unique zeros GeoTIFF: [`docs/downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif`](docs/downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif)
 > (SHA-256 `de595c67d459a7e764fb059285725db7eabb089d6672f7cd820af135d2558dc9`).
