@@ -167,3 +167,13 @@ research artifact or revive legacy model-projected queues.
 4. **Mirror inputs.** Competition rasters were restored from sha-pinned public
    sibling mirrors (identity verified; origin/licence not established). The
    mirrored sample carries catalogue positives, not the organizer's blank.
+
+## Current review additions — `arena/31d0d079-gemsdoe91` (2026-10-24)
+
+1. **No assigned lane.** The method paragraph required by the parallel-run protocol is absent. Four ranked ideas are recorded in `docs/REVIEW-ARENA-31D0D079-20261024.md`, but none is run or promoted.
+2. **No new TIF.** This is intentional: no candidate has a holdout score, canary, pre-placement novelty check, final-dot uniqueness check, or byte-level format receipt from this review. Existing downloads are historical and retain their own verdicts.
+3. **Missing local inputs.** The local `data/` tree is absent; preflight blocks every axis. The feature availability described in past evidence does not supply this checkout with current bytes.
+4. **Mirror provenance and licensing remain unresolved.** Fetching pinned sibling-repository copies might reproduce declared hashes, but would not resolve authenticity or redistribution permission. No restore was attempted.
+5. **External high-resolution DEM not checked for footprint coverage.** Official USGS 3DEP documentation is the named source lead; the service could not be queried from this environment, and the competition's link CSV is not present. This candidate is not considered viable in this review.
+6. **No current organizer evidence.** There is no live leaderboard read, organizer submission receipt, current weekly-slot count, or authenticated account access in this review. User-reported score claims are not used as measured scores.
+7. **Verified engineering checks are not science validation.** The repository test suite and static evidence/policy audits pass, while input preflight is blocked. No holdout-DTI or score comparison was computed.

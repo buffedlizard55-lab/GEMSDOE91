@@ -1340,3 +1340,10 @@ Read from the official rules (`docs.nlr.gov/docs/fy26osti/96647.pdf`, sections �
   fleet's hidden-truth Monte Carlo favours scatter-cover. The frozen
   holdout-conservative selection shipped E1; E2 remains a preregistered
   candidate for a future paired decision, not a post-hoc swap.
+
+## Current review — `arena/31d0d079-gemsdoe91` (2026-10-24)
+
+- **IR-91-ARENA31-01 — required lane paragraph is absent.** The prompt explicitly requires staying in one assigned method paragraph, but provides no method paragraph. This review therefore did not select a candidate to run, did not generate a TIF, and used no weekly slot. The ranked hypotheses are proposals only; no lane assignment is inferred from prior branches.
+- **IR-91-ARENA31-02 — data tree is absent and preflight blocks all axes.** `scripts/preflight.py` reports missing `sample_submission` and `parent_r0_nan` and zero ready axes; the axis report also lists additional missing inputs. No holdout, canary, surface correlation, dot overlap, or new-raster validation was run.
+- **IR-91-ARENA31-03 — score provenance.** The user-reported GEMSDOE32 `0.2778` remains an unverified CLAIM in this checkout, not an organizer receipt or a HOLDOUT-DTI measurement. The mechanism inferred from thinning/collar-pruning is plausible under the max-kernel metric but is not causal proof. Current official leaderboard state was not fetched.
+- **IR-91-ARENA31-04 — external LiDAR availability not established.** USGS 3DEP is recorded as an official source lead, but the 1 m DEM links/coverage for this study area were not checked because the official host is outside this execution's network allowlist and the competition `1m_DEM_links.csv` is not local. Do not treat LiDAR as a viable input until availability, license and permitted-use are checked.
