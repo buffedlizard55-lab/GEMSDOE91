@@ -1,0 +1,62 @@
+{
+  "schema": "gems91.audit-run-card.v1",
+  "run_id": "ARENA-A0841715-20261024",
+  "branch": "arena/a0841715-gemsdoe91",
+  "hypothesis": "Unassigned. The highest-ranked previously documented cached-layer proposal is depth-bin-conditioned conductivity residual curvature, corroborated by isostatic gravity (bands 17, 15, 13); it remains untested.",
+  "mechanism": "Condition conductivity on basement-depth bins to reduce basin-fill trend, then test residual curvature/contact agreement with gravity. This is a proposal from docs/REVIEW-ARENA-20261024.md, not a newly assigned lane or a verified mechanism.",
+  "named_non_fault_mimic": "Saline groundwater or clay-rich sediment.",
+  "experiments_run": 0,
+  "budget": {
+    "max_experiments": 3,
+    "wall_clock_limit_seconds": 7200,
+    "experiment_status": "NOT STARTED: the user brief does not identify the referenced single method paragraph/assigned lane; current checkout also lacks pinned input rasters and runtime dependencies."
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "status": "NOT RUN"
+  },
+  "registry_comparison": {
+    "status": "NOT RUN: no candidate surface or final dots generated",
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "scope_note": "No universal fleet registry is available in this checkout; protocol novelty cannot be asserted."
+  },
+  "leakage_canary": {
+    "status": "NOT RUN",
+    "feature_alone_auc": null
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": "NOT GENERATED",
+    "new_raster_no_nan_inside_footprint": null,
+    "new_raster_values_in_0_1": null,
+    "new_raster_crs_shape_transform_match": null,
+    "input_availability": "BLOCKED; see registry/preflight.json",
+    "note": "An earlier S11-MHTR artifact has its own historical format receipt, but is not a new artifact from this branch/session and remains research-only under registry/artifact_policy.json."
+  },
+  "submission_name": null,
+  "submission_note": "No new candidate generated; do not upload the existing research-only TIFF.",
+  "verdict": "negative",
+  "submission_ready": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed": null,
+  "engineering_checks": {
+    "pytest": "PASS after merging current main and MTD91 lane updates: 299 passed, 7 skipped (missing pinned raster inputs), 29 rasterio deprecation warnings",
+    "verify_evidence.py": "PASS; 0 geological experiments rerun; submission_ready false",
+    "check_artifact_policy.py": "PASS; 13 explicitly registered prediction artifacts; no raw raster/archive tracked",
+    "preflight.py": "BUILD BLOCKED; no axis has all pinned inputs",
+    "verify_current_artifact.py --with-data": "BLOCKED as expected; missing data/official/sample_submission.tif",
+    "updated_S11_local_links": "PASS; all local links/assets resolve"
+  },
+  "limitations": [
+    "The prompt says a single method paragraph assigns the lane, but no such identifiable paragraph is present.",
+    "Pinned data rasters are absent from this checkout; preflight is BUILD BLOCKED.",
+    "Pinned dependencies were installed into ignored .venv/ for unit tests; system Python still lacks them. Raster validation remains blocked by missing input rasters.",
+    "No organizer receipt was accessed; no HOLDOUT-DTI is a prediction of leaderboard score.",
+    "Existing S11-MHTR and inherited parallel-lane MTD91 artifacts are research-only and not approved for upload; IR-CED-003 and separate selector review remain open. MTD91 was merged from another lane and not generated in this session."
+  ]
+}

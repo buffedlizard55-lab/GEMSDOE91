@@ -13,7 +13,6 @@ from __future__ import annotations
 import gc
 import json
 import shutil
-import subprocess
 import sys
 import time
 from datetime import datetime, timezone
@@ -365,10 +364,8 @@ def main() -> int:
         releases_dir=RELEASES,
         downloads_dir=DOWNLOADS,
         floor_px=3.0,
+        bundle_js_filename="ccr91_submission_bundle.js",
     )
-    # The shared writer's legacy browser bundle path belongs to H91; do not let
-    # this lane silently replace that historical asset.
-    subprocess.run(["git", "checkout", "--", "docs/downloads/h91_submission_bundle.js"], cwd=ROOT, check=True)
     zeros_name = audit["primary_zeros_tif"]["filename"]
     zeros_release = RELEASES / zeros_name
     zeros_download = DOWNLOADS / zeros_name

@@ -233,7 +233,10 @@ def test_submission_writer_enforces_range_0_1_collar_and_zip_sha(tmp_path: Path)
         releases_dir=rel_dir,
         downloads_dir=dl_dir,
         floor_px=3.0,
+        bundle_js_filename="test-custom-submission.js",
     )
+    assert audit["browser_tif_bundle"]["path"].endswith("test-custom-submission.js")
+    assert (dl_dir / "test-custom-submission.js").is_file()
     assert audit["validators"]["gems91_gates_verdict"] == "CERTIFIED"
     assert audit["validators"]["range_0_1_portal_safe"] is True
     assert audit["primary_zeros_tif"]["nan_cells_anywhere"] == 0

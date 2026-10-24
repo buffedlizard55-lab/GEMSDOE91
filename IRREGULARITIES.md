@@ -1213,3 +1213,11 @@ provenance/registry prevent the requested unique submission in this run.
 **Actual:** this sandbox permits GitHub and package hosts, not DrivenData, USGS, NLR or EPSG. The official DrivenData GitHub reference repository and GEMSDOE32 source tree were fetched; competition pages and rules are manual-review links only in this run.
 
 **Action:** no current leaderboard value, weekly allowance, deadline, eligibility status, or organizer score is claimed as freshly verified. User-provided values remain unconfirmed absent a receipt.
+
+## IR-UCD-01..03 (2026-10-24 UCD91)
+- IR-UCD-01: Registry uniqueness scope is data/registry/*.tif only (incl. R0), not the universal fleet registry; docs/downloads rasters not all rechecked. Verdict relies also on novel feature family.
+- IR-UCD-02: the first UCD91 writer run targeted the legacy shared `docs/downloads/h91_submission_bundle.js`. Integration corrected the shared writer to accept a collision-safe filename, records UCD91 in `ucd91_submission_bundle.js`, and preserves the H91 asset; current audit hashes verify each dedicated bundle.
+- IR-UCD-03: First writer attempt failed on missing imagecodecs in this sandbox (it is pinned in requirements.txt); installed and finalize_ucd.py completed all suites. Shared tool not modified.
+## IR-91-1F0955-01 — baseline-free promotion claim (2026-10-24)
+
+`src/gems91/readiness.py` accepted a positive paired delta without a measured baseline score. Fixed centrally: require finite baseline score/CI, matching withheld-positive count, consistent pooled delta and paired interval containment. Regression and portal fixture tests added. Receipt consistency is not receipt authenticity. See `docs/REVIEW-1F0955-20261024.md`. No candidate was promoted; assigned lane remains missing, and the canonical final-dot duplicate remains blocking.
