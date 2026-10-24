@@ -1025,3 +1025,14 @@ Five defects in shared tools. Each is either left as it was or changed with a te
 **Actual:** the two entries (`legacy_quarantined`) were removed from `registry/artifact_policy.json`. Nothing else in the policy changed. The GEOD hashes stay in `ledger/submissions.csv`, in `docs/run-card-S10.json` and in IR-91-S10-01. The files are not in git on this branch; they remain in history on `main`.
 
 **Decision it changes:** none beyond the retraction. The policy now matches the tree. Restoring the GEOD files would require re-registering them as a deliberate step.
+
+## IR-91-DF6E28C2 — readiness labels could overrule malformed measurements
+
+2026-10-24: shared `readiness.py` accepted inverted/nonfinite paired intervals and
+status-only canary/novelty clearance. Fixed with measured finite bounded values,
+ordered intervals, typed sections and complete comparison accounting. Regression
+tests added; 277 passed, 7 skipped (data-dependent), 29 rasterio deprecation
+warnings. Existing CED artifact was independently revalidated against the two
+restored pinned inputs; its duplicate failure remains binding. No experiment,
+new TIFF or slot. See `docs/REVIEW-DF6E28C2.md`; missing lane and incomplete
+provenance/registry prevent the requested unique submission in this run.

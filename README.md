@@ -1,5 +1,24 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## Current safety review — 2026-10-24 (`arena/df6e28c2-gemsdoe91`)
+
+**OK TO DOWNLOAD existing files for research. NOT OK TO SUBMIT. No new TIFF generated in this review.**
+
+[Download existing research TIFF](docs/downloads/gems91-ced-v1-20261024-d35670b28c81.tif) ·
+[Executive submission guide](docs/executive-summary.html) ·
+[Three-pass review, ranked hypotheses, sources and limitations](docs/REVIEW-DF6E28C2.md) ·
+[This review's JSON run card](docs/run-card-df6e28c2.json).
+
+Read this status and the operating brief below at the start of every session.
+The shared readiness gate now rejects malformed/nonfinite evidence and measured
+duplicates even when receipts say PASS. The existing canonical TIFF was re-read
+against restored pinned format inputs; format PASS does not override its duplicate
+failure. No lane was supplied, no new experiment was run and no weekly slot was used.
+**Core values:** maximize P(Win) by demanding reproducible evidence; own the outcome
+by fixing shared validation instead of relabelling blocked artifacts as ready.
+All session-specific status blocks below are historical, not current approvals.
+
+
 ## SESSION 10 STATUS (2026-10-24, branch `arena/5e09be50-gemsdoe91`) — read this first
 
 **Verdict: NOT OK TO DOWNLOAD OR SUBMIT ANY FILE from this session.**

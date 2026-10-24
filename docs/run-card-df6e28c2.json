@@ -1,0 +1,48 @@
+{
+  "schema": "gems91.audit-run-card.v1",
+  "run_id": "df6e28c2-20261024",
+  "hypothesis": "No assigned geological lane; audit existing submission readiness without restarting stopped experiments.",
+  "mechanism": "Shared receipt validation with finite bounded measurements and complete comparison accounting.",
+  "non_fault_mimic": "Intrusive lithological contacts can mimic the historical CED magnetic/gravity signature.",
+  "experiments_run": 0,
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "status": "NOT_RUN"
+  },
+  "registry_comparison": {
+    "status": "NOT_RERUN",
+    "historical_card": "run-card.json",
+    "historical_final_status": "DUPLICATE",
+    "new_raster": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": "NOT_GENERATED",
+    "existing_artifact_revalidated": "a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee",
+    "status": "PASS_EXISTING_FORMAT_ONLY",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true
+  },
+  "submission_name": null,
+  "note": "Safety audit only; no new TIFF, no assigned lane, no experiment or slot. Existing downloads remain research-only.",
+  "verdict": "negative",
+  "submission_ready": false,
+  "slots_used": 0,
+  "tests": {
+    "passed": 277,
+    "skipped": 7,
+    "warnings": 29
+  },
+  "limitations": [
+    "Assigned method paragraph absent",
+    "Historical duplicate stop remains binding",
+    "No organizer submission receipt retrieved",
+    "No universally complete registry or common best established",
+    "Original prompt retained as restatement, not verbatim"
+  ]
+}
