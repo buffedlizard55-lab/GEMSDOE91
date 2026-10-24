@@ -1,0 +1,146 @@
+[
+  {
+    "id": "sample_submission",
+    "path": "data/official/sample_submission.tif",
+    "role": "format gate reference: CRS, shape, transform, dtype, band count, footprint",
+    "expected": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "existing_faults",
+    "path": "data/official/existing_faults.tif",
+    "role": "catalogue mask: zero-mass and >=3 px collar gates",
+    "expected": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "training_features",
+    "path": "data/bridge/gems-geodawn-numerical-features.tif",
+    "role": "bands 3/5/6/12/18/19 etc: detrended-elevation terciles for RELIEF, block priors, edge fields for SNAP",
+    "expected": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "parent_r0_zeros",
+    "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+    "role": "PARENT R0 (zeros encoding): 37,654 unit-mass dots",
+    "expected": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "parent_r0_nan",
+    "path": "data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+    "role": "PARENT R0 (NaN-outside encoding)",
+    "expected": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "anc_h19_5",
+    "path": "data/registry/calib_h195_01922.tif",
+    "role": "lineage ancestor, score 0.1922 CLAIM",
+    "expected": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "anc_h19_4",
+    "path": "data/registry/calib_h194_01894.tif",
+    "role": "lineage ancestor, score 0.1894 CLAIM",
+    "expected": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "anc_h16_1",
+    "path": "data/registry/calib_h161_01855.tif",
+    "role": "lineage ancestor, score 0.1855 CLAIM",
+    "expected": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "anc_d1_5",
+    "path": "data/registry/calib_d15_02477.tif",
+    "role": "lineage ancestor, score 0.2477 CLAIM",
+    "expected": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "anc_d2_8",
+    "path": "data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+    "role": "lineage ancestor, score 0.2600 CLAIM",
+    "expected": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "anc_solo_d2_8",
+    "path": "data/registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+    "role": "lineage ancestor, score 0.2708 CLAIM",
+    "expected": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "gdr_wellspring_in_footprint",
+    "path": "data/external/gdr_wellspring_in_footprint.csv",
+    "role": "prior layer only (vents/springs are NOT fault truth)",
+    "expected": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "ext_lidar_scarp_u8",
+    "path": "data/external/lidar_scarp_features_u8.tif",
+    "role": "SNAP field option only if the human supplies it",
+    "expected": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "ext_geodawn_rad_u8",
+    "path": "data/external/geodawn_rad_u8.tif",
+    "role": "REPORT-ONLY diagnostic lane (radon scored 0.00-0.19)",
+    "expected": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "sgmc_faults_control",
+    "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+    "role": "REPORT-ONLY blind SGMC control (never a gate)",
+    "expected": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+    "derived": false,
+    "status": "MISSING",
+    "actual": null
+  },
+  {
+    "id": "catalogue_mask",
+    "path": "data/derived/catalogue_mask.tif",
+    "role": "",
+    "expected": "c97c7819c7fc8ed1632c9d82e0dddbeb1b8dd029a5d6f7a6918d399ae55ab4c4",
+    "derived": true,
+    "status": "MISSING",
+    "actual": null
+  }
+]
