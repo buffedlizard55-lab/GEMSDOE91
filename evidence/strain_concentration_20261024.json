@@ -1,0 +1,610 @@
+{
+  "schema": "gems91.strain-concentration-evidence.v1",
+  "build_date": "2026-10-24",
+  "session": "SESSION 8 (arena/6f079276-gemsdoe91)",
+  "git_sha": "30954e6fa21a73149f5457f57e551ddd8acd4000",
+  "preregistration": "registry/strain_concentration_preregistration.json",
+  "axis": "CONCENTRATION",
+  "parent": "h33-h33-2-b2",
+  "lineage": {
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "dots_on_catalogue": 0,
+    "min_catalogue_distance_px": 2.236068,
+    "collar_2_to_3px": 2171,
+    "rebuilt_from": {
+      "d2.8": {
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    }
+  },
+  "settings": {
+    "block_px": 25,
+    "seed": 91025,
+    "min_gap_px": 3.0,
+    "min_sep_px": 2.0,
+    "low_q": 0.3,
+    "high_q": 0.3,
+    "donor_quarantine": "d_cat<=3.0px dots may not be donors (IR-91-27/33)",
+    "claimed_live_CLAIM": 0.2778,
+    "shrink": 0.5
+  },
+  "priors": {
+    "strain": {
+      "array_digest": "4eec064715439b1a07106852aaad998906a48c7ba7582ce7b4272226eaaee94b",
+      "band_stats": {
+        "geod_2ndinv": {
+          "n_sentinel_filled": 3061,
+          "raw_min_after_fill": 1.2,
+          "raw_median_after_fill": 19.911053,
+          "raw_max_after_fill": 87.453423
+        },
+        "geod_shearrate": {
+          "n_sentinel_filled": 3061,
+          "raw_min_after_fill": 0.0,
+          "raw_median_after_fill": 9.7,
+          "raw_max_after_fill": 54.400002
+        },
+        "weights": [
+          0.5,
+          0.5
+        ]
+      },
+      "bands": {
+        "4": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+        "7": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+        "8": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)"
+      },
+      "catalogue_rate_pct_by_prior_decile": [
+        0.8823,
+        0.8548,
+        0.8045,
+        0.8551,
+        1.158,
+        1.329,
+        1.6376,
+        1.1306,
+        1.2565,
+        1.8938
+      ]
+    },
+    "dilatation": {
+      "array_digest": "4001d916fe233a7f5a38ff37f2ec7839dd9c83b00580550d5f8d0843e04aa2cf",
+      "band_stats": {
+        "geod_dilaterate": {
+          "n_sentinel_filled": 3061,
+          "raw_min_after_fill": -16.5,
+          "raw_median_after_fill": 5.5,
+          "raw_max_after_fill": 34.524483
+        },
+        "sign": "high percentile = most positive (expansion)"
+      },
+      "bands": {
+        "4": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+        "7": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+        "8": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)"
+      },
+      "catalogue_rate_pct_by_prior_decile": [
+        1.2442,
+        1.3292,
+        0.99,
+        0.9628,
+        0.7478,
+        0.9597,
+        1.3727,
+        1.368,
+        1.1659,
+        1.651
+      ]
+    },
+    "spearman_strain_vs_dilatation": 0.1668
+  },
+  "single_feature_leakage_canary": {
+    "bands": {
+      "geod_2ndinv": {
+        "signed_auc": 0.5793,
+        "symmetric_auc": 0.5793
+      },
+      "geod_shearrate": {
+        "signed_auc": 0.5761,
+        "symmetric_auc": 0.5761
+      },
+      "geod_dilaterate": {
+        "signed_auc": 0.532,
+        "symmetric_auc": 0.532
+      }
+    },
+    "max_symmetric_auc": 0.5793,
+    "stop_threshold": 0.9,
+    "stride": 25,
+    "n_sampled_px": 206695
+  },
+  "r0_baseline": {
+    "n_dots": 37654,
+    "sgmc_off_catalogue_dti": 0.095386,
+    "sgmc_off_catalogue_T": 5517.637,
+    "sgmc_off_catalogue_n_px": 62122,
+    "h19_lineage_mask_dti": 0.683527,
+    "h19_lineage_mask_n_px": 121131,
+    "noise_truth_dti": 0.062941,
+    "noise_truth_n_px": 62122,
+    "fixed_catalogue_proxy": {
+      "proxy_mean_credit": 0.006186,
+      "proxy_mean_credit_ci95": 0.000228,
+      "proxy_mean_credit_ci95_interval": [
+        0.005958,
+        0.006413
+      ],
+      "proxy_coverage": 0.038706,
+      "draws": 5,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200,
+      "n_withheld_positives_per_draw": [
+        12200,
+        12198,
+        12199,
+        12200,
+        12201
+      ],
+      "mean_credit_per_draw": [
+        0.006038136218637152,
+        0.006201889947509195,
+        0.006582695130310594,
+        0.0062188384485118405,
+        0.00588596849724877
+      ]
+    },
+    "redundancy": {
+      "dots_with_neighbour_lt_2p83px": 11415,
+      "dots_with_neighbour_lt_2px": 0,
+      "mean_nn_px": 3.7351
+    },
+    "block_density_cv_1km": 0.6187
+  },
+  "deterministic_rebuild_arm1": true,
+  "arms": {
+    "strn25m10": {
+      "id": "h33-h33-2-b2-CONCENTRATIONstrn25m10-20261024-85cc49d2",
+      "axis": "CONCENTRATION",
+      "value": "strn25m10",
+      "prior": "strain",
+      "frac": 0.1,
+      "block_px": 25,
+      "n_dots": 37654,
+      "n_moved": 3765,
+      "pct_dots_moved": 9.9989,
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "builder_stats": {
+        "frac_achieved": 0.09998937695862326,
+        "count_preserved": true,
+        "cv_before": 1.2645747253655188,
+        "cv_after": 1.3325810053047031,
+        "cv_excursion": false,
+        "moved_displacement_px": {
+          "n": 3765,
+          "mean_px": 2493.26182734392,
+          "p95_px": 3373.6146775843913,
+          "max_px": 3877.2826824981435
+        },
+        "donor_block_prior_mean": 0.0902253027633098,
+        "acceptor_block_prior_mean": 0.5957562731107733,
+        "donor_excluded_dots": 2171,
+        "blocks": {
+          "low_q": 0.3,
+          "high_q": 0.3,
+          "n_low_blocks": 2515,
+          "n_high_blocks": 2515
+        }
+      },
+      "block_density_cv_occupied": {
+        "at_25px_before": 0.7622,
+        "at_25px_after": 0.8068,
+        "at_10px_before": 0.6187,
+        "at_10px_after": 0.6455
+      },
+      "collar": {
+        "le3px_before": 2171,
+        "le3px_after": 2171,
+        "added_le3px": 0,
+        "min_dcat_px": 2.236068
+      },
+      "sha256_nan": "85cc49d2b572f1eb9967b84ae165941633f3a4b822157ed10ca9f9abce55dc4d",
+      "sha256_zeros": "3b7038678a6f99c74d89c72f3499f79342dad87e4f68f8d3e0d922228af6251a",
+      "bytes_nan": 367003,
+      "bytes_zeros": 221637,
+      "dot_set_digest": "7f9c784a88f9912746f1ccc1de2e3c78a92057e78bef7e1454a370c5494c7ae8",
+      "predicted_change_MODEL": "MODEL:-0.0056",
+      "predicted_range": "[-0.025,-0.003]",
+      "prediction_components": {
+        "sgmc_T_parent": 5517.637,
+        "sgmc_T_cand": 5294.022,
+        "sgmc_rel_T": -0.040527,
+        "point": -0.0056,
+        "range": [
+          -0.025,
+          -0.003
+        ],
+        "delta_noise_truth": -0.0002,
+        "delta_lineage_mask": -0.0254
+      },
+      "form_note": "h33-h33-2-b2; CONC strain 10%: 3765 dots (10.0%) low->high 2.5km blocks, count fixed; pred MODEL:-0.0056",
+      "form_note_len": 104,
+      "report_only": {
+        "sgmc_off_catalogue_dti": 0.091563,
+        "sgmc_delta_vs_r0": -0.003823,
+        "h19_lineage_mask_dti": 0.621081,
+        "noise_truth_dti": 0.06289,
+        "fixed_catalogue_proxy": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_mean_credit_ci95_interval": [
+            0.005958,
+            0.006413
+          ],
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200,
+          "n_withheld_positives_per_draw": [
+            12200,
+            12198,
+            12199,
+            12200,
+            12201
+          ],
+          "mean_credit_per_draw": [
+            0.006038136218637152,
+            0.006201889947509195,
+            0.006582695130310594,
+            0.0062188384485118405,
+            0.00588596849724877
+          ]
+        },
+        "proxy_delta_vs_r0": 0.0,
+        "proxy_reading": "invariant by construction (donors quarantined >3px, targets >3px; IR-91-28) - carries no evidence either way",
+        "moved_dot_canary": {
+          "canary_auc": 0.4496,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        },
+        "redundancy": {
+          "dots_with_neighbour_lt_2p83px": 12259,
+          "dots_with_neighbour_lt_2px": 0,
+          "mean_nn_px": 3.8138
+        }
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "zeros_outside_footprint": true,
+        "sha256_not_in_ledger": true
+      },
+      "validate_raster_14_of_14": true
+    },
+    "strn25m20": {
+      "id": "h33-h33-2-b2-CONCENTRATIONstrn25m20-20261024-a88ce2c2",
+      "axis": "CONCENTRATION",
+      "value": "strn25m20",
+      "prior": "strain",
+      "frac": 0.2,
+      "block_px": 25,
+      "n_dots": 37654,
+      "n_moved": 7531,
+      "pct_dots_moved": 20.0005,
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 7531,
+        "removed": 7531,
+        "changed": 15062,
+        "pct_changed_of_parent": 40.0011
+      },
+      "builder_stats": {
+        "frac_achieved": 0.20000531152068837,
+        "count_preserved": true,
+        "cv_before": 1.2645747253655188,
+        "cv_after": 1.4225515800125592,
+        "cv_excursion": false,
+        "moved_displacement_px": {
+          "n": 7531,
+          "mean_px": 2323.7052013979637,
+          "p95_px": 3238.8933262678956,
+          "max_px": 3877.2826824981435
+        },
+        "donor_block_prior_mean": 0.1246416093781746,
+        "acceptor_block_prior_mean": 0.6649859062291564,
+        "donor_excluded_dots": 2171,
+        "blocks": {
+          "low_q": 0.3,
+          "high_q": 0.3,
+          "n_low_blocks": 2515,
+          "n_high_blocks": 2515
+        }
+      },
+      "block_density_cv_occupied": {
+        "at_25px_before": 0.7622,
+        "at_25px_after": 0.8548,
+        "at_10px_before": 0.6187,
+        "at_10px_after": 0.6779
+      },
+      "collar": {
+        "le3px_before": 2171,
+        "le3px_after": 2171,
+        "added_le3px": 0,
+        "min_dcat_px": 2.236068
+      },
+      "sha256_nan": "a88ce2c270cdb68785dc89fa8da67342d55e9695f54af0c72e5c890737dc56ce",
+      "sha256_zeros": "51dbfde66426661dd77cddcdfc17bfe69edcd4a61945b4eaeb4e9b5446ea6e47",
+      "bytes_nan": 363042,
+      "bytes_zeros": 218365,
+      "dot_set_digest": "9f54e5842ee62862da4b5902f4275f28724a90c5c6286d12d8dded6f3e6ab83e",
+      "predicted_change_MODEL": "MODEL:-0.0200",
+      "predicted_range": "[-0.051,-0.010]",
+      "prediction_components": {
+        "sgmc_T_parent": 5517.637,
+        "sgmc_T_cand": 4724.93,
+        "sgmc_rel_T": -0.143668,
+        "point": -0.02,
+        "range": [
+          -0.051,
+          -0.01
+        ],
+        "delta_noise_truth": -0.0014,
+        "delta_lineage_mask": -0.0513
+      },
+      "form_note": "h33-h33-2-b2; CONC strain 20%: 7531 dots (20.0%) low->high 2.5km blocks, count fixed; pred MODEL:-0.0200",
+      "form_note_len": 104,
+      "report_only": {
+        "sgmc_off_catalogue_dti": 0.081822,
+        "sgmc_delta_vs_r0": -0.013564,
+        "h19_lineage_mask_dti": 0.557279,
+        "noise_truth_dti": 0.062627,
+        "fixed_catalogue_proxy": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_mean_credit_ci95_interval": [
+            0.005958,
+            0.006413
+          ],
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200,
+          "n_withheld_positives_per_draw": [
+            12200,
+            12198,
+            12199,
+            12200,
+            12201
+          ],
+          "mean_credit_per_draw": [
+            0.006038136218637152,
+            0.006201889947509195,
+            0.006582695130310594,
+            0.0062188384485118405,
+            0.00588596849724877
+          ]
+        },
+        "proxy_delta_vs_r0": 0.0,
+        "proxy_reading": "invariant by construction (donors quarantined >3px, targets >3px; IR-91-28) - carries no evidence either way",
+        "moved_dot_canary": {
+          "canary_auc": 0.3991,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        },
+        "redundancy": {
+          "dots_with_neighbour_lt_2p83px": 13445,
+          "dots_with_neighbour_lt_2px": 0,
+          "mean_nn_px": 3.8184
+        }
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "zeros_outside_footprint": true,
+        "sha256_not_in_ledger": true
+      },
+      "validate_raster_14_of_14": true
+    },
+    "strd25m10": {
+      "id": "h33-h33-2-b2-CONCENTRATIONstrd25m10-20261024-106e87d9",
+      "axis": "CONCENTRATION",
+      "value": "strd25m10",
+      "prior": "dilatation",
+      "frac": 0.1,
+      "block_px": 25,
+      "n_dots": 37654,
+      "n_moved": 3765,
+      "pct_dots_moved": 9.9989,
+      "parent_diff": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "builder_stats": {
+        "frac_achieved": 0.09998937695862326,
+        "count_preserved": true,
+        "cv_before": 1.2645747253655188,
+        "cv_after": 1.3368529119000703,
+        "cv_excursion": false,
+        "moved_displacement_px": {
+          "n": 3765,
+          "mean_px": 1464.827859515641,
+          "p95_px": 3202.5991317782773,
+          "max_px": 3713.0210072123214
+        },
+        "donor_block_prior_mean": 0.055583059238006244,
+        "acceptor_block_prior_mean": 0.6118807140543367,
+        "donor_excluded_dots": 2171,
+        "blocks": {
+          "low_q": 0.3,
+          "high_q": 0.3,
+          "n_low_blocks": 2515,
+          "n_high_blocks": 2515
+        }
+      },
+      "block_density_cv_occupied": {
+        "at_25px_before": 0.7622,
+        "at_25px_after": 0.8124,
+        "at_10px_before": 0.6187,
+        "at_10px_after": 0.6465
+      },
+      "collar": {
+        "le3px_before": 2171,
+        "le3px_after": 2171,
+        "added_le3px": 0,
+        "min_dcat_px": 2.236068
+      },
+      "sha256_nan": "106e87d9fa9e461c2f12cd635c92c4e050da5741fce2c19037efa06268792e95",
+      "sha256_zeros": "09eef831b15a28220d27be72af8eae7e414fc74bc539a2644490c4487eb5f58c",
+      "bytes_nan": 368488,
+      "bytes_zeros": 221931,
+      "dot_set_digest": "756004c43cf5821868155269d2f5cacf3a50f6ec0c6fd27553f7efe8c6ab9d00",
+      "predicted_change_MODEL": "MODEL:-0.0152",
+      "predicted_range": "[-0.030,-0.008]",
+      "prediction_components": {
+        "sgmc_T_parent": 5517.637,
+        "sgmc_T_cand": 4911.901,
+        "sgmc_rel_T": -0.109782,
+        "point": -0.0152,
+        "range": [
+          -0.03,
+          -0.008
+        ],
+        "delta_noise_truth": -0.0018,
+        "delta_lineage_mask": -0.0256
+      },
+      "form_note": "h33-h33-2-b2; CONC dilatation 10%: 3765 dots (10.0%) low->high 2.5km blocks, count fixed; pred MODEL:-0.0152",
+      "form_note_len": 108,
+      "report_only": {
+        "sgmc_off_catalogue_dti": 0.085022,
+        "sgmc_delta_vs_r0": -0.010364,
+        "h19_lineage_mask_dti": 0.620601,
+        "noise_truth_dti": 0.062535,
+        "fixed_catalogue_proxy": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_mean_credit_ci95_interval": [
+            0.005958,
+            0.006413
+          ],
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200,
+          "n_withheld_positives_per_draw": [
+            12200,
+            12198,
+            12199,
+            12200,
+            12201
+          ],
+          "mean_credit_per_draw": [
+            0.006038136218637152,
+            0.006201889947509195,
+            0.006582695130310594,
+            0.0062188384485118405,
+            0.00588596849724877
+          ]
+        },
+        "proxy_delta_vs_r0": 0.0,
+        "proxy_reading": "invariant by construction (donors quarantined >3px, targets >3px; IR-91-28) - carries no evidence either way",
+        "moved_dot_canary": {
+          "canary_auc": 0.4496,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        },
+        "redundancy": {
+          "dots_with_neighbour_lt_2p83px": 12227,
+          "dots_with_neighbour_lt_2px": 0,
+          "mean_nn_px": 3.7995
+        }
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "zeros_outside_footprint": true,
+        "sha256_not_in_ledger": true
+      },
+      "validate_raster_14_of_14": true
+    }
+  }
+}

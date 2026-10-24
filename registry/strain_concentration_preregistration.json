@@ -1,0 +1,61 @@
+{
+  "schema": "gems91.strain-concentration-preregistration.v1",
+  "created_utc": "2026-10-24",
+  "session": "Session 8 (arena/6f079276-gemsdoe91)",
+  "parent": "h33-h33-2-b2",
+  "parent_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "parent_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "axis": "CONCENTRATION",
+  "axis_choice": "All seven brief axes already have (axis,value) builds in ledger/submissions.csv (47 BUILT rows, 0 receipts). The open dimension inside CONCENTRATION is prior source: built priors are parent dot density (IR-91-07, not a prior test) and the GDR thermal inventory. SLOT_PLAN.md (merged Sessions 5-7) pre-proposed GEODETIC-STRAIN CONCENTRATION as better-axis #1 with mechanism/confounder/falsifier and a 20% falsifier dose; this session builds that pre-proposed axis. MASS by the parent's own continuous ranking remains impossible (all pinned ancestors are binary; IR-91-21/consensus.py), SNAP's dose ladder is negative on its control, PRUNE radii 1-15 px are exhausted, RELIEF built 3 directed tercile arms, SPACING is the brief's lowest priority, TRACKB is built (Phase 2 only).",
+  "measured_before_build": {
+    "strain_prior_vs_gdr_block_spearman_25px": 0.0748,
+    "top30_block_overlap_gdr_among_strain_high": 0.3078,
+    "band4_vs_band7_spearman": 0.9489,
+    "band7_vs_band8_spearman": 0.0533,
+    "block_prior_spearman_25px_vs_50px": 0.9991,
+    "strain_prior_autocorr_lag250px": 0.9522,
+    "reading": "Strain is near-orthogonal to the GDR prior (new location hypothesis, same operation). Bands 4 and 7 are near-redundant and 25px vs 50px block ranks are 0.999, so NO component-only and NO block-scale arm is built: either would be the same experiment under a new id. Band 8 (dilatation) is the orthogonal tensor component, hence arm 3."
+  },
+  "priors_frozen": {
+    "strain": "0.5*pct(band4 geod_2ndinv) + 0.5*pct(band7 geod_shearrate) from pinned training_features (sha256 4371c82e...3bc5); pct = average-tie percentile rank over footprint pixels after nearest-cell (EDT) fill of nodata-Sentinel (<= -1e30) and non-finite cells inside the footprint; NaN outside footprint",
+    "dilatation": "pct(band8 geod_dilaterate), same fill/rank; high percentile = most positive (expansion) value; sign convention per pinned band description 'rate of volumetric strain (expansion/contraction)' - an assumption, recorded",
+    "not_used": "S_struct multiplier from the SLOT_PLAN falsifier sentence is NOT applied: acceptor placement already anchors 80% of moved dots on existing parent dots, and multiplying by the Session-5 composite would make the prior partly lineage-derived (IR-91-07 failure mode). Logged as IR-91-34."
+  },
+  "builder_frozen": {
+    "function": "tools.run_concentration.build_concentration (the GDR arm's own builder)",
+    "block_px": 25,
+    "low_q": 0.3,
+    "high_q": 0.3,
+    "seed": 91025,
+    "jitter_px": 4,
+    "min_gap_px": 3.0,
+    "min_sep_px": 2.0,
+    "donor_quarantine": "NEW vs the GDR build: parent dots at d_cat<=3.0px (the 2,171 inherited collar dots) may NOT be donors (IR-91-27 standard, as RELIEF/SNAP/TRACKB). The GDR builder allowed collar donors, silently mixing a partial PRUNE into CONCENTRATION. Logged as IR-91-33; implemented as an opt-in parameter defaulting to the old behaviour so GDR rebuilds stay byte-identical."
+  },
+  "variants": [
+    {"value": "strn25m10", "prior": "strain", "frac": 0.10, "hypothesis": "Direct sibling of slot-1 GDR arm gdr25rm10 (same builder/settings, prior source swapped): active-strain blocks hold unmapped Quaternary splays that a springs inventory cannot see."},
+    {"value": "strn25m20", "prior": "strain", "frac": 0.20, "hypothesis": "The SLOT_PLAN pre-proposal's own falsifier dose: moving 20% of R0 mass lowest->highest strain-tercile blocks; dose-response vs strn25m10 identifies acceptor saturation."},
+    {"value": "strd25m10", "prior": "dilatation", "frac": 0.10, "hypothesis": "Extensional (areal-dilatation) component rather than shear-dominated strain magnitude locates Basin-and-Range normal-fault new geometry; near-orthogonal to bands 4/7 (Spearman 0.05-0.28), so this is a component discrimination, not a dose twin."}
+  ],
+  "prediction_translator_frozen": {
+    "point_MODEL": "0.2778 (R0 CLAIM, scale only) * relT * 0.5, relT = (T_cand - T_R0)/T_R0 with T from gems91.relief.fast_binary_dti on sgmc_off = SGMC & footprint & (d_cat > 3px) - the identical translator build_snap.py used (SHRINK=0.5)",
+    "range_MODEL": "upper = 0.2778*relT*1.0 if relT>0 else 0.2778*relT*0.25; lower = min(unshrunk SGMC point if relT<0, uniform-noise-truth delta, H19-5-lineage-mask delta), each noise/mask delta = 0.2778 * relative DTI change of candidate vs R0 on that surrogate truth (GDR-arm convention)",
+    "mechanistic_sign_expectation": "positive for strn arms (catalogue rate rises 0.90%->1.89% across strain-prior deciles, descriptive RECEIPT on pinned data), weaker positive for strd; if the frozen translator returns <=0 the arm is reported as predicted-negative and leaves the slot queue, exactly as SNAP was handled"
+  },
+  "slot_decision_rule_frozen": "Week-1 queue (GDR slot1, PRUNE-le10 slot2) is unchanged by this session under all outcomes - two CONCENTRATION receipts in one week would spend two slots on one operation. A strain arm may replace RELIEF at slot 3 ONLY if its frozen-translator point >= +0.010 AND relT > 0; otherwise strain is a Week-2 candidate conditional on the GDR receipt.",
+  "live_evidence_rule": "An absolute live change below 0.01 is no evidence on public chunks; private chunks may differ.",
+  "report_only_after_build": [
+    "catalogue hide-and-recover PROXY with withheld-positive counts and 95% CI (expected invariant by construction under donor quarantine + 3px target floor, IR-91-28 - reported as such, not as a number with meaning)",
+    "off-catalogue SGMC DTI/T (USGS DS-1052 control)",
+    "H19-5 lineage-mask and uniform-noise downside bounds",
+    "single-feature leakage canary; AUC>0.90 requires investigation",
+    "block-density CV before/after at the build block size and at 1 km"
+  ],
+  "references": [
+    {"url": "https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/", "claim": "Competition and its provided GeoDAWN feature stack (bands 4/7/8 descriptions read from the pinned raster itself)."},
+    {"url": "https://gbcge.org/current-projects/ingenious/", "claim": "INGENIOUS context for Great Basin geothermal structure, as cited in the merged SLOT_PLAN proposal this session implements."},
+    {"url": "https://pubs.usgs.gov/ds/1052/", "claim": "USGS SGMC geologic-map database behind the off-catalogue control."},
+    {"url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7", "claim": "GeoDAWN survey context (positional uncertainty ~ kernel radius)."}
+  ],
+  "no_submission": true
+}

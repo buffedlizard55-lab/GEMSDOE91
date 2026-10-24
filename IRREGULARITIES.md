@@ -637,3 +637,50 @@ row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on fl
 (explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
 float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic
 demo but must not be used to build a release.
+
+## IR-91-33 — The GDR concentration arms silently executed a partial PRUNE (Session 8)
+
+**Expected:** a CONCENTRATION edit changes only block-scale dot density; the IR-91-27
+standard (Sessions 5-7) quarantines R0's 2,171 inherited dots at 2 < d_cat <= 3 px so a
+non-PRUNE edit cannot drift the collar.
+**Actual:** the GDR concentration build (which predates IR-91-27) let collar dots be
+donors. Its own evidence records dots <=3 px falling 2,171 -> 1,897 / 1,911 / 1,912
+(`evidence/concentration_axis_20261023.json`), i.e. 259-274 collar dots (~7% of the
+3,765 movers, ~0.7% of all dots) were removed as part of the "concentration" move -
+replicated byte-identically this session (`reports/strain_control_diagnostics_20261024.json`).
+**Decision it changes.** A future GDR receipt cannot be attributed to the thermal prior
+alone: up to ~0.7% of its dots are a small PRUNE. The strain build adds an opt-in
+`donor_exclude` quarantine to `tools.run_concentration.build_concentration` (default
+preserves the GDR fleet's byte identity; new builds must pass `d_cat <= 3 px`).
+
+## IR-91-34 — The built strain prior is not the SLOT_PLAN proposal's literal formula
+
+The merged SLOT_PLAN proposal's falsifier reads "Moving 20% of R0 mass into top-tercile
+`geod_2ndinv x S_struct`".  Session 8 built the geodetic percentile ranks *without* the
+S_struct multiplier: S_struct is 60% lineage support, so the product would make the
+allegedly independent prior partly a re-statement of the parent dot field (the IR-91-07
+failure mode that invalidated the first concentration rows), and acceptor placement
+already anchors 80% of moved dots within +/-4 px of existing parent dots.
+**Decision it changes.** The proposal's literal formula remains unbuilt. On this
+session's control evidence (all three geodetic arms predicted negative; the product
+prior would fall between the lineage field it multiplies and the strain field that
+failed) building it is not recommended; recorded so nobody cites `strn25m20` as the
+proposal's falsifier test.
+
+## IR-91-35 — The geodetic "km-scale prior" is province-scale, and its two oracles disagree
+
+**Expected** (brief S5): CONCENTRATION moves dots between km-scale blocks of a prior,
+with the strain bands attractive because they lead the GeoDAWN stack on catalogue AUC
+(0.579/0.576).
+**Actual:** (a) the strain prior's autocorrelation is 0.95 at 25 km lag and its 25 px vs
+50 px block ranks correlate 0.999; the mean moved dot travels 2,493 px (249 km) from the
+NE low-strain half to the SW high-strain half - the operation is a regional
+reallocation in 2.5 km clothing, incapable of placing a dot on the right 300 m segment.
+(b) The catalogue density rises across strain deciles (0.88% -> 1.89%) while SGMC-only
+off-catalogue fault density does not (peak in decile 2; 1.34% in the top decile), and
+for dilatation the top decile is the SGMC-poorest (0.53%).
+**Decision it changes.** Catalogue AUC is retired as a prior-selection argument in this
+repo (it partly maps where the catalogue was drawn, and the target is what the catalogue
+missed). No strain arm enters the Week-1 queue; future block priors get an SGMC-off
+decile screen reported *before* any build, labelled PROXY with the proxy-tuning risk
+stated, never as a gate.

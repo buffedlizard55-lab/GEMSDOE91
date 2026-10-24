@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T22:00:00Z",
-  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build && python3 scripts/build_relief.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
+  "generated_utc": "2026-10-24T00:00:00Z",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py` plus the session builder named for each family (build_spacing / build_prune_ladder / build_concentration / build_mass_consensus / build_relief / build_snap / build_trackb / build_strain_concentration) and every sha256 below must reappear byte for byte. CI enforces this.",
   "parent": "h33-h33-2-b2 (e5eb6e7e)",
   "files": [
     {
@@ -63,6 +63,36 @@
       "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309.tif",
       "sha256": "6d389309aafaa79d01ecb2d62e6de89b2030f6d1bfb15f96024c32b5baf00eaa",
       "bytes": 373103
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrd25m10-20261024-106e87d9-zeros.tif",
+      "sha256": "09eef831b15a28220d27be72af8eae7e414fc74bc539a2644490c4487eb5f58c",
+      "bytes": 221931
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrd25m10-20261024-106e87d9.tif",
+      "sha256": "106e87d9fa9e461c2f12cd635c92c4e050da5741fce2c19037efa06268792e95",
+      "bytes": 368488
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrn25m10-20261024-85cc49d2-zeros.tif",
+      "sha256": "3b7038678a6f99c74d89c72f3499f79342dad87e4f68f8d3e0d922228af6251a",
+      "bytes": 221637
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrn25m10-20261024-85cc49d2.tif",
+      "sha256": "85cc49d2b572f1eb9967b84ae165941633f3a4b822157ed10ca9f9abce55dc4d",
+      "bytes": 367003
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrn25m20-20261024-a88ce2c2-zeros.tif",
+      "sha256": "51dbfde66426661dd77cddcdfc17bfe69edcd4a61945b4eaeb4e9b5446ea6e47",
+      "bytes": 218365
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrn25m20-20261024-a88ce2c2.tif",
+      "sha256": "a88ce2c270cdb68785dc89fa8da67342d55e9695f54af0c72e5c890737dc56ce",
+      "bytes": 363042
     },
     {
       "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae-zeros.tif",

@@ -433,3 +433,29 @@ PROXY and SGMC control are labelled `PROXY`/report-only and are never called sco
 is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
 one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
 single blind final file.
+
+---
+
+## Session 8 (2026-10-24, `arena/6f079276-gemsdoe91`) — CONCENTRATION (geodetic-strain prior)
+
+**AI wrote and decided:** chose the session axis without prompting (the brief says pick your
+own session): `CONCENTRATION` with the geodetic-strain prior pre-proposed in merged
+`SLOT_PLAN.md`, because every brief axis already had builds and prior-source was the open
+dimension. Froze the design and prediction translator in
+`registry/strain_concentration_preregistration.json` before building; wrote
+`src/gems91/strain.py`, `scripts/build_strain_concentration.py`,
+`scripts/strain_diagnostics.py`, `tests/test_strain.py`, the `donor_exclude` quarantine
+option in `tools/run_concentration.py` (default preserves GDR byte identity), mechanism
+cards (`docs/MECHANISM_CARDS_STRAIN.md`), IR-91-33/34/35, and the three release pairs.
+Verified 15/15 manifest hashes and rebuilt R0 byte-for-byte from both ancestors before
+building. All three arms came out predicted negative under the frozen translator; the AI
+reported them as such and kept them out of the slot queue per its own preregistered rule
+rather than re-tuning the prediction method after seeing the instruments.
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read/print/store credentials,
+scrape any leaderboard, commit any `.tif`, or call any `PROXY`/`MODEL` number a score.
+Inputs came only from the pinned manifest (restored from the immutable GitHub mirrors the
+manifest itself records), each sha256-verified before use.
+**Human decides:** whether any strain file ever spends a slot (recommendation: no slot
+unless the GDR receipt first discredits the SGMC translator; then at most `strn25m10` as a
+retirement test), `TOP_PUBLIC` + date, slots remaining, deadline confirmation, every upload,
+the receipt entries in `ledger/submissions.csv`, and the single blind final file.

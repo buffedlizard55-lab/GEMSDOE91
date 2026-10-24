@@ -115,6 +115,8 @@ jobs:
       # ~90 s: 19-band leakage canary is the slow part; deterministic, no RNG.
       - name: Rebuild the SNAP arms from the pinned inputs
         run: python scripts/build_snap.py --build
+      - name: Rebuild the strain CONCENTRATION arms from the pinned inputs
+        run: python scripts/build_strain_concentration.py --build
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
       - name: Every rebuilt file is byte-identical to its committed manifest
