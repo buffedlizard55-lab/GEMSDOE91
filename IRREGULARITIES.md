@@ -598,4 +598,4 @@ any later date returns the identical raster (same sha256) under a new id, and it
 append refused it as a duplicate hash. This failed the CI lineage job on 2026-10-24 with no
 code change in that builder. **Decision it changes:** the append now treats a same-sha256
 rebuild under a date-shifted id as idempotent proof (logged), while a *different* hash under
-an existing id still fails. Found in Session 6 while adding TRACKB to the CI manifest check.
+an existing id still fails. The same daily-date bug in `build_mass_consensus.py` (`DATE = dt.date.today()`) was fixed by pinning the fleet build date `20261023`. Found in Session 6 while adding TRACKB to the CI manifest check.
