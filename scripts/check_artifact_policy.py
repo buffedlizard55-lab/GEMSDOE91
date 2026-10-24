@@ -20,7 +20,7 @@ def main():
         actual = hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
         if actual != row['sha256']:
             raise ValueError(f'Published artifact drift: {name}')
-        if row['status'] not in ('legacy_quarantined','current_research_only','selector_approved'):
+        if row['status'] not in ('legacy_quarantined','parallel_quarantined','current_research_only','selector_approved'):
             raise ValueError(f'Unknown artifact status: {row["status"]}')
     if set(allowed) != set(artifacts):
         raise ValueError(f'Artifact-policy/files mismatch: {set(allowed)^set(artifacts)}')

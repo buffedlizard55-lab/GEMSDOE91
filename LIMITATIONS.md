@@ -67,8 +67,10 @@ archived, not recommendations to upload.
 CI re-reads the published TIFF and ZIP, restores only small format references for
 footprint/catalogue checks, verifies source pins and checks portal policy. A Pages
 workflow refreshes the labelled fleet source feed daily without training, new
-placement experiments or organizer scraping. Workflow creation is not deployment
-success: remote check/deployment outcomes must be observed and recorded separately.
+placement experiments or organizer scraping. The direct publisher-setting update was denied by the GitHub integration
+(403). The workflow attempts the existing-site switch with its declared Pages
+write token, but this has not executed successfully here. Workflow creation is
+not deployment success: remote check/deployment outcomes must be observed and recorded separately.
 
 The runner budget field is not an internal timeout watchdog; future authorized
 experiments need external wall-clock enforcement and early-failure accounting.

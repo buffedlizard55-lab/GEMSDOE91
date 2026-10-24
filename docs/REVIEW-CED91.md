@@ -76,7 +76,7 @@ The active site distinguishes “OK to download” from “OK to submit,” link
 
 ## Observed local verification (2026-10-24; no new geological experiments)
 
-- Full suite: **226 passed, 1 explicitly skipped** (absent historical release),
+- Full suite: **234 passed, 1 explicitly skipped** (absent historical release),
   24 upstream Rasterio/Affine pending-deprecation warnings. The current published
   artifact is not the skipped legacy release: it has independent on-disk tests.
 - `verify_current_artifact.py --with-data`: all 15 checks PASS and ZIP member/hash
@@ -89,7 +89,7 @@ The active site distinguishes “OK to download” from “OK to submit,” link
 - Rendering itself also revalidates the actual TIFF/ZIP before exposing a download;
   it cannot publish a fake link based only on a stale flag. Synthetic `make demo`
   no longer masks validator failures. CI avoids duplicate feature-push/PR runs.
-- Artifact policy: four allowed TIFF/ZIP files; no raw/cache raster newly tracked.
+- Artifact policy: six allowed TIFF/ZIP files (two parallel-lane files explicitly quarantined); no raw/cache raster newly tracked.
 - Synthetic `make demo`: build/write/validation interface CERTIFIED. Not CED,
   not another geological experiment and not a submission promotion.
 - Real Chromium: actual advertised TIFF download hash verified; desktop 1440px
@@ -107,3 +107,30 @@ session stayed inside the user budget and did not quietly retry after a stop.
 
 Remote CI, Pages configuration and PR merge require observed GitHub results;
 creating these workflows is not evidence that they have run successfully.
+
+## Concurrent integration and operational permission check
+
+PR34 merged at 2026-10-24 08:06:32 UTC. PR32 was merged by the concurrent lane
+at 08:09 UTC after it had integrated CED. Its additional TIFF/ZIP were not yet
+in the allowlist; the operational follow-up pins them as `parallel_quarantined`,
+retains their original evidence and history, and makes current policy explicitly
+negative/blocked. No new CED or DENOVO model, holdout or raster-novelty comparison
+was run. The original DENOVO “promote” recommendation remains historical, not
+an exception to the common gates.
+
+A further diagnostic follows from the already measured lattice footprint cover:
+there are only 6,649 footprint cells outside that reference's 3px cover. For N
+**distinct in-footprint positive pixels**, overlap is therefore at least
+`max(0, N - 6649) / N`. Every budget N >= 22,164 is guaranteed to exceed 70%,
+regardless of the geological mechanism. This is a counting bound, not a new
+candidate comparison or exemption. It independently explains why a partial
+seven-reference clearance cannot establish clearance against the frozen index.
+
+GitHub REST quota was observed exhausted and its published reset time respected.
+After reset, Pages GET succeeded but changing the existing `legacy` publisher to
+`workflow` was denied with **403 Resource not accessible by integration**. The
+workflow now attempts that existing-site update with its already-declared Pages
+write permission; failure remains a hard failure. This path is not reported
+successful before an actual runner executes it. Remote jobs were still queued
+with no runner assigned at the last check. Local browser success, a merged PR,
+and workflow creation do not prove public deployment.

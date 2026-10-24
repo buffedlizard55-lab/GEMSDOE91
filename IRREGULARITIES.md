@@ -824,3 +824,20 @@ The existing pinned restore script did recover and hash-verify the cached input
 stack on CPU. No new external data or GPU is needed by the tested CED method.
 Raw rasters remain ignored; existing public mirrors still need distribution-rights
 review. A hash pin is identity evidence, not official authentication or permission.
+
+## IR-CED-007 — Concurrent outputs were outside the new artifact allowlist
+
+PR32 merged after PR34, preserving the CED negative portal but adding a separate
+DENOVO TIFF/ZIP without updating `artifact_policy.json`. Those files are now
+hash-pinned as `parallel_quarantined`, not removed, rebuilt, or promoted. Its
+pre-merge promotion advice is preserved as historical; current policy is blocked.
+Different holdout instruments and seven-file comparisons do not waive common gates.
+
+## IR-CED-008 — Pages configuration permission and runner queue
+
+After the published REST quota reset, reading Pages succeeded; updating the
+legacy publisher to Actions was denied with 403 “Resource not accessible by
+integration”. The existing workflow's declared Pages-write token is configured
+to attempt the switch; this is unverified until it executes. CI/Pages were
+queued without runners at the observed check. Neither a local PASS nor merge
+is a successful public-deployment receipt.
