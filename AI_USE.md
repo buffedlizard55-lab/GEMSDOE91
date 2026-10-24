@@ -473,6 +473,22 @@ web pages/literature could not be independently fetched under the host allowlist
 GitHub source-page claims are not organizer receipts. The current negative card
 and README supersede historical unsupported forecasts and submission queues.
 
+---
+
+## H91-DDVTC session — 2026-10-24, branch `arena/5b9fd3e1-gemsdoe91`
+
+**AI wrote:**
+- `docs/HYPOTHESES_H91.md` (pre-registered 5 novel geological hypotheses `H91-1`..`H91-5` ranked by expected DTI gain vs implementation cost, with named non-fault mimics and licence audit).
+- `src/gems91/dd_vtc_pu.py` (memory-safe `np.memmap` streaming of 49 licence-clean physical features + 3 fold-safe visible structural features; Dip-Deprojected Verduzco Gravity & RTP Magnetic Tilt; Andersonian 12-azimuth slip/dilation ridge bank; whitespace-trimmed GDR `Hot/Warm` + 212 newly-recovered `>= 90 C` blind geothermometer conduits; hydrothermal magnetite-destruction troughs & smectite clay-cap DoG; subsurface-gated Elkan-Noto exposure PU calibration; Bayes-calibrated 1-D axial-ridge Minoux lazy-greedy 300 m submodular DTI dot allocator).
+- `scripts/evaluate_holdout.py` (`EVALUATOR_VERSION = "gems91-hide-recover-v1.0"` wrapping `scripts/dti.py`: 4-quadrant whole-segment buffered hide-and-recover folds, Rule 4 single-feature symmetric ROC-AUC leakage canary, 200-draw 5x5 km spatial block-bootstrap 95% CI, blind Zero-SGMC off-catalogue control, and 20-real-raster uniqueness gate).
+- `scripts/submission_writer.py`, `scripts/run_h91_lane.py`, `scripts/build_pages_site.py`, `tests/test_h91_holdout_and_writer.py`, `docs/h91-ddvtc.html`, `docs/h91-executive-summary.html`, `docs/assets/{styles.css,app.js}`, `docs/data/run_card.{json,js}`, `evidence/{leakage_canary,registry_uniqueness,run_card}.json`, and `IR-H91-01`..`IR-H91-05` in `IRREGULARITIES.md`.
+
+**Where the AI caught & documented real failures instead of hiding them:**
+- Caught a `3.5x` 2-D vs 1-D kernel area bias in naive submodular emission (`IR-H91-05`) where `p = 0.50` mountain blocks beat `p = 0.85` 1-px fault lines, fixed it mathematically via Bayes prior-shift calibration + 4-axis 1-D ridge NMS, and verified the fix via unit tests + holdout (`0.030 -> 0.174030 HOLDOUT-DTI`).
+- Reported honestly that `E1` (`H91-1`, pure 100%-official GeoDAWN Dip-Deprojected Verduzco Tilt + Openness + Clay-Cap Edge + 1-D Ridge Submodular DTI, `0.174030 HOLDOUT-DTI`, `+25.2%` over `B0`) outperformed `E2` (`0.166750`) and `E3` (`0.171231`) on the exposed-fault holdout, and preserved `origin/main`'s shared `gems91.readiness` fleet-selector gate and `calib_r13lattice_00904.tif` (`99.87%` footprint cover) disclosure without weakening `origin/main` checks.
+
+**AI did NOT:** log into DrivenData, upload a submission, scrape private endpoints, touch `dist_known_fault_px` (`IR-H91-03`), redistribute licence-unchecked external rasters (`IR-91-26`), or emit projected scores.
+
 ## Session 8, concurrent strain build (2026-10-24, `arena/6f079276-gemsdoe91`) — CONCENTRATION (geodetic-strain prior)
 
 **AI wrote and decided:** chose the session axis without prompting (the brief says pick your
