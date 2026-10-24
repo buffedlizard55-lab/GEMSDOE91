@@ -1,9 +1,9 @@
 {
   "evaluator_version": "gems91-hide-recover-v1.0",
   "max_allowed_auc": 0.9,
-  "n_features_tested": 85,
-  "worst_feature": "e1_lrm_1km",
-  "worst_symmetric_auc": 0.66099,
+  "n_features_tested": 95,
+  "worst_feature": "ac_p1_sm2",
+  "worst_symmetric_auc": 0.78363,
   "flagged_features": [],
   "all_pass": true,
   "features": {
@@ -235,6 +235,36 @@
       "max_fold_symmetric_auc": 0.56631,
       "pass": true
     },
+    "e2_gdr_hot_warm_12px": {
+      "mean_raw_auc": 0.50829,
+      "mean_symmetric_auc": 0.51535,
+      "max_fold_symmetric_auc": 0.54229,
+      "pass": true
+    },
+    "e2_gdr_hot_warm_30px": {
+      "mean_raw_auc": 0.50829,
+      "mean_symmetric_auc": 0.51535,
+      "max_fold_symmetric_auc": 0.54229,
+      "pass": true
+    },
+    "e2_gdr_blind_geotherm90_12px": {
+      "mean_raw_auc": 0.52522,
+      "mean_symmetric_auc": 0.54025,
+      "max_fold_symmetric_auc": 0.56618,
+      "pass": true
+    },
+    "e2_gdr_blind_geotherm90_25px": {
+      "mean_raw_auc": 0.52522,
+      "mean_symmetric_auc": 0.54025,
+      "max_fold_symmetric_auc": 0.56618,
+      "pass": true
+    },
+    "e2_gdr_upslope_conduit_align": {
+      "mean_raw_auc": 0.42056,
+      "mean_symmetric_auc": 0.57944,
+      "max_fold_symmetric_auc": 0.6323,
+      "pass": true
+    },
     "e2_piedmont_concealment_idx": {
       "mean_raw_auc": 0.49081,
       "mean_symmetric_auc": 0.52105,
@@ -367,154 +397,184 @@
       "max_fold_symmetric_auc": 0.63205,
       "pass": true
     },
-    "s12_grav_dz_lap150": {
-      "mean_raw_auc": 0.52801,
-      "mean_symmetric_auc": 0.52801,
-      "max_fold_symmetric_auc": 0.54432,
+    "s12_tmi_asig_log": {
+      "mean_raw_auc": 0.51086,
+      "mean_symmetric_auc": 0.53169,
+      "max_fold_symmetric_auc": 0.55308,
       "pass": true
     },
-    "s12_grav_true_tilt": {
-      "mean_raw_auc": 0.50465,
-      "mean_symmetric_auc": 0.50605,
-      "max_fold_symmetric_auc": 0.51313,
+    "s12_tmi_tilt_true": {
+      "mean_raw_auc": 0.48564,
+      "mean_symmetric_auc": 0.5148,
+      "max_fold_symmetric_auc": 0.53979,
       "pass": true
     },
-    "s12_grav_spi_k": {
-      "mean_raw_auc": 0.54148,
-      "mean_symmetric_auc": 0.54148,
-      "max_fold_symmetric_auc": 0.57309,
+    "s12_spi_local_wavenum": {
+      "mean_raw_auc": 0.50498,
+      "mean_symmetric_auc": 0.51041,
+      "max_fold_symmetric_auc": 0.52147,
       "pass": true
     },
-    "s12_spi_shallow_break": {
-      "mean_raw_auc": 0.5175,
-      "mean_symmetric_auc": 0.52824,
-      "max_fold_symmetric_auc": 0.55201,
+    "s12_updip_spi_wavenum": {
+      "mean_raw_auc": 0.50635,
+      "mean_symmetric_auc": 0.51659,
+      "max_fold_symmetric_auc": 0.52639,
       "pass": true
     },
-    "s12_grav_worm_persist": {
-      "mean_raw_auc": 0.54745,
-      "mean_symmetric_auc": 0.55484,
-      "max_fold_symmetric_auc": 0.5958,
+    "s12_geodawn_shallow_res": {
+      "mean_raw_auc": 0.49049,
+      "mean_symmetric_auc": 0.51498,
+      "max_fold_symmetric_auc": 0.53361,
       "pass": true
     },
-    "s12_grav_worm_dip_shift": {
-      "mean_raw_auc": 0.51479,
-      "mean_symmetric_auc": 0.51819,
-      "max_fold_symmetric_auc": 0.54135,
+    "s12_geodawn_shallow_grad": {
+      "mean_raw_auc": 0.5086,
+      "mean_symmetric_auc": 0.5307,
+      "max_fold_symmetric_auc": 0.5484,
       "pass": true
     },
-    "s12_roest_tmi_as3d": {
-      "mean_raw_auc": 0.51139,
-      "mean_symmetric_auc": 0.53193,
-      "max_fold_symmetric_auc": 0.55313,
+    "s12_remanent_rtp_disc": {
+      "mean_raw_auc": 0.48253,
+      "mean_symmetric_auc": 0.51747,
+      "max_fold_symmetric_auc": 0.53189,
       "pass": true
     },
-    "s12_rtp_true_tilt": {
-      "mean_raw_auc": 0.49572,
-      "mean_symmetric_auc": 0.51807,
-      "max_fold_symmetric_auc": 0.5447,
+    "s12_frangi_topo_s1p5": {
+      "mean_raw_auc": 0.58074,
+      "mean_symmetric_auc": 0.58074,
+      "max_fold_symmetric_auc": 0.60479,
       "pass": true
     },
-    "s12_rtp_spi_k": {
-      "mean_raw_auc": 0.50913,
-      "mean_symmetric_auc": 0.50947,
-      "max_fold_symmetric_auc": 0.52273,
+    "s12_frangi_topo_s4p0": {
+      "mean_raw_auc": 0.58667,
+      "mean_symmetric_auc": 0.58667,
+      "max_fold_symmetric_auc": 0.61096,
       "pass": true
     },
-    "s12_remanence_phase_disc": {
-      "mean_raw_auc": 0.5046,
-      "mean_symmetric_auc": 0.5046,
-      "max_fold_symmetric_auc": 0.50937,
+    "s12_frangi_asig_s2p0": {
+      "mean_raw_auc": 0.51017,
+      "mean_symmetric_auc": 0.51431,
+      "max_fold_symmetric_auc": 0.5231,
       "pass": true
     },
-    "s12_cond_depth_res": {
-      "mean_raw_auc": 0.49916,
-      "mean_symmetric_auc": 0.52663,
-      "max_fold_symmetric_auc": 0.55156,
+    "s12_frangi_marussi_s2p5": {
+      "mean_raw_auc": 0.53031,
+      "mean_symmetric_auc": 0.53031,
+      "max_fold_symmetric_auc": 0.5652,
       "pass": true
     },
-    "s12_cond_res_grad": {
-      "mean_raw_auc": 0.52098,
-      "mean_symmetric_auc": 0.52639,
-      "max_fold_symmetric_auc": 0.53517,
+    "s12_crossfault_dipole_600m": {
+      "mean_raw_auc": 0.57692,
+      "mean_symmetric_auc": 0.57692,
+      "max_fold_symmetric_auc": 0.60925,
       "pass": true
     },
-    "s12_cond_res_ridge": {
-      "mean_raw_auc": 0.51527,
-      "mean_symmetric_auc": 0.51527,
-      "max_fold_symmetric_auc": 0.53096,
+    "s12_seis_dep_swarm_log": {
+      "mean_raw_auc": 0.50641,
+      "mean_symmetric_auc": 0.5281,
+      "max_fold_symmetric_auc": 0.54886,
       "pass": true
     },
-    "s12_base_step_grad": {
-      "mean_raw_auc": 0.53472,
-      "mean_symmetric_auc": 0.54568,
-      "max_fold_symmetric_auc": 0.57729,
+    "s12_seis_ind_main_log": {
+      "mean_raw_auc": 0.54131,
+      "mean_symmetric_auc": 0.54131,
+      "max_fold_symmetric_auc": 0.59566,
       "pass": true
     },
-    "s12_base_grav_coalign": {
-      "mean_raw_auc": 0.52959,
-      "mean_symmetric_auc": 0.53982,
-      "max_fold_symmetric_auc": 0.56559,
+    "s12_seis_swarm_excess": {
+      "mean_raw_auc": 0.48067,
+      "mean_symmetric_auc": 0.53687,
+      "max_fold_symmetric_auc": 0.6095,
       "pass": true
     },
-    "s12_base_hinge_joint": {
-      "mean_raw_auc": 0.53901,
-      "mean_symmetric_auc": 0.55021,
-      "max_fold_symmetric_auc": 0.56184,
+    "s12_seis_swarm_grad": {
+      "mean_raw_auc": 0.49957,
+      "mean_symmetric_auc": 0.51049,
+      "max_fold_symmetric_auc": 0.52087,
       "pass": true
     },
-    "s12_weingarten_toe_250m": {
-      "mean_raw_auc": 0.61064,
-      "mean_symmetric_auc": 0.61064,
-      "max_fold_symmetric_auc": 0.65223,
+    "s12_kreemer_kinematic_w": {
+      "mean_raw_auc": 0.50933,
+      "mean_symmetric_auc": 0.54304,
+      "max_fold_symmetric_auc": 0.56658,
       "pass": true
     },
-    "s12_weingarten_toe_500m": {
-      "mean_raw_auc": 0.62037,
-      "mean_symmetric_auc": 0.62037,
-      "max_fold_symmetric_auc": 0.65521,
+    "s12_strain_tensor_excess": {
+      "mean_raw_auc": 0.51322,
+      "mean_symmetric_auc": 0.51924,
+      "max_fold_symmetric_auc": 0.5246,
       "pass": true
     },
-    "s12_slp_hess_ridge_150m": {
-      "mean_raw_auc": 0.581,
-      "mean_symmetric_auc": 0.581,
-      "max_fold_symmetric_auc": 0.61605,
+    "s12_transtens_work_rate": {
+      "mean_raw_auc": 0.52879,
+      "mean_symmetric_auc": 0.55254,
+      "max_fold_symmetric_auc": 0.59245,
       "pass": true
     },
-    "s12_slp_hess_ridge_400m": {
-      "mean_raw_auc": 0.5932,
-      "mean_symmetric_auc": 0.5932,
-      "max_fold_symmetric_auc": 0.62879,
+    "s12_hydro_demag_alter_joint": {
+      "mean_raw_auc": 0.50642,
+      "mean_symmetric_auc": 0.5081,
+      "max_fold_symmetric_auc": 0.51539,
       "pass": true
     },
-    "s12_transtens_partition": {
-      "mean_raw_auc": 0.51559,
-      "mean_symmetric_auc": 0.53932,
-      "max_fold_symmetric_auc": 0.55019,
+    "ac_p1_raw": {
+      "mean_raw_auc": 0.72173,
+      "mean_symmetric_auc": 0.72173,
+      "max_fold_symmetric_auc": 0.78317,
       "pass": true
     },
-    "s12_ctx400m_toe_hinge": {
-      "mean_raw_auc": 0.58504,
-      "mean_symmetric_auc": 0.58504,
-      "max_fold_symmetric_auc": 0.64641,
+    "ac_p1_sm2": {
+      "mean_raw_auc": 0.72287,
+      "mean_symmetric_auc": 0.72287,
+      "max_fold_symmetric_auc": 0.78363,
       "pass": true
     },
-    "s12_ctx1p2km_spi_worm": {
-      "mean_raw_auc": 0.56624,
-      "mean_symmetric_auc": 0.56624,
-      "max_fold_symmetric_auc": 0.61743,
+    "ac_ray900m_max": {
+      "mean_raw_auc": 0.72316,
+      "mean_symmetric_auc": 0.72316,
+      "max_fold_symmetric_auc": 0.7792,
       "pass": true
     },
-    "s12_ctx2p5km_multiphys": {
-      "mean_raw_auc": 0.55286,
-      "mean_symmetric_auc": 0.55286,
-      "max_fold_symmetric_auc": 0.60999,
+    "ac_ray2km_max": {
+      "mean_raw_auc": 0.7143,
+      "mean_symmetric_auc": 0.7143,
+      "max_fold_symmetric_auc": 0.76387,
       "pass": true
     },
-    "s12_strike_tangent_sin2": {
-      "mean_raw_auc": 0.50533,
-      "mean_symmetric_auc": 0.51694,
-      "max_fold_symmetric_auc": 0.52551,
+    "ac_wash_bridge_1km": {
+      "mean_raw_auc": 0.72286,
+      "mean_symmetric_auc": 0.72286,
+      "max_fold_symmetric_auc": 0.78089,
+      "pass": true
+    },
+    "ac_wash_bridge_2km": {
+      "mean_raw_auc": 0.71425,
+      "mean_symmetric_auc": 0.71425,
+      "max_fold_symmetric_auc": 0.76743,
+      "pass": true
+    },
+    "ac_transverse_sharpness": {
+      "mean_raw_auc": 0.69642,
+      "mean_symmetric_auc": 0.69642,
+      "max_fold_symmetric_auc": 0.75157,
+      "pass": true
+    },
+    "ac_strike_anisotropy": {
+      "mean_raw_auc": 0.55184,
+      "mean_symmetric_auc": 0.55184,
+      "max_fold_symmetric_auc": 0.5763,
+      "pass": true
+    },
+    "ac_corridor_1p2km": {
+      "mean_raw_auc": 0.67345,
+      "mean_symmetric_auc": 0.67345,
+      "max_fold_symmetric_auc": 0.73421,
+      "pass": true
+    },
+    "ac_corridor_3km": {
+      "mean_raw_auc": 0.60224,
+      "mean_symmetric_auc": 0.60224,
+      "max_fold_symmetric_auc": 0.66517,
       "pass": true
     }
   }

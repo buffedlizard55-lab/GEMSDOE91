@@ -1,0 +1,14 @@
+{
+  "n_registry_rasters_checked": 15,
+  "max_allowed_rank_corr": 0.9,
+  "max_allowed_dot_overlap_3px": 0.7,
+  "surface_max_abs_rank_corr": 0.01785,
+  "surface_closest_raster": "calib_h161_01855.tif",
+  "dots_max_abs_rank_corr": 0.00936,
+  "dots_max_3px_overlap": 0.18887,
+  "dots_closest_raster": "calib_h161_01855.tif",
+  "dots_max_mutual_3px_overlap": 0.17618,
+  "is_duplicate": false,
+  "uniqueness_pass": true,
+  "n_comparisons": 15
+}

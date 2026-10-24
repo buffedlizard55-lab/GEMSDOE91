@@ -1,0 +1,89 @@
+{
+  "evaluator_version": "gems91-hide-recover-v1.0",
+  "max_allowed_auc": 0.9,
+  "n_features_tested": 13,
+  "worst_feature": "grav_grad",
+  "worst_symmetric_auc": 0.58871,
+  "flagged_features": [],
+  "all_pass": true,
+  "features": {
+    "uc_g1": {
+      "mean_raw_auc": 0.50982,
+      "mean_symmetric_auc": 0.52413,
+      "max_fold_symmetric_auc": 0.54419,
+      "pass": true
+    },
+    "uc_g3": {
+      "mean_raw_auc": 0.51474,
+      "mean_symmetric_auc": 0.52951,
+      "max_fold_symmetric_auc": 0.5522,
+      "pass": true
+    },
+    "uc_g6": {
+      "mean_raw_auc": 0.51888,
+      "mean_symmetric_auc": 0.53345,
+      "max_fold_symmetric_auc": 0.56251,
+      "pass": true
+    },
+    "uc_persist31": {
+      "mean_raw_auc": 0.50545,
+      "mean_symmetric_auc": 0.50545,
+      "max_fold_symmetric_auc": 0.51432,
+      "pass": true
+    },
+    "uc_persist63": {
+      "mean_raw_auc": 0.50403,
+      "mean_symmetric_auc": 0.50798,
+      "max_fold_symmetric_auc": 0.51293,
+      "pass": true
+    },
+    "uc_decay": {
+      "mean_raw_auc": 0.49457,
+      "mean_symmetric_auc": 0.50596,
+      "max_fold_symmetric_auc": 0.51129,
+      "pass": true
+    },
+    "uc_dog13": {
+      "mean_raw_auc": 0.50791,
+      "mean_symmetric_auc": 0.52754,
+      "max_fold_symmetric_auc": 0.54319,
+      "pass": true
+    },
+    "uc_dog36": {
+      "mean_raw_auc": 0.50725,
+      "mean_symmetric_auc": 0.52763,
+      "max_fold_symmetric_auc": 0.54106,
+      "pass": true
+    },
+    "tmi_z": {
+      "mean_raw_auc": 0.49123,
+      "mean_symmetric_auc": 0.50877,
+      "max_fold_symmetric_auc": 0.52043,
+      "pass": true
+    },
+    "tmi_minus_rtp": {
+      "mean_raw_auc": 0.48294,
+      "mean_symmetric_auc": 0.52278,
+      "max_fold_symmetric_auc": 0.56561,
+      "pass": true
+    },
+    "depth_grad": {
+      "mean_raw_auc": 0.5413,
+      "mean_symmetric_auc": 0.5477,
+      "max_fold_symmetric_auc": 0.58249,
+      "pass": true
+    },
+    "grav_grad": {
+      "mean_raw_auc": 0.54916,
+      "mean_symmetric_auc": 0.54916,
+      "max_fold_symmetric_auc": 0.58871,
+      "pass": true
+    },
+    "depth_z": {
+      "mean_raw_auc": 0.50172,
+      "mean_symmetric_auc": 0.52071,
+      "max_fold_symmetric_auc": 0.53528,
+      "pass": true
+    }
+  }
+}

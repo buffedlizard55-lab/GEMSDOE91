@@ -1,0 +1,183 @@
+{
+  "session": "S12",
+  "date_utc": "2026-10-24",
+  "branch": "arena/80f7c032-gemsdoe91",
+  "parallel_run_protocol": {
+    "lane": {
+      "assigned": false,
+      "note": "The session brief contains no single method paragraph (IR-91-S11-01, repeated in IR-91-S12-01). The agent chose H12-1 as its lane and records that choice here. It is not an assigned lane and cannot clear the readiness gate."
+    },
+    "duplicate_check": {
+      "rule": "surface |Spearman rho| > 0.90 or > 70% of final dots within 3 px of one registry raster is a duplicate",
+      "registry": "data/registry/*.tif via EH.default_registry_paths() (8 rasters; IR-91-S12-06)",
+      "result": "PASS for E1 (surface max |rho| 0.03474; dot 3 px overlap max 0.24834 vs calib_h161_01855.tif)",
+      "caveat": "The same gate also PASSES the random-placement null and the single-field controls. It does not discriminate here (IR-91-S11-06)."
+    }
+  },
+  "hypothesis": "H12-1: co-located maxima of gravity and magnetic horizontal gradients mark fault-scale contacts without any catalogue information.",
+  "mechanism": "Faults with both a density contrast (gravity gradient) and a susceptibility contrast (magnetic gradient) at the same location give a product score that is high only where both edges coincide.",
+  "named_non_fault_mimic": "Lithologic and intrusive contacts, and basin margins, also carry joint gravity and magnetic gradients. The product cannot separate them from faults.",
+  "pre_registered_parameters": {
+    "score": "max(z(tmi_hg),0) * max(z(hypot(B11,B18)),0)",
+    "robust_z": "(x - median) / (IQR/1.349) over footprint-valid pixels",
+    "spacing_px": 3.05,
+    "quotas": "S11 lane fold quotas (48,000 dots total)",
+    "tuned_on_holdout": false
+  },
+  "experiments": {
+    "budget": {
+      "max_experiments": 3,
+      "max_hours": 2,
+      "used_experiments": 2,
+      "elapsed_minutes_at_run_end": 45
+    },
+    "attempts": [
+      {
+        "id": "E1-attempt-A",
+        "status": "INVALID \u2014 stopped after its first holdout line was printed",
+        "defect": "Used |B18| alone as the gravity term. B18 is one component of the 2-D gravity gradient vector (IR-91-S11-02), so it is not a magnitude.",
+        "printed_holdout_DTI": 0.116884,
+        "printed_CI95": [
+          0.107308,
+          0.127679
+        ],
+        "superseded_by": "E1-attempt-B"
+      },
+      {
+        "id": "E1-attempt-B",
+        "status": "VALID \u2014 the only candidate result reported",
+        "holdout": {
+          "metric_label": "HOLDOUT-DTI",
+          "evaluator_version": "gems91-hide-recover-v1.0",
+          "alpha": 0.2,
+          "beta": 0.8,
+          "kernel_radius_m": 300,
+          "value": 0.113042,
+          "ci95": [
+            0.102124,
+            0.123819
+          ],
+          "n_withheld_positives": 60988,
+          "bootstrap_draws": 200
+        },
+        "controls_same_folds_same_quotas": {
+          "C_random_placement": {
+            "label": "HOLDOUT-DTI",
+            "value": 0.039281,
+            "ci95": [
+              0.036582,
+              0.042025
+            ]
+          },
+          "C_gravity_only": {
+            "label": "HOLDOUT-DTI",
+            "value": 0.113965,
+            "ci95": [
+              0.09951,
+              0.127143
+            ]
+          },
+          "C_magnetic_only": {
+            "label": "HOLDOUT-DTI",
+            "value": 0.104154,
+            "ci95": [
+              0.092042,
+              0.115508
+            ]
+          }
+        },
+        "reading": "Co-location adds nothing measurable over gravity-only (difference -0.000923; CIs overlap almost entirely). The gravity term carries the signal. The hypothesis is not supported as a co-location mechanism."
+      }
+    ],
+    "reproductions_not_counted_against_budget": [
+      "H91 lane in isolated copy (/home/user/repro-s11): E1 0.174030, E2 0.166750 reproduce the published values. E3 is recorded in its own log. B0 0.138999 and SGMC R0 0.095386 also reproduce.",
+      "S11 lane in isolated copy: E1 0.202272, E2 0.206406 (winner) and E3 0.205989 reproduce the published values; SGMC control E2 0.097623. The isolated candidate is byte-identical to the published docs/downloads TIF (see reproduction block below)."
+    ]
+  },
+  "leakage_canary": {
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "features_tested": [
+      "z_mag",
+      "z_grav",
+      "colocation"
+    ],
+    "max_allowed_symmetric_auc": 0.9,
+    "worst_feature": "z_grav",
+    "worst_symmetric_auc": 0.57138,
+    "all_pass": true
+  },
+  "raster": {
+    "produced": false,
+    "sha256": null,
+    "validator_output": null,
+    "reason": "H12-1 scored below the B0 baseline and the S11 candidate, so no GeoTIFF was generated for it. No submission bytes exist for this hypothesis."
+  },
+  "submission": {
+    "name": null,
+    "form_note": null,
+    "note_chars": null
+  },
+  "other_numbers_labels": {
+    "0.4413": "ORGANIZER-CONFIRMED (public leaderboard row #1, DrivenData leaderboard read 2026-10-24; not a personal submission receipt)",
+    "0.2778": "CLAIM \u2014 unverified; no organizer receipt in this repository (IR-91-S10-05)",
+    "0.3195": "CLAIM \u2014 unverified; not on the public board as read (IR-91-S10-05, IR-91-S11-09)",
+    "0.206406": "HOLDOUT-DTI \u2014 S11-MHTR E2; reproduced in an isolated copy this session and matches the published value (see reproduction block)",
+    "0.138999": "HOLDOUT-DTI \u2014 B0 reference, reproduced in isolated copy this session"
+  },
+  "verdict": "negative",
+  "verdict_reason": "E1 (0.113042, CI [0.102124, 0.123819]) is below the B0 baseline (0.138999), below H91-1 E1 (0.174030) and below the S11 candidate (0.206406). Its own gravity-only control scores the same, so the co-location mechanism adds nothing. Verdict: negative, not promoted.",
+  "human_actions_required": [
+    "Assign the method lane. Without it no candidate can clear the readiness gate (IR-91-S11-01).",
+    "Decide whether the S11 candidate should be submitted. Its card says 'promote', but the shared gate fails closed on schema grounds and on lane, registry and comparable-best grounds (IR-91-S12-02).",
+    "Review the public-disclosure implications of publishing the TIF on GitHub Pages under rules \u00a7A.4, and the originality and third-party-content representations under \u00a7A.5 (IR-91-S12-08).",
+    "A human signatory must certify the submission under penalty of perjury (rules \u00a7A.1). The agent cannot sign."
+  ],
+  "budget_remaining": {
+    "experiments": 1,
+    "note": "The 3-experiment budget counts the aborted attempt. Controls and reproductions are not counted."
+  },
+  "reproductions": {
+    "isolated_copy": "/home/user/repro-s11 (repo copy without .git; data symlinked to the main data/)",
+    "H91_lane": {
+      "E1_HOLDOUT_DTI": 0.17403,
+      "E2_HOLDOUT_DTI": 0.16675,
+      "B0_HOLDOUT_DTI": 0.138999,
+      "R0_SGMC_control": 0.095386,
+      "published_match": true,
+      "note": "E3 completed and is recorded in the isolated copy's own log. It is not a candidate in this card."
+    },
+    "S11_lane": {
+      "E1_HOLDOUT_DTI": {
+        "value": 0.202272,
+        "ci95": [
+          0.190377,
+          0.212673
+        ],
+        "published_match": true
+      },
+      "E2_HOLDOUT_DTI": {
+        "value": 0.206406,
+        "ci95": [
+          0.193796,
+          0.220176
+        ],
+        "published_match": true,
+        "selected_winner": true
+      },
+      "E3_HOLDOUT_DTI": {
+        "value": 0.205989,
+        "ci95": [
+          0.194347,
+          0.21908
+        ]
+      },
+      "SGMC_control_E2": 0.097623,
+      "candidate_zeros_sha256": "dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15",
+      "candidate_zeros_sha256_matches_published": true,
+      "candidate_nan_twin_sha256": "9554f7183b39f2825432533a4276f3a95b4dae26887c2df3ad2b13793bb2ac94",
+      "bytes_identical_to_published_zeros_tif": true,
+      "failure_after_outputs": "git checkout at line 486 (IR-91-S12-12); outputs were already written in releases/",
+      "cache_bridge": "data/derived/h91_fold_cat_full.dat -> h91_full_cat_features.dat (IR-91-S12-07)"
+    }
+  }
+}

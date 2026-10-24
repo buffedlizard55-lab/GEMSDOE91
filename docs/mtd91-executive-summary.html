@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to submit · GEMSDOE91</title>
+<link rel="stylesheet" href="assets/portal.css"></head>
+<body>
+<div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE91</a>
+<nav><a href="index.html">Home</a><a href="mtd91.html">MTD91</a></nav></header>
+<main>
+<section class="hero"><div>
+<span class="eyebrow">EXECUTIVE SUMMARY</span>
+<h1>How a GeoTIFF would be submitted — and why this one must not</h1>
+<p class="lead">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS Prize</a>. Format: single-band GeoTIFF matching sample CRS/shape/transform, values in [0, 1].</p>
+<span class="badge bad">CURRENT FILE: NOT OK TO SUBMIT</span>
+</div></section>
+<section class="section"><div class="card">
+<ol>
+<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">New submission</a> (login required).</li>
+<li>Upload <strong>only</strong> a file this lab has labelled <strong>OK TO SUBMIT</strong>. The MTD91 zeros twin is format-valid but science-gated <strong>NO</strong>.</li>
+<li>If a future file is promoted, paste the 140-character note from its run card.</li>
+<li>Do not upload NaN-outside twins if the portal rejects non-finite values; use the <code>-zeros.tif</code> encoding (nodata=None, every cell finite in [0,1]).</li>
+</ol>
+<p>Official problem page: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">page/967</a>.
+Rules PDF: <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR 96647</a>.
+Reference solution: <a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg/gems-prize-reference-solution</a>.</p>
+<p><strong>This session did not spend a weekly slot.</strong> Promotion is a separate selector step (cap on the submission page).</p>
+</div></section>
+</main></div></body></html>

@@ -7,8 +7,10 @@
   ],
   "ready_axes": [
     "PRUNE",
+    "MASS",
     "SNAP",
     "CONCENTRATION",
+    "RELIEF",
     "TRACKB"
   ],
   "axis_readiness": {
@@ -17,12 +19,8 @@
       "missing": []
     },
     "MASS": {
-      "ready": false,
-      "missing": [
-        "anc_h19_5",
-        "anc_h19_4",
-        "anc_h16_1"
-      ]
+      "ready": true,
+      "missing": []
     },
     "SNAP": {
       "ready": true,
@@ -33,12 +31,8 @@
       "missing": []
     },
     "RELIEF": {
-      "ready": false,
-      "missing": [
-        "anc_h19_5",
-        "anc_h19_4",
-        "anc_h16_1"
-      ]
+      "ready": true,
+      "missing": []
     },
     "TRACKB": {
       "ready": true,

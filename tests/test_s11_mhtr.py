@@ -59,7 +59,11 @@ def test_s11_run_card_and_certified_geotiff_artifacts() -> None:
     rc_ev = json.loads((ROOT / "evidence" / "s11_run_card.json").read_text(encoding="utf-8"))
     assert rc_docs == rc_ev
 
-    assert rc_docs["verdict"] == "promote"
+    assert rc_docs["historical_verdict_before_directed_gate_fix"] == "promote"
+    assert rc_docs["verdict"] == "negative"
+    assert rc_docs["submission_ready_pending_selector"] is False
+    assert rc_docs["current_policy_revalidation"]["status"] == "FAIL"
+    assert rc_docs["current_policy_revalidation"]["ok_to_submit"] is False
     assert rc_docs["budget"]["experiments_run"] == 3
     assert rc_docs["budget"]["wall_clock_seconds"] <= 7200
     assert rc_docs["leakage_canary"]["all_pass"] is True
@@ -74,10 +78,13 @@ def test_s11_run_card_and_certified_geotiff_artifacts() -> None:
     assert ph["ci_95"][0] > ph["h91_e1_reference_ci_95"][1]  # Non-overlapping 95% CIs!
 
     uniq = rc_docs["registry_uniqueness"]
-    assert uniq["uniqueness_pass"] is True
+    assert uniq["historical_v1_0_uniqueness_pass"] is True
+    assert uniq["uniqueness_pass"] is False
+    assert uniq["uniqueness_gate_version"] == "gems91-directed-registry-v1.1"
     assert uniq["rasters_checked"] >= 60
     assert uniq["max_surface_abs_rank_corr"] <= 0.90
-    assert uniq["max_3px_dot_overlap"] <= 0.70
+    assert uniq["max_3px_dot_overlap"] > 0.70
+    assert uniq["dots_closest_raster"] == "calib_r13lattice_00904.tif"
 
     sub = rc_docs["submission"]
     assert 1 <= len(sub["recommended_form_note"]) <= 140

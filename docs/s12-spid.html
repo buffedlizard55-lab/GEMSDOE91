@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
 <body><a class="skip" href="#main">Skip to content</a><div class="wrap">
 <header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
-<nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="s12-spid.html">S12-SPID Lane (0.1517 · Negative)</a><a href="s12-executive-summary.html">S12 Guide</a><a href="s11-mhtr.html">S11-MHTR (#1 · 0.2064)</a><a href="h91-ddvtc.html">H91 Lane (0.1740)</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="s12-spid.html">S12-SPID Lane (0.1517 · Negative)</a><a href="spid91-executive-summary.html">S12 Guide</a><a href="s11-mhtr.html">S11-MHTR (#1 · 0.2064)</a><a href="h91-ddvtc.html">H91 Lane (0.1740)</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
 <main id="main">
 <section class="hero">
   <div>
@@ -26,7 +26,7 @@
     <div style="text-align:center;margin-top:12px">
       <a download href="downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.zip">↓ Single-TIFF ZIP (207,348 B)</a> ·
       <a href="downloads/gems91-spid-e3-20261024T190000Z-25a94861-audit.json">Format Receipt (.json)</a> ·
-      <a href="run-card-S12.json">S12 Run Card (.json)</a>
+      <a href="run-card-SPID91.json">S12 Run Card (.json)</a>
     </div>
     <p class="small">Single-band float32 · EPSG:32611 · 3730×3292 · 100 m · 47,200 binary dots (52.9% on &lt;5&deg; concealed slopes) · min_d_cat = 3.1623 px.</p>
   </div>
@@ -50,8 +50,8 @@
   <article class="card">
     <span class="eyebrow">RULE 1 &amp; RULE 4 / CANARY &amp; 67-RASTER NOVELTY</span>
     <div class="number">85/85 · 67/67</div>
-    <p>85 official features tested alone (max sym AUC <code>0.66099 &le; 0.90</code>)<br>67 real fault rasters checked (max |&rho;| <code>0.2067</code>, max 3px ov <code>66.63% &le; 70%</code>)</p>
-    <a class="small" href="HYPOTHESES_S12.md">Read pre-registration, theorem &amp; PDE audit ↗</a>
+    <p>85 official features tested alone (max sym AUC <code>0.66099 &le; 0.90</code>)<br>67 real fault rasters checked (max |&rho;| <code>0.2067</code>, max 3px ov <code>71.13% &le; 70%</code>)</p>
+    <a class="small" href="HYPOTHESES_SPID91.md">Read pre-registration, theorem &amp; PDE audit ↗</a>
   </article>
 </div>
 
@@ -84,7 +84,7 @@
         <li><span><strong>IR-91-S12-01 (100&times; Tilt Unit &amp; TMI-RTP Bug Fixed):</strong> Fixed <code>dd_vtc_pu.py</code> mixing <code>B11=&part;<sub>y</sub>G</code> for <code>&part;<sub>z</sub>G</code> and <code>B09</code> (nT/m) with <code>grad_px(B02)</code> (nT/100 m) via Laplace-FFT <code>&part;<sub>z</sub>G</code> &amp; <code>&part;<sub>z</sub>RTP</code> + 3-D Roest Analytic Signal.</span><span class="badge">VERIFIED</span></li>
         <li><span><strong>IR-91-S12-03 (Range-Front Scarp Saturation Ceiling):</strong> Proved models retaining <code>LRM/TPI</code> reach <code>0.2158</code> DTI only by overlapping <code>81–86%</code> with <code>S11-MHTR E2</code>, whereas pure subsurface + Weingarten toe MoE yields <code>15,751</code> orthogonal basin dots (<code>66.6% &le; 70%</code>).</span><span class="badge">MEASURED</span></li>
       </ul>
-      <p><a href="s12-executive-summary.html">Open S12 Executive Summary &amp; Step-by-Step Guide ↗</a> · <a href="s11-mhtr.html">View Repository #1 S11-MHTR (0.2064 DTI) ↗</a></p>
+      <p><a href="spid91-executive-summary.html">Open S12 Executive Summary &amp; Step-by-Step Guide ↗</a> · <a href="s11-mhtr.html">View Repository #1 S11-MHTR (0.2064 DTI) ↗</a></p>
     </div>
   </div>
 </section>
@@ -92,7 +92,7 @@
 <section class="section">
   <div class="section-head">
     <h2>Pre-Registered 3-Experiment Holdout Progression (<code>gems91-hide-recover-v1.0</code>)</h2>
-    <a href="run-card-S12.json">Download full JSON run card ↗</a>
+    <a href="run-card-SPID91.json">Download full JSON run card ↗</a>
   </div>
   <div class="table-scroll">
     <table>
@@ -241,6 +241,22 @@
       </thead>
       <tbody>
         <tr>
+              <td><code>gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif</code></td>
+              <td>54,000</td>
+              <td><code>0.1144</code> (&le; 0.90)</td>
+              <td><code>71.13%</code></td>
+              <td><code>63.26%</code></td>
+              <td><code>71.13%</code> (&le; 70.0%)</td>
+              <td><span class="badge bad">OVERLAP (&gt;70%)</span></td>
+            </tr><tr>
+              <td><code>gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif</code></td>
+              <td>48,000</td>
+              <td><code>0.1127</code> (&le; 0.90)</td>
+              <td><code>66.83%</code></td>
+              <td><code>69.02%</code></td>
+              <td><code>66.83%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
               <td><code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code></td>
               <td>48,000</td>
               <td><code>0.1129</code> (&le; 0.90)</td>
@@ -257,20 +273,20 @@
               <td><code>62.43%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
             </tr><tr>
+              <td><code>calib_h25ctx_01280.tif</code></td>
+              <td>174,232</td>
+              <td><code>0.2031</code> (&le; 0.90)</td>
+              <td><code>62.34%</code></td>
+              <td><code>44.29%</code></td>
+              <td><code>62.34%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
               <td><code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif</code></td>
               <td>38,400</td>
               <td><code>0.1080</code> (&le; 0.90)</td>
               <td><code>55.39%</code></td>
               <td><code>68.92%</code></td>
               <td><code>55.39%</code> (&le; 70.0%)</td>
-              <td><span class="badge">PASS</span></td>
-            </tr><tr>
-              <td><code>calib_h25ctx_01280.tif</code></td>
-              <td>174,232</td>
-              <td><code>0.2031</code> (&le; 0.90)</td>
-              <td><code>62.34%</code></td>
-              <td><code>44.29%</code></td>
-              <td><code>51.79%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
             </tr><tr>
               <td><code>GEMSDOE89__gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros.tif</code></td>
@@ -281,6 +297,38 @@
               <td><code>48.89%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
             </tr><tr>
+              <td><code>calib_hedgev2_01563_sample.tif</code></td>
+              <td>227,507</td>
+              <td><code>0.2067</code> (&le; 0.90)</td>
+              <td><code>48.88%</code></td>
+              <td><code>29.97%</code></td>
+              <td><code>48.88%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>hedge_v2_01563.tif</code></td>
+              <td>227,507</td>
+              <td><code>0.2067</code> (&le; 0.90)</td>
+              <td><code>48.88%</code></td>
+              <td><code>29.97%</code></td>
+              <td><code>48.88%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif</code></td>
+              <td>37,654</td>
+              <td><code>0.1132</code> (&le; 0.90)</td>
+              <td><code>47.43%</code></td>
+              <td><code>73.99%</code></td>
+              <td><code>47.43%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.tif</code></td>
+              <td>37,654</td>
+              <td><code>0.1138</code> (&le; 0.90)</td>
+              <td><code>47.18%</code></td>
+              <td><code>74.11%</code></td>
+              <td><code>47.18%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
               <td><code>gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif</code></td>
               <td>37,654</td>
               <td><code>0.1149</code> (&le; 0.90)</td>
@@ -289,12 +337,28 @@
               <td><code>45.97%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
             </tr><tr>
+              <td><code>gems91-ucd91-20261024T190000Z-df735405-zeros.tif</code></td>
+              <td>48,000</td>
+              <td><code>0.0459</code> (&le; 0.90)</td>
+              <td><code>42.71%</code></td>
+              <td><code>42.16%</code></td>
+              <td><code>42.71%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gems91-ucd91-20261024T190000Z-df735405.tif</code></td>
+              <td>48,000</td>
+              <td><code>0.0459</code> (&le; 0.90)</td>
+              <td><code>42.71%</code></td>
+              <td><code>42.16%</code></td>
+              <td><code>42.71%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
               <td><code>calib_h161_01855.tif</code></td>
               <td>123,939</td>
               <td><code>0.1249</code> (&le; 0.90)</td>
               <td><code>39.09%</code></td>
               <td><code>39.40%</code></td>
-              <td><code>39.24%</code> (&le; 70.0%)</td>
+              <td><code>39.09%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
             </tr><tr>
               <td><code>19GEMSDOE__h19-4-multiline-corroborated.tif</code></td>
@@ -302,7 +366,7 @@
               <td><code>0.1231</code> (&le; 0.90)</td>
               <td><code>37.94%</code></td>
               <td><code>38.80%</code></td>
-              <td><code>38.37%</code> (&le; 70.0%)</td>
+              <td><code>37.94%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
             </tr><tr>
               <td><code>calib_h194_01894.tif</code></td>
@@ -310,7 +374,7 @@
               <td><code>0.1231</code> (&le; 0.90)</td>
               <td><code>37.94%</code></td>
               <td><code>38.80%</code></td>
-              <td><code>38.37%</code> (&le; 70.0%)</td>
+              <td><code>37.94%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
             </tr><tr>
               <td><code>19GEMSDOE__h19-5-powerlaw-budget-multiline.tif</code></td>
@@ -318,7 +382,7 @@
               <td><code>0.1236</code> (&le; 0.90)</td>
               <td><code>37.03%</code></td>
               <td><code>39.22%</code></td>
-              <td><code>38.09%</code> (&le; 70.0%)</td>
+              <td><code>37.03%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
             </tr><tr>
               <td><code>calib_h195_01922.tif</code></td>
@@ -326,23 +390,7 @@
               <td><code>0.1236</code> (&le; 0.90)</td>
               <td><code>37.03%</code></td>
               <td><code>39.22%</code></td>
-              <td><code>38.09%</code> (&le; 70.0%)</td>
-              <td><span class="badge">PASS</span></td>
-            </tr><tr>
-              <td><code>calib_hedgev2_01563_sample.tif</code></td>
-              <td>227,507</td>
-              <td><code>0.2067</code> (&le; 0.90)</td>
-              <td><code>48.88%</code></td>
-              <td><code>29.97%</code></td>
-              <td><code>37.16%</code> (&le; 70.0%)</td>
-              <td><span class="badge">PASS</span></td>
-            </tr><tr>
-              <td><code>hedge_v2_01563.tif</code></td>
-              <td>227,507</td>
-              <td><code>0.2067</code> (&le; 0.90)</td>
-              <td><code>48.88%</code></td>
-              <td><code>29.97%</code></td>
-              <td><code>37.16%</code> (&le; 70.0%)</td>
+              <td><code>37.03%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
             </tr><tr>
               <td><code>GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif</code></td>
@@ -392,54 +440,6 @@
               <td><code>36.97%</code></td>
               <td><code>34.64%</code> (&le; 70.0%)</td>
               <td><span class="badge">PASS</span></td>
-            </tr><tr>
-              <td><code>gemsdoe32-h32c-mt-claycap-breach-45890-20261004T183200Z-a5963d0a-zeros.tif</code></td>
-              <td>45,890</td>
-              <td><code>0.0715</code> (&le; 0.90)</td>
-              <td><code>34.64%</code></td>
-              <td><code>36.97%</code></td>
-              <td><code>34.64%</code> (&le; 70.0%)</td>
-              <td><span class="badge">PASS</span></td>
-            </tr><tr>
-              <td><code>GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif</code></td>
-              <td>37,654</td>
-              <td><code>0.0810</code> (&le; 0.90)</td>
-              <td><code>34.60%</code></td>
-              <td><code>50.63%</code></td>
-              <td><code>34.60%</code> (&le; 70.0%)</td>
-              <td><span class="badge">PASS</span></td>
-            </tr><tr>
-              <td><code>GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif</code></td>
-              <td>60,069</td>
-              <td><code>0.0838</code> (&le; 0.90)</td>
-              <td><code>34.53%</code></td>
-              <td><code>37.48%</code></td>
-              <td><code>34.53%</code> (&le; 70.0%)</td>
-              <td><span class="badge">PASS</span></td>
-            </tr><tr>
-              <td><code>calib_d15_02477.tif</code></td>
-              <td>60,069</td>
-              <td><code>0.0838</code> (&le; 0.90)</td>
-              <td><code>34.53%</code></td>
-              <td><code>37.48%</code></td>
-              <td><code>34.53%</code> (&le; 70.0%)</td>
-              <td><span class="badge">PASS</span></td>
-            </tr><tr>
-              <td><code>gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-nan.tif</code></td>
-              <td>45,890</td>
-              <td><code>0.0707</code> (&le; 0.90)</td>
-              <td><code>34.08%</code></td>
-              <td><code>36.44%</code></td>
-              <td><code>34.08%</code> (&le; 70.0%)</td>
-              <td><span class="badge">PASS</span></td>
-            </tr><tr>
-              <td><code>gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-zeros.tif</code></td>
-              <td>45,890</td>
-              <td><code>0.0707</code> (&le; 0.90)</td>
-              <td><code>34.08%</code></td>
-              <td><code>36.44%</code></td>
-              <td><code>34.08%</code> (&le; 70.0%)</td>
-              <td><span class="badge">PASS</span></td>
             </tr>
       </tbody>
     </table>
@@ -448,6 +448,6 @@
 </main>
 <footer>
   <div>Session 12 Discovery Audit (<code>gems91-spid-e3-20261024T190000Z-25a94861</code> · Verdict: <code>negative</code>)<br>Generated 2026-10-24T20:02:10Z</div>
-  <div><a href="run-card-S12.json">S12 JSON Run Card</a> · <a href="s11-mhtr.html">Repo #1 S11-MHTR</a> · <a href="index.html">Main Research Portal</a></div>
+  <div><a href="run-card-SPID91.json">S12 JSON Run Card</a> · <a href="s11-mhtr.html">Repo #1 S11-MHTR</a> · <a href="index.html">Main Research Portal</a></div>
 </footer>
 </div></body></html>

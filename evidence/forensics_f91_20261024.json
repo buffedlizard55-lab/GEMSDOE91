@@ -1,0 +1,322 @@
+{
+  "evidence_class": "RECEIPT+MODEL diagnostics; scores CLAIM",
+  "footprint_px": 5167373,
+  "catalogue_px": 60988,
+  "files": {
+    "h19_5_surface": {
+      "path": "data/registry/calib_h195_01922.tif",
+      "sha256_RECEIPT": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "claimed_score_CLAIM": 0.1922,
+      "positive_px_RECEIPT": 121131,
+      "mass_sum_RECEIPT": 121131.0,
+      "value_max_RECEIPT": 1.0,
+      "binary_unit_mass": true,
+      "min_dcat_px": 1.0,
+      "dots_by_dcat": {
+        "le1": 9651,
+        "le2": 17326,
+        "le3": 24167,
+        "le8": 43765,
+        "le15": 61540
+      },
+      "nn_spacing_px": {
+        "min": 1.0,
+        "median": 1.0,
+        "p90": 2.0
+      }
+    },
+    "h19_4_surface": {
+      "path": "data/registry/calib_h194_01894.tif",
+      "sha256_RECEIPT": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+      "claimed_score_CLAIM": 0.1894,
+      "positive_px_RECEIPT": 123779,
+      "mass_sum_RECEIPT": 123779.0,
+      "value_max_RECEIPT": 1.0,
+      "binary_unit_mass": true,
+      "min_dcat_px": 1.0,
+      "dots_by_dcat": {
+        "le1": 9738,
+        "le2": 17518,
+        "le3": 24496,
+        "le8": 44494,
+        "le15": 62655
+      },
+      "nn_spacing_px": {
+        "min": 1.0,
+        "median": 1.0,
+        "p90": 2.0
+      }
+    },
+    "h16_1_surface": {
+      "path": "data/registry/calib_h161_01855.tif",
+      "sha256_RECEIPT": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "claimed_score_CLAIM": 0.1855,
+      "positive_px_RECEIPT": 123939,
+      "mass_sum_RECEIPT": 123939.0,
+      "value_max_RECEIPT": 1.0,
+      "binary_unit_mass": true,
+      "min_dcat_px": 1.0,
+      "dots_by_dcat": {
+        "le1": 9644,
+        "le2": 17394,
+        "le3": 24393,
+        "le8": 44337,
+        "le15": 62591
+      },
+      "nn_spacing_px": {
+        "min": 1.0,
+        "median": 1.0,
+        "p90": 2.0
+      }
+    },
+    "d1_5_dotted": {
+      "path": "data/registry/calib_d15_02477.tif",
+      "sha256_RECEIPT": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "claimed_score_CLAIM": 0.2477,
+      "positive_px_RECEIPT": 60069,
+      "mass_sum_RECEIPT": 60069.0,
+      "value_max_RECEIPT": 1.0,
+      "binary_unit_mass": true,
+      "min_dcat_px": 1.0,
+      "dots_by_dcat": {
+        "le1": 5355,
+        "le2": 8769,
+        "le3": 11938,
+        "le8": 21441,
+        "le15": 30303
+      },
+      "nn_spacing_px": {
+        "min": 2.0,
+        "median": 2.236,
+        "p90": 3.606
+      }
+    },
+    "d2_8_dotted": {
+      "path": "data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256_RECEIPT": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "claimed_score_CLAIM": 0.26,
+      "positive_px_RECEIPT": 44090,
+      "mass_sum_RECEIPT": 44090.0,
+      "value_max_RECEIPT": 1.0,
+      "binary_unit_mass": true,
+      "min_dcat_px": 1.0,
+      "dots_by_dcat": {
+        "le1": 3891,
+        "le2": 6436,
+        "le3": 8607,
+        "le8": 15600,
+        "le15": 22101
+      },
+      "nn_spacing_px": {
+        "min": 2.828,
+        "median": 3.0,
+        "p90": 5.0
+      }
+    },
+    "solo_d2_8": {
+      "path": "data/registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "sha256_RECEIPT": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "claimed_score_CLAIM": 0.2708,
+      "positive_px_RECEIPT": 40199,
+      "mass_sum_RECEIPT": 40199.0,
+      "value_max_RECEIPT": 1.0,
+      "binary_unit_mass": true,
+      "min_dcat_px": 1.4142,
+      "dots_by_dcat": {
+        "le1": 0,
+        "le2": 2545,
+        "le3": 4716,
+        "le8": 11709,
+        "le15": 18210
+      },
+      "nn_spacing_px": {
+        "min": 2.828,
+        "median": 3.0,
+        "p90": 5.099
+      }
+    },
+    "r0_b2_prune": {
+      "path": "data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "sha256_RECEIPT": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "claimed_score_CLAIM": 0.2778,
+      "positive_px_RECEIPT": 37654,
+      "mass_sum_RECEIPT": 37654.0,
+      "value_max_RECEIPT": 1.0,
+      "binary_unit_mass": true,
+      "min_dcat_px": 2.2361,
+      "dots_by_dcat": {
+        "le1": 0,
+        "le2": 0,
+        "le3": 2171,
+        "le8": 9164,
+        "le15": 15665
+      },
+      "nn_spacing_px": {
+        "min": 2.828,
+        "median": 3.0,
+        "p90": 5.099
+      }
+    }
+  },
+  "subsets": {
+    "r0_b2_prune_in_d2_8_dotted": {
+      "child_px": 37654,
+      "parent_px": 44090,
+      "child_not_in_parent_px": 0,
+      "exact_subset": true
+    },
+    "r0_b2_prune_in_solo_d2_8": {
+      "child_px": 37654,
+      "parent_px": 40199,
+      "child_not_in_parent_px": 0,
+      "exact_subset": true
+    },
+    "d2_8_dotted_in_h19_5_surface": {
+      "child_px": 44090,
+      "parent_px": 121131,
+      "child_not_in_parent_px": 0,
+      "exact_subset": true
+    },
+    "d1_5_dotted_in_h19_5_surface": {
+      "child_px": 60069,
+      "parent_px": 121131,
+      "child_not_in_parent_px": 0,
+      "exact_subset": true
+    },
+    "solo_d2_8_in_d2_8_dotted": {
+      "child_px": 40199,
+      "parent_px": 44090,
+      "child_not_in_parent_px": 0,
+      "exact_subset": true
+    },
+    "r0_equals_d2_8_dotted_minus_dcat_le2": true,
+    "r0_equals_solo_d2_8_minus_dcat_le2": true
+  },
+  "inversion": {
+    "d2_8_dotted->r0_b2_prune": {
+      "assumption": "removed <=2px collar dots had zero hidden kernel credit; T,M of kept set unchanged; |G| step also assumes T~=M",
+      "n_removed": 6436,
+      "score_old_CLAIM": 0.26,
+      "score_new_CLAIM": 0.2778,
+      "implied_denominator_new_MODEL": 18801.8,
+      "implied_TPw_new_MODEL": 5223.1,
+      "implied_hidden_truth_px_MODEL": 14089.0,
+      "implied_credit_per_dot_MODEL": 0.1387,
+      "marginal_bar_alpha_x_dti_MODEL": 0.0556
+    },
+    "solo_d2_8->r0_b2_prune": {
+      "assumption": "removed <=2px collar dots had zero hidden kernel credit; T,M of kept set unchanged; |G| step also assumes T~=M",
+      "n_removed": 2545,
+      "score_old_CLAIM": 0.2708,
+      "score_new_CLAIM": 0.2778,
+      "implied_denominator_new_MODEL": 19691.0,
+      "implied_TPw_new_MODEL": 5470.2,
+      "implied_hidden_truth_px_MODEL": 15200.0,
+      "implied_credit_per_dot_MODEL": 0.1453,
+      "marginal_bar_alpha_x_dti_MODEL": 0.0556
+    }
+  },
+  "lattice_gate_diagnostic": {
+    "lattice_positive_px": 206895,
+    "footprint_frac_within_3px_of_lattice": 0.998713,
+    "r0_dots_within_3px_of_lattice_frac": 0.99915,
+    "meaning": "the literal directed rule (>70% within 3px = duplicate) rejects R0 itself against this synthetic cover; it measures cover density, not copying. F91 therefore reports directed overlap vs every real registry raster AND symmetric within-3px F1, with the lattice reported separately."
+  },
+  "r0_band_enrichment_MODEL": {
+    "mag_anom": {
+      "band": 1,
+      "auc_R0_vs_background": 0.5168,
+      "symmetric": 0.5168
+    },
+    "rtp": {
+      "band": 2,
+      "auc_R0_vs_background": 0.5049,
+      "symmetric": 0.5049
+    },
+    "tmi_hg": {
+      "band": 3,
+      "auc_R0_vs_background": 0.5775,
+      "symmetric": 0.5775
+    },
+    "geod_2ndinv": {
+      "band": 4,
+      "auc_R0_vs_background": 0.533,
+      "symmetric": 0.533
+    },
+    "iso_grav_anom_slope": {
+      "band": 5,
+      "auc_R0_vs_background": 0.5204,
+      "symmetric": 0.5204
+    },
+    "tc": {
+      "band": 6,
+      "auc_R0_vs_background": 0.3705,
+      "symmetric": 0.6295
+    },
+    "geod_shearrate": {
+      "band": 7,
+      "auc_R0_vs_background": 0.5225,
+      "symmetric": 0.5225
+    },
+    "geod_dilaterate": {
+      "band": 8,
+      "auc_R0_vs_background": 0.5356,
+      "symmetric": 0.5356
+    },
+    "tmi_vg": {
+      "band": 9,
+      "auc_R0_vs_background": 0.4724,
+      "symmetric": 0.5276
+    },
+    "deq_n100a15": {
+      "band": 10,
+      "auc_R0_vs_background": 0.534,
+      "symmetric": 0.534
+    },
+    "iso_grav_anom_vg": {
+      "band": 11,
+      "auc_R0_vs_background": 0.5268,
+      "symmetric": 0.5268
+    },
+    "det_elev": {
+      "band": 12,
+      "auc_R0_vs_background": 0.559,
+      "symmetric": 0.559
+    },
+    "iso_grav_anom": {
+      "band": 13,
+      "auc_R0_vs_background": 0.5477,
+      "symmetric": 0.5477
+    },
+    "tmi": {
+      "band": 14,
+      "auc_R0_vs_background": 0.5081,
+      "symmetric": 0.5081
+    },
+    "depth_to_base_surf": {
+      "band": 15,
+      "auc_R0_vs_background": 0.4686,
+      "symmetric": 0.5314
+    },
+    "ieq_n100a15": {
+      "band": 16,
+      "auc_R0_vs_background": 0.5258,
+      "symmetric": 0.5258
+    },
+    "cond_surf": {
+      "band": 17,
+      "auc_R0_vs_background": 0.4747,
+      "symmetric": 0.5253
+    },
+    "iso_grav_anom_hg": {
+      "band": 18,
+      "auc_R0_vs_background": 0.4889,
+      "symmetric": 0.5111
+    },
+    "det_elev_slope": {
+      "band": 19,
+      "auc_R0_vs_background": 0.6612,
+      "symmetric": 0.6612
+    }
+  }
+}

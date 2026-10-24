@@ -1,0 +1,91 @@
+{
+  "candidate_id": "gems91-spac-e3-20261024T183000Z-a2740c89",
+  "generated_utc": "2026-10-24T19:31:36Z",
+  "verdict": "promote",
+  "bundle": {
+    "candidate_id": "gems91-spac-e3-20261024T183000Z-a2740c89",
+    "primary_zeros_tif": {
+      "filename": "gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+      "path": "releases/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+      "sha256": "0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd",
+      "bytes": 277876,
+      "nodata": null,
+      "all_cells_finite": true,
+      "total_cells": 12279160,
+      "nan_cells_anywhere": 0,
+      "min_value": 0.0,
+      "max_value": 1.0
+    },
+    "companion_nan_tif": {
+      "filename": "gems91-spac-e3-20261024T183000Z-a2740c89.tif",
+      "path": "releases/gems91-spac-e3-20261024T183000Z-a2740c89.tif",
+      "sha256": "a2740c8912b073450df0f3617ef27853f64698dd94a5fc35bdb580af38ce0eee",
+      "bytes": 422768,
+      "nodata": "NaN",
+      "nan_inside_footprint": 0,
+      "nan_outside_footprint": 7111787
+    },
+    "zip_bundle": {
+      "path": "releases/s12_stage/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.zip",
+      "filename": "gems91-spac-e3-20261024T183000Z-a2740c89-zeros.zip",
+      "inner_geotiff": "gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+      "bytes": 243967,
+      "sha256": "e21e77e1ec65a04ccfc4a5ee970d50f0f0e8d3a1f986cc092497a13e84642a62"
+    },
+    "browser_tif_bundle": {
+      "path": "releases/s12_stage/h91_submission_bundle.js",
+      "bytes": 934745,
+      "sha256": "1e3a84b081c1d33996bbd27203176190e5b4df535f46068a0c2eb083e051db58"
+    },
+    "grid": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "dtype": "float32",
+      "band_count": 1,
+      "footprint_pixels": 5167373
+    },
+    "dots": {
+      "n_dots": 54000,
+      "dot_set_digest": "27efbaf80fd49498a8922b03047b63a58a1ade6873f46c85a2a2d121a1d61598",
+      "zero_catalogue_mass": true,
+      "min_catalogue_distance_px": 3.1623,
+      "dots_le_3px": 0
+    },
+    "validators": {
+      "gems91_gates_verdict": "CERTIFIED",
+      "release_gates_nan_pass": true,
+      "release_gates_zeros_pass": true,
+      "validate_raster_nan_pass": true,
+      "validate_raster_zeros_pass": true,
+      "range_0_1_portal_safe": true
+    }
+  },
+  "gems57_checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+  }
+}

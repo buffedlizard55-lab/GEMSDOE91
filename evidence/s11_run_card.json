@@ -4,8 +4,8 @@
   "repo": "buffedlizard55-lab/GEMSDOE91",
   "branch": "arena/8d9056a3-gemsdoe91",
   "generated_utc": "2026-10-24T17:33:10Z",
-  "verdict": "promote",
-  "submission_ready_pending_selector": true,
+  "verdict": "negative",
+  "submission_ready_pending_selector": false,
   "winning_experiment": "E2",
   "hypothesis_id": "H11-1 + H11-2",
   "hypothesis": "Marussi Hessian + Official Band 06 Airborne Radiometric Total-Count Contact + Hydrothermal Magnetite Leaching + 1km Corridor Envelopes",
@@ -344,16 +344,20 @@
     "max_surface_abs_rank_corr": 0.22231,
     "surface_closest_raster": "calib_h25ctx_01280.tif",
     "max_dots_abs_rank_corr": 0.14405,
-    "max_3px_dot_overlap": 0.69817,
-    "dots_closest_raster": "calib_h28ridge_01839.tif",
-    "uniqueness_pass": true,
+    "max_3px_dot_overlap": 0.9981458333333333,
+    "dots_closest_raster": "calib_r13lattice_00904.tif",
+    "uniqueness_pass": false,
     "protocol_lattice_diagnostic": {
       "reference": "calib_r13lattice_00904.tif",
       "reference_dots": 206895,
       "footprint_coverage_within_3px": 0.998713,
       "uncovered_footprint_pixels": 6649,
       "note": "Per IR-CED-003, synthetic 5-px grid calib_r13lattice_00904.tif covers 99.8713% of the footprint within 3 px; symmetric F1 overlap is <= 0.33 while all real fault rasters pass strict <= 0.70 overlap."
-    }
+    },
+    "historical_v1_0_uniqueness_pass": true,
+    "uniqueness_gate_version": "gems91-directed-registry-v1.1",
+    "strict_revalidation_receipt": "evidence/strict_directed_revalidation_20261024.json",
+    "current_verdict": "DUPLICATE"
   },
   "raster_sha256": "dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15",
   "validator_output": {
@@ -412,5 +416,13 @@
     "n_dots": 48000,
     "min_catalogue_distance_px": 3.1623,
     "dots_le_3px": 0
+  },
+  "historical_verdict_before_directed_gate_fix": "promote",
+  "current_policy_revalidation": {
+    "date_utc": "2026-10-24",
+    "status": "FAIL",
+    "reason": "99.8146% of candidate dots are within 3 px of the pinned lattice; limit 70%.",
+    "ok_to_submit": false,
+    "receipt": "evidence/strict_directed_revalidation_20261024.json"
   }
 }

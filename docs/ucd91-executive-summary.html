@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>UCD91 Executive Summary — How to submit (and why not this file)</title><link rel="stylesheet" href="assets/portal.css"></head><body><div class="wrap"><main>
+<h1>Executive summary: making a DrivenData GEMS submission</h1>
+<p><span class="badge bad">⛔ THIS SESSION'S FILE: NOT OK TO SUBMIT</span> Download is research-only (see <a href="ucd91.html">UCD91 verdict page</a>).</p>
+<h2>Exact submission steps (for a future gate-passing file)</h2>
+<ol>
+<li>Download the <code>-zeros.tif</code> (all-finite, values in [0,1], nodata=None — this avoids the portal error “Predicted values must be in range [0, 1]”, which NaN-outside files can trigger) or the single-TIFF <code>.zip</code>.</li>
+<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition</a> → Submissions → New submission → choose the file.</li>
+<li>Paste the unique name/note from the run card (≤140 chars) into the Note field, e.g. <code>GEMS91 UCD91 E2 TMI continuation-persistence + basement step, 48000d, HOLDOUT-DTI 0.1134 NEGATIVE not slot-ready</code>.</li>
+<li>Only submit if the run card says <code>ok_to_submit: true</code>. Promotion to a weekly slot (max 3/week per rules) is a separate human selector step.</li>
+</ol>
+<h2>Automated gates a file must pass (no human inspection)</h2>
+<ul><li>Format: single-band float32 GeoTIFF, EPSG:32611, 3730×3292, sample transform, no NaN/Inf, values in [0,1], zero mass on catalogue, dots &gt;3 px from catalogue.</li>
+<li>Science: HOLDOUT-DTI (hide-and-recover, alpha 0.2, beta 0.8, 300 m kernel) beats current best 0.206406.</li>
+<li>Uniqueness: surface |ρ| ≤0.90 and ≤70% dots within 3 px of any registry raster.</li>
+<li>Leakage canary: every feature alone AUC ≤0.90.</li></ul>
+<p>UCD91 passes format/uniqueness/canary but fails the science gate (0.113442 &lt; 0.206406) → verdict <strong>negative</strong>.</p>
+</main></div></body></html>

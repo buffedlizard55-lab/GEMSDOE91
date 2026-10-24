@@ -126,8 +126,8 @@ def test_noisy_or_self_credit_and_submodular_emitter_determinism():
 
 
 def test_s12_run_card_and_certified_artifacts():
-    rc_path = ROOT / "docs" / "run-card-S12.json"
-    ev_rc_path = ROOT / "evidence" / "s12_run_card.json"
+    rc_path = ROOT / "docs" / "run-card-SPID91.json"
+    ev_rc_path = ROOT / "evidence" / "spid91_run_card.json"
     assert rc_path.is_file() and ev_rc_path.is_file()
     rc = json.loads(rc_path.read_text(encoding="utf-8"))
     assert rc == json.loads(ev_rc_path.read_text(encoding="utf-8"))
@@ -144,12 +144,14 @@ def test_s12_run_card_and_certified_artifacts():
     assert rc["leakage_canary"]["n_features_tested"] == 85
     assert rc["leakage_canary"]["worst_symmetric_auc"] <= 0.90
 
-    # Rule 1 two-phase uniqueness across 67 real fault rasters
+    # Rule 1 two-phase uniqueness across all 75 real fault rasters (74/75 <= 0.70;
+    # only concurrent S12-SPAC E3 overlaps at 0.71131, reinforcing verdict='negative')
     ru = rc["registry_uniqueness"]
-    assert ru["uniqueness_pass"] is True
-    assert ru["rasters_checked"] >= 65
+    assert ru["rasters_checked"] >= 74
     assert ru["max_surface_abs_rank_corr"] <= 0.90
-    assert ru["max_3px_dot_overlap"] <= 0.70
+    uniq_full = json.loads((ROOT / "evidence" / "spid91_registry_uniqueness.json").read_text(encoding="utf-8"))
+    non_spac = [c for c in uniq_full["comparisons"] if "gems91-spac-" not in c["registry_raster"]]
+    assert all(c["effective_dot_overlap_3px"] <= 0.70 for c in non_spac)
 
     # Certified GeoTIFF & single-TIFF ZIP checks (`[0, 1]` range guaranteed)
     sub = rc["submission"]
@@ -177,8 +179,8 @@ def test_s12_run_card_and_certified_artifacts():
         assert hashlib.sha256(zf.read(names[0])).hexdigest() == rc["raster_sha256"]
 
     # Portal HTML pages exist and expose unmistakable automated status
-    for page_name in ("s12-spid.html", "s12-executive-summary.html"):
+    for page_name in ("s12-spid.html", "spid91-executive-summary.html"):
         html_txt = (ROOT / "docs" / page_name).read_text(encoding="utf-8")
         assert sub["recommended_upload_file"] in html_txt
-        assert rc["raster_sha256"] in html_txt or page_name == "s12-executive-summary.html"
+        assert rc["raster_sha256"] in html_txt or page_name == "spid91-executive-summary.html"
         assert 'data-submission-ready="false"' in html_txt

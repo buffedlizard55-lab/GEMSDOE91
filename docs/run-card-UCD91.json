@@ -1,0 +1,163 @@
+{
+  "schema": "gems91.run-card.v2",
+  "run_id": "UCD91-20261024",
+  "hypothesis": "UCD-1/UCD-2: upward-continuation (Gaussian sigma1/3/6) TMI gradient persistence marks deep basement fault contacts; E2 adds depth-to-basement step. See docs/HYPOTHESES_UCD91.md (5 ranked hypotheses).",
+  "mechanism": "HGB per spatial fold on visible faults only, no catalogue-derived features; persistence ratios g3/g1,g6/g3 + decay; submodular 300m emission, 48000 dots, >3px from catalogue",
+  "non_fault_mimic": "Shallow basalt flow margins and airborne survey flight-line seams",
+  "experiments": [
+    {
+      "exp_id": "E1",
+      "features": "10 TMI/RTP continuation features",
+      "holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "value": 0.080042,
+        "ci95": [
+          0.073299,
+          0.089448
+        ],
+        "withheld_positives": 60988
+      },
+      "sgmc_offcat_control_dti": 0.079142,
+      "registry": {
+        "max_surface_abs_rank_corr": 0.02843,
+        "max_3px_dot_overlap": 0.21683,
+        "uniqueness_pass": true
+      }
+    },
+    {
+      "exp_id": "E2",
+      "features": "E1 + depth-to-basement grad, gravity grad, depth",
+      "holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "value": 0.113442,
+        "ci95": [
+          0.103611,
+          0.12111
+        ],
+        "withheld_positives": 60988
+      },
+      "sgmc_offcat_control_dti": 0.083364,
+      "registry": {
+        "max_surface_abs_rank_corr": 0.06965,
+        "max_3px_dot_overlap": 0.27051,
+        "uniqueness_pass": true
+      }
+    }
+  ],
+  "leakage_canary": {
+    "all_pass": true,
+    "worst_feature": "grav_grad",
+    "worst_symmetric_auc": 0.58871,
+    "threshold": 0.9,
+    "n_features": 13
+  },
+  "prior_best": {
+    "label": "HOLDOUT-DTI",
+    "value": 0.206406,
+    "source": "S11-MHTR E2 (docs/run-card-S11.json)",
+    "beats": false
+  },
+  "organizer_confirmed": null,
+  "why_02778_and_higher": "NOT MEASURED HERE: h33 0.2778 is ORGANIZER-CONFIRMED per brief, not comparable to HOLDOUT-DTI. Fleet pattern (see prior docs): winning rasters combine strong multi-physics detectors with 300m-kernel submodular dot emission at ~40-48k dots; single-physics lanes (this one) score far lower on hide-recover, consistent with E1/E2 here.",
+  "registry_comparison": {
+    "scope": "EH.default_registry_paths() data/registry/*.tif incl R0; not universal fleet registry (IR-UCD-01)",
+    "winner": "E2 as above"
+  },
+  "raster_sha256": "949953f80973efbb1d5de3e66a3684c1cfdd54c449c07c2e865d58449654952d",
+  "validator_output": {
+    "status": "PASS all 3 suites (gems91.gates CERTIFIED, release_gates, validate_raster)",
+    "no_nan_inside_footprint": true,
+    "no_nan_anywhere_zeros": true,
+    "values_in_0_1": true,
+    "min": 0.0,
+    "max": 1.0,
+    "crs_shape_transform_match": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "single_band": true,
+    "nodata_zeros": null,
+    "n_dots": 48000,
+    "min_catalogue_distance_px": 3.1623
+  },
+  "submission_name": "gems91-ucd91-20261024T190000Z-df735405-zeros",
+  "note_140": "GEMS91 UCD91 E2 TMI continuation-persistence + basement step, 48000d, HOLDOUT-DTI 0.1134 NEGATIVE not slot-ready",
+  "verdict": "negative",
+  "submission_ready": false,
+  "ok_to_submit": false,
+  "reason": "Winner HOLDOUT-DTI 0.113442 < pre-registered gate 0.206406 (S11-MHTR). Unique + format-valid but NOT OK TO SUBMIT; do not spend a weekly slot. Research download only.",
+  "bundle": {
+    "candidate_id": "gems91-ucd91-20261024T190000Z-df735405",
+    "primary_zeros_tif": {
+      "filename": "gems91-ucd91-20261024T190000Z-df735405-zeros.tif",
+      "path": "releases/gems91-ucd91-20261024T190000Z-df735405-zeros.tif",
+      "sha256": "949953f80973efbb1d5de3e66a3684c1cfdd54c449c07c2e865d58449654952d",
+      "bytes": 255161,
+      "nodata": null,
+      "all_cells_finite": true,
+      "total_cells": 12279160,
+      "nan_cells_anywhere": 0,
+      "min_value": 0.0,
+      "max_value": 1.0
+    },
+    "companion_nan_tif": {
+      "filename": "gems91-ucd91-20261024T190000Z-df735405.tif",
+      "path": "releases/gems91-ucd91-20261024T190000Z-df735405.tif",
+      "sha256": "df735405d066b462f13c6196b97d7b689035594b40c1bffbab84c17c25b08afb",
+      "bytes": 400386,
+      "nodata": "NaN",
+      "nan_inside_footprint": 0,
+      "nan_outside_footprint": 7111787
+    },
+    "zip_bundle": {
+      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405-zeros.zip",
+      "filename": "gems91-ucd91-20261024T190000Z-df735405-zeros.zip",
+      "inner_geotiff": "gems91-ucd91-20261024T190000Z-df735405-zeros.tif",
+      "bytes": 221323,
+      "sha256": "b66abbb25998e52b36e893876207c4c66ebad51bb19ec8c6bb45e16137694edb"
+    },
+    "browser_tif_bundle": {
+      "path": "docs/downloads/ucd91_submission_bundle.js",
+      "bytes": 874607,
+      "sha256": "f129b006b101d67a9e26ebe61312de65d7ce5083a817aa4db38806274ff242a4"
+    },
+    "grid": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "dtype": "float32",
+      "band_count": 1,
+      "footprint_pixels": 5167373
+    },
+    "dots": {
+      "n_dots": 48000,
+      "dot_set_digest": "d2b0cefb1d46c76700e8b0f2617948e77d3d9f90fe846c3a25135eafe83925e4",
+      "zero_catalogue_mass": true,
+      "min_catalogue_distance_px": 3.1623,
+      "dots_le_3px": 0
+    },
+    "validators": {
+      "gems91_gates_verdict": "CERTIFIED",
+      "release_gates_nan_pass": true,
+      "release_gates_zeros_pass": true,
+      "validate_raster_nan_pass": true,
+      "validate_raster_zeros_pass": true,
+      "range_0_1_portal_safe": true
+    }
+  }
+}

@@ -39,25 +39,30 @@ async function main() {
       await page.waitForURL(new URL('index.html', baseURL).href);
     }
     await page.goto(baseURL, { waitUntil: 'networkidle' });
-    if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
+    const submissionStates = page.locator('[data-submission-ready]');
+    const stateCount = await submissionStates.count();
+    const allStatesFailClosed = await submissionStates.evaluateAll(nodes =>
+      nodes.length > 0 && nodes.every(node => node.getAttribute('data-submission-ready') === 'false')
+    );
+    if (!allStatesFailClosed || stateCount === 0) {
       throw new Error('Missing fail-closed negative submission state');
     }
     if (!(await page.getByText('NOT OK TO SUBMIT', { exact: true }).count())) {
       throw new Error('Submission warning is not visible');
     }
     const downloadEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: '↓ Download research GeoTIFF', exact: true }).click();
+    await page.getByRole('link', { name: '↓ Download new CCR91 GeoTIFF', exact: true }).click();
     const download = await downloadEvent;
     const bytes = fs.readFileSync(await download.path());
     const digest = crypto.createHash('sha256').update(bytes).digest('hex');
-    const card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card.json')));
-    if (digest !== card.raster_sha256) throw new Error('Downloaded bytes do not match advertised SHA256');
+    const card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-CCR91.json')));
+    if (digest !== card.raster_sha256) throw new Error('Downloaded CCR91 bytes do not match advertised SHA256');
     await page.getByRole('button', { name: 'Copy submission note', exact: true }).click();
     await page.waitForFunction(() => document.getElementById('copy-status').textContent.length > 0);
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 'executive-summary.html', 'research.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spid.html', 's12-executive-summary.html']) {
+    for (const target of ['index.html', 'executive-summary.html', 'research.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -66,22 +71,22 @@ async function main() {
       });
       accessibility.push({ page: target, violations: result });
     }
-    // Verify S12-SPID download SHA-256 and fail-closed status banner in real Chromium
+    // Verify SPID91 download SHA-256 and fail-closed status banner in real Chromium
     await page.goto(new URL('s12-spid.html', baseURL).href, { waitUntil: 'networkidle' });
     if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
-      throw new Error('Missing S12 fail-closed negative submission state');
+      throw new Error('Missing SPID91 fail-closed negative submission state');
     }
     const s12DlEvent = page.waitForEvent('download');
     await page.locator('a[download][href$="-zeros.tif"]').first().click();
     const s12Download = await s12DlEvent;
     const s12Bytes = fs.readFileSync(await s12Download.path());
     const s12Digest = crypto.createHash('sha256').update(s12Bytes).digest('hex');
-    const s12Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S12.json')));
-    if (s12Digest !== s12Card.raster_sha256) throw new Error('S12 downloaded bytes do not match advertised SHA256');
+    const s12Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-SPID91.json')));
+    if (s12Digest !== s12Card.raster_sha256) throw new Error('SPID91 downloaded bytes do not match advertised SHA256');
 
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 's12-spid.html', 's12-executive-summary.html']) {
+    for (const mTarget of ['index.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);

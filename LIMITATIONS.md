@@ -120,11 +120,81 @@ research artifact or revive legacy model-projected queues.
    - **Synthetic Lattice Cover Policy (`IR-CED-003`):** `calib_r13lattice_00904.tif` (`206,895` dots) covers `99.8713%` of the footprint within 3 px (`6,649` uncovered pixels), making unweighted directed 3-px overlap $> 70\%$ for any prediction with $\ge 22,164$ dots; under symmetric F1 overlap (`evaluate_holdout.py`) and top-K mass comparison (`registry_scan.py`), `S11-MHTR E2` passes (`<= 0.33`).
    - **Competitor Eligibility & AI Disclosure (`TP-5700-96647` §1.3 & §3.2):** Only the human competitor can sign the U.S. eligibility attestation and include the generative-AI disclosure (`AI_USE.md`) in the competition narrative.
 
-## Session 12 `S12-SPID` status, limitations & concrete next steps (2026-10-24, `arena/01ec3805-gemsdoe91`)
+## Session 12 additions (2026-10-24, `arena/80f7c032-gemsdoe91`)
 
-1. **Automated Readiness Verdict (`docs/run-card-S12.json`):** `gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif` (`47,200` binary dots, SHA-256 `f59ec7a60cd9346f94e69257b0ab7123c2e74421ef7954a10fee9a0bbd7ee1ee`) is **OK TO DOWNLOAD** (`PASS` across all 4 GeoTIFF `[0, 1]` validator suites, all 85 single-feature leakage canaries `<= 0.6610`, and all 67 real fault rasters `<= 66.63%` 3-px dot overlap) and **NOT OK TO SUBMIT as a solo weekly slot (`verdict = "negative"`)** because its OOF `HOLDOUT-DTI` (`0.151682` on `gems91-hide-recover-v1.0` and `0.145009` on 8-km buffer `gems57-pooled-hide-v2`) beats `B0` (`0.138999`), `DENOVO` (`0.142885`), `H11-1` (`0.139652`), and `CED91` (`0.062153`) while trailing Repository #1 `S11-MHTR E2` (`0.206406` / `0.194267`).
-2. **Tabular Range-Front Scarp Saturation Ceiling (`IR-91-S12-03`):** Within pixelwise/multi-scale tabular boosting (`HistGradientBoosting` + `LogisticRegression`), retaining first-order `LRM/TPI` yields `0.2158` `HOLDOUT-DTI` (`E2` pre-basin-floor) only by placing `> 81%` of dots within `3 px` of `S11-MHTR E2`'s range-front scarps, whereas stripping `LRM/TPI` to guarantee `<= 70%` intra-repo uniqueness lowers solo recall on steep mountain fronts.
-3. **Sandbox Outbound Network & Compute Constraints:**
-   - Outbound network access in this sandbox is restricted to `github.com`, `pypi.org`, and `registry.npmjs.org`; direct ingestion of USGS 3DEP 1-m LiDAR (`1m_DEM_links.csv`, `H12-4`), DOE GDR #1391 3-D crustal magnetotellurics (`H12-5`), and live DrivenData leaderboard/account state requires an external internet-enabled workstation.
-   - This 2-vCPU, 3.8 GiB RAM sandbox has no GPU; training an end-to-end 2-D multi-scale ConvNeXt / ResNet34 U-Net (compare official sponsor 5-MC ResNet18 U-Net `0.3195` in `drivendataorg/gems-prize-reference-solution`) with differentiable `TverskyLoss(alpha=0.2, beta=0.8)` on our clean 85-feature GeoDAWN stack followed by our Self-Credit Bayes-Dinkelbach 300 m Submodular Emitter is the highest-leverage next step on a GPU workstation.
-4. **Catalogue Exposure Bias:** Both holdout evaluators (`gems91-hide-recover-v1.0` and `gems57-pooled-hide-v2`) withhold segments from `existing_faults.tif`, which over-represents exposed topographic scarps (`53.6%` on `>= 5 deg` slopes) relative to blind sub-alluvial faults scored by the organizer's hidden geothermal validation set. `S12-SPID E3` places `52.93%` of its dots (`15,751` completely outside 3 px of `S11-MHTR E2`) on `< 5 deg` concealed basin corridors and serves as a ready-to-use basin specialist for cross-fleet ensembling.
+1. **No assigned lane (again).** The session brief has no method paragraph (IR-91-S12-01, recurrence of IR-91-S11-01). The agent chose H12-1 (physics-only gravity–magnetic co-location). The `assigned_lane` gate stays False, so no candidate from this session can be promoted.
+2. **No submission-ready candidate.** H12-1 scored below both the B0 baseline and the S11 candidate. No new GeoTIFF was generated. The S11 candidate remains "OK to download as research, NOT OK to submit" under the fail-closed readiness gate (IR-91-S12-02).
+3. **Self-declared verdicts are not evidence.** The S11 and H91 cards say PROMOTE; the shared gate says no. The portal follows the gate.
+4. **The holdout measures catalogue recovery.** Every HOLDOUT-DTI in this session comes from `gems91-hide-recover-v1.0`. It does not measure the organizer's score on new faults (IR-91-S10-04). A holdout gain is not a leaderboard prediction.
+5. **0.2778 and 0.3195 are not verified.** No organizer receipt exists (IR-91-S10-05, IR-91-S11-09). The public board read on 2026-10-24 has 0.4413 at #1 and 0.2818 at #50. The claim "0.2778 is the highest" cannot be checked against the organizer's board.
+6. **Band 6 identity is uncertain** (IR-91-S12-04). The label, the H91 hypothesis note and the S11 correlation disagree. The positive range rules out tilt, but the TC identity rests on correlation only.
+7. **Band 18 is a vector component, not a magnitude** (IR-91-S12-03). Any feature that treats it as a scalar gradient is wrong.
+8. **The duplicate gate does not discriminate** on this registry: a random-placement null passes it (IR-91-S12-10).
+9. **Registry scope is 8, 11 or 62 depending on the code path** (IR-91-S12-06). No "complete registry" statement is possible.
+10. **Cache-name drift** between the H91 and S11 lanes was bridged with one gitignored symlink for reproduction only (IR-91-S12-07).
+11. **Human-only obligations** (IR-91-S12-08): eligibility certification (§1.3), the perjury certification of the submission package (§A.1), public-element and FOIA disclosure (§A.4, §A.10), originality and third-party-content representations (§A.5), and AI-use disclosure (§3.2). The agent cannot satisfy these.
+12. **Experiment budget.** 2 of 3 experiments used (one of them an invalid attempt; IR-91-S12-03). Reproductions and controls are not counted.
+13. **Public GitHub Pages publication** of research TIFs is a disclosure decision under §A.4. The portal says "research only" and does not advertise any file as a submission.
+
+## CCR91 current-session limitations (2026-10-24, `arena/02c6b911-gemsdoe91`)
+
+1. **Negative deliverable, not an upload candidate.** The new all-finite TIFF is downloadable for research but fails the current-best holdout criterion and the literal final-dot overlap gate. `ok_to_submit` is false; no slot was used.
+2. **Lane assignment is absent.** CCR91 was selected autonomously from an existing preregistration because the brief forbids manual input. It is explicitly provisional and cannot be promoted as an assigned lane.
+3. **Directed overlap makes the historical best noncompliant too.** The shared dense-reference F1 exception was wrong under the literal wording and is now fixed. The near-universal lattice causes CCR91, S11 and H91 to fail. Changing/removing the reference or threshold requires shared protocol governance; tuning dots around it is not authorized.
+4. **Registry incomplete.** Two of 64 frozen references cannot be restored. Available-scope checks are not universal fleet clearance.
+5. **Holdout target mismatch.** The shared holdout recovers mapped catalogue faults; organizer truth concerns newly interpreted faults. Even a higher holdout result would not be a leaderboard projection.
+6. **No organizer receipt or live account state.** DrivenData is outside the network allowlist and there is no authenticated session. Current leaderboard, weekly allowance, deadline and receipt cannot be asserted here.
+7. **Mirror provenance and redistribution remain unresolved.** All 15 pins match declared mirror hashes and lengths. This proves mirror identity, not organizer authenticity or permission to republish competition data. The published artifact is derived output only.
+8. **Eligibility/disclosure are human-only.** The agent cannot attest citizenship/residency, sign rules, approve generative-AI disclosure, or spend a slot.
+9. **Experiment budget stopped correctly.** E1 consumed 692.60 seconds and failed final novelty. E2/E3 were not run. Cached revalidation and tests are engineering checks, not permission to resume the geological budget.
+10. **Next useful work:** resolve lane assignment and lattice policy, restore/retire the two missing pins, freeze a complete pre-experiment registry, and establish a protocol-compliant same-evaluator baseline before another hypothesis run.
+
+## FUSE91 session additions (2026-10-24, `arena/fa0fb617-gemsdoe91`)
+
+1. **New holdout best, same caveats.** FUSE91-E1 reaches 0.167293 HOLDOUT-DTI
+   (identical whole-component instrument, 60,988 withheld, fold-mean 95% CI
+   [0.165907, 0.168782]) vs 0.142885 prior best. It measures recovery of
+   catalogue-like (mostly exposed) faults; the organizer's expert-labelled
+   concealed faults may rank detectors differently (SGMC control already does).
+2. **Uniqueness is family-relative.** The build is ridge-coincident with the
+   repo's unsubmitted DENOVO/MHTR/DD-VTC candidates (IR-F91-01). Only one file
+   from that family may be submitted; the selector owns that choice and the
+   live weekly-cap check. No fleet-universal registry exists; scope was 60
+   sha-enumerated rasters.
+3. **No 1 m DEM.** The likely decisive expert-labelling layer (USGS 3DEP via
+   the competition DEM links) is free and official but unreachable from this
+   sandbox; the pinned derived lidar raster remains licence-unchecked and unused.
+4. **Mirror inputs.** Competition rasters were restored from sha-pinned public
+   sibling mirrors (identity verified; origin/licence not established). The
+   mirrored sample carries catalogue positives, not the organizer's blank.
+
+## Current review additions — `arena/31d0d079-gemsdoe91` (2026-10-24)
+
+1. **No assigned lane.** The method paragraph required by the parallel-run protocol is absent. Four ranked ideas are recorded in `docs/REVIEW-ARENA-31D0D079-20261024.md`, but none is run or promoted.
+2. **No new TIF.** This is intentional: no candidate has a holdout score, canary, pre-placement novelty check, final-dot uniqueness check, or byte-level format receipt from this review. Existing downloads are historical and retain their own verdicts.
+3. **Missing local inputs.** The local `data/` tree is absent; preflight blocks every axis. The feature availability described in past evidence does not supply this checkout with current bytes.
+4. **Mirror provenance and licensing remain unresolved.** Fetching pinned sibling-repository copies might reproduce declared hashes, but would not resolve authenticity or redistribution permission. No restore was attempted.
+5. **External high-resolution DEM not checked for footprint coverage.** Official USGS 3DEP documentation is the named source lead; the service could not be queried from this environment, and the competition's link CSV is not present. This candidate is not considered viable in this review.
+6. **No current organizer evidence.** There is no live leaderboard read, organizer submission receipt, current weekly-slot count, or authenticated account access in this review. User-reported score claims are not used as measured scores.
+7. **Verified engineering checks are not science validation.** The repository test suite and static evidence/policy audits pass, while input preflight is blocked. No holdout-DTI or score comparison was computed.
+
+## Session 12 `S12-SPAC` status, limitations & next-session roadmap (2026-10-24, `arena/03c185c4-gemsdoe91`)
+
+1. **New #1 Validated Discovery Candidate (`S12-SPAC E3`):** `gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif` (`54,000` unit-mass dots `> 3.0 px` from catalogue, SHA-256 `0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd`) achieved **`0.237587` `HOLDOUT-DTI`** (`95% CI [0.223387, 0.250313]`, paired `+0.031181` over `S11-MHTR E2 = 0.206406` with 95% CI `[+0.024186, +0.038231]`, `P(>0) = 100%`, and `+70.9%` over `B0 = 0.138999`) and **`0.107938` `SGMC-OFFCAT-CONTROL-DTI`** (`+13.2%` over `R0 = 0.095386`), passing all 95 single-feature leakage canaries (`<= 0.78363`), all 64 real external & parallel-lane uniqueness checks (`<= 68.02%` 3-px overlap; `|rho| <= 0.2214`), and all 5 validator suites.
+2. **Complete 64/64 Frozen Registry Verification Resolved:** Both previously missing `GEOD25m10` rasters noted in `IR-91-S11-05` were restored from immutable GitHub commit `d6df78faed5ff75029f04396497a9f63f68c2a16` into gitignored `data/retracted_geod/` and verified by exact SHA-256.
+3. **Remaining Limitations Preventing Autonomous Upload or Claiming `0.4413` Parity:**
+   - **Catalogue Holdout vs Private Expert New-Fault Truth:** `HOLDOUT-DTI` (`0.237587` pooled; `0.304537` in NE quadrant) and `SGMC-OFFCAT-CONTROL-DTI` (`0.107938`) are strictly separate from `ORGANIZER-CONFIRMED` live DrivenData scores (`#1 = 0.4413`, `#5 = 0.3539`). Only a live DrivenData submission receipt can establish `S12-SPAC E3`'s organizer score.
+   - **Tabular + 2-Stage Steerable Radon vs End-to-End Deep 2-D GPU Segmentation:** While Stage-2 8-azimuth Radon Auto-Context (`900 m` & `2.0 km` rays) captured `+0.01382` `HOLDOUT-DTI` of collinear wash-gap continuity on a 2-core CPU sandbox (`0B` swap), top leaderboard entries (`0.3539–0.4413`) likely train multi-scale 2-D U-Net / ConvNeXt / Swin backbones end-to-end on GPU directly against a differentiable soft-DTI (`alpha=0.2, beta=0.8`, 300 m triangular kernel) loss.
+   - **External Sub-100 m Remote Sensing Not Yet Ingested in Sandbox:** Outbound sandbox network restrictions (`github.com`, `pypi.org`, `npmjs.org` only for code downloads) prevent automated bulk download of raw USGS 3DEP 1 m LiDAR tiles (`H12-5`) and ASF Sentinel-1 InSAR interferograms.
+   - **Human-Only Selector, Mutual-Exclusion & Eligibility Gates:** Under `SLOT_PLAN.md`, `IR-CED-003` (`calib_r13lattice_00904.tif` synthetic 5-px blanket), `IR-91-S12-05` (`S12-SPAC E3` supersedes unsubmitted `S11-MHTR E2` — never submit both), and Official Rules `96647.pdf` (§1.3 U.S. eligibility attestation, §3.2 3-submissions/week cap & AI narrative disclosure), live upload remains strictly a human decision.
+4. **Concrete High-Leverage Next Steps for Next Session:**
+   - **Step N1 (GPU Multi-Scale Soft-DTI U-Net + S12 Physics Input Stack):** Feed our unit-calibrated 85-channel physical stack (`H91` clean + `S11` Marussi/TC + `S12` 3-D Analytic Signal / `SPI` / shallow `B14-B01` / swarm / Kreemer $W_k$) as input channels to a 4-fold spatially-blocked multi-scale 2-D U-Net / ConvNeXt trained directly with differentiable 300 m triangular-kernel Tversky loss ($\alpha=0.2, \beta=0.8$).
+   - **Step N2 (Multi-Depth Upward-Continuation Dip-Migration Vector `H12-4`):** Implement exact FFT upward continuation of `B14` and `(B11, B18)` to $h \in \{200, 600, 1500\}\text{ m}$ to separate dipping normal-fault roots from vertical intrusive contacts.
+   - **Step N3 (1 m 3DEP LiDAR Micro-Scarp Extraction on Unrestricted Host `H12-5`):** On an unrestricted workstation, stream USGS 3DEP 1 m DEM tiles over piedmont alluvial fans (`slope < 6 deg`) to extract sub-metre fault scarps invisible at 100 m resolution.
+
+## Parallel `SPID91` lane status, limitations & next steps (2026-10-24, `arena/01ec3805-gemsdoe91`)
+
+1. **Automated Readiness Verdict (`docs/run-card-SPID91.json`):** `gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif` (`47,200` binary dots, SHA-256 `f59ec7a60cd9346f94e69257b0ab7123c2e74421ef7954a10fee9a0bbd7ee1ee`) is **OK TO DOWNLOAD** (`PASS` across all 4 GeoTIFF `[0, 1]` validator suites and all 85 single-feature leakage canaries `<= 0.6610`) and **NOT OK TO SUBMIT as a solo weekly slot (`verdict = "negative"`)**: `SPID91 E3` achieved `0.151682` `HOLDOUT-DTI` on `gems91-hide-recover-v1.0` and `0.145009` on 8-km buffer `gems57-pooled-hide-v2` (beating `B0 = 0.138999`, `DENOVO = 0.142885`, `H11-1 = 0.139652`, and `CED91 = 0.062153`), while trailing `S11-MHTR E2` (`0.206406` / `0.194267`) and concurrently merged `S12-SPAC E3` (`0.237587`).
+2. **Upward-Continued Worms (`z={100,400,1200} m`) + Depth-Deconfounded `B17` Conductivity + Weingarten Toe Concavity Built & Tested:** `src/gems91/spid_dinkelbach.py` implements exact FFT upward-continuation dip-migration and persistence worms, depth-deconfounded `B17` electrical conductivity clay-cap residuals, Weingarten 250 m scarp-toe concavity, and the exact DTI binary-vertex / noisy-OR self-credit solver; feeding these 25 `SPID91` channels alongside `S12-SPAC`'s Two-Stage Steerable Radon Auto-Context into a GPU soft-DTI U-Net is the natural next-session synthesis.
+
+
