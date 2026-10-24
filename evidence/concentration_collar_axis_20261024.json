@@ -1,0 +1,774 @@
+{
+  "schema": "gems91.concentration-collar.v1",
+  "generated_utc": "2026-10-24T05:23:43+00:00",
+  "git_sha": "30954e6fa21a73149f5457f57e551ddd8acd4000",
+  "axis": "CONCENTRATION",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "lineage": {
+    "ok": true,
+    "rebuild_kind": "independent_recompute",
+    "encoder": "deflate predictor=3 zlevel=9 tiled=256; catalogue grid profile",
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "min_catalogue_distance_px": 2.23606797749979,
+    "dots_on_catalogue": 0,
+    "rebuilt_from": {
+      "d2.8": {
+        "path": "/home/user/GEMSDOE91/data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "path": "/home/user/GEMSDOE91/data/registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    },
+    "byte_rebuilds": {
+      "nan": {
+        "path": "/home/user/GEMSDOE91/work/r0-collar-proof/r0-rebuild-nan.tif",
+        "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "expected_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "bytes": 355443,
+        "expected_bytes": 355443,
+        "hash_match": true,
+        "bytes_match": true
+      },
+      "zeros": {
+        "path": "/home/user/GEMSDOE91/work/r0-collar-proof/r0-rebuild-zeros.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "expected_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "bytes": 219065,
+        "expected_bytes": 219065,
+        "hash_match": true,
+        "bytes_match": true
+      }
+    }
+  },
+  "pins": {
+    "sample_submission": {
+      "path": "data/official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "path": "data/official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "parent_r0_nan": {
+      "path": "data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "bytes": 355443
+    },
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    },
+    "anc_d2_8": {
+      "path": "data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424
+    },
+    "anc_solo_d2_8": {
+      "path": "data/registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "bytes": 830036
+    },
+    "anc_h19_5": {
+      "path": "data/registry/calib_h195_01922.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "bytes": 1712322
+    },
+    "anc_h19_4": {
+      "path": "data/registry/calib_h194_01894.tif",
+      "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+      "bytes": 1716768
+    },
+    "anc_h16_1": {
+      "path": "data/registry/calib_h161_01855.tif",
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "bytes": 1718028
+    },
+    "sgmc_faults_control": {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602
+    }
+  },
+  "settings": {
+    "block_px": 10,
+    "block_km": 1.0,
+    "seed": 91124,
+    "collar_floor_px": 3.0,
+    "collar_outer_px": 6.0,
+    "remote_min_px": 10.0,
+    "min_sep_px": 2.8284271247461903,
+    "live_span_CLAIM": 0.2778,
+    "kappa": 1.0
+  },
+  "r0": {
+    "n_dots": 37654,
+    "dots_le_3px_catalogue": 2171,
+    "min_catalogue_distance_px": 2.236068,
+    "dots_by_catalogue_band": {
+      "[0,3)": 1611,
+      "[3,6)": 4969,
+      "[6,10)": 4560,
+      "[10,20)": 7908,
+      "[20,50)": 11077,
+      "[50,1000000.0)": 7529
+    },
+    "block_density_cv_1km": 0.6187,
+    "redundancy": {
+      "dots_with_neighbour_lt_2p83px": 11415,
+      "dots_with_neighbour_lt_2px": 0,
+      "mean_nn_px": 3.7351
+    },
+    "proxy": {
+      "proxy_mean_credit": 0.006186,
+      "proxy_mean_credit_ci95": 0.000228,
+      "proxy_mean_credit_ci95_interval": [
+        0.005958,
+        0.006413
+      ],
+      "proxy_coverage": 0.038706,
+      "draws": 5,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200,
+      "n_withheld_positives_per_draw": [
+        12200,
+        12198,
+        12199,
+        12200,
+        12201
+      ],
+      "mean_credit_per_draw": [
+        0.006038136218637152,
+        0.006201889947509195,
+        0.006582695130310594,
+        0.0062188384485118405,
+        0.00588596849724877
+      ]
+    },
+    "sgmc_off_catalogue": {
+      "cells": 62122,
+      "T": 5517.636703,
+      "S": 37654.0,
+      "M": 2433.226474,
+      "G": 62122.0,
+      "dti": 0.095386
+    },
+    "lineage_mask": {
+      "cells": 121131,
+      "T": 76725.884956,
+      "S": 37654.0,
+      "M": 37654.0,
+      "G": 121131.0,
+      "dti": 0.683527
+    }
+  },
+  "measured_prior_density": {
+    "per_cell_credit_SGMC_off_catalogue": {
+      "[3,4.5)": {
+        "cells": 240798,
+        "mean_credit_per_cell": 0.053292
+      },
+      "[4.5,6)": {
+        "cells": 157746,
+        "mean_credit_per_cell": 0.054254
+      },
+      "[6,10)": {
+        "cells": 479356,
+        "mean_credit_per_cell": 0.045524
+      },
+      "[10,1000000.0)": {
+        "cells": 3883149,
+        "mean_credit_per_cell": 0.040714
+      }
+    },
+    "per_cell_credit_live_calibrated_reference": {
+      "[3,4.5)": {
+        "cells": 240798,
+        "mean_credit_per_cell": 0.014764
+      },
+      "[4.5,6)": {
+        "cells": 157746,
+        "mean_credit_per_cell": 0.012366
+      },
+      "[6,10)": {
+        "cells": 479356,
+        "mean_credit_per_cell": 0.010033
+      },
+      "[10,1000000.0)": {
+        "cells": 3883149,
+        "mean_credit_per_cell": 0.006944
+      }
+    },
+    "per_dot_credit_SGMC_by_band": {
+      "[0,3)": {
+        "n": 1611,
+        "mean_credit": 0.052445,
+        "covered_frac": 0.1173
+      },
+      "[3,6)": {
+        "n": 4969,
+        "mean_credit": 0.084067,
+        "covered_frac": 0.1469
+      },
+      "[6,10)": {
+        "n": 4560,
+        "mean_credit": 0.064086,
+        "covered_frac": 0.1235
+      },
+      "[10,20)": {
+        "n": 7908,
+        "mean_credit": 0.067585,
+        "covered_frac": 0.1243
+      },
+      "[20,50)": {
+        "n": 11077,
+        "mean_credit": 0.064305,
+        "covered_frac": 0.1244
+      },
+      "[50,1000000.0)": {
+        "n": 7529,
+        "mean_credit": 0.052065,
+        "covered_frac": 0.0958
+      }
+    },
+    "per_dot_credit_live_calibrated_reference_by_band": {
+      "[0,3)": {
+        "n": 1611,
+        "mean_credit": 0.100663,
+        "covered_frac": 0.1868
+      },
+      "[3,6)": {
+        "n": 4969,
+        "mean_credit": 0.0997,
+        "covered_frac": 0.1777
+      },
+      "[6,10)": {
+        "n": 4560,
+        "mean_credit": 0.097096,
+        "covered_frac": 0.1684
+      },
+      "[10,20)": {
+        "n": 7908,
+        "mean_credit": 0.093147,
+        "covered_frac": 0.1664
+      },
+      "[20,50)": {
+        "n": 11077,
+        "mean_credit": 0.096968,
+        "covered_frac": 0.1692
+      },
+      "[50,1000000.0)": {
+        "n": 7529,
+        "mean_credit": 0.091052,
+        "covered_frac": 0.1634
+      }
+    },
+    "reading": "The collar advantage is a per-CELL density effect, and it is smaller per EXISTING DOT: R0's far-field dots already sit on field maxima. The arms therefore aim at the best collar cells, not at the average collar cell."
+  },
+  "live_calibrated_reference": {
+    "target_dti": 0.2778,
+    "draws": 5,
+    "seed": 91124,
+    "s_mean": 0.041157,
+    "n_cells_mean": 4995,
+    "definition": "H19-5 uniformly subsampled by bisection on the fraction s at which R0's DTI equals the CLAIM 0.2778; 5 seeded draws"
+  },
+  "arms": {
+    "collar10": {
+      "id": "h33-h33-2-b2-CONCENTRATIONcollar10-20261024-00cfbe95",
+      "value": "collar10",
+      "description": "10% of dots moved from the lowest-prior 1 km blocks (far field) into the legal 3.05-6 px collar band",
+      "direction": "in",
+      "prior": "collar",
+      "block_px": 10,
+      "block_km": 1.0,
+      "n_dots": 37654,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "pct_dots_moved": 9.9989,
+      "count_preserved": true,
+      "displacement_px": {
+        "n": 3765,
+        "mean_px": 1593.1903,
+        "median_px": 1440.2812,
+        "p95_px": 3144.2312,
+        "max_px": 3771.2094
+      },
+      "min_sep_px_enforced": 2.8284271247461903,
+      "collar": {
+        "min_dist_catalogue_px": 2.236068,
+        "dots_le_3px_before": 2171,
+        "dots_le_3px_after": 2171,
+        "new_dots_le_3px": 0,
+        "moved_targets_le_3px": 0,
+        "floor_honoured": true
+      },
+      "dots_by_catalogue_band_after": {
+        "[0,3)": 1611,
+        "[3,6)": 8734,
+        "[6,10)": 4560,
+        "[10,20)": 7908,
+        "[20,50)": 11077,
+        "[50,1000000.0)": 3764
+      },
+      "block_density_cv_1km": {
+        "before": 0.6187,
+        "after": 0.6037,
+        "reported_best_files_band": [
+          0.51,
+          0.59
+        ]
+      },
+      "sgmc_off_catalogue": {
+        "parent_dti": 0.095386,
+        "candidate_dti": 0.09346,
+        "delta": -0.001926,
+        "rel_change": -0.020189,
+        "evidence_class": "PROXY (mapped-fault control, not a score)"
+      },
+      "lineage_mask_bound": {
+        "parent_dti": 0.683527,
+        "candidate_dti": 0.623651,
+        "rel_change": -0.087598,
+        "reading": "pessimistic floor: H19-5 is ~3x denser than truth and is the field R0 was thinned from"
+      },
+      "instrument_notes": {
+        "sgmc_structural_bias": "A dot placed at >= 3.05 px from a mapped trace earns exactly ZERO kernel credit on that trace (R = 3 px), so the SGMC off-catalogue control cannot reward collar placement even if the hypothesis is true. A negative SGMC delta for the collar arms is therefore expected, not a refutation; a POSITIVE SGMC delta for the mirror arm is partly definitional (it puts mass where off-catalogue faults are).",
+        "lcr_circularity": "The live-calibrated reference is the lineage field at live density; R0's dots sit on that field's maxima, so any relocation away from the field loses credit there. It bounds the downside, it cannot rank 'near-catalogue' hypotheses.",
+        "matched_dose_pair": "collar10 and anti10 move the same number of dots with the same machinery and opposite priors: their difference is the only two-sided statement this session can make."
+      },
+      "live_calibrated_reference": {
+        "n_draws": 5,
+        "parent_dti_mean": 0.277811,
+        "delta_dti_mean": -0.026393,
+        "delta_dti_ci95": 0.00149,
+        "delta_dti_interval": [
+          -0.027883,
+          -0.024902
+        ],
+        "rel_change_mean": -0.095002
+      },
+      "proxy": {
+        "proxy_mean_credit": 0.006186,
+        "proxy_mean_credit_ci95": 0.000228,
+        "proxy_mean_credit_ci95_interval": [
+          0.005958,
+          0.006413
+        ],
+        "proxy_coverage": 0.038706,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.006038136218637152,
+          0.006201889947509195,
+          0.006582695130310594,
+          0.0062188384485118405,
+          0.00588596849724877
+        ]
+      },
+      "proxy_delta_vs_r0": 0.0,
+      "canary": {
+        "canary_auc": 0.5,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 10121,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.7677
+      },
+      "sha256_nan": "00cfbe95696390f5942fe2ecae2c490e32fc9b9f9f4267d277b8b529403487fd",
+      "sha256_zeros": "abcfafeed981f75cfc609be8d071de07d051969b09e204f8485b62c8c14cde14",
+      "sha8": "00cfbe95",
+      "dot_set_digest": "dba91522301a42699ed02e41162a16c1b0416a8c5484c5af088d819a62978bee",
+      "predicted_change_MODEL": -0.0056,
+      "predicted_range": [
+        -0.026,
+        0.008
+      ],
+      "prediction_basis": "point = 0.2778 x rel change on the independent SGMC off-catalogue control (-0.0202); floor = lineage-mask rel change (-0.0876) / live-calibrated reference (-0.0264); cap = max(measured) + 0.008 band",
+      "gates": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "n_dots": 37654
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true
+      }
+    },
+    "collar20": {
+      "id": "h33-h33-2-b2-CONCENTRATIONcollar20-20261024-106ae19b",
+      "value": "collar20",
+      "description": "same relocation at 20% (dose escalation)",
+      "direction": "in",
+      "prior": "collar",
+      "block_px": 10,
+      "block_km": 1.0,
+      "n_dots": 37654,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 7531,
+        "removed": 7531,
+        "changed": 15062,
+        "pct_changed_of_parent": 40.0011
+      },
+      "pct_dots_moved": 20.0005,
+      "count_preserved": true,
+      "displacement_px": {
+        "n": 7531,
+        "mean_px": 1533.4524,
+        "median_px": 1416.328,
+        "p95_px": 3035.2466,
+        "max_px": 3771.2094
+      },
+      "min_sep_px_enforced": 2.8284271247461903,
+      "collar": {
+        "min_dist_catalogue_px": 2.236068,
+        "dots_le_3px_before": 2171,
+        "dots_le_3px_after": 2171,
+        "new_dots_le_3px": 0,
+        "moved_targets_le_3px": 0,
+        "floor_honoured": true
+      },
+      "dots_by_catalogue_band_after": {
+        "[0,3)": 1611,
+        "[3,6)": 12500,
+        "[6,10)": 4560,
+        "[10,20)": 7908,
+        "[20,50)": 11075,
+        "[50,1000000.0)": 0
+      },
+      "block_density_cv_1km": {
+        "before": 0.6187,
+        "after": 0.5859,
+        "reported_best_files_band": [
+          0.51,
+          0.59
+        ]
+      },
+      "sgmc_off_catalogue": {
+        "parent_dti": 0.095386,
+        "candidate_dti": 0.091662,
+        "delta": -0.003724,
+        "rel_change": -0.039041,
+        "evidence_class": "PROXY (mapped-fault control, not a score)"
+      },
+      "lineage_mask_bound": {
+        "parent_dti": 0.683527,
+        "candidate_dti": 0.563823,
+        "rel_change": -0.175127,
+        "reading": "pessimistic floor: H19-5 is ~3x denser than truth and is the field R0 was thinned from"
+      },
+      "instrument_notes": {
+        "sgmc_structural_bias": "A dot placed at >= 3.05 px from a mapped trace earns exactly ZERO kernel credit on that trace (R = 3 px), so the SGMC off-catalogue control cannot reward collar placement even if the hypothesis is true. A negative SGMC delta for the collar arms is therefore expected, not a refutation; a POSITIVE SGMC delta for the mirror arm is partly definitional (it puts mass where off-catalogue faults are).",
+        "lcr_circularity": "The live-calibrated reference is the lineage field at live density; R0's dots sit on that field's maxima, so any relocation away from the field loses credit there. It bounds the downside, it cannot rank 'near-catalogue' hypotheses.",
+        "matched_dose_pair": "collar10 and anti10 move the same number of dots with the same machinery and opposite priors: their difference is the only two-sided statement this session can make."
+      },
+      "live_calibrated_reference": {
+        "n_draws": 5,
+        "parent_dti_mean": 0.277811,
+        "delta_dti_mean": -0.050739,
+        "delta_dti_ci95": 0.001107,
+        "delta_dti_interval": [
+          -0.051846,
+          -0.049632
+        ],
+        "rel_change_mean": -0.18264
+      },
+      "proxy": {
+        "proxy_mean_credit": 0.006186,
+        "proxy_mean_credit_ci95": 0.000228,
+        "proxy_mean_credit_ci95_interval": [
+          0.005958,
+          0.006413
+        ],
+        "proxy_coverage": 0.038706,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.006038136218637152,
+          0.006201889947509195,
+          0.006582695130310594,
+          0.0062188384485118405,
+          0.00588596849724877
+        ]
+      },
+      "proxy_delta_vs_r0": 0.0,
+      "canary": {
+        "canary_auc": 0.5,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 8915,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.7743
+      },
+      "sha256_nan": "106ae19bc0c47caa4f5fe48f79cc3557dbf16b85499bd733a826a8fd466427c4",
+      "sha256_zeros": "236c02f29377e753935971dab41a8f2084c9d022407ef8c1ce5b43f02da8c260",
+      "sha8": "106ae19b",
+      "dot_set_digest": "3955292e395f74fbbecdcd2a5f734ad2c2f82c2be0797ea0f75de42f2c09f0da",
+      "predicted_change_MODEL": -0.0108,
+      "predicted_range": [
+        -0.051,
+        0.008
+      ],
+      "prediction_basis": "point = 0.2778 x rel change on the independent SGMC off-catalogue control (-0.0390); floor = lineage-mask rel change (-0.1751) / live-calibrated reference (-0.0507); cap = max(measured) + 0.008 band",
+      "gates": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "n_dots": 37654
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true
+      }
+    },
+    "anti10": {
+      "id": "h33-h33-2-b2-CONCENTRATIONanti10-20261024-0e42d6ab",
+      "value": "anti10",
+      "description": "direction control: 10% moved from the weakest collar dots to support-weighted cells >10 px from the catalogue",
+      "direction": "out",
+      "prior": "remote",
+      "block_px": 10,
+      "block_km": 1.0,
+      "n_dots": 37654,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 3765,
+        "removed": 3765,
+        "changed": 7530,
+        "pct_changed_of_parent": 19.9979
+      },
+      "pct_dots_moved": 9.9989,
+      "count_preserved": true,
+      "displacement_px": {
+        "n": 3765,
+        "mean_px": 1610.7967,
+        "median_px": 1584.2279,
+        "p95_px": 3025.3371,
+        "max_px": 3734.5385
+      },
+      "min_sep_px_enforced": 2.8284271247461903,
+      "collar": {
+        "min_dist_catalogue_px": 2.236068,
+        "dots_le_3px_before": 2171,
+        "dots_le_3px_after": 2171,
+        "new_dots_le_3px": 0,
+        "moved_targets_le_3px": 0,
+        "floor_honoured": true
+      },
+      "dots_by_catalogue_band_after": {
+        "[0,3)": 1611,
+        "[3,6)": 1413,
+        "[6,10)": 4351,
+        "[10,20)": 8214,
+        "[20,50)": 13197,
+        "[50,1000000.0)": 8868
+      },
+      "block_density_cv_1km": {
+        "before": 0.6187,
+        "after": 0.6312,
+        "reported_best_files_band": [
+          0.51,
+          0.59
+        ]
+      },
+      "sgmc_off_catalogue": {
+        "parent_dti": 0.095386,
+        "candidate_dti": 0.097431,
+        "delta": 0.002045,
+        "rel_change": 0.021436,
+        "evidence_class": "PROXY (mapped-fault control, not a score)"
+      },
+      "lineage_mask_bound": {
+        "parent_dti": 0.683527,
+        "candidate_dti": 0.623942,
+        "rel_change": -0.087173,
+        "reading": "pessimistic floor: H19-5 is ~3x denser than truth and is the field R0 was thinned from"
+      },
+      "instrument_notes": {
+        "sgmc_structural_bias": "A dot placed at >= 3.05 px from a mapped trace earns exactly ZERO kernel credit on that trace (R = 3 px), so the SGMC off-catalogue control cannot reward collar placement even if the hypothesis is true. A negative SGMC delta for the collar arms is therefore expected, not a refutation; a POSITIVE SGMC delta for the mirror arm is partly definitional (it puts mass where off-catalogue faults are).",
+        "lcr_circularity": "The live-calibrated reference is the lineage field at live density; R0's dots sit on that field's maxima, so any relocation away from the field loses credit there. It bounds the downside, it cannot rank 'near-catalogue' hypotheses.",
+        "matched_dose_pair": "collar10 and anti10 move the same number of dots with the same machinery and opposite priors: their difference is the only two-sided statement this session can make."
+      },
+      "live_calibrated_reference": {
+        "n_draws": 5,
+        "parent_dti_mean": 0.277811,
+        "delta_dti_mean": -0.026585,
+        "delta_dti_ci95": 0.001735,
+        "delta_dti_interval": [
+          -0.02832,
+          -0.02485
+        ],
+        "rel_change_mean": -0.095695
+      },
+      "proxy": {
+        "proxy_mean_credit": 0.006186,
+        "proxy_mean_credit_ci95": 0.000228,
+        "proxy_mean_credit_ci95_interval": [
+          0.005958,
+          0.006413
+        ],
+        "proxy_coverage": 0.038706,
+        "draws": 5,
+        "hold_frac": 0.2,
+        "block_px": 10,
+        "n_held_per_draw": 12200,
+        "n_withheld_positives_per_draw": [
+          12200,
+          12198,
+          12199,
+          12200,
+          12201
+        ],
+        "mean_credit_per_draw": [
+          0.006038136218637152,
+          0.006201889947509195,
+          0.006582695130310594,
+          0.0062188384485118405,
+          0.00588596849724877
+        ]
+      },
+      "proxy_delta_vs_r0": 0.0,
+      "canary": {
+        "canary_auc": 0.5,
+        "draws": 3,
+        "stop_rule": "AUC > 0.90 means investigate before shipping"
+      },
+      "redundancy": {
+        "dots_with_neighbour_lt_2p83px": 9823,
+        "dots_with_neighbour_lt_2px": 0,
+        "mean_nn_px": 3.8809
+      },
+      "sha256_nan": "0e42d6ab43b6082e4bfad0106bd77d59bfdcd1cc3ba3d13aa9f92afc5196862a",
+      "sha256_zeros": "0cb4e45bd1695d72d9eab7704c17cb80c111789e1077260dc69e8569f747cbe0",
+      "sha8": "0e42d6ab",
+      "dot_set_digest": "39e2d87c0f97b6fbae8b0c232b1fa357870ada8cc6507fcfdac1c5422a5cca30",
+      "predicted_change_MODEL": 0.006,
+      "predicted_range": [
+        -0.027,
+        0.014
+      ],
+      "prediction_basis": "point = 0.2778 x rel change on the independent SGMC off-catalogue control (+0.0214); floor = lineage-mask rel change (-0.0872) / live-calibrated reference (-0.0266); cap = max(measured) + 0.008 band",
+      "gates": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "n_dots": 37654
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": [],
+        "sha256_not_in_ledger": true
+      }
+    }
+  },
+  "null_diagnostic": {
+    "label": "DIAGNOSTIC ONLY - no release, no ledger row, no slot",
+    "n_dots_moved": 3765,
+    "pct_dots_moved": 9.9989,
+    "sgmc_off_catalogue_delta": -0.000629,
+    "sgmc_rel_change": -0.006597,
+    "block_density_cv_1km_after": 0.6564,
+    "reading": "same dose, same donors, acceptors drawn uniformly instead of by the collar prior: separates 'mass moved' from 'the collar prior knew something'"
+  },
+  "relocation_transfer_test": {
+    "design": "matched dose (10%), matched machinery, opposite prior direction",
+    "collar10_vs_anti10": {
+      "sgmc_rel_change": [
+        -0.020189,
+        0.021436
+      ],
+      "lcr_delta_dti": [
+        -0.026393,
+        -0.026585
+      ],
+      "lineage_rel_change": [
+        -0.087598,
+        -0.087173
+      ]
+    },
+    "reading": "On both references every relocation arm, in BOTH directions, is <= 0 on at least one reference, and the 10% arms are within +/-2.2% of R0 on the only independent fault catalogue. No relocation this session produced a signal that survives the 0.01 no-evidence threshold under any instrument that can see it."
+  }
+}
