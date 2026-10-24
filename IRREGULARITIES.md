@@ -686,6 +686,8 @@ submission advice is superseded by the fail-closed executive summary.
 
 **Expected:** a parallel-run lane must not duplicate a registry raster (rank correlation > 0.90 or > 70 % of dots within 3 px).
 **Actual:** GEOD has rank correlation **0.8951** (just under 0.90) but **93.23 %** of its dots lie within 3 px of R0's dots (R0 side 90.04 %). The overlap rule fires. It was still linked from `docs/downloads/` on Pages.
+**Registry scan (complete, `registry/s10_registry_scan_GEOD.json`):** GEOD is an exact copy of the file still on `main` (overlap 1.0). Its rank correlation with a registry copy of R0 is **0.8974**, just under the 0.90 limit; its 3 px overlap with a GEMSDOE40 raster is **0.9513**. Status: LANE DRIFT - do not submit.
+
 **Decision it changes:** both GEOD TIFs are `git rm`'d from `docs/downloads/` (staged). Copies are in gitignored `outputs/archive/` (GEOD sha256 `bff9fd21…`). **Not fixed:** the files stay in git history on `main` and in any cached copy of the Pages site. History was not rewritten (a force-push to `main` needs the user's approval).
 
 ## IR-91-S10-02 — The holdout CI resamples the 10 spatial folds, not the 3,199 catalogue segments

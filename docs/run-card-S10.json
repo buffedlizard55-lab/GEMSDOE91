@@ -66,9 +66,15 @@
   },
   "geod_retraction": {
     "file": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21",
-    "final_dot_overlap_within_3px": 0.9323,
-    "rank_correlation": 0.8951,
-    "verdict": "duplicate of R0 by the 70% overlap rule"
+    "sha256": "bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158",
+    "registry_scan": "registry/s10_registry_scan_GEOD.json (complete: true, 0 errors, 102 repos)",
+    "exact_duplicate_of": "the same file still on main: docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif (removed from the tree on this branch; overlap 1.0)",
+    "max_rank_corr_registry": 0.8974,
+    "max_rank_corr_file": "GEMSDOE63 registry_rasters/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif (R0 copy; limit 0.90)",
+    "max_3px_overlap_registry": 0.9513,
+    "max_3px_overlap_file": "GEMSDOE40 gems40-euler-multiscale-augmented-incumbent-20261005-84488e0e.tif",
+    "uniqueness_status": "LANE DRIFT - do not submit",
+    "verdict": "duplicate of R0 family; retracted"
   },
   "raster": {
     "path": "outputs/s10/gems91-s10-basementridge-K60988-20261024-74b1f6f1.tif",
