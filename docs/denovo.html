@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEMSDOE91 DENOVO lane — de novo submission (DrivenData #306)</title>
+<style>
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#0f1420;color:#e8ecf3;line-height:1.55}
+ main{max-width:920px;margin:0 auto;padding:24px 18px 64px}
+ h1{font-size:1.7rem;margin:.2em 0}.sub{color:#9fb0c9}
+ .card{background:#171e2e;border:1px solid #2a3652;border-radius:14px;padding:20px;margin:18px 0}
+ .ok{border-color:#1f7a45;background:#12241a}.warn{border-color:#8a6d1f;background:#26200f}
+ .big{font-size:1.25rem;font-weight:700}
+ a.btn{display:inline-block;background:#1f9d57;color:#fff;font-weight:700;font-size:1.15rem;
+   padding:16px 26px;border-radius:12px;text-decoration:none;margin:10px 8px 4px 0}
+ a.btn2{display:inline-block;background:#243453;color:#cfe0ff;padding:10px 16px;border-radius:10px;text-decoration:none;margin:4px 6px 4px 0}
+ code{background:#0b0f18;padding:2px 6px;border-radius:6px;word-break:break-all}
+ table{border-collapse:collapse;width:100%;font-size:.93rem}
+ th,td{border:1px solid #2a3652;padding:7px 9px;text-align:left}th{background:#1d2740}
+ .pass{color:#5fd68a;font-weight:700}.mono{font-family:ui-monospace,monospace;font-size:.9rem}
+ ol li{margin:.45em 0} .small{font-size:.88rem;color:#aebbd4}
+</style>
+</head>
+<body>
+<main>
+<h1>GEMSDOE91 — DENOVO lane (second candidate, 2026-10-24)</h1>
+<p class="sub">⚠️ Three distinct 2026-10-24 candidates exist (GEOD, CED, DENOVO) and <b>none has been submitted</b>. The main portal (<a href="index.html">index.html</a>) currently presents the CED artifact with a <b>NOT OK TO SUBMIT</b> verdict; <b>this page</b> presents the separate DENOVO de novo detector. Under the merged fail-closed readiness policy this DENOVO file also has <b>no selector approval</b> (novelty checked against 7 pinned rasters, not the complete universal registry) — treat it as <b>research download only</b> until a selector records approval. At most one file per weekly slot.</p>
+<p class="sub">Core values: <b>Maximize P(Win)</b> · <b>Own the Outcome</b>. Every number below is labelled
+RECEIPT / HOLDOUT-DTI / MODEL / CLAIM / LEADERBOARD-READ. Full audit trail in the
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE91">repository</a>.</p>
+
+<!-- Executive summary -->
+<div class="card ok">
+<p class="big">⬇️ ONE-CLICK DOWNLOAD — ✅ FORMAT PASS · ⛔ SELECTOR: NOT APPROVED TO SUBMIT (see banner)</p>
+<p>This file passed every validator gate when re-read from disk (both independent checker
+implementations). The portal error <i>“Predicted values must be in range [0, 1]”</i> <b>cannot</b>
+trigger on it: all 12,279,160 cells finite, min 0.0, max 1.0, zero NaN, no nodata tag.</p>
+<a class="btn" href="downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif">Download submission .tif</a>
+<a class="btn2" href="downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.zip">.zip (same single GeoTIFF inside)</a>
+<a class="btn2" href="downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-audit.json">Format audit (JSON receipt)</a>
+<p><b>Filename:</b> <code>gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif</code><br>
+<b>Unique submission name:</b> <code>GEMSDOE91-DENOVO-HGBCTX</code><br>
+<b>Note to paste into the submit form (115/140 characters):</b><br>
+<code>GEMSDOE91 DENOVO-HGBCTX de novo sponsor-band HistGB+context, 37654 spaced dots &gt;300m off-cat; holdout 0.1429 pooled</code></p>
+<p class="small mono">single band · float32 · EPSG:32611 · 100 m · 3730×3292 · transform (100, 0, 243350, 0, −100, 4508550) ·
+37,654 predicted pixels (values exactly 0/1) · 0 dots on the catalogue · nearest dot 316 m from any catalogue pixel ·
+sha256 8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb · 202,693 bytes</p>
+</div>
+
+<div class="card warn">
+<p class="big">⚠️ EVIDENCE VERDICT — READ BEFORE SPENDING A WEEKLY SLOT</p>
+<p><b>PROMOTE as a weekly-slot experiment; do NOT choose as the blind final file yet.</b>
+This de novo detector is the best of three preregistered candidates on the honest,
+spatially-blocked holdout (<b>HOLDOUT-DTI 0.142885 pooled</b>, 60,988 withheld positives,
+fold 95% CI [0.128860, 0.155952] — evaluator <code>scripts/dti.py</code>, official
+α 0.2 / β 0.8 / 300 m metric). It is <b>unique</b>: max rank-correlation 0.1133 and max 40.41%
+of dots within 3 px of any registry raster (duplicate bar: 0.90 / 70%).
+But the independent USGS SGMC off-catalogue control prefers the old lineage file R0
+(0.095386 vs 0.068703 PROXY), so the honest <b>MODEL</b> live range is ≈ <b>0.20–0.29</b>:
+beating R0's 0.2778 (CLAIM, no receipt in this repo) is possible, not assured.
+One scored slot is exactly the price of finding out. Public leader is 0.4413
+(LEADERBOARD-READ 2026-10-24) — §“Why 0.2778 won” below shows why that gap needs a
+better detector (we name it), not more dot shuffling.</p>
+</div>
+
+<div class="card">
+<h2>How to submit (60 seconds)</h2>
+<ol>
+<li>Download the <b>.tif</b> above (or the .zip — same file; do not upload both).</li>
+<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData #306</a> → <b>New submission</b>.</li>
+<li><b>File to submit:</b> choose <code>gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif</code>.</li>
+<li><b>Note (optional):</b> paste the 115-character note above, verbatim.</li>
+<li>Submit <b>once</b>. Then copy the resulting score into <code>ledger/submissions.csv</code>
+(<code>receipt_score</code>/<code>receipt_date</code> for id
+<code>gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab</code>) — that receipt is what
+converts MODEL into evidence. If the portal rejects the file, stop and record the exact
+message; do not improvise a re-encode.</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>Validator receipt (re-read from disk, 2026-10-24)</h2>
+<table>
+<tr><th>Gate</th><th>Required</th><th>This file</th></tr>
+<tr><td>CRS / shape / transform vs <code>sample_submission.tif</code></td><td>identical</td><td class="pass">PASS — EPSG:32611, 3730×3292, (100,0,243350,0,−100,4508550)</td></tr>
+<tr><td>Bands / dtype</td><td>1 × float32</td><td class="pass">PASS</td></tr>
+<tr><td>Values in [0, 1]</td><td>all cells</td><td class="pass">PASS — min 0.0, max 1.0, 0 cells outside</td></tr>
+<tr><td>NaN inside footprint</td><td>none</td><td class="pass">PASS — 0 of 5,167,373 footprint px (0 NaN anywhere)</td></tr>
+<tr><td>Nodata tag</td><td>—</td><td class="pass">None (all-finite zeros encoding)</td></tr>
+<tr><td>Catalogue mass</td><td>0</td><td class="pass">PASS — 0 dots on catalogue; min distance 3.162 px</td></tr>
+<tr><td>Unit-mass dots</td><td>{0,1}</td><td class="pass">PASS — 37,654 dots, sum 37,654</td></tr>
+<tr><td>sha256 unseen in ledger</td><td>new</td><td class="pass">PASS — 8cbad030…be9fb</td></tr>
+<tr><td>Determinism</td><td>reproducible</td><td class="pass">PASS — byte-identical across two rebuilds</td></tr>
+</table>
+<p class="small">Both checker code paths were run: <code>scripts/validate_raster.py</code> (RESULT: PASS)
+and <code>gems91.release_gates</code> (PASS, floor 3.0 px respected), on this zeros file and its NaN twin.
+No manual/human visual inspection is required or used — validation is entirely scripted.</p>
+</div>
+
+<div class="card">
+<h2>Holdout — three preregistered experiments, one promotion</h2>
+<p class="small">Whole catalogue segments withheld in 4 spatial checkerboard folds; exclusions derived
+from visible faults only; supervised models trained outside each fold; official metric pooled.
+Full protocol + caveats: <a href="DENOVO_20261024.md">DENOVO_20261024.md</a>.</p>
+<table>
+<tr><th>Method</th><th>Pooled HOLDOUT-DTI</th><th>Fold 95% CI</th><th>Credit/dot</th></tr>
+<tr><td>Random spaced (matched count)</td><td>0.070827</td><td>[0.066482, 0.074853]</td><td>0.1069</td></tr>
+<tr><td>E1 TRI3 tri-physics concordance</td><td>0.091215</td><td>[0.074101, 0.107530]</td><td>0.1379</td></tr>
+<tr><td>E2 SUP logistic regression</td><td>0.097146</td><td>[0.068764, 0.127968]</td><td>0.1468</td></tr>
+<tr><td><b>E3 HGB-CTX (this file)</b></td><td><b>0.142885</b></td><td><b>[0.128860, 0.155952]</b></td><td><b>0.2168</b></td></tr>
+<tr><td>d2.8 legacy file as-is (leakage-flattered reference, 44,090 dots)</td><td>0.156058</td><td>[0.146620, 0.166034]</td><td>0.2077</td></tr>
+</table>
+<p class="small">Leakage canary: every sponsor band alone AUC ≤ 0.5779 (bar 0.90). Withheld positives: 60,988.
+Uniqueness: Spearman vs registry ≤ 0.1133; dots within 3 px of any single registry raster ≤ 40.41%.</p>
+</div>
+
+<div class="card">
+<h2>Why did 0.2778 win before — and what would 0.4413 take?</h2>
+<p><b>Short answer (measured, not folklore).</b> The official credit is a per-truth-pixel <i>max</i>
+(verified on the organiser's page today; our own metric module had the sum version — fixed, IR-91-37).
+A solid surface pays 0.2 per redundant pixel; the winner is that surface thinned to ≥283 m-spaced
+unit dots (121,131 px → 44,090 → 37,654; 0.1922 → 0.2600 → 0.2778 CLAIMs) with the ≤200 m
+catalogue collar deleted because masked pixels pay nothing. Its implied hidden credit is
+≈ 5.3k of ≈ 14k hidden pixels (MODEL, ≈ 37% weighted recall).</p>
+<p>The leader's 0.4413 implies ≈ 61–64% weighted recall at similar mass (MODEL, same algebra).
+That is a <i>detector</i> gap, not an <i>emission</i> gap — no rearrangement of the old field reaches it.
+The sponsor-provided source this fleet has not yet used at fidelity is the <b>1 m DEM</b>
+(USGS 3DEP via the competition's own link table — free, official): experts map new faults from
+scarps the 100 m grids cannot see. Re-derivation is blocked from this sandbox (host allowlist;
+the pinned derived copy's licence is unverified, IR-91-40) and is the named next step.</p>
+<p class="small">Five ranked geological hypotheses with layers, signatures, mimics, falsifiers and costs:
+<a href="DENOVO_20261024.md">DENOVO_20261024.md</a> §3. Run card (protocol JSON):
+<a href="../reports/run_card_20261024.json">reports/run_card_20261024.json</a>.</p>
+</div>
+
+<div class="card">
+<h2>Sources (official, verified 2026-10-24 where marked)</h2>
+<ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Competition problem, metric and submission format</a> — fetched &amp; checked line-by-line today (worked example 3.00/1.89/2.00 → 0.60 reproduced in tests).</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public leaderboard</a> — read today: #1 0.4413, #2 0.3916, #3 0.3904 (LEADERBOARD-READ, not our receipt).</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution (U-Net)</a> — read; not used (continuous emission is the §2 anti-pattern; CPU-only sandbox).</li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN survey</a> · <a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></li>
+<li>Predecessor site whose download scored 0.2778 (CLAIM): <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32</a> — read today; its parent raster's sha256 is pinned &amp; re-verified in this repo.</li>
+<li>Inputs used: pinned sponsor <code>training_features</code> only (sha256 in <code>registry/data_manifest.json</code>, all 15 pins re-verified this session). No DrivenData login, no external raster in the submission surface.</li>
+</ul>
+<p class="small">Limitations: no organiser receipt exists for any file in this repository (0 submitted);
+all historical scores are CLAIMs imported in <code>ledger/prior_fleet.csv</code> (132 rows).
+Nothing on this page submits anything automatically.</p>
+</div>
+</main>
+</body>
+</html>

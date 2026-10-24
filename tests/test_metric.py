@@ -130,3 +130,20 @@ def test_sparse_dot_field_on_long_truth_is_small():
     pred[0:10, 20] = 1.0           # 10 dots on 10% of one arm
     val = dti(pred, truth)
     assert 0.0 < val < 0.5
+
+
+def test_official_algebra_matches_tpw_fpw_fnw():
+    """DTI == TPw/(TPw + 0.2*FPw + 0.8*FNw) with FNw=|G|-TPw, FPw=S-M,
+    and the organiser's worked example TPw=3.00 FPw=1.89 FNw=2.00 -> 0.60
+    (DrivenData #306 problem page, fetched and verified 2026-10-24).
+    Added by the DENOVO lane, whose independent fix of the same summed-credit
+    bug (IR-91-37) converged with the vendor adapter now on main."""
+    assert 3.00 / (3.00 + 0.2 * 1.89 + 0.8 * 2.00) == pytest.approx(0.60, abs=0.005)
+    rng = np.random.default_rng(11)
+    pred = (rng.random((15, 15)) > 0.8).astype(float) * 0.9
+    truth = rng.random((15, 15)) > 0.85
+    parts = components(pred, truth)
+    tpw, fpw = parts.T, parts.S - parts.M
+    fnw = parts.n_truth - parts.T
+    assert parts.dti() == pytest.approx(tpw / (tpw + 0.2 * fpw + 0.8 * fnw))
+    assert 0.0 <= parts.dti() <= 1.0

@@ -1,0 +1,110 @@
+{
+  "mode": "build3",
+  "evaluator": "scripts/dti.py official-DTI (alpha=0.2,beta=0.8,R=3px)",
+  "id": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab",
+  "method": "HGB-CTX HistGB on 19 sponsor-band percentiles + TRI3 percentile + 8 mean11 contexts; trained on full catalogue vs dcat>5 negatives; greedy spaced emission >3px off catalogue",
+  "features": [
+    "mag_anom",
+    "rtp",
+    "tmi_hg",
+    "tmi_hg_mean11",
+    "geod_2ndinv",
+    "geod_2ndinv_mean11",
+    "iso_grav_anom_slope",
+    "iso_grav_anom_slope_mean11",
+    "tc",
+    "tc_mean11",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "tmi_vg",
+    "tmi_vg_mean11",
+    "deq_n100a15",
+    "iso_grav_anom_vg",
+    "iso_grav_anom_vg_mean11",
+    "det_elev",
+    "iso_grav_anom",
+    "tmi",
+    "depth_to_base_surf",
+    "ieq_n100a15",
+    "cond_surf",
+    "iso_grav_anom_hg",
+    "iso_grav_anom_hg_mean11",
+    "det_elev_slope",
+    "det_elev_slope_mean11",
+    "TRI3_surface"
+  ],
+  "n_dots": 37654,
+  "spacing_px": 2.8,
+  "min_dcat_px_RECEIPT": 3.1623,
+  "dots_on_catalogue_RECEIPT": 0,
+  "dot_set_digest": "dc8dfeb750ec2b893ce68057da085f1f9e5ffec9c448f850905b29376f8765d2",
+  "surface_sha256_f32": "139a73adf4fe2e7ac32872aa5db7a925cf45f4effe5a7a77a91215ffa3d9fd4b",
+  "files": {
+    "nan": {
+      "file": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-nan.tif",
+      "sha256": "7941b7abc8587a62e14a7147392a6de5869d3daef08bac77321c5e5f3b887f9e",
+      "bytes": 347638
+    },
+    "zeros": {
+      "file": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
+      "sha256": "8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb",
+      "bytes": 202693
+    }
+  },
+  "uniqueness_vs_registry": {
+    "parent_r0": {
+      "surface_spearman_sample": 0.0462,
+      "pct_our_dots_within_3px": 30.68,
+      "their_positive_px": 37654
+    },
+    "anc_d2_8": {
+      "surface_spearman_sample": 0.0623,
+      "pct_our_dots_within_3px": 34.45,
+      "their_positive_px": 44090
+    },
+    "anc_solo_d2_8": {
+      "surface_spearman_sample": 0.0522,
+      "pct_our_dots_within_3px": 32.81,
+      "their_positive_px": 40199
+    },
+    "anc_h19_5": {
+      "surface_spearman_sample": 0.1104,
+      "pct_our_dots_within_3px": 38.91,
+      "their_positive_px": 121131
+    },
+    "anc_h19_4": {
+      "surface_spearman_sample": 0.112,
+      "pct_our_dots_within_3px": 39.84,
+      "their_positive_px": 123779
+    },
+    "anc_h16_1": {
+      "surface_spearman_sample": 0.1133,
+      "pct_our_dots_within_3px": 40.41,
+      "their_positive_px": 123939
+    },
+    "anc_d1_5": {
+      "surface_spearman_sample": 0.0745,
+      "pct_our_dots_within_3px": 36.0,
+      "their_positive_px": 60069
+    }
+  },
+  "duplicate_rule": "rank-corr > 0.90 OR > 70% dots within 3px of one registry raster",
+  "sgmc_control_report_only": {
+    "truth_px_off_catalogue": 62122,
+    "hgbctx": {
+      "sgmc_off_dti_PROXY": 0.068703,
+      "T": 3957.71,
+      "S": 37654.0,
+      "M": 2070.64,
+      "G": 62122
+    },
+    "r0": {
+      "sgmc_off_dti_PROXY": 0.095386,
+      "T": 5517.64,
+      "S": 37654.0,
+      "M": 2433.23,
+      "G": 62122
+    }
+  },
+  "is_duplicate": false
+}

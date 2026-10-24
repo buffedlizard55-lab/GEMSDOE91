@@ -1,0 +1,182 @@
+{
+  "mode": "canary",
+  "evaluator": "scripts/dti.py official-DTI (alpha=0.2,beta=0.8,R=3px)",
+  "n_positives_catalogue_px": 60988,
+  "n_negatives_sampled": 150000,
+  "neg_rule": "footprint, off-catalogue, dcat>5px, rng seed 20261024",
+  "leakage_threshold": 0.9,
+  "bands": {
+    "mag_anom": {
+      "band": 1,
+      "auc_raw": 0.49,
+      "auc_abs": 0.5064
+    },
+    "rtp": {
+      "band": 2,
+      "auc_raw": 0.497,
+      "auc_abs": 0.5066
+    },
+    "tmi_hg": {
+      "band": 3,
+      "auc_raw": 0.53,
+      "auc_abs": 0.5303
+    },
+    "geod_2ndinv": {
+      "band": 4,
+      "auc_raw": 0.5777,
+      "auc_abs": 0.5779
+    },
+    "iso_grav_anom_slope": {
+      "band": 5,
+      "auc_raw": 0.5374,
+      "auc_abs": 0.5378
+    },
+    "tc": {
+      "band": 6,
+      "auc_raw": 0.4413,
+      "auc_abs": 0.4419
+    },
+    "geod_shearrate": {
+      "band": 7,
+      "auc_raw": 0.5759,
+      "auc_abs": 0.5761
+    },
+    "geod_dilaterate": {
+      "band": 8,
+      "auc_raw": 0.5284,
+      "auc_abs": 0.5271
+    },
+    "tmi_vg": {
+      "band": 9,
+      "auc_raw": 0.4854,
+      "auc_abs": 0.5261
+    },
+    "deq_n100a15": {
+      "band": 10,
+      "auc_raw": 0.5554,
+      "auc_abs": 0.5557
+    },
+    "iso_grav_anom_vg": {
+      "band": 11,
+      "auc_raw": 0.5295,
+      "auc_abs": 0.5102
+    },
+    "det_elev": {
+      "band": 12,
+      "auc_raw": 0.4845,
+      "auc_abs": 0.4227
+    },
+    "iso_grav_anom": {
+      "band": 13,
+      "auc_raw": 0.4562,
+      "auc_abs": 0.5302
+    },
+    "tmi": {
+      "band": 14,
+      "auc_raw": 0.487,
+      "auc_abs": 0.5123
+    },
+    "depth_to_base_surf": {
+      "band": 15,
+      "auc_raw": 0.5116,
+      "auc_abs": 0.5121
+    },
+    "ieq_n100a15": {
+      "band": 16,
+      "auc_raw": 0.5764,
+      "auc_abs": 0.5767
+    },
+    "cond_surf": {
+      "band": 17,
+      "auc_raw": 0.4821,
+      "auc_abs": 0.4826
+    },
+    "iso_grav_anom_hg": {
+      "band": 18,
+      "auc_raw": 0.5013,
+      "auc_abs": 0.5317
+    },
+    "det_elev_slope": {
+      "band": 19,
+      "auc_raw": 0.564,
+      "auc_abs": 0.5643
+    },
+    "TRI3_surface": {
+      "band": null,
+      "auc_raw": 0.5414
+    }
+  },
+  "surface_audit": {
+    "families": {
+      "mag": {
+        "bands": [
+          "tmi_hg",
+          "tc",
+          "tmi_vg"
+        ]
+      },
+      "grav": {
+        "bands": [
+          "iso_grav_anom_slope",
+          "iso_grav_anom_vg",
+          "iso_grav_anom_hg"
+        ]
+      },
+      "topo": {
+        "bands": [
+          "det_elev_slope",
+          "|lap det_elev|"
+        ]
+      }
+    },
+    "formula": "(Rmag*Rgrav*Rtopo)^(1/3) * (0.6+0.4*Pstep) * (0.85+0.15*Pstrain); R = pct of 5px-high-pass of mean band percentiles",
+    "surface_family_ridges": {
+      "mag": null,
+      "grav": null,
+      "topo": null
+    },
+    "bands_read": {
+      "tmi_hg": {
+        "band": 3,
+        "description": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction"
+      },
+      "geod_2ndinv": {
+        "band": 4,
+        "description": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude"
+      },
+      "iso_grav_anom_slope": {
+        "band": 5,
+        "description": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction"
+      },
+      "tc": {
+        "band": 6,
+        "description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection"
+      },
+      "tmi_vg": {
+        "band": 9,
+        "description": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction"
+      },
+      "iso_grav_anom_vg": {
+        "band": 11,
+        "description": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change"
+      },
+      "det_elev": {
+        "band": 12,
+        "description": "det_elev - Detrended elevation - topography with regional trends removed"
+      },
+      "depth_to_base_surf": {
+        "band": 15,
+        "description": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover"
+      },
+      "iso_grav_anom_hg": {
+        "band": 18,
+        "description": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change"
+      },
+      "det_elev_slope": {
+        "band": 19,
+        "description": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+      }
+    },
+    "sha256_f32": "134daf62fa07609a2f3ca570a99ccfa3dc02e304b47a2bc92ee4f98e643e2251"
+  }
+}

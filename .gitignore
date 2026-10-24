@@ -35,3 +35,8 @@ _site/
 node_modules/
 playwright-report/
 test-results/
+
+# Our own derived submission artifacts are published for one-click download
+# (NOT competition input data; see IR-91-41). Only this path may hold a .tif.
+!docs/downloads/*.tif
+!docs/downloads/*.zip

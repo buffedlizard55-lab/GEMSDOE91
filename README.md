@@ -927,3 +927,24 @@ In another terminal, run `npm ci --prefix tools/browser` then
 its hash, tests desktop/mobile overflow and guide/source pages, exercises the copy
 fallback, and runs WCAG accessibility checks. It does not run a geological
 experiment or contact the organizer. [Observed browser result](docs/browser-verification.json).
+
+## Parallel DENOVO lane (merged 2026-10-24, `arena/58a33cc1-gemsdoe91`) — separate page, separate verdict
+
+A third same-day file exists and must not be confused with the CED artifact above or the GEOD
+file: **[DENOVO-HGBCTX](docs/denovo.html)** — download
+[`gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif`](docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif)
+(sha256 `8cbad030…be9fb`), name `GEMSDOE91-DENOVO-HGBCTX`, note (115 chars):
+`GEMSDOE91 DENOVO-HGBCTX de novo sponsor-band HistGB+context, 37654 spaced dots >300m off-cat; holdout 0.1429 pooled`.
+De novo HistGB detector on pinned sponsor bands only (no R0/ancestor dots), 3 preregistered
+experiments on a whole-segment blocked holdout (**HOLDOUT-DTI 0.142885 pooled**, evaluator
+`scripts/dti.py` official max-credit DTI, 60,988 withheld positives, fold 95% CI
+[0.128860, 0.155952]); uniqueness vs 7 pinned registry rasters max Spearman 0.1133 / max
+40.41% dots within 3 px (indexed scope only — *not* the 64-file universal inventory the CED
+gate uses); SGMC control disagrees (IR-91-39), MODEL live range ~0.20–0.29.
+**Selector status: not approved here.** This lane's own verdict was "promote to one weekly
+slot as a test", but under the merged fail-closed policy (`src/gems91/readiness.py`) it has
+**no selector approval and no complete-universal-registry novelty pass**, so it is **NOT OK
+TO SUBMIT until a selector records otherwise** — the portal verdict above governs. Full
+analysis: `docs/DENOVO_20261024.md`; run card `reports/run_card_20261024.json`;
+IR-91-36…41. Its metric-bug fix independently converged with main's vendor adapter
+(same IR-91-37); `scripts/dti.py` was the evaluator of record for its holdout.

@@ -19,3 +19,12 @@ never infer scores from projections, a filename or a third-party page.
 
 Previous upload queues and model forecasts are archived, not active advice:
 [historical instructions](archive/SUBMIT-before-CED91.md).
+
+## DENOVO file pointer (merged 2026-10-24)
+
+`docs/denovo.html` presents a second unsubmitted file
+(`gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif`, both repo validators
+PASS re-read from disk; audit JSON beside it in `docs/downloads/`). Format PASS is not
+approval: under the current fail-closed readiness policy it is **not** cleared for a slot
+(no complete-registry novelty pass, no selector approval). See IR-91-36…41 and
+`reports/run_card_20261024.json`.

@@ -1,0 +1,32 @@
+{
+  "lane": "DENOVO-HGBCTX",
+  "date": "2026-10-24",
+  "builder": "scripts/build_denovo.py --mode build3 --spacing 2.8 --n-dots 37654",
+  "evaluator": "scripts/dti.py (official DTI: alpha 0.2 beta 0.8, 300m triangular, max per truth pixel)",
+  "files": [
+    {
+      "file": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-nan.tif",
+      "sha256": "7941b7abc8587a62e14a7147392a6de5869d3daef08bac77321c5e5f3b887f9e",
+      "bytes": 347638,
+      "encoding": "nan-outside"
+    },
+    {
+      "file": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
+      "sha256": "8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb",
+      "bytes": 202693,
+      "encoding": "zeros-outside (PRIMARY download, docs/downloads/)"
+    }
+  ],
+  "dot_set_digest": "dc8dfeb750ec2b893ce68057da085f1f9e5ffec9c448f850905b29376f8765d2",
+  "n_dots": 37654,
+  "holdout": "evidence/holdout3_hgbctx_20261024.json",
+  "build_evidence": "evidence/build3_hgbctx_20261024.json",
+  "rebuild": "byte-identical across two builds (verified 2026-10-24)",
+  "library_versions_used": {
+    "numpy": "2.4.6",
+    "rasterio": "1.4.4",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "post_merge_status": "selector approval: none recorded; see reports/run_card_20261024.json post_merge_status_2026_10_24"
+}

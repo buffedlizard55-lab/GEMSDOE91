@@ -1,0 +1,41 @@
+{
+  "mode": "holdout2",
+  "evaluator": "scripts/dti.py official-DTI (alpha=0.2,beta=0.8,R=3px)",
+  "experiment": 2,
+  "method": "SUP-CONCORD logreg(19 band pcts + TRI3 pct), trained outside fold region only, no dcat feature",
+  "n_withheld_positives_per_fold": [
+    15105,
+    15978,
+    12874,
+    17031
+  ],
+  "pooled_holdout_dti": 0.097146,
+  "fold_dti": [
+    0.109289,
+    0.078655,
+    0.118441,
+    0.087079
+  ],
+  "fold_mean_ci95": [
+    0.068764,
+    0.127968
+  ],
+  "dots_per_fold": [
+    9888,
+    9831,
+    8663,
+    9272
+  ],
+  "train_auc_per_fold": [
+    0.6567,
+    0.6643,
+    0.6711,
+    0.6574
+  ],
+  "pooled_T": 5527.54,
+  "pooled_S": 37654.0,
+  "pooled_M": 2635.96,
+  "pooled_G": 60988,
+  "spacing_px": 2.8,
+  "n_dots_total_budget": 37654
+}

@@ -672,6 +672,89 @@ as a *matched-dose difference* between two arms rather than as an absolute gain.
 `CONCENTRATIONgdr25rm10` (`c019adb01`, `+0.0123` `MODEL`) loses its top slot: its prediction is
 a 0.1 × shrinkage of the prior scored against itself, the same circularity in a different dress.
 
+## IR-91-36 — The 2026-10-24 prompt names no single lane paragraph, and two of its leaderboard numbers conflict
+
+**Expected:** the parallel-run protocol says "your lane is the single method paragraph below",
+and quotes one current top score.
+**Actual:** the prompt as delivered contains no single method paragraph (it repeats the full
+fleet brief twice), and quotes both "current high score 0.4413" and "0.3195 is the highest
+score right now". The official leaderboard fetched 2026-10-24 reads #1 0.4413, #2 0.3916,
+#3 0.3904 (LEADERBOARD-READ); 0.3195 was #2 in GEMSDOE32's verified 2026-10-04 read.
+**Numbering note (merge 2026-10-24):** main's parallel GEOD/review session took IR-91-35 while
+this branch was in flight, so this branch's items were renumbered 35-40 -> 36-41 on merge;
+cross-references in this lane's docs/code were updated to match.
+**Decision it changes.** The lane is self-assigned and stated up front (DENOVO, de novo surface;
+`src/gems91/denovo.py` + experiment preregistrations in `scripts/build_denovo.py`), and the
+duplicate test (rank-correlation > 0.90 or > 70% of dots within 3 px of one registry raster) is
+applied to the surface and the final dots (max 0.1133 / 40.41% — not a duplicate). All three
+leaderboard numbers are reported with their dates and sources, never silently picked.
+
+## IR-91-37 — `src/gems91/metric.py` computed a different metric from the organiser's (fixed here)
+
+**Expected:** two metric implementations in one repo agree.
+**Actual:** `metric.py` summed `p*k` over all dots near a truth pixel; the organiser's published
+definition (fetched 2026-10-24) takes the per-truth-pixel **max** (`TPw`, capped at 1), and
+`scripts/dti.py` already did that. The summed version can exceed DTI = 1 — the old test
+`test_dense_coverage_can_exceed_one` documented exactly that symptom without naming it a bug.
+**Decision it changes.** Fixed once in `metric.py` (per parallel-run protocol §2), with the
+official worked example (`TPw 3.00, FPw 1.89, FNw 2.00 -> 0.60`) pinned in tests; both
+implementations now agree to <1e-9 on random fields. Convergence on merge (2026-10-24): the CED
+lane independently found the same summed-credit bug, cited it under the same number IR-91-37, and
+replaced `metric.py` with an adapter to the pinned shared template (`vendor/gems57`), which
+supersedes this branch's local fix; `scripts/dti.py` (this lane's evaluator of record) agrees with
+the template algebra. Note on merge (2026-10-24): the GEOD
+lane that landed on main in parallel quotes `gems91.metric v1` (the summed version) for its
+holdout 0.00077 — that number overstates credit wherever dot kernels overlap and should be
+recomputed with `scripts/dti.py` before reuse; its file gates are unaffected. Any overlapping-dot `T` previously
+computed via `metric.py` is overstated and must be recomputed before reuse. The protocol's
+named files `evaluate_holdout.py` / `submission_writer.py` do not exist in this repo; the
+equivalents used are `scripts/dti.py` + `scripts/build_denovo.py` (holdout) and
+`gems91.io.write_float32` (writer) — no private fork was created.
+
+## IR-91-38 — R0-as-is and d2.8-as-is are not honest holdout baselines
+
+**Expected:** score the parent on the same holdout as the candidate.
+**Actual:** R0 was pruned against the *full* catalogue, so on withheld segments it scores
+0.006452 by construction (IR-91-28 class); d2.8-as-is scores 0.156058 partly because 8,607 of
+its dots sit ≤3 px from the full catalogue including withheld pixels, and it spends 44,090
+dots against the candidate's 37,654. Neither is a like-for-like bar.
+**Decision it changes.** Promotion is judged against same-protocol methods (random 0.070827,
+TRI3 0.091215, SUP 0.097146) and per-dot credit (HGB-CTX 0.2168 > d2.8 0.2077); the d2.8 number
+is carried as a labelled leakage-flattered reference, never as "the holdout best".
+
+## IR-91-39 — The two local instruments disagree about the DENOVO file
+
+**Expected:** holdout and the SGMC off-catalogue control rank candidates the same way.
+**Actual:** the blocked holdout puts HGB-CTX first of the honest methods, but the SGMC
+off-catalogue control (62,122 px) scores it 0.068703 vs R0's 0.095386. Converted through the
+metric algebra the MODEL live range is ~0.20-0.29, spanning R0's 0.2778 CLAIM.
+**Decision it changes.** The file is promoted for **one** weekly slot as the unique-lane test
+and explicitly *not* recommended as the blind final; the site states both readings. The
+receipt, whichever way it lands, adjudicates the instruments.
+
+## IR-91-40 — The highest-ceiling hypothesis (1 m DEM scarps) is blocked in this sandbox
+
+**Expected:** candidate H4 (scarp features re-derived from the competition's `1m_DEM_links.csv`
+-> USGS 3DEP, free/official/public domain) could be validated before proposing it.
+**Actual:** the sandbox may only reach GitHub/PyPI/npm hosts, the DrivenData data page needs a
+login, and the pinned derived copy `ext_lidar_scarp_u8` carries "licence unchecked — do not
+redistribute" with unverified provenance and only 75% footprint coverage. Its bands' pixelwise
+canary AUCs here are 0.52-0.55 (diagnostic only; pixelwise AUC understates line detectors).
+**Decision it changes.** H4 is proposed as *not viable from this sandbox* and named as the next
+lane for an unrestricted machine: download the official DEM tiles, re-derive scarp features
+with recorded provenance, pin hashes, then rerun this session's holdout with the scarp channels
+added to HGB-CTX. The submitted file uses sponsor bands only.
+
+## IR-91-41 — Publishing the submission .tif in `docs/downloads/` amends the no-rasters-in-git rule
+
+**Expected:** repo policy (docs/DATA.md rule 2, CI gate) tracked no `.tif` at all.
+**Actual:** the brief requires an obvious one-click download from the GitHub Pages site, and the
+fleet's working precedent (GEMSDOE32, whose download scored 0.2778 CLAIM) publishes its own
+derived submission under `docs/downloads/`. A derived {0,1} prediction is the entrant's own
+work product, not competition input data.
+**Decision it changes.** `.gitignore` and CI now allow `.tif`/`.zip` only under
+`docs/downloads/`; competition input rasters remain forbidden everywhere and `data/` remains
+ignored. Only the all-finite zeros primary is published (202,693 B) with its audit JSON.
 ## IR-91-35 — 2026-10-24 parallel-run protocol cannot certify legacy axes
 
 No lane paragraph or shared template path supplied. All pinned input files absent

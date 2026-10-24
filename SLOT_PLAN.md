@@ -14,3 +14,10 @@ and the current allowance verified on the organizer submission page. Historical
 
 The previous queue and projected score deltas are retained only for forensics in
 `docs/archive/SLOT_PLAN-before-CED91.md`. They are **not** instructions to upload.
+
+## DENOVO merge note (2026-10-24, `arena/58a33cc1-gemsdoe91`)
+
+`gems91-denovo-hgbctx-…-7941b7ab-zeros.tif` (`docs/denovo.html`) is recorded for the
+selector's consideration only. It does not enter any queue by itself: novelty was checked
+against 7 pinned registry rasters, not the complete universal registry, and no selector
+approval exists. The current decision above (no slot selected) is unchanged.

@@ -5,3 +5,4 @@ rasterio==1.4.4
 tifffile==2026.3.3
 imagecodecs==2026.3.6
 pytest==9.1.1
+scikit-learn==1.9.1  # DENOVO HGB-CTX build (scripts/build_denovo.py)
