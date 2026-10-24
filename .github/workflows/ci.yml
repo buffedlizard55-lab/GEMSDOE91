@@ -110,6 +110,8 @@ jobs:
           echo "byte-identical across two rebuilds (no RNG in the build)"
       - name: Rebuild the RELIEF arms from the pinned inputs
         run: python scripts/build_relief.py --build --skip-fold-proxy
+      - name: Rebuild the TRACKB arms from the pinned inputs
+        run: python scripts/build_trackb.py --build
       # ~90 s: 19-band leakage canary is the slow part; deterministic, no RNG.
       - name: Rebuild the SNAP arms from the pinned inputs
         run: python scripts/build_snap.py --build

@@ -575,51 +575,64 @@ placing any new recipient dot at `d_cat ≤ 3.0 px` violates the `≥ 3 px` new-
 `added_dots_le3px = 0` across all three `RELIEF` builds `RECEIPT`).
 
 
-## IR-91-28 — The catalogue PROXY is identically zero for SNAP, by construction, not by result
+## IR-91-31 — TRACKB trace densification confounds strike with spacing; its PROXY is invariant
 
+TRACKB targets sampled every 1.2 px along a trace cannot respect R0's ~2.8 px dot spacing
+(support dots already occupy the trace every ~3 px), so the three Session-6 arms use a 1 px
+minimum separation. Any live or Phase-2 difference therefore mixes "dots lie on a strike-
+consistent trace" with "dots are denser along lines"; it is disclosed on every card, not
+hidden. Separately, the catalogue hide-and-recover PROXY is mathematically invariant for
+these arms (every added/removed dot is >3 px from the catalogue and earns it zero credit),
+so it is reported as uninformative rather than quoted as a number.
+
+**Gate note.** `scripts/validate_release.py` (`gems91.gates`) reports `collar_ge_3px` FAIL on all three arms *and on R0 itself* (2,171 inherited dots at 2-3 px, IR-91-03); no TRACKB-added dot is <=3 px, and `validate_raster.py` passes 14/14. This does not block TRACKB, but the human's IR-91-03 ruling still governs any upload.
+
+**Decision it changes.** TRACKB files are Phase-2/expert-review candidates only; they do not
+enter the weekly slot queue unless the human explicitly decides, and no PROXY claim is made
+for them.
+
+## IR-91-32 — CONCENTRATION builder ids embed today's date; CI broke at midnight UTC
+
+`scripts/build_concentration.py` stamps candidate ids with `datetime.now()`, so a rebuild on
+any later date returns the identical raster (same sha256) under a new id, and its ledger
+append refused it as a duplicate hash. This failed the CI lineage job on 2026-10-24 with no
+code change in that builder. **Decision it changes:** the append now treats a same-sha256
+rebuild under a date-shifted id as idempotent proof (logged), while a *different* hash under
+an existing id still fails. The same daily-date bug in `build_mass_consensus.py`, `build_spacing.py` and `build_prune_ladder.py` was fixed by pinning the fleet build date `20261023` in all of them (verified by a full local CI-sequence rebuild + manifest hash check). Found in Session 6 while adding TRACKB to the CI manifest check.
+## IR-91-28 — The catalogue PROXY is identically zero for SNAP, by construction, not by result
 **Expected** (brief §6): the catalogue hide-and-recover PROXY, reported with `n` withheld
 positives and a 95 % CI, should say something about a variant.
-
 **Actual:** every SNAP arm returns `0.006186 -> 0.006186`, a delta of exactly `0.000000`
 in all 5 draws (`12,198-12,201` withheld positives per draw, CI `[0.005958, 0.006413]`).
 The reason is structural: a withheld catalogue cell can only be credited by a dot within
 the 3 px kernel; SNAP targets are floored at `d_cat > 3 px` (constraint 4) and the only
 parent dots already inside 3 px are the 2,171 collar dots quarantined by IR-91-27. No legal
 SNAP move can therefore change catalogue credit.
-
 **Decision it changes.** Do **not** read the zero as evidence about the axis (and do not
 write it up as "no effect"). The informative control is the independent off-catalogue USGS
 SGMC map, where credit can change; it is reported as `PROXY` only. The same blindness now
 applies to every non-PRUNE axis whose targets are floored outside the collar.
-
 ## IR-91-29 — The full SNAP arm is a re-layout, not a snap, and SNAP is exempt from the 1-50 % rule
-
 **Expected** (brief §5): `SNAP` moves each dot `<= 2 px`; the 1-50 % dot-change rule governs
 the other axes, and SNAP is exempt because same-count movement can legitimately touch many
 dots.
-
 **Actual:** the literal window-max rule moves **35,174 of 37,654 dots (93.41 %)** with a mean
 displacement of **1.73 px** and a dot-set Hamming distance of **186.83 %**. That is a new
 field derived from two gradient bands, not a positional refinement; it belongs in the same
 family as the single-signal lanes that scored 0.00-0.19 live. At the other end, the crest
 arm moves only **2,047 dots (5.44 %)** by **0.08 px**.
-
 **Decision it changes.** Built a pre-registered dose ladder (5.4 % / 11.9 % / 93.4 %) rather
 than three arbitrary driver variants, so the human is not forced to spend a slot on the
 extreme to learn the axis's direction. `s2f` is labelled a negative control, not a slot
 candidate; the SLOT_PLAN keeps SNAP out of the top 3.
-
 ## IR-91-30 — The repo's existing SNAP path would violate constraint 4 and IR-91-27
-
 **Expected:** `scripts/build.py --axis SNAP` is the generic builder and should produce a
 compliant SNAP file.
-
 **Actual:** it calls `axes.snap`, whose `min_cat_px` default is **2.0** (not 3.0) and which
 does not quarantine the parent's inherited `2 < d_cat <= 3 px` collar dots. Running it would
 place moved dots at 2-3 px from the catalogue (constraint 4 violation) and would let a SNAP
 edit relocate collar dots, silently mixing in a PRUNE edit. `axes.snap` also orders dots
 row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on float scaling.
-
 **Decision it changes.** SNAP is built by `scripts/build_snap.py` on `src/gems91/snap.py`
 (explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
 float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic

@@ -51,7 +51,7 @@ FIELD_PATHS = {
     "anc_h16_1": "data/registry/calib_h161_01855.tif",
 }
 TAG = "h33-h33-2-b2"
-DATE = dt.date.today().strftime("%Y%m%d")
+DATE = "20261023"  # pinned fleet build date (IR-91-32): ids must reproduce, not roll daily
 
 # --- the prediction model, stated so it can be checked ----------------------
 # Per-dot expected change in DTI (first order, kernel R = 3 px, alpha = 0.2):

@@ -308,3 +308,34 @@ exact equal-area relief terciles via `R_rel = 0.90·pct(Band 12 det_elev) + 0.10
   T1/T3 mass (`5.67%↔29.67%` Basin, `26.01%↔50.01%` Range), `RELIEF` tercile allocation
   is non-leveraging at `12%` dose and is retired.
 
+
+---
+
+# Mechanism cards — TRACKB (Session 6, Phase 2; not a weekly slot unless human decides)
+
+Shared: traces chained greedily from R0 dots ranked by label-blind `S_struct` (not the
+unrecoverable parent ranking, IR-91-21); links <=5 px, turns <=35 deg, coherence >=0.35.
+Donors are the lowest-`S_struct` off-trace dots at `d_cat>3 px`; targets are sampled every
+1.2 px along traces at `d_cat>3 px`. **Confound disclosed:** trace dots are denser than R0's
+~2.8 px spacing (min separation 1 px), so any live change mixes strike-consistency with spacing.
+Hide-and-recover PROXY is invariant by construction (all moved dots are >3 px from the
+catalogue and earn it no credit) — report only, never a gate.
+
+## t1k10 (`...-TRACKBt1k10-20261023-8343ab38`, 2,214 traces >=1 km, 12,989 support dots, 10.0% relocated)
+- **Hypothesis:** New faults are line-like; dots already aligned along a consistent strike are
+  more likely to sit on one continuous structure than isolated dots with the same score.
+- **Mechanism:** Densifying chained traces converts scattered credit into line credit; under
+  DTI a line of dots within the 3 px kernel earns more per dot than isolated dots.
+- **Non-fault mimic:** Lithologic contacts, survey/road lineaments, or aligned gradient noise
+  sharing a regional strike.
+- **Predicted:** +0.004 MODEL [-0.008,+0.016] (|Δ|<0.01 = no evidence).
+- **Falsifier:** Live Δ <= -0.010, or expert review (Phase 2) rejects >50% of sampled traces.
+
+## t1k20 (`...-TRACKBt1k20-20261023-ab72339b`, same traces, 20.0% relocated)
+- Dose twin of t1k10. **Predicted:** +0.005 MODEL [-0.012,+0.022].
+- **Falsifier:** t1k20 < t1k10 by >=0.010 live → trace densification saturates/backfires at 10%.
+
+## t2k10 (`...-TRACKBt2k10-20261023-6d16fd7a`, 675 traces >=2 km, 6,040 support dots, 10.0% relocated)
+- **Hypothesis:** Only long, through-going traces correspond to mappable faults; 1-2 km chains
+  are mostly segment noise. **Predicted:** +0.002 MODEL [-0.008,+0.012].
+- **Falsifier:** t2k10 beats t1k10 by >=0.010 → short traces were noise; retire the >=1 km set.

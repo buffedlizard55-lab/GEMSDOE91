@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T23:30:00Z",
-  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_snap.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
+  "generated_utc": "2026-10-23T22:00:00Z",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_spacing.py --build && python3 scripts/build_relief.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
   "parent": "h33-h33-2-b2 (e5eb6e7e)",
   "files": [
     {
@@ -153,6 +153,36 @@
       "file": "h33-h33-2-b2-SNAPs2q75-20261023-8aa75390.tif",
       "sha256": "8aa7539013b4e89df65e752da2a4a477ac4f7d0c972a46f03673b631490e94c9",
       "bytes": 372144
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38-zeros.tif",
+      "sha256": "46a5fb8c5f68e0e270bb308316ffdd8ee430cfe3a34cb2663c6b8c89482fcc0a",
+      "bytes": 222351
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38.tif",
+      "sha256": "8343ab3895736250bd53c8afced208b61bb4eee7416aecf31ab6d0932c56b816",
+      "bytes": 368235
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b-zeros.tif",
+      "sha256": "68e1310c3978205308acd99d7e3308146c31a892395b68805045422cff675c58",
+      "bytes": 218784
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b.tif",
+      "sha256": "ab72339bf8fbdb042cfe5022e4511ab3f2589e5db5bdef78f0a75228981b97dd",
+      "bytes": 363690
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a-zeros.tif",
+      "sha256": "c7b22af01bef6d137885fb9a7f548ab4dad50c9bc27f7fef5f83567a836cdab6",
+      "bytes": 222462
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a.tif",
+      "sha256": "6d16fd7a597daabb3fdfc59d638b759bc2fea619c5f5a793bd318675b4499652",
+      "bytes": 368108
     }
   ]
 }

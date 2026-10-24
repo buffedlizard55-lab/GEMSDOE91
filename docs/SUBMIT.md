@@ -182,13 +182,20 @@ python3 scripts/validate_raster.py releases/h33-h33-2-b2-RELIEFr2p12-20261023-6f
 
 ---
 
-## Session 6 (`arena/9b8f7d01-gemsdoe91`) — SNAP variants (built; **not** in the top 3)
+## Session 7 TRACKB (Phase 2 only — upload ONLY if the human explicitly decides)
 
+| File (`releases/`) | Name | Form note |
+|---|---|---|
+| `h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38.tif` (+ `-zeros.tif` fallback, GeoJSON `...-8343ab38-traces.geojson`) | `h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38` | `h33-h33-2-b2; TRACKB t1k10: relocate 10.0% lowest-S off-trace dots onto >= 1 km traces; pred +0.004 MODEL` |
+| `h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b.tif` | `h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b` | same note with `t1k20`, `20.0%`, `+0.005` |
+| `h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a.tif` | `h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a` | same note with `t2k10`, `>= 2 km`, `+0.002` |
+
+Format receipt (RECEIPT, re-read from disk): all three 37,654 dots, EPSG:32611 3730x3292 float32 1-band, values in [0,1], NaN outside footprint (zeros twin = 0 outside), catalogue mass 0, min d_cat 2.236 px, release_gates PASS + validate_raster 14/14 PASS (`gems91.gates` collar_ge_3px FAILs identically on R0 itself — 2,171 inherited 2-3 px dots, IR-91-03/IR-91-31; zero TRACKB-added dots are <=3 px), sha256 as in file names / `evidence/trackb_axis_20261023.json`. Rebuild: `python3 scripts/restore_data.py && python3 scripts/build_trackb.py --build` (byte-identical, verified twice).
+## Session 6 (`arena/9b8f7d01-gemsdoe91`) — SNAP variants (built; **not** in the top 3)
 All three files and their `-zeros` fallbacks are on disk in `releases/`, pinned in
 `releases/MANIFEST.json` (never committed). **No agent submits.** `SNAP` is predicted at or
 below R0 on the only independent locator (off-catalogue USGS SGMC), so it is a reserve
 axis-retirement test, not a slot candidate (`SLOT_PLAN.md`, `docs/MECHANISM_CARDS_SNAP.md`).
-
 ```bash
 python3 scripts/restore_data.py
 python3 scripts/build_snap.py --build
@@ -198,15 +205,12 @@ python3 scripts/validate_raster.py releases/h33-h33-2-b2-SNAPs2c-20261023-86b27d
     --catalogue data/official/existing_faults.tif \
     --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
 ```
-
 | File (`releases/`) | Rule | Form note (≤140 chars, exact length) | `MODEL` |
 |---|---|---|---|
 | `h33-h33-2-b2-SNAPs2c-20261023-86b27de1.tif` | 3×3 crest only, 2,047 dots moved (5.44 %) | `h33-h33-2-b2; SNAP crest: 2047 dots (5.4%) moved 0.08px mean, count fixed; pred MODEL:+0.000` (92) | +0.000 `[−0.006,+0.006]` |
 | `h33-h33-2-b2-SNAPs2q75-20261023-8aa75390.tif` | window max, gain ≥ p75, 4,495 moved (11.94 %) | `h33-h33-2-b2; SNAP maxq75: 4495 dots (11.9%) moved 0.24px mean, count fixed; pred MODEL:-0.004` (94) | −0.004 `[−0.012,+0.005]` |
 | `h33-h33-2-b2-SNAPs2f-20261023-c2391234.tif` | window max, no threshold, 35,174 moved (93.41 %) | `h33-h33-2-b2; SNAP maxfull: 35174 dots (93.4%) moved 1.73px mean, count fixed; pred MODEL:-0.014` (96) | −0.014 `[−0.028,+0.004]` |
-
 ### Session 6 format receipt (`RECEIPT`, re-read from disk after write)
-
 ```text
 1. h33-h33-2-b2-SNAPs2c-20261023-86b27de1
    primary (.tif)        sha256=86b27de1e6849101ebd6a3ab925183fdf1bed4f11257997678ee226ebe80ecb4 (371,722 B)
@@ -214,27 +218,23 @@ python3 scripts/validate_raster.py releases/h33-h33-2-b2-SNAPs2c-20261023-86b27d
    dots 37,654 unit-mass | count_matches_parent PASS | cat_mass 0 | min_d_cat 2.2361 px (added_le3px 0)
    collar 2,171 -> 2,171 | moved 2,047 | mean disp 0.0798 px | Hamming 4,094 (10.87%)
    gates: release_gates 16/16 PASS (nan + zeros) | validate_raster 14/14 PASS | reread_from_disk PASS
-
 2. h33-h33-2-b2-SNAPs2q75-20261023-8aa75390
    primary (.tif)        sha256=8aa7539013b4e89df65e752da2a4a477ac4f7d0c972a46f03673b631490e94c9 (372,144 B)
    fallback (-zeros.tif) sha256=9c4c13d39b48147615e66340803274517c3cc15974d9451e8cf46bee4edf1fa9 (225,140 B)
    dots 37,654 unit-mass | count_matches_parent PASS | cat_mass 0 | min_d_cat 2.2361 px (added_le3px 0)
    collar 2,171 -> 2,171 | moved 4,495 | mean disp 0.2369 px | Hamming 8,990 (23.88%)
    gates: release_gates 16/16 PASS (nan + zeros) | validate_raster 14/14 PASS | reread_from_disk PASS
-
 3. h33-h33-2-b2-SNAPs2f-20261023-c2391234
    primary (.tif)        sha256=c239123496deb176c6ed8d365284715570cd11bacd77d9c266064dd5a8b97c75 (372,581 B)
    fallback (-zeros.tif) sha256=f2fe14c1c46b133cf4bd16bcbde8bc0a07fd8b0de1e0038c97411cb860ac85c7 (225,819 B)
    dots 37,654 unit-mass | count_matches_parent PASS | cat_mass 0 | min_d_cat 2.2361 px (added_le3px 0)
    collar 2,171 -> 2,171 | moved 35,174 | mean disp 1.7331 px | Hamming 70,348 (186.83%)
    gates: release_gates 16/16 PASS (nan + zeros) | validate_raster 14/14 PASS | reread_from_disk PASS
-
 PROXY (report only, never a score): catalogue hide-and-recover 0.006186 [0.005958, 0.006413],
 5 draws, 12,198-12,201 withheld positives/draw -- identical for R0 and all three arms BY
 CONSTRUCTION (targets >3 px, collar quarantined; IR-91-28).  SGMC off-catalogue (62,122 px,
 USGS DS-1052): R0 0.095386 -> +0.00008 / -0.00234 / -0.00926.  Leakage canary max band AUC 0.5793.
 ```
-
 **Do not** upload more than one SNAP arm for the "information" of it — they are one dose-response
 experiment. If a SNAP receipt is bought, `s2c` is the only arm whose prediction is compatible with
 no change, and `≤ −0.006` retires the axis.
