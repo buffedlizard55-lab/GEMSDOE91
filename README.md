@@ -1,5 +1,13 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+> **MTD91 (2026-10-24, branch `arena/9f196bb4-gemsdoe91`): NOT OK TO SUBMIT.**
+> Unique zeros GeoTIFF: [`docs/downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif`](docs/downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif)
+> (SHA-256 `de595c67d459a7e764fb059285725db7eabb089d6672f7cd820af135d2558dc9`).
+> **HOLDOUT-DTI 0.023903** (evaluator `gems91-hide-recover-v1.0`, 60988 withheld positives, 95% CI 0.021318–0.026004).
+> Canary PASS (max AUC 0.5499). Registry uniqueness PASS (15 rasters, |ρ|≤0.01785, 3 px overlap ≤0.18887). Format PASS ([0,1] all-finite).
+> Verdict **negative**. Pages: [`docs/index.html`](docs/index.html) · [`docs/mtd91.html`](docs/mtd91.html) · run card [`docs/run-card-MTD91.json`](docs/run-card-MTD91.json).
+> Standing user brief (competition links, parallel-run protocol, fleet CLAIMs, Core Values) is the prompt recorded in prior README sections and `docs/HYPOTHESES_MTD91.md`. Read it before every session.
+
 > **CURRENT CHECKOUT REVIEW (2026-10-24): NOT OK TO SUBMIT.** No new TIFF or experiment was produced in this review. The current `docs/run-card.json` is the authority: its CED91 research artifact fails the final-dot duplicate gate. It is format-valid and **OK to download for research only**, not approved for competition upload. No weekly slot was used. The lane-identifying method paragraph is absent from the prompt, so selecting another experiment would violate the parallel-run protocol. The complete review, code fixes, ranked untested hypotheses and review JSON are in [`docs/REVIEW-ARENA-20261024.md`](docs/REVIEW-ARENA-20261024.md).
 >
 > Four manifest-pinned inputs were restored to the ignored `data/` directory from public sibling-repository mirrors and SHA-256/byte-count checked. That verifies identity to project pins only—not DrivenData authentication, license or redistribution rights. The refreshed preflight marks PRUNE, SNAP, CONCENTRATION and TRACKB locally build-ready; this does not supply the missing assigned lane or authorize an experiment. Local build readiness is not permission to submit. Read this status, the run card, irregularities, limitations and the full standing user brief below before each session.
