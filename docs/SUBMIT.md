@@ -1,3 +1,5 @@
+> **Superseded for promotion eligibility (2026-10-24).** Historical build instructions below are not approval to submit. See [current executive summary](executive-summary.html) and [protocol audit](REVIEW-20261024.md).
+
 # SUBMIT — MASS/consensus arms + merged PRUNE/CONCENTRATION queue (2026-10-23)
 
 **Status 2026-10-23: 38 BUILT rows, 0 submitted, 0 receipts.** Rasters are not committed;
