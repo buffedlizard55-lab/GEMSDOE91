@@ -672,6 +672,89 @@ as a *matched-dose difference* between two arms rather than as an absolute gain.
 `CONCENTRATIONgdr25rm10` (`c019adb01`, `+0.0123` `MODEL`) loses its top slot: its prediction is
 a 0.1 × shrinkage of the prior scored against itself, the same circularity in a different dress.
 
+## IR-91-36 — The 2026-10-24 prompt names no single lane paragraph, and two of its leaderboard numbers conflict
+
+**Expected:** the parallel-run protocol says "your lane is the single method paragraph below",
+and quotes one current top score.
+**Actual:** the prompt as delivered contains no single method paragraph (it repeats the full
+fleet brief twice), and quotes both "current high score 0.4413" and "0.3195 is the highest
+score right now". The official leaderboard fetched 2026-10-24 reads #1 0.4413, #2 0.3916,
+#3 0.3904 (LEADERBOARD-READ); 0.3195 was #2 in GEMSDOE32's verified 2026-10-04 read.
+**Numbering note (merge 2026-10-24):** main's parallel GEOD/review session took IR-91-35 while
+this branch was in flight, so this branch's items were renumbered 35-40 -> 36-41 on merge;
+cross-references in this lane's docs/code were updated to match.
+**Decision it changes.** The lane is self-assigned and stated up front (DENOVO, de novo surface;
+`src/gems91/denovo.py` + experiment preregistrations in `scripts/build_denovo.py`), and the
+duplicate test (rank-correlation > 0.90 or > 70% of dots within 3 px of one registry raster) is
+applied to the surface and the final dots (max 0.1133 / 40.41% — not a duplicate). All three
+leaderboard numbers are reported with their dates and sources, never silently picked.
+
+## IR-91-37 — `src/gems91/metric.py` computed a different metric from the organiser's (fixed here)
+
+**Expected:** two metric implementations in one repo agree.
+**Actual:** `metric.py` summed `p*k` over all dots near a truth pixel; the organiser's published
+definition (fetched 2026-10-24) takes the per-truth-pixel **max** (`TPw`, capped at 1), and
+`scripts/dti.py` already did that. The summed version can exceed DTI = 1 — the old test
+`test_dense_coverage_can_exceed_one` documented exactly that symptom without naming it a bug.
+**Decision it changes.** Fixed once in `metric.py` (per parallel-run protocol §2), with the
+official worked example (`TPw 3.00, FPw 1.89, FNw 2.00 -> 0.60`) pinned in tests; both
+implementations now agree to <1e-9 on random fields. Convergence on merge (2026-10-24): the CED
+lane independently found the same summed-credit bug, cited it under the same number IR-91-37, and
+replaced `metric.py` with an adapter to the pinned shared template (`vendor/gems57`), which
+supersedes this branch's local fix; `scripts/dti.py` (this lane's evaluator of record) agrees with
+the template algebra. Note on merge (2026-10-24): the GEOD
+lane that landed on main in parallel quotes `gems91.metric v1` (the summed version) for its
+holdout 0.00077 — that number overstates credit wherever dot kernels overlap and should be
+recomputed with `scripts/dti.py` before reuse; its file gates are unaffected. Any overlapping-dot `T` previously
+computed via `metric.py` is overstated and must be recomputed before reuse. The protocol's
+named files `evaluate_holdout.py` / `submission_writer.py` do not exist in this repo; the
+equivalents used are `scripts/dti.py` + `scripts/build_denovo.py` (holdout) and
+`gems91.io.write_float32` (writer) — no private fork was created.
+
+## IR-91-38 — R0-as-is and d2.8-as-is are not honest holdout baselines
+
+**Expected:** score the parent on the same holdout as the candidate.
+**Actual:** R0 was pruned against the *full* catalogue, so on withheld segments it scores
+0.006452 by construction (IR-91-28 class); d2.8-as-is scores 0.156058 partly because 8,607 of
+its dots sit ≤3 px from the full catalogue including withheld pixels, and it spends 44,090
+dots against the candidate's 37,654. Neither is a like-for-like bar.
+**Decision it changes.** Promotion is judged against same-protocol methods (random 0.070827,
+TRI3 0.091215, SUP 0.097146) and per-dot credit (HGB-CTX 0.2168 > d2.8 0.2077); the d2.8 number
+is carried as a labelled leakage-flattered reference, never as "the holdout best".
+
+## IR-91-39 — The two local instruments disagree about the DENOVO file
+
+**Expected:** holdout and the SGMC off-catalogue control rank candidates the same way.
+**Actual:** the blocked holdout puts HGB-CTX first of the honest methods, but the SGMC
+off-catalogue control (62,122 px) scores it 0.068703 vs R0's 0.095386. Converted through the
+metric algebra the MODEL live range is ~0.20-0.29, spanning R0's 0.2778 CLAIM.
+**Decision it changes.** The file is promoted for **one** weekly slot as the unique-lane test
+and explicitly *not* recommended as the blind final; the site states both readings. The
+receipt, whichever way it lands, adjudicates the instruments.
+
+## IR-91-40 — The highest-ceiling hypothesis (1 m DEM scarps) is blocked in this sandbox
+
+**Expected:** candidate H4 (scarp features re-derived from the competition's `1m_DEM_links.csv`
+-> USGS 3DEP, free/official/public domain) could be validated before proposing it.
+**Actual:** the sandbox may only reach GitHub/PyPI/npm hosts, the DrivenData data page needs a
+login, and the pinned derived copy `ext_lidar_scarp_u8` carries "licence unchecked — do not
+redistribute" with unverified provenance and only 75% footprint coverage. Its bands' pixelwise
+canary AUCs here are 0.52-0.55 (diagnostic only; pixelwise AUC understates line detectors).
+**Decision it changes.** H4 is proposed as *not viable from this sandbox* and named as the next
+lane for an unrestricted machine: download the official DEM tiles, re-derive scarp features
+with recorded provenance, pin hashes, then rerun this session's holdout with the scarp channels
+added to HGB-CTX. The submitted file uses sponsor bands only.
+
+## IR-91-41 — Publishing the submission .tif in `docs/downloads/` amends the no-rasters-in-git rule
+
+**Expected:** repo policy (docs/DATA.md rule 2, CI gate) tracked no `.tif` at all.
+**Actual:** the brief requires an obvious one-click download from the GitHub Pages site, and the
+fleet's working precedent (GEMSDOE32, whose download scored 0.2778 CLAIM) publishes its own
+derived submission under `docs/downloads/`. A derived {0,1} prediction is the entrant's own
+work product, not competition input data.
+**Decision it changes.** `.gitignore` and CI now allow `.tif`/`.zip` only under
+`docs/downloads/`; competition input rasters remain forbidden everywhere and `data/` remains
+ignored. Only the all-finite zeros primary is published (202,693 B) with its audit JSON.
 ## IR-91-35 — 2026-10-24 parallel-run protocol cannot certify legacy axes
 
 No lane paragraph or shared template path supplied. All pinned input files absent
@@ -682,9 +765,86 @@ GEMSDOE32 source explicitly disclaims organizer scores. See
 `docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
 submission advice is superseded by the fail-closed executive summary.
 
-> **Numbering note (merges of PR #26 with PR #24 and PR #28).** Three 2026-10-24 sessions numbered from IR-91-33. The collar session's IR-91-33/34 (PR #24, merged first) and the parallel-run audit session's IR-91-36 (PR #28) keep their numbers; the strain session's three items, merged last, were renumbered IR-91-37/37/38, and every strain-owned file was renumbered to match. Artefacts that cite "IR-91-33/34/35" for the strain items refer to IR-91-37/37/38.
+## IR-CED-001 — contradictory active approval claims and stale run cards
 
-## IR-91-36 — The GDR concentration arms silently executed a partial PRUNE (Session 8)
+At this branch's starting commit, the landing page advertised “Download & submit”
+while `docs/run-card.json` reported no experiment and no TIFF. The advertised GEOD
+file also exceeded the prompt's 70% near-dot threshold. Concurrent upstream work
+subsequently labelled the old file promoted without a compliant pooled holdout.
+This session preserves inherited artifacts/history but replaces active approval
+claims with a single evidence-derived fail-closed policy and measured negative
+CED91 card. Tests now distinguish a downloadable **research** file from an
+approved submission; they require real bytes and working local links in both cases.
+
+## IR-CED-002 — the legacy local metric summed max-kernel truth credit
+
+`src/gems91/metric.py` used addition instead of max at each truth cell. Its own
+old test expected dense perfect predictions to exceed one. Two builder-specific
+`dti_parts_f32` routines reproduced that bug. All three are now adapters to the
+unchanged pinned shared max-credit metric. Legacy deltas from incompatible/wrong
+instruments are not a compliant baseline and do not support promotion. This is
+not a private modification of `vendor/gems57`; its hashes remain upstream-exact.
+
+## IR-CED-003 — literal novelty rule meets a near-universal lattice cover
+
+CED91 cleared all 64 indexed pre-placement surface comparisons. Final comparison
+27 (`calib_r13lattice_00904.tif`) gave 0.999125 directed overlap within 3 px and
+triggered DUPLICATE. The reference's own 3-pixel cover reaches 99.8713% of the
+footprint (`docs/parent-forensics.json`). A low rank correlation cannot override
+that literal rule. The run stopped; no exemption, registry removal, threshold
+change or additional geological experiment followed. This is a protocol conflict
+for owner/shared-selector review, not proof of copied geology. The TIFF remains
+a format-valid research deliverable, explicitly NOT OK TO SUBMIT.
+
+## IR-CED-004 — ancestor deletion counts conflated in earlier prose
+
+Pinned forensics find R0 deletes 6,436 of the 44,090-dot d2.8 ancestor or 2,545 of
+the 40,199-dot solo-d2.8 ancestor. Both rebuild R0 exactly at distance >2 px; neither
+adds dots. Earlier prose attached the second deletion count to the first ancestor.
+Active analysis now uses measured counts and does not claim a universal spacing
+optimum, established causality for the reported score, or an authenticated receipt.
+
+## IR-CED-005 — no assigned method, complete registry or comparable best
+
+The user prompt contains no single assigned lane paragraph. A parent-free CED
+lane was preregistered as **provisional research only**, with assignment unverified
+and promotion disabled. The 64-file pinned registry is not universal: the 92-page
+GitHub audit indexes 2,529 raster file entries across source snapshots, including
+repeats and data. No complete raster comparison is claimed. No independently
+comparable prior holdout best is recorded. These are additional explicit blockers,
+not reasons to invent a score or ask for credentials.
+
+## IR-CED-006 — external source and legacy data-placement claims
+
+Official non-GitHub hosts, including the rules PDF and live organizer allowance,
+are outside this sandbox's allowlist. Links are labelled source leads unless
+actually fetched. The user prompt's download/prepare shell commands are absent
+from this checkout; claiming a ready GPU training pipeline from them was wrong.
+The existing pinned restore script did recover and hash-verify the cached input
+stack on CPU. No new external data or GPU is needed by the tested CED method.
+Raw rasters remain ignored; existing public mirrors still need distribution-rights
+review. A hash pin is identity evidence, not official authentication or permission.
+
+## IR-CED-007 — Concurrent outputs were outside the new artifact allowlist
+
+PR32 merged after PR34, preserving the CED negative portal but adding a separate
+DENOVO TIFF/ZIP without updating `artifact_policy.json`. Those files are now
+hash-pinned as `parallel_quarantined`, not removed, rebuilt, or promoted. Its
+pre-merge promotion advice is preserved as historical; current policy is blocked.
+Different holdout instruments and seven-file comparisons do not waive common gates.
+
+## IR-CED-008 — Pages configuration permission and runner queue
+
+After the published REST quota reset, reading Pages succeeded; updating the
+legacy publisher to Actions was denied with 403 “Resource not accessible by
+integration”. The existing workflow's declared Pages-write token is configured
+to attempt the switch; this is unverified until it executes. CI/Pages were
+queued without runners at the observed check. Neither a local PASS nor merge
+is a successful public-deployment receipt.
+
+> **Numbering note (merges of PR #26 with PRs #24, #28, #30 and the DENOVO/CED lanes).** Every 2026-10-24 lane numbered from IR-91-33. The strain session's four items, merged last, are IR-91-42/43/44/45 below; artefacts citing them as IR-91-33…39 refer to these numbers.
+
+## IR-91-42 — The GDR concentration arms silently executed a partial PRUNE (Session 8)
 
 **Expected:** a CONCENTRATION edit changes only block-scale dot density; the IR-91-27
 standard (Sessions 5-7) quarantines R0's 2,171 inherited dots at 2 < d_cat <= 3 px so a
@@ -699,7 +859,7 @@ alone: up to ~0.7% of its dots are a small PRUNE. The strain build adds an opt-i
 `donor_exclude` quarantine to `tools.run_concentration.build_concentration` (default
 preserves the GDR fleet's byte identity; new builds must pass `d_cat <= 3 px`).
 
-## IR-91-37 — The built strain prior is not the SLOT_PLAN proposal's literal formula
+## IR-91-43 — The built strain prior is not the SLOT_PLAN proposal's literal formula
 
 The merged SLOT_PLAN proposal's falsifier reads "Moving 20% of R0 mass into top-tercile
 `geod_2ndinv x S_struct`".  Session 8 built the geodetic percentile ranks *without* the
@@ -713,7 +873,7 @@ prior would fall between the lineage field it multiplies and the strain field th
 failed) building it is not recommended; recorded so nobody cites `strn25m20` as the
 proposal's falsifier test.
 
-## IR-91-38 — The geodetic "km-scale prior" is province-scale, and its two oracles disagree
+## IR-91-44 — The geodetic "km-scale prior" is province-scale, and its two oracles disagree
 
 **Expected** (brief S5): CONCENTRATION moves dots between km-scale blocks of a prior,
 with the strain bands attractive because they lead the GeoDAWN stack on catalogue AUC
@@ -731,7 +891,7 @@ missed). No strain arm enters the Week-1 queue; future block priors get an SGMC-
 decile screen reported *before* any build, labelled PROXY with the proxy-tuning risk
 stated, never as a gate.
 
-## IR-91-39 — The same geodetic-strain intervention was built twice under two axis names, with opposite-signed claims, and one copy's rasters were committed under `docs/`
+## IR-91-45 — The same geodetic-strain intervention was built twice under two axis names, with opposite-signed claims, and one copy's rasters were committed under `docs/`
 
 Session 9 (`arena/4f94d2e7`, PR #30, merged while PR #26 awaited CI) built `GEOD`/`geod25m10`
 (`bff9fd21…`) from the identical recipe as this session's `CONCENTRATION`/`strn25m10` (`85cc49d2…`):
@@ -743,7 +903,7 @@ the ledger now holds both (54 rows). The claims disagree in sign: Session 9 head
 evidence (`evidence/geod_axis_20261024.json`) shows that figure is the **full** SGMC field
 (parent DTI 0.09539 = R0's full-SGMC value), not the off-catalogue restriction on which the same
 intervention measures −4.05% rel and loses to a random-prior relocation (**−0.0056** `MODEL`,
-IR-91-38). Session 9 also committed both competition rasters under `docs/downloads/` in a repo
+IR-91-44). Session 9 also committed both competition rasters under `docs/downloads/` in a repo
 serving GitHub Pages — public exposure of submission files while the competition data-use terms
 remain unchecked (brief: keep competition rasters out of public repos; flagged, not deleted, at
 merge). Decision consequence: Session 9's README promotes `GEOD25m10` to "the new Slot-1
@@ -752,3 +912,5 @@ translator rejects. Neither `MODEL` number is evidence — only a receipt settle
 question, and spending a slot on either file spends it on both sessions' hypothesis. The human
 must decide: (a) whether the `docs/downloads/` rasters stay public, (b) whether any strain file
 enters the queue ahead of PRUNE-le10/MASS-cons3add.
+
+Update at the PR #26 merge (same day): main had meanwhile chosen the other resolution — PR #31 promoted `GEOD25m10` (portal `submission_ready: true`), widened the axis test to admit `GEOD`, and IR-91-41 amended the no-rasters policy for `docs/downloads/`. This merge adopts main's versions of the portal pages, tests and CI; the strain lane's contrary verdict stands in `docs/MECHANISM_CARDS_STRAIN.md`. The human decision above is therefore now: whether the promoted portal candidate is actually submitted, knowing the off-catalogue control disagrees.

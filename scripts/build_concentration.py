@@ -108,50 +108,13 @@ LEDGER_COLS = [
 
 
 # --------------------------------------------------------------------------- #
-# DTI parts, memory-frugal (used on the full 12.3 M-cell grid)
+# Legacy DTI API adapter to the pinned shared metric
 # --------------------------------------------------------------------------- #
-def _add_shift_f32(buf: np.ndarray, a: np.ndarray, dr: int, dc: int, k: float) -> None:
-    """buf[r, c] += k * a[r - dr, c - dc] (zero outside), in place on float32."""
-    h, w = a.shape
-    rs_src = slice(max(0, -dr), min(h, h - dr))
-    rs_dst = slice(max(0, dr), min(h, h + dr))
-    cs_src = slice(max(0, -dc), min(w, w - dc))
-    cs_dst = slice(max(0, dc), min(w, w + dc))
-    buf[rs_dst, cs_dst] += np.float32(k) * a[rs_src, cs_src]
+def dti_parts_f32(pred, truth, radius_px=metric.RADIUS_PX):
+    """Legacy API adapter: reuse the canonical metric, never summed credit."""
+    return metric.components(pred, truth, radius_px)
 
 
-def _max_shift_f32(buf: np.ndarray, a: np.ndarray, dr: int, dc: int, k: float) -> None:
-    h, w = a.shape
-    rs_src = slice(max(0, -dr), min(h, h - dr))
-    rs_dst = slice(max(0, dr), min(h, h + dr))
-    cs_src = slice(max(0, -dc), min(w, w - dc))
-    cs_dst = slice(max(0, dc), min(w, w + dc))
-    np.maximum(buf[rs_dst, cs_dst], np.float32(k) * a[rs_src, cs_src], out=buf[rs_dst, cs_dst])
-
-
-def dti_parts_f32(pred: np.ndarray, truth: np.ndarray, radius_px: float = metric.RADIUS_PX) -> metric.DtiParts:
-    """Same (T, S, M, |G|) as gems91.metric.components, without float64 copies.
-
-    Verified against `metric.components` by `tests/test_prior.py` on small arrays.
-    """
-    pred = np.ascontiguousarray(pred, dtype=np.float32)
-    truth_b = np.ascontiguousarray(truth, dtype=bool)
-    tf = truth_b.astype(np.float32)
-    offsets = metric._offsets(radius_px)
-    credit = np.zeros_like(pred)
-    for dr, dc, k in offsets:
-        _add_shift_f32(credit, pred, dr, dc, k)
-    T = float(credit[truth_b].sum(dtype=np.float64))
-    del credit
-    best = np.zeros_like(pred)
-    for dr, dc, k in offsets:
-        _max_shift_f32(best, tf, dr, dc, k)
-    M = float((pred * best).sum(dtype=np.float64))
-    return metric.DtiParts(T=T, S=float(pred.sum(dtype=np.float64)), M=M,
-                           n_truth=int(truth_b.sum()))
-
-
-# --------------------------------------------------------------------------- #
 def rebuild_parent() -> dict:
     """Prove the parent's dot set from two pinned ancestors before touching it."""
     parent = io.dot_mask(io.read_grid(PARENT_NAN))

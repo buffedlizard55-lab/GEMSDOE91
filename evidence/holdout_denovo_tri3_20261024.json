@@ -1,0 +1,113 @@
+{
+  "mode": "holdout",
+  "evaluator": "scripts/dti.py official-DTI (alpha=0.2,beta=0.8,R=3px)",
+  "protocol": "whole-component checkerboard-block holdout, 400px blocks; exclusion from visible catalogue only; official DTI pooled",
+  "n_components": 3199,
+  "n_withheld_positives_per_fold": [
+    15105,
+    15978,
+    12874,
+    17031
+  ],
+  "n_withheld_positives_total": 60988,
+  "spacing_px": 2.8,
+  "n_dots_total_budget": 37654,
+  "surface_audit": {
+    "cache": "work/denovo_surface_f32.npy",
+    "sha256_f32": "134daf62fa07609a2f3ca570a99ccfa3dc02e304b47a2bc92ee4f98e643e2251"
+  },
+  "methods": {
+    "tri3": {
+      "pooled_holdout_dti": 0.091215,
+      "fold_dti": [
+        0.10464,
+        0.088974,
+        0.079136,
+        0.090512
+      ],
+      "fold_mean_ci95": [
+        0.074101,
+        0.10753
+      ],
+      "dots_per_fold": [
+        9888,
+        9831,
+        8663,
+        9272
+      ],
+      "pooled_T": 5191.02,
+      "pooled_S": 37654.0,
+      "pooled_M": 2249.64,
+      "pooled_G": 60988
+    },
+    "r0_as_is": {
+      "pooled_holdout_dti": 0.006452,
+      "fold_dti": [
+        0.007152,
+        0.006011,
+        0.006249,
+        0.006392
+      ],
+      "fold_mean_ci95": [
+        0.005666,
+        0.007236
+      ],
+      "dots_per_fold": [
+        9836,
+        9921,
+        7955,
+        9942
+      ],
+      "pooled_T": 363.48,
+      "pooled_S": 37654.0,
+      "pooled_M": 267.14,
+      "pooled_G": 60988
+    },
+    "d2_8_as_is": {
+      "pooled_holdout_dti": 0.156058,
+      "fold_dti": [
+        0.156124,
+        0.161926,
+        0.15936,
+        0.147898
+      ],
+      "fold_mean_ci95": [
+        0.14662,
+        0.166034
+      ],
+      "dots_per_fold": [
+        11477,
+        11675,
+        9368,
+        11570
+      ],
+      "pooled_T": 9156.71,
+      "pooled_S": 44090.0,
+      "pooled_M": 3823.66,
+      "pooled_G": 60988
+    },
+    "random_matched": {
+      "pooled_holdout_dti": 0.070827,
+      "fold_dti": [
+        0.069232,
+        0.073936,
+        0.067972,
+        0.071531
+      ],
+      "fold_mean_ci95": [
+        0.066482,
+        0.074853
+      ],
+      "dots_per_fold": [
+        9888,
+        9831,
+        8663,
+        9272
+      ],
+      "pooled_T": 4024.63,
+      "pooled_S": 37654.0,
+      "pooled_M": 1515.68,
+      "pooled_G": 60988
+    }
+  }
+}

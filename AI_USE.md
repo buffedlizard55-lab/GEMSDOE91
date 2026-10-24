@@ -456,7 +456,22 @@ relocation from the top of the slot queue. Its own top slot proposal (`gdr25rm10
 **Human decides:** `TOP_PUBLIC` + date, slots left this week, whether any slot goes to `anti10`,
 the R0 anchor receipt, and the blind final file. No upload is made by an agent.
 
----
+## CED91 session — 2026-10-24, branch arena/d043e4f8-gemsdoe91
+
+AI audited local/remote source snapshots, restored existing pinned public-mirror
+inputs, found and hash-pinned the unmodified shared template, preregistered four
+hypotheses, implemented one parent-free two-band transform, ran feature canaries
+and whole-component pooled holdout evaluation, and stopped on a literal registry
+duplicate. AI generated the downloadable research TIFF/ZIP, automated validators,
+fail-closed portal/guide, source register, CI/Pages workflows and tests. The original
+user brief is embedded in README. No competition slot/account action, organizer
+receipt, hidden truth or credentials were accessed. No new scientific experiment
+was run after the duplicate stop; subsequent work was audit, tests and delivery.
+
+Scientific mechanisms are hypotheses, not validated discoveries. External official
+web pages/literature could not be independently fetched under the host allowlist.
+GitHub source-page claims are not organizer receipts. The current negative card
+and README supersede historical unsupported forecasts and submission queues.
 
 ## Session 8, concurrent strain build (2026-10-24, `arena/6f079276-gemsdoe91`) — CONCENTRATION (geodetic-strain prior)
 
@@ -468,7 +483,7 @@ dimension. Froze the design and prediction translator in
 `src/gems91/strain.py`, `scripts/build_strain_concentration.py`,
 `scripts/strain_diagnostics.py`, `tests/test_strain.py`, the `donor_exclude` quarantine
 option in `tools/run_concentration.py` (default preserves GDR byte identity), mechanism
-cards (`docs/MECHANISM_CARDS_STRAIN.md`), IR-91-36/37/38, and the three release pairs.
+cards (`docs/MECHANISM_CARDS_STRAIN.md`), IR-91-42/43/44, and the three release pairs.
 Verified 15/15 manifest hashes and rebuilt R0 byte-for-byte from both ancestors before
 building. All three arms came out predicted negative under the frozen translator; the AI
 reported them as such and kept them out of the slot queue per its own preregistered rule

@@ -1,228 +1,228 @@
 {
- "schema_version": 1,
- "generated_utc": "2026-10-24T00:00:00Z",
- "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_snap.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
- "parent": "h33-h33-2-b2 (e5eb6e7e)",
- "files": [
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815-zeros.tif",
-   "sha256": "d498174b5c1314b970d6415ef890e21d854e06f184ef24e4b8956429a49ebbd6",
-   "bytes": 222073
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815.tif",
-   "sha256": "d54e881580e332ef6e43f9178635f06b988e2d4dac67b61fd166c8e61e734395",
-   "bytes": 368830
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf-zeros.tif",
-   "sha256": "a4bfcb64b8fb37ed8a795ff97e2f320d296921e95f2855fea98bb135a7581c9b",
-   "bytes": 222418
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf.tif",
-   "sha256": "08bf80cf443cc68faeb0dd0eca8d0aecf85eb113e7d3094e3a778382bc180369",
-   "bytes": 369066
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01-zeros.tif",
-   "sha256": "a22db57da8faf4825deca79f8bfa35de95a45ac56f37d8e391bac401b01a9a27",
-   "bytes": 222541
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif",
-   "sha256": "c19adb012aec8571fcca393e3401050b01011286cec7282393cbcc0cca6a6e30",
-   "bytes": 369017
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad-zeros.tif",
-   "sha256": "d393c94f386015678e6f99f0c2a1a556aecd7cf733d59777b788f9a0423c80e7",
-   "bytes": 224741
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad.tif",
-   "sha256": "536d32ad49bdf70ade796eb6d3ba2e303c2622239cd4253c27c2ff96f1bfc60a",
-   "bytes": 371632
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288-zeros.tif",
-   "sha256": "ad6dfa26043f7f195feba63852422efcc674da3eb448d4c42fc42858d26dd0d2",
-   "bytes": 225691
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288.tif",
-   "sha256": "39bb728839d70ab08ddee645a270c1f693b69e1252f7961dadb3e4a758a95df6",
-   "bytes": 372814
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309-zeros.tif",
-   "sha256": "5c517369be3c807c592e5dacfc9f7419a464f324c6d6a80f7eb6e0e5c6634d4e",
-   "bytes": 226284
-  },
-  {
-   "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309.tif",
-   "sha256": "6d389309aafaa79d01ecb2d62e6de89b2030f6d1bfb15f96024c32b5baf00eaa",
-   "bytes": 373103
-  },
-  {
-   "file": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
-   "sha256": "104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722",
-   "bytes": 212109
-  },
-  {
-   "file": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif",
-   "sha256": "bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158",
-   "bytes": 356859
-  },
-  {
-   "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae-zeros.tif",
-   "sha256": "0842d86618dbe64acf6dfb4137feff423a9dc394b59d153317381fc22b06dbb8",
-   "bytes": 174857
-  },
-  {
-   "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif",
-   "sha256": "04002dae86db72c3fc47652bd66e3ec029e432c909cad779039e9e3749ae0839",
-   "bytes": 321924
-  },
-  {
-   "file": "h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e-zeros.tif",
-   "sha256": "b2c4fa39c78c2f02cd17bcf932ca910369be6b7c222ec0f3e4fde6da3f001be4",
-   "bytes": 208254
-  },
-  {
-   "file": "h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e.tif",
-   "sha256": "360fe57edd8286393a180f0ae53c8259899c4344e5bc7f4c4ec20dcdf28530a7",
-   "bytes": 355396
-  },
-  {
-   "file": "h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987-zeros.tif",
-   "sha256": "2ecee552504209488ab5d2a0066dbd87f19cd4b1baea3003a4c34935b78e20c2",
-   "bytes": 200383
-  },
-  {
-   "file": "h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987.tif",
-   "sha256": "5b6d39870bc0fe9813813f231a56e3b9425e7e2ec149e3e2de8f3ae654b14ce8",
-   "bytes": 347613
-  },
-  {
-   "file": "h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5-zeros.tif",
-   "sha256": "3e47cb772a1b5ea261d5d756ee1b8e6038db09571c74682700ed77e026e18ee4",
-   "bytes": 222473
-  },
-  {
-   "file": "h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5.tif",
-   "sha256": "e1fd28d57106bebbb2b7f5b4327ab5a186a3eb4a3085b7e5c4a06aad2286dc0f",
-   "bytes": 369469
-  },
-  {
-   "file": "h33-h33-2-b2-RELIEFr2b12-20261023-27443c30-zeros.tif",
-   "sha256": "baa1883fd76b0d374c6fdbd5914cecb66e6721aa7c92c2c326bf3552f276c2a4",
-   "bytes": 223708
-  },
-  {
-   "file": "h33-h33-2-b2-RELIEFr2b12-20261023-27443c30.tif",
-   "sha256": "27443c301feff6f9bac035807d92a88c9830f8f198acab9bb53599700afbb6bd",
-   "bytes": 370517
-  },
-  {
-   "file": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c-zeros.tif",
-   "sha256": "2b02433ae4193a965cdebe07c6f1ae498525829175ac3db7fda5a419ea6a9587",
-   "bytes": 223541
-  },
-  {
-   "file": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif",
-   "sha256": "6ff08e5c2785f7684798c25d5f86a61df5aeb2568fcaeda9482b25cf61858b07",
-   "bytes": 370350
-  },
-  {
-   "file": "h33-h33-2-b2-SNAPs2c-20261023-86b27de1-zeros.tif",
-   "sha256": "b8f1a8ed6c80b038355a8f9aed7277c9b6d59817521fbe96af97c52abb15d42e",
-   "bytes": 224489
-  },
-  {
-   "file": "h33-h33-2-b2-SNAPs2c-20261023-86b27de1.tif",
-   "sha256": "86b27de1e6849101ebd6a3ab925183fdf1bed4f11257997678ee226ebe80ecb4",
-   "bytes": 371722
-  },
-  {
-   "file": "h33-h33-2-b2-SNAPs2f-20261023-c2391234-zeros.tif",
-   "sha256": "f2fe14c1c46b133cf4bd16bcbde8bc0a07fd8b0de1e0038c97411cb860ac85c7",
-   "bytes": 225819
-  },
-  {
-   "file": "h33-h33-2-b2-SNAPs2f-20261023-c2391234.tif",
-   "sha256": "c239123496deb176c6ed8d365284715570cd11bacd77d9c266064dd5a8b97c75",
-   "bytes": 372581
-  },
-  {
-   "file": "h33-h33-2-b2-SNAPs2q75-20261023-8aa75390-zeros.tif",
-   "sha256": "9c4c13d39b48147615e66340803274517c3cc15974d9451e8cf46bee4edf1fa9",
-   "bytes": 225140
-  },
-  {
-   "file": "h33-h33-2-b2-SNAPs2q75-20261023-8aa75390.tif",
-   "sha256": "8aa7539013b4e89df65e752da2a4a477ac4f7d0c972a46f03673b631490e94c9",
-   "bytes": 372144
-  },
-  {
-   "file": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38-zeros.tif",
-   "sha256": "46a5fb8c5f68e0e270bb308316ffdd8ee430cfe3a34cb2663c6b8c89482fcc0a",
-   "bytes": 222351
-  },
-  {
-   "file": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38.tif",
-   "sha256": "8343ab3895736250bd53c8afced208b61bb4eee7416aecf31ab6d0932c56b816",
-   "bytes": 368235
-  },
-  {
-   "file": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b-zeros.tif",
-   "sha256": "68e1310c3978205308acd99d7e3308146c31a892395b68805045422cff675c58",
-   "bytes": 218784
-  },
-  {
-   "file": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b.tif",
-   "sha256": "ab72339bf8fbdb042cfe5022e4511ab3f2589e5db5bdef78f0a75228981b97dd",
-   "bytes": 363690
-  },
-  {
-   "file": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a-zeros.tif",
-   "sha256": "c7b22af01bef6d137885fb9a7f548ab4dad50c9bc27f7fef5f83567a836cdab6",
-   "bytes": 222462
-  },
-  {
-   "file": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a.tif",
-   "sha256": "6d16fd7a597daabb3fdfc59d638b759bc2fea619c5f5a793bd318675b4499652",
-   "bytes": 368108
-  },
-  {
-   "file": "h33-h33-2-b2-CONCENTRATIONstrd25m10-20261024-106e87d9-zeros.tif",
-   "sha256": "09eef831b15a28220d27be72af8eae7e414fc74bc539a2644490c4487eb5f58c",
-   "bytes": 221931
-  },
-  {
-   "file": "h33-h33-2-b2-CONCENTRATIONstrd25m10-20261024-106e87d9.tif",
-   "sha256": "106e87d9fa9e461c2f12cd635c92c4e050da5741fce2c19037efa06268792e95",
-   "bytes": 368488
-  },
-  {
-   "file": "h33-h33-2-b2-CONCENTRATIONstrn25m10-20261024-85cc49d2-zeros.tif",
-   "sha256": "3b7038678a6f99c74d89c72f3499f79342dad87e4f68f8d3e0d922228af6251a",
-   "bytes": 221637
-  },
-  {
-   "file": "h33-h33-2-b2-CONCENTRATIONstrn25m10-20261024-85cc49d2.tif",
-   "sha256": "85cc49d2b572f1eb9967b84ae165941633f3a4b822157ed10ca9f9abce55dc4d",
-   "bytes": 367003
-  },
-  {
-   "file": "h33-h33-2-b2-CONCENTRATIONstrn25m20-20261024-a88ce2c2-zeros.tif",
-   "sha256": "51dbfde66426661dd77cddcdfc17bfe69edcd4a61945b4eaeb4e9b5446ea6e47",
-   "bytes": 218365
-  },
-  {
-   "file": "h33-h33-2-b2-CONCENTRATIONstrn25m20-20261024-a88ce2c2.tif",
-   "sha256": "a88ce2c270cdb68785dc89fa8da67342d55e9695f54af0c72e5c890737dc56ce",
-   "bytes": 363042
-  }
- ]
+  "schema_version": 1,
+  "generated_utc": "2026-10-24T00:00:00Z",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py` plus the session builder named for each family (build_spacing / build_prune_ladder / build_concentration / build_mass_consensus / build_relief / build_snap / build_trackb / build_strain_concentration) and every sha256 below must reappear byte for byte. CI enforces this.",
+  "parent": "h33-h33-2-b2 (e5eb6e7e)",
+  "files": [
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815-zeros.tif",
+      "sha256": "d498174b5c1314b970d6415ef890e21d854e06f184ef24e4b8956429a49ebbd6",
+      "bytes": 222073
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr10m10-20261023-d54e8815.tif",
+      "sha256": "d54e881580e332ef6e43f9178635f06b988e2d4dac67b61fd166c8e61e734395",
+      "bytes": 368830
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf-zeros.tif",
+      "sha256": "a4bfcb64b8fb37ed8a795ff97e2f320d296921e95f2855fea98bb135a7581c9b",
+      "bytes": 222418
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25m10-20261023-08bf80cf.tif",
+      "sha256": "08bf80cf443cc68faeb0dd0eca8d0aecf85eb113e7d3094e3a778382bc180369",
+      "bytes": 369066
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01-zeros.tif",
+      "sha256": "a22db57da8faf4825deca79f8bfa35de95a45ac56f37d8e391bac401b01a9a27",
+      "bytes": 222541
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif",
+      "sha256": "c19adb012aec8571fcca393e3401050b01011286cec7282393cbcc0cca6a6e30",
+      "bytes": 369017
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad-zeros.tif",
+      "sha256": "d393c94f386015678e6f99f0c2a1a556aecd7cf733d59777b788f9a0423c80e7",
+      "bytes": 224741
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGclump40-20261023-536d32ad.tif",
+      "sha256": "536d32ad49bdf70ade796eb6d3ba2e303c2622239cd4253c27c2ff96f1bfc60a",
+      "bytes": 371632
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288-zeros.tif",
+      "sha256": "ad6dfa26043f7f195feba63852422efcc674da3eb448d4c42fc42858d26dd0d2",
+      "bytes": 225691
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGjitter40-20261023-39bb7288.tif",
+      "sha256": "39bb728839d70ab08ddee645a270c1f693b69e1252f7961dadb3e4a758a95df6",
+      "bytes": 372814
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309-zeros.tif",
+      "sha256": "5c517369be3c807c592e5dacfc9f7419a464f324c6d6a80f7eb6e0e5c6634d4e",
+      "bytes": 226284
+    },
+    {
+      "file": "h33-h33-2-b2-20261004-e5eb6e7e-SPACINGspread40-20261023-6d389309.tif",
+      "sha256": "6d389309aafaa79d01ecb2d62e6de89b2030f6d1bfb15f96024c32b5baf00eaa",
+      "bytes": 373103
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrd25m10-20261024-106e87d9-zeros.tif",
+      "sha256": "09eef831b15a28220d27be72af8eae7e414fc74bc539a2644490c4487eb5f58c",
+      "bytes": 221931
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrd25m10-20261024-106e87d9.tif",
+      "sha256": "106e87d9fa9e461c2f12cd635c92c4e050da5741fce2c19037efa06268792e95",
+      "bytes": 368488
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrn25m10-20261024-85cc49d2-zeros.tif",
+      "sha256": "3b7038678a6f99c74d89c72f3499f79342dad87e4f68f8d3e0d922228af6251a",
+      "bytes": 221637
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrn25m10-20261024-85cc49d2.tif",
+      "sha256": "85cc49d2b572f1eb9967b84ae165941633f3a4b822157ed10ca9f9abce55dc4d",
+      "bytes": 367003
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrn25m20-20261024-a88ce2c2-zeros.tif",
+      "sha256": "51dbfde66426661dd77cddcdfc17bfe69edcd4a61945b4eaeb4e9b5446ea6e47",
+      "bytes": 218365
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONstrn25m20-20261024-a88ce2c2.tif",
+      "sha256": "a88ce2c270cdb68785dc89fa8da67342d55e9695f54af0c72e5c890737dc56ce",
+      "bytes": 363042
+    },
+    {
+      "file": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
+      "sha256": "104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722",
+      "bytes": 212109
+    },
+    {
+      "file": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif",
+      "sha256": "bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158",
+      "bytes": 356859
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae-zeros.tif",
+      "sha256": "0842d86618dbe64acf6dfb4137feff423a9dc394b59d153317381fc22b06dbb8",
+      "bytes": 174857
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif",
+      "sha256": "04002dae86db72c3fc47652bd66e3ec029e432c909cad779039e9e3749ae0839",
+      "bytes": 321924
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e-zeros.tif",
+      "sha256": "b2c4fa39c78c2f02cd17bcf932ca910369be6b7c222ec0f3e4fde6da3f001be4",
+      "bytes": 208254
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le4-norefill-20261023-360fe57e.tif",
+      "sha256": "360fe57edd8286393a180f0ae53c8259899c4344e5bc7f4c4ec20dcdf28530a7",
+      "bytes": 355396
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987-zeros.tif",
+      "sha256": "2ecee552504209488ab5d2a0066dbd87f19cd4b1baea3003a4c34935b78e20c2",
+      "bytes": 200383
+    },
+    {
+      "file": "h33-h33-2-b2-PRUNE-le5-norefill-20261023-5b6d3987.tif",
+      "sha256": "5b6d39870bc0fe9813813f231a56e3b9425e7e2ec149e3e2de8f3ae654b14ce8",
+      "bytes": 347613
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5-zeros.tif",
+      "sha256": "3e47cb772a1b5ea261d5d756ee1b8e6038db09571c74682700ed77e026e18ee4",
+      "bytes": 222473
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFb2r12-20261023-e1fd28d5.tif",
+      "sha256": "e1fd28d57106bebbb2b7f5b4327ab5a186a3eb4a3085b7e5c4a06aad2286dc0f",
+      "bytes": 369469
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2b12-20261023-27443c30-zeros.tif",
+      "sha256": "baa1883fd76b0d374c6fdbd5914cecb66e6721aa7c92c2c326bf3552f276c2a4",
+      "bytes": 223708
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2b12-20261023-27443c30.tif",
+      "sha256": "27443c301feff6f9bac035807d92a88c9830f8f198acab9bb53599700afbb6bd",
+      "bytes": 370517
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c-zeros.tif",
+      "sha256": "2b02433ae4193a965cdebe07c6f1ae498525829175ac3db7fda5a419ea6a9587",
+      "bytes": 223541
+    },
+    {
+      "file": "h33-h33-2-b2-RELIEFr2p12-20261023-6ff08e5c.tif",
+      "sha256": "6ff08e5c2785f7684798c25d5f86a61df5aeb2568fcaeda9482b25cf61858b07",
+      "bytes": 370350
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2c-20261023-86b27de1-zeros.tif",
+      "sha256": "b8f1a8ed6c80b038355a8f9aed7277c9b6d59817521fbe96af97c52abb15d42e",
+      "bytes": 224489
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2c-20261023-86b27de1.tif",
+      "sha256": "86b27de1e6849101ebd6a3ab925183fdf1bed4f11257997678ee226ebe80ecb4",
+      "bytes": 371722
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2f-20261023-c2391234-zeros.tif",
+      "sha256": "f2fe14c1c46b133cf4bd16bcbde8bc0a07fd8b0de1e0038c97411cb860ac85c7",
+      "bytes": 225819
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2f-20261023-c2391234.tif",
+      "sha256": "c239123496deb176c6ed8d365284715570cd11bacd77d9c266064dd5a8b97c75",
+      "bytes": 372581
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2q75-20261023-8aa75390-zeros.tif",
+      "sha256": "9c4c13d39b48147615e66340803274517c3cc15974d9451e8cf46bee4edf1fa9",
+      "bytes": 225140
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2q75-20261023-8aa75390.tif",
+      "sha256": "8aa7539013b4e89df65e752da2a4a477ac4f7d0c972a46f03673b631490e94c9",
+      "bytes": 372144
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38-zeros.tif",
+      "sha256": "46a5fb8c5f68e0e270bb308316ffdd8ee430cfe3a34cb2663c6b8c89482fcc0a",
+      "bytes": 222351
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k10-20261023-8343ab38.tif",
+      "sha256": "8343ab3895736250bd53c8afced208b61bb4eee7416aecf31ab6d0932c56b816",
+      "bytes": 368235
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b-zeros.tif",
+      "sha256": "68e1310c3978205308acd99d7e3308146c31a892395b68805045422cff675c58",
+      "bytes": 218784
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt1k20-20261023-ab72339b.tif",
+      "sha256": "ab72339bf8fbdb042cfe5022e4511ab3f2589e5db5bdef78f0a75228981b97dd",
+      "bytes": 363690
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a-zeros.tif",
+      "sha256": "c7b22af01bef6d137885fb9a7f548ab4dad50c9bc27f7fef5f83567a836cdab6",
+      "bytes": 222462
+    },
+    {
+      "file": "h33-h33-2-b2-TRACKBt2k10-20261023-6d16fd7a.tif",
+      "sha256": "6d16fd7a597daabb3fdfc59d638b759bc2fea619c5f5a793bd318675b4499652",
+      "bytes": 368108
+    }
+  ]
 }

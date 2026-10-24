@@ -22,7 +22,7 @@ What differs, deliberately and recorded
    `training_features`), percentile-ranked - `src/gems91/strain.py`.
    The strain prior is near-orthogonal to the GDR prior at block scale
    (Spearman 0.075 measured before build).
-2. **Donor quarantine (IR-91-36)**: R0's 2,171 inherited dots at d_cat<=3 px
+2. **Donor quarantine (IR-91-42)**: R0's 2,171 inherited dots at d_cat<=3 px
    cannot be donors (IR-91-27 standard).  The GDR build let collar dots move,
    mixing a partial PRUNE into its CONCENTRATION edit; this build does not.
    Consequence: the catalogue hide-and-recover PROXY is invariant by
@@ -457,10 +457,10 @@ def main(argv: list[str] | None = None) -> int:
             {"file": final_zer.name, "sha256": sha_zer, "bytes": final_zer.stat().st_size},
         ])
         basis = ("2.5km blocks by sponsor geodetic strain prior = 0.5*pct(band4 geod_2ndinv)"
-                 "+0.5*pct(band7 geod_shearrate), Sentinel-filled; donors/targets d_cat>3px (IR-91-27/36)"
+                 "+0.5*pct(band7 geod_shearrate), Sentinel-filled; donors/targets d_cat>3px (IR-91-27/42)"
                  if cfg["prior"] == "strain" else
                  "2.5km blocks by sponsor geodetic dilatation prior = pct(band8 geod_dilaterate), "
-                 "Sentinel-filled; donors/targets d_cat>3px (IR-91-27/36)")
+                 "Sentinel-filled; donors/targets d_cat>3px (IR-91-27/42)")
         ledger_rows.append({
             "id": stem, "parent": PARENT_TAG, "axis": "CONCENTRATION", "value": key,
             "n_dots": PARENT_DOTS, "pct_changed": f"{pct:.4f}", "pct_relocated": f"{pct:.4f}",
@@ -501,7 +501,7 @@ def main(argv: list[str] | None = None) -> int:
         "lineage": lineage,
         "settings": {"block_px": BLOCK_PX, "seed": SEED, "min_gap_px": MIN_GAP_PX,
                      "min_sep_px": MIN_SEP_PX, "low_q": 0.30, "high_q": 0.30,
-                     "donor_quarantine": "d_cat<=3.0px dots may not be donors (IR-91-27/36)",
+                     "donor_quarantine": "d_cat<=3.0px dots may not be donors (IR-91-27/42)",
                      "claimed_live_CLAIM": CLAIMED_LIVE, "shrink": SHRINK},
         "priors": prior_info,
         "single_feature_leakage_canary": canary,

@@ -1,7 +1,15 @@
 name: ci
 on:
   push:
+    branches: [main]
   pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   tests:
@@ -10,128 +18,80 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
+          cache: pip
       - run: pip install -r requirements.txt
-      - name: Unit tests (no competition data required)
+      - name: Unit, policy, published-byte and portal contract tests
         run: python -m pytest
-      - name: End-to-end build then certify (synthetic fixture, no competition data)
+      - name: Only registered prediction artifacts may be tracked
+        run: python scripts/check_artifact_policy.py
+      - name: Synthetic end-to-end legacy interface check (not a geological experiment)
         run: |
           make demo
-          CAND=$(ls tests/_tmp/releases/*.tif | grep -v zeros | head -1)
+          CAND=$(find tests/_tmp/releases -name '*.tif' ! -name '*zeros.tif' -print -quit)
+          test -n "$CAND"
           python scripts/validate_release.py "$CAND" \
             --sample tests/_tmp/fixture/sample_submission.tif \
             --catalogue tests/_tmp/fixture/catalogue_mask.tif \
             --ledger ledger/submissions.csv
-      - name: No competition raster is committed
+      - name: Source integrity and no conflict markers
         run: |
-          if git ls-files | grep -E '\.tiff?$'; then
-            echo "::error::a raster is tracked in git; competition data must not be committed"
-            exit 1
+          if git grep -nE '^(<<<<<<< |=======|>>>>>>> )' -- .; then
+            echo '::error::Unresolved merge conflict'; exit 1
           fi
-          echo "no rasters tracked"
-      - name: Ledger invariants
-        run: python -m pytest tests/test_ledger.py
-      - name: Manifest is well formed
-        run: |
-          python - <<'PY'
-          import json
-          d = json.load(open("registry/data_manifest.json"))
-          assert len(d["files"]) == 15
-          for f in d["files"]:
-              assert len(f["sha256"]) == 64, f["id"]
-              assert f["bytes"] > 0, f["id"]
-          print("manifest ok:", len(d["files"]), "entries")
-          PY
+          python -m pytest tests/test_ced.py::test_shared_template_is_unmodified
 
-      - name: No conflict markers
-        run: |
-          if git grep -nE '^(<<<<<<<|=======|>>>>>>>)' -- . ; then
-            echo "::error::conflict markers found"; exit 1
-          fi
-          echo "no conflict markers"
-
-      - name: Manifest hash integrity (fails only on a MISMATCH)
-        run: |
-          python scripts/verify_manifest.py || true
-          python - <<'PY'
-          import json, subprocess, sys
-          out = subprocess.run([sys.executable, "scripts/verify_manifest.py", "--json"],
-                               capture_output=True, text=True)
-          rows = json.loads(out.stdout)
-          bad = [r for r in rows if r["status"] == "HASH_MISMATCH"]
-          if bad:
-              print("::error::hash mismatch:", bad); sys.exit(1)
-          ok = sum(r["status"] == "OK" for r in rows)
-          print(f"{len(rows)} pinned entries: {ok} verified, "
-                f"{sum(r['status']=='MISSING' for r in rows)} absent (expected off the data machine)")
-          PY
-
-      - name: PRUNE ladder is reproducible from pinned inputs
-        run: |
-          # Only runs where the competition rasters are present (never in CI):
-          # exits 2 with a clear message otherwise, which is not a CI failure.
-          python scripts/verify_manifest.py | tail -8 || true
-
-  lineage:
-    name: lineage proof + rebuild to the committed hashes
+  published-artifact:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
+          cache: pip
       - run: pip install -r requirements.txt
-      # Fetches only what registry/data_manifest.json pins, from immutable GitHub
-      # commits, verifying every sha256. No organizer site, no credentials.
-      # GITHUB_TOKEN is the workflow's own short-lived token, supplied by Actions.
-      # It is never read, printed or stored by the code; it only avoids the 60/hour
-      # unauthenticated API limit when restoring 15 pinned entries.
-      - run: python scripts/restore_data.py
+      - name: Restore only the small pinned format reference and catalogue
+        run: python scripts/restore_data.py --only sample_submission,existing_faults
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # Build first: releases/*.tif are gitignored, so the gate tests need them.
-      - name: Rebuild all pinned releases
+      - name: Re-read actual published TIFF and single-TIFF ZIP; never promote
         run: |
-          python scripts/build_spacing.py --build
-          python scripts/make_catalogue.py
-          python scripts/build_prune_ladder.py
-          python scripts/build_prune_refill.py --build
-      - name: Rebuild the CONCENTRATION arms from the pinned inputs
-        # Idempotent: an id already in the ledger must come back with the same sha256
-        # or the step fails. Parent + catalogue + GDR prior only.
-        run: python scripts/build_concentration.py --build
-      - name: Rebuild the MASS/consensus arms and prove they are deterministic
+          python scripts/verify_current_artifact.py --with-data
+          python scripts/verify_evidence.py
+      - name: Evidence-derived portal is reproducible
+        run: python -m pytest tests/test_submission_portal.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: measured-research-evidence
+          path: |
+            docs/run-card.json
+            docs/ced-*.json
+            docs/downloads/gems91-ced-*
+
+# Deliberately no automatic multi-arm legacy rebuild or geological experiment.
+# Legacy MODEL forecasts used incompatible instruments; format PASS isn't a
+# promotion. The canonical experiment stopped at a literal registry duplicate.
+
+  browser-delivery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/browser/package-lock.json
+      - run: npm ci --prefix tools/browser
+      - name: Real download, desktop/mobile and accessibility checks
         run: |
-          python scripts/build_mass_consensus.py
-          sha256sum releases/*MASScons*.tif > /tmp/first.txt
-          python scripts/build_mass_consensus.py > /dev/null
-          sha256sum releases/*MASScons*.tif > /tmp/second.txt
-          diff /tmp/first.txt /tmp/second.txt
-          echo "byte-identical across two rebuilds (no RNG in the build)"
-      - name: Rebuild the RELIEF arms from the pinned inputs
-        run: python scripts/build_relief.py --build --skip-fold-proxy
-      - name: Rebuild the TRACKB arms from the pinned inputs
-        run: python scripts/build_trackb.py --build
-      # ~90 s: 19-band leakage canary is the slow part; deterministic, no RNG.
-      - name: Rebuild the SNAP arms from the pinned inputs
-        run: python scripts/build_snap.py --build
-      - name: Rebuild the strain CONCENTRATION arms from the pinned inputs
-        run: python scripts/build_strain_concentration.py --build
-      - name: Parent dot set reproduces from both ancestors; every release passes
-        run: python -m pytest -q tests/test_release_integration.py
-      - name: Every rebuilt file is byte-identical to its committed manifest
-        run: |
-          python - <<'PY'
-          import hashlib, json, pathlib
-          for manifest in ("releases/MANIFEST.json", "releases/PRUNE_REFILL_MANIFEST.json"):
-              man = json.load(open(manifest))
-              for f in man["files"]:
-                  p = pathlib.Path("releases") / f["file"]
-                  got = hashlib.sha256(p.read_bytes()).hexdigest()
-                  assert got == f["sha256"], f"{f['file']}: {got} != {f['sha256']}"
-                  assert p.stat().st_size == f["bytes"], f"{f['file']}: byte length differs"
-                  print("byte-identical:", f["file"])
-          PY
-      - name: Every release passes the hard gates
-        run: |
-          for f in releases/*.tif; do python scripts/validate.py "$f" | tail -1; done
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp -R docs _site/docs
+          python3 -m http.server 8000 --bind 0.0.0.0 --directory _site > "$RUNNER_TEMP/portal-http.log" 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          PORTAL_BASE_URL=http://127.0.0.1:8000/docs/ PORTAL_ENTRY_URL=http://127.0.0.1:8000/ node tools/browser/smoke.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: portal-browser-verification
+          path: work/browser-proof/

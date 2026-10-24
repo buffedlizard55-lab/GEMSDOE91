@@ -1,0 +1,64 @@
+{
+  "file": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
+  "sha256": "8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb",
+  "bytes": 202693,
+  "re_read_from_disk": true,
+  "release_gates": {
+    "crs_matches_template": true,
+    "shape_matches_template": true,
+    "transform_matches_template": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "no_nan_inside_footprint": true,
+    "zeros_outside_footprint": true,
+    "values_within_0_1": true,
+    "unit_mass_dots": true,
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 3.1622776601683795,
+    "catalogue_floor_respected": true,
+    "sha256": "8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb",
+    "dot_set_digest": "dc8dfeb750ec2b893ce68057da085f1f9e5ffec9c448f850905b29376f8765d2",
+    "n_dots": 37654,
+    "count_matches_parent": true,
+    "sha256_not_in_ledger": true,
+    "PASS": true,
+    "failed": []
+  },
+  "all_cells": {
+    "n_cells": 12279160,
+    "finite_cells": 12279160,
+    "nan_cells": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "cells_outside_0_1": 0,
+    "unique_values": [
+      0.0,
+      1.0
+    ],
+    "nodata_tag": null,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "positive_pixels": 37654,
+    "mass_sum": 37654.0
+  },
+  "portal_error_predicted_values_in_0_1": "CANNOT trigger on this file: every cell finite, min 0 max 1, no nodata tag",
+  "zip": {
+    "file": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.zip",
+    "sha256": "0050182ff1d7babb100f4257b62706c94f307633f5c7ee780f2a2ac5580412ae"
+  },
+  "verdict": "FORMAT PASS - OK TO SUBMIT (evidence verdict in docs/index.html)",
+  "post_ledger_revalidation": "PASS 2026-10-24 (own_id set; BUILT row is this file)"
+}

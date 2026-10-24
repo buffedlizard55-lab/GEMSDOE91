@@ -2,7 +2,7 @@
   "schema": "gems91.strain-concentration-evidence.v1",
   "build_date": "2026-10-24",
   "session": "SESSION 8 (arena/6f079276-gemsdoe91)",
-  "git_sha": "4b245e10313b4b9034f693a6890a57f31206dd7b",
+  "git_sha": "9ec64a8811d91e98a5a8263fc096e9560b49633b",
   "preregistration": "registry/strain_concentration_preregistration.json",
   "axis": "CONCENTRATION",
   "parent": "h33-h33-2-b2",
@@ -35,7 +35,7 @@
     "min_sep_px": 2.0,
     "low_q": 0.3,
     "high_q": 0.3,
-    "donor_quarantine": "d_cat<=3.0px dots may not be donors (IR-91-27/36)",
+    "donor_quarantine": "d_cat<=3.0px dots may not be donors (IR-91-27/42)",
     "claimed_live_CLAIM": 0.2778,
     "shrink": 0.5
   },
