@@ -1,0 +1,94 @@
+{
+  "candidate": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif",
+  "all_format_suites_pass": false,
+  "raw_byte_checks_RECEIPT": {
+    "sha256": "feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3",
+    "sha256_matches_audit": true,
+    "bytes": 138651,
+    "dot_digest_recomputed": "730f6bdadaad3d71d14567e641271d04694df6f9f272beb07ca2e91c47e0181f",
+    "dot_digest_matches_audit": true,
+    "meta": {
+      "crs": "EPSG:32611",
+      "nodata": null,
+      "count": 1,
+      "dtype": "float32",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ]
+    },
+    "min": 0.0,
+    "max": 1.0,
+    "n_nan": 0,
+    "n_inf": 0,
+    "unique_values": [
+      0.0,
+      1.0
+    ],
+    "n_dots": 37654,
+    "dots_on_catalogue": 0,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_outside_footprint": 0,
+    "zip_single_tiff_inner_identical": true,
+    "portal_range_error_possible": false
+  },
+  "suites": {
+    "validate_raster_py": {
+      "ok": true,
+      "text": "[PASS] band count == 1: candidate bands=1, reference bands=1\n[PASS] dtype float32: candidate dtype=float32\n[PASS] CRS matches: candidate=EPSG:32611 reference=EPSG:32611\n[PASS] shape matches: candidate=(3730, 3292) reference=(3730, 3292)\n[PASS] transform matches: candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)\n[PASS] re-read from disk matches in-memory band: sha256=feac1d6dd794\n[PASS] no NaN/Inf inside footprint: 0 non-finite of 5167373 footprint pixels\n[INFO] NaN outside footprint: 7111787 finite of 7111787 outside pixels  (<id>-zeros.tif fallback: this gate is reported as INFO by design)\n[PASS] values in [0,1]: min=0 max=1\n[PASS] mass present: sum=37654.0 over 37654 positive pixels\n[PASS] zero catalogue mass: 0 positive pixels on catalogue, mass=0.000\n[PASS] sha256 not already in ledger: sha256=feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3 new among 0 submitted hashes\n[PASS] parent-diff statistics recorded: 62640 pixels changed (166.36% of parent dots), parent dots=37654 child dots=37654, mass 37654.0 -> 37654.0\n[PASS] sha256: feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3"
+    },
+    "vendor_gems57_validate": {
+      "all_checks_passed": true,
+      "assert_submittable": true,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      }
+    },
+    "gems91_release_gates": {
+      "crs_matches_template": true,
+      "shape_matches_template": true,
+      "transform_matches_template": true,
+      "single_band": true,
+      "dtype_float32": true,
+      "no_nan_inside_footprint": true,
+      "zeros_outside_footprint": true,
+      "values_within_0_1": true,
+      "unit_mass_dots": true,
+      "zero_catalogue_mass": true,
+      "min_catalogue_distance_px": 3.1622776601683795,
+      "catalogue_floor_respected": true,
+      "sha256": "feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3",
+      "dot_set_digest": "730f6bdadaad3d71d14567e641271d04694df6f9f272beb07ca2e91c47e0181f",
+      "n_dots": 37654,
+      "count_matches_parent": true,
+      "sha256_not_in_ledger": false,
+      "PASS": false,
+      "failed": [
+        "sha256_not_in_ledger"
+      ]
+    }
+  },
+  "note": "Format/range validity only. Novelty and holdout gates are recorded in evidence/fuse91_build_20261024.json and docs/run-card-F91.json."
+}

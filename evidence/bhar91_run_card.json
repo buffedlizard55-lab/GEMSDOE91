@@ -484,7 +484,9 @@
       "footprint_coverage_within_3px": 0.998713,
       "uncovered_footprint_pixels": 6649,
       "note": "Per IR-CED-003, synthetic 5-px grid calib_r13lattice_00904.tif covers 99.8713% of the footprint within 3 px; symmetric F1 overlap is <= 0.32 while all 62 prior fleet and prior-lane fault rasters pass strict <= 0.70 overlap (intra-repo S11-MHTR E2 overlap is audited separately in overlap_3px_vs_s11_e2)."
-    }
+    },
+    "overlap_3px_vs_s12_spac_e3_intra_repo": 0.777331,
+    "registry_ledger_path": "evidence/bhar91_registry_uniqueness.json"
   },
   "geometry_diagnostics": {
     "n_dots": 48022,
@@ -529,6 +531,14 @@
       "in_footprint_range_0_1": true,
       "outside_footprint_zero": true,
       "zero_dots_on_mapped_catalogue": true
+    },
+    "checks": {
+      "no_nan_inside_footprint": true,
+      "all_12279160_cells_finite": true,
+      "values_in_0_1": true,
+      "crs_shape_transform_match": true,
+      "nodata_zeros_tif_is_none": true,
+      "zero_dots_le_3px_of_catalogue": true
     }
   },
   "submission_name": "gems91-bhar-e3-20261024T184500Z-a4b69ca7",
@@ -550,5 +560,11 @@
     "n_dots": 48022,
     "min_catalogue_distance_px": 3.1623,
     "dots_le_3px": 0
+  },
+  "canaries": {
+    "status": "PASS",
+    "max_symmetric_auc": 0.66099,
+    "withheld_positives": 60988,
+    "n_features_checked": 92
   }
 }

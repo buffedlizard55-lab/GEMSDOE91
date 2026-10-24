@@ -1,0 +1,206 @@
+{
+  "mode": "holdout",
+  "generated_utc": "2026-10-24T18:39:39.234968+00:00",
+  "lane": "FUSE91",
+  "label": "HOLDOUT-DTI",
+  "evaluator": "scripts/dti.py official-DTI (alpha=0.2,beta=0.8,R=3px), pooled",
+  "protocol": "build_denovo.fold_setup whole-component checkerboard (identical instrument to HGB-CTX receipt)",
+  "features": [
+    "mag_anom",
+    "rtp",
+    "tmi_hg",
+    "tmi_hg_mean11",
+    "geod_2ndinv",
+    "geod_2ndinv_mean11",
+    "iso_grav_anom_slope",
+    "iso_grav_anom_slope_mean11",
+    "tc",
+    "tc_mean11",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "tmi_vg",
+    "tmi_vg_mean11",
+    "deq_n100a15",
+    "iso_grav_anom_vg",
+    "iso_grav_anom_vg_mean11",
+    "det_elev",
+    "iso_grav_anom",
+    "tmi",
+    "depth_to_base_surf",
+    "ieq_n100a15",
+    "cond_surf",
+    "iso_grav_anom_hg",
+    "iso_grav_anom_hg_mean11",
+    "det_elev_slope",
+    "det_elev_slope_mean11",
+    "TRI3_surface",
+    "stepabs_pct_det_elev",
+    "stepabs_pct_iso_grav_anom",
+    "stepabs_pct_rtp",
+    "stepabs_pct_depth_to_base_surf",
+    "stepabs_pct_cond_surf",
+    "aniso_pct_det_elev",
+    "aniso_pct_iso_grav_anom",
+    "aniso_pct_rtp",
+    "aniso_pct_depth_to_base_surf",
+    "aniso_pct_cond_surf",
+    "signed_z_det_elev",
+    "signed_z_iso_grav_anom",
+    "signed_z_rtp",
+    "signed_z_depth_to_base_surf",
+    "signed_z_cond_surf",
+    "az_agree",
+    "az_sin2",
+    "az_cos2",
+    "dc_cond_resid_pct",
+    "dc_cond_resid_grad_pct",
+    "dc_cond_resid_lap_pct",
+    "dc_depth_lap_pct",
+    "dc_grav_lap_pct",
+    "dc_grad_align_pct"
+  ],
+  "prior_best_same_instrument": {
+    "method": "HGB-CTX",
+    "pooled_holdout_dti": 0.142885,
+    "receipt": "evidence/holdout3_hgbctx_20261024.json"
+  },
+  "experiments": {
+    "E1": {
+      "label": "HOLDOUT-DTI",
+      "method": "FUSE91 52-feature HGB, sharp surface, >3px collar",
+      "pooled_holdout_dti": 0.167293,
+      "fold_dti": [
+        0.166584,
+        0.16779,
+        0.168403,
+        0.166601
+      ],
+      "fold_mean_ci95": [
+        0.165907,
+        0.168782
+      ],
+      "dots_per_fold": [
+        9888,
+        9831,
+        8663,
+        9272
+      ],
+      "n_withheld_positives_per_fold": [
+        15105,
+        15978,
+        12874,
+        17031
+      ],
+      "pooled_T": 9583.88,
+      "pooled_S": 37654.0,
+      "pooled_M": 4750.27,
+      "pooled_G": 60988,
+      "per_dot_credit_T_over_S": 0.2545
+    },
+    "E2": {
+      "label": "HOLDOUT-DTI",
+      "method": "E1 fold surfaces scatter-smoothed sigma=1.85px, >3px collar",
+      "pooled_holdout_dti": 0.156357,
+      "fold_dti": [
+        0.156236,
+        0.151228,
+        0.159146,
+        0.159184
+      ],
+      "fold_mean_ci95": [
+        0.150491,
+        0.162406
+      ],
+      "dots_per_fold": [
+        9888,
+        9831,
+        8663,
+        9272
+      ],
+      "n_withheld_positives_per_fold": [
+        15105,
+        15978,
+        12874,
+        17031
+      ],
+      "pooled_T": 8932.54,
+      "pooled_S": 37654.0,
+      "pooled_M": 4892.29,
+      "pooled_G": 60988,
+      "per_dot_credit_T_over_S": 0.2372
+    },
+    "E3": {
+      "label": "HOLDOUT-DTI",
+      "method": "E1 surface + collar ring 2<d<=3px capped at 6% of budget",
+      "ring_dots_per_fold": [
+        442,
+        437,
+        379,
+        296
+      ],
+      "pooled_holdout_dti": 0.166074,
+      "fold_dti": [
+        0.16437,
+        0.166082,
+        0.16809,
+        0.166046
+      ],
+      "fold_mean_ci95": [
+        0.163726,
+        0.168568
+      ],
+      "dots_per_fold": [
+        9888,
+        9831,
+        8663,
+        9272
+      ],
+      "n_withheld_positives_per_fold": [
+        15105,
+        15978,
+        12874,
+        17031
+      ],
+      "pooled_T": 9512.59,
+      "pooled_S": 37654.0,
+      "pooled_M": 4722.32,
+      "pooled_G": 60988,
+      "per_dot_credit_T_over_S": 0.2526
+    }
+  },
+  "e3_base": "E1",
+  "random_matched_control": {
+    "label": "HOLDOUT-DTI",
+    "pooled_holdout_dti": 0.070827,
+    "fold_dti": [
+      0.069232,
+      0.073936,
+      0.067972,
+      0.071531
+    ],
+    "fold_mean_ci95": [
+      0.066482,
+      0.074853
+    ],
+    "dots_per_fold": [
+      9888,
+      9831,
+      8663,
+      9272
+    ],
+    "n_withheld_positives_per_fold": [
+      15105,
+      15978,
+      12874,
+      17031
+    ],
+    "pooled_T": 4024.63,
+    "pooled_S": 37654.0,
+    "pooled_M": 1515.68,
+    "pooled_G": 60988,
+    "per_dot_credit_T_over_S": 0.1069
+  },
+  "random_control_receipt_expected": 0.070827,
+  "winner": "E1",
+  "winner_beats_prior_best_same_instrument": true
+}

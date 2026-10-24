@@ -1,87 +1,55 @@
-> **Historical / superseded by [CED91 review](REVIEW-CED91.md).** Current readiness is in `run-card.json`. Old predictions and recommendations are not promotion evidence; do not treat them as current organizer-confirmed scores.
+# G91 hypotheses — preregistered 2026-10-24 (before any G91 holdout number)
 
-# GEMSDOE91 — Five New Geological Hypotheses (2026-10-24)
+Session lane (self-assigned; the brief contains no single assigned method paragraph — IR-91-S11-01 pattern, flagged not hidden): **G91-COVER**, the single method paragraph frozen here before any G91 surface is scored:
 
-**Parent:** `R0 = h33-h33-2-b2` (37,654 dots, `0.2778` CLAIM, `baeae321…c77dd` `RECEIPT`).
-**Grid:** `EPSG:32611` ([epsg.io/32611](https://epsg.io/32611)), 3730×3292, 100 m, `float32`, footprint 5,167,373 px.
-**Scoring:** `DTI = T / (0.2·T + 0.2·(S−M) + 0.8·|G|)` triangular kernel R=3 px ([Tversky-style](https://en.wikipedia.org/wiki/Tversky_index), [GEMS reference](https://github.com/drivendataorg/gems-prize-reference-solution)).
-**Competition:** [DrivenData #306](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) ([overview](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf), [data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/), [GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), [INGENIOUS](https://gbcge.org/current-projects/ingenious/), [USGS DS-1052](https://pubs.usgs.gov/ds/1052/)).
+> Train a HistGradientBoosting classifier on the union of (a) the 28 HGB-CTX features (19 sponsor-band footprint percentiles + TRI3 concordance percentile + eight 11×11 context means), (b) the 18 ASC91 antisymmetric cross-fault step features, (c) the 6 depth-conditioned conductivity/curvature contact features from FUSE91, and (d) six new cover-gated interaction features that re-weight topographic vs subsurface trust by Quaternary cover thickness (depth-to-basement), with the emission variants E1/E2/E3 below. No previous submission raster is read as an input, mask, ranking or prior. The catalogue is used only for training labels inside the training area and for the candidate exclusion distance, both re-derived from the *visible* catalogue in every holdout fold.
 
----
+## Why 0.2778 led the fleet — the forensic answer this lane is built on (RECEIPT + CLAIM)
 
-## Why h33-h33-2-b2 (0.2778) is the highest on its site — PhD analysis
+Verified from pinned bytes (`evidence/forensics_f91_20261024.json`, RECEIPT) and the GEMSDOE32/GEMSDOE25 sites fetched 2026-10-24:
 
-**What it is:** `h33-h33-2-b2` is `dotted-h19-5-d2.8` (44,090 dots, Poisson-disc sampled from the H19-5 ridge field, d=2.8 px) minus every dot within ≤2 px of the USGS/INGENIOUS catalogue (2,545 removed, 0 added). Verified: differencing `gems25-dotted-h19-5-d2-8` (sha256 `91eae1ca…639b8` `RECEIPT`) and `GEMSDOE32__h33-2-b2-zeros.tif` (`c55bafc4…6fa9` `RECEIPT`) yields exactly 0 dots present in R0 but not in the ancestor — lineage PRUNE is delete-only.
+1. **It is an emission, not a detector.** R0 (37,654 dots) is *exactly* `d2.8 minus dots with d(catalogue) ≤ 2 px` and *exactly* `solo-d2.8 minus d ≤ 2 px` (both subset identities byte-verified). The full claimed-score (CLAIM, no organizer receipt in any repo; GEMSDOE32's own page calls the B2 file UNSCORED with a 0.2747 projection) chain is: H19-5 solid surface 121,131 px (0.1922) → dot-thin 1.5 px 60,069 (0.2477) → dot-thin 2.8 px 44,090 (0.2600) → solo 40,199 (0.2708) → B2 collar prune 37,654 (0.2778 CLAIM).
+2. **Thinning wins because the metric saturates.** TPw takes a *max* over predictions within 300 m of each truth pixel, so the second dot covering the same truth pixel adds ≈0 TPw but still pays α·(1−k) of FPw. Removing redundant mass raises credit per dot at almost no TPw cost until the marginal dot's credit reaches the break-even bar α·DTI (≈0.0556 at DTI 0.2778).
+3. **The ≤2 px prune removes provably-dead mass.** Dots within 200 m of a catalogue fault spend most of their 300 m kernel on already-mapped (non-test) fault pixels; nested-pair inversion (MODEL) implies those dots carried ≈0 hidden credit: hidden |G| ≈ 14–15k px, credit/dot ≈ 0.139–0.145 vs break-even 0.0556. The prune *keeps* 2,171 flank dots at 2–3 px — exactly where a parallel splay/stepover strand sits.
+4. **The ancestor detector was mostly topographic.** R0 dots vs background: strongest single-band enrichment is `det_elev_slope` (AUC 0.661) and low `tc` (0.630 symmetric), then `tmi_hg` (0.578) — a multiline topographic/openness detector with potential-field corroboration.
 
-**Why it wins:**
+**What beating it requires (MODEL arithmetic):** at the same mass and |G| ≈ 14k, DTI 0.32 needs credit/dot ≈0.160 (+15 % over R0) and the verified current leaderboard #1, 0.4413 (official leaderboard page read 2026-10-24), needs ≈0.220 (+58 %). No emission tweak on the same surface supplies that; the surface's *ranking* must improve. FUSE91 raised same-instrument holdout credit/dot from 0.2168 (HGB-CTX) to 0.2545 (+17.4 %) — the right direction — but its SGMC off-catalogue control disagreeed (0.0706 vs R0 0.0954, REPORT ONLY), suggesting over-fit to exposed, catalogue-like faults.
 
-1. **Kernel-optimal spacing (mechanism).** The DTI pays `T` = Σ kernel credit within 3 px. Two dots within 2.8 px of the same truth pixel are redundant: the max kernel operator caps combined credit near 1.0 while `S−M` denominator costs 0.2 per dot. Poisson-disc thinning to d=2.8 px (≈280 m) is the theoretical optimum for a 300 m triangular kernel — every dot covers a distinct kernel disc, maximizing T/S. Historical files that *concentrated* (CV 0.618→1.34) or *snapped* 93% of dots broke this spacing and lost denominator efficiency. Measured: R0 mean NN = 3.735 px, 0 pairs <2.0 px; `SPACING-spread40` (most dispersed) gains +0.004 `MODEL` while `clump40` loses −0.002 `MODEL` — confirming spacing matters.
+## Ranked candidate hypotheses (all sponsor-band, licence-clean)
 
-2. **Collar discipline at 2 px (not 3 px).** The organisers mask known fault pixels pixel-exactly and score only new-fault truth within 300 m of known traces ([clarification](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516)). Dots at 2–3 px (2,171 in R0) sit exactly in the legal halo where an unmapped splay parallel to a mapped trace can earn credit. Deleting them (`PRUNE-le3`) is predicted +0.002 `MODEL`; keeping them is neutral-to-positive. Files that pruned to 10 px (30% mass loss) predict +0.008 but risk losing genuine basin-intra credit. R0's 2 px collar is the empirically optimal compromise — it deletes the masked-pixel noise (≤2 px) while preserving the 200–300 m splay signal.
+| Rank | ID | Layers / signature | Physical signature | Why it might find catalogue-missing faults | Difference from implemented lanes | Non-fault mimic | Expected gain / cost |
+|---|---|---|---|---|---|---|---|
+| 1 **(LANE, E1)** | **G91-COVER** | Cover-gated topographic vs subsurface trust: detrended-elevation slope, isostatic gravity HG, TMI HG, conductivity, depth-to-basement gradient, and their cover-thickness interactions | Topographic slope trusted only in thin cover (bedrock outcrop); gravity/magnetic/conductivity contacts trusted in thick cover (basin/alluvium). Basement-step gradient and its cover modulation isolate range-front/piedmont fault position; high slope *in* thick cover flags terrace/road false positives so the learner can suppress them | The USGS/INGENIOUS catalogue is exposure-biased: it maps faults where scarps are visible at 1 m but omits blind/piedmont continuations beneath Quaternary cover (depth_to_base_surf > 20–100 m) where topography is muted by alluvium. Those faults still offset basement, create gravity/magnetic contrasts and conductivity contrasts. A model that trusts topography everywhere learns to chase scarps and misses covered faults — the exact blind spot the organizer's expert-labelled new faults fill (DrivenData page 967: test set = faults not in USGS). Cover-gating lets the same HGB learn "if thin cover, trust slope; if thick cover, trust gravity/mag/conductivity" | FUSE91 added depth-conditioned conductivity residuals but never modulated *trust* between physics by cover thickness; ASC91 tested steps alone (0.1168); HGB-CTX tested context alone (0.142885); CCR91 residualized conductivity against depth but did not gate topographic reliance; no prior lane used depth_to_base_surf as a spatially-varying gate | Lake Lahontan shoreline terraces, playa clays, intrusive margins, roads/field boundaries — controlled because high slope in thick cover is an explicit negative interaction the learner can penalize, and the 3-px catalogue collar remains | Highest expected HOLDOUT-DTI gain among testable ideas (orthogonal information: cover thickness is nearly uncorrelated with slope/gravity in basins; prior SGMC disagreement suggests current best over-weights range-front exposure); medium cost (one depth-percentile sigmoid + six elementwise multiplies; feature caches exist as code) |
+| 2 | G91-SHORE | Paleo-shoreline terrace discrimination via residual topography + curvature anisotropy | Residual elevation (det_elev minus 1 km median) + profile vs planform curvature ratio; terraces are flat (low variance, high planform curvature along contour, low profile curvature) while fault scarps have profile-curvature spikes | Shoreline terraces of Pleistocene Lake Lahontan are the dominant 100-m lineament false positive in the Lahontan basin — sub-horizontal, constant-elevation benches that survive TRI3 and slope filters. They are missing from the USGS fault catalogue but generate strong topographic edges. Discriminating them reduces FPw without losing TPw, directly raising DTI. Experts do not label shorelines as faults, so this correction should survive to the organizer's hidden truth | No prior lane isolated terrace geometry; H19/DENOVO used generic TRI3/slope without terrain-type classification; SNAP used edge fields but not terrace-vs-scarp anisotropy | Volcanic flow margins, alluvial fan edges — lower curvature amplitude than fault scarps | +0.015–0.030 on organizer truth (MODEL: terrace FP mass ≈ 10–15 % of predictions in NW basin); low cost (one median filter + curvature) |
+| 3 | G91-HYDRO | Conductivity edge vs hydrologic decoupling | Conductivity residual gradient cross-cutting surface flow accumulation (derived from detrended elevation): fault conductivity edges transect drainages; lithologic contacts follow them. Signature = conductivity gradient × flow-orthogonality | Basin-range faults cut across Quaternary drainages and create cross-drainage conductivity lineaments; lithologic contacts and clay lenses are conformable with drainage. Decoupling catches covered faults where hydrology is the mimic | FUSE91 used conductivity residual but not its relation to drainage; no lane used flow accumulation | Irrigation canals, basin-center saline playas where flow and conductivity both pond | Medium cost (flow routing); medium expected gain |
+| 4 | G91-WORM | Multi-scale oriented ridge persistence (scale-space worm) | Lineament strength at 100 m, 300 m, 900 m of DEM+gravity+mag; persistence across scales with consistent azimuth (Hough-like voting) | True normal faults are scale-persistent (1–30 km length) with coherent strike; lithologic lenses and survey seams are single-scale. Persistence filters short or diffuse mimics while retaining long concealed range-front faults omitted because eroded | Prior ridges used single-scale slope/hg; H25 used 5 km context mean but not multi-scale persistence | Long intrusive dikes — mitigated by requiring co-persistence in ≥2 physics | Medium cost; +0.010–0.020 expected |
+| 5 | G91-STRAIN | Strain-rate gradient + block residual shear | Geodetic second invariant, shear/dilatation rate gradients and their Laplacian | Concealed faults accommodate differential block motion even where Quaternary cover hides topography; strain gradients peak over blind faults (Hammond & Thatcher 2007 caveat: dilatation near Holocene faults not > GPS uncertainty, so gradient is more robust than magnitude) | Prior STRAIN lane used concentration/dilation magnitude, not gradients, and scored 0.03–0.07 REPORT-ONLY; this tests gradient of strain, not magnitude | GPS interpolation artefacts, volcanic inflation | Highest theoretical ceiling but unproven; medium cost; deferred due to prior negative and gradient noise |
 
-3. **Lineage convergence (no overfit).** H19-5 (0.1922 CLAIM) → H19-4 (0.1894) → H16-1 (0.1855) are three independent hypothesis fields sharing 71.5% of dots at 3-way consensus. R0 keeps only 2.8-px-thinned high-consensus ridges, so it generalizes. Competing files using ML (`ml-binary-ridge` 0.018, `tensor_full` 0.029, `ml-cover` 0.142) or physics-only (`anderson-geothermal-pinn` 0.275 close but single-hypothesis) underperform because they overfit regional gradients or miss corroboration.
+## Frozen experiment plan (budget: exactly 3, protocol §6)
 
-4. **Count calibration near optimum.** At DTI 0.28, a dot pays iff kernel credit k > 0.056 (isolated) or lower for line truth. R0's 37.7k dots saturate the H19-5 support field at ~70% occupancy of 1 km blocks (CV 0.618). `MASScons3add` (+3,765 dots at 3-way support) predicts +0.0086 `MODEL` — small — indicating R0 is near the count optimum. Files at 44k (off-catalogue Poisson) score 0.260 lower because added dots are low-support, high-denominator cost.
+Instrument (identical to the DENOVO/HGB-CTX/ASC/FUSE91 receipts so numbers compare): `build_denovo.fold_setup` whole-component checkerboard folds (400 px blocks), 60,988 withheld positives, exclusion and training negatives re-derived from visible components only, pooled official DTI via `scripts/dti.py` (α=0.2, β=0.8, R=3 px), 37,654-dot budget split by fold footprint share, spacing 2.8 px. HGB hyperparameters reused verbatim (`build_denovo._train_hgb`). No distance-to-catalogue feature.
 
-**Can we beat 0.2778?** Yes, but not by large margin on spacing/collar alone — both are already optimal. Gains must come from **relocation informed by independent geophysics** that correlates with new-fault truth better than lineage density. The five hypotheses below target exactly this, each using a pinned, licence-clean layer not exploited in the current fleet's best file.
+- **E1** = G91-COVER features (28 CTX + 18 ASC + 6 depth-conditioned + 6 cover-gated = 58), sharp surface, > 3 px collar. Comparable prior best on this instrument: FUSE91 **0.167293** HOLDOUT-DTI (receipt `evidence/fuse91_holdout_20261024.json`); overall prior best HGB-CTX 0.142885.
+- **E2** = E1 fold surfaces Gaussian-smoothed σ=1.85 px before emission (G91-2 scatter-cover), everything else identical (same trained models; emission only).
+- **E3** = winner of (E1, E2) by pooled HOLDOUT-DTI, plus the G91-3 collar ring (2 < d ≤ 3 px, cap 6 % of each fold's budget) via `fuse91.tiered_greedy_spaced`.
+- **Selection rule (frozen):** the final build uses the arm with the highest pooled HOLDOUT-DTI among E1–E3. Promotion gate: that arm must beat 0.167293 on the identical instrument, pass the leakage canary (every feature alone, symmetric AUC ≤ 0.90), pass pre-placement surface novelty (|Spearman| ≤ 0.90 vs enumerated registry) and final-dot novelty (directed ≤ 70 % within 3 px vs every *real* registry raster; the synthetic lattice calibrator — which rejects R0 itself at 99.9 % — is reported separately with symmetric F1, never silently dropped), and pass all format validators on the exact written bytes. If the gate fails, verdict is negative / NOT OK TO SUBMIT and no slot is recommended. All scores are HOLDOUT-DTI; no organizer score is claimed or projected as a score.
 
-**Fleet high 0.4413 vs site high 0.2778:** 0.4413 (leaderboard, unverified CLAIM) is +59% relative, implying either a radically better locator (e.g., geodetic strain + lidar) or a count/formatting exploit. No mechanism in the fleet explains +0.16; the gap is unreceipted and must not be chased by overfitting proxies.
+Controls computed with the same folds for context (not experiments): seeded random spaced dots at matched count (reproduces the DENOVO receipt 0.070827 if the instrument is identical — an instrument identity check), and the SGMC off-catalogue control (REPORT ONLY).
 
----
+## Free, official source check for deferred ideas
 
-## Five candidate hypotheses — not tried in this repo
+- **1 m DEM (USGS 3DEP via The National Map, competition `1m_DEM_links.csv`):** free, official, and explicitly referenced by the competition data page as `Digital elevation model links JSON`; outside sandbox egress (github/pypi/npm only) — obtainable on an unrestricted machine, not from here. Named, checked, deferred — not proposed as viable now (F91-5 precedent).
+- **All G91 layers** are sponsor-provided bands in `training_features` (USGS/INGENIOUS via OpenEI GDR 1391) — free, official, and already pinned (sha256 4371c82e…).
 
-| # | Hypothesis | Layer(s) | Physical signature (transform) | Why it catches a *missing* fault | Differs from fleet | Expected ΔDTI `MODEL` | Cost | Verdict |
-|---|------------|----------|-------------------------------|----------------------------------|--------------------|----------------------|------|---------|
-| **H91-A** | **Geodetic-strain dilational corridor** | Band 4 `geod_2ndinv` + Band 7 `geod_shearrate` ([GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), GPS/InSAR, 50 km station) | `prior = 0.5·pct(geod_2ndinv) + 0.5·pct(geod_shearrate)` → 2.5 km block mean → concentration of 10% mass | Walker Lane transtensional shear maintains dilation at jogs/step-overs where blind geothermal splays form; strain high where catalogue is silent (interseismic block interiors). Catalogue at 1:250k misses <1 km splays in high-strain corridors. | No fleet file uses geodetic strain; CONCENTRATION used GDR thermal, RELIEF used detrended elev, SNAP used mag/grav. | **+0.010 to +0.014** | Medium (2 bands, block rank) | **RANK 1 — build** |
-| H91-B | Sediment-depth kernel bracket | Band 15 `depth_to_base_surf` + Band 18 `iso_grav_anom_hg` ([USGS DS-1052](https://pubs.usgs.gov/ds/1052/)) | Thickness-thresholded upward continuation: where depth >500 m, shift acceptor 2 px downdip of gravity crest (depth/600 m gradient) | Basin fill (>500 m Cenozoic cover) upward-continues gravity/magnetic crests 200–400 m downdip of surface trace; uncorrected SNAP lost −0.009 `MODEL` because crest ≠ trace. Fixes hidden intrabasin faults under pediment. | SNAP assumed crest coincidence; none corrected for thickness. | +0.007 to +0.011 | Low-Med | Rank 2 |
-| H91-C | Radiometric alteration halo | `ext_geodawn_rad_u8.tif` (K/Th/U, pinned) + Band 3 `tmi_hg` | `K/Th` percentile + `−log1p(|tmi_hg|)` demag anomaly → joint edge (alteration clay = K enrichment + mag low) | Geothermal fluid flow along faults produces argillic alteration (clay, K-metasomatism) detectable in radiometric; marks fluid *pathway* not fault scarp, so invisible to lidar/mag alone. | Fleet radiometric: GEMSDOE46 `r11f-scarp-radiometric-fusion` 0.1589 CLAIM, but not in this repo's fleet; no GEMS91 file uses rad. | +0.008 to +0.012 | Low | Rank 3 |
-| H91-D | Lidar scarp persistence + tilt | `ext_lidar_scarp_u8.tif` (1 m lidar → 100 m) + Band 19 `det_elev_slope` + Band 6 `tc` (tilt) | Multi-scale curvature persistence: lidar scarp U8 percentile + det_elev_slope edge, dot snapped to max within 2 px | 1 m lidar resolves 0.5–2 m scarps erased in 10 m DEM smoothing; GeoDAWN 100 m misses Quaternary scarps <100 m length. Should catch range-front piedmont toes. | RELIEF used detrended elev terciles, not per-pixel scarp; SNAP used potential-field only. | +0.005 to +0.009 | Medium | Rank 4 |
-| H91-E | Along-strike tip extension | Band 4/7 strain + catalogue skeleton endpoints (morphology) | Catalogue skeleton → endpoints → 0.3–1.5 km along-strike corridor (azimuth from local strike) → tip-distance transform × strain prior | Faulds et al. ([USGS](https://pubs.usgs.gov/sir/)) show geothermal fields at fault tips/step-overs; catalogue at 1:250k truncates traces at map edges. Tip zone is legal 3–15 px from mapped trace but not sampled by R0's uniform thinning. | TRACKB chained *dot* traces, not catalogue tips; CONCENTRATION moved to blocks, not tip corridors. | +0.006 to +0.010 | Medium | Rank 5 |
+## Official / primary sources (for manual review)
 
-**Ranking basis:** Expected ΔDTI from proxy transfer (hide-and-recover on catalogue + SGMC off-catalogue control) × implementation determinism. H91-A ranks first because: (i) Band 4 leads all 19 GeoDAWN bands on fault separation (AUC 0.579 `PROXY`, <0.90 canary PASS), (ii) no fleet file tests it, (iii) public-domain GPS/InSAR, (iv) one-line block ranking, (v) complementary to R0's spacing optimum (adds location, not density).
-
----
-
-## Leakage canary — test each feature alone before trusting
-
-| Feature | Single-band AUC vs catalogue (symmetric) | Verdict |
-|---------|------------------------------------------|---------|
-| Band 4 `geod_2ndinv` | 0.5793 `PROXY` | PASS (<0.90) |
-| Band 7 `geod_shearrate` | 0.5761 `PROXY` | PASS |
-| Band 15 `depth_to_base_surf` | 0.551 `PROXY` | PASS |
-| Band 18 `iso_grav_anom_hg` | 0.572 `PROXY` | PASS |
-| Band 6 `tc` | 0.568 `PROXY` | PASS |
-| R0's own 1 km CV | 0.618 | Not a band, not tested |
-| **Threshold** | **>0.90 ⇒ leakage until proven otherwise** | **All PASS** |
-
-*Procedure:* `proxy._auc` on 4-fold spatially-blocked hide-and-recover (withhold whole fault segments with 8-px buffer, derive every catalogue-based feature only from visible faults, mask visible faults pixel-exactly, score pooled DTI α0.2 β0.8 300 m kernel). Each feature tested alone; max 0.579 ≪ 0.90, so no single feature can memorize withheld positives.
-
----
-
-## Validation before slot — spatially-blocked holdout (to be run)
-
-Top candidate H91-A will be validated on holdout **before** spending a slot:
-
-- **Holdout:** `evaluate_holdout.py` 4-fold, each fold withholds one spatial block (400 px ≈ 40 km quadrant) of catalogue faults with 8-px buffer; every catalogue-derived feature recomputed from visible only; visible faults masked pixel-exactly; score pooled DTI (α0.2 β0.8 300 m triangular).
-- **Canary:** Report single-feature AUCs; if any >0.90, stop.
-- **Metric:** Report `HOLDOUT-DTI` with evaluator version, #withheld positives, 95% CI; never write a projection as a score.
-- **Gate:** Spend slot only if `HOLDOUT-DTI` ≥ current best +0.006 (evidence threshold §5).
-
-**External data needed:** None — Bands 4 & 7 are pinned in `data/bridge/gems-geodawn-numerical-features.tif` (sha256 `4371c82e…3bc5` `RECEIPT`, [GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), public domain). Verified obtainable locally.
-
----
-
-## What would falsify each hypothesis
-
-- **H91-A falsified** if 10%/20% strain-concentrated arms score ≤ R0 +0.006 `RECEIPT` and SGMC control ≤ R0 (strain smear across aseismic blocks dominates).
-- **H91-B falsified** if depth-bracketed dots score ≤ `RELIEFr2b12` +0.003 `MODEL`.
-- **H91-C falsified** if radiometric-concentrated dots score ≤ uniform-acceptor null (rad = soil, not alteration).
-- **H91-D falsified** if lidar-scapped dots score ≤ `RELIEFr2p12` +0.006 (scarps are erosional, not tectonic).
-- **H91-E falsified** if tip-corridor dots score ≤ `collar10` −0.006 `MODEL` (trace ends are cartographic).
-
-*Never keep a private fork: fix shared tool once in template and report.*
-
----
-
-*Generated 2026-10-24, GEMSDOE91, PhD-level review, no hallucinations — every number labelled HOLDOUT-DTI or ORGANIZER-CONFIRMED, every source linked for manual verification.*
+- Problem + metric (fetched 2026-10-24): https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+- Leaderboard (fetched 2026-10-24; #1 0.4413): https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+- Rules PDF: https://docs.nlr.gov/docs/fy26osti/96647.pdf
+- Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
+- USGS GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+- INGENIOUS: https://gbcge.org/current-projects/ingenious/ · EPSG:32611: https://epsg.io/32611
+- Tversky index: https://en.wikipedia.org/wiki/Tversky_index
+- GDR 1391: https://gdr.openei.org/submissions/1391
+- Walker Lane kinematics (Faulds): https://nbmg.unr.edu/staff/henry/fauldsetgeothermmineralgsn2005.pdf (cited in prior hypotheses; not re-fetched this session)
+- Fleet pages read as CLAIM sources: https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html · https://buffedlizard55-lab.github.io/GEMSDOE25/

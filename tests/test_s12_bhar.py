@@ -142,10 +142,10 @@ def test_fold_safe_residual_basis_excludes_test_quadrant(tmp_path: Path) -> None
     np.testing.assert_allclose(out1[it_fp, 8], out2[it_fp, 8], rtol=1e-5, atol=1e-5)
 
 
-@pytest.mark.skipif(not (ROOT / "docs" / "run-card-S12.json").is_file(), reason="S12 run card not built yet")
+@pytest.mark.skipif(not (ROOT / "docs" / "run-card-BHAR91.json").is_file(), reason="S12 run card not built yet")
 def test_s12_run_card_and_certified_geotiff_artifacts() -> None:
-    rc_docs = json.loads((ROOT / "docs" / "run-card-S12.json").read_text(encoding="utf-8"))
-    rc_ev = json.loads((ROOT / "evidence" / "s12_run_card.json").read_text(encoding="utf-8"))
+    rc_docs = json.loads((ROOT / "docs" / "run-card-BHAR91.json").read_text(encoding="utf-8"))
+    rc_ev = json.loads((ROOT / "evidence" / "bhar91_run_card.json").read_text(encoding="utf-8"))
     assert rc_docs == rc_ev
 
     assert rc_docs["verdict"] in ("promote", "negative")
@@ -203,7 +203,7 @@ def test_s12_run_card_and_certified_geotiff_artifacts() -> None:
         assert float(arr.max()) == 1.0
         assert int((arr > 0).sum()) == sub["n_dots"]
 
-    for html_rel in (Path("docs/s12-bhar.html"), Path("docs/s12-executive-summary.html")):
+    for html_rel in (Path("docs/s12-bhar.html"), Path("docs/bhar91-executive-summary.html")):
         hp = ROOT / html_rel
         assert hp.is_file()
         txt = hp.read_text(encoding="utf-8")

@@ -1,0 +1,75 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "ARENA-31D0D079-20261024",
+  "branch": "arena/31d0d079-gemsdoe91",
+  "hypothesis": "Signed multi-scale dilatation boundary contrast projected onto a magnetic-contact normal and downweighted where topographic relief is strong; ranked first among cached-data research candidates, not tested.",
+  "mechanism": "Use the pinned sponsor feature stack's B08 geodetic dilatation, B01 magnetic anomaly, and B12 detrended elevation. Compute a signed cross-edge dilation response at preregistered scales/orientations; align to an independently derived magnetic edge normal; suppress strong topographic breaks. No catalogue geometry or prior submission pixels in the predictor.",
+  "named_non_fault_process_that_could_mimic_it": "Sparse-station geodetic interpolation artefact coincident with a non-tectonic lithologic magnetic contact.",
+  "candidate_ranking": [
+    {
+      "rank": 1,
+      "name": "USGS 3DEP 1 m multi-scale scarp persistence",
+      "data_status": "external data not obtained or coverage-checked; NOT VIABLE in this review",
+      "cost": "high",
+      "expected_benefit": "qualitatively highest potential; no numeric score forecast"
+    },
+    {
+      "rank": 2,
+      "name": "signed B08 dilatation edge x B01 magnetic contact x B12 weak-relief gate",
+      "data_status": "cached sponsor layers in principle; no local input files and no assigned lane",
+      "cost": "medium",
+      "expected_benefit": "qualitative moderate, unknown sign; no score forecast"
+    },
+    {
+      "rank": 3,
+      "name": "scale-dependent B06 radiometric / B02-B09 magnetic edge lag, optionally conditioned on B15 depth",
+      "data_status": "cached sponsor layers in principle; no local input files and no assigned lane",
+      "cost": "medium",
+      "expected_benefit": "qualitative low-to-moderate; no score forecast"
+    },
+    {
+      "rank": 4,
+      "name": "directional B16/B10 seismic-density anisotropy aligned with B01/B13 potential-field edges",
+      "data_status": "cached sponsor layers in principle; no local input files and no assigned lane",
+      "cost": "medium",
+      "expected_benefit": "qualitative low; scale and completeness risks; no score forecast"
+    }
+  ],
+  "holdout_dti": null,
+  "holdout_status": "NOT RUN: method paragraph assigning a lane is absent; pinned local inputs are absent. No evaluator score or CI is claimed.",
+  "evaluator_version": null,
+  "withheld_positives": null,
+  "ci95": null,
+  "correlation_overlap_vs_registry": null,
+  "registry_status": "NOT RUN for a new candidate; no new candidate surface or dots exist.",
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": "NOT GENERATED",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "note": "No new raster exists to validate. Historical artifact receipts are not reused as a new-candidate validation result."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "download_status": "No new TIF to download; historical artifacts retain their individual status-page verdicts.",
+  "verdict": "negative",
+  "submission_ready": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "blockers": [
+    "No single assigned method paragraph/lane in the prompt.",
+    "Local pinned data tree absent; scripts/preflight.py reports no ready axis.",
+    "Competition-mirror provenance and third-party redistribution rights unresolved.",
+    "No live organizer receipt or current slot state accessible in this execution."
+  ],
+  "review_source_links": {
+    "problem": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "data": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "rules": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "usgs_3dep": "https://www.usgs.gov/3d-elevation-program/about-3dep-products-services",
+    "usgs_geodawn": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "reference_solution": "https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b"
+  },
+  "completed_utc": "2026-10-24"
+}

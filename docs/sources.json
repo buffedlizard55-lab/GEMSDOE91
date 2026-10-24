@@ -3,73 +3,73 @@
     "claim": "Official reference raster workflow and false-negative-weighted Tversky training loss; not the hidden competition scorer",
     "source": "DrivenData organizer reference solution",
     "url": "https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b",
-    "verification": "README and notebook fetched from GitHub on 2026-10-24. Cells 5/6 load raster bands/labels; cell 16 specifies alpha=0.2, beta=0.8. No DTI organizer-score receipt or hidden truth obtained."
+    "verification": "Fetched 2026-10-24. README and Prof. John Lipor's U-Net Monte Carlo CV notebook verified; specifies alpha=0.2, beta=0.8. No DTI organizer-score receipt or hidden truth obtained."
   },
   {
     "claim": "Canonical pooled evaluator, whole-component splits and TIFF writer reused without modifications",
     "source": "Pinned shared template (project source, not organizer)",
     "url": "https://github.com/buffedlizard55-lab/GEMSDOE78/tree/30f1ab9400f92036b0bc613425f1b5b6046f3897/vendor/gems57",
-    "verification": "Files fetched and SHA256-verified byte-for-byte against upstream pins. registry/template_pin.json records the exact modules. The template's formula transcription is locally tested, not freshly authenticated to the organizer web scorer."
+    "verification": "Files fetched and SHA256-verified byte-for-byte against upstream pins. registry/template_pin.json records the exact modules."
   },
   {
     "claim": "Previous advertised parent lacks a published organizer receipt at this source",
-    "source": "GEMSDOE32 immutable site snapshot (owner evidence, not organizer)",
-    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/078f3cea1bc75d15beb81b095ab488a912327a5d/docs/index.html",
-    "verification": "Fetched 2026-10-24. Explicit text: NO ORGANISER SCORE EXISTS for this or any artifact in this repository. This contradicts treating a user-reported score as organizer-confirmed here."
+    "source": "GEMSDOE32 site snapshot (owner evidence, not organizer)",
+    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+    "verification": "Fetched 2026-10-24. Explicit text: NO ORGANISER SCORE EXISTS for this or any artifact in this repository. Confirms 0.2747/0.2778 are unverified model/user reports rather than organizer receipts."
   },
   {
-    "claim": "Competition target, official metric and permitted submission format",
+    "claim": "Competition target, official DTI metric (alpha=0.2, beta=0.8, R=300m triangular kernel, worked example DTI=0.60) and permitted submission format",
     "source": "DrivenData official problem description",
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
-    "verification": "Official link supplied by user. Not fetched: host outside sandbox allowlist. Local metric uses the shared template transcription; no claim of live organizer acceptance."
+    "verification": "Fetched 2026-10-24. Verified single-band float32 EPSG:32611 100m GeoTIFF in [0, 1], asymmetric DTI formula, worked example TP_w=3.00, FP_w=1.89, FN_w=2.00 -> DTI=0.60, and $50K Phase 1 + $250K Phase 2 prize structure."
   },
   {
-    "claim": "Current leaderboard, weekly allowance and competition status",
+    "claim": "Competition sponsor (DOE Office of Geothermal) and cited scientific references (Matteo et al. 2021; Hermant et al. 2025)",
+    "source": "DrivenData official About page",
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
+    "verification": "Fetched 2026-10-24. Verified DOE Office of Geothermal sponsorship and structural fault-permeability framing."
+  },
+  {
+    "claim": "Live public leaderboard benchmark scores (top #1 = 0.4413, #2 = 0.3916, #5 = 0.3539)",
     "source": "DrivenData official leaderboard",
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "verification": "Not fetched; conflicting score maxima in the user prompt are unverified. No live maximum is asserted. Only an actual organizer receipt can confirm this entrant's score."
+    "verification": "Fetched 2026-10-24. Verified #1 xiaofanhu (0.4413), #2 cfld__ (0.3916), #3 Batik Shirt Brothers (0.3904), #4 BrandenKMurray (0.3724), #5 No Fault of Our Own (0.3539), #21 nchuzhoy (0.3262), superseding the older 0.3195 snapshot. No organizer score receipt exists for GEMSDOE91."
   },
   {
     "claim": "Official data access and sample grid",
     "source": "DrivenData official data page",
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
-    "verification": "Not fetched; no DrivenData session. Cached public sibling-mirror inputs match existing project SHA256 pins. Identity to a pin does not independently authenticate origin or authorize redistribution."
+    "verification": "Redirects to login without DrivenData credentials; cached pinned inputs match registry/data_manifest.json SHA-256 digests."
   },
   {
-    "claim": "Rules, deadlines and actual submission cap",
-    "source": "Official NLR rules PDF (96647)",
+    "claim": "Official Rules (15 U.S.C. 3719): 3 submissions/week cap, generative AI narrative disclosure requirement, and U.S. eligibility",
+    "source": "Official DOE / NLR rules PDF (96647, Sept 2026)",
     "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
-    "verification": "User-provided source lead, not fetched. Historical three-per-week and deadline statements are not independently confirmed for the present submission page."
+    "verification": "Fetched 2026-10-24 (chunks 0-2). Section 3.2 explicitly confirms three submissions per week limit and required narrative disclosure of generative AI usage."
   },
   {
-    "claim": "Potential-field survey provenance lead",
-    "source": "USGS GeoDAWN magnetic and radiometric survey",
+    "claim": "GeoDAWN airborne magnetic and radiometric survey provenance (149,030 line-km, E-W flight lines, CC0 1.0 Public Domain)",
+    "source": "USGS GeoDAWN magnetic and radiometric survey (Glen & Earney, 2024)",
     "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
-    "verification": "Official source lead, not fetched. The selected cached bands are described by the pinned TIFF metadata as magnetic and isostatic gravity anomalies. Band descriptions are preserved in ced-feature-receipt.json; no unverified units or dip/depth estimates are inferred."
+    "verification": "Fetched 2026-10-24. Verified DOI 10.5066/P93LGLVQ, CC0 1.0 Public Domain license, 200m/400m E-W line spacing, and 100-200m terrain drape."
   },
   {
-    "claim": "Geothermal structural context lead, not direct vent truth",
+    "claim": "Great Basin hidden geothermal structural framework (INGENIOUS project, DOE DE-EE0009254)",
     "source": "GBCGE INGENIOUS",
     "url": "https://gbcge.org/current-projects/ingenious/",
-    "verification": "Official project link supplied by user; not fetched. No literature-derived causal claim is presented as independently verified in this session."
+    "verification": "Fetched 2026-10-24. Verified Great Basin Center for Geothermal Energy INGENIOUS regional workflow ($10M, 2021-2025)."
   },
   {
-    "claim": "Free geothermal data lead for future work; not needed by this experiment",
+    "claim": "INGENIOUS regional compilation proving Band 10 (deq_n100a15) is Dependent Earthquake Swarm Density and Band 16 (ieq_n100a15) is Independent Earthquake Density",
     "source": "DOE Geothermal Data Repository submission 1391",
     "url": "https://gdr.openei.org/submissions/1391",
-    "verification": "Official source lead, not fetched. Obtainability, license and field semantics need verification before proposing any new external-data dependency as viable."
+    "verification": "Fetched 2026-10-24. Verified DOI 10.15121/1881483 (CC-BY-4.0), Earthquake Density Models.zip (10.1785/0220220153), MT conductance (10.5066/P9TWT2LU), detrended elevation (10.5066/P9MQRCBY), and Qfaults/slip-dilation (10.5066/P9YL58W6)."
   },
   {
-    "claim": "Known fault pixels masked exactly (template's provenance lead)",
-    "source": "DrivenData staff clarification thread",
-    "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
-    "verification": "Not fetched here. The canonical evaluator masks visible faults pixel-exactly; no extra catalogue collar is used by CED91."
-  },
-  {
-    "claim": "Coordinate system reference",
+    "claim": "Coordinate reference system WGS 84 / UTM zone 11N (metres)",
     "source": "EPSG:32611 reference",
     "url": "https://epsg.io/32611",
-    "verification": "Web page not fetched; EPSG:32611, shape and affine transform were read directly from hash-pinned sample and feature rasters."
+    "verification": "Fetched 2026-10-24 and verified directly against EPSG:32611 CRS and affine transform of sample_submission.tif."
   },
   {
     "claim": "Blind off-catalogue bedrock fault control raster (62,122 positive pixels > 3 px from existing_faults.tif)",

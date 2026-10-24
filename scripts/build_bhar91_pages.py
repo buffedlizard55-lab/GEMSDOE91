@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build Session 12 (`S12-BHAR`) audit and executive-summary HTML pages in `docs/`.
 
-Reads `docs/run-card-S12.json`, `docs/run-card-S11.json`,
-`evidence/s12_registry_uniqueness.json`, and `docs/sources.json` so every number,
+Reads `docs/run-card-BHAR91.json`, `docs/run-card-S11.json`,
+`evidence/bhar91_registry_uniqueness.json`, and `docs/sources.json` so every number,
 hash, paired bootstrap interval, validator gate, and official source URL is
 grounded in machine-verified on-disk evidence.
 """
@@ -27,7 +27,7 @@ def _nav() -> str:
         '<nav aria-label="Main">'
         '<a href="index.html">Research &amp; download</a>'
         '<a href="s12-bhar.html">S12-BHAR Subsurface Lane</a>'
-        '<a href="s12-executive-summary.html">S12 Guide</a>'
+        '<a href="bhar91-executive-summary.html">S12 Guide</a>'
         '<a href="s11-mhtr.html">S11-MHTR (#1 Holdout: 0.2064)</a>'
         '<a href="s11-executive-summary.html">S11 Guide</a>'
         '<a href="h91-ddvtc.html">H91 Verduzco Lane</a>'
@@ -150,7 +150,7 @@ def build_s12_main_html(rc: dict, s11_rc: dict, uniq_full: dict, sources: list[d
     <div style="text-align:center;margin-top:12px">
       <a download href="downloads/{_esc(sub['recommended_zip_download'])}">↓ Single-TIFF .zip</a> ·
       <a href="downloads/{_esc(sub['audit_json'])}">Format Receipt (.json)</a> ·
-      <a href="run-card-S12.json">S12 Run Card (.json)</a>
+      <a href="run-card-BHAR91.json">S12 Run Card (.json)</a>
     </div>
     <p class="small">Need the #1 primary holdout candidate (<code>0.206406 HOLDOUT-DTI</code>) for human weekly-slot review? Open <a href="s11-mhtr.html"><code>{_esc(s11_sub['candidate_id'])}</code> (S11-MHTR E2) ↗</a>.</p>
   </div>
@@ -179,7 +179,7 @@ def build_s12_main_html(rc: dict, s11_rc: dict, uniq_full: dict, sources: list[d
     <span class="eyebrow">RULE 1 &amp; RULE 4 / CANARY &amp; UNIQUENESS</span>
     <div class="number">92/92 · 62/62</div>
     <p>92 single-feature canaries PASS (worst sym AUC <code>{canary['worst_symmetric_auc']:.5f} &le; 0.90</code>)<br>62 prior fleet &amp; lane rasters PASS (max |&rho;| <code>{uniq['max_surface_abs_rank_corr']:.4f}</code>, max 3px ov <code>{100.0 * uniq['max_3px_dot_overlap']:.2f}% &le; 70%</code>, <code>36.78%</code> vs R0; 0 speckles)</p>
-    <a class="small" href="HYPOTHESES_S12.md">Read pre-registration &amp; forensic proofs ↗</a>
+    <a class="small" href="HYPOTHESES_BHAR91.md">Read pre-registration &amp; forensic proofs ↗</a>
   </article>
 </div>
 
@@ -209,8 +209,8 @@ def build_s12_main_html(rc: dict, s11_rc: dict, uniq_full: dict, sources: list[d
 
 <section class="section">
   <div class="section-head">
-    <h2>Pre-Registered 5-Hypothesis Ranking Before Implementation (<code>HYPOTHESES_S12.md</code>)</h2>
-    <a href="HYPOTHESES_S12.md">Open full pre-registration &amp; equations ↗</a>
+    <h2>Pre-Registered 5-Hypothesis Ranking Before Implementation (<code>HYPOTHESES_BHAR91.md</code>)</h2>
+    <a href="HYPOTHESES_BHAR91.md">Open full pre-registration &amp; equations ↗</a>
   </div>
   <div class="table-scroll">
     <table>
@@ -261,7 +261,7 @@ def build_s12_main_html(rc: dict, s11_rc: dict, uniq_full: dict, sources: list[d
 <section class="section">
   <div class="section-head">
     <h2>Pre-Registered 3-Experiment Holdout &amp; Blind SGMC Ledger (<code>gems91-hide-recover-v1.0</code>)</h2>
-    <a href="run-card-S12.json">Download machine-readable S12 JSON run card ↗</a>
+    <a href="run-card-BHAR91.json">Download machine-readable S12 JSON run card ↗</a>
   </div>
   <div class="table-scroll">
     <table>
@@ -338,7 +338,7 @@ def build_s12_main_html(rc: dict, s11_rc: dict, uniq_full: dict, sources: list[d
         <li><strong>Collinear Pre-Filter Ridge Broadening:</strong> Applying <code>_collinear_neighbor_envelope</code> (<code>r=1.8..5.2 px</code>) prior to <code>pure_steger_hessian_crest</code> broadened crest shoulders (`flank_crowded_3p5px = 6,367`); running Steger Hessian suppression <em>before</em> collinear strand scoring cuts crowding below <code>1,300</code>.</li>
         <li><strong>Session 13 Priority #1 (Province-Gated Selective Fusion):</strong> Gate Topography-Blind Subsurface Branch B by regional volcanic/sedimentary cover thickness (<code>B15 depth_to_base</code> &amp; volcanic magnetic roughness <code>M<sub>shallow</sub></code>) so NW volcanic tablelands and deep basins use <code>S12-BHAR</code> while exposed NE/SE horst ranges retain <code>S11-MHTR</code>'s full scarp precision — combining NW <code>0.2407</code> + NE <code>0.2796</code> + SW <code>0.1648</code> + SE <code>0.2239</code> toward <code>&gt; 0.220 HOLDOUT-DTI</code>.</li>
       </ul>
-      <p><a href="s12-executive-summary.html">Open S12 Executive Summary &amp; Step-by-Step Guide ↗</a></p>
+      <p><a href="bhar91-executive-summary.html">Open S12 Executive Summary &amp; Step-by-Step Guide ↗</a></p>
     </div>
   </div>
 </section>
@@ -391,7 +391,7 @@ def build_s12_main_html(rc: dict, s11_rc: dict, uniq_full: dict, sources: list[d
 </main>
 <footer>
   <div>Session 12 Discovery Audit (<code>{_esc(sub['candidate_id'])}</code> · Verdict: <code>NEGATIVE</code> on Primary Holdout, <code>POSITIVE</code> on Blind SGMC)<br>Generated {_esc(rc['generated_utc'])}</div>
-  <div><a href="run-card-S12.json">S12 JSON Run Card</a> · <a href="s11-mhtr.html">S11 #1 Primary Candidate</a> · <a href="index.html">Main Research Portal</a></div>
+  <div><a href="run-card-BHAR91.json">S12 JSON Run Card</a> · <a href="s11-mhtr.html">S11 #1 Primary Candidate</a> · <a href="index.html">Main Research Portal</a></div>
 </footer>
 </div></body></html>
 """
@@ -435,7 +435,7 @@ def build_s12_exec_summary_html(rc: dict, s11_rc: dict, sources: list[dict]) -> 
     <div style="text-align:center;margin-top:12px">
       <a download href="downloads/{_esc(sub['recommended_zip_download'])}">↓ Download Single-TIFF .zip</a> ·
       <a href="downloads/{_esc(sub['audit_json'])}">Format Receipt (.json)</a> ·
-      <a href="run-card-S12.json">Run Card (.json)</a>
+      <a href="run-card-BHAR91.json">Run Card (.json)</a>
     </div>
   </div>
 </section>
@@ -522,14 +522,14 @@ def build_s12_exec_summary_html(rc: dict, s11_rc: dict, sources: list[dict]) -> 
 
 
 def main() -> int:
-    rc = json.loads((DOCS / "run-card-S12.json").read_text(encoding="utf-8"))
+    rc = json.loads((DOCS / "run-card-BHAR91.json").read_text(encoding="utf-8"))
     s11_rc = json.loads((DOCS / "run-card-S11.json").read_text(encoding="utf-8"))
-    uniq_full = json.loads((EVIDENCE / "s12_registry_uniqueness.json").read_text(encoding="utf-8"))
+    uniq_full = json.loads((EVIDENCE / "bhar91_registry_uniqueness.json").read_text(encoding="utf-8"))
     sources = json.loads((DOCS / "sources.json").read_text(encoding="utf-8"))
 
     (DOCS / "s12-bhar.html").write_text(build_s12_main_html(rc, s11_rc, uniq_full, sources), encoding="utf-8")
-    (DOCS / "s12-executive-summary.html").write_text(build_s12_exec_summary_html(rc, s11_rc, sources), encoding="utf-8")
-    print("Wrote docs/s12-bhar.html and docs/s12-executive-summary.html")
+    (DOCS / "bhar91-executive-summary.html").write_text(build_s12_exec_summary_html(rc, s11_rc, sources), encoding="utf-8")
+    print("Wrote docs/s12-bhar.html and docs/bhar91-executive-summary.html")
     return 0
 
 

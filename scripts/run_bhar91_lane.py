@@ -20,7 +20,7 @@ Strictly enforces `PARALLEL-RUN PROTOCOL` (Rules 1-6):
     bootstrap 95% CI vs `S11-MHTR E2`) or `SGMC-OFFCAT-CONTROL-DTI`.
   - Rule 4 (Leakage Canary First): Tests all 92 single features (static + fold-safe)
     alone on the 4 holdout folds BEFORE scoring any model (`AUC > 0.90` halts).
-  - Rule 5 (Run Card): Emits `docs/run-card-S12.json` and `evidence/s12_run_card.json`.
+  - Rule 5 (Run Card): Emits `docs/run-card-BHAR91.json` and `evidence/bhar91_run_card.json`.
   - Rule 6 (Budget Cap): Strictly 3 experiments (`E1`, `E2`, `E3`) within 2 hours.
 """
 
@@ -412,7 +412,7 @@ def main() -> int:
     )
 
     # Rule 4: Single-feature leakage canary across ALL 92 features (49 + 16 + 15 static + 9 S12 fold-safe + 3 cat fold-safe)
-    canary_path = EVIDENCE_DIR / "s12_leakage_canary.json"
+    canary_path = EVIDENCE_DIR / "bhar91_leakage_canary.json"
     if canary_path.is_file():
         canary = json.loads(canary_path.read_text(encoding="utf-8"))
     else:
@@ -944,7 +944,7 @@ def main() -> int:
         f"Verdict = {verdict.upper()}"
     )
 
-    (EVIDENCE_DIR / "s12_registry_uniqueness.json").write_text(
+    (EVIDENCE_DIR / "bhar91_registry_uniqueness.json").write_text(
         json.dumps(best_uniq_report, indent=2) + "\n", encoding="utf-8"
     )
 
@@ -1098,8 +1098,8 @@ def main() -> int:
         },
     }
 
-    (EVIDENCE_DIR / "s12_run_card.json").write_text(json.dumps(run_card, indent=2) + "\n", encoding="utf-8")
-    (DOCS_DIR / "run-card-S12.json").write_text(json.dumps(run_card, indent=2) + "\n", encoding="utf-8")
+    (EVIDENCE_DIR / "bhar91_run_card.json").write_text(json.dumps(run_card, indent=2) + "\n", encoding="utf-8")
+    (DOCS_DIR / "run-card-BHAR91.json").write_text(json.dumps(run_card, indent=2) + "\n", encoding="utf-8")
     _log(
         f"S12-BHAR complete in {total_wall:.1f}s -> {zeros_filename} "
         f"(SHA256={audit['primary_zeros_tif']['sha256'][:16]}..., verdict={verdict.upper()})"
