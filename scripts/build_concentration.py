@@ -294,7 +294,7 @@ def main() -> int:
     py, px = np.nonzero(parent)
     parent_pts = np.c_[py, px]
 
-    today = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%d")
+    today = "20261023"  # pinned fleet build date (IR-91-29): ids must reproduce, not roll daily
     releases = ROOT / "releases"
     evidence = {
         "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
