@@ -28,6 +28,3 @@ releases/_tmp-*.tif
 
 # TRACKB trace GeoJSON is a derived candidate geometry (same policy as rasters)
 releases/*.geojson
-
-# Session-9 merge repair: candidate rasters must never be tracked (public repo + Pages)
-docs/downloads/*.tif

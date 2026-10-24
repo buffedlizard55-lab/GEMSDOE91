@@ -794,3 +794,9 @@ removed from that file — no CI step runs `scripts/build_geod.py`, so the entri
 lineage job's byte-identity check unsatisfiable. The arm's hashes remain in
 `ledger/submissions.csv` and `evidence/geod_axis_20261024.json`; re-add the entries together
 with a CI build step if GEOD is ever queued.)
+**Superseded in part (same day):** PR #31 (human-coauthored) deliberately promoted the GEOD
+portal — widening the ledger axis set to include `GEOD` and requiring working TIFF downloads
+when `submission_ready` — so at merge #4 this session deferred: downloads re-tracked, axis
+restored to `GEOD`, portal pages taken from main, and the CI no-raster step gained a narrow
+`docs/downloads/`-only exemption citing this item. The exposure question itself is unchanged
+and remains the human's to close against the competition data-use terms.
