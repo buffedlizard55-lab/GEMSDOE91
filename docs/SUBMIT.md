@@ -238,3 +238,45 @@ USGS DS-1052): R0 0.095386 -> +0.00008 / -0.00234 / -0.00926.  Leakage canary ma
 **Do not** upload more than one SNAP arm for the "information" of it — they are one dose-response
 experiment. If a SNAP receipt is bought, `s2c` is the only arm whose prediction is compatible with
 no change, and `≤ −0.006` retires the axis.
+
+---
+
+## Session 6b (`arena/f8d67617-gemsdoe91`) — SNAP on the `|VG|` crest: certified, **recommended against**
+
+Same parent, same axis, a *different* field from PR #18 (vertical gradient, not high-passed horizontal)
+and a *radius* ladder instead of a quantile ladder. Six files exist (`NaN` + `-zeros` for each of
+three arms) and are pinned in `releases/MANIFEST.json`. **The mechanism is falsified locally**
+(`evidence/snap_axis_vg_20261023.json`, `docs/MECHANISM_CARDS.md` §SNAP-VG): the treatment loses
+2.5–7.4× more SGMC fault proximity than a **random** shuffle of the same size, monotonically with dose.
+
+```bash
+python3 scripts/restore_data.py
+python3 scripts/build_snap_geodetic.py --build          # idempotent: same ids, same bytes
+python3 -m pytest tests/test_snap_vg.py                 # the invariants these arms promise
+python3 scripts/validate_raster.py releases/<file>.tif data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif \
+    --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+```
+
+| use | file (`releases/`) | form note (≤140 chars, verified) |
+|---|---|---|
+| only if closing the mechanism | `h33-h33-2-b2-SNAPvg2px-20261023-353a9dda.tif` | `h33-h33-2-b2; SNAP vg2px: every dot <= 2 px to the \|VG\| crest (bands 9+11), count 37654; pred +0.003 MODEL` (106) |
+| ladder point | `h33-h33-2-b2-SNAPvg1px-20261023-97606a78.tif` | `…vg1px… pred +0.002 MODEL` (106) |
+| ladder point, outside the brief's ≤2 px SNAP parameter (IR-91-31) | `h33-h33-2-b2-SNAPvg3px-20261023-435435a3.tif` | `…vg3px… pred +0.004 MODEL` (106) |
+
+### Format receipt (`RECEIPT`, re-read from disk after write)
+
+```text
+h33-h33-2-b2-SNAPvg1px-20261023-97606a78  97606a783b05186fc4406c1f5d5890cbcfde140ba265e672e66b7a3a6ad321fa (372,619 B)
+                                          zeros d22deb3858be7c7a8cc55681e8025cb7c1307ac9e1af1eadc9a7313f2cc1ee64 (225,726 B)
+h33-h33-2-b2-SNAPvg2px-20261023-353a9dda  353a9ddac0385fa66a8bcdd2b6d57ea5676bb85de34d0efce2cebeeedc4e5f4a (372,114 B)
+                                          zeros c910a3113912473c27e6a8ed21e16a6855ea8984ecb90eaf4f3fd2b17d3c6dd5 (225,046 B)
+h33-h33-2-b2-SNAPvg3px-20261023-435435a3  435435a37ec9925b92a3d5bf6b5824e31a41b16a593b6a98d1ef30490462aa51 (370,863 B)
+                                          zeros 81b14b91c17dbea0cf8920633d813cd76ca1af50e662f1e305ec4d411bffe4be (223,945 B)
+all six: dots 37,654 | cat_mass 0 | min_d_cat 2.2361 px (2,171 inherited, unchanged) | min NN 2.000 px
+         EPSG:32611 | 3730x3292 | 100 m | float32 | 1 band | {0,1} | NaN outside | 14/14 PASS both suites
+```
+
+**Recommendation: upload nothing from session 6b.** If you do want one SNAP slot for the whole
+family, PR #18's `s2c` (`86b27de1`, predicted +0.000) is the cheaper test — it moves 5.4 % of dots
+instead of 92 %.

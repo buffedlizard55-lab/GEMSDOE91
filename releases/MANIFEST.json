@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-23T23:30:00Z",
-  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_snap.py --build` and every sha256 below must reappear byte for byte. CI enforces this.",
+  "generated_utc": "2026-10-23T23:55:00Z",
+  "note": "Releases are NOT committed (this repo does not publish derived copies of competition rasters). These hashes are the contract: rebuild with `python3 scripts/restore_data.py && python3 scripts/build_snap_geodetic.py --build` and every sha256 below must reappear byte for byte.",
   "parent": "h33-h33-2-b2 (e5eb6e7e)",
   "files": [
     {
@@ -153,6 +153,36 @@
       "file": "h33-h33-2-b2-SNAPs2q75-20261023-8aa75390.tif",
       "sha256": "8aa7539013b4e89df65e752da2a4a477ac4f7d0c972a46f03673b631490e94c9",
       "bytes": 372144
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPvg1px-20261023-97606a78-zeros.tif",
+      "sha256": "d22deb3858be7c7a8cc55681e8025cb7c1307ac9e1af1eadc9a7313f2cc1ee64",
+      "bytes": 225726
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPvg1px-20261023-97606a78.tif",
+      "sha256": "97606a783b05186fc4406c1f5d5890cbcfde140ba265e672e66b7a3a6ad321fa",
+      "bytes": 372619
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPvg2px-20261023-353a9dda-zeros.tif",
+      "sha256": "c910a3113912473c27e6a8ed21e16a6855ea8984ecb90eaf4f3fd2b17d3c6dd5",
+      "bytes": 225046
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPvg2px-20261023-353a9dda.tif",
+      "sha256": "353a9ddac0385fa66a8bcdd2b6d57ea5676bb85de34d0efce2cebeeedc4e5f4a",
+      "bytes": 372114
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPvg3px-20261023-435435a3-zeros.tif",
+      "sha256": "81b14b91c17dbea0cf8920633d813cd76ca1af50e662f1e305ec4d411bffe4be",
+      "bytes": 223945
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPvg3px-20261023-435435a3.tif",
+      "sha256": "435435a37ec9925b92a3d5bf6b5824e31a41b16a593b6a98d1ef30490462aa51",
+      "bytes": 370863
     }
   ]
 }

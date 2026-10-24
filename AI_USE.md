@@ -417,3 +417,23 @@ PROXY and SGMC control are labelled `PROXY`/report-only and are never called sco
 is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
 one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
 single blind final file.
+
+## Session 6b (2026-10-23, `arena/f8d67617-gemsdoe91`) — SNAP on the vertical gradient
+
+**AI wrote:** `scripts/build_snap_geodetic.py` (deterministic, idempotent rebuild, refuses to write
+on a count/collar/spacing violation), `tests/test_snap_vg.py` (14 tests), the `session 6b` sections of
+`README.md` / `SLOT_PLAN.md` / `docs/SUBMIT.md` / `docs/MECHANISM_CARDS.md` /
+`ledger/variant-cards-SNAP-vg-20261023.md` / this file, `IR-91-31`, the CI rebuild step, three
+`BUILT` ledger rows, six `releases/MANIFEST.json` hashes and `evidence/snap_axis_vg_20261023.json`.
+The AI chose the axis (`SNAP`, per the instruction not to ask) and — after PR #18 landed the same
+axis on a horizontal driver — chose a **different physical field** (vertical gradient) plus a
+**random-target null** that the earlier design could not run, so the session adds evidence rather
+than repeating an experiment.
+
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read/print credentials, scrape a
+leaderboard, commit a raster, or invent a score. The parent was rebuilt from two pinned ancestors
+before any edit; every input was sha256-verified first. The frozen `MODEL` predictions were written
+into the source before any control ran; the post-hoc revision is labelled as post-hoc everywhere.
+
+**Human decides:** whether to spend a slot on any SNAP file (the AI's recommendation is no, for both
+SNAP sessions), `TOP_PUBLIC` + date, slots remaining, every upload, and the single blind final file.

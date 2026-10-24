@@ -308,3 +308,140 @@ exact equal-area relief terciles via `R_rel = 0.90·pct(Band 12 det_elev) + 0.10
   T1/T3 mass (`5.67%↔29.67%` Basin, `26.01%↔50.01%` Range), `RELIEF` tercile allocation
   is non-leveraging at `12%` dose and is retired.
 
+
+---
+
+# SNAP axis — vertical-gradient dose ladder on R0 (Session 6, built 2026-10-23)
+
+Built by `scripts/build_snap_geodetic.py`; every number in `evidence/snap_axis_vg_20261023.json`.
+A **second, independent SNAP session (PR #18)** shipped the same week on a *horizontal*-gradient
+driver (`scripts/build_snap.py`, cards in [`MECHANISM_CARDS_SNAP.md`](MECHANISM_CARDS_SNAP.md)).
+It reached the same conclusion from a different field, which is why the SNAP family — not just
+this driver — is now recommended closed.
+Parent: R0 (`h33-h33-2-b2`), 37,654 unit dots, claimed 0.2778 (`CLAIM`). The prediction in
+each card was fixed in `ARMS` **before** any control was computed, and is what the ledger
+row carries; the post-hoc control result is reported separately and labelled as such.
+
+## Why this field and not another
+
+Nine SNAP rows already exist and all of them snap to a *horizontal* composite
+(`tmi_hg`, `iso_grav_anom_hg`, `det_elev_slope`, `tc`). None has ever used the
+**vertical-gradient** bands the sponsor supplies — `Band 9 tmi_vg` and
+`Band 11 iso_grav_anom_vg`. That distinction is the whole mechanism: for a thin,
+dipping magnetic/density sheet, the horizontal-gradient maximum sits *over the flank*,
+offset from the surface trace by roughly the depth-to-top divided by the dip, whereas
+the vertical-gradient maximum sits closest to the **top edge** of the source — i.e. nearer
+to where the fault breaks the surface. If the lineage's dots are misplaced along dip
+(rather than along strike), the VG crest is the field that can pull them back.
+
+## Shared design, measured not assumed
+
+| invariant | value | how it was held |
+|---|---|---|
+| dot count | 37,654 `RECEIPT` | never added, never deleted |
+| catalogue collar | 2,171 → 2,171 dots at 2 < d_cat ≤ 3 px `RECEIPT` | the 2,171 inherited collar dots are **frozen**; no target cell is ever allowed at d_cat ≤ 3 px |
+| spacing floor | min nearest-neighbour 2.000 px `RECEIPT` (R0: 3.735 px mean, 0 pairs < 2 px) | every target reserves a 3×3 exclusion around it; a cell within < 2 px of any finalised or still-queued dot is illegal |
+| determinism | no RNG on the treatment path `RECEIPT` | row-major processing, ties to the shortest displacement |
+| driver | `0.50·pct(|tmi_vg|) + 0.50·pct(|iso_grav_anom_vg|)`, percentile-ranked inside the footprint | `|.|` because VG polarity is remanence/density dependent; the crest *location* is not |
+| canary | max single-band symmetric AUC 0.5793 (`geod_2ndinv`), threshold 0.90 `PROXY` | no band leaks the catalogue |
+
+Measured on R0: the mean driver percentile at R0's own dots is **0.536**, so R0 is
+already slightly better than random on this field but nowhere near its crests.
+
+## Card — `…-SNAPvg1px-20261023-97606a78` (radius 1 px, 100 m)
+
+- **Hypothesis.** Most of R0's positional error is smaller than one cell; a 100 m nudge
+  onto the VG crest recovers kernel credit at almost no risk of jumping to a different
+  structure.
+- **Mechanism.** 33,807 dots (89.78 % of the field, 95.28 % of the 35,483 movable dots)
+  move up to 1 px; mean displacement 0.898 px, max 1.000 px. The mean driver percentile at
+  the dots rises 0.5360 → 0.5884.
+- **What could mimic it.** Any smooth potential-field texture: a shallow basalt flow edge,
+  an intrusive contact, a playa-margin density step, or a survey-line artefact in the
+  vertical derivative all produce crests that a dot can snap to without being a fault.
+- **Predicted live change (frozen, `MODEL`).** **+0.002**, range −0.004 … +0.008.
+  Below the brief's 0.01 evidence bar by construction — this card is a *falsifier carrier*,
+  not a candidate.
+- **Falsifier.** A live change ≤ −0.004, or no separation from the random-shuffle control
+  below, says the VG crest carries no positional information at 100 m and the axis is
+  closed at this scale.
+
+## Card — `…-SNAPvg2px-20261023-353a9dda` (radius 2 px, 200 m)
+
+- **Hypothesis.** The stated physical cause of the misplacement is the survey geometry:
+  GeoDAWN Area 2 was flown at 400 m line spacing, so a lineament's position is uncertain
+  by roughly the kernel radius. A 200 m correction is therefore the dose that matches the
+  error process, not an arbitrary one.
+- **Mechanism.** 34,285 dots (91.05 %; 96.62 % of movable) move up to 2 px; mean
+  displacement 1.554 px overall, 1.707 px for the dots that move, max 2.000 px. Driver
+  percentile 0.5360 → 0.6142. This is the only arm that stays inside the brief's own
+  "move each dot ≤ 2 px" SNAP definition *and* matches the survey error.
+- **What could mimic it.** As card 1, plus: at 200 m the window reaches across a 100 m
+  cell boundary, so a dot can cross from a hanging-wall scarp onto the footwall crest of
+  the *adjacent* structure in a relay zone — a real fault, but the wrong one, which costs
+  numerator credit while looking like a successful snap.
+- **Predicted live change (frozen, `MODEL`).** **+0.003**, range −0.005 … +0.011.
+- **Falsifier.** Beaten by the radius-2 random-shuffle control on any independent fault
+  map (see the control section): then the treatment is not "snapping to structure", it is
+  "moving dots", and the VG field is not a positional instrument.
+
+## Card — `…-SNAPvg3px-20261023-435435a3` (radius 3 px, 300 m)
+
+- **Hypothesis.** If the error is at the full kernel scale, the useful correction is also
+  at the full kernel scale: R = 3 px is the reach at which credit is lost, so it is the
+  reach at which a misplacement costs most.
+- **Mechanism.** 34,635 dots (91.98 %; 97.61 % of movable) move up to 3 px; mean
+  displacement 2.298 px (2.499 px for movers), max 3.000 px. Driver percentile
+  0.5360 → 0.6367 — the strongest treatment in the ladder.
+- **What could mimic it.** At 300 m the window spans a whole kernel: a dot can be dragged
+  from a genuine fault trace onto a nearby non-fault gradient (a canyon wall, a fan toe, a
+  lithological contact) and still improve the driver. This card is the one most exposed to
+  that failure, and it is why it exists.
+- **Predicted live change (frozen, `MODEL`).** **+0.004**, range −0.008 … +0.016.
+- **Brief deviation, stated:** 3 px exceeds the brief's "move each dot ≤ 2 px" SNAP
+  specification. It is logged as IR-91-31 and is the top of the dose ladder, not a
+  spec-compliant candidate.
+- **Falsifier.** A monotone *decrease* with dose (the mechanism gets worse the harder it is
+  applied) is decisive against the field, not merely against the dose.
+
+## The control that decides how to read all three
+
+A fourth, **report-only** arm (`null_diagnostic` in the evidence file; no raster, no ledger
+row, no slot) runs the identical radius-2 machinery with a uniformly random legal target
+instead of the best driver cell: 32,157 dots moved (85.40 %), driver percentile stays at
+0.5363 (i.e. it does *not* improve the field), collar unchanged at 2,171.
+
+| file | SGMC off-catalogue DTI `PROXY` | Δ vs R0 | × the null's loss |
+|---|---:|---:|---:|
+| R0 | 0.09539 | — | — |
+| null (random, r = 2) | 0.09406 | −0.00133 | 1.0 |
+| `vg1px` | 0.09210 | −0.00326 | 2.5 |
+| `vg2px` | 0.08960 | −0.00582 | 4.4 |
+| `vg3px` | 0.08560 | −0.00978 | 7.4 |
+
+USGS SGMC faults ([DS-1052](https://pubs.usgs.gov/ds/1052/), public domain) are the only
+independent fault compilation this repo may read. The treatment loses **more** fault
+proximity than a coin-flip shuffle of the same size, and the loss grows monotonically with
+dose while the driver percentile rises monotonically too. That combination is the signature
+of a field that is anti-correlated with fault position at this scale: the harder the arm
+optimises it, the further the dots sit from mapped faults.
+
+**Post-hoc reading (not pre-registered, do not confuse with the frozen predictions):** the
+expected live change is therefore **negative**. The size is not measured: carrying the
+control's Δ over at 1:1 gives −0.003 … −0.010, carrying it over as a relative change (live
+`0.2778` against SGMC `0.0954`) gives roughly three times that, and no transfer gives zero.
+Only the **sign** is robust, and it is enough: the ladder is a mechanism falsification rather
+than a candidate set. Do not spend a slot expecting a
+gain. A live result that *gains* despite this control would be the most informative outcome
+of the session: it would say either that the withheld truth is systematically offset from
+the compiled map (plausible — the map is 1:24k–1:100k compilation, the truth is a new
+interpretation), or that the SGMC control is a poor guide.
+
+## What these cards do not claim
+
+No card claims a live score. The frozen numbers are `MODEL` projections from the metric
+algebra (a dot pays iff within 2.83 px of truth; break-even credit 0.0556 at DTI 0.2778).
+The catalogue hide-and-recover `PROXY` is **identically 0.006186 for all four builds
+including R0** — it is structurally blind here and must not be cited as "no effect":
+with the collar dots frozen and every movable dot required to stay > 3 px from the
+catalogue, no reachable arrangement can change the credit on catalogue cells. See IR-91-31.

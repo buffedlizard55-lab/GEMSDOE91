@@ -113,6 +113,10 @@ jobs:
       # ~90 s: 19-band leakage canary is the slow part; deterministic, no RNG.
       - name: Rebuild the SNAP arms from the pinned inputs
         run: python scripts/build_snap.py --build
+      - name: Rebuild the SNAP vertical-gradient arms from the pinned inputs
+        # Idempotent (same ids, same sha256); a different hash under a known id fails.
+        # No RNG on the treatment path; the random-target null is report-only.
+        run: python scripts/build_snap_geodetic.py --build
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
       - name: Every rebuilt file is byte-identical to its committed manifest

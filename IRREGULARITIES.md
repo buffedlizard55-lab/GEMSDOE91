@@ -624,3 +624,38 @@ row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on fl
 (explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
 float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic
 demo but must not be used to build a release.
+
+## IR-91-31 — SNAP on the vertical gradient: what the second SNAP session adds that IR-91-28..30 did not
+
+Two sessions ran `SNAP` on R0 the same day. PR #18 used a high-passed **horizontal**-gradient driver
+over a *quantile* ladder and recorded IR-91-28 (the catalogue PROXY is identically `0.006186` by
+construction), IR-91-29 (SNAP is a re-layout, exempt from the 1–50 % rule) and IR-91-30 (the generic
+`axes.snap` path would violate the 3 px collar). This session reached the same two structural facts
+independently — the same `0.006186`, the same ~90 % re-layout — so those items stand and are **not**
+duplicated here. What is new:
+
+1. **A random-target null is the discriminator, not another driver.** PR #18 varied how *many* dots
+   move. This session varied *how far* they may move while holding everything else (parent, count,
+   collar, spacing, footprint) fixed, and added a report-only arm in which the legal target is drawn
+   uniformly at random inside the same window (seed 91, no raster, no ledger row, no slot). The null
+   moves 85.40 % of dots for `−0.0013` on SGMC; the real treatment at the same radius moves 91.05 %
+   for `−0.0058`, and the loss grows with dose (`−0.0033 / −0.0058 / −0.0098` at r = 1/2/3) while the
+   driver percentile rises (`0.536 → 0.588 / 0.614 / 0.637`). **A dose ladder without a same-size null
+   cannot tell "the field is wrong" from "moving this many dots is bad"; with the null, it can.**
+   Recommendation for every future SNAP-style axis: build the null first.
+2. **The 2 px nearest-neighbour floor has to be enforced, and SNAP breaks it by default.** R0 has 0
+   dot pairs closer than 2 px (the d2.8 thinning rule). The first two builds of this session produced
+   5,955 and 11,774 such pairs, because two dots can independently choose the same crest. That is a
+   *second* edit (redundancy: `S` up, `T` saturated) hiding inside a SNAP arm. The builder now
+   reserves a 3×3 exclusion around every finalised **and** every queued dot, refuses to write if the
+   realised minimum separation is < 2.000 px, and `tests/test_snap_vg.py` asserts it.
+3. **One arm is outside the brief's own SNAP parameter.** `vg3px` moves dots up to 3 px; the brief
+   says "≤ 2 px". It is kept because R = 3 px is the kernel reach and the third rung is what makes
+   the ladder a slope rather than a pair, but it is flagged in `docs/SUBMIT.md` and must not be
+   described as spec-compliant. `vg2px` is the compliant arm.
+
+**Decision it changes.** (a) SNAP is retired as an axis on the strength of two independent negative
+builds, not one; `SLOT_PLAN.md` keeps it out of the top 3 and offers only the sign flip (`SNAP-ANTI`)
+as a future build. (b) Any future SNAP arm must ship with a same-size random-target null and a
+spacing-floor assertion, or its result is not interpretable. (c) The catalogue PROXY stays blind for
+every axis whose targets are floored outside the collar — the SGMC control is the informative one.
