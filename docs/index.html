@@ -1,257 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GEMSDOE91 — GEMS Prize #306 | Geodetic-Strain Submission (GEOD)</title>
-<meta name="description" content="GEMS Prize DrivenData #306 — validated GeoTIFF submission from GEMSDOE91. GEOD strain-prior, 37,654 dots, EPSG:32611, all gates PASS. Download & submit.">
-<style>
-:root{--bg:#0f1115;--card:#1a1e24;--accent:#2dd4bf;--accent2:#60a5fa;--text:#e6e8eb;--muted:#9aa3af;--ok:#10b981;--warn:#f59e0b;--bad:#ef4444;--border:#262c36}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{color:var(--accent2)}a:hover{color:var(--accent)}
-.container{max-width:1100px;margin:0 auto;padding:24px}
-.header{display:flex;flex-wrap:wrap;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
-.header h1{margin:0;font-size:28px;letter-spacing:-0.02em}
-.header .badge{background:var(--card);border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
-.hero{background:linear-gradient(135deg,#122a2c 0%,#1e2a4a 100%);border:1px solid var(--border);border-radius:16px;padding:28px;margin:24px 0;display:grid;grid-template-columns:1.2fr 0.8fr;gap:24px;align-items:center}
-@media(max-width:800px){.hero{grid-template-columns:1fr}}
-.hero h2{margin:0 0 8px 0;font-size:24px}
-.hero p{margin:0;color:#c9d2dc}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#071214;font-weight:700;padding:14px 22px;border-radius:10px;text-decoration:none;border:0;font-size:15px;cursor:pointer}
-.btn:hover{background:#20b8a6;color:#071214}
-.btn.secondary{background:transparent;color:var(--accent);border:1px solid var(--accent)}
-.btn.secondary:hover{background:rgba(45,212,191,0.1)}
-.kvs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
-@media(max-width:700px){.kvs{grid-template-columns:1fr}}
-.kv{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px}
-.kv .k{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
-.kv .v{font-size:18px;font-weight:700;margin-top:4px}
-.kv .s{font-size:12px;color:var(--muted);margin-top:4px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:16px 0}
-.card h3{margin:0 0 10px 0;font-size:16px;letter-spacing:-0.01em}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:800px){.grid2{grid-template-columns:1fr}}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{color:var(--muted);text-align:left;font-weight:600;padding:8px 10px;border-bottom:1px solid var(--border)}
-td{padding:8px 10px;border-bottom:1px solid #1e242e}
-tr:last-child td{border:0}
-.badge-ok{background:rgba(16,185,129,0.15);color:var(--ok);padding:3px 8px;border-radius:999px;font-size:12px;font-weight:600}
-.badge-warn{background:rgba(245,158,11,0.15);color:var(--warn);padding:3px 8px;border-radius:999px;font-size:12px;font-weight:600}
-.badge-bad{background:rgba(239,68,68,0.15);color:var(--bad);padding:3px 8px;border-radius:999px;font-size:12px;font-weight:600}
-code{background:#11161d;border:1px solid var(--border);padding:2px 6px;border-radius:6px;font-size:12px;word-break:break-all}
-pre{background:#0d1016;border:1px solid var(--border);border-radius:10px;padding:14px;overflow:auto;font-size:12px;line-height:1.5}
-.notice{border-left:4px solid var(--accent);background:rgba(45,212,191,0.08);padding:14px 16px;border-radius:8px;margin:12px 0}
-.notice.warn{border-left-color:var(--warn);background:rgba(245,158,11,0.08)}
-.notice.bad{border-left-color:var(--bad);background:rgba(239,68,68,0.08)}
-.steps{counter-reset:step}
-.steps .step{display:flex;gap:14px;margin:14px 0}
-.steps .num{flex:0 0 32px;height:32px;border-radius:999px;background:var(--accent);color:#071214;display:grid;place-items:center;font-weight:800;font-size:14px}
-.links{font-size:13px;color:var(--muted)}
-.links a{margin-right:12px}
-footer{margin:32px 0 16px 0;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GEMSDOE91 official-source audit and submission readiness for the DOE GEMS Prize. Current status: no TIFF approved for submission.">
+  <title>GEMSDOE91 — Submission readiness</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1220;--panel:#121d2d;--panel2:#162437;--ink:#eef4fb;--muted:#aebdce;--line:#2c3e52;--red:#ff6b6b;--redbg:#3a171c;--teal:#61d9c2;--blue:#9cc5ff;--amber:#ffd27a;--green:#8fe0a1}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#15273b 0,#0b1220 58%);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--blue);text-underline-offset:3px}a:hover{color:var(--teal)}code{padding:.1em .35em;border:1px solid var(--line);border-radius:5px;background:#0b1421;font-size:.92em;overflow-wrap:anywhere}
+    .wrap{width:min(1080px,calc(100% - 32px));margin:auto}.top{padding:28px 0 18px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.brand h1{margin:0;font-size:1.9rem;letter-spacing:-.04em}.tag{border:1px solid var(--line);border-radius:99px;padding:4px 10px;color:var(--muted);font-size:.82rem}.nav{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:.92rem}
+    main{padding:24px 0 52px}.alert{border:2px solid var(--red);background:linear-gradient(120deg,var(--redbg),#231922);border-radius:14px;padding:22px 24px;margin:22px 0}.alert h2{margin:0 0 8px;color:#ffaaaa;font-size:1.45rem}.alert p{margin:.35rem 0}.alert strong{color:#fff}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:13px;padding:20px;margin:16px 0}.card h2,.card h3{margin:0 0 10px;line-height:1.3}.card h2{font-size:1.25rem}.card h3{font-size:1.05rem}.muted{color:var(--muted)}.pill{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:2px 7px;font-size:.8rem;color:var(--muted)}.stop{color:var(--red);font-weight:800}.ok{color:var(--green);font-weight:700}.warn{color:var(--amber)}
+    table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:650}tr:last-child td{border-bottom:0}.links{display:flex;gap:12px 18px;flex-wrap:wrap}.button{display:inline-block;text-decoration:none;border:1px solid var(--blue);border-radius:9px;padding:9px 13px;font-weight:700}.button:hover{background:#172b42}.small{font-size:.88rem}footer{border-top:1px solid var(--line);padding:20px 0 32px;color:var(--muted);font-size:.85rem}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}.brand h1{font-size:1.6rem}th,td{padding:8px 6px}}
+  </style>
 </head>
 <body>
-<div class="container">
-  <div class="header">
-    <h1>GEMSDOE91</h1>
-    <span class="badge">DrivenData GEMS Prize #306</span>
-    <span class="badge">EPSG:32611 — 3730×3292 — 100 m</span>
-    <span class="badge">Session 2026-10-24</span>
-    <span class="badge" style="color:var(--ok);border-color:rgba(16,185,129,0.4)">BUILD ALLOWED ✓</span>
-  </div>
+  <header class="top">
+    <div class="wrap">
+      <div class="brand"><h1>GEMSDOE91</h1><span class="tag">DOE GEMS Prize · DrivenData #306</span><span class="tag">Status checked 2026-10-24 UTC</span></div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" aria-current="page">Status</a>
+        <a href="executive-summary.html">How to submit</a>
+        <a href="HYPOTHESES_G91.md">Hypotheses</a>
+        <a href="REVIEW-20261024.md">Review</a>
+        <a href="SOURCES.md">Sources</a>
+        <a href="../LIMITATIONS.md">Limitations</a>
+        <a href="../SLOT_PLAN.md">Slot selector status</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="alert" role="alert" aria-labelledby="current-status">
+      <h2 id="current-status">NOT APPROVED — DO NOT DOWNLOAD OR SUBMIT A TIFF</h2>
+      <p><strong>There is no active submission file in this project.</strong> No unique candidate passed the required holdout, leakage, novelty, and format gates, and no separate slot selector authorized promotion. This is an intentional fail-closed status, not a claim that the scientific hypotheses failed.</p>
+      <p class="small">Earlier GEOD files were historical candidates, not currently approved downloads. They have been removed from this folder so an obsolete file cannot be mistaken for an approved submission. See the <a href="downloads/README.md">download-folder notice</a> and <a href="REVIEW-20261024.md">audit</a>.</p>
+    </section>
 
-  <div class="notice">
-    <strong>Executive summary — download & submit (one file per slot):</strong><br>
-    Click <em>Download Validated TIF</em> below to get the submission-ready GeoTIFF. It is already gate-certified (14/14 MUST PASS, values in [0,1], no NaN inside footprint, CRS/shape/transform match). Upload <strong>exactly one</strong> encoding per slot on the competition page — use the primary <code>-nan.tif</code> (NaN outside) unless the form rejects it, then use the <code>-zeros.tif</code> twin for the same slot. Never submit both twins as two slots. See “How to submit” for the 4-step checklist.
-  </div>
+    <div class="grid">
+      <section class="card">
+        <h2>Why the gate is closed</h2>
+        <ul>
+          <li>The prompt references a single assigned method paragraph, but no distinct lane paragraph was supplied.</li>
+          <li>The required shared <code>evaluate_holdout.py</code>, <code>submission_writer.py</code>, and template path are absent from this checkout. The local proxy is not the required evaluator.</li>
+          <li><code>data/</code> is absent, including the official feature stack and whole-fault segment geometry. The official data page redirects to login.</li>
+          <li>A previous GEOD report records final-dot overlap above the protocol's 70% duplicate threshold. The parent input is absent, so that historical measurement is not independently reproducible here; it is still a fail-closed duplicate stop.</li>
+          <li>No compliant HOLDOUT-DTI, evaluator version, withheld-positive count, or 95% CI exists for a new candidate.</li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2>Score provenance</h2>
+        <p>The prompt's <strong>0.2778</strong> for <code>h33-h33-2-b2</code> is an <span class="warn">unverified site/user claim</span>, not HOLDOUT-DTI or ORGANIZER-CONFIRMED. The current <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 page</a> explicitly says it has no organizer score for its artifacts and does not substantiate that reported value.</p>
+        <p>The official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">public leaderboard</a> displayed <strong>0.4413 at rank 1</strong> when checked on 2026-10-24. This is a PUBLIC-LEADERBOARD OBSERVATION only, neither HOLDOUT-DTI nor ORGANIZER-CONFIRMED for GEMSDOE91 and not a private-test result.</p>
+        <p class="muted small">For this project, an organizer result is only ORGANIZER-CONFIRMED when copied from the entrant's submission-page receipt. See <a href="SOURCES.md">source provenance</a>.</p>
+      </section>
+    </div>
 
-  <div class="hero">
-    <div>
-      <h2>GEOD Strain-Prior Submission — Ready to Download</h2>
-      <p><strong>h33-h33-2-b2-GEOD25m10-20261024-bff9fd21</strong> — 37,654 unit-mass dots, count fixed, collar respected, spacing preserved. Predicted <strong>+0.0090 MODEL</strong> [+0.32 on strain surrogate], SGMC off-catalogue +1.8% relative. This is a <em>unique</em> TIF: new dots >70% distinct in prior space, not a copy of any fleet file.</p>
-      <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:10px">
-        <a class="btn" href="downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif" download>⬇ Download Validated TIF (NaN-outside, 349 KB)</a>
-        <a class="btn secondary" href="downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif" download>⬇ Fallback (zeros-outside, 208 KB)</a>
+    <section class="card">
+      <h2>What is required before a TIFF can appear here</h2>
+      <ol>
+        <li>Identify the assigned method lane and shared template; restore official inputs through an authorized path and verify hashes.</li>
+        <li>Run the shared buffered whole-segment hide-and-recover evaluator. Recompute catalogue-based features from visible faults per fold, mask visible faults pixel-exactly, pool DTI components, and record evaluator version, withheld positives, and 95% CI.</li>
+        <li>Test each feature alone for leakage; AUC greater than 0.90 is a stop condition.</li>
+        <li>Check surface rank-correlation before placement and final-dot overlap after placement against every available registry raster. A threshold exceedance is logged as a duplicate and the experiment stops.</li>
+        <li>Require a better result than the current compliant holdout best, then pass the project validator on the written-and-reread GeoTIFF.</li>
+        <li>Only a separate selector may promote the validated artifact within the official weekly cap. The page can then expose the exact file, SHA256, unique name, and short note.</li>
+      </ol>
+      <p class="muted small">The official submission format is a single float32 layer, EPSG:32611, 100 m, same bounds, values in [0,1], with null/NaN outside bounds. No current file has been approved against the complete format and experiment gates.</p>
+      <a class="button" href="executive-summary.html">Read the full submission procedure</a>
+    </section>
+
+    <section class="card">
+      <h2>Research agenda — proposals, not results</h2>
+      <p>Five distinct candidate mechanisms are ranked in <a href="HYPOTHESES_G91.md">the research note</a>. The leading proposal tests fold-visible fault tips/stepovers against provided strain layers; alternatives test paired magnetic–gravity edges, conductivity/depth boundaries, earthquake-density/strain structure, and relief-profile curvature. Each lists a named non-fault mimic and implementation cost. None has been evaluated in this run.</p>
+      <p class="muted small">Official geological context: USGS publications discuss geothermal fluid flow at structural discontinuities and blind systems associated with fault intersections/transfer zones. These sources motivate hypotheses; they do not establish predictor performance.</p>
+    </section>
+
+    <section class="card">
+      <h2>Current machine-readable run card</h2>
+      <p><span class="stop">Verdict: negative (blocked before experiment)</span> · HOLDOUT-DTI: not run · Registry comparison: unverified · Raster SHA256: none · Submission name/note: not generated · Download: none.</p>
+      <p class="small">The canonical JSON is <a href="run-card.json">docs/run-card.json</a>. The run is not a scientific negative against the proposed mechanism.</p>
+    </section>
+
+    <section class="card">
+      <h2>Official links for review</h2>
+      <div class="links">
+        <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem, metric &amp; format</a>
+        <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules PDF</a>
+        <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Live public leaderboard</a>
+        <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Data page (login required)</a>
+        <a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference repository</a>
+        <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a>
+        <a href="https://pubs.usgs.gov/publication/70196066">USGS structural discontinuities</a>
+        <a href="https://pubs.usgs.gov/publication/70201803">USGS blind geothermal system case study</a>
+        <a href="https://epsg.io/32611">EPSG:32611</a>
       </div>
-      <div style="margin-top:10px;font-size:12px;color:var(--muted)">SHA256 (nan): <code>bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158</code> &nbsp; | &nbsp; SHA256 (zeros): <code>104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722</code></div>
-      <div style="margin-top:8px;font-size:12px;"><span class="badge-ok">✓ VALIDATED — OK to download & submit</span> &nbsp; <span style="color:var(--muted)">14/14 MUST gates PASS on both encodings (see validator output below)</span></div>
-    </div>
-    <div>
-      <div class="kvs">
-        <div class="kv"><div class="k">Predicted Δ vs R0 (MODEL)</div><div class="v" style="color:var(--ok)">+0.0090</div><div class="s">Range [−0.006, +0.020] — KAPPA=0.10 shrinkage on strain surrogate</div></div>
-        <div class="kv"><div class="k">Off-catalogue SGMC control</div><div class="v">+1.8% rel</div><div class="s">ΔDTI +0.0017 on 62k off-cat pixels (USGS DS-1052)</div></div>
-        <div class="kv"><div class="k">Footprint & count</div><div class="v">37,654 dots</div><div class="s">5,167,373 px footprint, 0 NaN inside</div></div>
-      </div>
-      <div class="kvs">
-        <div class="kv"><div class="k">Block CV (1 km)</div><div class="v">0.618 → 0.610</div><div class="s">Occupied 2.5km blocks, stays near 0.51–0.59 best band</div></div>
-        <div class="kv"><div class="k">Collar & catalogue</div><div class="v">0 added ≤3 px</div><div class="s">Inherits R0's 2,171 (2.236 px min) — IR-91-03</div></div>
-        <div class="kv"><div class="k">Leakage canary</div><div class="v" style="color:var(--ok)">PASS 0.579</div><div class="s">Max single-feature AUC 0.579 ≪ 0.90 stop</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>How to submit — 4-step checklist (no human inspection needed beyond this page)</h3>
-    <div class="steps">
-      <div class="step"><div class="num">1</div><div><strong>Download the file above.</strong> Do not unzip, rename, or re-encode — the SHA256 must stay <code>bff9fd21…</code>. If your browser adds <code>.zip</code>, remove it so the file ends in <code>.tif</code>. Both twins are pre-validated; they are the same dot set with different nodata encoding.</div></div>
-      <div class="step"><div class="num">2</div><div><strong>Go to the submission page</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submission/" target="_blank" rel="noopener">DrivenData — New submission</a> (requires login) — “File to submit — No file chosen” → select <code>h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif</code>. The form accepts single-band GeoTIFF or a .zip containing one — use .tif directly.</div></div>
-      <div class="step"><div class="num">3</div><div><strong>Fill the optional note</strong> (≤140 chars) — copy-paste:<br><code style="display:block;margin-top:6px">h33-2-b2; GEOD strain 10% to high 2.5km blocks (Bands4+7), count fixed 37654; pred +0.0090 MODEL</code><br><em style="color:var(--muted)">59 chars — already in <code>ledger/submissions.csv:form_note</code>.</em></div></div>
-      <div class="step"><div class="num">4</div><div><strong>Click “Create submission”</strong> and wait for the format check. If it says <em>“Predicted values must be in range [0,1]”</em> you uploaded a file with values outside [0,1] — this file cannot produce that error (values are only 0 or 1 inside footprint, verified below). If it says <em>CRS/shape/transform mismatch</em> you uploaded the wrong file — re-download the one on this page (EPSG:32611 3730×3292 100 m). On success, copy the returned <strong>receipt score + date</strong> into <code>ledger/submissions.csv:receipt_score/receipt_date</code> and set <code>status=SUBMITTED</code>.</div></div>
-    </div>
-    <div class="notice warn"><strong>One entity, 3 slots/week, 1 final file.</strong> Do not submit both twins as two slots, do not submit the same SHA twice (8 prior fleet slots went to exact repeats), and do not use a second account. Under |Δ|&lt;0.01 on live receipt = no evidence — do not chase it with a larger dose in the same week.</div>
-  </div>
-
-  <div class="card">
-    <h3>Validator output — paste this with your receipt (no NaN inside, values in [0,1], CRS/shape/transform match)</h3>
-    <pre><code>candidate: h33-h33-2-b2-GEOD25m10-20261024-bff9fd21
-sha256 (NaN)    : bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158
-sha256 (zeros)  : 104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722
-bytes (NaN)     : 356859  (349 KB)  — zeros twin 212109 B (208 KB)
-grid            : EPSG:32611 | 3730×3292 | 100 m | float32 | 1 band | values {0,1} | NaN outside
-n_dots          : 37654  unit-mass | cat_mass 0 px | min_d_catalogue 2.236 px (inherited, IR-91-03) | added_le3px 0
-footprint       : 5,167,373 px inside, 7,111,787 outside | 0 NaN inside, 0 finite outside
-collar          : 2,171 → 2,171 (0 drift, quarantined)
-count           : 37654 → 37654 fixed | pct_changed 10.00% (3765 moved, hamming 7530)
-NN              : min 2.0 px (parent floor preserved), mean 3.81 px
-block CV 2.5km  : 0.6187 → 0.610 | donor 45 blocks (≤30%), recip 45 blocks (≥70%)
-validate.py     : PASS  — 14/14 MUST gates (crs/shape/transform/dtype/band_count/values_in_0_1/no_nan_inside/nan_outside/zero_catalogue_mass/count_matches_parent/reread/unit_mass_dots)
-validate_raster : 14/14 PASS (both encodings, re-read from disk byte-identical)
-validate_release: 16/16 PASS (nan) / 16/16 PASS (zeros) — sha256_not_spent PASS
-canary          : PASS — max single-feature AUC 0.579 ≪ 0.90 threshold
-SGMC off-cat    : +1.8% rel (+0.0017) — independent USGS DS-1052 control, REPORT ONLY
-surrogate strain: +31% rel (KAPPA=0.10 → +0.0090 MODEL) — prior-as-truth ceiling
-correlation     : rank vs parent 0.8951 (just under 0.90); dot overlap ≤3px 93.2% (by construction, 90% of dots untouched)
-uniqueness      : NOT a copy — new prior (Band4+7) unused in fleet; surface correlation to GDR priors 0.42; dot digest ccb16d25… distinct
-</code></pre>
-    <div style="margin-top:10px;font-size:12px;color:var(--muted)">Run locally to re-verify: <code>python3 scripts/restore_data.py && python3 scripts/validate.py releases/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif && python3 scripts/validate_raster.py releases/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif data/official/sample_submission.tif --catalogue data/official/existing_faults.tif --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif</code></div>
-  </div>
-
-  <div class="grid2">
-    <div class="card">
-      <h3>Why 0.2778 was the site’s best — and whether we can beat it</h3>
-      <p style="font-size:13px;color:#c9d2dc">PhD-level forensics (verified against pinned rasters, not memory):</p>
-      <ul style="font-size:13px">
-        <li><strong>Kernel-optimal spacing (mechanism):</strong> R0 is <code>dotted-h19-5-d2.8</code> (44,090 Poisson-disc dots at d=2.8 px) minus the ≤2 px catalogue collar (2,545 removed, 0 added) — verified by differencing <code>91eae1ca…</code> and <code>c55bafc4…</code> (0 dots in R0 absent from d2.8). For a 300 m triangular kernel (R=3 px), dots within 2.8 px of the same truth pixel are redundant (max operator caps credit ≈1 while S−M denominator costs 0.2/dot). Poisson-disc thinning maximizes T/S; every 10% concentration or 93% snap broke this and underperformed (spread +0.004 vs clump −0.002).</li>
-        <li><strong>2 px collar, not 3 px:</strong> Organisers mask known pixels pixel-exactly — only unmasked new-fault pixels beside them pay (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">clarification</a>). 2–3 px (2171 dots) sits in the legal splay halo; deleting it (<code>PRUNE-le3</code> +0.002 MODEL) is marginal, deleting to 10 px (+0.008 but risky) trades denominator saving vs basin-intra credit. R0’s 2 px is the empirical optimum.</li>
-        <li><strong>Lineage convergence:</strong> 71.5% 3-way consensus among H19-5/H19-4/H16-1 — generalizes; ML-only files (0.018–0.142) overfit.</li>
-        <li style="margin-top:6px"><strong>Can we beat 0.2778?</strong> Spacing/collar alone cannot (+0.008 max). Gains must come from <em>independent geophysics</em> — our GEOD moves 10% mass into high geodetic-strain blocks (Walker Lane shear, 50 km GPS), a layer no fleet file used. Predicted +0.009 MODEL, +1.8% SGMC, and the fleet high 0.4413 CLAIM is +59% unexplained (likely overfit or count exploit) — not a chase target without receipt.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>Run card (JSON) — hypothesis, mechanism, mimic, holdout, correlation, raster, validator, name, verdict</h3>
-      <pre style="font-size:11px"><code>{
-  "hypothesis": "Geodetic-strain dilated corridor: 10% of fixed-count dots moved from lowest- to highest-prior 2.5km blocks of the 0.5*pct(geod_2ndinv)+0.5*pct(geod_shearrate) prior; high Walker-Lane shear maintains dilation at blind geothermal splays the catalogue misses at 1:250k.",
-  "mechanism": "Strain localization (Block F of Faulds) → dilational jogs → unmapped NW splays within 300m kernel; high-strain blocks have 1.3x per-cell fault credit on SGMC off-cat vs low-strain; moving mass there raises T without raising S (count fixed) or S-M (spacing preserved at 2.0px floor).",
-  "non_fault_process_that_could_mimic": "GPS station-spacing smear (50km) → broad strain highs across adjacent aseismic blocks; also basin-range topographic strain (non-tectonic); would show as uniform SGMC gain without lineament coherence, failing Phase-2 expert review.",
-  "holdout_dti": {
-    "evaluator_version": "gems91.metric v1 + hide-and-recover 4-fold spatially-blocked (400px quadrants, 8px buffer, catalogue recomputed from visible only, visible faults masked pixel-exactly, pooled DTI alpha0.2 beta0.8 300m triangular)",
-    "n_withheld_positives_per_fold": [15247,15247,15247,15247],
-    "mean_parent": 0.006186,
-    "mean_child": 0.00695,
-    "delta_mean": 0.00077,
-    "ci95": "[0.00021, 0.00133]",
-    "label": "HOLDOUT-DTI (not ORGANIZER-CONFIRMED)"
-  },
-  "correlation_overlap_vs_registry": {
-    "max_registry_rank_corr": 0.8951,
-    "threshold": 0.90,
-    "dot_overlap_within_3px_vs_parent": "93.2% (35103/37654 — by construction, 90% of dots untouched; moved-dot overlap vs gdr25rm10 80.4%)",
-    "overlap_threshold": "70%",
-    "verdict": "Surface rank corr 0.8951 PASS (just under 0.90); dot overlap 93% EXCEEDS 70% — expected for count-fixed 10% edits preserving spacing optimum; flagged as duplicate-risk per protocol but retained because surface (strain prior) is new and spacing preservation is deliberate (IR-91-03).",
-    "surface_correlation_to_GDR_priors": 0.42
-  },
-  "raster_sha256": {
-    "nan": "bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158",
-    "zeros": "104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722",
-    "dot_digest": "ccb16d25ad18eb76"
-  },
-  "validator_output": {
-    "no_nan_inside_footprint": "PASS (0 NaN in 5,167,373 px)",
-    "values_in_0_1": "PASS (only 0, 1)",
-    "crs_shape_transform_match": "PASS (EPSG:32611 3730x3292 100m)",
-    "crs": "EPSG:32611",
-    "shape": [3730, 3292],
-    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
-    "gates": "14/14 MUST PASS (nan) + 16/16 release_gates PASS; 14/14 MUST PASS (zeros)"
-  },
-  "submission_name": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21",
-  "submission_note": "h33-2-b2; GEOD strain 10% to high 2.5km blocks (Bands4+7), count fixed 37654; pred +0.0090 MODEL (59 chars)",
-  "verdict": "promote",
-  "budget": "1/3 experiments, ~8 min build + 2 min validation; 2 slots remain this week; promotion to real slot is separate selector step within weekly cap (see submission page)."
-}</code></pre>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>5 candidate hypotheses — ranked (H91-A is the download above)</h3>
-    <table>
-      <tr><th>#</th><th>Hypothesis (layer, signature, why missing, differs)</th><th>Expected Δ</th><th>Cost</th><th>Action</th></tr>
-      <tr><td><strong>H91-A ✓ BUILT</strong></td><td><strong>Geodetic-strain corridor</strong> — Bands 4+7, 0.5pct+0.5pct prior, Walker-Lane shear → dilational jogs, 2.5km blocks — <em>this file</em></td><td style="color:var(--ok);font-weight:700">+0.0090</td><td>Med</td><td><span class="badge-ok">PROMOTE</span></td></tr>
-      <tr><td>H91-B</td><td><strong>Depth kernel bracket</strong> — Band15 depth_to_base_surf + Band18 iso_grav_anom_hg, thickness >500m → downdip 2px shift of acceptor (upward-continuation correction) — fixes basin-masked faults</td><td>+0.007</td><td>Low</td><td>Next if GEOD ≥+0.01</td></tr>
-      <tr><td>H91-C</td><td><strong>Radiometric halo</strong> — ext_geodawn_rad_u8 K/Th + Band3 tmi_hg demag, argillic alteration clay — marks fluid pathway, not scarp</td><td>+0.008</td><td>Low</td><td>Week 2</td></tr>
-      <tr><td>H91-D</td><td><strong>Lidar persistence</strong> — ext_lidar_scarp_u8 + Band19 det_elev_slope + Band6 tc tilt, 1m lidar → 100m — 0.5m scarps erased in 10m DEM</td><td>+0.005</td><td>Med</td><td>Reserve</td></tr>
-      <tr><td>H91-E</td><td><strong>Tip extension</strong> — catalogue skeleton endpoints + Band4/7 strain, 0.3–1.5km along-strike corridor — Faulds terminations truncated at 1:250k</td><td>+0.006</td><td>Med</td><td>Reserve</td></tr>
-    </table>
-    <div style="margin-top:10px;font-size:12px;color:var(--muted)">Leakage canary: each feature alone AUC 0.54–0.58 ≪ 0.90 threshold — PASS. All layers pinned, no external data needed (verified obtainable). Full analysis in <a href="HYPOTHESES_G91.md">HYPOTHESES_G91.md</a> with links.</div>
-  </div>
-
-  <div class="card">
-    <h3>Full fleet context — 50 BUILT rows, 0 receipts before this session</h3>
-    <p style="font-size:13px;color:var(--muted)">Parent R0 = <code>h33-h33-2-b2</code> (0.2778 CLAIM) is byte-identical from either ancestor (<code>baeae321…</code> / <code>c55bafc4…</code>, dot digest <code>905cee9d…</code>). Fleet summary across 7 axis families (see SLOT_PLAN.md): CONCENTRATION gdr25rm10 +0.0123 MODEL, PRUNE le15 +0.010, MASS cons3add +0.0086, RELIEF b2r12 +0.005, SPACING spread +0.004, SNAP s2c +0.000, TRACKB t1k20 +0.005, GEOD new +0.0090. No ORGANIZER-CONFIRMED scores yet — paste receipts to adjudicate.</p>
-    <table>
-      <tr><th>Axis</th><th>Best arm</th><th>Predicted MODEL</th><th>SGMC off-cat (independent)</th><th>Slot guidance</th></tr>
-      <tr><td>GEOD (new)</td><td>geod25m10 (bff9fd21)</td><td style="color:var(--ok)">+0.0090 [+1.8% SGMC]</td><td>+1.8% rel</td><td><strong>Slot 1 this week</strong> (strain is the only untested km-prior)</td></tr>
-      <tr><td>PRUNE</td><td>le15 (1ca1ff6f)</td><td>+0.010 [−0.008,+0.024]</td><td>—</td><td>Slot 2 if GEOD flat; rebases winners onto pruned parent</td></tr>
-      <tr><td>MASS</td><td>cons3add (2803126d)</td><td>+0.0086</td><td>—</td><td>Slot 3 (recall direction, 10% add on 3-way consensus)</td></tr>
-      <tr><td>CONCENTRATION (GDR)</td><td>gdr25rm10 (c19adb01)</td><td>+0.0123</td><td>—</td><td>Hold — prior scored against itself (circular); session 8 measured collar loss</td></tr>
-      <tr><td>RELIEF</td><td>b2r12 (e1fd28d5)</td><td>+0.005</td><td>+5.2% SGMC</td><td>Reserve — best SGMC but weak MODEL</td></tr>
-      <tr><td>SNAP</td><td>s2c (86b27de1)</td><td>+0.000</td><td>+0.00008</td><td>Retire — dose-response negative</td></tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h3>Known wrinkle — inherited collar (IR-91-03) and overlap flag</h3>
-    <div class="notice warn">R0 itself has 2,171 dots at 2–3 px from the catalogue (min 2.236 px), vs the brief’s “≥3 px unless AXIS=PRUNE”. All non-PRUNE children inherit this — they add 0 new dots ≤3 px, but the gate reports <code>collar_ge_3px = FAIL</code> on the parent identically (IR-91-03). Our file is 2,171→2,171 (0 drift, quarantined) and passes every other MUST gate. If the organiser enforces strict ≥3 px, rebase on <code>PRUNEle3norefill</code> (35,483 dots) — but that is a two-change build and must not be described as GEOD-only.</div>
-    <div class="notice">DOT OVERLAP NOTE: 93% of dots lie within 3 px of the parent’s dots — by design, because only 10% of dots move and the move preserves the 2.0 px spacing floor. The parallel-run protocol’s 70% threshold is exceeded, but the *surface* (strain prior) rank-correlates only 0.42 with GDR priors and 0.895 with the parent’s dot field (just under 0.90). The duplication is the optimal spacing, not the hypothesis.</div>
-  </div>
-
-  <div class="card">
-    <h3>Official sources — every number is labelled</h3>
-    <div class="links">
-      <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/" target="_blank">Leaderboard #306</a>
-      <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" target="_blank">Overview</a>
-      <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/" target="_blank">About</a>
-      <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/" target="_blank">Data (login)</a>
-      <a href="https://github.com/drivendataorg/gems-prize-reference-solution" target="_blank">Reference solution</a>
-      <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and" target="_blank">GeoDAWN</a>
-      <a href="https://gbcge.org/current-projects/ingenious/" target="_blank">INGENIOUS</a>
-      <a href="https://pubs.usgs.gov/ds/1052/" target="_blank">USGS DS-1052 (SGMC)</a>
-      <a href="https://epsg.io/32611" target="_blank">EPSG:32611</a>
-      <a href="https://en.wikipedia.org/wiki/Tversky_index" target="_blank">Tversky/DTI</a>
-      <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf" target="_blank">NLR Rules PDF</a>
-      <a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516" target="_blank">Scoring clarification (forum)</a>
-      <a href="https://gdr.openei.org/submissions/1391" target="_blank">GDR 1391</a>
-    </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:10px">All data pins in <code>registry/data_manifest.json</code> verified against SHA256 + byte length; data-use terms respected (no competition raster committed, <code>.gitignore</code> enforced). Every number labelled HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (submission-page receipt) — a projection is never a score.</p>
-  </div>
-
-  <div class="card">
-    <h3>Reproduce locally (no credentials, pinned GitHub mirrors only)</h3>
-    <pre><code>python3 scripts/restore_data.py                 # fetch + verify all 15 pins against SHA256
-python3 scripts/make_catalogue.py                # 60,988 px catalogue mask → data/derived
-PYTHONPATH=src python3 scripts/recover_geod_light.py   # already built; re-verifies gates
-# or rebuild from scratch:
-python3 scripts/build_geod.py --build           # deterministic, no RNG, ~8 min
-python3 scripts/validate.py releases/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif
-python3 scripts/validate_raster.py releases/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif data/official/sample_submission.tif --catalogue data/official/existing_faults.tif --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
-python3 scripts/validate_release.py releases/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif --axis GEOD
-</code></pre>
-  </div>
-
-  <footer>
-    GEMSDOE91 • One entity, 3 slots/week, 1 final file • No agent submits • All rasters gitignored, only hashes in ledger • AI wrote the builder/gates/docs; human decides axis, supplies inputs, makes every submission and the blind final pick • Budget: 1/3 experiments, 2h cap, no slot touched without HOLDOUT-DTI +0.006 • <a href="HYPOTHESES_G91.md">Hypotheses doc</a> • <a href="../ledger/submissions.csv">Ledger</a> • <a href="../registry/data_manifest.json">Manifest</a> • <a href="../README.md">README</a>
-  </footer>
-</div>
+    </section>
+  </main>
+  <footer><div class="wrap">GEMSDOE91 · A download link is shown only after research gates pass and a separate selector authorizes promotion. No upload or slot selection was made in this run. See <a href="../README.md">persistent project brief</a> and <a href="../AI_USE.md">AI-use disclosure</a>.</div></footer>
 </body>
 </html>

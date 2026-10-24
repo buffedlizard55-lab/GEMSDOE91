@@ -3,17 +3,19 @@
 
 A build needs the pinned inputs of the axis it implements, and no others. The
 verdict is therefore reported **per axis** from the manifest's
-``axis_requirements``: an absent entry blocks only the axes that read it (brief
-section 4.2). A stale global verdict is what stalled sessions 1-3 while every
-input the repository actually needed was already pinned and fetchable.
+``axis_requirements``. This script verifies the local bytes on every run; it
+does not trust the manifest's historical presence flags. The JSON snapshot is
+only local input readiness and never certifies a candidate, holdout, or slot.
 
-Exit 0 = at least one axis is ready, 1 = no axis is ready.
+Exit 0 = the repository-wide minimum is present and at least one axis is ready;
+1 = no compliant axis can start here.
 """
 
 from __future__ import annotations
 
 import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
@@ -46,7 +48,8 @@ def main() -> int:
         readiness[axis] = {"ready": not gap, "missing": gap}
     ready_axes = [a for a, st in readiness.items() if st["ready"]]
 
-    verdict = "BUILD ALLOWED" if not missing else "BUILD BLOCKED"
+    build_allowed = not missing and bool(ready_axes)
+    verdict = "BUILD ALLOWED" if build_allowed else "BUILD BLOCKED"
     print("\n".join(lines))
     print(f"\n{verdict}: {len(REQUIRED_FOR_BUILD) - len(missing)}/{len(REQUIRED_FOR_BUILD)} "
           f"required inputs verified")
@@ -63,13 +66,14 @@ def main() -> int:
         print("\nNo axis has all of its pinned inputs; a build cannot start.")
     Path("registry").mkdir(exist_ok=True)
     Path("registry/preflight.json").write_text(json.dumps(
-        {"verdict": "BUILD ALLOWED" if ready_axes else "BUILD BLOCKED",
+        {"verdict": verdict,
          "missing": missing,
          "required": REQUIRED_FOR_BUILD,
          "ready_axes": ready_axes,
          "axis_readiness": readiness,
-         "checked_utc": "2026-10-23"}, indent=2) + "\n", encoding="utf-8")
-    return 0 if ready_axes else 1
+         "checked_utc": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")},
+        indent=2) + "\n", encoding="utf-8")
+    return 0 if build_allowed else 1
 
 
 if __name__ == "__main__":

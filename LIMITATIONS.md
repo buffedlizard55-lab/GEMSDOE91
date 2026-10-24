@@ -1,35 +1,32 @@
-# GEMSDOE91 Limitations & Needs (2026-10-24)
+# GEMSDOE91 limitations and blockers — 2026-10-24
 
-**Current competition state:** Leaderboard high 0.4413 (CLAIM, unreceipted) vs our parent 0.2778 (CLAIM, verified dot set). No ORGANIZER-CONFIRMED receipts in this repo.
+## Current decision
 
-## What we cannot do here (and what we need)
+**NOT APPROVED — no TIFF is available to download or submit.** The current run was blocked before experiment. This does not falsify any geological hypothesis and is not a HOLDOUT-DTI result.
 
-1. **No live score.** Every number labelled MODEL/PROXY/HOLDOUT-DTI until a human uploads a file and pastes the receipt. The GEOD prediction +0.0090 is KAPPA=0.10 shrinkage on the strain surrogate, not a score. No slot should be spent without HOLDOUT-DTI +0.006 (brief §5).
+## Hard blockers
 
-2. **Data placement.** The only blocker that ever existed was `data/` placement. It is now solved via `bash scripts/download_competition_data.sh` on any unrestricted machine into `data/`, then `python scripts/prepare_data.py` — after that the full train→inference→validate pipeline is ready (GPU needed for training; metric/losses/validation all verified working here on CPU). In this repo, `scripts/restore_data.py` fetches the same 15 pins from immutable GitHub commits and verifies every SHA256 locally — no `drivendata.org`/`dropbox.com` contact (brief §4.1).
+1. **No assigned lane paragraph.** The user prompt refers to one unique method paragraph but does not include it. Picking a lane autonomously would violate the parallel-run protocol.
+2. **No shared evaluator or writer.** `evaluate_holdout.py`, `submission_writer.py`, and the template path are absent from this checkout. The local `src/gems91/proxy.py` does not meet the prescribed whole-segment-buffered, fold-specific, pooled-DTI design; it must not be described as HOLDOUT-DTI or forked privately as a substitute.
+3. **Competition files are not local.** `python scripts/restore_data.py --check` reports all 15 pinned entries missing under `data/`. The official data page redirects to login; the entrant must be registered to access the official data. Public GitHub mirrors are recorded in the repository, but their provenance/permission is not re-established by their existence. No data were downloaded in this review.
+4. **No compliant baseline or segment geometry.** There is no compliant HOLDOUT-DTI best in this checkout, no evaluator-versioned segment-level CI, and no local vector fault-segment file for buffered whole-segment folds. Without these, neither validation nor a promotion decision is possible.
+5. **Local DTI implementations disagree.** The official problem page defines per-truth-pixel TP credit as the maximum probability × kernel contribution. `scripts/dti.py` uses a max; `src/gems91/metric.py` sums all nearby contributions. They are not interchangeable, and neither is the absent shared `evaluate_holdout.py`. This review does not choose or silently patch a private evaluator; no local metric output is accepted as HOLDOUT-DTI.
+6. **The prior GEOD candidate trips the protocol stop.** Its prior page reported 93.2% final-dot overlap within 3 px of the parent, above the 70% duplicate threshold. The input needed to reproduce the percentage is absent; because the recorded value exceeds the hard limit, the project fails closed and treats it as a duplicate-risk stop.
+7. **No upload receipt.** This repository has no organizer submission-page receipt for a GEMSDOE91 candidate. The reported `0.2778` for H33-2-B2 is an unverified site/user claim; the current GEMSDOE32 page says no organizer score exists for its artifacts. The public leaderboard's `0.4413` at rank 1 is a PUBLIC-LEADERBOARD OBSERVATION only; neither HOLDOUT-DTI nor ORGANIZER-CONFIRMED for this project.
 
-3. **Missing external data for future hypotheses.** The five candidates (H91-A…E) all use *pinned* layers — no new download required:
-   - H91-A (GEOD, built): Bands 4+7 (`geod_2ndinv`, `geod_shearrate`) — already in `training_features.tif` (pinned, 418 MB, sha256 4371c82e…).
-   - H91-B (depth): Band 15 (`depth_to_base_surf`) — same file.
-   - H91-C (radiometric): `ext_geodawn_rad_u8.tif` (pinned, 26 MB, sha256 c22420f7…).
-   - H91-D (lidar): `ext_lidar_scarp_u8.tif` (pinned, 36 MB, sha256 d580bb8b…).
-   - H91-E (tip): catalogue skeleton derived from `existing_faults.tif` (pinned) — no new data.
-   If a candidate needed new official data, the required source would be: USGS National Map 1 m DEM for lidar re-derivation (free, https://apps.nationalmap.gov/) or UNAVCO GPS strain (free, https://www.unavco.org/) — both obtainable, but not needed for the top candidate.
+## Format and range-error caveat
 
-4. **Inherited collar (IR-91-03).** R0 has 2,171 dots at 2–3 px from the catalogue (min 2.236 px). Every non-PRUNE child inherits them. The brief says “≥3 px unless AXIS=PRUNE” — if enforced strictly, any GEOD/CONCENTRATION/MASS file is non-compliant at birth. The gates report this as `collar_ge_3px = FAIL (inherited)` and pass everything else. Human must rule on whether the gate binds controlled edits of R0 or only new-dot placement.
+The official problem page requires a single float32 band, EPSG:32611, 100 m resolution, matching bounds, values in `[0,1]`, and null/NaN outside bounds. The old NaN-outside artifact's reread values were {0,1} in its finite cells, while its old zeros-outside twin had finite values outside the footprint and is not an acceptable substitute for the official outside-bounds rule. The user's historical range error cannot be diagnosed without the exact uploaded file and organizer-side validation output. No current file is approved.
 
-5. **Disk & compute.** Each build needs ~1.5 GB RAM and 30–90 s CPU for the full 3730×3292 grid. The GEOD build peaked at 1.5 GB and was killed once by the sandbox before light recovery succeeded. On a laptop/desktop, `python scripts/build_geod.py --build` reproduces the exact sha `bff9fd21…` byte-identically (deterministic, no RNG).
+## External-source and research limits
 
-6. **Weekly cap.** One entity, 3 scored slots per rolling week, 1 blind final file. Promotion to a real slot is a *separate selector step* within the cap shown on the submission page — do not pick submissions here. Negative results are deliverables (run card verdict `negative`).
+The five current hypotheses use layer families described by the official competition page and require no new external dataset. Their local files are absent. If a later idea needs new LiDAR or another source, it must name the exact free official source, check actual access and usage rights, and add the provenance before it is called viable. The [official source register](docs/SOURCES.md) records which pages were fetched and where access failed.
 
-7. **Manual verification required.** Every sha in `registry/data_manifest.json` must be re-hashed on the entrant’s machine (`scripts/restore_data.py` does this). No competition raster is committed (`data/` and `releases/*.tif` are gitignored; only `docs/downloads/*.tif` is the submission artifact and is committed for Pages).
+The public leaderboard can be checked through the official page, but no submission-site API or entrant session is available in this environment. A live public leaderboard observation cannot reveal private-test performance or replace the entrant's submission receipt.
 
-## What still needs human decisions
+## Operational limits
 
-- TOP_PUBLIC score + date, slots left this week, and R0 receipt (action 0, costing no slot).
-- Which file goes in which slot, and the blind final pick (see SLOT_PLAN.md).
-- Whether to rebasing on PRUNE-le3 (35,483 dots) for strict 3 px compliance.
-- Deadline confirmation (unverified 2026-12-03).
-- Upstream mirror visibility (IR-91-09).
-
-No credentials are read/requested/stored; no leaderboard scraping; no label probing; no region-isolated patterned files (brief §4.5).
+- No competition login, credential handling, upload, or slot selection occurs here.
+- The official rules require the registered entrant to disclose generative-AI use in the narrative where applicable and remain responsible for accuracy and authorship.
+- A separate selector must authorize any candidate promotion within the live weekly cap; no candidate is currently selected.
+- Current run card: [`docs/run-card.json`](docs/run-card.json). Current slot status: [`SLOT_PLAN.md`](SLOT_PLAN.md).
