@@ -433,3 +433,15 @@ PROXY and SGMC control are labelled `PROXY`/report-only and are never called sco
 is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
 one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
 single blind final file.
+
+## 2026-10-24 — arena/e3f1838d-gemsdoe91 — stopped before build
+AI selected MASS, inspected manifest and ledger, checked all local pinned paths,
+and wrote the current preflight report, stop notice, README CURRENT STATE,
+IR-91-32/33 and one-page slot plan. No input rasters were fetched; no parent was
+approximated; no variants or receipts were fabricated. No submissions or organizer
+page requests were made. Historical verification artifacts were preserved.
+Human must supply private pinned inputs, the parent ranking/recipe, the existing R0
+receipt, TOP_PUBLIC with date, rolling submission history and deadline confirmation;
+human decides any revision needed to resolve the collar constraint and all uploads.
+Validation: dependency environment installed locally; full pytest suite passes with
+7 data-dependent skips. Input verification fails closed because all 16 paths are missing.

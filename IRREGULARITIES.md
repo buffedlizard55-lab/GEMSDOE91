@@ -637,3 +637,21 @@ row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on fl
 (explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
 float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic
 demo but must not be used to build a release.
+
+## IR-91-32 — 2026-10-24 checkout cannot substantiate inherited readiness
+All 15 manifest files and the derived catalogue mask are absent (current evidence:
+`reports/preflight-20261024.json`). Manifest `local_present`/`verified_here` flags and
+prior R0 reports are historical, not proof in this checkout. Exact rebuild cannot run
+on absent inputs. Decision: STOP, no variants, no BUILT rows, no format receipt.
+The selected MASS axis also lacks the parent's actual ranking (IR-91-21); consensus
+and distance rankings cannot substitute under the current brief.
+
+## IR-91-33 — Current brief does not permit the inherited collar exception
+Prior reports describe R0 minimum catalogue distance 2.236 px and 2,171 dots within
+3 px (not remeasured here). Quarantining those dots, as in IR-91-27, does not meet
+current constraint 4: non-PRUNE rasters must keep >=3 px from catalogue pixels.
+Decision: do not certify inherited non-PRUNE variants under this brief. Verify the
+geometry when inputs return; resolving it requires a separate PRUNE parent or an
+explicit revised instruction, not a hidden second-axis edit. Existing public-mirror
+exposure remains flagged by IR-91-09/25; data-use terms are unchecked, and no rasters
+were fetched or republished in this session.

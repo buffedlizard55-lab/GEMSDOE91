@@ -1,3 +1,11 @@
+> **2026-10-24 STOP NOTICE — supersedes upload guidance below.**
+> This checkout has no pinned input rasters and no verified candidate releases.
+> Session axis MASS; zero variants built. File/name/form note: **none**.
+> Format receipt: **UNVERIFIED**, not PASS. Do not upload from this session.
+> Restore the pinned inputs privately, reproduce R0 exactly, recover its actual ranking,
+> resolve the catalogue collar conflict and rerun all gates before selecting a file.
+> Historical instructions below are retained for provenance, not current authorization.
+
 # SUBMIT — MASS/consensus arms + merged PRUNE/CONCENTRATION queue (2026-10-23)
 
 **Status 2026-10-23: 38 BUILT rows, 0 submitted, 0 receipts.** Rasters are not committed;
