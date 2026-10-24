@@ -1456,5 +1456,17 @@ Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and 
 
 **Found (2026-10-24, `SPID91`):** Full-stack `SPID91 E2` reached `0.215758` `HOLDOUT-DTI` pre-basin-floor (`0.203905` with local basin floor), exceeding `S11-MHTR E2` (`0.206406`), but triggered a Rule 1 `DUPLICATE` stop (`81.3–84.7% > 70%`) against `S11-MHTR E2` because first-order `LRM/TPI` concentrates dots onto the same ~32,000 mountain-front scarp pixels. Stripping `LRM/TPI` and `S11` features (`SPID91 E3`, `52.93%` low-slope concealed-basin dots) cleared all 67 real rasters at branch base (`max = 66.63% <= 70%`; `74/75` post-merge, `71.13%` vs concurrent `S12-SPAC E3`) and beat `B0`/`DENOVO`/`H11-1`/`CED91` (`0.151682` on `v1.0`; `0.145009` on 8-km buffer `gems57-v2`), while trailing `S11-MHTR E2` (`0.206406`) and `S12-SPAC E3` (`0.237587`). Verdict: **`negative` — do not submit `SPID91 E3` solo**.
 
+---
+
+## IR-91-BHAR-01 — `Band 03 (tmi_hg)` `200.024 m` Scale Factor, Fold-Safe Bouguer Stripping (`R^2 = 0.4664`), and Subsurface vs Scarp Holdout Divergence (`arena/4cb38f30-gemsdoe91`)
+
+**Found (2026-10-24):**
+1. Full-resolution `100 m` window differentiation on `data/bridge/gems-geodawn-numerical-features.tif` independently confirmed `med(B03 / ||grad_m(B14)||) = 200.0242` (`200 m` two-cell central difference vs `B09` in `nT/m`) and exposed `dd_vtc_pu.py` cols `27..28` (`100x` saturated RTP tilt) and col `47` (unlogged seismic energy `B10` up to `4.963e6` treated as distance).
+2. Regressing `Band 13 (iso_grav_anom)` on `[1, H, sqrt(H), log1p(H)]` of `Band 15 (depth_to_base_surf)` strictly inside training folds explains **`R^2 = 0.4664`** of gravity variance (`std` `10.21 -> 7.46 mGal`).
+3. Unioning Steger Hessian crest detection with omnidirectional 4-axis discrete checks marked `95.7%` of noisy tree-ensemble flanks; pure cross-strike Steger Hessian suppression reduced crests to `19.3%`, though running `_collinear_neighbor_envelope` *before* Steger still left `6,367` crowded flank dots in `E3`.
+4. Allocating `29%` of dots to Topography-Blind Subsurface Branch B (`BHAR91` / `S12-BHAR`, `docs/run-card-BHAR91.json`) lifted blind off-catalogue USGS SGMC bedrock fault DTI to `0.100094` (`E2`) / `0.099057` (`E3`) (beating `S11-MHTR E2 = 0.097623` and `GEMSDOE32 = 0.095386`) and lifted volcanic NW `HOLDOUT-DTI` to `0.240722` (`+0.0232` over `S11-E2`), while finishing at `0.198612` (`E3`) / `0.204676` (`E1`) on pooled `HOLDOUT-DTI` (below `S12-SPAC E3 = 0.237587` and `S11-MHTR E2 = 0.206406`).
+5. Against all external fleet rasters (`data/fleet_registry/` + `data/registry/`), `BHAR91 E3` passes `<= 0.70` (`max = 0.67825` on `calib_h28ridge_01839.tif`; `36.78%` vs `R0`); against unsubmitted intra-repo sibling lanes (`docs/downloads/`), directed `cand<=3px` overlap is `77.73%` vs `spac-e3` (`54,000` dots) and `73.67%` vs `mhtr-e2` (`48,000` dots), while `calib_r13lattice_00904.tif` (`206,895` synthetic lattice dots) blankets `99.87%` of the footprint (`IR-CED-003`).
+
+**Decision it changes:** `BHAR91 E3` (`gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif`) is recorded with **`verdict: "negative"` (`submission_ready: false`, NOT OK TO SUBMIT)** and published strictly as a validated `[0, 1]` research artifact (`docs/s12-bhar.html`, `docs/run-card-BHAR91.json`) with zero weekly slots consumed.
 
 

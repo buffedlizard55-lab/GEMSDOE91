@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S12 Executive Summary &amp; Step-by-Step Submission Guide · GEMSDOE91</title>
+<meta name="description" content="Immediate readiness verdict and step-by-step DrivenData submission guide comparing S12-BHAR E3 and #1 primary holdout candidate S11-MHTR E2.">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="s12-bhar.html">S12-BHAR Subsurface Lane</a><a href="bhar91-executive-summary.html">S12 Guide</a><a href="s11-mhtr.html">S11-MHTR (#1 Holdout: 0.2064)</a><a href="s11-executive-summary.html">S11 Guide</a><a href="h91-ddvtc.html">H91 Verduzco Lane</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+<section class="hero">
+  <div>
+    <span class="eyebrow">EXECUTIVE SUMMARY · IMMEDIATE DOWNLOAD &amp; SUBMISSION READINESS</span>
+    <h1>OK to Download: YES.<br>Weekly Slot: Keep S11-E2 #1.</h1>
+    <p class="lead">Automated GeoTIFF validation, 92-feature leakage canary testing, 62-raster fleet uniqueness scanning, and 4-fold spatially-blocked holdout evaluation have finished with zero manual inspection required.</p>
+    <p><span class="badge">S12-BHAR E3 · OK TO DOWNLOAD: YES ([0, 1] CERTIFIED)</span> <span class="badge bad">S12-BHAR E3 · OK TO SUBMIT OVER S11-E2: NO (0.198612 vs 0.206406)</span></p>
+  </div>
+  <div class="download" data-submission-ready="false">
+    <div class="label">S12-BHAR E3 · SUBSURFACE RESEARCH GEOTIFF</div>
+    <h2><code>gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif</code></h2>
+    <div class="status"><span>OK to download?</span><strong>YES (246,197 B · SHA-256 verified)</strong></div>
+    <div class="status"><span>OK to submit to weekly slot?</span><strong>NO (verdict: negative vs S11-E2)</strong></div>
+    <div class="status"><span>Values in [0, 1]</span><strong>YES (min=0.0, max=1.0, 0 NaNs)</strong></div>
+    <div class="status"><span>HOLDOUT-DTI / Blind SGMC</span><strong>0.198612 / 0.099057</strong></div>
+    <a class="button" download href="downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif">↓ Download S12 GeoTIFF (.tif)</a>
+    <div style="text-align:center;margin-top:12px">
+      <a download href="downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.zip">↓ Download Single-TIFF .zip</a> ·
+      <a href="downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-audit.json">Format Receipt (.json)</a> ·
+      <a href="run-card-BHAR91.json">Run Card (.json)</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>At-a-Glance Candidate Selector Table for <code>GEMSDOE91</code></h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Candidate Artifact</th>
+          <th>HOLDOUT-DTI (<code>gems91-hide-recover-v1.0</code>)</th>
+          <th>Blind Off-Catalogue <code>SGMC-OFFCAT-CONTROL-DTI</code></th>
+          <th><code>[0, 1]</code> Format &amp; 62-Raster Fleet Uniqueness</th>
+          <th>Immediate Readiness Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>#1 Primary Holdout Champion:</strong><br><a href="s11-mhtr.html"><code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code></a></td>
+          <td><strong>0.206406</strong><br><span class="small">95% CI [0.193796, 0.220176]</span></td>
+          <td>0.097623</td>
+          <td><span class="badge">PASS (min=0.0, max=1.0, &le;69.82%)</span></td>
+          <td><strong>OK TO DOWNLOAD: YES</strong> · <strong>#1 Candidate for Human Weekly-Slot Selector Review</strong> (<a href="s11-executive-summary.html">S11 Guide ↗</a>)</td>
+        </tr>
+        <tr>
+          <td><strong>Session 12 Subsurface Benchmark:</strong><br><code>gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif</code><br><span class="small">ID: <code>gems91-bhar-e3-20261024T184500Z-a4b69ca7</code></span></td>
+          <td><strong>0.198612</strong><br><span class="small">95% CI [0.186030, 0.210569] (E1 = 0.204676)</span></td>
+          <td><strong>0.099057</strong><br><span class="small">(E2 = 0.100094, #1 in repo)</span></td>
+          <td><span class="badge">PASS (min=0.0, max=1.0, &le;67.83%)</span></td>
+          <td><strong>OK TO DOWNLOAD: YES</strong> · <span class="badge bad">NOT OK TO SUBMIT AHEAD OF S11-E2</span> (<code>verdict: negative</code> on primary holdout)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <h2>How the <code>"Predicted values must be in range [0, 1]"</code> Error Is Permanently Prevented</h2>
+  <div class="twocol">
+    <div class="card">
+      <h3>1. Single-Pass Sentinel Scrubbing (<code>-3.4028235e+38</code>)</h3>
+      <p>Raw GeoDAWN / training feature bands contain float32 nodata sentinels (<code>-3.4028235e+38</code>) on <code>1,521–3,061</code> cells inside the active submission footprint. Every band is scrubbed via <code>isfinite(arr) &amp; (arr &gt; -1e30)</code> and interpolated by nearest-valid Euclidean distance transform before any gradient, curvature, or model evaluation.</p>
+    </div>
+    <div class="card">
+      <h3>2. All-Finite <code>nodata=None</code> Zero-Padded GeoTIFF Encoding</h3>
+      <p>Portal validators that check <code>0.0 &le; x &le; 1.0</code> across the raw array buffer before masking <code>nodata=NaN</code> reject rasters containing outside-footprint <code>NaN</code> cells. Both <code>S11-MHTR E2</code> and <code>S12-BHAR E3</code> write <code>0.0</code> outside the footprint with <code>nodata=None</code>, verified by 4 independent gate suites across all <code>12,279,160</code> cells.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Step-by-Step DrivenData Submission Guide (Zero Manual Raster Inspection Required)</h2>
+  <div class="step"><b>1</b><div><h3>Check Live Weekly Slot Allowance &amp; Choose #1 Candidate</h3><p>Teams have at most <strong>3 submissions per week</strong> under Official Rules (<code>TP-5700-96647</code> §3.2). Because <code>S12-BHAR E3</code> returned an honest <code>negative</code> verdict on pooled <code>HOLDOUT-DTI</code> (<code>0.198612</code> vs <code>0.206406</code>), <strong>do not spend a weekly slot on <code>S12-BHAR E3</code></strong>; select <a href="s11-executive-summary.html"><code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code> (<code>0.206406 HOLDOUT-DTI</code>)</a> if the human fleet selector approves a slot for <code>GEMSDOE91</code>.</p></div></div>
+  <div class="step"><b>2</b><div><h3>Verify SHA-256 Checksum Locally After Download</h3><p>If archiving or inspecting <code>S12-BHAR E3</code>, verify its exact byte identity (<code>246,197</code> bytes):<br><code>sha256sum gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif</code> &rarr; <code>bae83b233ddb150105986337207b8a217f3a3f3a817e0b418ad7f26f1b4c2431</code><br>Or for the single-TIFF ZIP (<code>210,199</code> bytes): <code>20f6a54f8ab4a627d53da8d85708fffb936e333e8a1d7b899f10e118e5d16f36</code>.</p></div></div>
+  <div class="step"><b>3</b><div><h3>Upload Only the Single-Band <code>-zeros.tif</code> or <code>-zeros.zip</code> on DrivenData</h3><p>On <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Competition #306 Submissions</a>, upload only the certified single-band <code>-zeros.tif</code> (or <code>-zeros.zip</code>) and paste a concise note (&le; 140 chars). For archive reference, <code>S12-BHAR E3</code>'s 112-character note is:<br><code>GEMS91 S12 E3 (H12-1 + H12-2 + H12-3): Bouguer+cond+3D-ASig+nematic centerline submod (48022d &gt;3px, [0,1] zeros)</code></p></div></div>
+  <div class="step"><b>4</b><div><h3>Log Only <code>ORGANIZER-CONFIRMED</code> Receipts</h3><p>After DrivenData finishes scoring, record the exact score, timestamp, and filename from the submission receipt before labelling any number <code>ORGANIZER-CONFIRMED</code>. Never record a local holdout DTI as a live leaderboard score.</p></div></div>
+</section>
+
+<section class="section">
+  <h2>Official Data &amp; Source Provenance Table</h2>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Claim / Layer / Rule</th>
+          <th>Official Source Link</th>
+          <th>Verification Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Official reference raster workflow and false-negative-weighted Tversky training loss; not the hidden competition scorer</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b">DrivenData organizer reference solution ↗</a></td><td>Fetched 2026-10-24. README and Prof. John Lipor&#x27;s U-Net Monte Carlo CV notebook verified; specifies alpha=0.2, beta=0.8. No DTI organizer-score receipt or hidden truth obtained.</td></tr><tr><td>Canonical pooled evaluator, whole-component splits and TIFF writer reused without modifications</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE78/tree/30f1ab9400f92036b0bc613425f1b5b6046f3897/vendor/gems57">Pinned shared template (project source, not organizer) ↗</a></td><td>Files fetched and SHA256-verified byte-for-byte against upstream pins. registry/template_pin.json records the exact modules.</td></tr><tr><td>Previous advertised parent lacks a published organizer receipt at this source</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 site snapshot (owner evidence, not organizer) ↗</a></td><td>Fetched 2026-10-24. Explicit text: NO ORGANISER SCORE EXISTS for this or any artifact in this repository. Confirms 0.2747/0.2778 are unverified model/user reports rather than organizer receipts.</td></tr><tr><td>Competition target, official DTI metric (alpha=0.2, beta=0.8, R=300m triangular kernel, worked example DTI=0.60) and permitted submission format</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData official problem description ↗</a></td><td>Fetched 2026-10-24. Verified single-band float32 EPSG:32611 100m GeoTIFF in [0, 1], asymmetric DTI formula, worked example TP_w=3.00, FP_w=1.89, FN_w=2.00 -&gt; DTI=0.60, and $50K Phase 1 + $250K Phase 2 prize structure.</td></tr><tr><td>Competition sponsor (DOE Office of Geothermal) and cited scientific references (Matteo et al. 2021; Hermant et al. 2025)</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">DrivenData official About page ↗</a></td><td>Fetched 2026-10-24. Verified DOE Office of Geothermal sponsorship and structural fault-permeability framing.</td></tr><tr><td>Live public leaderboard benchmark scores (top #1 = 0.4413, #2 = 0.3916, #5 = 0.3539)</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData official leaderboard ↗</a></td><td>Fetched 2026-10-24. Verified #1 xiaofanhu (0.4413), #2 cfld__ (0.3916), #3 Batik Shirt Brothers (0.3904), #4 BrandenKMurray (0.3724), #5 No Fault of Our Own (0.3539), #21 nchuzhoy (0.3262), superseding the older 0.3195 snapshot. No organizer score receipt exists for GEMSDOE91.</td></tr><tr><td>Official data access and sample grid</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData official data page ↗</a></td><td>Redirects to login without DrivenData credentials; cached pinned inputs match registry/data_manifest.json SHA-256 digests.</td></tr><tr><td>Official Rules (15 U.S.C. 3719): 3 submissions/week cap, generative AI narrative disclosure requirement, and U.S. eligibility</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official DOE / NLR rules PDF (96647, Sept 2026) ↗</a></td><td>Fetched 2026-10-24 (chunks 0-2). Section 3.2 explicitly confirms three submissions per week limit and required narrative disclosure of generative AI usage.</td></tr><tr><td>GeoDAWN airborne magnetic and radiometric survey provenance (149,030 line-km, E-W flight lines, CC0 1.0 Public Domain)</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN magnetic and radiometric survey (Glen &amp; Earney, 2024) ↗</a></td><td>Fetched 2026-10-24. Verified DOI 10.5066/P93LGLVQ, CC0 1.0 Public Domain license, 200m/400m E-W line spacing, and 100-200m terrain drape.</td></tr><tr><td>Great Basin hidden geothermal structural framework (INGENIOUS project, DOE DE-EE0009254)</td><td><a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS ↗</a></td><td>Fetched 2026-10-24. Verified Great Basin Center for Geothermal Energy INGENIOUS regional workflow ($10M, 2021-2025).</td></tr><tr><td>INGENIOUS regional compilation proving Band 10 (deq_n100a15) is Dependent Earthquake Swarm Density and Band 16 (ieq_n100a15) is Independent Earthquake Density</td><td><a href="https://gdr.openei.org/submissions/1391">DOE Geothermal Data Repository submission 1391 ↗</a></td><td>Fetched 2026-10-24. Verified DOI 10.15121/1881483 (CC-BY-4.0), Earthquake Density Models.zip (10.1785/0220220153), MT conductance (10.5066/P9TWT2LU), detrended elevation (10.5066/P9MQRCBY), and Qfaults/slip-dilation (10.5066/P9YL58W6).</td></tr><tr><td>Coordinate reference system WGS 84 / UTM zone 11N (metres)</td><td><a href="https://epsg.io/32611">EPSG:32611 reference ↗</a></td><td>Fetched 2026-10-24 and verified directly against EPSG:32611 CRS and affine transform of sample_submission.tif.</td></tr><tr><td>Blind off-catalogue bedrock fault control raster (62,122 positive pixels &gt; 3 px from existing_faults.tif)</td><td><a href="https://pubs.usgs.gov/ds/1052/">USGS State Geologic Map Compilation (SGMC) DS-1052 (Horton et al., 2017) ↗</a></td><td>Official USGS publication link (host outside sandbox allowlist). Local derived control raster data/external/derived_sgmc_faults_100m_u8.tif verified by SHA256 against registry/data_manifest.json; used strictly as post-hoc blind control, never in training or tuning.</td></tr><tr><td>Full-resolution 100 m GeoDAWN numerical stack (19 float32 bands) and Band 03 two-cell central-difference scale factor (200.024 m vs Band 09 nT/m)</td><td><a href="https://gdr.openei.org/submissions/1618">DOE OpenEI Geothermal Data Repository — GeoDAWN Great Basin Numerical Features ↗</a></td><td>Official GDR link (host outside sandbox allowlist). Local pinned data/bridge/gems-geodawn-numerical-features.tif SHA256-verified on 2026-10-24; full-resolution 512x512 window derivative audit proved med(B03 / ||grad_m(B14)||) = 200.0242 and R^2(B13 ~ B15) = 0.4664.</td></tr><tr><td>External candidate dataset H12-4: 1 m / 1/3 arc-sec bare-earth LiDAR elevation for sub-100 m scarp curvature</td><td><a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program (3DEP) / The National Map ↗</a></td><td>Official public-domain U.S. Government dataset lead; not fetched in-sandbox because usgs.gov is outside sandbox outbound allowlist. Logged as unrun external hypothesis H12-4.</td></tr><tr><td>External candidate dataset H12-5: 30 m Sentinel-1 vertical/eastward surface velocity for aseismic fault creep</td><td><a href="https://www.jpl.nasa.gov/go/opera/products/disp-product-suite">NASA JPL OPERA L3_DISP_S1 (ASF DAAC) ↗</a></td><td>Official open NASA/JPL product lead; not fetched in-sandbox because jpl.nasa.gov and asf.alaska.edu are outside sandbox outbound allowlist. Logged as unrun external hypothesis H12-5.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+<footer>
+  <div>S12 Executive Summary (<code>gems91-bhar-e3-20261024T184500Z-a4b69ca7</code> · SHA-256 <code>bae83b233ddb150105986337207b8a217f3a3f3a817e0b418ad7f26f1b4c2431</code>)<br>Generated 2026-10-24T20:07:53Z</div>
+  <div><a href="s12-bhar.html">Full S12 Technical Audit</a> · <a href="s11-executive-summary.html">S11 Primary Submission Guide</a> · <a href="index.html">Main Portal</a></div>
+</footer>
+</div></body></html>

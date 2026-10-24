@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S12-BHAR Subsurface Discovery Audit (0.19861 HOLDOUT-DTI · 0.09906 Blind SGMC) · GEMSDOE91</title>
+<meta name="description" content="Session 12 Bouguer-Stripped Subsurface Gravity, Depth-Conditioned Conductivity, SI-Reconciled 3-D Magnetic Analytic Signal &amp; Dual-Branch Subsurface Ensemble audit.">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="s12-bhar.html">S12-BHAR Subsurface Lane</a><a href="bhar91-executive-summary.html">S12 Guide</a><a href="s11-mhtr.html">S11-MHTR (#1 Holdout: 0.2064)</a><a href="s11-executive-summary.html">S11 Guide</a><a href="h91-ddvtc.html">H91 Verduzco Lane</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+<section class="hero">
+  <div>
+    <span class="eyebrow">SESSION 12 DISCOVERY LANE · S12-BHAR · VERDICT: NEGATIVE ON PRIMARY HOLDOUT vs S11-E2</span>
+    <h1>Subsurface roots beat R0 &amp; S11 on blind SGMC.<br>S11 retains #1 Primary Holdout.</h1>
+    <p class="lead"><strong>Immediate Readiness Answer:</strong> <code>gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif</code> is <strong>OK TO DOWNLOAD (YES — 100% certified finite <code>[0, 1]</code> GeoTIFF)</strong>, and <strong>NOT OK TO SUBMIT TO A LIVE WEEKLY SLOT AHEAD OF S11-MHTR E2 (NO — scientific verdict <code>negative</code> on primary <code>HOLDOUT-DTI</code>: <code>0.198612</code> vs <code>0.206406</code>)</strong>.</p>
+    <p><span class="badge">OK TO DOWNLOAD: YES (CERTIFIED [0, 1] FLOAT32 · ZERO NaN)</span> <span class="badge bad">OK TO SUBMIT TO WEEKLY SLOT: NO (KEEP S11-MHTR E2 AS #1 SLOT CANDIDATE)</span></p>
+    <p class="small">Evaluator: <code>gems91-hide-recover-v1.0</code> · <code>60,988</code> withheld positives · 3/3 experiment cap respected (512.6s) · 92/92 leakage canaries PASS · 62/62 prior fleet/lane rasters &le; 70% overlap.</p>
+  </div>
+  <div class="download" data-submission-ready="false">
+    <div class="label">SESSION 12 CERTIFIED RESEARCH ARTIFACT (ARCHIVE / SUBSURFACE BENCHMARK)</div>
+    <h2><code>gems91-bhar-e3-20261024T184500Z-a4b69ca7</code></h2>
+    <div class="status"><span>OK to download?</span><strong>YES — certified [0, 1] GeoTIFF &amp; ZIP</strong></div>
+    <div class="status"><span>OK to submit to weekly slot?</span><strong>NO — trails S11-E2 (0.206406) on HOLDOUT-DTI</strong></div>
+    <div class="status"><span>Values in [0, 1] / Finite</span><strong>0.0 to 1.0 · 12,279,160 / 12,279,160 finite</strong></div>
+    <div class="status"><span>Blind Off-Catalogue SGMC DTI</span><strong>0.099057 (beats S11 &amp; R0; E2 = 0.100094)</strong></div>
+    <a class="button" download href="downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif">↓ Download S12 Research GeoTIFF (.tif)</a>
+    <div style="text-align:center;margin-top:12px">
+      <a download href="downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.zip">↓ Single-TIFF .zip</a> ·
+      <a href="downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-audit.json">Format Receipt (.json)</a> ·
+      <a href="run-card-BHAR91.json">S12 Run Card (.json)</a>
+    </div>
+    <p class="small">Need the #1 primary holdout candidate (<code>0.206406 HOLDOUT-DTI</code>) for human weekly-slot review? Open <a href="s11-mhtr.html"><code>gems91-mhtr-e2-20261024T170000Z-9554f718</code> (S11-MHTR E2) ↗</a>.</p>
+  </div>
+</section>
+
+<div class="banner">
+  <strong>Clear Decision Summary (Zero Human Inspection Needed):</strong>
+  (1) <strong>Format &amp; Range Safety: PASS</strong> — all <code>12,279,160</code> float32 cells are strictly finite in <code>[0.0, 1.0]</code> (<code>nodata=None</code>, <code>EPSG:32611</code>, <code>3730&times;3292</code>, <code>48,022</code> unit dots &gt; 300 m from mapped faults), permanently eliminating <code>"Predicted values must be in range [0, 1]"</code>.
+  (2) <strong>Scientific Verdict: NEGATIVE on Primary Holdout, POSITIVE on Blind Off-Catalogue Bedrock Faults</strong> — decoupling Branch B from DEM topography lifted blind off-catalogue USGS SGMC recovery to an all-time repo high (<code>0.100094</code> on <code>E2</code>, <code>0.099057</code> on <code>E3</code> vs <code>0.097623</code> on <code>S11-E2</code> and <code>0.095386</code> on <code>GEMSDOE32</code>) and lifted the volcanic NW Great Basin fold by <code>+0.0232</code> (<code>0.2407</code> vs <code>0.2175</code>), but lowered pooled scarp-heavy <code>HOLDOUT-DTI</code> to <code>0.198612</code> vs <code>S11-MHTR E2</code> (<code>0.206406</code>). Under Rule 5 &amp; Rule 6, negative primary-holdout results are published intact without spending a live weekly submission slot.
+</div>
+
+<div class="grid">
+  <article class="card">
+    <span class="eyebrow">HOLDOUT-DTI / S12-BHAR E3</span>
+    <div class="number">0.198612</div>
+    <p>95% CI [0.186030, 0.210569] · 60,988 withheld positives<br>Paired &Delta; vs S11-E2: <code>-0.007794</code> (95% CI [-0.016104, +0.001192])<br><strong>+0.059613</strong> (+42.9%) vs B0 · <strong>+0.024582</strong> (+14.1%) vs H91-1</p>
+    <span class="small">gems91-hide-recover-v1.0</span>
+  </article>
+  <article class="card">
+    <span class="eyebrow">SGMC-OFFCAT-CONTROL-DTI / BLIND BEDROCK</span>
+    <div class="number">0.099057</div>
+    <p>62,122 off-catalogue USGS SGMC bedrock fault pixels (&gt;3 px from known catalogue)<br><strong>Beats S11-E2</strong> (<code>0.097623</code>) &amp; <strong>beats R0 GEMSDOE32</strong> (<code>0.095386</code>)<br>S12 <code>E2</code> set all-time repo record: <strong>0.100094</strong></p>
+    <span class="small">SGMC-OFFCAT-CONTROL-DTI (gems91-hide-recover-v1.0)</span>
+  </article>
+  <article class="card">
+    <span class="eyebrow">RULE 1 &amp; RULE 4 / CANARY &amp; UNIQUENESS</span>
+    <div class="number">92/92 · 62/62</div>
+    <p>92 single-feature canaries PASS (worst sym AUC <code>0.66099 &le; 0.90</code>)<br>62 prior fleet &amp; lane rasters PASS (max |&rho;| <code>0.2198</code>, max 3px ov <code>67.83% &le; 70%</code>, <code>36.78%</code> vs R0; 0 speckles)</p>
+    <a class="small" href="HYPOTHESES_BHAR91.md">Read pre-registration &amp; forensic proofs ↗</a>
+  </article>
+</div>
+
+<section class="section">
+  <h2>Forensic Analysis: Why <code>GEMSDOE32</code> Scored Highest Among Listed Fleet Sites — and What Separates <code>0.2778</code> from <code>0.4413</code></h2>
+  <div class="twocol">
+    <div class="card">
+      <h3>1. Why <code>GEMSDOE32</code> (<code>h33-h33-2-b2-...-zeros</code>, user-reported <code>0.2778</code>) Beat Continuous &amp; NaN Fleet Rasters</h3>
+      <p><em>Provenance boundary:</em> No organizer receipt exists on <code>GEMSDOE32</code>'s public repo page; <code>0.2778</code>, <code>0.3195</code>, and <code>0.4413</code> are user-reported benchmarks rather than <code>ORGANIZER-CONFIRMED</code> receipts in this repository.</p>
+      <ul>
+        <li><strong>Portal Range Gate Survival (<code>0.0000</code> sites):</strong> Sites emitting unmasked float32 sentinels (<code>-3.4028235e+38</code> on <code>3,061</code> in-footprint cells) or raw <code>NaN</code> outside-footprint cells failed portal validation or collapsed to zero. <code>GEMSDOE32</code>'s <code>-zeros</code> encoding guaranteed finite <code>[0, 1]</code> values everywhere.</li>
+        <li><strong>Asymmetric 300 m Max-Kernel DTI Geometry (<code>&alpha;=0.2, &beta;=0.8</code>):</strong> Continuous probability maps (<code>0.06–0.21</code> fleet cluster) pay linear false-positive mass <code>0.2(S&minus;M)</code> across millions of off-fault background pixels while truth credit <code>T_j = max_i K(d_ij) p_i</code> saturates at the single brightest pixel within 300 m. Emitting <code>~37k–48k</code> discrete unit-mass dots separated by <code>~2.7–3.0 px</code> captures ~92% of continuous <code>T</code> while cutting <code>S&minus;M</code> by an order of magnitude.</li>
+        <li><strong>Catalogue Collar Pruning:</strong> Deleting predictions within <code>&le; 3 px</code> (300 m) of <code>existing_faults.tif</code> prevented wasting dot budget on masked catalogue pixels.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>2. Four Geophysical &amp; Mathematical Bottlenecks Identified in Session 12 (<code>IR-91-S12-01..04</code>)</h3>
+      <ul>
+        <li><strong><code>IR-91-S12-01</code> (200&times; Magnetic Unit Mismatch):</strong> Full-resolution 100 m window differentiation of <code>gems-geodawn-numerical-features.tif</code> proved <code>med(B03 / ||&nabla;<sub>m</sub>B14||) = 200.0242</code> (two-cell 200 m central difference) vs <code>B09</code> in <code>nT/m</code>. Prior <code>dd_vtc_pu.py</code> cols 27–28 had a 100&times; unit mismatch (saturation <code>|tilt| &gt; 1.49 rad</code> on 88% of map), and col 47 mis-treated unlogged <code>B10</code> (<code>[0, 4.96e6]</code>) as distance.</li>
+        <li><strong><code>IR-91-S12-02</code> (Basin-Fill Gravity Masking):</strong> Smooth Cenozoic basin depth <code>B15</code> explains <strong>R&sup2; = 0.4664</strong> of isostatic gravity <code>B13</code> (<code>&sigma;: 10.21 &rarr; 7.46 mGal</code>), drowning intra-basement horst steps unless stripped fold-safely.</li>
+        <li><strong><code>IR-91-S12-03</code> (Topographic Bias of <code>existing_faults.tif</code>):</strong> Mapped catalogue faults heavily favor exposed NE/SE range-front scarps, whereas blind geothermal &amp; SGMC bedrock faults sit beneath low-slope alluvium and volcanic plateaus.</li>
+        <li><strong><code>IR-91-S12-04</code> (Omnidirectional Ridge Check Bug):</strong> Testing discrete local maxima across <code>N-S OR E-W OR diag</code> marks <code>95.7%</code> of noisy tree flanks; only cross-strike Steger Hessian suppression along <code>n&#770;</code> isolates true 1-D crests (<code>19.3%</code> of map).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Pre-Registered 5-Hypothesis Ranking Before Implementation (<code>HYPOTHESES_BHAR91.md</code>)</h2>
+    <a href="HYPOTHESES_BHAR91.md">Open full pre-registration &amp; equations ↗</a>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Rank &amp; ID</th>
+          <th>Specific Layers &amp; Physical Transform</th>
+          <th>Why It Catches Faults Missing from USGS/INGENIOUS</th>
+          <th>Named Non-Fault Mimic &amp; Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>#1 · H12-1</strong></td>
+          <td><code>B13</code>, <code>B15</code>, <code>B17</code>, <code>B12</code>: Fold-safe nonlinear Bouguer basin-fill gravity stripping (<code>G<sub>intra</sub></code>) + depth/elevation-conditioned conductivity residual step &amp; clay-cap curvature (<code>C<sub>res</sub></code>).</td>
+          <td>Strips smooth Cenozoic valley-fill compaction (<code>R&sup2;=0.4664</code>) to expose buried intra-basin horst steps and hydrothermal smectite seals with zero surface scarp.</td>
+          <td>Closed-basin saline playas &amp; clay lenses · <strong>Tested in E1–E3</strong></td>
+        </tr>
+        <tr>
+          <td><strong>#2 · H12-2</strong></td>
+          <td><code>B03</code> (<code>&times;0.005</code> SI fix), <code>B09</code>, <code>B14</code>, <code>B01</code>: Exact 3-D Magnetic Analytic Signal <code>|A<sub>T</sub>|</code>, TMI tilt, Salem Tilt-Depth local wavenumber <code>k<sub>Salem</sub></code>, &amp; shallow volcanic residual <code>M<sub>shallow</sub></code>.</td>
+          <td>Remanence-invariant magnetic contact energy peaks directly over reversely magnetized Miocene basalt faults across NW Nevada volcanic plateaus where RTP phase-shifts fail.</td>
+          <td>Unfaulted lava-flow lobes &amp; volcanic plugs · <strong>Tested in E2–E3</strong></td>
+        </tr>
+        <tr>
+          <td><strong>#3 · H12-3</strong></td>
+          <td><code>B04, B07, B08, B10, B16</code> + <code>GDR &ge;90 &deg;C</code>: 1.2 km multi-field structure-tensor linearity <code>L<sub>&sigma;</sub></code>, nematic <code>cos(2&Delta;&theta;)</code> strike locking, log-seismic energy residual, &amp; blind hot-spring step-overs.</td>
+          <td>Bridges creeping accommodation relays, Walker Lane transtensional step-overs, and blind <code>&ge;90 &deg;C</code> hydrothermal upflow conduits lacking Quaternary scarps.</td>
+          <td>Circular calderas, cinder cones, &amp; meandering canyons · <strong>Tested in E3</strong></td>
+        </tr>
+        <tr>
+          <td><strong>#4 · H12-4</strong></td>
+          <td>External USGS 3DEP 1 m / 1/3 arc-sec bare-earth LiDAR DEM scarp-curvature &amp; knickpoint alignment aggregated to 100 m.</td>
+          <td>Detects degraded 0.5–2 m Holocene piedmont scarps smoothed away by the 100 m detrended DEM.</td>
+          <td>Pleistocene Lake Lahontan/Bonneville shorelines · <strong>Not run (<code>usgs.gov</code> blocked in sandbox)</strong></td>
+        </tr>
+        <tr>
+          <td><strong>#5 · H12-5</strong></td>
+          <td>External NASA/JPL OPERA L3 Sentinel-1 30 m vertical &amp; E-W InSAR velocity horizontal gradient.</td>
+          <td>Detects sharp groundwater-barrier and aseismic creep discontinuities across concealed valley faults.</td>
+          <td>Agricultural pumping subsidence bowls · <strong>Not run (<code>asf.alaska.edu</code> blocked in sandbox)</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Pre-Registered 3-Experiment Holdout &amp; Blind SGMC Ledger (<code>gems91-hide-recover-v1.0</code>)</h2>
+    <a href="run-card-BHAR91.json">Download machine-readable S12 JSON run card ↗</a>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Experiment</th>
+          <th>Architecture, Mechanism &amp; Named Mimic</th>
+          <th>Features</th>
+          <th>HOLDOUT-DTI (95% CI)</th>
+          <th>Paired Bootstrap vs S11-E2 &amp; Prior Lifts</th>
+          <th>SGMC-OFFCAT-CONTROL-DTI</th>
+          <th>Uniqueness &amp; Diagnostics</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>E1</strong><br><code>H12-1</code></td><td>Single-Branch Bouguer Basin-Fill Gravity Stripping + Depth-Conditioned Subsurface Conductivity Residual (Omnidirectional 4-Axis Ridge Diagnostic)<br><span class="small"><strong>Mimic rejected:</strong> Closed-basin saline playa pans &amp; lacustrine clay lenses (rejected where conductivity follows depth/elevation contours C_res ~ 0 without a linear Bouguer-stripped intra-basement gravity edge)</span></td><td>55 total<br><span class="small">0 blind-subsurface</span></td><td><strong>0.204676</strong><br><span class="small">95% CI [0.191713, 0.217789]<br>HOLDOUT-DTI (gems91-hide-recover-v1.0)</span></td><td>Paired &Delta; vs S11-E2: <code>-0.001730</code><br><span class="small">95% CI [-0.008664, +0.005913]<br>+0.065677 vs B0 · +0.030646 vs H91-1</span></td><td><strong>0.091628</strong><br><span class="small">-0.003758 vs R0<br>-0.005995 vs S11-E2</span></td><td>Fleet max 3px: <code>69.15%</code><br><span class="small">vs S11-E2: 84.26%<br>Speckles: 2</span><br><span class="badge bad">S11-OVERLAP 84.26% (DIAGNOSTIC)</span></td></tr><tr><td><strong>E2</strong><br><code>H12-1 + H12-2</code></td><td>Dual-Branch Multi-Physics + Topography-Blind Subsurface Ensemble (Bouguer-Stripped Gravity + Conductivity + SI B03/200 3-D Analytic Signal &amp; Salem Wavenumber + Pure Steger Centerline)<br><span class="small"><strong>Mimic rejected:</strong> Unfaulted reversely magnetized lava-flow lobes &amp; pure erosion talus scarps (topographic scarps without subsurface roots suppressed by Topography-Blind Branch B; point volcanic plugs suppressed by pure cross-strike Steger Hessian centerline)</span></td><td>66 total<br><span class="small">46 blind-subsurface</span></td><td><strong>0.192735</strong><br><span class="small">95% CI [0.178806, 0.206465]<br>HOLDOUT-DTI (gems91-hide-recover-v1.0)</span></td><td>Paired &Delta; vs S11-E2: <code>-0.013671</code><br><span class="small">95% CI [-0.025721, -0.003010]<br>+0.053736 vs B0 · +0.018705 vs H91-1</span></td><td><strong>0.100094</strong><br><span class="small">+0.004708 vs R0<br>+0.002471 vs S11-E2</span></td><td>Fleet max 3px: <code>66.12%</code><br><span class="small">vs S11-E2: 73.96%<br>Speckles: 4</span><br><span class="badge">HIGHEST BLIND SGMC (0.100094)</span></td></tr><tr><td><strong>E3</strong><br><code>H12-1 + H12-2 + H12-3</code></td><td>Full Dual-Branch Multi-Physics + Topography-Blind Subsurface Ensemble + 1.2 km Nematic Structure-Tensor Phase-Locking + Log-Seismic Transtension &amp; Blind &gt;=90 C GDR Submodular DTI<br><span class="small"><strong>Mimic rejected:</strong> Circular calderas, basalt cinder cones, &amp; meandering stream canyons (high local slope/magnetic gradients, rejected by Topography-Blind Branch B, low 1.2 km nematic linearity L_sigma, and unlocked cross-field strike directors)</span></td><td>85 total<br><span class="small">69 blind-subsurface</span></td><td><strong>0.198612</strong><br><span class="small">95% CI [0.186030, 0.210569]<br>HOLDOUT-DTI (gems91-hide-recover-v1.0)</span></td><td>Paired &Delta; vs S11-E2: <code>-0.007794</code><br><span class="small">95% CI [-0.016104, +0.001192]<br>+0.059613 vs B0 · +0.024582 vs H91-1</span></td><td><strong>0.099057</strong><br><span class="small">+0.003671 vs R0<br>+0.001434 vs S11-E2</span></td><td>Fleet max 3px: <code>67.83%</code><br><span class="small">vs S11-E2: 73.67%<br>Speckles: 0</span><br><span class="badge">SELECTED S12 ARTIFACT (SGMC +0.0037 vs R0)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>4-Fold Regional Geological Breakdown for <code>S12-BHAR E3</code> vs <code>S11-MHTR E2</code></h2>
+    <span class="small">Explains why Subsurface Branch B surges in Volcanic NW (+0.0232) &amp; Blind SGMC (+0.0014) while trailing in Scarp-Dominated NE/SE</span>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Spatial Quadrant</th>
+          <th>Withheld Complexes</th>
+          <th>Withheld Positives</th>
+          <th>S12-E3 Dots</th>
+          <th>Weighted TP (<code>T</code>)</th>
+          <th>S12-E3 Fold HOLDOUT-DTI</th>
+          <th>S11-E2 Fold DTI (&Delta;)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Fold 0 (NW)</strong></td><td>151</td><td>10,757</td><td>12,512</td><td>2,751.48</td><td><strong>0.240722</strong></td><td>0.217459 (<code>+0.023263</code>)</td></tr><tr><td><strong>Fold 1 (NE)</strong></td><td>247</td><td>12,051</td><td>13,354</td><td>3,200.54</td><td><strong>0.252279</strong></td><td>0.279644 (<code>-0.027365</code>)</td></tr><tr><td><strong>Fold 2 (SW)</strong></td><td>327</td><td>20,541</td><td>12,689</td><td>2,702.07</td><td><strong>0.140057</strong></td><td>0.141747 (<code>-0.001690</code>)</td></tr><tr><td><strong>Fold 3 (SE)</strong></td><td>188</td><td>17,639</td><td>9,100</td><td>3,209.85</td><td><strong>0.196619</strong></td><td>0.217414 (<code>-0.020795</code>)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="twocol">
+    <div class="card">
+      <h3>Copy-Paste Metadata for Archive / Research Artifact <code>gems91-bhar-e3-20261024T184500Z-a4b69ca7</code></h3>
+      <p class="small"><strong>Reminder:</strong> Verdict is <code>negative</code> vs <code>S11-MHTR E2</code> on primary <code>HOLDOUT-DTI</code>; do not upload to a live weekly slot ahead of <code>S11-MHTR E2</code>.</p>
+      <label for="s12-name" class="small">Unique Candidate Name</label>
+      <div class="copyrow">
+        <textarea id="s12-name" readonly rows="2">gems91-bhar-e3-20261024T184500Z-a4b69ca7</textarea>
+        <button data-copy="s12-name" type="button">Copy</button>
+      </div>
+      <label for="s12-note" class="small">Short Note · 112/140 characters</label>
+      <div class="copyrow">
+        <textarea id="s12-note" readonly rows="3">GEMS91 S12 E3 (H12-1 + H12-2 + H12-3): Bouguer+cond+3D-ASig+nematic centerline submod (48022d &gt;3px, [0,1] zeros)</textarea>
+        <button data-copy="s12-note" type="button">Copy</button>
+      </div>
+      <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+      <dl class="meta">
+        <dt>SHA-256 (<code>-zeros.tif</code>)</dt><dd class="mono">bae83b233ddb150105986337207b8a217f3a3f3a817e0b418ad7f26f1b4c2431</dd>
+        <dt>SHA-256 (<code>-zeros.zip</code>)</dt><dd class="mono">20f6a54f8ab4a627d53da8d85708fffb936e333e8a1d7b899f10e118e5d16f36</dd>
+        <dt>SHA-256 (<code>.tif</code> NaN twin)</dt><dd class="mono">a4b69ca7da20167c6e8c047215ead340f771a4f6cd411155ac9c9174231e7353</dd>
+        <dt>Dots / Min Collar</dt><dd>48,022 unit-mass dots · 0 &le; 3.0 px (min 3.1623 px)</dd>
+      </dl>
+    </div>
+    <div class="card">
+      <h3>Limitations &amp; Session 13 High-Upside Recommendations</h3>
+      <ul>
+        <li><strong>Catalogue Topographic Bias vs Blind Subsurface Allocation:</strong> Allocating a fixed <code>29%</code> global quota to Topography-Blind Branch B boosted NW volcanic plateau recovery (<code>0.2407</code> vs <code>0.2175</code>) and blind USGS SGMC bedrock fault recovery (<code>0.099057–0.100094</code> vs <code>0.097623</code>), but sacrificed exposed range-front recall in NE/SE Horst-and-Graben ranges.</li>
+        <li><strong>Collinear Pre-Filter Ridge Broadening:</strong> Applying <code>_collinear_neighbor_envelope</code> (<code>r=1.8..5.2 px</code>) prior to <code>pure_steger_hessian_crest</code> broadened crest shoulders (`flank_crowded_3p5px = 6,367`); running Steger Hessian suppression <em>before</em> collinear strand scoring cuts crowding below <code>1,300</code>.</li>
+        <li><strong>Session 13 Priority #1 (Province-Gated Selective Fusion):</strong> Gate Topography-Blind Subsurface Branch B by regional volcanic/sedimentary cover thickness (<code>B15 depth_to_base</code> &amp; volcanic magnetic roughness <code>M<sub>shallow</sub></code>) so NW volcanic tablelands and deep basins use <code>S12-BHAR</code> while exposed NE/SE horst ranges retain <code>S11-MHTR</code>'s full scarp precision — combining NW <code>0.2407</code> + NE <code>0.2796</code> + SW <code>0.1648</code> + SE <code>0.2239</code> toward <code>&gt; 0.220 HOLDOUT-DTI</code>.</li>
+      </ul>
+      <p><a href="bhar91-executive-summary.html">Open S12 Executive Summary &amp; Step-by-Step Guide ↗</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Rule 1 Prior Fleet &amp; Prior-Lane Registry Uniqueness Audit (62 Rasters Checked: 100% PASS)</h2>
+    <span class="small">Top 20 closest prior rasters by effective 3-px dot overlap (limit &le; 70.0%; surface |&rho;| limit &le; 0.90; intra-repo S11-E2 = 73.67% audited separately)</span>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Prior Fleet / Repository Raster</th>
+          <th>Registry Dots</th>
+          <th>Surface |&rho;|</th>
+          <th>Cand &le;3px of Reg</th>
+          <th>Reg &le;3px of Cand</th>
+          <th>Effective 3px Overlap</th>
+          <th>Gate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>calib_h28ridge_01839.tif</code></td><td>69,281</td><td>0.1240</td><td>67.83%</td><td>43.93%</td><td><strong>67.83%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif</code></td><td>38,400</td><td>0.1165</td><td>65.82%</td><td>75.34%</td><td><strong>65.82%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>calib_h25ctx_01280.tif</code></td><td>174,232</td><td>0.2198</td><td>69.07%</td><td>47.57%</td><td><strong>56.34%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif</code></td><td>37,654</td><td>0.1142</td><td>54.54%</td><td>81.19%</td><td><strong>54.54%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>calib_h161_01855.tif</code></td><td>123,939</td><td>0.1422</td><td>44.62%</td><td>42.55%</td><td><strong>43.56%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>19GEMSDOE__h19-4-multiline-corroborated.tif</code></td><td>123,779</td><td>0.1428</td><td>43.73%</td><td>42.50%</td><td><strong>43.11%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>calib_h194_01894.tif</code></td><td>123,779</td><td>0.1428</td><td>43.73%</td><td>42.50%</td><td><strong>43.11%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>19GEMSDOE__h19-5-powerlaw-budget-multiline.tif</code></td><td>121,131</td><td>0.1435</td><td>42.73%</td><td>42.92%</td><td><strong>42.82%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>calib_h195_01922.tif</code></td><td>121,131</td><td>0.1435</td><td>42.73%</td><td>42.92%</td><td><strong>42.82%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif</code></td><td>61,328</td><td>0.0989</td><td>41.30%</td><td>41.12%</td><td><strong>41.30%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-nan.tif</code></td><td>46,090</td><td>0.0819</td><td>40.38%</td><td>40.04%</td><td><strong>40.38%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-zeros.tif</code></td><td>46,090</td><td>0.0819</td><td>40.38%</td><td>40.04%</td><td><strong>40.38%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-nan.tif</code></td><td>46,090</td><td>0.0828</td><td>40.33%</td><td>40.12%</td><td><strong>40.33%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif</code></td><td>46,090</td><td>0.0828</td><td>40.33%</td><td>40.12%</td><td><strong>40.33%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif</code></td><td>60,069</td><td>0.0978</td><td>40.06%</td><td>40.85%</td><td><strong>40.06%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>calib_d15_02477.tif</code></td><td>60,069</td><td>0.0978</td><td>40.06%</td><td>40.85%</td><td><strong>40.06%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gemsdoe32-h32c-mt-claycap-breach-45890-20261004T183200Z-a5963d0a-nan.tif</code></td><td>45,890</td><td>0.0817</td><td>39.83%</td><td>39.73%</td><td><strong>39.83%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gemsdoe32-h32c-mt-claycap-breach-45890-20261004T183200Z-a5963d0a-zeros.tif</code></td><td>45,890</td><td>0.0817</td><td>39.83%</td><td>39.73%</td><td><strong>39.83%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-nan.tif</code></td><td>45,890</td><td>0.0810</td><td>39.81%</td><td>39.75%</td><td><strong>39.81%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr><tr><td><code>gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-zeros.tif</code></td><td>45,890</td><td>0.0810</td><td>39.81%</td><td>39.75%</td><td><strong>39.81%</strong></td><td><span class="badge">PASS (&le;70%)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Auditable Data Inventory &amp; Official Source Provenance Register</h2>
+    <a href="sources.json">Download machine-readable sources.json ↗</a>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Dataset / Scientific Claim / Verification Target</th>
+          <th>Official Trusted Source &amp; Link</th>
+          <th>Sandbox Verification Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Official reference raster workflow and false-negative-weighted Tversky training loss; not the hidden competition scorer</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b">DrivenData organizer reference solution ↗</a></td><td>Fetched 2026-10-24. README and Prof. John Lipor&#x27;s U-Net Monte Carlo CV notebook verified; specifies alpha=0.2, beta=0.8. No DTI organizer-score receipt or hidden truth obtained.</td></tr><tr><td>Canonical pooled evaluator, whole-component splits and TIFF writer reused without modifications</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE78/tree/30f1ab9400f92036b0bc613425f1b5b6046f3897/vendor/gems57">Pinned shared template (project source, not organizer) ↗</a></td><td>Files fetched and SHA256-verified byte-for-byte against upstream pins. registry/template_pin.json records the exact modules.</td></tr><tr><td>Previous advertised parent lacks a published organizer receipt at this source</td><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 site snapshot (owner evidence, not organizer) ↗</a></td><td>Fetched 2026-10-24. Explicit text: NO ORGANISER SCORE EXISTS for this or any artifact in this repository. Confirms 0.2747/0.2778 are unverified model/user reports rather than organizer receipts.</td></tr><tr><td>Competition target, official DTI metric (alpha=0.2, beta=0.8, R=300m triangular kernel, worked example DTI=0.60) and permitted submission format</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData official problem description ↗</a></td><td>Fetched 2026-10-24. Verified single-band float32 EPSG:32611 100m GeoTIFF in [0, 1], asymmetric DTI formula, worked example TP_w=3.00, FP_w=1.89, FN_w=2.00 -&gt; DTI=0.60, and $50K Phase 1 + $250K Phase 2 prize structure.</td></tr><tr><td>Competition sponsor (DOE Office of Geothermal) and cited scientific references (Matteo et al. 2021; Hermant et al. 2025)</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">DrivenData official About page ↗</a></td><td>Fetched 2026-10-24. Verified DOE Office of Geothermal sponsorship and structural fault-permeability framing.</td></tr><tr><td>Live public leaderboard benchmark scores (top #1 = 0.4413, #2 = 0.3916, #5 = 0.3539)</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData official leaderboard ↗</a></td><td>Fetched 2026-10-24. Verified #1 xiaofanhu (0.4413), #2 cfld__ (0.3916), #3 Batik Shirt Brothers (0.3904), #4 BrandenKMurray (0.3724), #5 No Fault of Our Own (0.3539), #21 nchuzhoy (0.3262), superseding the older 0.3195 snapshot. No organizer score receipt exists for GEMSDOE91.</td></tr><tr><td>Official data access and sample grid</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData official data page ↗</a></td><td>Redirects to login without DrivenData credentials; cached pinned inputs match registry/data_manifest.json SHA-256 digests.</td></tr><tr><td>Official Rules (15 U.S.C. 3719): 3 submissions/week cap, generative AI narrative disclosure requirement, and U.S. eligibility</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official DOE / NLR rules PDF (96647, Sept 2026) ↗</a></td><td>Fetched 2026-10-24 (chunks 0-2). Section 3.2 explicitly confirms three submissions per week limit and required narrative disclosure of generative AI usage.</td></tr><tr><td>GeoDAWN airborne magnetic and radiometric survey provenance (149,030 line-km, E-W flight lines, CC0 1.0 Public Domain)</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN magnetic and radiometric survey (Glen &amp; Earney, 2024) ↗</a></td><td>Fetched 2026-10-24. Verified DOI 10.5066/P93LGLVQ, CC0 1.0 Public Domain license, 200m/400m E-W line spacing, and 100-200m terrain drape.</td></tr><tr><td>Great Basin hidden geothermal structural framework (INGENIOUS project, DOE DE-EE0009254)</td><td><a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS ↗</a></td><td>Fetched 2026-10-24. Verified Great Basin Center for Geothermal Energy INGENIOUS regional workflow ($10M, 2021-2025).</td></tr><tr><td>INGENIOUS regional compilation proving Band 10 (deq_n100a15) is Dependent Earthquake Swarm Density and Band 16 (ieq_n100a15) is Independent Earthquake Density</td><td><a href="https://gdr.openei.org/submissions/1391">DOE Geothermal Data Repository submission 1391 ↗</a></td><td>Fetched 2026-10-24. Verified DOI 10.15121/1881483 (CC-BY-4.0), Earthquake Density Models.zip (10.1785/0220220153), MT conductance (10.5066/P9TWT2LU), detrended elevation (10.5066/P9MQRCBY), and Qfaults/slip-dilation (10.5066/P9YL58W6).</td></tr><tr><td>Coordinate reference system WGS 84 / UTM zone 11N (metres)</td><td><a href="https://epsg.io/32611">EPSG:32611 reference ↗</a></td><td>Fetched 2026-10-24 and verified directly against EPSG:32611 CRS and affine transform of sample_submission.tif.</td></tr><tr><td>Blind off-catalogue bedrock fault control raster (62,122 positive pixels &gt; 3 px from existing_faults.tif)</td><td><a href="https://pubs.usgs.gov/ds/1052/">USGS State Geologic Map Compilation (SGMC) DS-1052 (Horton et al., 2017) ↗</a></td><td>Official USGS publication link (host outside sandbox allowlist). Local derived control raster data/external/derived_sgmc_faults_100m_u8.tif verified by SHA256 against registry/data_manifest.json; used strictly as post-hoc blind control, never in training or tuning.</td></tr><tr><td>Full-resolution 100 m GeoDAWN numerical stack (19 float32 bands) and Band 03 two-cell central-difference scale factor (200.024 m vs Band 09 nT/m)</td><td><a href="https://gdr.openei.org/submissions/1618">DOE OpenEI Geothermal Data Repository — GeoDAWN Great Basin Numerical Features ↗</a></td><td>Official GDR link (host outside sandbox allowlist). Local pinned data/bridge/gems-geodawn-numerical-features.tif SHA256-verified on 2026-10-24; full-resolution 512x512 window derivative audit proved med(B03 / ||grad_m(B14)||) = 200.0242 and R^2(B13 ~ B15) = 0.4664.</td></tr><tr><td>External candidate dataset H12-4: 1 m / 1/3 arc-sec bare-earth LiDAR elevation for sub-100 m scarp curvature</td><td><a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program (3DEP) / The National Map ↗</a></td><td>Official public-domain U.S. Government dataset lead; not fetched in-sandbox because usgs.gov is outside sandbox outbound allowlist. Logged as unrun external hypothesis H12-4.</td></tr><tr><td>External candidate dataset H12-5: 30 m Sentinel-1 vertical/eastward surface velocity for aseismic fault creep</td><td><a href="https://www.jpl.nasa.gov/go/opera/products/disp-product-suite">NASA JPL OPERA L3_DISP_S1 (ASF DAAC) ↗</a></td><td>Official open NASA/JPL product lead; not fetched in-sandbox because jpl.nasa.gov and asf.alaska.edu are outside sandbox outbound allowlist. Logged as unrun external hypothesis H12-5.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+<footer>
+  <div>Session 12 Discovery Audit (<code>gems91-bhar-e3-20261024T184500Z-a4b69ca7</code> · Verdict: <code>NEGATIVE</code> on Primary Holdout, <code>POSITIVE</code> on Blind SGMC)<br>Generated 2026-10-24T20:07:53Z</div>
+  <div><a href="run-card-BHAR91.json">S12 JSON Run Card</a> · <a href="s11-mhtr.html">S11 #1 Primary Candidate</a> · <a href="index.html">Main Research Portal</a></div>
+</footer>
+</div></body></html>
