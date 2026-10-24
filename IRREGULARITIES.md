@@ -1159,3 +1159,13 @@ provenance/registry prevent the requested unique submission in this run.
 
 **Decision it changes:** In `S11-MHTR` (`src/gems91/mhtr_coda.py`), the OOF `HistGradientBoosting` + `LogisticRegression` ensemble is trained strictly on label-free geophysical, Marussi-Hessian, topographic-curvature, radiometric-contact, and 1 km corridor features. Removing `fc_vis_*` from tree splits and applying Two-Regime Marussi/Radiometric Submodular Allocation lifted out-of-fold `HOLDOUT-DTI` from `0.174030` (`H91-1 E1`) to **`0.206406`** (`S11-MHTR E2`, `95% CI [0.193796, 0.220176]`, non-overlapping CIs) and lifted blind off-catalogue USGS SGMC DTI from `0.082886` to **`0.097623`**.
 
+---
+
+## IR-91-REVIEW-01 — Validator disagreement about finite zeros outside the footprint
+
+**Found (2026-10-24):** `scripts/validate_raster.py` defaults to a MUST gate requiring NaN outside the sample footprint. The shared `vendor/gems57` validator checks all-finite [0,1] values and the current writer uses zeros outside the footprint. The legacy script provides `--allow-zeros-outside`, which demotes its outside-footprint NaN check to informational.
+
+**Reproduced:** For the existing CED91 research TIFF, `scripts/verify_current_artifact.py --with-data` reports format/range/grid/catalogue PASS and `submission_ready: false`. `scripts/validate_raster.py` without the option reports the zero-outside check as a failed MUST gate. Supplying `--allow-zeros-outside`, plus the pinned parent, sample, catalogue and ledger, makes all MUST gates pass. This revalidation is not an organizer receipt and does not clear the final-dot duplicate gate.
+
+**Decision:** Do not change the organizer-format assumption by implication. Use the explicitly selected all-finite policy for current published research artifacts because the user's submission form rejected out-of-range values and the shared validator/writer enforce it; preserve the legacy option and this discrepancy for review. Before calling any file upload-ready, obtain organizer-confirmed format semantics and still satisfy science, novelty and separate-selector gates.
+

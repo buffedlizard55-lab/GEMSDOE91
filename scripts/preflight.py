@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
@@ -46,7 +47,10 @@ def main() -> int:
         readiness[axis] = {"ready": not gap, "missing": gap}
     ready_axes = [a for a, st in readiness.items() if st["ready"]]
 
-    verdict = "BUILD ALLOWED" if not missing else "BUILD BLOCKED"
+    # The global verdict must reflect actual per-axis readiness. The two
+    # minimum references can be present while every implemented axis is still
+    # missing an additional input (for example the catalogue or feature stack).
+    verdict = "BUILD ALLOWED" if ready_axes else "BUILD BLOCKED"
     print("\n".join(lines))
     print(f"\n{verdict}: {len(REQUIRED_FOR_BUILD) - len(missing)}/{len(REQUIRED_FOR_BUILD)} "
           f"required inputs verified")
@@ -68,7 +72,7 @@ def main() -> int:
          "required": REQUIRED_FOR_BUILD,
          "ready_axes": ready_axes,
          "axis_readiness": readiness,
-         "checked_utc": "2026-10-23"}, indent=2) + "\n", encoding="utf-8")
+         "checked_utc": datetime.now(timezone.utc).date().isoformat()}, indent=2) + "\n", encoding="utf-8")
     return 0 if ready_axes else 1
 
 
