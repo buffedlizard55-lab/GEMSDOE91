@@ -21,5 +21,12 @@
   "n_dots": 37654,
   "holdout": "evidence/holdout3_hgbctx_20261024.json",
   "build_evidence": "evidence/build3_hgbctx_20261024.json",
-  "rebuild": "byte-identical across two builds (verified 2026-10-24)"
+  "rebuild": "byte-identical across two builds (verified 2026-10-24)",
+  "library_versions_used": {
+    "numpy": "2.4.6",
+    "rasterio": "1.4.4",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.17.1"
+  },
+  "post_merge_status": "selector approval: none recorded; see reports/run_card_20261024.json post_merge_status_2026_10_24"
 }

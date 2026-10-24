@@ -1,0 +1,18 @@
+{
+  "source_repository": "https://github.com/buffedlizard55-lab/GEMSDOE78",
+  "source_commit": "30f1ab9400f92036b0bc613425f1b5b6046f3897",
+  "source_path": "vendor/gems57/",
+  "modifications": "none; copied byte-for-byte; reused without a private metric or writer",
+  "sha256": {
+    "__init__.py": "bd7f12b45caf67b7b4d0da4656c7c3895513bec524ec0b7f251227ecbdd39d26",
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8",
+    "submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
+    "grid.py": "b96df7ec0f33658a61b0baa5db85fcd19be2cd8b1873f99699bd26bddae8cd8d",
+    "gates.py": "7c57f70dbba58bb1112df4193a3de56516af0f981970d4b943b394f99b573dae",
+    "validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd",
+    "network.py": "d5e53d7df182e69bb22a6e39ac16f43d3f5b730e503d86538d5f8f7360020943"
+  }
+}

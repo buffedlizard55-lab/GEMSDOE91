@@ -58,7 +58,7 @@ demo: fixture
 	  $(PY) scripts/validate_release.py "$$CAND" \
 	    --sample tests/_tmp/fixture/sample_submission.tif \
 	    --catalogue tests/_tmp/fixture/catalogue_mask.tif \
-	    --ledger ledger/submissions.csv || true
+	    --ledger ledger/submissions.csv
 	@echo "synthetic build only - never submit tests/_tmp"
 
 # CONCENTRATION needs the prior as a raster; derive it from training_features first
@@ -75,3 +75,18 @@ validate:
 
 clean:
 	rm -rf tests/_tmp .pytest_cache
+
+# Current research artifact: inspection only, never competition promotion.
+.PHONY: verify-current portal audit-feed
+verify-current:
+	$(PY) scripts/verify_current_artifact.py --with-data
+	$(PY) scripts/verify_evidence.py
+	$(PY) scripts/check_artifact_policy.py
+	$(PY) -m pytest
+
+portal:
+	$(PY) scripts/render_portal.py
+
+audit-feed:
+	$(PY) scripts/audit_fleet.py
+	$(PY) scripts/render_portal.py

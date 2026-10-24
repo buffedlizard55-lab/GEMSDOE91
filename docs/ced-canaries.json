@@ -1,0 +1,108 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "split": "label-blind-quadrants-v2",
+  "withheld_positive_pixels": 60988,
+  "interpretation": "Pooled feature-alone AUROC over union of disjoint held-out quadrants; no label-fitted feature.",
+  "features": {
+    "raw_magnetic": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.4910090367357364,
+      "symmetric_auc": 0.5089909632642635,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+    },
+    "raw_gravity": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.4590779009075838,
+      "symmetric_auc": 0.5409220990924162,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+    },
+    "magnetic_persistence": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5291130962868239,
+      "symmetric_auc": 0.5291130962868239,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+    },
+    "gravity_persistence": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5338308413592525,
+      "symmetric_auc": 0.5338308413592525,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+    },
+    "axial_alignment": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5025043227107043,
+      "symmetric_auc": 0.5025043227107043,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+    },
+    "displacement_consistency": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.500078571956045,
+      "symmetric_auc": 0.500078571956045,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+    },
+    "signed_displacement_fine": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.4966041899752716,
+      "symmetric_auc": 0.5033958100247284,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+    },
+    "signed_displacement_coarse": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.4945844484134138,
+      "symmetric_auc": 0.5054155515865861,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+    },
+    "surface": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5259534197272769,
+      "symmetric_auc": 0.5259534197272769,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+    }
+  }
+}

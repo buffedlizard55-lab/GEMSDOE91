@@ -11,19 +11,45 @@
     "evaluator": "scripts/dti.py official DTI alpha=0.2 beta=0.8 R=3px triangular max-per-truth-pixel (identity with organiser TPw/FPw/FNw verified; worked example 0.60 reproduced in tests)",
     "protocol": "whole catalogue connected components withheld in 4 spatial checkerboard block folds (400px); exclusion re-derived from visible catalogue per fold; model trained only outside fold region; pooled T/S/M/G",
     "pooled": 0.142885,
-    "fold_values": [0.143956, 0.136599, 0.135255, 0.153814],
-    "fold_mean_CI95": [0.12886, 0.155952],
+    "fold_values": [
+      0.143956,
+      0.136599,
+      0.135255,
+      0.153814
+    ],
+    "fold_mean_CI95": [
+      0.12886,
+      0.155952
+    ],
     "n_withheld_positives": 60988,
-    "baselines_same_protocol": {"random_matched": 0.070827, "TRI3_E1": 0.091215, "SUP_E2": 0.097146, "d2_8_as_is_leakage_flattered_reference": 0.156058},
+    "baselines_same_protocol": {
+      "random_matched": 0.070827,
+      "TRI3_E1": 0.091215,
+      "SUP_E2": 0.097146,
+      "d2_8_as_is_leakage_flattered_reference": 0.156058
+    },
     "leakage_canary_max_single_band_AUC": 0.5779,
-    "sgmc_off_catalogue_PROXY_report_only": {"ours": 0.068703, "R0": 0.095386, "truth_px": 62122}
+    "sgmc_off_catalogue_PROXY_report_only": {
+      "ours": 0.068703,
+      "R0": 0.095386,
+      "truth_px": 62122
+    }
   },
-  "model_live_projection_NOT_a_score": {"range": [0.20, 0.29], "basis": "MODEL algebra in docs/DENOVO_20261024.md S2/S4: R0 implied TPw ~5.3k, |G| ~14k; per-dot credit ratios from SGMC (0.717) and holdout (1.044 vs d2.8). Leader 0.4413 (LEADERBOARD-READ 2026-10-24) implies ~61-64% weighted recall - not reachable from this surface family."},
+  "model_live_projection_NOT_a_score": {
+    "range": [
+      0.2,
+      0.29
+    ],
+    "basis": "MODEL algebra in docs/DENOVO_20261024.md S2/S4: R0 implied TPw ~5.3k, |G| ~14k; per-dot credit ratios from SGMC (0.717) and holdout (1.044 vs d2.8). Leader 0.4413 (LEADERBOARD-READ 2026-10-24) implies ~61-64% weighted recall - not reachable from this surface family."
+  },
   "correlation_overlap_vs_registry": {
     "rule": "duplicate if surface rank-correlation > 0.90 OR > 70% of dots within 3px of one registry raster",
     "max_surface_spearman_sample150k": 0.1133,
     "max_pct_dots_within_3px": 40.41,
-    "vs_parent_R0": {"spearman": 0.0462, "pct_within_3px": 30.68},
+    "vs_parent_R0": {
+      "spearman": 0.0462,
+      "pct_within_3px": 30.68
+    },
     "verdict": "NOT a duplicate of any registry raster"
   },
   "raster": {
@@ -54,5 +80,6 @@
   "shared_tool_fix": "src/gems91/metric.py summed p*k per truth pixel; official metric takes the max. Fixed once here (IR-91-37); scripts/dti.py was already correct; both now agree <1e-9.",
   "organizer_confirmed_score": null,
   "verdict": "promote",
-  "verdict_scope": "Promote to ONE weekly slot as the unique-lane test (human submits; agent never submits). NOT a blind-final candidate on current evidence (SGMC instrument disagrees). If the receipt is <= R0 claim, this lane is a negative result and the next lane is H4 (1m-DEM re-derivation, IR-91-40)."
+  "verdict_scope": "Promote to ONE weekly slot as the unique-lane test (human submits; agent never submits). NOT a blind-final candidate on current evidence (SGMC instrument disagrees). If the receipt is <= R0 claim, this lane is a negative result and the next lane is H4 (1m-DEM re-derivation, IR-91-40).",
+  "post_merge_status_2026_10_24": "Merged with GEOD + CED lanes. Under main's fail-closed readiness policy (src/gems91/readiness.py) this file has no selector approval and only indexed-scope (7-raster) novelty, so submission_ready=false until a selector records otherwise. The 'promote' verdict above is this lane's pre-merge recommendation, retained verbatim for audit."
 }
