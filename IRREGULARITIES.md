@@ -637,3 +637,30 @@ row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on fl
 (explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
 float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic
 demo but must not be used to build a release.
+
+## IR-91-32 — Current checkout fails Gate 0 (2026-10-24)
+
+All 15 manifest inputs and the derived mask are absent, despite historical
+`local_present` / `verified_here` fields. Fresh check:
+`reports/session-20261024-ea2646f3-manifest.json`. No hash was verified, R0 was
+not reconstructed, and no variant was built. Historical reports remain historical.
+The available fetch helpers explicitly read token environment variables or invoke
+`gh auth token`; they were not used. Only offline `restore_data.py --check` ran.
+Upstream competition-data mirrors are recorded in the manifest (e.g.
+https://github.com/buffedlizard55-lab/60GEMSDOE/tree/02563d07fb85d2f4d35887503d380d34d4017197/data/official);
+data-use permissions remain UNVERIFIED. No tracked TIFFs exist in this checkout.
+Decision: stop, request local pinned inputs through a non-public transfer, and do
+not infer current verification from prior sessions or fetch redistributed data
+whose permissions have not been established.
+
+## IR-91-33 — Historical gate exemptions and evidence labels cannot authorize slots
+
+README and SUBMIT historically accept inherited 2.236 px minimum distance and call
+local audits RECEIPT. The current brief permits the <3 px exception only for PRUNE
+and defines RECEIPT only as a submission-page receipt. The ledger has 47 rows and
+zero receipt scores. Previous slot instructions also recommend delete-only PRUNE,
+whereas this session requires refill at fixed count. No historical raster was
+re-read here; these are documented inconsistencies, not new raster measurements.
+Decision: current queue is HOLD, use PRUNE for a future compliant fixed-count test,
+keep local measurements distinct from live receipts, and do not grandfather a
+non-PRUNE collar violation. PROXY results must not become hard gates.

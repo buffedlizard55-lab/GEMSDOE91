@@ -1,3 +1,9 @@
+> **2026-10-24 HOLD — supersedes historical upload queues below.**
+> This session produced no candidate file, upload name, form note, or format receipt.
+> All pinned inputs are absent; R0 has not been rebuilt here. Do not upload an older
+> artifact until its exact hash, deduplication and all current MUST gates are checked.
+> Local format reports are not submission RECEIPTs. See SLOT_PLAN.md.
+
 # SUBMIT — MASS/consensus arms + merged PRUNE/CONCENTRATION queue (2026-10-23)
 
 **Status 2026-10-23: 38 BUILT rows, 0 submitted, 0 receipts.** Rasters are not committed;
