@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SSHAC Executive Summary & Submission Guide · GEMSDOE91</title>
+<link rel="stylesheet" href="assets/portal.css"></head>
+<body><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Current verdict</a><a href="sshac.html">SSHAC</a><a href="fuse91.html">FUSE91</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence</a></nav></header>
+<main id="main">
+<section class="hero"><div><span class="eyebrow">SSHAC EXECUTIVE SUMMARY</span><h1>Download is easy.<br>Submission is blocked.</h1><p class="lead">Automated inspection is complete. No human image inspection is required. The file is portal-safe but its holdout score is below the gate, so it must not use a weekly slot.</p><span class="badge bad">NOT OK TO SUBMIT</span></div>
+<div class="download" data-submission-ready="false"><div class="label">RESEARCH-ONLY GEOTIFF</div><h2>gems91-sshac-simple-37654dots-20261024-7fbdf6f7</h2>
+<div class="status"><span>Format and [0,1]</span><strong>PASS — all-finite zeros</strong></div><div class="status"><span>Holdout improvement</span><strong>FAIL — 0.069 &lt; 0.206</strong></div><div class="status"><span>Registry overlap</span><strong>PASS (within indexed scope)</strong></div>
+<a class="button" download href="downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.tif">↓ Download research GeoTIFF</a>
+<div style="text-align:center;margin-top:12px"><a download href="downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.zip">Single-TIFF ZIP</a> · <a href="run-card-SSHAC.json">Run card</a> · <a href="downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-audit.json">Audit</a></div>
+<p class="small">SHA-256 <code>c2b2da582815bb4ad72ad351e9977a9fa24388c718bebf78aad157cdd25eb356</code> · 214,677 bytes original, 174,873 ZIP · 37,654 dots · EPSG:32611 · 3730×3292 · 100 m · values {0,1} only · 0 on catalogue · min catalogue distance 3.1623 px.</p></div></section>
+
+<section class="section"><h2>Why the file is blocked (and why the portal error will not trigger)</h2>
+<ol>
+<li><strong>Portal range gate:</strong> <em>Predicted values must be in range [0,1]</em> would reject files with sentinel <code>-3.4e38</code> inside the footprint or NaN/inf inside the footprint. This file has <strong>0 NaN, 0 inf, min 0.0, max 1.0, all 12,279,160 cells finite, nodata=None</strong> (zeros encoding). Verified re-read from disk after write; all 14 <code>validate_raster.py</code> checks PASS and <code>gems91.gates</code> CERTIFIED.</li>
+<li><strong>HOLDOUT-DTI:</strong> 0.069431, 95% CI [0.065541,0.073381], evaluator <code>gems91-hide-recover-v1.0</code>, 60,988 withheld positives. This is below the comparable best <strong>0.206406</strong> (S11-MHTR) and below B0 0.138999. Negative result — research download only.</li>
+<li><strong>Leakage canary:</strong> PASS, max symmetric AUC 0.583 (topo_ridge) ≤0.90 for all 6 features.</li>
+<li><strong>Registry novelty:</strong> PASS within indexed scope (62 rasters, lattice calibrator reported separately with symmetric F1, not silently dropped).</li>
+<li><strong>Selector:</strong> no selector approval, no weekly slot used.</li>
+</ol></section>
+
+<section class="section"><h2>How an approved future submission would work (not this file)</h2>
+<div class="step"><b>1</b><div><h3>Require all automated gates</h3><p>The project must say OK TO SUBMIT, the candidate must beat the same-evaluator holdout best, both novelty phases must pass against a complete registry, and the on-disk validator must pass.</p></div></div>
+<div class="step"><b>2</b><div><h3>Run the separate selector</h3><p>Verify the live weekly allowance on the authenticated competition page. A holdout result never spends a slot automatically.</p></div></div>
+<div class="step"><b>3</b><div><h3>Upload only the approved all-finite TIFF</h3><p>Select the approved <code>-zeros.tif</code> or its single-member ZIP — not a report, JSON, or NaN companion — and paste its ≤140-char note. For this file the note would be <code>SSHAC simple: seis+strain+tc concordance geometric mean, 37654d s2.8 zeros</code> (68 chars).</p></div></div>
+<div class="step"><b>4</b><div><h3>Record the receipt</h3><p>Only a score copied from the organizer's submission receipt may be labelled ORGANIZER-CONFIRMED. SSHAC has no organizer receipt and must not be uploaded.</p></div></div></section>
+
+<section class="section"><h2>If you still want to inspect SSHAC's dot pattern</h2>
+<p>Download the TIFF above and open it in QGIS/ArcGIS alongside <code>data/official/existing_faults.tif</code> (60,988 catalogue pixels) and <code>data/official/sample_submission.tif</code> (footprint). SSHAC's 37,654 dots sit >3 px from any catalogue pixel and follow the geometric-mean surface (bright where seismic, strain, and radiometric edges coincide). The pattern is distinct from R0's H19 lineage (byte-level dot digest <code>7fbdf6f75807...</code> vs R0 <code>c55bafc...</code>) — no previous submission pixels were read as input.</p>
+<pre class="mono">python3 scripts/validate_raster.py docs/downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.tif data/official/sample_submission.tif --catalogue data/official/existing_faults.tif --ledger ledger/submissions.csv --json-out /tmp/check.json && cat /tmp/check.json | python3 -m json.tool | head -n 40
+python3 -m gems91.verify_current_artifact --with-data  # portal's own re-read
+</pre></section>
+
+<section class="section"><div class="card"><span class="eyebrow">RUN CARD (machine-readable)</span><h2>One JSON card for this session</h2><p>Hypothesis, mechanism, named non-fault mimic, holdout DTI + CI, correlation/overlap vs registry, raster sha256, validator output, submission name + note, verdict negative. Negative results are deliverables.</p><pre class="mono">{
+  "hypothesis": "Seismo-Strain Hydrothermal Alteration Corridor ...",
+  "mechanism": "Unsupervised geometric mean of 6 terms ...",
+  "non_fault_mimic": "Buried volcanic margin & playa fill",
+  "holdout_dti": 0.069431,
+  "ci95": [0.065541, 0.073381],
+  "withheld_positives": 60988,
+  "evaluator": "gems91-hide-recover-v1.0",
+  "max_surface_rho": 0.184,
+  "max_dot_overlap": 0.4523,
+  "raster_sha256": "c2b2da582815bb4ad72ad351e9977a9fa24388c718bebf78aad157cdd25eb356",
+  "validator": "PASS (14/14, all-finite [0,1], CERTIFIED)",
+  "submission_name": "gems91-sshac-simple-37654dots-20261024-7fbdf6f7",
+  "note": "SSHAC simple: seis+strain+tc concordance geometric mean, 37654d s2.8 zeros",
+  "verdict": "negative"
+}</pre><p><a class="button outline" href="run-card-SSHAC.json">Open full JSON run card ↗</a> <a class="button outline" href="sshac.html">Open SSHAC audit page ↗</a></p></div></section>
+</main><footer><div>SSHAC 2026-10-24 · branch arena/b4be2804-gemsdoe91</div><div><a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source</a></div></footer></div></body></html>

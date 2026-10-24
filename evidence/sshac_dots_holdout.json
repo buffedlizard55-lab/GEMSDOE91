@@ -1,0 +1,60 @@
+{
+  "metric_label": "HOLDOUT-DTI",
+  "evaluator_version": "gems91-hide-recover-v1.0",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel_radius_m": 300.0,
+  "n_withheld_positives": 60988,
+  "holdout_dti": 0.0,
+  "ci_95": [
+    0.0,
+    0.0
+  ],
+  "bootstrap_tiles_5km": 1861,
+  "bootstrap_draws": 50,
+  "pooled_T": 0.0,
+  "pooled_S": 29349.0,
+  "pooled_M": 0.0,
+  "folds": [
+    {
+      "fold_id": 0,
+      "name": "NW",
+      "n_withheld_positives": 10757,
+      "n_segments_withheld": 151,
+      "emitted_mass": 9179.0,
+      "T": 0.0,
+      "M": 0.0,
+      "fold_dti": 0.0
+    },
+    {
+      "fold_id": 1,
+      "name": "NE",
+      "n_withheld_positives": 12051,
+      "n_segments_withheld": 247,
+      "emitted_mass": 2950.0,
+      "T": 0.0,
+      "M": 0.0,
+      "fold_dti": 0.0
+    },
+    {
+      "fold_id": 2,
+      "name": "SW",
+      "n_withheld_positives": 20541,
+      "n_segments_withheld": 327,
+      "emitted_mass": 8671.0,
+      "T": 0.0,
+      "M": 0.0,
+      "fold_dti": 0.0
+    },
+    {
+      "fold_id": 3,
+      "name": "SE",
+      "n_withheld_positives": 17639,
+      "n_segments_withheld": 188,
+      "emitted_mass": 8549.0,
+      "T": 0.0,
+      "M": 0.0,
+      "fold_dti": 0.0
+    }
+  ]
+}

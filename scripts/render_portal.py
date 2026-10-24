@@ -35,6 +35,7 @@ def f(value, digits=5):
 # nothing is typed in. Download is research-only; submission is never offered here.
 EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292), 'transform_origin': (243350.0, 4508550.0), 'pixel_m': 100.0}
 BOARD_ROWS = (
+    ('SSHAC simple (holdout 0.069431, negative — NEW on arena/b4be2804)', 'docs/run-card-SSHAC.json', 'docs/downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.tif', 'sshac.html'),
     ('FUSE91 E1 (holdout 0.167293 identical-instrument best; promote-to-selector)', 'docs/run-card-F91.json', 'docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif', 'fuse91.html'),
     ('CCR91 E1 (holdout 0.202116, negative)', 'docs/run-card-CCR91.json', 'docs/downloads/gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif', 'ccr91-executive-summary.html'),
     ('CED91 (research negative)', 'docs/run-card.json', 'docs/downloads/gems91-ced-v1-20261024-d35670b28c81.tif', 'executive-summary.html'),

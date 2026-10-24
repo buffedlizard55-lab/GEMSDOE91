@@ -1,0 +1,20 @@
+{
+  "candidate_id": "gems91-sshac-simple-37654dots-20261024-7fbdf6f7",
+  "sha256": "c2b2da582815bb4ad72ad351e9977a9fa24388c718bebf78aad157cdd25eb356",
+  "bytes": 213154,
+  "validators": {
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true
+  },
+  "dots": {
+    "n_dots": 37654,
+    "dot_set_digest": "97715c04261357b059124c4bb01243629ce77524e4e5d484814009929710494d",
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0
+  }
+}

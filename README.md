@@ -12,6 +12,16 @@
 - **Core values applied:** Maximize P(Win) (falsifiable discovery, honest negatives) and Own the Outcome (automatic inspection, provenance, blockers stated).
 - **Irregularities:** `IRREGULARITIES.md` `IR-91-S12-01..11`. Limitations: `LIMITATIONS.md`, "Session 12 additions".
 
+## SSHAC SESSION STATUS (2026-10-24, branch `arena/b4be2804-gemsdoe91`) — new unique file, portal-safe, negative
+
+**Verdict: OK TO DOWNLOAD for research, NOT OK TO SUBMIT — negative, no slot used.**
+
+- **[Download SSHAC research GeoTIFF (214,677 B)](docs/downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.tif)** · **[ZIP](docs/downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.zip)** · **[Audit](docs/downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-audit.json)** · **[Evidence page](docs/sshac.html)** · **[Guide](docs/sshac-executive-summary.html)** · **[Run card](docs/run-card-SSHAC.json)** · **[Report](docs/SSHAC_20261024.md)** · **[Preregistration](docs/HYPOTHESES_SSHAC.md)**
+- **Unique name:** `gems91-sshac-simple-37654dots-20261024-7fbdf6f7` · **SHA-256:** `c2b2da582815bb4ad72ad351e9977a9fa24388c718bebf78aad157cdd25eb356` · **Note (68/140):** `SSHAC simple: seis+strain+tc concordance geometric mean, 37654d s2.8 zeros`
+- **Scores (labelled):** **0.069431 HOLDOUT-DTI** (segment-buffered hide-recover, 60,988 withheld, 95% CI [0.065541, 0.073381]; evaluator `gems91-hide-recover-v1.0`) — below S11-MHTR **0.206406** and B0 **0.138999**, so not a promotion. Continuous surface scored; final dots >3 px from full catalogue score 0 by construction (disclosed). Leakage canary PASS (max sym. AUC 0.583). ORGANIZER-CONFIRMED: none.
+- **Gates, no human inspection:** all-finite [0,1] (no NaN tag, portal error cannot trigger), 14/14 validate_raster PASS, CERTIFIED gates, 0 on catalogue, min catalogue distance 3.1623 px; surface/dots novelty PASS within indexed scope (|ρ|≤0.184, overlap≤45.2%). Complete universal registry not claimed.
+- **Why 0.2778 (CLAIM) led and what beating it takes:** see `docs/SSHAC_20261024.md` §1 — thinning+collar-prune lineage + max-kernel saturation; beating 0.2778 needs +15% credit/dot (0.32) or +58% (0.4413), which requires detector ranking gain, not emission. SSHAC's 6-term concordance is one orthogonal view; it did not beat the current holdout, so no claim to beat 0.2778.
+
 ## FUSE91 SESSION STATUS (2026-10-24, branch `arena/fa0fb617-gemsdoe91`) — newest lane; new same-instrument holdout best
 
 **Verdict: OK TO DOWNLOAD AND SUBMIT — this file only, instead of the unsubmitted DENOVO/MHTR/DD-VTC/CCR91 candidates (mutual exclusion, IR-F91-01). Selector still confirms the live weekly allowance, eligibility and AI disclosure. No slot used by this session. No organizer score claimed.**

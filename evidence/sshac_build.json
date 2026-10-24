@@ -1,0 +1,31 @@
+{
+  "surface": {
+    "mean": 0.39108,
+    "max": 0.8729,
+    "terms": [
+      "seis_prox",
+      "strain_mag",
+      "tc_grad",
+      "mag_ridge",
+      "grav_ridge",
+      "topo_ridge"
+    ],
+    "formula": "(prod)^(1/6) geometric mean"
+  },
+  "emission": {
+    "n_dots": 37654,
+    "spacing_px": 2.8,
+    "eligible_pixels": 4722579,
+    "min_catalogue_distance_px": 3.1623,
+    "dot_set_digest": "97715c04261357b059124c4bb01243629ce77524e4e5d484814009929710494d"
+  },
+  "validator": {
+    "status": "PASS",
+    "all_finite": true,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "candidate_id": "gems91-sshac-simple-37654dots-20261024-7fbdf6f7",
+  "sha256": "c2b2da582815bb4ad72ad351e9977a9fa24388c718bebf78aad157cdd25eb356",
+  "sha256_nan": "7fbdf6f75807c0b28cc0c955dd8ce21c562f5dee6119e1c12b1cb3a27a7dbbb7"
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SSHAC — Seismo-Strain Hydrothermal Alteration Corridor · GEMSDOE91</title>
+<link rel="stylesheet" href="assets/portal.css"></head>
+<body><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Current verdict</a><a href="sshac.html">SSHAC (new)</a><a href="sshac-executive-summary.html">SSHAC guide</a><a href="fuse91.html">FUSE91</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence</a></nav></header>
+<main id="main">
+<section class="hero"><div><span class="eyebrow">SSHAC / SEISMO-STRAIN HYDROTHERMAL CORRIDOR — 2026-10-24</span>
+<h1>New unique file: 37,654 dots, all-finite [0,1]</h1>
+<p class="lead">An unsupervised concordance detector that fires only where active seismic lineaments, geodetic strain, and radiometric edges coincide with magnetic/gravity/topography basement steps — targeting blind faults that lack scarps but feed geothermal systems.</p>
+<span class="badge bad">NOT OK TO SUBMIT — RESEARCH ONLY</span>
+<p class="small">Holdout 0.069 below the repository best 0.206. Download is easy and portal-safe; submission is not approved. No organizer score claimed.</p></div>
+<div class="download" data-submission-ready="false"><div class="label">⬇ ONE-CLICK RESEARCH FILE (PORTAL-SAFE)</div><h2>Download & verify</h2>
+<div class="status"><span>OK to download</span><strong>YES — research only</strong></div>
+<div class="status"><span>OK to submit</span><strong>NO</strong></div>
+<div class="status"><span>Predicted values in [0,1]?</span><strong>YES — all-finite, no nodata tag</strong></div>
+<a class="button" download href="downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.tif">↓ Download gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.tif</a>
+<div style="text-align:center;margin-top:12px"><a download href="downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.zip">Single-TIFF ZIP</a> · <a href="downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-audit.json">Full audit</a> · <a href="run-card-SSHAC.json">JSON run card</a></div>
+<p class="small">Unique name: <code>gems91-sshac-simple-37654dots-20261024-7fbdf6f7</code><br>
+Note (68/140): <code>SSHAC simple: seis+strain+tc concordance geometric mean, 37654d s2.8 zeros</code><br>
+SHA-256: <code>c2b2da582815bb4ad72ad351e9977a9fa24388c718bebf78aad157cdd25eb356</code> · 214,677 bytes · 37,654 dots · single-band float32 · EPSG:32611 · 3730×3292 · values {0,1} only · 0 NaN outside footprint · min catalogue distance 3.1623 px.</p></div></section>
+
+<div class="banner"><strong>How to submit (and why you should not submit this file):</strong> This file is <em>portal-safe</em> (no NaN, all values in [0,1]), so it will not trigger the “Predicted values must be in range [0,1]” error. However, its HOLDOUT-DTI <strong>0.069431</strong> (CI [0.065541,0.073381], 60,988 withheld, gems91-hide-recover-v1.0) is below the repository best <strong>0.206406</strong> (S11-MHTR) and below the format-agnostic B0 0.139. The shared fail-closed gate therefore says <strong>NOT OK TO SUBMIT</strong>. Download for research, method comparison, or to inspect a seismic-strain guided dot pattern — do not spend a weekly slot.</div>
+
+<section class="section"><h2>Measured results (every number labelled)</h2>
+<div class="table-scroll"><table><thead><tr><th>Arm</th><th>Pooled HOLDOUT-DTI</th><th>95% CI</th><th>Evaluator</th></tr></thead><tbody>
+<tr><td><strong>E1 SSHAC sharp (this file, dots)</strong></td><td><strong>0.069431</strong></td><td>[0.065541, 0.073381]</td><td>gems91-hide-recover-v1.0, 60,988 withheld</td></tr>
+<tr><td>E1 continuous surface (before dotting)</td><td>0.069431</td><td>[0.065541, 0.073381]</td><td>same (continuous mass 1,537,846)</td></tr>
+<tr><td>S11-MHTR best (prior)</td><td>0.206406</td><td>[0.193796, 0.220176]</td><td>same</td></tr>
+<tr><td>B0 raw 19 bands</td><td>0.138999</td><td>[0.128, 0.151]</td><td>same</td></tr>
+<tr><td>Random matched control</td><td>0.0708 (DENOVO receipt)</td><td>[0.066, 0.075]</td><td>checkerboard instrument</td></tr>
+</tbody></table></div>
+<p class="small">HOLDOUT-DTI measures recovery of catalogue-like faults, not organizer-scored new faults. No leaderboard score is claimed. SGMC off-catalogue control not run for this lane (REPORT-ONLY if requested).</p></section>
+
+<section class="section"><div class="twocol"><div><span class="eyebrow">METHOD</span><h2>What this detector is</h2>
+<p>Unsupervised geometric mean of 6 catalogue-free terms, each as a footprint percentile [0,1]:</p>
+<ol>
+<li><strong>Seismic proximity</strong> = <code>1 - pct(B10 deq_n100a15)</code> — close to micro-earthquake epicenters = high</li>
+<li><strong>Strain magnitude</strong> = <code>pct(B04 geod_2ndinv)</code> — decadal second invariant from GPS/InSAR</li>
+<li><strong>Radiometric edge</strong> = <code>pct(|grad(B06 tc)|)</code> — total-count gamma-ray edge (K/Th/U) after EDT fill</li>
+<li><strong>Magnetic ridge</strong> = <code>pct(high-pass( (B03+B06+|B09|)/3 ))</code> — 500 m high-pass concordance</li>
+<li><strong>Gravity ridge</strong> = <code>pct(high-pass( (B05+|B11|+|B18|)/3 ))</code></li>
+<li><strong>Topo ridge</strong> = <code>pct(high-pass( (B19+|lap(B12)|)/2 ))</code></li>
+</ol>
+<p>Surface = <code>(Π_i term_i)^(1/6)</code> — high only where all six coincide after 200–500 m smoothing. Emission: greedy spaced 2.8 px, 37,654 dots, &gt;3 px from catalogue (full for final, &gt;3 px from <em>visible</em> in each holdout fold). No parent raster read; no distance-to-catalogue feature in detector.</p>
+<p class="small">Named non-fault mimic: buried volcanic margin (strong B06/B03 but aseismic, low strain) → rejected by requiring seismic AND strain coincidence. Playa conductive fill (B17 high but low strain/seismic) similarly suppressed. Implementation: <code>src/gems91/ss_hac.py</code> + <code>scripts/build_ss_simple.py</code> + <code>scripts/build_ss_final.py</code>.</p></div>
+<div class="card"><h3>Automated gates on exact written bytes</h3><ul class="checklist">
+<li><span>Format: 14/14 checks PASS, all-finite [0,1], CRS/shape/transform match</span><span class="badge">PASS</span></li>
+<li><span>Leakage canary (6 features, max sym. AUC 0.583 ≤ 0.90)</span><span class="badge">PASS</span></li>
+<li><span>Surface novelty |ρ| ≤0.184 vs indexed registry (62 rasters)</span><span class="badge">PASS</span></li>
+<li><span>Dot novelty ≤45.2% vs indexed registry</span><span class="badge">PASS</span></li>
+<li><span>Beats comparable holdout best 0.206406?</span><span class="badge bad">FAIL — 0.069 &lt; 0.206</span></li>
+<li><span>Submission readiness (all gates)</span><span class="badge bad">NOT READY</span></li>
+<li><span>Weekly slot / eligibility / AI disclosure</span><span class="badge">HUMAN SELECTOR</span></li>
+</ul>
+<p class="small">Validation receipts: <a href="downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-audit.json">audit JSON</a> · <a href="downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7.json">receipt</a> · holdout: <code>evidence/sshac_simple_holdout.json</code> (continuous) · canary: <code>evidence/sshac_canary.json</code>. Portal error “Predicted values must be in range [0,1]” cannot trigger on this file (its measured cause was NaN-outside/sentinel; this file is all-finite zeros, verified re-read from disk).</p></div></div></section>
+
+<section class="section"><h2>Why 0.2778 (GEMSDOE32, CLAIM) led and what beating it takes — PhD audit</h2>
+<p>Byte-verified lineage (RECEIPT, <code>evidence/forensics_f91_20261024.json</code>): H19-5 solid 121,131 px (0.1922 CLAIM) → 60,069 (0.2477) → 44,090 (0.2600) → 40,199 (0.2708) → B2 prune 37,654 (0.2778 CLAIM, GEMSDOE32 page calls it UNSCORED with 0.2747 projection). <strong>No organizer receipt exists in any checkout for 0.2778</strong> — it is a user-reported CLAIM, not ORGANIZER-CONFIRMED. Official leaderboard read 2026-10-24: #1 0.4413 (xiaofanhu) — verified via <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>.</p>
+<p><strong>Why thinning+pruning inflated the CLAIM:</strong> DTI numerator <code>TPw = Σ_g max_j p_j k(d)</code> is a <em>max</em>, so a 3-px-wide ribbon pays ≈3× denominator <code>α(S-M)</code> for 1× numerator. Thinning to 2.8 px (≈R=300 m) removed ≈pure cost (solid→dotted kept ~85% credit at 36% mass). Dots within 200 m of catalogue spend kernel on masked truth (≈0 hidden credit; MODEL gives |G|≈14–15k, credit/dot ≈0.139 vs break-even α·DTI≈0.0556). The retained 2,171 flank dots at 200–300 m are plausible splays/stepovers — why B2 kept them and gained +0.007.</p>
+<p><strong>What beating it requires (MODEL):</strong> At 37,654 dots and |G|≈14k, DTI 0.32 needs credit/dot ≈0.160 (+15% over R0), DTI 0.4413 needs ≈0.220 (+58%). Emission tuning on the same H19 topo-magnetic surface is exhausted (fleet sweep solid→dotted was the large jump; later edits ≤0.015). Detector <em>ranking</em> must improve — the surface's top-ranked pixels must contain more hidden-fault kernel credit. SSHAC targets a ranking view orthogonal to H19 (active seismic-strain vs static topo-magnetics). SSHAC's E1 did not beat the S11-MHTR 0.206 holdout, so it cannot claim to beat 0.2778 CLAIM; only an organizer receipt can settle that. The file is published as a <em>negative result</em> — a deliverable under the parallel-run protocol.</p>
+<p><a class="button outline" href="sshac-executive-summary.html">Step-by-step submission guide ↗</a> <a class="button outline" href="HYPOTHESES_SSHAC.md">Preregistration & 5 ranked hypotheses ↗</a></p></section>
+
+<section class="section"><h2>How to verify without human inspection</h2>
+<pre class="mono">python3 scripts/restore_data.py --only sample_submission,existing_faults,training_features,parent_r0_nan
+/tmp/venv-gemsdoe/bin/python scripts/validate_raster.py docs/downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.tif data/official/sample_submission.tif --catalogue data/official/existing_faults.tif
+/tmp/venv-gemsdoe/bin/python -c "import rasterio, numpy as np; a=rasterio.open('docs/downloads/gems91-sshac-simple-37654dots-20261024-7fbdf6f7-zeros.tif').read(1); print('finite', np.isfinite(a).all(), 'min', a.min(), 'max', a.max(), 'dots', (a>0).sum())"
+# HOLDOUT-DTI is in docs/run-card-SSHAC.json and evidence/sshac_simple_holdout.json (labelled HOLDOUT-DTI, not organizer score)</pre>
+<p class="small">Official sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">page 967 metric (α=0.2, β=0.8, R=300 m)</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN</a> · <a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a>.</p></section>
+</main>
+<footer><div>SSHAC session 2026-10-24 · branch arena/b4be2804-gemsdoe91 · evidence, not a leaderboard prediction.</div><div><a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic uploads. No credentials stored.</div></footer></div></body></html>

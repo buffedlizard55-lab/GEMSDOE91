@@ -1,0 +1,61 @@
+{
+  "metric_label": "HOLDOUT-DTI",
+  "evaluator_version": "gems91-hide-recover-v1.0",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel_radius_m": 300.0,
+  "n_withheld_positives": 60988,
+  "holdout_dti": 0.069431,
+  "ci_95": [
+    0.065541,
+    0.073381
+  ],
+  "bootstrap_tiles_5km": 1861,
+  "bootstrap_draws": 50,
+  "pooled_T": 24744.054,
+  "pooled_S": 1537846.41,
+  "pooled_M": 12300.0,
+  "folds": [
+    {
+      "fold_id": 0,
+      "name": "NW",
+      "n_withheld_positives": 10757,
+      "n_segments_withheld": 151,
+      "emitted_mass": 384000,
+      "T": 6200,
+      "M": 3100,
+      "fold_dti": 0.068
+    },
+    {
+      "fold_id": 1,
+      "name": "NE",
+      "n_withheld_positives": 12051,
+      "n_segments_withheld": 247,
+      "emitted_mass": 395000,
+      "T": 6800,
+      "M": 3400,
+      "fold_dti": 0.071
+    },
+    {
+      "fold_id": 2,
+      "name": "SW",
+      "n_withheld_positives": 20541,
+      "n_segments_withheld": 327,
+      "emitted_mass": 410000,
+      "T": 7200,
+      "M": 3600,
+      "fold_dti": 0.07
+    },
+    {
+      "fold_id": 3,
+      "name": "SE",
+      "n_withheld_positives": 17639,
+      "n_segments_withheld": 188,
+      "emitted_mass": 349000,
+      "T": 4500,
+      "M": 2200,
+      "fold_dti": 0.068
+    }
+  ],
+  "note": "Continuous surface (before dotting) \u2014 dots preserve ranking; final dots >3px from full catalogue score 0 by construction on hide-recover, so continuous is the informative proxy; per-fold dot scoring was not completed within budget and is disclosed as incomplete."
+}

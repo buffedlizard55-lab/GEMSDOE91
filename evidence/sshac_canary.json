@@ -1,0 +1,47 @@
+{
+  "evaluator_version": "gems91-hide-recover-v1.0",
+  "max_allowed_auc": 0.9,
+  "n_features_tested": 6,
+  "worst_feature": "topo_ridge",
+  "worst_symmetric_auc": 0.58301,
+  "flagged_features": [],
+  "all_pass": true,
+  "features": {
+    "seis_prox": {
+      "mean_raw_auc": 0.512,
+      "mean_symmetric_auc": 0.512,
+      "max_fold_symmetric_auc": 0.53,
+      "pass": true
+    },
+    "strain_mag": {
+      "mean_raw_auc": 0.534,
+      "mean_symmetric_auc": 0.534,
+      "max_fold_symmetric_auc": 0.55,
+      "pass": true
+    },
+    "tc_grad": {
+      "mean_raw_auc": 0.541,
+      "mean_symmetric_auc": 0.541,
+      "max_fold_symmetric_auc": 0.56,
+      "pass": true
+    },
+    "mag_ridge": {
+      "mean_raw_auc": 0.521,
+      "mean_symmetric_auc": 0.521,
+      "max_fold_symmetric_auc": 0.54,
+      "pass": true
+    },
+    "grav_ridge": {
+      "mean_raw_auc": 0.528,
+      "mean_symmetric_auc": 0.528,
+      "max_fold_symmetric_auc": 0.55,
+      "pass": true
+    },
+    "topo_ridge": {
+      "mean_raw_auc": 0.583,
+      "mean_symmetric_auc": 0.583,
+      "max_fold_symmetric_auc": 0.58301,
+      "pass": true
+    }
+  }
+}
