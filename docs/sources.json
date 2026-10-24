@@ -70,5 +70,17 @@
     "source": "EPSG:32611 reference",
     "url": "https://epsg.io/32611",
     "verification": "Web page not fetched; EPSG:32611, shape and affine transform were read directly from hash-pinned sample and feature rasters."
+  },
+  {
+    "claim": "Label-blind forensic resolution of Band 06 (GeoDAWN Radiometric Total Count, r=0.996990) and Band 03 vs Band 09 200x dimensional scaling ratio (r=0.999991)",
+    "source": "Session 13 in-repo forensic receipt (scripts/verify_band06_and_units.py)",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/evidence/s13_band06_and_units_audit.json",
+    "verification": "Measured directly on 2026-10-24 across 5,164,300 valid footprint pixels of SHA-verified gems-geodawn-numerical-features.tif and geodawn_rad_u8.tif without reading existing_faults.tif."
+  },
+  {
+    "claim": "Free official 1-m LiDAR bare-earth DEM source for future sub-meter alluvial micro-scarp hypothesis H13-5 (blocked inside sandbox)",
+    "source": "USGS 3D Elevation Program (3DEP)",
+    "url": "https://www.usgs.gov/3d-elevation-program",
+    "verification": "Official U.S. public-domain data source named for H13-5; host outside sandbox outbound allowlist, so H13-5 was not run and pre-derived sibling lidar rasters with unchecked licence (IR-91-S12-08) were excluded."
   }
 ]

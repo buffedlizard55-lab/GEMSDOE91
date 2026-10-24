@@ -271,7 +271,19 @@ def main() -> int:
 
     d_cat_full = ndi.distance_transform_edt(~cat_mask)
     full_eligible = footprint & (~cat_mask) & (d_cat_full > 3.0)
-    full_cat_mm = np.memmap(CACHE_DIR / "h91_fold_cat_full.dat", dtype=np.float32, mode="r", shape=(n_fp, 3))
+    full_cat_path = CACHE_DIR / "h91_fold_cat_full.dat"
+    if not full_cat_path.is_file():
+        alt_full_cat = CACHE_DIR / "h91_full_cat_features.dat"
+        if alt_full_cat.is_file() and alt_full_cat.stat().st_size == n_fp * 3 * 4:
+            full_cat_path = alt_full_cat
+        else:
+            fc_arr = DD.compute_fold_safe_catalogue_features(cat_mask, footprint)
+            fc_mm = np.memmap(alt_full_cat, dtype=np.float32, mode="w+", shape=(n_fp, 3))
+            fc_mm[:] = fc_arr
+            fc_mm.flush()
+            del fc_arr, fc_mm
+            full_cat_path = alt_full_cat
+    full_cat_mm = np.memmap(full_cat_path, dtype=np.float32, mode="r", shape=(n_fp, 3))
     reg_paths = _collect_registry_paths()
     _log(f"Collected {len(reg_paths)} real fault & benchmark rasters for Rule 1 uniqueness verification.")
 
@@ -480,10 +492,8 @@ def main() -> int:
         releases_dir=RELEASES_DIR,
         downloads_dir=DOWNLOADS_DIR,
         floor_px=3.0,
+        bundle_js_filename="s11_submission_bundle.js",
     )
-
-    # Restore h91_submission_bundle.js so H91 regression tests stay 100% green
-    subprocess.run(["git", "checkout", "--", "docs/downloads/h91_submission_bundle.js"], cwd=ROOT, check=True)
 
     cand_id = audit["candidate_id"]
     zeros_filename = audit["primary_zeros_tif"]["filename"]

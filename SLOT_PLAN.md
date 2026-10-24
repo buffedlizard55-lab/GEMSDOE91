@@ -48,3 +48,8 @@ vs the prior best 0.142885 (HGB-CTX). It takes **no slot** and enters no
 queue. The preregistered follow-up for a future session is the step×context
 fusion gated above 0.142885 with a second-instrument cross-check; selector
 approval and live weekly allowance remain separate, unverified here.
+
+## S13-PTHA lane note (2026-10-24, `arena/6a62c2ab-gemsdoe91`)
+
+`docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif` (`44,000` binary `{0, 1}` dots, SHA-256 `421c589072e3b959fc0f8e71a7e879822ce8f9a81172a7f0fd24e7932eadd452`, `docs/run-card-S13.json`) achieved **`0.244601 HOLDOUT-DTI`** (`gems91-hide-recover-v1.0`, `60,988` withheld positives, `95% CI [0.230592, 0.257058]`, beating prior #1 `S11-MHTR E2 = 0.206406` by **`+0.038195`** with paired 5 km bootstrap `95% CI [+0.029931, +0.046719]`) AND **`0.100815` Blind Off-Catalogue USGS SGMC DTI** (beating `R0 = 0.095386` and `S11-E2 = 0.097623`). It passes all 5 format/`[0, 1]` suites, all 75 leakage canaries (`max AUC 0.66470`), canonical 8-raster registry novelty (`≤ 51.39%`), and external dotted-fleet novelty (`≤ 47.36%`). Zero slots were spent automatically; it is **promoted to the human fleet selector** as the single primary candidate from `GEMSDOE91` (superseding `S11-MHTR`, `CCR91`, `H91`, `DENOVO`, and `FUSE91` under mutual exclusion), subject to human verification of the live 3/week DrivenData slot allowance, eligibility/AI attestation, and `IR-CED-003` synthetic lattice policy.
+

@@ -167,3 +167,11 @@ research artifact or revive legacy model-projected queues.
 4. **Mirror inputs.** Competition rasters were restored from sha-pinned public
    sibling mirrors (identity verified; origin/licence not established). The
    mirrored sample carries catalogue positives, not the organizer's blank.
+
+## Session 13 (`S13-PTHA`) additions (2026-10-24, `arena/6a62c2ab-gemsdoe91`)
+
+1. **Holdout & SGMC gains are not organizer leaderboard scores.** `S13-PTHA E3` achieves the repository's highest `HOLDOUT-DTI` (`0.244601`, `95% CI [0.230592, 0.257058]`, `+0.038195` over `S11-MHTR E2` `0.206406`) and highest blind off-catalogue USGS SGMC control score (`0.100815` vs `R0` `0.095386`). However, hidden DrivenData test labels reflect newly interpreted faults rather than withheld subsets of `existing_faults.tif` or 1:500k SGMC map lines; live leaderboard performance remains unknown until an `ORGANIZER-CONFIRMED` submission receipt is obtained.
+2. **Fail-closed selector hold (`submission_ready = False`).** Although all technical format, `[0, 1]` range, canary, canonical-registry, and external-dotted-fleet uniqueness checks pass automatically, `src/gems91/readiness.py` blocks automatic upload approval pending human selector verification of: (a) live DrivenData 3/rolling-7-day slot allowance, (b) lane assignment (`IR-91-S12-01`), (c) mutual exclusion against superseded in-repo predecessors (`S11-MHTR`, `FUSE91`, `CCR91`), and (d) synthetic whole-Nevada lattice coverage (`calib_r13lattice_00904.tif`, `IR-CED-003`).
+3. **1-m LiDAR (`H13-5`) remains untested in-sandbox.** Official public-domain USGS 3DEP 1-m DEM tiles (`usgs.gov` / AWS S3) cannot be fetched from this network-restricted sandbox, and pre-derived sibling `lidar_scarp_features_u8.tif` remains excluded due to unchecked licence provenance (`IR-91-S12-08`). Validating `H13-5` on an unrestricted workstation is the single highest-ceiling remaining geological feature upgrade.
+4. **Full-map dot budget (`44,000` dots) vs unknown exact `|G_LB|`.** Uniform-lattice inversion (`calib_r13lattice_00904` = `0.0904`) estimates `|G_LB| ≈ 12,350` hidden leaderboard fault pixels under a spatially uniform prior, but spatial clustering of hidden test faults near major geothermal basins could shift the true optimal leaderboard dot count between `~34,000` and `~46,000`.
+

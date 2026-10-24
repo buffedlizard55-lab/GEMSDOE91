@@ -120,6 +120,18 @@
       "sha256": "8f8d262e3a0330cf2f04d0ae95c5947e337ed16e990a87cb37cc4120107cc037",
       "status": "current_research_only",
       "reason": "FUSE91 E1 step x context fusion candidate single-TIFF ZIP (0.167293 HOLDOUT-DTI identical instrument, new repo best vs 0.142885; canary + all format suites PASS; surface novelty PASS; literal directed dot gate FAILS vs unsubmitted in-repo DENOVO/MHTR/DDVTC predecessors - disclosed deviation IR-F91-01, submit only as single family candidate pending human selector; docs/run-card-F91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+      "sha256": "421c589072e3b959fc0f8e71a7e879822ce8f9a81172a7f0fd24e7932eadd452",
+      "status": "current_research_only",
+      "reason": "S13-PTHA E3 candidate GeoTIFF (0.244601 HOLDOUT-DTI on gems91-hide-recover-v1.0, +0.038195 vs S11-MHTR E2 0.206406, paired 95% CI [+0.029931, +0.046719]; 0.100815 Blind USGS SGMC DTI; 75/75 canaries & all 5 format/[0,1] validators PASS; <=51.39% overlap vs canonical registry & <=47.36% vs external dotted fleet; fail-closed pending human selector sign-off on weekly cap, lane assignment, & IR-CED-003 lattice policy; docs/run-card-S13.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.zip",
+      "sha256": "7aee95a4a64ed53d94a7b99030e8eeb8d9fbe7d974ec282f95a7e025692f975f",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S13-PTHA E3 candidate GeoTIFF (0.244601 HOLDOUT-DTI, +0.038195 vs S11-MHTR E2; fail-closed pending human selector sign-off; docs/run-card-S13.json)."
     }
   ]
 }
