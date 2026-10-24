@@ -46,12 +46,23 @@
     "source": "evidence/holdout_S10_E1.json"
   },
   "registry_comparison": {
-    "status": "PENDING_RESCAN",
-    "note": "Fill from registry/s10_registry_scan.json only when complete is true. Until then no uniqueness claim is made.",
-    "surface_rank_correlation_max": null,
-    "final_dot_overlap_within_3px_max": null,
-    "exact_sha256_duplicates": null,
-    "complete": null
+    "status": "COMPLETE (fail-closed scan, complete: true)",
+    "source": "registry/s10_registry_scan.json (scan run 2026-10-24 after quota reset)",
+    "repos_scanned": 102,
+    "tif_files_found": 2559,
+    "scan_errors": 0,
+    "comparable_same_grid": 2513,
+    "not_comparable": 46,
+    "not_comparable_note": "22 unreadable or without CRS; 24 on other grids (20 at 512x512, 2 at 3337x3337, 1 at 9200x7600, 1 at 32x48). None was compared.",
+    "exact_duplicates": 0,
+    "surface_rank_correlation_max": 0.0369,
+    "surface_rank_correlation_max_file": "GEMSDOE4 data/evidence/newfault/seed45/prob_raw.tif",
+    "rank_corr_limit": 0.9,
+    "final_dot_overlap_within_3px_max": 0.5262,
+    "final_dot_overlap_max_file": "GEMSDOE23 docs/downloads/gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+    "overlap_limit": 0.7,
+    "uniqueness_status": "PASS (complete scan) for the 2,513 same-grid rasters only",
+    "complete": true
   },
   "geod_retraction": {
     "file": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21",
@@ -82,7 +93,7 @@
   "note": "S10 H10-1 basement ridge K60988. NOT CLEARED: holdout-DTI 0.017 < null 0.029. Do not submit.",
   "note_length": 92,
   "verdict": "negative",
-  "verdict_reason": "Fails the pre-registered control: 0.0173 < 0.0288 (random placement, same budget). Promotion requires beating the control. Also, the holdout targets catalogue faults, not the new faults scored by the organizer (IR-91-S10-04).",
+  "verdict_reason": "Fails the pre-registered control: 0.0173 < 0.0288 (random placement, same budget). Promotion requires beating the control. Also, the holdout targets catalogue faults, not the new faults scored by the organizer (IR-91-S10-04). Uniqueness passes on the comparable registry rasters, but this does not make the file clear for upload.",
   "experiments_run": 3,
   "experiment_budget": "3 experiments / 2 hours (spent)",
   "submission_ready": false,
@@ -96,7 +107,7 @@
     {
       "name": "DrivenData leaderboard (public)",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-      "status": "fetched 2026-10-24, top 23 rows"
+      "status": "fetched 2026-10-24, rows #1-#50"
     },
     {
       "name": "DOE/NLR official rules, TP-5700-96647",

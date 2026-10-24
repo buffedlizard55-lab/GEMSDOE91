@@ -50,7 +50,7 @@ that does not beat the holdout control is not promoted to a weekly slot. Nothing
 <tr><td>Parent-diff statistics recorded</td><td>same</td><td><strong>FAIL</strong>. S10 has no parent raster, and the gate has no "not applicable" state, so every parentless file fails it (IR-91-S10-10, item 1). Shown as FAIL, not hidden.</td></tr>
 <tr><td>Matches the organizer's own sample (format template)</td><td>not automated</td><td><strong>NOT DONE.</strong> The mirrored sample is the catalogue, not a blank template (IR-91-S10-09). The grid was checked against the mirror only.</td></tr>
 <tr><td>Holdout beats random-placement control</td><td><code>scripts/evaluate_holdout.py</code></td><td><strong>FAIL</strong> (see section 3)</td></tr>
-<tr><td>Registry: no exact duplicate, rank correlation ≤ 0.90, ≤ 70 % of mass within 3 px</td><td><code>scripts/registry_scan.py</code></td><td>See <a href="../registry/s10_registry_scan.json"><code>registry/s10_registry_scan.json</code></a> (status field says whether the scan was complete)</td></tr>
+<tr><td>Registry: no exact duplicate, rank correlation ≤ 0.90, ≤ 70 % of mass within 3 px</td><td><code>scripts/registry_scan.py</code></td><td><strong>PASS (complete scan)</strong> on 2,513 same-grid rasters: 0 exact duplicates, max rank correlation 0.037, max 3 px overlap 0.526. 46 rasters were not comparable (22 unreadable, 24 on other grids) and were not compared. See <a href="../registry/s10_registry_scan.json"><code>registry/s10_registry_scan.json</code></a>.</td></tr>
 </table>
 
 <h2>3. Numbers in this repository and how they are labelled</h2>
@@ -61,8 +61,8 @@ that does not beat the holdout control is not promoted to a weekly slot. Nothing
 <tr><td>Ridge without thinning (E2, ablation)</td><td>HOLDOUT-DTI</td><td><strong>0.0101</strong>, CI [0.0062, 0.0143]</td></tr>
 <tr><td>Leakage canary (20 single features incl. the candidate score)</td><td>HOLDOUT (AUC)</td><td>Largest direction-free AUC 0.570 (band 4); candidate score AUC 0.502. No feature above the 0.90 limit.</td></tr>
 <tr><td>Public leaderboard top: 0.4413 (xiaofanhu, #1); 0.3916 (#2); 0.3904 (#3)</td><td>ORGANIZER-CONFIRMED (public board, fetched 2026-10-24)</td><td>Read from the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">organizer leaderboard</a>. Public scores may differ from the private board (rules §3.2).</td></tr>
-<tr><td>0.2778 (GEMSDOE32 <code>h33-h33-2-b2</code>)</td><td>CLAIM</td><td>Reported by the lineage's own page. Not on the top 23 rows of the organizer board that were read. No receipt in this repo (IR-91-S10-05).</td></tr>
-<tr><td>0.3195 (GEMSDOE49)</td><td>CLAIM</td><td>Not on the top 23 rows read. No receipt (IR-91-S10-05).</td></tr>
+<tr><td>0.2778 (GEMSDOE32 <code>h33-h33-2-b2</code>)</td><td>CLAIM</td><td>Reported by the lineage's own page. Not among the 50 rows of the organizer public board that were read (its lowest row, #50, is 0.2818). No receipt in this repo (IR-91-S10-05).</td></tr>
+<tr><td>0.3195 (GEMSDOE49)</td><td>CLAIM</td><td>Not on the public leaderboard (rows #1–#50 read; 0.3217 at #23 is followed by 0.3169 at #24). No receipt (IR-91-S10-05).</td></tr>
 </table>
 <p class="small">HOLDOUT-DTI is our own emulation of the metric (alpha 0.2, beta 0.8, 3 px triangular kernel), built on the repo's <code>scripts/dti.py</code>. It has not been checked against the organizer's scorer. Holdout is recovery of <em>catalogue</em> faults, which is not the same as hidden future faults.</p>
 

@@ -706,7 +706,7 @@ submission advice is superseded by the fail-closed executive summary.
 ## IR-91-S10-05 — The scores 0.2778 (GEMSDOE32) and 0.3195 (GEMSDOE49) are not verified
 
 **Expected:** a score quoted as the lineage "best" is backed by an organizer receipt.
-**Actual:** no receipt exists in this repo. GEMSDOE32's own documentation disclaims organizer scores (see IR-91-35). The organizer's public leaderboard (fetched 2026-10-24) has **0.4413** (#1), 0.3916 (#2), 0.3904 (#3), 0.3724 (#4), 0.3539 (#5), and 0.3273 (#20); neither 0.2778 nor 0.3195 appears in the 23 rows read. The remaining rows were not read.
+**Actual:** no receipt exists in this repo. GEMSDOE32's own documentation disclaims organizer scores (see IR-91-35). The organizer's public leaderboard (fetched 2026-10-24, rows #1–#50) has **0.4413** (#1), 0.3916 (#2), 0.3904 (#3), 0.3724 (#4), 0.3539 (#5), 0.3217 (#23), 0.3169 (#24), and 0.2818 (#50). 0.3195 is absent (the list goes 0.3217 → 0.3169). 0.2778 would rank below #50 and is absent from the page read. The lineage account does not appear in rows #1–#50.
 **Decision it changes:** "beat 0.2778" cannot be assessed here. The index page labels both figures CLAIM and the leaderboard figures ORGANIZER-CONFIRMED (public).
 
 ## IR-91-S10-06 — The restored competition data come from third-party mirrors; authenticity is not organizer-verified

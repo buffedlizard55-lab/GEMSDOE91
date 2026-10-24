@@ -48,7 +48,8 @@ ul{padding-left:20px}li{margin-bottom:6px}
   </div>
   <div class="card">
     <h3>Uniqueness</h3>
-    <p><span class="tag warn">see registry scan</span> <a href="../registry/s10_registry_scan.json">registry/s10_registry_scan.json</a> lists each GEMSDOE TIF checked, with its rank correlation and 3 px overlap. Check its <code>uniqueness_status</code> field.</p>
+    <p><span class="tag ok">PASS (complete scan)</span> for 2,513 same-grid registry rasters (102 repos, 0 fetch errors, 0 exact duplicates). Max rank correlation 0.037; max 3 px overlap 0.526 (limits 0.90 and 0.70). 46 rasters were not comparable (22 unreadable, 24 on other grids) and were not compared. <a href="../registry/s10_registry_scan.json">Scan file</a>.</p>
+    <p class="muted">Uniqueness is a separate gate from the upload decision. It does not clear this file.</p>
   </div>
   <div class="card">
     <h3>Holdout (HOLDOUT-DTI)</h3>
@@ -61,10 +62,10 @@ ul{padding-left:20px}li{margin-bottom:6px}
 <h2>Leaderboard numbers (CLAIM vs ORGANIZER-CONFIRMED)</h2>
 <table>
 <tr><th>Item</th><th>Figure</th><th>Label</th></tr>
-<tr><td>GEMSDOE32 <code>h33-h33-2-b2</code> (the "parent" R0)</td><td>0.2778</td><td>CLAIM. Not in the top 23 rows read; no receipt in this repo (IR-91-S10-05).</td></tr>
+<tr><td>GEMSDOE32 <code>h33-h33-2-b2</code> (the "parent" R0)</td><td>0.2778</td><td>CLAIM. Not on the public leaderboard (rows #1–#50 read; 0.3217 at #23 is followed by 0.3169 at #24). No receipt (IR-91-S10-05).</td></tr>
 <tr><td>Public leaderboard #1 (xiaofanhu)</td><td>0.4413</td><td>ORGANIZER-CONFIRMED (public board, fetched 2026-10-24). Public, not final (rules §3.2).</td></tr>
 <tr><td>Public leaderboard #2 / #3</td><td>0.3916 / 0.3904</td><td>ORGANIZER-CONFIRMED (public board, fetched 2026-10-24).</td></tr>
-<tr><td>GEMSDOE49 <code>GEMS49-H49-R1-HYBRID-ANCHOR-31K</code></td><td>0.3195</td><td>CLAIM. Not in the top 23 rows read; no receipt (IR-91-S10-05).</td></tr>
+<tr><td>GEMSDOE49 <code>GEMS49-H49-R1-HYBRID-ANCHOR-31K</code></td><td>0.3195</td><td>CLAIM. Not on the public leaderboard (rows #1–#50 read; 0.3217 at #23 is followed by 0.3169 at #24). No receipt (IR-91-S10-05).</td></tr>
 <tr><td>S10 basement-ridge candidate</td><td>no organizer score</td><td>NOT SUBMITTED.</td></tr>
 </table>
 

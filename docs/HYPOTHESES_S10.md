@@ -21,9 +21,9 @@ Source: DrivenData problem description, <https://www.drivendata.org/competitions
 
 ### 1b. Leaderboard (ORGANIZER-CONFIRMED, public leaderboard)
 
-Source: <https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/> (fetched 2026-10-24; first 23 rows read).
-- #1 xiaofanhu **0.4413** (29 submissions); #2 cfld__ **0.3916**; #3 Batik Shirt Brothers **0.3904**; #4 BrandenKMurray **0.3724**; #5 No Fault of Our Own **0.3539**; #20 shixing **0.3273**.
-- **0.2778 (GEMSDOE32 h33-h33-2-b2) and 0.3195 (GEMSDOE49) do not appear in the first 23 rows.** This does not prove either figure is wrong, because the leaderboard is paginated and we did not read the remaining rows. Both figures remain CLAIM until a receipt or a full read exists.
+Source: <https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/> (fetched 2026-10-24; rows #1–#50 read; the page's last row is #50 with 0.2818).
+- #1 xiaofanhu **0.4413** (29 submissions); #2 cfld__ **0.3916**; #3 Batik Shirt Brothers **0.3904**; #4 BrandenKMurray **0.3724**; #5 No Fault of Our Own **0.3539**; #20 shixing **0.3273**; #50 moongrega **0.2818**. The lineage account (`buffedlizard55-lab`) does not appear in rows #1–#50.
+- **0.3195 (GEMSDOE49) does not appear on the public board.** The board is sorted by score; #23 is 0.3217 and #24 is 0.3169, so a 0.3195 row would have to sit between them. None does. **0.2778 (GEMSDOE32) is also absent**: it would rank below #50, whose score is 0.2818. Neither figure is on the public board as read. This does not prove the lineage's figures are wrong, because they may come from a different submission or a private score. Both remain CLAIM until a receipt exists.
 - The public leaderboard is not the final score. Rules §3.2: public scores "may not be the same as the final scores on the private leaderboard".
 
 ### 1c. Why a dispersed, count-fixed placement can score well (REASONING)

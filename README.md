@@ -136,6 +136,6 @@ all 20 imported ledger rows are kept intact.
 
 - **Organizer sources read (fetch tool, not the sandbox curl):** competition page 967 and 968, leaderboard, NLR rules. The metric and the format in the README's earlier sessions are now checked against the organizer's text, not only against the reference code.
 - **Holdout result (HOLDOUT-DTI):** E1 candidate 0.0173 [0.0126, 0.0218]; E2 ablation 0.0101 [0.0062, 0.0143]; E3 random null 0.0288 [0.0217, 0.0342]. Candidate fails its control. Canary: largest direction-free AUC 0.5698 (band 4), no leak.
-- **Registry scan:** see `registry/s10_registry_scan.json`. The `uniqueness_status` field is the only valid statement. Anything not `complete: true` makes no uniqueness claim.
+- **Registry scan (complete, `complete: true`):** 2,513 same-grid registry rasters compared, 0 exact duplicates, max rank correlation 0.037, max 3 px overlap 0.526. 46 rasters were not comparable (22 unreadable, 24 on other grids) and were not compared. Uniqueness passes; the upload decision is still NOT OK (human decisions above).
 - **Shared tools:** no shared-tool code was changed in a way that alters a gate. Gate defects are listed in IR-91-S10-10 (parent-diff has no "not applicable" state; the duplicate-hash check counts only SUBMITTED rows, which is currently none; `unit_mass_dots` assumes binary dots).
 - **Remaining work:** see `LIMITATIONS.md` (S10 section) and `SLOT_PLAN.md` (S10 banner).
