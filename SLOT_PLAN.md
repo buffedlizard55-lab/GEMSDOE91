@@ -1,6 +1,6 @@
 # SLOT PLAN — 1 entity, 3 scored slots / rolling week, 1 blind final pick
 
-**Calendar (`2026-10-24` UTC):** `40 days` (`5.71` rolling 7-day weeks = `17` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `53` `BUILT` rows (50 + concurrent strain build `arena/6f079276`, merged PR #26) across seven axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SNAP`, `RELIEF`, `SPACING`, `TRACKB`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
+**Calendar (`2026-10-24` UTC):** `40 days` (`5.71` rolling 7-day weeks = `17` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `54` `BUILT` rows (50 + Session 9 GEOD `arena/4f94d2e7` PR #30 + concurrent strain build `arena/6f079276`, merged PR #26) across seven axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SNAP`, `RELIEF`, `SPACING`, `TRACKB`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
 
 ## Session 8 (`arena/40027ebc-gemsdoe91`) — `CONCENTRATION` on the legal collar; **revised queue**
 

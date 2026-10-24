@@ -730,3 +730,25 @@ repo (it partly maps where the catalogue was drawn, and the target is what the c
 missed). No strain arm enters the Week-1 queue; future block priors get an SGMC-off
 decile screen reported *before* any build, labelled PROXY with the proxy-tuning risk
 stated, never as a gate.
+
+## IR-91-39 — The same geodetic-strain intervention was built twice under two axis names, with opposite-signed claims, and one copy's rasters were committed under `docs/`
+
+Session 9 (`arena/4f94d2e7`, PR #30, merged while PR #26 awaited CI) built `GEOD`/`geod25m10`
+(`bff9fd21…`) from the identical recipe as this session's `CONCENTRATION`/`strn25m10` (`85cc49d2…`):
+prior `0.5*pct(geod_2ndinv)+0.5*pct(geod_shearrate)`, 2.5 km blocks, 3,765 of 37,654 dots moved,
+same parent dot set. The "(axis, value) built once" rule did not fire because the axis label and
+even the parent string differ (`GEOD`/`h33-h33-2-b2-20261004-e5eb6e7e` vs `CONCENTRATION`/`h33-h33-2-b2`);
+the ledger now holds both (54 rows). The claims disagree in sign: Session 9 headlines **+0.0090**
+`MODEL` from a strain "surrogate" (+31% rel, κ=0.1) and reports "SGMC off-cat +1.8%", but its
+evidence (`evidence/geod_axis_20261024.json`) shows that figure is the **full** SGMC field
+(parent DTI 0.09539 = R0's full-SGMC value), not the off-catalogue restriction on which the same
+intervention measures −4.05% rel and loses to a random-prior relocation (**−0.0056** `MODEL`,
+IR-91-38). Session 9 also committed both competition rasters under `docs/downloads/` in a repo
+serving GitHub Pages — public exposure of submission files while the competition data-use terms
+remain unchecked (brief: keep competition rasters out of public repos; flagged, not deleted, at
+merge). Decision consequence: Session 9's README promotes `GEOD25m10` to "the new Slot-1
+candidate"; that promotion rests on the mislabelled control and a κ the strain session's frozen
+translator rejects. Neither `MODEL` number is evidence — only a receipt settles the strain
+question, and spending a slot on either file spends it on both sessions' hypothesis. The human
+must decide: (a) whether the `docs/downloads/` rasters stay public, (b) whether any strain file
+enters the queue ahead of PRUNE-le10/MASS-cons3add.
