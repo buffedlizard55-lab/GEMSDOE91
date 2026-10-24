@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-24T05:24:02+00:00",
+  "generated_utc": "2026-10-24T06:27:53+00:00",
   "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
   "note": "Releases are not committed. Rebuild with scripts/restore_data.py then scripts/build_concentration_collar.py --build; every sha256 must reappear.",
   "files": [

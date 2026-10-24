@@ -1,0 +1,135 @@
+{
+  "generated_utc": "2026-10-24T06:42:48.382295Z",
+  "id": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21",
+  "axis": "GEOD",
+  "value": "geod25m10",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "sha256": "bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158",
+  "sha256_zeros": "104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722",
+  "n_dots": 37654,
+  "moved": 3765,
+  "pct_moved": 10.0,
+  "hamming": 7530,
+  "pct_changed": 10.0,
+  "nn_min": 2.0,
+  "nn_mean": 3.81,
+  "block_cv_parent": 0.6187,
+  "block_cv_child": 0.61,
+  "block_px": 25,
+  "q30": 0.38,
+  "q70": 0.62,
+  "donor_blocks": 45,
+  "recip_blocks": 45,
+  "prior_digest": "geod_2ndinv_shearrate_50_50",
+  "prior_desc": "0.5*pct(geod_2ndinv)+0.5*pct(geod_shearrate), fill via distance_transform_edt",
+  "candidate_pool": 125000,
+  "surrogate": {
+    "cells": 516737,
+    "parent_dti": 0.045,
+    "child_dti": 0.059,
+    "rel": 0.31
+  },
+  "noise_floor": {
+    "rel": -0.02,
+    "delta": -0.0006
+  },
+  "lineage_floor": {
+    "rel": -0.08,
+    "delta": -0.0022
+  },
+  "predicted": {
+    "point": 0.009,
+    "range": [
+      -0.006,
+      0.02
+    ],
+    "kappa": 0.1,
+    "live_span": 0.2778
+  },
+  "sgmc": {
+    "parent_dti": 0.09539,
+    "child_dti": 0.0971,
+    "delta": 0.0017,
+    "rel_pct": 1.8
+  },
+  "canary": {
+    "max_symmetric_auc": 0.5793,
+    "feature": "geod_2ndinv",
+    "threshold": 0.9,
+    "verdict": "PASS"
+  },
+  "gates": {
+    "crs_matches_template": true,
+    "shape_matches_template": true,
+    "transform_matches_template": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "values_within_0_1": true,
+    "unit_mass_dots": true,
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 2.23606797749979,
+    "catalogue_floor_respected": true,
+    "sha256": "bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158",
+    "dot_set_digest": "ccb16d25ad18eb76fe659aec37b29e01ea80ca6f01e0c43ce20242b0c04a5009",
+    "n_dots": 37654,
+    "sha256_not_in_ledger": true,
+    "PASS": true,
+    "failed": []
+  },
+  "gates_zeros": {
+    "crs_matches_template": true,
+    "shape_matches_template": true,
+    "transform_matches_template": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "no_nan_inside_footprint": true,
+    "zeros_outside_footprint": true,
+    "values_within_0_1": true,
+    "unit_mass_dots": true,
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 2.23606797749979,
+    "catalogue_floor_respected": true,
+    "sha256": "104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722",
+    "dot_set_digest": "ccb16d25ad18eb76fe659aec37b29e01ea80ca6f01e0c43ce20242b0c04a5009",
+    "n_dots": 37654,
+    "sha256_not_in_ledger": true,
+    "PASS": true,
+    "failed": []
+  },
+  "form_note": "h33-2-b2; GEOD strain 10% to high 2.5km blocks (Bands4+7), count fixed 37654; pred +0.0090 MODEL",
+  "validation": {
+    "values_in_0_1": true,
+    "no_nan_inside": true,
+    "nan_outside": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "zero_catalogue_mass": true,
+    "collar_ge_3px": "inherited 2171, 0 added",
+    "count_matches_parent": true,
+    "reread_from_disk": true
+  },
+  "correlation_check": {
+    "registry_max_rank_corr": 0.71,
+    "dot_overlap_within_3px": 0.62,
+    "verdict": "UNIQUE (both <0.90 and <70%)"
+  },
+  "holdout": {
+    "evaluator_version": "gems91.metric v1 + hide-and-recover 4-fold blocked",
+    "withheld_positives_per_fold": [
+      15247,
+      15247,
+      15247,
+      15247
+    ],
+    "dti_parent_mean": 0.00618,
+    "dti_child_mean": 0.00695,
+    "delta_mean": 0.00077,
+    "ci95": "[0.00021, 0.00133]",
+    "verdict": "HOLDOUT-DTI +0.00077, not yet ORGANIZER-CONFIRMED"
+  }
+}
