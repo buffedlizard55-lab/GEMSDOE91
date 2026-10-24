@@ -236,7 +236,7 @@
       },
       "delta_vs_r0_sgmc_dti": 0.002237,
       "uniqueness_summary": {
-        "n_rasters_checked": 61,
+        "n_rasters_checked": 62,
         "uniqueness_pass": true,
         "max_surface_abs_rank_corr": 0.22231,
         "surface_closest_raster": "calib_h25ctx_01280.tif",
@@ -340,7 +340,7 @@
     }
   ],
   "registry_uniqueness": {
-    "rasters_checked": 61,
+    "rasters_checked": 62,
     "max_surface_abs_rank_corr": 0.22231,
     "surface_closest_raster": "calib_h25ctx_01280.tif",
     "max_dots_abs_rank_corr": 0.14405,

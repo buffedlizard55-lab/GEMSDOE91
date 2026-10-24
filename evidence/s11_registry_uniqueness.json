@@ -1,5 +1,5 @@
 {
-  "n_registry_rasters_checked": 61,
+  "n_registry_rasters_checked": 62,
   "max_allowed_rank_corr": 0.9,
   "max_allowed_dot_overlap_3px": 0.7,
   "surface_max_abs_rank_corr": 0.22231,
@@ -705,6 +705,18 @@
       "f1_dot_overlap_3px": 0.45652,
       "mutual_min_overlap_3px": 0.41363,
       "effective_dot_overlap_3px": 0.41363,
+      "duplicate_flag": false
+    },
+    {
+      "registry_raster": "gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif",
+      "n_registry_positive": 37654,
+      "surface_abs_rank_corr": 0.05198,
+      "dots_abs_rank_corr": 0.02369,
+      "cand_within_3px_of_reg": 0.33046,
+      "reg_within_3px_of_cand": 0.45323,
+      "f1_dot_overlap_3px": 0.38223,
+      "mutual_min_overlap_3px": 0.33046,
+      "effective_dot_overlap_3px": 0.33046,
       "duplicate_flag": false
     },
     {
