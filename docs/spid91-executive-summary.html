@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S12 Executive Summary &amp; Submission Guide · GEMSDOE91</title>
+<meta name="description" content="Executive summary, automated readiness verdict, and step-by-step DrivenData submission guide for Session 12 (gems91-spid-e3-20261024T190000Z-25a94861).">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="s12-spid.html">S12-SPID Lane (0.1517 · Negative)</a><a href="spid91-executive-summary.html">S12 Guide</a><a href="s11-mhtr.html">S11-MHTR (#1 · 0.2064)</a><a href="h91-ddvtc.html">H91 Lane (0.1740)</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+<section class="hero">
+  <div>
+    <span class="eyebrow">EXECUTIVE SUMMARY / SESSION 12 AUTOMATED VERDICT &amp; SUBMISSION GUIDE</span>
+    <h1>Is <code>S12-SPID E3</code> OK to download &amp; submit?</h1>
+    <p class="lead"><strong>OK to download: YES</strong> (all 4 automated GeoTIFF validators PASS; finite <code>[0.0, 1.0]</code>; 67-raster unique).<br><strong>OK to submit to a live weekly slot: NO</strong> (<code>verdict = negative</code>; solo <code>HOLDOUT-DTI = 0.151682</code> trails Repository #1 <code>S11-MHTR E2 = 0.206406</code>).</p>
+    <span class="badge bad">AUTOMATED VERDICT: DO NOT SPEND A SOLO WEEKLY SLOT ON S12-SPID E3</span>
+  </div>
+  <div class="download" data-submission-ready="false">
+    <div class="label">CERTIFIED [0, 1] RESEARCH &amp; ENSEMBLE ARTIFACT</div>
+    <h2><code>gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif</code></h2>
+    <div class="status"><span>OK to download</span><strong>YES — Range [0, 1] Certified</strong></div>
+    <div class="status"><span>OK to submit (Solo slot)</span><strong>NO — Use Selector / S11-E2</strong></div>
+    <div class="status"><span>CRS / Grid</span><strong>EPSG:32611 · 3730×3292 · 100 m</strong></div>
+    <div class="status"><span>HOLDOUT-DTI (v1.0 / g57-v2)</span><strong>0.151682 / 0.145009</strong></div>
+    <a class="button" download href="downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif">↓ Download Certified GeoTIFF (.tif)</a>
+    <div style="text-align:center;margin-top:12px">
+      <a download href="downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.zip">↓ Download Single-TIFF .zip</a> ·
+      <a href="downloads/gems91-spid-e3-20261024T190000Z-25a94861-audit.json">Format Receipt (.json)</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Why <code>"Predicted values must be in range [0, 1]"</code> happened — and how we permanently eliminated it</h2>
+  <div class="twocol">
+    <div class="card">
+      <h3>Root Cause 1: In-Footprint Sentinel Bleed (<code>-3.4028235e+38</code>) &amp; Unmasked NaNs</h3>
+      <p>Official <code>training_features.tif</code> carries <code>3,061</code> cells <em>inside</em> the active Nevada footprint with float32 sentinel values (<code>-3.4028234663852886e+38</code>), and the official U-Net reference notebook converts <code>&lt; -1e38</code> to <code>np.nan</code>. Any spatial convolution or unmasked inference leaks <code>NaN</code> or negative values into the output GeoTIFF.</p>
+      <p><strong>Automated Fix:</strong> Every band is scrubbed via <code>isfinite(arr) &amp; (arr &gt; -1e30)</code> and repaired by nearest-neighbor Euclidean distance transform before any FFT or gradient operator runs.</p>
+    </div>
+    <div class="card">
+      <h3>Root Cause 2: Raw Buffer Range Check on <code>nodata=NaN</code></h3>
+      <p>DrivenData's scorer checks <code>0.0 &le; arr &le; 1.0</code> across the raster buffer. Writing <code>NaN</code> across the <code>7,111,787</code> outside-footprint cells triggers <code>"Predicted values must be in range [0, 1]"</code> whenever <code>NaN</code> is not stripped prior to range checking.</p>
+      <p><strong>Automated Fix:</strong> <code>gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif</code> writes <code>0.0</code> outside the footprint with <code>nodata=None</code> and verifies all <code>12,279,160</code> float32 cells on disk across 4 independent validator suites (<code>min=0.0, max=1.0, NaN=0, Inf=0</code>).</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Step-by-Step DrivenData Submission Guide (When Approved by the Human Fleet Selector)</h2>
+  <div class="step"><b>1</b><div><h3>Respect the 3/Week Team Cap &amp; Compare Holdout Evidence</h3><p>Teams have at most <strong>3 live submissions per week</strong> on DrivenData (#306). Within <code>GEMSDOE91</code>, <code>S11-MHTR E2</code> (<code>0.206406</code> on <code>gems91-hide-recover-v1.0</code> and <code>0.194267</code> on <code>gems57-pooled-hide-v2</code>) outscores <code>S12-SPID E3</code> (<code>0.151682</code> / <code>0.145009</code>). Do <strong>not</strong> upload <code>S12-SPID E3</code> as a solo weekly submission; retain it as an orthogonal concealed-basin specialist (<code>52.93%</code> low-slope dots, <code>15,751</code> dots &gt;3 px from <code>S11-MHTR E2</code>) for cross-fleet ensembling.</p></div></div>
+  <div class="step"><b>2</b><div><h3>Verify Automatic On-Disk Gate Receipts (No Visual Inspection Needed)</h3><p>Run <code>.venv/bin/python scripts/verify_current_artifact.py --with-data</code> and <code>.venv/bin/pytest -q</code>, or inspect <a href="downloads/gems91-spid-e3-20261024T190000Z-25a94861-audit.json"><code>gems91-spid-e3-20261024T190000Z-25a94861-audit.json</code></a> confirming <code>all_cells_finite=true</code>, <code>min_value=0.0</code>, <code>max_value=1.0</code>, <code>EPSG:32611</code>, <code>3730&times;3292</code>, and <code>dots_le_3px=0</code>.</p></div></div>
+  <div class="step"><b>3</b><div><h3>If Approved by Fleet Selector, Upload Only the <code>-zeros.tif</code> or <code>-zeros.zip</code></h3><p>On <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions</a>, click <strong>New submission</strong>, select the selector-approved <code>-zeros.tif</code> (or single-TIFF <code>-zeros.zip</code>), and paste its &le;140-char note (for S12 archival reference: <code>GEMS91 S12 E3 (H12-1 + H12-2 + H12-3): Laplace SPI+cond-res+Weingarten MoE+Dinkelbach (47200d &gt;3px, [0,1] zeros)</code>, 112/140 chars).</p></div></div>
+  <div class="step"><b>4</b><div><h3>Log the Organizer Receipt</h3><p>Record the exact DrivenData score and timestamp in <code>ledger/submissions.csv</code> labeled <code>ORGANIZER-CONFIRMED</code>. Never record a holdout score as a live leaderboard score.</p></div></div>
+</section>
+</main>
+<footer>
+  <div>S12-SPID Executive Guide · <a href="s12-spid.html">Full S12 Audit Table</a> · <a href="s11-executive-summary.html">S11 Guide (#1 Repo Best)</a> · <a href="index.html">Main Portal</a></div>
+  <div><a href="run-card-SPID91.json">Machine-readable S12 Run Card</a></div>
+</footer>
+</div></body></html>

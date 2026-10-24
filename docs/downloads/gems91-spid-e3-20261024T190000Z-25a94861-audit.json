@@ -1,0 +1,69 @@
+{
+  "candidate_id": "gems91-spid-e3-20261024T190000Z-25a94861",
+  "primary_zeros_tif": {
+    "filename": "gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+    "path": "releases/gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+    "sha256": "f59ec7a60cd9346f94e69257b0ab7123c2e74421ef7954a10fee9a0bbd7ee1ee",
+    "bytes": 243666,
+    "nodata": null,
+    "all_cells_finite": true,
+    "total_cells": 12279160,
+    "nan_cells_anywhere": 0,
+    "min_value": 0.0,
+    "max_value": 1.0
+  },
+  "companion_nan_tif": {
+    "filename": "gems91-spid-e3-20261024T190000Z-25a94861.tif",
+    "path": "releases/gems91-spid-e3-20261024T190000Z-25a94861.tif",
+    "sha256": "25a94861dff8158699e681e1d1187eaa0de8cc09f20dacdc6f4085a87499eddf",
+    "bytes": 387944,
+    "nodata": "NaN",
+    "nan_inside_footprint": 0,
+    "nan_outside_footprint": 7111787
+  },
+  "zip_bundle": {
+    "path": "docs/downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.zip",
+    "filename": "gems91-spid-e3-20261024T190000Z-25a94861-zeros.zip",
+    "inner_geotiff": "gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+    "bytes": 207348,
+    "sha256": "37b52582dcf7d943af25f10d560cbf741443d5defba04a26ece32b5fca52c82c"
+  },
+  "browser_tif_bundle": {
+    "path": "docs/downloads/h91_submission_bundle.js",
+    "bytes": 842697,
+    "sha256": "ec130a86bb6fd86247a9acd9cb93e37f64d734c412f15b8836a6b9977167f616"
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "band_count": 1,
+    "footprint_pixels": 5167373
+  },
+  "dots": {
+    "n_dots": 47200,
+    "dot_set_digest": "85325567080236db678e9a33c264ed1662856695132fc62618df7c34475c8ca8",
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0
+  },
+  "validators": {
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true
+  }
+}
