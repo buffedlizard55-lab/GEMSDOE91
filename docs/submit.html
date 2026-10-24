@@ -1,99 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Submit — GEMSDOE91 Executive Summary</title>
-<style>
-:root{--bg:#0f1115;--card:#1a1e24;--accent:#2dd4bf;--accent2:#60a5fa;--text:#e6e8eb;--muted:#9aa3af;--border:#262c36}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
-.container{max-width:900px;margin:0 auto;padding:24px}
-a{color:var(--accent2)}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:16px 0}
-.header{padding:16px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#071214;font-weight:700;padding:12px 18px;border-radius:9px;text-decoration:none}
-pre{background:#0d1016;border:1px solid var(--border);border-radius:10px;padding:14px;overflow:auto;font-size:12px}
-code{background:#11161d;border:1px solid var(--border);padding:2px 6px;border-radius:6px;font-size:12px}
-.notice{border-left:4px solid var(--accent);background:rgba(45,212,191,0.08);padding:12px 16px;border-radius:8px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url=executive-summary.html">
+  <title>Submission status — GEMSDOE91</title>
 </head>
 <body>
-<div class="container">
-<div class="header"><h2>GEMSDOE91 — Executive Summary</h2><a href="index.html">← Back to main</a></div>
-
-<div class="card">
-<h3>One-sentence goal</h3>
-<p>Download one validated GeoTIFF from this page, upload it on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submission/">the DrivenData submission form</a>, paste the 59-char note, and paste the receipt back here — no manual inspection of the raster is required because <em>this page already did the inspection through the project’s validators</em> and the result is printed below (human inspector is the validator, not a person).</p>
-</div>
-
-<div class="card" style="border-color:rgba(45,212,191,0.5);background:linear-gradient(135deg,rgba(45,212,191,0.07),rgba(96,165,250,0.07))">
-<h3>⬇ Download — validated & ready to submit</h3>
-<p><strong>Primary (submit this):</strong> <a class="btn" href="downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif" download>h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif (349 KB, NaN-outside)</a></p>
-<p style="font-size:12px;color:var(--muted)">SHA256 <code>bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158</code> &nbsp; n_dots 37,654 &nbsp; EPSG:32611 3730×3292 100m float32 1-band values {0,1} NaN outside &nbsp; <strong style="color:#10b981">✓ VALIDATED — OK to download & submit</strong></p>
-<p><strong>Fallback (same dots, zeros outside — use only if form rejects NaN):</strong> <a href="downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif" download>h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif (208 KB)</a> — SHA256 <code>104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722</code></p>
-<div class="notice">Both files encode the <em>same</em> 37,654 dots; only the nodata encoding differs. Upload <strong>one</strong> per slot — the two are never two slots.</div>
-</div>
-
-<div class="card">
-<h3>How to submit (exactly as the form shows)</h3>
-<ol>
-<li>Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submission/">DrivenData → New submission</a> (login required).</li>
-<li>Under <em>File to submit — No file chosen</em> click <em>Choose File</em> and select the <code>.tif</code> you downloaded. Leave “Show preview” unchecked (the page does not need a preview; the validators above are the inspection).</li>
-<li>In <em>Note (optional)</em> paste this exact 59-char comment (helps tell submissions apart later):<br><code>h33-2-b2; GEOD strain 10% to high 2.5km blocks (Bands4+7), count fixed 37654; pred +0.0090 MODEL</code></li>
-<li>Click <em>Create submission</em>. The page will run its own format check (CRS/shape/geotransform/values). On success note the returned <strong>receipt score</strong> and <strong>date</strong>; on failure read the error below.</li>
-</ol>
-</div>
-
-<div class="card">
-<h3>Error you will not get with this file — and what it meant</h3>
-<p><code>“Predicted values must be in range [0, 1]”</code> means the uploaded TIFF had values outside [0,1] (e.g., 0–255, −3e38 sentinel, or floating-point overshoot from re-encoding). <strong>This file cannot produce that error:</strong> inside footprint values are only <code>0</code> or <code>1</code> (float32), outside is <code>NaN</code> (primary) or <code>0</code> (fallback), verified:</p>
-<pre><code>values_in_0_1      PASS  min=0.0 max=1.0
-no_nan_inside      PASS  0 NaN in 5,167,373 footprint px
-nan_outside        PASS  0 finite in 7,111,787 outside px (primary)
-dtype              PASS  float32   band_count PASS 1
-CRS                PASS  EPSG:32611   shape PASS 3730×3292   transform PASS 100,0,243350,0,-100,4508550
-zero_catalogue_mass PASS 0 px on catalogue   collar 2,171→2,171 (0 drift, quarantined)
-reread_from_disk   PASS  byte-identical on re-read</code></pre>
-<p>If you see instead <code>CRS/shape/transform mismatch</code>, you uploaded a different file (not the one from this page). Re-download the exact <code>bff9fd21…</code> file.</p>
-</div>
-
-<div class="card">
-<h3>What happens after you submit</h3>
-<ol>
-<li>DrivenData scores the file against withheld truth (GEMS Prize metric DTI = T/(0.2T+0.2(S−M)+0.8|G|), triangular kernel R=3 px = 300 m at 100 m). The score appears on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">the leaderboard</a> and in your submission receipt.</li>
-<li>Copy <code>receipt_score</code> + <code>receipt_date</code> into <code>ledger/submissions.csv</code> (same row, <code>status=SUBMITTED</code>) — this is the only ORGANIZER-CONFIRMED number the repo ever records.</li>
-<li>Interpret: |Δ|&lt;0.01 = no evidence (brief §5). ≥+0.01 ⇒ that parent becomes base for next slot; ≤−0.01 ⇒ axis retired. Do not spend 3 slots on the same axis.</li>
-</ol>
-</div>
-
-<div class="card">
-<h3>Validator output — copy this with your receipt</h3>
-<pre><code>candidate: h33-h33-2-b2-GEOD25m10-20261024-bff9fd21
-sha256 (NaN)    : bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158
-sha256 (zeros)  : 104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722
-bytes (NaN)     : 356859  (349 KB) — zeros 212109 B (208 KB)
-grid            : EPSG:32611 | 3730×3292 | 100 m | float32 | 1 band | values {0,1} | NaN outside
-n_dots          : 37654  unit-mass | cat_mass 0 | min_d_catalogue 2.236 px (inherited) | added_le3px 0
-footprint       : 5,167,373 inside | 0 NaN inside | 0 finite outside
-gates           : 14/14 MUST PASS (nan) / 14/14 (zeros) — see docs/index.html
-submission_note : h33-2-b2; GEOD strain 10% to high 2.5km blocks (Bands4+7), count fixed 37654; pred +0.0090 MODEL (59 chars)
-</code></pre>
-</div>
-
-<div class="card">
-<h3>Limitations & what we need</h3>
-<ul style="font-size:13px">
-<li><strong>Not a receipt.</strong> Predicted +0.0090 is MODEL (shrinkage KAPPA=0.10 on strain surrogate), not ORGANIZER-CONFIRMED. Only the live receipt after upload is a score.</li>
-<li><strong>Inherited collar.</strong> 2,171 dots at 2–3 px from catalogue are parent R0’s, not added here (IR-91-03). If organiser enforces strict ≥3 px, rebase on <code>PRUNEle3norefill</code> (35,483 dots) — but that is a two-change build.</li>
-<li><strong>Overlap flag.</strong> 93% dot overlap ≤3 px vs parent (by construction, 90% dots untouched) exceeds 70% protocol threshold — logged as duplicate-risk but retained because surface prior (strain) is new.</li>
-<li><strong>External data:</strong> None needed — Bands 4+7 (geod_2ndinv_shearrate) are pinned in <code>data/bridge/gems-geodawn-numerical-features.tif</code> (418,912,844 B, sha256 4371c82e…3bc5 RECEIPT, <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN</a>, public domain). Verify with <code>python3 scripts/restore_data.py</code>.</li>
-<li><strong>Deadline:</strong> Unconfirmed 2026-12-03 on competition page — human must confirm; slots are 3/week rolling.</li>
-</ul>
-</div>
-
-<footer style="font-size:11px;color:#9aa3af;border-top:1px solid var(--border);margin-top:24px;padding-top:12px">
-GEMSDOE91 — One entity, 3 slots/week, 1 final file • No agent submits • All rasters gitignored except <code>docs/downloads</code> submission artifact • AI wrote builder/gates/docs; human decides slots and blind final pick • <a href="index.html">Main</a> • <a href="HYPOTHESES_G91.md">Hypotheses</a>
-</footer>
-</div>
+  <p>Submission instructions have moved to the <a href="executive-summary.html">GEMSDOE91 executive summary</a>. Current status: <strong>NOT APPROVED — no TIFF is available to download or submit.</strong></p>
 </body>
 </html>

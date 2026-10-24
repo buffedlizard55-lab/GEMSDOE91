@@ -1,10 +1,15 @@
-"""Portal links must be validated downloads, and run-card must be consistent."""
+"""The public site must fail closed when no approved candidate exists."""
 import json
-import hashlib
-from pathlib import Path
 from html.parser import HTMLParser
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PORTAL_PAGES = (
+    "index.html",
+    "docs/index.html",
+    "docs/executive-summary.html",
+    "docs/submit.html",
+)
 
 
 class Links(HTMLParser):
@@ -13,72 +18,79 @@ class Links(HTMLParser):
         self.links = []
 
     def handle_starttag(self, tag, attrs):
-        if tag == 'a':
-            self.links.extend(v for k, v in attrs if k == 'href')
+        if tag == "a":
+            self.links.extend(v for k, v in attrs if k == "href")
 
 
-def test_portal_links_and_no_fake_download():
-    card = json.loads((ROOT / 'docs/run-card.json').read_text())
-    ready = bool(card.get('submission_ready'))
-    # root index.html is a bare redirect (docs/index.html is the real portal)
-    pages = ['docs/index.html', 'docs/executive-summary.html', 'docs/submit.html'] if ready else ['index.html', 'docs/index.html', 'docs/executive-summary.html']
-    for name in pages:
+def test_portal_links_and_no_tiff_download():
+    for name in PORTAL_PAGES:
         page = ROOT / name
-        if not page.is_file():
-            continue
-        parser = Links(); parser.feed(page.read_text())
-        tif_links = [h for h in parser.links if h.endswith(('.tif', '.zip')) and '://' not in h]
-        if ready:
-            # When submission_ready, at least one tif link must exist and be a real file with correct sha
-            assert tif_links, f"{name} should advertise a validated TIFF when submission_ready"
-            for href in tif_links:
-                target = (page.parent / href).resolve()
-                assert target.is_file(), f"download target missing: {href} -> {target}"
-                # also check that the sha256 mentioned on the page matches the file
-                # (light check: file is float32, values in [0,1] — deeper gates in test_release)
-        else:
-            assert tif_links == [], f"{name} must not advertise a TIFF when not ready: {tif_links}"
-        # Every local link must resolve
+        parser = Links()
+        parser.feed(page.read_text(encoding="utf-8"))
         for href in parser.links:
-            if '://' not in href and not href.startswith('#') and not href.startswith('mailto:'):
-                # ignore external and anchor
-                local = (page.parent / href)
-                # strip query/fragment
-                local = Path(str(local).split('#')[0].split('?')[0])
-                if local.suffix in ('.html', '.json', '.csv', '.md'):
-                    # these should exist if linked locally
-                    pass
-                if href.endswith(('.tif', '.zip')):
-                    continue  # already checked
-                # we don't enforce every html link exists strictly, but tif links must be real (above)
+            if "://" not in href and not href.startswith("#"):
+                target = (page.parent / href.split("#", 1)[0]).resolve()
+                assert target.is_file(), f"{name}: broken local link {href}"
+            path = href.split("?", 1)[0].lower()
+            assert not path.endswith((".tif", ".tiff", ".zip")), (name, href)
 
-def test_blocked_card_and_note():
-    card = json.loads((ROOT / 'docs/run-card.json').read_text())
-    # Card must be well-formed either way
-    assert 'verdict' in card
-    assert card['verdict'] in ('promote', 'negative')
-    assert 'note' in card
-    assert card['note'] is None or len(str(card['note'])) <= 140
-    if card.get('submission_ready'):
-        # promote path: must have raster sha, holdout value (or explicit null with reason), and at least 1 experiment
-        assert card['verdict'] == 'promote'
-        assert card['raster_sha256'] is not None
-        # holdout may be HOLDOUT-DTI with a numeric value; we require evaluator_version and ci
-        h = card.get('holdout_dti') or {}
-        assert h.get('label') == 'HOLDOUT-DTI' or 'HOLDOUT' in str(h.get('label',''))
-        # validator must have passed
-        v = card.get('validator_output') or {}
-        assert v.get('status') == 'PASS' or v.get('no_nan_inside_footprint') == 'PASS'
-        assert card.get('experiments_run', 0) >= 1
-        # download files must exist
-        dl = card.get('download') or {}
-        if dl:
-            for key in ('primary', 'fallback'):
-                if dl.get(key):
-                    assert (ROOT / dl[key]).is_file(), f"card download {key} missing: {dl[key]}"
-    else:
-        assert not card['submission_ready']
-        assert card['verdict'] == 'negative'
-        assert card['raster_sha256'] is None
-        assert card['holdout_dti']['value'] is None
-        assert card['experiments_run'] == 0
+
+def test_current_pages_make_blocked_status_obvious():
+    root = (ROOT / "index.html").read_text(encoding="utf-8").lower()
+    landing = (ROOT / "docs/index.html").read_text(encoding="utf-8").lower()
+    executive = (ROOT / "docs/executive-summary.html").read_text(encoding="utf-8").lower()
+    submit = (ROOT / "docs/submit.html").read_text(encoding="utf-8").lower()
+    assert "not approved" in root
+    assert "do not download or submit a tiff" in root
+    assert "not approved" in landing
+    assert "do not download or submit a tiff" in landing
+    assert "not approved" in executive
+    assert "no tiff is available" in executive
+    assert "not approved" in submit
+    for forbidden in ("validated — ok to download", "ready to download", "submit this"):
+        assert forbidden not in landing
+        assert forbidden not in executive
+
+
+def test_blocked_card_is_complete_and_has_no_artifact():
+    card = json.loads((ROOT / "docs/run-card.json").read_text(encoding="utf-8"))
+    assert card["verdict"] == "negative"
+    assert card["submission_ready"] is False
+    assert card["selected_for_slot"] is False
+    assert card["experiments_run"] == 0
+    assert card["raster_sha256"] is None
+    assert card["submission_name"] is None
+    assert card["holdout_dti"]["label"] == "HOLDOUT-DTI"
+    assert card["holdout_dti"]["status"] == "NOT_RUN"
+    assert card["holdout_dti"]["evaluator_version"] is None
+    assert card["holdout_dti"]["withheld_positives"] is None
+    assert card["holdout_dti"]["ci95"] is None
+    assert card["registry_comparison"]["status"] == "UNVERIFIED"
+    assert card["validator_output"]["status"] == "NOT_RUN"
+    assert card["submission_note"] is None
+    assert card["submission_note_status"] == "NOT_GENERATED_NO_CANDIDATE"
+    assert card["submission_note_max_chars"] == 140
+    assert len(card["run_note"]) <= 140
+    downloads = ROOT / "docs/downloads"
+    assert (downloads / "README.md").is_file()
+    assert not list(downloads.glob("*.tif"))
+    assert not list(downloads.glob("*.tiff"))
+    assert not list(downloads.glob("*.zip"))
+
+
+def test_master_brief_is_in_readme():
+    readme = (ROOT / "README.md").read_text(encoding="utf-8").lower()
+    for text in (
+        "read this readme first",
+        "parallel-run protocol",
+        "evaluate_holdout.py",
+        "submission_writer.py",
+        "holdout-dti",
+        "core values",
+        "maximize p(win)",
+        "up to three scored submissions per week",
+        "one final submission selection across both prize phases",
+        "5 p.m. et",
+        "reproducible code assets and documentation",
+    ):
+        assert text in readme

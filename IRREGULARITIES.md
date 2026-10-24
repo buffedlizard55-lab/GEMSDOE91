@@ -681,3 +681,35 @@ No compliant baseline or full surface/dot registry comparison is present. The
 GEMSDOE32 source explicitly disclaims organizer scores. See
 `docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
 submission advice is superseded by the fail-closed executive summary.
+
+## IR-91-36 — The public GEOD portal advertised a duplicate-risk artifact as approved
+
+**Expected:** a public download link appears only after all current hard gates pass and a separate slot selector authorizes promotion.
+
+**Actual:** the former `docs/index.html` and `docs/submit.html` called the historical GEOD TIFF “VALIDATED — OK to download & submit” and labelled its result “promote,” while the same page reported final-dot overlap of **93.2% within 3 px** against its parent. The parallel-run protocol's stop threshold is **more than 70%**. A lower reported surface rank-correlation did not cancel the dot-overlap stop. The historical parent input is absent in this checkout, so the percentage could not be independently recomputed here.
+
+**Decision:** classify that candidate as a duplicate-risk stop, remove its public downloads, replace the site's status with **NOT APPROVED**, and require complete novelty evidence before any future download. No new TIFF was generated.
+
+## IR-91-37 — The reported `0.2778` is not substantiated by the current GEMSDOE32 page
+
+**Expected:** a score is either compliant HOLDOUT-DTI with evaluator version, withheld-positive count, and 95% CI, or ORGANIZER-CONFIRMED from a submission-page receipt.
+
+**Actual:** the current [GEMSDOE32 page](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) explicitly states that no organizer score exists for artifacts in that repository and does not substantiate the user-supplied `0.2778` for `h33-h33-2-b2`. The official public leaderboard displayed `0.4413` at rank 1 when fetched on 2026-10-24; label this PUBLIC-LEADERBOARD OBSERVATION only, not HOLDOUT-DTI or ORGANIZER-CONFIRMED for GEMSDOE91.
+
+**Decision:** retain `0.2778` only as an UNVERIFIED SITE/USER CLAIM. Keep public leaderboard observations separate from receipt-backed project scores. No causal score explanation or forecast is asserted.
+
+## IR-91-38 — The old zero-outside twin conflicts with the organizer's outside-bounds rule
+
+**Expected:** a valid submission follows the official format: data outside the specified bounds is null or NaN.
+
+**Actual:** a local reread of the archived `-zeros.tif` candidate found finite zero values outside the sample footprint. This met a naive all-cells [0,1] check but did not meet the official null/NaN outside-bounds requirement. The NaN-outside twin's finite values were in [0,1], but it was not approved by the required holdout and novelty protocol. The user's earlier range error cannot be attributed without the exact uploaded file and organizer-side diagnostic.
+
+**Decision:** do not advertise either legacy encoding as a fallback or approved file. The portal and submission guide now remain fail-closed.
+
+## IR-91-39 — Local metric implementations disagree with the official distance-weighted Tversky formula
+
+**Expected:** one validated metric implementation follows the official problem-page definition and is used by the shared buffered-segment evaluator.
+
+**Actual:** the official page defines true-positive credit as the maximum predicted probability × triangular-kernel weight for each truth pixel. `scripts/dti.py` uses a maximum operation; `src/gems91/metric.py` instead sums contributions from every nearby predicted dot. Their outputs can diverge on dense or overlapping predictions. Neither file is the required shared `evaluate_holdout.py`, and the shared tool is absent from this checkout.
+
+**Decision:** do not use either local output as HOLDOUT-DTI and do not patch a private evaluator. Record the discrepancy and block experiment scoring until the shared evaluator/template is identified and its implementation is verified against the official formula.
