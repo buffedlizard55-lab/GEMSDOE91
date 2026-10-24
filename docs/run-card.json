@@ -1,0 +1,77 @@
+{
+  "hypothesis": "Geodetic-strain dilated corridor: 10% of fixed-count dots moved from lowest- to highest-prior 2.5km blocks of the 0.5*pct(geod_2ndinv)+0.5*pct(geod_shearrate) prior; high Walker-Lane shear maintains dilation at blind geothermal splays the catalogue misses at 1:250k.",
+  "mechanism": "Strain localization (Block F of Faulds) → dilational jogs → unmapped NW splays within 300m kernel; high-strain blocks have 1.3x per-cell fault credit on SGMC off-cat vs low-strain; moving mass there raises T without raising S (count fixed) or S-M (spacing preserved at 2.0px floor).",
+  "non_fault_process_that_could_mimic": "GPS station-spacing smear (50km) → broad strain highs across adjacent aseismic blocks; also basin-range topographic strain (non-tectonic); would show as uniform SGMC gain without lineament coherence, failing Phase-2 expert review.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems91.metric v1 + hide-and-recover 4-fold spatially-blocked (400px quadrants, 8px buffer, catalogue recomputed from visible only, visible faults masked pixel-exactly, pooled DTI alpha 0.2 beta 0.8 300m triangular kernel) — PROXY, not template evaluate_holdout.py (absent in checkout, IR-91-35)",
+    "value": 0.00077,
+    "n_withheld_positives_per_fold": 15247,
+    "withheld_positives_total": 60988,
+    "ci95": "[0.00021, 0.00133]",
+    "status": "HOLDOUT-DTI (not ORGANIZER-CONFIRMED)",
+    "canary": {
+      "max_single_feature_auc": 0.5793,
+      "feature": "geod_2ndinv (Band 4)",
+      "threshold": 0.9,
+      "verdict": "PASS — no leakage"
+    },
+    "sgmc_control": {
+      "label": "SGMC off-catalogue (independent USGS DS-1052, REPORT ONLY)",
+      "delta_dti": 0.0017,
+      "rel_pct": 1.8
+    }
+  },
+  "registry_comparison": {
+    "surface_rank_correlation_vs_registry_max": 0.71,
+    "threshold_rank_corr": 0.9,
+    "surface_corr_vs_parent": 0.8951,
+    "surface_corr_to_GDR_priors": 0.42,
+    "final_dot_overlap_within_3px_vs_registry": 0.62,
+    "final_dot_overlap_vs_parent_within_3px": 0.932,
+    "overlap_threshold": 0.7,
+    "verdict": "UNIQUE — registry max rank corr 0.71 < 0.90 and dot overlap 62% < 70% PASS; vs parent 93% exceeds 70% by construction (10% move, 90% dots untouched, spacing floor preserved — expected and flagged per protocol, prior surface is new)",
+    "status": "UNIQUE"
+  },
+  "raster_sha256": {
+    "nan": "bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158",
+    "zeros": "104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722",
+    "dot_digest": "ccb16d25ad18eb76fe659aec37b29e01ea80ca6f01e0c43ce20242b0c04a5009",
+    "bytes_nan": 356859,
+    "bytes_zeros": 212109
+  },
+  "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": "PASS (0 NaN in 5,167,373 px)",
+    "values_in_0_1": "PASS (only 0, 1)",
+    "crs_shape_transform_match": "PASS (EPSG:32611 3730x3292 100m float32 1-band)",
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "gates": "14/14 MUST PASS (nan) + 16/16 release_gates PASS; 14/14 MUST PASS (zeros)",
+    "validate_py": "PASS",
+    "validate_raster": "14/14 PASS (both encodings, re-read from disk byte-identical)",
+    "catalogue_mass": 0,
+    "collar": "2,171 -> 2,171 (0 drift, quarantined, IR-91-03)",
+    "n_dots": 37654,
+    "hamming": 7530,
+    "pct_changed": 10.0,
+    "nn_min": 2.0,
+    "nn_mean": 3.81
+  },
+  "submission_name": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21",
+  "note": "h33-2-b2; GEOD strain 10% to high 2.5km blocks (Bands4+7), count fixed 37654; pred +0.0090 MODEL",
+  "note_chars": 59,
+  "note_limit": 140,
+  "verdict": "promote",
+  "verdict_reason": "First strain-prior file in fleet; only arm with positive SGMC control (+1.8% rel) and leakage canary PASS; holdout DTI +0.00077 [0.00021,0.00133] small but directionally consistent; dose response reserved for Week 2 if live receipt >= +0.01. Not a copy — new surface (0.71 vs registry, 0.42 vs GDR).",
+  "experiments_run": 1,
+  "budget": "1/3 experiments, ~8 min build + 2 min validation; 2 slots remain this week; promotion to real slot is separate selector step within weekly cap (see submission page).",
+  "submission_ready": true,
+  "download": {
+    "primary": "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif",
+    "fallback": "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
+    "bytes_primary": 356859,
+    "bytes_fallback": 212109
+  }
+}

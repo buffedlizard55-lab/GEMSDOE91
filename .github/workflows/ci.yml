@@ -24,7 +24,7 @@ jobs:
             --ledger ledger/submissions.csv
       - name: No competition raster is committed
         run: |
-          # docs/downloads/ may hold OUR OWN derived submission .tif (IR-91-40);
+          # docs/downloads/ may hold OUR OWN derived submission .tif (IR-91-41);
           # competition INPUT rasters must never be tracked anywhere.
           if git ls-files | grep -E '\.tiff?$' | grep -v '^docs/downloads/'; then
             echo "::error::a raster is tracked in git outside docs/downloads/; competition data must not be committed"

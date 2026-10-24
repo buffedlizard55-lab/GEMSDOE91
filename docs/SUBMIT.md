@@ -1,3 +1,5 @@
+> **Superseded for promotion eligibility (2026-10-24).** Historical build instructions below are not approval to submit. See [current executive summary](executive-summary.html) and [protocol audit](REVIEW-20261024.md).
+
 # SUBMIT — MASS/consensus arms + merged PRUNE/CONCENTRATION queue (2026-10-23)
 
 **Status 2026-10-23: 38 BUILT rows, 0 submitted, 0 receipts.** Rasters are not committed;
@@ -298,7 +300,7 @@ One de novo candidate built, gated, published for one-click download at
 `docs/index.html` (executive summary first: download, name `GEMSDOE91-DENOVO-HGBCTX`,
 115-char form note, numbered submit steps). HOLDOUT-DTI pooled **0.142885**
 (`scripts/dti.py` official; 60,988 withheld positives; fold 95% CI [0.128860, 0.155952]);
-SGMC-off PROXY 0.068703 vs R0 0.095386 — instruments disagree (IR-91-38), MODEL live range
+SGMC-off PROXY 0.068703 vs R0 0.095386 — instruments disagree (IR-91-39), MODEL live range
 ~0.20-0.29. Recommendation: one weekly slot as the unique-lane test **only if** the human is
 not reserving all remaining slots for the R0-anchor queue above; never the blind final on
 current evidence. Full analysis `docs/DENOVO_20261024.md`; run card

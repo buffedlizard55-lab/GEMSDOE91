@@ -142,7 +142,7 @@ Three count-fixed trace-densification arms built and gated (`8343ab38` t1k10 `+0
 
 New one-click-downloadable candidate `gems91-denovo-hgbctx-…-7941b7ab-zeros.tif`
 (`docs/downloads/`, both gate sets PASS) exists outside the R0-edit queue: HOLDOUT-DTI
-0.142885 pooled (honest-lane best; see IR-91-37 for why R0/d2.8-as-is are not the bar),
-SGMC-off PROXY below R0 (IR-91-38). If the human wants the de-novo-vs-lineage question
+0.142885 pooled (honest-lane best; see IR-91-38 for why R0/d2.8-as-is are not the bar),
+SGMC-off PROXY below R0 (IR-91-39). If the human wants the de-novo-vs-lineage question
 settled, it is the single slot to spend; otherwise the revised queue above (R0 anchor ->
 PRUNE-le10 -> MASScons3add) stands unchanged. It must not be the blind final without a receipt.

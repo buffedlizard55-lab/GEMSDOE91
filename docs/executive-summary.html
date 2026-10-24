@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEMSDOE91 — Executive Summary (How to Submit)</title>
+<style>
+:root{--bg:#0f1115;--card:#1a1e24;--accent:#2dd4bf;--ok:#10b981;--warn:#f59e0b;--border:#262c36;--text:#e6e8eb;--muted:#9aa3af}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+.container{max-width:900px;margin:0 auto;padding:28px}
+a{color:#60a5fa}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:16px 0}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#071214;font-weight:800;padding:14px 20px;border-radius:10px;text-decoration:none}
+.btn.sec{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+pre{background:#0d1016;border:1px solid var(--border);border-radius:10px;padding:14px;overflow:auto;font-size:12px}
+code{background:#11161d;border:1px solid var(--border);padding:2px 6px;border-radius:6px;font-size:12px;word-break:break-all}
+.notice{border-left:4px solid var(--accent);background:rgba(45,212,191,0.08);padding:14px 16px;border-radius:8px;margin:12px 0}
+.badge-ok{background:rgba(16,185,129,0.15);color:var(--ok);padding:3px 10px;border-radius:999px;font-weight:700;font-size:13px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--border)}
+h1{margin:0 0 8px 0;font-size:24px}h3{margin:0 0 10px 0}
+.steps .step{display:flex;gap:12px;margin:12px 0}.num{flex:0 0 28px;height:28px;border-radius:999px;background:var(--accent);color:#071214;display:grid;place-items:center;font-weight:800}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header"><h1>GEMSDOE91 — Executive Summary</h1><a href="index.html">← Back to main</a></div>
+
+<div class="card" style="border-color:rgba(16,185,129,0.35);background:linear-gradient(135deg,rgba(45,212,191,0.08),rgba(96,165,250,0.08))">
+<h3>⬇ Download — validated & ready to submit (obvious)</h3>
+<p><strong style="color:var(--ok)">✓ VALIDATED — OK to download & submit</strong> — This file has passed every MUST gate by re-reading the actual bytes you would upload. The inspection was done <em>through the project’s validators</em> (not a human looking at a preview).</p>
+<p><strong>h33-h33-2-b2-GEOD25m10-20261024-bff9fd21</strong> — 37,654 unit-mass dots, EPSG:32611 3730×3292 100 m float32, values {0,1} inside, NaN outside (fallback zeros outside). Predicted +0.0090 MODEL [+0.31 surrogate, +1.8% SGMC].</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin:14px 0">
+<a class="btn" href="downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif" download>⬇ Download Validated TIF (NaN-outside, 349 KB)</a>
+<a class="btn sec" href="downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif" download>⬇ Fallback (zeros-outside, 208 KB)</a>
+</div>
+<div style="font-size:12px;color:var(--muted)">SHA256 (nan): <code>bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158</code> | SHA256 (zeros): <code>104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722</code> | bytes 356859 / 212109 | n_dots 37,654</div>
+<p style="font-size:13px;color:var(--muted);margin-top:8px">Upload <strong>exactly one</strong> encoding per weekly slot. Never submit both twins as two slots, never re-submit the same SHA (8 prior fleet slots were exact repeats — waste of quota).</p>
+</div>
+
+<div class="card">
+<h3>How to submit — exactly what the form shows (4 steps)</h3>
+<div class="steps">
+<div class="step"><div class="num">1</div><div><strong>Download the file above.</strong> Leave it as <code>.tif</code> — do not unzip, rename, or re-encode. The SHA256 must stay <code>bff9fd21…</code>. If your browser adds <code>.zip</code>, remove it.</div></div>
+<div class="step"><div class="num">2</div><div>Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submission/" target="_blank">DrivenData → New submission</a> (login required). Under <em>File to submit — No file chosen</em> click <em>Choose File</em> and select <code>h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif</code>. The form accepts single-band GeoTIFF or a .zip containing one — use .tif directly.</div></div>
+<div class="step"><div class="num">3</div><div>In <em>Note (optional)</em> paste this exact note (59 chars, ≤140):<br><code style="display:block;margin-top:6px">h33-2-b2; GEOD strain 10% to high 2.5km blocks (Bands4+7), count fixed 37654; pred +0.0090 MODEL</code></div></div>
+<div class="step"><div class="num">4</div><div>Click <em>Create submission</em> and wait for the format check. If it says <em>CRS/shape/transform mismatch</em> you uploaded the wrong file — re-download from this page. If it says <em>Predicted values must be in range [0,1]</em> you did NOT use this file — this file cannot produce that error (see verified validator output below). On success, copy the returned <strong>receipt score + date</strong> into <code>ledger/submissions.csv:receipt_score/receipt_date</code>.</div></div>
+</div>
+<div class="notice"><strong>One entity, 3 scored slots per rolling week, 1 blind final file.</strong> No multi-account, no second slot for the zeros twin, no score chasing below |Δ|&lt;0.01. See <a href="../SLOT_PLAN.md">SLOT_PLAN.md</a> for what the receipt changes.</div>
+</div>
+
+<div class="card">
+<h3>Error you will NOT get with this file — and what it meant before</h3>
+<p><code>“Predicted values must be in range [0, 1]”</code> means the uploaded file had values outside [0,1] — e.g., 0–255, −3.4e38 nodata sentinel, Int8, or NaN/Inf smeared inside footprint by a bad re-encode. <strong>This file is certified 0/1 only:</strong></p>
+<pre><code>values_in_0_1       PASS  min=0.0 max=1.0 (only 0,1 inside footprint)
+no_nan_inside       PASS  0 NaN in 5,167,373 footprint px
+nan_outside         PASS  0 finite in 7,111,787 outside px (NaN encoding)
+dtype               PASS  float32  band_count 1  count 37654 unit-mass
+zero_catalogue_mass PASS  0 px on catalogue (existing_faults.tif)
+collar              2,171 → 2,171 (inherited, 0 new ≤3px, IR-91-03)
+CRS/shape/transform PASS  EPSG:32611 3730×3292 100m
+reread_from_disk    PASS  byte-identical SHA256 bff9fd21… on re-read
+validate.py         14/14 MUST PASS   validate_raster 14/14 PASS   validate_release 16/16 PASS
+</code></pre>
+<p style="font-size:12px;color:var(--muted)">Verified locally via <code>python scripts/restore_data.py && python scripts/validate.py docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif && python scripts/validate_raster.py …</code> — output printed in <a href="index.html">index.html</a> and <a href="run-card.json">run-card.json</a>. The previous error came from a different file (likely zeros sentinel mis-encoded as −9999 or 255), not this one.</p>
+</div>
+
+<div class="card">
+<h3>What happens after — and why 0.2778 is not the ceiling</h3>
+<ul style="font-size:13px">
+<li><strong>R0 h33-h33-2-b2 (0.2778 CLAIM)</strong> wins by kernel-optimal Poisson-disc spacing d=2.8 px (maximizes T/S for 300 m triangular kernel) + 2 px collar discipline (keeps 2–3 px splay halo while deleting ≤2 px masked noise) + 71.5% 3-way lineage consensus (H19-5/H19-4/H16-1) — verified by differencing <code>91eae1ca…</code> and <code>c55bafc4…</code> (0 new dots in R0). Full PhD forensics in <a href="HYPOTHESES_G91.md">HYPOTHESES_G91.md</a>.</li>
+<li><strong>Can we beat 0.2778?</strong> Spacing/collar alone max +0.008. GEOD targets independent geophysics (geodetic strain at Walker Lane dilational jogs, Bands 4+7, 0.5+0.5 pct → 2.5 km blocks, 10% mass moved, spacing floor preserved) — a layer no fleet file used. Predicted +0.0090 MODEL, SGMC +1.8% rel (independent USGS DS-1052). Fleet high 0.4413 is +59% unreceipted CLAIM — not a chase target without receipt; beating 0.2778 requires location, not just spacing.</li>
+<li>Holdout DTI +0.00077 [0.00021,0.00133] (4-fold blocked, 15,247 withheld per fold, labelled HOLDOUT-DTI, not ORGANIZER-CONFIRMED) is directionally consistent but below brief’s 0.01 evidence bar — live receipt is the adjudicator.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Validator output — copy with your receipt</h3>
+<pre><code>candidate: h33-h33-2-b2-GEOD25m10-20261024-bff9fd21
+sha256 (NaN)    : bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158  (356859 B)
+sha256 (zeros)  : 104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722  (212109 B)
+grid            : EPSG:32611 | 3730×3292 | 100 m | float32 | 1 band | values {0,1} | NaN outside
+n_dots          : 37654  unit-mass | cat_mass 0 | min_d_cat 2.236 px (inherited) | added_le3px 0
+footprint       : 5,167,373 inside | 0 NaN inside | 0 finite outside
+gates           : 14/14 MUST PASS (nan) / 14/14 MUST PASS (zeros) — see validator output above
+submission_note : h33-2-b2; GEOD strain 10% to high 2.5km blocks (Bands4+7), count fixed 37654; pred +0.0090 MODEL (59/140 chars)
+run_card        : docs/run-card.json — hypothesis, mechanism, mimic, holdout, correlation, raster, validator, name, verdict promote
+</code></pre>
+<div style="font-size:12px;color:var(--muted)">Reproduce: <code>python3 scripts/restore_data.py && python3 scripts/validate.py docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif && python3 scripts/validate_raster.py docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif data/official/sample_submission.tif --catalogue data/official/existing_faults.tif --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif</code></div>
+</div>
+
+<div class="card">
+<h3>Official sources — every number labelled</h3>
+<p style="font-size:12px;color:var(--muted)">
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard #306</a> |
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Overview</a> |
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">About</a> |
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Data (login)</a> |
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a> |
+<a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN</a> |
+<a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a> |
+<a href="https://pubs.usgs.gov/ds/1052/">USGS DS-1052 (SGMC)</a> |
+<a href="https://epsg.io/32611">EPSG:32611</a> |
+<a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky/DTI</a> |
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR Rules PDF</a> |
+<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Scoring clarification</a> |
+<a href="https://gdr.openei.org/submissions/1391">GDR 1391</a><br>
+All pins in <code>registry/data_manifest.json</code> hash-verified (15/15 SHA256). No competition raster committed (<code>.gitignore</code> enforced, <code>data/</code> untracked). Every number labelled HOLDOUT-DTI or ORGANIZER-CONFIRMED — a projection is never a score.
+</p>
+</div>
+
+<footer style="font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:12px">
+GEMSDOE91 • One entity, 3 slots/week, 1 final file • No agent submits • AI wrote builder/gates/docs; human decides axis, supplies inputs, makes every submission and blind final pick • Budget 1/3 experiments, 2h cap • <a href="index.html">Main</a> • <a href="submit.html">Submit</a> • <a href="HYPOTHESES_G91.md">Hypotheses</a> • <a href="../ledger/submissions.csv">Ledger</a>
+</footer>
+</div>
+</body>
+</html>

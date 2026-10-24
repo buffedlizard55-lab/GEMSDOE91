@@ -36,7 +36,7 @@ WHAT IT IS NOT: no dot, mask, ranking or value is read from R0 or any ancestor
 raster; the catalogue is used ONLY for the > 3 px exclusion (and, in the
 holdout, the exclusion is derived from the *visible* catalogue only). No
 external dataset is used (the unlicensed lidar layer is deliberately excluded;
-see IR-91-39). Every input band comes from the pinned sponsor file
+see IR-91-40). Every input band comes from the pinned sponsor file
 `training_features` (registry/data_manifest.json sha256 4371c82e...3bc5).
 
 NON-FAULT MIMIC (named, per protocol): coincident lithologic contacts —

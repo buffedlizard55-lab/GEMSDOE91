@@ -113,7 +113,7 @@ def test_dense_coverage_scores_exactly_one():
     """Official TPw is a per-truth-pixel MAX, capped at 1 per truth pixel:
     a prediction covering every truth pixel at p=1 has TPw=|G|, FPw=FNw=0,
     so DTI == 1, never above. (Before 2026-10-24 this module summed p*k and
-    this test asserted DTI > 1 — that was the IR-91-36 bug.)"""
+    this test asserted DTI > 1 — that was the IR-91-37 bug.)"""
     n = 40
     pred = np.zeros((n, n))
     truth = np.zeros((n, n), dtype=bool)

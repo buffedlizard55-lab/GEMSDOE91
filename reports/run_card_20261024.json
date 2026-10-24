@@ -51,8 +51,8 @@
     "note_115_of_140_chars": "GEMSDOE91 DENOVO-HGBCTX de novo sponsor-band HistGB+context, 37654 spaced dots >300m off-cat; holdout 0.1429 pooled",
     "download": "docs/downloads/ (GitHub Pages: https://buffedlizard55-lab.github.io/GEMSDOE91/docs/index.html)"
   },
-  "shared_tool_fix": "src/gems91/metric.py summed p*k per truth pixel; official metric takes the max. Fixed once here (IR-91-36); scripts/dti.py was already correct; both now agree <1e-9.",
+  "shared_tool_fix": "src/gems91/metric.py summed p*k per truth pixel; official metric takes the max. Fixed once here (IR-91-37); scripts/dti.py was already correct; both now agree <1e-9.",
   "organizer_confirmed_score": null,
   "verdict": "promote",
-  "verdict_scope": "Promote to ONE weekly slot as the unique-lane test (human submits; agent never submits). NOT a blind-final candidate on current evidence (SGMC instrument disagrees). If the receipt is <= R0 claim, this lane is a negative result and the next lane is H4 (1m-DEM re-derivation, IR-91-39)."
+  "verdict_scope": "Promote to ONE weekly slot as the unique-lane test (human submits; agent never submits). NOT a blind-final candidate on current evidence (SGMC instrument disagrees). If the receipt is <= R0 claim, this lane is a negative result and the next lane is H4 (1m-DEM re-derivation, IR-91-40)."
 }
