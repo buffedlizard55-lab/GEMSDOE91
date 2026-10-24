@@ -1,5 +1,21 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## S13 VERDICT — READ FIRST (2026-10-24, branch `arena/c00ef287-gemsdoe91`)
+
+**No file in this repository is cleared for submission. The earlier FUSE91 "OK TO DOWNLOAD AND SUBMIT" label is withdrawn.**
+
+Independent check (`scripts/independent_tif_check.py`, numpy/tifffile/scipy only, no repo code; output `evidence/s13_independent_tif_check.json`):
+
+| File | Format | Duplicate test (dots within 3 px of another download, lane rule > 70%) | Holdout bar | Verdict |
+|---|---|---|---|---|
+| FUSE91-E1 zeros (`gems91-fuse91-…-zeros.tif`) | all finite, [0,1], no nodata | **FAILS**: 81.09% of its dots vs DENOVO, 74.44% vs MHTR, 74.31% vs CCR91 | 0.167293 HOLDOUT-DTI (below in-repo 0.206406) | **NOT OK TO SUBMIT** |
+| CCR91 zeros | all finite, [0,1] | **FAILS**: 91.34% vs MHTR | 0.202116 | **NOT OK TO SUBMIT** |
+| S11-MHTR E2 zeros | all finite, [0,1] | **FAILS** (91.59% vs CCR91) | 0.206406 (the in-repo reference) | **NOT OK TO SUBMIT** |
+| ASC91-E3 zeros | all finite, [0,1] | passes vs downloads (max 45.32%); registry not in checkout | 0.116767 | **NOT OK TO SUBMIT** (below bar) |
+| `*-nan` / unsuffixed twins (UCD91, MTD91, MHTR) | contain NaN nodata (7,111,787 NaN cells each) | twin of a zeros file (100%) | — | **NOT OK TO SUBMIT** (NaN encoding; likely source of the portal's range error, not reproduced here) |
+
+Why no new TIFF was produced this session: the pinned sample submission and parent raster are not in this checkout, and the competition data is behind a DrivenData login this sandbox cannot use (`python3 scripts/preflight.py` → `BUILD BLOCKED`). Every existing build reads third-party mirror copies, which `docs/DATA.md` flags as a data-use problem. See `docs/REVIEW-S13-20261024.md` for the full review, sources, and the human steps that unblock it. Irregularities: `IR-91-S13-01..06`.
+
 ## START HERE — session 12 standing brief (read at every session start)
 
 **Read `docs/SESSION_BRIEF_S12.md` first.** It holds the standing rules, the answer on 0.2778, the verdict on the current file, and the open human decisions. The S11 standing brief is kept verbatim below, in the session-10 section, and still applies except where S12 overrides it.
@@ -14,7 +30,7 @@
 
 ## FUSE91 SESSION STATUS (2026-10-24, branch `arena/fa0fb617-gemsdoe91`) — newest lane; new same-instrument holdout best
 
-**Verdict: OK TO DOWNLOAD AND SUBMIT — this file only, instead of the unsubmitted DENOVO/MHTR/DD-VTC/CCR91 candidates (mutual exclusion, IR-F91-01). Selector still confirms the live weekly allowance, eligibility and AI disclosure. No slot used by this session. No organizer score claimed.**
+**S13 CORRECTION — Verdict: NOT OK TO SUBMIT (the 2026-10-24 'OK TO DOWNLOAD AND SUBMIT' label was wrong).** The file fails the lane's >70% duplicate rule against DENOVO (81.09%), MHTR (74.44%) and CCR91 (74.31%), measured independently in `evidence/s13_independent_tif_check.json`. The 'mutual exclusion' argument did not replace that rule. The file was also built from mirror-restored inputs (IR-S13-02). Download remains available for research only. No organizer score claimed.
 
 - **[Download FUSE91-E1 submission GeoTIFF (138,651 B)](docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif)** · **[Single-TIFF ZIP](docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.zip)** · **[Format receipt](docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.json)** · **[Evidence page](docs/fuse91.html)** · **[Step-by-step submission guide](docs/fuse91-executive-summary.html)** · **[JSON run card](docs/run-card-F91.json)** · **[Session report](docs/FUSE91_20261024.md)** · **[Preregistration](docs/HYPOTHESES_F91.md)**
 - **Unique name:** `gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros` · **SHA-256:** `feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3` · **Note (60/140):** `GEMS91 FUSE91 E1 CTX+ASCstep+depthcond HGB 37654d s2.8 zeros`
