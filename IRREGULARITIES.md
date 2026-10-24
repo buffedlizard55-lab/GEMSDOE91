@@ -1169,3 +1169,7 @@ provenance/registry prevent the requested unique submission in this run.
 
 **Decision:** Do not change the organizer-format assumption by implication. Use the explicitly selected all-finite policy for current published research artifacts because the user's submission form rejected out-of-range values and the shared validator/writer enforce it; preserve the legacy option and this discrepancy for review. Before calling any file upload-ready, obtain organizer-confirmed format semantics and still satisfy science, novelty and separate-selector gates.
 
+
+## IR-91-1F0955-01 — baseline-free promotion claim (2026-10-24)
+
+`src/gems91/readiness.py` accepted a positive paired delta without a measured baseline score. Fixed centrally: require finite baseline score/CI, matching withheld-positive count, consistent pooled delta and paired interval containment. Regression and portal fixture tests added. Receipt consistency is not receipt authenticity. See `docs/REVIEW-1F0955-20261024.md`. No candidate was promoted; assigned lane remains missing, and the canonical final-dot duplicate remains blocking.
