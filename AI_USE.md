@@ -455,3 +455,29 @@ relocation from the top of the slot queue. Its own top slot proposal (`gdr25rm10
 `MODEL`) was also demoted on the same evidence.
 **Human decides:** `TOP_PUBLIC` + date, slots left this week, whether any slot goes to `anti10`,
 the R0 anchor receipt, and the blind final file. No upload is made by an agent.
+
+---
+
+# Session 9 disclosure (`arena/db7080fb-gemsdoe91`, evidence and portal audit, 2026-10-24)
+
+## What the AI wrote and changed
+
+- Added this durable project brief and full user protocol to `README.md`; expanded the evidence-first hypothesis ranking in `docs/HYPOTHESES_G91.md`; wrote official-source audit notes in `docs/SOURCES.md`.
+- Replaced the public landing page, executive summary, and submission guide with an explicit **NOT APPROVED — DO NOT DOWNLOAD OR SUBMIT A TIFF** state; removed historical TIFFs from `docs/downloads/` and left a notice so an old candidate cannot be mistaken for an active artifact.
+- Updated the negative run card; added `LIMITATIONS.md`, a no-selection `SLOT_PLAN.md`, and a three-pass review at `docs/REVIEW-20261024.md`.
+- Fixed preflight's stale timestamp and inconsistent text/JSON verdict, regenerated the blocked local snapshot, and added a snapshot consistency test; corrected the ledger test allowlist for the already-present GEOD axis. Updated portal tests to enforce fail-closed status, no public TIFF/ZIP link, and a complete negative run card.
+- Added IR-91-36 through IR-91-39 to document the duplicate-risk portal inconsistency, unsupported `0.2778` claim, legacy zero-outside encoding issue, and disagreement between local metric implementations and the official formula.
+
+## What the AI verified and did not verify
+
+- The current GEMSDOE32 page says no organizer score exists for its artifacts and does not substantiate `0.2778`; it remains an UNVERIFIED SITE/USER CLAIM.
+- The official public leaderboard displayed `0.4413` at rank 1 when fetched on 2026-10-24. Label: PUBLIC-LEADERBOARD OBSERVATION only, neither HOLDOUT-DTI nor ORGANIZER-CONFIRMED for GEMSDOE91.
+- The official data page redirected to login. No credentials were provided or used, no data were downloaded, and no competition page was logged into.
+- The former GEOD page's 93.2% dot-overlap report exceeds the parallel-run 70% duplicate threshold. The parent input is missing here, so the result was not recomputed; it was treated as a fail-closed stop.
+- The old zero-outside TIFF's finite zeroes violate the official null/NaN outside-bounds rule. Neither legacy TIFF is approved.
+- The official DTI page defines a per-truth-pixel maximum. `scripts/dti.py` uses a maximum while `src/gems91/metric.py` sums contributions; neither local implementation is the absent shared evaluator, so this discrepancy was logged rather than patched privately.
+- No new candidate raster was built, no experiment was run, no weekly slot was selected or spent, and no organizer submission was made. No HOLDOUT-DTI was generated and no score was forecast.
+
+## Current disposition
+
+The run card is negative because the assigned lane paragraph, shared evaluator/writer, and official local data/segment inputs are unavailable. This is blocked before experiment, not a geological negative result. The top hypothesis remains unvalidated and no TIFF download link is published. See `README.md`, `docs/run-card.json`, and `docs/REVIEW-20261024.md`.

@@ -1,1 +1,66 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMSDOE91 · How to submit</title><style>body{font:17px/1.7 system-ui;max-width:850px;margin:auto;padding:32px;color:#172b3a}strong{color:#9f261e}li{margin-bottom:16px}a{color:#075c9e}</style><a href="index.html">← Submission status</a><h1>Executive summary: submission procedure</h1><p><strong>Current verdict: NOT OK TO SUBMIT. No new TIFF is available.</strong> This page supersedes legacy slot suggestions in SUBMIT.md.</p><ol><li>The pipeline must have an assigned lane, hash-verified inputs, a matching official sample grid, and a complete registry.</li><li>Run feature-alone leakage canaries and whole-segment buffered hide-and-recover evaluation. Catalogue-derived features must use only visible faults. Record pooled HOLDOUT-DTI, evaluator version, withheld positive count and spatial confidence interval.</li><li>Compare the pre-placement surface and final dots against every registry raster. Stop and record a duplicate if either protocol threshold is exceeded. Missing rasters are unverified, not passes.</li><li>Require a better compliant holdout result than the current baseline. Validate the written, re-read TIFF: one band, exact reference CRS/shape/transform, finite footprint values in [0,1], and pixel-exact visible-fault masking. Validate the complete encoded value domain too; do not use an out-of-range nodata sentinel. Resolve outside-footprint encoding against organizer requirements before approval.</li><li>Only after a separate selector authorizes a weekly slot should a validated download link appear with its SHA256, unique filename, and note of at most 140 characters. This run has neither selected nor submitted a file.</li><li>At the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">organizer competition page</a>, check current rules and remaining quota. Choose the single-band .tif (or permitted single-TIFF zip), paste the accompanying note, and submit. Save the organizer receipt and associate it with the exact hash. Only receipt-backed performance is ORGANIZER-CONFIRMED.</li></ol><h2>Why the previous range error matters</h2><p>A file extension or successful write does not validate predictions. Negative nodata sentinels, infinity, NaN, or values above one can violate the upload contract. Inspect the actual re-read raster, not its preview. Do not clip a broken scientific output and call it validated.</p><p>Organizer access and current quota are unavailable in this environment; no automatic competition upload is attempted. See the <a href="REVIEW-20261024.md">audit</a> for unresolved prerequisites and source verification limits.</p></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to submit — GEMSDOE91</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1220;--panel:#121d2d;--ink:#eef4fb;--muted:#aebdce;--line:#2c3e52;--red:#ff6b6b;--redbg:#3a171c;--blue:#9cc5ff;--teal:#61d9c2;--amber:#ffd27a}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}.wrap{width:min(900px,calc(100% - 32px));margin:auto;padding:24px 0 48px}a{color:var(--blue)}a:hover{color:var(--teal)}code{padding:.1em .35em;border:1px solid var(--line);border-radius:5px;background:#0b1421;overflow-wrap:anywhere}.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin:16px 0}.alert{background:var(--redbg);border:2px solid var(--red);border-radius:12px;padding:20px}.alert h1{margin:0;color:#ffaaaa;font-size:1.55rem}.muted{color:var(--muted)}.warn{color:var(--amber)}li{margin:.7em 0}table{border-collapse:collapse;width:100%}td,th{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:8px}.button{display:inline-block;border:1px solid var(--blue);border-radius:8px;padding:8px 12px;text-decoration:none;font-weight:700}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p><a href="index.html">← GEMSDOE91 status</a></p>
+    <section class="alert" role="alert">
+      <h1>NOT APPROVED — no TIFF is available to download or submit</h1>
+      <p>This page explains the submission workflow, but this run did not produce a candidate that passed the protocol. Do not use a historical GEOD file or any sibling-site TIFF as a substitute.</p>
+    </section>
+
+    <section class="card">
+      <h2>What is verified right now</h2>
+      <ul>
+        <li>No new raster was generated, so there is no candidate hash, candidate name, holdout DTI, or submission note for a real file.</li>
+        <li>The current run card is negative because the lane, shared evaluator/writer, and local official feature/segment inputs are unavailable.</li>
+        <li>The official competition data page redirected to login when checked. No account credentials were used or requested.</li>
+        <li>Historical files previously shown on the site were withdrawn from the public download folder after a reported duplicate-threshold violation and failure to establish compliant holdout evidence.</li>
+      </ul>
+      <p>See <a href="REVIEW-20261024.md">the three-pass review</a>, <a href="HYPOTHESES_G91.md">the five research hypotheses</a>, and <a href="SOURCES.md">the official-source register</a>.</p>
+    </section>
+
+    <section class="card">
+      <h2>Project-side approval gates before a download link appears</h2>
+      <ol>
+        <li><strong>Research preregistration:</strong> assign the one permitted method lane; write a mechanism, non-fault mimic, falsifier, layer list, and dose before building.</li>
+        <li><strong>Input integrity:</strong> use the official registered-competitor data or an explicitly authorized mirror; verify hashes, CRS, shape, transform, and vector fault segments.</li>
+        <li><strong>Leakage:</strong> evaluate each feature alone. AUC greater than 0.90 stops the run until explained.</li>
+        <li><strong>Spatial holdout:</strong> use the shared buffered whole-segment hide-and-recover evaluator; derive catalogue-based features from visible segments only; mask visible faults pixel-exactly; calculate pooled DTI with the official 300 m kernel and weights. Record evaluator version, withheld positives, and a segment-level 95% CI.</li>
+        <li><strong>Novelty:</strong> compare the surface before placement and final dots after placement against every registry raster. Correlation above 0.90 or more than 70% of dots within 3 px means duplicate: log it and stop.</li>
+        <li><strong>Decision:</strong> require a result better than the current compliant holdout best. Only a separate selector may promote it to a real weekly slot.</li>
+        <li><strong>Raster validation:</strong> validate the file after writing and reread it. Check one float32 band, exact sample CRS/shape/geotransform, [0,1] prediction values, and the organizer's required null/NaN outside-bounds encoding. Record the raster SHA256.</li>
+      </ol>
+      <p class="muted">A preview, build success, or locally inferred score is not a substitute for these gates. The existing local hide-and-recover proxy is not the required evaluator and must not be relabelled HOLDOUT-DTI.</p>
+    </section>
+
+    <section class="card">
+      <h2>Submission steps once a future candidate is approved</h2>
+      <ol>
+        <li>Open the live <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a> and confirm account eligibility, current deadline, and remaining weekly cap. The official rules allow up to three scored submissions per week, subject to the live website, require one final submission selection across both prize phases, and set final content due by 5 p.m. ET on the deadline date. The exact current date was not verified here.</li>
+        <li>Download the single approved file from this page only after the status changes to <strong>OK TO SUBMIT</strong>. Preserve its exact bytes and verify the displayed SHA256.</li>
+        <li>On DrivenData's New submission form, choose the single-band GeoTIFF (or a ZIP containing exactly one GeoTIFF if that is what the form allows). Use the generated unique filename and paste the generated short note, at most 140 characters.</li>
+        <li>Submit through the entrant's account, save the exact organizer receipt and date, and copy the receipt-backed score into the ledger. Do not call a projection or public leaderboard number a receipt.</li>
+        <li>Before the final deadline, use the separate selector to choose only one final submission, as required by the official rules.</li>
+      </ol>
+      <p class="warn"><strong>No submission is made by this project or agent.</strong> Account registration, eligibility certifications, the actual upload, and the final selector remain actions of the registered competitor. Official rules require a narrative disclosure describing how generative AI was used when applicable. For this review, AI assisted with official-source research, geological-hypothesis ranking, and repository documentation/site/preflight-test edits; no candidate raster or score was produced. Any future submission disclosure must be updated to reflect the actual work used for that artifact. Finalists must provide reproducible code assets and documentation.</p>
+    </section>
+
+    <section class="card">
+      <h2>About the previous range error</h2>
+      <p>The message <code>Predicted values must be in range [0, 1]</code> cannot be diagnosed from the text of the error alone. The exact uploaded file and organizer-side validation output are not available here. Do not rely on the previous site's assertion that a particular file “cannot” produce the error.</p>
+      <p>The official format requires prediction values from 0 to 1 and null/NaN outside the bounds. A validator must inspect the actual reread array and correctly exclude only the allowed outside-bounds nulls; it must not silently clamp invalid values or substitute finite zeroes outside the footprint. No current file has passed this end-to-end approval.</p>
+    </section>
+
+    <p><a class="button" href="index.html">Return to status</a> <a class="button" href="run-card.json">Open current run card</a></p>
+  </main>
+</body>
+</html>

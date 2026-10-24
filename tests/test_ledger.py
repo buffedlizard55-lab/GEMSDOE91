@@ -1,6 +1,6 @@
-"""Ledger invariants. These protect the two dedupe rules in brief section 6:
-exact hash, and repeated (parent, axis, value). No overlap or rank-correlation
-thresholds are applied anywhere.
+"""Ledger invariants for exact hashes and repeated (parent, axis, value).
+Novelty thresholds are separate checks in ``src/gems91/novelty.py`` and are not
+implemented or certified by this ledger test.
 """
 
 import csv
@@ -43,7 +43,7 @@ def test_no_repeated_parent_axis_value(rows):
 
 
 def test_axes_are_from_the_brief(rows):
-    allowed = {"MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF", "SPACING", "TRACKB"}
+    allowed = {"MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF", "SPACING", "TRACKB", "GEOD"}
     assert {r["axis"] for r in rows} <= allowed
 
 

@@ -1,15 +1,57 @@
 {
-  "hypothesis": "Signed multiscale magnetic-gravity edge displacement (proposal only; no assigned lane)",
-  "mechanism": "Buried density and magnetization offsets may reveal unmapped faults",
-  "non_fault_mimic": "Intrusive lithological contact",
-  "holdout_dti": {"label": "HOLDOUT-DTI", "value": null, "evaluator_version": null, "withheld_positives": null, "ci95": null, "status": "NOT_RUN"},
-  "registry_comparison": {"surface_rank_correlation": null, "final_dot_overlap_within_3px": null, "status": "UNVERIFIED"},
+  "schema_version": 1,
+  "run_date_utc": "2026-10-24",
+  "hypothesis": "Fold-safe fault-tip and stepover neighborhoods conditioned on visible-fault dilatation and shear strain (proposal only)",
+  "mechanism": "Geothermal permeability may be enhanced around mechanically favorable fault terminations, stepovers, and intersections; fold-visible fault geometry is combined with the provided dilatation/shear layers.",
+  "non_fault_mimic": "A digitized map endpoint or map-edge truncation can mimic a geological fault termination; strain gradients can also reflect broad regional deformation rather than a local fault.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "value": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT_RUN",
+    "reason": "No compliant shared buffered whole-segment evaluator or local fault-segment data are available; local DTI implementations also disagree with the official per-truth-maximum formula."
+  },
+  "baseline_holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT_AVAILABLE"
+  },
+  "leakage_canary": {
+    "threshold_auc": 0.9,
+    "status": "NOT_RUN",
+    "features": []
+  },
+  "registry_comparison": {
+    "surface_rank_correlation": null,
+    "surface_threshold": 0.9,
+    "final_dot_overlap_within_3px": null,
+    "overlap_threshold": 0.7,
+    "status": "UNVERIFIED",
+    "reason": "No candidate surface or complete local registry rasters were available for this run."
+  },
   "raster_sha256": null,
-  "validator_output": {"status": "NOT_RUN", "no_nan_inside_footprint": null, "values_in_0_1": null, "crs_shape_transform_match": null},
+  "validator_output": {
+    "status": "NOT_RUN",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "null_or_nan_outside_bounds": null
+  },
   "submission_name": null,
-  "note": "Audit only: missing lane and compliant shared evaluator; no new TIFF or weekly submission.",
-  "verdict": "negative",
-  "verdict_reason": "Blocked before experiment, not evidence against the geological hypothesis",
+  "submission_note": null,
+  "submission_note_status": "NOT_GENERATED_NO_CANDIDATE",
+  "submission_note_max_chars": 140,
+  "submission_ready": false,
+  "selected_for_slot": false,
   "experiments_run": 0,
-  "submission_ready": false
+  "experiment_budget": 3,
+  "time_budget_hours": 2,
+  "verdict": "negative",
+  "verdict_reason": "Blocked before experiment; this is not evidence against the geological hypothesis.",
+  "run_note": "No lane, compliant shared evaluator, or local official inputs; no raster built, downloaded, selected, or submitted."
 }
