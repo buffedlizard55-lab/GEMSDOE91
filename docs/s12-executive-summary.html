@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S12-SPAC Executive Summary &amp; Submission Guide (0.2376 HOLDOUT-DTI) · GEMSDOE91</title>
+<meta name="description" content="Executive summary and step-by-step DrivenData #306 submission guide for S12-SPAC E3 (gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif).">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="s12-spac.html">S12-SPAC Lane (0.2376 DTI)</a><a href="s12-executive-summary.html"><strong>S12 Guide</strong></a><a href="s11-mhtr.html">S11-MHTR (Superseded)</a><a href="executive-summary.html">Global guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+
+<div class="banner" style="border-left-color:#17644e;background:#e7f0e8;border-color:#bfd6c5;margin-top:24px">
+  <strong style="color:#17644e">EXECUTIVE SUBMISSION VERDICT AT A GLANCE (AUTOMATED — ZERO HUMAN RASTER INSPECTION NEEDED):</strong><br>
+  &bull; <strong>Candidate File:</strong> <code>gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif</code> (<code>277,876</code> bytes, SHA-256 <code>0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd</code>).<br>
+  &bull; <strong>Automated Technical, Holdout, Canary &amp; 64-Raster External Uniqueness Verdict: <span class="badge">PASS — #1 CANDIDATE IN GEMSDOE91</span></strong>
+  (<code>0.237587 HOLDOUT-DTI</code>, paired <code>+0.031181</code> over <code>S11-MHTR E2</code> with 95% CI <code>[+0.024186, +0.038231]</code>, <code>P(&gt;0)=100%</code>; <code>0.107938 SGMC-OFFCAT-CONTROL-DTI</code>; strict <code>[0.0, 1.0]</code>, <code>0</code> NaNs).<br>
+  &bull; <strong>Human Fleet-Selector Gate: <span class="badge bad">HUMAN SELECTOR REQUIRED BEFORE LIVE DRIVENDATA UPLOAD</span></strong> — Per <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official Rules &sect;3.2</a> (3 submissions/week cap) and <code>SLOT_PLAN.md</code>, confirm remaining weekly slots, note synthetic 5-px lattice blanket <code>calib_r13lattice_00904.tif</code> (<code>IR-CED-003</code>), and <strong>never upload both <code>S12-SPAC E3</code> and superseded <code>S11-MHTR E2</code></strong> (<code>IR-91-S12-05</code>).
+</div>
+
+<section class="hero" style="padding-top:18px">
+  <div>
+    <span class="eyebrow">EXECUTIVE SUMMARY / STEP-BY-STEP SELECTOR GUIDE</span>
+    <h1>One file.<br>Five automated validators.<br>Clear selector rules.</h1>
+    <p class="lead">Everything needed to audit, download, verify SHA-256, and—if approved by the human weekly fleet selector—submit <code>gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif</code> on DrivenData #306 without risking a <code>[0, 1]</code> format error or wasting a weekly slot.</p>
+  </div>
+  <div class="download">
+    <div class="label">RECOMMENDED SELECTOR ARTIFACT (#1 IN GEMSDOE91)</div>
+    <h2><code>gems91-spac-e3-20261024T183000Z-a2740c89</code></h2>
+    <div class="status"><span>Format &amp; [0, 1] Range</span><strong>PASS (5/5 Validators)</strong></div>
+    <div class="status"><span>HOLDOUT-DTI (n=60,988)</span><strong>0.237587 (+15.1% vs S11)</strong></div>
+    <div class="status"><span>SGMC Blind Control</span><strong>0.107938 (+13.2% vs R0)</strong></div>
+    <div class="status"><span>External Uniqueness (64)</span><strong>PASS (&le; 68.02% 3px)</strong></div>
+    <a class="button" download href="downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif">↓ Download .TIF (277,876 B)</a>
+    <div style="text-align:center;margin-top:12px">
+      <a download href="downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.zip">↓ Single-TIFF .ZIP (243,967 B)</a> ·
+      <a href="downloads/gems91-spac-e3-20261024T183000Z-a2740c89-audit.json">Audit Receipt (.json)</a> ·
+      <a href="run-card-S12.json">JSON Run Card</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>5-Step Human Fleet-Selector &amp; DrivenData Upload Procedure</h2>
+  <div class="step">
+    <b>1</b>
+    <div>
+      <h3>Confirm Weekly Submission Allowance &amp; Mutual-Exclusion Rule</h3>
+      <p>Under <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">DOE GEMS Official Rules &sect;3.2</a>, teams are capped at <strong>3 submissions per rolling 7-day window</strong>, and a single selected submission competes in both the $50,000 Phase 1 and $250,000 Phase 2 rounds. <code>S12-SPAC E3</code> (<code>0.237587</code>) directly supersedes <code>GEMSDOE91</code>&rsquo;s unsubmitted <code>S11-MHTR E2</code> (<code>0.206406</code>) and <code>H91-DDVTC E1</code> (<code>0.174030</code>): <strong>upload at most one candidate from this lineage</strong>.</p>
+    </div>
+  </div>
+  <div class="step">
+    <b>2</b>
+    <div>
+      <h3>Download Only the All-Finite <code>-zeros.tif</code> (or <code>-zeros.zip</code>) &amp; Verify SHA-256</h3>
+      <p>Download <a download href="downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif"><code>gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif</code></a> (<code>277,876</code> bytes) and verify locally:</p>
+      <p><code>sha256sum gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif</code><br>
+      Expected: <code>0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd</code></p>
+      <p class="small">Never upload JSON run cards, Markdown reports, multi-band feature rasters, or <code>NaN</code>-outside diagnostic files.</p>
+    </div>
+  </div>
+  <div class="step">
+    <b>3</b>
+    <div>
+      <h3>Why It Will Not Trigger <code>&ldquo;Predicted values must be in range [0, 1]&rdquo;</code></h3>
+      <p>All <code>12,279,160</code> pixels (<code>3730 &times; 3292</code>, <code>EPSG:32611</code>, 100 m) are finite <code>float32</code> values strictly in <code>{0.0, 1.0}</code> with <code>nodata = None</code>, <code>0</code> NaNs inside or outside the footprint, <code>0</code> <code>-3.4028235e+38</code> sentinels, and <code>0</code> predictions within <code>&le; 300 m</code> of mapped catalogue faults (<code>min_d_cat = 316.2 m</code>).</p>
+    </div>
+  </div>
+  <div class="step">
+    <b>4</b>
+    <div>
+      <h3>Submit on DrivenData &amp; Paste Exact Traceability Note (&le; 140 chars)</h3>
+      <p>Navigate to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData #306 Submissions</a>, upload <code>gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif</code>, and paste the 97-character note below:</p>
+      <label for="exec-s12-note" style="display:block;font-weight:700;font-size:.86rem;margin-top:.4rem">DrivenData Description Note (97/140 chars)</label>
+      <div class="copyrow">
+        <textarea id="exec-s12-note" readonly rows="2">GEMS91 S12 E3 (H12-1 + H12-2 + H12-3): 3D ASig/SPI+Swarm+Radon AutoCtx (54000d &gt;3px, [0,1] zeros)</textarea>
+        <button data-copy="exec-s12-note" type="button">Copy</button>
+      </div>
+      <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+  <div class="step">
+    <b>5</b>
+    <div>
+      <h3>Record Live Receipt Score as <code>ORGANIZER-CONFIRMED</code> &amp; Maintain AI Disclosure</h3>
+      <p>Once DrivenData returns a leaderboard score, log the exact score, UTC timestamp, and SHA-256 in <code>ledger/submissions.csv</code> under <code>ORGANIZER-CONFIRMED</code> (never conflating <code>HOLDOUT-DTI = 0.237587</code> with a live organizer score), and include <code>AI_USE.md</code> in any finalist narrative package per Official Rules &sect;3.2.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div>S12-SPAC Executive Summary · Generated 2026-10-24T19:31:36Z</div>
+  <div><a href="s12-spac.html">Full S12 Technical Audit</a> · <a href="run-card-S12.json">S12 JSON Run Card</a> · <a href="index.html">Main Portal</a></div>
+</footer>
+</div></body></html>
