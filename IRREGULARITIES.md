@@ -1363,3 +1363,21 @@ Read from the official rules (`docs.nlr.gov/docs/fy26osti/96647.pdf`, sections �
 
 **Decision it changes:** no additional claim that G91 is proven superior on the organizer's hidden faults — only that it is the measured best on the identical catalogue-recovery instrument and the correct family representative for the selector.
 
+
+---
+
+## Session 13 (2026-10-24, `arena/c00ef287-gemsdoe91`) — review of the download and submit claims
+
+- **IR-91-S13-01 (verdict contradicts the lane rule, corrected):** FUSE91 was labelled "OK TO DOWNLOAD AND SUBMIT" while its dots are 81.09% within 3 px of DENOVO, 74.44% of MHTR and 74.31% of CCR91 (`evidence/s13_independent_tif_check.json`). The lane rule is >70% = duplicate. The earlier "mutual exclusion" reasoning and the "organizer-scored fleet lineage" comparison set are not part of the protocol. Label withdrawn in README, `docs/fuse91.html`, `docs/fuse91-executive-summary.html`, and the portal renderer. Submit steps were removed from the guide.
+- **IR-91-S13-02 (provenance):** FUSE91 and every other build read inputs from third-party GitHub mirror copies of competition data (`registry/data_manifest.json`, `scripts/restore_data.py`). `docs/DATA.md` rule 3 forbids automated access to the competition site and requires licensed inputs. Whether these mirrors are licensed for this challenge is unverified and must be decided by a human.
+- **IR-91-S13-03 (range error, not reproduced):** the `-nan` and unsuffixed twins carry NaN nodata in 7,111,787 cells each. The all-finite `-zeros` twins have none. This is the most likely cause of "Predicted values must be in range [0, 1]", but the portal was not accessible, so this is an inference. The user should send the exact portal message for the next session.
+- **IR-91-S13-04 (lane paragraph missing again):** the prompt's "single method paragraph below" is absent, so no lane was assigned and the duplicate rule was checked against the in-repo downloads only (recurrence of IR-91-S11-01 and IR-91-S12-01).
+- **IR-91-S13-05 (registry not in checkout):** `preflight.py` reports `BUILD BLOCKED` (sample_submission and parent_r0_nan missing). `registry/*.tif` is absent. The novelty test therefore covers the 11 downloads only, not the full 62-raster registry. It is not a registry clearance.
+- **IR-91-S13-06 (stale scores in the prompt):** the prompt names 0.3195 as the highest score. The official leaderboard read this session (`https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/`) shows #1 at 0.4413 and #23 at 0.3217. 0.2778 and 0.3195 remain CLAIM values with no organizer receipt in this checkout.
+
+## Current review — `arena/31d0d079-gemsdoe91` (2026-10-24)
+
+- **IR-91-ARENA31-01 — required lane paragraph is absent.** The prompt explicitly requires staying in one assigned method paragraph, but provides no method paragraph. This review therefore did not select a candidate to run, did not generate a TIF, and used no weekly slot. The ranked hypotheses are proposals only; no lane assignment is inferred from prior branches.
+- **IR-91-ARENA31-02 — data tree is absent and preflight blocks all axes.** `scripts/preflight.py` reports missing `sample_submission` and `parent_r0_nan` and zero ready axes; the axis report also lists additional missing inputs. No holdout, canary, surface correlation, dot overlap, or new-raster validation was run.
+- **IR-91-ARENA31-03 — score provenance.** The user-reported GEMSDOE32 `0.2778` remains an unverified CLAIM in this checkout, not an organizer receipt or a HOLDOUT-DTI measurement. The mechanism inferred from thinning/collar-pruning is plausible under the max-kernel metric but is not causal proof. Current official leaderboard state was not fetched.
+- **IR-91-ARENA31-04 — external LiDAR availability not established.** USGS 3DEP is recorded as an official source lead, but the 1 m DEM links/coverage for this study area were not checked because the official host is outside this execution's network allowlist and the competition `1m_DEM_links.csv` is not local. Do not treat LiDAR as a viable input until availability, license and permitted-use are checked.
