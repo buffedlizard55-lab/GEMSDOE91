@@ -28,3 +28,8 @@ releases/_tmp-*.tif
 
 # TRACKB trace GeoJSON is a derived candidate geometry (same policy as rasters)
 releases/*.geojson
+
+# Our own derived submission artifact is published for one-click download
+# (NOT competition input data; see IR-91-40). Only this path may hold a .tif.
+!docs/downloads/*.tif
+!docs/downloads/*.zip

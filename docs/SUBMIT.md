@@ -289,3 +289,17 @@ zero catalogue mass: 0 px    min nearest-neighbour after: 2.828 px (R0 floor pre
 catalogue (IR-91-03) and add none. The catalogue `PROXY` and the leakage canary are unchanged
 for every arm by construction (3.05 px floor vs a 3 px kernel, IR-91-33) — that is a property of
 the instrument, not evidence about the axis.
+
+## Session 2026-10-24 (`arena/58a33cc1-gemsdoe91`) addition: DENOVO lane — first downloadable file
+
+One de novo candidate built, gated, published for one-click download at
+`docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif`
+(sha256 `8cbad030…be9fb`; NaN twin `7941b7ab…` in `releases/`). Site:
+`docs/index.html` (executive summary first: download, name `GEMSDOE91-DENOVO-HGBCTX`,
+115-char form note, numbered submit steps). HOLDOUT-DTI pooled **0.142885**
+(`scripts/dti.py` official; 60,988 withheld positives; fold 95% CI [0.128860, 0.155952]);
+SGMC-off PROXY 0.068703 vs R0 0.095386 — instruments disagree (IR-91-38), MODEL live range
+~0.20-0.29. Recommendation: one weekly slot as the unique-lane test **only if** the human is
+not reserving all remaining slots for the R0-anchor queue above; never the blind final on
+current evidence. Full analysis `docs/DENOVO_20261024.md`; run card
+`reports/run_card_20261024.json`.

@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-24",
+  "session_branch": "arena/58a33cc1-gemsdoe91",
+  "lane": "DENOVO (HGB-CTX) - de novo detector surface from pinned sponsor training_features only; no R0 or ancestor dots read; greedy 2.8px-spaced unit-dot emission, >3px off catalogue",
+  "hypothesis": "A histogram-gradient-boosting detector on all 19 GeoDAWN band percentiles plus 11x11 neighbourhood context of the 8 gradient bands and the TRI3 concordance percentile, trained on mapped catalogue faults vs >5px off-catalogue negatives with NO distance-to-catalogue feature, ranks unmapped fault segments above the lineage emission baselines, and under spaced unit-dot emission its top 37,654 cells earn more hidden-fault credit per dot than the h19 lineage field.",
+  "mechanism": "DTI credit is a per-truth-pixel max (official definition verified 2026-10-24): TPw capped at 1 per truth pixel, every non-covering unit of mass costs 0.2 in FPw. Spaced (>=2.828px) unit dots tile each trace with one 3px kernel instead of paying for a solid ridge. Context means an off-trace magnetic/gravity crest (dip/depth offset of the gradient maximum from the surface trace) can vote for the trace location, which pixel-exact concordance (E1) could not. The >3px catalogue exclusion spends zero mass on pixels the scorer masks.",
+  "named_non_fault_mimic": "Lithologic contacts paralleling range fronts and GeoDAWN flight-line (400 m) levelling residuals in magnetic derivatives: both correlate with mapped-fault band signatures and with strain-rate bands, so the detector may be ranking survey/contact geometry rather than unmapped Quaternary faults. The SGMC disagreement below is the current evidence consistent with this mimic.",
+  "experiments_used": "3 of 3 (E1 TRI3 0.091215, E2 SUP-logreg 0.097146, E3 HGB-CTX 0.142885 pooled HOLDOUT-DTI); no further experiments this session",
+  "holdout_DTI": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "scripts/dti.py official DTI alpha=0.2 beta=0.8 R=3px triangular max-per-truth-pixel (identity with organiser TPw/FPw/FNw verified; worked example 0.60 reproduced in tests)",
+    "protocol": "whole catalogue connected components withheld in 4 spatial checkerboard block folds (400px); exclusion re-derived from visible catalogue per fold; model trained only outside fold region; pooled T/S/M/G",
+    "pooled": 0.142885,
+    "fold_values": [0.143956, 0.136599, 0.135255, 0.153814],
+    "fold_mean_CI95": [0.12886, 0.155952],
+    "n_withheld_positives": 60988,
+    "baselines_same_protocol": {"random_matched": 0.070827, "TRI3_E1": 0.091215, "SUP_E2": 0.097146, "d2_8_as_is_leakage_flattered_reference": 0.156058},
+    "leakage_canary_max_single_band_AUC": 0.5779,
+    "sgmc_off_catalogue_PROXY_report_only": {"ours": 0.068703, "R0": 0.095386, "truth_px": 62122}
+  },
+  "model_live_projection_NOT_a_score": {"range": [0.20, 0.29], "basis": "MODEL algebra in docs/DENOVO_20261024.md S2/S4: R0 implied TPw ~5.3k, |G| ~14k; per-dot credit ratios from SGMC (0.717) and holdout (1.044 vs d2.8). Leader 0.4413 (LEADERBOARD-READ 2026-10-24) implies ~61-64% weighted recall - not reachable from this surface family."},
+  "correlation_overlap_vs_registry": {
+    "rule": "duplicate if surface rank-correlation > 0.90 OR > 70% of dots within 3px of one registry raster",
+    "max_surface_spearman_sample150k": 0.1133,
+    "max_pct_dots_within_3px": 40.41,
+    "vs_parent_R0": {"spearman": 0.0462, "pct_within_3px": 30.68},
+    "verdict": "NOT a duplicate of any registry raster"
+  },
+  "raster": {
+    "file_zeros_primary": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
+    "sha256_zeros": "8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb",
+    "bytes_zeros": 202693,
+    "file_nan_twin": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-nan.tif",
+    "sha256_nan": "7941b7abc8587a62e14a7147392a6de5869d3daef08bac77321c5e5f3b887f9e",
+    "dot_set_digest": "dc8dfeb750ec2b893ce68057da085f1f9e5ffec9c448f850905b29376f8765d2",
+    "n_dots": 37654,
+    "rebuild": "byte-identical across two builds (RECEIPT)"
+  },
+  "validator_output": {
+    "scripts/validate_raster.py": "RESULT: PASS (both encodings)",
+    "gems91.release_gates": "PASS (both encodings, catalogue floor 3.0px respected, min distance 3.1623px)",
+    "no_nan_inside_footprint": true,
+    "values_within_0_1": true,
+    "all_12279160_cells_finite_zeros_file": true,
+    "nodata_tag_zeros_file": null,
+    "crs_shape_transform_match_sample": true,
+    "audit": "docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-audit.json"
+  },
+  "submission": {
+    "name": "GEMSDOE91-DENOVO-HGBCTX",
+    "note_115_of_140_chars": "GEMSDOE91 DENOVO-HGBCTX de novo sponsor-band HistGB+context, 37654 spaced dots >300m off-cat; holdout 0.1429 pooled",
+    "download": "docs/downloads/ (GitHub Pages: https://buffedlizard55-lab.github.io/GEMSDOE91/docs/index.html)"
+  },
+  "shared_tool_fix": "src/gems91/metric.py summed p*k per truth pixel; official metric takes the max. Fixed once here (IR-91-36); scripts/dti.py was already correct; both now agree <1e-9.",
+  "organizer_confirmed_score": null,
+  "verdict": "promote",
+  "verdict_scope": "Promote to ONE weekly slot as the unique-lane test (human submits; agent never submits). NOT a blind-final candidate on current evidence (SGMC instrument disagrees). If the receipt is <= R0 claim, this lane is a negative result and the next lane is H4 (1m-DEM re-derivation, IR-91-39)."
+}

@@ -1,0 +1,65 @@
+{
+  "mode": "holdout3",
+  "evaluator": "scripts/dti.py official-DTI (alpha=0.2,beta=0.8,R=3px)",
+  "experiment": 3,
+  "method": "HGB-CTX HistGB on 20 percentiles + 8 mean11 contexts, trained outside fold region only, no dcat feature",
+  "features": [
+    "mag_anom",
+    "rtp",
+    "tmi_hg",
+    "tmi_hg_mean11",
+    "geod_2ndinv",
+    "geod_2ndinv_mean11",
+    "iso_grav_anom_slope",
+    "iso_grav_anom_slope_mean11",
+    "tc",
+    "tc_mean11",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "tmi_vg",
+    "tmi_vg_mean11",
+    "deq_n100a15",
+    "iso_grav_anom_vg",
+    "iso_grav_anom_vg_mean11",
+    "det_elev",
+    "iso_grav_anom",
+    "tmi",
+    "depth_to_base_surf",
+    "ieq_n100a15",
+    "cond_surf",
+    "iso_grav_anom_hg",
+    "iso_grav_anom_hg_mean11",
+    "det_elev_slope",
+    "det_elev_slope_mean11",
+    "TRI3_surface"
+  ],
+  "n_withheld_positives_per_fold": [
+    15105,
+    15978,
+    12874,
+    17031
+  ],
+  "pooled_holdout_dti": 0.142885,
+  "fold_dti": [
+    0.143956,
+    0.136599,
+    0.135255,
+    0.153814
+  ],
+  "fold_mean_ci95": [
+    0.12886,
+    0.155952
+  ],
+  "dots_per_fold": [
+    9888,
+    9831,
+    8663,
+    9272
+  ],
+  "pooled_T": 8165.36,
+  "pooled_S": 37654.0,
+  "pooled_M": 4039.09,
+  "pooled_G": 60988,
+  "spacing_px": 2.8,
+  "n_dots_total_budget": 37654
+}

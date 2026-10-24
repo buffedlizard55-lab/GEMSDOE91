@@ -137,3 +137,12 @@ The three arms are one dose-response experiment — do not spend three slots on 
 ## Session 7 (`arena/0ed37053-gemsdoe91`) addition: `TRACKB` (Phase 2 only — does NOT change the queue above)
 
 Three count-fixed trace-densification arms built and gated (`8343ab38` t1k10 `+0.004` MODEL, `ab72339b` t1k20 `+0.005`, `6d16fd7a` t2k10 `+0.002`), each with a GeoJSON of >=1 km strike-consistent traces carrying one evidence paragraph per trace (2,214 / 2,214 / 675 traces). They spend **no** weekly slot unless the human decides; their value is Phase-2 expert review. Spacing confound and invariant PROXY: IR-91-31. What would change this: a human ruling that Phase-2 trace review outweighs a weekly DTI read, in which case `t1k10` goes first (lowest dose, full trace set).
+
+## Session 2026-10-24 DENOVO note (does not silently reorder the queue)
+
+New one-click-downloadable candidate `gems91-denovo-hgbctx-…-7941b7ab-zeros.tif`
+(`docs/downloads/`, both gate sets PASS) exists outside the R0-edit queue: HOLDOUT-DTI
+0.142885 pooled (honest-lane best; see IR-91-37 for why R0/d2.8-as-is are not the bar),
+SGMC-off PROXY below R0 (IR-91-38). If the human wants the de-novo-vs-lineage question
+settled, it is the single slot to spend; otherwise the revised queue above (R0 anchor ->
+PRUNE-le10 -> MASScons3add) stands unchanged. It must not be the blind final without a receipt.

@@ -2,6 +2,65 @@
 
 No script here submits anything. One entity, three scored slots a week, one final file.
 
+## ⬇️ ONE-CLICK SUBMISSION (site: `docs/index.html`)
+
+**[Download `gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif`](docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif)**
+— ✅ **FORMAT: OK TO DOWNLOAD AND SUBMIT** (both validators PASS re-read from disk; all
+12,279,160 cells finite, values in [0,1], no nodata tag, CRS/shape/transform match the
+official sample — see `docs/downloads/…-audit.json`).
+**Name:** `GEMSDOE91-DENOVO-HGBCTX` ·
+**Note (115 chars):** `GEMSDOE91 DENOVO-HGBCTX de novo sponsor-band HistGB+context, 37654 spaced dots >300m off-cat; holdout 0.1429 pooled`
+**Evidence:** HOLDOUT-DTI 0.142885 pooled (best honest lane; IR-91-37/38) — weekly-slot test
+only, **not** the blind final. Steps: open the site; it is the executive summary.
+
+## STANDING PROMPT — read at the start of every session (operative requirements)
+
+> Goal: top of the DrivenData GEMS #306 leaderboard by finding geothermal-indicative faults
+> **missing from the USGS/INGENIOUS catalogue**. Each session must (1) study why the fleet-best
+> `h33-h33-2-b2…-zeros` scored 0.2778 (CLAIM) before building; (2) generate a **unique** TIF —
+> never a copy (learning from prior files is allowed; reuse of their dots is a different,
+> labelled lane); (3) make it **obvious on the site's first screen** whether the file is OK to
+> download and submit, with a one-click download, a unique name and a ≤140-char note;
+> (4) validate **by script, never by human visual inspection** — values in [0,1], no NaN inside
+> the footprint, CRS/shape/transform match, zero catalogue mass, unseen sha256;
+> (5) follow the parallel-run protocol: one lane per session (duplicate if rank-correlation
+> > 0.90 or > 70% of dots within 3 px of a registry raster — check surface *and* dots),
+> reuse shared tools (fix bugs once, in the open), whole-segment buffered hide-and-recover
+> holdout with pooled official DTI (α 0.2, β 0.8, 300 m), label every number HOLDOUT-DTI /
+> ORGANIZER-CONFIRMED / MODEL / CLAIM, run the per-feature leakage canary (AUC > 0.90 =
+> leakage until proven otherwise), stop after 3 experiments or 2 hours, end with a JSON run
+> card (negative results are deliverables), never auto-submit;
+> (6) propose 3–5 new geological hypotheses (layers, physical signature, why missing faults,
+> difference from this repo, ranked by expected DTI gain vs cost) and validate the top one on
+> the holdout before any slot is spent; external data only from free official sources,
+> verified obtainable first;
+> (7) work line by line from verified sources with links; flag irregularities in
+> `IRREGULARITIES.md`; no hallucinations.
+> Core values: **Maximize P(Win)** — choose the path that most raises the probability of
+> winning; **Own the Outcome** — own the result end to end, publish defects in our own work
+> (e.g. IR-91-36) rather than dropping them quietly.
+> Fleet score history (132 CLAIM rows): `ledger/prior_fleet.csv`. Competition:
+> https://www.drivendata.org/competitions/306/competition-doe-gems/ ·
+> problem/metric: …/page/967/ · leaderboard verified read 2026-10-24: #1 0.4413.
+
+## Session 2026-10-24 (`arena/58a33cc1-gemsdoe91`) — DENOVO lane, first site + downloadable file
+
+- **Metric verified line-by-line** against the organiser's page (fetched 2026-10-24) and a
+  shared-tool bug fixed: `src/gems91/metric.py` summed kernel credit where the official
+  `TPw` takes a per-truth-pixel max (IR-91-36). Why 0.2778 won, and why 0.4413 needs a new
+  detector (implied ≈61–64% weighted recall vs R0's ≈37%, MODEL): `docs/DENOVO_20261024.md`.
+- **Three preregistered experiments** on the whole-segment blocked holdout (60,988 withheld
+  positives, pooled official DTI): TRI3 concordance 0.091215, SUP logreg 0.097146,
+  **HGB-CTX 0.142885 [0.128860, 0.155952]** (random matched 0.070827; d2.8-as-is 0.156058 is
+  leakage-flattered — IR-91-37). Canary max single-band AUC 0.5779 ≪ 0.90.
+- **Built + published** `gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab` (+zeros twin
+  `8cbad030…`), 37,654 dots >3 px off-catalogue, byte-identical rebuild, uniqueness max
+  Spearman 0.1133 / max 40.41% dots within 3 px (not a duplicate). SGMC control disagrees
+  (IR-91-38): MODEL live range ~0.20–0.29. Ledger now 51 BUILT rows, still 0 submitted.
+- **Next lane named, not built:** H4 1 m-DEM scarps re-derived from the official DEM links
+  (blocked in-sandbox, IR-91-39).
+
+
 ## CURRENT STATE
 
 - **Parent:** `R0 = h33-h33-2-b2`, `37,654` unit-mass dots (`RECEIPT`) on the pinned `3730×3292` `EPSG:32611` (`100 m`, `float32`, footprint `5,167,373` px, `0` dots on catalogue, min `2.236 px`) grid. Both pinned TIFFs rebuild byte for byte from either ancestor (`baeae321…c77dd`, `355,443` B; `c55bafc4…6fa9`, `219,065` B; dot digest `905cee9d…`). R0's `0.2778` / `0.3698` remains an unreceipted **CLAIM**.

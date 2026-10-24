@@ -24,11 +24,13 @@ jobs:
             --ledger ledger/submissions.csv
       - name: No competition raster is committed
         run: |
-          if git ls-files | grep -E '\.tiff?$'; then
-            echo "::error::a raster is tracked in git; competition data must not be committed"
+          # docs/downloads/ may hold OUR OWN derived submission .tif (IR-91-40);
+          # competition INPUT rasters must never be tracked anywhere.
+          if git ls-files | grep -E '\.tiff?$' | grep -v '^docs/downloads/'; then
+            echo "::error::a raster is tracked in git outside docs/downloads/; competition data must not be committed"
             exit 1
           fi
-          echo "no rasters tracked"
+          echo "no competition rasters tracked (docs/downloads submission artifact allowed)"
       - name: Ledger invariants
         run: python -m pytest tests/test_ledger.py
       - name: Manifest is well formed

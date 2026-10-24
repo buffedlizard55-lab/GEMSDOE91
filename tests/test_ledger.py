@@ -43,7 +43,8 @@ def test_no_repeated_parent_axis_value(rows):
 
 
 def test_axes_are_from_the_brief(rows):
-    allowed = {"MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF", "SPACING", "TRACKB"}
+    # DENOVO added 2026-10-24: a de novo surface lane (no parent dots), see IR-91-35.
+    allowed = {"MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF", "SPACING", "TRACKB", "DENOVO"}
     assert {r["axis"] for r in rows} <= allowed
 
 

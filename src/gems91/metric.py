@@ -102,16 +102,18 @@ def components(
     mass = pred
     offsets = _offsets(radius_px)
 
-    # T: credit accumulated on truth pixels by every dot.
+    # T = TPw: per truth pixel, the MAX of p*k over dots within R (official).
     credit = np.zeros_like(pred)
     for dr, dc, k in offsets:
-        credit += k * _shift(pred, dr, dc)
+        np.maximum(credit, k * _shift(pred, dr, dc), out=credit)
     if extra_mass is not None:
         r, c, p = extra_mass
+        p_cell = float(pred[r, c]) + float(p)  # extra mass adds to the cell's own p
         for dr, dc, k in offsets:
             tr, tc = r + dr, c + dc
             if 0 <= tr < credit.shape[0] and 0 <= tc < credit.shape[1]:
-                credit[tr, tc] += p * k
+                if p_cell * k > credit[tr, tc]:
+                    credit[tr, tc] = p_cell * k
     T = float(credit[truth].sum())
 
     # M: for each dot, its best match anywhere on the truth set (saturated at 1).
