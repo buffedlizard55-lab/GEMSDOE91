@@ -1,0 +1,462 @@
+{
+  "schema": "gems91.snap-vg-evidence.v1",
+  "build_date": "20261023",
+  "parent": "h33-h33-2-b2",
+  "lineage": {
+    "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "parent_dot_digest": "905cee9d4383de23d6ee6366da4627fe19a78e4f49ce3a2462a8736e9b66a027",
+    "n_dots": 37654,
+    "twins_identical": true,
+    "dots_on_catalogue": 0,
+    "min_catalogue_distance_px": 2.236068,
+    "dots_le_3px": 2171,
+    "rebuilt_from": {
+      "d2.8": {
+        "n_ancestor_dots": 44090,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      },
+      "solo_d2.8": {
+        "n_ancestor_dots": 40199,
+        "n_after_collar": 37654,
+        "identical_to_parent": true
+      }
+    }
+  },
+  "min_catalogue_px": 3.0,
+  "driver": {
+    "formula": "0.50*pct(|Band9 tmi_vg|) + 0.50*pct(|Band11 iso_grav_anom_vg|)",
+    "percentile_scope": "footprint cells only",
+    "sign_handling": "absolute value: VG polarity is remanence/density dependent, crest location is not"
+  },
+  "leakage_canary": {
+    "max_symmetric_auc": 0.5793,
+    "max_feature": "geod_2ndinv",
+    "threshold": 0.9,
+    "stride": 25,
+    "all_band_aucs": {
+      "mag_anom": 0.5085,
+      "rtp": 0.5067,
+      "tmi_hg": 0.5302,
+      "geod_2ndinv": 0.5793,
+      "iso_grav_anom_slope": 0.5282,
+      "tc": 0.5611,
+      "geod_shearrate": 0.5761,
+      "geod_dilaterate": 0.532,
+      "tmi_vg": 0.5183,
+      "deq_n100a15": 0.5598,
+      "iso_grav_anom_vg": 0.5275,
+      "det_elev": 0.5063,
+      "iso_grav_anom": 0.5356,
+      "tmi": 0.5114,
+      "depth_to_base_surf": 0.5037,
+      "ieq_n100a15": 0.5749,
+      "cond_surf": 0.5079,
+      "iso_grav_anom_hg": 0.5025,
+      "det_elev_slope": 0.5633
+    }
+  },
+  "r0_baseline": {
+    "n_dots": 37654,
+    "hide_and_recover": {
+      "proxy_mean_credit": 0.006186,
+      "proxy_mean_credit_ci95": 0.000228,
+      "proxy_mean_credit_ci95_interval": [
+        0.005958,
+        0.006413
+      ],
+      "proxy_coverage": 0.038706,
+      "draws": 5,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200,
+      "n_withheld_positives_per_draw": [
+        12200,
+        12198,
+        12199,
+        12200,
+        12201
+      ],
+      "mean_credit_per_draw": [
+        0.006038136218637152,
+        0.006201889947509195,
+        0.006582695130310594,
+        0.0062188384485118405,
+        0.00588596849724877
+      ]
+    },
+    "sgmc_off_catalogue_dti": 0.095386,
+    "redundancy": {
+      "dots_with_neighbour_lt_2p83px": 11415,
+      "dots_with_neighbour_lt_2px": 0,
+      "mean_nn_px": 3.7351
+    },
+    "block_density_cv_1km": 0.6187,
+    "block_density_cv_5km": 0.7261,
+    "driver_pct_at_r0_dots": 0.5355
+  },
+  "arms": {
+    "vg1px": {
+      "id": "h33-h33-2-b2-SNAPvg1px-20261023-97606a78",
+      "axis": "SNAP",
+      "value": "vg1px",
+      "radius_px": 1,
+      "driver": "0.50*pct(|Band9 tmi_vg|) + 0.50*pct(|Band11 iso_grav_anom_vg|)",
+      "n_dots": 37654,
+      "n_movable": 35483,
+      "moved": 33807,
+      "frozen_no_valid_target": 0,
+      "pct_moved_of_movable": 95.2766,
+      "min_separation_after_px": 2.0,
+      "mean_displacement_all_px": 0.8978,
+      "mean_displacement_moved_px": 1.0,
+      "max_displacement_px": 1.0,
+      "pct_moved": 89.7833,
+      "pct_hamming": 179.5666,
+      "driver_pct_before": 0.536,
+      "driver_pct_after": 0.5884,
+      "collar_le3_before": 2171,
+      "collar_le3_after": 2171,
+      "min_catalogue_distance_px": 2.23606797749979,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 33807,
+        "removed": 33807,
+        "changed": 67614,
+        "pct_changed_of_parent": 179.5666
+      },
+      "sha256_nan": "97606a783b05186fc4406c1f5d5890cbcfde140ba265e672e66b7a3a6ad321fa",
+      "sha256_zeros": "d22deb3858be7c7a8cc55681e8025cb7c1307ac9e1af1eadc9a7313f2cc1ee64",
+      "bytes_nan": 372619,
+      "bytes_zeros": 225726,
+      "dot_set_digest": "dd7341b19c1d4a0af7c291be15c9a7f591d06d2d17b5df72c909c5a758eb392a",
+      "predicted_change_MODEL": "MODEL:+0.002",
+      "predicted_range": "[-0.004,+0.008]",
+      "rationale": "100 m: inside the organizer's own cell-scale uncertainty, the smallest treatment that can still correct a mis-centred dot.",
+      "form_note": "h33-h33-2-b2; SNAP vg1px: every dot <= 1 px to the |VG| crest (bands 9+11), count 37654; pred +0.002 MODEL",
+      "report_only": {
+        "hide_and_recover": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_mean_credit_ci95_interval": [
+            0.005958,
+            0.006413
+          ],
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200,
+          "n_withheld_positives_per_draw": [
+            12200,
+            12198,
+            12199,
+            12200,
+            12201
+          ],
+          "mean_credit_per_draw": [
+            0.006038136218637152,
+            0.006201889947509195,
+            0.006582695130310594,
+            0.0062188384485118405,
+            0.00588596849724877
+          ]
+        },
+        "hide_and_recover_delta_vs_r0": 0.0,
+        "canary": {
+          "canary_auc": 0.0471,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        },
+        "sgmc_off_catalogue_dti": 0.092123,
+        "sgmc_delta_vs_r0": -0.003264,
+        "redundancy": {
+          "dots_with_neighbour_lt_2p83px": 16445,
+          "dots_with_neighbour_lt_2px": 0,
+          "mean_nn_px": 3.589
+        },
+        "block_density_cv_1km": 0.6213,
+        "block_density_cv_5km": 0.7252
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": []
+      },
+      "validate_raster_all_pass": true
+    },
+    "vg2px": {
+      "id": "h33-h33-2-b2-SNAPvg2px-20261023-353a9dda",
+      "axis": "SNAP",
+      "value": "vg2px",
+      "radius_px": 2,
+      "driver": "0.50*pct(|Band9 tmi_vg|) + 0.50*pct(|Band11 iso_grav_anom_vg|)",
+      "n_dots": 37654,
+      "n_movable": 35483,
+      "moved": 34285,
+      "frozen_no_valid_target": 0,
+      "pct_moved_of_movable": 96.6237,
+      "min_separation_after_px": 2.0,
+      "mean_displacement_all_px": 1.5538,
+      "mean_displacement_moved_px": 1.7065,
+      "max_displacement_px": 2.0,
+      "pct_moved": 91.0527,
+      "pct_hamming": 182.1055,
+      "driver_pct_before": 0.536,
+      "driver_pct_after": 0.6142,
+      "collar_le3_before": 2171,
+      "collar_le3_after": 2171,
+      "min_catalogue_distance_px": 2.23606797749979,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 34285,
+        "removed": 34285,
+        "changed": 68570,
+        "pct_changed_of_parent": 182.1055
+      },
+      "sha256_nan": "353a9ddac0385fa66a8bcdd2b6d57ea5676bb85de34d0efce2cebeeedc4e5f4a",
+      "sha256_zeros": "c910a3113912473c27e6a8ed21e16a6855ea8984ecb90eaf4f3fd2b17d3c6dd5",
+      "bytes_nan": 372114,
+      "bytes_zeros": 225046,
+      "dot_set_digest": "26f85b028c6b3ce9e036dfdfed9993533f3113736a28cc8d35e7b1401120e5ee",
+      "predicted_change_MODEL": "MODEL:+0.003",
+      "predicted_range": "[-0.005,+0.011]",
+      "rationale": "200 m: the displacement scale a 400 m flight-line geometry actually implies for a lineament's mapped position.",
+      "form_note": "h33-h33-2-b2; SNAP vg2px: every dot <= 2 px to the |VG| crest (bands 9+11), count 37654; pred +0.003 MODEL",
+      "report_only": {
+        "hide_and_recover": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_mean_credit_ci95_interval": [
+            0.005958,
+            0.006413
+          ],
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200,
+          "n_withheld_positives_per_draw": [
+            12200,
+            12198,
+            12199,
+            12200,
+            12201
+          ],
+          "mean_credit_per_draw": [
+            0.006038136218637152,
+            0.006201889947509195,
+            0.006582695130310594,
+            0.0062188384485118405,
+            0.00588596849724877
+          ]
+        },
+        "hide_and_recover_delta_vs_r0": 0.0,
+        "canary": {
+          "canary_auc": 0.0407,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        },
+        "sgmc_off_catalogue_dti": 0.089567,
+        "sgmc_delta_vs_r0": -0.005819,
+        "redundancy": {
+          "dots_with_neighbour_lt_2p83px": 18383,
+          "dots_with_neighbour_lt_2px": 0,
+          "mean_nn_px": 3.5764
+        },
+        "block_density_cv_1km": 0.6282,
+        "block_density_cv_5km": 0.728
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": []
+      },
+      "validate_raster_all_pass": true
+    },
+    "vg3px": {
+      "id": "h33-h33-2-b2-SNAPvg3px-20261023-435435a3",
+      "axis": "SNAP",
+      "value": "vg3px",
+      "radius_px": 3,
+      "driver": "0.50*pct(|Band9 tmi_vg|) + 0.50*pct(|Band11 iso_grav_anom_vg|)",
+      "n_dots": 37654,
+      "n_movable": 35483,
+      "moved": 34635,
+      "frozen_no_valid_target": 0,
+      "pct_moved_of_movable": 97.6101,
+      "min_separation_after_px": 2.0,
+      "mean_displacement_all_px": 2.2983,
+      "mean_displacement_moved_px": 2.4986,
+      "max_displacement_px": 3.0,
+      "pct_moved": 91.9823,
+      "pct_hamming": 179.5082,
+      "driver_pct_before": 0.536,
+      "driver_pct_after": 0.6367,
+      "collar_le3_before": 2171,
+      "collar_le3_after": 2171,
+      "min_catalogue_distance_px": 2.23606797749979,
+      "hamming_vs_parent": {
+        "n_dots_parent": 37654,
+        "n_dots_child": 37654,
+        "added": 33796,
+        "removed": 33796,
+        "changed": 67592,
+        "pct_changed_of_parent": 179.5082
+      },
+      "sha256_nan": "435435a37ec9925b92a3d5bf6b5824e31a41b16a593b6a98d1ef30490462aa51",
+      "sha256_zeros": "81b14b91c17dbea0cf8920633d813cd76ca1af50e662f1e305ec4d411bffe4be",
+      "bytes_nan": 370863,
+      "bytes_zeros": 223945,
+      "dot_set_digest": "1244594681762a7a9b536a56d641fb0d17026fea1658b2be76789141dcffdc30",
+      "predicted_change_MODEL": "MODEL:+0.004",
+      "predicted_range": "[-0.008,+0.016]",
+      "rationale": "300 m = the full kernel radius R; the largest move that can still be argued to be a *position* correction and not a relocation to a different structure.",
+      "form_note": "h33-h33-2-b2; SNAP vg3px: every dot <= 3 px to the |VG| crest (bands 9+11), count 37654; pred +0.004 MODEL",
+      "report_only": {
+        "hide_and_recover": {
+          "proxy_mean_credit": 0.006186,
+          "proxy_mean_credit_ci95": 0.000228,
+          "proxy_mean_credit_ci95_interval": [
+            0.005958,
+            0.006413
+          ],
+          "proxy_coverage": 0.038706,
+          "draws": 5,
+          "hold_frac": 0.2,
+          "block_px": 10,
+          "n_held_per_draw": 12200,
+          "n_withheld_positives_per_draw": [
+            12200,
+            12198,
+            12199,
+            12200,
+            12201
+          ],
+          "mean_credit_per_draw": [
+            0.006038136218637152,
+            0.006201889947509195,
+            0.006582695130310594,
+            0.0062188384485118405,
+            0.00588596849724877
+          ]
+        },
+        "hide_and_recover_delta_vs_r0": 0.0,
+        "canary": {
+          "canary_auc": 0.0472,
+          "draws": 3,
+          "stop_rule": "AUC > 0.90 means investigate before shipping"
+        },
+        "sgmc_off_catalogue_dti": 0.085605,
+        "sgmc_delta_vs_r0": -0.009781,
+        "redundancy": {
+          "dots_with_neighbour_lt_2p83px": 19723,
+          "dots_with_neighbour_lt_2px": 0,
+          "mean_nn_px": 3.563
+        },
+        "block_density_cv_1km": 0.6421,
+        "block_density_cv_5km": 0.728
+      },
+      "gates_nan": {
+        "PASS": true,
+        "failed": [],
+        "crs_matches_template": true,
+        "shape_matches_template": true,
+        "transform_matches_template": true,
+        "single_band": true,
+        "dtype_float32": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "values_within_0_1": true,
+        "unit_mass_dots": true,
+        "zero_catalogue_mass": true,
+        "min_catalogue_distance_px": 2.23606797749979,
+        "catalogue_floor_respected": true,
+        "count_matches_parent": true,
+        "sha256_not_in_ledger": true
+      },
+      "gates_zeros": {
+        "PASS": true,
+        "failed": []
+      },
+      "validate_raster_all_pass": true
+    }
+  },
+  "null_diagnostic": {
+    "label": "DIAGNOSTIC ONLY - no release, no ledger row, no slot",
+    "radius_px": 2,
+    "seed": 91,
+    "moved": 32157,
+    "pct_moved": 85.4013,
+    "mean_displacement_all_px": 1.2282,
+    "collar_le3": 2171,
+    "driver_pct_after": 0.5363,
+    "hide_and_recover": {
+      "proxy_mean_credit": 0.006186,
+      "proxy_mean_credit_ci95": 0.000228,
+      "proxy_mean_credit_ci95_interval": [
+        0.005958,
+        0.006413
+      ],
+      "proxy_coverage": 0.038706,
+      "draws": 5,
+      "hold_frac": 0.2,
+      "block_px": 10,
+      "n_held_per_draw": 12200,
+      "n_withheld_positives_per_draw": [
+        12200,
+        12198,
+        12199,
+        12200,
+        12201
+      ],
+      "mean_credit_per_draw": [
+        0.006038136218637152,
+        0.006201889947509195,
+        0.006582695130310594,
+        0.0062188384485118405,
+        0.00588596849724877
+      ]
+    },
+    "hide_and_recover_delta_vs_r0": 0.0,
+    "sgmc_off_catalogue_dti": 0.09406,
+    "sgmc_delta_vs_r0": -0.001326
+  }
+}

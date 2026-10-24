@@ -1,7 +1,11 @@
 # Variant cards — SNAP axis (vertical-gradient ladder) on R0, Session 6
 
 Full structural-geologist cards: [`docs/MECHANISM_CARDS.md`](../docs/MECHANISM_CARDS.md).
-Numbers: [`evidence/snap_axis_20261023.json`](../evidence/snap_axis_20261023.json).
+Numbers: [`evidence/snap_axis_vg_20261023.json`](../evidence/snap_axis_vg_20261023.json).
+
+A second, independent SNAP session (PR #18) shipped the same day on a *horizontal*-gradient driver
+and reached the same conclusion from a different field (`docs/MECHANISM_CARDS_SNAP.md`). Two fields,
+two dose parametrisations, both negative: the family is closed, not the driver.
 
 Parent **R0 = `h33-h33-2-b2`**, 37,654 unit-mass dots, sha256 `baeae321…c77dd` (NaN) /
 `c55bafc4…6fa9` (zeros), `CLAIM` 0.2778. Rebuilt here from two pinned ancestors before
@@ -43,7 +47,7 @@ Zeros twins: `d22deb38…` / `c910a311…` / `81b14b91…`.
 - **Predicted (frozen).** +0.003 `MODEL`.
 - **Falsifier.** Loses to the radius-2 random-shuffle null on an independent fault map.
 
-## 3. `SNAPvg3px` — full kernel radius (outside the brief's ≤ 2 px spec, IR-91-29)
+## 3. `SNAPvg3px` — full kernel radius (outside the brief's ≤ 2 px spec, IR-91-31)
 
 - **Hypothesis.** If the error is at kernel scale, the correction should be too.
 - **Mechanism.** 97.61 % of movable dots move, mean 2.499 px for movers, max 3.000 px,
@@ -77,4 +81,4 @@ falsify the *control*, which is itself worth one slot if the human wants that qu
 answered (`vg2px` is the arm to spend it on: spec-compliant, largest contrast with the null).
 
 The catalogue hide-and-recover `PROXY` is **identically 0.006186** for all four builds
-including R0. That is blindness, not evidence of no effect — see IR-91-28.
+including R0. That is blindness, not evidence of no effect — see IR-91-31.

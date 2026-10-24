@@ -399,50 +399,41 @@ slot count, the deadline confirmation, the collar ruling (IR-91-03), and the bli
    weekly slots (`SLOT_PLAN.md`) and choose the single blind final submission.
 
 
-# Session 6 disclosure (`arena/f8d67617-gemsdoe91`, SNAP / vertical gradient, 2026-10-23)
+## Session 6 (2026-10-23, `arena/9b8f7d01-gemsdoe91`) — SNAP axis
 
-## What the AI wrote and executed in Session 6
+**AI wrote:** `src/gems91/snap.py` (driver preparation + deterministic snap operator),
+`scripts/build_snap.py`, `tests/test_snap.py` (9 tests), `docs/MECHANISM_CARDS_SNAP.md`,
+the SNAP sections of `SLOT_PLAN.md` / `docs/SUBMIT.md` / `README.md` (CURRENT STATE) /
+`IRREGULARITIES.md` (IR-91-28..30), and all three release files and their `-zeros` twins.
+The AI chose the session axis (`SNAP`, the only weekly-slot axis absent from the ledger; the
+brief says not to ask the human to choose an axis).
 
-- **Axis selection, made autonomously** (the brief forbids asking): `SNAP`. Justification
-  recorded in the source, not just the prose — all nine SNAP rows already in the ledger snap
-  to a *horizontal* composite (`tmi_hg`, `iso_grav_anom_hg`, `det_elev_slope`, `tc`), and no
-  row has ever used the sponsor's vertical-gradient bands (`Band 9 tmi_vg`,
-  `Band 11 iso_grav_anom_vg`), which is a different physical field, not a re-dose.
-- **Design decisions the AI made and must be judged on:**
-  1. a dose ladder at r = 1/2/3 px rather than three different drivers, so a live result
-     yields a *slope*; the 3 px arm knowingly sits outside the brief's "≤2 px" SNAP parameter
-     (IR-91-29);
-  2. R0's 2,171 inherited 2–3 px collar dots are **frozen**, not moved, so the arms do not
-     also execute a partial PRUNE (the same choice `RELIEF` made, IR-91-27);
-  3. the parent's 2 px spacing floor is enforced by reserving a 3×3 exclusion around every
-     finalised *and* every queued dot — the first two builds of the session broke it
-     silently (5,955–15,118 pairs < 2 px), which is written up as IR-91-30;
-  4. a report-only random-target null at r = 2, with no raster and no ledger row, so the
-     treatment can be separated from "moving 35k dots".
-- **Code & docs:** `scripts/build_snap_geodetic.py` (new, deterministic, idempotent rebuild,
-  refuses to write if count/collar/spacing invariants fail), `tests/test_snap_vg.py` (14 new
-  tests), a `Rebuild the SNAP …` step in `.github/workflows/ci.yml`, and updates to
-  `docs/MECHANISM_CARDS.md`, `ledger/variant-cards-SNAP-vg-20261023.md`,
-  `ledger/submissions.csv` (3 `BUILT` rows), `releases/MANIFEST.json` (6 hashes),
-  `evidence/snap_axis_20261023.json`, `SLOT_PLAN.md`, `README.md` (CURRENT STATE block only),
-  `docs/SUBMIT.md`, `IRREGULARITIES.md` (`IR-91-28..30`), and this file.
-- **AI-written, human-decided boundary:** the AI wrote every prediction. The frozen `MODEL`
-  numbers (+0.002/+0.003/+0.004) were fixed in source before any control ran; the post-hoc
-  revision (negative, −0.003 … −0.012) is labelled post-hoc everywhere it appears.
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read or print credentials,
+scrape a leaderboard, or invent a score. The parent was rebuilt byte-exact from pinned
+ancestors before any variant was built; every input was sha256-verified first. The catalogue
+PROXY and SGMC control are labelled `PROXY`/report-only and are never called scores.
 
-## What the AI did NOT do in Session 6
+**Human decides:** whether a SNAP slot is bought at all (the AI's recommendation is no; SNAP
+is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
+one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
+single blind final file.
 
-- Did not submit, did not contact `dropbox.com`, did not fetch `drivendata.org`, did not
-  read/request/store/print credentials, did not scrape any leaderboard.
-- Did not commit any raster (`releases/*.tif` stay gitignored; only sha256 travels).
-- Did not report the catalogue hide-and-recover PROXY as "no effect": it is identically
-  0.006186 for every build including R0, i.e. structurally blind here (IR-91-28).
+## Session 6b (2026-10-23, `arena/f8d67617-gemsdoe91`) — SNAP on the vertical gradient
 
-## What the human must decide now
+**AI wrote:** `scripts/build_snap_geodetic.py` (deterministic, idempotent rebuild, refuses to write
+on a count/collar/spacing violation), `tests/test_snap_vg.py` (14 tests), the `session 6b` sections of
+`README.md` / `SLOT_PLAN.md` / `docs/SUBMIT.md` / `docs/MECHANISM_CARDS.md` /
+`ledger/variant-cards-SNAP-vg-20261023.md` / this file, `IR-91-31`, the CI rebuild step, three
+`BUILT` ledger rows, six `releases/MANIFEST.json` hashes and `evidence/snap_axis_vg_20261023.json`.
+The AI chose the axis (`SNAP`, per the instruction not to ask) and — after PR #18 landed the same
+axis on a horizontal driver — chose a **different physical field** (vertical gradient) plus a
+**random-target null** that the earlier design could not run, so the session adds evidence rather
+than repeating an experiment.
 
-1. Whether to spend a slot on `vg2px` at all. The AI's recommendation is **no**, unless the
-   human wants the SGMC control itself tested live; the expected sign is negative.
-2. `TOP_PUBLIC` (score + date), slots left this week, and confirmation of the `2026-12-03`
-   deadline — all still blank, so every target comparison in this repo remains unanchored.
-3. Whether the three files should be described to the organisers at all: they are honest
-   negative results, and the rules only require disclosing AI *use*, not every experiment.
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read/print credentials, scrape a
+leaderboard, commit a raster, or invent a score. The parent was rebuilt from two pinned ancestors
+before any edit; every input was sha256-verified first. The frozen `MODEL` predictions were written
+into the source before any control ran; the post-hoc revision is labelled as post-hoc everywhere.
+
+**Human decides:** whether to spend a slot on any SNAP file (the AI's recommendation is no, for both
+SNAP sessions), `TOP_PUBLIC` + date, slots remaining, every upload, and the single blind final file.

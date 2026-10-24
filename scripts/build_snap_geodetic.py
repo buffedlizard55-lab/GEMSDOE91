@@ -592,7 +592,7 @@ def main(argv: list[str] | None = None) -> int:
         "arms": evidence_arms,
         "null_diagnostic": null_diag,
     }
-    ev = ROOT / "evidence" / f"snap_axis_{BUILD_DATE}.json"
+    ev = ROOT / "evidence" / f"snap_axis_vg_{BUILD_DATE}.json"
     ev.write_text(json.dumps(evidence, indent=2) + "\n", encoding="utf-8")
     print(f"\nledger appended {appended} of {len(ledger_rows)} rows "
           f"(the rest were already recorded)\nrelease manifest {mp}\nevidence {ev}")

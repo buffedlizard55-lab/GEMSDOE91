@@ -313,7 +313,11 @@ exact equal-area relief terciles via `R_rel = 0.90·pct(Band 12 det_elev) + 0.10
 
 # SNAP axis — vertical-gradient dose ladder on R0 (Session 6, built 2026-10-23)
 
-Built by `scripts/build_snap_geodetic.py`; every number in `evidence/snap_axis_20261023.json`.
+Built by `scripts/build_snap_geodetic.py`; every number in `evidence/snap_axis_vg_20261023.json`.
+A **second, independent SNAP session (PR #18)** shipped the same week on a *horizontal*-gradient
+driver (`scripts/build_snap.py`, cards in [`MECHANISM_CARDS_SNAP.md`](MECHANISM_CARDS_SNAP.md)).
+It reached the same conclusion from a different field, which is why the SNAP family — not just
+this driver — is now recommended closed.
 Parent: R0 (`h33-h33-2-b2`), 37,654 unit dots, claimed 0.2778 (`CLAIM`). The prediction in
 each card was fixed in `ARMS` **before** any control was computed, and is what the ledger
 row carries; the post-hoc control result is reported separately and labelled as such.
@@ -395,7 +399,7 @@ already slightly better than random on this field but nowhere near its crests.
   that failure, and it is why it exists.
 - **Predicted live change (frozen, `MODEL`).** **+0.004**, range −0.008 … +0.016.
 - **Brief deviation, stated:** 3 px exceeds the brief's "move each dot ≤ 2 px" SNAP
-  specification. It is logged as IR-91-29 and is the top of the dose ladder, not a
+  specification. It is logged as IR-91-31 and is the top of the dose ladder, not a
   spec-compliant candidate.
 - **Falsifier.** A monotone *decrease* with dose (the mechanism gets worse the harder it is
   applied) is decisive against the field, not merely against the dose.
@@ -440,4 +444,4 @@ algebra (a dot pays iff within 2.83 px of truth; break-even credit 0.0556 at DTI
 The catalogue hide-and-recover `PROXY` is **identically 0.006186 for all four builds
 including R0** — it is structurally blind here and must not be cited as "no effect":
 with the collar dots frozen and every movable dot required to stay > 3 px from the
-catalogue, no reachable arrangement can change the credit on catalogue cells. See IR-91-28.
+catalogue, no reachable arrangement can change the credit on catalogue cells. See IR-91-31.

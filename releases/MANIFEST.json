@@ -125,6 +125,36 @@
       "bytes": 370350
     },
     {
+      "file": "h33-h33-2-b2-SNAPs2c-20261023-86b27de1-zeros.tif",
+      "sha256": "b8f1a8ed6c80b038355a8f9aed7277c9b6d59817521fbe96af97c52abb15d42e",
+      "bytes": 224489
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2c-20261023-86b27de1.tif",
+      "sha256": "86b27de1e6849101ebd6a3ab925183fdf1bed4f11257997678ee226ebe80ecb4",
+      "bytes": 371722
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2f-20261023-c2391234-zeros.tif",
+      "sha256": "f2fe14c1c46b133cf4bd16bcbde8bc0a07fd8b0de1e0038c97411cb860ac85c7",
+      "bytes": 225819
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2f-20261023-c2391234.tif",
+      "sha256": "c239123496deb176c6ed8d365284715570cd11bacd77d9c266064dd5a8b97c75",
+      "bytes": 372581
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2q75-20261023-8aa75390-zeros.tif",
+      "sha256": "9c4c13d39b48147615e66340803274517c3cc15974d9451e8cf46bee4edf1fa9",
+      "bytes": 225140
+    },
+    {
+      "file": "h33-h33-2-b2-SNAPs2q75-20261023-8aa75390.tif",
+      "sha256": "8aa7539013b4e89df65e752da2a4a477ac4f7d0c972a46f03673b631490e94c9",
+      "bytes": 372144
+    },
+    {
       "file": "h33-h33-2-b2-SNAPvg1px-20261023-97606a78-zeros.tif",
       "sha256": "d22deb3858be7c7a8cc55681e8025cb7c1307ac9e1af1eadc9a7313f2cc1ee64",
       "bytes": 225726

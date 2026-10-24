@@ -575,63 +575,87 @@ placing any new recipient dot at `d_cat ≤ 3.0 px` violates the `≥ 3 px` new-
 `added_dots_le3px = 0` across all three `RELIEF` builds `RECEIPT`).
 
 
-## IR-91-28 — The catalogue hide-and-recover PROXY cannot evaluate any SNAP edit that holds the collar
+## IR-91-28 — The catalogue PROXY is identically zero for SNAP, by construction, not by result
 
-**Expected** (brief §6): the hide-and-recover PROXY is a REPORT-ONLY instrument that
-measures "if new-fault truth looks like mapped-fault truth a few cells away, which
-arrangement covers it better".
+**Expected** (brief §6): the catalogue hide-and-recover PROXY, reported with `n` withheld
+positives and a 95 % CI, should say something about a variant.
 
-**Actual:** for all four builds this session it returns **exactly 0.006186** —
-`vg1px`, `vg2px`, `vg3px`, the random-shuffle null, and R0 itself to six decimals. This is
-not a small effect; it is a structural blind spot. `proxy.hide_and_recover` scores each
-withheld *catalogue* cell by its distance to the nearest dot within R = 3 px. Every SNAP
-target is required to sit at `d_cat > 3.0 px` (else the edit would move mass into the
-collar), and the 2,171 dots R0 already holds at 2 < d_cat ≤ 3 px are frozen. Therefore the
-only dots that can ever sit within 3 px of a catalogue cell are the frozen ones, which no
-arm changes. The instrument's input is invariant by construction.
+**Actual:** every SNAP arm returns `0.006186 -> 0.006186`, a delta of exactly `0.000000`
+in all 5 draws (`12,198-12,201` withheld positives per draw, CI `[0.005958, 0.006413]`).
+The reason is structural: a withheld catalogue cell can only be credited by a dot within
+the 3 px kernel; SNAP targets are floored at `d_cat > 3 px` (constraint 4) and the only
+parent dots already inside 3 px are the 2,171 collar dots quarantined by IR-91-27. No legal
+SNAP move can therefore change catalogue credit.
 
-**Decision it changes.** (a) Never cite "PROXY Δ = 0.0000" for a collar-holding SNAP arm as
-"no effect" — it is *no measurement*. (b) The instrument must be run on a grid where the
-collar is released (or on the RELIEF/CONCENTRATION-style edits that move mass across the
-whole field), otherwise it cannot adjudicate a SNAP arm. (c) The SGMC off-catalogue control
-and the random-shuffle null in this session are the instruments that do carry information
-here; `docs/MECHANISM_CARDS.md` reports them instead and marks the PROXY as blind.
+**Decision it changes.** Do **not** read the zero as evidence about the axis (and do not
+write it up as "no effect"). The informative control is the independent off-catalogue USGS
+SGMC map, where credit can change; it is reported as `PROXY` only. The same blindness now
+applies to every non-PRUNE axis whose targets are floored outside the collar.
 
-## IR-91-29 — The `vg3px` arm moves dots further than the brief's own SNAP definition allows
+## IR-91-29 — The full SNAP arm is a re-layout, not a snap, and SNAP is exempt from the 1-50 % rule
 
-**Expected** (brief §5): "SNAP: move each dot <=2 px to the strongest edge/scarp response in
-its window."
+**Expected** (brief §5): `SNAP` moves each dot `<= 2 px`; the 1-50 % dot-change rule governs
+the other axes, and SNAP is exempt because same-count movement can legitimately touch many
+dots.
 
-**Actual:** this session built a three-point dose ladder at r = 1, 2 **and 3 px**. The 3 px
-arm moves up to 3.000 px (mean 2.499 px for the movers). This is a deviation from the
-brief's design parameter, not from any competition rule (`<=2 px` appears nowhere in the
-problem page, the metric page or the rules PDF).
+**Actual:** the literal window-max rule moves **35,174 of 37,654 dots (93.41 %)** with a mean
+displacement of **1.73 px** and a dot-set Hamming distance of **186.83 %**. That is a new
+field derived from two gradient bands, not a positional refinement; it belongs in the same
+family as the single-signal lanes that scored 0.00-0.19 live. At the other end, the crest
+arm moves only **2,047 dots (5.44 %)** by **0.08 px**.
 
-**Decision it changes.** `vg3px` is a dose-ladder point and must not be described as a
-spec-compliant SNAP candidate; if the human only wants spec-compliant files, use
-`vg2px` (`h33-h33-2-b2-SNAPvg2px-20261023-353a9dda`) or `vg1px`. The rationale for the
-deviation is stated in the mechanism card: R = 3 px is the kernel reach, so it is the reach
-at which a misplacement costs the most, and without the third point the ladder cannot
-distinguish "the field is wrong" from "the dose is wrong".
+**Decision it changes.** Built a pre-registered dose ladder (5.4 % / 11.9 % / 93.4 %) rather
+than three arbitrary driver variants, so the human is not forced to spend a slot on the
+extreme to learn the axis's direction. `s2f` is labelled a negative control, not a slot
+candidate; the SLOT_PLAN keeps SNAP out of the top 3.
 
-## IR-91-30 — SNAP, as specified, is not a *local* edit: ~90 % of the field moves
+## IR-91-30 — The repo's existing SNAP path would violate constraint 4 and IR-91-27
 
-**Expected** (brief §5): a variant is "one change from a named parent", and except for SNAP
-"a variant must change 1-50 % of R0's dots".
+**Expected:** `scripts/build.py --axis SNAP` is the generic builder and should produce a
+compliant SNAP file.
 
-**Actual:** applying SNAP as specified — every dot moves to the strongest response in its
-window — moves 89.78 %, 91.05 % and 91.98 % of the parent's dots (95.3–97.6 % of the dots
-that are legally movable). The parent is dense (mean nearest neighbour 3.74 px) and the
-driver has crests almost everywhere, so nearly every dot finds a better legal cell. R0's
-own spacing floor (0 pairs < 2 px) is *not* preserved for free either: the first two builds
-of this session produced 5,955–15,118 dot pairs closer than 2 px before the target
-selection was made to reserve a 3×3 exclusion around every finalised and every queued dot.
+**Actual:** it calls `axes.snap`, whose `min_cat_px` default is **2.0** (not 3.0) and which
+does not quarantine the parent's inherited `2 < d_cat <= 3 px` collar dots. Running it would
+place moved dots at 2-3 px from the catalogue (constraint 4 violation) and would let a SNAP
+edit relocate collar dots, silently mixing in a PRUNE edit. `axes.snap` also orders dots
+row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on float scaling.
 
-**Decision it changes.** (a) A SNAP arm is a **re-placement of the field onto the driver's
-crests**, not a refinement of a few dots; a live Δ therefore measures "is the crest field a
-better fault map than the lineage field", which is a bigger question than the brief's
-wording implies. (b) Any SNAP build must enforce the parent's 2 px floor explicitly, or it
-silently becomes a SPACING/redundancy experiment as well (mass up, credit saturated).
-`scripts/build_snap_geodetic.py` refuses to write a file whose realised minimum separation
-is < 2.000 px, and `tests/test_snap_vg.py` asserts it. (c) Do not compare a SNAP arm's
-`pct_changed` against the 1–50 % band used for the other axes.
+**Decision it changes.** SNAP is built by `scripts/build_snap.py` on `src/gems91/snap.py`
+(explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
+float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic
+demo but must not be used to build a release.
+
+## IR-91-31 — SNAP on the vertical gradient: what the second SNAP session adds that IR-91-28..30 did not
+
+Two sessions ran `SNAP` on R0 the same day. PR #18 used a high-passed **horizontal**-gradient driver
+over a *quantile* ladder and recorded IR-91-28 (the catalogue PROXY is identically `0.006186` by
+construction), IR-91-29 (SNAP is a re-layout, exempt from the 1–50 % rule) and IR-91-30 (the generic
+`axes.snap` path would violate the 3 px collar). This session reached the same two structural facts
+independently — the same `0.006186`, the same ~90 % re-layout — so those items stand and are **not**
+duplicated here. What is new:
+
+1. **A random-target null is the discriminator, not another driver.** PR #18 varied how *many* dots
+   move. This session varied *how far* they may move while holding everything else (parent, count,
+   collar, spacing, footprint) fixed, and added a report-only arm in which the legal target is drawn
+   uniformly at random inside the same window (seed 91, no raster, no ledger row, no slot). The null
+   moves 85.40 % of dots for `−0.0013` on SGMC; the real treatment at the same radius moves 91.05 %
+   for `−0.0058`, and the loss grows with dose (`−0.0033 / −0.0058 / −0.0098` at r = 1/2/3) while the
+   driver percentile rises (`0.536 → 0.588 / 0.614 / 0.637`). **A dose ladder without a same-size null
+   cannot tell "the field is wrong" from "moving this many dots is bad"; with the null, it can.**
+   Recommendation for every future SNAP-style axis: build the null first.
+2. **The 2 px nearest-neighbour floor has to be enforced, and SNAP breaks it by default.** R0 has 0
+   dot pairs closer than 2 px (the d2.8 thinning rule). The first two builds of this session produced
+   5,955 and 11,774 such pairs, because two dots can independently choose the same crest. That is a
+   *second* edit (redundancy: `S` up, `T` saturated) hiding inside a SNAP arm. The builder now
+   reserves a 3×3 exclusion around every finalised **and** every queued dot, refuses to write if the
+   realised minimum separation is < 2.000 px, and `tests/test_snap_vg.py` asserts it.
+3. **One arm is outside the brief's own SNAP parameter.** `vg3px` moves dots up to 3 px; the brief
+   says "≤ 2 px". It is kept because R = 3 px is the kernel reach and the third rung is what makes
+   the ladder a slope rather than a pair, but it is flagged in `docs/SUBMIT.md` and must not be
+   described as spec-compliant. `vg2px` is the compliant arm.
+
+**Decision it changes.** (a) SNAP is retired as an axis on the strength of two independent negative
+builds, not one; `SLOT_PLAN.md` keeps it out of the top 3 and offers only the sign flip (`SNAP-ANTI`)
+as a future build. (b) Any future SNAP arm must ship with a same-size random-target null and a
+spacing-floor assertion, or its result is not interpretable. (c) The catalogue PROXY stays blind for
+every axis whose targets are floored outside the collar — the SGMC control is the informative one.

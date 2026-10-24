@@ -182,57 +182,101 @@ python3 scripts/validate_raster.py releases/h33-h33-2-b2-RELIEFr2p12-20261023-6f
 
 ---
 
-## Session 6 (`arena/f8d67617-gemsdoe91`) — SNAP vertical-gradient ladder: **built and certified, but recommended against**
+## Session 6 (`arena/9b8f7d01-gemsdoe91`) — SNAP variants (built; **not** in the top 3)
 
-Six files (`NaN` primary + `-zeros` fallback for each of three arms) are on disk and pinned in
-`releases/MANIFEST.json`. **This is a falsification test, not a candidate set** (`SLOT_PLAN.md`,
-`ledger/variant-cards-SNAP-vg-20261023.md`): the frozen `MODEL` predictions are +0.002/+0.003/+0.004,
-but the only independent fault map the repo may read (USGS SGMC) says the treatment *loses* 2.5–7.4×
-more fault proximity than a random shuffle of the same size, monotonically with dose.
+All three files and their `-zeros` fallbacks are on disk in `releases/`, pinned in
+`releases/MANIFEST.json` (never committed). **No agent submits.** `SNAP` is predicted at or
+below R0 on the only independent locator (off-catalogue USGS SGMC), so it is a reserve
+axis-retirement test, not a slot candidate (`SLOT_PLAN.md`, `docs/MECHANISM_CARDS_SNAP.md`).
 
 ```bash
 python3 scripts/restore_data.py
-python3 scripts/build_snap_geodetic.py --build          # idempotent: same ids, same bytes
-python3 scripts/validate_raster.py releases/<file>.tif data/official/sample_submission.tif \
+python3 scripts/build_snap.py --build
+python3 scripts/validate.py releases/h33-h33-2-b2-SNAPs2c-20261023-86b27de1.tif
+python3 scripts/validate_raster.py releases/h33-h33-2-b2-SNAPs2c-20261023-86b27de1.tif \
+    data/official/sample_submission.tif \
     --catalogue data/official/existing_faults.tif \
     --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
-python3 -m pytest tests/test_snap_vg.py                 # the invariants the arms promise
 ```
 
-| use | file (`releases/`) | name | form note (≤140 chars, verified length) |
+| File (`releases/`) | Rule | Form note (≤140 chars, exact length) | `MODEL` |
 |---|---|---|---|
-| **only if closing the mechanism** | `h33-h33-2-b2-SNAPvg2px-20261023-353a9dda.tif` | `h33-h33-2-b2-SNAPvg2px-20261023-353a9dda` | `h33-h33-2-b2; SNAP vg2px: every dot <= 2 px to the |VG| crest (bands 9+11), count 37654; pred +0.003 MODEL` (106) |
-| ladder point | `h33-h33-2-b2-SNAPvg1px-20261023-97606a78.tif` | `…-SNAPvg1px-…-97606a78` | `h33-h33-2-b2; SNAP vg1px: every dot <= 1 px to the |VG| crest (bands 9+11), count 37654; pred +0.002 MODEL` (106) |
-| ladder point, **outside the brief's ≤2 px spec** (IR-91-29) | `h33-h33-2-b2-SNAPvg3px-20261023-435435a3.tif` | `…-SNAPvg3px-…-435435a3` | `h33-h33-2-b2; SNAP vg3px: every dot <= 3 px to the |VG| crest (bands 9+11), count 37654; pred +0.004 MODEL` (106) |
+| `h33-h33-2-b2-SNAPs2c-20261023-86b27de1.tif` | 3×3 crest only, 2,047 dots moved (5.44 %) | `h33-h33-2-b2; SNAP crest: 2047 dots (5.4%) moved 0.08px mean, count fixed; pred MODEL:+0.000` (92) | +0.000 `[−0.006,+0.006]` |
+| `h33-h33-2-b2-SNAPs2q75-20261023-8aa75390.tif` | window max, gain ≥ p75, 4,495 moved (11.94 %) | `h33-h33-2-b2; SNAP maxq75: 4495 dots (11.9%) moved 0.24px mean, count fixed; pred MODEL:-0.004` (94) | −0.004 `[−0.012,+0.005]` |
+| `h33-h33-2-b2-SNAPs2f-20261023-c2391234.tif` | window max, no threshold, 35,174 moved (93.41 %) | `h33-h33-2-b2; SNAP maxfull: 35174 dots (93.4%) moved 1.73px mean, count fixed; pred MODEL:-0.014` (96) | −0.014 `[−0.028,+0.004]` |
 
 ### Session 6 format receipt (`RECEIPT`, re-read from disk after write)
 
 ```text
-1. h33-h33-2-b2-SNAPvg1px-20261023-97606a78
-   primary (.tif):        sha256=97606a783b05186fc4406c1f5d5890cbcfde140ba265e672e66b7a3a6ad321fa (372,619 B)
-   fallback (-zeros.tif): sha256=d22deb3858be7c7a8cc55681e8025cb7c1307ac9e1af1eadc9a7313f2cc1ee64 (225,726 B)
-   dots 37,654 | cat_mass 0 | min_d_cat 2.2361 px (2,171 inherited, unchanged) | moved 33,807 (89.78%) | mean disp 0.898 px
-   min nearest-neighbour 2.000 px | driver pct 0.5360 -> 0.5884 | validate_raster 14/14 PASS | gates 2/2 twins PASS
+1. h33-h33-2-b2-SNAPs2c-20261023-86b27de1
+   primary (.tif)        sha256=86b27de1e6849101ebd6a3ab925183fdf1bed4f11257997678ee226ebe80ecb4 (371,722 B)
+   fallback (-zeros.tif) sha256=b8f1a8ed6c80b038355a8f9aed7277c9b6d59817521fbe96af97c52abb15d42e (224,489 B)
+   dots 37,654 unit-mass | count_matches_parent PASS | cat_mass 0 | min_d_cat 2.2361 px (added_le3px 0)
+   collar 2,171 -> 2,171 | moved 2,047 | mean disp 0.0798 px | Hamming 4,094 (10.87%)
+   gates: release_gates 16/16 PASS (nan + zeros) | validate_raster 14/14 PASS | reread_from_disk PASS
 
-2. h33-h33-2-b2-SNAPvg2px-20261023-353a9dda
-   primary (.tif):        sha256=353a9ddac0385fa66a8bcdd2b6d57ea5676bb85de34d0efce2cebeeedc4e5f4a (372,114 B)
-   fallback (-zeros.tif): sha256=c910a3113912473c27e6a8ed21e16a6855ea8984ecb90eaf4f3fd2b17d3c6dd5 (225,046 B)
-   dots 37,654 | cat_mass 0 | min_d_cat 2.2361 px (2,171 inherited, unchanged) | moved 34,285 (91.05%) | mean disp 1.554 px
-   min nearest-neighbour 2.000 px | driver pct 0.5360 -> 0.6142 | validate_raster 14/14 PASS | gates 2/2 twins PASS
+2. h33-h33-2-b2-SNAPs2q75-20261023-8aa75390
+   primary (.tif)        sha256=8aa7539013b4e89df65e752da2a4a477ac4f7d0c972a46f03673b631490e94c9 (372,144 B)
+   fallback (-zeros.tif) sha256=9c4c13d39b48147615e66340803274517c3cc15974d9451e8cf46bee4edf1fa9 (225,140 B)
+   dots 37,654 unit-mass | count_matches_parent PASS | cat_mass 0 | min_d_cat 2.2361 px (added_le3px 0)
+   collar 2,171 -> 2,171 | moved 4,495 | mean disp 0.2369 px | Hamming 8,990 (23.88%)
+   gates: release_gates 16/16 PASS (nan + zeros) | validate_raster 14/14 PASS | reread_from_disk PASS
 
-3. h33-h33-2-b2-SNAPvg3px-20261023-435435a3
-   primary (.tif):        sha256=435435a37ec9925b92a3d5bf6b5824e31a41b16a593b6a98d1ef30490462aa51 (370,863 B)
-   fallback (-zeros.tif): sha256=81b14b91c17dbea0cf8920633d813cd76ca1af50e662f1e305ec4d411bffe4be (223,945 B)
-   dots 37,654 | cat_mass 0 | min_d_cat 2.2361 px (2,171 inherited, unchanged) | moved 34,635 (91.98%) | mean disp 2.298 px
-   min nearest-neighbour 2.000 px | driver pct 0.5360 -> 0.6367 | validate_raster 14/14 PASS | gates 2/2 twins PASS
+3. h33-h33-2-b2-SNAPs2f-20261023-c2391234
+   primary (.tif)        sha256=c239123496deb176c6ed8d365284715570cd11bacd77d9c266064dd5a8b97c75 (372,581 B)
+   fallback (-zeros.tif) sha256=f2fe14c1c46b133cf4bd16bcbde8bc0a07fd8b0de1e0038c97411cb860ac85c7 (225,819 B)
+   dots 37,654 unit-mass | count_matches_parent PASS | cat_mass 0 | min_d_cat 2.2361 px (added_le3px 0)
+   collar 2,171 -> 2,171 | moved 35,174 | mean disp 1.7331 px | Hamming 70,348 (186.83%)
+   gates: release_gates 16/16 PASS (nan + zeros) | validate_raster 14/14 PASS | reread_from_disk PASS
 
-grid (all six): EPSG:32611 | 3730x3292 | 100 m | float32 | 1 band | values {0,1} | NaN outside the footprint
+PROXY (report only, never a score): catalogue hide-and-recover 0.006186 [0.005958, 0.006413],
+5 draws, 12,198-12,201 withheld positives/draw -- identical for R0 and all three arms BY
+CONSTRUCTION (targets >3 px, collar quarantined; IR-91-28).  SGMC off-catalogue (62,122 px,
+USGS DS-1052): R0 0.095386 -> +0.00008 / -0.00234 / -0.00926.  Leakage canary max band AUC 0.5793.
 ```
 
-**If you do spend a slot on session 6:** upload `vg2px` and record the receipt next to the
-pre-registered `+0.003` *and* the post-hoc `−0.006` in `ledger/submissions.csv:notes`. A live
-`Δ ≤ −0.010` closes SNAP-on-vertical-gradient for good and promotes the SGMC control to the
-repo's primary axis filter; a live `Δ ≥ 0` falsifies the control, which changes how every other
-control in this repo should be read. **If you would rather not spend a slot on a negative
-expectation, upload nothing from this session** — the files are already certified and can be
-used later.
+**Do not** upload more than one SNAP arm for the "information" of it — they are one dose-response
+experiment. If a SNAP receipt is bought, `s2c` is the only arm whose prediction is compatible with
+no change, and `≤ −0.006` retires the axis.
+
+---
+
+## Session 6b (`arena/f8d67617-gemsdoe91`) — SNAP on the `|VG|` crest: certified, **recommended against**
+
+Same parent, same axis, a *different* field from PR #18 (vertical gradient, not high-passed horizontal)
+and a *radius* ladder instead of a quantile ladder. Six files exist (`NaN` + `-zeros` for each of
+three arms) and are pinned in `releases/MANIFEST.json`. **The mechanism is falsified locally**
+(`evidence/snap_axis_vg_20261023.json`, `docs/MECHANISM_CARDS.md` §SNAP-VG): the treatment loses
+2.5–7.4× more SGMC fault proximity than a **random** shuffle of the same size, monotonically with dose.
+
+```bash
+python3 scripts/restore_data.py
+python3 scripts/build_snap_geodetic.py --build          # idempotent: same ids, same bytes
+python3 -m pytest tests/test_snap_vg.py                 # the invariants these arms promise
+python3 scripts/validate_raster.py releases/<file>.tif data/official/sample_submission.tif \
+    --catalogue data/official/existing_faults.tif \
+    --parent data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+```
+
+| use | file (`releases/`) | form note (≤140 chars, verified) |
+|---|---|---|
+| only if closing the mechanism | `h33-h33-2-b2-SNAPvg2px-20261023-353a9dda.tif` | `h33-h33-2-b2; SNAP vg2px: every dot <= 2 px to the \|VG\| crest (bands 9+11), count 37654; pred +0.003 MODEL` (106) |
+| ladder point | `h33-h33-2-b2-SNAPvg1px-20261023-97606a78.tif` | `…vg1px… pred +0.002 MODEL` (106) |
+| ladder point, outside the brief's ≤2 px SNAP parameter (IR-91-31) | `h33-h33-2-b2-SNAPvg3px-20261023-435435a3.tif` | `…vg3px… pred +0.004 MODEL` (106) |
+
+### Format receipt (`RECEIPT`, re-read from disk after write)
+
+```text
+h33-h33-2-b2-SNAPvg1px-20261023-97606a78  97606a783b05186fc4406c1f5d5890cbcfde140ba265e672e66b7a3a6ad321fa (372,619 B)
+                                          zeros d22deb3858be7c7a8cc55681e8025cb7c1307ac9e1af1eadc9a7313f2cc1ee64 (225,726 B)
+h33-h33-2-b2-SNAPvg2px-20261023-353a9dda  353a9ddac0385fa66a8bcdd2b6d57ea5676bb85de34d0efce2cebeeedc4e5f4a (372,114 B)
+                                          zeros c910a3113912473c27e6a8ed21e16a6855ea8984ecb90eaf4f3fd2b17d3c6dd5 (225,046 B)
+h33-h33-2-b2-SNAPvg3px-20261023-435435a3  435435a37ec9925b92a3d5bf6b5824e31a41b16a593b6a98d1ef30490462aa51 (370,863 B)
+                                          zeros 81b14b91c17dbea0cf8920633d813cd76ca1af50e662f1e305ec4d411bffe4be (223,945 B)
+all six: dots 37,654 | cat_mass 0 | min_d_cat 2.2361 px (2,171 inherited, unchanged) | min NN 2.000 px
+         EPSG:32611 | 3730x3292 | 100 m | float32 | 1 band | {0,1} | NaN outside | 14/14 PASS both suites
+```
+
+**Recommendation: upload nothing from session 6b.** If you do want one SNAP slot for the whole
+family, PR #18's `s2c` (`86b27de1`, predicted +0.000) is the cheaper test — it moves 5.4 % of dots
+instead of 92 %.
