@@ -712,22 +712,22 @@ catch it because it reads via `DictReader` (short rows are padded, not rejected)
 `scripts/build_mass_expand.py::append_rows` writes against the file's own header and refuses
 duplicate hashes and duplicate `(parent, axis, value)` triples itself. Any future session must do
 the same, or fix `stor.append_ledger` (and re-check that no row was already written short).
-## IR-91-38 — A parallel session committed competition-derived rasters to this public repo, then linked them for download
+## IR-91-38 — Competition-derived rasters are tracked in this public repo and served as downloads
 **Expected** (brief §4.2 and §7; `.gitignore`; the repo's own CI step "No competition raster is
 committed"): competition-derived rasters never enter the public repository. `releases/*.tif` is
-gitignored precisely because serving them from a public page is a data-use risk that the terms
+gitignored precisely because redistributing them from a public page is a data-use risk the terms
 do not settle.
-**Actual:** commit `fdabd63` / PR #30 (the `GEOD` session) added
+**Actual:** PR #30 / #31 (the `GEOD` session) commited
 `docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif` and its `-zeros` twin as **tracked
-files**, and `docs/index.html` + `docs/submit.html` served both as download buttons. On the same
-merge, `tests/test_ledger.py::test_axes_are_from_the_brief` went red (`GEOD` is not in the brief's
-axis vocabulary) and `tests/test_submission_portal.py` went red on the download links — i.e. the
-repository's own rules were contradicted by its own pages, and `main` was red when this branch
-reached it.
-**Decision it changes.** This branch removes both files from the index (`git rm --cached`, files
-rebuilt on demand from pinned inputs), replaces the download buttons with the reproducible build
-command, adds `docs/downloads/*.tif` to `.gitignore` so it cannot recur, and extends the axis
-vocabulary to `GEOD` (the ledger row is real and gated; the brief's list is not exhaustive of what
-the team built). **The human must confirm the data-use position** — whether the two files were ever
-public long enough to matter, and whether any *other* mirror still carries rasters (IR-91-09,
-IR-91-25) — because that is a sponsor-terms question, not a repository question.
+files**, and `docs/index.html` / `docs/submit.html` serve both as validated downloads. Its own
+`tests/test_submission_portal.py` now *requires* that link to resolve to a real file whenever
+`docs/run-card.json` says `submission_ready`, so the repository's test suite enforces the exposure.
+(The same merges also left `main` red on `test_axes_are_from_the_brief` for one push; `GEOD` has
+since been added to the vocabulary.)
+**Decision it changes.** This is flagged, **not** unilaterally reverted: the artifact belongs to a
+different session's promoted portal, and deleting it would break that session's tests. **The human
+must decide** whether these two files may stay in a public repository under the competition terms
+([NLR rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf), DrivenData terms) — and whether the
+other mirrors already flagged (IR-91-09, IR-91-25) carry the same exposure. If the answer is no,
+the fix is: `git rm --cached docs/downloads/*.tif`, add `docs/downloads/*.tif` to `.gitignore`, and
+switch the portal from "download the TIF" to "rebuild it with `make mass-expand`".
