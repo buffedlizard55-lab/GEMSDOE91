@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-24T05:24:02+00:00",
+  "parent": "h33-h33-2-b2-20261004-e5eb6e7e",
+  "note": "Releases are not committed. Rebuild with scripts/restore_data.py then scripts/build_concentration_collar.py --build; every sha256 must reappear.",
+  "files": [
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONcollar10-20261024-00cfbe95.tif",
+      "sha256": "00cfbe95696390f5942fe2ecae2c490e32fc9b9f9f4267d277b8b529403487fd",
+      "n_dots": 37654,
+      "value": "collar10",
+      "predicted_change_MODEL": -0.0056
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONcollar20-20261024-106ae19b.tif",
+      "sha256": "106ae19bc0c47caa4f5fe48f79cc3557dbf16b85499bd733a826a8fd466427c4",
+      "n_dots": 37654,
+      "value": "collar20",
+      "predicted_change_MODEL": -0.0108
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONanti10-20261024-0e42d6ab.tif",
+      "sha256": "0e42d6ab43b6082e4bfad0106bd77d59bfdcd1cc3ba3d13aa9f92afc5196862a",
+      "n_dots": 37654,
+      "value": "anti10",
+      "predicted_change_MODEL": 0.006
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONcollar10-20261024-00cfbe95-zeros.tif",
+      "sha256": "abcfafeed981f75cfc609be8d071de07d051969b09e204f8485b62c8c14cde14",
+      "n_dots": 37654,
+      "value": "collar10",
+      "encoding": "zeros"
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONcollar20-20261024-106ae19b-zeros.tif",
+      "sha256": "236c02f29377e753935971dab41a8f2084c9d022407ef8c1ce5b43f02da8c260",
+      "n_dots": 37654,
+      "value": "collar20",
+      "encoding": "zeros"
+    },
+    {
+      "file": "h33-h33-2-b2-CONCENTRATIONanti10-20261024-0e42d6ab-zeros.tif",
+      "sha256": "0cb4e45bd1695d72d9eab7704c17cb80c111789e1077260dc69e8569f747cbe0",
+      "n_dots": 37654,
+      "value": "anti10",
+      "encoding": "zeros"
+    }
+  ]
+}

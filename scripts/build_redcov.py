@@ -18,7 +18,7 @@ Predictions are computed from the measured exact DTI against the independent
 off-catalogue SGMC control (USGS DS-1052, pinned, REPORT ONLY) with the same
 transfer the SNAP session used: live = 0.2778 * relT * SHRINK(0.5); the range is
 [0.5*point - 0.008, 0.2778 * relT * 1.0] (downside widened for the
-selection-on-surrogate disclosure in IR-91-34).  The catalogue hide-and-recover
+selection-on-surrogate disclosure in IR-91-36).  The catalogue hide-and-recover
 PROXY is invariant here by construction (IR-91-28 pattern) and is reported,
 never gated on.  This script never submits anything.
 """
@@ -50,7 +50,7 @@ PARENT_DOTS = 37654
 BUILD_DATE = "20261024"  # pinned, never datetime.now() (IR-91-32)
 CLAIMED_LIVE = 0.2778    # CLAIM, no receipt in ledger/
 SHRINK = 0.5             # surrogate-to-live shrink (SNAP session convention)
-SESSION = "SESSION 8 (arena/ed1ccddf-gemsdoe91)"
+SESSION = "SESSION 9 (arena/ed1ccddf-gemsdoe91)"
 
 REQUIRED_PINS = (
     "sample_submission", "existing_faults", "parent_r0_zeros", "parent_r0_nan",
@@ -396,7 +396,7 @@ def main(argv: list[str] | None = None) -> int:
         "prediction_model": {
             "formula": "live = CLAIMED_LIVE(0.2778) * relT_on_SGMC_control * SHRINK",
             "shrink": SHRINK,
-            "range": "[0.5*point - 0.008, unshrunk] -- downside widened for screen-selection (IR-91-34)",
+            "range": "[0.5*point - 0.008, unshrunk] -- downside widened for screen-selection (IR-91-36)",
         },
         "deterministic_rebuild": deterministic,
         "lineage": lineage_report,
@@ -413,11 +413,11 @@ def main(argv: list[str] | None = None) -> int:
         "vote_ring_leakage_canary": canary,
         "session_screen_log_PROXY": {
             "note": "Every family screened on the SGMC control this session before choosing the "
-                    "axis (IR-91-34). PROXY only; none of these numbers is a score or a gate.",
+                    "axis (IR-91-36). PROXY only; none of these numbers is a score or a gate.",
             "mass_bottom_decile_precision_vs_breakeven_0.118": {
                 "s_struct": 0.1126, "vote": 0.1009, "nbr5": 0.1057, "far_dcat": 0.0858,
                 "conclusion": "every MASS ranking lands within ~2pp of break-even; predicted "
-                              "|live delta| < 0.002 at mid denominator (IR-91-33)"},
+                              "|live delta| < 0.002 at mid denominator (IR-91-35)"},
             "fixed_count_exact_sgmc_relT": {
                 "catalogue_density_concentration_10pct_1km": -0.0114,
                 "catalogue_density_concentration_20pct_1km": -0.0161,

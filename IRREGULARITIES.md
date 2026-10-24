@@ -637,10 +637,47 @@ row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on fl
 (explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
 float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic
 demo but must not be used to build a release.
+## IR-91-33 — No local instrument can test "new faults near known traces"; the SGMC control cannot reward collar placement
+**Expected** (brief §2, organiser clarification): new-fault truth may lie within 300 m of known
+traces, so mass placed just outside the mapped catalogue should be testable against the
+independent USGS SGMC map.
+**Actual:** the kernel radius is exactly 3 px and brief §4.4 forbids mass within 3 px of the
+catalogue, so a legal collar dot (**3.05 px** out) earns *exactly zero* credit on the mapped trace
+it hugs. The SGMC off-catalogue control is therefore structurally unable to reward collar
+placement even if the hypothesis is true, while it rewards the mirrored "move mass away" arm
+partly by definition (SGMC-off-catalogue pixels *are* the far field). Measured: `collar10`
+−2.02 % relative, `collar20` −3.90 %, mirror `anti10` **+2.14 %**, uniform-acceptor null −0.66 %.
+The catalogue hide-and-recover PROXY and the leakage canary are identical to R0 for all three
+arms (`0.006186`; canary `0.5`) for the same geometric reason, exactly as in IR-91-28 for SNAP.
+**Decision it changes.** The three arms are recorded as `MODEL` predictions with the control's
+limitation written into `evidence/concentration_collar_axis_20261024.json`
+(`instrument_notes.sgmc_structural_bias`), not as validation of the collar. They are **not**
+placed in the slot queue; the queue's top slot moves from `CONCENTRATIONgdr25rm10` to the R0
+anchor plus the two count-based arms (PRUNE `le10`, MASS `cons3add`). Any future axis whose
+targets are floored outside the 3 px collar inherits this blindness and must say so up front.
+## IR-91-34 — A "live-density" reference is circular for relocation: R0's dots are the lineage field's maxima
+**Expected:** the local holdout proxies fail to rank arms (they correlate −0.87..+0.54 with live
+scores), so a reference *calibrated to the live score scale* would be better: subsample the
+H19-5 field until R0 scores the CLAIM `0.2778` (found: s ≈ 0.0412, ≈ 4,995 cells, 5 seeded draws).
+**Actual:** that reference ("LCR") is denser near the collar (0.0148 credit/cell at 3-4.5 px vs
+0.0069 beyond 10 px, 2.1x) but it penalises **every** relocation arm in both directions
+(−0.0264, −0.0507, −0.0266 absolute), because R0's dots sit on that field's maxima and any move
+off them loses credit. It is a downside bound, not a discriminator; used as a point prediction
+it would have made the mirror arm look like a loss even though the only real fault catalogue
+says it is a gain.
+**Decision it changes.** LCR is reported in evidence as `PROXY` with its circularity stated, and
+it is used only as the pessimistic floor of each prediction range. The `MODEL` point stays on
+the independent SGMC control (κ = 1.0, no shrinkage), and the session's headline claim is stated
+as a *matched-dose difference* between two arms rather than as an absolute gain. This is also why
+`CONCENTRATIONgdr25rm10` (`c019adb01`, `+0.0123` `MODEL`) loses its top slot: its prediction is
+a 0.1 × shrinkage of the prior scored against itself, the same circularity in a different dress.
 
-# Session 8 (`arena/ed1ccddf-gemsdoe91`, SPACING/redcov) — three decision-changing items
+# Session 9 (`arena/ed1ccddf-gemsdoe91`, SPACING/redcov) — three decision-changing items
 
-## IR-91-33 — MASS is measured exhausted at every ranking the pinned inputs support
+(Renumbered at merge: the collar session merged first as Session 8 and took IR-91-35/34;
+these items were drafted as 33/34/35 in parallel and are 35/36/37 here.)
+
+## IR-91-35 — MASS is measured exhausted at every ranking the pinned inputs support
 
 **Expected** (brief §7 default plan): week 1–2 starts with MASS — drop/add the lowest/next-ranked
 10 % by the parent's ranking. The parent's ranking does not exist (IR-91-21), so this session
@@ -670,7 +707,7 @@ treated as one already-built experiment, not a queue. If a MASS slot is ever bou
 `cons3add` (add side, vote-ranked) is the only arm whose screened precision clears break-even;
 do not spend slots distinguishing `cons1drop`/`cons2drop`/`m10minus` from each other.
 
-## IR-91-34 — This session's axis was selected by screening on the report-only SGMC control
+## IR-91-36 — This session's axis was selected by screening on the report-only SGMC control
 
 Disclosed plainly because it changes how much the prediction may be trusted. Before building,
 eight mechanism-backed families were screened with the *exact* DTI metric against the SGMC
@@ -683,13 +720,20 @@ coverage distance); the prediction applies the fleet's 0.5 shrink *and* a −0.0
 downside (`+0.011 [−0.003, +0.021]`); the full log, including failures, is in
 `evidence/redcov_axis_20261024.json`. SGMC remains report-only and gated nothing.
 
+Session 8 (merged in parallel) adds a structural caveat that partly applies here: the
+SGMC-off-catalogue control cannot reward collar placement at all (IR-91-33), so it is
+generous to far-field moves. redcov is less exposed than a collar-mirror arm — its donors
+and recipients have near-identical catalogue distance (medians 22.8 vs 23.3 px), so the
+screened gain is a spacing effect measured at matched d_cat, not a "move away" effect —
+but a live truth set much sparser than SGMC's 62,122 px would still shrink it.
+
 **Decision it changes:** treat `+0.011` as an upper-middle estimate, not a point forecast. A
 redcov10 receipt ≤ 0.000 retires the whole coverage family (redcov20, and proposals 1–2 in
 `SLOT_PLAN.md`) without further slots; only ≥ +0.010 licenses the dose bracket.
 
-## IR-91-35 — 50 BUILT rows, 0 receipts: further build sessions have near-zero marginal value
+## IR-91-37 — 53 BUILT rows, 0 receipts: further build sessions have near-zero marginal value
 
-**Actual:** eight sessions, 50 gate-clean candidate files, every (axis) in the brief built at
+**Actual:** nine sessions, 53 gate-clean candidate files, every (axis) in the brief built at
 three or more values — and `receipt_score` empty on every row. R0's 0.2778 is still `CLAIM`;
 `TOP_PUBLIC` is still blank; slot usage is unrecorded. Each new session (this one included) is
 forced to re-derive the same queue from `MODEL`s anchored to an unverified number, and the
@@ -697,7 +741,7 @@ fleet is now large enough that *selection among built files by receipt* dominate
 51st file (largest honest predicted spread across the top queue ≈ 0.013 `MODEL`).
 
 **Decision it changes:** the plan in `SLOT_PLAN.md` now leads with this item. Recommended human
-action before any session 9: submit the Week-1 queue (R0 anchor if unreceipted, then redcov10,
-gdr25rm10, PRUNE-le10 as slots allow), paste `receipt_score` + `receipt_date` + `TOP_PUBLIC`
+action before any session 10: submit the Week-1 queue (R0 anchor if unreceipted, then the merged queue in `SLOT_PLAN.md`: redcov10,
+PRUNE-le10, cons3add as slots allow), paste `receipt_score` + `receipt_date` + `TOP_PUBLIC`
 (with date) into the ledger/README, and record slots used. Until then, the highest-value "build"
 is no build.

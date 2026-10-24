@@ -2,61 +2,69 @@
 
 **Calendar (2026-10-24 UTC):** 40 days (5.7 rolling weeks ≈ 15–17 slots) to the **unconfirmed**
 2026-12-03 deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)).
-**Ledger:** 50 `BUILT`, **0 `SUBMITTED`, 0 live `RECEIPT`s** (R0 0.2778 = `CLAIM`).
+**Ledger:** 53 `BUILT`, **0 `SUBMITTED`, 0 live `RECEIPT`s** (R0 0.2778 = `CLAIM`).
 **TOP_PUBLIC:** `____` (human fills, with date). **Slots left this week:** `__ / 3`.
-`|Δ| < 0.01` = no evidence. Per-session history lives in `README.md`, `evidence/`,
-`ledger/variant-cards*`, `reports/` — this file is only the forward plan.
+`|Δ| < 0.01` = no evidence. This file is the forward plan only, merged across Sessions 8+9
+(2026-10-24); per-session history lives in `README.md`, `evidence/`, mechanism cards.
 
-## ⚠ The binding constraint is receipts, not candidates (IR-91-35)
+## ⚠ The binding constraint is receipts, not candidates (IR-91-37)
 
-Eight sessions have built 50 gate-clean files and measured nothing live. Every prediction in the
-fleet is a `MODEL` against an unreceipted `CLAIM`. **No further build session should run until at
-least the Week-1 receipts below are pasted into `ledger/submissions.csv`** (`receipt_score`,
-`receipt_date`) — otherwise session 9 re-derives this same queue blind.
+Nine sessions, 53 gate-clean files, zero live measurements. **No further build session should
+run until the Week-1 receipts below are pasted into `ledger/submissions.csv`** — every queue in
+this repo is `MODEL`s anchored to an unreceipted `CLAIM`.
 
-## Next 3 scored slots, in order
+## What the two 2026-10-24 sessions established (all `PROXY`/`MODEL`, no receipts)
+
+- **Catalogue-collar enrichment loses on the independent control** (Session 8 built it:
+  `collar10` −2.0 %, `collar20` −3.9 % SGMC rel, worse than uniform −0.66 %; mirror `anti10`
+  +2.1 %). Session 9 screened the same family independently (relT −1.1 %) and left it unbuilt.
+  But no local instrument can truly test it (IR-91-33): the SGMC control cannot reward collar
+  placement, so the question stays open until a `le10` receipt speaks to collar cost.
+- **Coverage beats clustering at fixed count** (Session 9 `redcov10`: exact SGMC relT +7.7 %
+  moving the most kernel-redundant dots to supported uncovered cells, donors/recipients at
+  matched catalogue distance). Selection-on-surrogate disclosed + shrunk (IR-91-36).
+- **MASS is measured exhausted** at constructible rankings (IR-91-35); **`gdr25rm10`'s +0.0123
+  is the prior scored against itself** (IR-91-34) and is demoted out of the queue.
+
+## Next 3 scored slots, in order (one orthogonal mechanism each)
 
 | # | File (`releases/`, rebuild per `docs/SUBMIT.md`) | Pred. Δ (`MODEL`) | What the receipt changes |
 |---:|---|---|---|
-| 0* | **R0 anchor** `gemsdoe32-h33-h33-2-b2-…-e5eb6e7e-nan.tif` (pinned `baeae321…`) — *only if the human holds no receipt for these exact bytes*; else free | — (denominator) | Converts every other receipt into a Δ. Without it, deltas vs the 0.2778 `CLAIM` are uninterpretable. |
-| 1 | `h33-h33-2-b2-SPACINGredcov10-20261024-8113d448.tif` (37,654 dots) | **+0.011** `[−0.003,+0.021]` | Kernel-redundancy→coverage (session 8; strongest methodology in fleet: exact metric on independent control, shrunk; IR-91-34). `≥ +0.010` → coverage binds: bracket `redcov20` (`191caf71`) in Week 2. `≤ 0.000` → truth sits where R0 clusters: retire coverage family, promote `SPACING/clump40` (sign flip, already built). |
-| 2 | `…-CONCENTRATIONgdr25rm10-20261023-c19adb01.tif` (37,654) | **+0.0123** | External GDR thermal prior transfer. `≥ +0.010` → dose 15–20 % Week 2. `≤ −0.010` → retire CONCENTRATION. (Its MODEL came from a partly circular instrument, IR-91-19 — hence slot 2, not 1.) |
-| 3 | `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif` (26,294) | **+0.008** | Collar direction: are ≤10 px dots denominator waste? `≥ +0.010` → rebase Week-2 winners on a pruned parent. `≤ −0.010` → near-catalogue dots are gold (new geometry of existing systems): build the contingent ring-enrichment arm (screened session 8, deliberately unbuilt pending this receipt). |
+| 0* | **R0 anchor** (pinned `baeae321…`) — *only if no receipt held for these exact bytes* | — | Denominator for every Δ below. Cheapest information available; no axis substitutes. |
+| 1 | `h33-h33-2-b2-SPACINGredcov10-20261024-8113d448.tif` (37,654) | **+0.011** `[−0.003,+0.021]` | `≥ +0.010` → coverage binds: bracket `redcov20` (`191caf71`) Week 2. `≤ 0.000` → truth sits where R0 clusters: retire coverage family, promote `SPACING/clump40`. |
+| 2 | `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif` (26,294) | **+0.008** | Only algebra-signed arm (zero-credit dots cost `0.2·(1−m)` each). `≥ +0.010` → rebase winners on pruned parent. `≤ −0.010` → near-catalogue dots are gold despite IR-91-33's blind control: `collar10` (`00cfbe95`, already built) becomes the test. Ambiguous middle → `anti10` reserve. |
+| 3 | `h33-h33-2-b2-MASScons3add-20261023-2803126d.tif` (41,419) | **+0.009** | Count-up direction. Session 8's numerator-asymmetry argument vs Session 9's precision screen (recipients 11.3 % vs 11.8 % break-even) disagree by construction — the receipt settles which. With slot 2, brackets the optimum vs 37.7 k dots. |
 
-Reserves, already built, in order: `RELIEFr2p12` (`6ff08e5c`, +0.006) → `MASScons3add`
-(`2803126d`, +0.009 MODEL but screened sub-break-even on SGMC precision this session, IR-91-33) →
-`SNAPs2c` (`86b27de1`, +0.000, axis-retirement test only). `TRACKB` (`8343ab38` first) spends a
-slot only if the human rules Phase-2 expert review outweighs a DTI read.
+Reserves in order: `CONCENTRATIONanti10` (`0e42d6ab`, +0.006; only arm that settles
+collar-vs-remote at matched dose) → `RELIEFr2p12` (`6ff08e5c`, +0.006) → `gdr25rm10` (demoted,
+IR-91-34) → `SNAPs2c` (retirement test). `TRACKB` spends a slot only on an explicit human
+Phase-2 ruling. Never spend 2 slots on one ladder (`redcov10/20/10v2`, `collar10/20`, cons drops).
 
 ## Weeks to the deadline
 
-- **Week 2:** dose-bracket any Week-1 `≥ +0.010` winner only (`redcov20`, GDR 15–20 %, or
-  `PRUNE-le15`); one decomposition arm at most (`redcov10v2` if redcov10 ≈ 0).
-- **Weeks 3–4:** compose two *orthogonal receipted* winners one step at a time onto the receipted
-  parent (e.g. coverage × prune). No composition of unreceipted MODELs.
-- **Weeks 5–6:** re-verify best receipted file + conservative fallback (R0 / `-zeros` twin) from
-  disk, choose the **one blind final**, freeze. Keep ≥ 2 slots unused as insurance against a
-  format surprise.
-- Missing axis families from the fleet by design: none unbuilt except the contingent ring arm
-  above and the proposals below. MASS is *measured* exhausted at constructible rankings
-  (IR-91-33); SNAP is measured negative on its control (IR-91-28..30).
+- **Week 2:** dose-bracket only Week-1 `≥ +0.010` winners (`redcov20`, `le15`, or count ladder);
+  at most one decomposition arm (`redcov10v2` / `anti10`) if its parent arm receipts ≈ 0.
+- **Weeks 3–4:** compose two *orthogonal receipted* winners one step at a time. No composing
+  unreceipted `MODEL`s.
+- **Weeks 5–6:** re-verify best receipted file + fallback (R0/`-zeros`) from disk, pick the one
+  blind final, freeze ≥ 2 slots unused as format insurance.
 
-## Proposed better axes (not built; build only on the stated trigger)
+## Proposed better axes (not built; triggers stated)
 
-1. **`MASS/reddrop`** — delete-only version of redcov10's donors (33,889 dots, no refill).
-   *Mechanism:* if redundant dots are pure denominator cost, deletion alone should score
-   ≥ redcov10 − recipient value; it decomposes the swap. *Confounder:* same count as
-   `MASS/m10minus` but near-disjoint dot set — receipts must not be conflated. *Falsifier:*
-   receipts `< R0 − 0.005` while redcov10 `≥ +0.010` ⇒ all the value was recipients.
-   *Trigger:* redcov10 receipt in hand (either sign).
-2. **`SPACING/fieldcov`** — recipients maximise *uncovered lineage-field mass* within the 3 px
-   kernel (vote-weighted), not raw distance-to-dot. *Mechanism:* DTI pays per truth pixel;
-   lineage field pixels are the only truth-free stand-in for where fault length may sit.
-   *Confounder:* optimises toward the lineage's own false positives at field edges.
-   *Falsifier:* fixed-count exact SGMC relT does not beat redcov10's +7.7 % in screening —
-   then do not build. *Trigger:* redcov10 `≥ +0.010` (coverage confirmed worth refining).
-3. **Catalogue-ring enrichment (`CONCENTRATION`, catalogue-density prior)** — screened session 8
-   (exact SGMC relT −1.1 %: ring recipients duplicate surviving collar coverage) and left unbuilt
-   *on purpose*. *Trigger:* only a `PRUNE-le10` receipt `≤ −0.010`, which would prove the SGMC
-   redundancy reading wrong for live truth. *Falsifier:* built only in that world; receipts
-   `≤ le10` there retires catalogue proximity in both directions.
+1. **Coverage ADD family** (convergent proposals, Sessions 8+9): add dots at supported cells
+   > 3 px from every existing dot — Session 8's substitution-ranked add and Session 9's
+   `fieldcov` (recipients maximise uncovered lineage-field mass) / `reddrop` (redcov donors,
+   delete-only). *Mechanism:* per-truth-pixel max ⇒ marginal credit lives in kernel gaps.
+   *Confounder:* gaps may be genuinely absent traces; lineage-referenced objectives are
+   circular as validators (IR-91-34) — screen on SGMC only. *Falsifier:* screened fixed-count
+   relT ≤ redcov10's +7.7 % ⇒ do not build. *Trigger:* redcov10 receipt (either sign) in hand.
+2. **Along-strike tip extension** (Session 8): mass 3–6 px beyond mapped-trace *terminations*,
+   not flanks. *Mechanism:* "new fault" includes new geometry of existing systems; tips/step-overs
+   are where it appears. *Confounder:* 1:250 k trace ends are often cartographic. *Caution:*
+   Session 9's dot-pair tip-extension *swap* screened −6.3 % relT — build only if the
+   catalogue-endpoint version beats `collar10` by ≥ +0.006 on SGMC screening first.
+3. **PRUNE collar-cost titration** (Session 8): exclusion radius 1–6 px in 0.5 px steps at fixed
+   count. *Mechanism:* brief §4.4's 3 px floor is a hypothesis about the scorer, not a
+   measurement. *Confounder:* refills move location with collar membership. *Falsifier:* no
+   monotone receipt trend closes the collar question from the cost side. *Trigger:* `le10`
+   receipt ambiguous (|Δ| < 0.010).

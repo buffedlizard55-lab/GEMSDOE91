@@ -32,7 +32,7 @@ Invariants (asserted by the builder, unit-tested here)
 4. Deterministic: pairs are sorted before accumulation and every ordering ends
    in a (row, col) lexsort tie-break.  No RNG anywhere.
 
-Why this axis, measured before building (session 8 screens, all PROXY)
+Why this axis, measured before building (session 9 screens, all PROXY)
 ----------------------------------------------------------------------
 Every MASS ranking the pinned inputs support puts its bottom decile within
 ~2 points of the 11.8 % break-even precision (IR-91-22), so mass edits are
@@ -41,7 +41,7 @@ independent off-catalogue SGMC control (USGS DS-1052, report-only), this
 relocation is the only screened family with a materially positive *exact*
 fixed-count DTI delta (relT +7.5 % at 10 % moved).  The full screen log,
 including the families that failed, is in evidence/redcov_axis_20261024.json
-and IR-91-33/34.  SGMC was used to *screen* mechanism-backed families, never
+and IR-91-35/36.  SGMC was used to *screen* mechanism-backed families, never
 as a per-dot optimiser and never as a gate.
 """
 from __future__ import annotations

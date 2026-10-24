@@ -39,7 +39,7 @@ fixture:
 mass:
 	$(PY) scripts/build_mass_consensus.py
 
-# SPACING/redcov arms (session 8): redundancy->coverage relocation at fixed count.
+# SPACING/redcov arms (session 9): redundancy->coverage relocation at fixed count.
 # Needs no training_features; verifies its 10 pinned inputs before building.
 redcov:
 	$(PY) scripts/build_redcov.py --build

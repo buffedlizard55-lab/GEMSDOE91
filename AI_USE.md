@@ -433,10 +433,32 @@ PROXY and SGMC control are labelled `PROXY`/report-only and are never called sco
 is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
 one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
 single blind final file.
+## Session 8 (2026-10-24, `arena/40027ebc-gemsdoe91`) — CONCENTRATION on the legal collar
+**AI wrote:** `src/gems91/collar.py` (collar/remote priors, block-ranked donors, deterministic
+greedy acceptor placement with the 3.05 px floor and R0's own 2.828 px spacing floor),
+`scripts/build_concentration_collar.py` (pins → byte-exact R0 proof → 3 arms → gates → evidence →
+ledger → release manifest), `tests/test_collar.py` (17 tests), `docs/MECHANISM_CARDS_COLLAR.md`,
+this session's sections of `SLOT_PLAN.md` / `docs/SUBMIT.md` / `README.md` (CURRENT STATE) /
+`IRREGULARITIES.md` (IR-91-33, IR-91-34), and all six release files. The AI chose the session
+axis and its prior (the brief forbids asking the human to pick an axis).
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read or print credentials, scrape
+a leaderboard, or invent a score. R0 was rebuilt byte-exactly from both pinned ancestors
+(`baeae321…`, `c55bafc4…`) before any variant existed; all 10 inputs were sha256-verified against
+`registry/data_manifest.json` first; nothing was read outside the manifest.
+**Where the AI was wrong, and said so:** its own hypothesis (collar concentration) is predicted to
+**lose** live. Both arms into the collar came out negative on the only independent fault
+catalogue and on the live-calibrated reference; the mirrored arm came out positive on SGMC. The
+AI then measured *why* (IR-91-33: the 3 px floor makes collar credit on mapped traces identically
+zero; IR-91-34: the live-calibrated reference is circular for relocation), wrote the negative
+predictions into the ledger rather than re-tuning the arms until they looked good, and removed
+relocation from the top of the slot queue. Its own top slot proposal (`gdr25rm10`, `+0.0123`
+`MODEL`) was also demoted on the same evidence.
+**Human decides:** `TOP_PUBLIC` + date, slots left this week, whether any slot goes to `anti10`,
+the R0 anchor receipt, and the blind final file. No upload is made by an agent.
 
-# Session 8 disclosure (`arena/ed1ccddf-gemsdoe91`, SPACING/redcov, 2026-10-24)
+# Session 9 disclosure (`arena/ed1ccddf-gemsdoe91`, SPACING/redcov, 2026-10-24)
 
-## What the AI wrote and executed in Session 8
+## What the AI wrote and executed in Session 9
 
 Restored all 15 pinned inputs from the manifest mirrors and verified every sha256
 (`scripts/restore_data.py`: all pinned inputs verified `RECEIPT`); rebuilt parent R0
@@ -447,15 +469,15 @@ CI's lineage sequence (27 arms × 2 encodings byte-identical to `releases/MANIFE
 
 **AI chose the session axis** (brief: do not ask the human). It first screened MASS — the
 brief's week-1 default — and measured it exhausted at every ranking the pinned inputs
-support (IR-91-33), then screened eight mechanism-backed families with the exact DTI
+support (IR-91-35), then screened eight mechanism-backed families with the exact DTI
 metric on the report-only SGMC control and picked SPACING/redcov, disclosing the
-selection-on-surrogate bias and shrinking the prediction for it (IR-91-34). AI code this
+selection-on-surrogate bias and shrinking the prediction for it (IR-91-36). AI code this
 session: `src/gems91/redcov.py`, `scripts/build_redcov.py`, `tests/test_redcov.py`, the CI
 determinism step, the Makefile target, and the regenerated `evidence/redcov_axis_20261024.json`
 (contains the full screen log, including families that failed). Human-readable additions by
 the AI: `ledger/variant-cards-REDCOV-20261024.md`, the `SLOT_PLAN.md` rewrite (condensing the
 multi-session append log into the brief's ≤1-page forward plan — history remains in
-README/evidence/ledger notes), IR-91-33..35, the README CURRENT STATE edits, and the
+README/evidence/ledger notes), IR-91-35..37, the README CURRENT STATE edits, and the
 Session 8 section of `docs/SUBMIT.md`. The fleet rebuild's ledger/evidence churn was
 deliberately reverted to byte-identical history except this session's 3 ledger rows
 (including restoring three TRACKB rows whose builder hardcodes "SESSION 6" against the
@@ -472,5 +494,5 @@ numbers are labelled `PROXY` everywhere; predictions are `MODEL` against the unr
 
 Whether an R0-anchor slot is needed (do you hold a receipt for `baeae321…`?); submission order
 and every upload; `TOP_PUBLIC` + date; slots remaining; pasting `receipt_score`/`receipt_date`
-into `ledger/submissions.csv` the same day (IR-91-35 recommends no session 9 until then);
+into `ledger/submissions.csv` the same day (IR-91-37 recommends no session 9 until then);
 whether `redcov20`/`redcov10v2` or a TRACKB file ever spends a slot; the single blind final file.

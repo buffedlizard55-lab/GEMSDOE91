@@ -1,7 +1,7 @@
 {
   "schema": "gems91.redcov-evidence.v1",
   "build_date": "2026-10-24",
-  "session": "SESSION 8 (arena/ed1ccddf-gemsdoe91)",
+  "session": "SESSION 9 (arena/ed1ccddf-gemsdoe91)",
   "axis": "SPACING",
   "parent": "h33-h33-2-b2",
   "rule": {
@@ -13,7 +13,7 @@
   "prediction_model": {
     "formula": "live = CLAIMED_LIVE(0.2778) * relT_on_SGMC_control * SHRINK",
     "shrink": 0.5,
-    "range": "[0.5*point - 0.008, unshrunk] -- downside widened for screen-selection (IR-91-34)"
+    "range": "[0.5*point - 0.008, unshrunk] -- downside widened for screen-selection (IR-91-36)"
   },
   "deterministic_rebuild": true,
   "lineage": {
@@ -86,13 +86,13 @@
     "stride": 17
   },
   "session_screen_log_PROXY": {
-    "note": "Every family screened on the SGMC control this session before choosing the axis (IR-91-34). PROXY only; none of these numbers is a score or a gate.",
+    "note": "Every family screened on the SGMC control this session before choosing the axis (IR-91-36). PROXY only; none of these numbers is a score or a gate.",
     "mass_bottom_decile_precision_vs_breakeven_0.118": {
       "s_struct": 0.1126,
       "vote": 0.1009,
       "nbr5": 0.1057,
       "far_dcat": 0.0858,
-      "conclusion": "every MASS ranking lands within ~2pp of break-even; predicted |live delta| < 0.002 at mid denominator (IR-91-33)"
+      "conclusion": "every MASS ranking lands within ~2pp of break-even; predicted |live delta| < 0.002 at mid denominator (IR-91-35)"
     },
     "fixed_count_exact_sgmc_relT": {
       "catalogue_density_concentration_10pct_1km": -0.0114,
