@@ -1097,3 +1097,14 @@ Five defects in shared tools. Each is either left as it was or changed with a te
 **Found:** the S10 README asked for the verbatim brief to replace its restated block. This session's brief was pasted in full.
 
 **Actual:** the README now carries the verbatim brief. Its internal contradictions (IR-91-S11-09, and "0.3195 is the highest" versus "0.4413") are kept as written, not corrected, so reviewers can see what was asked.
+
+## IR-91-DF6E28C2 — readiness labels could overrule malformed measurements
+
+2026-10-24: shared `readiness.py` accepted inverted/nonfinite paired intervals and
+status-only canary/novelty clearance. Fixed with measured finite bounded values,
+ordered intervals, typed sections and complete comparison accounting. Regression
+tests added; 277 passed, 7 skipped (data-dependent), 29 rasterio deprecation
+warnings. Existing CED artifact was independently revalidated against the two
+restored pinned inputs; its duplicate failure remains binding. No experiment,
+new TIFF or slot. See `docs/REVIEW-DF6E28C2.md`; missing lane and incomplete
+provenance/registry prevent the requested unique submission in this run.
