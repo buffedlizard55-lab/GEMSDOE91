@@ -1,5 +1,13 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## ASC91 SESSION STATUS (2026-10-24, branch `arena/5486e004-gemsdoe91`) — newest lane, negative verdict
+
+**Verdict: NOT OK TO SUBMIT the ASC91 file. OK to download for research. No slot used.**
+- Lane: **antisymmetric cross-fault step concordance** — preregistration + 5 ranked hypotheses: [`docs/HYPOTHESES_ASC91.md`](docs/HYPOTHESES_ASC91.md) · full report: [`docs/ASC91_20261024.md`](docs/ASC91_20261024.md) · run card (protocol JSON): [`docs/run-card-ASC91.json`](docs/run-card-ASC91.json) · evidence page + download: [`docs/asc91.html`](docs/asc91.html) · submission runbook: [`docs/asc91-executive-summary.html`](docs/asc91-executive-summary.html).
+- Three frozen experiments on the **identical instrument** as HGB-CTX (whole-component checkerboard folds, 60,988 withheld positives, `scripts/dti.py` pooled official DTI; random control reproduced the prior receipt exactly, 0.070827): E1 unsupervised step concordance **0.090092**, E2 HGB on 18 step features **0.115463**, E3 E2+TRI3 **0.116767** [fold-mean 95 % CI 0.099637, 0.133608] HOLDOUT-DTI — **below** the prior best HGB-CTX **0.142885**, so the promotion gate fails.
+- Unique built file: `docs/downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif` (sha256 `9c66d3a7…debec`, 37,654 dots, all-finite [0, 1] so the portal range error cannot trigger; independent validator PASS; leakage canary max AUC 0.6028 PASS; novelty vs 11 enumerated registry rasters PASS: surface |ρ| ≤ 0.1374, dots ≤ 44.77 % within 3 px). Research-only per `registry/artifact_policy.json`.
+- Why 0.2778 led the fleet and what beating it requires (detector, not emission): `docs/ASC91_20261024.md` §1. Next preregistered direction (new session/budget): step×context fusion gated at > 0.142885, cross-checked on the second holdout instrument; 1 m DEM remains blocked in-sandbox (official USGS 3DEP source named in the report).
+- Irregularities flagged: IR-91-ASC-01…04 in `IRREGULARITIES.md`. Standing brief (parallel-run protocol, labelling rules, fleet results, official links) remains the session prompt recorded below and in prior session sections — read it before every session.
 ## SESSION 11 STATUS (2026-10-24, branch `arena/2774ed3d-gemsdoe91`) — read this first
 
 **Verdict: NOT OK TO DOWNLOAD OR SUBMIT. No file from this session is cleared.**

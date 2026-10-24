@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASC91 antisymmetric step lane · research download (NOT OK TO SUBMIT) · GEMSDOE91</title>
+<meta name="description" content="Unique validated GeoTIFF from the ASC91 antisymmetric cross-fault step lane. Automated verdict: NOT OK TO SUBMIT - below the identical-instrument holdout best.">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="asc91.html">ASC91 Step Lane</a><a href="asc91-executive-summary.html">ASC91 Guide</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+<section class="hero"><div>
+<span class="eyebrow">ASC91 / ANTISYMMETRIC CROSS-FAULT STEP LANE · 2026-10-24</span>
+<h1>A unique file.<br>A measured no.</h1>
+<p class="lead">Faults are steps, not ridges. We tested the one signature symmetric detectors cancel — and it was not enough on its own.</p>
+<span class="badge bad">NOT OK TO SUBMIT</span>
+<p class="small">Three preregistered experiments completed. No competition slot used.<br>Automated inspection is finished; no human inspector is needed for this verdict.</p>
+</div>
+<div class="download" data-submission-ready="false">
+<div class="label">AUTOMATED SUBMISSION STATUS</div>
+<h2>Download vs submit — unambiguous</h2>
+<div class="status"><span>OK to download</span><strong>YES — research only</strong></div>
+<div class="status"><span>OK to submit</span><strong>NO</strong></div>
+<p>The file is unique and format-valid, but its winner scored <strong>0.116767 HOLDOUT-DTI</strong> against the identical-instrument prior best <strong>0.142885</strong>. The frozen promotion gate is not met. Do not spend a weekly slot on it.</p>
+<a class="button" download href="downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif">↓ Download research GeoTIFF</a>
+<div style="text-align:center;margin-top:12px"><a download href="downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.zip">Single-TIFF ZIP</a> · <a href="downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.json">Writer receipt</a> · <a href="downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros-audit.json">Build audit</a></div>
+<p class="small">All-finite float32 in [0, 1] (unique values 0 and 1, no NaN, no nodata tag): the portal error “Predicted values must be in range [0, 1]” cannot trigger on value grounds. Format validity is not permission to submit.</p>
+</div></section>
+
+<div class="banner"><strong>Why not submit?</strong> A submission slot may only be spent on an idea that beats the current holdout best on the same instrument. ASC91's step features carry real signal (E2 beat the raw-feature logistic model), but the E3 winner remains below HGB-CTX. The step×context fusion is preregistered as a future lane, not run here (3-experiment budget spent).</div>
+
+<div class="grid">
+<article class="card"><span class="eyebrow">WINNER E3 / HOLDOUT-DTI</span><div class="number">0.116767</div><p>Fold-mean 95% CI 0.099637–0.133608<br>60,988 withheld positive pixels</p><span class="small">scripts/dti.py official DTI, pooled; whole-component checkerboard folds</span></article>
+<article class="card"><span class="eyebrow">PRIOR BEST / SAME INSTRUMENT</span><div class="number">0.142885</div><p>DENOVO HGB-CTX (receipt in repo evidence)<br>Fold-mean 95% CI 0.128860–0.155952</p><span class="small">Random control here reproduced its instrument exactly: 0.070827</span></article>
+<article class="card"><span class="eyebrow">FORMAT + NOVELTY GATES</span><div class="number">PASS</div><p>Independent validator PASS. Surface |ρ| ≤ 0.1374; ≤ 44.77% dots within 3 px of any of 11 checked registry rasters.</p><span class="small">Unique within the enumerated scope — not a universal-registry claim</span></article>
+</div>
+
+<section class="section"><div class="section-head"><h2>All three experiments (HOLDOUT-DTI, identical instrument)</h2><a href="run-card-ASC91.json">Machine-readable run card ↗</a></div>
+<div class="table-scroll"><table><thead><tr><th>Arm</th><th>Pooled DTI</th><th>Fold DTI</th><th>Per-dot credit</th></tr></thead><tbody>
+<tr><td>Random spaced control (matched quota)</td><td>0.070827</td><td>.0692 .0739 .0680 .0715</td><td>0.1069</td></tr>
+<tr><td>E1 ASC-U unsupervised step concordance</td><td>0.090092</td><td>.1179 .0812 .0987 .0665</td><td>0.1359</td></tr>
+<tr><td>E2 ASC-S HGB on 18 step features only</td><td>0.115463</td><td>.1261 .1209 .1101 .1047</td><td>0.1748</td></tr>
+<tr><td><strong>E3 ASC-S + TRI3 percentile (winner)</strong></td><td><strong>0.116767</strong></td><td>.1291 .1218 .1082 .1074</td><td>0.1768</td></tr>
+<tr><td>HGB-CTX prior best (DENOVO receipt)</td><td>0.142885</td><td>.1440 .1366 .1353 .1538</td><td>0.2168</td></tr>
+</tbody></table></div>
+<p class="small">Leakage canary: max single-feature symmetric AUC 0.6028 (limit 0.90) — PASS. Withheld positives per fold 15,105 / 15,978 / 12,874 / 17,031. Full evidence: <a href="ASC91_20261024.md">ASC91 report</a> · <a href="HYPOTHESES_ASC91.md">preregistration (5 hypotheses, ranked)</a>.</p></section>
+
+<section class="section"><div class="twocol">
+<div class="card"><h3>Gate checklist (all automated)</h3>
+<ul class="checklist">
+<li><span>On-disk format / range [0, 1] / grid match</span><span class="badge ">PASS</span></li>
+<li><span>Feature-alone leakage canary (≤ 0.90 AUC)</span><span class="badge ">PASS</span></li>
+<li><span>Surface novelty before placement (≤ 0.90)</span><span class="badge ">PASS</span></li>
+<li><span>Final-dot novelty (≤ 70% within 3 px)</span><span class="badge ">PASS</span></li>
+<li><span>Beats identical-instrument holdout best</span><span class="badge bad">FAIL</span></li>
+<li><span>Separate selector + live weekly allowance</span><span class="badge bad">NOT DONE</span></li>
+</ul>
+<p>One failed science gate blocks submission, however clean the file is.</p>
+<a href="asc91-executive-summary.html">See exactly how a submission would be made ↗</a></div>
+<div class="card"><h3>Artifact identification (research record)</h3>
+<label for="asc-name" class="small">Unique file name (not slot approval)</label>
+<div class="copyrow"><textarea id="asc-name" readonly rows="2">gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros</textarea><button data-copy="asc-name" type="button" aria-label="Copy submission name">Copy</button></div>
+<label for="asc-note" class="small">Short note · 92/140 characters</label>
+<div class="copyrow"><textarea id="asc-note" readonly rows="3">ASC91 E3 research only - NOT approved; antisymmetric cross-fault step HGB+TRI3, 37,654 dots.</textarea><button data-copy="asc-note" type="button" aria-label="Copy submission note">Copy</button></div>
+<p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+<dl class="meta">
+<dt>SHA256</dt><dd class="mono">9c66d3a7978c9016c81107439eb00806e0d003b01e976155176fc9f0a90debec</dd>
+<dt>File size / dots</dt><dd>143,679 bytes / 37,654 dots (&gt; 3 px off catalogue; min 3.1623 px)</dd>
+<dt>Grid</dt><dd>EPSG:32611 · 3730 × 3292 · 100 m · float32 · 1 band</dd>
+<dt>Method</dt><dd>Odd-symmetric across-strike step filters (bands 12/13/2/15/17, 8 azimuths) + polarity/azimuth concordance → HGB + TRI3 → greedy 2.8 px spaced dots. No previous submission pixels read.</dd>
+<dt>Non-fault mimic</dt><dd>Lithologic/intrusive contacts and shoreline terraces are also cross-line steps.</dd>
+</dl></div>
+</div></section>
+
+<section class="section"><div class="twocol">
+<div><span class="eyebrow">WHY 0.2778 LED THE FLEET — AND THE GAP</span>
+<h2>Sparsification won before; detection must win next</h2>
+<p>The fleet-best artifact (0.2778, fleet-reported) won by thinning a solid surface to spaced dots and deleting the catalogue collar — emission economics under a per-pixel-capped metric. Its implied weighted recall is only ≈ 37%, so beating it materially needs faults the old surface never ranked. ASC91 shows the step view recovers real, complementary signal (81% of the best model's per-dot credit from 5 level fields alone), which is why the preregistered next lane is a step×context <em>fusion</em> — run under a fresh budget, gated on the same holdout.</p>
+<a href="ASC91_20261024.md">Read the full line-by-line report ↗</a></div>
+<div class="card"><span class="eyebrow">REPRODUCE IT</span><h3>Commands (data restored + hash-verified first)</h3>
+<p class="mono small">python3 scripts/restore_data.py<br>python3 scripts/build_asc91.py --mode features<br>python3 scripts/build_asc91.py --mode holdout<br>python3 scripts/build_asc91.py --mode build --winner e3</p>
+<p class="small">Shared folds, scorer, emission and writer are reused from the template — no private forks. Evidence JSONs are in the repository under <span class="mono">evidence/asc91_*</span>.</p></div>
+</div></section>
+</main>
+<footer><div>Research, not a leaderboard prediction.<br>ASC91 session 2026-10-24 · verdict: negative · 0 slots used</div>
+<div><a href="run-card-ASC91.json">Run card (JSON)</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer>
+</div></body></html>
