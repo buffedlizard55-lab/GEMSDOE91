@@ -766,3 +766,26 @@ differ by design in only 10–20 % of dots, so redcov10 would trip the audit's s
 exactly what brief v2 §5 asks for). Neither protocol is the official rule set; which one
 governs slot spending is the human's decision, recorded here rather than resolved by either
 session deleting the other's work.
+
+## IR-91-39 — Candidate TIFFs were committed to a public repo + Pages path (PR #30); de-tracked here
+
+**Actual:** PR #30 (Session 9-GEOD, merged to main while this session resolved merges) committed
+`docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21{,-zeros}.tif` — full candidate rasters
+on the competition grid — to this **public** repository, in a directory served by GitHub Pages.
+That breaks the repo's own hard rules (`.gitignore` policy comment; CI step "No competition
+raster is committed", which greps `git ls-files` for `*.tif`) and brief §4.2 (competition
+rasters out of public repos; data-use terms unchecked). The same PR's ledger row used
+axis `GEOD`, outside the brief's axis set enforced by `tests/test_ledger.py`, so main's test
+suite was red on two counts before this merge.
+
+**What this merge did:** removed the two TIFFs from git tracking (files remain rebuildable via
+`scripts/build_geod.py`; sha256 `bff9fd21…` stays in the ledger/manifest), added
+`docs/downloads/*.tif` to `.gitignore`, and normalised the ledger axis to `CONCENTRATION`
+(it is the SLOT_PLAN-proposed geodetic-strain CONCENTRATION; id and hashes unchanged, repair
+noted in the row). The GEOD session's scripts, evidence and site pages are untouched — only its
+download links now 404 until a human rebuilds locally.
+
+**Decision it changes:** human to confirm the de-tracking (restore only if the competition
+data-use terms are checked and allow public posting of derived candidate rasters), and to note
+that roughly a day of public exposure already happened via git history + Pages — removal from
+HEAD does not purge history.

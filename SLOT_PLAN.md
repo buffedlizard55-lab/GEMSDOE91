@@ -2,7 +2,7 @@
 
 **Calendar (2026-10-24 UTC):** 40 days (5.7 rolling weeks ≈ 15–17 slots) to the **unconfirmed**
 2026-12-03 deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)).
-**Ledger:** 53 `BUILT`, **0 `SUBMITTED`, 0 live `RECEIPT`s** (R0 0.2778 = `CLAIM`).
+**Ledger:** 54 `BUILT`, **0 `SUBMITTED`, 0 live `RECEIPT`s** (R0 0.2778 = `CLAIM`).
 **TOP_PUBLIC:** `____` (human fills, with date). **Slots left this week:** `__ / 3`.
 `|Δ| < 0.01` = no evidence. This file is the forward plan only, merged across Sessions 8+9
 (2026-10-24); per-session history lives in `README.md`, `evidence/`, mechanism cards.
@@ -36,7 +36,9 @@ this repo is `MODEL`s anchored to an unreceipted `CLAIM`.
 | 3 | `h33-h33-2-b2-MASScons3add-20261023-2803126d.tif` (41,419) | **+0.009** | Count-up direction. Session 8's numerator-asymmetry argument vs Session 9's precision screen (recipients 11.3 % vs 11.8 % break-even) disagree by construction — the receipt settles which. With slot 2, brackets the optimum vs 37.7 k dots. |
 
 Reserves in order: `CONCENTRATIONanti10` (`0e42d6ab`, +0.006; only arm that settles
-collar-vs-remote at matched dose) → `RELIEFr2p12` (`6ff08e5c`, +0.006) → `gdr25rm10` (demoted,
+collar-vs-remote at matched dose) → `CONCENTRATIONgeod25m10` (`bff9fd21`, +0.009 `MODEL`;
+Session 9-GEOD strain prior, SGMC +1.8 % `PROXY` but KAPPA-circular prediction basis per
+IR-91-34; merged PR #30, downloads de-tracked IR-91-39) → `RELIEFr2p12` (`6ff08e5c`, +0.006) → `gdr25rm10` (demoted,
 IR-91-34) → `SNAPs2c` (retirement test). `TRACKB` spends a slot only on an explicit human
 Phase-2 ruling. Never spend 2 slots on one ladder (`redcov10/20/10v2`, `collar10/20`, cons drops).
 
