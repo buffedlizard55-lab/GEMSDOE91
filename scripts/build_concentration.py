@@ -545,6 +545,14 @@ def main() -> int:
                     raise SystemExit(f"id {r['id']} exists with a DIFFERENT sha256 - not reproducible")
                 print(f"{r['id']}: already in the ledger with the same sha256 (idempotent)")
                 continue
+            # Date-shifted rebuild (CI after the build date): the id embeds
+            # today's date, so the same raster returns under a new id with the
+            # SAME sha256. That is proof of reproducibility, not a duplicate.
+            by_sha = {e.get("sha256"): e for e in existing}
+            if r["sha256"] in by_sha:
+                print(f"{r['id']}: same sha256 as ledger row "
+                      f"{by_sha[r['sha256']].get('id')} (date-shifted rebuild, idempotent)")
+                continue
             if r["sha256"] in shas or r["sha256_zeros"] in shas:
                 raise SystemExit(f"refusing to append {r['id']}: hash already in the ledger")
             w.writerow({k: r.get(k, "") for k in fieldnames})

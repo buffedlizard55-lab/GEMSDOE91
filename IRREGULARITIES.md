@@ -590,3 +590,12 @@ so it is reported as uninformative rather than quoted as a number.
 **Decision it changes.** TRACKB files are Phase-2/expert-review candidates only; they do not
 enter the weekly slot queue unless the human explicitly decides, and no PROXY claim is made
 for them.
+
+## IR-91-29 — CONCENTRATION builder ids embed today's date; CI broke at midnight UTC
+
+`scripts/build_concentration.py` stamps candidate ids with `datetime.now()`, so a rebuild on
+any later date returns the identical raster (same sha256) under a new id, and its ledger
+append refused it as a duplicate hash. This failed the CI lineage job on 2026-10-24 with no
+code change in that builder. **Decision it changes:** the append now treats a same-sha256
+rebuild under a date-shifted id as idempotent proof (logged), while a *different* hash under
+an existing id still fails. Found in Session 6 while adding TRACKB to the CI manifest check.
