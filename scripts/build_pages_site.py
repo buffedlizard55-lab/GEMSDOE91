@@ -802,7 +802,10 @@ def main() -> int:
         render_exec_summary_html(rc, uniq, canary, prefix=""), encoding="utf-8"
     )
 
-    print("Generated docs/h91-ddvtc.html and docs/h91-executive-summary.html.")
+    import build_s11_pages
+    build_s11_pages.main()
+
+    print("Generated docs/h91-ddvtc.html, docs/h91-executive-summary.html, docs/s11-mhtr.html, and docs/s11-executive-summary.html.")
     return 0
 
 

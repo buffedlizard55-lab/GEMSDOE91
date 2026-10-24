@@ -1128,3 +1128,34 @@ warnings. Existing CED artifact was independently revalidated against the two
 restored pinned inputs; its duplicate failure remains binding. No experiment,
 new TIFF or slot. See `docs/REVIEW-DF6E28C2.md`; missing lane and incomplete
 provenance/registry prevent the requested unique submission in this run.
+
+---
+
+## IR-91-S11-01 — `Band 06 (tc)` in `training_features.tif` is Official GeoDAWN Airborne Radiometric Total Count (`TC`), NOT Magnetic Tilt or Terrain Correction
+
+**Expected:** The GeoTIFF band description string labels Band 06 `"tc - Tilt angle or total curvature - magnetic field derivative for edge detection"`, while `HYPOTHESES_H91.md` treated Band 06 as `"unsigned terrain correction (mGal)"`.
+
+**Actual:** Direct numerical cross-correlation against the 4-band GeoDAWN radiometric grid (`K, Th, U, TC`) proves **`Corr(Band 06 tc, GeoDAWN Radiometric Band 4 'TC') = 0.99677`** (`Corr = 0.9148` with `Th`, `0.8816` with `K`). This also matches the official [DrivenData Problem Description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) figure `gems_tc_tmi.png` (*"total radiometric counts per second (left) and total magnetic intensity (right)"*).
+
+**Decision it changes:** We extract 100% licence-clean airborne gamma-ray radiometric regolith-bedrock contact gradients (`s11_rad_tc_grad`), local band-pass anomalies (`s11_rad_tc_dog`), and potassic hydrothermal alteration residuals (`s11_rad_mag_felsic_res`, `s11_rad_potassic_leach_joint`) directly from official `Band 06 (tc)` in `training_features.tif`, completely eliminating any need for the licence-unchecked external `geodawn_rad_u8.tif` (`IR-91-26`).
+
+---
+
+## IR-91-S11-02 — `(Band 11, Band 18)` is the 2-D Horizontal Gravity Gradient Vector $(\partial_y G, \partial_x G)$, Not Scalar Vertical and Horizontal Gradients
+
+**Expected:** Band descriptions name Band 11 `"iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient"` and Band 18 `"iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient"`. Prior sessions treated Band 11 as $\partial G / \partial z$ and Band 18 as $\|\nabla_H G\|_2$.
+
+**Actual:** Band 18 is signed (`[-15.44, +12.86]`) and nearly orthogonal to Band 11 (`r = 0.0754`). Direct numerical verification against `Band 13 (iso_grav_anom)` and `Band 05 (iso_grav_anom_slope)` proves that `Band 11` is the North–South directional derivative $\partial_y G$ (`r = 0.8411` with $\partial_y G_5(\text{B13})$), `Band 18` is the East–West directional derivative $\partial_x G$ (`r = 0.8554` with $\partial_x G_5(\text{B13})$), and $\operatorname{hypot}(\text{B11}, \text{B18})$ reproduces `Band 05` with **`r = 0.9467`**! (By contrast, for magnetics, `Band 03 tmi_hg` correlates at `r = 0.9733` with $\|\nabla_H \text{B14}\|_2$ and `Band 09 tmi_vg` correlates at `r = 0.9313` with $-\nabla_H^2 G_{1.5}(\text{B14})$.)
+
+**Decision it changes:** Taking the spatial Jacobian of the true vector field $\mathbf{g}_H = (\text{B11}, \text{B18})$ in `src/gems91/mhtr_coda.py` constructs the **2×2 Horizontal Marussi Gravity Hessian Tensor**, yielding the true Laplace second vertical derivative $\text{SVD}_G = -(\partial_x \text{B18} + \partial_y \text{B11}) = \partial^2 g_z / \partial z^2$, Eötvös differential curvature $\lambda_1 - \lambda_2 = \sqrt{(H_{xx}-H_{yy})^2 + 4H_{xy}^2}$, full-resolution updip vector-normal deprojection, and tectonic cosine alignment between topographic slope $\nabla\text{B12}$ and basement gravity gradient $(\text{B11}, \text{B18})$ (`+30.0%` higher on real faults).
+
+---
+
+## IR-91-S11-03 — Intra-Segment Self-Proximity Covariate Shift in Spatially-Blocked Holdout Tree Splits
+
+**Expected:** Folding visible-catalogue proximity features (`fc_vis_tip_prox_10px`, `fc_vis_stepover_20px`, `fc_vis_strike_continuation`) into tree training (`H91-DDVTC`) was intended to teach the classifier relay-ramp geometry.
+
+**Actual:** Because every training positive pixel $x \in \text{visible\_faults}$ lies on a `visible_faults` segment, its own segment's neighboring pixels sit at distance $3\text{–}12\text{ px}$, giving training positives artificially high `fc_vis_*` values. In the blind test quadrant (`withheld_faults` buffered by $\ge 10\text{ px}$ from `visible_faults`), `fc_vis_*` is $\approx 0$ everywhere on withheld fault segments.
+
+**Decision it changes:** In `S11-MHTR` (`src/gems91/mhtr_coda.py`), the OOF `HistGradientBoosting` + `LogisticRegression` ensemble is trained strictly on label-free geophysical, Marussi-Hessian, topographic-curvature, radiometric-contact, and 1 km corridor features. Removing `fc_vis_*` from tree splits and applying Two-Regime Marussi/Radiometric Submodular Allocation lifted out-of-fold `HOLDOUT-DTI` from `0.174030` (`H91-1 E1`) to **`0.206406`** (`S11-MHTR E2`, `95% CI [0.193796, 0.220176]`, non-overlapping CIs) and lifted blind off-catalogue USGS SGMC DTI from `0.082886` to **`0.097623`**.
+
