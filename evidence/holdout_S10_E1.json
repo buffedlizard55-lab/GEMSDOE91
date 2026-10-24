@@ -1,0 +1,262 @@
+{
+  "experiment": "E1",
+  "mode": "ridge",
+  "use_nms": true,
+  "evaluator_version": "S10-holdout-v1 (new in session 10; wraps scripts/dti.py)",
+  "label": "HOLDOUT-DTI",
+  "k": 60988,
+  "pooled": {
+    "dti": 0.017278121451129953,
+    "ci95": [
+      0.012592126316780325,
+      0.021771969873753957
+    ],
+    "withheld_positives": 60988
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "segments_withheld": 577,
+      "visible_buffer_px": 4,
+      "T": 261.93305453350575,
+      "S": 30494.9999836036,
+      "M": 304.8647472687828,
+      "G": 8829.0,
+      "dti_fold": 0.019913391204913516
+    },
+    {
+      "fold": 1,
+      "segments_withheld": 590,
+      "visible_buffer_px": 3,
+      "T": 457.1309870056315,
+      "S": 30494.9999836036,
+      "M": 511.3059002674236,
+      "G": 11008.0,
+      "dti_fold": 0.030691127036865974
+    },
+    {
+      "fold": 2,
+      "segments_withheld": 872,
+      "visible_buffer_px": 22,
+      "T": 231.6847327129866,
+      "S": 30494.9999836036,
+      "M": 238.90636312436703,
+      "G": 14921.0,
+      "dti_fold": 0.012846853912845369
+    },
+    {
+      "fold": 3,
+      "segments_withheld": 75,
+      "visible_buffer_px": 3,
+      "T": 88.09718414844691,
+      "S": 30494.9999836036,
+      "M": 102.18154131268228,
+      "G": 1188.0,
+      "dti_fold": 0.012502113802119932
+    },
+    {
+      "fold": 4,
+      "segments_withheld": 492,
+      "visible_buffer_px": 25,
+      "T": 252.44248969946324,
+      "S": 30494.9999836036,
+      "M": 295.01665003135224,
+      "G": 8574.0,
+      "dti_fold": 0.019494102481232137
+    },
+    {
+      "fold": 5,
+      "segments_withheld": 50,
+      "visible_buffer_px": 13,
+      "T": 63.893397925704335,
+      "S": 30494.9999836036,
+      "M": 69.90186209313497,
+      "G": 1233.0,
+      "dti_fold": 0.009019143054005816
+    },
+    {
+      "fold": 6,
+      "segments_withheld": 145,
+      "visible_buffer_px": 10,
+      "T": 78.92009435666348,
+      "S": 30494.9999836036,
+      "M": 93.78811818491221,
+      "G": 3805.0,
+      "dti_fold": 0.008634558695161745
+    },
+    {
+      "fold": 7,
+      "segments_withheld": 164,
+      "visible_buffer_px": 27,
+      "T": 197.49152719275213,
+      "S": 30494.9999836036,
+      "M": 214.46496243449394,
+      "G": 4123.0,
+      "dti_fold": 0.021023144088433553
+    },
+    {
+      "fold": 8,
+      "segments_withheld": 111,
+      "visible_buffer_px": 24,
+      "T": 43.40624531290618,
+      "S": 30494.999983603604,
+      "M": 35.56746920854737,
+      "G": 2614.0,
+      "dti_fold": 0.005298764152904376
+    },
+    {
+      "fold": 9,
+      "segments_withheld": 123,
+      "visible_buffer_px": 22,
+      "T": 221.10561627517149,
+      "S": 30494.999983603608,
+      "M": 230.86866768246074,
+      "G": 4693.0,
+      "dti_fold": 0.022443972707962515
+    }
+  ],
+  "pins_verified": {
+    "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "training_features": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "catalogue_segments": 3199,
+  "ci_method": "fold bootstrap, B=2000, seed=91, 10 spatial folds (NOT segment bootstrap; IR-91-S10-02)",
+  "canary": [
+    {
+      "feature": "band01",
+      "auc": 0.4911,
+      "auc_direction_free": 0.5089,
+      "leak_flag": false
+    },
+    {
+      "feature": "band02",
+      "auc": 0.4979,
+      "auc_direction_free": 0.5021,
+      "leak_flag": false
+    },
+    {
+      "feature": "band03",
+      "auc": 0.5262,
+      "auc_direction_free": 0.5262,
+      "leak_flag": false
+    },
+    {
+      "feature": "band04",
+      "auc": 0.5698,
+      "auc_direction_free": 0.5698,
+      "leak_flag": false
+    },
+    {
+      "feature": "band05",
+      "auc": 0.5335,
+      "auc_direction_free": 0.5335,
+      "leak_flag": false
+    },
+    {
+      "feature": "band06",
+      "auc": 0.4479,
+      "auc_direction_free": 0.5521,
+      "leak_flag": false
+    },
+    {
+      "feature": "band07",
+      "auc": 0.5684,
+      "auc_direction_free": 0.5684,
+      "leak_flag": false
+    },
+    {
+      "feature": "band08",
+      "auc": 0.5264,
+      "auc_direction_free": 0.5264,
+      "leak_flag": false
+    },
+    {
+      "feature": "band09",
+      "auc": 0.4862,
+      "auc_direction_free": 0.5138,
+      "leak_flag": false
+    },
+    {
+      "feature": "band10",
+      "auc": 0.5504,
+      "auc_direction_free": 0.5504,
+      "leak_flag": false
+    },
+    {
+      "feature": "band11",
+      "auc": 0.527,
+      "auc_direction_free": 0.527,
+      "leak_flag": false
+    },
+    {
+      "feature": "band12",
+      "auc": 0.4848,
+      "auc_direction_free": 0.5152,
+      "leak_flag": false
+    },
+    {
+      "feature": "band13",
+      "auc": 0.4595,
+      "auc_direction_free": 0.5405,
+      "leak_flag": false
+    },
+    {
+      "feature": "band14",
+      "auc": 0.4885,
+      "auc_direction_free": 0.5115,
+      "leak_flag": false
+    },
+    {
+      "feature": "band15",
+      "auc": 0.5115,
+      "auc_direction_free": 0.5115,
+      "leak_flag": false
+    },
+    {
+      "feature": "band16",
+      "auc": 0.5689,
+      "auc_direction_free": 0.5689,
+      "leak_flag": false
+    },
+    {
+      "feature": "band17",
+      "auc": 0.4831,
+      "auc_direction_free": 0.5169,
+      "leak_flag": false
+    },
+    {
+      "feature": "band18",
+      "auc": 0.4995,
+      "auc_direction_free": 0.5005,
+      "leak_flag": false
+    },
+    {
+      "feature": "band19",
+      "auc": 0.5577,
+      "auc_direction_free": 0.5577,
+      "leak_flag": false
+    },
+    {
+      "feature": "basement_ridge_score",
+      "auc": 0.5022,
+      "auc_direction_free": 0.5022,
+      "leak_flag": false
+    }
+  ]
+}

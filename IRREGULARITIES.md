@@ -681,3 +681,63 @@ No compliant baseline or full surface/dot registry comparison is present. The
 GEMSDOE32 source explicitly disclaims organizer scores. See
 `docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
 submission advice is superseded by the fail-closed executive summary.
+
+## IR-91-S10-01 — GEOD (`h33-h33-2-b2-GEOD25m10`) is a duplicate of R0; it was on Pages and is now removed
+
+**Expected:** a parallel-run lane must not duplicate a registry raster (rank correlation > 0.90 or > 70 % of dots within 3 px).
+**Actual:** GEOD has rank correlation **0.8951** (just under 0.90) but **93.23 %** of its dots lie within 3 px of R0's dots (R0 side 90.04 %). The overlap rule fires. It was still linked from `docs/downloads/` on Pages.
+**Decision it changes:** both GEOD TIFs are `git rm`'d from `docs/downloads/` (staged). Copies are in gitignored `outputs/archive/` (GEOD sha256 `bff9fd21…`). **Not fixed:** the files stay in git history on `main` and in any cached copy of the Pages site. History was not rewritten (a force-push to `main` needs the user's approval).
+
+## IR-91-S10-02 — The holdout CI resamples the 10 spatial folds, not the 3,199 catalogue segments
+
+**Actual:** `evaluate_holdout.py` computes the 95 % CI by a fold bootstrap (B = 2000, seed 91). A segment bootstrap would give different widths. The CI is therefore not directly comparable with a segment-bootstrap CI from another source.
+**Decision it changes:** the CI method is written into every `evidence/holdout_S10_E*.json` (`ci_method`). No CI from another method is quoted in this session.
+
+## IR-91-S10-03 — The 3 px buffer around each withheld fold is counted and reported, not hidden
+
+**Actual:** the ring of visible cells within 3 px of each withheld set is kept, is counted in `visible_buffer_px` (3–27 px visible per fold in E1), and is reported. Hiding it would change nothing for the S10 candidate, because the candidate reads the catalogue only as a mask. **Any future candidate that reads catalogue-derived features must also hide the buffer**, or it will leak across the split.
+
+## IR-91-S10-04 — The holdout measures recovery of catalogue faults; the organizer scores new faults
+
+**Expected** (organizer, DrivenData problem description, page 967, fetched 2026-10-24): the test set is faults **not contained in** the USGS database, labelled by experts before the competition. The Final Round adds expert-verified faults found from submissions.
+**Actual:** our holdout withholds catalogue segments and scores recovery of those. The H10-1 result (0.0173 vs null 0.0288) is therefore evidence about catalogue recovery only. It does not show how H10-1 would score on the new-fault test set. Also, the 3 px exclusion around the catalogue (brief §4.4) is a lineage constraint; the organizer page does not state it.
+**Decision it changes:** the negative verdict stands under the protocol, but it is weak evidence about the real score, and the status board says so.
+
+## IR-91-S10-05 — The scores 0.2778 (GEMSDOE32) and 0.3195 (GEMSDOE49) are not verified
+
+**Expected:** a score quoted as the lineage "best" is backed by an organizer receipt.
+**Actual:** no receipt exists in this repo. GEMSDOE32's own documentation disclaims organizer scores (see IR-91-35). The organizer's public leaderboard (fetched 2026-10-24) has **0.4413** (#1), 0.3916 (#2), 0.3904 (#3), 0.3724 (#4), 0.3539 (#5), and 0.3273 (#20); neither 0.2778 nor 0.3195 appears in the 23 rows read. The remaining rows were not read.
+**Decision it changes:** "beat 0.2778" cannot be assessed here. The index page labels both figures CLAIM and the leaderboard figures ORGANIZER-CONFIRMED (public).
+
+## IR-91-S10-06 — The restored competition data come from third-party mirrors; authenticity is not organizer-verified
+
+**Actual:** `scripts/restore_data.py` fetched all 15 pinned files from GitHub repos owned by the lineage (`buffedlizard55-lab/60GEMSDOE@02563d07…` and `GEMSDOE@c0c06ac8…`). They match the pins in `registry/data_manifest.json`, but those pins are the lineage's own hashes, not hashes published by the organizer. The DrivenData data page requires login and was not accessed (the login page was the only response).
+**Decision it changes:** nothing in the S10 verdict depends on the data being official. It must be accepted or rejected by the user before any file is described as built from official data (see IR-91-09).
+
+## IR-91-S10-07 — `SLOT_PLAN.md` labels band 16 as a thermal layer; band 16 is earthquake intensity
+
+**Actual:** the file's band 16 tag is `ieq_n100a15` = "Earthquake intensity or density (n = 100 km radius, a = 15° parameters)". The organizer lists "density of earthquakes" among the features. `SLOT_PLAN.md` lines 132–133 call the same band a conductive-temperature / thermal-anomaly layer and attach an AUC of 0.5749 to it. That label is wrong, and the AUC cannot be checked against this band from the repo.
+**Decision it changes:** the S10 banner in `SLOT_PLAN.md` flags it. The original table is not rewritten.
+
+## IR-91-S10-08 — The file's band list does not match the organizer's list
+
+**Expected** (organizer, page 967): one of the layers is a "top-of-crustal magnetic source depth estimate"; the organizer also says "surface conductivity and depth to conductive base surface".
+**Actual:** no band in the 19-band file has that depth name. The file has band 6 `tc` ("Tilt angle or total curvature"), which the organizer does not list. The file's band 15 is named "Depth to basement surface", not "depth to conductive base surface". This may be naming only, or the mirror may be a different version. It cannot be resolved from the repo.
+**Decision it changes:** H10-5 (`docs/HYPOTHESES_S10.md`) uses only bands whose names match the organizer's list. Any future feature set must be checked against the organizer's list, not the file tags alone.
+
+## IR-91-S10-09 — The mirrored `sample_submission.tif` contains the catalogue, not a blank template
+
+**Expected** (organizer, page 967): "A sample submission that predicts total fault absence is provided."
+**Actual:** the mirror file (`data/official/sample_submission.tif`, sha256 `2176d08e…`) has 60,988 cells equal to 1, and those positions are **identical** to the 60,988 positive cells of `existing_faults.tif` (checked cell by cell). A copy of the catalogue is therefore being used as the format template. A candidate must never be derived from it. Our candidate is not derived from it: it has no positive cell on the catalogue (gate "zero catalogue mass": 0 positive pixels, mass 0.000), and it is a ramp built from the feature stack, not a copy of the template.
+**Also:** copies of `labels.tif` and `sample_submission.tif` are committed in public lineage repos `59GEMSDOE` and `57GEMSDOE` (found by the registry scan). Whether that breaks the competition data terms was **not reviewed** (the rules were read only in part, sections 1–3.2).
+**Decision it changes:** the template's CRS, shape and transform were checked against the mirror, not the organizer. The user should confirm the grid against the organizer's own file before any upload.
+
+## IR-91-S10-10 — Validator and release-gate defects found this session (shared tools, reported, not silently changed)
+
+Five defects in shared tools. Each is either left as it was or changed with a test-level decision noted.
+
+1. **`parent-diff statistics recorded` is `must_pass` and FAILS when no parent is given.** Every parentless file (including the S10 candidate) fails this gate. It is reported as FAIL, not hidden. A "not applicable" status needs a design decision (shared gate).
+2. **`sha256 not already in ledger` counts only `SUBMITTED` rows, and there are none.** The gate therefore checks nothing today. `tests/test_validate_raster.py::test_ledger_dedupe_ignores_built_rows` pins this behaviour on purpose (brief §7: a `BUILT` row is bookkeeping for the file being certified). I tried a fix that counts all rows except the candidate's own id, but reverted it, because the test encodes the brief. The fix needs a decision.
+3. **`unit_mass_dots` (release gate) assumes binary dots.** The organizer's format (page 967) allows probabilities or confidences in [0, 1]. A continuous candidate fails this gate. For that reason the candidate is kept in `outputs/s10/` and not `releases/`, and `tests/test_release_integration.py` fails locally with "no releases built". CI skips that test (no competition data there), so CI is unaffected. The guard is intentional and is left unchanged.
+4. **GitHub core quota** was exhausted (reset 08:10:17 UTC). The first registry scan therefore has 114 rate-limit errors and is marked INCOMPLETE. It is re-run after the reset (see `registry/s10_registry_scan.json`).
+5. **The CI "no raster tracked" check** fails while the two GEOD TIFs are tracked. Their removal is staged, so the check passes once committed. History is still not clean (IR-91-S10-01).

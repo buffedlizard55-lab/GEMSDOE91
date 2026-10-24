@@ -1,3 +1,5 @@
+> **SUPERSEDED (session 10, 2026-10-24). Do not follow the steps below.** None of the files named here exists in this repository (`releases/` holds manifests only; the one session 10 candidate is in gitignored `outputs/s10/` and is NOT cleared). The GEOD file named earlier is retracted as a duplicate of R0 (IR-91-S10-01). The current instructions are in [`executive-summary.html`](executive-summary.html); the verdict is in [`run-card-S10.json`](run-card-S10.json).
+
 > **Superseded for promotion eligibility (2026-10-24).** Historical build instructions below are not approval to submit. See [current executive summary](executive-summary.html) and [protocol audit](REVIEW-20261024.md).
 
 # SUBMIT — MASS/consensus arms + merged PRUNE/CONCENTRATION queue (2026-10-23)

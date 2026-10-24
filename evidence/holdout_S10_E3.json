@@ -1,0 +1,256 @@
+{
+  "experiment": "E3",
+  "mode": "random",
+  "use_nms": true,
+  "evaluator_version": "S10-holdout-v1 (new in session 10; wraps scripts/dti.py)",
+  "label": "HOLDOUT-DTI",
+  "k": 60988,
+  "pooled": {
+    "dti": 0.02884191195364125,
+    "ci95": [
+      0.021735531893107354,
+      0.034150270892274494
+    ],
+    "withheld_positives": 60988
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "segments_withheld": 577,
+      "visible_buffer_px": 4,
+      "T": 472.8957196610619,
+      "S": 30494.9999836036,
+      "M": 194.72128123361819,
+      "G": 8829.0,
+      "dti_fold": 0.0357770938884221
+    },
+    {
+      "fold": 1,
+      "segments_withheld": 590,
+      "visible_buffer_px": 3,
+      "T": 574.6641091146942,
+      "S": 30494.999983603604,
+      "M": 232.83581856165074,
+      "G": 11008.0,
+      "dti_fold": 0.03837806216295879
+    },
+    {
+      "fold": 2,
+      "segments_withheld": 872,
+      "visible_buffer_px": 22,
+      "T": 732.8417543366779,
+      "S": 30494.9999836036,
+      "M": 288.58195385113635,
+      "G": 14921.0,
+      "dti_fold": 0.04043342493321698
+    },
+    {
+      "fold": 3,
+      "segments_withheld": 75,
+      "visible_buffer_px": 3,
+      "T": 64.84966949851884,
+      "S": 30494.999983603604,
+      "M": 25.674588578527988,
+      "G": 1188.0,
+      "dti_fold": 0.009189104426866332
+    },
+    {
+      "fold": 4,
+      "segments_withheld": 492,
+      "visible_buffer_px": 25,
+      "T": 400.5288015235688,
+      "S": 30494.9999836036,
+      "M": 165.07242296008792,
+      "G": 8574.0,
+      "dti_fold": 0.03079737263344091
+    },
+    {
+      "fold": 5,
+      "segments_withheld": 50,
+      "visible_buffer_px": 13,
+      "T": 68.85754114371144,
+      "S": 30494.9999836036,
+      "M": 26.889972238193554,
+      "G": 1233.0,
+      "dti_fold": 0.009706730403383334
+    },
+    {
+      "fold": 6,
+      "segments_withheld": 145,
+      "visible_buffer_px": 10,
+      "T": 185.72690721838518,
+      "S": 30494.9999836036,
+      "M": 73.22046469000126,
+      "G": 3805.0,
+      "dti_fold": 0.020263693325508876
+    },
+    {
+      "fold": 7,
+      "segments_withheld": 164,
+      "visible_buffer_px": 27,
+      "T": 254.57573424544356,
+      "S": 30494.9999836036,
+      "M": 96.43024153827324,
+      "G": 4123.0,
+      "dti_fold": 0.02699914611286557
+    },
+    {
+      "fold": 8,
+      "segments_withheld": 111,
+      "visible_buffer_px": 24,
+      "T": 153.73120477808402,
+      "S": 30494.9999836036,
+      "M": 52.61626239934317,
+      "G": 2614.0,
+      "dti_fold": 0.01872390801975294
+    },
+    {
+      "fold": 9,
+      "segments_withheld": 123,
+      "visible_buffer_px": 22,
+      "T": 268.695409459827,
+      "S": 30494.9999836036,
+      "M": 98.73616972794508,
+      "G": 4693.0,
+      "dti_fold": 0.02717555991317888
+    }
+  ],
+  "pins_verified": {
+    "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "training_features": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "catalogue_segments": 3199,
+  "ci_method": "fold bootstrap, B=2000, seed=91, 10 spatial folds (NOT segment bootstrap; IR-91-S10-02)",
+  "canary": [
+    {
+      "feature": "band01",
+      "auc": 0.4911,
+      "auc_direction_free": 0.5089,
+      "leak_flag": false
+    },
+    {
+      "feature": "band02",
+      "auc": 0.4979,
+      "auc_direction_free": 0.5021,
+      "leak_flag": false
+    },
+    {
+      "feature": "band03",
+      "auc": 0.5262,
+      "auc_direction_free": 0.5262,
+      "leak_flag": false
+    },
+    {
+      "feature": "band04",
+      "auc": 0.5698,
+      "auc_direction_free": 0.5698,
+      "leak_flag": false
+    },
+    {
+      "feature": "band05",
+      "auc": 0.5335,
+      "auc_direction_free": 0.5335,
+      "leak_flag": false
+    },
+    {
+      "feature": "band06",
+      "auc": 0.4479,
+      "auc_direction_free": 0.5521,
+      "leak_flag": false
+    },
+    {
+      "feature": "band07",
+      "auc": 0.5684,
+      "auc_direction_free": 0.5684,
+      "leak_flag": false
+    },
+    {
+      "feature": "band08",
+      "auc": 0.5264,
+      "auc_direction_free": 0.5264,
+      "leak_flag": false
+    },
+    {
+      "feature": "band09",
+      "auc": 0.4862,
+      "auc_direction_free": 0.5138,
+      "leak_flag": false
+    },
+    {
+      "feature": "band10",
+      "auc": 0.5504,
+      "auc_direction_free": 0.5504,
+      "leak_flag": false
+    },
+    {
+      "feature": "band11",
+      "auc": 0.527,
+      "auc_direction_free": 0.527,
+      "leak_flag": false
+    },
+    {
+      "feature": "band12",
+      "auc": 0.4848,
+      "auc_direction_free": 0.5152,
+      "leak_flag": false
+    },
+    {
+      "feature": "band13",
+      "auc": 0.4595,
+      "auc_direction_free": 0.5405,
+      "leak_flag": false
+    },
+    {
+      "feature": "band14",
+      "auc": 0.4885,
+      "auc_direction_free": 0.5115,
+      "leak_flag": false
+    },
+    {
+      "feature": "band15",
+      "auc": 0.5115,
+      "auc_direction_free": 0.5115,
+      "leak_flag": false
+    },
+    {
+      "feature": "band16",
+      "auc": 0.5689,
+      "auc_direction_free": 0.5689,
+      "leak_flag": false
+    },
+    {
+      "feature": "band17",
+      "auc": 0.4831,
+      "auc_direction_free": 0.5169,
+      "leak_flag": false
+    },
+    {
+      "feature": "band18",
+      "auc": 0.4995,
+      "auc_direction_free": 0.5005,
+      "leak_flag": false
+    },
+    {
+      "feature": "band19",
+      "auc": 0.5577,
+      "auc_direction_free": 0.5577,
+      "leak_flag": false
+    }
+  ]
+}

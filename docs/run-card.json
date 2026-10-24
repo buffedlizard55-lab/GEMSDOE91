@@ -2,14 +2,31 @@
   "hypothesis": "Signed multiscale magnetic-gravity edge displacement (proposal only; no assigned lane)",
   "mechanism": "Buried density and magnetization offsets may reveal unmapped faults",
   "non_fault_mimic": "Intrusive lithological contact",
-  "holdout_dti": {"label": "HOLDOUT-DTI", "value": null, "evaluator_version": null, "withheld_positives": null, "ci95": null, "status": "NOT_RUN"},
-  "registry_comparison": {"surface_rank_correlation": null, "final_dot_overlap_within_3px": null, "status": "UNVERIFIED"},
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT_RUN"
+  },
+  "registry_comparison": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "UNVERIFIED"
+  },
   "raster_sha256": null,
-  "validator_output": {"status": "NOT_RUN", "no_nan_inside_footprint": null, "values_in_0_1": null, "crs_shape_transform_match": null},
+  "validator_output": {
+    "status": "NOT_RUN",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
   "submission_name": null,
   "note": "Audit only: missing lane and compliant shared evaluator; no new TIFF or weekly submission.",
   "verdict": "negative",
   "verdict_reason": "Blocked before experiment, not evidence against the geological hypothesis",
   "experiments_run": 0,
-  "submission_ready": false
+  "submission_ready": false,
+  "superseded_by": "docs/run-card-S10.json (session 10, 2026-10-24). This card is kept unchanged because tests/test_submission_portal.py pins its fields; its experiments_run=0 reflects session 9 only."
 }

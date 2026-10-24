@@ -28,3 +28,7 @@ releases/_tmp-*.tif
 
 # TRACKB trace GeoJSON is a derived candidate geometry (same policy as rasters)
 releases/*.geojson
+
+# session 10: candidate rasters that are NOT cleared for upload live here, outside
+# releases/ (which the dot-encoding release gates read) and outside docs/ (Pages).
+outputs/

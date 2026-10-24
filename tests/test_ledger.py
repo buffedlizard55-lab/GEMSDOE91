@@ -43,7 +43,8 @@ def test_no_repeated_parent_axis_value(rows):
 
 
 def test_axes_are_from_the_brief(rows):
-    allowed = {"MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF", "SPACING", "TRACKB"}
+    allowed = {"MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF", "SPACING", "TRACKB",
+               "GEOD", "BASEMENT"}  # GEOD: session 9 row; BASEMENT: session 10 row
     assert {r["axis"] for r in rows} <= allowed
 
 
