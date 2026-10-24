@@ -36,7 +36,7 @@ def load_card():
 
 
 def test_all_local_page_links_assets_and_fragments_resolve():
-    for name in ('index.html','docs/index.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
+    for name in ('index.html','docs/index.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
         path=ROOT/name; parser=Page(); parser.feed(path.read_text())
         for href in parser.links:
             u=urlsplit(href)
@@ -50,23 +50,26 @@ def test_all_local_page_links_assets_and_fragments_resolve():
 
 def test_negative_research_download_is_not_advertised_as_approved_submission():
     card=load_card(); a=card['artifact']
-    # The currently published index is the separate MTD91 lane landing page;
-    # the generated executive summary remains the legacy CED artifact portal.
-    expectations=(
-        ('index.html', {
-            'downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif',
-            'downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.zip',
-            a['file'], a['zip'],
-        }),
-        ('executive-summary.html', {a['file'], a['zip']}),
-    )
-    for name,expected_downloads in expectations:
+    ccr=json.loads((ROOT/'docs/run-card-CCR91.json').read_text())
+    ccr_file=Path(ccr['download']).relative_to('docs').as_posix()
+    ccr_zip=Path(ccr['zip_download']).relative_to('docs').as_posix()
+    allowed={a['file'],a['zip'],ccr_file,ccr_zip}
+    for name in ('index.html','executive-summary.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
-        assert p.states and all(state == 'false' for state in p.states)
+        assert p.states and all(x=='false' for x in p.states)
         assert 'NOT OK TO SUBMIT' in text
         assert 'research' in text.lower()
-        assert set(p.downloads) == expected_downloads
+        assert {a['file'],a['zip'],ccr_file,ccr_zip}.issubset(p.downloads)
+        assert all(x in allowed for x in p.downloads)
         assert 'bff9fd21.tif' not in text
+
+    page=Page(); page.feed((ROOT/'docs/ccr91-executive-summary.html').read_text())
+    text=' '.join(page.text)
+    assert page.states==['false']
+    assert ccr_file in page.downloads and ccr_zip in page.downloads
+    assert 'NOT OK TO SUBMIT' in text and '99.769%' in text
+    assert not ccr['ok_to_submit'] and ccr['verdict']=='negative'
+    assert hashlib.sha256((ROOT/ccr['download']).read_bytes()).hexdigest()==ccr['raster_sha256']
 
 
 def test_card_is_a_measured_negative_not_an_empty_placeholder_or_fake_score():
@@ -118,7 +121,7 @@ def test_readiness_requires_all_independent_gates_not_just_format():
 
 
 def test_portal_render_is_reproducible():
-    names=['index.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    names=['index.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
     before={n:(ROOT/'docs'/n).read_bytes() for n in names}
     subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'

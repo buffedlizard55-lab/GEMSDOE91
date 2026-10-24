@@ -119,3 +119,16 @@ research artifact or revive legacy model-projected queues.
    - **Weekly Slot Selector (`Rule 6`):** Spending one of the 3 weekly DrivenData submissions (`TP-5700-96647` §3.2) requires the human fleet selector to verify live weekly allowance and approve `S11-MHTR E2` (`0.206406` HOLDOUT-DTI).
    - **Synthetic Lattice Cover Policy (`IR-CED-003`):** `calib_r13lattice_00904.tif` (`206,895` dots) covers `99.8713%` of the footprint within 3 px (`6,649` uncovered pixels), making unweighted directed 3-px overlap $> 70\%$ for any prediction with $\ge 22,164$ dots; under symmetric F1 overlap (`evaluate_holdout.py`) and top-K mass comparison (`registry_scan.py`), `S11-MHTR E2` passes (`<= 0.33`).
    - **Competitor Eligibility & AI Disclosure (`TP-5700-96647` §1.3 & §3.2):** Only the human competitor can sign the U.S. eligibility attestation and include the generative-AI disclosure (`AI_USE.md`) in the competition narrative.
+
+## CCR91 current-session limitations (2026-10-24, `arena/02c6b911-gemsdoe91`)
+
+1. **Negative deliverable, not an upload candidate.** The new all-finite TIFF is downloadable for research but fails the current-best holdout criterion and the literal final-dot overlap gate. `ok_to_submit` is false; no slot was used.
+2. **Lane assignment is absent.** CCR91 was selected autonomously from an existing preregistration because the brief forbids manual input. It is explicitly provisional and cannot be promoted as an assigned lane.
+3. **Directed overlap makes the historical best noncompliant too.** The shared dense-reference F1 exception was wrong under the literal wording and is now fixed. The near-universal lattice causes CCR91, S11 and H91 to fail. Changing/removing the reference or threshold requires shared protocol governance; tuning dots around it is not authorized.
+4. **Registry incomplete.** Two of 64 frozen references cannot be restored. Available-scope checks are not universal fleet clearance.
+5. **Holdout target mismatch.** The shared holdout recovers mapped catalogue faults; organizer truth concerns newly interpreted faults. Even a higher holdout result would not be a leaderboard projection.
+6. **No organizer receipt or live account state.** DrivenData is outside the network allowlist and there is no authenticated session. Current leaderboard, weekly allowance, deadline and receipt cannot be asserted here.
+7. **Mirror provenance and redistribution remain unresolved.** All 15 pins match declared mirror hashes and lengths. This proves mirror identity, not organizer authenticity or permission to republish competition data. The published artifact is derived output only.
+8. **Eligibility/disclosure are human-only.** The agent cannot attest citizenship/residency, sign rules, approve generative-AI disclosure, or spend a slot.
+9. **Experiment budget stopped correctly.** E1 consumed 692.60 seconds and failed final novelty. E2/E3 were not run. Cached revalidation and tests are engineering checks, not permission to resume the geological budget.
+10. **Next useful work:** resolve lane assignment and lattice policy, restore/retire the two missing pins, freeze a complete pre-experiment registry, and establish a protocol-compliant same-evaluator baseline before another hypothesis run.
