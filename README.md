@@ -4,6 +4,10 @@
 
 **H91 verdict: NOT OK TO SUBMIT. The existing TIFF may be downloaded for research only. No new unique submission TIFF was produced or approved in this review.** The stored H91 file has 38,302/38,400 dots (99.7448%) within 3 px of a pinned lattice witness, over the strict 70% duplicate threshold. CED91 also fails that literal witness. The assigned method lane is unresolved; no new experiment, holdout rerun, competition slot, upload, or organizer receipt occurred. The reported `0.2778` and `0.4413` figures remain user-reported/unverified here, and are not projections or verified scores. See the [three-pass H91 revalidation](docs/REVIEW-H91-REVALIDATION.md), [machine-readable re-audit](evidence/h91_lattice_reaudit_20261024.json), and [H91 run card](evidence/run_card.json).
 
+## Archived Session 11 / H11 result — not revalidated in this review
+
+The merged main branch contains an earlier H11 experiment record: [`docs/REVIEW-DF6E28C2.md`](docs/REVIEW-DF6E28C2.md), [`docs/run-card-H11.json`](docs/run-card-H11.json), and [`docs/HYPOTHESES_H11.md`](docs/HYPOTHESES_H11.md). That record reports a negative result and a duplicate stop against the lattice; it is not a current assigned lane, is not an organizer score, and was not re-audited in this H91 review. Its official-source and eligibility statements remain historical claims pending verification.
+
 ## Historical Session 10 status (2026-10-24, branch `arena/5e09be50-gemsdoe91`)
 
 > The following is an archived prior-session record, not the current branch or this review's source verification. Its competition-page, leaderboard, rules, and eligibility statements were not re-verified in the H91 re-audit; use the current limitations and source register instead.
@@ -25,7 +29,7 @@
 6. Whether to rewrite git history to remove the GEOD TIFs (IR-91-S10-01). Not done.
 7. The deadline. The rules say the key dates are on the competition site; the deadline printed in earlier sessions is not verified.
 
-### Full session prompt (restated; the verbatim text is not in this agent's session record — paste it here to replace this block)
+### Historical working brief (condensed; verbatim Session 11 prompt is in [`docs/SESSION_BRIEF_S11.md`](docs/SESSION_BRIEF_S11.md))
 - **Goal.** Produce a unique, easy-to-download, validated single-band GeoTIFF (values in [0, 1], CRS/shape/transform equal to the official sample) for DrivenData #306 (DOE GEMS, geothermal fault prediction). Do not copy previous submissions except for learning. It must be obvious on the site whether the file may be downloaded and submitted.
 - **Validation.** Automated gates, no human inspector. Uniqueness is confirmed only after the gates pass. A registry scan must be complete (`complete: true`) before any uniqueness claim.
 - **Analysis.** Explain why the high scorers (0.2778; the public top 0.4413) scored well, and whether a unique submission can beat them.

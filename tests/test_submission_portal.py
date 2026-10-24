@@ -84,7 +84,9 @@ def test_readiness_requires_all_independent_gates_not_just_format():
     good=copy.deepcopy(c)
     good['lane']['assigned']=True
     good['registry_comparison'].update(complete_universal_registry=True,
-        preplacement={'status':'PASS_WITHIN_INDEXED_SCOPE'},final={'status':'PASS_WITHIN_INDEXED_SCOPE'})
+        preplacement={'status':'PASS_WITHIN_INDEXED_SCOPE','checked':64,'not_checked_after_stop':0},
+        final={'status':'PASS_WITHIN_INDEXED_SCOPE','checked':64,'not_checked_after_stop':0},
+        max_measured_surface_rank_correlation=.2, max_measured_final_dot_overlap_within_3px=.6)
     good['comparable_prior_holdout_best']={'evaluator_version':'gems57-pooled-hide-v2','split_sha256':'fixture'}
     good['holdout_dti'].update(split_sha256='fixture',paired_best={'delta':.01,'ci95':[.001,.02]})
     good['selector_approval']=True
