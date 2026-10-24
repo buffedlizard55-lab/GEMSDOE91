@@ -1,0 +1,13 @@
+{
+  "python": "3.11.2 (main, Apr  8 2026, 01:58:00) [GCC 12.2.0]",
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "rasterio": "1.4.4",
+    "tifffile": "2026.3.3",
+    "imagecodecs": "2026.3.6",
+    "pytest": "9.1.1"
+  },
+  "scientific_experiments_run": 1,
+  "note": "Captured after the only CED91 experiment. Tests/format re-validation are not new geological experiments."
+}

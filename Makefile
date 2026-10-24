@@ -75,3 +75,17 @@ validate:
 
 clean:
 	rm -rf tests/_tmp .pytest_cache
+
+# Current research artifact: inspection only, never competition promotion.
+.PHONY: verify-current portal audit-feed
+verify-current:
+	$(PY) scripts/verify_current_artifact.py --with-data
+	$(PY) scripts/check_artifact_policy.py
+	$(PY) -m pytest
+
+portal:
+	$(PY) scripts/render_portal.py
+
+audit-feed:
+	$(PY) scripts/audit_fleet.py
+	$(PY) scripts/render_portal.py

@@ -66,9 +66,9 @@ def fetch_to(urls: list[str], dest: Path) -> None:
                 except urllib.error.HTTPError as exc:
                     if exc.code in (403, 429):
                         raise SystemExit(
-                            f"GitHub API refused the fetch ({exc.code}). This is the unauthenticated "
-                            "rate limit, not a missing pin: re-run with GH_TOKEN set (CI supplies the "
-                            "workflow token automatically) or wait for the hourly window to reset."
+                            f"GitHub API refused the fetch ({exc.code}); rate limits or permissions "
+                            "may be blocking it. This is not proof of a missing pin. Check the "
+                            "GitHub connection/rate-limit state; CI supplies its own workflow token."
                         ) from exc
                     raise
         tmp.replace(dest)
@@ -80,16 +80,24 @@ def fetch_to(urls: list[str], dest: Path) -> None:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="verify only")
+    ap.add_argument("--only", help="comma-separated pinned IDs; useful for format-only CI")
     args = ap.parse_args()
 
     manifest = json.loads(MANIFEST.read_text())
+    wanted = {x.strip() for x in args.only.split(',') if x.strip()} if args.only is not None else None
+    available = {f['id'] for f in manifest['files']}
+    if wanted is not None and (not wanted or wanted - available):
+        ap.error(f'--only must name existing pinned IDs; unknown: {sorted(wanted - available)}')
     bad = 0
     for f in manifest["files"]:
+        if wanted is not None and f['id'] not in wanted:
+            continue
         dest = ROOT / "data" / f.get("local_subpath", f["id"])
         mirror = f.get("mirror")
         if not dest.is_file():
             if mirror is None:
-                print(f"skip   {f['id']:<18} no mirror pinned in the manifest")
+                print(f"MISSING {f['id']:<18} no mirror pinned; cannot verify this required input")
+                bad += 1
                 continue
             if args.check:
                 print(f"MISSING {f['id']:<18} {dest.relative_to(ROOT)}")
@@ -110,7 +118,8 @@ def main() -> int:
     if bad:
         print(f"\n{bad} pinned input(s) failed verification - refusing to continue", file=sys.stderr)
         return 1
-    print("\nall pinned inputs verified")
+    selected = sum(wanted is None or f["id"] in wanted for f in manifest["files"])
+    print(f"\nall {selected} selected pinned inputs verified ({len(manifest['files'])} total manifest entries)")
     return 0
 
 

@@ -65,6 +65,7 @@ def test_marginal_gain_equals_full_recompute():
     pred[pred < 0.85] = 0.0
     truth = rng.random((12, 12)) > 0.9
     r, c = 5, 6
+    pred[r, c] = 0.0
     fast = marginal_gain(pred, truth, r, c, p=1.0)
     after = pred.copy()
     after[r, c] += 1.0
@@ -109,18 +110,14 @@ def test_negative_mass_rejected():
         dti(pred, truth)
 
 
-def test_dense_coverage_can_exceed_one():
-    """Documents the scale: T is summed credit, so dense coverage of a short
-    truth set can push this re-derivation above 1. Live scores top out near
-    0.44, so the organiser's normalisation differs in a way this module cannot
-    see. Use this module for ORDERING (marginal_gain), never for absolute
-    predictions."""
+def test_dense_perfect_coverage_is_bounded_by_one():
+    """Regression: use MAX truth credit, not additive overlapping kernels."""
     n = 40
     pred = np.zeros((n, n))
     truth = np.zeros((n, n), dtype=bool)
     truth[5:35, 20] = True
     pred[5:35, 20] = 1.0
-    assert dti(pred, truth) > 1.0
+    assert dti(pred, truth) == pytest.approx(1.0)
 
 
 def test_sparse_dot_field_on_long_truth_is_small():

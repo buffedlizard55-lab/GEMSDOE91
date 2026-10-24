@@ -681,3 +681,63 @@ No compliant baseline or full surface/dot registry comparison is present. The
 GEMSDOE32 source explicitly disclaims organizer scores. See
 `docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
 submission advice is superseded by the fail-closed executive summary.
+
+## IR-CED-001 — contradictory active approval claims and stale run cards
+
+At this branch's starting commit, the landing page advertised “Download & submit”
+while `docs/run-card.json` reported no experiment and no TIFF. The advertised GEOD
+file also exceeded the prompt's 70% near-dot threshold. Concurrent upstream work
+subsequently labelled the old file promoted without a compliant pooled holdout.
+This session preserves inherited artifacts/history but replaces active approval
+claims with a single evidence-derived fail-closed policy and measured negative
+CED91 card. Tests now distinguish a downloadable **research** file from an
+approved submission; they require real bytes and working local links in both cases.
+
+## IR-CED-002 — the legacy local metric summed max-kernel truth credit
+
+`src/gems91/metric.py` used addition instead of max at each truth cell. Its own
+old test expected dense perfect predictions to exceed one. Two builder-specific
+`dti_parts_f32` routines reproduced that bug. All three are now adapters to the
+unchanged pinned shared max-credit metric. Legacy deltas from incompatible/wrong
+instruments are not a compliant baseline and do not support promotion. This is
+not a private modification of `vendor/gems57`; its hashes remain upstream-exact.
+
+## IR-CED-003 — literal novelty rule meets a near-universal lattice cover
+
+CED91 cleared all 64 indexed pre-placement surface comparisons. Final comparison
+27 (`calib_r13lattice_00904.tif`) gave 0.999125 directed overlap within 3 px and
+triggered DUPLICATE. The reference's own 3-pixel cover reaches 99.8713% of the
+footprint (`docs/parent-forensics.json`). A low rank correlation cannot override
+that literal rule. The run stopped; no exemption, registry removal, threshold
+change or additional geological experiment followed. This is a protocol conflict
+for owner/shared-selector review, not proof of copied geology. The TIFF remains
+a format-valid research deliverable, explicitly NOT OK TO SUBMIT.
+
+## IR-CED-004 — ancestor deletion counts conflated in earlier prose
+
+Pinned forensics find R0 deletes 6,436 of the 44,090-dot d2.8 ancestor or 2,545 of
+the 40,199-dot solo-d2.8 ancestor. Both rebuild R0 exactly at distance >2 px; neither
+adds dots. Earlier prose attached the second deletion count to the first ancestor.
+Active analysis now uses measured counts and does not claim a universal spacing
+optimum, established causality for the reported score, or an authenticated receipt.
+
+## IR-CED-005 — no assigned method, complete registry or comparable best
+
+The user prompt contains no single assigned lane paragraph. A parent-free CED
+lane was preregistered as **provisional research only**, with assignment unverified
+and promotion disabled. The 64-file pinned registry is not universal: the 92-page
+GitHub audit indexes 2,529 raster file entries across source snapshots, including
+repeats and data. No complete raster comparison is claimed. No independently
+comparable prior holdout best is recorded. These are additional explicit blockers,
+not reasons to invent a score or ask for credentials.
+
+## IR-CED-006 — external source and legacy data-placement claims
+
+Official non-GitHub hosts, including the rules PDF and live organizer allowance,
+are outside this sandbox's allowlist. Links are labelled source leads unless
+actually fetched. The user prompt's download/prepare shell commands are absent
+from this checkout; claiming a ready GPU training pipeline from them was wrong.
+The existing pinned restore script did recover and hash-verify the cached input
+stack on CPU. No new external data or GPU is needed by the tested CED method.
+Raw rasters remain ignored; existing public mirrors still need distribution-rights
+review. A hash pin is identity evidence, not official authentication or permission.

@@ -1,3 +1,5 @@
+> **Historical / superseded by [CED91 review](REVIEW-CED91.md).** Current readiness is in `run-card.json`. Old predictions and recommendations are not promotion evidence; do not treat them as current organizer-confirmed scores.
+
 # GEMSDOE91 — Five New Geological Hypotheses (2026-10-24)
 
 **Parent:** `R0 = h33-h33-2-b2` (37,654 dots, `0.2778` CLAIM, `baeae321…c77dd` `RECEIPT`).

@@ -1,15 +1,140 @@
 {
-  "hypothesis": "Signed multiscale magnetic-gravity edge displacement (proposal only; no assigned lane)",
-  "mechanism": "Buried density and magnetization offsets may reveal unmapped faults",
-  "non_fault_mimic": "Intrusive lithological contact",
-  "holdout_dti": {"label": "HOLDOUT-DTI", "value": null, "evaluator_version": null, "withheld_positives": null, "ci95": null, "status": "NOT_RUN"},
-  "registry_comparison": {"surface_rank_correlation": null, "final_dot_overlap_within_3px": null, "status": "UNVERIFIED"},
-  "raster_sha256": null,
-  "validator_output": {"status": "NOT_RUN", "no_nan_inside_footprint": null, "values_in_0_1": null, "crs_shape_transform_match": null},
-  "submission_name": null,
-  "note": "Audit only: missing lane and compliant shared evaluator; no new TIFF or weekly submission.",
+  "schema": "gems91.run-card.v2",
+  "run_id": "CED91-v1-20261024",
+  "started_utc": "2026-10-24T07:29:31.974601+00:00",
+  "hypothesis": "Stable cross-scale magnetic\u2013gravity edge-centroid displacement can reveal concealed fault contacts.",
+  "mechanism": "Parent-free edge persistence, axial gradient alignment and signed displacement consistency; fixed-density separated dots.",
+  "non_fault_mimic": "Intrusive lithological contact; survey flight-line seam is a second control concern.",
+  "lane": {
+    "name": "CED91",
+    "assigned": false,
+    "status": "PROVISIONAL_RESEARCH_ONLY",
+    "reason": "No single assigned method paragraph supplied."
+  },
+  "experiments_run": 1,
+  "budget": {
+    "max_experiments": 3,
+    "max_seconds": 7200
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": 0.06215312834841347,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 60988,
+    "ci95": [
+      0.049910294311813645,
+      0.07511461369633657
+    ],
+    "status": "COMPLETED",
+    "paired_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.010774852165211193,
+      "ci95": [
+        -0.004309741297321481,
+        0.026597184948876095
+      ],
+      "withheld_positive_pixels": 60988
+    },
+    "file": "ced-holdout.json"
+  },
+  "registry_comparison": {
+    "scope": "buffedlizard55-lab/60GEMSDOE@02563d07fb85d2f4d35887503d380d34d4017197:registry/rasters plus inherited checkout downloads",
+    "complete_universal_registry": false,
+    "missing_scope": [
+      "Other fleet downloads not in the pinned registry",
+      "Local ledger entries whose raster is not present",
+      "Private, inaccessible and unlinked artifacts; assigned lane not supplied"
+    ],
+    "preplacement": {
+      "status": "PASS_WITHIN_INDEXED_SCOPE",
+      "checked": 64,
+      "not_checked_after_stop": 0
+    },
+    "final": {
+      "status": "DUPLICATE",
+      "stopped_on": {
+        "file": "data/fleet_registry/calib_r13lattice_00904.tif",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "surface": {
+          "status": "PASS",
+          "rank_correlation": -9.108624252921946e-05
+        },
+        "dots": {
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.999125,
+          "candidate_dots": 32000,
+          "registry_dots": 206895
+        },
+        "status": "DUPLICATE"
+      },
+      "checked": 27,
+      "not_checked_after_stop": 37
+    },
+    "max_measured_surface_rank_correlation": 0.024290527191141956,
+    "max_measured_final_dot_overlap_within_3px": 0.999125
+  },
+  "raster_sha256": "a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee",
+  "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    }
+  },
+  "submission_name": "gems91-ced-v1-20261024-d35670b28c81",
+  "note": "CED91 research only; parent-free magnetic/gravity centroid displacement. Not approved for a competition slot.",
   "verdict": "negative",
-  "verdict_reason": "Blocked before experiment, not evidence against the geological hypothesis",
-  "experiments_run": 0,
-  "submission_ready": false
+  "submission_ready": false,
+  "organizer_confirmed": null,
+  "slots_used": 0,
+  "selector_approval": false,
+  "comparable_prior_holdout_best": null,
+  "inputs": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  },
+  "evidence_class": "HOLDOUT-DTI",
+  "feature_cache_key": "95da30f7e2da6b1ef8999a0138b4bf2152c41668679ed3eb41fb5af135153f21",
+  "canaries": {
+    "status": "PASS",
+    "max_symmetric_auc": 0.5409220990924162,
+    "file": "ced-canaries.json"
+  },
+  "artifact": {
+    "file": "downloads/gems91-ced-v1-20261024-d35670b28c81.tif",
+    "zip": "downloads/gems91-ced-v1-20261024-d35670b28c81.zip",
+    "receipt": "downloads/gems91-ced-v1-20261024-d35670b28c81.json",
+    "bytes": 120391,
+    "dot_digest": "d35670b28c814a7c211102650684c84995eb56f185b5b945102c657591fd77f2",
+    "dots": 32000
+  },
+  "verdict_reason": "Final dots exceeded a literal registry duplicate threshold; experiment stopped. Download for research only; NOT OK TO SUBMIT.",
+  "completed_utc": "2026-10-24T07:30:17.846354+00:00"
 }
