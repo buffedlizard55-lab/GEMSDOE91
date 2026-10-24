@@ -1381,3 +1381,61 @@ Read from the official rules (`docs.nlr.gov/docs/fy26osti/96647.pdf`, sections �
 - **IR-91-ARENA31-02 — data tree is absent and preflight blocks all axes.** `scripts/preflight.py` reports missing `sample_submission` and `parent_r0_nan` and zero ready axes; the axis report also lists additional missing inputs. No holdout, canary, surface correlation, dot overlap, or new-raster validation was run.
 - **IR-91-ARENA31-03 — score provenance.** The user-reported GEMSDOE32 `0.2778` remains an unverified CLAIM in this checkout, not an organizer receipt or a HOLDOUT-DTI measurement. The mechanism inferred from thinning/collar-pruning is plausible under the max-kernel metric but is not causal proof. Current official leaderboard state was not fetched.
 - **IR-91-ARENA31-04 — external LiDAR availability not established.** USGS 3DEP is recorded as an official source lead, but the 1 m DEM links/coverage for this study area were not checked because the official host is outside this execution's network allowlist and the competition `1m_DEM_links.csv` is not local. Do not treat LiDAR as a viable input until availability, license and permitted-use are checked.
+
+---
+
+## IR-91-SPAC-01 — `Band 10` (`deq_n100a15`) Is Dependent Earthquake Swarm Density, Mislabeled `"Distance to earthquake"` and Inverted in `dd_vtc_pu.py`
+
+**Expected:** The GeoTIFF band description for `Band 10` in `training_features.tif` reads `"deq_n100a15 - Distance to earthquake"`, leading `src/gems91/dd_vtc_pu.py` (column 47, `e3_seismic_conduit_index`) to compute `log1p(B16) / (1.0 + 0.04 * B10)` under the assumption that small `B10` meant close to earthquakes.
+
+**Actual:** Direct verification against [DOE GDR Submission #1391](https://gdr.openei.org/submissions/1391) (`Earthquake Density Models.zip`, Ruhl et al. / Nevada Geodetic Laboratory, DOI `10.1785/0220220153`) and pixel statistics across all `5,167,373` in-footprint cells proves that `Band 10` (`deq_n100a15`) is **Dependent Earthquake Density** (clustered swarm/aftershock density, `min = 0.0`, `median = 678.5`, `max = 4,964,740`), paired with `Band 16` (`ieq_n100a15`, **Independent Earthquake Density**, `max = 602,386`). `Corr(log1p(B10), log1p(B16)) = +0.7354`, and fault pixels have higher `log1p(B10)` (`6.8618`) than background (`6.7165`). Dividing by `1 + 0.04 * B10` actively suppressed fluid-driven geothermal earthquake swarms.
+
+**Decision it changes:** `src/gems91/spac_coda.py` (`S12-SPAC`) drops corrupted column 47 from `X_static` and introduces calibrated `s12_seis_dep_swarm_log = log1p(max(B10, 0))`, `s12_seis_ind_main_log = log1p(max(B16, 0))`, `s12_seis_swarm_excess`, and `s12_seis_swarm_grad`.
+
+---
+
+## IR-91-SPAC-02 — `200×` Unit-Scaling Factor Between `Band 03` (`tmi_hg`) and `Band 09` (`tmi_vg`) Corrupted Prior Magnetic Tilt (`rtp_tilt`)
+
+**Expected:** `src/gems91/dd_vtc_pu.py` (columns 27, 28, 32) computed `rtp_tilt = arctan2(B09, _grad_mag(B02))` assuming `B09` and pixel-difference `_grad_mag(B02)` shared units and field reference.
+
+**Actual:** Exact spectral and finite-difference verification on `Band 14` (`tmi`) proves two distinct facts:
+1. `Band 09` (`tmi_vg`) equals the exact 2-D FFT vertical derivative $\mathcal{F}^{-1}\{\|\mathbf{k}\|\mathcal{F}(\text{B14})\}$ in **`nT/m`** (`r = 0.98851`, median ratio `1.000`).
+2. `Band 03` (`tmi_hg`) equals **`200.0 ×`** $\|\nabla_H \text{B14}\|_{\text{nT/m}}$ (`r = 0.99992`, median ratio `200.004`, i.e., `2 × nT / 100 m`).
+Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and mixed TMI vertical derivative `B09` with RTP horizontal gradient.
+
+**Decision it changes:** `src/gems91/spac_coda.py` omits corrupted columns `24..28, 32` of `X_static` and calibrates exact `nT/m` derivatives $H_{\text{TMI}} = \text{B03}/200.0$ and $V_{\text{TMI}} = \text{B09}$ to construct true TMI Verduzco tilt, inclination/remanence-invariant **3-D Analytic Signal** $|\mathbf{A}_{\text{TMI}}| = \sqrt{(\text{B03}/200)^2 + \text{B09}^2}$, and **Thurston–Smith (1997) `SPI` Local Wavenumber** (`2.3×` stronger z-score on blind off-catalogue USGS SGMC faults than on mapped scarps).
+
+---
+
+## IR-91-SPAC-03 — Prior Feature Stacks Discarded High-Resolution Draped GeoDAWN `Band 14` (`tmi`) and Regional `Band 01` (`mag_anom`)
+
+**Expected:** Earlier sessions assumed `Band 02` (`tmi_rtp`) made `Band 01` (`mag_anom`) and `Band 14` (`tmi`) redundant, omitting both from `dd_vtc_pu.py` and `mhtr_coda.py`.
+
+**Actual:** Spatial high-frequency energy analysis ($\sigma \le 300\text{ m}$ vs total variance) shows `Band 14` (`hf_ratio = 0.1000`, 2021–2022 low-altitude draped GeoDAWN TMI, 100–200 m clearance) has **`10.1×` higher short-wavelength resolution** than `Band 01` (`hf_ratio = 0.0099`, upward-continued regional compilation), while `Band 14 - Band 01` (`std = 87.3 nT`) isolates shallow 100–600 m intrabasinal fault contacts and `|grad_H(B14)| - |grad_H(B02)|` flags remanently magnetized Tertiary volcanic fault blocks where constant-inclination RTP introduces phase artifacts.
+
+**Decision it changes:** `S12-SPAC E1` (`H12-1`) incorporates `s12_geodawn_shallow_res`, `s12_geodawn_shallow_grad`, `s12_remanent_rtp_disc`, and multi-scale Frangi Hessian vesselness, lifting `HOLDOUT-DTI` from `0.206406` (`S11-MHTR E2`) to **`0.225324`** (`+0.018918`, paired `P(>0) = 100%`) in a single step.
+
+---
+
+## IR-91-SPAC-04 — Fixed-Count Negative Subsampling (`165,000`) Shifted Class Priors Between 3-Quadrant Holdout Folds and 4-Quadrant Full-Map Inference
+
+**Expected:** `mhtr_coda.py` sampled a fixed `max_neg_samples = 165,000` negatives regardless of how many visible positive fault pixels were in the training domain.
+
+**Actual:** A 3-quadrant holdout fold has ~45,000 visible positives (`21.4%` positive training prior), whereas the 4-quadrant full-map fit has `60,988` positives (`27.0%` positive training prior), shifting raw tree posterior calibration between OOF validation and full-map emission (and would shift even more severely on 2-quadrant Stage-1 sub-folds with ~30,000 positives).
+
+**Decision it changes:** `spac_coda.fit_and_predict_spac_stage` locks `n_neg = round(3.65 * n_pos)` (`21.5%` positive prior) invariantly across 2-quadrant Stage-1 sub-folds, 3-quadrant holdout folds, and the 4-quadrant full-map fit, enabling leak-free **Two-Stage Steerable Radon Auto-Context (`H12-3`)** (`E3 = 0.237587 HOLDOUT-DTI`, `0.107938 SGMC-OFFCAT-CONTROL-DTI`).
+
+---
+
+## IR-91-SPAC-05 — Selector Mutual-Exclusion Between `S12-SPAC E3` (`0.237587`) and Unsubmitted Predecessor `S11-MHTR E2` (`0.206406`), Plus Complete 64/64 Registry Recovery
+
+**Expected:** Every promoted candidate must pass `<= 70%` 3-px dot overlap against prior GEMSDOE submissions (`Rule 1`) and never waste a weekly DrivenData slot on a near-duplicate. In addition, `IR-91-S11-05` previously noted that 2 retracted `GEOD25m10` rows in `registry/comparison_inventory.json` lacked `git_blob` pins.
+
+**Actual:**
+1. Both retracted `GEOD25m10` blobs (`104071078a...` and `bff9fd210b...`) were recovered from immutable GitHub commit `d6df78faed5ff75029f04396497a9f63f68c2a16` into gitignored `data/retracted_geod/` and SHA-256 verified, restoring **64/64** frozen registry files locally.
+2. Against all **64 real external & parallel-lane fault/benchmark rasters** (`data/fleet_registry/`, `data/registry/`, `data/retracted_geod/`, `CED91`, `DENOVO`, `ASC91`, `H91-DDVTC`), `S12-SPAC E3` passes both uniqueness phases cleanly (`max |rho| = 0.2214 <= 0.90`; `max 3-px dot overlap = 68.02% <= 70.0%` on `calib_h28ridge_01839.tif`; `44.92%` vs `GEMSDOE32 R0`).
+3. Against its own unsubmitted direct predecessor in this repo (`gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif`, `48,000` dots, never uploaded to DrivenData), `S12-SPAC E3` (`54,000` dots) shares the `X_s11 + mhtr_edge` Marussi/radiometric core (`74.94%` 3-px overlap, surface `|rho| = 0.1287`) while adding **`13,530` (`25.06%`) brand-new `> 300 m` fault discovery dots** across eroded alluvial wash bridges and shallow `SPI`/swarm corridors that drive `+0.031181` `HOLDOUT-DTI` (`P(>0) = 100%`) and `+0.010315` `SGMC`.
+
+**Decision it changes:** `S12-SPAC E3` (`gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif`) **formally supersedes** unsubmitted `S11-MHTR E2` on `SLOT_PLAN.md` and the Pages portal. A human fleet selector must **never submit both `S12-SPAC E3` and `S11-MHTR E2`**.
+
+

@@ -62,13 +62,21 @@ def main() -> None:
         })
 
     names = list(dots)
-    overlap = {}
-    for a in names:
-        for b in names:
+    overlap_pairs = {}
+    for b in names:
+        if not dots[b].any():
+            continue
+        dist_to_b = ndimage.distance_transform_edt(~dots[b])
+        for a in names:
             if a == b or dots[a].shape != dots[b].shape or not dots[a].any():
                 continue
-            dist_to_b = ndimage.distance_transform_edt(~dots[b])
-            overlap[f"{a} -> {b}"] = round(float((dist_to_b[dots[a]] <= 3).mean()), 4)
+            overlap_pairs[(a, b)] = round(float((dist_to_b[dots[a]] <= 3).mean()), 4)
+    overlap = {
+        f"{a} -> {b}": overlap_pairs[(a, b)]
+        for a in names
+        for b in names
+        if (a, b) in overlap_pairs
+    }
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps({
