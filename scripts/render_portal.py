@@ -8,6 +8,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / 'src'), str(ROOT)]
 from gems91.readiness import gates, submission_ready
+from scripts.verify_current_artifact import verify as verify_artifact
 
 CSS = '''
 :root{--ink:#17312e;--muted:#596c68;--paper:#f5f5ee;--card:#fff;--line:#d7dfd8;--accent:#17644e;--soft:#e7f0e8;--warn:#9c3d25;--warnbg:#fff0e9;--blue:#245c81}
@@ -31,6 +32,9 @@ def f(value, digits=5):
 
 def render():
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
+    actual = verify_artifact()
+    if card.get('artifact') and actual['status'] != 'PASS':
+        raise ValueError('Refusing to publish an unverified or missing download')
     checks = gates(card)
     ready = submission_ready(card)
     if card.get('submission_ready') is not ready:

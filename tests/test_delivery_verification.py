@@ -91,3 +91,26 @@ def test_registry_check_preserves_frozen_inventory():
     restore.validate_rows(rows, json.loads((ROOT/'docs/run-card.json').read_text())['raster_sha256'])
     assert len(rows) == 64
     assert (ROOT/'registry/comparison_inventory.json').read_bytes() == before
+
+
+def test_renderer_refuses_an_unverified_download(monkeypatch):
+    renderer = module('render_portal')
+    monkeypatch.setattr(renderer, 'verify_artifact', lambda: {'status':'NO_ARTIFACT'})
+    with pytest.raises(ValueError, match='unverified or missing download'):
+        renderer.render()
+
+
+def test_evidence_rejects_nonpooled_score_and_omitted_canary(monkeypatch):
+    for mutation in ('score','canary'):
+        evidence = module('verify_evidence')
+        original = evidence.load
+        def altered(name):
+            data = original(name)
+            if name == 'docs/ced-holdout.json' and mutation == 'score':
+                data['summary']['scores']['ced']['dti'] += .01
+            if name == 'docs/ced-canaries.json' and mutation == 'canary':
+                data['features'].pop(next(iter(data['features'])))
+            return data
+        monkeypatch.setattr(evidence, 'load', altered)
+        with pytest.raises(ValueError):
+            evidence.verify()

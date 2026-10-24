@@ -76,7 +76,7 @@ The active site distinguishes “OK to download” from “OK to submit,” link
 
 ## Observed local verification (2026-10-24; no new geological experiments)
 
-- Full suite: **224 passed, 1 explicitly skipped** (absent historical release),
+- Full suite: **226 passed, 1 explicitly skipped** (absent historical release),
   24 upstream Rasterio/Affine pending-deprecation warnings. The current published
   artifact is not the skipped legacy release: it has independent on-disk tests.
 - `verify_current_artifact.py --with-data`: all 15 checks PASS and ZIP member/hash
@@ -86,6 +86,9 @@ The active site distinguishes “OK to download” from “OK to submit,” link
   final duplicate stop agree with the run card. No science is re-executed.
 - Frozen registry restore/check never globs current downloads or self-indexes the
   candidate. The 64-file evidence index is preserved byte-for-byte.
+- Rendering itself also revalidates the actual TIFF/ZIP before exposing a download;
+  it cannot publish a fake link based only on a stale flag. Synthetic `make demo`
+  no longer masks validator failures. CI avoids duplicate feature-push/PR runs.
 - Artifact policy: four allowed TIFF/ZIP files; no raw/cache raster newly tracked.
 - Synthetic `make demo`: build/write/validation interface CERTIFIED. Not CED,
   not another geological experiment and not a submission promotion.
