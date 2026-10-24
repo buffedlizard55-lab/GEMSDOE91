@@ -2,7 +2,6 @@
 
 Synthetic arrays only: no competition raster is needed.
 """
-import importlib.util
 import sys
 from pathlib import Path
 
@@ -15,9 +14,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from gems91 import basement  # noqa: E402
 
-_spec = importlib.util.spec_from_file_location("evaluate_holdout", ROOT / "scripts" / "evaluate_holdout.py")
-ev = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(ev)
+import evaluate_holdout as ev  # shared evaluator (main); no private fork in this branch
 
 
 def _step_depth(h=60, w=60, step_col=30):
@@ -96,21 +93,7 @@ def test_random_placement_has_budget_and_respects_exclusion():
 
 
 def test_auc_perfect_separation_and_ties():
-    assert ev.auc(np.array([3.0, 4.0]), np.array([1.0, 2.0])) == pytest.approx(1.0)
-    assert ev.auc(np.array([1.0, 2.0]), np.array([3.0, 4.0])) == pytest.approx(0.0)
-    assert ev.auc(np.array([1.0]), np.array([1.0])) == pytest.approx(0.5)
-
-
-def test_pooled_dti_is_ratio_of_sums_and_bootstrap_brackets_point():
-    folds = [
-        {"T": 10.0, "S": 100.0, "M": 5.0, "G": 50.0},
-        {"T": 30.0, "S": 200.0, "M": 20.0, "G": 80.0},
-        {"T": 5.0, "S": 50.0, "M": 1.0, "G": 20.0},
-    ]
-    out = ev.pooled_dti(folds)
-    T = sum(f["T"] for f in folds)
-    den = sum(0.2 * f["T"] + 0.2 * (f["S"] - f["M"]) + 0.8 * f["G"] for f in folds)
-    assert out["dti"] == pytest.approx(T / den)
-    assert out["withheld_positives"] == 150
-    lo, hi = out["ci95"]
-    assert lo <= out["dti"] <= hi or abs(lo - hi) < 1e-9
+    # shared evaluator's rank-based AUC: scores first, then 0/1 labels
+    assert ev.fast_mann_whitney_auc(np.array([3.0, 4.0, 1.0, 2.0]), np.array([1, 1, 0, 0])) == pytest.approx(1.0)
+    assert ev.fast_mann_whitney_auc(np.array([1.0, 2.0, 3.0, 4.0]), np.array([1, 1, 0, 0])) == pytest.approx(0.0)
+    assert ev.fast_mann_whitney_auc(np.array([1.0, 1.0]), np.array([1, 0])) == pytest.approx(0.5)

@@ -1,0 +1,32 @@
+{
+  "evidence_class": "ENGINEERING_AUDIT_NOT_A_SCORE",
+  "parent_dots": 37654,
+  "on_catalogue": 0,
+  "min_distance_catalogue_px": 2.23606797749979,
+  "lineage": [
+    {
+      "ancestor": "anc_d2_8",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "dots": 44090,
+      "removed": 6436,
+      "added": 0,
+      "rebuilt_by_removing_distance_le2": true
+    },
+    {
+      "ancestor": "anc_solo_d2_8",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "dots": 40199,
+      "removed": 2545,
+      "added": 0,
+      "rebuilt_by_removing_distance_le2": true
+    }
+  ],
+  "novelty_protocol_diagnostic": {
+    "reference": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "reference_dots": 206895,
+    "footprint_pixels": 5167373,
+    "footprint_pixels_within3": 5160724,
+    "footprint_coverage_within3": 0.9987132726822701,
+    "meaning": "A near-universal lattice cover causes the literal directed overlap rule to reject unrelated predictions. No exemption applied; no further experiment run."
+  }
+}

@@ -2,7 +2,7 @@
 
 Date: 2026-10-24 (UTC). Branch `arena/5e09be50-gemsdoe91`.
 Labels: **ORGANIZER-CONFIRMED** = read from an official DrivenData or NLR page this session.
-**HOLDOUT-DTI** = our own emulation on withheld catalogue segments (`S10-holdout-v1`).
+**HOLDOUT-DTI** = our own emulation on withheld catalogue segments (private evaluator `S10-holdout-v1`, commit 82252a1, 3 px buffer). Not comparable with the shared `gems91-hide-recover-v1.0` protocol (10 px buffer). See IR-91-S10-11.
 **REASONING** = derivation or prior, not measured. **CLAIM** = stated by a source we did not verify.
 
 ## 1. Why the high scorers scored well — what is verified and what is reasoning

@@ -1,89 +1,11 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GEMSDOE91 · GEMS Prize #306 · status board</title>
-<meta name="description" content="GEMS Prize (DrivenData #306) submission status: what may be uploaded, how it was checked, and every number labelled.">
-<style>
-:root{--bg:#0f1115;--card:#1a1e24;--accent:#2dd4bf;--accent2:#60a5fa;--text:#e6e8eb;--muted:#9aa3af;--ok:#10b981;--warn:#f59e0b;--bad:#ef4444;--border:#262c36}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{color:var(--accent2)}a:hover{color:var(--accent)}
-.wrap{max-width:1040px;margin:0 auto;padding:24px}
-h1{font-size:26px;margin:8px 0 4px}h2{font-size:19px;margin:26px 0 8px}
-.muted{color:var(--muted);font-size:14px}
-.banner{border:2px solid var(--bad);background:#2a1414;border-radius:14px;padding:18px 20px;margin:18px 0}
-.banner .big{font-size:20px;font-weight:700;color:#fca5a5}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
-.card h3{margin:0 0 6px;font-size:15px;color:var(--accent)}
-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}th,td{border-bottom:1px solid var(--border);padding:7px 6px;text-align:left;vertical-align:top}th{color:var(--muted);font-weight:600}
-.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--border);color:var(--muted);margin-right:4px}
-.tag.bad{border-color:var(--bad);color:#fca5a5}.tag.ok{border-color:var(--ok);color:#6ee7b7}.tag.warn{border-color:var(--warn);color:#fcd34d}
-code{background:#11141a;border:1px solid var(--border);padding:1px 6px;border-radius:6px;font-size:13px}
-ul{padding-left:20px}li{margin-bottom:6px}
-</style>
-</head>
-<body>
-<div class="wrap">
-<h1>GEMSDOE91 · GEMS Prize (DrivenData #306) · status board</h1>
-<div class="muted">Updated 2026-10-24 (session 10, branch <code>arena/5e09be50-gemsdoe91</code>). Every number is labelled; see the key at the bottom.</div>
-
-<div class="banner">
-  <div class="big">Can I download and submit a file from this site today? NO.</div>
-  <p>No file is cleared for upload. The only file built in session 10 scores <strong>below a random-placement control</strong> on our own spatially blocked holdout, and the protocol does not allow a file like that into a weekly slot. There is intentionally no download button here. The file exists and passes every format gate except parent-diff (see the format card), and is held in the local, git-ignored <code>outputs/</code> folder for review.</p>
-  <p><a href="executive-summary.html"><strong>Read the executive summary: how a submission is made, and the gates</strong></a></p>
-</div>
-
-<div class="grid">
-  <div class="card">
-    <h3>Verdict</h3>
-    <p><span class="tag bad">NOT OK TO SUBMIT</span></p>
-    <p class="muted">Run card: <a href="run-card-S10.json"><code>run-card-S10.json</code></a></p>
-  </div>
-  <div class="card">
-    <h3>Format check (mirrored sample grid)</h3>
-    <p><span class="tag ok">PASS</span> single band, float32, EPSG:32611, 3730×3292, 100 m, NaN outside footprint, values in [0, 1].</p>
-    <p class="muted">Only failing gate: parent-diff. It needs a parent raster, which this lane does not have. The gate has no "not applicable" state (IR-91-S10-10). Also <strong>not done</strong>: a check against the organizer's own blank sample (IR-91-S10-09).</p>
-  </div>
-  <div class="card">
-    <h3>Uniqueness</h3>
-    <p><span class="tag ok">PASS (complete scan)</span> for 2,513 same-grid registry rasters (102 repos, 0 fetch errors, 0 exact duplicates). Max rank correlation 0.037; max 3 px overlap 0.526 (limits 0.90 and 0.70). 46 rasters were not comparable (22 unreadable, 24 on other grids) and were not compared. <a href="../registry/s10_registry_scan.json">Scan file</a>.</p>
-    <p class="muted">Uniqueness is a separate gate from the upload decision. It does not clear this file.</p>
-  </div>
-  <div class="card">
-    <h3>Holdout (HOLDOUT-DTI)</h3>
-    <p>S10 candidate <strong>0.0173</strong> [0.0126, 0.0218]</p>
-    <p>Random-placement control <strong>0.0288</strong> [0.0217, 0.0342]</p>
-    <p class="muted">Evaluator S10-holdout-v1, 60,988 withheld positives, fold bootstrap CI.</p>
-  </div>
-</div>
-
-<h2>Leaderboard numbers (CLAIM vs ORGANIZER-CONFIRMED)</h2>
-<table>
-<tr><th>Item</th><th>Figure</th><th>Label</th></tr>
-<tr><td>GEMSDOE32 <code>h33-h33-2-b2</code> (the "parent" R0)</td><td>0.2778</td><td>CLAIM. Not on the public leaderboard (rows #1–#50 read; 0.3217 at #23 is followed by 0.3169 at #24). No receipt (IR-91-S10-05).</td></tr>
-<tr><td>Public leaderboard #1 (xiaofanhu)</td><td>0.4413</td><td>ORGANIZER-CONFIRMED (public board, fetched 2026-10-24). Public, not final (rules §3.2).</td></tr>
-<tr><td>Public leaderboard #2 / #3</td><td>0.3916 / 0.3904</td><td>ORGANIZER-CONFIRMED (public board, fetched 2026-10-24).</td></tr>
-<tr><td>GEMSDOE49 <code>GEMS49-H49-R1-HYBRID-ANCHOR-31K</code></td><td>0.3195</td><td>CLAIM. Not on the public leaderboard (rows #1–#50 read; 0.3217 at #23 is followed by 0.3169 at #24). No receipt (IR-91-S10-05).</td></tr>
-<tr><td>S10 basement-ridge candidate</td><td>no organizer score</td><td>NOT SUBMITTED.</td></tr>
-</table>
-
-<h2>What changed this session</h2>
-<ul>
-<li>Built one new candidate from a <strong>new layer for this lineage</strong> (depth to basement, band 15): <code>outputs/s10/gems91-s10-basementridge-K60988-20261024-74b1f6f1.tif</code>. It has a valid format and is not a copy of any repo file.</li>
-<li>Pre-registered three experiments (ridge candidate, ablation, random null). The candidate failed its control, so the result is a <strong>negative deliverable</strong>.</li>
-<li>Removed the earlier GEOD file from the Pages downloads. It shares 93.2 % of its dots within 3 px of the parent R0, which is a duplicate under the protocol's 70 % rule (IR-91-S10-01).</li>
-<li>Hypotheses ranked for next sessions: <a href="HYPOTHESES_S10.md">HYPOTHESES_S10.md</a>.</li>
-</ul>
-
-<h2>Key</h2>
-<ul class="muted">
-<li><strong>HOLDOUT-DTI</strong>: our own emulation of the metric, measured on withheld catalogue segments. Not the organizer's scorer.</li>
-<li><strong>ORGANIZER-CONFIRMED</strong>: copied from a submission-page receipt. None exists for session 10.</li>
-<li><strong>CLAIM</strong>: stated by a source that was not verified here.</li>
-</ul>
-<p class="muted">Irregularities for manual review: <a href="../IRREGULARITIES.md">IRREGULARITIES.md</a> (IR-91-S10-01 to -10). Source links are listed in <a href="HYPOTHESES_S10.md">HYPOTHESES_S10.md</a>.</p>
-</div>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Research download &amp; automated verdict · GEMSDOE91</title><meta name="description" content="Automated GEMS fault-mapping research, measured holdout evidence and a clearly labelled GeoTIFF download. Not approved for submission.">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="h91-ddvtc.html">H91 Verduzco Lane (0.1740 DTI)</a><a href="h91-executive-summary.html">H91 Guide</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a><a href="fleet-audit.csv">Fleet inventory ↗</a></nav></header>
+<main id="main"><section class="hero"><div><span class="eyebrow">GEMS PRIZE / AUDITABLE GEOTHERMAL RESEARCH</span><h1>Find faults.<br>Test the evidence.<br>Earn the next step.</h1><p class="lead">A parent-free magnetic–gravity experiment, evaluated before any competition slot is touched.</p><span class="badge bad">NOT OK TO SUBMIT</span><p class="small">One experiment completed. No competition slot used.<br>Unique bytes do not mean unique predictions.</p></div><div class="download" data-submission-ready="false"><div class="label">AUTOMATED SUBMISSION STATUS</div><h2>A real file. An honest verdict.</h2><div class="status"><span>OK to download</span><strong>YES — research only</strong></div><div class="status"><span>OK to submit</span><strong>NO</strong></div><p>Final dots exceeded a literal registry duplicate threshold; experiment stopped. Download for research only; NOT OK TO SUBMIT.</p><a class="button" download href="downloads/gems91-ced-v1-20261024-d35670b28c81.tif">↓ Download research GeoTIFF</a><div style="text-align:center;margin-top:12px"><a download href="downloads/gems91-ced-v1-20261024-d35670b28c81.zip">Single-TIFF ZIP</a> · <a href="downloads/gems91-ced-v1-20261024-d35670b28c81.json">Format receipt</a></div><p class="small">Format checked from the written bytes. This is not organizer acceptance.</p></div></section>
+<div class="banner"><strong>The download is for research, not competition upload.</strong> The TIFF passes range and geospatial checks, but fails the literal duplicate-overlap gate. Automated inspection has finished; no human inspector is needed to reach this negative verdict.</div>
+<div class="grid"><article class="card"><span class="eyebrow">HOLDOUT-DTI / CED91</span><div class="number">0.06215</div><p>95% CI 0.04991–0.07511<br>60988 withheld positive pixels</p><span class="small">gems57-pooled-hide-v2</span></article><article class="card"><span class="eyebrow">LOCAL FORMAT / ENGINEERING CHECK</span><div class="number">PASS</div><p>15 automated checks. Finite float32 values in [0,1]; grid matches the pinned sample.</p><span class="small">Local validity ≠ permission to submit</span></article><article class="card"><span class="eyebrow">PROTOCOL NOVELTY / FINAL DOTS</span><div class="number">DUPLICATE</div><p>99.9125% within 3 pixels of a checked registry raster. The limit is 70%.</p><a class="small" href="ced-registry-final.json">Exact comparison and stop record ↗</a></article></div><section class="section"><div class="card"><span class="eyebrow">PARALLEL DISCOVERY LANE / H91-DDVTC (0.174030 HOLDOUT-DTI)</span><h2>Dip-Deprojected Verduzco Tilt + Openness + 1D-Ridge Submodular Candidate</h2><p>Branch <code>arena/5b9fd3e1-gemsdoe91</code> tested three pre-registered geological hypotheses (<code>E1</code>, <code>E2</code>, <code>E3</code>). Winner <code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif</code> (<code>38,400</code> dots &gt; 3 px, finite <code>[0, 1]</code>) achieved <strong>0.174030 HOLDOUT-DTI</strong> (95% CI <code>0.161841–0.184791</code>, <code>+25.2%</code> over <code>B0 = 0.138999</code>; <code>gems91-hide-recover-v1.0</code>), passing all 52 leakage canaries and 20-real-raster uniqueness checks (<code>&le; 63.17%</code>; <code>42.59%</code> vs R0). Under shared repo policy (<code>IR-CED-003</code>), weekly-slot upload still awaits human selector review of weekly allowance and the <code>99.8713%</code>-footprint synthetic <code>calib_r13lattice_00904.tif</code> cover.</p><p><a class="button outline" href="h91-ddvtc.html">Open H91 Audit &amp; Direct .TIF/.ZIP Download ↗</a> <a class="button outline" href="h91-executive-summary.html">Open H91 Step-by-Step Guide ↗</a></p></div></section><section class="section"><div class="section-head"><h2>What we tested</h2><a href="HYPOTHESES_CED.md">Read the preregistration ↗</a></div><div class="twocol"><div><h3>Concealed contacts, without inherited dots</h3><p>Compare the local magnetic and gravity edge centroids at two scales. Persistent, aligned but displaced edges may reveal a buried contact without a surface scarp.</p><p class="small">Hypothesis, not a geological discovery. Intrusive lithologic contacts and survey seams can mimic it. The target is fault mapping for geothermal exploration—not direct vent classification.</p></div><div class="diagram"><span class="node">Cached magnetic + gravity</span><span>→</span><span class="node">Two-scale edge displacement</span><span>→</span><span class="node">Canary + registry check</span><span>→</span><span class="node">Buffered whole-component holdout</span><span>→</span><span class="node">New dots + validated TIFF</span></div></div></section>
+<section class="section"><div class="section-head"><h2>Measured performance, not a projection</h2><a href="ced-holdout.json">Full fold evidence ↗</a></div><div class="table-scroll"><table><thead><tr><th>HOLDOUT-DTI arm</th><th>Pooled DTI</th><th>95% CI</th><th>Withheld positives / evaluator</th></tr></thead><tbody><tr><td>CED91 candidate</td><td>0.06215</td><td>0.04991–0.07511</td><td>60988 / gems57-pooled-hide-v2</td></tr><tr><td>Matched magnetic-only control</td><td>0.05138</td><td>0.03764–0.06460</td><td>60988 / gems57-pooled-hide-v2</td></tr><tr><td>Paired candidate − control</td><td>0.01077</td><td>-0.00431 to 0.02660</td><td>Same withheld positives / same evaluator</td></tr></tbody></table></div><p class="small">The paired interval includes zero: no statistically resolved improvement. Four fixed spatial quadrants; whole fault components hidden; buffered training exclusion; exact visible-pixel masking; pooled 300 m triangular-kernel DTI. Paired physical-cluster bootstrap intervals are conditional on this instrument, not leaderboard intervals.</p></section>
+<section class="section"><div class="twocol"><div class="card"><h3>Why submission is blocked</h3><ul class="checklist"><li><span>On-disk format and range</span><span class="badge ">PASS</span></li><li><span>Feature-alone leakage canary</span><span class="badge ">PASS</span></li><li><span>Complete-scope two-phase novelty</span><span class="badge bad">BLOCKED</span></li><li><span>Assigned fleet lane</span><span class="badge bad">BLOCKED</span></li><li><span>Beats comparable prior holdout best</span><span class="badge bad">BLOCKED</span></li><li><span>Separate selector and live weekly allowance</span><span class="badge bad">BLOCKED</span></li></ul><p>No stale forecast, byte-level hash or format PASS can override a failed science or novelty gate.</p><a href="executive-summary.html">See the exact submission process ↗</a></div><div class="card"><h3>Artifact identification</h3><label for="candidate-name" class="small">Distinct file name (not slot approval)</label><div class="copyrow"><textarea id="candidate-name" readonly rows="2">gems91-ced-v1-20261024-d35670b28c81</textarea><button data-copy="candidate-name" type="button" aria-label="Copy submission name">Copy</button></div><label for="candidate-note" class="small">Short note · 109/140 characters</label><div class="copyrow"><textarea id="candidate-note" readonly rows="3">CED91 research only; parent-free magnetic/gravity centroid displacement. Not approved for a competition slot.</textarea><button data-copy="candidate-note" type="button" aria-label="Copy submission note">Copy</button></div><p id="copy-status" class="copy-status" role="status" aria-live="polite"></p><dl class="meta"><dt>SHA256</dt><dd class="mono">a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee</dd><dt>File size / new dots</dt><dd>120,391 bytes / 32,000 dots</dd><dt>Grid</dt><dd>EPSG:32611 · 3730 × 3292 · 100 m</dd><dt>Source data</dt><dd>Existing pinned cached bands only. No previous submission pixels copied.</dd></dl></div></div></section>
+<section class="section"><div class="twocol"><div><span class="eyebrow">PREVIOUS BEST / CAUSAL CLAIMS WITHDRAWN</span><h2>What the old result can—and cannot—tell us</h2><p>The previous GEMSDOE32 artifact pruned near-catalogue dots from an existing sparse field. Reduced redundant prediction mass is a plausible explanation for an improvement, not proof of optimal spacing or a better fault locator.</p><p>Its published page explicitly says no organizer score exists there. The reported benchmark and conflicting leaderboard highs in the brief are not verified receipts. We cannot responsibly promise to exceed them.</p><a href="research.html">Read the forensic findings and official-source register ↗</a></div><div class="card"><span class="eyebrow">SOURCE FEED / NOT A LIVE LEADERBOARD</span><h3>Fleet snapshots, with provenance</h3><p>92 of 92 fleet repository pages fetched through GitHub at 2026-10-24 07:25:26 UTC. The inventory records immutable commits, download links, evidence excerpts and fetch failures—not inferred official scores.</p><p class="small">Daily refresh is configured through GitHub Actions; freshness is labelled from the latest completed inventory, not browser load time. Private and unindexed files remain outside scope.</p><a href="fleet-audit.csv">Download the audit table ↗</a><br><a href="fleet-audit.json">Inspect complete machine-readable snapshots ↗</a></div></div></section></main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated 2026-10-24 07:30:17 · UTC</div><div><a href="run-card.json">Machine-readable run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>

@@ -25,11 +25,30 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "src"))
 
-import evaluate_holdout as ev  # noqa: E402  (pin verification + grid loading)
 from gems91 import basement  # noqa: E402
 
 PARENT_TAG = "s10-basement"
 EXPERIMENT = "E1"
+
+
+DATA = ROOT / "data"
+SAMPLE = DATA / "official" / "sample_submission.tif"
+CATALOGUE = DATA / "official" / "existing_faults.tif"
+FEATURES = DATA / "bridge" / "gems-geodawn-numerical-features.tif"
+MANIFEST = ROOT / "registry" / "data_manifest.json"
+
+
+def verify_inputs() -> dict:
+    """Every input must match its pinned sha256 before a byte is used."""
+    pins = {f["id"]: f for f in json.loads(MANIFEST.read_text())["files"]}
+    out = {}
+    for key, path in [("sample_submission", SAMPLE), ("existing_faults", CATALOGUE), ("training_features", FEATURES)]:
+        digest = sha256_file(path)
+        want = pins[key]["sha256"]
+        if digest != want:
+            raise SystemExit(f"PIN MISMATCH {key}: {digest} != {want}")
+        out[key] = digest
+    return out
 
 
 def sha256_file(path: Path) -> str:
@@ -41,14 +60,14 @@ def sha256_file(path: Path) -> str:
 
 
 def build(out_dir: Path, docs_dir: Path | None, stamp: str) -> dict:
-    pins = ev.verify_inputs()
-    with rasterio.open(ev.SAMPLE) as ref:
+    pins = verify_inputs()
+    with rasterio.open(SAMPLE) as ref:
         profile = ref.profile.copy()
         footprint = np.isfinite(ref.read(1))
         transform, crs = ref.transform, ref.crs
-    with rasterio.open(ev.CATALOGUE) as s:
+    with rasterio.open(CATALOGUE) as s:
         cat = s.read(1) == 1
-    with rasterio.open(ev.FEATURES) as s:
+    with rasterio.open(FEATURES) as s:
         depth = s.read(15).astype(np.float64)
 
     P = basement.build_candidate(depth, footprint, visible_catalogue=cat, k=basement.K_DEFAULT)

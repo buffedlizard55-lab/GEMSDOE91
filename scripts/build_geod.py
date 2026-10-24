@@ -85,38 +85,11 @@ ARMS = {
 }
 
 # --------------------------------------------------------------------------- #
-# DTI parts (copied from build_concentration for byte-identical algebra)
-def _add_shift_f32(buf, a, dr, dc, k):
-    h, w = a.shape
-    rs_src = slice(max(0, -dr), min(h, h - dr))
-    rs_dst = slice(max(0, dr), min(h, h + dr))
-    cs_src = slice(max(0, -dc), min(w, w - dc))
-    cs_dst = slice(max(0, dc), min(w, w + dc))
-    buf[rs_dst, cs_dst] += np.float32(k) * a[rs_src, cs_src]
-
-def _max_shift_f32(buf, a, dr, dc, k):
-    h, w = a.shape
-    rs_src = slice(max(0, -dr), min(h, h - dr))
-    rs_dst = slice(max(0, dr), min(h, h + dr))
-    cs_src = slice(max(0, -dc), min(w, w - dc))
-    cs_dst = slice(max(0, dc), min(w, w + dc))
-    np.maximum(buf[rs_dst, cs_dst], np.float32(k) * a[rs_src, cs_src], out=buf[rs_dst, cs_dst])
-
+# Legacy DTI API adapter; no private scoring implementation
 def dti_parts_f32(pred, truth, radius_px=metric.RADIUS_PX):
-    pred = np.ascontiguousarray(pred, dtype=np.float32)
-    truth_b = np.ascontiguousarray(truth, dtype=bool)
-    tf = truth_b.astype(np.float32)
-    offsets = metric._offsets(radius_px)
-    credit = np.zeros_like(pred)
-    for dr, dc, k in offsets:
-        _add_shift_f32(credit, pred, dr, dc, k)
-    T = float(credit[truth_b].sum(dtype=np.float64))
-    del credit
-    best = np.zeros_like(pred)
-    for dr, dc, k in offsets:
-        _max_shift_f32(best, tf, dr, dc, k)
-    M = float((pred * best).sum(dtype=np.float64))
-    return metric.DtiParts(T=T, S=float(pred.sum(dtype=np.float64)), M=M, n_truth=int(truth_b.sum()))
+    """Legacy API adapter: reuse the canonical metric, never summed credit."""
+    return metric.components(pred, truth, radius_px)
+
 
 def fill_footprint_percentile(arr, footprint, sentinel=-1e30):
     fp = np.asarray(footprint, dtype=bool)

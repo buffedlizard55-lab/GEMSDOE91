@@ -1,7 +1,9 @@
 # Competition data must never be committed: this repository is PUBLIC and GitHub
-# Pages serves main:/ (see IRREGULARITIES.md IR-91-01). data/ is also large.
-data
-data/
+# Pages serves main:/ (see IRREGULARITIES.md IR-91-01). /data/ is also large.
+/data
+/data/
+!docs/data/
+!docs/data/**
 
 # Built rasters are the upload artifact, not source. They stay out of git; only
 # their sha256 goes into ledger/submissions.csv.
@@ -28,6 +30,18 @@ releases/_tmp-*.tif
 
 # TRACKB trace GeoJSON is a derived candidate geometry (same policy as rasters)
 releases/*.geojson
+
+# Static Pages staging, browser tooling and test reports
+_site/
+.playwright-cli/
+node_modules/
+playwright-report/
+test-results/
+
+# Our own derived submission artifacts are published for one-click download
+# (NOT competition input data; see IR-91-41). Only this path may hold a .tif.
+!docs/downloads/*.tif
+!docs/downloads/*.zip
 
 # session 10: candidate rasters that are NOT cleared for upload live here, outside
 # releases/ (which the dot-encoding release gates read) and outside docs/ (Pages).

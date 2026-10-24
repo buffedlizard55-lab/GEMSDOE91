@@ -1,38 +1,93 @@
-# GEMSDOE91 Limitations & Needs (2026-10-24)
+# Limitations and next-session needs — CED91, 2026-10-24
 
-**Current competition state:** Public leaderboard #1 is 0.4413 (ORGANIZER-CONFIRMED on the public board, fetched 2026-10-24; not the final score). The lineage's parent 0.2778 is a CLAIM: it is not on the public board (rows #1–#50 read), and the repo holds no receipt. No ORGANIZER-CONFIRMED receipts for any file of ours exist.
+## Current outcome
 
-## What we cannot do here (and what we need)
+A new parent-free TIFF exists and passes local format/range validation. It is a
+**research download, NOT OK TO SUBMIT**. Final registry overlap failed. The
+experiment stopped after one geological candidate. No weekly slot was selected,
+spent or reserved. No organizer score or hidden competition truth was obtained.
 
-1. **No live score.** Every number labelled MODEL/PROXY/HOLDOUT-DTI until a human uploads a file and pastes the receipt. The GEOD prediction +0.0090 is KAPPA=0.10 shrinkage on the strain surrogate, not a score. No slot should be spent without HOLDOUT-DTI +0.006 (brief §5).
+Read `README.md` (including the original user brief), `docs/run-card.json`, and
+`docs/REVIEW-CED91.md` first in every session. Prior forecasts and slot queues are
+archived, not recommendations to upload.
 
-2. **Data placement.** The only blocker that ever existed was `data/` placement. It is now solved via `bash scripts/download_competition_data.sh` on any unrestricted machine into `data/`, then `python scripts/prepare_data.py` — after that the full train→inference→validate pipeline is ready (GPU needed for training; metric/losses/validation all verified working here on CPU). In this repo, `scripts/restore_data.py` fetches the same 15 pins from immutable GitHub commits and verifies every SHA256 locally — no `drivendata.org`/`dropbox.com` contact (brief §4.1).
+## Blocking promotion
 
-3. **Missing external data for future hypotheses.** The five candidates (H91-A…E) all use *pinned* layers — no new download required:
-   - H91-A (GEOD, built): Bands 4+7 (`geod_2ndinv`, `geod_shearrate`) — already in `training_features.tif` (pinned, 418 MB, sha256 4371c82e…).
-   - H91-B (depth): Band 15 (`depth_to_base_surf`) — same file.
-   - H91-C (radiometric): `ext_geodawn_rad_u8.tif` (pinned, 26 MB, sha256 c22420f7…).
-   - H91-D (lidar): `ext_lidar_scarp_u8.tif` (pinned, 36 MB, sha256 d580bb8b…).
-   - H91-E (tip): catalogue skeleton derived from `existing_faults.tif` (pinned) — no new data.
-   If a candidate needed new official data, the required source would be: USGS National Map 1 m DEM for lidar re-derivation (free, https://apps.nationalmap.gov/) or UNAVCO GPS strain (free, https://www.unavco.org/) — both obtainable, but not needed for the top candidate.
+1. **Literal duplicate rule.** Final candidate overlap within 3 pixels of the
+   registry's lattice reference is 0.999125. The lattice itself covers 99.8713%
+   of the footprint at that distance. Low surface correlation and a new file
+   hash do not override the rule. No exemptions/removal/threshold changes were
+   authorized. The fleet owner/shared selector must resolve this protocol conflict
+   before another real experiment; no private workaround is allowed.
+2. **No assigned lane paragraph.** The original prompt names a single assigned
+   method but does not include it. CED was explicitly preregistered as provisional
+   research; assignment remains unverified. The project does not falsely mark
+   this as resolved or ask the user to do an image inspection.
+3. **No comparable prior best.** Legacy fixed-dot mean-credit and circular
+   surrogate estimates are not buffered whole-component pooled HOLDOUT-DTI.
+   R0 was built with the full catalogue. CED's paired difference versus its
+   matched single-view control has a 95% interval crossing zero. No statistically
+   resolved improvement or victory over a prior best is claimed.
+4. **Registry coverage.** All 92 supplied repository pages were fetched through
+   immutable GitHub snapshots. The inventory indexes 2,529 raster file entries
+   (including repeats/raw data), but only the existing pinned 64-file raster
+   registry was used for comparisons. Final checks stopped at the first duplicate;
+   remaining references are explicitly untested. Universal uniqueness is not
+   certified, including for private or unlinked files.
+5. **Separate selector.** Approval requires a separate selector step and the live
+   weekly allowance from the organizer submission page. No historical number is
+   treated as the confirmed current cap or deadline. No script uploads submissions.
 
-4. **Inherited collar (IR-91-03).** R0 has 2,171 dots at 2–3 px from the catalogue (min 2.236 px). Every non-PRUNE child inherits them. The brief says “≥3 px unless AXIS=PRUNE” — if enforced strictly, any GEOD/CONCENTRATION/MASS file is non-compliant at birth. The gates report this as `collar_ge_3px = FAIL (inherited)` and pass everything else. Human must rule on whether the gate binds controlled edits of R0 or only new-dot placement.
+## Access and evidence limits
 
-5. **Disk & compute.** Each build needs ~1.5 GB RAM and 30–90 s CPU for the full 3730×3292 grid. The GEOD build peaked at 1.5 GB and was killed once by the sandbox before light recovery succeeded. On a laptop/desktop, `python scripts/build_geod.py --build` reproduces the exact sha `bff9fd21…` byte-identically (deterministic, no RNG).
+- **Outbound network:** only GitHub, npm and Python package hosts. DrivenData,
+  USGS, GBCGE, GDR, NLR PDF and literature hosts are not reachable here. Their
+  links are labelled official source leads, not freshly verified content. This
+  prevents independent live leaderboard/rules/data-license verification and
+  deep new literature retrieval in this session.
+- **No DrivenData session:** no organizer receipts, official account actions or
+  hidden truth. No passwords, tokens or 2FA codes are requested or stored.
+- **Cached inputs:** the existing restore script recovered and verified all pins
+  from immutable sibling GitHub mirrors. A matching hash proves identity to a
+  project pin, not independent organizer authentication or redistribution rights.
+  Raw rasters and derived caches remain ignored. Inherited public raw-data mirrors
+  remain flagged for owner review; they were not newly published here.
+- **New external data:** none required by CED or the untested cached-layer
+  alternatives. A new official free-data dependency must be checked for actual
+  availability, license and semantics before being called viable; source links
+  alone do not establish obtainability.
+- **Compute:** CED is CPU-only; no GPU or model weights are required. This checkout
+  does not contain the legacy prompt's `download_competition_data.sh` or
+  `prepare_data.py`, and no absent GPU training pipeline is advertised as ready.
+- **Target:** competition output predicts faults useful to geothermal exploration;
+  neither catalogue hide-and-recover nor this TIFF validates geothermal vents.
 
-6. **Weekly cap.** One entity, 3 scored slots per rolling week, 1 blind final file. Promotion to a real slot is a *separate selector step* within the cap shown on the submission page — do not pick submissions here. Negative results are deliverables (run card verdict `negative`).
+## Delivery / operations
 
-7. **Manual verification required.** Every sha in `registry/data_manifest.json` must be re-hashed on the entrant’s machine (`scripts/restore_data.py` does this). No competition raster is committed (`data/` and `releases/*.tif` are gitignored; only `docs/downloads/*.tif` is the submission artifact and is committed for Pages).
+CI re-reads the published TIFF and ZIP, restores only small format references for
+footprint/catalogue checks, verifies source pins and checks portal policy. A Pages
+workflow refreshes the labelled fleet source feed daily without training, new
+placement experiments or organizer scraping. The direct publisher-setting update was denied by the GitHub integration
+(403). The workflow attempts the existing-site switch with its declared Pages
+write token, but this has not executed successfully here. Workflow creation is
+not deployment success: remote check/deployment outcomes must be observed and recorded separately.
 
-## What still needs human decisions
+The runner budget field is not an internal timeout watchdog; future authorized
+experiments need external wall-clock enforcement and early-failure accounting.
+The single actual CED run took 45.87 seconds.
 
-- TOP_PUBLIC score + date, slots left this week, and R0 receipt (action 0, costing no slot).
-- Which file goes in which slot, and the blind final pick (see SLOT_PLAN.md).
-- Whether to rebasing on PRUNE-le3 (35,483 dots) for strict 3 px compliance.
-- Deadline confirmation (unverified 2026-12-03).
-- Upstream mirror visibility (IR-91-09).
+Current scientific result is fixed in `docs/ced-experiment.json`; the run command
+refuses silent re-execution. Format revalidation and synthetic unit tests are not
+new geological experiments. Budget remains at one tested candidate; a failed
+novelty stop is not permission to spend the other two experiments.
 
-No credentials are read/requested/stored; no leaderboard scraping; no label probing; no region-isolated patterned files (brief §4.5).
+## Most valuable next work
+
+Resolve the assigned-lane/lattice protocol conflict in the shared fleet policy;
+record a pinned, truly comparable holdout baseline; complete the relevant registry
+and official-source permissions. Then a later session can test one new
+preregistered cached-layer hypothesis. Do not spend a weekly slot on the present
+research artifact or revive legacy model-projected queues.
 
 ## Session 10 limitations (2026-10-24, `arena/5e09be50-gemsdoe91`)
 

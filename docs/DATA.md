@@ -23,7 +23,7 @@ a byte ("is this file one of the pinned inputs?").
 
 | axis | pinned ids | why |
 |---|---|---|
-| CONCENTRATION | `parent_r0_nan`, `existing_faults`, `gdr_wellspring_in_footprint` | parent dots; collar exclusions; an **external** km-scale prior (GDR thermal features, public domain). `training_features` is NOT used — see IR-91-18 |
+| CONCENTRATION | `parent_r0_nan`, `existing_faults`, `gdr_wellspring_in_footprint`; or `training_features` (Session 8 strain arms) | parent dots; collar exclusions; an **independent** km-scale prior — GDR thermal features (public domain, `training_features` NOT used, IR-91-18) or sponsor geodetic strain bands 4/7/8 (`scripts/build_strain_concentration.py`, digests in `registry/derived_priors.json`) |
 | MASS | `parent_r0_nan`, `training_features` | the parent's own marginal-gain ranking |
 | PRUNE | `parent_r0_nan`, `existing_faults`, `training_features` | collar + refill ranking |
 | SNAP | `parent_r0_nan`, `existing_faults`, `training_features` | edge/scarp gradients |
