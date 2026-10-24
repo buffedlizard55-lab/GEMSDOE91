@@ -65,16 +65,6 @@
       "bytes": 373103
     },
     {
-      "file": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
-      "sha256": "104071078a5255594112ca0e7e297292012fb1d20035af00ca2364fca72af722",
-      "bytes": 212109
-    },
-    {
-      "file": "h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif",
-      "sha256": "bff9fd210b1ed4ffd7653936d065b419a6f72b77544f6d4cd154920d82f20158",
-      "bytes": 356859
-    },
-    {
       "file": "h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae-zeros.tif",
       "sha256": "0842d86618dbe64acf6dfb4137feff423a9dc394b59d153317381fc22b06dbb8",
       "bytes": 174857

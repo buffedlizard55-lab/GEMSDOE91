@@ -789,3 +789,8 @@ download links now 404 until a human rebuilds locally.
 data-use terms are checked and allow public posting of derived candidate rasters), and to note
 that roughly a day of public exposure already happened via git history + Pages — removal from
 HEAD does not purge history.
+(Also in this merge: the two GEOD entries PR #30 added to `releases/MANIFEST.json` were
+removed from that file — no CI step runs `scripts/build_geod.py`, so the entries made the
+lineage job's byte-identity check unsatisfiable. The arm's hashes remain in
+`ledger/submissions.csv` and `evidence/geod_axis_20261024.json`; re-add the entries together
+with a CI build step if GEOD is ever queued.)
