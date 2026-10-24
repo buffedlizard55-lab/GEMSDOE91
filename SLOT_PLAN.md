@@ -48,3 +48,13 @@ vs the prior best 0.142885 (HGB-CTX). It takes **no slot** and enters no
 queue. The preregistered follow-up for a future session is the step×context
 fusion gated above 0.142885 with a second-instrument cross-check; selector
 approval and live weekly allowance remain separate, unverified here.
+
+## GVP91 lane note (2026-10-24, `arena/f9bd8a10-gemsdoe91`)
+
+`gems91-gvp-e2-20261024T201500Z-139f2171-zeros.tif` (`docs/gvp91.html`, `docs/run-card-GVP91.json`, `SHA-256: 8b295ba2c7ce7b82131a082e8805422c84ec204d1416b75eb6d59a251217d73f`) is recorded as **`PROMOTE` to the human selector** (`0` weekly slots spent automatically by this session):
+- **Primary 4-quadrant buffered whole-segment holdout (`gems91-hide-recover-v1.0`, `60,988` withheld positives):** **`0.233496` `HOLDOUT-DTI`** (`95% CI [0.221099, 0.246104]`), beating prior best `S11-MHTR E2 = 0.206406 [0.193796, 0.220176]` (`+0.027090`) and `FUSE91 E1 = 0.194611 [0.178593, 0.209115]` (`+0.038885`) with non-overlapping 95% CIs.
+- **Secondary 400-px whole-component checkerboard holdout (`build_denovo.fold_setup`, `60,988` withheld positives):** **`0.196098` `HOLDOUT-DTI`** (`95% CI [0.175419, 0.216358]`), beating prior best `FUSE91 E1 = 0.167293 [0.165907, 0.168782]` (`+0.028805`) and `DENOVO HGB-CTX = 0.142885` (`+0.053213`) with non-overlapping 95% CIs.
+- **Blind off-catalogue USGS `SGMC` control (`62,122` positives `> 3 px` from catalogue):** **`0.103208` `SGMC-OFFCAT-CONTROL-DTI`** (first candidate in repo `> 0.100`, beating `R0 = 0.095386`, `S11-E2 = 0.097623`, and `FUSE91 E1 = 0.070556`).
+- **Rule 2 & Rule 4 gates:** Passes all `104` single-feature leakage canaries (`max_symmetric_auc = 0.66888 <= 0.90`), all 4 format validators, and all `69` real fault & candidate rasters (`max_surface_abs_rank_corr = 0.2235 <= 0.90`, `max_3px_dot_overlap = 0.6912 <= 0.70`).
+- **Human selector action required before live upload:** Verify live weekly slot allowance (`<= 3/week`, Official Rules §3.2) and synthetic 5-px lattice policy (`IR-CED-003`) before uploading `gems91-gvp-e2-20261024T201500Z-139f2171-zeros.tif` on DrivenData.
+

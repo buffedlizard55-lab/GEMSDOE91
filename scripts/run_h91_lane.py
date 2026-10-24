@@ -267,6 +267,8 @@ def main() -> int:
             "hypothesis_id": "H91-1",
             "title": "Dip-Deprojected Verduzco Tilt + Multi-Scale Openness + 1D-Ridge Submodular 300m DTI",
             "col_indices": list(range(34)),  # RAW_19 + E1_15
+            "n_classifier_features": 34,
+            "n_post_prior_features": 0,
             "n_total_features": 34,
             "use_gdr_prior": False,
             "use_fold_cat": False,
@@ -288,6 +290,8 @@ def main() -> int:
             "hypothesis_id": "H91-1 + H91-2",
             "title": "Andersonian 12-Azimuth Ridge + 212 Blind >=90C Geothermometer & 2,060 Thermal GDR Conduits + Subsurface-Gated Exposure PU + 1D-Ridge Submodular 300m DTI",
             "col_indices": list(range(38)) + [43],  # RAW_19 + E1_15 + Andersonian/Coincidence(34..37) + Piedmont(43); GDR(38..42) via non-memorizing prior + 3 fold-cat = 47
+            "n_classifier_features": 42,
+            "n_post_prior_features": 8,
             "n_total_features": 47,
             "use_gdr_prior": True,
             "use_fold_cat": True,
@@ -306,6 +310,8 @@ def main() -> int:
             "hypothesis_id": "H91-1 + H91-2 + H91-3",
             "title": "Full 52-Feature Hydrothermal Magnetite-Destruction + Smectite Clay-Cap Breach + Seismic Swarm Conduit + PU + 1D-Ridge Submodular 300m DTI",
             "col_indices": list(range(38)) + [43] + list(range(44, 49)),  # + 5 E3 Hydrothermal Alteration/Seismic features + GDR(38..42) + 3 fold-cat = 52
+            "n_classifier_features": 47,
+            "n_post_prior_features": 8,
             "n_total_features": 52,
             "use_gdr_prior": True,
             "use_fold_cat": True,
@@ -335,16 +341,22 @@ def main() -> int:
 
         for f in folds:
             excl = f.region_mask | f.withheld_faults | f.buffer_mask
+            fc_fold_in = (
+                np.memmap(fold_cat_paths[f.fold_id], dtype=np.float32, mode="r", shape=(n_fp, 3))
+                if spec["use_fold_cat"]
+                else None
+            )
             surf_k = DD.fit_and_predict_oof_fold(
                 X_static,
                 spec["col_indices"],
-                None,
+                fc_fold_in,
                 f.visible_faults,
                 excl,
                 footprint,
                 use_pu_deconfound=spec["use_pu"],
                 seed=9100 + idx_exp * 10 + f.fold_id,
             )
+            del fc_fold_in
             full_surf_accum += 0.25 * surf_k
 
             surf_eval = surf_k
