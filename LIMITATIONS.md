@@ -99,3 +99,14 @@ research artifact or revive legacy model-projected queues.
 6. **Negative result, low power.** One candidate, three experiments, one catalogue-based holdout. Four hypotheses (H10-2..5) are not built. None has an estimated DTI gain.
 7. **Rules and eligibility are not decided by the agent** (README, "Decisions only the human can make"). Generative-AI disclosure is required in any narrative (rules §3.2).
 8. **Git history still contains the GEOD TIFs** on `main` (IR-91-S10-01). Removal from the working tree does not remove them from history.
+
+## Session 11 additions (2026-10-24)
+
+1. **No assigned lane.** The brief has no "single method paragraph", so the lane-overlap protocol cannot be applied as written (IR-91-S11-01).
+2. **Registry scope is 62 of 64 here.** Two GEOD references are absent from this checkout and from this clone's history (IR-91-S11-05). Any "PASS within indexed scope" claim is therefore incomplete.
+3. **The dot-overlap duplicate test is lattice-dominated.** A well-spread fixed-budget placement overlaps a dense registry lattice by more than 70 % within 3 px. The test flags spatial coverage, not geology (IR-91-S11-06). Changing it is a human decision.
+4. **The holdout measures catalogue recovery.** The organizer scores expert-labelled *new* faults outside the USGS database. A topography-based detector will look better on catalogue faults than on new ones (IR-91-S11-07). No organizer-comparable score is available without a submission receipt.
+5. **The leakage canary is a bound, not a proof.** It tests feature-alone AUC against catalogue zeros. It cannot detect a physical correlation between the feature and the label.
+6. **The 1-m 3DEP DEM cannot be downloaded here.** usgs.gov is outside the sandbox allow-list (GitHub, PyPI, npm only). This blocks the most direct scarp test (H11-5).
+7. **Data-use status of the mirrored inputs is unresolved.** The training features and the catalogue are restored from third-party GitHub mirrors (IR-91-09, IR-91-S10-06). The rules (§A.5) require original work and licensed third-party content. A human must decide this.
+8. **Eligibility and attestation are human-only.** Rules §1.3 (U.S. citizen or permanent resident; signed statement under penalty of perjury) cannot be met by the agent.
