@@ -1,0 +1,441 @@
+{
+  "mode": "cache",
+  "generated_utc": "2026-10-24T19:30:40.677549+00:00",
+  "lane": "G91-COVER",
+  "inputs_RECEIPT": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  },
+  "feature_names": [
+    "mag_anom",
+    "rtp",
+    "tmi_hg",
+    "tmi_hg_mean11",
+    "geod_2ndinv",
+    "geod_2ndinv_mean11",
+    "iso_grav_anom_slope",
+    "iso_grav_anom_slope_mean11",
+    "tc",
+    "tc_mean11",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "tmi_vg",
+    "tmi_vg_mean11",
+    "deq_n100a15",
+    "iso_grav_anom_vg",
+    "iso_grav_anom_vg_mean11",
+    "det_elev",
+    "iso_grav_anom",
+    "tmi",
+    "depth_to_base_surf",
+    "ieq_n100a15",
+    "cond_surf",
+    "iso_grav_anom_hg",
+    "iso_grav_anom_hg_mean11",
+    "det_elev_slope",
+    "det_elev_slope_mean11",
+    "TRI3_surface",
+    "stepabs_pct_det_elev",
+    "stepabs_pct_iso_grav_anom",
+    "stepabs_pct_rtp",
+    "stepabs_pct_depth_to_base_surf",
+    "stepabs_pct_cond_surf",
+    "aniso_pct_det_elev",
+    "aniso_pct_iso_grav_anom",
+    "aniso_pct_rtp",
+    "aniso_pct_depth_to_base_surf",
+    "aniso_pct_cond_surf",
+    "signed_z_det_elev",
+    "signed_z_iso_grav_anom",
+    "signed_z_rtp",
+    "signed_z_depth_to_base_surf",
+    "signed_z_cond_surf",
+    "az_agree",
+    "az_sin2",
+    "az_cos2",
+    "dc_cond_resid_pct",
+    "dc_cond_resid_grad_pct",
+    "dc_cond_resid_lap_pct",
+    "dc_depth_lap_pct",
+    "dc_grav_lap_pct",
+    "dc_grad_align_pct",
+    "cover_w",
+    "cg_topo_suppressed",
+    "cg_grav_boosted",
+    "cg_mag_boosted",
+    "cg_depth_step_cover",
+    "cg_topo_in_thick_penalty",
+    "cg_cond_in_cover"
+  ],
+  "n_features": 59,
+  "n_footprint_px": 5167373,
+  "feature_cache": {
+    "path": "work/cover91/features_fp.npy",
+    "sha256": "879043730b650e9dafa8345e4af51e5fbd91287fc5e0fe4002f8647cf0ee510f"
+  },
+  "tri3_surface_audit": {
+    "families": {
+      "mag": {
+        "bands": [
+          "tmi_hg",
+          "tc",
+          "tmi_vg"
+        ]
+      },
+      "grav": {
+        "bands": [
+          "iso_grav_anom_slope",
+          "iso_grav_anom_vg",
+          "iso_grav_anom_hg"
+        ]
+      },
+      "topo": {
+        "bands": [
+          "det_elev_slope",
+          "|lap det_elev|"
+        ]
+      }
+    },
+    "formula": "(Rmag*Rgrav*Rtopo)^(1/3) * (0.6+0.4*Pstep) * (0.85+0.15*Pstrain); R = pct of 5px-high-pass of mean band percentiles",
+    "surface_family_ridges": {
+      "mag": null,
+      "grav": null,
+      "topo": null
+    },
+    "bands_read": {
+      "tmi_hg": {
+        "band": 3,
+        "description": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction"
+      },
+      "geod_2ndinv": {
+        "band": 4,
+        "description": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude"
+      },
+      "iso_grav_anom_slope": {
+        "band": 5,
+        "description": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction"
+      },
+      "tc": {
+        "band": 6,
+        "description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection"
+      },
+      "tmi_vg": {
+        "band": 9,
+        "description": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction"
+      },
+      "iso_grav_anom_vg": {
+        "band": 11,
+        "description": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change"
+      },
+      "det_elev": {
+        "band": 12,
+        "description": "det_elev - Detrended elevation - topography with regional trends removed"
+      },
+      "depth_to_base_surf": {
+        "band": 15,
+        "description": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover"
+      },
+      "iso_grav_anom_hg": {
+        "band": 18,
+        "description": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change"
+      },
+      "det_elev_slope": {
+        "band": 19,
+        "description": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+      }
+    },
+    "sha256_f32": "134daf62fa07609a2f3ca570a99ccfa3dc02e304b47a2bc92ee4f98e643e2251"
+  },
+  "new_feature_audit": {
+    "n_depth_bins": 10,
+    "cond_pct_median_by_depth_bin": [
+      0.600674,
+      0.520487,
+      0.526201,
+      0.494694,
+      0.462345,
+      0.447539,
+      0.465491,
+      0.478438,
+      0.470407,
+      0.555493
+    ],
+    "feature_names": [
+      "dc_cond_resid_pct",
+      "dc_cond_resid_grad_pct",
+      "dc_cond_resid_lap_pct",
+      "dc_depth_lap_pct",
+      "dc_grav_lap_pct",
+      "dc_grad_align_pct"
+    ]
+  },
+  "cover_audit": {
+    "center": 0.55,
+    "scale": 0.12,
+    "feature_names": [
+      "cover_w",
+      "cg_topo_suppressed",
+      "cg_grav_boosted",
+      "cg_mag_boosted",
+      "cg_depth_step_cover",
+      "cg_topo_in_thick_penalty",
+      "cg_cond_in_cover"
+    ],
+    "note": "cover_w=sigmoid(depth_pct-0.55)/0.12; interactions are elementwise products then footprint-percentile ranked"
+  },
+  "leakage_canary": {
+    "rule": "catalogue px vs 150k sampled px >5px off catalogue, seed 20261024",
+    "threshold_symmetric_auc": 0.9,
+    "per_feature": {
+      "mag_anom": {
+        "auc_raw": 0.49,
+        "auc_symmetric": 0.51
+      },
+      "rtp": {
+        "auc_raw": 0.497,
+        "auc_symmetric": 0.503
+      },
+      "tmi_hg": {
+        "auc_raw": 0.5299,
+        "auc_symmetric": 0.5299
+      },
+      "tmi_hg_mean11": {
+        "auc_raw": 0.5302,
+        "auc_symmetric": 0.5302
+      },
+      "geod_2ndinv": {
+        "auc_raw": 0.5776,
+        "auc_symmetric": 0.5776
+      },
+      "geod_2ndinv_mean11": {
+        "auc_raw": 0.5769,
+        "auc_symmetric": 0.5769
+      },
+      "iso_grav_anom_slope": {
+        "auc_raw": 0.5374,
+        "auc_symmetric": 0.5374
+      },
+      "iso_grav_anom_slope_mean11": {
+        "auc_raw": 0.5373,
+        "auc_symmetric": 0.5373
+      },
+      "tc": {
+        "auc_raw": 0.4414,
+        "auc_symmetric": 0.5586
+      },
+      "tc_mean11": {
+        "auc_raw": 0.4431,
+        "auc_symmetric": 0.5569
+      },
+      "geod_shearrate": {
+        "auc_raw": 0.5758,
+        "auc_symmetric": 0.5758
+      },
+      "geod_dilaterate": {
+        "auc_raw": 0.5284,
+        "auc_symmetric": 0.5284
+      },
+      "tmi_vg": {
+        "auc_raw": 0.4854,
+        "auc_symmetric": 0.5146
+      },
+      "tmi_vg_mean11": {
+        "auc_raw": 0.4867,
+        "auc_symmetric": 0.5133
+      },
+      "deq_n100a15": {
+        "auc_raw": 0.5554,
+        "auc_symmetric": 0.5554
+      },
+      "iso_grav_anom_vg": {
+        "auc_raw": 0.5295,
+        "auc_symmetric": 0.5295
+      },
+      "iso_grav_anom_vg_mean11": {
+        "auc_raw": 0.5304,
+        "auc_symmetric": 0.5304
+      },
+      "det_elev": {
+        "auc_raw": 0.4845,
+        "auc_symmetric": 0.5155
+      },
+      "iso_grav_anom": {
+        "auc_raw": 0.4562,
+        "auc_symmetric": 0.5438
+      },
+      "tmi": {
+        "auc_raw": 0.487,
+        "auc_symmetric": 0.513
+      },
+      "depth_to_base_surf": {
+        "auc_raw": 0.5116,
+        "auc_symmetric": 0.5116
+      },
+      "ieq_n100a15": {
+        "auc_raw": 0.5763,
+        "auc_symmetric": 0.5763
+      },
+      "cond_surf": {
+        "auc_raw": 0.4822,
+        "auc_symmetric": 0.5178
+      },
+      "iso_grav_anom_hg": {
+        "auc_raw": 0.5013,
+        "auc_symmetric": 0.5013
+      },
+      "iso_grav_anom_hg_mean11": {
+        "auc_raw": 0.5021,
+        "auc_symmetric": 0.5021
+      },
+      "det_elev_slope": {
+        "auc_raw": 0.564,
+        "auc_symmetric": 0.564
+      },
+      "det_elev_slope_mean11": {
+        "auc_raw": 0.5476,
+        "auc_symmetric": 0.5476
+      },
+      "TRI3_surface": {
+        "auc_raw": 0.5414,
+        "auc_symmetric": 0.5414
+      },
+      "stepabs_pct_det_elev": {
+        "auc_raw": 0.5926,
+        "auc_symmetric": 0.5926
+      },
+      "stepabs_pct_iso_grav_anom": {
+        "auc_raw": 0.5393,
+        "auc_symmetric": 0.5393
+      },
+      "stepabs_pct_rtp": {
+        "auc_raw": 0.5371,
+        "auc_symmetric": 0.5371
+      },
+      "stepabs_pct_depth_to_base_surf": {
+        "auc_raw": 0.5345,
+        "auc_symmetric": 0.5345
+      },
+      "stepabs_pct_cond_surf": {
+        "auc_raw": 0.5027,
+        "auc_symmetric": 0.5027
+      },
+      "aniso_pct_det_elev": {
+        "auc_raw": 0.5941,
+        "auc_symmetric": 0.5941
+      },
+      "aniso_pct_iso_grav_anom": {
+        "auc_raw": 0.5391,
+        "auc_symmetric": 0.5391
+      },
+      "aniso_pct_rtp": {
+        "auc_raw": 0.5367,
+        "auc_symmetric": 0.5367
+      },
+      "aniso_pct_depth_to_base_surf": {
+        "auc_raw": 0.5347,
+        "auc_symmetric": 0.5347
+      },
+      "aniso_pct_cond_surf": {
+        "auc_raw": 0.5029,
+        "auc_symmetric": 0.5029
+      },
+      "signed_z_det_elev": {
+        "auc_raw": 0.6028,
+        "auc_symmetric": 0.6028
+      },
+      "signed_z_iso_grav_anom": {
+        "auc_raw": 0.5485,
+        "auc_symmetric": 0.5485
+      },
+      "signed_z_rtp": {
+        "auc_raw": 0.5167,
+        "auc_symmetric": 0.5167
+      },
+      "signed_z_depth_to_base_surf": {
+        "auc_raw": 0.4558,
+        "auc_symmetric": 0.5442
+      },
+      "signed_z_cond_surf": {
+        "auc_raw": 0.4919,
+        "auc_symmetric": 0.5081
+      },
+      "az_agree": {
+        "auc_raw": 0.541,
+        "auc_symmetric": 0.541
+      },
+      "az_sin2": {
+        "auc_raw": 0.4955,
+        "auc_symmetric": 0.5045
+      },
+      "az_cos2": {
+        "auc_raw": 0.5147,
+        "auc_symmetric": 0.5147
+      },
+      "dc_cond_resid_pct": {
+        "auc_raw": 0.4903,
+        "auc_symmetric": 0.5097
+      },
+      "dc_cond_resid_grad_pct": {
+        "auc_raw": 0.5235,
+        "auc_symmetric": 0.5235
+      },
+      "dc_cond_resid_lap_pct": {
+        "auc_raw": 0.5146,
+        "auc_symmetric": 0.5146
+      },
+      "dc_depth_lap_pct": {
+        "auc_raw": 0.5362,
+        "auc_symmetric": 0.5362
+      },
+      "dc_grav_lap_pct": {
+        "auc_raw": 0.4672,
+        "auc_symmetric": 0.5328
+      },
+      "dc_grad_align_pct": {
+        "auc_raw": 0.5408,
+        "auc_symmetric": 0.5408
+      },
+      "cover_w": {
+        "auc_raw": 0.5115,
+        "auc_symmetric": 0.5115
+      },
+      "cg_topo_suppressed": {
+        "auc_raw": 0.5315,
+        "auc_symmetric": 0.5315
+      },
+      "cg_grav_boosted": {
+        "auc_raw": 0.524,
+        "auc_symmetric": 0.524
+      },
+      "cg_mag_boosted": {
+        "auc_raw": 0.5371,
+        "auc_symmetric": 0.5371
+      },
+      "cg_depth_step_cover": {
+        "auc_raw": 0.516,
+        "auc_symmetric": 0.516
+      },
+      "cg_topo_in_thick_penalty": {
+        "auc_raw": 0.5839,
+        "auc_symmetric": 0.5839
+      },
+      "cg_cond_in_cover": {
+        "auc_raw": 0.5081,
+        "auc_symmetric": 0.5081
+      }
+    },
+    "max_symmetric_auc": 0.6028,
+    "worst_feature": "signed_z_det_elev",
+    "pass": true
+  }
+}

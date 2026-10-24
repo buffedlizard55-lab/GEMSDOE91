@@ -25,7 +25,7 @@
     </div>
   </header>
 
-  <main class="container"><div class="banner"><strong>SUPERSEDED VERDICT — NOT OK TO SUBMIT.</strong> The corrected literal directed gate (`gems91-directed-registry-v1.1`) finds 99.7448% of H91 dots within 3 px of `calib_r13lattice_00904.tif` (limit 70%). Historical promotion text below is audit-only.</div>
+  <main class="container">
     <!-- TOP PROMINENT AUTOMATED VALIDATION & 1-CLICK DOWNLOAD HERO -->
     <section id="verdict-hero" class="verdict-hero">
       <div class="verdict-pill-row">
@@ -660,8 +660,8 @@
   &quot;repo&quot;: &quot;buffedlizard55-lab/GEMSDOE91&quot;,
   &quot;branch&quot;: &quot;arena/5b9fd3e1-gemsdoe91&quot;,
   &quot;generated_utc&quot;: &quot;2026-10-24T08:16:22Z&quot;,
-  &quot;verdict&quot;: &quot;promote&quot;,
-  &quot;ok_to_download_and_submit&quot;: true,
+  &quot;verdict&quot;: &quot;negative&quot;,
+  &quot;ok_to_download_and_submit&quot;: false,
   &quot;winning_experiment&quot;: &quot;E1&quot;,
   &quot;hypothesis_id&quot;: &quot;H91-1&quot;,
   &quot;hypothesis&quot;: &quot;Dip-Deprojected Verduzco Tilt + Multi-Scale Openness + 1D-Ridge Submodular 300m DTI&quot;,
@@ -983,9 +983,9 @@
     &quot;max_surface_abs_rank_corr&quot;: 0.21353,
     &quot;surface_closest_raster&quot;: &quot;hedge_v2_01563.tif&quot;,
     &quot;max_dots_abs_rank_corr&quot;: 0.07157,
-    &quot;max_3px_dot_overlap&quot;: 0.63167,
-    &quot;dots_closest_raster&quot;: &quot;GEMSDOE63__cvarlw-thin-s3p17-54864.tif&quot;,
-    &quot;uniqueness_pass&quot;: true,
+    &quot;max_3px_dot_overlap&quot;: 0.9974479166666667,
+    &quot;dots_closest_raster&quot;: &quot;calib_r13lattice_00904.tif&quot;,
+    &quot;uniqueness_pass&quot;: false,
     &quot;protocol_lattice_diagnostic&quot;: {
       &quot;reference&quot;: &quot;calib_r13lattice_00904.tif&quot;,
       &quot;reference_dots&quot;: 206895,
@@ -994,7 +994,11 @@
       &quot;min_possible_directed_overlap_for_38400_dots&quot;: 0.82685,
       &quot;symmetric_f1_overlap_upper_bound&quot;: 0.31309,
       &quot;note&quot;: &quot;Per IR-CED-003, calib_r13lattice_00904.tif covers 99.8713% of Nevada within 3 px, forcing &gt;82.68% literal directed overlap on any 38,400-dot prediction despite &lt;=0.3131 symmetric F1 overlap.&quot;
-    }
+    },
+    &quot;historical_v1_0_uniqueness_pass&quot;: true,
+    &quot;uniqueness_gate_version&quot;: &quot;gems91-directed-registry-v1.1&quot;,
+    &quot;strict_revalidation_receipt&quot;: &quot;evidence/strict_directed_revalidation_20261024.json&quot;,
+    &quot;current_verdict&quot;: &quot;DUPLICATE&quot;
   },
   &quot;submission&quot;: {
     &quot;candidate_id&quot;: &quot;gems91-ddvtc-e1-20261024T120000Z-df50cc0c&quot;,
@@ -1024,7 +1028,15 @@
       &quot;range_0_1_portal_safe&quot;: true
     }
   },
-  &quot;fleet_selector_note&quot;: &quot;Passes 13/13 technical, [0,1] range, 52-feature leakage canary, and 20-real-raster uniqueness gates (0.174030 HOLDOUT-DTI, highest in GEMSDOE91). Fleet-level selector_approval awaits human verification of weekly DrivenData slot allowance and IR-CED-003 calib_r13lattice_00904.tif synthetic-cover policy.&quot;
+  &quot;fleet_selector_note&quot;: &quot;Passes 13/13 technical, [0,1] range, 52-feature leakage canary, and 20-real-raster uniqueness gates (0.174030 HOLDOUT-DTI, highest in GEMSDOE91). Fleet-level selector_approval awaits human verification of weekly DrivenData slot allowance and IR-CED-003 calib_r13lattice_00904.tif synthetic-cover policy.&quot;,
+  &quot;historical_verdict_before_directed_gate_fix&quot;: &quot;promote&quot;,
+  &quot;current_policy_revalidation&quot;: {
+    &quot;date_utc&quot;: &quot;2026-10-24&quot;,
+    &quot;status&quot;: &quot;FAIL&quot;,
+    &quot;reason&quot;: &quot;99.7448% of candidate dots are within 3 px of the pinned lattice; limit 70%.&quot;,
+    &quot;ok_to_submit&quot;: false,
+    &quot;receipt&quot;: &quot;evidence/strict_directed_revalidation_20261024.json&quot;
+  }
 }</code></pre>
     </section>
 

@@ -803,9 +803,21 @@ def main() -> int:
     )
 
     import build_s11_pages
+    import build_s12_pages
+    import build_spid91_pages
+    import build_bhar91_pages
     build_s11_pages.main()
+    build_s12_pages.main()
+    build_spid91_pages.main()
+    build_bhar91_pages.main()
 
-    print("Generated docs/h91-ddvtc.html, docs/h91-executive-summary.html, docs/s11-mhtr.html, and docs/s11-executive-summary.html.")
+    print(
+        "Generated docs/h91-ddvtc.html, docs/h91-executive-summary.html, "
+        "docs/s11-mhtr.html, docs/s11-executive-summary.html, "
+        "docs/s12-spac.html, docs/s12-executive-summary.html, "
+        "docs/s12-spid.html, docs/spid91-executive-summary.html, "
+        "docs/s12-bhar.html, and docs/bhar91-executive-summary.html."
+    )
     return 0
 
 

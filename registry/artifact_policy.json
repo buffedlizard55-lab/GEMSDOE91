@@ -62,6 +62,18 @@
       "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC single-TIFF ZIP (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
     },
     {
+      "path": "docs/downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
+      "sha256": "bae83b233ddb150105986337207b8a217f3a3f3a817e0b418ad7f26f1b4c2431",
+      "status": "current_research_only",
+      "reason": "S12-BHAR (BHAR91) E3 Dual-Branch Multi-Physics + Topography-Blind Subsurface candidate (0.198612 HOLDOUT-DTI below S12-SPAC 0.237587 & S11-MHTR 0.206406 -> verdict NEGATIVE on primary holdout; 0.099057 SGMC-OFFCAT-CONTROL-DTI [E2: 0.100094]; external fleet uniqueness <=67.83% & all [0,1] validators PASS; NOT OK TO SUBMIT; docs/run-card-BHAR91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.zip",
+      "sha256": "20f6a54f8ab4a627d53da8d85708fffb936e333e8a1d7b899f10e118e5d16f36",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S12-BHAR (BHAR91) E3 Dual-Branch Subsurface research candidate (0.198612 HOLDOUT-DTI, 0.099057 SGMC-Control, verdict NEGATIVE; NOT OK TO SUBMIT; docs/run-card-BHAR91.json)."
+    },
+    {
       "path": "docs/downloads/gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif",
       "sha256": "ab500a3caa50f00ec0855dc88006a2d3e31f5e5f4cde726ef391e30f6eb4cd6b",
       "status": "current_research_only",
@@ -122,16 +134,52 @@
       "reason": "FUSE91 E1 step x context fusion candidate single-TIFF ZIP (0.167293 HOLDOUT-DTI identical instrument, new repo best vs 0.142885; canary + all format suites PASS; surface novelty PASS; literal directed dot gate FAILS vs unsubmitted in-repo DENOVO/MHTR/DDVTC predecessors - disclosed deviation IR-F91-01, submit only as single family candidate pending human selector; docs/run-card-F91.json)."
     },
     {
+      "path": "docs/downloads/gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.tif",
+      "sha256": "c76e6d7b58d0cdd17bc4ddeec69ac87663f4604c2cb75bf8c3f7bd01560fd051",
+      "status": "current_research_only",
+      "reason": "G91-COVER E1 cover-gated step x context candidate GeoTIFF (0.16939 HOLDOUT-DTI on checkerboard instrument; format + canary + surface novelty PASS; literal family overlap 91.2% vs unsubmitted FUSE91/DENOVO family disclosed in IR-G91-01; superseded on holdout by S12-SPAC E3 at 0.237587 and S13-PTHA E3 at 0.244601)."
+    },
+    {
+      "path": "docs/downloads/gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.zip",
+      "sha256": "d7d1a407c86bc49ec87c88071e8cf21f956a4d143a7ebafc6a7a33e9ec34504d",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of G91-COVER E1 research candidate (docs/run-card-G91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+      "sha256": "0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd",
+      "status": "current_research_only",
+      "reason": "S12-SPAC E3 3-D Magnetic Analytic Signal/SPI + Swarm + Fold-Safe Two-Stage Steerable Radon Auto-Context candidate (0.237587 HOLDOUT-DTI, +0.031181 paired over S11-E2 [P(>0)=100%], 0.107938 SGMC-Control, 64/64 external registry uniqueness & all 5 validator suites PASS; awaits human fleet-selector review of weekly slot cap, mutual exclusion vs S13-PTHA E3, & IR-CED-003 lattice policy)."
+    },
+    {
+      "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.zip",
+      "sha256": "e21e77e1ec65a04ccfc4a5ee970d50f0f0e8d3a1f986cc092497a13e84642a62",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S12-SPAC E3 candidate (0.237587 HOLDOUT-DTI, 0.107938 SGMC-Control; docs/run-card-S12.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+      "sha256": "f59ec7a60cd9346f94e69257b0ab7123c2e74421ef7954a10fee9a0bbd7ee1ee",
+      "status": "current_research_only",
+      "reason": "SPID91 E3 Laplace-SPI + Depth-Deconfounded Conductivity + Weingarten Scarp-Toe MoE + Self-Credit Dinkelbach deliverable (0.151682 HOLDOUT-DTI on gems91-hide-recover-v1.0 & 0.145009 on gems57-pooled-hide-v2; passes all 85 leakage canaries & all 4 [0,1] validator suites; 67/67 real-raster unique <= 0.6663 at branch base and 74/75 post-merge [71.13% vs concurrent S12-SPAC E3]; verdict=negative — NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.zip",
+      "sha256": "37b52582dcf7d943af25f10d560cbf741443d5defba04a26ece32b5fca52c82c",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of SPID91 E3 research/ensemble artifact (format PASS [0,1], verdict=negative — NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
+    },
+    {
       "path": "docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
       "sha256": "421c589072e3b959fc0f8e71a7e879822ce8f9a81172a7f0fd24e7932eadd452",
       "status": "current_research_only",
-      "reason": "S13-PTHA E3 candidate GeoTIFF (0.244601 HOLDOUT-DTI on gems91-hide-recover-v1.0, +0.038195 vs S11-MHTR E2 0.206406, paired 95% CI [+0.029931, +0.046719]; 0.100815 Blind USGS SGMC DTI; 75/75 canaries & all 5 format/[0,1] validators PASS; <=51.39% overlap vs canonical registry & <=47.36% vs external dotted fleet; fail-closed pending human selector sign-off on weekly cap, lane assignment, & IR-CED-003 lattice policy; docs/run-card-S13.json)."
+      "reason": "S13-PTHA E3 candidate GeoTIFF (0.244601 HOLDOUT-DTI on gems91-hide-recover-v1.0, #1 in GEMSDOE91, +0.038195 vs S11-MHTR E2 0.206406 with paired 95% CI [+0.029931, +0.046719] and +0.007014 vs S12-SPAC E3 0.237587; 0.100815 Blind USGS SGMC DTI; 75/75 canaries & all 5 format/[0,1] validators PASS; <=51.39% overlap vs canonical registry & <=47.36% vs external dotted fleet; fail-closed pending human selector sign-off on weekly cap, lane assignment, mutual exclusion vs S12-SPAC/S11-MHTR, & IR-CED-003 lattice policy; docs/run-card-S13.json)."
     },
     {
       "path": "docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.zip",
       "sha256": "7aee95a4a64ed53d94a7b99030e8eeb8d9fbe7d974ec282f95a7e025692f975f",
       "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S13-PTHA E3 candidate GeoTIFF (0.244601 HOLDOUT-DTI, +0.038195 vs S11-MHTR E2; fail-closed pending human selector sign-off; docs/run-card-S13.json)."
+      "reason": "Single-TIFF ZIP of S13-PTHA E3 candidate GeoTIFF (0.244601 HOLDOUT-DTI #1 in GEMSDOE91; fail-closed pending human selector sign-off; docs/run-card-S13.json)."
     }
   ]
 }

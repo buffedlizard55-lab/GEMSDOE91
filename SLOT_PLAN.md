@@ -1,6 +1,15 @@
-# Slot selection — blocked, no candidate chosen
+# Slot selection — human selector queue (`S12-SPAC E3` #1 candidate; 0 slots spent automatically)
 
-> **SESSION 10 BANNER (2026-10-24) — read before using this plan.**
+> **SESSION 12 BANNER (2026-10-24, branch `arena/03c185c4-gemsdoe91`) — READ FIRST:**
+> - **No weekly DrivenData slot has been spent automatically (`slots_used = 0`).** Under [Official Rules §3.2](https://docs.nlr.gov/docs/fy26osti/96647.pdf) (`3 submissions/week` cap) and `src/gems91/readiness.py`, live slot promotion belongs strictly to the human fleet selector.
+> - **Current #1 Validated Selector Candidate in `GEMSDOE91`:** **`gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif`** (`54,000` unit-mass dots `> 3.0 px` from catalogue, SHA-256 `0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd`, [`docs/run-card-S12.json`](docs/run-card-S12.json)):
+>   - **`0.237587` `HOLDOUT-DTI`** (`95% CI [0.223387, 0.250313]`, `gems91-hide-recover-v1.0`, `60,988` withheld positives), beating `S11-MHTR E2` (`0.206406`) by **`+0.031181` (`+15.1%`) with paired 95% CI `[+0.024186, +0.038231]`, `P(>0) = 100.0%` (`200/200` draws)**, `H91-DDVTC E1` (`0.174030`) by `+36.5%`, and `B0` (`0.138999`) by `+70.9%`.
+>   - **`0.107938` `SGMC-OFFCAT-CONTROL-DTI`** (`62,122` blind off-catalogue USGS SGMC fault pixels), beating both `R0` (`0.095386`, `+13.2%`) and `S11-MHTR E2` (`0.097623`, `+10.6%`).
+>   - **All 5 format/range `[0, 1]` validators PASS, 95/95 leakage canaries PASS (`<= 0.78363`), and 64/64 real external & parallel-lane registry uniqueness checks PASS (`|rho| <= 0.2214 <= 0.90`, `3-px overlap <= 68.02% <= 70.0%`).**
+> - **STRICT MUTUAL-EXCLUSION RULE (`IR-91-S12-05`):** `S12-SPAC E3` **formally supersedes** unsubmitted `S11-MHTR E2` (`0.206406`) and `H91-DDVTC E1` (`0.174030`). **The human selector must NEVER submit both `S12-SPAC E3` and `S11-MHTR E2`.**
+> - **Synthetic Lattice Policy Check (`IR-CED-003`):** Before spending a live slot, the human selector should confirm acceptance of symmetric F1 (`0.3507 <= 0.70`) for the `206,895`-dot synthetic 5-px blanket `calib_r13lattice_00904.tif` (which covers `99.8713%` of the footprint within 3 px).
+
+> **SESSION 10 BANNER (2026-10-24) — read before using historical entries below.**
 > - **GEOD is retracted as a duplicate of R0**: 93.23 % of its dots lie within 3 px of R0 (threshold 70 %). Rank correlation 0.8951 is just under 0.90. It was removed from Pages downloads (IR-91-S10-01).
 > - **No slot is recommended this session.** The only file built in session 10 (H10-1 basement-step ridge) fails its random-placement control on the holdout (0.0173 vs 0.0288, HOLDOUT-DTI). It is not promoted.
 > - **Queue below is historical and unverified** for the reasons in IR-91-S10-04 (holdout measures catalogue recovery) and IR-91-S10-05 (the 0.2778 parent figure has no receipt).
@@ -49,7 +58,28 @@ queue. The preregistered follow-up for a future session is the step×context
 fusion gated above 0.142885 with a second-instrument cross-check; selector
 approval and live weekly allowance remain separate, unverified here.
 
+## SPID91 lane note (2026-10-24, `arena/01ec3805-gemsdoe91`)
+
+`gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif` (`docs/run-card-SPID91.json`,
+Upward-Continued Laplace SPI Worms + Depth-Deconfounded Conductivity + Weingarten
+Scarp-Toe MoE + Exact Binary-Vertex Dinkelbach) passes all 4 `[0, 1]` GeoTIFF
+validators and all 85 single-feature leakage canaries (`<= 0.6610`), cleared
+`67/67` real rasters at branch base (`max 3-px dot overlap = 66.63% <= 70%`) and
+`74/75` post-merge (`71.13%` vs concurrent `S12-SPAC E3`), and scored `0.151682`
+`HOLDOUT-DTI` on `gems91-hide-recover-v1.0` (`0.145009` on 8-km buffer
+`gems57-pooled-hide-v2`), beating `B0` (`0.138999`), `DENOVO` (`0.142885`),
+`H11-1` (`0.139652`), and `CED91` (`0.062153`) while trailing `S11-MHTR E2`
+(`0.206406`) and `S12-SPAC E3` (`0.237587`). Its verdict is **`negative`** —
+it takes **no weekly slot** (`OK to download = YES`, `OK to submit solo = NO`).
+
+## S11-MHTR & S12-BHAR (`BHAR91`) lane ledger (2026-10-24, `arena/8d9056a3-gemsdoe91` & `arena/4cb38f30-gemsdoe91`)
+
+- **`S11-MHTR E2` (`gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif`, SHA-256 `dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15`, `48,000` dots `> 3.0 px`):** **`0.206406` `HOLDOUT-DTI`** (`95% CI [0.193796, 0.220176]`, `gems91-hide-recover-v1.0`, `60,988` withheld positives) and **`0.097623` `SGMC-OFFCAT-CONTROL-DTI`**. Now superseded by `S12-SPAC E3` (`0.237587`, see top banner).
+- **`S12-BHAR E3` (`gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif`, SHA-256 `bae83b233ddb150105986337207b8a217f3a3f3a817e0b418ad7f26f1b4c2431`, `48,022` dots `> 3.0 px`, `docs/run-card-BHAR91.json`):** **`0.198612` `HOLDOUT-DTI`** (`95% CI [0.186030, 0.210569]`; `E1 = 0.204676`, `E2 = 0.192735`; paired delta vs `S11-MHTR E2` `-0.007794`, 95% CI `[-0.016104, +0.001192]`) and **`0.099057` `SGMC-OFFCAT-CONTROL-DTI`** (`E2 = 0.100094`, beating both `S11-MHTR E2 = 0.097623` and `GEMSDOE32 = 0.095386`).
+- **Slot Decision:** **Zero weekly slots consumed.** Under pre-registered `HYPOTHESES_BHAR91.md` criteria, `S12-BHAR` is recorded honestly as `verdict: "negative"` on primary `HOLDOUT-DTI` (**OK to download for research / subsurface ensemble archive; NOT OK to submit to a live weekly slot**).
+
 ## S13-PTHA lane note (2026-10-24, `arena/6a62c2ab-gemsdoe91`)
 
-`docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif` (`44,000` binary `{0, 1}` dots, SHA-256 `421c589072e3b959fc0f8e71a7e879822ce8f9a81172a7f0fd24e7932eadd452`, `docs/run-card-S13.json`) achieved **`0.244601 HOLDOUT-DTI`** (`gems91-hide-recover-v1.0`, `60,988` withheld positives, `95% CI [0.230592, 0.257058]`, beating prior #1 `S11-MHTR E2 = 0.206406` by **`+0.038195`** with paired 5 km bootstrap `95% CI [+0.029931, +0.046719]`) AND **`0.100815` Blind Off-Catalogue USGS SGMC DTI** (beating `R0 = 0.095386` and `S11-E2 = 0.097623`). It passes all 5 format/`[0, 1]` suites, all 75 leakage canaries (`max AUC 0.66470`), canonical 8-raster registry novelty (`≤ 51.39%`), and external dotted-fleet novelty (`≤ 47.36%`). Zero slots were spent automatically; it is **promoted to the human fleet selector** as the single primary candidate from `GEMSDOE91` (superseding `S11-MHTR`, `CCR91`, `H91`, `DENOVO`, and `FUSE91` under mutual exclusion), subject to human verification of the live 3/week DrivenData slot allowance, eligibility/AI attestation, and `IR-CED-003` synthetic lattice policy.
+`docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif` (`44,000` binary `{0, 1}` dots, SHA-256 `421c589072e3b959fc0f8e71a7e879822ce8f9a81172a7f0fd24e7932eadd452`, `docs/run-card-S13.json`) achieved **`0.244601 HOLDOUT-DTI`** (`gems91-hide-recover-v1.0`, `60,988` withheld positives, `95% CI [0.230592, 0.257058]`, **#1 primary holdout in `GEMSDOE91`**, beating `S11-MHTR E2 = 0.206406` by **`+0.038195`** with paired 5 km bootstrap `95% CI [+0.029931, +0.046719]` and exceeding `S12-SPAC E3 = 0.237587` by **`+0.007014`**) AND **`0.100815` Blind Off-Catalogue USGS SGMC DTI** (beating `R0 = 0.095386`, `S11-E2 = 0.097623`, and `S12-BHAR = 0.100094`, behind `54k`-dot `S12-SPAC E3 = 0.107938`). It passes all 5 format/`[0, 1]` suites, all 75 leakage canaries (`max AUC 0.66470`), canonical 8-raster registry novelty (`≤ 51.39%`), and external dotted-fleet novelty (`≤ 47.36%`). Zero slots were spent automatically; it is **promoted to the human fleet selector** alongside `S12-SPAC E3` under strict mutual exclusion (submit at most ONE in-repo candidate), subject to human verification of the live 3/week DrivenData slot allowance, eligibility/AI attestation, and `IR-CED-003` synthetic lattice policy.
+
 
