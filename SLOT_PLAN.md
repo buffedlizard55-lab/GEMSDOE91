@@ -57,3 +57,18 @@ vs the prior best 0.142885 (HGB-CTX). It takes **no slot** and enters no
 queue. The preregistered follow-up for a future session is the step×context
 fusion gated above 0.142885 with a second-instrument cross-check; selector
 approval and live weekly allowance remain separate, unverified here.
+
+## SPID91 lane note (2026-10-24, `arena/01ec3805-gemsdoe91`)
+
+`gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif` (`docs/run-card-SPID91.json`,
+Upward-Continued Laplace SPI Worms + Depth-Deconfounded Conductivity + Weingarten
+Scarp-Toe MoE + Exact Binary-Vertex Dinkelbach) passes all 4 `[0, 1]` GeoTIFF
+validators and all 85 single-feature leakage canaries (`<= 0.6610`), cleared
+`67/67` real rasters at branch base (`max 3-px dot overlap = 66.63% <= 70%`) and
+`74/75` post-merge (`71.13%` vs concurrent `S12-SPAC E3`), and scored `0.151682`
+`HOLDOUT-DTI` on `gems91-hide-recover-v1.0` (`0.145009` on 8-km buffer
+`gems57-pooled-hide-v2`), beating `B0` (`0.138999`), `DENOVO` (`0.142885`),
+`H11-1` (`0.139652`), and `CED91` (`0.062153`) while trailing `S11-MHTR E2`
+(`0.206406`) and `S12-SPAC E3` (`0.237587`). Its verdict is **`negative`** —
+it takes **no weekly slot** (`OK to download = YES`, `OK to submit solo = NO`).
+

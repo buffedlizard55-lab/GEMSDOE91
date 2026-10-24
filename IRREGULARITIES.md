@@ -1438,4 +1438,23 @@ Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and 
 
 **Decision it changes:** `S12-SPAC E3` (`gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif`) **formally supersedes** unsubmitted `S11-MHTR E2` on `SLOT_PLAN.md` and the Pages portal. A human fleet selector must **never submit both `S12-SPAC E3` and `S11-MHTR E2`**.
 
+---
+
+## IR-91-SPID-01 — $100\times$ Unit & TMI-vs-RTP Phase Defect in `dd_vtc_pu.py` Verduzco Tilt Angles
+
+**Found (2026-10-24, `SPID91`, branch `arena/01ec3805-gemsdoe91`):** In `src/gems91/dd_vtc_pu.py`, `e1_grav_tilt` substituted `Band 11` ($\partial_y G$, horizontal N–S derivative) for $\partial_z G$, and `e1_rtp_tilt` mixed `B09` ($\partial_z\text{TMI}$ in $\text{nT}/\text{m}$, $r=0.9866$ with FFT $\partial_z(\text{B14})$) with `np.gradient(B02)` ($\|\nabla_{\text{px}}\text{RTP}\|$ in $\text{nT}/100\text{ m}$). Fixed in `src/gems91/spid_dinkelbach.py` via Laplace-wavenumber 1st vertical derivatives $\partial_z G$ & $\partial_z\text{RTP}$ in matching SI units, $z\in\{100,400,1200\}\text{ m}$ upward-continued potential-field worms, and 3-D Roest Analytic Signal $\|\mathbf{A}_{\text{TMI}}\|$.
+
+---
+
+## IR-91-SPID-02 — Exact DTI Binary-Vertex Theorem & Omitted Matched-Mass Self-Credit $M$
+
+**Found (2026-10-24, `SPID91`):** Proved coordinate-wise convexity of expected Dinkelbach DTI ($1 - 0.2\lambda \ge 0.8 > 0$ along every $p_i \in [0, 1]$; `docs/HYPOTHESES_SPID91.md` §1.2) establishing exact binary `{0, 1}` optimality, and implemented noisy-OR 300 m self-credit $\widehat{m}(x)$ capturing the $M$ term in $D = 0.2(T + S - M) + 0.8|G|$ omitted by `mhtr_coda.py`.
+
+---
+
+## IR-91-SPID-03 — Range-Front Scarp Saturation Ceiling Between Tabular Accuracy (`0.2158`) and Strict Intra-Repo `<= 0.70` Dot Uniqueness
+
+**Found (2026-10-24, `SPID91`):** Full-stack `SPID91 E2` reached `0.215758` `HOLDOUT-DTI` pre-basin-floor (`0.203905` with local basin floor), exceeding `S11-MHTR E2` (`0.206406`), but triggered a Rule 1 `DUPLICATE` stop (`81.3–84.7% > 70%`) against `S11-MHTR E2` because first-order `LRM/TPI` concentrates dots onto the same ~32,000 mountain-front scarp pixels. Stripping `LRM/TPI` and `S11` features (`SPID91 E3`, `52.93%` low-slope concealed-basin dots) cleared all 67 real rasters at branch base (`max = 66.63% <= 70%`; `74/75` post-merge, `71.13%` vs concurrent `S12-SPAC E3`) and beat `B0`/`DENOVO`/`H11-1`/`CED91` (`0.151682` on `v1.0`; `0.145009` on 8-km buffer `gems57-v2`), while trailing `S11-MHTR E2` (`0.206406`) and `S12-SPAC E3` (`0.237587`). Verdict: **`negative` — do not submit `SPID91 E3` solo**.
+
+
 
