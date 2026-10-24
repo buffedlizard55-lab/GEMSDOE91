@@ -57,7 +57,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 'executive-summary.html', 'research.html']) {
+    for (const target of ['index.html', 'executive-summary.html', 'research.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spid.html', 's12-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -66,10 +66,27 @@ async function main() {
       });
       accessibility.push({ page: target, violations: result });
     }
+    // Verify S12-SPID download SHA-256 and fail-closed status banner in real Chromium
+    await page.goto(new URL('s12-spid.html', baseURL).href, { waitUntil: 'networkidle' });
+    if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
+      throw new Error('Missing S12 fail-closed negative submission state');
+    }
+    const s12DlEvent = page.waitForEvent('download');
+    await page.locator('a[download][href$="-zeros.tif"]').first().click();
+    const s12Download = await s12DlEvent;
+    const s12Bytes = fs.readFileSync(await s12Download.path());
+    const s12Digest = crypto.createHash('sha256').update(s12Bytes).digest('hex');
+    const s12Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S12.json')));
+    if (s12Digest !== s12Card.raster_sha256) throw new Error('S12 downloaded bytes do not match advertised SHA256');
+
+    let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
+    for (const mTarget of ['index.html', 's12-spid.html', 's12-executive-summary.html']) {
+      await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
+      overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
+      if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
+    }
     await page.goto(baseURL, { waitUntil: 'networkidle' });
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
-    if (overflow) throw new Error('Mobile horizontal document overflow');
     await page.screenshot({ path: path.join(output, 'mobile.png'), fullPage: true });
     report = {
       status: errors.length || accessibility.some(a => a.violations.length) ? 'FAIL' : 'PASS',

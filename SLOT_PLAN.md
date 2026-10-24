@@ -48,3 +48,19 @@ vs the prior best 0.142885 (HGB-CTX). It takes **no slot** and enters no
 queue. The preregistered follow-up for a future session is the step×context
 fusion gated above 0.142885 with a second-instrument cross-check; selector
 approval and live weekly allowance remain separate, unverified here.
+
+## S12-SPID lane note (2026-10-24, `arena/01ec3805-gemsdoe91`)
+
+`gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif` (`docs/run-card-S12.json`,
+Laplace-Fourier SPI + Depth-Deconfounded Conductivity + Weingarten Scarp-Toe MoE +
+Self-Credit Bayes-Dinkelbach) is certified `[0, 1]` across all 4 validator suites,
+clears all 85 leakage canaries (`<= 0.6610`) and all 67 real fault rasters
+(`max 3-px dot overlap = 66.63% <= 70%`), and beats `B0` (`0.138999`), `DENOVO`
+(`0.142885`), `H11-1` (`0.139652` vs `0.145009` on 8-km buffer `gems57-pooled-hide-v2`),
+and `CED91` (`0.062153`), but achieves `0.151682` `HOLDOUT-DTI` vs Repository #1
+`S11-MHTR E2` (`0.206406` on `v1.0`; `0.194267` on `gems57-v2`). Its verdict is
+**`negative` for solo weekly-slot promotion** — **do not spend a live weekly slot on
+`S12-SPID E3` solo**; retain `S11-MHTR E2` as Repository #1 for human fleet-selector
+review while archiving `S12-SPID E3`'s `15,751` orthogonal concealed-basin dots for
+cross-fleet ensembling.
+

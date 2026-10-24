@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S12-SPID Laplace-SPI, Conductivity &amp; Weingarten MoE Lane (0.1517 HOLDOUT-DTI · Negative) · GEMSDOE91</title>
+<meta name="description" content="Session 12 Laplace-Fourier SPI, Depth-Deconfounded Conductivity, Weingarten Scarp-Toe MoE &amp; Self-Credit Bayes-Dinkelbach Deliverable (gems91-spid-e3-20261024T190000Z-25a94861).">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="s12-spid.html">S12-SPID Lane (0.1517 · Negative)</a><a href="s12-executive-summary.html">S12 Guide</a><a href="s11-mhtr.html">S11-MHTR (#1 · 0.2064)</a><a href="h91-ddvtc.html">H91 Lane (0.1740)</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+<section class="hero">
+  <div>
+    <span class="eyebrow">SESSION 12 DISCOVERY LANE / S12-SPID (BRANCH arena/01ec3805-gemsdoe91)</span>
+    <h1>Laplace-SPI &amp; Subsurface MoE.<br>67-Raster Unique.<br>Honest <code>negative</code> verdict.</h1>
+    <p class="lead">Tested 3 pre-registered hypotheses (<code>H12-1..H12-3</code>): <code>E1</code> (<code>0.200104</code>) &amp; <code>E2</code> (<code>0.203905</code>; <code>0.215758</code> pre-basin-floor) converged onto <code>S11-MHTR E2</code>'s range-front scarps (<code>81–86% &gt; 70%</code> Rule 1 stop). Pure LRM-free, <code>S11</code>-free <code>E3</code> clears all 67 real rasters (<code>66.63% &le; 70%</code>) and beats <code>B0</code>/<code>DENOVO</code>/<code>H11-1</code>/<code>CED91</code> on both holdout evaluators (<code>0.151682</code> &amp; <code>0.145009</code>), but trails Repository #1 <code>S11-MHTR E2</code> (<code>0.206406</code>).</p>
+    <span class="badge bad">NOT OK TO SUBMIT AS SOLO WEEKLY SLOT · VERDICT: NEGATIVE</span>
+    <p class="small">Validated automatically on disk without human image inspection: <strong>OK TO DOWNLOAD</strong> (<code>[0, 1]</code> certified, 0 NaNs, 67-raster unique), <strong>NOT RECOMMENDED FOR SOLO LIVE UPLOAD</strong> over <code>S11-MHTR E2</code>.</p>
+  </div>
+  <div class="download" data-submission-ready="false">
+    <div class="label">AUTOMATED VALIDATION &amp; SUBMISSION STATUS</div>
+    <h2><code>gems91-spid-e3-20261024T190000Z-25a94861</code></h2>
+    <div class="status"><span>OK to download (Format [0, 1])</span><strong>YES — 4/4 Suites PASS</strong></div>
+    <div class="status"><span>OK to submit (Solo weekly slot)</span><strong>NO — Trails S11-MHTR E2</strong></div>
+    <div class="status"><span>67-Real-Raster Uniqueness</span><strong>PASS (66.63% &le; 70.0%)</strong></div>
+    <div class="status"><span>HOLDOUT-DTI (v1.0 / g57-v2)</span><strong>0.151682 / 0.145009</strong></div>
+    <a class="button" download href="downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif">↓ Download Research/Ensemble GeoTIFF (.tif · 243,666 B)</a>
+    <div style="text-align:center;margin-top:12px">
+      <a download href="downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.zip">↓ Single-TIFF ZIP (207,348 B)</a> ·
+      <a href="downloads/gems91-spid-e3-20261024T190000Z-25a94861-audit.json">Format Receipt (.json)</a> ·
+      <a href="run-card-S12.json">S12 Run Card (.json)</a>
+    </div>
+    <p class="small">Single-band float32 · EPSG:32611 · 3730×3292 · 100 m · 47,200 binary dots (52.9% on &lt;5&deg; concealed slopes) · min_d_cat = 3.1623 px.</p>
+  </div>
+</section>
+
+<div class="banner"><strong>Automated Gate Verdict — Do NOT burn a scarce 3/week DrivenData slot on <code>S12-SPID E3</code> solo.</strong> All 12,279,160 cells are finite <code>float32</code> in <code>[0.0, 1.0]</code> (permanently immune to <code>"Predicted values must be in range [0, 1]"</code>), all 85 single-feature leakage canaries passed (<code>max AUC = 0.6610 &le; 0.90</code>), and all 67 real fault rasters passed 3-px uniqueness (<code>max = 66.63% &le; 70%</code>). Because stripping first-order <code>LRM/TPI</code> to clear <code>S11-MHTR E2</code> lowered solo <code>HOLDOUT-DTI</code> from <code>0.206406</code> to <code>0.151682</code> (paired &Delta; = <code>-0.054724</code>), <code>S11-MHTR E2</code> remains Repository #1 while <code>S12-SPID E3</code> contributes <code>15,751</code> new concealed-basin dots for future fleet ensembling.</div>
+
+<div class="grid">
+  <article class="card">
+    <span class="eyebrow">PRIMARY HOLDOUT-DTI / v1.0</span>
+    <div class="number">0.15168</div>
+    <p>95% CI 0.14019–0.16433 (60,988 withheld px)<br><strong>+0.01268</strong> (+9.1%) vs B0 · Paired <code>-0.05472</code> vs S11-E2</p>
+    <span class="small">gems91-hide-recover-v1.0</span>
+  </article>
+  <article class="card">
+    <span class="eyebrow">SECONDARY HOLDOUT-DTI / GEMS57-V2 (8 KM BUFFER)</span>
+    <div class="number">0.14501</div>
+    <p>95% CI 0.12830–0.16049 · Beats H11-1 (<code>0.13965</code>) &amp; CED91 (<code>0.06215</code>)<br>First measurement of S11-E2 on 8-km buffer: <strong><code>0.19427</code></strong></p>
+    <span class="small">gems57-pooled-hide-v2 · buffer=80 px</span>
+  </article>
+  <article class="card">
+    <span class="eyebrow">RULE 1 &amp; RULE 4 / CANARY &amp; 67-RASTER NOVELTY</span>
+    <div class="number">85/85 · 67/67</div>
+    <p>85 official features tested alone (max sym AUC <code>0.66099 &le; 0.90</code>)<br>67 real fault rasters checked (max |&rho;| <code>0.2067</code>, max 3px ov <code>66.63% &le; 70%</code>)</p>
+    <a class="small" href="HYPOTHESES_S12.md">Read pre-registration, theorem &amp; PDE audit ↗</a>
+  </article>
+</div>
+
+<section class="section">
+  <div class="twocol">
+    <div class="card">
+      <h3>Copy-Paste Artifact Identification (Archival / Ensemble Reference)</h3>
+      <label for="s12-name" class="small">Unique Submission Name</label>
+      <div class="copyrow">
+        <textarea id="s12-name" readonly rows="2">gems91-spid-e3-20261024T190000Z-25a94861</textarea>
+        <button data-copy="s12-name" type="button">Copy</button>
+      </div>
+      <label for="s12-note" class="small">Short Note · 112/140 characters</label>
+      <div class="copyrow">
+        <textarea id="s12-note" readonly rows="3">GEMS91 S12 E3 (H12-1 + H12-2 + H12-3): Laplace SPI+cond-res+Weingarten MoE+Dinkelbach (47200d &gt;3px, [0,1] zeros)</textarea>
+        <button data-copy="s12-note" type="button">Copy</button>
+      </div>
+      <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+      <dl class="meta">
+        <dt>SHA-256 (<code>-zeros.tif</code>)</dt><dd class="mono">f59ec7a60cd9346f94e69257b0ab7123c2e74421ef7954a10fee9a0bbd7ee1ee</dd>
+        <dt>SHA-256 (<code>-zeros.zip</code>)</dt><dd class="mono">37b52582dcf7d943af25f10d560cbf741443d5defba04a26ece32b5fca52c82c</dd>
+        <dt>SHA-256 (<code>.tif</code> NaN twin)</dt><dd class="mono">25a94861dff8158699e681e1d1187eaa0de8cc09f20dacdc6f4085a87499eddf</dd>
+        <dt>Emitted Dots / Basin Share</dt><dd>47,200 binary dots · 52.93% on &lt;5&deg; slopes · min d_cat = 3.1623 px</dd>
+      </dl>
+    </div>
+    <div class="card">
+      <h3>Four PhD Discoveries in Session 12</h3>
+      <ul class="checklist">
+        <li><span><strong>Exact DTI Binary-Vertex Theorem:</strong> Proved coordinate-wise convexity of expected Dinkelbach DTI (<code>1 - 0.2&lambda; &ge; 0.8 &gt; 0</code>), establishing exact <code>{0, 1}</code> optimality and noisy-OR 300 m self-credit <code>m&#770;(x)</code>.</span><span class="badge">PROVED</span></li>
+        <li><span><strong>IR-91-S12-01 (100&times; Tilt Unit &amp; TMI-RTP Bug Fixed):</strong> Fixed <code>dd_vtc_pu.py</code> mixing <code>B11=&part;<sub>y</sub>G</code> for <code>&part;<sub>z</sub>G</code> and <code>B09</code> (nT/m) with <code>grad_px(B02)</code> (nT/100 m) via Laplace-FFT <code>&part;<sub>z</sub>G</code> &amp; <code>&part;<sub>z</sub>RTP</code> + 3-D Roest Analytic Signal.</span><span class="badge">VERIFIED</span></li>
+        <li><span><strong>IR-91-S12-03 (Range-Front Scarp Saturation Ceiling):</strong> Proved models retaining <code>LRM/TPI</code> reach <code>0.2158</code> DTI only by overlapping <code>81–86%</code> with <code>S11-MHTR E2</code>, whereas pure subsurface + Weingarten toe MoE yields <code>15,751</code> orthogonal basin dots (<code>66.6% &le; 70%</code>).</span><span class="badge">MEASURED</span></li>
+      </ul>
+      <p><a href="s12-executive-summary.html">Open S12 Executive Summary &amp; Step-by-Step Guide ↗</a> · <a href="s11-mhtr.html">View Repository #1 S11-MHTR (0.2064 DTI) ↗</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Pre-Registered 3-Experiment Holdout Progression (<code>gems91-hide-recover-v1.0</code>)</h2>
+    <a href="run-card-S12.json">Download full JSON run card ↗</a>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Experiment</th>
+          <th>Hypothesis, Physical Mechanism &amp; Named Mimic Rejected</th>
+          <th>Features</th>
+          <th>Out-of-Fold HOLDOUT-DTI (95% CI)</th>
+          <th>Lift vs Benchmarks</th>
+          <th>Blind SGMC Control</th>
+          <th>Protocol Gate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>B0</code> (Baseline)</td>
+          <td>Raw 19 GeoDAWN bands OOF HGB+LR + Poisson disk thinning (<code>d &ge; 2.8 px</code>)</td>
+          <td>19</td>
+          <td><strong>HOLDOUT-DTI</strong> <code>0.138999</code><br><small>95% CI [0.125320, 0.150206] (n=60,988)</small></td>
+          <td>Baseline</td>
+          <td>—</td>
+          <td>Reference</td>
+        </tr>
+        <tr>
+          <td><code>H91-DDVTC E1</code></td>
+          <td>Dip-Deprojected Verduzco Tilt + Openness + 1D-Ridge Submodular 300m DTI (<code>38,400</code> dots)</td>
+          <td>34</td>
+          <td><strong>HOLDOUT-DTI</strong> <code>0.174030</code><br><small>95% CI [0.161841, 0.184791] (n=60,988)</small></td>
+          <td><code>+0.035031</code> (+25.2% vs B0)</td>
+          <td><code>0.082886</code></td>
+          <td>Prior Lane</td>
+        </tr>
+        <tr>
+          <td><code>S11-MHTR E2</code> (#1 Repo Best)</td>
+          <td>Marussi Gravity Hessian + Official Band 06 Radiometric TC + Two-Regime Submodular 300m DTI (<code>48,000</code> dots)</td>
+          <td>55</td>
+          <td><strong>HOLDOUT-DTI</strong> <strong><code>0.206406</code></strong><br><small>95% CI [0.193796, 0.220176] (n=60,988)</small></td>
+          <td><code>+0.067407</code> (+48.5% vs B0)</td>
+          <td><strong><code>0.097623</code></strong></td>
+          <td><span class="badge">REPO #1</span></td>
+        </tr><tr>
+              <td><strong><code>E1</code></strong><br><small>H12-1</small></td>
+              <td><strong>Laplace-Fourier Source Parameter Imaging (SPI) + Multiscale Upward-Continued Potential-Field Worms + Exact 3-D Roest Magnetic Analytic Signal</strong><br><small><em>Non-fault mimic rejected:</em> Inactive pre-Cenozoic intrabasement pluton margins &amp; surficial basaltic boulder float (rejected by shallow-break ratio B15*kappa_G and z=400-1200m upward-continued worm persistence)</small></td>
+              <td>70</td>
+              <td><strong>HOLDOUT-DTI</strong> <strong><code>0.200104</code></strong><br><small>95% CI [0.188066, 0.212315] (n=60,988)</small></td>
+              <td><strong><code>+0.061105</code></strong> vs B0<br><small><code>-0.006302</code> vs S11-E2</small></td>
+              <td><strong><code>0.088324</code></strong><br><small>max 3px ov: 82.60%</small></td>
+              <td><span class="badge bad">DUPLICATE STOP (82.6% &gt; 70%)</span></td>
+            </tr><tr>
+              <td><strong><code>E2</code></strong><br><small>H12-1 + H12-2</small></td>
+              <td><strong>SPI + Upward Worms + Depth-Deconfounded Electrical Conductivity Clay-Cap Residual + Co-Aligned Buried Basement-Step Hinge + Weingarten Scarp-Toe Concavity</strong><br><small><em>Non-fault mimic rejected:</em> Closed-basin saline evaporite playas &amp; un-faulted alluvial-fan aprons (playa brines vanish under depth-deconfounding of B17; un-faulted fan toes lack co-aligned grad(B15)*(-g_H) steps)</small></td>
+              <td>85</td>
+              <td><strong>HOLDOUT-DTI</strong> <strong><code>0.203905</code></strong><br><small>95% CI [0.191826, 0.216133] (n=60,988)</small></td>
+              <td><strong><code>+0.064906</code></strong> vs B0<br><small><code>-0.002501</code> vs S11-E2</small></td>
+              <td><strong><code>0.091885</code></strong><br><small>max 3px ov: 81.28%</small></td>
+              <td><span class="badge bad">DUPLICATE STOP (81.3% &gt; 70%)</span></td>
+            </tr><tr>
+              <td><strong><code>E3</code></strong><br><small>H12-1 + H12-2 + H12-3</small></td>
+              <td><strong>50-Feature Pure H12 Subsurface-First + Weingarten Scarp-Toe Mixture-of-Experts (LRM-Free, S11-Free) + Steerable Tangent Continuation + Self-Credit Bayes-Dinkelbach 300m Submodular Solver</strong><br><small><em>Non-fault mimic rejected:</em> Steep non-tectonic canyon walls, eroded mid-facet LRM crests, &amp; isolated volcanic/cultural point anomalies (first-order LRM/TPI &amp; S11 features excluded; canyon walls lack 39-feature slope-free subsurface corroboration; point anomalies fail steerable strike-tangent continuation and noisy-OR 300m self-credit)</small></td>
+              <td>50</td>
+              <td><strong>HOLDOUT-DTI</strong> <strong><code>0.151682</code></strong><br><small>95% CI [0.140186, 0.164329] (n=60,988)</small></td>
+              <td><strong><code>+0.012683</code></strong> vs B0<br><small><code>-0.054724</code> vs S11-E2</small></td>
+              <td><strong><code>0.086693</code></strong><br><small>max 3px ov: 66.63%</small></td>
+              <td><span class="badge bad">UNIQUE · VERDICT NEGATIVE vs S11</span></td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>4-Fold Spatially-Blocked Breakdown for Unique Candidate <code>E3</code></h2>
+    <span class="small">Whole fault complexes withheld · 1.0 km (10 px) exclusion buffer · exact visible masking</span>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Spatial Quadrant</th>
+          <th>Withheld Fault Complexes</th>
+          <th>Withheld Positive Pixels</th>
+          <th>Emitted Dots</th>
+          <th>Weighted TP (<code>T</code>)</th>
+          <th>Matched Mass (<code>M</code>)</th>
+          <th>Fold HOLDOUT-DTI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+              <td><code>Fold 0 (NW)</code></td>
+              <td>151 whole fault complexes</td>
+              <td>10,757 px</td>
+              <td>11,099 dots</td>
+              <td>1514.970</td>
+              <td>594.0</td>
+              <td><strong>HOLDOUT-DTI</strong> <strong><code>0.137605</code></strong></td>
+            </tr><tr>
+              <td><code>Fold 1 (NE)</code></td>
+              <td>247 whole fault complexes</td>
+              <td>12,051 px</td>
+              <td>13,624 dots</td>
+              <td>2540.177</td>
+              <td>994.0</td>
+              <td><strong>HOLDOUT-DTI</strong> <strong><code>0.200411</code></strong></td>
+            </tr><tr>
+              <td><code>Fold 2 (SW)</code></td>
+              <td>327 whole fault complexes</td>
+              <td>20,541 px</td>
+              <td>12,354 dots</td>
+              <td>2161.210</td>
+              <td>839.0</td>
+              <td><strong>HOLDOUT-DTI</strong> <strong><code>0.112751</code></strong></td>
+            </tr><tr>
+              <td><code>Fold 3 (SE)</code></td>
+              <td>188 whole fault complexes</td>
+              <td>17,639 px</td>
+              <td>10,123 dots</td>
+              <td>2784.961</td>
+              <td>1010.0</td>
+              <td><strong>HOLDOUT-DTI</strong> <strong><code>0.168880</code></strong></td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Rule 1 Registry Uniqueness Audit (67 Real Fault Rasters Checked: 100% PASS)</h2>
+    <span class="small">Top 25 closest rasters by 3-px dot overlap (limit &le; 70.0%; surface |&rho;| limit &le; 0.90)</span>
+  </div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Registry / Sibling / Repository Raster</th>
+          <th>Registry Dots</th>
+          <th>Surface |&rho;|</th>
+          <th>Cand &le;3px of Reg</th>
+          <th>Reg &le;3px of Cand</th>
+          <th>Effective 3px Overlap</th>
+          <th>Gate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+              <td><code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code></td>
+              <td>48,000</td>
+              <td><code>0.1129</code> (&le; 0.90)</td>
+              <td><code>66.63%</code></td>
+              <td><code>68.89%</code></td>
+              <td><code>66.63%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>calib_h28ridge_01839.tif</code></td>
+              <td>69,281</td>
+              <td><code>0.1146</code> (&le; 0.90)</td>
+              <td><code>62.43%</code></td>
+              <td><code>42.52%</code></td>
+              <td><code>62.43%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif</code></td>
+              <td>38,400</td>
+              <td><code>0.1080</code> (&le; 0.90)</td>
+              <td><code>55.39%</code></td>
+              <td><code>68.92%</code></td>
+              <td><code>55.39%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>calib_h25ctx_01280.tif</code></td>
+              <td>174,232</td>
+              <td><code>0.2031</code> (&le; 0.90)</td>
+              <td><code>62.34%</code></td>
+              <td><code>44.29%</code></td>
+              <td><code>51.79%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>GEMSDOE89__gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros.tif</code></td>
+              <td>37,654</td>
+              <td><code>0.1003</code> (&le; 0.90)</td>
+              <td><code>48.89%</code></td>
+              <td><code>63.47%</code></td>
+              <td><code>48.89%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif</code></td>
+              <td>37,654</td>
+              <td><code>0.1149</code> (&le; 0.90)</td>
+              <td><code>45.97%</code></td>
+              <td><code>74.69%</code></td>
+              <td><code>45.97%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>calib_h161_01855.tif</code></td>
+              <td>123,939</td>
+              <td><code>0.1249</code> (&le; 0.90)</td>
+              <td><code>39.09%</code></td>
+              <td><code>39.40%</code></td>
+              <td><code>39.24%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>19GEMSDOE__h19-4-multiline-corroborated.tif</code></td>
+              <td>123,779</td>
+              <td><code>0.1231</code> (&le; 0.90)</td>
+              <td><code>37.94%</code></td>
+              <td><code>38.80%</code></td>
+              <td><code>38.37%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>calib_h194_01894.tif</code></td>
+              <td>123,779</td>
+              <td><code>0.1231</code> (&le; 0.90)</td>
+              <td><code>37.94%</code></td>
+              <td><code>38.80%</code></td>
+              <td><code>38.37%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>19GEMSDOE__h19-5-powerlaw-budget-multiline.tif</code></td>
+              <td>121,131</td>
+              <td><code>0.1236</code> (&le; 0.90)</td>
+              <td><code>37.03%</code></td>
+              <td><code>39.22%</code></td>
+              <td><code>38.09%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>calib_h195_01922.tif</code></td>
+              <td>121,131</td>
+              <td><code>0.1236</code> (&le; 0.90)</td>
+              <td><code>37.03%</code></td>
+              <td><code>39.22%</code></td>
+              <td><code>38.09%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>calib_hedgev2_01563_sample.tif</code></td>
+              <td>227,507</td>
+              <td><code>0.2067</code> (&le; 0.90)</td>
+              <td><code>48.88%</code></td>
+              <td><code>29.97%</code></td>
+              <td><code>37.16%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>hedge_v2_01563.tif</code></td>
+              <td>227,507</td>
+              <td><code>0.2067</code> (&le; 0.90)</td>
+              <td><code>48.88%</code></td>
+              <td><code>29.97%</code></td>
+              <td><code>37.16%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif</code></td>
+              <td>61,328</td>
+              <td><code>0.0851</code> (&le; 0.90)</td>
+              <td><code>35.63%</code></td>
+              <td><code>37.72%</code></td>
+              <td><code>35.63%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-nan.tif</code></td>
+              <td>46,090</td>
+              <td><code>0.0716</code> (&le; 0.90)</td>
+              <td><code>35.05%</code></td>
+              <td><code>37.29%</code></td>
+              <td><code>35.05%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-zeros.tif</code></td>
+              <td>46,090</td>
+              <td><code>0.0716</code> (&le; 0.90)</td>
+              <td><code>35.05%</code></td>
+              <td><code>37.29%</code></td>
+              <td><code>35.05%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-nan.tif</code></td>
+              <td>46,090</td>
+              <td><code>0.0724</code> (&le; 0.90)</td>
+              <td><code>34.94%</code></td>
+              <td><code>37.19%</code></td>
+              <td><code>34.94%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif</code></td>
+              <td>46,090</td>
+              <td><code>0.0724</code> (&le; 0.90)</td>
+              <td><code>34.94%</code></td>
+              <td><code>37.19%</code></td>
+              <td><code>34.94%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gemsdoe32-h32c-mt-claycap-breach-45890-20261004T183200Z-a5963d0a-nan.tif</code></td>
+              <td>45,890</td>
+              <td><code>0.0715</code> (&le; 0.90)</td>
+              <td><code>34.64%</code></td>
+              <td><code>36.97%</code></td>
+              <td><code>34.64%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gemsdoe32-h32c-mt-claycap-breach-45890-20261004T183200Z-a5963d0a-zeros.tif</code></td>
+              <td>45,890</td>
+              <td><code>0.0715</code> (&le; 0.90)</td>
+              <td><code>34.64%</code></td>
+              <td><code>36.97%</code></td>
+              <td><code>34.64%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif</code></td>
+              <td>37,654</td>
+              <td><code>0.0810</code> (&le; 0.90)</td>
+              <td><code>34.60%</code></td>
+              <td><code>50.63%</code></td>
+              <td><code>34.60%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif</code></td>
+              <td>60,069</td>
+              <td><code>0.0838</code> (&le; 0.90)</td>
+              <td><code>34.53%</code></td>
+              <td><code>37.48%</code></td>
+              <td><code>34.53%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>calib_d15_02477.tif</code></td>
+              <td>60,069</td>
+              <td><code>0.0838</code> (&le; 0.90)</td>
+              <td><code>34.53%</code></td>
+              <td><code>37.48%</code></td>
+              <td><code>34.53%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-nan.tif</code></td>
+              <td>45,890</td>
+              <td><code>0.0707</code> (&le; 0.90)</td>
+              <td><code>34.08%</code></td>
+              <td><code>36.44%</code></td>
+              <td><code>34.08%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr><tr>
+              <td><code>gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-zeros.tif</code></td>
+              <td>45,890</td>
+              <td><code>0.0707</code> (&le; 0.90)</td>
+              <td><code>34.08%</code></td>
+              <td><code>36.44%</code></td>
+              <td><code>34.08%</code> (&le; 70.0%)</td>
+              <td><span class="badge">PASS</span></td>
+            </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</main>
+<footer>
+  <div>Session 12 Discovery Audit (<code>gems91-spid-e3-20261024T190000Z-25a94861</code> · Verdict: <code>negative</code>)<br>Generated 2026-10-24T20:02:10Z</div>
+  <div><a href="run-card-S12.json">S12 JSON Run Card</a> · <a href="s11-mhtr.html">Repo #1 S11-MHTR</a> · <a href="index.html">Main Research Portal</a></div>
+</footer>
+</div></body></html>

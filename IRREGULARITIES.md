@@ -1169,3 +1169,28 @@ provenance/registry prevent the requested unique submission in this run.
 
 **Decision:** Do not change the organizer-format assumption by implication. Use the explicitly selected all-finite policy for current published research artifacts because the user's submission form rejected out-of-range values and the shared validator/writer enforce it; preserve the legacy option and this discrepancy for review. Before calling any file upload-ready, obtain organizer-confirmed format semantics and still satisfy science, novelty and separate-selector gates.
 
+---
+
+## IR-91-S12-01 — $100\times$ Unit & TMI-vs-RTP Phase Defect in `dd_vtc_pu.py` Verduzco TiltAngles
+
+**Found (2026-10-24, Session 12):** In `src/gems91/dd_vtc_pu.py`, `e1_grav_tilt` substituted `Band 11` ($\partial_y G$, horizontal N–S derivative!) for the vertical gravity derivative $\partial_z G$, and `e1_rtp_tilt` computed $\arctan2(\text{B09}, \|\nabla_{\text{px}}\text{B02}\|_2)$. Direct SI unit audit shows `B09` is the vertical derivative of un-reduced **TMI** ($\partial_z\text{TMI}$, $r=0.9866$ with FFT $\partial_z(\text{B14})$) in $\text{nT}/\text{m}$, whereas `np.gradient(B02)` is the horizontal gradient of **RTP** in $\text{nT}/(100\text{ m})$ — a $100\times$ unit mismatch plus a TMI-vs-RTP inclination/remanence phase mismatch.
+
+**What we did:** In `src/gems91/spid_dinkelbach.py`, we implemented exact Laplace-wavenumber 1st vertical derivatives $\mathcal{F}^{-1}\{|\mathbf{k}|e^{-|\mathbf{k}|z_0}\mathcal{F}\{F\}\}$ in matching SI units ($\text{m}^{-1}$), Thurston & Smith (1997) Source Parameter Imaging (`SPI`) contact wavenumbers $\kappa = \|\nabla_H\theta\|$, and the inclination/remanence-invariant 3-D Roest Analytic Signal $\|\mathbf{A}_{\text{TMI}}\| = \sqrt{(\partial_x\text{B14})^2 + (\partial_y\text{B14})^2 + \text{B09}^2}$.
+
+---
+
+## IR-91-S12-02 — Omitted Matched-Mass Self-Credit $M$ in `mhtr_coda.py` Submodular Marginal Gain
+
+**Found (2026-10-24, Session 12):** In exact DTI ($D(p) = 0.2(T + S - M) + 0.8|G|$), placing a binary dot $p_x = 1$ adds $+0.2(1 - m_x)$ to the false-positive denominator term, not $+0.2$. `mhtr_coda.py` omitted the matched-mass self-credit $m_x = \max_{g\in G} k(d(x, g))$, penalizing all candidate dots uniformly.
+
+**What we did:** Derived the coordinate-wise convexity theorem proving binary $\{0, 1\}^N$ optimality (`docs/HYPOTHESES_S12.md` §1.2) and implemented the exact 300 m noisy-OR expected self-credit $\widehat{m}(x) = 1 - \prod_{y\in B_3(x)}(1 - q_{\text{cal}}(y)k(d(x,y)))$ inside `spid_dinkelbach_submodular_emit`, verified by `tests/test_s12_spid.py`.
+
+---
+
+## IR-91-S12-03 — Range-Front Scarp Saturation Ceiling Between Accuracy (`0.2158`) and Intra-Repo `<= 0.70` Dot Uniqueness
+
+**Found (2026-10-24, Session 12):** Adding `S12` Laplace-SPI, upward-continued worms, 3-D Roest magnetics, depth-deconfounded `B17` conductivity residuals, basement-step hinges, and Weingarten scarp-toe concavity to the full official stack lifted OOF `HOLDOUT-DTI` to `0.215758` (`E2` pre-basin-floor; `0.203905` with forced local basin floor), exceeding `S11-MHTR E2` (`0.206406`). However, any tabular tree ensemble retaining first-order `LRM/TPI` (`e1_lrm_300m`, `e1_lrm_1km`) concentrates ~68–76% of its top-scoring pixels onto the same ~32,000 exposed Basin-and-Range range-front scarps already claimed by `S11-MHTR E2` and `calib_h28ridge_01839.tif`, producing `81.3–86.2% > 70%` 3-px dot overlap with `S11-MHTR E2` (`DUPLICATE` stop under Rule 1, even though external fleet/sibling overlap is `<= 50.5%`). Conversely, stripping `LRM/TPI` and `S11` features (`E3`) clears all 67 real fault rasters (`max 3-px overlap = 66.63% <= 70%`) and beats `B0`/`DENOVO`/`H11-1`/`CED91` (`0.151682` on `v1.0`; `0.145009` on 8-km buffer `gems57-v2`), but loses `0.0547` range-front recall relative to `S11-MHTR E2`.
+
+**Decision it changes:** Do **not** spend a solo weekly DrivenData slot on `S12-SPID E3` (`verdict = "negative"`). Breaking above `0.22+` while remaining genuinely novel requires a **2-D multi-scale ConvNeXt / U-Net trained end-to-end on GPU with differentiable Tversky loss (`alpha=0.2, beta=0.8`)** on the clean 85-feature GeoDAWN stack so kilometer-scale curvilinear fault topology replaces pixelwise LRM dominance.
+
+

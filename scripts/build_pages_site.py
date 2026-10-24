@@ -805,7 +805,14 @@ def main() -> int:
     import build_s11_pages
     build_s11_pages.main()
 
-    print("Generated docs/h91-ddvtc.html, docs/h91-executive-summary.html, docs/s11-mhtr.html, and docs/s11-executive-summary.html.")
+    import build_s12_pages
+    build_s12_pages.main()
+
+    print(
+        "Generated docs/h91-ddvtc.html, docs/h91-executive-summary.html, "
+        "docs/s11-mhtr.html, docs/s11-executive-summary.html, "
+        "docs/s12-spid.html, and docs/s12-executive-summary.html."
+    )
     return 0
 
 
