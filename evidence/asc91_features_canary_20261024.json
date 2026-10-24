@@ -1,0 +1,217 @@
+{
+  "mode": "features",
+  "generated_utc": "2026-10-24T16:21:21.410894+00:00",
+  "inputs_RECEIPT": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  },
+  "bands_verified_from_tags": {
+    "det_elev": {
+      "band": 12,
+      "tag": "det_elev",
+      "description": "det_elev - Detrended elevation - topography with regional trends removed"
+    },
+    "iso_grav_anom": {
+      "band": 13,
+      "tag": "iso_grav_anom",
+      "description": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass"
+    },
+    "rtp": {
+      "band": 2,
+      "tag": "rtp",
+      "description": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects"
+    },
+    "depth_to_base_surf": {
+      "band": 15,
+      "tag": "depth_to_base_surf",
+      "description": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover"
+    },
+    "cond_surf": {
+      "band": 17,
+      "tag": "cond_surf",
+      "description": "cond_surf - Conductivity surface - electrical conductivity of subsurface"
+    }
+  },
+  "feature_names": [
+    "stepabs_pct_det_elev",
+    "stepabs_pct_iso_grav_anom",
+    "stepabs_pct_rtp",
+    "stepabs_pct_depth_to_base_surf",
+    "stepabs_pct_cond_surf",
+    "aniso_pct_det_elev",
+    "aniso_pct_iso_grav_anom",
+    "aniso_pct_rtp",
+    "aniso_pct_depth_to_base_surf",
+    "aniso_pct_cond_surf",
+    "signed_z_det_elev",
+    "signed_z_iso_grav_anom",
+    "signed_z_rtp",
+    "signed_z_depth_to_base_surf",
+    "signed_z_cond_surf",
+    "az_agree",
+    "az_sin2",
+    "az_cos2"
+  ],
+  "n_footprint_px": 5167373,
+  "feature_cache": {
+    "path": "work/asc91/features_fp.npy",
+    "sha256": "446a74225fbb71fa4a2c73e54b52af0008bd4af8880ab923c0dd87d88ae8dea7"
+  },
+  "e1_surface": {
+    "sha256_f32": "8a4bd018c919446f334145a00154d335f00f62cc9d03411d478587ba59f684e8",
+    "formula": "(prod stepabs_pct)^(1/5) * (0.75+0.25*az_agree)"
+  },
+  "leakage_canary": {
+    "rule": "catalogue px vs 150k sampled px >5px off catalogue, seed 20261024",
+    "threshold_symmetric_auc": 0.9,
+    "per_feature": {
+      "stepabs_pct_det_elev": {
+        "auc_raw": 0.5926,
+        "auc_symmetric": 0.5926
+      },
+      "stepabs_pct_iso_grav_anom": {
+        "auc_raw": 0.5393,
+        "auc_symmetric": 0.5393
+      },
+      "stepabs_pct_rtp": {
+        "auc_raw": 0.5371,
+        "auc_symmetric": 0.5371
+      },
+      "stepabs_pct_depth_to_base_surf": {
+        "auc_raw": 0.5345,
+        "auc_symmetric": 0.5345
+      },
+      "stepabs_pct_cond_surf": {
+        "auc_raw": 0.5027,
+        "auc_symmetric": 0.5027
+      },
+      "aniso_pct_det_elev": {
+        "auc_raw": 0.5941,
+        "auc_symmetric": 0.5941
+      },
+      "aniso_pct_iso_grav_anom": {
+        "auc_raw": 0.5391,
+        "auc_symmetric": 0.5391
+      },
+      "aniso_pct_rtp": {
+        "auc_raw": 0.5367,
+        "auc_symmetric": 0.5367
+      },
+      "aniso_pct_depth_to_base_surf": {
+        "auc_raw": 0.5347,
+        "auc_symmetric": 0.5347
+      },
+      "aniso_pct_cond_surf": {
+        "auc_raw": 0.5029,
+        "auc_symmetric": 0.5029
+      },
+      "signed_z_det_elev": {
+        "auc_raw": 0.6028,
+        "auc_symmetric": 0.6028
+      },
+      "signed_z_iso_grav_anom": {
+        "auc_raw": 0.5485,
+        "auc_symmetric": 0.5485
+      },
+      "signed_z_rtp": {
+        "auc_raw": 0.5167,
+        "auc_symmetric": 0.5167
+      },
+      "signed_z_depth_to_base_surf": {
+        "auc_raw": 0.4558,
+        "auc_symmetric": 0.5442
+      },
+      "signed_z_cond_surf": {
+        "auc_raw": 0.4919,
+        "auc_symmetric": 0.5081
+      },
+      "az_agree": {
+        "auc_raw": 0.541,
+        "auc_symmetric": 0.541
+      },
+      "az_sin2": {
+        "auc_raw": 0.4955,
+        "auc_symmetric": 0.5045
+      },
+      "az_cos2": {
+        "auc_raw": 0.5147,
+        "auc_symmetric": 0.5147
+      }
+    },
+    "max_symmetric_auc": 0.6028,
+    "pass": true
+  },
+  "e1_surface_novelty_preplacement": {
+    "n_registry_rasters": 11,
+    "max_abs_spearman_sample": 0.0996,
+    "threshold": 0.9,
+    "pass": true,
+    "per_raster": {
+      "GEMSDOE28__h27-4-r1-solo-d2-8.tif": {
+        "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+        "spearman_sample": 0.0523,
+        "their_positive_px": 40199
+      },
+      "GEMSDOE32__h33-2-b2-zeros.tif": {
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "spearman_sample": 0.0511,
+        "their_positive_px": 37654
+      },
+      "calib_d15_02477.tif": {
+        "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "spearman_sample": 0.0648,
+        "their_positive_px": 60069
+      },
+      "calib_h161_01855.tif": {
+        "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+        "spearman_sample": 0.0996,
+        "their_positive_px": 123939
+      },
+      "calib_h194_01894.tif": {
+        "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+        "spearman_sample": 0.0922,
+        "their_positive_px": 123779
+      },
+      "calib_h195_01922.tif": {
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "spearman_sample": 0.0922,
+        "their_positive_px": 121131
+      },
+      "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": {
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "spearman_sample": 0.0553,
+        "their_positive_px": 44090
+      },
+      "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif": {
+        "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "spearman_sample": 0.0511,
+        "their_positive_px": 37654
+      },
+      "gems91-ced-v1-20261024-d35670b28c81.tif": {
+        "sha256": "a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee",
+        "spearman_sample": 0.0636,
+        "their_positive_px": 32000
+      },
+      "gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif": {
+        "sha256": "0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119",
+        "spearman_sample": 0.0386,
+        "their_positive_px": 38400
+      },
+      "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif": {
+        "sha256": "8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb",
+        "spearman_sample": 0.0272,
+        "their_positive_px": 37654
+      }
+    }
+  }
+}

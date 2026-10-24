@@ -38,3 +38,13 @@ predicted negative (`MODEL`, frozen SGMC-off-catalogue translator; `docs/MECHANI
 By their authors' verdict they take no slot; at most `strn25m10` is a reserve if a concentration-family
 receipt ever contradicts that translator. The strain question overlaps the promoted `GEOD25m10`
 (IR-91-45): any slot spent on either file tests both lanes' hypothesis.
+
+## ASC91 lane note (2026-10-24, `arena/5486e004-gemsdoe91`)
+
+`gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif` (antisymmetric
+cross-fault step lane; `docs/run-card-ASC91.json`) is a **negative**
+deliverable: 0.116767 HOLDOUT-DTI on the identical whole-component instrument
+vs the prior best 0.142885 (HGB-CTX). It takes **no slot** and enters no
+queue. The preregistered follow-up for a future session is the step×context
+fusion gated above 0.142885 with a second-instrument cross-check; selector
+approval and live weekly allowance remain separate, unverified here.

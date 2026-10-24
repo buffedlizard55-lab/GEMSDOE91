@@ -1,0 +1,184 @@
+{
+  "mode": "holdout",
+  "generated_utc": "2026-10-24T16:21:43.955862+00:00",
+  "evaluator": "scripts/dti.py official-DTI (alpha=0.2,beta=0.8,R=3px), pooled",
+  "protocol": "build_denovo.fold_setup whole-component checkerboard (identical instrument to HGB-CTX receipt)",
+  "prior_best_same_instrument": {
+    "method": "HGB-CTX",
+    "pooled_holdout_dti": 0.142885,
+    "receipt": "evidence/holdout3_hgbctx_20261024.json"
+  },
+  "expected_withheld_per_fold": [
+    15105,
+    15978,
+    12874,
+    17031
+  ],
+  "experiments": {
+    "E1_ASC_U": {
+      "label": "HOLDOUT-DTI",
+      "pooled_holdout_dti": 0.090092,
+      "fold_dti": [
+        0.1179,
+        0.081184,
+        0.098732,
+        0.066474
+      ],
+      "fold_mean_ci95": [
+        0.055715,
+        0.12643
+      ],
+      "dots_per_fold": [
+        9888,
+        9831,
+        8663,
+        9272
+      ],
+      "n_withheld_positives_per_fold": [
+        15105,
+        15978,
+        12874,
+        17031
+      ],
+      "pooled_T": 5117.97,
+      "pooled_S": 37654.0,
+      "pooled_M": 2681.35,
+      "pooled_G": 60988
+    },
+    "random_matched_control": {
+      "label": "HOLDOUT-DTI",
+      "pooled_holdout_dti": 0.070827,
+      "fold_dti": [
+        0.069232,
+        0.073936,
+        0.067972,
+        0.071531
+      ],
+      "fold_mean_ci95": [
+        0.066482,
+        0.074853
+      ],
+      "dots_per_fold": [
+        9888,
+        9831,
+        8663,
+        9272
+      ],
+      "n_withheld_positives_per_fold": [
+        15105,
+        15978,
+        12874,
+        17031
+      ],
+      "pooled_T": 4024.63,
+      "pooled_S": 37654.0,
+      "pooled_M": 1515.68,
+      "pooled_G": 60988
+    },
+    "E2_ASC_S": {
+      "label": "HOLDOUT-DTI",
+      "features": [
+        "stepabs_pct_det_elev",
+        "stepabs_pct_iso_grav_anom",
+        "stepabs_pct_rtp",
+        "stepabs_pct_depth_to_base_surf",
+        "stepabs_pct_cond_surf",
+        "aniso_pct_det_elev",
+        "aniso_pct_iso_grav_anom",
+        "aniso_pct_rtp",
+        "aniso_pct_depth_to_base_surf",
+        "aniso_pct_cond_surf",
+        "signed_z_det_elev",
+        "signed_z_iso_grav_anom",
+        "signed_z_rtp",
+        "signed_z_depth_to_base_surf",
+        "signed_z_cond_surf",
+        "az_agree",
+        "az_sin2",
+        "az_cos2"
+      ],
+      "pooled_holdout_dti": 0.115463,
+      "fold_dti": [
+        0.126119,
+        0.120902,
+        0.110133,
+        0.10472
+      ],
+      "fold_mean_ci95": [
+        0.099906,
+        0.131031
+      ],
+      "dots_per_fold": [
+        9888,
+        9831,
+        8663,
+        9272
+      ],
+      "n_withheld_positives_per_fold": [
+        15105,
+        15978,
+        12874,
+        17031
+      ],
+      "pooled_T": 6582.24,
+      "pooled_S": 37654.0,
+      "pooled_M": 3152.1,
+      "pooled_G": 60988
+    },
+    "E3_ASC_S_plus_TRI3": {
+      "label": "HOLDOUT-DTI",
+      "features": [
+        "stepabs_pct_det_elev",
+        "stepabs_pct_iso_grav_anom",
+        "stepabs_pct_rtp",
+        "stepabs_pct_depth_to_base_surf",
+        "stepabs_pct_cond_surf",
+        "aniso_pct_det_elev",
+        "aniso_pct_iso_grav_anom",
+        "aniso_pct_rtp",
+        "aniso_pct_depth_to_base_surf",
+        "aniso_pct_cond_surf",
+        "signed_z_det_elev",
+        "signed_z_iso_grav_anom",
+        "signed_z_rtp",
+        "signed_z_depth_to_base_surf",
+        "signed_z_cond_surf",
+        "az_agree",
+        "az_sin2",
+        "az_cos2",
+        "TRI3_surface_pct"
+      ],
+      "pooled_holdout_dti": 0.116767,
+      "fold_dti": [
+        0.129149,
+        0.121839,
+        0.108152,
+        0.10735
+      ],
+      "fold_mean_ci95": [
+        0.099637,
+        0.133608
+      ],
+      "dots_per_fold": [
+        9888,
+        9831,
+        8663,
+        9272
+      ],
+      "n_withheld_positives_per_fold": [
+        15105,
+        15978,
+        12874,
+        17031
+      ],
+      "pooled_T": 6658.06,
+      "pooled_S": 37654.0,
+      "pooled_M": 3162.85,
+      "pooled_G": 60988
+    }
+  },
+  "e3_branch": "E2>1 pooled -> E2 + TRI3 percentile (docs/HYPOTHESES_ASC91.md S2)",
+  "winner": "E3_ASC_S_plus_TRI3",
+  "winner_beats_prior_best_same_instrument": false,
+  "withheld_match_expected": true
+}

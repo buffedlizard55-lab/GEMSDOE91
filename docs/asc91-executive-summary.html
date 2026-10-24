@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary — exactly how to submit (and why ASC91 must not be submitted) · GEMSDOE91</title>
+<meta name="description" content="Step-by-step DrivenData submission instructions, the [0,1] portal error explained, and the ASC91 automated gate verdict.">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="asc91.html">ASC91 Step Lane</a><a href="asc91-executive-summary.html">ASC91 Guide</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+<section class="hero"><div>
+<span class="eyebrow">EXECUTIVE SUMMARY / SUBMISSION RUNBOOK</span>
+<h1>How a submission is made — step by step.</h1>
+<p class="lead">This page is the complete, no-human-inspector runbook. For the ASC91 file the automated answer is: <strong>do not submit it</strong> (Step 0). The remaining steps describe what a future, gate-passing file would do.</p>
+<span class="badge bad">ASC91: NOT OK TO SUBMIT</span>
+</div>
+<div class="download" data-submission-ready="false">
+<div class="label">CURRENT FILE STATUS</div>
+<h2>gems91-asc91-e3 … dc8e4d47-zeros</h2>
+<div class="status"><span>Download (research)</span><strong>YES</strong></div>
+<div class="status"><span>Submit to DrivenData</span><strong>NO</strong></div>
+<p>0.116767 HOLDOUT-DTI vs 0.142885 same-instrument best. Format and novelty pass; the science gate fails.</p>
+<a class="button" download href="downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif">↓ Download research GeoTIFF</a>
+<p class="small">SHA256 9c66d3a7…debec · 143,679 bytes · verify after download before any use.</p>
+</div></section>
+
+<section class="section"><h2>The runbook</h2>
+<div class="step"><h3>Step 0 — Read the automated verdict (no manual inspection)</h3>
+<p>Open <a href="run-card-ASC91.json">docs/run-card-ASC91.json</a>. A file may be submitted only when <em>all</em> of these are true in the card: validator PASS, leakage canary PASS, both novelty phases PASS, pooled HOLDOUT-DTI beats the recorded same-instrument best, and a human selector has confirmed the live weekly allowance. ASC91 fails the holdout-best gate, so <strong>stop here for this file</strong>. Inspection is done by the project (gates in code, evidence in JSON), never by eye.</p></div>
+<div class="step"><h3>Step 1 — Download the exact file</h3>
+<p>Use the <span class="mono">-zeros.tif</span> above (or the single-TIFF <span class="mono">.zip</span> beside it on the <a href="asc91.html">ASC91 page</a>). “Zeros” = 0.0 outside the study footprint; every one of the 12,279,160 cells is finite and in {0.0, 1.0}. Do not rename the file: the name is the unique submission identifier.</p></div>
+<div class="step"><h3>Step 2 — Verify the download (optional, 10 seconds)</h3>
+<p class="mono small">sha256sum gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif<br># must print 9c66d3a7978c9016c81107439eb00806e0d003b01e976155176fc9f0a90debec</p></div>
+<div class="step"><h3>Step 3 — Open the official submission form</h3>
+<p>Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData #306 — DOE GEMS</a> → <em>Submit</em> → <em>New submission</em>. Confirm on that page (a) the remaining weekly allowance (rules: three scored submissions/week, NLR 96647 §3.2) and (b) any AI-use disclosure the form requires. This project never stores credentials and never uploads automatically.</p></div>
+<div class="step"><h3>Step 4 — Attach the file</h3>
+<p><em>File to submit:</em> choose the <span class="mono">.tif</span> (single-band GeoTIFF) — or the <span class="mono">.zip</span> containing exactly that one TIFF. It matches the submission format's CRS (EPSG:32611), shape (3730×3292) and geotransform, verified by two independent validators in this repo.</p></div>
+<div class="step"><h3>Step 5 — Paste the note</h3>
+<p><em>Note (optional):</em> paste the ≤140-character note from the run card so the team can tell submissions apart later. For ASC91 the recorded note itself says do-not-submit: <span class="mono small">ASC91 E3 research only - NOT approved; antisymmetric cross-fault step HGB+TRI3, 37,654 dots.</span> A future approved file will carry its own name and note in its run card.</p></div>
+<div class="step"><h3>Step 6 — After scoring, record the receipt</h3>
+<p>Copy the organiser score from the submission page into <span class="mono">ledger/submissions.csv</span> as ORGANIZER-CONFIRMED with the date. Until that exists, no number for any file here is a leaderboard score — holdout numbers stay labelled HOLDOUT-DTI.</p></div>
+</section>
+
+<section class="section"><div class="card">
+<h3>The “Predicted values must be in range [0, 1]” error — cause and prevention</h3>
+<p>That portal rejection is triggered by values outside [0, 1], which in practice means NaN or sentinel fills (e.g. −3.4×10³⁸) or an unstated nodata in some earlier fleet twin. This session's file eliminates the entire class: the fail-closed template writer refuses non-finite or out-of-range arrays before writing, and the written bytes were re-read and verified cell-by-cell (finite everywhere; min 0.0, max 1.0; no nodata tag). If a future file ever triggers the error, do not “fix” it by clipping — rebuild it through the writer and re-check the run card.</p>
+</div></section>
+
+<section class="section"><div class="twocol">
+<div class="card"><h3>What would change the verdict?</h3>
+<ul>
+<li>A new lane (preregistered: step×context fusion) beats 0.142885 pooled HOLDOUT-DTI on this identical instrument, ideally confirmed on the second holdout instrument.</li>
+<li>Both novelty phases pass against an enumerated registry including this file.</li>
+<li>A selector verifies the live weekly allowance and picks the slot. That step is deliberately separate from building files.</li>
+</ul></div>
+<div class="card"><h3>Sources for manual review</h3>
+<p class="small">
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description &amp; metric</a><br>
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a><br>
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official rules (NLR 96647)</a><br>
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference solution</a><br>
+<a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN surveys</a><br>
+<a href="https://epsg.io/32611">EPSG:32611</a>
+</p></div>
+</div></section>
+</main>
+<footer><div>Research, not a leaderboard prediction.<br>ASC91 session 2026-10-24 · verdict: negative · 0 slots used</div>
+<div><a href="run-card-ASC91.json">Run card (JSON)</a> · <a href="asc91.html">ASC91 evidence page</a><br>No automatic competition uploads. No credentials stored.</div></footer>
+</div></body></html>

@@ -1025,3 +1025,24 @@ Five defects in shared tools. Each is either left as it was or changed with a te
 **Actual:** the two entries (`legacy_quarantined`) were removed from `registry/artifact_policy.json`. Nothing else in the policy changed. The GEOD hashes stay in `ledger/submissions.csv`, in `docs/run-card-S10.json` and in IR-91-S10-01. The files are not in git on this branch; they remain in history on `main`.
 
 **Decision it changes:** none beyond the retraction. The policy now matches the tree. Restoring the GEOD files would require re-registering them as a deliberate step.
+
+
+## IR-91-ASC-01 — ASC91 holdout instrument assigns whole components by centroid; withheld pixels can fall outside the fold region
+
+**Found:** 2026-10-24 (ASC91 session, `arena/5486e004-gemsdoe91`), reusing `scripts/build_denovo.py:fold_setup` unchanged. Components are assigned to folds by centroid on a 400 px checkerboard, so a withheld component may extend outside its fold's region; those pixels still count in pooled G, and supervised negatives are drawn > 5 px from the *visible* catalogue outside the region.
+
+**Actual:** kept byte-identical so ASC91 is directly comparable to the HGB-CTX receipt (0.142885) on the same instrument; the random control reproduced that receipt's instrument exactly (0.070827, same dots/fold and withheld counts). Fixing the instrument mid-comparison would have invalidated the gate.
+
+**Decision it changes:** none this session. Any instrument repair must re-score every compared arm, including HGB-CTX, before use as a gate.
+
+## IR-91-ASC-02 — ASC91 percentile / robust-z normalisations are fit on the full footprint
+
+**Actual:** unsupervised and label-free (same pattern as DENOVO's global reference sample), but fold-region pixels influence the transform. Single-feature canary AUCs are ≤ 0.6028 (limit 0.90), so no label leakage is indicated. Recorded so a future stricter fold-local refit can be costed honestly.
+
+## IR-91-ASC-03 — Registry scope for ASC91 novelty is 11 enumerated rasters, not a universal fleet registry
+
+**Actual:** `data/registry/*.tif` (8 sha-pinned) + CED/DD-VTC/DENOVO downloads, each hashed in `evidence/asc91_build_20261024.json`. The near-universal lattice raster `calib_r13lattice_00904.tif` that blocked CED is absent from this restored registry; under the literal directed 3 px rule it would reject any candidate. No exemption was applied; the scope limit is stated wherever the PASS is quoted.
+
+## IR-91-ASC-04 — Sponsor-band sentinel fill extrapolates steps within ~4 px of the footprint edge
+
+**Actual:** `_clean_band_edt` nearest-valid fill (shared with DD-VTC) means ASC step responses near the footprint boundary use extrapolated band values. Emission is restricted to the footprint, so only near-edge dots are affected. No correction applied; quantified nowhere — flagged for the fusion lane to mask a 4 px interior buffer in an ablation if its budget allows.

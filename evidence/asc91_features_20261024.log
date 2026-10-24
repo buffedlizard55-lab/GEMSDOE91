@@ -1,0 +1,15 @@
+steps done: det_elev (band 12)
+steps done: iso_grav_anom (band 13)
+steps done: rtp (band 2)
+steps done: depth_to_base_surf (band 15)
+steps done: cond_surf (band 17)
+stepabs/aniso done: det_elev
+stepabs/aniso done: iso_grav_anom
+stepabs/aniso done: rtp
+stepabs/aniso done: depth_to_base_surf
+stepabs/aniso done: cond_surf
+{
+  "canary_max_sym_auc": 0.6028,
+  "e1_surface_max_abs_spearman": 0.0996
+}
+EXIT:0

@@ -1,0 +1,270 @@
+{
+  "schema": "gems91.run-card-asc91.v1",
+  "run_id": "ASC91-20261024",
+  "session_branch": "arena/5486e004-gemsdoe91",
+  "lane": {
+    "name": "ASC91",
+    "assigned": false,
+    "status": "SELF-ASSIGNED_FROM_BRIEF_NO_SINGLE_METHOD_PARAGRAPH",
+    "preregistration": "docs/HYPOTHESES_ASC91.md"
+  },
+  "hypothesis": "A concealed normal fault offsets level fields across its trace, so an odd-symmetric (antisymmetric) across-strike step that is coherent along strike and concordant in azimuth/polarity across topography, gravity, magnetics, basement depth and conductivity reveals faults that symmetric-mean and ridge/crest detectors cancel or miss.",
+  "mechanism": "Step response per field = along-strike-smoothed [(F(+2n)+F(+4n))-(F(-2n)+F(-4n))]/2 at 8 strike azimuths (bands 12/13/2/15/17); features = step magnitude + directional anisotropy percentiles, elevation-oriented signed polarity, cross-field modal-azimuth agreement; E3 winner = HistGradientBoosting on 18 step features + TRI3 percentile; greedy spaced unit dots (2.8 px, 37,654, >3 px off catalogue).",
+  "non_fault_mimic": "Lithologic/intrusive (e.g. buried volcanic) contacts and Lake Lahontan shoreline terraces are also cross-line steps and can pass several fields at once.",
+  "experiments_run": 3,
+  "budget": {
+    "max_experiments": 3,
+    "max_seconds": 7200,
+    "experiments": [
+      "E1_ASC_U",
+      "E2_ASC_S",
+      "E3_ASC_S_plus_TRI3 (frozen branch)"
+    ]
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": 0.116767,
+    "evaluator_version": "scripts/dti.py official-DTI (alpha=0.2,beta=0.8,R=3px), pooled",
+    "protocol": "build_denovo.fold_setup whole-component checkerboard (identical instrument to HGB-CTX receipt)",
+    "withheld_positives": 60988,
+    "withheld_per_fold": [
+      15105,
+      15978,
+      12874,
+      17031
+    ],
+    "ci95": [
+      0.099637,
+      0.133608
+    ],
+    "ci_kind": "t-based 95% CI on the 4-fold mean (build_denovo.mean_ci); pooled value is the headline",
+    "fold_dti": [
+      0.129149,
+      0.121839,
+      0.108152,
+      0.10735
+    ],
+    "per_dot_credit_T_over_S": 0.1768
+  },
+  "all_experiments_HOLDOUT_DTI": {
+    "E1_ASC_U": {
+      "pooled": 0.090092,
+      "fold_dti": [
+        0.1179,
+        0.081184,
+        0.098732,
+        0.066474
+      ],
+      "ci95": [
+        0.055715,
+        0.12643
+      ]
+    },
+    "random_matched_control": {
+      "pooled": 0.070827,
+      "fold_dti": [
+        0.069232,
+        0.073936,
+        0.067972,
+        0.071531
+      ],
+      "ci95": [
+        0.066482,
+        0.074853
+      ]
+    },
+    "E2_ASC_S": {
+      "pooled": 0.115463,
+      "fold_dti": [
+        0.126119,
+        0.120902,
+        0.110133,
+        0.10472
+      ],
+      "ci95": [
+        0.099906,
+        0.131031
+      ]
+    },
+    "E3_ASC_S_plus_TRI3": {
+      "pooled": 0.116767,
+      "fold_dti": [
+        0.129149,
+        0.121839,
+        0.108152,
+        0.10735
+      ],
+      "ci95": [
+        0.099637,
+        0.133608
+      ]
+    }
+  },
+  "prior_best_same_instrument": {
+    "method": "DENOVO HGB-CTX",
+    "label": "HOLDOUT-DTI",
+    "pooled": 0.142885,
+    "ci95": [
+      0.12886,
+      0.155952
+    ],
+    "withheld_positives": 60988,
+    "receipt": "evidence/holdout3_hgbctx_20261024.json",
+    "winner_beats_it": false
+  },
+  "instrument_replication_receipt": "Random matched control reproduced the DENOVO receipt exactly (pooled 0.070827, fold CI [0.066482, 0.074853], dots/fold 9888/9831/8663/9272, withheld 15105/15978/12874/17031).",
+  "leakage_canary": {
+    "status": "PASS",
+    "max_symmetric_auc": 0.6028,
+    "threshold": 0.9,
+    "file": "evidence/asc91_features_canary_20261024.json"
+  },
+  "registry_comparison": {
+    "scope": "11 rasters: data/registry/*.tif (8, sha-pinned fleet/lineage) + docs/downloads CED/DD-VTC/DENOVO (3); NOT a universal fleet registry",
+    "complete_universal_registry": false,
+    "surface_before_placement": {
+      "max_abs_spearman_sample": 0.1374,
+      "threshold": 0.9,
+      "pass": true
+    },
+    "final_dots": {
+      "max_frac_within_3px": 0.44773,
+      "worst_raster": "calib_h161_01855.tif",
+      "threshold": 0.7,
+      "pass": true
+    },
+    "detail_file": "evidence/asc91_build_20261024.json"
+  },
+  "raster_sha256": "9c66d3a7978c9016c81107439eb00806e0d003b01e976155176fc9f0a90debec",
+  "dot_set_digest": "dc8e4d47c64e6c9db2a2acb8ab992d57f5426144d9c6585da4e212906ab70b30",
+  "validator_output": {
+    "independent_validate_raster": "PASS",
+    "gates": [
+      {
+        "name": "band count == 1",
+        "ok": true,
+        "must_pass": true,
+        "detail": "candidate bands=1, reference bands=1"
+      },
+      {
+        "name": "dtype float32",
+        "ok": true,
+        "must_pass": true,
+        "detail": "candidate dtype=float32"
+      },
+      {
+        "name": "CRS matches",
+        "ok": true,
+        "must_pass": true,
+        "detail": "candidate=EPSG:32611 reference=EPSG:32611"
+      },
+      {
+        "name": "shape matches",
+        "ok": true,
+        "must_pass": true,
+        "detail": "candidate=(3730, 3292) reference=(3730, 3292)"
+      },
+      {
+        "name": "transform matches",
+        "ok": true,
+        "must_pass": true,
+        "detail": "candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)"
+      },
+      {
+        "name": "re-read from disk matches in-memory band",
+        "ok": true,
+        "must_pass": true,
+        "detail": "sha256=9c66d3a7978c"
+      },
+      {
+        "name": "no NaN/Inf inside footprint",
+        "ok": true,
+        "must_pass": true,
+        "detail": "0 non-finite of 5167373 footprint pixels"
+      },
+      {
+        "name": "NaN outside footprint",
+        "ok": false,
+        "must_pass": false,
+        "detail": "7111787 finite of 7111787 outside pixels  (<id>-zeros.tif fallback: this gate is reported as INFO by design)"
+      },
+      {
+        "name": "values in [0,1]",
+        "ok": true,
+        "must_pass": true,
+        "detail": "min=0 max=1"
+      },
+      {
+        "name": "mass present",
+        "ok": true,
+        "must_pass": true,
+        "detail": "sum=37654.0 over 37654 positive pixels"
+      },
+      {
+        "name": "zero catalogue mass",
+        "ok": true,
+        "must_pass": true,
+        "detail": "0 positive pixels on catalogue, mass=0.000"
+      },
+      {
+        "name": "sha256 not already in ledger",
+        "ok": true,
+        "must_pass": true,
+        "detail": "sha256=9c66d3a7978c9016c81107439eb00806e0d003b01e976155176fc9f0a90debec new among 0 submitted hashes"
+      },
+      {
+        "name": "parent-diff statistics recorded",
+        "ok": true,
+        "must_pass": true,
+        "detail": "73710 pixels changed (195.76% of parent dots), parent dots=37654 child dots=37654, mass 37654.0 -> 37654.0"
+      },
+      {
+        "name": "sha256",
+        "ok": true,
+        "must_pass": true,
+        "detail": "9c66d3a7978c9016c81107439eb00806e0d003b01e976155176fc9f0a90debec"
+      }
+    ],
+    "encoding": "all-finite zeros outside footprint; nodata=None; unique values {0.0, 1.0}; portal error 'Predicted values must be in range [0, 1]' cannot trigger on value grounds",
+    "writer": "vendor/gems57/submission_writer.py (fail-closed; receipt approved_for_weekly_slot=false)"
+  },
+  "submission_name": "gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros",
+  "note": "ASC91 E3 research only - NOT approved; antisymmetric cross-fault step HGB+TRI3, 37,654 dots.",
+  "note_chars": 92,
+  "writer_receipt_note": "ASC91 E3 antisymmetric step concordance 37,654 dots",
+  "organizer_confirmed": null,
+  "slots_used": 0,
+  "selector_approval": false,
+  "submission_ready": false,
+  "verdict": "negative",
+  "verdict_reason": "Unique, format-valid file, and step features carry real signal (E2 0.115463 > SUP-logreg 0.097146 > random 0.070827 HOLDOUT-DTI), but the E3 winner (0.116767) does not beat the identical-instrument prior best HGB-CTX 0.142885. Frozen promotion gate not met: NOT OK TO SUBMIT. Budget of 3 experiments is spent; the ASC x HGB-CTX fusion is a new lane for a future session, not a 4th experiment here.",
+  "inputs": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  },
+  "artifact": {
+    "file": "downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif",
+    "zip": "downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.zip",
+    "zip_sha256": "581fe73a10cb67308bac9627f11eeba7e30debbfff79c7cd185fd6bd8d84aad3",
+    "receipt": "downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.json",
+    "audit": "downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros-audit.json",
+    "bytes": 143679,
+    "dots": 37654
+  },
+  "evidence": {
+    "features_canary": "evidence/asc91_features_canary_20261024.json",
+    "holdout": "evidence/asc91_holdout_20261024.json",
+    "build": "evidence/asc91_build_20261024.json",
+    "report": "docs/ASC91_20261024.md"
+  }
+}

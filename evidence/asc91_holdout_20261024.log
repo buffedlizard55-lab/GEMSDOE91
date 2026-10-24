@@ -1,0 +1,30 @@
+E1 ASC-U (unsupervised step concordance)
+  fold 0: DTI=0.11790 dots=9888 withheld=15105
+  fold 1: DTI=0.08118 dots=9831 withheld=15978
+  fold 2: DTI=0.09873 dots=8663 withheld=12874
+  fold 3: DTI=0.06647 dots=9272 withheld=17031
+control: random spaced, matched quota (seed stream = build_denovo)
+  fold 0: DTI=0.06923 dots=9888 withheld=15105
+  fold 1: DTI=0.07394 dots=9831 withheld=15978
+  fold 2: DTI=0.06797 dots=8663 withheld=12874
+  fold 3: DTI=0.07153 dots=9272 withheld=17031
+E2 ASC-S (HGB on 18 ASC features)
+  fold 0: DTI=0.12612 dots=9888 pos=45366
+  fold 1: DTI=0.12090 dots=9831 pos=44356
+  fold 2: DTI=0.11013 dots=8663 pos=47724
+  fold 3: DTI=0.10472 dots=9272 pos=43658
+E3 branch (frozen): E2 + TRI3 percentile feature
+  fold 0: DTI=0.12915 dots=9888 pos=45366
+  fold 1: DTI=0.12184 dots=9831 pos=44356
+  fold 2: DTI=0.10815 dots=8663 pos=47724
+  fold 3: DTI=0.10735 dots=9272 pos=43658
+{
+  "winner": "E3_ASC_S_plus_TRI3",
+  "pooled": {
+    "E1_ASC_U": 0.090092,
+    "E2_ASC_S": 0.115463,
+    "E3_ASC_S_plus_TRI3": 0.116767
+  },
+  "beats_prior_best": false
+}
+EXIT:0
