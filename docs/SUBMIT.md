@@ -238,3 +238,54 @@ USGS DS-1052): R0 0.095386 -> +0.00008 / -0.00234 / -0.00926.  Leakage canary ma
 **Do not** upload more than one SNAP arm for the "information" of it — they are one dose-response
 experiment. If a SNAP receipt is bought, `s2c` is the only arm whose prediction is compatible with
 no change, and `≤ −0.006` retires the axis.
+
+---
+
+## SESSION 8 (2026-10-24) — CONCENTRATION on the legal collar: **recommended NOT to spend a slot**
+
+Three files, all gated (`validate_release` PASS on both encodings, count `37,654`, `0` new dot
+`<= 3 px`, `0` mass on catalogue), all `BUILT`, `0` submitted. **The recommendation is to hold
+these**: two are predicted losses and the third is a coin flip. They exist because the brief
+asks for one controlled change per axis and the axis (collar vs remote) has never been tested.
+`SLOT_PLAN.md` puts the R0 anchor, `PRUNE-le10` (`04002dae`) and `MASScons3add` (`2803126d`)
+ahead of them.
+
+| file (`releases/`) | sha256 (NaN-outside) | bytes | predicted (`MODEL`) |
+|---|---|---:|---|
+| `h33-h33-2-b2-CONCENTRATIONcollar10-20261024-00cfbe95.tif` | `00cfbe95696390f5942fe2ecae2c490e32fc9b9f9f4267d277b8b529403487fd` | 370,729 | −0.006 `[−0.026,+0.008]` |
+| `h33-h33-2-b2-CONCENTRATIONcollar20-20261024-106ae19b.tif` | `106ae19bc0c47caa4f5fe48f79cc3557dbf16b85499bd733a826a8fd466427c4` | 369,009 | −0.011 `[−0.051,+0.008]` |
+| `h33-h33-2-b2-CONCENTRATIONanti10-20261024-0e42d6ab.tif` | `0e42d6ab43b6082e4bfad0106bd77d59bfdcd1cc3ba3d13aa9f92afc5196862a` | 370,073 | **+0.006** `[−0.027,+0.014]` |
+
+`-zeros` twins (fallback for the same slot, never a second entry): `abcfafee…`, `236c02f2…`,
+`0cb4e45b…` — full hashes in `releases/CONCENTRATION_COLLAR_MANIFEST.json`. Rebuild:
+`python3 scripts/restore_data.py && python3 scripts/build_concentration_collar.py --build`
+(deterministic, ~35 s, every sha256 reappears).
+
+**Name / note (<=140 chars), `anti10` — the only arm worth a slot, if any:**
+
+```
+name: h33-h33-2-b2-CONCENTRATIONanti10-20261024-0e42d6ab
+note: h33-2-b2; 3765 dots (10.0%) moved out of the 3-6px collar to support-weighted >10px cells; pred +0.006 MODEL
+```
+
+```
+name: h33-h33-2-b2-CONCENTRATIONcollar10-20261024-00cfbe95
+note: h33-2-b2; 3765 dots (10.0%) moved into the legal 3.05-6px collar; pred -0.006 MODEL (collar test)
+```
+
+**Format receipt (paste back with the score):**
+
+```
+candidate: h33-h33-2-b2-CONCENTRATIONanti10-20261024-0e42d6ab
+sha256 (NaN)    : 0e42d6ab43b6082e4bfad0106bd77d59bfdcd1cc3ba3d13aa9f92afc5196862a
+sha256 (zeros)  : 0cb4e45bd1695d72d9eab7704c17cb80c111789e1077260dc69e8569f747cbe0
+n_dots          : 37654      pct changed vs R0: 20.00 (3765 removed + 3765 added)
+min_dist_catalogue_px: 2.236 (inherited from R0, IR-91-03)   new dots <=3 px: 0
+CRS EPSG:32611 | 3730x3292 | 100 m | float32 | 1 band | values {0,1} | NaN outside
+zero catalogue mass: 0 px    min nearest-neighbour after: 2.828 px (R0 floor preserved)
+```
+
+**Wrinkle stated up front:** all three arms inherit R0's `2,171` dots at 2-3 px from the
+catalogue (IR-91-03) and add none. The catalogue `PROXY` and the leakage canary are unchanged
+for every arm by construction (3.05 px floor vs a 3 px kernel, IR-91-33) — that is a property of
+the instrument, not evidence about the axis.

@@ -433,3 +433,25 @@ PROXY and SGMC control are labelled `PROXY`/report-only and are never called sco
 is predicted at or below R0 and is not in the top 3), which arm if any (`s2c` is the only
 one predicted as no change), `TOP_PUBLIC` + date, slots remaining, every upload, and the
 single blind final file.
+## Session 8 (2026-10-24, `arena/40027ebc-gemsdoe91`) — CONCENTRATION on the legal collar
+**AI wrote:** `src/gems91/collar.py` (collar/remote priors, block-ranked donors, deterministic
+greedy acceptor placement with the 3.05 px floor and R0's own 2.828 px spacing floor),
+`scripts/build_concentration_collar.py` (pins → byte-exact R0 proof → 3 arms → gates → evidence →
+ledger → release manifest), `tests/test_collar.py` (17 tests), `docs/MECHANISM_CARDS_COLLAR.md`,
+this session's sections of `SLOT_PLAN.md` / `docs/SUBMIT.md` / `README.md` (CURRENT STATE) /
+`IRREGULARITIES.md` (IR-91-33, IR-91-34), and all six release files. The AI chose the session
+axis and its prior (the brief forbids asking the human to pick an axis).
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read or print credentials, scrape
+a leaderboard, or invent a score. R0 was rebuilt byte-exactly from both pinned ancestors
+(`baeae321…`, `c55bafc4…`) before any variant existed; all 10 inputs were sha256-verified against
+`registry/data_manifest.json` first; nothing was read outside the manifest.
+**Where the AI was wrong, and said so:** its own hypothesis (collar concentration) is predicted to
+**lose** live. Both arms into the collar came out negative on the only independent fault
+catalogue and on the live-calibrated reference; the mirrored arm came out positive on SGMC. The
+AI then measured *why* (IR-91-33: the 3 px floor makes collar credit on mapped traces identically
+zero; IR-91-34: the live-calibrated reference is circular for relocation), wrote the negative
+predictions into the ledger rather than re-tuning the arms until they looked good, and removed
+relocation from the top of the slot queue. Its own top slot proposal (`gdr25rm10`, `+0.0123`
+`MODEL`) was also demoted on the same evidence.
+**Human decides:** `TOP_PUBLIC` + date, slots left this week, whether any slot goes to `anti10`,
+the R0 anchor receipt, and the blind final file. No upload is made by an agent.
