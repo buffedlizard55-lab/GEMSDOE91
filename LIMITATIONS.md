@@ -135,3 +135,16 @@ research artifact or revive legacy model-projected queues.
 11. **Human-only obligations** (IR-91-S12-08): eligibility certification (§1.3), the perjury certification of the submission package (§A.1), public-element and FOIA disclosure (§A.4, §A.10), originality and third-party-content representations (§A.5), and AI-use disclosure (§3.2). The agent cannot satisfy these.
 12. **Experiment budget.** 2 of 3 experiments used (one of them an invalid attempt; IR-91-S12-03). Reproductions and controls are not counted.
 13. **Public GitHub Pages publication** of research TIFs is a disclosure decision under §A.4. The portal says "research only" and does not advertise any file as a submission.
+
+## CCR91 current-session limitations (2026-10-24, `arena/02c6b911-gemsdoe91`)
+
+1. **Negative deliverable, not an upload candidate.** The new all-finite TIFF is downloadable for research but fails the current-best holdout criterion and the literal final-dot overlap gate. `ok_to_submit` is false; no slot was used.
+2. **Lane assignment is absent.** CCR91 was selected autonomously from an existing preregistration because the brief forbids manual input. It is explicitly provisional and cannot be promoted as an assigned lane.
+3. **Directed overlap makes the historical best noncompliant too.** The shared dense-reference F1 exception was wrong under the literal wording and is now fixed. The near-universal lattice causes CCR91, S11 and H91 to fail. Changing/removing the reference or threshold requires shared protocol governance; tuning dots around it is not authorized.
+4. **Registry incomplete.** Two of 64 frozen references cannot be restored. Available-scope checks are not universal fleet clearance.
+5. **Holdout target mismatch.** The shared holdout recovers mapped catalogue faults; organizer truth concerns newly interpreted faults. Even a higher holdout result would not be a leaderboard projection.
+6. **No organizer receipt or live account state.** DrivenData is outside the network allowlist and there is no authenticated session. Current leaderboard, weekly allowance, deadline and receipt cannot be asserted here.
+7. **Mirror provenance and redistribution remain unresolved.** All 15 pins match declared mirror hashes and lengths. This proves mirror identity, not organizer authenticity or permission to republish competition data. The published artifact is derived output only.
+8. **Eligibility/disclosure are human-only.** The agent cannot attest citizenship/residency, sign rules, approve generative-AI disclosure, or spend a slot.
+9. **Experiment budget stopped correctly.** E1 consumed 692.60 seconds and failed final novelty. E2/E3 were not run. Cached revalidation and tests are engineering checks, not permission to resume the geological budget.
+10. **Next useful work:** resolve lane assignment and lattice policy, restore/retire the two missing pins, freeze a complete pre-experiment registry, and establish a protocol-compliant same-evaluator baseline before another hypothesis run.

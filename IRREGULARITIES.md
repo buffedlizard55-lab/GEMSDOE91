@@ -1257,9 +1257,53 @@ Read from the official rules (`docs.nlr.gov/docs/fy26osti/96647.pdf`, sections �
 **Decision:** Do not change the organizer-format assumption by implication. Use the explicitly selected all-finite policy for current published research artifacts because the user's submission form rejected out-of-range values and the shared validator/writer enforce it; preserve the legacy option and this discrepancy for review. Before calling any file upload-ready, obtain organizer-confirmed format semantics and still satisfy science, novelty and separate-selector gates.
 
 
+## IR-91-CCR-01 — Assigned method paragraph absent; CCR91 is provisional, not falsely assigned
+
+**Expected:** protocol Rule 1 says this session's lane is the single method paragraph below.
+
+**Actual:** no assigned method paragraph appears in the supplied brief. The brief also forbids manual input and requires autonomous completion.
+
+**Action:** selected the top previously preregistered but untested cached-layer candidate (compensated conductivity residual) and labelled it provisional everywhere. Missing assignment remains a promotion blocker.
+
+## IR-91-CCR-02 — Shared uniqueness tool weakened the literal directed overlap rule for dense rasters
+
+**Expected:** fail when more than 70% of candidate dots are within 3 pixels of any one registry raster.
+
+**Actual:** `scripts/evaluate_holdout.py` used candidate→registry overlap only for references no larger than 1.5 times the candidate; for denser references it substituted symmetric F1. That exception is not in the user rule and let near-universal lattices avoid the intended stop.
+
+**Action:** fixed the shared tool once, retained F1 only as a diagnostic, added `gems91-directed-registry-v1.1`, added a separately callable pre-placement surface check, and added a dense-reference regression test. No lane-local exemption was used.
+
+**Decision changed:** historical S11/H91 novelty promotion language is superseded. Direct remeasurement gives 99.8146% and 99.7448% candidate→lattice overlap respectively; both fail the literal 70% rule.
+
+## IR-91-CCR-03 — CCR91 is byte-unique but protocol-duplicate
+
+**Expected:** a unique method and file should also clear the surface and final-dot lane-drift gates.
+
+**Actual:** the new TIFF hash is unseen and its continuous surface passes (`|rho| = 0.22224`), but 99.769% of its 48,000 dots are within 3 pixels of `calib_r13lattice_00904.tif`. It also exceeds 70% against four other available references.
+
+**Action:** generated and published the file only as a clearly marked research-negative deliverable, stopped after E1, and did not spend a weekly slot. It is NOT OK TO SUBMIT.
+
+## IR-91-CCR-04 — The top CCR candidate did not beat the current holdout best
+
+**Actual:** CCR91 E1 measured 0.202116 HOLDOUT-DTI (`gems91-hide-recover-v1.0`, 60,988 withheld positives, 95% CI `[0.191589, 0.213715]`) versus the historical current reference 0.206406 HOLDOUT-DTI (same evaluator/positives, historical 95% CI `[0.193796, 0.220176]`).
+
+**Action:** promotion fails on the preregistered point criterion. Overlapping intervals mean this run does not establish a statistically resolved degradation, but it does not authorize a slot.
+
+## IR-91-CCR-05 — Frozen registry remains incomplete
+
+**Actual:** 62 of 64 frozen references restore. The two `GEOD25m10` rows have no pinned Git blob and are absent. The CCR run encountered 67 unique same-grid names across available frozen/local/published scopes, but private, unlinked, missing and non-grid rasters remain outside comparison.
+
+**Action:** `registry_scope_complete` is false in the run card. No universal uniqueness statement is made.
+
+## IR-91-CCR-06 — Current official pages and organizer receipt were not reachable
+
+**Actual:** this sandbox permits GitHub and package hosts, not DrivenData, USGS, NLR or EPSG. The official DrivenData GitHub reference repository and GEMSDOE32 source tree were fetched; competition pages and rules are manual-review links only in this run.
+
+**Action:** no current leaderboard value, weekly allowance, deadline, eligibility status, or organizer score is claimed as freshly verified. User-provided values remain unconfirmed absent a receipt.
+
 ## IR-UCD-01..03 (2026-10-24 UCD91)
 - IR-UCD-01: Registry uniqueness scope is data/registry/*.tif only (incl. R0), not the universal fleet registry; docs/downloads rasters not all rechecked. Verdict relies also on novel feature family.
-- IR-UCD-02: submission_writer overwrote shared docs/downloads/h91_submission_bundle.js with the UCD91 payload (shared-tool behaviour; flagged, not forked).
+- IR-UCD-02: the first UCD91 writer run targeted the legacy shared `docs/downloads/h91_submission_bundle.js`. Integration corrected the shared writer to accept a collision-safe filename, records UCD91 in `ucd91_submission_bundle.js`, and preserves the H91 asset; current audit hashes verify each dedicated bundle.
 - IR-UCD-03: First writer attempt failed on missing imagecodecs in this sandbox (it is pinned in requirements.txt); installed and finalize_ucd.py completed all suites. Shared tool not modified.
 ## IR-91-1F0955-01 — baseline-free promotion claim (2026-10-24)
 

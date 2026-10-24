@@ -45,6 +45,7 @@ DEFAULT_BUFFER_PX = 10.0
 MAX_LEAKAGE_AUC = 0.90
 MAX_SURFACE_RANK_CORR = 0.90
 MAX_DOT_OVERLAP_3PX = 0.70
+UNIQUENESS_GATE_VERSION = "gems91-directed-registry-v1.1"
 
 
 @dataclass(frozen=True)
@@ -429,6 +430,69 @@ def score_off_catalogue_sgmc(
     }
 
 
+def check_registry_surface_uniqueness(
+    surface_fp: np.ndarray,
+    footprint: np.ndarray,
+    registry_paths: Iterable[str | Path],
+    *,
+    max_rank_corr: float = MAX_SURFACE_RANK_CORR,
+    corr_stride: int = 5,
+) -> dict:
+    """Run the Rule-1 continuous-surface check *before* dot placement.
+
+    This separate entry point makes the protocol's ordering testable.  It uses
+    the same deterministic strided Spearman calculation as
+    :func:`check_registry_uniqueness`, but has no dot input and therefore cannot
+    accidentally turn a post-placement check into evidence of a pre-placement
+    gate.
+    """
+    vals = np.asarray(surface_fp, dtype=np.float64)
+    if vals.ndim != 1 or vals.size != int(footprint.sum()):
+        raise ValueError("surface_fp must be one value for every footprint pixel")
+    s_sub = vals[::corr_stride]
+    r_surf = rankdata(s_sub, method="average")
+    r_surf_c = r_surf - r_surf.mean()
+    r_surf_norm = float(np.linalg.norm(r_surf_c))
+
+    comparisons = []
+    seen_names: set[str] = set()
+    max_rho = 0.0
+    closest = ""
+    for rp in sorted(Path(p) for p in registry_paths):
+        if not rp.is_file() or rp.name in seen_names:
+            continue
+        seen_names.add(rp.name)
+        with rasterio.open(rp) as src:
+            reg_arr = np.nan_to_num(src.read(1), nan=0.0, posinf=0.0, neginf=0.0)
+        if reg_arr.shape != footprint.shape:
+            continue
+        reg_fp = reg_arr[footprint][::corr_stride].astype(np.float64)
+        r_reg = rankdata(reg_fp, method="average")
+        r_reg_c = r_reg - r_reg.mean()
+        r_reg_norm = float(np.linalg.norm(r_reg_c))
+        rho = (
+            abs(float(np.dot(r_surf_c, r_reg_c)) / (r_surf_norm * r_reg_norm))
+            if (r_surf_norm > 0 and r_reg_norm > 0)
+            else 0.0
+        )
+        comparisons.append({"registry_raster": rp.name, "surface_abs_rank_corr": round(rho, 5)})
+        if rho > max_rho:
+            max_rho = rho
+            closest = rp.name
+
+    return {
+        "uniqueness_gate_version": UNIQUENESS_GATE_VERSION,
+        "phase": "pre-placement continuous surface",
+        "n_registry_rasters_checked": len(comparisons),
+        "max_allowed_rank_corr": max_rank_corr,
+        "surface_max_abs_rank_corr": round(max_rho, 5),
+        "surface_closest_raster": closest,
+        "is_duplicate": bool(max_rho > max_rank_corr),
+        "uniqueness_pass": bool(max_rho <= max_rank_corr),
+        "comparisons": comparisons,
+    }
+
+
 def check_registry_uniqueness(
     surface_fp: np.ndarray,
     candidate_dots: np.ndarray,
@@ -513,14 +577,16 @@ def check_registry_uniqueness(
         else:
             fwd_ov = rev_ov = mut_ov = 0.0
 
-        # For standard dot submissions (n_reg <= 1.5 * n_cand, covering R0, GEMSDOE28..76),
-        # enforce strict one-way `cand_within_3px_of_reg <= 0.70`. For dense calibration
-        # blankets / ribbons (> 1.5 * n_cand, e.g. 69,281-dot calib_h28ridge covering 1.42M px
-        # or 227k-px hedge_v2), use symmetric F1 3-px overlap so whole-map blankets don't
-        # trivially swallow smaller dot sets while true clones still score > 0.90.
+        # The user protocol is a directed coverage test with no dense-reference
+        # exception: "more than 70% of *your dots* within 3 px of one registry
+        # raster's dots" means cand->registry overlap for every raster.  Older
+        # code substituted symmetric F1 for dense references.  That silently
+        # weakened the stated gate and could mark a near-universally covered
+        # candidate unique.  Keep F1 as a diagnostic only; never use it for the
+        # verdict (IR-91-CCR-02).
         f1_ov = (2.0 * fwd_ov * rev_ov / (fwd_ov + rev_ov)) if (fwd_ov + rev_ov) > 0 else 0.0
-        eff_dot_ov = fwd_ov if n_reg <= int(1.5 * n_cand) else f1_ov
-        is_dup = (surf_rho > max_rank_corr) or (dot_rho > max_rank_corr) or (eff_dot_ov > max_dot_overlap_3px)
+        eff_dot_ov = fwd_ov
+        is_dup = (surf_rho > max_rank_corr) or (dot_rho > max_rank_corr) or (fwd_ov > max_dot_overlap_3px)
         comparisons.append({
             "registry_raster": rp.name,
             "n_registry_positive": n_reg,
@@ -547,6 +613,8 @@ def check_registry_uniqueness(
 
     any_dup = any(c["duplicate_flag"] for c in comparisons)
     return {
+        "uniqueness_gate_version": UNIQUENESS_GATE_VERSION,
+        "dot_overlap_policy": "strict directed candidate-within-3px-of-registry for every registry raster",
         "n_registry_rasters_checked": len(comparisons),
         "max_allowed_rank_corr": max_rank_corr,
         "max_allowed_dot_overlap_3px": max_dot_overlap_3px,
