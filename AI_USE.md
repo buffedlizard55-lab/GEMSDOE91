@@ -455,3 +455,20 @@ relocation from the top of the slot queue. Its own top slot proposal (`gdr25rm10
 `MODEL`) was also demoted on the same evidence.
 **Human decides:** `TOP_PUBLIC` + date, slots left this week, whether any slot goes to `anti10`,
 the R0 anchor receipt, and the blind final file. No upload is made by an agent.
+
+## CED91 session — 2026-10-24, branch arena/d043e4f8-gemsdoe91
+
+AI audited local/remote source snapshots, restored existing pinned public-mirror
+inputs, found and hash-pinned the unmodified shared template, preregistered four
+hypotheses, implemented one parent-free two-band transform, ran feature canaries
+and whole-component pooled holdout evaluation, and stopped on a literal registry
+duplicate. AI generated the downloadable research TIFF/ZIP, automated validators,
+fail-closed portal/guide, source register, CI/Pages workflows and tests. The original
+user brief is embedded in README. No competition slot/account action, organizer
+receipt, hidden truth or credentials were accessed. No new scientific experiment
+was run after the duplicate stop; subsequent work was audit, tests and delivery.
+
+Scientific mechanisms are hypotheses, not validated discoveries. External official
+web pages/literature could not be independently fetched under the host allowlist.
+GitHub source-page claims are not organizer receipts. The current negative card
+and README supersede historical unsupported forecasts and submission queues.
