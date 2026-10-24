@@ -1,5 +1,6 @@
 numpy>=1.26
 scipy>=1.11
+scikit-learn>=1.4
 tifffile==2026.3.3
 imagecodecs>=2024.6
 rasterio>=1.3

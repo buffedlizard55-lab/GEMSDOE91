@@ -1,7 +1,9 @@
 # Competition data must never be committed: this repository is PUBLIC and GitHub
-# Pages serves main:/ (see IRREGULARITIES.md IR-91-01). data/ is also large.
-data
-data/
+# Pages serves main:/ (see IRREGULARITIES.md IR-91-01). /data/ is also large.
+/data
+/data/
+!docs/data/
+!docs/data/**
 
 # Built rasters are the upload artifact, not source. They stay out of git; only
 # their sha256 goes into ledger/submissions.csv.

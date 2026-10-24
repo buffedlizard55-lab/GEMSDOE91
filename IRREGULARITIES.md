@@ -671,3 +671,35 @@ the independent SGMC control (κ = 1.0, no shrinkage), and the session's headlin
 as a *matched-dose difference* between two arms rather than as an absolute gain. This is also why
 `CONCENTRATIONgdr25rm10` (`c019adb01`, `+0.0123` `MODEL`) loses its top slot: its prediction is
 a 0.1 × shrinkage of the prior scored against itself, the same circularity in a different dress.
+
+---
+
+## IR-91-35 — `src/gems91/metric.py` sums kernel credit (`> 1.0`) while competition DTI (`scripts/dti.py`) takes `max_j` (`<= 1.0`)
+
+**Expected:** both DTI modules in the repository implement the same competition formula.
+**Actual:** `src/gems91/metric.py` sums kernel contributions across nearby predicted pixels (allowing scores `> 1.0`, locked by `tests/test_metric.py`), whereas DrivenData's published worked example (`TP=3.00, FP=1.89, FN=2.00 -> 0.6026`) uses `TP_w = sum_g max_j p_j k(||j-g||_2)` (`scripts/dti.py`, strictly in `[0, 1]`).
+**Decision it changes.** Keep `src/gems91/metric.py` untouched so existing regression tests continue to pass; route `scripts/evaluate_holdout.py` (`gems91-hide-recover-v1.0`) exclusively through `scripts/dti.py`.
+
+## IR-91-36 — `src/gems91/prior.py` drops `'Hot '` trailing-space rows and 212 blind `>= 90 C` geothermometer cells
+
+**Expected:** filtering `data/external/gdr_wellspring_in_footprint.csv` ([DOE GDR #1391](https://gdr.openei.org/submissions/1391)) captures all geothermal upflow indicators in the footprint.
+**Actual:** `121` rows carry `'Hot '` with a trailing space, and **`212` unique footprint grid cells** labeled `Cold`/`NULL`/blank carry dissolved quartz, chalcedony, or Na-K-Ca chemical geothermometers `>= 90 C` — the geochemical signature of blind fault-hosted hydrothermal plumes cooled conductively in shallow aquifers.
+**Decision it changes.** Leave `src/gems91/prior.py` untouched so `registry/derived_priors.json` sha256 pins remain valid; implement whitespace-trimmed `Hot/Warm` (`2,060` cells) + blind `>= 90 C` geothermometer (`212` cells) extraction in `src/gems91/dd_vtc_pu.py`.
+
+## IR-91-37 — `gdr_wellspring_in_footprint.csv` carries a leaky `dist_known_fault_px` column on all 27,092 rows
+
+**Expected:** external well/spring attributes are independent of withheld holdout fault segments.
+**Actual:** column `dist_known_fault_px` in `gdr_wellspring_in_footprint.csv` was precomputed against the full global `existing_faults.tif` raster (`27,092 / 27,092` rows populated). Ingesting it in a hide-and-recover fold leaks exact Euclidean distance to withheld fault traces.
+**Decision it changes.** Explicitly ban `dist_known_fault_px` in `src/gems91/dd_vtc_pu.py` and verify every engineered feature through `evaluate_holdout.run_leakage_canary` (`52/52` symmetric AUC `<= 0.6610 <= 0.90`).
+
+## IR-91-38 — GeoDAWN `Band 6` (`tc`) is unsigned gravity terrain correction (`[11.8, 25.6]` mGal), not signed Verduzco tilt
+
+**Expected:** shorthand naming `tc` in sibling lanes sometimes treated Band 6 as a zero-crossing tilt contact indicator.
+**Actual:** Band 6 is strictly positive `[11.82, 25.60]` inside the footprint (`median = 17.44` on catalogue faults vs `18.49` background). By contrast, `Band 11` (`iso_grav_anom_vg`) is signed and flips polarity across fault contacts (`+0.0824` median on faults vs `-0.0739` background), while `Band 5` (`iso_grav_anom_slope`) is unsigned `[0.0288, 0.27]`.
+**Decision it changes.** Synthesize true depth-normalized Verduzco tilt angles `atan2(B11, B05)` and `atan2(B09, |grad B02|)` in `H91-1` (`dd_vtc_pu.py`) and project them updip by `B15 * cot(55 deg)` along `-grad G_6(B13)`.
+
+## IR-91-39 — 2-D vs 1-D submodular kernel area bias (`10.61` vs `3.00`) and 1.42M-pixel calibration blankets
+
+**Expected:** maximizing `sum_g p(g) max_j K(||j-g||_2)` over 2-D posterior maps selects 1-px fault ridges, and one-way 3-px dot overlap compares peer dot sets symmetrically.
+**Actual:** (1) over a 2-D disk (`r <= 3 px`, 29 cells), `sum K = 10.61`, whereas along a 1-px fault line (7 cells), `sum K = 3.00` — a `3.5x` area bias that causes uncalibrated 2-D submodular allocators to pack `p = 0.50` mountain blocks (`0.50 * 10.61 = 5.31`) ahead of `p = 0.85` 1-D fault lines (`0.85 * 3.00 = 2.55`), collapsing `HOLDOUT-DTI` to `0.030`; (2) external calibration probe `calib_h28ridge_01839.tif` (`69,281` spaced dots = `1.8x` candidate count) covers `1,415,571` pixels (`27.4%` of the entire footprint) within `3 px`.
+**Decision it changes.** Apply Bayes prior-shift calibration + 4-axis 1-D directional ridge NMS + background floor subtraction in `submodular_dti_emit` (lifting `E1` `HOLDOUT-DTI` to `0.174030` in `~1.0s`/fold), and use symmetric harmonic-mean (`F1`) 3-px overlap when a reference calibration blanket has `> 1.5x` candidate positive count while preserving strict one-way overlap for all peer dot submissions (`<= 1.5x`).
