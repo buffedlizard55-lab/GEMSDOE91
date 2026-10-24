@@ -201,6 +201,7 @@ def main() -> int:
         template_path=SAMPLE,
         catalogue_path=CAT,
         parent_compare_path=None,
+        bundle_js_filename="mtd91_submission_bundle.js",
     )
     sha = audit["primary_zeros_tif"]["sha256"]
     short = sha[:8]
