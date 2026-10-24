@@ -32,7 +32,7 @@ that does not beat the holdout control is not promoted to a weekly slot. Nothing
 <ul>
 <li>Output: <strong>one single-band GeoTIFF</strong>, same CRS, shape and geotransform as the official sample. The organizer notebook takes CRS and transform from <code>labels.tif</code> and writes a single band
 (<a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/main/unet-mc-cv-reference-solution.ipynb">reference notebook, cell 19</a>; fetched via the GitHub blob API).</li>
-<li>Grid used by this repo (from the mirrored sample, sha256 pinned in <a href="../registry/data_manifest.json"><code>registry/data_manifest.json</code></a>): <strong>EPSG:32611, 3730 rows × 3292 columns, 100 m, float32, NaN outside the footprint</strong>, values in <strong>[0, 1]</strong>.</li>
+<li>Grid used by this repo (from the mirrored sample, sha256 pinned in <a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/registry/data_manifest.json"><code>registry/data_manifest.json</code></a>): <strong>EPSG:32611, 3730 rows × 3292 columns, 100 m, float32, NaN outside the footprint</strong>, values in <strong>[0, 1]</strong>.</li>
 <li>The reference notebook's predictions are sigmoid probabilities and it notes that thresholding "may be advantageous". The organizer's own encoding is therefore continuous, not necessarily binary.</li>
 <li><strong>ORGANIZER-CONFIRMED (fetched 2026-10-24):</strong> the DrivenData problem description says the submission is "a GeoTIFF raster with fault predictions represented as pixel-wise probabilities or confidence scores between 0 and 1", float32, EPSG 32611, 100 m, same bounds as the training data, null or NaN outside the bounds. Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">competition page 967</a>.</li>
 <li><strong>ORGANIZER-CONFIRMED:</strong> the sample is described as one that "predicts total fault absence". The mirrored sample in this repo is <em>not</em> that: its 60,988 ones are exactly the catalogue cells (IR-91-S10-09). Do not use the mirrored sample as a template for anything you upload.</li>
@@ -50,7 +50,7 @@ that does not beat the holdout control is not promoted to a weekly slot. Nothing
 <tr><td>Parent-diff statistics recorded</td><td>same</td><td><strong>FAIL</strong>. S10 has no parent raster, and the gate has no "not applicable" state, so every parentless file fails it (IR-91-S10-10, item 1). Shown as FAIL, not hidden.</td></tr>
 <tr><td>Matches the organizer's own sample (format template)</td><td>not automated</td><td><strong>NOT DONE.</strong> The mirrored sample is the catalogue, not a blank template (IR-91-S10-09). The grid was checked against the mirror only.</td></tr>
 <tr><td>Holdout beats random-placement control</td><td>private S10 evaluator at commit <code>82252a1</code> (removed from the tree in the merge; IR-91-S10-11)</td><td><strong>FAIL</strong> on that private protocol (see section 3)</td></tr>
-<tr><td>Registry: no exact duplicate, rank correlation ≤ 0.90, ≤ 70 % of mass within 3 px</td><td><code>scripts/registry_scan.py</code></td><td><strong>PASS (complete scan)</strong> on 2,513 same-grid rasters: 0 exact duplicates, max rank correlation 0.037, max 3 px overlap 0.526. 46 rasters were not comparable (22 unreadable, 24 on other grids) and were not compared. See <a href="../registry/s10_registry_scan.json"><code>registry/s10_registry_scan.json</code></a>.</td></tr>
+<tr><td>Registry: no exact duplicate, rank correlation ≤ 0.90, ≤ 70 % of mass within 3 px</td><td><code>scripts/registry_scan.py</code></td><td><strong>PASS (complete scan)</strong> on 2,513 same-grid rasters: 0 exact duplicates, max rank correlation 0.037, max 3 px overlap 0.526. 46 rasters were not comparable (22 unreadable, 24 on other grids) and were not compared. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/registry/s10_registry_scan.json"><code>registry/s10_registry_scan.json</code></a>.</td></tr>
 </table>
 
 <h2>3. Numbers in this repository and how they are labelled</h2>
@@ -91,6 +91,6 @@ that does not beat the holdout control is not promoted to a weekly slot. Nothing
 <li>Judge the GEOD file in <code>outputs/archive/</code> as a <strong>duplicate</strong>: 93.2 % of its dots lie within 3 px of the pinned parent R0 (IR-91-S10-01). It was removed from the Pages downloads.</li>
 </ul>
 
-<p class="small">Sources and verification trail: <a href="../IRREGULARITIES.md">IRREGULARITIES.md</a> (IR-91-S10-01 to -10) · <a href="HYPOTHESES_S10.md">HYPOTHESES_S10.md</a> · <a href="../README.md">README (standing brief)</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">organizer reference repo</a></p>
+<p class="small">Sources and verification trail: <a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/IRREGULARITIES.md">IRREGULARITIES.md</a> (IR-91-S10-01 to -12) · <a href="HYPOTHESES_S10.md">HYPOTHESES_S10.md</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/README.md">README (standing brief)</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">organizer reference repo</a></p>
 </body>
 </html>
