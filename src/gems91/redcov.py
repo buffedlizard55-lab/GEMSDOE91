@@ -41,7 +41,7 @@ independent off-catalogue SGMC control (USGS DS-1052, report-only), this
 relocation is the only screened family with a materially positive *exact*
 fixed-count DTI delta (relT +7.5 % at 10 % moved).  The full screen log,
 including the families that failed, is in evidence/redcov_axis_20261024.json
-and IR-91-35/36.  SGMC was used to *screen* mechanism-backed families, never
+and IR-91-36/36.  SGMC was used to *screen* mechanism-backed families, never
 as a per-dot optimiser and never as a gate.
 """
 from __future__ import annotations

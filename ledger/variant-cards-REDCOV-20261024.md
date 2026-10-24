@@ -52,7 +52,7 @@ with long continuous traces; a coverage strategy is flattered by any truth set w
 more total fault length than the live new-fault set. If live truth is shorter and
 concentrated exactly where R0 already clusters (well-imaged range fronts), the same
 move dilutes. The prediction therefore carries the fleet's 0.5 surrogate shrink plus
-a widened downside for having selected this family by screening (IR-91-36).
+a widened downside for having selected this family by screening (IR-91-37).
 
 **Falsifier (applies to all three arms).** redcov10 receipts ≤ 0.000 against a
 receipted R0 anchor while its measured geometry moved as designed (CV 0.556, mean NN
@@ -101,8 +101,8 @@ construction — every donor and recipient is > 3 px from the catalogue (IR-91-2
 pattern). Leakage canaries: lineage-vote ring AUC 0.5257; moved-dot canary AUC
 0.40–0.45; both far below the 0.90 stop. Why MASS was *not* this session's axis
 (every constructible ranking's bottom decile sits within ~2 points of the 11.8 %
-break-even precision, IR-91-35) and the full screen log behind the axis choice
-(IR-91-36) are in `IRREGULARITIES.md` and the evidence JSON. Merge note: the
+break-even precision, IR-91-36) and the full screen log behind the axis choice
+(IR-91-37) are in `IRREGULARITIES.md` and the evidence JSON. Merge note: the
 catalogue-ring enrichment this session screened (exact SGMC relT −1.1 %) and left
 unbuilt was built in parallel by Session 8 as `CONCENTRATION/collar10/20`
 (SGMC rel −2.0 %/−3.9 %, worse than uniform) — independent agreement that ring

@@ -7,7 +7,7 @@
 `|Δ| < 0.01` = no evidence. This file is the forward plan only, merged across Sessions 8+9
 (2026-10-24); per-session history lives in `README.md`, `evidence/`, mechanism cards.
 
-## ⚠ The binding constraint is receipts, not candidates (IR-91-37)
+## ⚠ The binding constraint is receipts, not candidates (IR-91-38)
 
 Nine sessions, 53 gate-clean files, zero live measurements. **No further build session should
 run until the Week-1 receipts below are pasted into `ledger/submissions.csv`** — every queue in
@@ -22,8 +22,8 @@ this repo is `MODEL`s anchored to an unreceipted `CLAIM`.
   placement, so the question stays open until a `le10` receipt speaks to collar cost.
 - **Coverage beats clustering at fixed count** (Session 9 `redcov10`: exact SGMC relT +7.7 %
   moving the most kernel-redundant dots to supported uncovered cells, donors/recipients at
-  matched catalogue distance). Selection-on-surrogate disclosed + shrunk (IR-91-36).
-- **MASS is measured exhausted** at constructible rankings (IR-91-35); **`gdr25rm10`'s +0.0123
+  matched catalogue distance). Selection-on-surrogate disclosed + shrunk (IR-91-37).
+- **MASS is measured exhausted** at constructible rankings (IR-91-36); **`gdr25rm10`'s +0.0123
   is the prior scored against itself** (IR-91-34) and is demoted out of the queue.
 
 ## Next 3 scored slots, in order (one orthogonal mechanism each)

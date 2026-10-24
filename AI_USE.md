@@ -469,15 +469,15 @@ CI's lineage sequence (27 arms × 2 encodings byte-identical to `releases/MANIFE
 
 **AI chose the session axis** (brief: do not ask the human). It first screened MASS — the
 brief's week-1 default — and measured it exhausted at every ranking the pinned inputs
-support (IR-91-35), then screened eight mechanism-backed families with the exact DTI
+support (IR-91-36), then screened eight mechanism-backed families with the exact DTI
 metric on the report-only SGMC control and picked SPACING/redcov, disclosing the
-selection-on-surrogate bias and shrinking the prediction for it (IR-91-36). AI code this
+selection-on-surrogate bias and shrinking the prediction for it (IR-91-37). AI code this
 session: `src/gems91/redcov.py`, `scripts/build_redcov.py`, `tests/test_redcov.py`, the CI
 determinism step, the Makefile target, and the regenerated `evidence/redcov_axis_20261024.json`
 (contains the full screen log, including families that failed). Human-readable additions by
 the AI: `ledger/variant-cards-REDCOV-20261024.md`, the `SLOT_PLAN.md` rewrite (condensing the
 multi-session append log into the brief's ≤1-page forward plan — history remains in
-README/evidence/ledger notes), IR-91-35..37, the README CURRENT STATE edits, and the
+README/evidence/ledger notes), IR-91-36..37, the README CURRENT STATE edits, and the
 Session 8 section of `docs/SUBMIT.md`. The fleet rebuild's ledger/evidence churn was
 deliberately reverted to byte-identical history except this session's 3 ledger rows
 (including restoring three TRACKB rows whose builder hardcodes "SESSION 6" against the
@@ -494,5 +494,5 @@ numbers are labelled `PROXY` everywhere; predictions are `MODEL` against the unr
 
 Whether an R0-anchor slot is needed (do you hold a receipt for `baeae321…`?); submission order
 and every upload; `TOP_PUBLIC` + date; slots remaining; pasting `receipt_score`/`receipt_date`
-into `ledger/submissions.csv` the same day (IR-91-37 recommends no session 9 until then);
+into `ledger/submissions.csv` the same day (IR-91-38 recommends no session 9 until then);
 whether `redcov20`/`redcov10v2` or a TRACKB file ever spends a slot; the single blind final file.

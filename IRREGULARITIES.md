@@ -672,12 +672,22 @@ as a *matched-dose difference* between two arms rather than as an absolute gain.
 `CONCENTRATIONgdr25rm10` (`c019adb01`, `+0.0123` `MODEL`) loses its top slot: its prediction is
 a 0.1 × shrinkage of the prior scored against itself, the same circularity in a different dress.
 
+## IR-91-35 — 2026-10-24 parallel-run protocol cannot certify legacy axes
+
+No lane paragraph or shared template path supplied. All pinned input files absent
+in this fresh checkout. Existing hide-and-recover is fixed-dot mean credit, not
+buffered segment retraining with pooled DTI. Historical build readiness is stale.
+No compliant baseline or full surface/dot registry comparison is present. The
+GEMSDOE32 source explicitly disclaims organizer scores. See
+`docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
+submission advice is superseded by the fail-closed executive summary.
+
 # Session 9 (`arena/ed1ccddf-gemsdoe91`, SPACING/redcov) — three decision-changing items
 
-(Renumbered at merge: the collar session merged first as Session 8 and took IR-91-35/34;
+(Renumbered at merge: the collar session merged first as Session 8 and took IR-91-36/34;
 these items were drafted as 33/34/35 in parallel and are 35/36/37 here.)
 
-## IR-91-35 — MASS is measured exhausted at every ranking the pinned inputs support
+## IR-91-36 — MASS is measured exhausted at every ranking the pinned inputs support
 
 **Expected** (brief §7 default plan): week 1–2 starts with MASS — drop/add the lowest/next-ranked
 10 % by the parent's ranking. The parent's ranking does not exist (IR-91-21), so this session
@@ -707,7 +717,7 @@ treated as one already-built experiment, not a queue. If a MASS slot is ever bou
 `cons3add` (add side, vote-ranked) is the only arm whose screened precision clears break-even;
 do not spend slots distinguishing `cons1drop`/`cons2drop`/`m10minus` from each other.
 
-## IR-91-36 — This session's axis was selected by screening on the report-only SGMC control
+## IR-91-37 — This session's axis was selected by screening on the report-only SGMC control
 
 Disclosed plainly because it changes how much the prediction may be trusted. Before building,
 eight mechanism-backed families were screened with the *exact* DTI metric against the SGMC
@@ -731,7 +741,7 @@ but a live truth set much sparser than SGMC's 62,122 px would still shrink it.
 redcov10 receipt ≤ 0.000 retires the whole coverage family (redcov20, and proposals 1–2 in
 `SLOT_PLAN.md`) without further slots; only ≥ +0.010 licenses the dose bracket.
 
-## IR-91-37 — 53 BUILT rows, 0 receipts: further build sessions have near-zero marginal value
+## IR-91-38 — 53 BUILT rows, 0 receipts: further build sessions have near-zero marginal value
 
 **Actual:** nine sessions, 53 gate-clean candidate files, every (axis) in the brief built at
 three or more values — and `receipt_score` empty on every row. R0's 0.2778 is still `CLAIM`;
@@ -745,3 +755,14 @@ action before any session 10: submit the Week-1 queue (R0 anchor if unreceipted,
 PRUNE-le10, cons3add as slots allow), paste `receipt_score` + `receipt_date` + `TOP_PUBLIC`
 (with date) into the ledger/README, and record slots used. Until then, the highest-value "build"
 is no build.
+
+**Merge note (protocol conflict, human to rule).** The audit merged hours later (IR-91-35,
+`docs/REVIEW-20261024.md`) operates under a parallel-run protocol requiring novelty stops
+(surface rank correlation > 0.90, dot proximity overlap > 70 % within 3 px) and a buffered
+segment-retraining holdout, and prepends a "NOT OK TO SUBMIT" banner for its run. Brief v2,
+under which this session and the whole 53-file fleet were built, explicitly forbids
+rank-correlation/dot-overlap uniqueness thresholds (controlled 1–50 % edits of a named parent
+differ by design in only 10–20 % of dots, so redcov10 would trip the audit's stop while being
+exactly what brief v2 §5 asks for). Neither protocol is the official rule set; which one
+governs slot spending is the human's decision, recorded here rather than resolved by either
+session deleting the other's work.

@@ -1,3 +1,41 @@
+# Start here — current protocol review (2026-10-24)
+
+**NOT OK TO SUBMIT: no validated unique TIFF was produced in this run.**
+Read [the current audit](docs/REVIEW-20261024.md), [submission instructions](docs/executive-summary.html),
+and [run card](docs/run-card.json) before the historical session notes below.
+[Website](https://buffedlizard55-lab.github.io/GEMSDOE91/) is configured on main, repository root.
+
+## Standing user brief — operational digest (not a verbatim transcript)
+
+Read this at the start of every session. Generate a genuinely unique competition
+TIFF, not a renamed prior entry. Make download and submit eligibility obvious.
+Use only the assigned parallel-run lane; stop for duplicate surface rank correlation
+above 0.90 or final-dot proximity overlap above 70% within 3 pixels. Check both stages
+against the full registry. Reuse the shared template feature cache, evaluator and
+writer; fix shared defects upstream rather than private forks. Hide whole buffered
+fault segments, rebuild catalogue features from visible faults, mask visible pixels
+exactly, pool DTI with alpha 0.2, beta 0.8 and a 300 m triangular kernel. Run each
+feature's leakage canary; AUC above 0.90 is suspect until resolved. Report measured
+HOLDOUT-DTI with version, positives and confidence interval; only receipt-backed
+results are ORGANIZER-CONFIRMED. Never present projections as scores.
+
+Before experiments, propose and rank three to five layer-specific geological
+hypotheses with physical signatures, missing-fault rationale, novelty and confounders.
+Use free official data; record source access and provenance honestly. Limit a run to
+three experiments or two hours. Require improvement over the compliant holdout best;
+weekly selection is separate and must respect the organizer's current cap. End with
+a JSON run card including mechanism, mimic, holdout interval, registry comparisons,
+raster hash, validator output, name, short note and promote/negative verdict.
+
+Automate scientific and file validation, not human inspection claims. Validate a
+re-read single-band TIFF against the reference grid and allowed value domain. Maintain
+an executive-summary page, auditable source register and clear download state.
+Review in three passes, run tests, open and merge a PR when requested. Own the outcome:
+prioritize evidence and reliability over a fabricated success. No score guarantee.
+The request's missing lane and conflicting leaderboard claims must remain explicit.
+
+---
+
 # GEMSDOE91 — session 2026-10-23 (DrivenData GEMS #306)
 
 No script here submits anything. One entity, three scored slots a week, one final file.
@@ -6,8 +44,8 @@ No script here submits anything. One entity, three scored slots a week, one fina
 
 - **Parent:** `R0 = h33-h33-2-b2`, `37,654` unit-mass dots (`RECEIPT`) on the pinned `3730×3292` `EPSG:32611` (`100 m`, `float32`, footprint `5,167,373` px, `0` dots on catalogue, min `2.236 px`) grid. Both pinned TIFFs rebuild byte for byte from either ancestor (`baeae321…c77dd`, `355,443` B; `c55bafc4…6fa9`, `219,065` B; dot digest `905cee9d…`). R0's `0.2778` / `0.3698` remains an unreceipted **CLAIM**.
 - **Inputs (`15/15` pinned + `catalogue_px.tif` = `16/16` hash-verified `RECEIPT`):** `scripts/restore_data.py` now restores `training_features` (`gems-geodawn-numerical-features.tif`, `418,912,844` B, sha256 `4371c82e…3bc5` `RECEIPT`, [DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)) from 5 pinned git blobs (`IR-91-25`) and unblocks **all 6 axes** (`MASS`, `CONCENTRATION`, `SNAP`, `PRUNE`, `RELIEF`, `TRACKB`; `scripts/preflight.py` → `BUILD ALLOWED`).
-- **Ledger (`53` `BUILT` rows, `0` `SUBMITTED`, `0` live `RECEIPT`s):** `|Δ| < 0.01` = no evidence. **TOP_PUBLIC:** `____` (human must fill, with date). **Slots left this week:** `__ / 3` (`5.7` rolling weeks to unconfirmed `2026-12-03` deadline). **The binding constraint is now receipts, not candidates (IR-91-37): no further build session until the Week-1 receipts are in the ledger.**
-- **Session 9 (`arena/ed1ccddf-gemsdoe91`, 2026-10-24) — `SPACING/redcov` built (IR-91-35..37):** matched-count move from kernel-redundant dots (highest `Σ_{0<d<6px}(1−d/6)` overlap; parent geometry only) to lineage-supported cells furthest from any surviving dot (≥2.8 px, `d_cat>3` px, donors/recipients at matched `d_cat` so IR-91-33's structural bias is minimised, collar `2,171 -> 2,171` `RECEIPT`, count `37,654` `RECEIPT`): `redcov10` (`8113d448`, 10% moved, 1 km CV `0.619->0.556` `RECEIPT`, exact SGMC-control relT `+7.69%` `PROXY`) **+0.011** `MODEL` `[-0.003,+0.021]`; `redcov20` (`191caf71`, dose) **+0.013**; `redcov10v2` (`9ae05686`, ≥2-field-support bracket) **+0.006**. MASS was screened first and measured exhausted (every constructible ranking's bottom decile within ~2 pts of the 11.8% break-even precision, IR-91-35); axis selected by exact-metric screening on the report-only SGMC control with 0.5 shrink + widened downside (IR-91-36). Independently confirms Session 8: catalogue-ring enrichment screened negative here too (relT `−1.1%`) and was left unbuilt — their `collar10/20` are that arm. Cards: `ledger/variant-cards-REDCOV-20261024.md`.
+- **Ledger (`53` `BUILT` rows, `0` `SUBMITTED`, `0` live `RECEIPT`s):** `|Δ| < 0.01` = no evidence. **TOP_PUBLIC:** `____` (human must fill, with date). **Slots left this week:** `__ / 3` (`5.7` rolling weeks to unconfirmed `2026-12-03` deadline). **The binding constraint is now receipts, not candidates (IR-91-38): no further build session until the Week-1 receipts are in the ledger.**
+- **Session 9 (`arena/ed1ccddf-gemsdoe91`, 2026-10-24) — `SPACING/redcov` built (IR-91-36..37):** matched-count move from kernel-redundant dots (highest `Σ_{0<d<6px}(1−d/6)` overlap; parent geometry only) to lineage-supported cells furthest from any surviving dot (≥2.8 px, `d_cat>3` px, donors/recipients at matched `d_cat` so IR-91-33's structural bias is minimised, collar `2,171 -> 2,171` `RECEIPT`, count `37,654` `RECEIPT`): `redcov10` (`8113d448`, 10% moved, 1 km CV `0.619->0.556` `RECEIPT`, exact SGMC-control relT `+7.69%` `PROXY`) **+0.011** `MODEL` `[-0.003,+0.021]`; `redcov20` (`191caf71`, dose) **+0.013**; `redcov10v2` (`9ae05686`, ≥2-field-support bracket) **+0.006**. MASS was screened first and measured exhausted (every constructible ranking's bottom decile within ~2 pts of the 11.8% break-even precision, IR-91-36); axis selected by exact-metric screening on the report-only SGMC control with 0.5 shrink + widened downside (IR-91-37). Independently confirms Session 8: catalogue-ring enrichment screened negative here too (relT `−1.1%`) and was left unbuilt — their `collar10/20` are that arm. Cards: `ledger/variant-cards-REDCOV-20261024.md`. (Built under brief v2 gates; the parallel-run audit merged the same day — IR-91-35, banner above — imposes stricter novelty/holdout requirements this fleet does not yet meet. Which protocol governs slot spending is the human's call: IR-91-38 merge note.)
 - **Session 7 (`arena/0ed37053-gemsdoe91`) — `TRACKB` built (Phase 2 only, IR-91-31):** 2,214 strike-consistent traces >=1 km (12,989 support dots) chained from R0 dots ranked by label-blind `S_struct`; three count-fixed arms relocate 10.0%/20.0%/10.0% of lowest-ranked off-trace dots onto traces (`t1k10` `8343ab38` **+0.004** MODEL, `t1k20` `ab72339b` **+0.005**, `t2k10` `6d16fd7a` **+0.002**), each with a per-trace evidence-paragraph GeoJSON. Not in the weekly slot queue unless the human decides.
 - **Session 5 (`arena/42de3fed-gemsdoe91`) — `RELIEF` axis built and certified (`IR-91-26`, `IR-91-27`):** Relocates `4,518` dots (`12.00%` moved; `9,036` pixel symmetric diff = `24.00%` `RECEIPT`) at fixed count (`37,654` `RECEIPT`) and zero catalogue-collar drift (`2,171 → 2,171` `RECEIPT`) across equal-area relief terciles `0.90·pct(det_elev) + 0.10·pct(det_elev_slope)` (single-band leakage canary max AUC `0.5793` `PROXY` `≪ 0.90`):
 
@@ -33,7 +71,7 @@ No script here submits anything. One entity, three scored slots a week, one fina
   - **PRUNE** (PRs #4/#9/#10): delete-only `le3..le15` (`+0.002..+0.010` `MODEL`, `le10` `04002dae` `+0.008`) + fixed-count `p2.5`/`p2.9`/`p4.5px-h19cover`.
   - **MASS** (PR #14, lineage support): `cons1drop` (`−0.000` `MODEL`), `cons2drop` (`−0.015`), `cons3add` (`2803126d`, `+0.009`).
   - **SPACING** (PR #3, radius-2 ring): `spread40` (`6d389309`, `+0.0042` `MODEL`), `clump40` (`−0.0023`), `jitter40` (`0.000`); (session 9, redundancy→coverage): `redcov10` (`8113d448`, `+0.011`), `redcov20` (`191caf71`, `+0.013`), `redcov10v2` (`9ae05686`, `+0.006`).
-- **Next 3 scored slots (`SLOT_PLAN.md`, merged sessions 8+9, 2026-10-24):** (0) **R0 anchor** (`baeae321`, if no receipt is held) → (1) `SPACINGredcov10` (`8113d448`, `+0.011` `MODEL`, largest exact-metric effect on the independent control at fixed count) → (2) `PRUNE-le10-norefill` (`04002dae`, `+0.008`, the only sign that comes from the metric algebra; also gates the collar contingency) → (3) `MASScons3add` (`2803126d`, `+0.009`, the recall/count-up direction — session 9's precision screen puts it borderline vs break-even, IR-91-35, which is what the receipt settles). **Do not spend a slot on `CONCENTRATIONgdr25rm10`** (`c19adb01`): prediction = prior scored against itself (IR-91-34). Reserves: `CONCENTRATIONanti10` (`0e42d6ab`, settles collar-vs-remote if `le10` is ambiguous), `RELIEFr2p12` (`6ff08e5c`); `redcov20` only if `redcov10` receipts `>= +0.010`. `SNAP` and `collar10/20` stay out.
+- **Next 3 scored slots (`SLOT_PLAN.md`, merged sessions 8+9, 2026-10-24):** (0) **R0 anchor** (`baeae321`, if no receipt is held) → (1) `SPACINGredcov10` (`8113d448`, `+0.011` `MODEL`, largest exact-metric effect on the independent control at fixed count) → (2) `PRUNE-le10-norefill` (`04002dae`, `+0.008`, the only sign that comes from the metric algebra; also gates the collar contingency) → (3) `MASScons3add` (`2803126d`, `+0.009`, the recall/count-up direction — session 9's precision screen puts it borderline vs break-even, IR-91-36, which is what the receipt settles). **Do not spend a slot on `CONCENTRATIONgdr25rm10`** (`c19adb01`): prediction = prior scored against itself (IR-91-34). Reserves: `CONCENTRATIONanti10` (`0e42d6ab`, settles collar-vs-remote if `le10` is ambiguous), `RELIEFr2p12` (`6ff08e5c`); `redcov20` only if `redcov10` receipts `>= +0.010`. `SNAP` and `collar10/20` stay out.
 
 ## What this repo contains
 
