@@ -47,8 +47,8 @@ LEDGER = ROOT / "ledger/submissions.csv"
 RELEASES = ROOT / "releases"
 
 PARENT_ID = "h33-h33-2-b2"
-DATE = dt.date.today().isoformat().replace("-", "")  # yyyymmdd
-DATE_ISO = dt.date.today().isoformat()
+DATE = "20261023"  # pinned fleet build date (IR-91-29)
+DATE_ISO = "2026-10-23"  # pinned (IR-91-29)
 
 # thresholds: (value_str, max_px, predicted_change, predicted_range, notes)
 # predicted bands derived from mechanism cards logic: per zero-credit dot ~ +0.0000006 at mid den, so le4 +0.003 etc.
