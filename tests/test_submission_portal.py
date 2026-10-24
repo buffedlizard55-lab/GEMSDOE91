@@ -50,13 +50,22 @@ def test_all_local_page_links_assets_and_fragments_resolve():
 
 def test_negative_research_download_is_not_advertised_as_approved_submission():
     card=load_card(); a=card['artifact']
-    for name in ('index.html','executive-summary.html'):
+    # The currently published index is the separate MTD91 lane landing page;
+    # the generated executive summary remains the legacy CED artifact portal.
+    expectations=(
+        ('index.html', {
+            'downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif',
+            'downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.zip',
+            a['file'], a['zip'],
+        }),
+        ('executive-summary.html', {a['file'], a['zip']}),
+    )
+    for name,expected_downloads in expectations:
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
-        assert p.states==['false']
+        assert p.states and all(state == 'false' for state in p.states)
         assert 'NOT OK TO SUBMIT' in text
         assert 'research' in text.lower()
-        assert a['file'] in p.downloads and a['zip'] in p.downloads
-        assert all(x in (a['file'],a['zip']) for x in p.downloads)
+        assert set(p.downloads) == expected_downloads
         assert 'bff9fd21.tif' not in text
 
 
@@ -87,7 +96,10 @@ def test_readiness_requires_all_independent_gates_not_just_format():
         preplacement={'status':'PASS_WITHIN_INDEXED_SCOPE','checked':64,'not_checked_after_stop':0},
         final={'status':'PASS_WITHIN_INDEXED_SCOPE','checked':64,'not_checked_after_stop':0},
         max_measured_surface_rank_correlation=.2, max_measured_final_dot_overlap_within_3px=.6)
-    good['comparable_prior_holdout_best']={'evaluator_version':'gems57-pooled-hide-v2','split_sha256':'fixture'}
+    good['comparable_prior_holdout_best']={
+        'evaluator_version':'gems57-pooled-hide-v2','split_sha256':'fixture',
+        'value':good['holdout_dti']['value']-.01, 'ci95':[0,.1],
+        'withheld_positives':good['holdout_dti']['withheld_positives']}
     good['holdout_dti'].update(split_sha256='fixture',paired_best={'delta':.01,'ci95':[.001,.02]})
     good['selector_approval']=True
     good['selector_receipt']={'weekly_cap_verified':True,'slot_available':True}

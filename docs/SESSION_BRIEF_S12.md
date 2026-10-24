@@ -41,7 +41,7 @@
 - **Automated gate (fail-closed):** `readiness.gates()` on `docs/run-card-S11.json` returns False for `format`, `canary`, `novelty`, `assigned_lane`, `beats_comparable_best` and `separate_selector`.
 - **The S11 card says `promote`, and this is a schema mismatch.** The card lacks the `canaries`, `lane`, `registry_comparison`, `holdout_dti` and `comparable_prior_holdout_best` fields that the gate reads. The lane gate also fails for the real reason: no assigned lane (IR-91-S12-02).
 - **Real blockers that no agent can clear:** no assigned lane; no complete universal registry; no comparable prior holdout best; no selector approval; and the human-only items in §8.
-- **Portal:** `docs/index.html` shows the status board (SHA-256, format status, "YES · research only" for download and "NO" for submit). Each row links to its audit page, not to a `download` file. The download test (`tests/test_submission_portal.py`) requires that only the current artifact is advertised as a download.
+- **Portal:** the status board at the top of `docs/executive-summary.html` lists all five candidates (SHA-256, format status, "YES · research only" for download and "NO" for submit). `docs/index.html` is the MTD91 lane's landing page on `main` and is not overwritten by the CED renderer. Each row links to its audit page, not to a `download` file. The download test (`tests/test_submission_portal.py`) requires that only the current artifact is advertised as a download.
 
 ## 4. The unique TIF request — what was done and why no new file exists
 
@@ -88,6 +88,15 @@ Score (pre-registered, no tuned parameters): `max(z(tmi_hg),0) · max(z(hypot(B1
 Two reproduction caveats are recorded, not hidden:
 - The S11 lane reads `h91_fold_cat_full.dat`, which the H91 lane does not write. For the reproduction only, a symlink to `h91_full_cat_features.dat` was made in the gitignored `data/derived/` (IR-91-S12-07). The byte-identical result validates the bridge.
 - The H91 lane prints `0.2778` as `ORGANIZER-CONFIRMED`. That is incorrect (IR-91-S12-05).
+
+### 5.3 Other lanes now on `main` (values from their own run cards; not re-run this session)
+
+| Lane | Winner | HOLDOUT-DTI | 95% CI | Verdict (card) |
+|---|---|---|---|---|
+| UCD91 | E2 | 0.113442 | [0.103611, 0.121110] | negative; research download only; below the in-repo gate 0.206406 |
+| MTD91 | E1 | 0.023903 | [0.021318, 0.026004] | negative; research download only; 60,988 withheld positives |
+
+Both cards are checked by the same fail-closed gate (`submission_ready` = False). Both are on the board in `docs/executive-summary.html`.
 
 ## 6. The question: why did 0.2778 score highest, and can we beat it?
 

@@ -1,0 +1,205 @@
+{
+  "evaluator_version": "gems91-hide-recover-v1.0",
+  "n_withheld_positives": 60988,
+  "experiments": {
+    "e1": {
+      "metric_label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "kernel_radius_m": 300.0,
+      "n_withheld_positives": 60988,
+      "holdout_dti": 0.023903,
+      "ci_95": [
+        0.021318,
+        0.026004
+      ],
+      "bootstrap_tiles_5km": 2177,
+      "bootstrap_draws": 80,
+      "pooled_T": 1315.126,
+      "pooled_S": 30313.0,
+      "pooled_M": 482.0,
+      "folds": [
+        {
+          "fold_id": 0,
+          "name": "NW",
+          "n_withheld_positives": 10757,
+          "n_segments_withheld": 151,
+          "emitted_mass": 7194.0,
+          "T": 225.475,
+          "M": 85.0,
+          "fold_dti": 0.022385
+        },
+        {
+          "fold_id": 1,
+          "name": "NE",
+          "n_withheld_positives": 12051,
+          "n_segments_withheld": 247,
+          "emitted_mass": 7587.0,
+          "T": 182.05,
+          "M": 70.0,
+          "fold_dti": 0.016283
+        },
+        {
+          "fold_id": 2,
+          "name": "SW",
+          "n_withheld_positives": 20541,
+          "n_segments_withheld": 327,
+          "emitted_mass": 8734.0,
+          "T": 535.571,
+          "M": 199.0,
+          "fold_dti": 0.029351
+        },
+        {
+          "fold_id": 3,
+          "name": "SE",
+          "n_withheld_positives": 17639,
+          "n_segments_withheld": 188,
+          "emitted_mass": 6798.0,
+          "T": 372.03,
+          "M": 128.0,
+          "fold_dti": 0.023972
+        }
+      ]
+    },
+    "e2": {
+      "metric_label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "kernel_radius_m": 300.0,
+      "n_withheld_positives": 60988,
+      "holdout_dti": 0.022643,
+      "ci_95": [
+        0.019805,
+        0.025492
+      ],
+      "bootstrap_tiles_5km": 2075,
+      "bootstrap_draws": 80,
+      "pooled_T": 1245.539,
+      "pooled_S": 30312.0,
+      "pooled_M": 466.0,
+      "folds": [
+        {
+          "fold_id": 0,
+          "name": "NW",
+          "n_withheld_positives": 10757,
+          "n_segments_withheld": 151,
+          "emitted_mass": 7094.0,
+          "T": 197.288,
+          "M": 79.0,
+          "fold_dti": 0.019634
+        },
+        {
+          "fold_id": 1,
+          "name": "NE",
+          "n_withheld_positives": 12051,
+          "n_segments_withheld": 247,
+          "emitted_mass": 6267.0,
+          "T": 184.882,
+          "M": 70.0,
+          "fold_dti": 0.016935
+        },
+        {
+          "fold_id": 2,
+          "name": "SW",
+          "n_withheld_positives": 20541,
+          "n_segments_withheld": 327,
+          "emitted_mass": 9484.0,
+          "T": 504.206,
+          "M": 192.0,
+          "fold_dti": 0.027414
+        },
+        {
+          "fold_id": 3,
+          "name": "SE",
+          "n_withheld_positives": 17639,
+          "n_segments_withheld": 188,
+          "emitted_mass": 7467.0,
+          "T": 359.163,
+          "M": 125.0,
+          "fold_dti": 0.022948
+        }
+      ]
+    },
+    "e3": {
+      "metric_label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "kernel_radius_m": 300.0,
+      "n_withheld_positives": 60988,
+      "holdout_dti": 0.017333,
+      "ci_95": [
+        0.015226,
+        0.019632
+      ],
+      "bootstrap_tiles_5km": 1985,
+      "bootstrap_draws": 80,
+      "pooled_T": 954.081,
+      "pooled_S": 30674.0,
+      "pooled_M": 360.0,
+      "folds": [
+        {
+          "fold_id": 0,
+          "name": "NW",
+          "n_withheld_positives": 10757,
+          "n_segments_withheld": 151,
+          "emitted_mass": 6862.0,
+          "T": 128.078,
+          "M": 50.0,
+          "fold_dti": 0.012816
+        },
+        {
+          "fold_id": 1,
+          "name": "NE",
+          "n_withheld_positives": 12051,
+          "n_segments_withheld": 247,
+          "emitted_mass": 5822.0,
+          "T": 116.52,
+          "M": 44.0,
+          "fold_dti": 0.010769
+        },
+        {
+          "fold_id": 2,
+          "name": "SW",
+          "n_withheld_positives": 20541,
+          "n_segments_withheld": 327,
+          "emitted_mass": 9944.0,
+          "T": 436.678,
+          "M": 170.0,
+          "fold_dti": 0.023636
+        },
+        {
+          "fold_id": 3,
+          "name": "SE",
+          "n_withheld_positives": 17639,
+          "n_segments_withheld": 188,
+          "emitted_mass": 8046.0,
+          "T": 272.805,
+          "M": 96.0,
+          "fold_dti": 0.017315
+        }
+      ]
+    }
+  },
+  "winner": "e1",
+  "canary": {
+    "all_pass": true,
+    "worst": 0.5499
+  },
+  "pins": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  }
+}

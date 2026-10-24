@@ -1175,7 +1175,7 @@ Existing IDs were not renumbered. The file already contains duplicate `IR-91-S11
 ## IR-91-S12-02 — The S11 run card says `promote`, but the shared fail-closed gate says no; the H91 card also self-declares PROMOTE
 
 **Expected:** a card that says `verdict: promote` is consistent with the shared readiness policy (`src/gems91/readiness.py`).
-**Actual:** `docs/run-card-S11.json` has `verdict: "promote"` and `validator_output.validators.gems91_gates_verdict: "CERTIFIED"`. Run through `gates()`, all six checks are False. The card lacks the `canaries`, `lane`, `registry_comparison`, `holdout_dti` and `comparable_prior_holdout_best` fields that the gate reads. The lane gate also fails for the real reason in IR-91-S12-01. The S11 README says "All 4 repository validator suites … PASSED", which is true for the format checks and not for the readiness gate. The H91 lane's own run (isolated copy, `gems91-ddvtc-e1`) also prints `Verdict: PROMOTE`.
+**Actual:** `docs/run-card-S11.json` has `verdict: "promote"` and `validator_output.validators.gems91_gates_verdict: "CERTIFIED"`. Run through `gates()`, all six checks are False. The card lacks the `canaries`, `lane`, `registry_comparison`, `holdout_dti` and `comparable_prior_holdout_best` fields that the gate reads. The lane gate also fails for the real reason in IR-91-S12-01. The S11 README says "All 4 repository validator suites … PASSED", which is true for the format checks and not for the readiness gate. The H91 lane's own run (isolated copy, `gems91-ddvtc-e1`) also prints `Verdict: PROMOTE`. The UCD91 card on `main` (`docs/run-card-UCD91.json`) states that `h33 0.2778` is ORGANIZER-CONFIRMED "per brief", the same unverified label.
 **Decision it changes:** the portal shows **NO** for submission. Self-declared verdicts in run cards are not evidence. Only `readiness.submission_ready()` decides, and it fails closed.
 
 ## IR-91-S12-03 — H12-1 attempt A used the wrong gravity term; its holdout line was seen before it was stopped
@@ -1199,7 +1199,7 @@ Measured this session (footprint, finite values): min 2.9534, p1 7.7223, median 
 
 **Expected:** labels follow IR-91-S10-05 and the protocol (ORGANIZER-CONFIRMED needs a receipt).
 **Actual:** `scripts/run_h91_lane.py` line 244 prints `[R0 Benchmark 0.2778 ORGANIZER-CONFIRMED]`, and its header comment (line 13) calls it a "historical receipt". No receipt exists (IR-91-S10-05). The H91 reproduction (isolated copy) printed the same label.
-**Decision it changes:** the label is wrong and should read `CLAIM — unverified`. It was **not** changed in this session, because that script is a published reproduction path. This session's own numbers (`evidence/h12/`) label 0.2778 as a CLAIM. A human should approve the one-line label fix.
+The UCD91 card on `main` repeats the label (`why_02778_and_higher`). **Decision it changes:** the label is wrong and should read `CLAIM — unverified` in every script and card. It was **not** changed in this session, because that script is a published reproduction path. This session's own numbers (`evidence/h12/`) label 0.2778 as a CLAIM. A human should approve the one-line label fix.
 
 ## IR-91-S12-06 — Registry scope is reported three different ways
 
@@ -1237,7 +1237,7 @@ Read from the official rules (`docs.nlr.gov/docs/fy26osti/96647.pdf`, sections �
 ## IR-91-S12-11 — The portal's download policy is a tested invariant, and the status board has to follow it
 
 **Found:** a status board that linked each candidate's `.tif` with a `download` attribute made `p.downloads` list three files. `tests/test_submission_portal.py` requires only the current artifact to be advertised as a download. The board's relative links were also wrong for a page inside `docs/`.
-**Actual:** the board now shows SHA-256, format status and the verdict, and links only to each candidate's own audit page (`s11-mhtr.html`, `asc91.html`, `executive-summary.html`). It does not carry a `download` attribute. The download for the current artifact stays in the existing download section.
+**Actual:** the board now shows SHA-256, format status and the verdict, and links only to each candidate's own audit page (`s11-mhtr.html`, `asc91.html`, `ucd91.html`, `mtd91.html`, and `executive-summary.html` for CED91). It does not carry a `download` attribute. The download for the current artifact stays in the existing download section.
 **Decision it changes:** a research file is downloadable from its audit page, not from the status board. The verdict is "YES · research only" for download and "NO" for submit. This is an intended change of design, and the test is kept as it is.
 
 ## IR-91-S12-12 — `run_s11_lane.py` crashes at its last step when run outside a git checkout
@@ -1245,3 +1245,22 @@ Read from the official rules (`docs.nlr.gov/docs/fy26osti/96647.pdf`, sections �
 **Found:** the S11 reproduction (isolated copy, no `.git`) completed all three experiments and wrote the candidate bundle. It then failed at `subprocess.run(["git", "checkout", "--", "docs/downloads/h91_submission_bundle.js"], check=True)` (line 486), and the `docs/downloads` copy step did not run.
 **Actual:** the bundle files in `releases/` are correct and byte-identical to the published candidate (see `docs/SESSION_BRIEF_S12.md`). The defect is the git dependency in a reproduction path. Nothing was overwritten in the published repository.
 **Decision it changes:** none for the candidate. Reproduction runs need either a git checkout or the `git checkout` line replaced by a file restore. A human should choose that fix.
+
+---
+
+## IR-91-REVIEW-01 — Validator disagreement about finite zeros outside the footprint
+
+**Found (2026-10-24):** `scripts/validate_raster.py` defaults to a MUST gate requiring NaN outside the sample footprint. The shared `vendor/gems57` validator checks all-finite [0,1] values and the current writer uses zeros outside the footprint. The legacy script provides `--allow-zeros-outside`, which demotes its outside-footprint NaN check to informational.
+
+**Reproduced:** For the existing CED91 research TIFF, `scripts/verify_current_artifact.py --with-data` reports format/range/grid/catalogue PASS and `submission_ready: false`. `scripts/validate_raster.py` without the option reports the zero-outside check as a failed MUST gate. Supplying `--allow-zeros-outside`, plus the pinned parent, sample, catalogue and ledger, makes all MUST gates pass. This revalidation is not an organizer receipt and does not clear the final-dot duplicate gate.
+
+**Decision:** Do not change the organizer-format assumption by implication. Use the explicitly selected all-finite policy for current published research artifacts because the user's submission form rejected out-of-range values and the shared validator/writer enforce it; preserve the legacy option and this discrepancy for review. Before calling any file upload-ready, obtain organizer-confirmed format semantics and still satisfy science, novelty and separate-selector gates.
+
+
+## IR-UCD-01..03 (2026-10-24 UCD91)
+- IR-UCD-01: Registry uniqueness scope is data/registry/*.tif only (incl. R0), not the universal fleet registry; docs/downloads rasters not all rechecked. Verdict relies also on novel feature family.
+- IR-UCD-02: submission_writer overwrote shared docs/downloads/h91_submission_bundle.js with the UCD91 payload (shared-tool behaviour; flagged, not forked).
+- IR-UCD-03: First writer attempt failed on missing imagecodecs in this sandbox (it is pinned in requirements.txt); installed and finalize_ucd.py completed all suites. Shared tool not modified.
+## IR-91-1F0955-01 — baseline-free promotion claim (2026-10-24)
+
+`src/gems91/readiness.py` accepted a positive paired delta without a measured baseline score. Fixed centrally: require finite baseline score/CI, matching withheld-positive count, consistent pooled delta and paired interval containment. Regression and portal fixture tests added. Receipt consistency is not receipt authenticity. See `docs/REVIEW-1F0955-20261024.md`. No candidate was promoted; assigned lane remains missing, and the canonical final-dot duplicate remains blocking.

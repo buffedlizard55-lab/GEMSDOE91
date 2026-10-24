@@ -39,7 +39,12 @@ async function main() {
       await page.waitForURL(new URL('index.html', baseURL).href);
     }
     await page.goto(baseURL, { waitUntil: 'networkidle' });
-    if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
+    const submissionStates = page.locator('[data-submission-ready]');
+    const stateCount = await submissionStates.count();
+    const allStatesFailClosed = await submissionStates.evaluateAll(nodes =>
+      nodes.length > 0 && nodes.every(node => node.getAttribute('data-submission-ready') === 'false')
+    );
+    if (!allStatesFailClosed || stateCount === 0) {
       throw new Error('Missing fail-closed negative submission state');
     }
     if (!(await page.getByText('NOT OK TO SUBMIT', { exact: true }).count())) {

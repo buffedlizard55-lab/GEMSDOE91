@@ -1,0 +1,56 @@
+{
+  "schema": "gems91.run-card.v2",
+  "run_id": "MTD91-e1-20261024",
+  "hypothesis": "Magnetic damage-zone fabric destruction shortens RTP/TMI-VG coherence even without a scarp.",
+  "mechanism": "Structure-tensor isotropy + high-frequency energy fraction; greedy 2.8 px off-catalogue dots.",
+  "non_fault_mimic": "Young volcanic flows and GeoDAWN flight-line levelling residuals destroy magnetic coherence without being Quaternary faults.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": 0.023903,
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "withheld_positives": 60988,
+    "ci95": [
+      0.021318,
+      0.026004
+    ]
+  },
+  "correlation_overlap_vs_registry": {
+    "n_checked": 15,
+    "surface_max_abs_rank_corr": 0.01785,
+    "dots_max_3px_overlap": 0.18887,
+    "uniqueness_pass": true,
+    "closest": "calib_h161_01855.tif"
+  },
+  "raster_sha256": "de595c67d459a7e764fb059285725db7eabb089d6672f7cd820af135d2558dc9",
+  "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "all_finite_zeros_twin": true
+  },
+  "submission_name": "gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a",
+  "submission_note": "MTD91 e1 mag texture dest RTP+VG; research; not a slot pick",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "download": "releases/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif",
+  "canary_pass": true,
+  "winner_experiment": "e1",
+  "n_dots": 37654,
+  "experiments_run": 3,
+  "pins": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  },
+  "created_utc": "2026-10-24T18:19:57.296201+00:00"
+}
