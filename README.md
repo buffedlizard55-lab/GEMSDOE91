@@ -1,5 +1,9 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## CURRENT CHECKOUT REVIEW — `arena/31d0d079-gemsdoe91` (2026-10-24)
+
+**No new TIF was generated in this review; no file is approved for submission by this review.** The assigned method paragraph is absent and `scripts/preflight.py` finds no ready axis because the pinned local data tree is missing. Do not interpret any historical `docs/downloads/` link as approval for this review. Read [the branch-specific review](docs/REVIEW-ARENA-31D0D079-20261024.md) and [its JSON run card](evidence/run_card_arena31d0_20261024.json) before using prior status sections. The review contains four ranked hypotheses, source/access qualifications, test results, and the stop rationale.
+
 ## START HERE — session 12 standing brief (read at every session start)
 
 **Read `docs/SESSION_BRIEF_S12.md` first.** It holds the standing rules, the answer on 0.2778, the verdict on the current file, and the open human decisions. The S11 standing brief is kept verbatim below, in the session-10 section, and still applies except where S12 overrides it.
