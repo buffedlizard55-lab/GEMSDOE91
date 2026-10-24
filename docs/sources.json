@@ -69,7 +69,7 @@
     "claim": "Coordinate reference system WGS 84 / UTM zone 11N (metres)",
     "source": "EPSG:32611 reference",
     "url": "https://epsg.io/32611",
-    "verification": "Fetched 2026-10-24 and verified directly against EPSG:32611 CRS and affine transform of sample_submission.tif."
+    "verification": "Web page not fetched; EPSG:32611, shape and affine transform were read directly from hash-pinned sample and feature rasters."
   },
   {
     "claim": "Blind off-catalogue bedrock fault control raster (62,122 positive pixels > 3 px from existing_faults.tif)",
@@ -84,10 +84,16 @@
     "verification": "Official GDR link (host outside sandbox allowlist). Local pinned data/bridge/gems-geodawn-numerical-features.tif SHA256-verified on 2026-10-24; full-resolution 512x512 window derivative audit proved med(B03 / ||grad_m(B14)||) = 200.0242 and R^2(B13 ~ B15) = 0.4664."
   },
   {
-    "claim": "External candidate dataset H12-4: 1 m / 1/3 arc-sec bare-earth LiDAR elevation for sub-100 m scarp curvature",
+    "claim": "Label-blind forensic resolution of Band 06 (GeoDAWN Radiometric Total Count, r=0.996990) and Band 03 vs Band 09 200x dimensional scaling ratio (r=0.999991) across all 5,164,300 valid footprint pixels",
+    "source": "Session 13 in-repo forensic receipt (scripts/verify_band06_and_units.py)",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/evidence/s13_band06_and_units_audit.json",
+    "verification": "Measured directly on 2026-10-24 across 5,164,300 valid footprint pixels of SHA-verified gems-geodawn-numerical-features.tif and geodawn_rad_u8.tif without reading existing_faults.tif."
+  },
+  {
+    "claim": "External candidate dataset H12-4 / H13-5: 1 m / 1/3 arc-sec bare-earth LiDAR elevation for sub-100 m scarp curvature",
     "source": "USGS 3D Elevation Program (3DEP) / The National Map",
     "url": "https://www.usgs.gov/3d-elevation-program",
-    "verification": "Official public-domain U.S. Government dataset lead; not fetched in-sandbox because usgs.gov is outside sandbox outbound allowlist. Logged as unrun external hypothesis H12-4."
+    "verification": "Official public-domain U.S. Government dataset lead; not fetched in-sandbox because usgs.gov is outside sandbox outbound allowlist. Logged as unrun external hypothesis H12-4 / H13-5."
   },
   {
     "claim": "External candidate dataset H12-5: 30 m Sentinel-1 vertical/eastward surface velocity for aseismic fault creep",

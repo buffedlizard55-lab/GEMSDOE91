@@ -238,10 +238,10 @@ def main() -> int:
             f"unthinned surface HOLDOUT-DTI = {b0_cont_holdout['holdout_dti']:.6f})"
         )
 
-    # Also score R0 (`0.2778` leaderboard champion) on the 100% blind off-catalogue SGMC control
+    # Also score R0 (`0.2778` CLAIM, unverified owner-reported benchmark) on the 100% blind off-catalogue SGMC control
     r0_sgmc = EH.score_off_catalogue_sgmc(r0_dots, sgmc_mask, cat_mask, footprint, min_cat_dist_px=3.0)
     _log(
-        f"  [R0 Benchmark 0.2778 ORGANIZER-CONFIRMED] Zero-SGMC Off-Catalogue Control DTI = "
+        f"  [R0 Benchmark 0.2778 CLAIM (unverified; GEMSDOE32 marks file UNSCORED)] Zero-SGMC Off-Catalogue Control DTI = "
         f"{r0_sgmc['dti']:.6f} (n_sgmc_offcat={r0_sgmc['n_offcatalogue_sgmc_positives']:,})"
     )
 
@@ -534,7 +534,7 @@ def main() -> int:
             },
             "fleet_benchmark_reference": {
                 "candidate": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (GEMSDOE32 R0)",
-                "label": "ORGANIZER-CONFIRMED",
+                "label": "CLAIM (owner-reported in brief; no organizer receipt in repo; GEMSDOE32 page marks file UNSCORED)",
                 "score": 0.2778,
             },
             "blind_sgmc_offcatalogue_control": {
