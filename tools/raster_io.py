@@ -92,13 +92,21 @@ def write_submission(
     band: np.ndarray,
     profile: dict,
     footprint: np.ndarray | None = None,
+    compress: str | None = None,
 ) -> dict:
-    """Write the primary (NaN outside) and zeros-outside twins; return their paths + hashes."""
+    """Write the primary (NaN outside) and zeros-outside twins; return their paths + hashes.
+
+    `compress` is opt-in and defaults to None, which keeps every earlier builder's bytes
+    unchanged (the release MANIFEST hashes are a contract).  Pass "lzw" or "deflate" to
+    match the competition template's container instead of writing ~49 MB per arm.
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
     prof = profile.copy()
     prof.update(driver="GTiff", count=1, dtype="float32", nodata=np.nan)
     for key in ("compress", "blockxsize", "blockysize", "tiled"):
         prof.pop(key, None)
+    if compress:
+        prof["compress"] = compress
 
     nan_band = np.asarray(band, dtype=np.float32)
     if footprint is not None:
@@ -147,6 +155,7 @@ def write_named_release(
     profile: dict,
     footprint: np.ndarray | None = None,
     date: _dt.date | None = None,
+    compress: str | None = None,
 ) -> dict:
     """Write primary + zeros twin under the canonical name, which embeds the file hash.
 
@@ -156,7 +165,7 @@ def write_named_release(
     """
     out_dir.mkdir(parents=True, exist_ok=True)
     tmp_stem = release_stem(parent_tag, axis, value, "tmp", date)
-    written = write_submission(out_dir, tmp_stem, band, profile, footprint)
+    written = write_submission(out_dir, tmp_stem, band, profile, footprint, compress=compress)
     sha8 = written["sha8"]
     final_stem = release_stem(parent_tag, axis, value, sha8, date)
     final_primary = out_dir / f"{final_stem}.tif"

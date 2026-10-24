@@ -455,3 +455,43 @@ relocation from the top of the slot queue. Its own top slot proposal (`gdr25rm10
 `MODEL`) was also demoted on the same evidence.
 **Human decides:** `TOP_PUBLIC` + date, slots left this week, whether any slot goes to `anti10`,
 the R0 anchor receipt, and the blind final file. No upload is made by an agent.
+
+---
+
+# Session 8 disclosure (`arena/e76f9952-gemsdoe91`, MASS expansion, 2026-10-24)
+
+## What the AI wrote and decided
+- **Chose the axis without prompting** (`MASS`), as the brief requires. Reason: 47 fleet rows had
+  raised the dot count exactly once, by 10 %, and the brief's own algebra
+  (`DTI = T/(0.2T + 0.2(S−M) + 0.8|G|)`) says an *added* dot pays above `p* ≈ 2–4 %` odds of truth
+  within 3 px while every fleet axis so far changed ≤20 % of the dots by relocation or deletion.
+- **Re-read the ledger's own conclusion and disagreed with it, with evidence.** Three sessions
+  recorded "the parent's MASS ranking is not recoverable". The AI showed the ranking that matters
+  is geometric: `anc_h19_5` contains all 37,654 R0 dots and 83,477 unused cells, dropped by a
+  2-px thinning and the collar prune. Recorded as **IR-91-36**.
+- **Wrote:** `src/gems91/massexpand.py`, `scripts/build_mass_expand.py`,
+  `tests/test_massexpand.py` (10 tests), `docs/MECHANISM_CARDS_MASS.md`, the session-8 sections of
+  `SLOT_PLAN.md` / `README.md` (CURRENT STATE only) / `docs/SUBMIT.md`, IR-91-36/37, and all six
+  raster files. Three arms: `a25adj`, `a12adj`, `a12spc` (12.5 %/25 % addition, one geometry
+  control), all from the same parent by the same rule, fixed seed 91024.
+- **Killed two of its own candidate designs with measurements before building them:** a global
+  1–2 px translation (SGMC enrichment flat across all 25 shifts) and a catalogue tip-corridor
+  concentration prior (`1.37×` vs the parent's own `1.60×`). Both recorded in `SLOT_PLAN.md`.
+- **Two defects found and reported, not papered over:** the shared writer dropped TIFF compression
+  (49 MB arms → added an opt-in `compress=` argument, defaults unchanged so no earlier hash moves),
+  and `tools/stor.append_ledger` writes 16 of the file's 21 columns (IR-91-37), so the AI wrote its
+  own full-schema appender instead of using it.
+- **AI did NOT:** submit, log in, scrape a leaderboard, contact drivendata.org or dropbox.com, read
+  or print credentials, approximate the parent, or probe labels. The parent was rebuilt byte-exact
+  from both pinned encodings before any arm was built; all 8 inputs were sha256-verified first.
+  Every prediction is labelled `MODEL`, the SGMC and catalogue instruments `PROXY`/report-only.
+
+## Human decisions still required
+1. **`TOP_PUBLIC` + date.** If it is ≳ 0.35, no built row has a predicted path to it and the
+   session's plan is the wrong plan (`SLOT_PLAN.md`, blockers).
+2. **Slots:** whether to spend slot 1 on `MASSa25adj` or on R0 itself (converting the `0.2778`
+   CLAIM into a RECEIPT). The AI's recommendation: R0 first if no receipt exists, then the ladder.
+3. **IR-91-03** (R0 breaks the ≥3 px collar rule at 2.236 px) — unchanged, still the human's call.
+4. **Whether SGMC may ever be used as a *build* signal** (proposed axis 2 in `SLOT_PLAN.md`): that
+   retires the repo's only independent control, so it is explicitly not an AI decision.
+5. Blind final pick before 2026-12-03.

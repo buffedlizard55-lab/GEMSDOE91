@@ -115,6 +115,16 @@ jobs:
       # ~90 s: 19-band leakage canary is the slow part; deterministic, no RNG.
       - name: Rebuild the SNAP arms from the pinned inputs
         run: python scripts/build_snap.py --build
+      # Session 8: addition-only MASS expansion from the lineage field's unused cells.
+      # Fixed seed 91024, so the two runs must agree byte for byte.
+      - name: Rebuild the MASS expansion arms and prove they are deterministic
+        run: |
+          python scripts/build_mass_expand.py --build
+          sha256sum releases/*MASSa*.tif > /tmp/mass1.txt
+          python scripts/build_mass_expand.py --build > /dev/null
+          sha256sum releases/*MASSa*.tif > /tmp/mass2.txt
+          diff /tmp/mass1.txt /tmp/mass2.txt
+          echo "byte-identical across two rebuilds (no unseeded RNG)" 
       - name: Parent dot set reproduces from both ancestors; every release passes
         run: python -m pytest -q tests/test_release_integration.py
       - name: Every rebuilt file is byte-identical to its committed manifest

@@ -59,3 +59,16 @@ def test_scores_are_labelled(rows):
 def test_sha256_is_64_hex(rows):
     for r in rows:
         assert len(r["sha256"]) == 64 and int(r["sha256"], 16) >= 0
+
+def test_every_row_has_the_header_width():
+    """IR-91-37: tools/stor.append_ledger writes 16 of this file's 21 columns.
+
+    A short row is silently padded by DictReader and shifts every value one column left
+    (sha256 lands in pct_relocated), so the check has to be on the raw csv reader.
+    """
+    with LEDGER.open(newline="", encoding="utf-8-sig") as fh:
+        raw = list(csv.reader(fh))
+    width = len(raw[0])
+    assert width == 21, f"header width changed: {width}"
+    bad = [i for i, r in enumerate(raw[1:], start=2) if len(r) != width]
+    assert not bad, f"rows {bad[:5]} are not {width} fields wide (IR-91-37)"

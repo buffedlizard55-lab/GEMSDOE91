@@ -681,3 +681,53 @@ No compliant baseline or full surface/dot registry comparison is present. The
 GEMSDOE32 source explicitly disclaims organizer scores. See
 `docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
 submission advice is superseded by the fail-closed executive summary.
+## IR-91-36 — The parent's MASS ranking is recoverable; three sessions recorded that it is not
+**Expected** (`registry/data_manifest.json` → `mass_ranking_note`; `ledger/README.md` →
+`ranking_basis`; brief §5 "rebuild the ranking from the recorded recipe if it is not stored"):
+the parent's own ranking cannot be recovered, because every pinned ancestor is binary and the
+continuous `training_features` score is not the H33 score. Session 4 therefore ranked MASS by
+cross-field support alone and labelled the axis "open".
+**Actual:** the ranking that decides a MASS *addition* is geometric, not continuous.
+`anc_h19_5` (`calib_h195_01922.tif`, 121,131 px) **contains all 37,654 R0 dots**, and the
+83,477 cells it does *not* contain were removed by a 2-px spacing thinning and the
+"delete ≤2 px of the catalogue" prune — by geometry, not by score. Those cells are therefore
+"the next cells the parent's own model selected", ranked within the field by the lineage's only
+recorded ordering (vote 0-3 over `anc_h19_5`/`h19_4`/`h16_1`). 46,025 of them are vote-3 and
+>3 px off the catalogue.
+**Decision it changes.** MASS is no longer a ranking-poor axis: session 8 built three
+addition-only arms straight off the recovered ranking (`a25adj`, `a12adj`, `a12spc`). Any future
+MASS row must state which of the two orderings it used (field geometry vs vote) or it is not
+comparable with these. The manifest note is left in place because it is still correct about a
+*continuous* score.
+## IR-91-37 — `tools/stor.append_ledger` writes 16 of the ledger's 21 columns
+**Expected:** `ledger/README.md` treats `ledger/submissions.csv` as the schema owner
+(21 columns: it adds `pct_relocated`, `date`, `form_note`, `evidence_class`, `source_url` to
+`stor.COLUMNS`), so appending through `stor.append_ledger` should preserve it.
+**Actual:** `stor.append_ledger` builds its `DictWriter` from `stor.COLUMNS` (16 fields) while
+the file's header has 21, so an appended row is written **short and shifted**: `sha256` lands in
+the `pct_relocated` column and every later value moves with it. The 47 pre-existing rows are all
+21-field and correct — the defect only bites the next writer, and `tests/test_ledger.py` does not
+catch it because it reads via `DictReader` (short rows are padded, not rejected).
+**Decision it changes.** Session 8 does not use `stor.append_ledger`:
+`scripts/build_mass_expand.py::append_rows` writes against the file's own header and refuses
+duplicate hashes and duplicate `(parent, axis, value)` triples itself. Any future session must do
+the same, or fix `stor.append_ledger` (and re-check that no row was already written short).
+## IR-91-38 — Competition-derived rasters are tracked in this public repo and served as downloads
+**Expected** (brief §4.2 and §7; `.gitignore`; the repo's own CI step "No competition raster is
+committed"): competition-derived rasters never enter the public repository. `releases/*.tif` is
+gitignored precisely because redistributing them from a public page is a data-use risk the terms
+do not settle.
+**Actual:** PR #30 / #31 (the `GEOD` session) commited
+`docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif` and its `-zeros` twin as **tracked
+files**, and `docs/index.html` / `docs/submit.html` serve both as validated downloads. Its own
+`tests/test_submission_portal.py` now *requires* that link to resolve to a real file whenever
+`docs/run-card.json` says `submission_ready`, so the repository's test suite enforces the exposure.
+(The same merges also left `main` red on `test_axes_are_from_the_brief` for one push; `GEOD` has
+since been added to the vocabulary.)
+**Decision it changes.** This is flagged, **not** unilaterally reverted: the artifact belongs to a
+different session's promoted portal, and deleting it would break that session's tests. **The human
+must decide** whether these two files may stay in a public repository under the competition terms
+([NLR rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf), DrivenData terms) — and whether the
+other mirrors already flagged (IR-91-09, IR-91-25) carry the same exposure. If the answer is no,
+the fix is: `git rm --cached docs/downloads/*.tif`, add `docs/downloads/*.tif` to `.gitignore`, and
+switch the portal from "download the TIF" to "rebuild it with `make mass-expand`".
