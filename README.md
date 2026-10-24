@@ -1,3 +1,41 @@
+# Start here — current protocol review (2026-10-24)
+
+**NOT OK TO SUBMIT: no validated unique TIFF was produced in this run.**
+Read [the current audit](docs/REVIEW-20261024.md), [submission instructions](docs/executive-summary.html),
+and [run card](docs/run-card.json) before the historical session notes below.
+[Website](https://buffedlizard55-lab.github.io/GEMSDOE91/) is configured on main, repository root.
+
+## Standing user brief — operational digest (not a verbatim transcript)
+
+Read this at the start of every session. Generate a genuinely unique competition
+TIFF, not a renamed prior entry. Make download and submit eligibility obvious.
+Use only the assigned parallel-run lane; stop for duplicate surface rank correlation
+above 0.90 or final-dot proximity overlap above 70% within 3 pixels. Check both stages
+against the full registry. Reuse the shared template feature cache, evaluator and
+writer; fix shared defects upstream rather than private forks. Hide whole buffered
+fault segments, rebuild catalogue features from visible faults, mask visible pixels
+exactly, pool DTI with alpha 0.2, beta 0.8 and a 300 m triangular kernel. Run each
+feature's leakage canary; AUC above 0.90 is suspect until resolved. Report measured
+HOLDOUT-DTI with version, positives and confidence interval; only receipt-backed
+results are ORGANIZER-CONFIRMED. Never present projections as scores.
+
+Before experiments, propose and rank three to five layer-specific geological
+hypotheses with physical signatures, missing-fault rationale, novelty and confounders.
+Use free official data; record source access and provenance honestly. Limit a run to
+three experiments or two hours. Require improvement over the compliant holdout best;
+weekly selection is separate and must respect the organizer's current cap. End with
+a JSON run card including mechanism, mimic, holdout interval, registry comparisons,
+raster hash, validator output, name, short note and promote/negative verdict.
+
+Automate scientific and file validation, not human inspection claims. Validate a
+re-read single-band TIFF against the reference grid and allowed value domain. Maintain
+an executive-summary page, auditable source register and clear download state.
+Review in three passes, run tests, open and merge a PR when requested. Own the outcome:
+prioritize evidence and reliability over a fabricated success. No score guarantee.
+The request's missing lane and conflicting leaderboard claims must remain explicit.
+
+---
+
 # GEMSDOE91 — session 2026-10-23 (DrivenData GEMS #306)
 
 No script here submits anything. One entity, three scored slots a week, one final file.

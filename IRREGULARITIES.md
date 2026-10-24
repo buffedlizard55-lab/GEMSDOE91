@@ -671,3 +671,13 @@ the independent SGMC control (κ = 1.0, no shrinkage), and the session's headlin
 as a *matched-dose difference* between two arms rather than as an absolute gain. This is also why
 `CONCENTRATIONgdr25rm10` (`c019adb01`, `+0.0123` `MODEL`) loses its top slot: its prediction is
 a 0.1 × shrinkage of the prior scored against itself, the same circularity in a different dress.
+
+## IR-91-35 — 2026-10-24 parallel-run protocol cannot certify legacy axes
+
+No lane paragraph or shared template path supplied. All pinned input files absent
+in this fresh checkout. Existing hide-and-recover is fixed-dot mean credit, not
+buffered segment retraining with pooled DTI. Historical build readiness is stale.
+No compliant baseline or full surface/dot registry comparison is present. The
+GEMSDOE32 source explicitly disclaims organizer scores. See
+`docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
+submission advice is superseded by the fail-closed executive summary.
