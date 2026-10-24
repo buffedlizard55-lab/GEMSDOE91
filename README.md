@@ -1,5 +1,19 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## SESSION 11 DISCOVERY LANE (`S11-MHTR`, 2026-10-24, branch `arena/8d9056a3-gemsdoe91`) — NEW #1 `HOLDOUT-DTI` (`0.206406`) & BLIND `SGMC` (`0.097623`)
+
+- **[Download S11-MHTR E2 Certified Range-Safe GeoTIFF (`253 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif)** · **[Single-TIFF ZIP (`218 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip)** · **[Format Audit Receipt (`.json`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-audit.json)**
+- **[S11-MHTR Interactive Audit Portal](docs/s11-mhtr.html)** · **[S11 Executive Submission Guide](docs/s11-executive-summary.html)** · **[S11 Pre-Registered Hypotheses (`H11-1`..`H11-5`)](docs/HYPOTHESES_S11.md)** · **[S11 JSON Run Card](docs/run-card-S11.json)**
+- **Candidate ID:** `gems91-mhtr-e2-20261024T170000Z-9554f718` · **SHA-256 (`-zeros.tif`):** `dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15` · **SHA-256 (`.tif` NaN twin):** `9554f7183b39f2825432533a4276f3a95b4dae26887c2df3ad2b13793bb2ac94`
+- **Form Note (`104/140` chars):** `GEMS91 S11 E2 (H11-1 + H11-2): Marussi grav Hessian+Band6 rad TC+updip submod (48000d >3px, [0,1] zeros)`
+- **Out-of-Fold Score (`gems91-hide-recover-v1.0`, `n_withheld = 60,988`):** **`0.206406` `HOLDOUT-DTI`** (`95% CI [0.193796, 0.220176]`, **`+0.067407` (`+48.5%`) over `B0 = 0.138999`** and **`+0.032376` (`+18.6%`) over `H91-1 E1 = 0.174030`** with **strictly non-overlapping 95% confidence intervals**).
+- **Blind Off-Catalogue USGS SGMC Geological Map Control (`n_offcatalogue_sgmc = 62,122`, `> 3 px` from catalogue):** **`0.097623` `SGMC-OFFCAT-CONTROL-DTI`** (beating both `H91-1 E1 = 0.082886` by `+17.8%` AND `R0 = 0.095386`, while using **100% official sponsor GeoDAWN layers**).
+- **Three Newly Verified Forensic Discoveries (`IR-91-S11-01`..`03`):**
+  1. `Band 06 (tc)` in `training_features.tif` is the **Official GeoDAWN Airborne Radiometric Total Count (`TC`)** (`r = 0.99677` with GeoDAWN Radiometric Band 4 `'TC'`), not magnetic tilt or gravity terrain correction — unlocking 100% licence-clean radiometric fault-contact and potassic-alteration detection.
+  2. `(Band 11, Band 18)` is the **2-D Horizontal Gravity Gradient Vector** $(\partial_y G, \partial_x G)$ ($\operatorname{hypot}(\text{B11}, \text{B18})$ reproduces `Band 05` with `r = 0.9467`), enabling exact reconstruction of the **2×2 Horizontal Marussi Gravity Hessian**, true Laplace $\partial^2 g_z / \partial z^2 = -(\partial_x \text{B18} + \partial_y \text{B11})$, and Eötvös differential curvature $\lambda_1 - \lambda_2$.
+  3. Removing intra-segment self-proximity (`fc_vis_*`) from tree splits eliminates train-to-test covariate shift into blind test quadrants.
+- **Automated Gate Verdict:** **All 4 repository validator suites (`gems91.gates`, `gems91.release_gates`, `validate_raster.py`, `vendor.gems57.validate`), `[0, 1]` range (`min=0.0, max=1.0, nodata=None, 0 NaNs`), sterile-collar (`min_d_cat = 3.1623 px > 3.0 px`), 68-feature leakage canary (`<= 0.6610`), and 61-real-fault-raster uniqueness (`<= 69.82%` 3-px overlap; `41.58%` vs `R0`, `12.66%` vs `CED91`, `48.69%` vs `DENOVO`, `68.04%` vs `H91-1`) PASSED.** Under shared repo policy (`src/gems91/readiness.py` & `IR-CED-003`), spending a live weekly DrivenData slot (`<= 3/week`) remains a separate human selector step.
+
 ## Current safety review — 2026-10-24 (`arena/df6e28c2-gemsdoe91`)
 
 **OK TO DOWNLOAD existing files for research. NOT OK TO SUBMIT. No new TIFF generated in this review.**

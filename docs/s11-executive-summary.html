@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S11 Executive Summary &amp; Submission Guide · GEMSDOE91</title>
+<meta name="description" content="Step-by-step executive summary for downloading, verifying, and submitting gems91-mhtr-e2-20261024T170000Z-9554f718.">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="s11-mhtr.html">S11-MHTR Lane (0.2064 DTI)</a><a href="s11-executive-summary.html">S11 Guide</a><a href="h91-ddvtc.html">H91 Verduzco Lane (0.1740 DTI)</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+<section class="hero">
+  <div>
+    <span class="eyebrow">EXECUTIVE SUMMARY / S11-MHTR SUBMISSION WALKTHROUGH</span>
+    <h1>How to verify &amp; submit <code>gems91-mhtr-e2-20261024T170000Z-9554f718</code>.</h1>
+    <p class="lead">Every technical format gate, range <code>[0, 1]</code> check, 68-feature leakage canary, and 61-real-raster uniqueness gate has been verified automatically on disk.</p>
+    <span class="badge">TECHNICAL &amp; SCIENTIFIC GATES: PASS (0.206406 HOLDOUT-DTI)</span>
+  </div>
+  <div class="download">
+    <div class="label">PRIMARY RANGE-SAFE UPLOAD ARTIFACT</div>
+    <h2><code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code></h2>
+    <div class="status"><span>Values in [0, 1]</span><strong>YES (min=0.0, max=1.0, 0 NaNs)</strong></div>
+    <div class="status"><span>CRS / Grid</span><strong>EPSG:32611 · 3730×3292 · 100 m</strong></div>
+    <div class="status"><span>Out-of-Fold HOLDOUT-DTI</span><strong>0.206406 (+48.5% vs B0)</strong></div>
+    <a class="button" download href="downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif">↓ Download GeoTIFF (.tif)</a>
+    <div style="text-align:center;margin-top:12px">
+      <a download href="downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip">↓ Download Single-TIFF .zip</a> ·
+      <a href="downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-audit.json">Format Receipt (.json)</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Why <code>"Predicted values must be in range [0, 1]"</code> happened — and how it is solved</h2>
+  <div class="twocol">
+    <div class="card">
+      <h3>Root Cause 1: Sentinel Bleed (<code>-3.4028235e+38</code>)</h3>
+      <p>In <code>training_features.tif</code>, <code>3,061</code> cells <em>inside</em> the Nevada submission footprint carry float32 sentinel values (<code>-3.4028234663852886e+38</code>). Any pipeline that transforms bands without scrubbing sentinels first emits negative values outside <code>[0, 1]</code>.</p>
+      <p><strong>Fix:</strong> Every band is scrubbed with <code>isfinite(arr) &amp; (arr &gt; -1e30)</code> and filled via Euclidean distance transform prior to feature extraction, then re-checked before and after writing.</p>
+    </div>
+    <div class="card">
+      <h3>Root Cause 2: <code>nodata=NaN</code> Tag Handling</h3>
+      <p>Some portal validators inspect the raw array buffer before applying the GeoTIFF <code>nodata</code> mask. A file with <code>7,111,787</code> outside-footprint <code>NaN</code> cells fails if <code>NaN</code> is tested against <code>0.0 &le; x &le; 1.0</code>.</p>
+      <p><strong>Fix:</strong> <code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code> is written with <code>nodata=None</code> and <code>0.0</code> outside the footprint — all <code>12,279,160</code> float32 cells are strictly finite and in <code>[0.0, 1.0]</code>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Step-by-Step DrivenData Submission Procedure (After Human Selector Slot Check)</h2>
+  <div class="step"><b>1</b><div><h3>Verify Weekly Slot Allowance &amp; Selector Policy</h3><p>Per Official Rules (<code>TP-5700-96647</code> §3.2), teams are limited to <strong>3 submissions per week</strong>. Confirm with the human fleet selector that a weekly slot is available and that <code>S11-MHTR E2</code> (<code>0.206406 HOLDOUT-DTI</code>, highest in <code>GEMSDOE91</code>) is selected for upload.</p></div></div>
+  <div class="step"><b>2</b><div><h3>Download the Range-Safe GeoTIFF or Single-TIFF ZIP</h3><p>Click <strong>Download GeoTIFF (.tif)</strong> above to save <code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code> (<code>252,996</code> bytes, SHA-256 <code>dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15</code>) or <code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip</code> (<code>218,014</code> bytes). Never upload a JSON receipt, markdown report, or multi-band feature file.</p></div></div>
+  <div class="step"><b>3</b><div><h3>Upload on DrivenData &amp; Paste the Short Note</h3><p>On <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions</a>, click <strong>New submission</strong>, choose <code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code> under <em>File to submit</em>, and paste the 104-character note below into <em>Note (optional)</em>:</p>
+  <p><code>GEMS91 S11 E2 (H11-1 + H11-2): Marussi grav Hessian+Band6 rad TC+updip submod (48000d &gt;3px, [0,1] zeros)</code></p></div></div>
+  <div class="step"><b>4</b><div><h3>Record the Organizer Receipt</h3><p>Once scored by DrivenData, copy the returned score and timestamp into <code>ledger/submissions.csv</code> under <code>receipt_score</code> and <code>receipt_date</code> as <code>ORGANIZER-CONFIRMED</code>.</p></div></div>
+</section>
+</main>
+<footer>
+  <div>S11-MHTR Executive Guide · <a href="s11-mhtr.html">Full S11 Audit Table</a> · <a href="index.html">Main Portal</a></div>
+  <div><a href="run-card-S11.json">Machine-readable S11 Run Card</a></div>
+</footer>
+</div></body></html>

@@ -1,0 +1,416 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "session": "S11-MHTR",
+  "repo": "buffedlizard55-lab/GEMSDOE91",
+  "branch": "arena/8d9056a3-gemsdoe91",
+  "generated_utc": "2026-10-24T17:33:10Z",
+  "verdict": "promote",
+  "submission_ready_pending_selector": true,
+  "winning_experiment": "E2",
+  "hypothesis_id": "H11-1 + H11-2",
+  "hypothesis": "Marussi Hessian + Official Band 06 Airborne Radiometric Total-Count Contact + Hydrothermal Magnetite Leaching + 1km Corridor Envelopes",
+  "physical_mechanism": "Reconstructs the 2x2 Horizontal Marussi Gravity Hessian & Laplace second vertical derivative d2g/dz2 = -(dx B18 + dy B11) from directional gravity gradients (B11=dG/dy, B18=dG/dx), projects Eotvos differential curvature updip along -g_H/||g_H|| by H*cot(55 deg), enforces tectonic cosine alignment between detrended elevation slope and basement gravity gradient, and fuses official Band 06 Airborne Radiometric Total Count (TC, r=0.9968) regolith/alteration contacts with 1km structural corridor envelopes inside a regularized OOF HGB+LR ensemble and Two-Regime Range-Front + Concealed-Piedmont 300m Submodular DTI Allocator strictly > 3.0 px from existing_faults.",
+  "named_non_fault_mimic": "Aeolian sand sheets & un-faulted volcanic flow margins (produce radiometric TC steps without Marussi Eotvos basement curvature or 1km structural corridor support)",
+  "budget": {
+    "experiments_run": 3,
+    "max_experiments": 3,
+    "wall_clock_seconds": 189.3,
+    "max_wall_clock_seconds": 7200
+  },
+  "leakage_canary": {
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "n_features_tested": 68,
+    "max_allowed_symmetric_auc": 0.9,
+    "worst_feature": "e1_lrm_1km",
+    "worst_symmetric_auc": 0.66099,
+    "all_pass": true
+  },
+  "scores": {
+    "primary_holdout": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_withheld_positives": 60988,
+      "score": 0.206406,
+      "ci_95": [
+        0.193796,
+        0.220176
+      ],
+      "b0_reference_holdout_dti": 0.138999,
+      "b0_reference_ci_95": [
+        0.12532,
+        0.150206
+      ],
+      "h91_e1_reference_holdout_dti": 0.17403,
+      "h91_e1_reference_ci_95": [
+        0.161841,
+        0.184791
+      ],
+      "lift_over_b0": 0.067407,
+      "lift_over_h91_e1": 0.032376
+    },
+    "blind_sgmc_offcatalogue_control": {
+      "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_offcatalogue_sgmc_positives": 62122,
+      "dti": 0.097623,
+      "T": 5851.77,
+      "S": 48000.0,
+      "M": 2627.69
+    }
+  },
+  "experiments": [
+    {
+      "experiment_number": 1,
+      "exp_id": "E1",
+      "hypothesis_id": "H11-1",
+      "title": "Marussi Horizontal Gravity Hessian + Vector-Normal Updip Deprojection + Topo-Gravity Cosine Alignment",
+      "n_features": 42,
+      "gamma": 1.22,
+      "mhtr_weight": 0.45,
+      "piedmont_quota_frac": 0.24,
+      "min_spacing_px": 2.45,
+      "named_non_fault_mimic": "Incised stream terrace bluffs, canyon walls, & Lake Lahontan wave-cut benches (rejected where topo slope vector opposes basement gravity vector (B11,B18) and lacks Marussi Eotvos curvature)",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.202272,
+        "ci_95": [
+          0.190377,
+          0.212673
+        ],
+        "bootstrap_tiles_5km": 2002,
+        "bootstrap_draws": 200,
+        "pooled_T": 12098.048,
+        "pooled_S": 47811.0,
+        "pooled_M": 4807.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11287.0,
+            "T": 2443.341,
+            "M": 1010.0,
+            "fold_dti": 0.21914
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13666.0,
+            "T": 3375.152,
+            "M": 1382.0,
+            "fold_dti": 0.264249
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12564.0,
+            "T": 2654.311,
+            "M": 1060.0,
+            "fold_dti": 0.137783
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 10294.0,
+            "T": 3625.244,
+            "M": 1355.0,
+            "fold_dti": 0.218072
+          }
+        ]
+      },
+      "delta_vs_b0_holdout_dti": 0.063273,
+      "delta_vs_h91_e1_holdout_dti": 0.028242,
+      "sgmc_offcatalogue_control": {
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 62122,
+        "dti": 0.09501,
+        "T": 5693.859,
+        "S": 48000.0,
+        "M": 2536.112
+      },
+      "delta_vs_r0_sgmc_dti": -0.000376,
+      "uniqueness_summary": {
+        "n_rasters_checked": 61,
+        "uniqueness_pass": true,
+        "max_surface_abs_rank_corr": 0.22127,
+        "surface_closest_raster": "calib_h25ctx_01280.tif",
+        "max_3px_dot_overlap": 0.69298,
+        "closest_raster": "calib_h28ridge_01839.tif"
+      },
+      "elapsed_seconds": 51.31
+    },
+    {
+      "experiment_number": 2,
+      "exp_id": "E2",
+      "hypothesis_id": "H11-1 + H11-2",
+      "title": "Marussi Hessian + Official Band 06 Airborne Radiometric Total-Count Contact + Hydrothermal Magnetite Leaching + 1km Corridor Envelopes",
+      "n_features": 55,
+      "gamma": 1.2,
+      "mhtr_weight": 0.48,
+      "piedmont_quota_frac": 0.24,
+      "min_spacing_px": 2.45,
+      "named_non_fault_mimic": "Aeolian sand sheets & un-faulted volcanic flow margins (produce radiometric TC steps without Marussi Eotvos basement curvature or 1km structural corridor support)",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.206406,
+        "ci_95": [
+          0.193796,
+          0.220176
+        ],
+        "bootstrap_tiles_5km": 1988,
+        "bootstrap_draws": 200,
+        "pooled_T": 12359.653,
+        "pooled_S": 48000.0,
+        "pooled_M": 4910.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11287.0,
+            "T": 2424.609,
+            "M": 991.0,
+            "fold_dti": 0.217459
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13855.0,
+            "T": 3589.54,
+            "M": 1468.0,
+            "fold_dti": 0.279644
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12564.0,
+            "T": 2732.154,
+            "M": 1086.0,
+            "fold_dti": 0.141747
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 10294.0,
+            "T": 3613.351,
+            "M": 1365.0,
+            "fold_dti": 0.217414
+          }
+        ]
+      },
+      "delta_vs_b0_holdout_dti": 0.067407,
+      "delta_vs_h91_e1_holdout_dti": 0.032376,
+      "sgmc_offcatalogue_control": {
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 62122,
+        "dti": 0.097623,
+        "T": 5851.77,
+        "S": 48000.0,
+        "M": 2627.69
+      },
+      "delta_vs_r0_sgmc_dti": 0.002237,
+      "uniqueness_summary": {
+        "n_rasters_checked": 61,
+        "uniqueness_pass": true,
+        "max_surface_abs_rank_corr": 0.22231,
+        "surface_closest_raster": "calib_h25ctx_01280.tif",
+        "max_3px_dot_overlap": 0.69817,
+        "closest_raster": "calib_h28ridge_01839.tif"
+      },
+      "elapsed_seconds": 51.54
+    },
+    {
+      "experiment_number": 3,
+      "exp_id": "E3",
+      "hypothesis_id": "H11-1 + H11-2 + H11-3",
+      "title": "Full 65-Feature Marussi + Radiometric TC + Andersonian Ridge Bank + 212 Blind >=90C GDR Geothermometers + Two-Regime Submodular 300m DTI",
+      "n_features": 65,
+      "gamma": 1.2,
+      "mhtr_weight": 0.45,
+      "piedmont_quota_frac": 0.24,
+      "min_spacing_px": 2.45,
+      "named_non_fault_mimic": "Alluvial-fan distributary channels & non-fault shallow thermal outflow plumes (rejected unless corroborated by Andersonian slip-dilation tendency, Marussi Eotvos curvature, and radiometric/conductivity edges)",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.205989,
+        "ci_95": [
+          0.194347,
+          0.21908
+        ],
+        "bootstrap_tiles_5km": 1991,
+        "bootstrap_draws": 200,
+        "pooled_T": 12318.777,
+        "pooled_S": 47631.0,
+        "pooled_M": 4886.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11287.0,
+            "T": 2414.073,
+            "M": 982.0,
+            "fold_dti": 0.21652
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13486.0,
+            "T": 3575.904,
+            "M": 1456.0,
+            "fold_dti": 0.2802
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12564.0,
+            "T": 2744.526,
+            "M": 1096.0,
+            "fold_dti": 0.142386
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 10294.0,
+            "T": 3584.274,
+            "M": 1352.0,
+            "fold_dti": 0.215706
+          }
+        ]
+      },
+      "delta_vs_b0_holdout_dti": 0.06699,
+      "delta_vs_h91_e1_holdout_dti": 0.031959,
+      "sgmc_offcatalogue_control": {
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 62122,
+        "dti": 0.098569,
+        "T": 5909.514,
+        "S": 48000.0,
+        "M": 2633.005
+      },
+      "delta_vs_r0_sgmc_dti": 0.003183,
+      "uniqueness_summary": {
+        "n_rasters_checked": 61,
+        "uniqueness_pass": false,
+        "max_surface_abs_rank_corr": 0.22294,
+        "surface_closest_raster": "calib_h25ctx_01280.tif",
+        "max_3px_dot_overlap": 0.702,
+        "closest_raster": "calib_h28ridge_01839.tif"
+      },
+      "elapsed_seconds": 51.45
+    }
+  ],
+  "registry_uniqueness": {
+    "rasters_checked": 61,
+    "max_surface_abs_rank_corr": 0.22231,
+    "surface_closest_raster": "calib_h25ctx_01280.tif",
+    "max_dots_abs_rank_corr": 0.14405,
+    "max_3px_dot_overlap": 0.69817,
+    "dots_closest_raster": "calib_h28ridge_01839.tif",
+    "uniqueness_pass": true,
+    "protocol_lattice_diagnostic": {
+      "reference": "calib_r13lattice_00904.tif",
+      "reference_dots": 206895,
+      "footprint_coverage_within_3px": 0.998713,
+      "uncovered_footprint_pixels": 6649,
+      "note": "Per IR-CED-003, synthetic 5-px grid calib_r13lattice_00904.tif covers 99.8713% of the footprint within 3 px; symmetric F1 overlap is <= 0.33 while all real fault rasters pass strict <= 0.70 overlap."
+    }
+  },
+  "raster_sha256": "dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15",
+  "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "all_12279160_cells_finite": true,
+    "nodata_zeros_tif": null,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0,
+    "validators": {
+      "gems91_gates_verdict": "CERTIFIED",
+      "release_gates_nan_pass": true,
+      "release_gates_zeros_pass": true,
+      "validate_raster_nan_pass": true,
+      "validate_raster_zeros_pass": true,
+      "range_0_1_portal_safe": true
+    },
+    "gems57_checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    }
+  },
+  "submission_name": "gems91-mhtr-e2-20261024T170000Z-9554f718",
+  "note": "GEMS91 S11 E2 (H11-1 + H11-2): Marussi grav Hessian+Band6 rad TC+updip submod (48000d >3px, [0,1] zeros)",
+  "note_length": 104,
+  "submission": {
+    "candidate_id": "gems91-mhtr-e2-20261024T170000Z-9554f718",
+    "recommended_upload_file": "gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
+    "recommended_zip_download": "gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip",
+    "audit_json": "gems91-mhtr-e2-20261024T170000Z-9554f718-audit.json",
+    "recommended_form_name": "gems91-mhtr-e2-20261024T170000Z-9554f718",
+    "recommended_form_note": "GEMS91 S11 E2 (H11-1 + H11-2): Marussi grav Hessian+Band6 rad TC+updip submod (48000d >3px, [0,1] zeros)",
+    "recommended_form_note_length": 104,
+    "sha256_zeros_tif": "dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15",
+    "sha256_nan_tif": "9554f7183b39f2825432533a4276f3a95b4dae26887c2df3ad2b13793bb2ac94",
+    "sha256_zeros_zip": "ba7ec5ae98595ad205f7482ed691a61b83ba75e72e4966fd4ca8e82e90b8f5de",
+    "bytes_zeros_tif": 252996,
+    "bytes_zeros_zip": 218014,
+    "n_dots": 48000,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0
+  }
+}
