@@ -1,0 +1,162 @@
+{
+  "schema": "gems91.run-card.v2",
+  "run_id": "H11-1-v1-20261024",
+  "started_utc": "2026-10-24T16:12:50.613528+00:00",
+  "hypothesis": "Coherent, oriented elevation-gradient lineaments (structure-tensor anisotropy of detrended elevation) mark concealed or unmapped fault scarps.",
+  "mechanism": "Anisotropic structure tensor at 3 and 6 px windows, geometric mean with gradient magnitude; fixed-density separated dots.",
+  "non_fault_mimic": "Bedrock ridge or drainage fabric aligned with regional structure; cultural linear features; sub-100 m scarps unresolved at 100 m.",
+  "lane": {
+    "name": "H11-1",
+    "assigned": false,
+    "status": "PROVISIONAL_RESEARCH_ONLY",
+    "reason": "No single assigned method paragraph was supplied in the session brief."
+  },
+  "experiments_run": 1,
+  "budget": {
+    "max_experiments": 3,
+    "max_seconds": 7200
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": 0.13967152866862872,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 60988,
+    "ci95": [
+      0.12390824236427414,
+      0.1558314066809866
+    ],
+    "status": "COMPLETED",
+    "paired_controls": {
+      "gradient_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.08577683531387185,
+        "ci95": [
+          0.07191680913273762,
+          0.09950159277248834
+        ],
+        "withheld_positive_pixels": 60988
+      },
+      "random_null": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.07243231443731273,
+        "ci95": [
+          0.055821095811663224,
+          0.0895521642275644
+        ],
+        "withheld_positive_pixels": 60988
+      }
+    },
+    "file": "h11-holdout.json",
+    "random_null": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.067239214231316,
+      "ci95": [
+        0.06441741848923255,
+        0.07018805914837951
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 3742.390626515952,
+      "fpw": 30594.89854047198,
+      "fnw": 57245.60937348409
+    }
+  },
+  "registry_comparison": {
+    "scope": "buffedlizard55-lab/60GEMSDOE@02563d07fb85d2f4d35887503d380d34d4017197:registry/rasters plus inherited checkout downloads",
+    "complete_universal_registry": false,
+    "missing_scope": [
+      "Other fleet downloads not in the pinned registry",
+      "Local ledger entries whose raster is not present",
+      "Private, inaccessible and unlinked artifacts; assigned lane not supplied"
+    ],
+    "preplacement": {
+      "status": "UNVERIFIED",
+      "checked": 64,
+      "not_checked_after_stop": 0
+    },
+    "final": {
+      "status": "DUPLICATE",
+      "stopped_on": {
+        "file": "data/fleet_registry/calib_r13lattice_00904.tif",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "surface": {
+          "status": "PASS",
+          "rank_correlation": 0.0007393685577163908
+        },
+        "dots": {
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.998,
+          "candidate_dots": 32000,
+          "registry_dots": 206895
+        },
+        "status": "DUPLICATE"
+      },
+      "checked": 27,
+      "not_checked_after_stop": 37
+    },
+    "max_measured_surface_rank_correlation": 0.14675830268858578,
+    "max_measured_final_dot_overlap_within_3px": 0.998
+  },
+  "raster_sha256": "44232e2989047a7eb25650e2cc952ccbfc1380f27eb9d16c8aa7dad8634746cb",
+  "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    }
+  },
+  "submission_name": "gems91-h11-v1-20261024-91068a6ed74d",
+  "note": "H11-1 structure-tensor lineament coherence; research only, not approved for a slot.",
+  "verdict": "negative",
+  "submission_ready": false,
+  "organizer_confirmed": null,
+  "slots_used": 0,
+  "selector_approval": false,
+  "comparable_prior_holdout_best": null,
+  "inputs": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  },
+  "evidence_class": "HOLDOUT-DTI",
+  "canaries": {
+    "status": "PASS",
+    "max_symmetric_auc": 0.6397627687257865,
+    "file": "h11-canaries.json"
+  },
+  "artifact": {
+    "local_only": "outputs/h11/gems91-h11-v1-20261024-91068a6ed74d.tif",
+    "bytes": 128530,
+    "dot_digest": "91068a6ed74d3af398b51d251229f794efcaaca7fd3a30ff39ddb5dbb5baa174",
+    "dots": 32000
+  },
+  "verdict_reason": "Final dots exceeded a registry duplicate threshold; NOT OK TO SUBMIT.",
+  "completed_utc": "2026-10-24T16:13:32.926277+00:00"
+}
