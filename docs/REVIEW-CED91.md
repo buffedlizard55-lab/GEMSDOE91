@@ -95,7 +95,7 @@ The active site distinguishes “OK to download” from “OK to submit,” link
   denial correctly falls back to selected text. This does not prove exhaustive
   accessibility or every browser. See [browser receipt](browser-verification.json).
 
-The actual CED computation lasted 45.871752 seconds; it was the only geological
+The actual CED computation lasted 45.87 seconds; it was the only geological
 candidate. The completed-run lock is regression-tested. The runner's
 `--max-seconds` field records a budget, not an internal watchdog: before any
 future authorized *new* experiment, add an externally enforced wall-clock limit

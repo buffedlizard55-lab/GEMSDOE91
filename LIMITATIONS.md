@@ -72,7 +72,7 @@ success: remote check/deployment outcomes must be observed and recorded separate
 
 The runner budget field is not an internal timeout watchdog; future authorized
 experiments need external wall-clock enforcement and early-failure accounting.
-The single actual CED run took 45.871752 seconds.
+The single actual CED run took 45.87 seconds.
 
 Current scientific result is fixed in `docs/ced-experiment.json`; the run command
 refuses silent re-execution. Format revalidation and synthetic unit tests are not
