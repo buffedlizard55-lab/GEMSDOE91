@@ -1,5 +1,9 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+> **CURRENT CHECKOUT REVIEW (2026-10-24): NOT OK TO SUBMIT.** No new TIFF or experiment was produced in this review. The current `docs/run-card.json` is the authority: its CED91 research artifact fails the final-dot duplicate gate. It is format-valid and **OK to download for research only**, not approved for competition upload. No weekly slot was used. The lane-identifying method paragraph is absent from the prompt, so selecting another experiment would violate the parallel-run protocol. The complete review, code fixes, ranked untested hypotheses and review JSON are in [`docs/REVIEW-ARENA-20261024.md`](docs/REVIEW-ARENA-20261024.md).
+>
+> Four manifest-pinned inputs were restored to the ignored `data/` directory from public sibling-repository mirrors and SHA-256/byte-count checked. That verifies identity to project pins only—not DrivenData authentication, license or redistribution rights. The refreshed preflight marks PRUNE, SNAP, CONCENTRATION and TRACKB locally build-ready; this does not supply the missing assigned lane or authorize an experiment. Local build readiness is not permission to submit. Read this status, the run card, irregularities, limitations and the full standing user brief below before each session.
+
 ## SESSION 11 DISCOVERY LANE (`S11-MHTR`, 2026-10-24, branch `arena/8d9056a3-gemsdoe91`) — NEW #1 `HOLDOUT-DTI` (`0.206406`) & BLIND `SGMC` (`0.097623`)
 
 - **[Download S11-MHTR E2 Certified Range-Safe GeoTIFF (`253 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif)** · **[Single-TIFF ZIP (`218 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip)** · **[Format Audit Receipt (`.json`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-audit.json)**
