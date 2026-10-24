@@ -7,20 +7,22 @@
 <header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
 <nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="s11-mhtr.html">S11-MHTR Lane (0.2064 DTI)</a><a href="s11-executive-summary.html">S11 Guide</a><a href="h91-ddvtc.html">H91 Verduzco Lane (0.1740 DTI)</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
 <main id="main">
+<div class="banner"><strong>SUPERSEDED VERDICT — NOT OK TO SUBMIT.</strong> The corrected literal directed gate (`gems91-directed-registry-v1.1`) finds 99.8146% of S11-MHTR dots within 3 px of `calib_r13lattice_00904.tif` (limit 70%). Historical promotion text below is retained only as an audit record.</div>
 <section class="hero">
   <div>
     <span class="eyebrow">EXECUTIVE SUMMARY / S11-MHTR SUBMISSION WALKTHROUGH</span>
     <h1>How to verify &amp; submit <code>gems91-mhtr-e2-20261024T170000Z-9554f718</code>.</h1>
     <p class="lead">Every technical format gate, range <code>[0, 1]</code> check, 68-feature leakage canary, and 61-real-raster uniqueness gate has been verified automatically on disk.</p>
-    <span class="badge">TECHNICAL &amp; SCIENTIFIC GATES: PASS (0.206406 HOLDOUT-DTI)</span>
+    <span class="badge bad">NOT OK TO SUBMIT · RESEARCH DOWNLOAD ONLY</span>
+    <p><strong>Current decision:</strong> the TIFF may be downloaded for research and independent review, but must not be uploaded to DrivenData. The experiment card's “promote” means the best experiment within that historical lane; it is not organizer confirmation, complete fleet-wide novelty clearance, or slot authorization. The shared policy keeps this artifact research-only pending review of the lattice-overlap rule and weekly slot allowance. Its <code>0.206406</code> is HOLDOUT-DTI, not an organizer score and not evidence of exceeding the user-reported <code>0.2778</code>.</p>
   </div>
   <div class="download">
-    <div class="label">PRIMARY RANGE-SAFE UPLOAD ARTIFACT</div>
+    <div class="label">RESEARCH DOWNLOAD ONLY · NOT APPROVED FOR UPLOAD</div>
     <h2><code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code></h2>
     <div class="status"><span>Values in [0, 1]</span><strong>YES (min=0.0, max=1.0, 0 NaNs)</strong></div>
     <div class="status"><span>CRS / Grid</span><strong>EPSG:32611 · 3730×3292 · 100 m</strong></div>
     <div class="status"><span>Out-of-Fold HOLDOUT-DTI</span><strong>0.206406 (+48.5% vs B0)</strong></div>
-    <a class="button" download href="downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif">↓ Download GeoTIFF (.tif)</a>
+    <a class="button" download href="downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif">↓ Download research GeoTIFF — NOT approved to submit</a>
     <div style="text-align:center;margin-top:12px">
       <a download href="downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip">↓ Download Single-TIFF .zip</a> ·
       <a href="downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-audit.json">Format Receipt (.json)</a>
@@ -45,8 +47,9 @@
 </section>
 
 <section class="section">
-  <h2>Step-by-Step DrivenData Submission Procedure (After Human Selector Slot Check)</h2>
-  <div class="step"><b>1</b><div><h3>Verify Weekly Slot Allowance &amp; Selector Policy</h3><p>Per Official Rules (<code>TP-5700-96647</code> §3.2), teams are limited to <strong>3 submissions per week</strong>. Confirm with the human fleet selector that a weekly slot is available and that <code>S11-MHTR E2</code> (<code>0.206406 HOLDOUT-DTI</code>, highest in <code>GEMSDOE91</code>) is selected for upload.</p></div></div>
+  <h2>Do not submit this artifact unless a future selector explicitly clears it</h2>
+  <p class="banner"><strong>Current gate: NOT APPROVED.</strong> The steps below describe the generic upload workflow only, conditional on a separate future selector decision. Do not use them to upload this research-only file now. Current project policy requires resolving the synthetic-lattice overlap concern and confirming a live weekly slot through the official submission page; neither is established by the holdout result.</p>
+  <div class="step"><b>1</b><div><h3>Verify Weekly Slot Allowance &amp; Selector Policy</h3><p>Check the live DrivenData submission page and current official rules for the applicable weekly cap; this checkout has not freshly verified that allowance. A separate selector must review whether <code>S11-MHTR E2</code> should be considered at all. Its <code>0.206406</code> is HOLDOUT-DTI—not an organizer score—and the file remains research-only.</p></div></div>
   <div class="step"><b>2</b><div><h3>Download the Range-Safe GeoTIFF or Single-TIFF ZIP</h3><p>Click <strong>Download GeoTIFF (.tif)</strong> above to save <code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code> (<code>252,996</code> bytes, SHA-256 <code>dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15</code>) or <code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip</code> (<code>218,014</code> bytes). Never upload a JSON receipt, markdown report, or multi-band feature file.</p></div></div>
   <div class="step"><b>3</b><div><h3>Upload on DrivenData &amp; Paste the Short Note</h3><p>On <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions</a>, click <strong>New submission</strong>, choose <code>gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif</code> under <em>File to submit</em>, and paste the 104-character note below into <em>Note (optional)</em>:</p>
   <p><code>GEMS91 S11 E2 (H11-1 + H11-2): Marussi grav Hessian+Band6 rad TC+updip submod (48000d &gt;3px, [0,1] zeros)</code></p></div></div>

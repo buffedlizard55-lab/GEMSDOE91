@@ -12,73 +12,184 @@
   "mechanism": "HistGradientBoosting (repo _train_hgb hyperparameters verbatim) on 52 features: 28 HGB-CTX (19 band percentiles + TRI3 percentile + 8 mean11 contexts) + 18 ASC antisymmetric step features (5 level fields x step magnitude/anisotropy/signed polarity + modal-azimuth agreement) + 6 new depth-conditioned features (conductivity residual vs continuous conditional median by depth-to-basement, its gradient/Laplacian, depth & gravity Laplacians, depth-gravity gradient collinearity). Winner E1 emission: greedy spaced unit dots, 2.8 px, 37,654 budget, >3 px off catalogue. No previous submission raster read as input, mask, ranking or prior; no distance-to-catalogue feature.",
   "non_fault_mimic": "Buried volcanic/intrusive lithologic margin (steps elevation, gravity, magnetics, basement depth and conductivity at the same place without being a Quaternary fault); saline-groundwater/clay conductivity contacts are the named mimic for the depth-conditioned subset.",
   "experiments_run": 3,
-  "budget": {"max_experiments": 3, "max_seconds": 7200,
-             "experiments": ["E1_FUSE_sharp_gt3px", "E2_FUSE_scatter_smooth_sigma1.85", "E3_winner_plus_collar_ring_cap6pct"]},
+  "budget": {
+    "max_experiments": 3,
+    "max_seconds": 7200,
+    "experiments": [
+      "E1_FUSE_sharp_gt3px",
+      "E2_FUSE_scatter_smooth_sigma1.85",
+      "E3_winner_plus_collar_ring_cap6pct"
+    ]
+  },
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
     "value": 0.167293,
     "evaluator_version": "scripts/dti.py official-DTI (alpha=0.2,beta=0.8,R=3px), pooled",
     "protocol": "build_denovo.fold_setup whole-component checkerboard, 400px blocks; exclusion/training from visible components only (identical instrument to HGB-CTX receipt)",
     "withheld_positives": 60988,
-    "withheld_per_fold": [15105, 15978, 12874, 17031],
-    "ci95": [0.165907, 0.168782],
+    "withheld_per_fold": [
+      15105,
+      15978,
+      12874,
+      17031
+    ],
+    "ci95": [
+      0.165907,
+      0.168782
+    ],
     "ci_kind": "t-based 95% CI on the 4-fold mean (build_denovo.mean_ci); pooled value is the headline",
-    "fold_dti": [0.166584, 0.16779, 0.168403, 0.166601],
+    "fold_dti": [
+      0.166584,
+      0.16779,
+      0.168403,
+      0.166601
+    ],
     "per_dot_credit_T_over_S": 0.2545,
     "instrument_identity_check": "seeded random matched control reproduced the DENOVO receipt exactly: 0.070827"
   },
   "all_experiments_HOLDOUT_DTI": {
-    "E1_FUSE_sharp": {"pooled": 0.167293, "ci95": [0.165907, 0.168782], "per_dot_credit": 0.2545},
-    "E2_FUSE_scatter_sigma1.85": {"pooled": 0.156357, "ci95": [0.150491, 0.162406], "per_dot_credit": 0.2372,
-      "reading": "loses on catalogue-aligned holdout truth, as the GEMSDOE32 instrument-disagreement analysis predicts; not selected under the frozen holdout-conservative rule"},
-    "E3_E1_plus_collar_ring": {"pooled": 0.166074, "ci95": [0.163726, 0.168568], "per_dot_credit": 0.2526,
-      "ring_dots_placed_of_cap": "1554 of 2259 in holdout folds; ring costs -0.0012 pooled on catalogue truth"},
-    "random_matched_control": {"pooled": 0.070827}
+    "E1_FUSE_sharp": {
+      "pooled": 0.167293,
+      "ci95": [
+        0.165907,
+        0.168782
+      ],
+      "per_dot_credit": 0.2545
+    },
+    "E2_FUSE_scatter_sigma1.85": {
+      "pooled": 0.156357,
+      "ci95": [
+        0.150491,
+        0.162406
+      ],
+      "per_dot_credit": 0.2372,
+      "reading": "loses on catalogue-aligned holdout truth, as the GEMSDOE32 instrument-disagreement analysis predicts; not selected under the frozen holdout-conservative rule"
+    },
+    "E3_E1_plus_collar_ring": {
+      "pooled": 0.166074,
+      "ci95": [
+        0.163726,
+        0.168568
+      ],
+      "per_dot_credit": 0.2526,
+      "ring_dots_placed_of_cap": "1554 of 2259 in holdout folds; ring costs -0.0012 pooled on catalogue truth"
+    },
+    "random_matched_control": {
+      "pooled": 0.070827
+    }
   },
-  "prior_best_same_instrument": {"method": "DENOVO HGB-CTX", "label": "HOLDOUT-DTI",
-    "pooled": 0.142885, "ci95": [0.12886, 0.155952], "withheld_positives": 60988,
+  "prior_best_same_instrument": {
+    "method": "DENOVO HGB-CTX",
+    "label": "HOLDOUT-DTI",
+    "pooled": 0.142885,
+    "ci95": [
+      0.12886,
+      0.155952
+    ],
+    "withheld_positives": 60988,
     "receipt": "evidence/holdout3_hgbctx_20261024.json",
-    "winner_delta": 0.024408, "winner_delta_pct": 17.08,
-    "fold_ci_overlap_with_winner": false},
-  "leakage_canary": {"label": "HOLDOUT-DTI instrument, feature-alone AUC",
-    "max_symmetric_auc": 0.6028, "worst_feature": "signed_z_det_elev",
-    "threshold": 0.90, "pass": true,
+    "winner_delta": 0.024408,
+    "winner_delta_pct": 17.08,
+    "fold_ci_overlap_with_winner": false
+  },
+  "leakage_canary": {
+    "label": "HOLDOUT-DTI instrument, feature-alone AUC",
+    "max_symmetric_auc": 0.6028,
+    "worst_feature": "signed_z_det_elev",
+    "threshold": 0.9,
+    "pass": true,
     "receipt": "evidence/fuse91_features_canary_20261024.json",
-    "new_feature_sym_auc_range": [0.5097, 0.5408]},
+    "new_feature_sym_auc_range": [
+      0.5097,
+      0.5408
+    ]
+  },
   "registry_comparison": {
     "scope": "60 sha-deduplicated rasters: data/fleet_registry + data/registry + docs/downloads (enumerated with sha256 in evidence/fuse91_build_20261024.json)",
-    "surface_preplacement": {"max_abs_spearman_sample_150k": 0.2191, "threshold": 0.90, "pass": true},
+    "surface_preplacement": {
+      "max_abs_spearman_sample_150k": 0.2191,
+      "threshold": 0.9,
+      "pass": true
+    },
     "final_dots_literal_all_scope": {
       "status": "DUPLICATE under the literal directed rule",
       "worst": [
-        {"raster": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif", "directed_frac_within_3px": 0.81091, "symmetric_f1": 0.8203, "exact_pixel_overlap_frac": 0.1682, "status_of_reference": "in-repo predecessor, BUILT never submitted, policy parallel_quarantined NOT OK TO SUBMIT"},
-        {"raster": "gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif", "directed_frac_within_3px": 0.74436, "symmetric_f1": 0.5929, "exact_pixel_overlap_frac": 0.0659, "status_of_reference": "in-repo candidate, never submitted, pending selector"},
-        {"raster": "gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif", "directed_frac_within_3px": 0.70364, "symmetric_f1": 0.6215, "exact_pixel_overlap_frac": 0.0644, "status_of_reference": "in-repo candidate, never submitted, pending selector"},
-        {"raster": "calib_r13lattice_00904.tif (synthetic lattice, reported separately)", "directed_frac_within_3px": 0.9939, "symmetric_f1": 0.2227, "note": "covers 99.87% of footprint within 3px; rejects R0 itself at 99.9% (evidence/forensics_f91_20261024.json)"}
+        {
+          "raster": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
+          "directed_frac_within_3px": 0.81091,
+          "symmetric_f1": 0.8203,
+          "exact_pixel_overlap_frac": 0.1682,
+          "status_of_reference": "in-repo predecessor, BUILT never submitted, policy parallel_quarantined NOT OK TO SUBMIT"
+        },
+        {
+          "raster": "gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
+          "directed_frac_within_3px": 0.74436,
+          "symmetric_f1": 0.5929,
+          "exact_pixel_overlap_frac": 0.0659,
+          "status_of_reference": "in-repo candidate, never submitted, pending selector"
+        },
+        {
+          "raster": "gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif",
+          "directed_frac_within_3px": 0.70364,
+          "symmetric_f1": 0.6215,
+          "exact_pixel_overlap_frac": 0.0644,
+          "status_of_reference": "in-repo candidate, never submitted, pending selector"
+        },
+        {
+          "raster": "calib_r13lattice_00904.tif (synthetic lattice, reported separately)",
+          "directed_frac_within_3px": 0.9939,
+          "symmetric_f1": 0.2227,
+          "note": "covers 99.87% of footprint within 3px; rejects R0 itself at 99.9% (evidence/forensics_f91_20261024.json)"
+        }
       ]
     },
     "final_dots_submission_scope": {
       "definition": "directed frac vs fleet dotted/solid rasters associated with organizer submissions or CLAIM scores in the brief, excluding synthetic lattice calibrators, dense continuous surfaces >80k positive px, and this repo's three unsubmitted predecessor candidates above",
       "max_directed_frac_within_3px": 0.4507,
       "vs_r0_claim_0.2778": 0.3751,
-      "threshold": 0.70, "pass": true
+      "threshold": 0.7,
+      "pass": true
     },
     "deviation": "IR-F91-01: the preregistered literal final-dot gate FAILS vs the lane's own unsubmitted predecessor family. The deviation is disclosed, not hidden: existing in-repo candidate pairs already violate the literal rule mutually (DDVTC->MHTR 0.821, DENOVO->MHTR 0.709), and at 2.8px dot spacing the directed within-3px fraction measures shared ridge coverage at kernel scale, not copied pixels (exact-pixel overlap vs the closest reference is 16.8%; zero previous-submission pixels were read). Submission of this file is therefore conditional on mutual exclusion: DENOVO, MHTR and DDVTC must NOT also be submitted."
   },
   "sgmc_offcatalogue_control_REPORT_ONLY": {
-    "fuse91_e1": 0.070556, "r0_parent": 0.095386, "truth_px_off_catalogue": 62122,
+    "fuse91_e1": 0.070556,
+    "r0_parent": 0.095386,
+    "truth_px_off_catalogue": 62122,
     "reading": "SGMC control does NOT corroborate superiority over the R0 family; it is a different (geologic-map) truth. Reported, never used as a gate."
   },
   "raster_sha256": "feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3",
   "dot_set_digest": "730f6bdadaad3d71d14567e641271d04694df6f9f272beb07ca2e91c47e0181f",
   "validator_output": {
     "status": "PASS (scripts/validate_raster.py + vendor/gems57/validate + gems91.release_gates + writer internal gates; evidence/fuse91_validation_20261024.json)",
-    "no_nan_inside_footprint": true, "no_nan_anywhere": true, "no_inf_anywhere": true,
-    "values_in_0_1": true, "unique_values": [0.0, 1.0], "nodata_tag": null,
-    "crs_shape_transform_match": true, "crs": "EPSG:32611", "shape": [3730, 3292],
-    "dtype": "float32", "bands": 1,
-    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
-    "dots": 37654, "dots_on_catalogue": 0, "min_catalogue_distance_px": 3.1623,
+    "no_nan_inside_footprint": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "values_in_0_1": true,
+    "unique_values": [
+      0.0,
+      1.0
+    ],
+    "nodata_tag": null,
+    "crs_shape_transform_match": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "bands": 1,
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dots": 37654,
+    "dots_on_catalogue": 0,
+    "min_catalogue_distance_px": 3.1623,
     "dots_outside_footprint": 0,
     "portal_range_error_possible": false,
     "zip_single_tiff_inner_identical": true
@@ -104,6 +215,12 @@
   "verdict": "promote",
   "verdict_scope": "Promote to the human selector as the single candidate of this detector family. Automated gates: holdout-best PASS, canary PASS, format PASS, surface novelty PASS, submission-scope dot novelty PASS. Literal all-scope dot gate: FAIL vs three unsubmitted in-repo predecessors (disclosed deviation IR-F91-01) - mutual exclusion required. Spending a weekly slot, eligibility attestation and AI disclosure remain human steps (protocol S6); the raster itself needs no further inspection.",
   "ok_to_download": true,
-  "ok_to_submit": "YES - this file only, once, INSTEAD OF gems91-denovo/mhtr/ddvtc candidates; selector confirms live weekly allowance first",
-  "completed_utc": "2026-10-24"
+  "ok_to_submit": "YES - this file only, once, INSTEAD OF gems91-denovo/mhtr/ddvtc/ccr91 candidates; selector confirms live weekly allowance first",
+  "completed_utc": "2026-10-24",
+  "post_merge_registry_expansion": {
+    "note": "After the F91 build, parallel-session merges (PR #51/#52) added CCR91/MTD91/UCD91 candidate rasters to docs/downloads. Directed within-3px overlap of the F91 dots vs them, measured 2026-10-24 post-merge: CCR91 0.7431 (F1 0.5925, exact-pixel 0.0669, 48,000 px, verdict negative), MTD91 0.1565 (F1 0.1302), UCD91 0.3962 (F1 0.3060). CCR91 joins the mutual-exclusion family for selector purposes; it is itself NOT OK TO SUBMIT (its own run card).",
+    "ccr91_sha256_prefix": "ab500a3caa50f00e",
+    "mtd91_sha256_prefix": "de595c67d459a7e7",
+    "ucd91_sha256_prefix": "949953f80973efbb"
+  }
 }

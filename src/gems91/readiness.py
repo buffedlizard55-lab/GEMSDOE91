@@ -38,6 +38,22 @@ def gates(card):
                   and split == holdout.get('split_sha256')
                   and isinstance(version, str) and bool(version)
                   and version == holdout.get('evaluator_version'))
+    # A positive paired claim alone is not evidence of beating a baseline.
+    # Require the same population and coherent pooled-score arithmetic. This
+    # checks structure, not provenance; verify_evidence still authenticates bytes.
+    measured_improvement = (
+        _number(best.get('value'), 0, 1)
+        and _interval(best.get('ci95'), 0, 1)
+        and type(best.get('withheld_positives')) is int
+        and best['withheld_positives'] > 0
+        and best['withheld_positives'] == holdout.get('withheld_positives')
+        and _number(holdout.get('value'), 0, 1)
+        and _number(paired.get('delta'), 0, 1)
+        and math.isclose(holdout['value'] - best['value'], paired['delta'],
+                         rel_tol=1e-6, abs_tol=1e-9)
+        and _interval(ci, -1, 1)
+        and ci[0] <= paired['delta'] <= ci[1]
+    )
     selector = _mapping(card.get('selector_receipt'))
     canary = _mapping(card.get('canaries'))
     phases = [_mapping(registry.get(k)) for k in ('preplacement', 'final')]
@@ -56,7 +72,8 @@ def gates(card):
                    and _number(registry.get('max_measured_surface_rank_correlation'), -.90, .90)
                    and _number(registry.get('max_measured_final_dot_overlap_within_3px'), 0, .70),
         'assigned_lane': _mapping(card.get('lane')).get('assigned') is True,
-        'beats_comparable_best': bool(comparable and holdout.get('status') == 'COMPLETED'
+        'beats_comparable_best': bool(comparable and measured_improvement
+                                     and holdout.get('status') == 'COMPLETED'
                                      and holdout.get('label') == 'HOLDOUT-DTI'
                                      and type(count) is int and count > 0
                                      and _number(holdout.get('value'), 0, 1)

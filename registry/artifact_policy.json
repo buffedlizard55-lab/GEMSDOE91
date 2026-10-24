@@ -62,6 +62,54 @@
       "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC single-TIFF ZIP (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
     },
     {
+      "path": "docs/downloads/gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif",
+      "sha256": "ab500a3caa50f00ec0855dc88006a2d3e31f5e5f4cde726ef391e30f6eb4cd6b",
+      "status": "current_research_only",
+      "reason": "CCR91 E1 compensated-conductivity residual candidate: 0.202116 HOLDOUT-DTI below 0.206406 reference and 99.769% final directed overlap >70%; validator PASS; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.zip",
+      "sha256": "cbb1c77a0d05a2d74ecf3d305e39cec9510e0c79e73bfa6684cac58a4bea0567",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of CCR91 E1 negative research artifact; NOT OK TO SUBMIT (docs/run-card-CCR91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif",
+      "sha256": "de595c67d459a7e764fb059285725db7eabb089d6672f7cd820af135d2558dc9",
+      "status": "current_research_only",
+      "reason": "MTD91 parallel-lane zeros twin; HOLDOUT-DTI 0.023903 (gems91-hide-recover-v1.0, 60,988 withheld, 95% CI [0.021318, 0.026004]), below 0.142885 comparable bar. NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.zip",
+      "sha256": "6e0f1fccf0449a576e8d937e5abdb8e4b3eab3d8d350ffc8b9a263af56b47f21",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of the MTD91 negative research artifact; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a.tif",
+      "sha256": "3afa853ab3634bdb2195387f442596e0b29e83c7b9985de34a397433d71abdd5",
+      "status": "current_research_only",
+      "reason": "MTD91 parallel-lane NaN-outside companion; research only, not the preferred upload encoding. NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405-zeros.tif",
+      "sha256": "949953f80973efbb1d5de3e66a3684c1cfdd54c449c07c2e865d58449654952d",
+      "status": "current_research_only",
+      "reason": "UCD91 E2 unique zeros TIFF; HOLDOUT-DTI 0.113442 (gems91-hide-recover-v1.0, 60,988 withheld, 95% CI [0.103611, 0.121110]) is below prior 0.206406 HOLDOUT-DTI. Research-only; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405-zeros.zip",
+      "sha256": "b66abbb25998e52b36e893876207c4c66ebad51bb19ec8c6bb45e16137694edb",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of the UCD91 negative research artifact; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405.tif",
+      "sha256": "df735405d066b462f13c6196b97d7b689035594b40c1bffbab84c17c25b08afb",
+      "status": "current_research_only",
+      "reason": "UCD91 NaN-outside companion for research; not the all-finite recommended encoding. Research-only; NOT OK TO SUBMIT."
+    },
+    {
       "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif",
       "sha256": "feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3",
       "status": "current_research_only",

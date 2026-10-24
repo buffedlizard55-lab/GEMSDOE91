@@ -39,19 +39,24 @@ async function main() {
       await page.waitForURL(new URL('index.html', baseURL).href);
     }
     await page.goto(baseURL, { waitUntil: 'networkidle' });
-    if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
+    const submissionStates = page.locator('[data-submission-ready]');
+    const stateCount = await submissionStates.count();
+    const allStatesFailClosed = await submissionStates.evaluateAll(nodes =>
+      nodes.length > 0 && nodes.every(node => node.getAttribute('data-submission-ready') === 'false')
+    );
+    if (!allStatesFailClosed || stateCount === 0) {
       throw new Error('Missing fail-closed negative submission state');
     }
     if (!(await page.getByText('NOT OK TO SUBMIT', { exact: true }).count())) {
       throw new Error('Submission warning is not visible');
     }
     const downloadEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: '↓ Download research GeoTIFF', exact: true }).click();
+    await page.getByRole('link', { name: '↓ Download new CCR91 GeoTIFF', exact: true }).click();
     const download = await downloadEvent;
     const bytes = fs.readFileSync(await download.path());
     const digest = crypto.createHash('sha256').update(bytes).digest('hex');
-    const card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card.json')));
-    if (digest !== card.raster_sha256) throw new Error('Downloaded bytes do not match advertised SHA256');
+    const card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-CCR91.json')));
+    if (digest !== card.raster_sha256) throw new Error('Downloaded CCR91 bytes do not match advertised SHA256');
     await page.getByRole('button', { name: 'Copy submission note', exact: true }).click();
     await page.waitForFunction(() => document.getElementById('copy-status').textContent.length > 0);
     const copyStatus = await page.locator('#copy-status').textContent();

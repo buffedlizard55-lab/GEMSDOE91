@@ -1,23 +1,58 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
-> **CURRENT CHECKOUT REVIEW (2026-10-24): NOT OK TO SUBMIT.** No new TIFF or experiment was produced in this review. The current `docs/run-card.json` is the authority: its CED91 research artifact fails the final-dot duplicate gate. It is format-valid and **OK to download for research only**, not approved for competition upload. No weekly slot was used. The lane-identifying method paragraph is absent from the prompt, so selecting another experiment would violate the parallel-run protocol. The complete review, code fixes, ranked untested hypotheses and review JSON are in [`docs/REVIEW-ARENA-20261024.md`](docs/REVIEW-ARENA-20261024.md).
->
-> Four manifest-pinned inputs were restored to the ignored `data/` directory from public sibling-repository mirrors and SHA-256/byte-count checked. That verifies identity to project pins only—not DrivenData authentication, license or redistribution rights. The refreshed preflight marks PRUNE, SNAP, CONCENTRATION and TRACKB locally build-ready; this does not supply the missing assigned lane or authorize an experiment. Local build readiness is not permission to submit. Read this status, the run card, irregularities, limitations and the full standing user brief below before each session.
+## START HERE — session 12 standing brief (read at every session start)
+
+**Read `docs/SESSION_BRIEF_S12.md` first.** It holds the standing rules, the answer on 0.2778, the verdict on the current file, and the open human decisions. The S11 standing brief is kept verbatim below, in the session-10 section, and still applies except where S12 overrides it.
+
+- **Current verdict (automated, fail-closed):** the S11-MHTR candidate may be downloaded as research only. It is **NOT** cleared for submission. See the computed status board at the top of `docs/executive-summary.html` (all candidates). `docs/index.html` is the MTD91 lane's landing page on `main` and is not overwritten by the CED renderer (see the test contract in `tests/test_submission_portal.py`).
+- **Session 12 result:** H12-1 (gravity–magnetic edge co-location, `evidence/h12/run_card_S12.json`) is **negative**: HOLDOUT-DTI `0.113042` (CI `[0.102124, 0.123819]`), below B0 `0.138999` and the S11 candidate `0.206406`. Its gravity-only control scores the same.
+- **Latest lane on `main` (CCR91, PR #51):** negative, research download only. HOLDOUT-DTI `0.202116` is below the `0.206406` gate. It is on the status board in `docs/executive-summary.html` and on `docs/index.html`.
+- **Other lanes now on `main`:** UCD91 E2 `0.113442` HOLDOUT-DTI (CI `[0.103611, 0.121110]`) and MTD91 E1 `0.023903` HOLDOUT-DTI (CI `[0.021318, 0.026004]`). Both are negative, research download only, from their own run cards. They were not re-run in this session.
+- **Reproduction:** in an isolated copy, the H91 and S11 lanes reproduce the published holdouts (H91-1 E1 `0.174030`, S11 E1 `0.202272`, S11 E2 `0.206406`). See `docs/SESSION_BRIEF_S12.md`.
+- **Core values applied:** Maximize P(Win) (falsifiable discovery, honest negatives) and Own the Outcome (automatic inspection, provenance, blockers stated).
+- **Irregularities:** `IRREGULARITIES.md` `IR-91-S12-01..11`. Limitations: `LIMITATIONS.md`, "Session 12 additions".
 
 ## FUSE91 SESSION STATUS (2026-10-24, branch `arena/fa0fb617-gemsdoe91`) — newest lane; new same-instrument holdout best
 
-**Verdict: OK TO DOWNLOAD AND SUBMIT — this file only, instead of the unsubmitted DENOVO/MHTR/DD-VTC candidates (mutual exclusion, IR-F91-01). Selector still confirms the live weekly allowance, eligibility and AI disclosure. No slot used by this session. No organizer score claimed.**
+**Verdict: OK TO DOWNLOAD AND SUBMIT — this file only, instead of the unsubmitted DENOVO/MHTR/DD-VTC/CCR91 candidates (mutual exclusion, IR-F91-01). Selector still confirms the live weekly allowance, eligibility and AI disclosure. No slot used by this session. No organizer score claimed.**
 
 - **[Download FUSE91-E1 submission GeoTIFF (138,651 B)](docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif)** · **[Single-TIFF ZIP](docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.zip)** · **[Format receipt](docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.json)** · **[Evidence page](docs/fuse91.html)** · **[Step-by-step submission guide](docs/fuse91-executive-summary.html)** · **[JSON run card](docs/run-card-F91.json)** · **[Session report](docs/FUSE91_20261024.md)** · **[Preregistration](docs/HYPOTHESES_F91.md)**
 - **Unique name:** `gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros` · **SHA-256:** `feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3` · **Note (60/140):** `GEMS91 FUSE91 E1 CTX+ASCstep+depthcond HGB 37654d s2.8 zeros`
 - **Scores (labelled):** **0.167293 HOLDOUT-DTI** (identical whole-component instrument, 60,988 withheld, fold-mean 95% CI [0.165907, 0.168782]) = **+17.1% over the prior same-instrument best 0.142885**; E2 scatter-cover 0.156357, E3 collar-ring 0.166074, random control reproduced the prior receipt exactly (0.070827). SGMC control REPORT-ONLY 0.070556 vs R0 0.095386 (disagreement disclosed). ORGANIZER-CONFIRMED: none.
-- **Gates, no human inspection:** 52-feature leakage canary PASS (max sym. AUC 0.6028); format PASS in three suites on the written bytes (all-finite [0,1], no nodata tag — the portal range error cannot trigger); surface novelty PASS (|ρ| ≤ 0.2191, 60 rasters); dot novelty vs organizer-scored fleet lineage ≤ 45.07% (vs R0 37.51%). **Disclosed deviation:** the literal directed dot gate fails vs this repo's own unsubmitted DENOVO/MHTR/DD-VTC predecessors (81.09%/74.44%/70.36%; exact-pixel overlap ≤16.8%; zero predecessor pixels read) — submit only one file from this family.
+- **Gates, no human inspection:** 52-feature leakage canary PASS (max sym. AUC 0.6028); format PASS in three suites on the written bytes (all-finite [0,1], no nodata tag — the portal range error cannot trigger); surface novelty PASS (|ρ| ≤ 0.2191, 60 rasters); dot novelty vs organizer-scored fleet lineage ≤ 45.07% (vs R0 37.51%). **Disclosed deviation:** the literal directed dot gate fails vs this repo's own unsubmitted DENOVO/MHTR/DD-VTC/CCR91 predecessors (81.09%/74.44%/70.36%; exact-pixel overlap ≤16.8%; zero predecessor pixels read) — submit only one file from this family.
 - **Why 0.2778 (CLAIM) led and what beating it takes:** byte-verified thinning+collar-prune lineage and nested-pair metric inversion in `docs/FUSE91_20261024.md` §1 (evidence `evidence/forensics_f91_20261024.json`); GEMSDOE32's own page calls that file UNSCORED, and the official leaderboard read 2026-10-24 is #1 0.4413 — neither brief number was used as a gate.
 - Method: HGB on 28 context + 18 antisymmetric-step + 6 new depth-conditioned conductivity/curvature features (`src/gems91/fuse91.py`, driver `scripts/build_fuse91.py`); shared evaluator/writer reused. Three preregistered experiments exactly; budget closed.
 
 ## SESSION 11 DISCOVERY LANE (`S11-MHTR`, 2026-10-24, branch `arena/8d9056a3-gemsdoe91`) — NEW #1 `HOLDOUT-DTI` (`0.206406`) & BLIND `SGMC` (`0.097623`)
 
-- **[Download S11-MHTR E2 Certified Range-Safe GeoTIFF (`253 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif)** · **[Single-TIFF ZIP (`218 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip)** · **[Format Audit Receipt (`.json`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-audit.json)**
+> **CURRENT SESSION REVIEW — 2026-10-24 / `arena/a0841715-gemsdoe91`: NEGATIVE; NOT OK TO SUBMIT.** This session ran no experiment, generated no TIFF and used no slot because the assigned lane paragraph is not identifiable. See [`docs/REVIEW-A0841715-20261024.md`](docs/REVIEW-A0841715-20261024.md) and [`docs/run-card-arena-a0841715.json`](docs/run-card-arena-a0841715.json).
+
+> ## CURRENT SESSION — CCR91 (2026-10-24; branch `arena/02c6b911-gemsdoe91`)
+>
+> **A NEW, METHOD-UNIQUE GEOTIFF WAS GENERATED. OK TO DOWNLOAD FOR RESEARCH: YES. OK TO SUBMIT: NO.**
+>
+> **[Download the new all-finite CCR91 GeoTIFF](docs/downloads/gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif)** · [single-TIFF ZIP](docs/downloads/gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.zip) · [executive summary](docs/ccr91-executive-summary.html) · [full three-pass report](docs/CCR91_20261024.md) · [JSON run card](docs/run-card-CCR91.json) · [five preregistered hypotheses](docs/HYPOTHESES_CCR91.md).
+>
+> - **Method:** new depth-compensated B17 conductivity residual + residual gradient/DoG + B13/B05 gravity-edge corroboration under cover. No previous submission pixels were copied.
+> - **File identity:** `gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif`; SHA-256 `ab500a3caa50f00ec0855dc88006a2d3e31f5e5f4cde726ef391e30f6eb4cd6b`; 48,000 dots. Its hash is absent from the existing ledger/tracked raster set. Distinct bytes do not by themselves prove protocol novelty.
+> - **Measured result:** **0.202116 HOLDOUT-DTI** (`gems91-hide-recover-v1.0`, 60,988 withheld positives, 95% CI `[0.191589, 0.213715]`), below the **0.206406 HOLDOUT-DTI** same-evaluator reference (60,988 withheld positives, historical 95% CI `[0.193796, 0.220176]`). No organizer receipt exists.
+> - **Automated gates:** six new feature-alone canaries PASS (worst symmetric AUC `0.56006 ≤ 0.90`); pre-placement surface PASS (`max |ρ| = 0.22224 ≤ 0.90`); all format/range/grid validators PASS; final dots **DUPLICATE** (`99.769% > 70%` within 3 px of `calib_r13lattice_00904.tif`). The run stopped after experiment 1 of 3. Zero weekly slots used.
+> - **Writer correction:** the shared registry gate previously substituted symmetric F1 for dense references, contradicting the literal directed-overlap rule. `scripts/evaluate_holdout.py` now applies candidate→registry overlap to every raster and exposes a true pre-placement surface gate. This also supersedes old S11/H91 promotion text: remeasurement gives `99.8146%` and `99.7448%` lattice overlap respectively, so neither is currently OK to submit.
+> - **Form note (106/140):** `CCR91 research-only: depth-compensated conductivity+gravity contact; duplicate gate failed; do not submit.`
+>
+> **Why the reported GEMSDOE32 `0.2778` led and whether we can beat it:** no organizer receipt in this checkout proves that value or its cause. Byte forensics verify thinning, isolated-dot pruning, and catalogue-near deletion; under max-kernel DTI those edits plausibly reduce redundant false-positive mass, but that is a mechanism, not causal proof. CCR91 does not justify a claim that we can beat `0.2778`: it missed the current local holdout best and failed literal novelty. See [`docs/CCR91_20261024.md`](docs/CCR91_20261024.md).
+>
+> **Other parallel negative lanes now on main:** [UCD91](docs/ucd91.html) measured `0.113442` HOLDOUT-DTI (`gems91-hide-recover-v1.0`, 60,988 withheld positives, 95% CI `[0.103611, 0.121110]`); [MTD91](docs/mtd91.html) measured `0.023903` HOLDOUT-DTI (same evaluator/positives, 95% CI `[0.021318, 0.026004]`). Both are research-only and NOT OK TO SUBMIT. Their artifacts and evidence are preserved rather than overwritten.
+>
+> The full user project brief remains stored below and in [`docs/SESSION_BRIEF_S11.md`](docs/SESSION_BRIEF_S11.md); read it, this status block, the run card, `IRREGULARITIES.md`, and `LIMITATIONS.md` at the start of each session. A clean clone has no ignored `data/`; this session restored all 15 declared pins locally and verified their hashes before running. Historical sections below are audit records, not current upload approvals.
+
+## Historical S11-MHTR research candidate — NOT approved for submission
+
+**Do not upload the S11-MHTR TIFF.** Its “promote” run-card label means the winner within that historical experiment lane, not final repository readiness. The locally reported 61-real-raster comparison is limited in scope; `IR-CED-003` flags a near-universal synthetic lattice and shared policy retains the file as research-only pending a selector decision and live slot check. Its holdout result is not an organizer-confirmed competition score, and does not establish that it beats the prompt-reported `0.2778`.
+
+## SESSION 11 DISCOVERY LANE (`S11-MHTR`, 2026-10-24, branch `arena/8d9056a3-gemsdoe91`) — `HOLDOUT-DTI` (`0.206406`) & blind `SGMC` (`0.097623`)
+
+- **[Download S11-MHTR E2 Research-Only Range-Safe GeoTIFF (`253 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif)** · **[Single-TIFF ZIP (`218 KB`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip)** · **[Format Audit Receipt (`.json`)](docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-audit.json)**
 - **[S11-MHTR Interactive Audit Portal](docs/s11-mhtr.html)** · **[S11 Executive Submission Guide](docs/s11-executive-summary.html)** · **[S11 Pre-Registered Hypotheses (`H11-1`..`H11-5`)](docs/HYPOTHESES_S11.md)** · **[S11 JSON Run Card](docs/run-card-S11.json)**
 - **Candidate ID:** `gems91-mhtr-e2-20261024T170000Z-9554f718` · **SHA-256 (`-zeros.tif`):** `dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15` · **SHA-256 (`.tif` NaN twin):** `9554f7183b39f2825432533a4276f3a95b4dae26887c2df3ad2b13793bb2ac94`
 - **Form Note (`104/140` chars):** `GEMS91 S11 E2 (H11-1 + H11-2): Marussi grav Hessian+Band6 rad TC+updip submod (48000d >3px, [0,1] zeros)`
@@ -27,7 +62,7 @@
   1. `Band 06 (tc)` in `training_features.tif` is the **Official GeoDAWN Airborne Radiometric Total Count (`TC`)** (`r = 0.99677` with GeoDAWN Radiometric Band 4 `'TC'`), not magnetic tilt or gravity terrain correction — unlocking 100% licence-clean radiometric fault-contact and potassic-alteration detection.
   2. `(Band 11, Band 18)` is the **2-D Horizontal Gravity Gradient Vector** $(\partial_y G, \partial_x G)$ ($\operatorname{hypot}(\text{B11}, \text{B18})$ reproduces `Band 05` with `r = 0.9467`), enabling exact reconstruction of the **2×2 Horizontal Marussi Gravity Hessian**, true Laplace $\partial^2 g_z / \partial z^2 = -(\partial_x \text{B18} + \partial_y \text{B11})$, and Eötvös differential curvature $\lambda_1 - \lambda_2$.
   3. Removing intra-segment self-proximity (`fc_vis_*`) from tree splits eliminates train-to-test covariate shift into blind test quadrants.
-- **Automated Gate Verdict:** **All 4 repository validator suites (`gems91.gates`, `gems91.release_gates`, `validate_raster.py`, `vendor.gems57.validate`), `[0, 1]` range (`min=0.0, max=1.0, nodata=None, 0 NaNs`), sterile-collar (`min_d_cat = 3.1623 px > 3.0 px`), 68-feature leakage canary (`<= 0.6610`), and 62-real-fault-raster uniqueness (`<= 69.82%` 3-px overlap; `41.58%` vs `R0`, `12.66%` vs `CED91`, `48.69%` vs `DENOVO`, `33.05%` vs `ASC91`, `68.04%` vs `H91-1`) PASSED.** Under shared repo policy (`src/gems91/readiness.py` & `IR-CED-003`), spending a live weekly DrivenData slot (`<= 3/week`) remains a separate human selector step.
+- **Current automated verdict:** format/range, sterile-collar and leakage checks PASS, but strict directed novelty **FAILS**: `99.8146%` of dots are within 3 px of `calib_r13lattice_00904.tif` (`>70%`). The older 62-real-fault-raster receipt used a dense-reference symmetric-F1 exception and is retained only as historical evidence. **NOT OK TO SUBMIT.**
 
 ## ASC91 SESSION STATUS (2026-10-24, branch `arena/5486e004-gemsdoe91`) — newest lane, negative verdict
 
@@ -992,7 +1027,7 @@ The project performs inspection automatically. No human inspector is needed to d
 
 ## Start every session here
 
-**Read this README, including the original user brief below, before working.** Then read the latest `docs/run-card.json`, `IRREGULARITIES.md`, `LIMITATIONS.md`, and `docs/REVIEW-CED91.md`. Historical MODEL/PROXY projections and archived slot queues are not comparable HOLDOUT-DTI or organizer receipts. Do not rerun or tune the stopped CED experiment to evade a failed gate.
+**Read this README, including the original user brief below, before working.** Session 12 onward, also read `docs/SESSION_BRIEF_S12.md` (the current standing brief). Then read the latest `docs/run-card.json`, `IRREGULARITIES.md`, `LIMITATIONS.md`, and `docs/REVIEW-CED91.md`. Historical MODEL/PROXY projections and archived slot queues are not comparable HOLDOUT-DTI or organizer receipts. Do not rerun or tune the stopped CED experiment to evade a failed gate.
 
 Core values applied to this project:
 

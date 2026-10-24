@@ -120,6 +120,35 @@ research artifact or revive legacy model-projected queues.
    - **Synthetic Lattice Cover Policy (`IR-CED-003`):** `calib_r13lattice_00904.tif` (`206,895` dots) covers `99.8713%` of the footprint within 3 px (`6,649` uncovered pixels), making unweighted directed 3-px overlap $> 70\%$ for any prediction with $\ge 22,164$ dots; under symmetric F1 overlap (`evaluate_holdout.py`) and top-K mass comparison (`registry_scan.py`), `S11-MHTR E2` passes (`<= 0.33`).
    - **Competitor Eligibility & AI Disclosure (`TP-5700-96647` §1.3 & §3.2):** Only the human competitor can sign the U.S. eligibility attestation and include the generative-AI disclosure (`AI_USE.md`) in the competition narrative.
 
+## Session 12 additions (2026-10-24, `arena/80f7c032-gemsdoe91`)
+
+1. **No assigned lane (again).** The session brief has no method paragraph (IR-91-S12-01, recurrence of IR-91-S11-01). The agent chose H12-1 (physics-only gravity–magnetic co-location). The `assigned_lane` gate stays False, so no candidate from this session can be promoted.
+2. **No submission-ready candidate.** H12-1 scored below both the B0 baseline and the S11 candidate. No new GeoTIFF was generated. The S11 candidate remains "OK to download as research, NOT OK to submit" under the fail-closed readiness gate (IR-91-S12-02).
+3. **Self-declared verdicts are not evidence.** The S11 and H91 cards say PROMOTE; the shared gate says no. The portal follows the gate.
+4. **The holdout measures catalogue recovery.** Every HOLDOUT-DTI in this session comes from `gems91-hide-recover-v1.0`. It does not measure the organizer's score on new faults (IR-91-S10-04). A holdout gain is not a leaderboard prediction.
+5. **0.2778 and 0.3195 are not verified.** No organizer receipt exists (IR-91-S10-05, IR-91-S11-09). The public board read on 2026-10-24 has 0.4413 at #1 and 0.2818 at #50. The claim "0.2778 is the highest" cannot be checked against the organizer's board.
+6. **Band 6 identity is uncertain** (IR-91-S12-04). The label, the H91 hypothesis note and the S11 correlation disagree. The positive range rules out tilt, but the TC identity rests on correlation only.
+7. **Band 18 is a vector component, not a magnitude** (IR-91-S12-03). Any feature that treats it as a scalar gradient is wrong.
+8. **The duplicate gate does not discriminate** on this registry: a random-placement null passes it (IR-91-S12-10).
+9. **Registry scope is 8, 11 or 62 depending on the code path** (IR-91-S12-06). No "complete registry" statement is possible.
+10. **Cache-name drift** between the H91 and S11 lanes was bridged with one gitignored symlink for reproduction only (IR-91-S12-07).
+11. **Human-only obligations** (IR-91-S12-08): eligibility certification (§1.3), the perjury certification of the submission package (§A.1), public-element and FOIA disclosure (§A.4, §A.10), originality and third-party-content representations (§A.5), and AI-use disclosure (§3.2). The agent cannot satisfy these.
+12. **Experiment budget.** 2 of 3 experiments used (one of them an invalid attempt; IR-91-S12-03). Reproductions and controls are not counted.
+13. **Public GitHub Pages publication** of research TIFs is a disclosure decision under §A.4. The portal says "research only" and does not advertise any file as a submission.
+
+## CCR91 current-session limitations (2026-10-24, `arena/02c6b911-gemsdoe91`)
+
+1. **Negative deliverable, not an upload candidate.** The new all-finite TIFF is downloadable for research but fails the current-best holdout criterion and the literal final-dot overlap gate. `ok_to_submit` is false; no slot was used.
+2. **Lane assignment is absent.** CCR91 was selected autonomously from an existing preregistration because the brief forbids manual input. It is explicitly provisional and cannot be promoted as an assigned lane.
+3. **Directed overlap makes the historical best noncompliant too.** The shared dense-reference F1 exception was wrong under the literal wording and is now fixed. The near-universal lattice causes CCR91, S11 and H91 to fail. Changing/removing the reference or threshold requires shared protocol governance; tuning dots around it is not authorized.
+4. **Registry incomplete.** Two of 64 frozen references cannot be restored. Available-scope checks are not universal fleet clearance.
+5. **Holdout target mismatch.** The shared holdout recovers mapped catalogue faults; organizer truth concerns newly interpreted faults. Even a higher holdout result would not be a leaderboard projection.
+6. **No organizer receipt or live account state.** DrivenData is outside the network allowlist and there is no authenticated session. Current leaderboard, weekly allowance, deadline and receipt cannot be asserted here.
+7. **Mirror provenance and redistribution remain unresolved.** All 15 pins match declared mirror hashes and lengths. This proves mirror identity, not organizer authenticity or permission to republish competition data. The published artifact is derived output only.
+8. **Eligibility/disclosure are human-only.** The agent cannot attest citizenship/residency, sign rules, approve generative-AI disclosure, or spend a slot.
+9. **Experiment budget stopped correctly.** E1 consumed 692.60 seconds and failed final novelty. E2/E3 were not run. Cached revalidation and tests are engineering checks, not permission to resume the geological budget.
+10. **Next useful work:** resolve lane assignment and lattice policy, restore/retire the two missing pins, freeze a complete pre-experiment registry, and establish a protocol-compliant same-evaluator baseline before another hypothesis run.
+
 ## FUSE91 session additions (2026-10-24, `arena/fa0fb617-gemsdoe91`)
 
 1. **New holdout best, same caveats.** FUSE91-E1 reaches 0.167293 HOLDOUT-DTI
