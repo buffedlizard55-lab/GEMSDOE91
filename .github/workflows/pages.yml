@@ -36,6 +36,17 @@ jobs:
           python-version: '3.11'
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Select Actions publisher for the already-enabled Pages site
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TYPE=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type)
+          if [ "$TYPE" != workflow ]; then
+            gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" -f build_type=workflow
+          fi
+          test "$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type)" = workflow
+      - name: Check every tracked artifact, including quarantined parallel outputs
+        run: python scripts/check_artifact_policy.py
       - name: Refresh labelled GitHub source feed (no organizer scraping or experiments)
         run: python scripts/audit_fleet.py
         env:

@@ -50,7 +50,8 @@
       "spearman": 0.0462,
       "pct_within_3px": 30.68
     },
-    "verdict": "NOT a duplicate of any registry raster"
+    "verdict": "PASS WITHIN THAT PARTIAL INDEX ONLY; common-protocol novelty remains UNVERIFIED",
+    "scope": "Seven pinned rasters only; not the frozen 64-file reference set, not a universal uniqueness claim."
   },
   "raster": {
     "file_zeros_primary": "gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
@@ -79,7 +80,13 @@
   },
   "shared_tool_fix": "src/gems91/metric.py summed p*k per truth pixel; official metric takes the max. Fixed once here (IR-91-37); scripts/dti.py was already correct; both now agree <1e-9.",
   "organizer_confirmed_score": null,
-  "verdict": "promote",
-  "verdict_scope": "Promote to ONE weekly slot as the unique-lane test (human submits; agent never submits). NOT a blind-final candidate on current evidence (SGMC instrument disagrees). If the receipt is <= R0 claim, this lane is a negative result and the next lane is H4 (1m-DEM re-derivation, IR-91-40).",
-  "post_merge_status_2026_10_24": "Merged with GEOD + CED lanes. Under main's fail-closed readiness policy (src/gems91/readiness.py) this file has no selector approval and only indexed-scope (7-raster) novelty, so submission_ready=false until a selector records otherwise. The 'promote' verdict above is this lane's pre-merge recommendation, retained verbatim for audit."
+  "verdict": "negative",
+  "verdict_scope": "Current policy: blocked, research only. No re-evaluation performed. The original promotion recommendation is preserved as historical_pre_merge_recommendation, not upload permission. Partial 7-raster novelty, incompatible local evaluator/splits/uncertainty, and missing selector/live allowance prevent promotion.",
+  "post_merge_status_2026_10_24": "NOT OK TO SUBMIT; current policy supersedes the preserved historical recommendation. No scientific experiment or additional registry comparison performed in the operational follow-up.",
+  "historical_pre_merge_recommendation": {
+    "verdict": "promote",
+    "verdict_scope": "Promote to ONE weekly slot as the unique-lane test (human submits; agent never submits). NOT a blind-final candidate on current evidence (SGMC instrument disagrees). If the receipt is <= R0 claim, this lane is a negative result and the next lane is H4 (1m-DEM re-derivation, IR-91-40).",
+    "source": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/3e2df45f3107038e693285e426f4324f90e4e4f9/reports/run_card_20261024.json"
+  },
+  "submission_ready": false
 }

@@ -937,14 +937,28 @@ file: **[DENOVO-HGBCTX](docs/denovo.html)** — download
 `GEMSDOE91 DENOVO-HGBCTX de novo sponsor-band HistGB+context, 37654 spaced dots >300m off-cat; holdout 0.1429 pooled`.
 De novo HistGB detector on pinned sponsor bands only (no R0/ancestor dots), 3 preregistered
 experiments on a whole-segment blocked holdout (**HOLDOUT-DTI 0.142885 pooled**, evaluator
-`scripts/dti.py` official max-credit DTI, 60,988 withheld positives, fold 95% CI
+`scripts/dti.py` lane-local max-credit DTI (not independently organizer-authenticated here), 60,988 withheld positives, fold 95% CI
 [0.128860, 0.155952]); uniqueness vs 7 pinned registry rasters max Spearman 0.1133 / max
 40.41% dots within 3 px (indexed scope only — *not* the 64-file universal inventory the CED
 gate uses); SGMC control disagrees (IR-91-39), MODEL live range ~0.20–0.29.
 **Selector status: not approved here.** This lane's own verdict was "promote to one weekly
 slot as a test", but under the merged fail-closed policy (`src/gems91/readiness.py`) it has
 **no selector approval and no complete-universal-registry novelty pass**, so it is **NOT OK
-TO SUBMIT until a selector records otherwise** — the portal verdict above governs. Full
+TO SUBMIT** — selector approval cannot waive novelty or evaluation gates; the portal verdict above governs. Full
 analysis: `docs/DENOVO_20261024.md`; run card `reports/run_card_20261024.json`;
 IR-91-36…41. Its metric-bug fix independently converged with main's vendor adapter
 (same IR-91-37); `scripts/dti.py` was the evaluator of record for its holdout.
+
+### Operations follow-up after concurrent PR32
+
+The DENOVO files are explicitly `parallel_quarantined` in the artifact policy,
+not copied/rebuilt or newly evaluated by the CED session. Its original “promote”
+recommendation remains in history; the current peer run card and page say
+**NOT OK TO SUBMIT**. Its different evaluator/splits/uncertainty are not a
+comparable HOLDOUT-DTI best for CED. No additional geological experiment or
+novelty raster comparison was performed.
+
+The direct Pages setting update was denied (`403 Resource not accessible by
+integration`). A workflow step attempts to select the Actions publisher using
+its already-declared `pages: write` permission. This is a configured attempt,
+not a claim of deployment. See the [actual Pages workflow status](https://github.com/buffedlizard55-lab/GEMSDOE91/actions/workflows/pages.yml).

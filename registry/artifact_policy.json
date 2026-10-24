@@ -24,6 +24,18 @@
       "sha256": "237821ec2e75a1f92d3392c038e386833936875bc04acf4c8d7181a0fd05bea4",
       "status": "current_research_only",
       "reason": "Local format PASS; duplicate stop; not a competition-approved submission."
+    },
+    {
+      "path": "docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
+      "sha256": "8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent PR32 artifact preserved without new evaluation. Different instrument, partial 7-file novelty scope, no common-protocol or selector clearance; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.zip",
+      "sha256": "0050182ff1d7babb100f4257b62706c94f307633f5c7ee780f2a2ac5580412ae",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent PR32 artifact preserved without new evaluation. Different instrument, partial 7-file novelty scope, no common-protocol or selector clearance; NOT OK TO SUBMIT."
     }
   ]
 }
