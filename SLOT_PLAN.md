@@ -1,6 +1,90 @@
 # SLOT PLAN — 1 entity, 3 scored slots / rolling week, 1 blind final pick
 
-**Calendar (`2026-10-24` UTC):** `40 days` (`5.71` rolling 7-day weeks = `15–18` scored slots if none has been spent yet) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `50` `BUILT` rows across seven axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SPACING`, `RELIEF`, `SNAP`, `TRACKB`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
+**Calendar (`2026-10-24` UTC):** `40 days` (`5.71` rolling 7-day weeks = `17` scored slots) to the **unconfirmed** `2026-12-03` deadline ([DrivenData #306](https://www.drivendata.org/competitions/306/gems-geothermal-fault-mapping/)). **Ledger:** `53` `BUILT` rows (50 + concurrent strain build `arena/6f079276`, merged PR #26) across seven axis families (`CONCENTRATION`, `PRUNE`, `MASS`, `SNAP`, `RELIEF`, `SPACING`, `TRACKB`), `0` `SUBMITTED`, `0` live `RECEIPT`s (`R0 = 0.2778` `CLAIM`). Never use multi-account feedback; `|Δ| < 0.01` = no evidence.
+
+## Session 8 (`arena/40027ebc-gemsdoe91`) — `CONCENTRATION` on the legal collar; **revised queue**
+
+Built and gated (`14/14` conform + `validate_release` PASS on both encodings, `0` new dot
+`<= 3 px`, count fixed `37,654`, `IR-91-33/34`): `collar10` (`00cfbe95`), `collar20` (`106ae19b`),
+`anti10` (`0e42d6ab`). Matched-dose design: `collar10` and `anti10` move the same `3,765` dots
+with the same machinery and opposite priors.
+
+| arm | moved | CV 1 km | SGMC off-cat. rel Δ (`PROXY`) | LCR ΔDTI (`PROXY`) | lineage rel Δ | `MODEL` |
+|---|---:|---|---:|---:|---:|---|
+| `collar10` | 10.00 % | 0.6187→0.6037 | −2.02 % | −0.0264 | −8.76 % | **−0.006** `[−0.026,+0.008]` |
+| `collar20` | 20.00 % | 0.6187→0.5859 | −3.90 % | −0.0507 | −17.51 % | **−0.011** `[−0.051,+0.008]` |
+| `anti10` | 10.00 % | 0.6187→0.6312 | **+2.14 %** | −0.0266 | −8.72 % | **+0.006** `[−0.027,+0.014]` |
+
+Uniform-acceptor null (diagnostic only): SGMC −0.66 % rel. **What it means:** the collar prior is
+*worse than uniform* on the only independent fault catalogue; the mirror direction is +2.8 %
+better than uniform; and the LCR penalises every move because R0's dots sit on the lineage
+field's maxima. The catalogue PROXY is invariant by construction (`3.05 px` floor vs a `3 px`
+kernel), so no local instrument can test the collar hypothesis itself — the arms ride on the
+organiser's sentence about new faults near known traces, nothing more.
+
+**Revised next 3 slots (supersedes the Week-1 table below, which was written before this test):**
+
+| Slot | Candidate | Pred. Δ (`MODEL`) | What the receipt changes |
+|---:|---|---:|---|
+| **1** | **R0 anchor** (`baeae321`, costs a slot only if no receipt is held) | `0.2778` `CLAIM` | Without it every prediction in this repo is unanchored; it is the cheapest information available and no axis can substitute for it. |
+| **2** | `h33-h33-2-b2-PRUNE-le10-norefill-20261023-04002dae.tif` | +0.008 | The only axis whose sign comes from the metric algebra (each zero-credit dot costs `0.2·(1−m)`), not from a locator. `Δ ≥ +0.010` rebases the winners onto a pruned parent; `\|Δ\| < 0.010` retires mass cutting. |
+| **3** | `h33-h33-2-b2-MASScons3add-20261023-2803126d.tif` | +0.009 | The recall direction: `T` enters the numerator in full while added mass costs only `0.2·(1−m)`. Best numerator/denominator asymmetry of the built set. |
+
+**Do not spend a slot on:** `gdr25rm10` (`c19adb01`, +0.0123 `MODEL`) — its prediction is a
+`KAPPA=0.1` shrinkage of a *prior-as-truth* surrogate, i.e. the prior scored against itself, and
+this session shows relocation answers to a circular reference; `collar10`/`collar20` (predicted
+losses); `SNAP` (IR-91-28..30). `anti10` is the one reserve: a single slot on it would settle the
+collar-vs-remote question with a matched dose, and nothing else in the fleet can.
+
+**Weeks to the deadline:** wk 1 slots 1–3 as above; wk 2 bracket whichever of `le10`/`cons3add`
+landed `≥ +0.010` (delete-only `le15` `1ca1ff6f` vs add `cons3add`, i.e. is the optimum below or
+above 37.7 k dots?); wk 3–4 compose the surviving direction with the collar test only if `anti10`
+received a receipt; wk 5–6 re-validate the best file and a fallback (`-zeros` twin), then one
+blind final pick.
+
+**Proposed better axes (not built this session).**
+
+1. **`MASS` — substitution-ranked add.** Add `n` dots at cells that are `> 3 px` from every
+   existing dot **and** on the densest lineage support, i.e. fill the kernel gaps the `d2.8`
+   thinning left in the traces. *Mechanism:* `T` is a per-truth-pixel max, so a dot only earns
+   what its neighbours do not; the gaps are exactly where marginal credit is largest.
+   *Confounder:* the same field that drew the dots; a gap may be a genuinely absent trace.
+   *Falsifier:* a 10 %/20 % add ladder that does not beat `cons3add` (`2803126d`) by +0.006 on
+   the SGMC control and +0.010 live leaves count expansion closed.
+2. **`CONCENTRATION` — along-strike extension of mapped trace ends.** Move `10 %` of the far
+   field onto cells `3-6 px` beyond the *terminations* of mapped traces (catalogue skeleton
+   endpoints), not along their flanks. *Mechanism:* the organiser defines "new fault" to include
+   newly mapped geometry of existing systems, and tip/step-over zones are where that geometry
+   appears ([Faulds inventory, USGS](https://pubs.usgs.gov/ds/1052/)). *Confounder:* trace ends
+   in a 1:250 k map are as often cartographic as geological. *Falsifier:* if this beats `collar10`
+   by `≥ +0.006` on SGMC, the collar effect is a tip effect and the flank band is the wrong prior.
+3. **`PRUNE` — collar-cost titration at fixed count.** Sweep the exclusion radius `1…6 px` in
+   `0.5 px` steps at fixed count (refill from the far field). *Mechanism:* the 3 px floor in
+   brief §4.4 is a *hypothesis about the scorer*, not a measurement; the collar dots earn at most
+   `k = 1 − 2.24/3 = 0.253` on a mapped trace and nothing at all if the trace is masked.
+   *Confounder:* refills change location as well as collar membership. *Falsifier:* no monotone
+   receipt across the ladder closes the collar question from the cost side.
+
+## Session 8, concurrent strain build (`arena/6f079276-gemsdoe91`) — `CONCENTRATION` geodetic-strain prior (`strn25m10`, `strn25m20`, `strd25m10`)
+
+Ran concurrently with the collar session above from the same base (both labelled Session 8
+in their own records; strain IR items renumbered IR-91-35/36/37 at merge). Implements the
+geodetic-strain proposal in the older list below (sponsor bands 4/7/8, percentile ranks,
+the GDR arms' builder/settings, donors collar-quarantined per IR-91-27/35;
+`docs/MECHANISM_CARDS_STRAIN.md`, `evidence/strain_concentration_20261024.json`).
+**All three arms are predicted negative under the frozen SGMC translator, dose-monotone:**
+`strn25m10` (`85cc49d2`, **−0.0056** `MODEL`), `strn25m20` (`a88ce2c2`, **−0.0200`),
+`strd25m10` (`106e87d9`, **−0.0152`). Calibrated controls (`reports/strain_control_diagnostics_20261024.json`):
+the same operation under a random prior costs −0.0040 and under the GDR priors only
+−0.0009/−0.0024 (`PROXY`) — strain is worse than random relocation on the off-catalogue
+map, and the catalogue's strain-decile rise does not replicate on SGMC-only faults
+(IR-91-37). **Not queued under the revised queue above:** strain sits behind `anti10` as a
+second reserve — at most `strn25m10`, and only if a concentration-family receipt (`anti10`,
+or `gdr25rm10` if the human buys it anyway) first contradicts the SGMC translator's sign
+for relocation edits. What its receipt would change: `strn25m10` ≥ +0.010 live ⇒ SGMC
+transfer fails for block priors and province-scale priors reopen; ≤ −0.006 ⇒ the
+geodetic-prior family (incl. the literal `geod_2ndinv × S_struct` form, IR-91-36) is
+retired without spending slots on `strn25m20`/`strd25m10`.
 
 ## Session 5 (`arena/42de3fed-gemsdoe91`) addition: `RELIEF` (`r2p12`, `r2b12`, `b2r12`)
 
@@ -28,26 +112,6 @@ locator is the off-catalogue USGS SGMC map, and there the sign is negative and g
 **Slot guidance:** SNAP stays out of the top 3. If the human wants an axis-retirement test, spend
 one slot on `s2c` (predicted no change); `s2f` is a negative control, not a slot candidate.
 The three arms are one dose-response experiment — do not spend three slots on them.
-
-## Session 8 (`arena/6f079276-gemsdoe91`) addition: `CONCENTRATION` geodetic-strain prior (`strn25m10`, `strn25m20`, `strd25m10`)
-
-Implements pre-proposed better-axis #1 below (sponsor bands 4/7/8, percentile ranks,
-same builder/settings as the GDR arms, donors collar-quarantined per IR-91-27/33;
-`docs/MECHANISM_CARDS_STRAIN.md`, `evidence/strain_concentration_20261024.json`).
-**All three arms are predicted negative under the frozen SGMC translator, dose-monotone:**
-`strn25m10` (`85cc49d2`, **−0.0056** `MODEL`), `strn25m20` (`a88ce2c2`, **−0.0200**),
-`strd25m10` (`106e87d9`, **−0.0152`). Calibrated controls (`reports/strain_control_diagnostics_20261024.json`):
-the same operation under a random prior costs −0.0040 and under the GDR priors only
-−0.0009/−0.0024 (`PROXY`) — strain is worse than random relocation on the off-catalogue
-map, and the catalogue's strain-decile rise does not replicate on SGMC-only faults
-(IR-91-35). Per the session's preregistered slot rule (strain takes slot 3 only at
-predicted ≥ +0.010), **the Week-1 queue below is unchanged.** Strain joins SNAP as a
-reserve retirement test: at most one slot, `strn25m10`, and only if the GDR slot-1
-receipt first discredits the SGMC translator for concentration edits generally.
-What the receipt would change: `strn25m10` ≥ +0.010 live ⇒ SGMC transfer fails for
-block priors and province-scale priors reopen; ≤ −0.006 ⇒ the geodetic-prior family
-(incl. the literal `geod_2ndinv x S_struct` form, IR-91-34) is retired without
-spending slots on `strn25m20`/`strd25m10`.
 
 ## Next 3 scored slots in order (Week 1: one orthogonal axis per slot)
 
@@ -78,7 +142,7 @@ spending slots on `strn25m20`/`strd25m10`.
 
 ## Proposed better axes (not built this session; all inputs now verified)
 
-1. ~~**`GEODETIC-STRAIN CONCENTRATION`**~~ (`Band 4 geod_2ndinv` + `Band 7 geod_shearrate`) — **BUILT Session 8** (`strn25m10`/`strn25m20`/`strd25m10`, all predicted negative; do not rebuild; IR-91-34/35)
+1. ~~**`GEODETIC-STRAIN CONCENTRATION`**~~ (`Band 4 geod_2ndinv` + `Band 7 geod_shearrate`) — **BUILT Session 8 strain build** (`strn25m10`/`strn25m20`/`strd25m10`, all predicted negative; do not rebuild; IR-91-36/37)
    - **Mechanism:** Active transtensional shear maintains dilational geothermal permeability and unmapped Quaternary splays ([GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)); `geod_2ndinv` (`0.5793` `PROXY`) and `geod_shearrate` (`0.5761` `PROXY`) lead all 19 GeoDAWN bands on fault separation.
    - **Confounder:** ~50 km GPS station spacing smears strain across adjacent aseismic blocks.
    - **Falsifier:** Moving 20% of R0 mass into top-tercile `geod_2ndinv × S_struct` yields `Δ < +0.010` live vs R0.
@@ -91,10 +155,10 @@ spending slots on `strn25m20`/`strd25m10`.
    - **Confounder:** Shallow groundwater outflow plumes advect heat `2–8 km` down-gradient off the fault conduit.
    - **Falsifier:** Thermal-gated step-over reallocation scores `≤` isothermal `RELIEFr2p12` (`6ff08e5c`).
 
-4. **`STRAIN-SURPLUS CONCENTRATION`** (not built; Session 8 proposal)
+4. **`STRAIN-SURPLUS CONCENTRATION`** (not built; strain-build proposal)
    - **Mechanism:** interseismic strain must be released on structures; blocks whose geodetic strain percentile is high *relative to what the block's catalogue fault density can account for* (spatially held-out residual of block strain on block catalogue density) are where the missing structures should be — the strain budget the map has not yet spent.
    - **Confounder:** mapping completeness is heterogeneous (quadrangle vintage, access, cover), so "surplus" may map under-mapping, not under-faulting; the residual is also partly a re-statement of catalogue sparsity, and acceptor anchoring must not re-import the parent field (IR-91-07).
-   - **Falsifier:** before any build, the residual prior's SGMC-off decile profile is flat or falling (`PROXY` screen, IR-91-35); or a built 10% arm scores `Δ < +0.010` live. Only admissible after a CONCENTRATION receipt exists, so the operation itself is not re-tested at the same time.
+   - **Falsifier:** before any build, the residual prior's SGMC-off decile profile is flat or falling (`PROXY` screen, IR-91-37); or a built 10% arm scores `Δ < +0.010` live. Only admissible after a CONCENTRATION receipt exists, so the operation itself is not re-tested at the same time.
 
 ## Session 7 (`arena/0ed37053-gemsdoe91`) addition: `TRACKB` (Phase 2 only — does NOT change the queue above)
 

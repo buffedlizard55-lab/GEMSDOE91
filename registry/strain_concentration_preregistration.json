@@ -19,7 +19,7 @@
   "priors_frozen": {
     "strain": "0.5*pct(band4 geod_2ndinv) + 0.5*pct(band7 geod_shearrate) from pinned training_features (sha256 4371c82e...3bc5); pct = average-tie percentile rank over footprint pixels after nearest-cell (EDT) fill of nodata-Sentinel (<= -1e30) and non-finite cells inside the footprint; NaN outside footprint",
     "dilatation": "pct(band8 geod_dilaterate), same fill/rank; high percentile = most positive (expansion) value; sign convention per pinned band description 'rate of volumetric strain (expansion/contraction)' - an assumption, recorded",
-    "not_used": "S_struct multiplier from the SLOT_PLAN falsifier sentence is NOT applied: acceptor placement already anchors 80% of moved dots on existing parent dots, and multiplying by the Session-5 composite would make the prior partly lineage-derived (IR-91-07 failure mode). Logged as IR-91-34."
+    "not_used": "S_struct multiplier from the SLOT_PLAN falsifier sentence is NOT applied: acceptor placement already anchors 80% of moved dots on existing parent dots, and multiplying by the Session-5 composite would make the prior partly lineage-derived (IR-91-07 failure mode). Logged as IR-91-36."
   },
   "builder_frozen": {
     "function": "tools.run_concentration.build_concentration (the GDR arm's own builder)",
@@ -30,7 +30,7 @@
     "jitter_px": 4,
     "min_gap_px": 3.0,
     "min_sep_px": 2.0,
-    "donor_quarantine": "NEW vs the GDR build: parent dots at d_cat<=3.0px (the 2,171 inherited collar dots) may NOT be donors (IR-91-27 standard, as RELIEF/SNAP/TRACKB). The GDR builder allowed collar donors, silently mixing a partial PRUNE into CONCENTRATION. Logged as IR-91-33; implemented as an opt-in parameter defaulting to the old behaviour so GDR rebuilds stay byte-identical."
+    "donor_quarantine": "NEW vs the GDR build: parent dots at d_cat<=3.0px (the 2,171 inherited collar dots) may NOT be donors (IR-91-27 standard, as RELIEF/SNAP/TRACKB). The GDR builder allowed collar donors, silently mixing a partial PRUNE into CONCENTRATION. Logged as IR-91-35; implemented as an opt-in parameter defaulting to the old behaviour so GDR rebuilds stay byte-identical."
   },
   "variants": [
     {"value": "strn25m10", "prior": "strain", "frac": 0.10, "hypothesis": "Direct sibling of slot-1 GDR arm gdr25rm10 (same builder/settings, prior source swapped): active-strain blocks hold unmapped Quaternary splays that a springs inventory cannot see."},

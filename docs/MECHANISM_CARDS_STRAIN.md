@@ -29,15 +29,15 @@ high-block dot, 2 px minimum separation), count fixed — with exactly two diffe
    near-orthogonal to the GDR thermal prior (Spearman 0.075, top-30% block overlap
    30.8% ≈ chance — measured before build, `RECEIPT`), so this is a new location
    hypothesis, not a re-dose of slot 1.
-2. **Donor quarantine (IR-91-27/33).** R0's 2,171 inherited dots at 2 < d_cat ≤ 3 px
+2. **Donor quarantine (IR-91-27/35).** R0's 2,171 inherited dots at 2 < d_cat ≤ 3 px
    stay in place; donors and acceptor targets all sit > 3 px from the catalogue
    (collar 2,171 → 2,171 in every arm, `RECEIPT`). The GDR build allowed collar
    donors and quietly removed 259–274 of them (2171 → 1897/1911/1912): its receipt,
-   when bought, cannot be credited to the thermal prior alone (IR-91-33).
+   when bought, cannot be credited to the thermal prior alone (IR-91-35).
 
 Three measurements define what this axis actually is:
 
-- **The strain field is province-scale, not km-scale** (IR-91-35): autocorrelation 0.95
+- **The strain field is province-scale, not km-scale** (IR-91-37): autocorrelation 0.95
   at 25 km lag, 25 px vs 50 px block ranks 0.999, mean prior percentile 0.61 (west) vs
   0.34 (east) and 0.74 (south) vs 0.42 (north). Moving dots lowest→highest strain blocks
   is therefore a ~250 km NE→SW reallocation (mean displacement 2,493 px), however small
@@ -130,11 +130,15 @@ concentration *operation under a random prior* at −0.0040 and the GDR priors a
 
 ## What this session changes
 
-- The Week-1 queue is unchanged (preregistered rule: a strain arm could take slot 3
-  only at predicted ≥ +0.010; none is). Strain joins SNAP as a *reserve retirement
-  test*: at most one slot, `strn25m10`, and only if the slot-1 GDR receipt first
-  discredits the SGMC translator for concentration edits in general.
+- No strain arm is queued (preregistered rule: a strain arm could take a queue slot
+  only at predicted ≥ +0.010; none is). The concurrent collar session (`arena/40027ebc`,
+  merged first in PR #24) independently reached the same operational conclusion from
+  the other side and revised the queue to R0 anchor → `PRUNE-le10` → `MASScons3add`;
+  strain sits behind its `anti10` reserve: at most one slot, `strn25m10`, and only if a
+  concentration-family receipt first discredits the SGMC translator for relocation
+  edits in general. (This card's IR numbers were renumbered 33/34/35 → 35/36/37 at
+  that merge; both concurrent sessions had numbered from IR-91-33.)
 - Catalogue-AUC ranking of candidate priors is retired as a selection argument in
   this repo: for the strain bands it pointed exactly opposite to the off-catalogue
   map. Future priors should be screened on SGMC-off deciles as report-only evidence
-  before a build, with the proxy-tuning risk stated (IR-91-35).
+  before a build, with the proxy-tuning risk stated (IR-91-37).

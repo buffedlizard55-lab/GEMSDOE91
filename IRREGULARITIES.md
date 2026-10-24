@@ -637,8 +637,44 @@ row-major and re-uses `resp * 1e6` as a lexicographic hack, so ties depend on fl
 (explicit 3 px target floor, collar quarantine asserted, deterministic priority order, no
 float-scaled tie-break). `scripts/build.py --axis SNAP` remains in the tree for the synthetic
 demo but must not be used to build a release.
+## IR-91-33 — No local instrument can test "new faults near known traces"; the SGMC control cannot reward collar placement
+**Expected** (brief §2, organiser clarification): new-fault truth may lie within 300 m of known
+traces, so mass placed just outside the mapped catalogue should be testable against the
+independent USGS SGMC map.
+**Actual:** the kernel radius is exactly 3 px and brief §4.4 forbids mass within 3 px of the
+catalogue, so a legal collar dot (**3.05 px** out) earns *exactly zero* credit on the mapped trace
+it hugs. The SGMC off-catalogue control is therefore structurally unable to reward collar
+placement even if the hypothesis is true, while it rewards the mirrored "move mass away" arm
+partly by definition (SGMC-off-catalogue pixels *are* the far field). Measured: `collar10`
+−2.02 % relative, `collar20` −3.90 %, mirror `anti10` **+2.14 %**, uniform-acceptor null −0.66 %.
+The catalogue hide-and-recover PROXY and the leakage canary are identical to R0 for all three
+arms (`0.006186`; canary `0.5`) for the same geometric reason, exactly as in IR-91-28 for SNAP.
+**Decision it changes.** The three arms are recorded as `MODEL` predictions with the control's
+limitation written into `evidence/concentration_collar_axis_20261024.json`
+(`instrument_notes.sgmc_structural_bias`), not as validation of the collar. They are **not**
+placed in the slot queue; the queue's top slot moves from `CONCENTRATIONgdr25rm10` to the R0
+anchor plus the two count-based arms (PRUNE `le10`, MASS `cons3add`). Any future axis whose
+targets are floored outside the 3 px collar inherits this blindness and must say so up front.
+## IR-91-34 — A "live-density" reference is circular for relocation: R0's dots are the lineage field's maxima
+**Expected:** the local holdout proxies fail to rank arms (they correlate −0.87..+0.54 with live
+scores), so a reference *calibrated to the live score scale* would be better: subsample the
+H19-5 field until R0 scores the CLAIM `0.2778` (found: s ≈ 0.0412, ≈ 4,995 cells, 5 seeded draws).
+**Actual:** that reference ("LCR") is denser near the collar (0.0148 credit/cell at 3-4.5 px vs
+0.0069 beyond 10 px, 2.1x) but it penalises **every** relocation arm in both directions
+(−0.0264, −0.0507, −0.0266 absolute), because R0's dots sit on that field's maxima and any move
+off them loses credit. It is a downside bound, not a discriminator; used as a point prediction
+it would have made the mirror arm look like a loss even though the only real fault catalogue
+says it is a gain.
+**Decision it changes.** LCR is reported in evidence as `PROXY` with its circularity stated, and
+it is used only as the pessimistic floor of each prediction range. The `MODEL` point stays on
+the independent SGMC control (κ = 1.0, no shrinkage), and the session's headline claim is stated
+as a *matched-dose difference* between two arms rather than as an absolute gain. This is also why
+`CONCENTRATIONgdr25rm10` (`c019adb01`, `+0.0123` `MODEL`) loses its top slot: its prediction is
+a 0.1 × shrinkage of the prior scored against itself, the same circularity in a different dress.
 
-## IR-91-33 — The GDR concentration arms silently executed a partial PRUNE (Session 8)
+> **Numbering note (merge of PR #26 with PR #24).** Both 2026-10-24 sessions numbered their new items from IR-91-33. The collar session's IR-91-33/34 (merged first) keep their numbers; the strain session's three items were renumbered IR-91-35/36/37 at merge.
+
+## IR-91-35 — The GDR concentration arms silently executed a partial PRUNE (Session 8)
 
 **Expected:** a CONCENTRATION edit changes only block-scale dot density; the IR-91-27
 standard (Sessions 5-7) quarantines R0's 2,171 inherited dots at 2 < d_cat <= 3 px so a
@@ -653,7 +689,7 @@ alone: up to ~0.7% of its dots are a small PRUNE. The strain build adds an opt-i
 `donor_exclude` quarantine to `tools.run_concentration.build_concentration` (default
 preserves the GDR fleet's byte identity; new builds must pass `d_cat <= 3 px`).
 
-## IR-91-34 — The built strain prior is not the SLOT_PLAN proposal's literal formula
+## IR-91-36 — The built strain prior is not the SLOT_PLAN proposal's literal formula
 
 The merged SLOT_PLAN proposal's falsifier reads "Moving 20% of R0 mass into top-tercile
 `geod_2ndinv x S_struct`".  Session 8 built the geodetic percentile ranks *without* the
@@ -667,7 +703,7 @@ prior would fall between the lineage field it multiplies and the strain field th
 failed) building it is not recommended; recorded so nobody cites `strn25m20` as the
 proposal's falsifier test.
 
-## IR-91-35 — The geodetic "km-scale prior" is province-scale, and its two oracles disagree
+## IR-91-37 — The geodetic "km-scale prior" is province-scale, and its two oracles disagree
 
 **Expected** (brief S5): CONCENTRATION moves dots between km-scale blocks of a prior,
 with the strain bands attractive because they lead the GeoDAWN stack on catalogue AUC

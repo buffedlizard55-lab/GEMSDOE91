@@ -146,7 +146,7 @@ def build_concentration(
     ``donor_exclude`` (bool grid, default None) quarantines parent dots on
     excluded cells: they can never be selected as donors.  Session 8 uses it
     for the IR-91-27 collar quarantine (d_cat <= 3 px dots stay in place, so a
-    CONCENTRATION edit cannot silently execute a partial PRUNE - IR-91-33).
+    CONCENTRATION edit cannot silently execute a partial PRUNE - IR-91-35).
     The default preserves the GDR fleet's byte-identical behaviour exactly,
     RNG draws included: with ``donor_exclude=None`` the donor ordering and
     every downstream draw are unchanged.

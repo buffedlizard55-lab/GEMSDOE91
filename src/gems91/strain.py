@@ -5,7 +5,7 @@ SLOT_PLAN.md pre-proposed (Sessions 5-7) but never built.  This module only
 *derives the prior fields*; the dot moves are made by the fleet's existing
 CONCENTRATION builder (`tools.run_concentration.build_concentration`), so the
 strain arms differ from the GDR thermal arms in prior source alone (plus the
-IR-91-27 collar-donor quarantine, IR-91-33).
+IR-91-27 collar-donor quarantine, IR-91-35).
 
 Bands (descriptions read from the pinned raster, `training_features`,
 sha256 4371c82e...3bc5 in `registry/data_manifest.json`):
@@ -32,7 +32,7 @@ Design rules, each removing a degree of freedom (frozen in
    mentions `geod_2ndinv x S_struct`.  S_struct is 60% lineage support, so
    multiplying by it would make the "independent prior" partly a re-statement
    of the parent (the IR-91-07 failure).  The prior here is geodetic bands
-   only; see IR-91-34.
+   only; see IR-91-36.
 4. **Digest-pinned.**  Each derived prior is identified by
    `gems91.prior.array_digest` (sha256 of shape + float32 payload), recorded
    in `registry/derived_priors.json`; the builder refuses a mismatch.
