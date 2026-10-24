@@ -1,3 +1,41 @@
+# Start here — current protocol review (2026-10-24)
+
+**NOT OK TO SUBMIT: no validated unique TIFF was produced in this run.**
+Read [the current audit](docs/REVIEW-20261024.md), [submission instructions](docs/executive-summary.html),
+and [run card](docs/run-card.json) before the historical session notes below.
+[Website](https://buffedlizard55-lab.github.io/GEMSDOE91/) is configured on main, repository root.
+
+## Standing user brief — operational digest (not a verbatim transcript)
+
+Read this at the start of every session. Generate a genuinely unique competition
+TIFF, not a renamed prior entry. Make download and submit eligibility obvious.
+Use only the assigned parallel-run lane; stop for duplicate surface rank correlation
+above 0.90 or final-dot proximity overlap above 70% within 3 pixels. Check both stages
+against the full registry. Reuse the shared template feature cache, evaluator and
+writer; fix shared defects upstream rather than private forks. Hide whole buffered
+fault segments, rebuild catalogue features from visible faults, mask visible pixels
+exactly, pool DTI with alpha 0.2, beta 0.8 and a 300 m triangular kernel. Run each
+feature's leakage canary; AUC above 0.90 is suspect until resolved. Report measured
+HOLDOUT-DTI with version, positives and confidence interval; only receipt-backed
+results are ORGANIZER-CONFIRMED. Never present projections as scores.
+
+Before experiments, propose and rank three to five layer-specific geological
+hypotheses with physical signatures, missing-fault rationale, novelty and confounders.
+Use free official data; record source access and provenance honestly. Limit a run to
+three experiments or two hours. Require improvement over the compliant holdout best;
+weekly selection is separate and must respect the organizer's current cap. End with
+a JSON run card including mechanism, mimic, holdout interval, registry comparisons,
+raster hash, validator output, name, short note and promote/negative verdict.
+
+Automate scientific and file validation, not human inspection claims. Validate a
+re-read single-band TIFF against the reference grid and allowed value domain. Maintain
+an executive-summary page, auditable source register and clear download state.
+Review in three passes, run tests, open and merge a PR when requested. Own the outcome:
+prioritize evidence and reliability over a fabricated success. No score guarantee.
+The request's missing lane and conflicting leaderboard claims must remain explicit.
+
+---
+
 # GEMSDOE91 — session 2026-10-23 (DrivenData GEMS #306)
 
 No script here submits anything. One entity, three scored slots a week, one final file.
@@ -27,7 +65,7 @@ No script here submits anything. One entity, three scored slots a week, one fina
   The catalogue PROXY is identically unchanged (`0.006186`, 5 draws, ~12,200 withheld positives, 95 % CI `[0.005958, 0.006413]`) **by construction** — targets are floored at 3 px and the only dots inside 3 px are quarantined, so SNAP cannot touch known-fault credit (IR-91-28). On the independent off-catalogue SGMC map ([USGS DS-1052](https://pubs.usgs.gov/ds/1052/)) the sign is negative and grows with dose; SNAP is therefore **not** a top-3 slot candidate.
 
 - **Session 8 (`arena/40027ebc-gemsdoe91`) — `CONCENTRATION` on the legal collar, and the queue revised (`IR-91-33`, `IR-91-34`):** 3 arms, count fixed `37,654`, `0` new dot `<= 3 px`, both encodings gated (`PASS`), ledgered with honest predictions: `collar10` (`00cfbe95`, 10.00 % moved, CV `0.6187→0.6037`, **−0.006** `[−0.026,+0.008]`), `collar20` (`106ae19b`, 20.00 %, CV `0.6187→0.5859`, **−0.011** `[−0.051,+0.008]`), and the matched-dose mirror `anti10` (`0e42d6ab`, 10.00 %, **+0.006** `[−0.027,+0.014]`). Measured, not assumed: the collar band carries 1.3x (SGMC) to 2.1x (live-calibrated lineage reference) the per-cell fault credit of the far field, yet moving mass into it **loses** on the only independent fault catalogue (−2.0 % / −3.9 % rel) while uniform-acceptor placement loses less (−0.66 %) and the mirror direction gains (+2.1 %). The catalogue `PROXY` is invariant for this axis by construction (3.05 px floor vs a 3 px kernel), so no local instrument can test the collar hypothesis itself — hence the revised queue below.
-- **Session 8, concurrent strain build (`arena/6f079276-gemsdoe91`, 2026-10-24) — `CONCENTRATION` geodetic-strain prior built, predicted negative, NOT queued (IR-91-35/36/37):** sponsor bands 4/7/8 percentile ranks through the GDR arms' own builder (2.5 km blocks, count fixed `37,654` `RECEIPT`, collar `2,171 → 2,171` `RECEIPT`): `strn25m10` (`85cc49d2`, moved 3,765 = 10.00%, **−0.0056** `MODEL`), `strn25m20` (`a88ce2c2`, 7,531 = 20.00%, **−0.0200**), `strd25m10` (`106e87d9`, 3,765, **−0.0152`). On the off-catalogue SGMC control ([USGS DS-1052](https://pubs.usgs.gov/ds/1052/)) strain relocation is worse than random-prior relocation, and the catalogue's strain-decile rise does not replicate on SGMC-only faults; not queued under the revised queue below (`docs/MECHANISM_CARDS_STRAIN.md`).
+- **Session 8, concurrent strain build (`arena/6f079276-gemsdoe91`, 2026-10-24) — `CONCENTRATION` geodetic-strain prior built, predicted negative, NOT queued (IR-91-36/37/38):** sponsor bands 4/7/8 percentile ranks through the GDR arms' own builder (2.5 km blocks, count fixed `37,654` `RECEIPT`, collar `2,171 → 2,171` `RECEIPT`): `strn25m10` (`85cc49d2`, moved 3,765 = 10.00%, **−0.0056** `MODEL`), `strn25m20` (`a88ce2c2`, 7,531 = 20.00%, **−0.0200**), `strd25m10` (`106e87d9`, 3,765, **−0.0152`). On the off-catalogue SGMC control ([USGS DS-1052](https://pubs.usgs.gov/ds/1052/)) strain relocation is worse than random-prior relocation, and the catalogue's strain-decile rise does not replicate on SGMC-only faults; not queued under the revised queue below (`docs/MECHANISM_CARDS_STRAIN.md`).
 - **Merged fleet summary across sessions (`SLOT_PLAN.md`):**
   - **CONCENTRATION** (PR #13, GDR thermal prior): `gdr25rm10` (`c19adb01`, `+0.0123` `MODEL`), `gdr25m10` (`+0.0114`), `gdr10m10` (`+0.0113`).
   - **PRUNE** (PRs #4/#9/#10): delete-only `le3..le15` (`+0.002..+0.010` `MODEL`, `le10` `04002dae` `+0.008`) + fixed-count `p2.5`/`p2.9`/`p4.5px-h19cover`.

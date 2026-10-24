@@ -68,9 +68,9 @@ blind final pick.
 ## Session 8, concurrent strain build (`arena/6f079276-gemsdoe91`) — `CONCENTRATION` geodetic-strain prior (`strn25m10`, `strn25m20`, `strd25m10`)
 
 Ran concurrently with the collar session above from the same base (both labelled Session 8
-in their own records; strain IR items renumbered IR-91-35/36/37 at merge). Implements the
+in their own records; strain IR items renumbered IR-91-36/37/38 at merge). Implements the
 geodetic-strain proposal in the older list below (sponsor bands 4/7/8, percentile ranks,
-the GDR arms' builder/settings, donors collar-quarantined per IR-91-27/35;
+the GDR arms' builder/settings, donors collar-quarantined per IR-91-27/36;
 `docs/MECHANISM_CARDS_STRAIN.md`, `evidence/strain_concentration_20261024.json`).
 **All three arms are predicted negative under the frozen SGMC translator, dose-monotone:**
 `strn25m10` (`85cc49d2`, **−0.0056** `MODEL`), `strn25m20` (`a88ce2c2`, **−0.0200`),
@@ -78,12 +78,12 @@ the GDR arms' builder/settings, donors collar-quarantined per IR-91-27/35;
 the same operation under a random prior costs −0.0040 and under the GDR priors only
 −0.0009/−0.0024 (`PROXY`) — strain is worse than random relocation on the off-catalogue
 map, and the catalogue's strain-decile rise does not replicate on SGMC-only faults
-(IR-91-37). **Not queued under the revised queue above:** strain sits behind `anti10` as a
+(IR-91-38). **Not queued under the revised queue above:** strain sits behind `anti10` as a
 second reserve — at most `strn25m10`, and only if a concentration-family receipt (`anti10`,
 or `gdr25rm10` if the human buys it anyway) first contradicts the SGMC translator's sign
 for relocation edits. What its receipt would change: `strn25m10` ≥ +0.010 live ⇒ SGMC
 transfer fails for block priors and province-scale priors reopen; ≤ −0.006 ⇒ the
-geodetic-prior family (incl. the literal `geod_2ndinv × S_struct` form, IR-91-36) is
+geodetic-prior family (incl. the literal `geod_2ndinv × S_struct` form, IR-91-37) is
 retired without spending slots on `strn25m20`/`strd25m10`.
 
 ## Session 5 (`arena/42de3fed-gemsdoe91`) addition: `RELIEF` (`r2p12`, `r2b12`, `b2r12`)
@@ -142,7 +142,7 @@ The three arms are one dose-response experiment — do not spend three slots on 
 
 ## Proposed better axes (not built this session; all inputs now verified)
 
-1. ~~**`GEODETIC-STRAIN CONCENTRATION`**~~ (`Band 4 geod_2ndinv` + `Band 7 geod_shearrate`) — **BUILT Session 8 strain build** (`strn25m10`/`strn25m20`/`strd25m10`, all predicted negative; do not rebuild; IR-91-36/37)
+1. ~~**`GEODETIC-STRAIN CONCENTRATION`**~~ (`Band 4 geod_2ndinv` + `Band 7 geod_shearrate`) — **BUILT Session 8 strain build** (`strn25m10`/`strn25m20`/`strd25m10`, all predicted negative; do not rebuild; IR-91-37/38)
    - **Mechanism:** Active transtensional shear maintains dilational geothermal permeability and unmapped Quaternary splays ([GBCGE INGENIOUS](https://gbcge.org/current-projects/ingenious/)); `geod_2ndinv` (`0.5793` `PROXY`) and `geod_shearrate` (`0.5761` `PROXY`) lead all 19 GeoDAWN bands on fault separation.
    - **Confounder:** ~50 km GPS station spacing smears strain across adjacent aseismic blocks.
    - **Falsifier:** Moving 20% of R0 mass into top-tercile `geod_2ndinv × S_struct` yields `Δ < +0.010` live vs R0.
@@ -158,7 +158,7 @@ The three arms are one dose-response experiment — do not spend three slots on 
 4. **`STRAIN-SURPLUS CONCENTRATION`** (not built; strain-build proposal)
    - **Mechanism:** interseismic strain must be released on structures; blocks whose geodetic strain percentile is high *relative to what the block's catalogue fault density can account for* (spatially held-out residual of block strain on block catalogue density) are where the missing structures should be — the strain budget the map has not yet spent.
    - **Confounder:** mapping completeness is heterogeneous (quadrangle vintage, access, cover), so "surplus" may map under-mapping, not under-faulting; the residual is also partly a re-statement of catalogue sparsity, and acceptor anchoring must not re-import the parent field (IR-91-07).
-   - **Falsifier:** before any build, the residual prior's SGMC-off decile profile is flat or falling (`PROXY` screen, IR-91-37); or a built 10% arm scores `Δ < +0.010` live. Only admissible after a CONCENTRATION receipt exists, so the operation itself is not re-tested at the same time.
+   - **Falsifier:** before any build, the residual prior's SGMC-off decile profile is flat or falling (`PROXY` screen, IR-91-38); or a built 10% arm scores `Δ < +0.010` live. Only admissible after a CONCENTRATION receipt exists, so the operation itself is not re-tested at the same time.
 
 ## Session 7 (`arena/0ed37053-gemsdoe91`) addition: `TRACKB` (Phase 2 only — does NOT change the queue above)
 

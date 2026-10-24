@@ -672,9 +672,19 @@ as a *matched-dose difference* between two arms rather than as an absolute gain.
 `CONCENTRATIONgdr25rm10` (`c019adb01`, `+0.0123` `MODEL`) loses its top slot: its prediction is
 a 0.1 × shrinkage of the prior scored against itself, the same circularity in a different dress.
 
-> **Numbering note (merge of PR #26 with PR #24).** Both 2026-10-24 sessions numbered their new items from IR-91-33. The collar session's IR-91-33/34 (merged first) keep their numbers; the strain session's three items were renumbered IR-91-35/36/37 at merge.
+## IR-91-35 — 2026-10-24 parallel-run protocol cannot certify legacy axes
 
-## IR-91-35 — The GDR concentration arms silently executed a partial PRUNE (Session 8)
+No lane paragraph or shared template path supplied. All pinned input files absent
+in this fresh checkout. Existing hide-and-recover is fixed-dot mean credit, not
+buffered segment retraining with pooled DTI. Historical build readiness is stale.
+No compliant baseline or full surface/dot registry comparison is present. The
+GEMSDOE32 source explicitly disclaims organizer scores. See
+`docs/REVIEW-20261024.md`; no TIFF produced and no weekly slot selected. Existing
+submission advice is superseded by the fail-closed executive summary.
+
+> **Numbering note (merges of PR #26 with PR #24 and PR #28).** Three 2026-10-24 sessions numbered from IR-91-33. The collar session's IR-91-33/34 (PR #24, merged first) and the parallel-run audit session's IR-91-36 (PR #28) keep their numbers; the strain session's three items, merged last, were renumbered IR-91-37/37/38, and every strain-owned file was renumbered to match. Artefacts that cite "IR-91-33/34/35" for the strain items refer to IR-91-37/37/38.
+
+## IR-91-36 — The GDR concentration arms silently executed a partial PRUNE (Session 8)
 
 **Expected:** a CONCENTRATION edit changes only block-scale dot density; the IR-91-27
 standard (Sessions 5-7) quarantines R0's 2,171 inherited dots at 2 < d_cat <= 3 px so a
@@ -689,7 +699,7 @@ alone: up to ~0.7% of its dots are a small PRUNE. The strain build adds an opt-i
 `donor_exclude` quarantine to `tools.run_concentration.build_concentration` (default
 preserves the GDR fleet's byte identity; new builds must pass `d_cat <= 3 px`).
 
-## IR-91-36 — The built strain prior is not the SLOT_PLAN proposal's literal formula
+## IR-91-37 — The built strain prior is not the SLOT_PLAN proposal's literal formula
 
 The merged SLOT_PLAN proposal's falsifier reads "Moving 20% of R0 mass into top-tercile
 `geod_2ndinv x S_struct`".  Session 8 built the geodetic percentile ranks *without* the
@@ -703,7 +713,7 @@ prior would fall between the lineage field it multiplies and the strain field th
 failed) building it is not recommended; recorded so nobody cites `strn25m20` as the
 proposal's falsifier test.
 
-## IR-91-37 — The geodetic "km-scale prior" is province-scale, and its two oracles disagree
+## IR-91-38 — The geodetic "km-scale prior" is province-scale, and its two oracles disagree
 
 **Expected** (brief S5): CONCENTRATION moves dots between km-scale blocks of a prior,
 with the strain bands attractive because they lead the GeoDAWN stack on catalogue AUC
