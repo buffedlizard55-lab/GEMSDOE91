@@ -29,13 +29,13 @@
       "path": "docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif",
       "sha256": "0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119",
       "status": "current_research_only",
-      "reason": "H91-1 E1 dip-deprojected Verduzco candidate (0.174030 HOLDOUT-DTI, 13/13 technical & 20-real-raster uniqueness gates PASS; awaits human fleet-selector review of calib_r13lattice synthetic cover & weekly slot cap)."
+      "reason": "H91-DDVTC historical candidate; strict directed revalidation gives 99.7448% within 3 px of pinned lattice (>70%); NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip",
       "sha256": "bb8979945d08b1434f0fdda3fd8ff0e704dbb3b274150845c2ba1a781abb5acc",
       "status": "current_research_only",
-      "reason": "H91-1 E1 dip-deprojected Verduzco candidate (0.174030 HOLDOUT-DTI, 13/13 technical & 20-real-raster uniqueness gates PASS; awaits human fleet-selector review of calib_r13lattice synthetic cover & weekly slot cap)."
+      "reason": "H91-DDVTC historical candidate; strict directed revalidation gives 99.7448% within 3 px of pinned lattice (>70%); NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif",
@@ -53,13 +53,25 @@
       "path": "docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
       "sha256": "dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15",
       "status": "current_research_only",
-      "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC candidate (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
+      "reason": "S11-MHTR historical candidate; strict directed revalidation gives 99.8146% within 3 px of pinned lattice (>70%); NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip",
       "sha256": "ba7ec5ae98595ad205f7482ed691a61b83ba75e72e4966fd4ca8e82e90b8f5de",
       "status": "current_research_only",
-      "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC single-TIFF ZIP (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
+      "reason": "S11-MHTR historical candidate; strict directed revalidation gives 99.8146% within 3 px of pinned lattice (>70%); NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif",
+      "sha256": "ab500a3caa50f00ec0855dc88006a2d3e31f5e5f4cde726ef391e30f6eb4cd6b",
+      "status": "current_research_only",
+      "reason": "CCR91 E1 compensated-conductivity residual candidate: 0.202116 HOLDOUT-DTI below 0.206406 reference and 99.769% final directed overlap >70%; validator PASS; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.zip",
+      "sha256": "cbb1c77a0d05a2d74ecf3d305e39cec9510e0c79e73bfa6684cac58a4bea0567",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of CCR91 E1 negative research artifact; NOT OK TO SUBMIT (docs/run-card-CCR91.json)."
     }
   ]
 }

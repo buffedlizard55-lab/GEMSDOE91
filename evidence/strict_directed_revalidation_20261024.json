@@ -1,0 +1,28 @@
+{
+  "gate_version": "gems91-directed-registry-v1.1",
+  "date_utc": "2026-10-24",
+  "rule": "candidate dots within Euclidean distance <= 3.000001 px of registry positive pixels; fail if fraction > 0.70; no dense-reference F1 exception",
+  "registry_reference": {
+    "path": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2"
+  },
+  "artifacts": [
+    {
+      "name": "S11-MHTR E2",
+      "path": "docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
+      "sha256": "dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15",
+      "n_candidate_dots": 48000,
+      "fraction_candidate_within_3px": 0.9981458333333333,
+      "pass": false
+    },
+    {
+      "name": "H91-DDVTC E1",
+      "path": "docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif",
+      "sha256": "0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119",
+      "n_candidate_dots": 38400,
+      "fraction_candidate_within_3px": 0.9974479166666667,
+      "pass": false
+    }
+  ],
+  "consequence": "Historical promotion language is superseded. Both artifacts are research-only and NOT OK TO SUBMIT under the literal user rule."
+}

@@ -158,8 +158,40 @@ def test_registry_uniqueness_catches_clone_and_passes_novel(tmp_path: Path) -> N
     novel[12, 60] = 1.0
     novel[68, 12] = 1.0
     novel[70, 70] = 1.0
+    surface_check = EH.check_registry_surface_uniqueness(
+        (novel * 0.5)[footprint], footprint, [r0_path], corr_stride=1
+    )
+    assert surface_check["phase"] == "pre-placement continuous surface"
+    assert surface_check["uniqueness_pass"] is True
+
     ok_check = EH.check_registry_uniqueness((novel * 0.5)[footprint], novel, footprint, [r0_path], corr_stride=1)
     assert ok_check["uniqueness_pass"] is True
+
+
+def test_registry_uniqueness_uses_literal_directed_overlap_for_dense_reference(tmp_path: Path) -> None:
+    """A dense registry cannot switch the stated candidate->registry rule to F1."""
+    tpl_path, _, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    with rasterio.open(tpl_path) as src:
+        profile = src.profile.copy()
+    profile.update(nodata=None)
+
+    dense = footprint.astype(np.float32)
+    dense_path = tmp_path / "dense-lattice.tif"
+    with rasterio.open(dense_path, "w", **profile) as dst:
+        dst.write(dense, 1)
+
+    candidate = np.zeros(footprint.shape, dtype=np.float32)
+    candidate[12, 12] = 1.0
+    candidate[35, 35] = 1.0
+    candidate[68, 68] = 1.0
+    result = EH.check_registry_uniqueness(
+        (candidate * 0.5)[footprint], candidate, footprint, [dense_path], corr_stride=1
+    )
+    comp = result["comparisons"][0]
+    assert comp["cand_within_3px_of_reg"] == 1.0
+    assert comp["effective_dot_overlap_3px"] == 1.0
+    assert result["uniqueness_pass"] is False
+    assert result["dot_overlap_policy"].startswith("strict directed")
 
 
 def test_gdr_blind_geothermometer_parser_handles_whitespace_and_blind_90c(tmp_path: Path) -> None:
@@ -263,15 +295,19 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
     assert rc_js == rc_ev
 
     # Protocol Rule 1-6 invariants
-    assert rc_ev["verdict"] in {"promote", "negative"}
-    assert rc_ev["ok_to_download_and_submit"] is True
+    assert rc_ev["historical_verdict_before_directed_gate_fix"] == "promote"
+    assert rc_ev["verdict"] == "negative"
+    assert rc_ev["ok_to_download_and_submit"] is False
+    assert rc_ev["current_policy_revalidation"]["status"] == "FAIL"
     assert rc_ev["budget"]["experiments_run"] <= 3
     assert rc_ev["budget"]["wall_clock_seconds"] <= 7200
     assert rc_ev["leakage_canary"]["all_pass"] is True
     assert rc_ev["leakage_canary"]["worst_symmetric_auc"] <= 0.90
-    assert rc_ev["registry_uniqueness"]["uniqueness_pass"] is True
+    assert rc_ev["registry_uniqueness"]["historical_v1_0_uniqueness_pass"] is True
+    assert rc_ev["registry_uniqueness"]["uniqueness_pass"] is False
+    assert rc_ev["registry_uniqueness"]["uniqueness_gate_version"] == "gems91-directed-registry-v1.1"
     assert rc_ev["registry_uniqueness"]["max_surface_abs_rank_corr"] <= 0.90
-    assert rc_ev["registry_uniqueness"]["max_3px_dot_overlap"] <= 0.70
+    assert rc_ev["registry_uniqueness"]["max_3px_dot_overlap"] > 0.70
 
     sub = rc_ev["submission"]
     assert 1 <= len(sub["recommended_form_note"]) <= 140
