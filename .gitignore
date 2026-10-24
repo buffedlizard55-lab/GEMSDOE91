@@ -42,3 +42,7 @@ test-results/
 # (NOT competition input data; see IR-91-41). Only this path may hold a .tif.
 !docs/downloads/*.tif
 !docs/downloads/*.zip
+
+# session 10: candidate rasters that are NOT cleared for upload live here, outside
+# releases/ (which the dot-encoding release gates read) and outside docs/ (Pages).
+outputs/

@@ -88,3 +88,14 @@ record a pinned, truly comparable holdout baseline; complete the relevant regist
 and official-source permissions. Then a later session can test one new
 preregistered cached-layer hypothesis. Do not spend a weekly slot on the present
 research artifact or revive legacy model-projected queues.
+
+## Session 10 limitations (2026-10-24, `arena/5e09be50-gemsdoe91`)
+
+1. **The holdout measures catalogue recovery; the organizer scores new faults** (IR-91-S10-04). A holdout negative is weak evidence about the official score. A holdout positive would be weak evidence too.
+2. **Our DTI is an emulation.** Its algebra was checked by hand against the organizer's formula (alpha + beta = 1), but the scorer was not run against an organizer receipt.
+3. **The data are third-party mirrors** (IR-91-S10-06). The mirrored `sample_submission.tif` is the catalogue, not the organizer's blank sample (IR-91-S10-09). The band list differs from the organizer's list in at least one place (IR-91-S10-08).
+4. **Uniqueness covers 2,513 of 2,559 registry TIFs.** The complete scan (102 repos, 0 fetch errors) passes on the same-grid rasters. The 46 others (22 unreadable, 24 on other grids) were not compared. Earlier incomplete-scan figures are superseded.
+5. **Gates are not fully fit for purpose** (IR-91-S10-10): parent-diff has no "not applicable" state; the duplicate-hash check counts only SUBMITTED rows (none); `unit_mass_dots` assumes binary dots, which the organizer does not require.
+6. **Negative result, low power.** One candidate, three experiments, one catalogue-based holdout. Four hypotheses (H10-2..5) are not built. None has an estimated DTI gain.
+7. **Rules and eligibility are not decided by the agent** (README, "Decisions only the human can make"). Generative-AI disclosure is required in any narrative (rules §3.2).
+8. **Git history still contains the GEOD TIFs** on `main` (IR-91-S10-01). Removal from the working tree does not remove them from history.

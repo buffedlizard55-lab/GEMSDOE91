@@ -1,5 +1,39 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## SESSION 10 STATUS (2026-10-24, branch `arena/5e09be50-gemsdoe91`) — read this first
+
+**Verdict: NOT OK TO DOWNLOAD OR SUBMIT ANY FILE from this session.**
+- Status board: [`docs/s10-status.html`](docs/s10-status.html) · executive summary (how to submit, gates, errors): [`docs/s10-executive-summary.html`](docs/s10-executive-summary.html) · run card: [`docs/run-card-S10.json`](docs/run-card-S10.json) · hypotheses and ranking: [`docs/HYPOTHESES_S10.md`](docs/HYPOTHESES_S10.md) · irregularities: [`IRREGULARITIES.md`](IRREGULARITIES.md) (IR-91-S10-01 to -10).
+- The one file built this session (`gems91-s10-basementridge-K60988-20261024-74b1f6f1.tif`, sha256 `74b1f6f1…dd36`) lives in the **gitignored** `outputs/s10/`. It is **not** published. It fails the pre-registered control: holdout-DTI **0.0173** [0.0126, 0.0218] vs random placement **0.0288** [0.0217, 0.0342] (HOLDOUT-DTI, evaluator `S10-holdout-v1`, 60,988 withheld positives). Not promoted to a slot.
+- The three-experiment budget (E1 candidate, E2 ablation, E3 null) is spent. A new session is needed for any further experiment.
+- The GEOD duplicate (93.2 % of dots within 3 px of R0) was removed from Pages downloads. It is still in git history (IR-91-S10-01).
+- Official sources were read this session: [competition page 967](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) (metric, format, features, label sources), [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) (#1 = 0.4413, public), [NLR official rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf) (three submissions/week; AI disclosure; eligibility).
+- The organizer metric was checked by hand against `scripts/dti.py`: with alpha + beta = 1 the two forms are algebraically identical. The numerical scorer has not been run against an organizer receipt.
+
+### Decisions only the human can make (nothing below was decided by the agent)
+1. Accept or reject the **mirror provenance** of the restored data (IR-91-S10-06, IR-91-09). The organizer's data page needs a login.
+2. Whether the S10 file may be offered on Pages. Current decision: **no**.
+3. **Eligibility.** Individual competitors must be U.S. citizens or permanent residents, and registration includes a signed statement under penalty of perjury (rules §1.3). Only you can attest to this.
+4. **Generative-AI disclosure** (rules §3.2) must describe how AI was used in any submission narrative.
+5. Whether the copies of competition files in other public lineage repositories (`59GEMSDOE`, `57GEMSDOE`) break the data terms (IR-91-S10-09; the rules were not read in full).
+6. Whether to rewrite git history to remove the GEOD TIFs (IR-91-S10-01). Not done.
+7. The deadline. The rules say the key dates are on the competition site; the deadline printed in earlier sessions is not verified.
+
+### Full session prompt (restated; the verbatim text is not in this agent's session record — paste it here to replace this block)
+- **Goal.** Produce a unique, easy-to-download, validated single-band GeoTIFF (values in [0, 1], CRS/shape/transform equal to the official sample) for DrivenData #306 (DOE GEMS, geothermal fault prediction). Do not copy previous submissions except for learning. It must be obvious on the site whether the file may be downloaded and submitted.
+- **Validation.** Automated gates, no human inspector. Uniqueness is confirmed only after the gates pass. A registry scan must be complete (`complete: true`) before any uniqueness claim.
+- **Analysis.** Explain why the high scorers (0.2778; the public top 0.4413) scored well, and whether a unique submission can beat them.
+- **Hypotheses.** Three to five new geological hypotheses (layers, physical signature, why they find non-catalogue faults, difference from this repo), ranked by DTI gain and cost. Validate the top candidate on a spatially blocked holdout before spending a slot.
+- **Holdout.** Hide-and-recover with a spatial buffer; pooled DTI with alpha 0.2, beta 0.8, 300 m triangular kernel. Use the shared template tools (`evaluate_holdout.py`, `submission_writer.py`, cached feature stack); fix shared-tool bugs once and report them.
+- **Protocol caveat (IR-91-S10-11).** The S10 holdout numbers came from a private evaluator (3 px buffer; commit `82252a1`). They are not comparable with the shared `gems91-hide-recover-v1.0` protocol (10 px buffer) on `main`. The shared scoring of H10-1 is unrun; a fourth experiment needs approval. S10 pages: [status board](docs/s10-status.html) · [executive summary](docs/s10-executive-summary.html) · [submission guide](docs/s10-submit.html).
+- **Labels.** Every number is labelled HOLDOUT-DTI or ORGANIZER-CONFIRMED (or CLAIM). Leakage canary AUC > 0.90 means leakage.
+- **Pages.** A clean GitHub Pages site with an executive-summary subpage on how to submit (including the error "Predicted values must be in range [0, 1]"), official verified links, and a unique submission name with a short note.
+- **Process.** Open a PR and merge to `main`. List remaining work and limitations. End with a machine-readable JSON run card.
+- **Budget and slots.** At most 3 experiments or 2 hours. Do not spend a weekly slot on an idea that has not beaten the current holdout best. Do not pick submissions for real slots (that is a separate selector step, within the weekly cap of three).
+- **Parallel-run protocol.** A lane is a single method paragraph. Log a duplicate and stop if rank correlation > 0.90 or > 70 % of dots lie within 3 px of a registry raster.
+- **Values.** Maximize P(Win); own the outcome. Negative results are deliverables and need a run card.
+
+
 ## Download first. Read the verdict first.
 
 **OK TO DOWNLOAD: YES, for research. OK TO SUBMIT: NO.**
