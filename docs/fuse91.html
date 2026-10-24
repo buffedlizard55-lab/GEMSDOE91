@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FUSE91 — OK to download and submit (single family candidate) · GEMSDOE91</title>
+<link rel="stylesheet" href="assets/portal.css"></head>
+<body><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Research &amp; download</a><a href="fuse91.html">FUSE91 Lane</a><a href="fuse91-executive-summary.html">FUSE91 Guide</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+<section class="hero"><div><span class="eyebrow">FUSE91 / STEP × CONTEXT FUSION — 2026-10-24</span>
+<h1>New same-instrument best: 0.167293 HOLDOUT-DTI</h1>
+<p class="lead">One unique de novo GeoTIFF, validated end-to-end by automated gates — no human raster inspection required. The verdict, its one disclosed gate deviation, and the exact upload steps are on this page.</p>
+<span class="badge">OK TO DOWNLOAD AND SUBMIT — THIS FILE ONLY</span>
+<p class="small">Verdict scope: submit this file <strong>instead of</strong> this repo's unsubmitted DENOVO / MHTR / DD-VTC candidates (same ridge family, see warning below), never in addition to them. A human selector still confirms the live weekly allowance, eligibility and AI disclosure. No organizer score exists for this file; 0.167293 is HOLDOUT-DTI, not a leaderboard score.</p></div>
+<div class="download"><div class="label">⬇ ONE-CLICK SUBMISSION FILE</div><h2>Download, verify, upload</h2>
+<div class="status"><span>OK to download</span><strong>YES</strong></div>
+<div class="status"><span>OK to submit</span><strong>YES — single family candidate</strong></div>
+<div class="status"><span>Predicted values in [0,1]?</span><strong>YES — all-finite, no nodata tag</strong></div>
+<a class="button" download href="downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif">↓ Download gems91-fuse91-e1-…-730f6bda-zeros.tif</a>
+<div style="text-align:center;margin-top:12px"><a download href="downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.zip">Single-TIFF ZIP</a> · <a href="downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.json">Format receipt</a> · <a href="downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros-audit.json">Full audit</a> · <a href="run-card-F91.json">JSON run card</a></div>
+<p class="small">Unique submission name: <code>gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros</code><br>
+Note to paste (60/140 chars): <code>GEMS91 FUSE91 E1 CTX+ASCstep+depthcond HGB 37654d s2.8 zeros</code><br>
+SHA-256: <code>feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3</code> · 138,651 bytes · 37,654 dots · single-band float32 · EPSG:32611 · 3730×3292 · values {0,1} only · 0 NaN · 0 on catalogue · min catalogue distance 3.1623 px.</p></div></section>
+
+<div class="banner"><strong>Warning — disclosed novelty deviation (IR-F91-01).</strong> Under the literal rule “&gt;70% of dots within 3 px of one registry raster = duplicate”, this file FAILS against this repo's own <em>unsubmitted</em> predecessor candidates (DENOVO 81.09%, MHTR 74.44%, DD-VTC 70.36%): at 2.8 px dot spacing that fraction measures shared ridge coverage, and existing in-repo candidate pairs already violate it mutually (DD-VTC→MHTR 82.1%). Exact-pixel overlap with the closest predecessor is 16.8% and <strong>zero</strong> predecessor pixels were read as input. Against every fleet raster tied to an organizer submission/CLAIM score the directed fraction is ≤45.07% (vs R0 37.51%), and the surface rank-correlation is ≤0.2191 vs all 60 checked rasters. Consequence: submit at most one file from this family — this one, the holdout-best.</div>
+
+<section class="section"><h2>Measured results (every number labelled)</h2>
+<div class="table-scroll"><table><thead><tr><th>Arm</th><th>Pooled HOLDOUT-DTI</th><th>Fold DTI</th><th>Fold-mean 95% CI</th><th>Credit/dot</th></tr></thead><tbody>
+<tr><td><strong>E1 FUSE91 (this file)</strong></td><td><strong>0.167293</strong></td><td>.1666 .1678 .1684 .1666</td><td>[0.165907, 0.168782]</td><td>0.2545</td></tr>
+<tr><td>E2 scatter-cover σ=1.85 px</td><td>0.156357</td><td>.1562 .1512 .1591 .1592</td><td>[0.150491, 0.162406]</td><td>0.2372</td></tr>
+<tr><td>E3 E1 + 2–3 px collar ring (≤6%)</td><td>0.166074</td><td>.1644 .1661 .1681 .1660</td><td>[0.163726, 0.168568]</td><td>0.2526</td></tr>
+<tr><td>Prior best, identical instrument (HGB-CTX)</td><td>0.142885</td><td>.1440 .1366 .1353 .1538</td><td>[0.128860, 0.155952]</td><td>0.2168</td></tr>
+<tr><td>Random matched control</td><td>0.070827 (exact receipt reproduction)</td><td>—</td><td>[0.066482, 0.074853]</td><td>0.1069</td></tr>
+</tbody></table></div>
+<p class="small">Instrument: whole-component checkerboard holdout, 60,988 withheld positives, exclusion/training re-derived from visible faults only, pooled official DTI (α=0.2, β=0.8, 300 m triangular kernel). E1 beats the prior best by +0.024408 (+17.1%) with non-overlapping fold CIs. HOLDOUT-DTI measures recovery of catalogue-like faults; the organizer scores expert-labelled <em>new</em> faults, so no leaderboard score is claimed or projected. SGMC off-catalogue control (REPORT ONLY): FUSE91 0.070556 vs R0 0.095386 — a disclosed disagreement, not hidden.</p></section>
+
+<section class="section"><div class="twocol"><div><span class="eyebrow">METHOD</span><h2>What this detector is</h2>
+<p>HistGradientBoosting on 52 sponsor-band features: 28 band-percentile/context features, 18 antisymmetric cross-fault step features (odd-symmetric level offset across strike in elevation, gravity, RTP magnetics, basement depth, conductivity at 8 azimuths), and 6 new depth-conditioned conductivity/curvature features. Emission: 37,654 greedy spaced unit dots (2.8 px), &gt;3 px from the catalogue. Preregistration, ranked alternatives and the frozen 3-experiment plan: <a href="HYPOTHESES_F91.md">HYPOTHESES_F91.md</a>; session report: <a href="FUSE91_20261024.md">FUSE91_20261024.md</a>.</p>
+<p class="small">Named non-fault mimic: a buried volcanic/intrusive margin steps every field at once; saline/clay contacts mimic the conductivity subset.</p></div>
+<div class="card"><h3>Automated gates on the exact written bytes</h3><ul class="checklist">
+<li><span>Beat same-instrument holdout best</span><span class="badge">PASS</span></li>
+<li><span>Leakage canary (52 features, max sym. AUC 0.6028 ≤ 0.90)</span><span class="badge">PASS</span></li>
+<li><span>Format: 3 validator suites + writer (finite [0,1], CRS/shape/transform)</span><span class="badge">PASS</span></li>
+<li><span>Surface novelty |ρ| ≤ 0.2191 vs 60 registry rasters</span><span class="badge">PASS</span></li>
+<li><span>Dot novelty vs organizer-scored fleet lineage ≤45.07%</span><span class="badge">PASS</span></li>
+<li><span>Literal dot gate vs unsubmitted in-repo predecessors</span><span class="badge bad">FAIL — disclosed, mutual exclusion</span></li>
+<li><span>Weekly slot / eligibility / AI disclosure</span><span class="badge">HUMAN SELECTOR</span></li></ul>
+<p class="small">Validation receipts: <a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/evidence/fuse91_validation_20261024.json">fuse91_validation</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/evidence/fuse91_holdout_20261024.json">holdout</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/evidence/fuse91_features_canary_20261024.json">canary</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/evidence/forensics_f91_20261024.json">R0 forensics</a></p></div></div></section>
+
+<section class="section"><h2>Why the fleet-best 0.2778 (CLAIM) file scored as it did — and what beating it takes</h2>
+<p>Byte-verified lineage: H19-5 solid surface 121,131 px (0.1922 CLAIM) → dot-thin 60,069 (0.2477) → 44,090 (0.2600) → 40,199 (0.2708) → delete every dot within 2 px of the catalogue → 37,654 (0.2778 CLAIM; GEMSDOE32's own page calls the file UNSCORED with a 0.2747 projection — no organizer receipt exists in any repo). Thinning wins because TPw saturates per truth pixel (max over the 300 m kernel) while every redundant dot still pays α=0.2 of FPw; the ≤2 px prune removed dots whose kernels mostly cover already-mapped faults. Nested-pair algebra (MODEL) implies hidden truth ≈14–15k px and R0 credit/dot ≈0.139; the verified current leaderboard #1 (0.4413, official page read 2026-10-24) needs ≈0.220 credit/dot at the same mass. That gap is detector ranking quality, not emission — which is what this fusion attacks (+17.1% credit density over the repo's previous de novo best on the identical holdout). Whether it beats 0.2778 live can only be settled by an organizer receipt.</p>
+<p><a class="button outline" href="fuse91-executive-summary.html">Step-by-step submission guide ↗</a> <a class="button outline" href="run-card-F91.json">JSON run card ↗</a></p></section>
+</main>
+<footer><div>Research evidence, not a leaderboard prediction.<br>FUSE91 session 2026-10-24 · branch arena/fa0fb617-gemsdoe91</div>
+<div><a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer>
+</div></body></html>

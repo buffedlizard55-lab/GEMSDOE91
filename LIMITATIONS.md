@@ -119,3 +119,22 @@ research artifact or revive legacy model-projected queues.
    - **Weekly Slot Selector (`Rule 6`):** Spending one of the 3 weekly DrivenData submissions (`TP-5700-96647` §3.2) requires the human fleet selector to verify live weekly allowance and approve `S11-MHTR E2` (`0.206406` HOLDOUT-DTI).
    - **Synthetic Lattice Cover Policy (`IR-CED-003`):** `calib_r13lattice_00904.tif` (`206,895` dots) covers `99.8713%` of the footprint within 3 px (`6,649` uncovered pixels), making unweighted directed 3-px overlap $> 70\%$ for any prediction with $\ge 22,164$ dots; under symmetric F1 overlap (`evaluate_holdout.py`) and top-K mass comparison (`registry_scan.py`), `S11-MHTR E2` passes (`<= 0.33`).
    - **Competitor Eligibility & AI Disclosure (`TP-5700-96647` §1.3 & §3.2):** Only the human competitor can sign the U.S. eligibility attestation and include the generative-AI disclosure (`AI_USE.md`) in the competition narrative.
+
+## FUSE91 session additions (2026-10-24, `arena/fa0fb617-gemsdoe91`)
+
+1. **New holdout best, same caveats.** FUSE91-E1 reaches 0.167293 HOLDOUT-DTI
+   (identical whole-component instrument, 60,988 withheld, fold-mean 95% CI
+   [0.165907, 0.168782]) vs 0.142885 prior best. It measures recovery of
+   catalogue-like (mostly exposed) faults; the organizer's expert-labelled
+   concealed faults may rank detectors differently (SGMC control already does).
+2. **Uniqueness is family-relative.** The build is ridge-coincident with the
+   repo's unsubmitted DENOVO/MHTR/DD-VTC candidates (IR-F91-01). Only one file
+   from that family may be submitted; the selector owns that choice and the
+   live weekly-cap check. No fleet-universal registry exists; scope was 60
+   sha-enumerated rasters.
+3. **No 1 m DEM.** The likely decisive expert-labelling layer (USGS 3DEP via
+   the competition DEM links) is free and official but unreachable from this
+   sandbox; the pinned derived lidar raster remains licence-unchecked and unused.
+4. **Mirror inputs.** Competition rasters were restored from sha-pinned public
+   sibling mirrors (identity verified; origin/licence not established). The
+   mirrored sample carries catalogue positives, not the organizer's blank.

@@ -60,6 +60,18 @@
       "sha256": "ba7ec5ae98595ad205f7482ed691a61b83ba75e72e4966fd4ca8e82e90b8f5de",
       "status": "current_research_only",
       "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC single-TIFF ZIP (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
+    },
+    {
+      "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif",
+      "sha256": "feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3",
+      "status": "current_research_only",
+      "reason": "FUSE91 E1 step x context fusion candidate GeoTIFF (0.167293 HOLDOUT-DTI identical instrument, new repo best vs 0.142885; canary + all format suites PASS; surface novelty PASS; literal directed dot gate FAILS vs unsubmitted in-repo DENOVO/MHTR/DDVTC predecessors - disclosed deviation IR-F91-01, submit only as single family candidate pending human selector; docs/run-card-F91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.zip",
+      "sha256": "8f8d262e3a0330cf2f04d0ae95c5947e337ed16e990a87cb37cc4120107cc037",
+      "status": "current_research_only",
+      "reason": "FUSE91 E1 step x context fusion candidate single-TIFF ZIP (0.167293 HOLDOUT-DTI identical instrument, new repo best vs 0.142885; canary + all format suites PASS; surface novelty PASS; literal directed dot gate FAILS vs unsubmitted in-repo DENOVO/MHTR/DDVTC predecessors - disclosed deviation IR-F91-01, submit only as single family candidate pending human selector; docs/run-card-F91.json)."
     }
   ]
 }
