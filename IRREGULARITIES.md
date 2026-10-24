@@ -1169,3 +1169,40 @@ provenance/registry prevent the requested unique submission in this run.
 
 **Decision:** Do not change the organizer-format assumption by implication. Use the explicitly selected all-finite policy for current published research artifacts because the user's submission form rejected out-of-range values and the shared validator/writer enforce it; preserve the legacy option and this discrepancy for review. Before calling any file upload-ready, obtain organizer-confirmed format semantics and still satisfy science, novelty and separate-selector gates.
 
+---
+
+## IR-91-S12-01 — `Band 03 (tmi_hg)` Carries a `200.024 m` Two-Cell Central-Difference Scale Factor vs `Band 09 (tmi_vg)` in `nT/m` (and `dd_vtc_pu.py` Cols 27–28 & 47 Bugs)
+
+**Found (2026-10-24, `arena/4cb38f30-gemsdoe91`):** Full-resolution `100 m` window differentiation (`512x512` `Window(1200, 1200, 512, 512)`) on `data/bridge/gems-geodawn-numerical-features.tif` proved `med ||grad_m(B14)|| = 0.08525 nT/m`, `med B03 = 16.978`, and **`med(B03 / ||grad_m(B14)||) = 200.0242`** (`200 m` two-cell central difference without `/200`), whereas `med |B09| = 0.07222 nT/m` (`||grad_m(B14)|| / |B09| = 1.1734`). Meanwhile, `src/gems91/dd_vtc_pu.py` lines 272–278 divided `B09` by per-100m-pixel `np.gradient(B02)` (`100x` too large), saturating `|rtp_tilt| > 1.49 rad` across `88%` of the map, and line 454 (`seis_conduit = log1p(b16) / (1 + 0.04 * b10_deq)`) treated raw seismic energy `B10` (`[0, 4.963e6]`) as distance, crushing `seis_conduit -> 0` wherever seismicity is active.
+
+**Decision it changes:** Excluded broken `X_static` columns `9, 27, 28, 47` from `S12-BHAR` models and converted `H_T_m = 0.005 * B03` (`nT/m`) in `src/gems91/bhar_s12.py` to construct the exact SI-consistent 3-D Magnetic Analytic Signal `sqrt(H_T_m^2 + B09^2)`, TMI tilt `atan2(B09, H_T_m)`, and Salem Tilt-Depth local wavenumber. Do not mutate frozen `dd_vtc_pu.py` cache definitions directly so S11 historical caches stay reproducible.
+
+---
+
+## IR-91-S12-02 — Smooth Cenozoic Basin-Fill Depth (`B15`) Masks `46.64%` of Isostatic Gravity (`B13`) Variance
+
+**Found (2026-10-24):** Regressing `Band 13 (iso_grav_anom)` on `[1, H, sqrt(H), log1p(H)]` of `Band 15 (depth_to_base_surf)` explains **`R^2 = 0.4664`** of total gravity variance across the footprint (`std` drops from `10.21 mGal` to `7.46 mGal`).
+
+**Decision it changes:** Implemented `FoldSafeResidualBasis` in `src/gems91/bhar_s12.py` to fit `[1, H, sqrt(H), log1p(H)]` strictly on training-fold pixels (`~(region_mask | withheld_faults | buffer_mask)`), preventing test-fold target/covariate leakage while exposing intra-basement horst steps (`g_intra_res`, `g_intra_grad`, `g_intra_svd2`) and depth/elevation-conditioned conductivity residuals (`c_res`).
+
+---
+
+## IR-91-S12-03 — Omnidirectional 4-Axis Discrete Ridge Check Marks `95.7%` of Noisy Tree-Ensemble Scarp Flanks
+
+**Found (2026-10-24):** Unioning Hessian crest detection with an omnidirectional 4-axis check (`N-S OR E-W OR NW-SE OR NE-SW`) on tree-ensemble probability grids marked `47.5%` of all footprint pixels as crests and `48.1%` as shoulders (`95.7%` combined) because tree step-functions along a sloping flank still wiggle locally along strike `~50%` of the time (`E1` `flank_crowded_3p5px = 4,842`). Removing `is_disc_ridge` in `pure_steger_hessian_crest` isolates `19.3%` true cross-strike 1-D crests (`55.6%` flank suppression). Note: applying `_collinear_neighbor_envelope` (`r = 1.8..5.2 px`) *before* `pure_steger_hessian_crest` in `bhar_dual_subsurface_emit` still broadened ridges (`Crowded = 6,367` in `E3`); Session 13 should apply Steger suppression *after* collinear scoring.
+
+---
+
+## IR-91-S12-04 — Opposite Sign of Subsurface Decoupling on Scarp-Biased `HOLDOUT-DTI` vs Blind Bedrock `SGMC-OFFCAT-CONTROL-DTI`
+
+**Found (2026-10-24):** Allocating `29%` of dots to Topography-Blind Subsurface Branch B (`E2`, `E3`) lifted blind off-catalogue USGS SGMC bedrock fault DTI to all-time repo highs (`0.100094` on `E2`, `0.099057` on `E3` vs `0.097623` on `S11-E2` and `0.095386` on `GEMSDOE32`) and lifted volcanic NW `HOLDOUT-DTI` by `+0.0232` (`0.240722` vs `0.2175`) and Walker Lane SW (`E2: 0.164842` vs `0.1417`), while lowering NE/SE scarp-dominated `HOLDOUT-DTI` (pooled `0.198612` vs `0.206406`).
+
+**Decision it changes:** Logged `S12-BHAR` honestly as `verdict: "negative"` on primary `HOLDOUT-DTI` (`docs/run-card-S12.json`), kept `S11-MHTR E2` (`0.206406`) as #1 primary holdout candidate, and prioritized province-gated cover-thickness fusion (`B15 depth_to_base` + shallow volcanic magnetic roughness) for Session 13.
+
+---
+
+## IR-91-S12-05 — Intra-Repo `S11-MHTR E2` Overlap vs External Fleet Registry Scope
+
+**Found (2026-10-24):** Against all `62` prior fleet and prior-lane rasters (`data/registry/` + `data/fleet_registry/` + `CED91`/`DENOVO`/`H91`/`ASC91`), all three `S12` experiments pass `<= 0.70` 3-px dot overlap (`E3 max = 0.67825` on `calib_h28ridge_01839.tif`, `36.78%` vs `R0`). Against this repo's unsubmitted Session 11 candidate `gems91-mhtr-e2-...-zeros.tif` (`48,000` dots), `E1` overlapped `84.26%` (rejected as an intra-repo scarp duplicate) while Dual-Branch `E3` dropped intra-repo overlap to `73.67%`, audited explicitly in `overlap_3px_vs_s11_e2`.
+
+

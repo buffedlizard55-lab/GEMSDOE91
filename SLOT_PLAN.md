@@ -48,3 +48,10 @@ vs the prior best 0.142885 (HGB-CTX). It takes **no slot** and enters no
 queue. The preregistered follow-up for a future session is the step×context
 fusion gated above 0.142885 with a second-instrument cross-check; selector
 approval and live weekly allowance remain separate, unverified here.
+
+## S11-MHTR & S12-BHAR lane ledger (2026-10-24, `arena/8d9056a3-gemsdoe91` & `arena/4cb38f30-gemsdoe91`)
+
+- **`S11-MHTR E2` (`gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif`, SHA-256 `dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15`, `48,000` dots `> 3.0 px`):** **`0.206406` `HOLDOUT-DTI`** (`95% CI [0.193796, 0.220176]`, `gems91-hide-recover-v1.0`, `60,988` withheld positives) and **`0.097623` `SGMC-OFFCAT-CONTROL-DTI`**. Remains the **#1 primary `HOLDOUT-DTI` candidate in `GEMSDOE91`**, awaiting human weekly-slot selector review (`<= 3/week`, `IR-CED-003`).
+- **`S12-BHAR E3` (`gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif`, SHA-256 `bae83b233ddb150105986337207b8a217f3a3f3a817e0b418ad7f26f1b4c2431`, `48,022` dots `> 3.0 px`, `docs/run-card-S12.json`):** **`0.198612` `HOLDOUT-DTI`** (`95% CI [0.186030, 0.210569]`; `E1 = 0.204676`, `E2 = 0.192735`; paired delta vs `S11-MHTR E2` `-0.007794`, 95% CI `[-0.016104, +0.001192]`) and **`0.099057` `SGMC-OFFCAT-CONTROL-DTI`** (`E2 = 0.100094`, new all-time repo record on `62,122` blind off-catalogue USGS SGMC bedrock faults, beating both `S11-MHTR E2 = 0.097623` and `GEMSDOE32 = 0.095386`).
+- **Slot Decision:** **Zero weekly slots consumed.** Under pre-registered `HYPOTHESES_S12.md` criteria (`HOLDOUT-DTI > 0.206406` with paired 95% CI `> 0`), `S12-BHAR` is recorded honestly as `verdict: "negative"` on primary `HOLDOUT-DTI` (**OK to download for research / subsurface ensemble archive; NOT OK to submit to a live weekly slot ahead of `S11-MHTR E2`**).
+

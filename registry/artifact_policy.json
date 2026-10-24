@@ -60,6 +60,18 @@
       "sha256": "ba7ec5ae98595ad205f7482ed691a61b83ba75e72e4966fd4ca8e82e90b8f5de",
       "status": "current_research_only",
       "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC single-TIFF ZIP (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
+    },
+    {
+      "path": "docs/downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
+      "sha256": "bae83b233ddb150105986337207b8a217f3a3f3a817e0b418ad7f26f1b4c2431",
+      "status": "current_research_only",
+      "reason": "S12-BHAR E3 Dual-Branch Multi-Physics + Topography-Blind Subsurface candidate (0.198612 HOLDOUT-DTI below S11-MHTR E2 0.206406 -> verdict NEGATIVE on primary holdout; 0.099057 SGMC-OFFCAT-CONTROL-DTI beating S11 0.097623 & R0 0.095386; 62/62 prior fleet/lane uniqueness & all [0,1] validators PASS; NOT OK TO SUBMIT over S11-MHTR E2)."
+    },
+    {
+      "path": "docs/downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.zip",
+      "sha256": "20f6a54f8ab4a627d53da8d85708fffb936e333e8a1d7b899f10e118e5d16f36",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S12-BHAR E3 Dual-Branch Subsurface research candidate (0.198612 HOLDOUT-DTI, 0.099057 SGMC-Control, verdict NEGATIVE vs S11-MHTR E2 0.206406; NOT OK TO SUBMIT over S11-MHTR E2)."
     }
   ]
 }

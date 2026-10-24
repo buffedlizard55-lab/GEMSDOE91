@@ -1,0 +1,554 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "session": "S12-BHAR",
+  "repo": "buffedlizard55-lab/GEMSDOE91",
+  "branch": "arena/4cb38f30-gemsdoe91",
+  "generated_utc": "2026-10-24T20:07:53Z",
+  "verdict": "negative",
+  "submission_ready_pending_selector": false,
+  "winning_experiment": "E3",
+  "hypothesis_id": "H12-1 + H12-2 + H12-3",
+  "hypothesis": "Full Dual-Branch Multi-Physics + Topography-Blind Subsurface Ensemble + 1.2 km Nematic Structure-Tensor Phase-Locking + Log-Seismic Transtension & Blind >=90 C GDR Submodular DTI",
+  "physical_mechanism": "Fits fold-safe nonlinear Bouguer basin-fill compaction models (R^2=0.4664) on smooth depth-to-basement B15 to isolate intra-basement gravity contacts G_intra, pairs them with fold-safe depth/elevation-conditioned subsurface electrical conductivity residual steps C_res and smectite clay-cap roof curvature, reconciles the 200x central-difference scale on Band 03 vs Band 09 to build the exact remanence-invariant 3-D Magnetic Analytic Signal |A_T| and Salem Tilt-Depth local wavenumber, and fuses a full Multi-Physics HGB+LR branch with a strictly Topography-Blind Subsurface Geophysical HGB+LR branch (zero DEM elevation/slope/LRM features) allocated via pure cross-strike Steger Hessian centerline sharpening and two-regime submodular 300 m DTI dot emission (> 3.0 px from existing_faults).",
+  "named_non_fault_mimic": "Circular calderas, basalt cinder cones, & meandering stream canyons (high local slope/magnetic gradients, rejected by Topography-Blind Branch B, low 1.2 km nematic linearity L_sigma, and unlocked cross-field strike directors)",
+  "budget": {
+    "experiments_run": 3,
+    "max_experiments": 3,
+    "wall_clock_seconds": 512.61,
+    "max_wall_clock_seconds": 7200
+  },
+  "leakage_canary": {
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "n_features_tested": 92,
+    "max_allowed_symmetric_auc": 0.9,
+    "worst_feature": "e1_lrm_1km",
+    "worst_symmetric_auc": 0.66099,
+    "all_pass": true
+  },
+  "scores": {
+    "primary_holdout": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_withheld_positives": 60988,
+      "score": 0.198612,
+      "ci_95": [
+        0.18603,
+        0.210569
+      ],
+      "b0_reference_holdout_dti": 0.138999,
+      "b0_reference_ci_95": [
+        0.12532,
+        0.150206
+      ],
+      "h91_e1_reference_holdout_dti": 0.17403,
+      "h91_e1_reference_ci_95": [
+        0.161841,
+        0.184791
+      ],
+      "s11_e2_reference_holdout_dti": 0.206406,
+      "s11_e2_reference_ci_95": [
+        0.193796,
+        0.220176
+      ],
+      "lift_over_b0": 0.059613,
+      "lift_over_h91_e1": 0.024582,
+      "lift_over_s11_e2": -0.007794,
+      "paired_vs_s11_e2": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "candidate_dti": 0.198612,
+        "reference_dti": 0.206406,
+        "delta": -0.007794,
+        "ci_95": [
+          -0.016104,
+          0.001192
+        ],
+        "bootstrap_win_fraction": 0.044,
+        "bootstrap_tiles_5km": 2005,
+        "bootstrap_draws": 500,
+        "statistically_resolved_positive": false
+      }
+    },
+    "blind_sgmc_offcatalogue_control": {
+      "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_offcatalogue_sgmc_positives": 62122,
+      "dti": 0.099057,
+      "T": 5938.331,
+      "S": 48022.0,
+      "M": 2704.717
+    }
+  },
+  "experiments": [
+    {
+      "experiment_number": 1,
+      "exp_id": "E1",
+      "mode": "legacy_e1",
+      "hypothesis_id": "H12-1",
+      "title": "Single-Branch Bouguer Basin-Fill Gravity Stripping + Depth-Conditioned Subsurface Conductivity Residual (Omnidirectional 4-Axis Ridge Diagnostic)",
+      "n_features": 55,
+      "n_subsurface_branch_features": 0,
+      "dot_budget": 45500,
+      "w_sub_blend": 0.0,
+      "gamma": 1.24,
+      "bhar_weight": 0.5,
+      "concealed_quota_frac": 0.34,
+      "min_spacing_px": 2.68,
+      "fold_quotas": {
+        "0": 11115,
+        "1": 12878,
+        "2": 11981,
+        "3": 9526
+      },
+      "named_non_fault_mimic": "Closed-basin saline playa pans & lacustrine clay lenses (rejected where conductivity follows depth/elevation contours C_res ~ 0 without a linear Bouguer-stripped intra-basement gravity edge)",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.204676,
+        "ci_95": [
+          0.191713,
+          0.217789
+        ],
+        "bootstrap_tiles_5km": 1883,
+        "bootstrap_draws": 200,
+        "pooled_T": 12108.96,
+        "pooled_S": 44554.0,
+        "pooled_M": 4807.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 10946.0,
+            "T": 2308.406,
+            "M": 947.0,
+            "fold_dti": 0.208583
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 12636.0,
+            "T": 3159.31,
+            "M": 1279.0,
+            "fold_dti": 0.251857
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 11675.0,
+            "T": 2963.287,
+            "M": 1180.0,
+            "fold_dti": 0.154947
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 9297.0,
+            "T": 3677.957,
+            "M": 1401.0,
+            "fold_dti": 0.223911
+          }
+        ]
+      },
+      "paired_vs_s11_e2": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "candidate_dti": 0.204676,
+        "reference_dti": 0.206406,
+        "delta": -0.00173,
+        "ci_95": [
+          -0.008664,
+          0.005913
+        ],
+        "bootstrap_win_fraction": 0.298,
+        "bootstrap_tiles_5km": 2008,
+        "bootstrap_draws": 500,
+        "statistically_resolved_positive": false
+      },
+      "delta_vs_b0_holdout_dti": 0.065677,
+      "delta_vs_h91_e1_holdout_dti": 0.030646,
+      "delta_vs_s11_e2_holdout_dti": -0.00173,
+      "sgmc_offcatalogue_control": {
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 62122,
+        "dti": 0.091628,
+        "T": 5430.09,
+        "S": 44865.0,
+        "M": 2471.624
+      },
+      "delta_vs_r0_sgmc_dti": -0.003758,
+      "delta_vs_s11_e2_sgmc_dti": -0.005995,
+      "geometry_diagnostics": {
+        "n_dots": 44865,
+        "nn1_min_px": 2.8284,
+        "nn1_median_px": 3.1623,
+        "flank_crowded_3p5px": 4842,
+        "isolated_gt_9px": 2
+      },
+      "uniqueness_summary": {
+        "n_rasters_checked": 62,
+        "uniqueness_pass": true,
+        "max_surface_abs_rank_corr": 0.21983,
+        "surface_closest_raster": "calib_hedgev2_01563_sample.tif",
+        "max_3px_dot_overlap": 0.6915,
+        "closest_raster": "gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif",
+        "overlap_3px_vs_s11_e2": 0.84257,
+        "overlap_3px_vs_r0": 0.44023
+      },
+      "elapsed_seconds": 140.62
+    },
+    {
+      "experiment_number": 2,
+      "exp_id": "E2",
+      "mode": "dual_steger",
+      "hypothesis_id": "H12-1 + H12-2",
+      "title": "Dual-Branch Multi-Physics + Topography-Blind Subsurface Ensemble (Bouguer-Stripped Gravity + Conductivity + SI B03/200 3-D Analytic Signal & Salem Wavenumber + Pure Steger Centerline)",
+      "n_features": 66,
+      "n_subsurface_branch_features": 46,
+      "dot_budget": 48200,
+      "w_sub_blend": 0.39,
+      "gamma": 1.2,
+      "bhar_weight": 0.48,
+      "concealed_quota_frac": 0.29,
+      "min_spacing_px": 2.68,
+      "fold_quotas": {
+        "0": 12109,
+        "1": 13512,
+        "2": 13130,
+        "3": 9449
+      },
+      "named_non_fault_mimic": "Unfaulted reversely magnetized lava-flow lobes & pure erosion talus scarps (topographic scarps without subsurface roots suppressed by Topography-Blind Branch B; point volcanic plugs suppressed by pure cross-strike Steger Hessian centerline)",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.192735,
+        "ci_95": [
+          0.178806,
+          0.206465
+        ],
+        "bootstrap_tiles_5km": 1840,
+        "bootstrap_draws": 200,
+        "pooled_T": 11499.818,
+        "pooled_S": 47521.0,
+        "pooled_M": 4640.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11952.0,
+            "T": 2341.081,
+            "M": 970.0,
+            "fold_dti": 0.207723
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13371.0,
+            "T": 3037.652,
+            "M": 1249.0,
+            "fold_dti": 0.2397
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12941.0,
+            "T": 3198.129,
+            "M": 1297.0,
+            "fold_dti": 0.164842
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 9257.0,
+            "T": 2922.956,
+            "M": 1124.0,
+            "fold_dti": 0.179076
+          }
+        ]
+      },
+      "paired_vs_s11_e2": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "candidate_dti": 0.192735,
+        "reference_dti": 0.206406,
+        "delta": -0.013671,
+        "ci_95": [
+          -0.025721,
+          -0.00301
+        ],
+        "bootstrap_win_fraction": 0.008,
+        "bootstrap_tiles_5km": 2008,
+        "bootstrap_draws": 500,
+        "statistically_resolved_positive": false
+      },
+      "delta_vs_b0_holdout_dti": 0.053736,
+      "delta_vs_h91_e1_holdout_dti": 0.018705,
+      "delta_vs_s11_e2_holdout_dti": -0.013671,
+      "sgmc_offcatalogue_control": {
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 62122,
+        "dti": 0.100094,
+        "T": 5996.8,
+        "S": 47812.0,
+        "M": 2737.765
+      },
+      "delta_vs_r0_sgmc_dti": 0.004708,
+      "delta_vs_s11_e2_sgmc_dti": 0.002471,
+      "geometry_diagnostics": {
+        "n_dots": 47812,
+        "nn1_min_px": 2.8284,
+        "nn1_median_px": 3.0,
+        "flank_crowded_3p5px": 7056,
+        "isolated_gt_9px": 4
+      },
+      "uniqueness_summary": {
+        "n_rasters_checked": 62,
+        "uniqueness_pass": true,
+        "max_surface_abs_rank_corr": 0.21877,
+        "surface_closest_raster": "calib_hedgev2_01563_sample.tif",
+        "max_3px_dot_overlap": 0.66124,
+        "closest_raster": "calib_h28ridge_01839.tif",
+        "overlap_3px_vs_s11_e2": 0.73958,
+        "overlap_3px_vs_r0": 0.36782
+      },
+      "elapsed_seconds": 141.38
+    },
+    {
+      "experiment_number": 3,
+      "exp_id": "E3",
+      "mode": "dual_steger",
+      "hypothesis_id": "H12-1 + H12-2 + H12-3",
+      "title": "Full Dual-Branch Multi-Physics + Topography-Blind Subsurface Ensemble + 1.2 km Nematic Structure-Tensor Phase-Locking + Log-Seismic Transtension & Blind >=90 C GDR Submodular DTI",
+      "n_features": 85,
+      "n_subsurface_branch_features": 69,
+      "dot_budget": 48500,
+      "w_sub_blend": 0.39,
+      "gamma": 1.2,
+      "bhar_weight": 0.48,
+      "concealed_quota_frac": 0.29,
+      "min_spacing_px": 2.68,
+      "fold_quotas": {
+        "0": 12706,
+        "1": 13506,
+        "2": 12977,
+        "3": 9311
+      },
+      "named_non_fault_mimic": "Circular calderas, basalt cinder cones, & meandering stream canyons (high local slope/magnetic gradients, rejected by Topography-Blind Branch B, low 1.2 km nematic linearity L_sigma, and unlocked cross-field strike directors)",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.198612,
+        "ci_95": [
+          0.18603,
+          0.210569
+        ],
+        "bootstrap_tiles_5km": 1860,
+        "bootstrap_draws": 200,
+        "pooled_T": 11863.941,
+        "pooled_S": 47655.0,
+        "pooled_M": 4799.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 12512.0,
+            "T": 2751.481,
+            "M": 1141.0,
+            "fold_dti": 0.240722
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13354.0,
+            "T": 3200.544,
+            "M": 1326.0,
+            "fold_dti": 0.252279
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12689.0,
+            "T": 2702.071,
+            "M": 1092.0,
+            "fold_dti": 0.140057
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 9100.0,
+            "T": 3209.846,
+            "M": 1240.0,
+            "fold_dti": 0.196619
+          }
+        ]
+      },
+      "paired_vs_s11_e2": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "candidate_dti": 0.198612,
+        "reference_dti": 0.206406,
+        "delta": -0.007794,
+        "ci_95": [
+          -0.016104,
+          0.001192
+        ],
+        "bootstrap_win_fraction": 0.044,
+        "bootstrap_tiles_5km": 2005,
+        "bootstrap_draws": 500,
+        "statistically_resolved_positive": false
+      },
+      "delta_vs_b0_holdout_dti": 0.059613,
+      "delta_vs_h91_e1_holdout_dti": 0.024582,
+      "delta_vs_s11_e2_holdout_dti": -0.007794,
+      "sgmc_offcatalogue_control": {
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 62122,
+        "dti": 0.099057,
+        "T": 5938.331,
+        "S": 48022.0,
+        "M": 2704.717
+      },
+      "delta_vs_r0_sgmc_dti": 0.003671,
+      "delta_vs_s11_e2_sgmc_dti": 0.001434,
+      "geometry_diagnostics": {
+        "n_dots": 48022,
+        "nn1_min_px": 2.8284,
+        "nn1_median_px": 3.0,
+        "flank_crowded_3p5px": 6367,
+        "isolated_gt_9px": 0
+      },
+      "uniqueness_summary": {
+        "n_rasters_checked": 62,
+        "uniqueness_pass": true,
+        "max_surface_abs_rank_corr": 0.2198,
+        "surface_closest_raster": "calib_h25ctx_01280.tif",
+        "max_3px_dot_overlap": 0.67825,
+        "closest_raster": "calib_h28ridge_01839.tif",
+        "overlap_3px_vs_s11_e2": 0.7367,
+        "overlap_3px_vs_r0": 0.36779
+      },
+      "elapsed_seconds": 150.58
+    }
+  ],
+  "registry_uniqueness": {
+    "rasters_checked": 62,
+    "max_surface_abs_rank_corr": 0.2198,
+    "surface_closest_raster": "calib_h25ctx_01280.tif",
+    "max_dots_abs_rank_corr": 0.09414,
+    "max_3px_dot_overlap": 0.67825,
+    "dots_closest_raster": "calib_h28ridge_01839.tif",
+    "overlap_3px_vs_s11_e2": 0.7367,
+    "overlap_3px_vs_r0": 0.36779,
+    "uniqueness_pass": true,
+    "protocol_lattice_diagnostic": {
+      "reference": "calib_r13lattice_00904.tif",
+      "reference_dots": 206895,
+      "footprint_coverage_within_3px": 0.998713,
+      "uncovered_footprint_pixels": 6649,
+      "note": "Per IR-CED-003, synthetic 5-px grid calib_r13lattice_00904.tif covers 99.8713% of the footprint within 3 px; symmetric F1 overlap is <= 0.32 while all 62 prior fleet and prior-lane fault rasters pass strict <= 0.70 overlap (intra-repo S11-MHTR E2 overlap is audited separately in overlap_3px_vs_s11_e2)."
+    }
+  },
+  "geometry_diagnostics": {
+    "n_dots": 48022,
+    "nn1_min_px": 2.8284,
+    "nn1_median_px": 3.0,
+    "flank_crowded_3p5px": 6367,
+    "isolated_gt_9px": 0
+  },
+  "raster_sha256": "bae83b233ddb150105986337207b8a217f3a3f3a817e0b418ad7f26f1b4c2431",
+  "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "all_12279160_cells_finite": true,
+    "nodata_zeros_tif": null,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0,
+    "validators": {
+      "gems91_gates_verdict": "CERTIFIED",
+      "release_gates_nan_pass": true,
+      "release_gates_zeros_pass": true,
+      "validate_raster_nan_pass": true,
+      "validate_raster_zeros_pass": true,
+      "range_0_1_portal_safe": true
+    },
+    "gems57_checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    }
+  },
+  "submission_name": "gems91-bhar-e3-20261024T184500Z-a4b69ca7",
+  "note": "GEMS91 S12 E3 (H12-1 + H12-2 + H12-3): Bouguer+cond+3D-ASig+nematic centerline submod (48022d >3px, [0,1] zeros)",
+  "note_length": 112,
+  "submission": {
+    "candidate_id": "gems91-bhar-e3-20261024T184500Z-a4b69ca7",
+    "recommended_upload_file": "gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
+    "recommended_zip_download": "gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.zip",
+    "audit_json": "gems91-bhar-e3-20261024T184500Z-a4b69ca7-audit.json",
+    "recommended_form_name": "gems91-bhar-e3-20261024T184500Z-a4b69ca7",
+    "recommended_form_note": "GEMS91 S12 E3 (H12-1 + H12-2 + H12-3): Bouguer+cond+3D-ASig+nematic centerline submod (48022d >3px, [0,1] zeros)",
+    "recommended_form_note_length": 112,
+    "sha256_zeros_tif": "bae83b233ddb150105986337207b8a217f3a3f3a817e0b418ad7f26f1b4c2431",
+    "sha256_nan_tif": "a4b69ca7da20167c6e8c047215ead340f771a4f6cd411155ac9c9174231e7353",
+    "sha256_zeros_zip": "20f6a54f8ab4a627d53da8d85708fffb936e333e8a1d7b899f10e118e5d16f36",
+    "bytes_zeros_tif": 246197,
+    "bytes_zeros_zip": 210199,
+    "n_dots": 48022,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0
+  }
+}
