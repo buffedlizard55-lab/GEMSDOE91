@@ -139,8 +139,18 @@ def build_concentration(
     jitter_px: int = 4,
     seed: int = 0,
     min_sep_px: float = 0.0,
+    donor_exclude: np.ndarray | None = None,
 ) -> tuple[np.ndarray, dict]:
-    """Return (new unit-mass band, statistics). Pure function; no file I/O."""
+    """Return (new unit-mass band, statistics). Pure function; no file I/O.
+
+    ``donor_exclude`` (bool grid, default None) quarantines parent dots on
+    excluded cells: they can never be selected as donors.  Session 8 uses it
+    for the IR-91-27 collar quarantine (d_cat <= 3 px dots stay in place, so a
+    CONCENTRATION edit cannot silently execute a partial PRUNE - IR-91-42).
+    The default preserves the GDR fleet's byte-identical behaviour exactly,
+    RNG draws included: with ``donor_exclude=None`` the donor ordering and
+    every downstream draw are unchanged.
+    """
     if not (0.10 <= frac <= 0.20):
         raise ValueError(f"frac must be within [0.10, 0.20] per brief section 5; got {frac}")
     vals = np.nan_to_num(parent, nan=0.0)
@@ -163,8 +173,14 @@ def build_concentration(
 
     dot_block_prior = bp[dots[:, 0] // block_px, dots[:, 1] // block_px]
     is_low = low_blocks[dots[:, 0] // block_px, dots[:, 1] // block_px]
+    if donor_exclude is None:
+        excluded = np.zeros(len(dots), dtype=bool)
+    else:
+        if np.asarray(donor_exclude).shape != footprint.shape:
+            raise ValueError("donor_exclude must share the grid")
+        excluded = np.asarray(donor_exclude, dtype=bool)[dots[:, 0], dots[:, 1]]
     n_move = int(round(frac * len(dots)))
-    donors = np.flatnonzero(is_low)
+    donors = np.flatnonzero(is_low & ~excluded)
     if donors.size == 0:
         raise ValueError("no dots in the low-prior blocks; the parent is already concentrated")
     # lowest-prior dots first; deterministic tie-break on position
@@ -175,7 +191,7 @@ def build_concentration(
         # the low-prior blocks are too sparse to supply the requested fraction:
         # extend into the lowest-prior dots anywhere else, never into high blocks
         rest = np.setdiff1d(np.arange(len(dots)), donors)
-        rest = rest[~high_blocks[dots[rest, 0] // block_px, dots[rest, 1] // block_px]]
+        rest = rest[~high_blocks[dots[rest, 0] // block_px, dots[rest, 1] // block_px] & ~excluded[rest]]
         rest_order = np.lexsort((dots[rest, 1], dots[rest, 0],
                                  np.nan_to_num(dot_block_prior[rest], nan=-1.0)))
         extra = rest[rest_order][: n_move - movers.size]
@@ -255,6 +271,7 @@ def build_concentration(
         "min_gap_px": min_gap_px,
         "min_sep_px": min_sep_px,
         "jitter_px": jitter_px,
+        "donor_excluded_dots": int(excluded.sum()),
         "donor_block_prior_mean": float(np.nanmean(bp[dots[movers][:, 0] // block_px, dots[movers][:, 1] // block_px])),
         "acceptor_block_prior_mean": float(np.nanmean(bp[new_dots[:, 0] // block_px, new_dots[:, 1] // block_px])),
     }

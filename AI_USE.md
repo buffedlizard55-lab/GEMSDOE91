@@ -488,3 +488,27 @@ and README supersede historical unsupported forecasts and submission queues.
 - Reported honestly that `E1` (`H91-1`, pure 100%-official GeoDAWN Dip-Deprojected Verduzco Tilt + Openness + Clay-Cap Edge + 1-D Ridge Submodular DTI, `0.174030 HOLDOUT-DTI`, `+25.2%` over `B0`) outperformed `E2` (`0.166750`) and `E3` (`0.171231`) on the exposed-fault holdout, and preserved `origin/main`'s shared `gems91.readiness` fleet-selector gate and `calib_r13lattice_00904.tif` (`99.87%` footprint cover) disclosure without weakening `origin/main` checks.
 
 **AI did NOT:** log into DrivenData, upload a submission, scrape private endpoints, touch `dist_known_fault_px` (`IR-H91-03`), redistribute licence-unchecked external rasters (`IR-91-26`), or emit projected scores.
+
+## Session 8, concurrent strain build (2026-10-24, `arena/6f079276-gemsdoe91`) — CONCENTRATION (geodetic-strain prior)
+
+**AI wrote and decided:** chose the session axis without prompting (the brief says pick your
+own session): `CONCENTRATION` with the geodetic-strain prior pre-proposed in merged
+`SLOT_PLAN.md`, because every brief axis already had builds and prior-source was the open
+dimension. Froze the design and prediction translator in
+`registry/strain_concentration_preregistration.json` before building; wrote
+`src/gems91/strain.py`, `scripts/build_strain_concentration.py`,
+`scripts/strain_diagnostics.py`, `tests/test_strain.py`, the `donor_exclude` quarantine
+option in `tools/run_concentration.py` (default preserves GDR byte identity), mechanism
+cards (`docs/MECHANISM_CARDS_STRAIN.md`), IR-91-42/43/44, and the three release pairs.
+Verified 15/15 manifest hashes and rebuilt R0 byte-for-byte from both ancestors before
+building. All three arms came out predicted negative under the frozen translator; the AI
+reported them as such and kept them out of the slot queue per its own preregistered rule
+rather than re-tuning the prediction method after seeing the instruments.
+**AI did NOT:** submit, contact drivendata.org or dropbox.com, read/print/store credentials,
+scrape any leaderboard, commit any `.tif`, or call any `PROXY`/`MODEL` number a score.
+Inputs came only from the pinned manifest (restored from the immutable GitHub mirrors the
+manifest itself records), each sha256-verified before use.
+**Human decides:** whether any strain file ever spends a slot (recommendation: no slot
+unless a concentration-family receipt first discredits the SGMC translator; then at most `strn25m10` as a
+retirement test), `TOP_PUBLIC` + date, slots remaining, deadline confirmation, every upload,
+the receipt entries in `ledger/submissions.csv`, and the single blind final file.

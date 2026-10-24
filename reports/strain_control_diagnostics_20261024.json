@@ -1,0 +1,108 @@
+{
+  "schema": "gems91.strain-control-diagnostics.v1",
+  "date": "2026-10-24",
+  "note": "REPORT ONLY. Post-build translator calibration; ledger predictions unchanged.",
+  "git_sha": "30954e6fa21a73149f5457f57e551ddd8acd4000",
+  "sgmc_off_n_px": 62122,
+  "r0_sgmc": {
+    "T": 5517.637,
+    "dti": 0.095386
+  },
+  "sgmc_density_pct_by_prior_decile": {
+    "strain": [
+      1.3187,
+      2.2102,
+      1.2555,
+      0.8344,
+      0.6549,
+      0.8934,
+      0.9039,
+      1.1178,
+      1.4886,
+      1.3448
+    ],
+    "dilatation": [
+      1.8859,
+      1.2311,
+      1.2456,
+      1.3966,
+      1.1736,
+      1.3795,
+      0.7864,
+      0.9639,
+      1.4351,
+      0.5319
+    ]
+  },
+  "catalogue_density_pct_by_prior_decile": {
+    "strain": [
+      0.8823,
+      0.8548,
+      0.8045,
+      0.8551,
+      1.158,
+      1.329,
+      1.6376,
+      1.1306,
+      1.2565,
+      1.8938
+    ],
+    "dilatation": [
+      1.2442,
+      1.3292,
+      0.99,
+      0.9628,
+      0.7478,
+      0.9597,
+      1.3727,
+      1.368,
+      1.1659,
+      1.651
+    ]
+  },
+  "prior_mean_percentile_by_half": {
+    "strain": {
+      "west": 0.6123,
+      "east": 0.3429,
+      "north": 0.4156,
+      "south": 0.7382
+    },
+    "dilatation": {
+      "west": 0.5811,
+      "east": 0.3866,
+      "north": 0.4759,
+      "south": 0.568
+    }
+  },
+  "translator_on_controls": {
+    "gdr25m10_replicate": {
+      "prior_digest": "51f294b259ced272a9a121eefae357d6f3c316376182c2b797b32f556992d5ca",
+      "n_moved": 3765,
+      "collar_le3px_after": 1897,
+      "settings": "legacy GDR (no donor quarantine)",
+      "sgmc_T": 5481.929,
+      "sgmc_rel_T": -0.006472,
+      "frozen_translator_point_MODEL": -0.0009,
+      "sgmc_delta_dti": -0.000604
+    },
+    "gdr25rm10_replicate": {
+      "prior_digest": "6afed3bf2b51d1070bed4dfd071d93cde75b252f329cf2f5f5bb9868606beec0",
+      "n_moved": 3765,
+      "collar_le3px_after": 1912,
+      "settings": "legacy GDR (no donor quarantine)",
+      "sgmc_T": 5422.032,
+      "sgmc_rel_T": -0.017327,
+      "frozen_translator_point_MODEL": -0.0024,
+      "sgmc_delta_dti": -0.001631
+    },
+    "random_smooth_null_m10": {
+      "n_moved": 3765,
+      "settings": "strain-arm settings (donor-quarantined)",
+      "sgmc_T": 5357.705,
+      "sgmc_rel_T": -0.028986,
+      "frozen_translator_point_MODEL": -0.004,
+      "sgmc_delta_dti": -0.002734
+    }
+  },
+  "reading": "On the frozen SGMC translator the concentration operation itself costs relT -0.029 under a random prior; the GDR priors cost only -0.007/-0.017 (they beat the null), while strain 10% costs -0.041 and dilatation 10% -0.110 (both worse than random). The catalogue's strain association does not replicate on SGMC-only faults (decile profiles above)."
+}

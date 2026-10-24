@@ -1005,3 +1005,18 @@ The direct Pages setting update was denied (`403 Resource not accessible by
 integration`). A workflow step attempts to select the Actions publisher using
 its already-declared `pages: write` permission. This is a configured attempt,
 not a claim of deployment. See the [actual Pages workflow status](https://github.com/buffedlizard55-lab/GEMSDOE91/actions/workflows/pages.yml).
+
+## Parallel strain lane (merged 2026-10-24, `arena/6f079276-gemsdoe91`, PR #26) — measured negative, not promoted
+
+Concurrent with the collar session (PR #24), this lane built three `CONCENTRATION` arms moving R0's
+mass by a sponsor geodetic-strain prior (bands 4/7/8 percentile ranks, 2.5 km blocks, count fixed
+37,654, collar 2,171 → 2,171): `strn25m10` (`85cc49d2…`, 10.00% moved, **−0.0056** `MODEL`),
+`strn25m20` (`a88ce2c2…`, 20.00%, **−0.0200`), `strd25m10` (`106e87d9…`, 10.00%, **−0.0152** `MODEL`).
+Predictions use the GDR sessions' frozen SGMC-off-catalogue translator (USGS DS-1052 control); on it,
+strain relocation loses to a random-prior relocation and the catalogue's strain-decile rise does not
+replicate on SGMC-only faults — a measured negative, recorded as such (`docs/MECHANISM_CARDS_STRAIN.md`,
+`evidence/strain_concentration_20261024.json`, IR-91-42/43/44). Rasters are not committed; rebuild with
+`scripts/build_strain_concentration.py --build` (byte-identical to `releases/MANIFEST.json` digests).
+The identical intervention was built independently as `GEOD25m10` (`bff9fd21…`, PR #30) with an
+opposite-signed claim (**+0.0090** `MODEL`); the disagreement and this lane's non-promotion verdict are
+recorded in IR-91-45. Nothing in this lane is submission-ready or queued by its authors.

@@ -872,3 +872,76 @@ is a successful public-deployment receipt.
 **Expected:** maximizing `sum_g p(g) max_j K(||j-g||_2)` over 2-D posterior maps selects 1-px fault ridges, and one-way 3-px dot overlap compares peer dot sets symmetrically.
 **Actual:** (1) over a 2-D disk (`r <= 3 px`, 29 cells), `sum K = 10.61`, whereas along a 1-px fault line (7 cells), `sum K = 3.00` — a `3.5x` area bias that causes uncalibrated 2-D submodular allocators to pack `p = 0.50` mountain blocks (`0.50 * 10.61 = 5.31`) ahead of `p = 0.85` 1-D fault lines (`0.85 * 3.00 = 2.55`), collapsing `HOLDOUT-DTI` to `0.030`; (2) synthetic calibration blankets (`calib_h28ridge_01839.tif` covering `27.4%` of footprint, and `calib_r13lattice_00904.tif` covering `99.8713%` of footprint per `IR-CED-003`) asymmetrically overlap smaller `38k` dot sets.
 **Decision it changes.** Apply Bayes prior-shift calibration + 4-axis 1-D directional ridge NMS + background floor subtraction in `submodular_dti_emit` (lifting `E1` `HOLDOUT-DTI` to `0.174030` in `~1.0s`/fold), check `E1` against all `20` real fault-prediction rasters (`<= 63.17%`), and register `E1`'s `.tif` and `.zip` in `registry/artifact_policy.json` as `current_research_only` pending human fleet-selector review of `calib_r13lattice_00904.tif` and the weekly 3-slot allowance.
+
+> **Numbering note (merges of PR #26 with PRs #24, #28, #30 and the DENOVO/CED lanes).** Every 2026-10-24 lane numbered from IR-91-33. The strain session's four items, merged last, are IR-91-42/43/44/45 below; artefacts citing them as IR-91-33…39 refer to these numbers.
+
+## IR-91-42 — The GDR concentration arms silently executed a partial PRUNE (Session 8)
+
+**Expected:** a CONCENTRATION edit changes only block-scale dot density; the IR-91-27
+standard (Sessions 5-7) quarantines R0's 2,171 inherited dots at 2 < d_cat <= 3 px so a
+non-PRUNE edit cannot drift the collar.
+**Actual:** the GDR concentration build (which predates IR-91-27) let collar dots be
+donors. Its own evidence records dots <=3 px falling 2,171 -> 1,897 / 1,911 / 1,912
+(`evidence/concentration_axis_20261023.json`), i.e. 259-274 collar dots (~7% of the
+3,765 movers, ~0.7% of all dots) were removed as part of the "concentration" move -
+replicated byte-identically this session (`reports/strain_control_diagnostics_20261024.json`).
+**Decision it changes.** A future GDR receipt cannot be attributed to the thermal prior
+alone: up to ~0.7% of its dots are a small PRUNE. The strain build adds an opt-in
+`donor_exclude` quarantine to `tools.run_concentration.build_concentration` (default
+preserves the GDR fleet's byte identity; new builds must pass `d_cat <= 3 px`).
+
+## IR-91-43 — The built strain prior is not the SLOT_PLAN proposal's literal formula
+
+The merged SLOT_PLAN proposal's falsifier reads "Moving 20% of R0 mass into top-tercile
+`geod_2ndinv x S_struct`".  Session 8 built the geodetic percentile ranks *without* the
+S_struct multiplier: S_struct is 60% lineage support, so the product would make the
+allegedly independent prior partly a re-statement of the parent dot field (the IR-91-07
+failure mode that invalidated the first concentration rows), and acceptor placement
+already anchors 80% of moved dots within +/-4 px of existing parent dots.
+**Decision it changes.** The proposal's literal formula remains unbuilt. On this
+session's control evidence (all three geodetic arms predicted negative; the product
+prior would fall between the lineage field it multiplies and the strain field that
+failed) building it is not recommended; recorded so nobody cites `strn25m20` as the
+proposal's falsifier test.
+
+## IR-91-44 — The geodetic "km-scale prior" is province-scale, and its two oracles disagree
+
+**Expected** (brief S5): CONCENTRATION moves dots between km-scale blocks of a prior,
+with the strain bands attractive because they lead the GeoDAWN stack on catalogue AUC
+(0.579/0.576).
+**Actual:** (a) the strain prior's autocorrelation is 0.95 at 25 km lag and its 25 px vs
+50 px block ranks correlate 0.999; the mean moved dot travels 2,493 px (249 km) from the
+NE low-strain half to the SW high-strain half - the operation is a regional
+reallocation in 2.5 km clothing, incapable of placing a dot on the right 300 m segment.
+(b) The catalogue density rises across strain deciles (0.88% -> 1.89%) while SGMC-only
+off-catalogue fault density does not (peak in decile 2; 1.34% in the top decile), and
+for dilatation the top decile is the SGMC-poorest (0.53%).
+**Decision it changes.** Catalogue AUC is retired as a prior-selection argument in this
+repo (it partly maps where the catalogue was drawn, and the target is what the catalogue
+missed). No strain arm enters the Week-1 queue; future block priors get an SGMC-off
+decile screen reported *before* any build, labelled PROXY with the proxy-tuning risk
+stated, never as a gate.
+
+## IR-91-45 — The same geodetic-strain intervention was built twice under two axis names, with opposite-signed claims, and one copy's rasters were committed under `docs/`
+
+Session 9 (`arena/4f94d2e7`, PR #30, merged while PR #26 awaited CI) built `GEOD`/`geod25m10`
+(`bff9fd21…`) from the identical recipe as this session's `CONCENTRATION`/`strn25m10` (`85cc49d2…`):
+prior `0.5*pct(geod_2ndinv)+0.5*pct(geod_shearrate)`, 2.5 km blocks, 3,765 of 37,654 dots moved,
+same parent dot set. The "(axis, value) built once" rule did not fire because the axis label and
+even the parent string differ (`GEOD`/`h33-h33-2-b2-20261004-e5eb6e7e` vs `CONCENTRATION`/`h33-h33-2-b2`);
+the ledger now holds both (54 rows). The claims disagree in sign: Session 9 headlines **+0.0090**
+`MODEL` from a strain "surrogate" (+31% rel, κ=0.1) and reports "SGMC off-cat +1.8%", but its
+evidence (`evidence/geod_axis_20261024.json`) shows that figure is the **full** SGMC field
+(parent DTI 0.09539 = R0's full-SGMC value), not the off-catalogue restriction on which the same
+intervention measures −4.05% rel and loses to a random-prior relocation (**−0.0056** `MODEL`,
+IR-91-44). Session 9 also committed both competition rasters under `docs/downloads/` in a repo
+serving GitHub Pages — public exposure of submission files while the competition data-use terms
+remain unchecked (brief: keep competition rasters out of public repos; flagged, not deleted, at
+merge). Decision consequence: Session 9's README promotes `GEOD25m10` to "the new Slot-1
+candidate"; that promotion rests on the mislabelled control and a κ the strain session's frozen
+translator rejects. Neither `MODEL` number is evidence — only a receipt settles the strain
+question, and spending a slot on either file spends it on both sessions' hypothesis. The human
+must decide: (a) whether the `docs/downloads/` rasters stay public, (b) whether any strain file
+enters the queue ahead of PRUNE-le10/MASS-cons3add.
+
+Update at the PR #26 merge (same day): main had meanwhile chosen the other resolution — PR #31 promoted `GEOD25m10` (portal `submission_ready: true`), widened the axis test to admit `GEOD`, and IR-91-41 amended the no-rasters policy for `docs/downloads/`. This merge adopts main's versions of the portal pages, tests and CI; the strain lane's contrary verdict stands in `docs/MECHANISM_CARDS_STRAIN.md`. The human decision above is therefore now: whether the promoted portal candidate is actually submitted, knowing the off-catalogue control disagrees.
