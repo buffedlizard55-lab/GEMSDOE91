@@ -50,13 +50,21 @@ def test_all_local_page_links_assets_and_fragments_resolve():
 
 def test_negative_research_download_is_not_advertised_as_approved_submission():
     card=load_card(); a=card['artifact']
-    for name in ('index.html','executive-summary.html'):
+    # The currently published index is the separate MTD91 lane landing page;
+    # the generated executive summary remains the legacy CED artifact portal.
+    expectations=(
+        ('index.html',
+         'downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif',
+         'downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.zip'),
+        ('executive-summary.html',a['file'],a['zip']),
+    )
+    for name,expected_tif,expected_zip in expectations:
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states==['false']
         assert 'NOT OK TO SUBMIT' in text
         assert 'research' in text.lower()
-        assert a['file'] in p.downloads and a['zip'] in p.downloads
-        assert all(x in (a['file'],a['zip']) for x in p.downloads)
+        assert expected_tif in p.downloads and expected_zip in p.downloads
+        assert all(x in (expected_tif,expected_zip) for x in p.downloads)
         assert 'bff9fd21.tif' not in text
 
 

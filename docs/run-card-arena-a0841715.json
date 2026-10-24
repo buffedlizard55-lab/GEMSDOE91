@@ -45,9 +45,9 @@
   "weekly_slots_used": 0,
   "organizer_confirmed": null,
   "engineering_checks": {
-    "pytest": "PASS after merging current main parent: 297 passed, 7 skipped (missing pinned raster inputs), 29 rasterio deprecation warnings",
+    "pytest": "PASS after merging current main and MTD91 lane updates: 299 passed, 7 skipped (missing pinned raster inputs), 29 rasterio deprecation warnings",
     "verify_evidence.py": "PASS; 0 geological experiments rerun; submission_ready false",
-    "check_artifact_policy.py": "PASS; 10 explicitly registered artifacts; no raw raster/archive tracked",
+    "check_artifact_policy.py": "PASS; 13 explicitly registered prediction artifacts; no raw raster/archive tracked",
     "preflight.py": "BUILD BLOCKED; no axis has all pinned inputs",
     "verify_current_artifact.py --with-data": "BLOCKED as expected; missing data/official/sample_submission.tif",
     "updated_S11_local_links": "PASS; all local links/assets resolve"
@@ -57,6 +57,6 @@
     "Pinned data rasters are absent from this checkout; preflight is BUILD BLOCKED.",
     "Pinned dependencies were installed into ignored .venv/ for unit tests; system Python still lacks them. Raster validation remains blocked by missing input rasters.",
     "No organizer receipt was accessed; no HOLDOUT-DTI is a prediction of leaderboard score.",
-    "Existing S11-MHTR is not approved for upload; IR-CED-003 and separate selector review remain open."
+    "Existing S11-MHTR and inherited parallel-lane MTD91 artifacts are research-only and not approved for upload; IR-CED-003 and separate selector review remain open. MTD91 was merged from another lane and not generated in this session."
   ]
 }

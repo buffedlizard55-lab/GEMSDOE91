@@ -1,0 +1,69 @@
+{
+  "candidate_id": "gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a",
+  "primary_zeros_tif": {
+    "filename": "gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif",
+    "path": "releases/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif",
+    "sha256": "de595c67d459a7e764fb059285725db7eabb089d6672f7cd820af135d2558dc9",
+    "bytes": 234246,
+    "nodata": null,
+    "all_cells_finite": true,
+    "total_cells": 12279160,
+    "nan_cells_anywhere": 0,
+    "min_value": 0.0,
+    "max_value": 1.0
+  },
+  "companion_nan_tif": {
+    "filename": "gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a.tif",
+    "path": "releases/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a.tif",
+    "sha256": "3afa853ab3634bdb2195387f442596e0b29e83c7b9985de34a397433d71abdd5",
+    "bytes": 382835,
+    "nodata": "NaN",
+    "nan_inside_footprint": 0,
+    "nan_outside_footprint": 7111787
+  },
+  "zip_bundle": {
+    "path": "docs/downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.zip",
+    "filename": "gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.zip",
+    "inner_geotiff": "gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif",
+    "bytes": 202788,
+    "sha256": "6e0f1fccf0449a576e8d937e5abdb8e4b3eab3d8d350ffc8b9a263af56b47f21"
+  },
+  "browser_tif_bundle": {
+    "path": "docs/downloads/h91_submission_bundle.js",
+    "bytes": 823400,
+    "sha256": "0b9a01df9ea6a49ac245e7c4fc89fee99fc00cb4ba623bec4380b4f639016acc"
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "band_count": 1,
+    "footprint_pixels": 5167373
+  },
+  "dots": {
+    "n_dots": 37654,
+    "dot_set_digest": "abb5b13c02c2c60b1af82b3072cd1cb75fd845656b1dc614979b8276428b8252",
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0
+  },
+  "validators": {
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true
+  }
+}
