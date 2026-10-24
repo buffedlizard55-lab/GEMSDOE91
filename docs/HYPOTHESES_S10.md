@@ -60,7 +60,7 @@ Budget: this session ran 3 holdout experiments (E1, E2, E3), which is the protoc
 
 ## 3. Irregularities found this session
 
-See `IRREGULARITIES.md`, entries IR-91-S10-01 to -10. Two of them change conclusions here:
+See `IRREGULARITIES.md`, entries IR-91-S10-01 to -12. Two of them change conclusions here:
 - IR-91-S10-04: the holdout measures catalogue recovery, but the score uses new faults.
 - IR-91-S10-05: no receipt ties 0.2778 to R0.
 
