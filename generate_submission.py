@@ -1,26 +1,38 @@
 #!/usr/bin/env python3
-"""DISABLED — do not use. Kept only as a fail-closed tombstone (S16, 2026-10-25).
+"""Generate the preregistered real-data candidate once, or verify its download.
 
-The previous version of this file was dangerous and is the reason this stub
-exists: it FABRICATED a fake `data/official/existing_faults.tif` containing a
-single catalogue pixel, then emitted smoothed random noise and "validated" it
-against that fake catalogue. Its output (`gems91-unique-synthetic-…-zeros.tif`)
-is random noise, places 515 dots ON the real catalogue (measured this
-session, `evidence/s16_forensics.json`), and must never be submitted.
-
-Real submissions are built only by the preregistered lane scripts, e.g.:
-
-    .venv/bin/python scripts/restore_data.py          # verify pinned inputs
-    .venv/bin/python scripts/run_s16_lane.py          # build + triple-validate
-
-which delegate encoding/certification to the shared
-`scripts/submission_writer.py` (fail-closed, all-finite [0,1] zeros twin).
+Never create mock labels in data/official, read another submission as a feature,
+or describe random noise as a competition candidate. Tests use tools/make_fixture.py.
 """
+from __future__ import annotations
+import argparse
+import json
+from pathlib import Path
 import sys
 
-if __name__ == "__main__":
-    sys.exit(
-        "generate_submission.py is disabled (it previously fabricated a fake "
-        "catalogue and emitted random noise). Use scripts/run_s16_lane.py — "
-        "see docs/HYPOTHESES_S16.md and docs/run-card-S16.json."
-    )
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--run', action='store_true', help='Run the frozen S16 experiment once; never uploads or selects a slot')
+    parser.add_argument('--with-data', action='store_true', help='Also verify the pinned sample/footprint/catalogue')
+    args = parser.parse_args()
+    root = Path(__file__).resolve().parent
+    sys.path[:0] = [str(root), str(root / 'src')]
+    if args.run:
+        from scripts.run_s16_pgrd import run
+        try:
+            run()
+        except FileExistsError as exc:
+            parser.exit(1, f'{exc}\nUse this command without --run to verify the existing result.\n')
+    from scripts.verify_s16 import verify
+    try:
+        report = verify(with_data=args.with_data)
+    except (OSError, ValueError, KeyError) as exc:
+        print(json.dumps({'status': 'BLOCKED', 'ok_to_submit': False, 'error': str(exc)}))
+        return 1
+    print(json.dumps(report, indent=2, allow_nan=False))
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

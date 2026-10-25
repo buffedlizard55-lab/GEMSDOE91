@@ -1,0 +1,132 @@
+{
+  "schema": "gems91-review-run-card.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/6feb36e3-gemsdoe91",
+  "hypothesis": {
+    "name": "MFTA \u2014 multi-scale fault-tip termination asymmetry",
+    "status": "PROPOSED_NOT_TESTED",
+    "mechanism": "Pair magnetic/gravity/DEM ridge terminations with directional gradient rotation and relay-tip geometry at 0.5\u20132 km scales; evaluate only with the shared whole-segment buffered holdout.",
+    "why_missing_faults": "A termination/relay topology descriptor may prioritize unmapped splays and stepovers rather than the already-mapped continuous trace; this remains a falsifiable proposal, not a result.",
+    "named_non_fault_mimic": "A magnetic flight-line levelling seam or a lithologic contact can create an apparent ridge termination and directional gradient change."
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN \u2014 no assigned lane, no local data directory, missing dependencies"
+  },
+  "historical_dzedge_holdout": {
+    "label": "HOLDOUT-DTI (historical run-card record; not rerun in this checkout)",
+    "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+    "value": 0.0,
+    "withheld_positives": 60988,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "interpretation": "Catalogue-segment proxy holdout; it does not test off-catalogue blind-fault truth."
+  },
+  "registry_comparison": {
+    "preplacement_surface_rank_correlation": null,
+    "preplacement_dot_overlap_within_3px": null,
+    "final_surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "NOT RUN for this review; historical DZ-EDGE only compared with parent R0, not complete registry"
+  },
+  "raster_sha256": null,
+  "historical_artifact": {
+    "submission_name": "GEMS91-DZEDGE-20261025T021110Z-6b819d00",
+    "raster_sha256_recorded_in_committed_audit": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
+    "hash_recomputed_in_this_review": true,
+    "submission_note": "DZ-EDGE v2: count-holding PRUNE+parent-sparse damage-zone refill <=10px; HOLDOUT-DTI=0.0 gems91-hide-recover-v1.1-nohalo; MODEL only",
+    "download_status": "YES \u2014 research/education only",
+    "submit_status": "NO",
+    "fresh_byte_audit": {
+      "status": "PASS_FOR_FILE_BYTES_ONLY",
+      "sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
+      "bytes": 177734,
+      "single_band": true,
+      "dtype": "float32",
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "all_cells_finite": true,
+      "min": 0.0,
+      "max": 1.0,
+      "positive_cells": 37654,
+      "binary_values": true,
+      "zip_members": [
+        "GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif"
+      ],
+      "zip_inner_matches_tif": true
+    }
+  },
+  "validator_output": {
+    "status": "PARTIAL_FRESH_CHECK",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": null,
+    "reason": "Every raster cell was freshly read and finite, hence no NaN can occur inside the (unknown locally) sample footprint; all file values are in [0,1]. File CRS/shape/transform were freshly read, but direct equality to sample_submission.tif cannot be checked because that reference raster is absent.",
+    "actual_file_metadata": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "dtype": "float32",
+      "band_count": 1
+    },
+    "expected_grid_recorded_in_historical_audit": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ]
+    },
+    "sample_grid_comparison": "NOT RUN \u2014 data/official/sample_submission.tif missing",
+    "outside_footprint_encoding": {
+      "status": "UNVERIFIED",
+      "official_requirement": "null/NaN outside bounds per official problem description",
+      "reason": "The historical TIFF has nodata=None and all finite zeros outside its unknown footprint; sample_submission.tif is missing, so this cannot be certified."
+    }
+  },
+  "lane": {
+    "assigned": false,
+    "source": "docs/run-card.json records lane.assigned=false",
+    "verdict": "BLOCKED"
+  },
+  "experiments_run": 0,
+  "submission_slot_used": false,
+  "organizer_confirmed": null,
+  "verdict": "negative",
+  "verdict_reason": "No experiment or TIFF generated; missing lane assignment, data, and dependencies. Existing candidate fails to establish comparable holdout improvement and complete-registry novelty; no selector approval.",
+  "status": "NO PROMOTION"
+}

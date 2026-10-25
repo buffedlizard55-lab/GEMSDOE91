@@ -1,147 +1,55 @@
-# S16-PC91 — preregistered lane: Kovesi phase congruency (monogenic local energy)
+# S16-PGRD — preregistered magnetic–gravity residual lane
 
-**Session:** 2026-10-25, branch `arena/3b49ef79-gemsdoe91`. Written **before** any
-S16 holdout number was computed. Budget: at most 3 experiments (E1–E3 below).
-Every number is labelled **HOLDOUT-DTI** (evaluator version, withheld positives,
-95% CI), **MEASURED** (re-read from disk this session), **LEADERBOARD-READ**
-(fetched 2026-10-25), **USER-REPORTED CLAIM** (from the brief; no receipt in this
-repo) or **MODEL** (reasoning/projection — never a score).
+Recorded before feature construction or candidate placement, 2026-10-25.
+Branch: `arena/400a3f1a-gemsdoe91`. **Provisional research lane, not an assigned competition lane:** the user message does not contain its promised single-method paragraph.
 
-## 0. Why did `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` lead the fleet, and can it be beaten?
+## Scope and prior work
 
-**Verification status first (no hallucinations):** the brief's `0.2778` for this
-file is a **USER-REPORTED CLAIM**. No DrivenData receipt exists in this repo
-(`IRREGULARITIES.md` IR-91-S10-05), and the file does not appear in the public
-top-50. The official public leaderboard fetched today (**LEADERBOARD-READ**,
-<https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/>)
-reads #1 = 0.4413, #2 = 0.3916, #3 = 0.3904. So "highest" means *highest among
-the GEMSDOE fleet sites listed in the brief*, not highest in the competition.
+Use only bands **B02 `rtp`** and **B13 `iso_grav_anom`** of the hash-pinned 19-band competition feature stack. Reuse the template's `vendor/gems57/evaluate_holdout.py`, `spatial.folds`, and `submission_writer.py`, plus the existing CED deterministic dot placer, canary, and exact registry instruments. Do not use a prior submission as a feature, starting raster, target, or placement mask. Reference submissions are read only by the novelty/forensic checks.
 
-**Measured geometry of R0** (this session, `scripts/forensics_s16.py` →
-`evidence/s16_forensics.json`; pinned sha256 `c55bafc4…` zeros twin):
-37,654 unit-mass binary dots (single positive value 1.0), 0 dots on the
-catalogue, nearest-neighbour spacing min/med = 2.828/3.0 px, distance to
-catalogue p0/p5/p50/p95 = 2.236/3.0/19.6/81.9 px, 3-px dilation coverage =
-15.09% of the 5,167,373-px footprint. R0 is a strict dot subset of solo-d2.8
-(40,199 dots) and dotted-h19-5 (44,090 dots) per ASC91 §0 (registry-verified
-2026-10-24).
+This follows the deferred `H14-4` pseudogravity idea in `HYPOTHESES_S14_HVDC.md`, but does **not** endorse its speculative numeric improvements or its claim of never having been tried across the fleet. A source search of this checkout found no implemented pseudogravity operator. CED compares gradient centroids; MTD/UCD use magnetic depth/continuation; S15 combines conductivity and other signals. None implements the local, band-matched gravity-on-pseudogravity residual below. Fleet-wide methodological novelty remains unverified.
 
-**Mechanism (MODEL, grounded in the official metric).** The official metric
-(verified today against the problem page
-<https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/>:
-α=0.2, β=0.8, R=300 m triangular kernel, per-truth-pixel **max** credit) is
-algebraically identical to this repo's `scripts/dti.py`
-(`T/(0.2T + 0.2(S−M) + 0.8|G|)`; TPw=T, FPw=S−M, FNw=|G|−T). Three consequences:
+## Ranked hypotheses (qualitative priority, not projected scores)
 
-1. **Max-credit saturation → sparsification wins.** A truth pixel can earn at
-   most 1.0 no matter how many predicted pixels surround it, while every extra
-   unit of predicted mass pays 0.2·(1−k) in the denominator. Thinning a solid
-   ~121k-px surface to dots ≥2.828 px apart deletes mass that paid penalty
-   without raising credit. Fleet ladder (USER-REPORTED): continuous h19-5
-   0.1922 → dotted d1.5 0.2477 → d2.8 0.2600 → solo-d2.8 0.2708 → R0 0.2778.
-2. **Catalogue-collar deletion.** Test truth is expert-mapped faults *not* in
-   the USGS catalogue (official problem page), and catalogue pixels themselves
-   earn no hidden credit; dots there are pure penalty. R0's lineage pruned the
-   ≤2 px collar (measured min distance 2.236 px).
-3. **The h19-5 detector surface was the fleet's best ranking.** All top fleet
-   files (0.2449–0.2778) are emissions/rearrangements of that one surface;
-   rearrangements differ by ≤0.033 while the public leader (0.4413) implies
-   ~1.65× R0's weighted recall at comparable mass (MODEL arithmetic in ASC91
-   §0). Emission geometry is therefore nearly exhausted; only a better
-   *detector* — signal the amplitude/ridge machinery cannot see — can move
-   materially past 0.2778.
+All four are variants within **one** magnetic–gravity transfer-residual lane. Only rank 1 is authorized in this run; other variants are untested deliverables, not a search space to tune after seeing the holdout.
 
-**Can we generate a submission scoring higher than 0.2778?** Honest answer:
-unknown until an organizer receipt exists. The only legitimate in-repo gate is
-the spatially-blocked hide-and-recover holdout. Comparable best today:
-S14-HVDC **0.262209 HOLDOUT-DTI** (`gems91-hide-recover-v1.0`, 60,988 withheld,
-95% CI [0.248940, 0.275209]) — but S14-HVDC is a Rule-1 duplicate stop (final
-dots 84.7% within 3 px of S13-PTHA). This lane therefore must (a) use a
-mechanistically new detector, (b) beat 0.262209 on the *same* evaluator to be
-promoted, and (c) pass Rule 1 vs every registry raster. If it does not, the
-deliverable is a labelled negative — per protocol Rule 5 that is a valid
-result, and the file will be marked **DO NOT SUBMIT**.
-
-## 1. Five candidate hypotheses not yet tried in this repo (ranked)
-
-Novelty verified 2026-10-25 by grep over `src/`, `scripts/`, `docs/HYPOTHESES*.md`
-for: phase-congruency/monogenic/log-Gabor (proposed in ASC91 §1 #2, **never
-implemented**), pseudogravity/Poisson (absent), Euler deconvolution (absent in
-repo; fleet-only), drainage-χ (absent), texture coherence-length (**implemented**
-— MTD91, excluded), basement curvature (**implemented** — BHAR-S12, excluded),
-demagnetization (**implemented** — S12-SPAC, excluded).
-
-| # | hypothesis | layers / physical signature | why it should catch a *missing* fault | differs from this repo | expected ΔDTI (MODEL) / cost |
+| Rank | Hypothesis and layers | Physical signature and why it could find omitted faults | Named non-fault mimic | Difference from implemented code | Expected value / implementation cost |
 |---|---|---|---|---|---|
-| 1 | **PC91 — Kovesi phase congruency via monogenic signal (log-Gabor radial × Riesz) on B02 `rtp`, B13 `iso_grav_anom`, B12 `det_elev`** (this lane) | Contrast-invariant step+line energy: Fourier components align in phase at a fault offset regardless of amplitude; orientation/coherence from Riesz odd components. 4 wavelengths (3/6/12/24 px). | A deeply buried basement fault under basin fill has *low gradient amplitude* but preserved multi-scale phase alignment. Every fleet detector (tilt, HG maxima, Frangi, worms, ASC step filter) is amplitude-scaled, so such faults rank below shallow high-amplitude noise. PC normalizes amplitude away. | No frequency-domain phase method exists in repo code (`grep -ri "gabor\|congruency\|monogenic" src/ scripts/` = 0 implementation hits). | Medium-high / medium (FFT bank, ~40 transforms of 3730×3292) |
-| 2 | Pseudogravity misfit (Poisson relation) | FFT pseudogravity of B02 vs observed B13; misfit corridors = density/magnetization decoupling (alteration, non-magnetic offsets) | Faults that offset basement without magnetized contrast are invisible to mag-only and grav-only edges but break the Poisson proportionality | Absent (`grep pseudogravity` = 0) | Medium / low-medium |
-| 3 | Euler deconvolution source clustering | B14/B02 + FFT derivatives; clustered solutions at structural index 0–1 trace contacts/faults with depth | Adds explicit depth+geometry inversion vs edge filters | Absent in repo; fleet Euler lanes USER-REPORTED 0.0355–0.0984 (weak standalone) | Low-medium / medium |
-| 4 | Drainage-deflection + channel-steepness (χ) on B12 | Flow routing on 100 m detrended DEM; knickpoint/deflection alignment | Young faults offset drainages where scarp is buried | Absent in repo; fleet χ USER-REPORTED ≤0.05; 100 m DEM likely too coarse | Low / medium-high |
-| 5 | 1 m DEM supervised scarp features | USGS 3DEP 1 m DEM via competition `1m_DEM_links.csv` (free, official: <https://www.usgs.gov/the-national-map-data-delivery>) | Expert hidden faults are primarily geomorphic scarps invisible at 100 m | Fleet lidar lanes emitted scarps standalone | Highest ceiling / **BLOCKED HERE**: sandbox egress = github/pypi/npm only; USGS/DrivenData unreachable from bash. Pinned derived `lidar_scarp_features_u8.tif` exists but provenance unverified. Not viable this session — documented, not proposed. |
+| 1 | **PGRD: local pseudogravity regression discordance**; B02 + B13 | Band-limit pole-reduced magnetics, integrate once in wavenumber (`1/|k|`), fit a local gravity/pseudogravity transfer, then seek coherent residual-gradient edges persistent at two scales. A concealed altered contact may retain a density boundary while losing a proportional magnetic response, including beneath cover with no visible scarp. | Unaltered nonmagnetic granite–carbonate contact; remanent volcanic magnetization; flight-line seam | Tests a **failure of proportionality**, not CED's coincident edge-centroid alignment. Deferred conceptual precursor H14-4 is acknowledged. | Highest scientific priority here, uncertain DTI benefit; moderate CPU/memory, no new data |
+| 2 | **Transfer-slope sign reversal**; B02 + B13 | Spatially persistent change in fitted signed gravity/pseudogravity coefficient along an otherwise continuous buried contact; potentially distinguishes alteration fronts from uniformly magnetized rock. | Reversed-polarity lava flow boundary | Spatial derivative of a local transfer coefficient, absent from existing lanes | Lower expected robustness because remanence is ambiguous; low incremental cost; **not run** |
+| 3 | **Cross-scale transfer breakdown**; B02 + B13 | Compare residuals in disjoint wavelength bands and require a fine residual ridge within a broad gravity boundary. Could resolve shallow alteration over a deeper unmapped boundary. | Two unconnected lithological bodies at different depths | Local spectral transfer discrepancy, not UCD continuation-ratio depth proxy | Medium priority, lower localization certainty; moderate cost; **not run** |
+| 4 | **Residual endpoint pairing**; B02 + B13 | Paired along-strike changes in residual-gradient coherence near the ends of a proportionality break could mark a short altered fault conduit rather than an entire rock-unit boundary. | Intrusive apophysis or survey seam ending | Topology of a transfer residual rather than prior-fault tips or S14 posterior auto-context | Lowest priority, more assumptions; higher cost; **not run** |
 
-**Named non-fault mimics:** PC91 — GeoDAWN flight-line seams and survey
-gridding artifacts (phase-coherent straight lines at flight azimuth);
-pseudogravity — remanent magnetization reversals; Euler — isolated volcanic
-plugs; χ — lithologic knickpoints; 1 m DEM — Lahontan shorelines/roads.
+These are falsifiable exploration hypotheses, not evidence of geothermal vents, fluid temperature, permeability, or economically useful resources. Poisson-style proportionality assumes a common source with uniform density/magnetization and an appropriate pole reduction; heterogeneous geology can invalidate every assumption. A fault predictor is not a vent detector.
 
-## 2. Frozen PC91 method (single lane)
+## Frozen E1 specification
 
-Inputs: only pinned sponsor stack `training_features` (sha256 `4371c82e…`,
-bands verified from file tags this session: B02 rtp, B12 det_elev, B13
-iso_grav_anom; E2 adds all-19 raw robust-z), `existing_faults.tif`
-(sha256 `7ba308cc…`; labels/exclusion only), `sample_submission.tif`
-(sha256 `2176d08e…`; footprint/grid). No previous submission raster is a
-feature. Sentinel −3.4028235e+38 → nearest-valid EDT fill inside footprint
-(shared `gems91.dd_vtc_pu._clean_band_edt`).
+- Candidate budget: **37,654** unit dots; deterministic row-major tie-breaking; separation strictly greater than **3 px**. This is a fixed comparison budget, not a universal DTI optimum.
+- B02 and B13 are independently nearest-filled at invalid/sentinel cells and robustly standardized using the existing `ced.fill_input` helper. No catalogue enters feature construction. Bands are validated by their on-disk `band_name` tags.
+- Reflect padding: 64 pixels. Gaussian bandpass: sigma 2 versus sigma 16 pixels. Apply `1/|k|` to B02, zero DC; apply the same bandpass without integration to B13. Units of the transformed fields are standardized proxies, **not physical density**.
+- Local regression window sigma 25 px. Ridge floor: 5% of footprint median local pseudogravity variance. Compute residual gravity, residual edge strength at sigma 2 and 5, gravity edge strength at the same scales, residual structure-tensor coherence, and `1 - |local correlation|`.
+- Ranking surface = geometric mean residual-edge ranks × geometric mean gravity-edge ranks × residual coherence × `(0.5 + 0.5 × discordance)` × input-support taper. The taper reaches one at 8 pixels from an invalid input or footprint boundary; no hidden-label geometry is used.
+- Feature-alone canaries on **each fixed holdout quadrant**, including the final composite and every intermediate used by the surface. Symmetric AUC >0.90, undefined AUC, or nonfinite input blocks scientific evaluation.
+- Surface uniqueness is checked before **any** placement. Read every frozen registry entry (including dense references and missing records); report missing files as UNVERIFIED, never PASS. Stop on the first measured duplicate. Full-resolution Spearman, no stride estimate.
+- Whole intersecting 8-connected fault segments are hidden in every affected test quadrant. An 80 px training buffer surrounds the quadrant and held component tails. There is no catalogue-derived model feature and no supervised fit. Mask **visible faults only, pixel-exactly**; never delete a halo around hidden truth. Evaluation regions depend on the grid/footprint, not withheld labels.
+- Same global-budget emission function in holdout and full inference: rank the full footprint, mask only currently visible faults, place the fixed budget, then score only the fixed held-out quadrant. Do not tell placement where the test quadrant or hidden segments are. No global-catalogue collar or truth-aware clipping is added to the holdout or final algorithm. The CED historical benchmark retains its originally published area-proportional quadrant quotas to reproduce that receipt, and is labelled accordingly.
+- Controls: (a) gravity-persistence ranking, same budget and placement; (b) frozen CED91 surface at its historical 32,000-dot budget, recreated with the existing cached-feature builder. Controls are comparisons inside this one preregistered experiment, not additional hypothesis searches. Prior larger historical scores with different splits, halo deletion, or uncertain population are not interchangeable.
+- Score with template pooled DTI: alpha 0.2, beta 0.8, triangular radius 300 m. Paired physical 20 km block bootstrap, 1,000 draws, fixed seed 160025; report positives, version, CI, and limitations. Reproducing CED is a benchmark integrity check, not a claim that CED is the repository's universal best.
+- Write a fresh all-finite, one-band float32 TIFF and single-TIFF ZIP with the shared writer. Check SHA-256, internal ZIP member bytes, shape/CRS/transform, catalogue zeros, footprint zeros, and range on disk.
+- Check final dots against the same frozen registry and stop on the first duplicate. Packaging/reporting of a negative result is allowed; no further model/emission experiment after a stop.
 
-Per field F ∈ {B02, B12, B13}, scales λ ∈ {3, 6, 12, 24} px:
-log-Gabor radial bandpass `G(r)=exp(−ln²(r/r0)/(2 ln²0.55))`, Riesz pair
-`(−i·kr/|k|, −i·kc/|k|)` → monogenic triple (even e, odd (o_r, o_c));
-local amplitude `A=√(e²+|o|²)`, local phase `φ=atan2(|o|, e)`.
-Phase congruency `PC = Σ_s A_s·max(cos(φ_s−φ̄)−0.0,0)·Δφ_s / (Σ_s A_s + ε)`
-with `Δφ` the phase-deviation weighting `sin(|φ_s−φ̄|)` complement
-(Kovesi monogenic formulation), implemented in `src/gems91/pc91.py` and
-unit-tested on a synthetic contrast-varied step (PC invariant to step
-amplitude/sign) before any real-data use.
+## Promotion and stop policy
 
-Features per field: `pc`, `energy=Σ_s A_s` (robust-scaled), orientation
-coherence `|Σ_s o_s|/Σ_s|o_s|` (3-px smoothed), odd-vector strike components
-`cos2ψ, sin2ψ`. Cross-field: `pc_min3`, `pc_geomean3`, pairwise strike
-agreement `cos2(ψ_a−ψ_b)` weighted by PC. E1 = PC features only;
-E2 = E1 + 19 raw-band robust-z; E3 = winner emission sweep
-{30,000 / 37,654 / 44,000 dots}.
+**At most one candidate experiment is planned** (hard cap three / two hours); no live upload or weekly-slot selection. Promotion requires all shared readiness gates, a genuinely comparable best with paired positive CI, full registry evidence, an assigned lane, and a separately authenticated selector/weekly-cap receipt. Nothing in this run grants those permissions.
 
-Training/emission reuse shared tools only (Rule 2):
-`dd_vtc_pu.fit_and_predict_oof_fold` (HGB+LR, visible-fault positives,
->3.5 px off-collar negatives, buffer/withheld excluded),
-`dd_vtc_pu.submodular_dti_emit` (min spacing 2.85 px, >3.0 px catalogue
-collar), `evaluate_holdout.build_segment_buffered_folds` +
-`score_pooled_holdout` (report **both** v1.0 comparable-to-S14 and
-v1.1-nohalo; never mix), `run_leakage_canary` (Rule 4: symmetric AUC ≤ 0.90
-per feature), `check_registry_surface_uniqueness` before placement +
-`check_registry_uniqueness` on final dots (Rule 1: |ρ| ≤ 0.90, ≤70% dots
-within 3 px vs **every** registry raster), blind SGMC off-catalogue control
-(report-only), `submission_writer.write_validated_submission_bundle`
-(triple gate suites; all-finite zeros twin in [0,1]).
+The pre-run registry feasibility audit already proves that a 37,654-dot result cannot satisfy the literal 70% gate against `calib_r13lattice_00904.tif`: 6,649 footprint cells are more than 3 px from that registry. Even placing one dot in every such cell forces at least `(37654-6649)/37654 = 0.8234184947` overlap. Spacing can only tighten that bound. This is **not** permission to erase the reference or place anti-registry noise. E1 is therefore a scientifically measured **negative research deliverable**, not a prospective weekly submission.
 
-### Amendment (2026-10-25, after E1/E2, before E3 — process stopped pre-write)
+## Sources and obtainable data
 
-Observed: E1 PC-only = **0.123600 HOLDOUT-DTI** (v1.0, CI [0.114867, 0.133738]);
-E2 PC+raw19 = **0.137450** (CI [0.124169, 0.151986]) ≈ B0 raw-only 0.138999 —
-PC adds no measurable signal over raw bands for catalogue recovery. A ±15%
-budget sweep (fleet sensitivity ≈ ±0.01, MODEL) cannot close a 0.125 gap to
-0.262209, so the frozen E3 sweep is replaced, within the same 3-experiment
-budget, by: **E3 = shared static feature stack (49 cols,
-`dd_vtc_pu.build_or_load_static_feature_memmap`, Rule 2 cached stack) + PC91
-(24 cols) at fixed 37,654-dot quota**, canaried on all 73 features. This tests
-the only remaining lane question — whether PC adds over the repo's engineered
-stack — instead of tuning emission on a detector already shown weak. Final
-budget is fixed at 37,654 (R0-matched). No candidate file had been written
-when this amendment was made (run stopped at the E3 boundary; log
-`evidence/s16_run.log`).
+- Official reference notebook: <https://github.com/drivendataorg/gems-prize-reference-solution>. Fetched at a recorded commit. It verifies a U-Net/Tversky-loss example and alpha/beta weights; it does **not** implement the organizer's distance-weighted scorer.
+- Competition metric/format: <https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/>. Official host outside this sandbox's allowlist; not freshly read. DTI arithmetic is the explicit user protocol and existing tested template, not a newly authenticated scorer.
+- GeoDAWN source lead: <https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and>. Official host not reachable under the configured allowlist. The local stack is verified against `registry/data_manifest.json`; a mirror hash establishes identity, not official endorsement or redistribution permission.
+- Fatiando/Harmonica author's implementation of pole reduction and potential-field filters: <https://github.com/fatiando/harmonica/blob/main/src/harmonica/filters/_filters.py>. Author-maintained scientific software, **not a government source or geological proof**; commit and exact supporting lines stored separately.
+- Deferred precursor: [`HYPOTHESES_S14_HVDC.md`](HYPOTHESES_S14_HVDC.md).
 
-Promotion gate (all required): canary pass; surface+dot uniqueness pass;
-**v1.0 HOLDOUT-DTI > 0.262209** (S14 comparable best); triple format gates
-CERTIFIED. Promotion means "eligible for the separate human selector step
-within the weekly cap" (protocol Rule 6) — this session does not submit.
-Any failure ⇒ verdict negative, `ok_to_submit=false`.
+No candidate above needs new external data. Free official USGS 3DEP and NASA OPERA are useful future leads, but their retrieval endpoints are not available from this sandbox, so they are **not proposed as currently viable inputs**. Public GitHub fleet snapshots are learning/reference material only and never organizer-confirmed score receipts.

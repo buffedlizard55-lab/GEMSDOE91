@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """S16-PC91 lane: Kovesi phase congruency (monogenic local energy) detector.
 
-Preregistration: docs/HYPOTHESES_S16.md (frozen before any S16 holdout run).
+Preregistration: docs/HYPOTHESES_S16PC.md (frozen before any S16 holdout run).
 PARALLEL-RUN PROTOCOL: Rule 2 reuses shared `evaluate_holdout.py`,
 `gems91.dd_vtc_pu` trainer/emitter and `submission_writer.py`; Rule 4 canary
 on every feature; Rule 1 surface+dot uniqueness vs data/registry AND every
@@ -241,7 +241,7 @@ def main() -> int:
     log("E2: PC91 + raw19 ...")
     e2 = cached_or_run("E2", "E2", X, all_cols)
 
-    # E3 (amended, docs/HYPOTHESES_S16.md): shared static stack + PC91.
+    # E3 (amended, docs/HYPOTHESES_S16PC.md): shared static stack + PC91.
     log("E3: shared static stack (49) + PC91 (24) ...")
     Xs, static_names, _ = DD.build_or_load_static_feature_memmap(
         features_tif=FEATURES, gdr_csv=DATA / "external/gdr_wellspring_in_footprint.csv",
@@ -267,7 +267,7 @@ def main() -> int:
     winner_label, winner, winner_X, winner_cols = max(cands, key=lambda t: t[1]["v10"]["holdout_dti"])
     best_budget = BASE_BUDGET
     final_v10, final_v11 = winner["v10"], winner["v11"]
-    sweep = {"note": "budget sweep replaced by amended E3 (docs/HYPOTHESES_S16.md); final budget fixed at 37,654"}
+    sweep = {"note": "budget sweep replaced by amended E3 (docs/HYPOTHESES_S16PC.md); final budget fixed at 37,654"}
     log(f"winner: {winner_label} @ {best_budget:,} dots, v1.0 HOLDOUT-DTI = {final_v10['holdout_dti']:.6f} (prior best {PRIOR_BEST_V10})")
 
     d_cat = ndi.distance_transform_edt(~cat)
@@ -348,7 +348,7 @@ def main() -> int:
         "repo": "buffedlizard55-lab/GEMSDOE91",
         "branch": "arena/3b49ef79-gemsdoe91",
         "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "preregistration": "docs/HYPOTHESES_S16.md",
+        "preregistration": "docs/HYPOTHESES_S16PC.md",
         "lane": "S16-PC91 Kovesi phase congruency (monogenic local energy)",
         "hypothesis": "Contrast-invariant multi-scale phase alignment on B02 rtp / B13 iso_grav_anom / B12 det_elev exposes low-amplitude buried basement faults that amplitude-scaled detectors rank below shallow noise.",
         "mechanism": "Log-Gabor radial x Riesz monogenic triples at 3/6/12/24 px wavelengths; spread-weighted phase-deviation PC in [0,1] + local energy + orientation coherence + cross-field strike agreement; fold-wise HGB+LR on visible faults only; submodular 300 m DTI dotted emission >3.0 px off catalogue.",
@@ -404,7 +404,7 @@ def main() -> int:
                            f"surface_uniq={surf_uniq['uniqueness_pass']}, dot_uniq={dot_uniq['uniqueness_pass']}, "
                            f"validators={validators_pass}"),
     }
-    out_p = ROOT / "docs/run-card-S16.json"
+    out_p = ROOT / "docs/run-card-S16PC.json"
     out_p.write_text(json.dumps(card, indent=1))
     (ROOT / "evidence/s16_run_card.json").write_text(json.dumps(card, indent=1))
     log(f"run card -> {out_p} verdict={card['verdict']}")

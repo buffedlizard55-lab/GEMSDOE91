@@ -11,6 +11,8 @@ ROOT = Path(__file__).resolve().parents[1]
 def main():
     policy = json.loads((ROOT / 'registry/artifact_policy.json').read_text())
     allowed = {r['path']: r for r in policy['files']}
+    if len(allowed) != len(policy['files']):
+        raise ValueError('Duplicate artifact-policy entry; merge records explicitly')
     tracked = subprocess.check_output(['git','ls-files','-z','--cached','--others','--exclude-standard'],cwd=ROOT).decode().split('\0')
     artifacts = sorted({p for p in tracked if p.lower().endswith(('.tif','.tiff','.zip'))})
     for name in artifacts:

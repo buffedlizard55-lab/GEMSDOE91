@@ -31,7 +31,9 @@
     "dot_overlap_le_3px_vs_parent": 0.698306,
     "lane_overlap_pass": true,
     "min_dist_to_parent_px": 0.0,
-    "lane_pass": true
+    "lane_pass": true,
+    "comparison_scope": "single parent R0 only; complete registry not verified",
+    "registry_unique": null
   },
   "build_stats": {
     "n_parent_dots": 37654,
@@ -54,15 +56,70 @@
     "range_0_1_portal_safe": true
   },
   "ok_to_download": true,
-  "ok_to_submit": true,
+  "ok_to_submit": false,
   "submission_note": "DZ-EDGE v2: count-holding PRUNE+parent-sparse damage-zone refill <=10px; HOLDOUT-DTI=0.0 gems91-hide-recover-v1.1-nohalo; MODEL only",
   "organizer_confirmed": null,
   "leaderboard_score_confirmed": false,
-  "score_claim": "none - holdout-DTI=0.0 because proxy truth is withheld catalogue segments while this submission deliberately targets off-catalogue blind geothermal truth (>10 px from catalogue, outside the 300 m kernel). Cannot confirm it beats R0's 0.2778 CLAIM or the 0.4413 leaderboard high without an organizer receipt.",
+  "score_claim": "none - holdout-DTI=0.0 against withheld catalogue segments; off-catalogue blind truth is not measured. Not cleared to submit.",
   "download_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
   "zip_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.zip",
   "audit_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-audit.json",
-  "ok_to_download_why": "all-finite, values in [0.0,1.0], 0 NaN, EPSG:32611, 3730x3292, transform matches sample_submission.tif, zero catalogue mass, min catalogue distance 10.05 px (>3 px collar), all 4 format gate suites CERTIFIED.",
-  "ok_to_submit_why": "technical format gates PASS and lane uniqueness PASS (rho 0.696 <= 0.90, 3-px overlap 69.83% <= 70%). Caveat: leaderboard score is UNCONFIRMED (holdout-DTI=0 vs catalogue truth; targets off-catalogue blind truth); submit only as a deliberate contrarian blind-truth hypothesis, not as a confirmed improvement.",
-  "verdict": "promote"
+  "ok_to_download_why": "Historical artifact: finite single-band float32 bytes and exact single-TIFF ZIP validated. Reference-grid recheck is recorded separately; no scientific promotion.",
+  "ok_to_submit_why": "NOT CLEARED: lane unassigned, full-registry novelty unverified, no compliant comparable holdout improvement and no separate selector/slot approval. Format checks cannot override these blockers.",
+  "verdict": "negative",
+  "superseded_status_audit": {
+    "date": "2026-10-25",
+    "former_ok_to_submit": true,
+    "reason": "Format-only approval violated shared readiness. Parent-derived raster, only one-reference novelty scope and no comparable-best improvement; no slot clearance."
+  },
+  "submission_ready": false,
+  "lane_status": {
+    "assigned": false,
+    "status": "UNASSIGNED_RESEARCH_ONLY",
+    "reason": "No unique method paragraph is assigned in the canonical run card; this historical artifact cannot be treated as an approved lane."
+  },
+  "verdict_reason": "Research-only historical artifact. No promotion: holdout does not validate the target hypothesis, assigned lane and complete-registry novelty are absent, comparable-best gate is unmet, and selector approval is absent.",
+  "comparable_holdout_best": null,
+  "selector_approval": false,
+  "historical_artifact": true,
+  "freshly_verified_in_this_checkout": true,
+  "fresh_byte_validation": {
+    "status": "PASS_FOR_FILE_BYTES_ONLY",
+    "sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
+    "bytes": 177734,
+    "single_band": true,
+    "dtype": "float32",
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "all_cells_finite": true,
+    "min": 0.0,
+    "max": 1.0,
+    "positive_cells": 37654,
+    "binary_values": true,
+    "zip_members": [
+      "GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif"
+    ],
+    "zip_inner_matches_tif": true
+  },
+  "s16_reference_format_recheck": {
+    "status": "PASS_FORMAT_ONLY",
+    "sample_grid_matches": true,
+    "all_cells_finite_in_0_1": true,
+    "zero_on_catalogue": true,
+    "zero_outside_footprint": true,
+    "zip_tiff_bytes_match": true,
+    "scope": "Engineering recheck, not a new candidate, holdout or registry clearance."
+  }
 }

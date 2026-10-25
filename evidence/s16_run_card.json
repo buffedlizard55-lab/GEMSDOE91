@@ -3,7 +3,7 @@
  "repo": "buffedlizard55-lab/GEMSDOE91",
  "branch": "arena/3b49ef79-gemsdoe91",
  "generated_utc": "2026-10-25T05:26:50Z",
- "preregistration": "docs/HYPOTHESES_S16.md",
+ "preregistration": "docs/HYPOTHESES_S16PC.md",
  "lane": "S16-PC91 Kovesi phase congruency (monogenic local energy)",
  "hypothesis": "Contrast-invariant multi-scale phase alignment on B02 rtp / B13 iso_grav_anom / B12 det_elev exposes low-amplitude buried basement faults that amplitude-scaled detectors rank below shallow noise.",
  "mechanism": "Log-Gabor radial x Riesz monogenic triples at 3/6/12/24 px wavelengths; spread-weighted phase-deviation PC in [0,1] + local energy + orientation coherence + cross-field strike agreement; fold-wise HGB+LR on visible faults only; submodular 300 m DTI dotted emission >3.0 px off catalogue.",
@@ -1517,5 +1517,6 @@
  "ok_to_download": true,
  "ok_to_submit": false,
  "verdict": "negative",
- "verdict_reason": "gate failure(s): beats_prior_best=False, canary=True, surface_uniq=True, dot_uniq=True, validators=True"
+ "verdict_reason": "gate failure(s): beats_prior_best=False, canary=True, surface_uniq=True, dot_uniq=True, validators=True",
+ "merge_rename_note": "Renamed S16 -> S16PC during merge with parallel S16-PGRD session (arena/400a3f1a, PR #79/#85 integration, 2026-10-25). No score, raster, or verdict changed."
 }
