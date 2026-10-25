@@ -14,7 +14,8 @@ def good():
             'preplacement': {'status': 'PASS_WITHIN_INDEXED_SCOPE', 'checked': 20, 'not_checked_after_stop': 0},
             'final': {'status': 'PASS_WITHIN_INDEXED_SCOPE', 'checked': 20, 'not_checked_after_stop': 0},
             'max_measured_surface_rank_correlation': .9,
-            'max_measured_final_dot_overlap_within_3px': .7},
+            'max_measured_final_dot_overlap_within_3px': .7,
+            'sibling_max_dot_overlap_within_3px': .7},
         'lane': {'assigned': True},
         'holdout_dti': {'status': 'COMPLETED', 'label': 'HOLDOUT-DTI', 'value': .2,
             'ci95': [.1, .3], 'withheld_positives': 100, 'split_sha256': 'synthetic',
@@ -56,8 +57,18 @@ def test_invalid_sections_do_not_crash(good, value):
 def test_status_cannot_override_duplicate_or_canary(good):
     good['registry_comparison']['max_measured_final_dot_overlap_within_3px'] = .700001
     assert not gates(good)['novelty']
+    good['registry_comparison']['max_measured_final_dot_overlap_within_3px'] = .7
+    good['registry_comparison']['sibling_max_dot_overlap_within_3px'] = .700001
+    assert not gates(good)['sibling_uniqueness']
+    good['registry_comparison']['sibling_max_dot_overlap_within_3px'] = .7
     good['canaries']['max_symmetric_auc'] = .900001
     assert not gates(good)['canary']
+
+
+def test_missing_sibling_uniqueness_fails_closed(good):
+    del good['registry_comparison']['sibling_max_dot_overlap_within_3px']
+    assert not gates(good)['sibling_uniqueness']
+    assert not submission_ready(good)
 
 
 def test_partial_or_empty_registry_fails(good):

@@ -1491,3 +1491,15 @@ Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and 
 - **IR-91-S14-04 — Dinkelbach τ-transfer starves OOF folds.** `ptha.dinkelbach_fold_independent_emit` calibrates its gain threshold on train territory, where in-sample-inflated gains near visible faults set τ above honest OOF gains: folds emitted 574–3,000 dots vs 40k target (S13's NW fold likewise hit its 6,500 floor exactly). **Fix in S14 runner:** quota-mode greedy (threshold 0, fold quota ∝ eligible area) with τ-transfer reported as measured-broken in this regime.
 - **IR-91-S14-05 — Post-budget emission deviation (disclosed, user-directed).** Pre-registered E1/E2/E3 completed `negative` (E3@44k HOLDOUT 0.240111 but 63.2% halo dots, 85.2% sibling overlap). Under the brief's top-priority instruction to deliver a unique candidate designed to beat 0.2778, one additional emission-only configuration `E3-FF` (halo cap 25%, 37,654 dots, frozen E2 posterior, no retraining) was run beyond Protocol Rule 6's 3-experiment cap and is labelled as such in `docs/run-card-S14.json` (`deviation_log`). No weekly slot was spent by any S14 artifact.
 - **IR-91-S14-06 — Holdout/SGMC proxies anti-correlate with organizer outcomes (fleet-level).** Across 7 sha-pinned ancestors with CLAIM organizer scores: HOLDOUT v1.1 ρ = −0.750, SGMC ρ = −0.821, n_dots ρ = −1.000, spacing ρ = +0.898, far-field share ρ = +0.857 (`evidence/s14_winner_forensics.json`). Consequence: holdout must be used as a surface-sanity gate only; emission/budget decisions anchored to the organizer-measured thinning ladder. Selecting future lanes by holdout alone predictably optimizes the wrong allocation.
+
+---
+
+## IR-91-72CF-01 — S14-LSRG-FF exceeds strict sibling final-dot overlap limit
+
+**Protocol:** the current task's parallel-run rule says that more than 70% of candidate dots within 3 px of one registry raster is duplicate drift and must stop. The S14 external-fleet-only summary reported a pass, but its separate sibling receipt was not included in the shared readiness predicate.
+
+**Measured evidence:** `evidence/s14_farfield_card.json` (`sibling_scope`) records `dots_max_3px_overlap = 0.82759`, closest raster `gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif`, with `is_duplicate = true` and `uniqueness_pass = false`. This is 82.759%, over the 70% limit. The external-only registry result (57.5%) does not cancel the sibling duplicate.
+
+**Decision:** S14-FF is a **negative research result**: OK to download for research only; NOT OK TO SUBMIT. Stop lane promotion; no selector slot is recommended or used. `docs/run-card-S14.json`, `evidence/s14_run_card.json`, the portal, and the artifact registry now say so.
+
+**Shared-tool fix:** `src/gems91/readiness.py` now has a separate fail-closed `sibling_uniqueness` gate requiring a measured sibling overlap in `[0, 0.70]`. Missing data fails closed. `tests/test_readiness.py` includes a synthetic adversarial check; the portal names this gate explicitly. This is a shared-policy fix, not a private experiment fork.

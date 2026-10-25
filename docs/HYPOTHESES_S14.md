@@ -1,5 +1,7 @@
 # Session 14 Pre-Registered Hypotheses (`S14-LSRG`, 2026-10-24)
 
+> **Later protocol correction (2026-10-25):** S14-LSRG-FF is a negative research result, not a promotion. Its strict sibling final-dot overlap is 82.759% within 3 px of S12-SPAC (>70% limit), so it is a duplicate and must stop under the current parallel-run protocol. It also trails the comparable S13-PTHA holdout best and has unassigned-lane / data-rights blockers. See `docs/REVIEW-ARENA-72CF-20261025.md` and IR-91-72CF-01. The experimental preregistration and results below are retained as historical record.
+
 **Status:** Frozen *prior* to computing any Session 14 holdout score or emitting any candidate GeoTIFF.
 **Branch:** `arena/eeaf78c1-gemsdoe91`
 **Lane (self-declared; no external selector paragraph was supplied — standing `IR-91-S12-01`):**
@@ -86,17 +88,11 @@ hidden truth is substantially recoverable; 0.2778 is not a ceiling.
 - **E2 (corroboration):** E1 posterior gated by ≥2-family agreement; same scoring. Keep whichever of E1/E2 wins v1.1 without collapsing v1.0 (>0.20 floor = surface-sanity gate).
 - **E3 (emission):** Dinkelbach λ₀ ∈ {0.24, 0.28, 0.32} on OOF folds scored with v1.1-nohalo; pick λ₀, emit full-map, run all gates (format, [0,1], collar >3 px, registry uniqueness surface ρ ≤0.90 & dots ≤70% within 3 px vs every local + fleet raster, SGMC control reported for the record).
 
-**Promotion rule:** candidate is labelled `promote` only if (i) all format gates pass,
-(ii) uniqueness gates pass, (iii) v1.0 E-score ≥ 0.20 (surface not degenerate) and
-(iv) emission geometry matches winner economics (unit dots, median spacing ≥2.8 px,
-≥60% dots >10 px from catalogue OR v1.1-justified deviation logged). A candidate that
-fails is still delivered as a labelled negative result. **No weekly slot is spent by
-this session; slot use remains a human selector decision (`SLOT_PLAN.md`).**
+**Original experimental promotion criterion (historical):** format, novelty, v1.0 surface floor, and winner-like emission geometry. This criterion was incomplete because it did not make the comparable-best, lane-assignment, full-registry, sibling-final-dot, and derivative-rights gates conjunctive. The current shared readiness policy and task protocol supersede that draft. Under the corrected rule S14-LSRG-FF is **negative**: its 82.759% sibling overlap exceeds 70%, its HOLDOUT-DTI trails the comparable S13-PTHA result, and other gates remain unresolved. A negative is retained as a deliverable; it is not a slot recommendation.
 
 ## 3. External data check (no new data needed)
 
-All layers are already pinned & sha256-verified in `registry/data_manifest.json`
-(15/15 verified 2026-10-24): competition 19-band stack, `existing_faults.tif`,
+At S14 experiment time, the run log records 15/15 inputs as sha256-verified on 2026-10-24. In the current Arena checkout, `python scripts/restore_data.py --check` reports all 15 manifest inputs missing; do not treat a historical pin check as present-day local availability. The manifest includes the competition 19-band stack, `existing_faults.tif`,
 `sample_submission.tif`, GeoDAWN radiometrics u8, LiDAR scarp u8, GDR springs CSV,
 USGS SGMC control. Official upstreams for manual review:
 DrivenData competition https://www.drivendata.org/competitions/306/competition-doe-gems/ ·

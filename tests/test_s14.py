@@ -72,6 +72,10 @@ def test_s14_run_card_contract():
     card = json.loads(card_p.read_text())
     assert card["organizer_confirmed"] is None
     assert card["submission_ready"] is False
+    assert card["verdict"] == "negative"
+    assert card["registry_comparison"]["sibling_max_dot_overlap_within_3px"] > 0.70
+    assert "duplicate and stop" in card["verdict_scope"]
+    assert "NOT OK TO SUBMIT" in card["verdict_scope"]
     assert len(card["note"]) <= 140
     assert card["holdout_dti"]["label"] == "HOLDOUT-DTI"
     assert card["holdout_dti"]["withheld_positives"] == 60988

@@ -97,7 +97,21 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
             assert 'NOT OK TO SUBMIT' in stext or 'OK TO SUBMIT: NO' in stext
         assert not s14['submission_ready'] and not submission_ready(s14)
         assert s14['organizer_confirmed'] is None
+        assert s14['verdict'] == 'negative'
+        assert 'NOT OK TO SUBMIT' in s14['verdict_scope']
         assert hashlib.sha256((ROOT/'docs'/s14['artifact']['file']).read_bytes()).hexdigest()==s14['raster_sha256']
+
+    home=Page(); home.feed((ROOT/'docs/index.html').read_text()); home_text=' '.join(home.text)
+    assert 'OK to submit: NO — research download only' in home_text
+    assert 'OK to submit: YES — this file only' not in home_text
+    assert 'Lane verdict: NEGATIVE — duplicate stop' in home_text
+    s14_audit=Page(); s14_audit.feed((ROOT/'docs/s14-lsrg.html').read_text())
+    assert 'Strict sibling final-dot gate' in ' '.join(s14_audit.text)
+
+    policy = subprocess.run([sys.executable, 'scripts/check_artifact_policy.py'],
+                            cwd=ROOT, capture_output=True, text=True)
+    assert policy.returncode == 0, policy.stderr or policy.stdout
+    assert '34 explicitly registered prediction artifacts' in policy.stdout
 
     page=Page(); page.feed((ROOT/'docs/ccr91-executive-summary.html').read_text())
     text=' '.join(page.text)
@@ -134,7 +148,8 @@ def test_readiness_requires_all_independent_gates_not_just_format():
     good['registry_comparison'].update(complete_universal_registry=True,
         preplacement={'status':'PASS_WITHIN_INDEXED_SCOPE','checked':64,'not_checked_after_stop':0},
         final={'status':'PASS_WITHIN_INDEXED_SCOPE','checked':64,'not_checked_after_stop':0},
-        max_measured_surface_rank_correlation=.2, max_measured_final_dot_overlap_within_3px=.6)
+        max_measured_surface_rank_correlation=.2, max_measured_final_dot_overlap_within_3px=.6,
+        sibling_max_dot_overlap_within_3px=.5)
     good['comparable_prior_holdout_best']={
         'evaluator_version':'gems57-pooled-hide-v2','split_sha256':'fixture',
         'value':good['holdout_dti']['value']-.01, 'ci95':[0,.1],

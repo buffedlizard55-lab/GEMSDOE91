@@ -33,7 +33,7 @@ def main() -> int:
         "sibling_scope_summary": {k: ff["sibling_scope"][k] for k in (
             "n_registry_rasters_checked", "dots_max_3px_overlap", "dots_closest_raster",
             "uniqueness_pass")},
-        "sibling_note": "82.8% vs unsubmitted S12-SPAC: mutual exclusion (never co-submit), same disclosed condition as S13-PTHA (84.13%). Rule-1 registry scope passes at 57.5%.",
+        "sibling_note": "82.759% of candidate dots fall within 3 px of S12-SPAC, exceeding the strict 70% limit: duplicate, stop, NOT OK TO SUBMIT. The separate external-registry-only check passes at 57.5%; it does not override this collision.",
     }
     card["submission_name"] = name
     card["note"] = note
@@ -103,14 +103,14 @@ def main() -> int:
                    "representation. Prior lanes (S13 H13-5) excluded these files for this reason."),
     }
     card["organizer_confirmed"] = None
-    card["verdict"] = "promote"
-    card["verdict_scope"] = ("Lane verdict: PROMOTE TO HUMAN SELECTOR REVIEW. "
-                             "submission_ready remains FALSE under src/gems91/readiness.py "
-                             "(assigned_lane, separate_selector, novelty-universal, "
-                             "beats_comparable_best). OK TO DOWNLOAD: YES. OK TO SUBMIT: NO "
-                             "until a human selector confirms weekly slot, eligibility, "
-                             "AI disclosure, lane assignment, and mutual exclusion vs "
-                             "S12-SPAC/S13-PTHA/S11-MHTR.")
+    card["verdict"] = "negative"
+    card["verdict_scope"] = ("Negative research result; not eligible for promotion. Strict final-dot check: "
+                             "82.759% of candidate dots lie within 3 px of the S12-SPAC sibling, above "
+                             "the 70% limit; mark duplicate and stop. It also trails the comparable "
+                             "S13-PTHA HOLDOUT-DTI best, lacks an assigned lane and complete universal "
+                             "registry clearance, and has unresolved derivative rights. OK TO DOWNLOAD: "
+                             "YES for research only. NOT OK TO SUBMIT (OK TO SUBMIT: NO). No weekly "
+                             "slot is recommended or used.")
     card["submission_ready"] = False
     for p in (ROOT / "docs/run-card-S14.json", ROOT / "evidence/s14_run_card.json"):
         p.write_text(json.dumps(card, indent=2, default=str) + "\n")
