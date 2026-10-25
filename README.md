@@ -1,3 +1,11 @@
+# GEMSDOE91 — current review (2026-10-25)
+
+> **`arena/4975419d-gemsdoe91`: OK TO SUBMIT: NO. No new TIFF or geological experiment.** The missing assigned lane and unresolved full-registry constraints prevent a compliant new submission. Historical downloads are for research only, not new outputs of this review. Small sample/catalogue/reference inputs have now been restored and hash-verified; the large feature cache remains absent. [Three-pass review](docs/REVIEW-4975419D-20261025.md) · [Run card](docs/run-card-4975419d.json) · [Executive guide](docs/executive-summary.html) · [Automated download audit](docs/download-audit.html).
+>
+> **Verified engineering results:** 473 tests passed, 8 skipped; real Chromium delivery/accessibility/mobile checks passed. All 64 registered downloads were inspected: 56 technical PASS, 8 FAIL. Format PASS is not submission approval. Corrected unsupported claims of guaranteed pruning gains and global uniqueness. Full standing user brief below remains required reading each session. “Maximize P(Win)” and “Own the Outcome” mean protecting submission slots and owning negative evidence, not manufacturing a score.
+
+## Historical status records (not current-branch results)
+
 # GEMSDOE91 — CURRENT STATUS (GEO91, 2026-10-25) — read this first
 
 > **Active Arena checkout review (`arena/85ad3c12-gemsdoe91`, 2026-10-25): NO new experiment or TIFF; OK TO SUBMIT: NO.** This checkout has no `data/` directory, the required sample grid and registry parent fail preflight, and `docs/run-card.json` has no assigned single-method lane. The pinned test dependencies were installed into ignored `.venv/`; three portal/run-card mismatches found in review have been fixed and the full suite passes. No lane was inferred and no submission slot was used. See [current-checkout three-pass review and hypothesis shortlist](docs/REVIEW-ACTIVE-85AD3C12-20261025.md) and [machine-readable review card](docs/run-card-85ad3c12.json). Do not treat prior-session files or logs as newly validated in this checkout. The full standing brief below remains a required starting point; honor its lane, shared-tool, leakage, registry, evidence-label, and budget constraints.
