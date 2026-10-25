@@ -1,0 +1,25 @@
+{
+ "candidate": "gems91-s16-pc91-20261025T051716Z-9c6f182a",
+ "sha256": "dfee391717d1b89e9e179ec2d0ba00096ec40d5963d841670c2e9a4eea4f9df6",
+ "checks": {
+  "sha_disk_equals_run_card": true,
+  "crs_match": true,
+  "shape_match": true,
+  "transform_match": true,
+  "dtype_float32": true,
+  "one_band": true,
+  "nodata_none": true,
+  "all_cells_finite": true,
+  "values_in_0_1": true,
+  "nan_cells": 0,
+  "n_dots": 37654,
+  "binary_unit_dots": true,
+  "dots_on_catalogue": 0,
+  "min_catalogue_distance_px": 3.1623,
+  "zip_single_member": true,
+  "zip_inner_sha_match": true
+ },
+ "all_pass": true,
+ "verdict": "negative",
+ "ok_to_submit": false
+}

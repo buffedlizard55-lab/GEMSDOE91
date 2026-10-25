@@ -64,8 +64,8 @@ SGMC = DATA / "external" / "derived_sgmc_faults_100m_u8.tif"
 R0 = DATA / "registry" / "GEMSDOE32__h33-2-b2-zeros.tif"
 DOWNLOADS = ROOT / "docs" / "downloads"
 DATA_RELEASES = DATA / "releases" / "s15"
-PREREG = ROOT / "docs" / "HYPOTHESES_S15.md"
-RUN_CARD = ROOT / "docs" / "run-card-S15.json"
+PREREG = ROOT / "docs" / "HYPOTHESES_S15_SCGF.md"
+RUN_CARD = ROOT / "docs" / "run-card-S15-SCGF.json"
 EVIDENCE = ROOT / "evidence" / "s15_scgf_20261025.json"
 
 MAX_EXPERIMENTS = 3
@@ -1135,7 +1135,11 @@ def main(argv: list[str] | None = None) -> int:
         "schema_version": "gems91.s15_scgf.v1",
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "branch": "arena/605655a6-gemsdoe91",
-        "preregistration": {"path": "docs/HYPOTHESES_S15.md", "sha256": prereg_sha},
+        "preregistration": {
+            "path": "docs/HYPOTHESES_S15_SCGF.md",
+            "sha256": prereg_sha,
+            "merge_rename_note": "Renamed from docs/HYPOTHESES_S15.md / docs/run-card-S15.json to *-SCGF* during main integration to coexist cleanly with concurrent S15-HCPA; file bytes, SHA-256, scores, raster, and verdict are unchanged.",
+        },
         "lane": {
             "id": "S15-SCGF",
             "assigned": False,

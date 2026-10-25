@@ -68,7 +68,7 @@ def render_index_html(rc: dict, uniq: dict, canary: dict, *, prefix: str) -> str
         exp_rows.append(
             f"""<tr{row_cls}>
               <td><strong><code>{_esc(e['exp_id'])}</code></strong><br><small>{_esc(e['hypothesis_id'])}</small></td>
-              <td><strong>{_esc(e['title'])}</strong><br><small><em>Mimic rejected:</em> {_esc(e['named_non_fault_mimic'])}</small></td>
+              <td><strong>{_esc(e['title'])}</strong><br><small><em>Possible mimic (not independently rejected):</em> {_esc(e['named_non_fault_mimic'])}</small></td>
               <td>{e['n_features']}</td>
               <td><span class="tag tag-holdout">HOLDOUT-DTI</span> <strong><code>{e['holdout']['holdout_dti']:.6f}</code></strong><br><small>95% CI [{e['holdout']['ci_95'][0]:.4f}, {e['holdout']['ci_95'][1]:.4f}] (n={e['holdout']['n_withheld_positives']:,})</small></td>
               <td><strong><code>{e['delta_vs_b0_holdout_dti']:+.6f}</code></strong><br><small>({100.0*e['delta_vs_b0_holdout_dti']/ph['b0_reference_holdout_dti']:+.1f}%)</small></td>
@@ -225,7 +225,7 @@ def render_index_html(rc: dict, uniq: dict, canary: dict, *, prefix: str) -> str
       <div class="kpi-card">
         <div class="kpi-label">Fleet Historical Anchor</div>
         <div class="kpi-value">0.2778</div>
-        <div class="kpi-sub"><span class="tag tag-org">ORGANIZER-CONFIRMED</span><br><code>GEMSDOE32 h33-2-b2-zeros</code></div>
+        <div class="kpi-sub"><span class="tag tag-org">USER-REPORTED · UNVERIFIED</span><br><code>GEMSDOE32 h33-2-b2-zeros</code></div>
       </div>
     </section>
 
@@ -317,7 +317,7 @@ def render_index_html(rc: dict, uniq: dict, canary: dict, *, prefix: str) -> str
       </div>
       <p>
         <code>GEMSDOE32</code> (<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, <code>37,654</code> binary unit-mass dots) achieved
-        <strong><code>0.2778</code> <span class="tag tag-org">ORGANIZER-CONFIRMED</span></strong> via four mathematically orthogonal operations,
+        <strong><code>0.2778</code> <span class="tag tag-org">USER-REPORTED · UNVERIFIED</span></strong> via four mathematically orthogonal operations,
         verified byte-for-byte in <code>tests/test_release_integration.py</code>:
       </p>
       <div class="table-wrap">
@@ -336,49 +336,49 @@ def render_index_html(rc: dict, uniq: dict, canary: dict, *, prefix: str) -> str
               <td>Stage 1 (<code>19GEMSDOE</code>)</td>
               <td><code>calib_h195_01922.tif</code> (<code>H19-5</code>)</td>
               <td>121,131 px</td>
-              <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.1922</code></td>
+              <td><span class="tag tag-org">USER-REPORTED · UNVERIFIED</span> <code>0.1922</code></td>
               <td>4-line multi-physics coincidence gate (fault tip/relay + GDR thermal/geochem + 3DEP topographic break + potential-field horizontal worm) suppressed single-layer false positives.</td>
             </tr>
             <tr>
               <td>Stage 2a (<code>GEMSDOE24</code>)</td>
               <td><code>calib_d15_02477.tif</code></td>
               <td>60,069 dots</td>
-              <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.2477</code></td>
+              <td><span class="tag tag-org">USER-REPORTED · UNVERIFIED</span> <code>0.2477</code></td>
               <td>Under <code>max<sub>j</sub></code> DTI credit, a 3-px-wide ribbon contributes 1&times; to <code>T</code> and 3&times; to <code>S</code>. Thinning to <code>d &ge; 1.5 px</code> cut redundant <code>(S &minus; M)</code> mass in half (+0.0555).</td>
             </tr>
             <tr>
               <td>Stage 2b (<code>GEMSDOE25</code>)</td>
               <td><code>gems25-dotted-h19-5-d2-8</code></td>
               <td>44,090 dots</td>
-              <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.2600</code></td>
+              <td><span class="tag tag-org">USER-REPORTED · UNVERIFIED</span> <code>0.2600</code></td>
               <td>Poisson-disk spacing pushed to <code>d &ge; 2.8 px</code> (280 m &approx; 300 m kernel radius), maximizing coverage length per unit <code>S</code> (+0.0123).</td>
             </tr>
             <tr>
               <td>Stage 3 (<code>GEMSDOE28</code>)</td>
               <td><code>GEMSDOE28__h27-4-r1-solo-d2-8</code></td>
               <td>40,199 dots</td>
-              <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.2708</code></td>
+              <td><span class="tag tag-org">USER-REPORTED · UNVERIFIED</span> <code>0.2708</code></td>
               <td>Removed 3,891 isolated 0-D speckles lacking strike-aligned neighbors within 900 m; real faults are 1-D polylines (+0.0108).</td>
             </tr>
             <tr class="highlight-row">
               <td><strong>Stage 4 (<code>GEMSDOE32</code>)</strong></td>
               <td><strong><code>h33-2-b2-zeros.tif</code> (<code>R0</code>)</strong></td>
               <td><strong>37,654 dots</strong></td>
-              <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <strong><code>0.2778</code></strong></td>
+              <td><span class="tag tag-org">USER-REPORTED · UNVERIFIED</span> <strong><code>0.2778</code></strong></td>
               <td>Deleted 2,545 dots at <code>d(existing_faults) &le; 2.0 px</code>: known catalogue faults carry zero hidden-test credit, so near-collar dots were pure <code>(S &minus; M)</code> deadweight (+0.0070).</td>
             </tr>
             <tr>
               <td>Sibling ML Lanes</td>
               <td><code>GEMSDOE36</code> / <code>GEMSDOE70</code> / <code>GEMSDOE76</code></td>
               <td>37,654–38,854 dots</td>
-              <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.2750</code> / <code>0.2478</code> / <code>0.2343</code></td>
+              <td><span class="tag tag-org">USER-REPORTED · UNVERIFIED</span> <code>0.2750</code> / <code>0.2478</code> / <code>0.2343</code></td>
               <td>Proved first-principles ML + 300 m submodular emission works live, but suffered from un-deprojected basement dip offsets (200–1,000 m), misread unsigned <code>Band 6 tc</code>, and 2-D mountain-blob bias.</td>
             </tr>
             <tr>
               <td>Sponsor &amp; Public Top</td>
               <td>Official U-Net Benchmark / Public #1</td>
               <td>Continuous / Hybrid</td>
-              <td><span class="tag tag-org">ORGANIZER-CONFIRMED</span> <code>0.3195</code> / <code>0.4413</code></td>
+              <td><span class="tag tag-org">USER-REPORTED · UNVERIFIED</span> <code>0.3195</code> / <code>0.4413</code></td>
               <td>Demonstrates substantial headroom above <code>0.2778</code> requires recovering <strong>concealed intrabasinal &amp; range-front step-faults</strong> missed completely by <code>H19-5</code>, not perturbing R0's 37,654 frozen dots.</td>
             </tr>
           </tbody>
@@ -766,7 +766,7 @@ def render_exec_summary_html(rc: dict, uniq: dict, canary: dict, *, prefix: str)
 
       <h3>Current Limitations &amp; Concrete Next Steps</h3>
       <ul>
-        <li><strong>Tabular + Hand-Crafted Multi-Scale receptive field vs Deep 2-D Context:</strong> Sponsor U-Net (<code>0.3195</code>) and top leaderboard entries (<code>0.4413</code>) learn kilometer-scale 2-D curvilinear fault-network topology end-to-end. Training a multi-scale ConvNeXt/U-Net directly on our dip-deprojected Verduzco stack with differentiable soft-DTI loss (<code>&alpha;=0.2, &beta;=0.8</code>) on GPU hardware is the highest-leverage next step.</li>
+        <li><strong>Tabular + Hand-Crafted Multi-Scale receptive field vs Deep 2-D Context:</strong> The official reference demonstrates a U-Net. The supplied leaderboard numbers do not identify the leading teams’ methods or prove any architecture superior. Training a multi-scale ConvNeXt/U-Net directly on our dip-deprojected Verduzco stack with differentiable soft-DTI loss (<code>&alpha;=0.2, &beta;=0.8</code>) on GPU hardware is the highest-leverage next step.</li>
         <li><strong>Sandbox Network Allowlist Blocked Open InSAR &amp; 3-D MT Ingestion:</strong> Hypotheses <code>H91-4</code> (Sentinel-1 InSAR aquifer-baffle step discontinuities from NASA ASF DAAC) and <code>H91-5</code> (EarthScope 3-D MT phase-tensor skew) are verified public-domain datasets ready to ingest on an internet-enabled workstation.</li>
         <li><strong>Catalogue Exposure Bias in Validation:</strong> <code>existing_faults.tif</code> under-represents blind sub-playa hydrothermal conduits, which penalized <code>E2</code>/<code>E3</code>'s aggressive basin re-weighting by <code>0.0028–0.0073</code> on exposed-catalogue holdout despite recovering <code>212</code> blind &ge;90&deg;C geothermometer cells. A dedicated live leaderboard A/B between <code>E1</code> (pure dip-deprojected geophysics) and <code>E3</code> (hydrothermal magnetite-destruction + PU) is warranted once a daily submission slot opens.</li>
       </ul>

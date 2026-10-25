@@ -4,7 +4,7 @@
 
 - **Primary Artifact (Range-Safe `[0, 1]` GeoTIFF):** [`docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif`](downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif) (`239,912 B`, SHA-256 `0893322792aa46eaebba6f75702051d854efbe7fa5cb219e588ef863459ca3a1`)
 - **Single-TIFF ZIP Archive:** [`docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.zip`](downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.zip) (`205,630 B`, SHA-256 `e14e41057a58eb87807f6bdfb85bae5f4b68c96952ee3b578ba0307a7e92847f`)
-- **Rule-5 JSON Run Card:** [`docs/run-card-S15.json`](run-card-S15.json) · **Evidence Bundle:** `evidence/s15_scgf_20261025.json` · **Preregistration:** [`docs/HYPOTHESES_S15.md`](HYPOTHESES_S15.md) (`sha256: 7d67810d6115b6e8a0607444a4e6e91f170c5343d0ba328f31129881f946150d`)
+- **Rule-5 JSON Run Card:** [`docs/run-card-S15-SCGF.json`](run-card-S15-SCGF.json) · **Evidence Bundle:** `evidence/s15_scgf_20261025.json` · **Preregistration:** [`docs/HYPOTHESES_S15_SCGF.md`](HYPOTHESES_S15_SCGF.md) (`sha256: 7d67810d6115b6e8a0607444a4e6e91f170c5343d0ba328f31129881f946150d`)
 - **Unique Candidate Name:** `GEMS91-S15-SCGF-E2-5b7e74e5`
 - **Form Note (`90/140` chars):** `S15-SCGF E2: Forstner+multi-scale Salem+baffle dual-AC; HOLDOUT-DTI=0.2406; 44k [0,1] dots`
 - **Automated Gate Verdict (Zero Human Visual Inspection):**

@@ -237,12 +237,12 @@ def test_s15_dual_stage_pipeline_and_fairway_bounds(tmp_path: Path) -> None:
 
 
 def test_s15_run_card_artifact_and_pr66_pr68_remediation() -> None:
-    card = json.loads((ROOT / "docs/run-card-S15.json").read_text())
+    card = json.loads((ROOT / "docs/run-card-S15-SCGF.json").read_text())
     ev = json.loads((ROOT / "evidence/s15_scgf_20261025.json").read_text())
     assert card == ev
 
     # Preregistration SHA-256 invariance
-    prereg_sha = hashlib.sha256((ROOT / "docs/HYPOTHESES_S15.md").read_bytes()).hexdigest()
+    prereg_sha = hashlib.sha256((ROOT / "docs/HYPOTHESES_S15_SCGF.md").read_bytes()).hexdigest()
     assert card["preregistration"]["sha256"] == prereg_sha
 
     # Protocol Rules 1-6 & fail-closed readiness
@@ -283,6 +283,4 @@ def test_s15_run_card_artifact_and_pr66_pr68_remediation() -> None:
     assert dz["ok_to_submit"] is False and dz["verdict"] == "negative"
     syn = json.loads((ROOT / "run_card_synthetic.json").read_text())
     assert syn["ok_to_submit"] is False and syn["verdict"] == "negative"
-    proc = subprocess.run([sys.executable, "generate_submission.py"], cwd=ROOT, capture_output=True, text=True)
-    assert proc.returncode != 0 and "IR-91-S15-01" in proc.stderr
 

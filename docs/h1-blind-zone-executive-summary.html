@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H1 blind-damage-zone — GeoTIFF download &amp; submission status · GEMSDOE91</title>
+<meta name="description" content="Unique GEMS competition GeoTIFF submission: download, SHA-256, exact submission steps, and candid download/submit status.">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script>
+</head><body><a class="skip" href="#main">Skip to content</a>
+<div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Current verdict</a>
+<a href="h1-blind-zone-executive-summary.html"><strong>H1 blind-damage-zone (this page)</strong></a>
+<a href="h1-blind-zone-audit.html">Full audit</a>
+<a href="run-card-H1-blind-damage-zone.json">Run card (JSON)</a>
+<a href="s15-hcpa.html">S15-HCPA</a> · <a href="s14-hvdc.html">S14-HVDC</a> · <a href="s13-ptha.html">S13-PTHA</a>
+<a href="executive-summary.html">General submission guide</a> · <a href="research.html">Evidence &amp; sources</a></nav></header>
+
+<main id="main">
+<section class="hero"><div>
+<span class="eyebrow">H1 — BLIND DAMAGE-ZONE ENVELOPE · EXPERIMENT 1 OF 1 (BUDGET STOP)</span>
+<h1>A unique GeoTIFF submission for the GEMS competition.<br>
+Download-ready · format-certified · not submit-confirmed.</h1>
+<p class="lead">Candidate <code>GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4</code>: 37,654 unit-mass dots placed
+300 m&ndash;2 km <em>off</em> the USGS/INGENIOUS catalogue traces, weighted by catalogue-independent blind-system proxies
+(dependent swarm excess B10&ndash;B16, magnetic edge max(B03,B09), geodetic strain 0.5(B04+B08), &minus;B14 magnetite
+destruction, B19 scarp slope; percentile-rank averaged).</p>
+<span class="badge">OK TO DOWNLOAD: YES &mdash; format-certified GeoTIFF + single-TIFF ZIP below</span>
+<span class="badge bad">OK TO SUBMIT: NO &mdash; not organizer-confirmed; see &ldquo;Why submit is NO&rdquo;</span>
+</div></section>
+
+<section class="section"><div class="card"><h2>The file (one-click download)</h2>
+<div class="status"><span>Single-band GeoTIFF</span><strong>float32, 1 band, values in [0, 1]</strong></div>
+<div class="status"><span>All cells inside footprint finite</span><strong>PASS &middot; 0 NaN inside footprint</strong></div>
+<div class="status"><span>Outside footprint</span><strong>zeros encoding (portal-safe; no -3.40e38 sentinels)</strong></div>
+<div class="status"><span>CRS / shape / transform</span><strong>EPSG:32611 &middot; 3730&times;3292 &middot; (100, 0, 243350, 0, -100, 4508550)</strong></div>
+<div class="status"><span>Catalogue collar</span><strong>37,654 dots, min distance 3.1623 px (&gt; 3 px); 0 dots on catalogue</strong></div>
+<div class="status"><span>SHA-256 (GeoTIFF)</span><strong>da0fa0de24946769de509ec105486f5e9e2fc093107d32cf20af05c2897b5b64</strong></div>
+<div class="status"><span>SHA-256 (ZIP)</span><strong>57c51932093264ee0acccc92d5a133e8a5d00b10e1909a3a69687b2e95f64d55</strong></div>
+<a class="button" download href="downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.tif">&darr; Download GeoTIFF (-zeros encoding)</a>
+<a class="button" download href="downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.zip">&darr; Download single-TIFF ZIP (DrivenData-ready)</a>
+<div style="text-align:center;margin-top:12px"><a href="downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-audit.json">Audit JSON</a> &middot;
+<a href="downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4.tif">NaN-outside twin</a> &middot;
+<a href="h1-blind-zone-audit.html">Full audit page</a></div>
+</div></section>
+
+<section class="section"><div class="card"><h2>Why OK TO SUBMIT is NO (read before uploading)</h2>
+<ul class="checklist">
+<li><span>Format gates</span><span class="badge">PASS</span> &mdash; CERTIFIED by the shared fail-closed writer; re-read from disk; [0,1]; 0 NaN inside footprint; CRS/shape/transform match the official sample grid.</li>
+<li><span>Holdout-DTI</span><span class="badge bad">0.0 [0.0, 0.0]</span> &mdash; <em>gems91-hide-recover-v1.1-nohalo</em>, 60,988 withheld positives, 4 spatial blocks, 1 km segment buffer, pooled DTI &alpha;=0.2 &beta;=0.8, R=300 m triangular kernel, 200-draw 5 km block-bootstrap CI. Structurally 0.0 under the current gates: the catalogue collar (&gt;3 px) equals the DTI kernel radius (3 px), so no dot can earn kernel credit against any withheld fault pixel &mdash; true for <em>every</em> collar-compliant raster, not only this one. Historical positive holdout numbers (0.09&ndash;0.26) are not reproducible with current tools; treat this as a negative/local-uninformative result, not a leaderboard claim.</li>
+<li><span>Leakage canary</span><span class="badge">PASS</span> &mdash; every feature alone on the holdout: max symmetric AUC 0.62004 &le; 0.90 (worst: scarps_B19).</li>
+<li><span>Registry lane (Rule 1)</span><span class="badge">PASS</span> &mdash; surface max |Spearman &rho;| = 0.00636 &le; 0.90 vs the 3 registry rasters checked; 29.25% of dots within 3 px of any registry raster's dots &le; 70%. Not a duplicate of R0 (GEMSDOE32 h33-2-b2, CLAIM 0.2778) or of the GEMSDOE25 dotted-h19-5-d2-8 raster.</li>
+<li><span>Organizer receipt</span><span class="badge bad">NONE</span> &mdash; no score has been copied from a DrivenData submission-page receipt; R0's 0.2778 remains an unverified CLAIM in this lineage. No HOLDOUT-DTI or projection may be written as a score.</li>
+<li><span>Human selector</span><span class="badge bad">REQUIRED</span> &mdash; a live DrivenData weekly slot (3 per rolling week, rules &sect;3.2), eligibility and AI-disclosure attestation, lane assignment and mutual exclusion must be confirmed by a human before any upload. Zero weekly slots spent by this session.</li>
+</ul>
+<p><strong>Verdict: NEGATIVE</strong> &mdash; negative results are deliverables. The file is unique and format-correct, but its quality cannot be confirmed locally and no organizer score exists. Download is for research/audit; submission is gated on a human selector and a live receipt.</p>
+</div></section>
+
+<section class="section"><div class="card"><h2>Exactly how to submit (once a selector clears a slot)</h2>
+<div class="step"><b>1</b><div>
+<h3>Download &amp; verify</h3>
+<p>Download the <code>-zeros.zip</code> above (DrivenData accepts a single-TIFF .zip) or the <code>-zeros.tif</code>. Verify SHA-256:</p>
+<code>da0fa0de24946769de509ec105486f5e9e2fc093107d32cf20af05c2897b5b64  GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.tif</code>
+<p>Never upload the audit JSON, this page, the run card, or a training raster &mdash; upload only the GeoTIFF (or its single-TIFF zip).</p></div></div>
+<div class="step"><b>2</b><div>
+<h3>Confirm the human-only items</h3>
+<p>On the DrivenData competition page: live weekly allowance (3 per rolling week, rules &sect;3.2), eligibility and data-rights attestation, generative-AI disclosure, lane assignment, and mutual exclusion vs other fleet candidates. These cannot be automated and are not certified here.</p></div></div>
+<div class="step"><b>3</b><div>
+<h3>Upload</h3>
+<p>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">the competition</a> &rarr; New submission &rarr; choose the approved file &rarr; paste the note (130/140 characters):</p>
+<code>H1 blind damage-zone: 37654 dots 300m-2km off catalogue; swarm/mag/strain/topo; zeros [0,1]; HOLDOUT-DTI 0.0; no organizer receipt</code></div></div>
+<div class="step"><b>4</b><div>
+<h3>Record the receipt</h3>
+<p>Only a score copied from the submission-page receipt becomes ORGANIZER-CONFIRMED. Paste the receipt into the run card and ledger; a HOLDOUT-DTI number is never a substitute for a receipt.</p></div></div>
+</div></section>
+
+<section class="section"><div class="twocol"><div class="card"><h3>Hypothesis H1 (pre-registered)</h3>
+<p>&gt;75% of Great Basin geothermal systems are blind (no surface spring/geyser/sinter) and upflow localizes at structural
+complexities OFF mapped traces &mdash; step-overs/relay ramps (~32&ndash;36%), fault terminations (~22%), intersections (~22%),
+transfer zones (~11%), pull-aparts (~9%) &mdash; not on simple mid-segment traces, which seal with clay gouge and cement
+(Faulds &amp; Hinz 2015, WGC-2015; INGENIOUS/DE-EE0006731; DOE GDR #1391). H1 therefore emits 300 m&ndash;2 km off the
+catalogue, where blind-system damage-zone/relay permeability is expected. R0's dots (CLAIM 0.2778) sit on/near catalogue
+traces, so this is a disjoint physical target, not a copy.</p>
+<p><strong>Named non-fault mimic:</strong> distributed Basin &amp; Range strain, volcanic/tectonic swarms and buried plutons can
+produce strain/swarm/topography anomalies away from faults &mdash; excluded by the per-feature leakage canary (max AUC 0.62004).</p>
+<p><strong>Differs from repo lanes:</strong> no existing lane (SPAC, PTHA, HVDC, LSFF, S15-HCPA, DZEDGE) places dots exclusively
+off traces with zero catalogue-derived scoring features; they hold count or mass to parent/catalogue dots.</p>
+</div><div class="card"><h3>Why the portal error cannot trigger here</h3>
+<p>The shared writer scrubs non-finite/sentinel values, writes an all-finite <code>-zeros.tif</code> twin (<code>nodata=None</code>), then
+re-reads the bytes and asserts min = 0.0, max = 1.0, 0 NaNs in all 12,279,160 cells. Independent validators confirmed every
+must-pass check on the written file (see run card).</p>
+</div></div></section>
+
+<section class="section"><div class="card"><h2>Sources (official, verified)</h2>
+<ul>
+<li>Competition &amp; rules: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData #306 GEMS</a>; format/rules PDF <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NREL/HEROX rules (OSTI 96647)</a>; public leaderboard <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a>.</li>
+<li>Reference DTI implementation: <a href="https://github.com/drivendataorg/gems-prize-reference-solution">drivendataorg/gems-prize-reference-solution</a> (&alpha;=0.2, &beta;=0.8, 300 m kernel).</li>
+<li>Blind-system structural controls: Faulds &amp; Hinz (2015), WGC-2015, NBMG/UNR; INGENIOUS DE-EE0006731, OSTI #1784702 <a href="https://www.osti.gov/biblio/1784702">osti.gov/biblio/1784702</a>; DOE GDR #1391 <a href="https://gdr.openei.org/submissions/1391">gdr.openei.org/submissions/1391</a>.</li>
+<li>Grid: EPSG:32611 <a href="https://epsg.io/32611">epsg.io/32611</a>; competition data (training_features/labels/sample/existing_faults) is login-gated on DrivenData; pinned public mirrors restored and SHA-256 verified into <code>data/</code> (gitignored) per <a href="registry/data_manifest.json">registry/data_manifest.json</a>.</li>
+</ul>
+<p class="small">Research, not a leaderboard prediction. No automatic competition uploads. No credentials stored. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">buffedlizard55-lab/GEMSDOE91</a>.</p>
+</div></section>
+
+<footer><div>GEMSDOE91 &middot; Evidence generated 2026-10-25 · UTC</div>
+<div><a href="run-card-H1-blind-damage-zone.json">Machine-readable run card</a> &middot; <a href="index.html">Return to current verdict</a></div></footer>
+</main></div></body></html>

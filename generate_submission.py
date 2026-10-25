@@ -1,28 +1,38 @@
 #!/usr/bin/env python3
-"""Deprecated PR66 synthetic smoke script — disabled fail-closed (`IR-91-S15-01`).
+"""Generate the preregistered real-data candidate once, or verify its download.
 
-Previous version fabricated a 1-pixel mock `data/official/existing_faults.tif`
-and overwrote `docs/downloads/h91_submission_bundle.js` with random Gaussian
-noise. Real builds must restore SHA-256 pinned official inputs via
-`python3 scripts/restore_data.py` and run a pre-registered scientific lane
-(e.g., `python3 scripts/run_s15_lane.py`).
+Never create mock labels in data/official, read another submission as a feature,
+or describe random noise as a competition candidate. Tests use tools/make_fixture.py.
 """
 from __future__ import annotations
-
+import argparse
+import json
+from pathlib import Path
 import sys
 
 
-def main() -> int:
-    print(
-        "BLOCKED (IR-91-S15-01): synthetic random-noise generation is never an "
-        "approved competition submission and must never overwrite "
-        "data/official/existing_faults.tif or h91_submission_bundle.js. "
-        "Run `python3 scripts/restore_data.py` followed by "
-        "`python3 scripts/run_s15_lane.py`.",
-        file=sys.stderr,
-    )
-    return 1
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--run', action='store_true', help='Run the frozen S16 experiment once; never uploads or selects a slot')
+    parser.add_argument('--with-data', action='store_true', help='Also verify the pinned sample/footprint/catalogue')
+    args = parser.parse_args()
+    root = Path(__file__).resolve().parent
+    sys.path[:0] = [str(root), str(root / 'src')]
+    if args.run:
+        from scripts.run_s16_pgrd import run
+        try:
+            run()
+        except FileExistsError as exc:
+            parser.exit(1, f'{exc}\nUse this command without --run to verify the existing result.\n')
+    from scripts.verify_s16 import verify
+    try:
+        report = verify(with_data=args.with_data)
+    except (OSError, ValueError, KeyError) as exc:
+        print(json.dumps({'status': 'BLOCKED', 'ok_to_submit': False, 'error': str(exc)}))
+        return 1
+    print(json.dumps(report, indent=2, allow_nan=False))
+    return 0
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     raise SystemExit(main())

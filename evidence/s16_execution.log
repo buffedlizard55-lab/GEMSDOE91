@@ -1,0 +1,135 @@
+[2026-10-25T04:03:00.154478+00:00] Building hash-addressed PGRD features from pinned competition stack
+Building label-blind CED features from pinned cached stack.
+[2026-10-25T04:03:57.941088+00:00] Per-feature, per-fixed-quadrant leakage canaries
+[2026-10-25T04:04:15.694787+00:00] Full-footprint exact-rank pre-placement check
+Registry surface 1/89: PASS 19GEMSDOE__h19-4-multiline-corroborated.tif
+Registry surface 2/89: PASS 19GEMSDOE__h19-5-powerlaw-budget-multiline.tif
+Registry surface 3/89: PASS 57GEMSDOE__faultzone-anatomy-60000px-prev.tif
+Registry surface 4/89: PASS 57GEMSDOE__h57-anatomy-enechelon-zeros.tif
+Registry surface 5/89: PASS 57GEMSDOE__h57r2-shipped8-all-flank0-20261009T180433Z-90e532947353-zeros.tif
+Registry surface 6/89: PASS 57GEMSDOE__parallel-12000dots-zeros.tif
+Registry surface 7/89: PASS GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif
+Registry surface 8/89: PASS GEMSDOE25__dotted-h19-5-d2-8.tif
+Registry surface 9/89: PASS GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif
+Registry surface 10/89: PASS GEMSDOE28__h27-4-r1-solo-d2-8.tif
+Registry surface 11/89: PASS GEMSDOE28__h32-1-prethin-tip-euler-d2-8.tif
+Registry surface 12/89: PASS GEMSDOE28__h36-1-rung30-blind-r1.tif
+Registry surface 13/89: PASS GEMSDOE28__h38-1-hf-euler-r30-r1.tif
+Registry surface 14/89: PASS GEMSDOE29__wormrank-d28.tif
+Registry surface 15/89: PASS GEMSDOE30__d28-poisson300m-offcat-44090.tif
+Registry surface 16/89: PASS GEMSDOE32__h33-2-b2-zeros.tif
+Registry surface 17/89: PASS GEMSDOE33__h33d-analog-tip-stepover-r30.tif
+Registry surface 18/89: PASS GEMSDOE36__anderson-geothermal-pinn-38854.tif
+Registry surface 19/89: PASS GEMSDOE49__gate_ortho_w0.25-40k.tif
+Registry surface 20/89: PASS calib_d15_02477.tif
+Registry surface 21/89: PASS calib_h161_01855.tif
+Registry surface 22/89: PASS calib_h194_01894.tif
+Registry surface 23/89: PASS calib_h195_01922.tif
+Registry surface 24/89: PASS calib_h25ctx_01280.tif
+Registry surface 25/89: PASS calib_h28ridge_01839.tif
+Registry surface 26/89: PASS calib_hedgev2_01563_sample.tif
+Registry surface 27/89: PASS calib_r13lattice_00904.tif
+Registry surface 28/89: PASS dotted_b2_prune_02778.tif
+Registry surface 29/89: PASS dotted_d2_8_02600.tif
+Registry surface 30/89: PASS dotted_d2_8_02708.tif
+Registry surface 31/89: PASS gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif
+Registry surface 32/89: PASS gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif
+Registry surface 33/89: PASS gems32-bayesopt-dilation-scarp-d28-20261004-nan.tif
+Registry surface 34/89: PASS gems32-bayesopt-dilation-scarp-d28-20261004-zeros.tif
+Registry surface 35/89: PASS gems32-lazygreedy-maxcov-44090-supconfined-zeros.tif
+Registry surface 36/89: PASS gems32-probe-S1-ANCHOR-identical-to-live-02600.tif
+Registry surface 37/89: PASS gems32-probe-S2-SCALE-lambda-0.5.tif
+Registry surface 38/89: PASS gems32-probe-S3-NULLADD-2000px.tif
+Registry surface 39/89: PASS gemsdoe32-d28-ref02600-repro-44090-20261004T183200Z-426073b6-nan.tif
+Registry surface 40/89: PASS gemsdoe32-d28-ref02600-repro-44090-20261004T183200Z-426073b6-zeros.tif
+Registry surface 41/89: PASS gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-nan.tif
+Registry surface 42/89: PASS gemsdoe32-h32a-dip-projected-step-46090-20261004T183200Z-838fcd84-zeros.tif
+Registry surface 43/89: PASS gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-nan.tif
+Registry surface 44/89: PASS gemsdoe32-h32b-transtensional-swarm-45890-20261004T183200Z-27b7c9e6-zeros.tif
+Registry surface 45/89: PASS gemsdoe32-h32c-mt-claycap-breach-45890-20261004T183200Z-a5963d0a-nan.tif
+Registry surface 46/89: PASS gemsdoe32-h32c-mt-claycap-breach-45890-20261004T183200Z-a5963d0a-zeros.tif
+Registry surface 47/89: PASS gemsdoe32-h32d-equalbudget-44090-20261004T183200Z-350cdc3f-nan.tif
+Registry surface 48/89: PASS gemsdoe32-h32d-equalbudget-44090-20261004T183200Z-350cdc3f-zeros.tif
+Registry surface 49/89: PASS gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-nan.tif
+Registry surface 50/89: PASS gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif
+Registry surface 51/89: PASS gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
+Registry surface 52/89: PASS gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif
+Registry surface 53/89: PASS gemsdoe32-h33-h33-2b2-plus-h33-1-20261004T220000Z-31588dc7-nan.tif
+Registry surface 54/89: PASS gemsdoe32-h33-h33-2b2-plus-h33-1-20261004T220000Z-31588dc7-zeros.tif
+Registry surface 55/89: PASS h52_coincidence8_80k.tif
+Registry surface 56/89: PASS h60_officialstack_50k.tif
+Registry surface 57/89: PASS h60_union_d2_75308.tif
+Registry surface 58/89: PASS hedge_v2_01563.tif
+Registry surface 59/89: PASS r11_greedy_mp.tif
+Registry surface 60/89: PASS r13_lattice_s5_00904.tif
+Registry surface 61/89: PASS r14_union_tips10_lat6.tif
+Registry surface 62/89: PASS tip_stepover_r30_02632.tif
+Registry surface 63/89: UNVERIFIED h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif
+Registry surface 64/89: UNVERIFIED h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif
+Registry surface 65/89: PASS GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif
+Registry surface 66/89: PASS GEMS91-DZEDGE-20261025T021110Z-6b819d00.tif
+Registry surface 67/89: PASS gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif
+Registry surface 68/89: PASS gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif
+Registry surface 69/89: PASS gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif
+Registry surface 70/89: PASS gems91-ced-v1-20261024-d35670b28c81.tif
+Registry surface 71/89: PASS gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.tif
+Registry surface 72/89: PASS gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif
+Registry surface 73/89: PASS gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif
+Registry surface 74/89: PASS gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif
+Registry surface 75/89: PASS gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif
+Registry surface 76/89: PASS gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif
+Registry surface 77/89: PASS gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a.tif
+Registry surface 78/89: PASS gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif
+Registry surface 79/89: PASS gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif
+Registry surface 80/89: PASS gems91-s14-lsrg-e3-20261024T235900Z-e6540657-zeros.tif
+Registry surface 81/89: PASS gems91-s14-lsrg-ff-20261025T004500Z-1fcf17ee-zeros.tif
+Registry surface 82/89: PASS gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.tif
+Registry surface 83/89: PASS gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif
+Registry surface 84/89: PASS gems91-s15-hcpa-e3-20261025T030000Z-7f01c717.tif
+Registry surface 85/89: PASS gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif
+Registry surface 86/89: PASS gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif
+Registry surface 87/89: PASS gems91-ucd91-20261024T190000Z-df735405-zeros.tif
+Registry surface 88/89: PASS gems91-ucd91-20261024T190000Z-df735405.tif
+Registry surface 89/89: PASS gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif
+[2026-10-25T04:04:24.921279+00:00] One candidate experiment, matched gravity ablation and frozen CED benchmark
+[2026-10-25T04:04:28.335828+00:00] Fold 0 pgrd: 0.066559 HOLDOUT-DTI; n=29319 (CI pooled below)
+[2026-10-25T04:04:30.020074+00:00] Fold 0 gravity_control: 0.067715 HOLDOUT-DTI; n=29319 (CI pooled below)
+[2026-10-25T04:04:31.044921+00:00] Fold 0 ced_benchmark: 0.058471 HOLDOUT-DTI; n=29319 (CI pooled below)
+[2026-10-25T04:04:34.320544+00:00] Fold 1 pgrd: 0.069549 HOLDOUT-DTI; n=12596 (CI pooled below)
+[2026-10-25T04:04:36.035125+00:00] Fold 1 gravity_control: 0.085730 HOLDOUT-DTI; n=12596 (CI pooled below)
+[2026-10-25T04:04:36.863487+00:00] Fold 1 ced_benchmark: 0.067713 HOLDOUT-DTI; n=12596 (CI pooled below)
+[2026-10-25T04:04:39.704927+00:00] Fold 2 pgrd: 0.067190 HOLDOUT-DTI; n=9473 (CI pooled below)
+[2026-10-25T04:04:41.107508+00:00] Fold 2 gravity_control: 0.064402 HOLDOUT-DTI; n=9473 (CI pooled below)
+[2026-10-25T04:04:41.410488+00:00] Fold 2 ced_benchmark: 0.047269 HOLDOUT-DTI; n=9473 (CI pooled below)
+[2026-10-25T04:04:44.181382+00:00] Fold 3 pgrd: 0.079647 HOLDOUT-DTI; n=9600 (CI pooled below)
+[2026-10-25T04:04:45.543901+00:00] Fold 3 gravity_control: 0.086411 HOLDOUT-DTI; n=9600 (CI pooled below)
+[2026-10-25T04:04:45.881382+00:00] Fold 3 ced_benchmark: 0.080023 HOLDOUT-DTI; n=9600 (CI pooled below)
+[2026-10-25T04:04:45.924933+00:00] Pooled 0.069397 HOLDOUT-DTI, CI [0.05751001360811543, 0.0816755685735943]
+Registry final 1/89: PASS 19GEMSDOE__h19-4-multiline-corroborated.tif
+Registry final 2/89: PASS 19GEMSDOE__h19-5-powerlaw-budget-multiline.tif
+Registry final 3/89: PASS 57GEMSDOE__faultzone-anatomy-60000px-prev.tif
+Registry final 4/89: PASS 57GEMSDOE__h57-anatomy-enechelon-zeros.tif
+Registry final 5/89: PASS 57GEMSDOE__h57r2-shipped8-all-flank0-20261009T180433Z-90e532947353-zeros.tif
+Registry final 6/89: PASS 57GEMSDOE__parallel-12000dots-zeros.tif
+Registry final 7/89: PASS GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif
+Registry final 8/89: PASS GEMSDOE25__dotted-h19-5-d2-8.tif
+Registry final 9/89: PASS GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif
+Registry final 10/89: PASS GEMSDOE28__h27-4-r1-solo-d2-8.tif
+Registry final 11/89: PASS GEMSDOE28__h32-1-prethin-tip-euler-d2-8.tif
+Registry final 12/89: PASS GEMSDOE28__h36-1-rung30-blind-r1.tif
+Registry final 13/89: PASS GEMSDOE28__h38-1-hf-euler-r30-r1.tif
+Registry final 14/89: PASS GEMSDOE29__wormrank-d28.tif
+Registry final 15/89: PASS GEMSDOE30__d28-poisson300m-offcat-44090.tif
+Registry final 16/89: PASS GEMSDOE32__h33-2-b2-zeros.tif
+Registry final 17/89: PASS GEMSDOE33__h33d-analog-tip-stepover-r30.tif
+Registry final 18/89: PASS GEMSDOE36__anderson-geothermal-pinn-38854.tif
+Registry final 19/89: PASS GEMSDOE49__gate_ortho_w0.25-40k.tif
+Registry final 20/89: PASS calib_d15_02477.tif
+Registry final 21/89: PASS calib_h161_01855.tif
+Registry final 22/89: PASS calib_h194_01894.tif
+Registry final 23/89: PASS calib_h195_01922.tif
+Registry final 24/89: PASS calib_h25ctx_01280.tif
+Registry final 25/89: PASS calib_h28ridge_01839.tif
+Registry final 26/89: PASS calib_hedgev2_01563_sample.tif
+Registry final 27/89: DUPLICATE calib_r13lattice_00904.tif
+[2026-10-25T04:04:55.764464+00:00] Literal Rule 1 duplicate stop. New computation and byte identity do not establish protocol uniqueness; no further experiments.

@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-"""Shared hide-and-recover holdout evaluator, single-feature leakage canary,
-and registry lane-drift / uniqueness checker for GEMSDOE91.
+"""Legacy hide-and-recover evaluator, canary and registry checker for GEMSDOE91.
+
+New promotion experiments use vendor/gems57/evaluate_holdout.py with its fixed,
+label-blind spatial folds. This compatibility API retains component-tail domains
+that depend on hidden labels; correcting halo deletion does not certify that
+legacy geometry. Historical v1.0 reproduction requires explicit opt-in.
 
 PARALLEL-RUN PROTOCOL compliance:
   - Rule 1 (LANE): checks BOTH the continuous surface before placement
@@ -187,6 +191,14 @@ def run_leakage_canary(
 
     Uses symmetric AUC `max(auc, 1 - auc)` so negated leaks are caught equally.
     """
+    if not folds or not feature_names or len(set(feature_names)) != len(feature_names):
+        raise ValueError("nonempty folds and unique feature names required")
+    if np.shape(features_fp) != (int(footprint.sum()), len(feature_names)):
+        raise ValueError("feature table/footprint/name mismatch")
+    if not np.isfinite(features_fp).all():
+        raise ValueError("all canary features must be finite; do not drop invalid samples")
+    if subsample_step < 1:
+        raise ValueError("subsample_step must be positive")
     fp_idx = np.full(footprint.shape, -1, dtype=np.int32)
     fp_idx[footprint] = np.arange(int(footprint.sum()), dtype=np.int32)
 
@@ -210,7 +222,9 @@ def run_leakage_canary(
             idx = fp_idx[ey, ex]
             y = f.withheld_faults[ey, ex]
             raw_auc = fast_mann_whitney_auc(col[idx], y)
-            sym_auc = max(raw_auc, 1.0 - raw_auc) if np.isfinite(raw_auc) else 0.5
+            if not np.isfinite(raw_auc):
+                raise ValueError(f"undefined feature canary for {name} fold {f.fold_id}")
+            sym_auc = max(raw_auc, 1.0 - raw_auc)
             fold_aucs.append((raw_auc, sym_auc))
         mean_raw = float(np.mean([a[0] for a in fold_aucs]))
         mean_sym = float(np.mean([a[1] for a in fold_aucs]))
@@ -242,7 +256,9 @@ def run_leakage_canary(
                 idx = fp_idx[ey, ex]
                 y = f.withheld_faults[ey, ex]
                 raw_auc = fast_mann_whitney_auc(col[idx], y)
-                sym_auc = max(raw_auc, 1.0 - raw_auc) if np.isfinite(raw_auc) else 0.5
+                if not np.isfinite(col).all() or not np.isfinite(raw_auc):
+                    raise ValueError(f"invalid fold-derived canary for {name} fold {f.fold_id}")
+                sym_auc = max(raw_auc, 1.0 - raw_auc)
                 fold_aucs.append((raw_auc, sym_auc))
             mean_raw = float(np.mean([a[0] for a in fold_aucs]))
             mean_sym = float(np.mean([a[1] for a in fold_aucs]))
@@ -282,22 +298,22 @@ def score_pooled_holdout(
     n_boot: int = 200,
     tile_px: int = 50,
     seed: int = 91,
-    mask_buffer_predictions: bool = True,
+    mask_buffer_predictions: bool = False,
 ) -> dict:
     """Rule 2 & Rule 3: Score hide-and-recover holdout predictions using exact
     pooled DTI (`alpha=0.2, beta=0.8, R=300 m` triangular kernel).
 
     For each fold `k`:
-      - Visible training faults (`visible_faults`) and the segment buffer (`buffer_mask`)
-        are masked pixel-exactly (`pred_masked[visible_faults | buffer_mask] = 0`).
+      - Visible training faults (`visible_faults`) are masked pixel-exactly.
+        Hidden-segment buffer deletion is a legacy opt-in only, never the default.
       - Predictions restricted to the fold's evaluation domain (`region_mask | withheld_faults`,
         disjoint on positives across folds) are scored against `withheld_faults`.
       - Pooled `T`, `S`, `M`, `|G|` across all 4 folds yield exact pooled `HOLDOUT-DTI`.
       - Spatial block-bootstrap (`tile_px x tile_px` = 5x5 km tiles, `n_boot` draws)
         yields a spatially-honest 95% confidence interval.
 
-    `mask_buffer_predictions` (S14, IR-91-S14-01): with the v1.0 default
-    (`True`) every prediction inside the 1 km (10 px) buffer around a withheld
+    `mask_buffer_predictions` (S14, IR-91-S14-01; default fixed in S16): with legacy v1.0
+    (`True`, now explicit opt-in for reproduction only) every prediction inside the 1 km (10 px) buffer around a withheld
     segment is deleted before scoring. Because the DTI kernel radius is only
     3 px, this "halo deletion" makes near-miss credit impossible and forces
     HOLDOUT-DTI = 0 for ANY real submission raster (all fleet rasters carry
@@ -311,6 +327,10 @@ def score_pooled_holdout(
     credit exactly as on the DrivenData leaderboard. v1.0 numbers and v1.1
     numbers are NEVER comparable; every result dict carries its version.
     """
+    if not folds or n_boot < 1 or tile_px < 1:
+        raise ValueError("nonempty folds, positive bootstrap draws and tile size required")
+    if set(fold_predictions) != {f.fold_id for f in folds}:
+        raise ValueError("predictions must cover exactly the supplied folds")
     radius = D.kernel_radius_px()
     dy_off, dx_off, k_w = D._kernel_offsets(radius)
 
@@ -334,7 +354,11 @@ def score_pooled_holdout(
     tile_id_grid = (yy_grid // tile_px) * nt_x + (xx_grid // tile_px)
 
     for f in folds:
-        pred_raw = np.nan_to_num(fold_predictions[f.fold_id], nan=0.0, posinf=0.0, neginf=0.0)
+        pred_raw = np.asarray(fold_predictions[f.fold_id])
+        if pred_raw.shape != footprint.shape or not np.isfinite(pred_raw).all():
+            raise ValueError("holdout predictions must match the grid and be finite; no silent repair")
+        if (pred_raw < 0).any() or (pred_raw > 1).any():
+            raise ValueError("holdout predictions must be in [0,1]")
         # Evaluation domain for fold k: quadrant (excluding other folds' withheld faults) + own withheld faults
         other_withheld = np.zeros_like(footprint, dtype=bool)
         for f2 in folds:
@@ -453,6 +477,16 @@ def score_off_catalogue_sgmc(
     }
 
 
+def _registry_paths_checked(paths):
+    result = sorted({Path(p).resolve() for p in paths})
+    if not result:
+        raise ValueError("empty registry cannot establish uniqueness")
+    for p in result:
+        if not p.is_file():
+            raise FileNotFoundError(f"missing registry reference: {p}")
+    return result
+
+
 def check_registry_surface_uniqueness(
     surface_fp: np.ndarray,
     footprint: np.ndarray,
@@ -469,30 +503,39 @@ def check_registry_surface_uniqueness(
     accidentally turn a post-placement check into evidence of a pre-placement
     gate.
     """
+    registry_paths = _registry_paths_checked(registry_paths)
+    if corr_stride < 1:
+        raise ValueError("corr_stride must be positive")
     vals = np.asarray(surface_fp, dtype=np.float64)
     if vals.ndim != 1 or vals.size != int(footprint.sum()):
         raise ValueError("surface_fp must be one value for every footprint pixel")
+    if not np.isfinite(vals).all():
+        raise ValueError("nonfinite candidate surface")
     s_sub = vals[::corr_stride]
     r_surf = rankdata(s_sub, method="average")
     r_surf_c = r_surf - r_surf.mean()
     r_surf_norm = float(np.linalg.norm(r_surf_c))
+    if r_surf_norm == 0:
+        raise ValueError("constant candidate surface has undefined rank correlation")
 
     comparisons = []
-    seen_names: set[str] = set()
     max_rho = 0.0
     closest = ""
-    for rp in sorted(Path(p) for p in registry_paths):
-        if not rp.is_file() or rp.name in seen_names:
-            continue
-        seen_names.add(rp.name)
+    for rp in registry_paths:
         with rasterio.open(rp) as src:
-            reg_arr = np.nan_to_num(src.read(1), nan=0.0, posinf=0.0, neginf=0.0)
+            if src.count != 1:
+                raise ValueError(f"registry must be single-band: {rp}")
+            reg_arr = src.read(1)
         if reg_arr.shape != footprint.shape:
-            continue
+            raise ValueError(f"registry grid shape mismatch: {rp}")
+        if not np.isfinite(reg_arr[footprint]).all():
+            raise ValueError(f"nonfinite registry inside footprint: {rp}")
         reg_fp = reg_arr[footprint][::corr_stride].astype(np.float64)
         r_reg = rankdata(reg_fp, method="average")
         r_reg_c = r_reg - r_reg.mean()
         r_reg_norm = float(np.linalg.norm(r_reg_c))
+        if r_reg_norm == 0:
+            raise ValueError(f"constant registry surface has undefined rank correlation: {rp}")
         rho = (
             abs(float(np.dot(r_surf_c, r_reg_c)) / (r_surf_norm * r_reg_norm))
             if (r_surf_norm > 0 and r_reg_norm > 0)
@@ -532,6 +575,13 @@ def check_registry_uniqueness(
       2. Final emitted dots AFTER placement: fraction of candidate dots within <= 3.0 px
          of any registry raster's positive pixels <= 0.70.
     """
+    registry_paths = _registry_paths_checked(registry_paths)
+    if corr_stride < 1 or np.shape(surface_fp) != (int(footprint.sum()),):
+        raise ValueError("invalid surface/footprint or stride")
+    if not np.isfinite(surface_fp).all():
+        raise ValueError("nonfinite candidate surface")
+    if np.shape(candidate_dots) != footprint.shape or not np.isfinite(np.asarray(candidate_dots)[footprint]).all():
+        raise ValueError("candidate dots must match the grid and be finite inside footprint")
     cand_bool = (np.nan_to_num(candidate_dots, nan=0.0) > 0) & footprint
     cy, cx = np.nonzero(cand_bool)
     cand_pts = np.c_[cy, cx].astype(np.float64)
@@ -544,6 +594,8 @@ def check_registry_uniqueness(
     r_surf = rankdata(s_sub, method="average")
     r_surf_c = r_surf - r_surf.mean()
     r_surf_norm = float(np.linalg.norm(r_surf_c))
+    if r_surf_norm == 0:
+        raise ValueError("constant candidate surface has undefined rank correlation")
 
     # Also rank-correlate final binary dot raster on footprint
     dots_fp = cand_bool[footprint][::corr_stride].astype(np.float64)
@@ -560,30 +612,31 @@ def check_registry_uniqueness(
     max_overlap_name = ""
     max_overlap_mutual = 0.0
 
-    seen_names: set[str] = set()
-    for rp in sorted(Path(p) for p in registry_paths):
-        if not rp.is_file() or rp.name in seen_names:
-            continue
-        seen_names.add(rp.name)
+    for rp in registry_paths:
         with rasterio.open(rp) as src:
-            reg_arr = np.nan_to_num(src.read(1), nan=0.0, posinf=0.0, neginf=0.0)
+            if src.count != 1:
+                raise ValueError(f"registry must be single-band: {rp}")
+            reg_arr = src.read(1)
         if reg_arr.shape != footprint.shape:
-            continue
+            raise ValueError(f"registry grid shape mismatch: {rp}")
+        if not np.isfinite(reg_arr[footprint]).all():
+            raise ValueError(f"nonfinite registry inside footprint: {rp}")
 
         reg_fp = reg_arr[footprint][::corr_stride].astype(np.float64)
         r_reg = rankdata(reg_fp, method="average")
         r_reg_c = r_reg - r_reg.mean()
         r_reg_norm = float(np.linalg.norm(r_reg_c))
+        rank_defined = r_reg_norm > 0 and r_dots_norm > 0
 
         surf_rho = (
             abs(float(np.dot(r_surf_c, r_reg_c)) / (r_surf_norm * r_reg_norm))
             if (r_surf_norm > 0 and r_reg_norm > 0)
-            else 0.0
+            else None
         )
         dot_rho = (
             abs(float(np.dot(r_dots_c, r_reg_c)) / (r_dots_norm * r_reg_norm))
             if (r_dots_norm > 0 and r_reg_norm > 0)
-            else 0.0
+            else None
         )
 
         reg_pos = (reg_arr > 0) & footprint
@@ -609,12 +662,13 @@ def check_registry_uniqueness(
         # verdict (IR-91-CCR-02).
         f1_ov = (2.0 * fwd_ov * rev_ov / (fwd_ov + rev_ov)) if (fwd_ov + rev_ov) > 0 else 0.0
         eff_dot_ov = fwd_ov
-        is_dup = (surf_rho > max_rank_corr) or (dot_rho > max_rank_corr) or (fwd_ov > max_dot_overlap_3px)
+        is_dup = (surf_rho is not None and surf_rho > max_rank_corr) or (dot_rho is not None and dot_rho > max_rank_corr) or (fwd_ov > max_dot_overlap_3px)
         comparisons.append({
             "registry_raster": rp.name,
+            "rank_comparison_defined": bool(rank_defined),
             "n_registry_positive": n_reg,
-            "surface_abs_rank_corr": round(surf_rho, 5),
-            "dots_abs_rank_corr": round(dot_rho, 5),
+            "surface_abs_rank_corr": round(surf_rho, 5) if surf_rho is not None else None,
+            "dots_abs_rank_corr": round(dot_rho, 5) if dot_rho is not None else None,
             "cand_within_3px_of_reg": round(fwd_ov, 5),
             "reg_within_3px_of_cand": round(rev_ov, 5),
             "f1_dot_overlap_3px": round(f1_ov, 5),
@@ -623,10 +677,10 @@ def check_registry_uniqueness(
             "duplicate_flag": bool(is_dup),
         })
 
-        if surf_rho > max_surf_rho:
+        if surf_rho is not None and surf_rho > max_surf_rho:
             max_surf_rho = surf_rho
             max_surf_name = rp.name
-        if dot_rho > max_dot_rho:
+        if dot_rho is not None and dot_rho > max_dot_rho:
             max_dot_rho = dot_rho
         if eff_dot_ov > max_overlap_fwd:
             max_overlap_fwd = eff_dot_ov
@@ -641,14 +695,15 @@ def check_registry_uniqueness(
         "n_registry_rasters_checked": len(comparisons),
         "max_allowed_rank_corr": max_rank_corr,
         "max_allowed_dot_overlap_3px": max_dot_overlap_3px,
-        "surface_max_abs_rank_corr": round(max_surf_rho, 5),
+        "surface_max_abs_rank_corr": round(max_surf_rho, 5) if any(c["surface_abs_rank_corr"] is not None for c in comparisons) else None,
         "surface_closest_raster": max_surf_name,
-        "dots_max_abs_rank_corr": round(max_dot_rho, 5),
+        "dots_max_abs_rank_corr": round(max_dot_rho, 5) if any(c["dots_abs_rank_corr"] is not None for c in comparisons) else None,
         "dots_max_3px_overlap": round(max_overlap_fwd, 5),
         "dots_closest_raster": max_overlap_name,
         "dots_max_mutual_3px_overlap": round(max_overlap_mutual, 5),
         "is_duplicate": bool(any_dup),
-        "uniqueness_pass": not any_dup,
+        "rank_comparison_complete": all(c["rank_comparison_defined"] for c in comparisons),
+        "uniqueness_pass": not any_dup and all(c["rank_comparison_defined"] for c in comparisons),
         "comparisons": comparisons,
     }
 
@@ -656,5 +711,5 @@ def check_registry_uniqueness(
 def default_registry_paths() -> list[Path]:
     paths = sorted((ROOT / "data" / "registry").glob("*.tif"))
     paths += sorted((ROOT / "data" / "registry_siblings").glob("*.tif"))
-    # Exclude exact NaN/zeros twin duplicates of the same R0 dot set? Keep both — both pass!
+    # Keep NaN/zeros twins as separate references; neither is presumed to pass.
     return paths

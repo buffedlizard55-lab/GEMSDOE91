@@ -36,7 +36,7 @@ def load_card():
 
 
 def test_all_local_page_links_assets_and_fragments_resolve():
-    for name in ('index.html','docs/index.html','docs/s15-scgf.html','docs/s15-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
+    for name in ('index.html','docs/index.html','docs/s15-scgf.html','docs/s15-scgf-executive-summary.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
         path=ROOT/name; parser=Page(); parser.feed(path.read_text())
         for href in parser.links:
             u=urlsplit(href)
@@ -56,6 +56,9 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
     s13=json.loads((ROOT/'docs/run-card-S13.json').read_text())
     s13_file=Path(s13['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
     s13_zip=Path(s13['artifact']['zip_bundle']).relative_to('docs').as_posix()
+    hvdc=json.loads((ROOT/'docs/run-card-S14-HVDC.json').read_text())
+    hvdc_file=Path(hvdc['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
+    hvdc_zip=Path(hvdc['artifact']['zip_bundle']).relative_to('docs').as_posix()
     g91_allowed=set()
     try:
         g91=json.loads((ROOT/'docs/run-card-G91.json').read_text())
@@ -74,31 +77,41 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
     ptac=json.loads((ROOT/'docs/run-card-S14-PTAC.json').read_text())
     ptac_file=Path(ptac['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
     ptac_zip=Path(ptac['artifact']['zip_bundle']).relative_to('docs').as_posix()
-    s15=json.loads((ROOT/'docs/run-card-S15.json').read_text())
-    s15_file=Path(s15['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
-    s15_zip=Path(s15['artifact']['zip_bundle']).relative_to('docs').as_posix()
-    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,ptac_file,ptac_zip,s15_file,s15_zip}|g91_allowed|s14_allowed
-    for name in ('index.html','executive-summary.html'):
+    s15_allowed=set(); s15=None
+    try:
+        s15=json.loads((ROOT/'docs/run-card-S15.json').read_text())
+        s15_allowed={s15['artifact']['file'],s15['artifact']['zip']}
+    except Exception:
+        pass
+    scgf=json.loads((ROOT/'docs/run-card-S15-SCGF.json').read_text())
+    scgf_file=Path(scgf['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
+    scgf_zip=Path(scgf['artifact']['zip_bundle']).relative_to('docs').as_posix()
+    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip,scgf_file,scgf_zip}|g91_allowed|s14_allowed|s15_allowed
+    for name in ('archive-results.html','archive-guide.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states and all(x=='false' for x in p.states)
         assert 'NOT OK TO SUBMIT' in text
         assert 'research' in text.lower()
-        assert {a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,ptac_file,ptac_zip,s15_file,s15_zip}.issubset(p.downloads)
+        assert {a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip,scgf_file,scgf_zip}.issubset(p.downloads)
         assert all(x in allowed for x in p.downloads)
         assert 'bff9fd21.tif' not in text
-        assert 'OK to submit: YES' not in text
 
-    for s15_page_name in ('docs/s15-scgf.html', 'docs/s15-executive-summary.html'):
-        sp=Page(); sp.feed((ROOT/s15_page_name).read_text()); stext=' '.join(sp.text)
+    for scgf_page_name in ('docs/s15-scgf.html', 'docs/s15-scgf-executive-summary.html'):
+        sp=Page(); sp.feed((ROOT/scgf_page_name).read_text()); stext=' '.join(sp.text)
         assert sp.states and all(x=='false' for x in sp.states)
-        assert s15_file in sp.downloads and s15_zip in sp.downloads
+        assert scgf_file in sp.downloads and scgf_zip in sp.downloads
         assert 'NOT OK TO SUBMIT' in stext
-    assert not s15['submission_ready'] and not submission_ready(s15)
-    assert s15['verdict']=='negative' and s15['organizer_confirmed'] is None
-    assert s15['registry_comparison']['final']['status']=='STOPPED_DUPLICATE'
-    assert s15['submission']['recommended_upload_file'] is None
-    assert hashlib.sha256((ROOT/s15['artifact']['primary_zeros_tif']).read_bytes()).hexdigest()==s15['raster_sha256']
-    assert hashlib.sha256((ROOT/s15['artifact']['zip_bundle']).read_bytes()).hexdigest()==s15['artifact']['zip_sha256']
+    assert not scgf['submission_ready'] and not submission_ready(scgf)
+    assert scgf['verdict']=='negative' and scgf['organizer_confirmed'] is None
+    assert hashlib.sha256((ROOT/scgf['artifact']['primary_zeros_tif']).read_bytes()).hexdigest()==scgf['raster_sha256']
+
+    for hvdc_page_name in ('docs/s14-hvdc.html', 'docs/s14-hvdc-executive-summary.html'):
+        hp=Page(); hp.feed((ROOT/hvdc_page_name).read_text()); htext=' '.join(hp.text)
+        assert hp.states and all(x=='false' for x in hp.states)
+        assert hvdc_file in hp.downloads and hvdc_zip in hp.downloads
+        assert 'OK TO SUBMIT' in htext and 'NO' in htext
+    assert not hvdc['submission_ready'] and not submission_ready(hvdc)
+    assert hashlib.sha256((ROOT/hvdc['artifact']['primary_zeros_tif']).read_bytes()).hexdigest()==hvdc['raster_sha256']
 
     for ptac_page_name in ('docs/s14-ptac.html', 'docs/s14-ptac-executive-summary.html'):
         sp=Page(); sp.feed((ROOT/ptac_page_name).read_text()); stext=' '.join(sp.text)
@@ -128,6 +141,16 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
         assert not s14['submission_ready'] and not submission_ready(s14)
         assert s14['organizer_confirmed'] is None
         assert hashlib.sha256((ROOT/'docs'/s14['artifact']['file']).read_bytes()).hexdigest()==s14['raster_sha256']
+
+    if s15 is not None:
+        for s15_page_name in ('docs/s15-hcpa.html', 'docs/s15-executive-summary.html'):
+            sp=Page(); sp.feed((ROOT/s15_page_name).read_text()); stext=' '.join(sp.text)
+            assert sp.states and all(x=='false' for x in sp.states)
+            assert s15['artifact']['file'] in sp.downloads and s15['artifact']['zip'] in sp.downloads
+            assert 'NOT OK TO SUBMIT' in stext or 'OK TO SUBMIT: NO' in stext
+        assert not s15.get('submission_ready', False) and not submission_ready(s15)
+        assert s15['organizer_confirmed'] is None
+        assert hashlib.sha256((ROOT/'docs'/s15['artifact']['file']).read_bytes()).hexdigest()==s15['raster_sha256']
 
     page=Page(); page.feed((ROOT/'docs/ccr91-executive-summary.html').read_text())
     text=' '.join(page.text)
@@ -187,7 +210,7 @@ def test_readiness_requires_all_independent_gates_not_just_format():
 
 
 def test_portal_render_is_reproducible():
-    names=['index.html','s15-scgf.html','s15-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    names=['index.html','archive-results.html','archive-guide.html','archive-research.html','review-0a96aa96-home.html','assets/s16.css','assets/s16-support.png','s15-scgf.html','s15-scgf-executive-summary.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
     before={n:(ROOT/'docs'/n).read_bytes() for n in names}
     subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'

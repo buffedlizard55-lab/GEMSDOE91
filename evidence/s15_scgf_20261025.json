@@ -3,8 +3,9 @@
   "generated_utc": "2026-10-25T05:29:10Z",
   "branch": "arena/605655a6-gemsdoe91",
   "preregistration": {
-    "path": "docs/HYPOTHESES_S15.md",
-    "sha256": "7d67810d6115b6e8a0607444a4e6e91f170c5343d0ba328f31129881f946150d"
+    "path": "docs/HYPOTHESES_S15_SCGF.md",
+    "sha256": "7d67810d6115b6e8a0607444a4e6e91f170c5343d0ba328f31129881f946150d",
+    "merge_rename_note": "Renamed from docs/HYPOTHESES_S15.md / docs/run-card-S15.json to *-SCGF* during main integration to coexist cleanly with concurrent S15-HCPA; file bytes, SHA-256, scores, raster, and verdict are unchanged."
   },
   "lane": {
     "id": "S15-SCGF",

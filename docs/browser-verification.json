@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "scope": "Delivery/UI engineering checks, not a competition score or scientific experiment",
-  "checked_utc": "2026-10-24T08:06:04.162Z",
+  "checked_utc": "2026-10-25T04:40:32.623Z",
   "browser": "153.0.8010.0",
   "pages_root_redirect_tested": true,
   "desktop": {
@@ -12,7 +12,10 @@
     "width": 390,
     "height": 844
   },
-  "download_sha256": "a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee",
+  "dzedge_download_sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
+  "s14_download_sha256": "678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720",
+  "s13_download_sha256": "421c589072e3b959fc0f8e71a7e879822ce8f9a81172a7f0fd24e7932eadd452",
+  "download_sha256": "ab500a3caa50f00ec0855dc88006a2d3e31f5e5f4cde726ef391e30f6eb4cd6b",
   "copy_status": "Clipboard unavailable. The text is selected; copy it with your keyboard.",
   "console_or_http_errors": [],
   "mobile_overflow": false,
@@ -22,11 +25,55 @@
       "violations": []
     },
     {
+      "page": "dzedge-executive-summary.html",
+      "violations": []
+    },
+    {
       "page": "executive-summary.html",
       "violations": []
     },
     {
       "page": "research.html",
+      "violations": []
+    },
+    {
+      "page": "s14-hvdc.html",
+      "violations": []
+    },
+    {
+      "page": "s14-hvdc-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s13-ptha.html",
+      "violations": []
+    },
+    {
+      "page": "s13-ptha-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s11-mhtr.html",
+      "violations": []
+    },
+    {
+      "page": "s11-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s12-spac.html",
+      "violations": []
+    },
+    {
+      "page": "s12-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s12-spid.html",
+      "violations": []
+    },
+    {
+      "page": "spid91-executive-summary.html",
       "violations": []
     }
   ]

@@ -1,0 +1,55 @@
+{
+  "cache_key": "95da30f7e2da6b1ef8999a0138b4bf2152c41668679ed3eb41fb5af135153f21",
+  "code_sha256": "4cd9b789ecf3b3a06864d1841ac57b9c64d66368e044787e476c0c23a8324192",
+  "inputs": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  },
+  "bands": {
+    "1": {
+      "description": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+      "tags": {
+        "band_name": "mag_anom",
+        "data_category": "magnetic_data",
+        "data_type": "numeric",
+        "description": "Magnetic anomaly - deviation from expected Earth's magnetic field"
+      }
+    },
+    "13": {
+      "description": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+      "tags": {
+        "band_name": "iso_grav_anom",
+        "data_category": "gravity_data",
+        "data_type": "numeric",
+        "description": "Isostatic gravity anomaly - gravity after compensating for topographic mass"
+      }
+    }
+  },
+  "usable_input_pixels": {
+    "1": 5164312,
+    "13": 5164312
+  },
+  "catalogue_features": [],
+  "fitted_parameters": false,
+  "files": {
+    "raw_magnetic": "2d222463415566ec9f2b74ce8292fe62e9f584185b2ca076fa314dc73ef2d3c7",
+    "raw_gravity": "ae09088a8bfef5d70e7c586c6257831460e1c398a56fa2515804fb5046b7dbe9",
+    "magnetic_persistence": "6d2cf354880005e0634ba788e4a1e2f29b591806a6956cdbc72d498dc3f23b0c",
+    "gravity_persistence": "9fec8bd17bf8c102a26f6d1d795ef4629925798cf95341d6c7c6a49eaf4febad",
+    "axial_alignment": "3b54d3c6cfff4986171a60cc519da6113a8d9cf659f5b85c71d920ddd4f74cfa",
+    "displacement_consistency": "d58548043c3a5ff7a61761e6b66944de5d710a6a39f62d86f9222a2a7a0462b2",
+    "signed_displacement_fine": "368c3c377cf30796fc67008a570e7e1b24c66e0f03cbf7feb990da3f4c997847",
+    "signed_displacement_coarse": "4200387193661006fe9315fdffedfaebfe13b5814b9faf49ce65117b74f1fd7b",
+    "surface": "70f36345e67706de67e6457acbc82e34a15abbd93cbf0ad742e4e28f461ba15e"
+  }
+}

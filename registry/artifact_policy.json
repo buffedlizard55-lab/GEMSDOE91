@@ -218,40 +218,118 @@
       "reason": "Single-TIFF ZIP of S14-LSRG-FF; research only and NOT OK TO SUBMIT (docs/run-card-S14.json)."
     },
     {
-      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
-      "sha256": "3bf918afef6beb33ec8efe1b542680e9a042c01480dfb75773d347ce6d5607e2",
-      "status": "legacy_quarantined",
-      "reason": "PR66 synthetic random-noise fixture built against a 1-pixel mock catalogue (515 dots land on real existing_faults.tif pixels; HOLDOUT-DTI not evaluated on real truth). Quarantined; NOT OK TO SUBMIT."
+      "path": "docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif",
+      "sha256": "678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720",
+      "status": "current_research_only",
+      "reason": "S14-HVDC E2 range-safe research artifact: 0.262209 HOLDOUT-DTI and 0.110429 Blind SGMC, but Rule 1 final overlap fails (99.838% lattice, 84.706% S13, 70.056% dense h25); verdict negative duplicate stop; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.zip",
-      "sha256": "139f5ec056b27b0ac20082832271cc9e5f6a67e3433fba75ca00a1abdaed9b82",
-      "status": "legacy_quarantined",
-      "reason": "Single-TIFF ZIP of PR66 synthetic random-noise fixture; quarantined and NOT OK TO SUBMIT."
+      "path": "docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.zip",
+      "sha256": "6a15bfd1b29219e450764b0d2de70552c87bc38cc82fc0d490021af6166d4670",
+      "status": "current_research_only",
+      "reason": "S14-HVDC E2 range-safe research artifact: 0.262209 HOLDOUT-DTI and 0.110429 Blind SGMC, but Rule 1 final overlap fails (99.838% lattice, 84.706% S13, 70.056% dense h25); verdict negative duplicate stop; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
       "sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
-      "status": "legacy_quarantined",
-      "reason": "PR68 DZ-EDGE v2 PRUNE+refill derivative of R0 (copies 26,294 parent R0 dots, HOLDOUT-DTI=0.0, incomplete 1-raster registry check). Quarantined; NOT OK TO SUBMIT."
+      "status": "current_research_only",
+      "reason": "DZ-EDGE v2 all-finite research artifact; HOLDOUT-DTI 0.0 does not beat comparable best; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.zip",
       "sha256": "633f22a98a13395b69f942678b582a4e016184d653070fdf199e8631df8bf34d",
-      "status": "legacy_quarantined",
-      "reason": "Single-TIFF ZIP of PR68 DZ-EDGE v2 negative artifact; quarantined and NOT OK TO SUBMIT."
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of DZ-EDGE v2 research artifact; HOLDOUT-DTI 0.0; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
+      "sha256": "3bf918afef6beb33ec8efe1b542680e9a042c01480dfb75773d347ce6d5607e2",
+      "status": "current_research_only",
+      "reason": "Synthetic smoothed-noise format demonstration; no validated scientific promotion evidence; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.zip",
+      "sha256": "139f5ec056b27b0ac20082832271cc9e5f6a67e3433fba75ca00a1abdaed9b82",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of synthetic smoothed-noise format demonstration; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
+      "sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9",
+      "status": "current_research_only",
+      "reason": "S16 fresh computation; format PASS, literal registry duplicate; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.zip",
+      "sha256": "69a33f11e7be0db156b8e498d08d8259d814b8bbf509b144fc762a0d10cd4337",
+      "status": "current_research_only",
+      "reason": "S16 fresh computation; format PASS, literal registry duplicate; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif",
+      "sha256": "b7ab738f8e0311db9a481a4f16f5bc30583855537b3083144080d7b88157fb1a",
+      "status": "parallel_quarantined",
+      "reason": "Inherited S15 artifact was absent from artifact policy. Preserved for research only; unverified full-registry novelty and inconsistent historical paired CI; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.zip",
+      "sha256": "d25f426453b02860bde3762252160fd0e0555589a867fb4905c8b7ab76538ebd",
+      "status": "parallel_quarantined",
+      "reason": "Inherited S15 artifact was absent from artifact policy. Preserved for research only; unverified full-registry novelty and inconsistent historical paired CI; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717.tif",
+      "sha256": "7f01c7171384fe92478c6e25412bd1dad825b98f8bdecdf4204f816aaac9aca2",
+      "status": "parallel_quarantined",
+      "reason": "Inherited S15 artifact was absent from artifact policy. Preserved for research only; unverified full-registry novelty and inconsistent historical paired CI; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.tif",
+      "sha256": "da0fa0de24946769de509ec105486f5e9e2fc093107d32cf20af05c2897b5b64",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent H1 artifact preserved from main after S16 duplicate stop. Not rerun, selected or tested against the frozen S16 inventory. No submission approval."
+    },
+    {
+      "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.zip",
+      "sha256": "57c51932093264ee0acccc92d5a133e8a5d00b10e1909a3a69687b2e95f64d55",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent H1 artifact preserved from main after S16 duplicate stop. Not rerun, selected or tested against the frozen S16 inventory. No submission approval."
+    },
+    {
+      "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4.tif",
+      "sha256": "8626b7d4766020fb9c0118e61c310ee833411a96d9bf5acfd216b5fc4d0199a3",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent H1 artifact preserved from main after S16 duplicate stop. Not rerun, selected or tested against the frozen S16 inventory. No submission approval."
     },
     {
       "path": "docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif",
       "sha256": "0893322792aa46eaebba6f75702051d854efbe7fa5cb219e588ef863459ca3a1",
       "status": "current_research_only",
-      "reason": "Session 15 S15-SCGF E2 all-finite [0,1] GeoTIFF (44,000 dots, HOLDOUT-DTI 0.240633, Blind SGMC 0.097940); research download only and NOT OK TO SUBMIT (docs/run-card-S15.json)."
+      "reason": "Parallel Session 15 S15-SCGF E2 all-finite [0,1] GeoTIFF (44,000 dots, HOLDOUT-DTI 0.240633, Blind SGMC 0.097940); research download only and NOT OK TO SUBMIT (docs/run-card-S15-SCGF.json)."
     },
     {
       "path": "docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.zip",
       "sha256": "e14e41057a58eb87807f6bdfb85bae5f4b68c96952ee3b578ba0307a7e92847f",
       "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of Session 15 S15-SCGF E2; research download only and NOT OK TO SUBMIT (docs/run-card-S15.json)."
+      "reason": "Single-TIFF ZIP of Parallel Session 15 S15-SCGF E2; research download only and NOT OK TO SUBMIT (docs/run-card-S15-SCGF.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif",
+      "sha256": "dfee391717d1b89e9e179ec2d0ba00096ec40d5963d841670c2e9a4eea4f9df6",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S16-PC91 phase-congruency artifact preserved from main; negative HOLDOUT-DTI 0.1236 and NOT OK TO SUBMIT (docs/run-card-S16PC.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.zip",
+      "sha256": "aabe4de54a4f04c5dec69962bbd6f93ff025f0289df8789cedc4666fe6005e5a",
+      "status": "parallel_quarantined",
+      "reason": "Single-TIFF ZIP of concurrent S16-PC91 phase-congruency artifact preserved from main; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a.tif",
+      "sha256": "9c6f182adbf77540db05bebe6691051bf8a89e2b5ac335ee7cce7e3949c8cf86",
+      "status": "parallel_quarantined",
+      "reason": "NaN-twin companion of concurrent S16-PC91 phase-congruency artifact preserved from main; NOT OK TO SUBMIT."
     }
   ]
 }

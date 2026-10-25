@@ -15,13 +15,13 @@
     "claim": "Previous advertised parent lacks a published organizer receipt at this source",
     "source": "GEMSDOE32 site snapshot (owner evidence, not organizer)",
     "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
-    "verification": "Fetched 2026-10-24. Explicit text: NO ORGANISER SCORE EXISTS for this or any artifact in this repository. Confirms 0.2747/0.2778 are unverified model/user reports rather than organizer receipts."
+    "verification": "Fetched 2026-10-25. The page explicitly states NO ORGANISER SCORE EXISTS for its artifacts; the named h33-h33-2-b2...-zeros.tif is marked UNSCORED and its 0.2747 value is labelled a projection/model. The user-supplied 0.2778 claim is not established by this page; no submission receipt was available."
   },
   {
-    "claim": "Competition target, official DTI metric (alpha=0.2, beta=0.8, R=300m triangular kernel, worked example DTI=0.60) and permitted submission format",
+    "claim": "Official problem scope (faults indicative of geothermal resources), newly expert-labeled private test faults, expert-expanded final labels, official distance-weighted Tversky metric (alpha=0.2, beta=0.8, R=300m), and GeoTIFF format",
     "source": "DrivenData official problem description",
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
-    "verification": "Fetched 2026-10-24. Verified single-band float32 EPSG:32611 100m GeoTIFF in [0, 1], asymmetric DTI formula, worked example TP_w=3.00, FP_w=1.89, FN_w=2.00 -> DTI=0.60, and $50K Phase 1 + $250K Phase 2 prize structure."
+    "verification": "Fetched 2026-10-25. The challenge target is faults indicative of geothermal resources, not vent labels. Experts manually identified faults absent from the public catalogue for the initial private test; a later expert panel expands labels for final-round rescoring. Verified distance-weighted Tversky formula, 300m triangular kernel, alpha=0.2, beta=0.8, worked example TP_w=3.00/FP_w=1.89/FN_w=2.00 -> DTI=0.60, and single-band float32 EPSG:32611 100m GeoTIFF with values in [0,1] and null/NaN outside bounds. This fetched page does not verify any GEMSDOE91 submission."
   },
   {
     "claim": "Competition sponsor (DOE Office of Geothermal) and cited scientific references (Matteo et al. 2021; Hermant et al. 2025)",
@@ -33,13 +33,13 @@
     "claim": "Live public leaderboard benchmark scores (top #1 = 0.4413, #2 = 0.3916, #5 = 0.3539)",
     "source": "DrivenData official leaderboard",
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "verification": "Fetched 2026-10-24. Verified #1 xiaofanhu (0.4413), #2 cfld__ (0.3916), #3 Batik Shirt Brothers (0.3904), #4 BrandenKMurray (0.3724), #5 No Fault of Our Own (0.3539), #21 nchuzhoy (0.3262), superseding the older 0.3195 snapshot. No organizer score receipt exists for GEMSDOE91."
+    "verification": "Fetched 2026-10-25. The official public leaderboard displayed #1 xiaofanhu at 0.4413, #2 cfld__ at 0.3916, #3 Batik Shirt Brothers at 0.3904, #4 BrandenKMurray at 0.3724, and #5 No Fault of Our Own at 0.3539. The earlier 0.3195 figure is not the current rank-1 value on this snapshot. This is a public leaderboard observation, not a submission-page receipt for GEMSDOE91."
   },
   {
     "claim": "Official data access and sample grid",
     "source": "DrivenData official data page",
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
-    "verification": "Redirects to login without DrivenData credentials; cached pinned inputs match registry/data_manifest.json SHA-256 digests."
+    "verification": "Fetched 2026-10-25; anonymous request redirected to the DrivenData login page. The required official rasters are absent from this checkout: scripts/preflight.py reports sample_submission and parent_r0_nan missing, and all implemented axes blocked. Do not infer current local availability from historical manifest entries."
   },
   {
     "claim": "Official Rules (15 U.S.C. 3719): 3 submissions/week cap, generative AI narrative disclosure requirement, and U.S. eligibility",
@@ -79,7 +79,7 @@
   },
   {
     "claim": "Full-resolution 100 m GeoDAWN numerical stack (19 float32 bands) and Band 03 two-cell central-difference scale factor (200.024 m vs Band 09 nT/m)",
-    "source": "DOE OpenEI Geothermal Data Repository — GeoDAWN Great Basin Numerical Features",
+    "source": "DOE OpenEI Geothermal Data Repository \u2014 GeoDAWN Great Basin Numerical Features",
     "url": "https://gdr.openei.org/submissions/1618",
     "verification": "Official GDR link (host outside sandbox allowlist). Local pinned data/bridge/gems-geodawn-numerical-features.tif SHA256-verified on 2026-10-24; full-resolution 512x512 window derivative audit proved med(B03 / ||grad_m(B14)||) = 200.0242 and R^2(B13 ~ B15) = 0.4664."
   },
@@ -100,5 +100,17 @@
     "source": "NASA JPL OPERA L3_DISP_S1 (ASF DAAC)",
     "url": "https://www.jpl.nasa.gov/go/opera/products/disp-product-suite",
     "verification": "Official open NASA/JPL product lead; not fetched in-sandbox because jpl.nasa.gov and asf.alaska.edu are outside sandbox outbound allowlist. Logged as unrun external hypothesis H12-5."
+  },
+  {
+    "claim": "Session 14 label-blind verification: Band 10/16 positive swarm correlation; Salem tilt-depth distribution; B13-vs-B15 and B17-vs-B15 confounding; GDR thermal/blind-geothermometry cell counts and elevation bias",
+    "source": "S14 in-repo forensic receipt (scripts/verify_s14_forensics.py)",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/08009ce4-gemsdoe91/evidence/s14_hydrothermal_forensics.json",
+    "verification": "Measured locally from SHA-pinned inputs without reading existing_faults.tif or dist_known_fault_px: r(log1p B10, log1p B16)=0.735476; R2(B13~B15)=0.458512; R2(B17~B15)=0.004954; 2,060 Hot/Warm cells and 212 non-Hot/Warm cells with geothermometry >=90 C."
+  },
+  {
+    "claim": "S14-HVDC E2 measured result and unique range-safe GeoTIFF identity",
+    "source": "S14 machine-readable run card",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/08009ce4-gemsdoe91/docs/run-card-S14-HVDC.json",
+    "verification": "HOLDOUT-DTI 0.262209 [0.248940,0.275209], 60,988 withheld positives, paired delta +0.017608 vs S13 with CI [+0.009179,+0.026128]; Blind SGMC control 0.110429; not an organizer score. TIFF SHA-256 678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720 re-read and validated."
   }
 ]

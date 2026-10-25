@@ -57,8 +57,8 @@ def test_evaluator_v11_nohalo_vs_v10():
         if ys.size:
             p[ys[0], xs[0] + 2] = 1.0  # near-miss dot inside buffer halo
         pred[f.fold_id] = p
-    v10 = EH.score_pooled_holdout(pred, folds, fp, n_boot=10)
-    v11 = EH.score_pooled_holdout(pred, folds, fp, n_boot=10, mask_buffer_predictions=False)
+    v10 = EH.score_pooled_holdout(pred, folds, fp, n_boot=10, mask_buffer_predictions=True)
+    v11 = EH.score_pooled_holdout(pred, folds, fp, n_boot=10)
     assert v10["evaluator_version"] == EH.EVALUATOR_VERSION
     assert v11["evaluator_version"] == EH.EVALUATOR_VERSION_V11
     assert v10["holdout_dti"] == 0.0
