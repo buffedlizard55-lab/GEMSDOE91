@@ -46,7 +46,7 @@
     "checked_utc_date": "2026-10-25"
   },
   "verification": {
-    "pytest": "578 passed, 8 skipped; 78 Rasterio Affine pending-deprecation warnings",
+    "pytest": "594 passed, 8 skipped; 78 Rasterio Affine pending-deprecation warnings",
     "submission_cli": "PASS for advertised TIFF/ZIP identity and stored grid/range; reference checks not checked",
     "artifact_policy": "PASS: 87 registered prediction artifacts; no raw raster/archive tracked",
     "evidence_consistency": "PASS; no geological experiments rerun",
