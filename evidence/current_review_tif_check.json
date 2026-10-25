@@ -1,0 +1,36 @@
+{
+  "sha_matches_run_card": true,
+  "one_band": true,
+  "dtype_float32": true,
+  "shape": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "nodata_none": true,
+  "all_cells_finite": true,
+  "min_value": 0.0,
+  "max_value": 1.0,
+  "values_in_0_1": true,
+  "positive_cells": 37654,
+  "positive_values_are_unit": true,
+  "zip_member_count": 1,
+  "zip_single_tif": true,
+  "zip_inner_sha_matches_tif": true,
+  "sample_grid_match": null,
+  "sample_grid_match_blocker": "reference sample raster absent",
+  "catalogue_exclusion_check": "NOT RUN: existing_faults.tif absent from data/",
+  "sha256": "dfee391717d1b89e9e179ec2d0ba00096ec40d5963d841670c2e9a4eea4f9df6",
+  "bytes": 223649,
+  "status": "PASS_PARTIAL_GRID_UNAVAILABLE",
+  "ok_to_download": true,
+  "ok_to_submit": false
+}

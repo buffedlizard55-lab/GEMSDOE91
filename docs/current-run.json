@@ -1,6 +1,23 @@
 {
-  "run_card": "run-card-S16.json",
+  "run_card": "run-card-S16PC.json",
+  "candidate": "gems91-s16-pc91-20261025T051716Z-9c6f182a",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "raster_sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9"
+  "verdict": "negative",
+  "raster_sha256": "dfee391717d1b89e9e179ec2d0ba00096ec40d5963d841670c2e9a4eea4f9df6",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "n_withheld_positives": 60988,
+    "holdout_dti": 0.1236,
+    "ci_95": [
+      0.114867,
+      0.133738
+    ],
+    "winner": "E1",
+    "budget_dots": 37654,
+    "holdout_winner_not_delivered": "E3"
+  },
+  "registry_scope": 33,
+  "generated_by": "scripts/publish_current_candidate.py"
 }

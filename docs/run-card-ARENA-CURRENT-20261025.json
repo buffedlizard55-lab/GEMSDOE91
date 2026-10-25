@@ -1,0 +1,136 @@
+{
+  "schema": "gems91-review-run-card.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/c5026e1d-gemsdoe91",
+  "hypothesis": {
+    "name": "MFTA — multi-scale fault-tip termination asymmetry (proposed; not run)",
+    "status": "PROPOSED_NOT_TESTED",
+    "mechanism": "Pair B02 RTP magnetic, B13 isostatic gravity and B12 elevation ridge terminations with directional-gradient rotation and relay-tip geometry at approximately 0.5–2 km scales.",
+    "why_missing_faults": "A termination/relay topology descriptor could prioritize unmapped splays and relays instead of simply ranking the mapped continuous trace; this is falsifiable but untested.",
+    "named_non_fault_mimic": "A GeoDAWN flight-line levelling seam or lithologic contact can create an apparent ridge termination and directional change."
+  },
+  "experiment_status": {
+    "experiments_run_this_review": 0,
+    "prior_s16pc_experiments": 3,
+    "budget_max_experiments": 3,
+    "reason_not_run": "No exact assigned method paragraph, no local data directory or feature cache, and previous PC91 lane budget exhausted.",
+    "weekly_slots_used": 0,
+    "organizer_confirmed": null
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "value": 0.1236,
+    "withheld_positives": 60988,
+    "ci95": [0.114867, 0.133738],
+    "status": "EXISTING S16-PC91 E1 ARTIFACT; NOT AN MFTA RESULT",
+    "comparable_prior_best": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "value": 0.262209,
+      "withheld_positives": 60988,
+      "ci95": [0.24894, 0.275209]
+    },
+    "proposed_mfta_result": null,
+    "notes": "No MFTA score or projection was made. The only score attached to the downloadable TIFF is its recorded S16-PC91 E1 holdout."
+  },
+  "registry_comparison": {
+    "existing_downloaded_artifact": "gems91-s16-pc91-20261025T051716Z-9c6f182a",
+    "scope": "33 pinned raster files in the prior S16-PC91 registry receipt; not a complete universal/private registry",
+    "preplacement_max_abs_spearman": 0.15005,
+    "preplacement_closest_raster": "calib_h194_01894.tif",
+    "final_dot_overlap_within_3px": 0.48215,
+    "final_dot_overlap_closest_raster": "calib_h161_01855.tif",
+    "uniqueness_status": "PASS_WITHIN_RECORDED_SCOPE_ONLY",
+    "additional_stop": "S16-PC91 E3 was not delivered: 0.85999 directed final-dot overlap within 3 px vs gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif, exceeding 0.70."
+  },
+  "raster_sha256": "dfee391717d1b89e9e179ec2d0ba00096ec40d5963d841670c2e9a4eea4f9df6",
+  "existing_research_artifact": {
+    "file": "downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif",
+    "submission_name": "gems91-s16-pc91-20261025T051716Z-9c6f182a",
+    "note": "S16-PC91 phase-congruency monogenic E1 37654d HOLDOUT-DTI 0.1236 v1.0",
+    "note_characters": 69,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "historical_validator_receipt": {
+      "no_nan_inside_footprint": true,
+      "values_in_0_1": true,
+      "crs_shape_transform_match": true,
+      "scope": "prior PC91 validator; match to sample submission was not freshly rerun because the reference raster is absent from this checkout"
+    },
+    "fresh_byte_check_this_review": {
+      "status": "PASS",
+      "sha256_matches_run_card": true,
+      "one_band": true,
+      "dtype": "float32",
+      "shape": [3730, 3292],
+      "crs": "EPSG:32611",
+      "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+      "all_cells_finite": true,
+      "min_value": 0.0,
+      "max_value": 1.0,
+      "positive_cells": 37654,
+      "zip_single_tif_member_hash_matches": true,
+      "sample_grid_recheck": "NOT POSSIBLE: data/official/sample_submission.tif absent"
+    }
+  },
+  "candidate_hypotheses": [
+    {
+      "rank": 1,
+      "name": "MFTA",
+      "layers": ["B02 RTP magnetics", "B13 isostatic gravity", "B12 elevation"],
+      "signature": "multi-scale ridge termination, gradient rotation, endpoint-pair/relay topology",
+      "non_fault_mimic": "flight-line seam or lithologic contact",
+      "expected_improvement": "medium potential; no numeric estimate",
+      "implementation_cost": "low-medium using cached stack",
+      "external_data": "none expected",
+      "status": "blocked: no assigned lane or data cache"
+    },
+    {
+      "rank": 2,
+      "name": "SACR",
+      "layers": ["GeoDAWN magnetic and radiometric channels"],
+      "signature": "directional spectral power and cross-channel coherence for flight-line artifact rejection",
+      "non_fault_mimic": "survey levelling/grid seam",
+      "expected_improvement": "low-medium potential; no numeric estimate",
+      "implementation_cost": "medium",
+      "external_data": "none expected",
+      "status": "blocked: sponsor stack absent locally"
+    },
+    {
+      "rank": 3,
+      "name": "LCMD",
+      "layers": ["B02/B13 potential-field gradients", "USGS SGMC geologic units"],
+      "signature": "within-unit signed displacement of magnetic and gravity edges",
+      "non_fault_mimic": "intrusive or stratigraphic contact; map-boundary artifact",
+      "expected_improvement": "medium potential; no numeric estimate",
+      "implementation_cost": "medium-high",
+      "external_data": "USGS ScienceBase SGMC record https://www.sciencebase.gov/catalog/item/6312f0f2d34e36012efa234a",
+      "status": "not viable until official data availability and licence are verified"
+    },
+    {
+      "rank": 4,
+      "name": "BFT",
+      "layers": ["existing DEM and geophysical stack"],
+      "signature": "range-front/piedmont/basin spatial domain transfer",
+      "non_fault_mimic": "geomorphic-domain boundaries correlated with survey coverage",
+      "expected_improvement": "high diagnostic value, uncertain DTI effect",
+      "implementation_cost": "medium-high",
+      "external_data": "none expected",
+      "status": "blocked: requires assigned lane and domain protocol"
+    },
+    {
+      "rank": 5,
+      "name": "ODSA",
+      "layers": ["official 1 m DEM tiles"],
+      "signature": "10–50 m scarp-face asymmetry, relief and slope-break orientation aggregated to 100 m",
+      "non_fault_mimic": "road, shoreline or terrace riser",
+      "expected_improvement": "potentially high ceiling; no numeric estimate",
+      "implementation_cost": "high",
+      "external_data": "login-gated competition 1m_DEM_links.csv and linked USGS 3DEP products",
+      "status": "blocked: access and tile availability unverified"
+    }
+  ],
+  "verdict": "negative",
+  "verdict_reason": "No new model run or TIFF was permitted under the lane/data/budget constraints. Existing latest PC91 TIFF remains a range-safe research download only and does not beat comparable prior HOLDOUT-DTI best. No slot used."
+}

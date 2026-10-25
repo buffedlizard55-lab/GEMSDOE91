@@ -73,7 +73,7 @@ def main() -> int:
 
     audit_html = head.format(title="S16-PC91 audit") + f"""
 <section class="section"><span class="eyebrow">SESSION 16 · S16-PC91 PHASE CONGRUENCY</span>
-<h1>Unique GeoTIFF built &amp; machine-validated. Verdict: {html.escape(verdict.upper())}.</h1>
+<h1>Research GeoTIFF built and range-checked. Verdict: {html.escape(verdict.upper())}.</h1>
 <p><span class="badge">OK TO DOWNLOAD: YES — RANGE-SAFE RESEARCH FILE</span>
 <span class="{submit_class}">OK TO SUBMIT: {submit_badge}</span></p>
 <p class="lead">{html.escape(card['hypothesis'])}</p>
@@ -81,7 +81,7 @@ def main() -> int:
 <a class="button outline" download href="downloads/{zip_name}">Single-TIFF ZIP</a>
 <a class="button outline" href="run-card-S16PC.json">JSON run card</a></p>
 <div class="card"><h3>File identification (re-read from disk)</h3><dl class="meta">
-<dt>Unique submission name</dt><dd class="mono">{html.escape(cand)}</dd>
+<dt>Candidate name (not upload approval)</dt><dd class="mono">{html.escape(cand)}</dd>
 <dt>DrivenData form note ({card['note_chars']}/140)</dt><dd>{html.escape(note)}</dd>
 <dt>SHA-256 (zeros twin)</dt><dd class="mono">{disk_sha}</dd>
 <dt>Grid</dt><dd>EPSG:32611 · 3730×3292 · float32 · 1 band · transform matches sample_submission</dd>
@@ -96,8 +96,8 @@ Comparable prior best: {html.escape(prior['candidate'])} {prior['score']:.6f} HO
 Leakage canary: worst symmetric AUC {can['worst_symmetric_auc']} ({html.escape(can['worst_feature'])}) ≤ 0.90 across {can['n_features_tested']} features.
 Blind SGMC off-catalogue control (report-only): candidate {sgmc['candidate']['dti']:.6f} vs R0 {sgmc['r0_reference']['dti']:.6f}.</p>
 <h2>Rule-1 uniqueness (machine-checked)</h2>
-<p>Surface before placement: max |Spearman ρ| = {uniq_s['surface_max_abs_rank_corr']} vs {html.escape(str(uniq_s['surface_closest_raster']))} (limit 0.90, {uniq_s['n_registry_rasters_checked']} registry rasters).
-Final dots: uniqueness pass = <strong>{uniq_d['uniqueness_pass']}</strong> (≤70% of dots within 3 px of any registry raster; detail in run card).</p>
+<p>Surface before placement: max |Spearman ρ| = {uniq_s['surface_max_abs_rank_corr']} vs {html.escape(str(uniq_s['surface_closest_raster']))} (limit 0.90; {uniq_s['n_registry_rasters_checked']} pinned registry rasters checked).
+Final dots: uniqueness pass = <strong>{uniq_d['uniqueness_pass']}</strong> (≤70% within 3 px in the checked registry snapshot). This is not proof against private, unlinked or unavailable artifacts.</p>
 <h2>Verdict reason</h2><p>{html.escape(card['verdict_reason'])}</p>
 <p class="small">Named non-fault mimic: {html.escape(card['named_non_fault_mimic'])}</p></section>
 """ + foot
@@ -111,16 +111,16 @@ human selector step within the weekly cap on the DrivenData submission page; thi
 <ol>
 <li><strong>Download</strong> the all-finite zeros twin: <a download href="downloads/{zeros_name}">{zeros_name}</a>
 (SHA-256 <code>{disk_sha[:16]}…</code>; verify locally with <code>sha256sum</code>). Do <em>not</em> upload the NaN-outside twin —
-the zeros twin is the one that cannot trigger the portal error “Predicted values must be in range [0, 1]”
-(all {audit['primary_zeros_tif']['total_cells']:,} cells finite, min 0.0, max 1.0, nodata=None, machine-verified).</li>
-<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData GEMS (#306)</a> → <em>Submit</em> → choose the downloaded <code>.tif</code> (or the single-TIFF <code>.zip</code>).</li>
+the zeros twin has pixel values within the portal's stated [0, 1] range
+(all {audit['primary_zeros_tif']['total_cells']:,} cells finite, min 0.0, max 1.0, nodata=None, machine-verified). This range check does not guarantee organizer acceptance; grid equality was recorded in the prior validator receipt, while the reference sample raster is not present in this checkout.</li>
+<li><strong>Do not upload this candidate.</strong> Its HOLDOUT-DTI is below the comparable prior best and the overall verdict is negative. For a future candidate only after every gate passes, use the competition's <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">submission page</a> and its documented single-band GeoTIFF format.</li>
 <li>Paste this exact <strong>Note</strong> ({card['note_chars']}/140 chars):<br><code>{html.escape(note)}</code></li>
 <li>After scoring, record the receipt score in <code>ledger/submissions.csv</code> — only then may any number be called ORGANIZER-CONFIRMED.</li>
 </ol>
 <h2>What this file is</h2><p>{html.escape(card['mechanism'])}</p>
 <p>Measured: <strong>{ph['holdout_dti']:.6f} HOLDOUT-DTI</strong> ({ph['evaluator_version']}, {ph['n_withheld_positives']:,} withheld,
 95% CI [{ph['ci_95'][0]:.6f}, {ph['ci_95'][1]:.6f}]); {v11['holdout_dti']:.6f} on v1.1-nohalo. These are local hide-and-recover
-estimates, <strong>not</strong> leaderboard predictions. Competition public #1 at last verified read: 0.4413.</p></section>
+estimates, <strong>not</strong> leaderboard predictions. No organizer-confirmed leaderboard receipt is included here; the prompt's reported 0.2778, 0.3195 and 0.4413 are unverified claims and conflict with one another.</p></section>
 """ + foot
 
     (DOCS / "s16-pc91.html").write_text(audit_html)

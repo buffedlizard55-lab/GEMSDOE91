@@ -551,7 +551,19 @@ def render():
     # One authoritative current entry point; keep legacy reports in an explicit archive.
     from scripts.render_s16_portal import render as render_current
     render_current(archive_legacy=True)
-    print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
+    # The later S16-PC91 experiment is the current range-safe, research-only
+    # deliverable. Rebuild its audit from its own run card, then route all public
+    # entry points to it so the older PGRD result is not presented as current.
+    from scripts.build_s16_pages import main as build_pc91_pages
+    if build_pc91_pages() != 0:
+        raise SystemExit('Could not rebuild the S16-PC91 audit pages')
+    from scripts.verify_current_pc91 import main as verify_pc91_artifact
+    if verify_pc91_artifact() != 0:
+        raise SystemExit('S16-PC91 independent byte/range verification failed')
+    from scripts.publish_current_candidate import main as publish_pc91
+    if publish_pc91() != 0:
+        raise SystemExit('Could not publish the current candidate entry points')
+    print('Rendered portal: S16-PC91 research download YES; competition submission NO; evidence-derived gates only.')
 
 
 if __name__ == '__main__': render()
