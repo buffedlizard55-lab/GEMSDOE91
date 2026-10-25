@@ -1711,3 +1711,7 @@ Full detail and sources: `docs/REVIEW-S18-20261025.md`. Machine-readable: `docs/
 - **Scientific/score boundary:** pinned GEMSDOE32 page says no organiser score exists. The claimed 0.2778 remains user-reported; no live leaderboard/account receipt was fetched. Fault recovery is not verified geothermal-vent detection. CPU support is documented by the official reference README, so GPU is not a mandatory prerequisite for every pipeline.
 
 Evidence and three-pass review: `docs/REVIEW-6CBFE8AC-20261025.md`; exact-download verification, capacity calculation and source manifest under `docs/review-6cbfe8ac/`.
+
+## Active review ee76e309 (2026-10-25)
+
+The published-artifact verifier read historical `docs/run-card.json`, while the frontdoor advertises a different artifact through `docs/current-run.json`. Added `scripts/verify_frontdoor.py` and CI coverage for the actual pointer; retained historical verification. Removed misleading LB-DTI navigation labels in source and generated pages. Fresh 87-artifact audit records 78 technical PASS / 9 FAIL, not submission authorization. No lane paragraph supplied, so no new experiment/TIFF/slot. See `docs/REVIEW-EE76E309-20261025.md`.

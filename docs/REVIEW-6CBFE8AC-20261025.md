@@ -59,6 +59,10 @@ No implementation was authorized by this missing-lane prompt. Were an exact lane
 
 The site already has one-click TIFF/ZIP links and an executive submission procedure. Those links remain research-only and the guide now matches the actual CLI. The protocol's no-lane and duplicate stops were not relaxed to satisfy the request for a new file. The historical full brief remains in the README, with this session's supplied GEMSDOE91/92 updates explicitly identified as unverified user claims. Final complete regression: **568 passed, 1 expected legacy-release skip**, with 62 Rasterio Affine pending-deprecation warnings; no scientific experiment was rerun. New test/audit results are recorded in [verification.json](review-6cbfe8ac/verification.json).
 
+### Parallel-merge integration
+
+While PR #122 was being prepared, PR #120 merged the ee76e309 review and `scripts/verify_frontdoor.py` into main. Preserved its CI coverage, tests, source-label corrections and historical review. The new default-CLI wrapper now delegates pinned-reference inspection to that shared verifier instead of retaining a second reference-check implementation. The wrapper still adds the canonical-renderer/policy checks and no-data delivery mode. Both reviews remain explicit research-only records; no candidate was promoted. Integrated full regression: **585 passed, 1 expected skip**, 78 Rasterio pending-deprecation warnings; shared current-reference verifier PASS.
+
 ### Remaining blockers and next work
 
 1. **Missing assigned method paragraph:** no new geological lane can be selected autonomously without contradicting the parallel-run instruction.

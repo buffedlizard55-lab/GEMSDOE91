@@ -7,7 +7,6 @@ Reference checks require the SHA-pinned competition sample and catalogue.
 """
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
 
@@ -36,26 +35,11 @@ def verify(root: Path = ROOT, with_data: bool = False) -> dict:
     reference_checks = 'NOT_CHECKED'
     inspection = None
     if with_data:
-        import numpy as np
-        import rasterio
-        from scripts.audit_downloads import inspect_raster
-        manifest = json.loads((root / 'registry/data_manifest.json').read_text())
-        rows = {r['id']: r for r in manifest['files']}
-        paths = {}
-        for key in ('sample_submission', 'existing_faults'):
-            row = rows[key]
-            path = root / 'data' / row['local_subpath']
-            if hashlib.sha256(path.read_bytes()).hexdigest() != row['sha256']:
-                raise ValueError(f'untrusted reference: {key}')
-            paths[key] = path
-        with rasterio.open(paths['sample_submission']) as src:
-            reference = (src.count, src.shape, src.crs, src.transform)
-            footprint = np.isfinite(src.read(1))
-        with rasterio.open(paths['existing_faults']) as src:
-            if (src.count, src.shape, src.crs, src.transform) != reference:
-                raise ValueError('catalogue reference grid mismatch')
-            catalogue = (src.read(1) > 0) & footprint
-        inspection = inspect_raster(tif.read_bytes(), reference, footprint, catalogue)
+        # Reuse the merged shared pointer/reference inspector rather than
+        # maintaining a second sample/catalogue verification implementation.
+        from scripts.verify_frontdoor import verify as verify_references
+        checked = verify_references(root)
+        inspection = checked['validator_output']
         reference_checks = inspection['status']
         problems.extend(k for k, passed in inspection['checks'].items() if not passed)
     return {

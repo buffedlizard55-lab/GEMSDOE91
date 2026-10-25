@@ -115,3 +115,5 @@ File: docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9ac
 3. Rechecked: final full suite **568 passed, 1 expected skip**, 62 Rasterio pending-deprecation warnings. Local links and canonical portal rendering checked. No candidate, no scientific HOLDOUT-DTI, no slot. Missing lane and literal uniqueness infeasibility remain explicit, not bypassed.
 
 Evidence: `docs/REVIEW-6CBFE8AC-20261025.md`, `docs/review-6cbfe8ac/verification.json`, `docs/run-card-6cbfe8ac.json`.
+
+Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 review/CI/tests, and delegated this CLI wrapper’s reference check to the shared `verify_frontdoor.py`. Integrated full suite **585 passed, 1 expected skip**, 78 Rasterio warnings. No scientific experiment or slot.

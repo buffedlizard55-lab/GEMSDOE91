@@ -50,5 +50,13 @@
     "Rights/official label semantics unresolved",
     "No current authenticated weekly allowance or submission receipt",
     "Geological novelty of deferred proposals not certified fleet-wide"
-  ]
+  ],
+  "integrated_pytest": {
+    "passed": 585,
+    "skipped": 1,
+    "warnings": 78,
+    "elapsed_seconds": 89.78,
+    "log": "tests-integrated.log",
+    "context": "Merged main PR #120; reused shared reference inspector and preserved its regression/CI coverage"
+  }
 }
