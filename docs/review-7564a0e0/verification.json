@@ -7,7 +7,7 @@
   "preflight": {
     "command": ".venv/bin/python scripts/preflight.py",
     "exit_code": 1,
-    "status": "BUILD BLOCKED — expected fail-closed result",
+    "status": "BUILD BLOCKED \u2014 expected fail-closed result",
     "repository_wide_missing": [
       "parent_r0_nan"
     ],
@@ -47,9 +47,9 @@
     "capacity_preflight": {
       "command": ".venv/bin/python generate_submission.py --preflight",
       "exit_code": 1,
-      "status": "BLOCKED — expected fail-closed result",
+      "status": "BLOCKED \u2014 expected fail-closed result",
       "assignment_metadata_present": false,
-      "capacity_witness": "UNVERIFIED — missing data/fleet_registry/calib_r13lattice_00904.tif",
+      "capacity_witness": "UNVERIFIED \u2014 missing data/fleet_registry/calib_r13lattice_00904.tif",
       "captured_output": "experiment-preflight-output.json",
       "note": "No archived capacity constant treated as current evidence."
     }
@@ -63,7 +63,8 @@
     "format_ok": true,
     "reference_checks": "PASS",
     "raster_sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
-    "submission_ready": false
+    "submission_ready": false,
+    "zip_sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b"
   },
   "download_audit": {
     "command": ".venv/bin/python scripts/audit_downloads.py --output docs/review-7564a0e0/download-audit.json --html docs/review-7564a0e0/download-audit.html",
@@ -101,22 +102,22 @@
   "test_suite": {
     "command": ".venv/bin/python -m pytest -q",
     "exit_code": 0,
-    "status": "PASS — full suite completed after main integration",
-    "notes": "No test failures. Rasterio emitted existing PendingDeprecationWarning messages about affine matrix multiplication."
+    "status": "PASS \u2014 full suite completed after second main integration and final portal/README reconciliation",
+    "notes": "Full pytest suite passed after the final source/template reconciliation. Rasterio emitted existing PendingDeprecationWarning messages about affine matrix multiplication."
   },
   "targeted_tests": {
-    "command": ".venv/bin/python -m pytest -q tests/test_active_review_7564a0e0.py tests/test_active_review_522615dd.py tests/test_s16_integrity.py tests/test_s17_cgrd.py tests/test_submission_portal.py",
+    "command": ".venv/bin/python -m pytest -q tests/test_active_review_522615dd.py tests/test_active_review_7564a0e0.py",
     "exit_code": 0,
-    "status": "PASS — 43 passed; one existing Rasterio PendingDeprecationWarning"
+    "status": "PASS \u2014 15 active/historical review assertions after the final portal-source reconciliation."
   },
   "static_checks": {
-    "git_diff_check": "PASS",
+    "git_diff_check": "PASS \u2014 git diff --cached --check; no unresolved paths",
     "run_card_json": "PASS",
     "source_audit_json": "PASS",
     "download_audit_json": "PASS",
-    "portal_templates_match_generated_pages": "PASS",
-    "upstream_artifact_audit": "PASS — S18-UNIQUE TIFF/ZIP are technical passes; ok_to_submit false",
-    "experiment_preflight_json": "PASS — parseable; records BLOCKED status",
+    "portal_templates_match_generated_pages": "PASS \u2014 both portal source templates were rendered after the 984c211 main integration",
+    "upstream_artifact_audit": "PASS \u2014 S18-UNIQUE TIFF/ZIP are technical passes; ok_to_submit false",
+    "experiment_preflight_json": "PASS \u2014 refreshed JSON capture; BLOCKED, no candidate generated",
     "sources_json": "PASS",
     "audit_count": "89 files / 80 PASS / 9 FAIL; no submission approvals"
   },
@@ -135,6 +136,12 @@
     "ok_to_download": true,
     "ok_to_submit": false,
     "holdout": "NOT RUN / null",
-    "uniqueness": "NOT CERTIFIED — portal claims 22.6% vs R0; run card says pending and has no surface-rank-correlation result"
+    "uniqueness": "NOT CERTIFIED \u2014 portal claims 22.6% vs R0; run card says pending and has no surface-rank-correlation result"
+  },
+  "upstream_main_integration": {
+    "origin_main_commit": "984c211",
+    "upstream_review": "PR #127 / e649 historical review and run card preserved",
+    "active_checkout_difference": "e649 snapshot reported sample absent; active 7564 snapshot verifies pinned sample and existing_faults references, but parent R0/features/capacity witness remain missing",
+    "active_review_and_S18_demo": "S18-UNIQUE remains a separate technical-format-pass research demo; holdout null and uniqueness discrepancy unresolved"
   }
 }
