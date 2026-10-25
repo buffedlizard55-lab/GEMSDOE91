@@ -18,7 +18,6 @@ from rasterio.transform import Affine
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / 'scripts')]
 import evaluate_holdout as EH
-from scripts.verify_s16 import verify
 from scripts import render_portal
 
 
@@ -37,26 +36,48 @@ class Page(HTMLParser):
 
 
 def test_current_real_tiff_and_measured_evidence_verify_without_data_download():
-    result = verify()
-    assert result['status'] == 'PASS'
-    assert result['ok_to_download'] is True
-    assert result['ok_to_submit'] is False
-    assert result['geological_experiments_rerun'] == 0
+    card = json.loads((ROOT / 'docs/run-card-S16PC.json').read_text())
+    tif = ROOT / 'docs/downloads' / f"{card['submission_name']}-zeros.tif"
+    assert hashlib.sha256(tif.read_bytes()).hexdigest() == card['raster_sha256']
+    with rasterio.open(tif) as ds:
+        values = ds.read(1)
+        assert ds.count == 1 and ds.dtypes[0] == 'float32'
+        assert ds.shape == (3730, 3292) and str(ds.crs) == 'EPSG:32611'
+        assert np.isfinite(values).all() and float(values.min()) >= 0 and float(values.max()) <= 1
+    assert card['ok_to_download'] is True and card['ok_to_submit'] is False
+    assert card['verdict'] == 'negative'
 
 
-def test_root_and_docs_expose_one_current_negative_not_legacy_format_only_approval():
+def test_root_and_docs_expose_latest_pc91_candidate_and_fail_closed_approval():
     for name in ('docs/index.html', 'docs/executive-summary.html'):
         p = Page(); p.feed((ROOT / name).read_text())
         text = ' '.join(p.text)
         assert 'OK TO DOWNLOAD: YES' in text and 'OK TO SUBMIT: NO' in text
         assert 'NOT OK TO SUBMIT' in text
         assert p.states == ['false']
-        assert 'run-card-S16.json' in p.links
-        assert any('s16-pgrd' in link and link.endswith('.tif') for link in p.links)
+        assert 'run-card-S16PC.json' in p.links or 's16-executive-summary.html' in p.links
+        assert any('gems91-s16-pc91' in link and link.endswith('.tif') for link in p.links)
         assert 'OK TO SUBMIT: YES' not in text
+    guide = (ROOT / 'docs/s16-executive-summary.html').read_text()
+    assert 'Do not upload this candidate' in guide
+    assert '0.4413' not in guide or 'unverified claims' in guide
+    assert 'Competition public #1 at last verified read' not in guide
     assert 'OK TO SUBMIT: YES' not in (ROOT / 'index.html').read_text()
     current = json.loads((ROOT / 'docs/current-run.json').read_text())
-    assert current['run_card'] == 'run-card-S16.json' and current['ok_to_submit'] is False
+    assert current['run_card'] == 'run-card-S16PC.json'
+    assert current['candidate'] == 'gems91-s16-pc91-20261025T051716Z-9c6f182a'
+    assert current['ok_to_submit'] is False and current['verdict'] == 'negative'
+
+
+def test_independent_pc91_verifier_fails_closed_on_identity_or_range():
+    from scripts.verify_current_pc91 import verify as verify_pc91
+    result = verify_pc91()
+    assert result['status'] == 'PASS_PARTIAL_GRID_UNAVAILABLE'
+    assert result['sha_matches_run_card'] and result['one_band'] and result['dtype_float32']
+    assert result['all_cells_finite'] and result['values_in_0_1']
+    assert result['zip_single_tif'] and result['zip_inner_sha_matches_tif']
+    assert result['sample_grid_match'] is None
+    assert result['ok_to_download'] is True and result['ok_to_submit'] is False
 
 
 def test_new_primary_pages_have_no_broken_local_targets_or_fragments():

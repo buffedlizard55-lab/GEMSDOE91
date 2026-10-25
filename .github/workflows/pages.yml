@@ -9,6 +9,9 @@ on:
       - scripts/build_pages_site.py
       - scripts/render_portal.py
       - scripts/render_s16_portal.py
+      - scripts/build_s16_pages.py
+      - scripts/publish_current_candidate.py
+      - scripts/verify_current_pc91.py
       - scripts/verify_s16.py
       - scripts/verify_current_artifact.py
       - scripts/verify_evidence.py
