@@ -71,7 +71,7 @@ CATALOGUE = ROOT / "data/official/existing_faults.tif"
 STACK = ROOT / "data/bridge/gems-geodawn-numerical-features.tif"
 GDR_CSV = ROOT / "data/external/gdr_wellspring_in_footprint.csv"
 SGMC_TIF = ROOT / "data/external/derived_sgmc_faults_100m_u8.tif"
-PREREG = ROOT / "docs/HYPOTHESES_S17.md"
+PREREG = ROOT / "docs/HYPOTHESES_S17_CPAD.md"
 INVENTORY_PATH = ROOT / "registry/s17_comparison_inventory.json"
 CARD_PATH = ROOT / "docs/run-card-S17-CPAD.json"
 OUT_DIR = ROOT / "docs/s17"
@@ -947,7 +947,7 @@ def run() -> dict:
         "branch": "arena/aecf32eb-gemsdoe91",
         "started_utc": datetime.now(timezone.utc).isoformat(),
         "preregistration": {
-            "path": "docs/HYPOTHESES_S17.md",
+            "path": "docs/HYPOTHESES_S17_CPAD.md",
             "sha256": sha256_file(PREREG),
         },
         "lane": {

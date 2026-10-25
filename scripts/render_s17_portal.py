@@ -243,7 +243,7 @@ def render() -> None:
 <div>
 <span class="eyebrow">PREREGISTERED HYPOTHESES (H17-1 .. H17-5)</span>
 <h2>Why blind accommodation zones &amp; hydrothermal conduits vanish from surface maps.</h2>
-<p>Before writing feature code, <a href="HYPOTHESES_S17.md"><code>docs/HYPOTHESES_S17.md</code></a> preregistered five ranked geological hypotheses and implemented the top three orthogonal subsurface mechanisms inside a 16-feature stack (<code>src/gems91/cpad17.py</code>):</p>
+<p>Before writing feature code, <a href="HYPOTHESES_S17_CPAD.md"><code>docs/HYPOTHESES_S17_CPAD.md</code></a> preregistered five ranked geological hypotheses and implemented the top three orthogonal subsurface mechanisms inside a 16-feature stack (<code>src/gems91/cpad17.py</code>):</p>
 <ul>
 <li><strong>H17-1 · Cooper–Cowan Potential-Field Phase Concordance &amp; Poisson Demagnetization Deficit:</strong> Amplitude-normalized upward-continued sun-angle phase concordance between isostatic gravity and RTP magnetics, plus gravity-crest survival where hydrothermal magnetite->pyrite/clay alteration destroys RTP susceptibility. <em>Mimic:</em> unaltered non-magnetic pluton margin.</li>
 <li><strong>H17-2 · Accommodation-Zone Saddle Curvature &amp; Synthetic Riedel Mesh:</strong> Hyperbolic Hessian saddles (<code>det(H)&lt;0</code>) of Band-15 depth-to-basement and Band-13 gravity, paired with synthetic Riedel shear orientation alignment (~15° to geodetic principal shear). <em>Mimic:</em> paleovalley thalweg constriction.</li>
@@ -274,7 +274,7 @@ def render() -> None:
 <h3>Audit &amp; provenance artifacts</h3>
 <p>Every scientific claim, external public dataset, and gate decision in Session 17 is backed by SHA-256-pinned files and machine-checkable JSON receipts:</p>
 <ul>
-<li><a href="HYPOTHESES_S17.md">Preregistered hypotheses (<code>HYPOTHESES_S17.md</code>)</a></li>
+<li><a href="HYPOTHESES_S17_CPAD.md">Preregistered hypotheses (<code>HYPOTHESES_S17_CPAD.md</code>)</a></li>
 <li><a href="run-card-S17-CPAD.json">Complete S17 JSON run card</a></li>
 <li><a href="s17/canaries.json">148-feature leakage canary report</a></li>
 <li><a href="s17/blind-sgmc-control.json">Blind USGS SGMC auxiliary DTI report</a></li>

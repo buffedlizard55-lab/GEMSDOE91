@@ -2,12 +2,12 @@
   "scope": "Scientific code, preregistration, and package environment used by completed S17-CPAD run",
   "captured_utc": "2026-10-25T15:31:23.755189+00:00",
   "preregistration": {
-    "path": "docs/HYPOTHESES_S17.md",
+    "path": "docs/HYPOTHESES_S17_CPAD.md",
     "sha256": "8e9fe34e07f03ceddc00fa397193e21724b7a94813b41b82959d7696f8f5d886"
   },
   "code_sha256": {
     "src/gems91/cpad17.py": "e4ef864ef10ae4a5ca0ddf6a1ace3e291ec95649161990aa7568d86f886c1b74",
-    "scripts/run_s17_cpad.py": "c265a395497d3e3b918f7472fbd10f55066f9a8b0af99b919aa4acf2514b85e5",
+    "scripts/run_s17_cpad.py": "56cb9d4f72a43faf42eaf49fd5aa50f3a652c30ca72df802d4240c356b64443b",
     "src/gems91/dd_vtc_pu.py": "d2310b031b8919a07d250cbe2085a806b1b40e7307abf976d09e143e9ac06c3c",
     "src/gems91/mhtr_coda.py": "43ac66dbd9958cde8d456e22090915b3cdb0669bd3af8b91cb713c8cbce00f42",
     "src/gems91/spac_coda.py": "e05f5cf947846c275f9bdfd62c3a3e2e739809af54d20604eb2f73132d83c2b6",

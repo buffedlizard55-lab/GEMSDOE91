@@ -16,7 +16,7 @@
      - **`IR-91-S17-01`:** `scripts/run_s13_lane.py:87` (`_fold_active_and_eligible`) leaked `~fold.buffer_mask` (an 8-km oracle moat around withheld truth) into test-time dot placement, inflating `S14-PTAC E2` from `0.194221` (strict label-blind `spatial.folds`) to `0.267782`.
      - **`IR-91-S17-02`:** Hidden `Band 12`/`Band 19` topographic dependencies inside `S14-PTAC` (`ptac_playa_mask_baffle`) and `S15-SCGF` (`hvdc_playa_cap_cond` + 6 `e1_*`/`ptha_*` features) caused nonzero sensitivity in nominal "subsurface" specialists.
      - **`IR-91-S17-03`:** `gdr_wellspring_in_footprint.csv` contains a precomputed `dist_known_fault_px` column that must be programmatically banned.
-2. **Preregistration before implementation (`docs/HYPOTHESES_S17.md`):**
+2. **Preregistration before implementation (`docs/HYPOTHESES_S17_CPAD.md`):**
    - Preregistered 5 ranked geological hypotheses (`H17-1`..`H17-5`) with exact data layers, physical signatures, why missing from USGS/INGENIOUS catalogues, named non-fault mimics, distinction from prior repo methods, and expected DTI gain vs compute cost.
 3. **Implementation & 3-experiment bounded run (`src/gems91/cpad17.py`, `scripts/run_s17_cpad.py`):**
    - Implemented 16 novel `CPAD` features (`14` subsurface columns verified bitwise `0.0` invariant to `Band 12`/`Band 19` perturbations + `2` exogenous cover-gating columns) and Dual-Specialist cross-fitted Auto-Context (`128` full / `100` subsurface columns) with training-domain Bayes reference-odds calibration (`c0 = 12.0`).
