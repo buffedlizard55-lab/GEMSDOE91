@@ -75,7 +75,15 @@
     "format_pass": 80,
     "format_fail": 9,
     "ok_to_submit": false,
-    "scope": "Pinned-reference technical checks only; no scientific/selector approval."
+    "scope": "Pinned-reference technical checks only; no scientific/selector approval.",
+    "root_ci_snapshot": {
+      "command": ".venv/bin/python scripts/audit_downloads.py --output docs/download-audit.json --html docs/download-audit.html",
+      "status": "PASS \u2014 root committed JSON/HTML snapshots match fresh local regeneration",
+      "files_checked": 89,
+      "format_pass": 80,
+      "format_fail": 9,
+      "ok_to_submit": false
+    }
   },
   "repo_policy": {
     "command": ".venv/bin/python scripts/check_artifact_policy.py",
@@ -119,7 +127,8 @@
     "upstream_artifact_audit": "PASS \u2014 S18-UNIQUE TIFF/ZIP are technical passes; ok_to_submit false",
     "experiment_preflight_json": "PASS \u2014 refreshed JSON capture; BLOCKED, no candidate generated",
     "sources_json": "PASS",
-    "audit_count": "89 files / 80 PASS / 9 FAIL; no submission approvals"
+    "audit_count": "89 files / 80 PASS / 9 FAIL; no submission approvals",
+    "ci_download_audit_snapshot_parity": "PASS \u2014 root docs/download-audit.json and docs/download-audit.html match a fresh audit reproduction"
   },
   "experiment_budget": {
     "used": 0,
