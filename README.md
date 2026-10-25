@@ -14,6 +14,8 @@
 
 > Parallel-run reviews on branches `arena/bb27ae93-gemsdoe91` and `arena/e649e460-gemsdoe91` are retained as context, not as outputs of this E5BC01F3 session. See [BB27 review](docs/REVIEW-ARENA-BB27AE93-20261025.md) and [E649 review](docs/REVIEW-ACTIVE-E649E460-20261025.md).
 
+> **Another merged parallel review (`arena/ecf7ccd9-gemsdoe91`):** its own verdict is NEGATIVE / BLOCKED with no experiment or TIFF; see [review](docs/REVIEW-ACTIVE-ECF7CCD9-20261025.md) and [no-run card](docs/run-card-ecf7ccd9.json). That review reports a source reconciliation distinguishing PUBLIC-LEADERBOARD `0.4413`, a historical GEMSDOE32-page `0.3195` snapshot, and the user-supplied `0.2778`; these claims and links were **not independently fetched or reverified in E5BC01F3** and none is an organizer receipt here. They are not HOLDOUT-DTI scores.
+
 ---
 
 ## Merged historical review (`arena/19912231-gemsdoe91`)
