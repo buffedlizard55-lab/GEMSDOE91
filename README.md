@@ -12,11 +12,13 @@
 > Kovesi phase-congruency detector falsified on the comparable holdout: E1 `0.123600` / E2 `0.137450` / E3 `0.174120` HOLDOUT-DTI (`gems91-hide-recover-v1.0`, 60,988 withheld) vs prior best `0.262209`; E3 Rule-1 duplicate-stop (86.00% vs DDVTC), never written. Unique delivered TIF `gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif` (SHA-256 `dfee391717…4f9df6`), triple-gate CERTIFIED + independently re-verified. Zero weekly slots spent.
 > [Download](docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif) · [ZIP](docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.zip) · [Audit](docs/s16-pc91.html) · [Executive summary](docs/s16-executive-summary.html) · [Run card](docs/run-card-S16PC.json) · [Preregistration](docs/HYPOTHESES_S16PC.md) · [Session report](docs/S16PC_20261025.md) · Form note (69/140): `S16-PC91 phase-congruency monogenic E1 37654d HOLDOUT-DTI 0.1236 v1.0`
 
+> Parallel historical review: [ADFB5EE6 audit](docs/REVIEW-ARENA-ADFB5EE6-20261025.md). Its missing-local-data statements describe that session, not the references restored for this audit.
+
 ## Start here every session
 
 Read this status, [the full standing brief below](#full-project-brief), [the current review for this branch](docs/REVIEW-08E91DAD-20261025.md), [the integrated parallel review](docs/REVIEW-ARENA-ABB160F7-20261025.md), [the prior active-checkout review (historical snapshot)](docs/REVIEW-ACTIVE-20261025.md), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
 
-The current S16-PGRD TIFF is **OK TO DOWNLOAD: YES — RESEARCH; OK TO SUBMIT: NO**. The active run card is [S16-PGRD](docs/run-card-S16.json); the no-input verifier is `python generate_submission.py`. Do not substitute the legacy CED91 `docs/run-card.json` or `scripts/verify_current_artifact.py` as evidence for the landing-page artifact. The full standing user brief is preserved below and must be read again in each new session.
+Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
 
 > **OK TO DOWNLOAD: YES — RESEARCH. OK TO SUBMIT: NO.**
 > The new S16-PGRD file is computed from pinned magnetic/gravity inputs, not copied from a prior submission. Its format passes automated checks. Its literal registry-uniqueness and scientific-improvement gates do not pass. No human image inspection is required, and no selector may override a duplicate stop.
