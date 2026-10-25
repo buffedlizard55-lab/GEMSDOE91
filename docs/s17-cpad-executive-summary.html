@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S17-CPAD Executive Summary &amp; Submission Guide · GEMSDOE91</title>
+<meta name="description" content="S17-CPAD freshly computed single-band [0, 1] GeoTIFF with automated validation and fail-closed submission gates.">
+<link rel="stylesheet" href="assets/portal.css"><link rel="stylesheet" href="assets/s16.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap">
+<header class="s16-top"><a class="s16-logo" href="index.html"><span class="s16-monogram" aria-hidden="true">91</span><span>GEMSDOE<small>FAULT DISCOVERY LAB</small></span></a>
+<nav aria-label="Main"><a href="index.html">Home &amp; verdicts</a><a href="s17-cpad.html"><strong>S17-CPAD (0.1982 LB-DTI)</strong></a><a href="s17-cpad-executive-summary.html">S17 submission guide</a><a href="s15-scgf.html">S15-SCGF</a><a href="executive-summary.html">General guide</a><a href="research.html">S16 &amp; sources</a><a href="archive-results.html">Archive</a></nav></header>
+<main id="main">
+<section class="s16-hero">
+<div>
+<span class="eyebrow">S17-CPAD EXECUTIVE SUMMARY &amp; SUBMISSION GUIDE</span>
+<h1>OK to download: YES.<br>OK to submit: NO.</h1>
+<p class="lead"><code>gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif</code> is 100% competition-format valid (single-band float32, EPSG:32611, 3730×3292, nodata=None, 0 NaN/Inf, values strictly in {0.0, 1.0} &sub; [0, 1]), verified automatically without human visual inspection—and <strong>blocked from live DrivenData upload</strong> by fail-closed novelty, paired-CI, lane, and selector gates.</p>
+<div class="s16-badges"><span class="badge">OK TO DOWNLOAD: YES (RESEARCH)</span><span class="badge bad">OK TO SUBMIT: NO</span></div>
+</div>
+<div class="s16-card s16-download" data-submission-ready="false">
+<span class="eyebrow">FRESH COMPUTATION · S17-CPAD (CPAD_E1)</span>
+<h2>Cooper–Cowan Phase, Saddles &amp; Geotherm Diseq</h2>
+<p class="small">Freshly computed single-band [0, 1] GeoTIFF on canonical label-blind spatial quadrants. Zero prior submission pixels used as inputs.</p>
+<div class="s16-status"><span>OK to download</span><strong>YES · research / audit</strong></div>
+<div class="s16-status"><span>OK to submit</span><strong class="warn">NO · fail-closed gates</strong></div>
+<div class="s16-status"><span>Finite values in [0, 1]</span><strong>PASS · 0 NaN/Inf (37,654 dots)</strong></div>
+<div class="s16-status"><span>CRS / shape / transform / nodata=None</span><strong>PASS · EPSG:32611</strong></div>
+<a class="button" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a>
+<div class="s16-buttons"><a download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a><a href="s17/verification.json">Automated verification ↗</a><a href="run-card-S17-CPAD.json">Run card JSON ↗</a></div>
+<p class="small">145,258 bytes (.tif) · 111,803 bytes (.zip) · float32 · 3730×3292<br>Format validity does NOT authorize spending a weekly DrivenData submission slot.</p></div>
+</section>
+
+<div class="s16-note"><strong>NOT OK TO SUBMIT</strong> — Do not spend a weekly DrivenData submission slot on this file. Download it freely for GIS/scientific inspection, reproducibility checks, or ensemble diagnostics. Zero competition slots have been used (<code>slots_used = 0</code>).</div>
+
+<section class="s16-section">
+<h2>Exact step-by-step DrivenData submission procedure (only when a future candidate clears all 6 gates)</h2>
+<div class="s16-step"><h3>Step 1 · Verify all six automated gates in code (no visual eyeballing)</h3>
+<p>Run <code>.venv/bin/python scripts/verify_s17.py --with-data</code>. Confirm both <code>"status": "PASS"</code> (file format, finite <code>[0, 1]</code> values, exact EPSG:32611 grid, single-TIFF ZIP byte identity, 148 canaries &le;0.90) <strong>and</strong> check <code>"ok_to_submit"</code>. For S17-CPAD, <code>"ok_to_submit"</code> is <code>false</code>, so stop here and do not upload.</p></div>
+<div class="s16-step"><h3>Step 2 · Why DrivenData's <code>"Predicted values must be in range [0, 1]"</code> error cannot occur on certified <code>-zeros.tif</code> files</h3>
+<p>Legacy NaN-masked rasters or rasters carrying sentinel <code>nodata = -9999</code> fail strict array parsers. Our shared writer emits <code>nodata = None</code>, zeros every outside-footprint and catalogue-fault pixel, clips/checks all 12,279,160 <code>float32</code> cells into <code>[0.0, 1.0]</code> with <code>0</code> NaN/Inf, and verifies exact byte equality with both <code>rasterio</code> and <code>tifffile</code> plus unpacked <code>.zip</code> comparison.</p></div>
+<div class="s16-step"><h3>Step 3 · Separate human selector check against the weekly cap</h3>
+<p>Before any live upload of a future <code>ok_to_submit: true</code> candidate, a human selector must log into <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData → DOE GEMS → Submissions</a>, confirm remaining weekly submission allowance (3/week cap), verify external data eligibility under official competition rules, and confirm the candidate beat the current holdout best with a strictly positive paired 95% confidence interval.</p></div>
+<div class="s16-step"><h3>Step 4 · Upload exact <code>-zeros.tif</code> (or single-member <code>-zeros.zip</code>) &amp; paste &le;140-char note</h3>
+<p>On the DrivenData submission form, upload either the standalone <code>-zeros.tif</code> or its single-member <code>-zeros.zip</code> (never upload JSON run cards or multi-file archives) and paste the recorded &le;140-character submission note.</p></div>
+<div class="s16-step"><h3>Step 5 · Record the organizer receipt</h3>
+<p>Only after DrivenData returns a scored submission receipt may a number be recorded in <code>ledger/submissions.csv</code> as <code>ORGANIZER-CONFIRMED</code> alongside its timestamp, submission ID, and exact SHA-256.</p></div>
+</section>
+
+<section class="s16-section s16-split"><div class="s16-card"><h3>Unique artifact identity &amp; copyable note</h3>
+<label for="s17-candidate-name" class="small">Unique submission identifier (48 chars)</label>
+<div class="copyrow"><textarea id="s17-candidate-name" rows="2" readonly>gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb</textarea><button type="button" data-copy="s17-candidate-name" aria-label="Copy S17 submission name">Copy</button></div>
+<label for="s17-candidate-note" class="small">Submission note · 123 / 140 characters</label>
+<div class="copyrow"><textarea id="s17-candidate-note" rows="3" readonly>S17-CPAD (cpad_e1): Cooper-Cowan phase, saddles &amp; geotherm diseq dual-spec; 37654 dots; research artifact, slot unapproved.</textarea><button type="button" data-copy="s17-candidate-note" aria-label="Copy S17 submission note">Copy</button></div>
+<p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+<dl class="meta">
+<dt>GeoTIFF SHA-256</dt><dd class="mono">690c10998798d3abd54f6a1ec1c12e56c4243d1967ede7b63a533b9ddd628cdd</dd>
+<dt>ZIP SHA-256</dt><dd class="mono">58562d2df087e3a6ddb64f550039a5ea040758993247771cb1107ca703d0ab5f</dd>
+<dt>Pixel SHA-256</dt><dd class="mono">0230f7494eebaedbc264dadbda52cbb232484bf8a941862fa4f121df3e38e07f</dd>
+<dt>Grid &amp; CRS</dt><dd>3730 × 3292 · 100 m · EPSG:32611 · nodata=None</dd>
+<dt>Affine transform</dt><dd class="mono">(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)</dd>
+<dt>Organizer receipt</dt><dd>None (ORGANIZER-CONFIRMED: null · 0 slots used)</dd>
+</dl></div>
+<div class="s16-card"><h3>Quick verification commands</h3>
+<pre class="mono" style="white-space:pre-wrap;font-size:12px;background:#f4f7f4;padding:14px;border-radius:8px;border:1px solid var(--line)">.venv/bin/python scripts/verify_s17.py --with-data
+.venv/bin/python scripts/check_artifact_policy.py
+.venv/bin/python -m pytest -q</pre>
+<p class="small">All three checks run 100% offline/locally without human visual inspection.</p>
+<p><a href="s17-cpad.html">← Full S17-CPAD scientific &amp; forensic audit</a></p>
+</div></section>
+
+<section class="s16-section"><h2>Gate-by-gate status for S17-CPAD</h2><div class="table-scroll"><table><thead><tr><th>Automated gate</th><th>Status</th><th>Measured evidence &amp; boundary</th></tr></thead><tbody><tr><td><strong>100% automated GeoTIFF &amp; ZIP check</strong></td><td><span class="badge ">PASS</span></td><td>Reopened by both rasterio and tifffile: 1 band, float32, EPSG:32611, 3730×3292, exact affine transform, nodata=None, 0 NaN/Inf across all 12,279,160 cells, values strictly in {0.0, 1.0} ⊂ [0, 1], 0 on mapped faults, min spacing 3.16228 px &gt; 3.0 px.</td></tr><tr><td><strong>Rule 4 single-feature leakage canaries</strong></td><td><span class="badge ">PASS</span></td><td>All 148 features (128 static + 20 OOF auto-context) tested individually on 60,988 withheld positives across 4 quadrants: max pooled symmetric AUC 0.677910 &lt;= 0.90 (max quadrant 0.747763).</td></tr><tr><td><strong>Rule 1 pre-placement &amp; final 3-px registry overlap</strong></td><td><span class="badge bad">BLOCKED</span></td><td>Pre-placement Spearman PASS across all 95/95 rasters (max |rho| = 0.2191 &lt;= 0.90). Final 3-px dot overlap PASS across rows 1..50 (max 0.6168 &lt;= 0.70; GEMSDOE32 R0 = 0.4927), then stopped fail-closed at 51/95 r11_greedy_mp.tif (272,853 dots, 0.8725 &gt; 0.70); diagnostic post-stop overlap with in-repo S14-PTAC E2 is 0.8296.</td></tr><tr><td><strong>Explicit human lane assignment</strong></td><td><span class="badge bad">BLOCKED</span></td><td>Session 17 executed one preregistered provisional lane (S17-CPAD) because the standing prompt leaves the lane paragraph blank (`[PASTE ONE METHOD]`). Provisional lanes remain fail-closed until explicitly assigned.</td></tr><tr><td><strong>Paired holdout improvement (95% CI &gt; 0)</strong></td><td><span class="badge bad">BLOCKED</span></td><td>Point estimate 0.198183 HOLDOUT-DTI beats all comparable label-blind baselines on gems57-pooled-hide-v2 (INCUMBENT-PTAC-LB 0.194221, S16-PGRD 0.069397, CED91 0.070886), but paired 20-km block-bootstrap 95% CI vs INCUMBENT-PTAC-LB is [-0.001766, +0.010077] (lower bound slightly &lt; 0).</td></tr><tr><td><strong>Separate human weekly-slot selector</strong></td><td><span class="badge bad">BLOCKED</span></td><td>Per Protocol Rule 6, research runs never spend live weekly slots (`slots_used = 0`). Promotion requires an external selector receipt verifying live weekly allowance and organizer eligibility.</td></tr></tbody></table></div></section>
+</main>
+<footer class="s16-foot"><div>Maximize P(Win). Own the outcome.<br>3 preregistered S17 arms · 0 competition slots spent · 100% automated byte verification.</div>
+<div><a href="run-card-S17-CPAD.json">S17 JSON run card</a> · <a href="s17/verification.json">Machine audit</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">GitHub repo</a><br>Completed 2026-10-25 15:28:47 UTC.</div></footer></div></body></html>

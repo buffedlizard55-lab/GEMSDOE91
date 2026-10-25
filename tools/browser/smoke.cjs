@@ -95,6 +95,21 @@ async function main() {
     if (scgfDigest !== scgfCard.raster_sha256 || scgfCard.submission_ready !== false) {
       throw new Error('S15-SCGF one-click download SHA256 or fail-closed state mismatch');
     }
+    const s17DlEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ Download S17-CPAD E1 GeoTIFF', exact: true }).click();
+    const s17Download = await s17DlEvent;
+    const s17Digest = crypto.createHash('sha256').update(fs.readFileSync(await s17Download.path())).digest('hex');
+    const s17Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S17-CPAD.json')));
+    if (s17Digest !== s17Card.raster_sha256 || s17Card.ok_to_submit !== false || s17Card.submission_ready !== false) {
+      throw new Error('S17-CPAD one-click download SHA256 or fail-closed state mismatch');
+    }
+    const s17ZipEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ S17-CPAD Single-TIFF ZIP', exact: true }).click();
+    const s17Zip = await s17ZipEvent;
+    const s17ZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await s17Zip.path())).digest('hex');
+    if (s17ZipDigest !== s17Card.artifact.zip_sha256) {
+      throw new Error('S17-CPAD single-TIFF ZIP download SHA256 mismatch');
+    }
     await page.getByRole('button', { name: 'Copy submission note', exact: true }).click();
     await page.waitForFunction(() => document.getElementById('copy-status').textContent.length > 0);
     await page.locator('h1').click();
@@ -129,7 +144,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'archive-desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const target of ['index.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -153,7 +168,7 @@ async function main() {
 
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const mTarget of ['index.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
@@ -169,6 +184,9 @@ async function main() {
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
       dzedge_download_sha256: dzDigest,
+      s17_download_sha256: s17Digest,
+      s17_zip_download_sha256: s17ZipDigest,
+      s17_submission_ready: s17Card.ok_to_submit,
       s16_download_sha256: s16Digest,
       s16_submission_ready: s16Card.ok_to_submit,
       s16_zip_download_sha256: s16ZipDigest,

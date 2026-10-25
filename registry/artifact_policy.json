@@ -330,6 +330,18 @@
       "sha256": "9c6f182adbf77540db05bebe6691051bf8a89e2b5ac335ee7cce7e3949c8cf86",
       "status": "parallel_quarantined",
       "reason": "NaN-twin companion of concurrent S16-PC91 phase-congruency artifact preserved from main; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif",
+      "sha256": "690c10998798d3abd54f6a1ec1c12e56c4243d1967ede7b63a533b9ddd628cdd",
+      "status": "current_research_only",
+      "reason": "S17-CPAD (cpad_e1) fresh computation; format PASS, HOLDOUT-DTI=0.198183; passes 95/95 pre-placement Spearman and 50/50 preceding fleet rasters (GEMSDOE32=0.4927), stopped at 51/95 r11_greedy_mp.tif (0.8725 > 0.70); NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip",
+      "sha256": "58562d2df087e3a6ddb64f550039a5ea040758993247771cb1107ca703d0ab5f",
+      "status": "current_research_only",
+      "reason": "S17-CPAD (cpad_e1) fresh computation; format PASS, HOLDOUT-DTI=0.198183; passes 95/95 pre-placement Spearman and 50/50 preceding fleet rasters (GEMSDOE32=0.4927), stopped at 51/95 r11_greedy_mp.tif (0.8725 > 0.70); NOT OK TO SUBMIT."
     }
   ]
 }

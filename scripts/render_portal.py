@@ -551,6 +551,8 @@ def render():
     # One authoritative current entry point; keep legacy reports in an explicit archive.
     from scripts.render_s16_portal import render as render_current
     render_current(archive_legacy=True)
+    from scripts.render_s17_portal import render as render_s17
+    render_s17()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 

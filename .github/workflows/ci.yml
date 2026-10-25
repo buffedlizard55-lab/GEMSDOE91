@@ -59,8 +59,9 @@ jobs:
           python scripts/verify_current_artifact.py --with-data
           python scripts/verify_evidence.py
           python scripts/verify_s16.py --with-data
+          python scripts/verify_s17.py --with-data
       - name: Evidence-derived portal is reproducible
-        run: python -m pytest tests/test_submission_portal.py
+        run: python -m pytest tests/test_submission_portal.py tests/test_s17_cpad.py
       - uses: actions/upload-artifact@v4
         with:
           name: measured-research-evidence
@@ -69,7 +70,10 @@ jobs:
             docs/ced-*.json
             docs/run-card-S16.json
             docs/s16/
+            docs/run-card-S17-CPAD.json
+            docs/s17/
             docs/downloads/gems91-ced-*
+            docs/downloads/gems91-s17-*
 
 # Deliberately no automatic multi-arm legacy rebuild or geological experiment.
 # Legacy MODEL forecasts used incompatible instruments; format PASS isn't a

@@ -1,4 +1,11 @@
-# Slot selection — no automatic slot (`S14-HVDC E2` / `S14-PTAC E2` / `S15-SCGF E2` are Rule-1 duplicate-stop negatives; 0 slots spent)
+# Slot selection — no automatic slot (`S17-CPAD E1` / `S16-PGRD` / `S15-SCGF E2` / `S14-PTAC E2` / `S14-HVDC E2` are fail-closed research deliverables; 0 slots spent)
+
+> **LATEST SESSION 17 BANNER (`S17-CPAD`, 2026-10-25, branch `arena/aecf32eb-gemsdoe91`):**
+> - **Zero weekly DrivenData slots spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` (research/audit) | `OK TO SUBMIT: NO` (`verdict: "negative"`).**
+> - **New All-Time #1 Strict Label-Blind `gems57-pooled-hide-v2` Result in `GEMSDOE91`:** **`gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif`** (`37,654` binary `{0, 1}` dots `> 3.05 px` from catalogue and `> 3.05 px` inter-dot spacing, SHA-256 `690c10998798d3abd54f6a1ec1c12e56c4243d1967ede7b63a533b9ddd628cdd`, [`docs/run-card-S17-CPAD.json`](docs/run-card-S17-CPAD.json)):
+>   - **`0.198183 HOLDOUT-DTI`** (`95% CI [0.177759, 0.217830]`, unchanged `vendor/gems57/evaluate_holdout.py`, `60,988` withheld positives, `80 px` buffer), improving point score over re-evaluated label-blind `INCUMBENT-PTAC-LB` (`0.194221`, paired `+0.003962`, `95% CI [-0.001766, +0.010077]`), `CED91` (`0.070886`, paired `+0.127296`), and `S16-PGRD` (`0.069397`, paired `+0.128786`), plus **`0.068585 BLIND-SGMC-CONTROL-DTI`** (`+78.1%` over `S16-PGRD = 0.038501`).
+>   - **Forensic quarantine of legacy S13–S15 scores (`IR-91-S17-01`):** Historical `0.2406–0.2678` holdout numbers below used `_fold_active_and_eligible` (`~fold.buffer_mask` 8-km oracle moat around hidden truth during test placement) and must NOT be treated as label-blind promotion bars; on strict label-blind `spatial.folds`, `S14-PTAC E2` scores `0.194221 HOLDOUT-DTI`.
+>   - **Why `OK TO SUBMIT = NO`:** Stops fail-closed at reference `51/95 r11_greedy_mp.tif` (`272,853` dots, `87.25% > 70%`) after passing `95/95` pre-placement Spearman checks and `50/50` preceding fleet rasters (`GEMSDOE32 R0 = 49.27%`), shares `82.96%` 3-px overlap with in-repo `S14-PTAC E2`, and its paired 95% CI vs `INCUMBENT-PTAC-LB` straddles zero. Takes **no slot**.
 
 > **PARALLEL SESSION 15 BANNER (`S15-SCGF`, 2026-10-25, branch `arena/605655a6-gemsdoe91`):**
 > - **Zero weekly DrivenData slots spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` (research) | `OK TO SUBMIT: NO` (`verdict: "negative"`).**

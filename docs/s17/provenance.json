@@ -1,0 +1,32 @@
+{
+  "scope": "Scientific code, preregistration, and package environment used by completed S17-CPAD run",
+  "captured_utc": "2026-10-25T15:31:23.755189+00:00",
+  "preregistration": {
+    "path": "docs/HYPOTHESES_S17.md",
+    "sha256": "8e9fe34e07f03ceddc00fa397193e21724b7a94813b41b82959d7696f8f5d886"
+  },
+  "code_sha256": {
+    "src/gems91/cpad17.py": "e4ef864ef10ae4a5ca0ddf6a1ace3e291ec95649161990aa7568d86f886c1b74",
+    "scripts/run_s17_cpad.py": "c265a395497d3e3b918f7472fbd10f55066f9a8b0af99b919aa4acf2514b85e5",
+    "src/gems91/dd_vtc_pu.py": "d2310b031b8919a07d250cbe2085a806b1b40e7307abf976d09e143e9ac06c3c",
+    "src/gems91/mhtr_coda.py": "43ac66dbd9958cde8d456e22090915b3cdb0669bd3af8b91cb713c8cbce00f42",
+    "src/gems91/spac_coda.py": "e05f5cf947846c275f9bdfd62c3a3e2e739809af54d20604eb2f73132d83c2b6",
+    "src/gems91/ptha.py": "fb05891367d8ccf68a54af870943c06cc80a0b7d9c7bb108f9807382e8a0fe37",
+    "src/gems91/hvdc.py": "ea90f660085d2846b3ac8bd0035dec843287c83e5c0758ca6c3180b7ed6600a2",
+    "src/gems91/novelty.py": "1a3f8b4fd2e51bcde7139901999f80cf7ed62db3b84f9b25295ba9c65199f729",
+    "src/gems91/readiness.py": "aa03b1ff89a146bce698371e692c65bb25279ccc64f626b58db4e618f1a2809b",
+    "vendor/gems57/evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "vendor/gems57/spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8",
+    "vendor/gems57/submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
+    "vendor/gems57/metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f"
+  },
+  "python": "3.11.2",
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.9.1",
+    "rasterio": "1.4.4",
+    "tifffile": "2026.3.3"
+  },
+  "command": "OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 .venv/bin/python scripts/run_s17_cpad.py"
+}
