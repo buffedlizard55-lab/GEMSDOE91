@@ -116,6 +116,18 @@
       "reason": "Concurrent PR32 artifact preserved without new evaluation. Different instrument, partial 7-file novelty scope, no common-protocol or selector clearance; NOT OK TO SUBMIT."
     },
     {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif",
+      "sha256": "b1623999403b1f6069fb259035a5b5acd795c7d80cf5ce03b8c6c6cda1a19fe3",
+      "status": "parallel_quarantined",
+      "reason": "Parallel-session DRN91 artifact inherited from origin/main; its run card gives a negative verdict and ok_to_submit=false. Preserved as a research artifact; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.zip",
+      "sha256": "4af0bafcc0aec883bb1ce6eb65542ed4a476bf4184dfe9c7350f4b2551e61ee0",
+      "status": "parallel_quarantined",
+      "reason": "Single-TIFF ZIP of the parallel-session DRN91 research artifact inherited from origin/main; run card verdict is negative; NOT OK TO SUBMIT."
+    },
+    {
       "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif",
       "sha256": "feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3",
       "status": "current_research_only",
@@ -303,15 +315,21 @@
     },
     {
       "path": "docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif",
+      "bytes": 203212,
       "sha256": "287af6b2df1c34080c55cd1aef9264f30e5e507b152ff31dcb94d13cf6f521a6",
       "status": "current_research_only",
-      "reason": "S17-CGRD E2 format-certified all-finite [0, 1] GeoTIFF (HOLDOUT-DTI 0.092125 v1.0, passes all 42 real registry/download rasters at 56.06% <= 70% overlap); negative verdict vs full-stack holdout best; NOT OK TO SUBMIT."
+      "classification": "current_public_download",
+      "git_status": "retained_public_link",
+      "reason": "S17-CGRD E2 research negative primary [0,1] GeoTIFF (ok_to_download=true, ok_to_submit=false, 0 slots)"
     },
     {
       "path": "docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.zip",
+      "bytes": 164903,
       "sha256": "b3f520731ffe64f0bb4d2967755e399ee3ea34fce92b23bd9b0f5e245c324f8f",
       "status": "current_research_only",
-      "reason": "S17-CGRD E2 single-TIFF zip archive wrapping the all-finite [0, 1] GeoTIFF; negative verdict vs full-stack holdout best; NOT OK TO SUBMIT."
+      "classification": "current_public_download",
+      "git_status": "retained_public_link",
+      "reason": "S17-CGRD E2 research negative single-TIFF ZIP (ok_to_download=true, ok_to_submit=false, 0 slots)"
     },
     {
       "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
@@ -358,20 +376,20 @@
     {
       "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
       "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
-      "status": "parallel_quarantined",
-      "reason": "PR #96 parallel off-catalogue damage-zone zeros GeoTIFF preserved without selector clearance; NOT OK TO SUBMIT."
+      "status": "current_research_only",
+      "reason": "Unique off-catalogue damage-zone GeoTIFF; prior run card classifies it as HOLDOUT-DTI 0.0 deliberate negative. Research download only; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip",
       "sha256": "9a88a5651103b7007db67da3ec01c9d7684d3c28d64c142eaef18612da6eaa00",
-      "status": "parallel_quarantined",
-      "reason": "PR #96 parallel off-catalogue damage-zone single-TIFF zip preserved without selector clearance; NOT OK TO SUBMIT."
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of the unique off-catalogue damage-zone research negative; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119.tif",
       "sha256": "b9acc11900faa04c6871bdcd2e6d2107b40fafeee143c5884a7b71b012f81d74",
-      "status": "parallel_quarantined",
-      "reason": "PR #96 parallel off-catalogue damage-zone NaN-outside companion GeoTIFF preserved for audit; NOT OK TO SUBMIT."
+      "status": "current_research_only",
+      "reason": "NaN-outside companion of the prior off-catalogue research negative; not the recommended upload; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
