@@ -53,19 +53,16 @@ and SHA-256 verified in this session. No fake catalogue was used. The old
 
 1. Resolve the registry feasibility conflict and lane assignment through explicit
    orchestration policy. Preserve today's negative evidence unchanged.
-2. When running any future two-stage cross-fitted auto-context lane (following
-   `S14-PTAC = 0.267782`, `S14-HVDC = 0.262209`, and `S15-SCGF = 0.240633`
-   `HOLDOUT-DTI` / `0.097940` Blind SGMC), apply `prior_shift_calibrate_surface`
-   to every `2`-quadrant sub-fold and `3`-quadrant OOF Stage-1 split *before*
-   stitching `ac_*` features (`IR-91-S15-06`), exclude `>= 3 km` GDR/regional
-   smooth bowls from Stage-1 (`IR-91-S15-07`), and retain `S15-SCGF`'s bitwise
-   `B12`/`B19`-invariant Pure-Subsurface specialist (`IR-91-S15-05`) and local
-   Förstner/Salem/aquifer-baffle crest concordance (`+0.005544` over `E1`).
-2. Freeze a genuinely untouched control and evaluate the strongest permissible
+2. **Completed in Session 17 (`S17-CDSC`, `docs/REVIEW-S17-CDSC-20261025.md`) & Next Auto-Context Refinement (`IR-91-S17-01` & `IR-91-S17-02`):**
+   - `S17-CDSC` executed the three `S15-SCGF` remediations (`IR-91-S15-06` Bayes prior-shift calibration of 2-quadrant pairwise Stage-1 sub-models to 3-quadrant training sample prevalence before stitching, `IR-91-S15-07` excluding `>= 3 km` GDR/S12 regional bowls from Stage-1 while keeping `16` local `S15` subsurface features in Stage-2, and `IR-91-S15-05` `72`-col bitwise `B12`/`B19`-invariant Pure-Subsurface specialist), recovering Fold 1 (`NE`) by **`+0.058247`** (`0.273196 -> 0.331443`) and lifting pooled `HOLDOUT-DTI` to **`0.259972`** (`+0.019339` over `S15-SCGF E2 = 0.240633`, `+0.015371` over `S13-PTHA E3 = 0.244601`).
+   - Next-session priorities to close the remaining `-0.007810` gap to `S14-PTAC E2` (`0.267782`):
+     1) **`IR-91-S17-01`:** Replace global sample-prevalence scaling of `stitch_p1` with per-quadrant empirical quantile / rank-logit standardization before running `compute_spac_autocontext_features`, ensuring exact `1.000x` `Test_k / Train_k` distribution equality across all 4 quadrants (eliminating the residual `1.429x` `SE` and `1.144x` `SW` spatial fault-density drift and preventing `Train_k` upward calibration from tightening $\lambda^*(\text{Train}_k)$).
+     2) **`IR-91-S17-02`:** Train a dedicated 14-column Stage-2 **Topology Specialist** (`hgb_topo`) solely on `S17_AUTOCONTEXT_NAMES` + `ptha_crest` and pool its calibrated log-odds with `PTAC`'s 85-feature Stage-2 ensemble so adding local subsurface features does not dilute root splits on `ac_wash_bridge_1km` and `ac_wash_bridge_2km`.
+3. Freeze a genuinely untouched control and evaluate the strongest permissible
    incumbent on the same label-blind whole-segment instrument, using paired CIs.
-3. Verify official rules, input rights, account allowance and organizer receipts
+4. Verify official rules, input rights, account allowance and organizer receipts
    through authorized access. Never ask for credentials in chat.
-4. Only then preregister a new bounded experiment; do not continue S16's variants
+5. Only then preregister a new bounded experiment; do not continue S16's variants
    after its duplicate stop. More complex physics is not automatically better.
 
 The submitted-score ceiling is **unknown**. The user's 0.2778, 0.3195 and 0.4413
