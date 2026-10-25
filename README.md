@@ -1,3 +1,19 @@
+# GEMSDOE91 — CURRENT STATUS (GEO91, 2026-10-25) — read this first
+
+**Site / download:** `docs/index.html` leads with the current GeoTIFF and its verdict.
+**Current file:** `gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif`
+(37,654 dotted px, collar >3 px, SHA-256 `57d2c44c…e5befe2f`) — **OK TO DOWNLOAD: YES ·
+OK TO SUBMIT: NO** (HOLDOUT-DTI 0.055267 [0.053367, 0.057308],
+gems91-hide-recover-v1.1-nohalo, 60,988 withheld, loses to matched random
+control 0.074387; format/canary/uniqueness PASS; 0 slots spent).
+Machine verdict: `docs/run-card-GEO91.json`. Why 0.2778 (USER-REPORTED, no
+organizer receipt) leads the fleet and what beating it requires:
+`docs/HYPOTHESES_GEO91.md`. Core values: **Maximize P(Win) · Own the Outcome.**
+Every number is labelled HOLDOUT-DTI or USER-REPORTED; nothing is
+ORGANIZER-CONFIRMED without a submission-page receipt.
+
+---
+
 # GEMSDOE91 — a new TIFF, an honest automated verdict
 
 > **DRN91 session (2026-10-25, this branch): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**
@@ -5,6 +21,13 @@
 > `E1 drainage-only = 0.163754`, **`E2 = 0.166217` HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 60,988 withheld; CI in run card) — below S14-PTAC 0.267782 comparable best, so promotion gate FAILED and 0 slots were spent. Leakage canary max AUC 0.594 (pass). Uniqueness within this repo's indexed downloads: max |Spearman| 0.143, max 3-px dot overlap 64.6% (pass, local scope only).
 > [Download GeoTIFF](docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif) (sha256 `b1623999…a19fe3`) · [Executive summary](docs/drn91-executive-summary.html) · [Run card](docs/run-card-DRN91.json) · [Preregistration](docs/HYPOTHESES_DRN91.md)
 >
+> **UNIQUE SUBMISSION (`unique-offcatalogue-damagezone`, branch `arena/e6fdea6b-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — FORMAT-CERTIFIED` · `OK TO SUBMIT: NO — RESEARCH NEGATIVE`.**
+> Damage-zone annulus lattice (1 km lattice, 3 px < d_catalogue <= 10 px): 8,718 unit dots, value 1.0 at dots, 0 elsewhere, NaN outside footprint; EPSG:32611, 3730x3292, 100 m, single-band float32, all values in [0,1]. **HOLDOUT-DTI = 0.0 (CI [0,0], 60,988 withheld) — deliberate off-catalogue negative.** Registry uniqueness: surface |rho| 0.00983 (<= 0.90), dots within 3 px 20.67% (<= 70%) — NOT a duplicate. Zero weekly slots spent.
+> [Download GeoTIFF](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif) (`sha256: a5636b10…ca11`) · [Single-TIFF ZIP](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip) · [Audit](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-audit.json) · [Run card](docs/run-card-unique-offcatalogue-damagezone.json) · Form note (140/140): `Unique off-catalogue damage-zone lattice; format-certified unique GeoTIFF; HOLDOUT-DTI=0.0 deliberate negative; research download only`
+
+> **2026-10-25 repository safety review (`08e91dad`): OK TO DOWNLOAD — RESEARCH ONLY; OK TO SUBMIT — NO.** No new TIFF generated: method-lane assignment is missing and prior duplicate stops remain binding. [All-download audit](docs/download-audit.html): **55** registered TIFF/ZIP files inspected against restored SHA-pinned sample/catalogue references; **48 technical PASS, 7 FAIL**. Technical PASS never authorizes a slot. [Three-pass review and ranked hypothesis shortlist](docs/REVIEW-08E91DAD-20261025.md) · [Review run card](docs/run-card-08e91dad.json). Read the preserved [full standing prompt](#full-project-brief) every session.
+
+> **Latest repository safety review (2026-10-25, DAA237A4): no new TIFF generated; OK TO SUBMIT: NO.** Fixed the shared novelty gate to require final-dot rank correlation as well as surface correlation and dot overlap. Existing S16 TIFF/ZIP independently reverified against pinned sample/catalogue; research downloads only. [Three-pass audit, four conditional hypotheses, sources and blockers](docs/REVIEW-DAA237A4-20261025.md) · [Review run card](docs/run-card-DAA237A4.json). No geological experiment or weekly slot used.
 
 > **Parallel Session (`S15-SCGF`, branch `arena/605655a6-gemsdoe91`, merged alongside S16-PGRD & S16-PC91): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**
 > 137-feature Förstner subsurface-junction + multi-wavelength (150–900 m) Salem tilt-depth + 2-D deconfounded aquifer-baffle Dual-Specialist Auto-Context (`99`-col provably `B12`/`B19`-invariant Pure-Subsurface specialist): `E1 = 0.235089`, **`E2 = 0.240633`** (`95% CI [0.227931, 0.254026]`), `E3 = 0.232708` **`HOLDOUT-DTI`** (`gems91-hide-recover-v1.0` = `v1.1-nohalo`, `60,988` withheld) and **`0.097940` Blind Off-Catalogue USGS SGMC DTI** (`+0.002180` vs `S14-PTAC E2 = 0.095760`; `+0.002554` vs `GEMSDOE32 R0 = 0.095386`). Negative under shared readiness gates (`0.240633 < 0.267782 S14-PTAC`; literal 3-px lattice overlap `99.811%`, vs `44.82%` on `GEMSDOE32 R0`); zero weekly slots spent (`slots_used = 0`).
@@ -14,9 +37,15 @@
 > Kovesi phase-congruency detector falsified on the comparable holdout: E1 `0.123600` / E2 `0.137450` / E3 `0.174120` HOLDOUT-DTI (`gems91-hide-recover-v1.0`, 60,988 withheld) vs prior best `0.262209`; E3 Rule-1 duplicate-stop (86.00% vs DDVTC), never written. Unique delivered TIF `gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif` (SHA-256 `dfee391717…4f9df6`), triple-gate CERTIFIED + independently re-verified. Zero weekly slots spent.
 > [Download](docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif) · [ZIP](docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.zip) · [Audit](docs/s16-pc91.html) · [Executive summary](docs/s16-executive-summary.html) · [Run card](docs/run-card-S16PC.json) · [Preregistration](docs/HYPOTHESES_S16PC.md) · [Session report](docs/S16PC_20261025.md) · Form note (69/140): `S16-PC91 phase-congruency monogenic E1 37654d HOLDOUT-DTI 0.1236 v1.0`
 
+> Parallel historical review: [ADFB5EE6 audit](docs/REVIEW-ARENA-ADFB5EE6-20261025.md). Its missing-local-data statements describe that session, not the references restored for this audit.
+
 ## Start here every session
 
-Read this status, [the full standing brief below](#full-project-brief), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+**Current review (2026-10-25):** [Arena branch review and run card](docs/REVIEW-ARENA-6FEDEF59-20261025.md). Current result is negative; no fresh TIFF or score was generated. Existing research-only file is explicitly **not approved to submit**.
+
+Read this status, [the full standing brief below](#full-project-brief), [the current review for this branch](docs/REVIEW-08E91DAD-20261025.md), [the integrated parallel review](docs/REVIEW-ARENA-ABB160F7-20261025.md), [the prior active-checkout review (historical snapshot)](docs/REVIEW-ACTIVE-20261025.md), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+
+Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
 
 > **OK TO DOWNLOAD: YES — RESEARCH. OK TO SUBMIT: NO.**
 > The new S16-PGRD file is computed from pinned magnetic/gravity inputs, not copied from a prior submission. Its format passes automated checks. Its literal registry-uniqueness and scientific-improvement gates do not pass. No human image inspection is required, and no selector may override a duplicate stop.
@@ -28,6 +57,9 @@ Read this status, [the full standing brief below](#full-project-brief), [the thr
 **Submission name:** `gems91-s16-pgrd-20261025T040447Z-24d090ad9f42`
 **Note (95/140):** `S16-PGRD: magnetic-gravity transfer residual; 37654 new dots. Research negative; do not submit.`
 **TIFF SHA-256:** `0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9`
+
+> **NEW UNIQUE SUBMISSION (this branch):** [Download GeoTIFF](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif) · [Single-TIFF ZIP](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip) · [Audit](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-audit.json) · [Run card](docs/run-card-unique-offcatalogue-damagezone.json)
+> **Submission name:** `gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119` · **TIFF SHA-256:** `a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11` · **Verdict:** OK TO DOWNLOAD: YES — FORMAT-CERTIFIED · OK TO SUBMIT: NO — RESEARCH NEGATIVE
 
 ## Measured result—not a leaderboard prediction
 

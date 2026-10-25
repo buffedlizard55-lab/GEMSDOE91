@@ -1,0 +1,35 @@
+{
+ "evaluator_version": "gems91-hide-recover-v1.0",
+ "max_allowed_auc": 0.9,
+ "n_features_tested": 4,
+ "worst_feature": "fault_density_3km",
+ "worst_symmetric_auc": 0.50691,
+ "flagged_features": [],
+ "all_pass": true,
+ "features": {
+  "tip_extension": {
+   "mean_raw_auc": 0.49821,
+   "mean_symmetric_auc": 0.50179,
+   "max_fold_symmetric_auc": 0.50245,
+   "pass": true
+  },
+  "relay_gap": {
+   "mean_raw_auc": 0.49906,
+   "mean_symmetric_auc": 0.50094,
+   "max_fold_symmetric_auc": 0.50166,
+   "pass": true
+  },
+  "nearfield_band_x_density": {
+   "mean_raw_auc": 0.49637,
+   "mean_symmetric_auc": 0.50363,
+   "max_fold_symmetric_auc": 0.50532,
+   "pass": true
+  },
+  "fault_density_3km": {
+   "mean_raw_auc": 0.49507,
+   "mean_symmetric_auc": 0.50493,
+   "max_fold_symmetric_auc": 0.50691,
+   "pass": true
+  }
+ }
+}

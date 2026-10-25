@@ -1,0 +1,39 @@
+{
+  "schema_version": "gems91.review.08e91dad.v1",
+  "branch": "arena/08e91dad-gemsdoe91",
+  "hypothesis": "No new geological hypothesis executed: assigned single-method lane is absent.",
+  "mechanism": "Independent byte-level delivery audit of all published downloads; no raster synthesis.",
+  "named_non_fault_mimic_process": "Intrusive lithologic contacts and survey-line seams can mimic the proposed geophysical fault signatures.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null
+  },
+  "registry_comparison": {
+    "status": "NOT_RUN",
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "reason": "No new surface or dots; inherited duplicate stop not overridden."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": "NOT_GENERATED",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "historical_download_audit": "download-audit.json",
+    "files_checked": 55,
+    "technical_pass": 48,
+    "technical_fail": 7
+  },
+  "submission_name": null,
+  "note": "08e91dad review: no new TIFF; 55 historical downloads audited; no file approved for submission.",
+  "experiments_run": 0,
+  "slots_used": 0,
+  "organizer_confirmed": null,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}
