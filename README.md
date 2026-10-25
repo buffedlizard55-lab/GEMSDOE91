@@ -1,7 +1,13 @@
-# GEMSDOE91 — CURRENT STATUS (GEO91, 2026-10-25) — read this first
+# GEMSDOE91 — CURRENT STATUS (Session 17 `S17-CGRD`, 2026-10-25) — read this first
+
+> **SESSION 17 (`S17-CGRD`, branch `arena/cbdb6e26-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — FORMAT-CERTIFIED RESEARCH` · `OK TO SUBMIT: NO — NEGATIVE VERDICT`.**
+> Cooper–Cowan Multi-Altitude Theta-Map / Hyperbolic-Tilt Edge Invariants (`B02 rtp` + `B13 iso_grav_anom` at $z=200\text{ m}, 600\text{ m}, 1500\text{ m}$) + DOE GDR-1391 Chemical Geothermometer Disequilibrium ($\Delta T_{\text{eq}}$) Upflow Plumes + Prior-Shift-Calibrated Subsurface Auto-Context (`34` columns, provably `B12`/`B19`-blind and never reading `dist_known_fault_px`):
+> - **Remediates `IR-91-S15-06` & `IR-91-S15-07`:** applying `gems91.ptha.prior_shift_calibrate_surface` to all 6 pairwise 2-quadrant Stage-1 splits before stitching local auto-context and subtracting $\ge 3.2\text{ km}$ regional bowls causes **`E2` (`0.092125 HOLDOUT-DTI`, `95% CI [0.081283, 0.102562]`) to improve strictly (`+0.008144` / `+9.7%` relative) over `E1` (`0.083981 HOLDOUT-DTI`, `95% CI [0.074440, 0.093453]`)** on `gems91-hide-recover-v1.0` (`60,988` withheld positives), and scores **`0.225235 HOLDOUT-DTI`** (`95% CI [0.197388, 0.252846]`) on `gems57-pooled-hide-v2` (8 km label-blind quadrants). `E3` (`0.132279 HOLDOUT-DTI`, `95% CI [0.121610, 0.142760]`) is logged as a Rule-1 duplicate stop (`77.51% > 70%` 3-px dot overlap with DEM-inclusive sibling `SPID-E3`) and never written as a submission.
+> - **Passes all 42 real registry & download rasters:** `E2` pre-placement surface max $|\rho| = 0.08657 \le 0.90$, final dots max $|\rho| = 0.03162 \le 0.90$, and final dots max 3-px overlap $= 56.06\% \le 70.0\%$ (`PASS`), while remaining blocked under the literal 89-file synthetic lattice capacity bound (`calib_r13lattice_00904.tif` $\ge 82.34\%$) and trailing `S14-PTAC E2` (`0.267782 HOLDOUT-DTI`). Zero weekly slots spent (`slots_used = 0`).
+> - [Download S17-CGRD E2 GeoTIFF](docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif) (`203,212 B`, `sha256: 287af6b2df1c34080c55cd1aef9264f30e5e507b152ff31dcb94d13cf6f521a6`) · [Single-TIFF ZIP](docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.zip) (`164,903 B`, `sha256: b3f52073…c324f8f`) · [Audit](docs/s17-cgrd.html) · [Submission guide](docs/s17-cgrd-executive-summary.html) · [Run card JSON](docs/run-card-S17-CGRD.json) · [Preregistration](docs/HYPOTHESES_S17_CGRD.md) · [3-Pass review](docs/REVIEW-S17-CGRD-20261025.md) · Form note (`96/140`): `S17-CGRD E2: Cooper-Cowan Theta+GDR diseq+cal-AC; HOLDOUT-DTI=0.0921; SGMC=0.0578; research only`
 
 **Site / download:** `docs/index.html` leads with the current GeoTIFF and its verdict.
-**Current file:** `gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif`
+**Parallel GEO91 file:** `gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif`
 (37,654 dotted px, collar >3 px, SHA-256 `57d2c44c…e5befe2f`) — **OK TO DOWNLOAD: YES ·
 OK TO SUBMIT: NO** (HOLDOUT-DTI 0.055267 [0.053367, 0.057308],
 gems91-hide-recover-v1.1-nohalo, 60,988 withheld, loses to matched random

@@ -1,4 +1,27 @@
-# GEMSDOE91 — Unique TIF submission pass log
+# GEMSDOE91 — Multi-Pass Verification Log (Session 17 `S17-CGRD`, `arena/cbdb6e26-gemsdoe91`)
+
+## Session 17 (`S17-CGRD`, branch `arena/cbdb6e26-gemsdoe91`, 2026-10-25)
+
+### Pass 1 — Preregistration, Feature Engineering & 3-Experiment Execution (COMPLETED)
+- [x] Restored and SHA-256 verified all 15 competition/reference files in `registry/data_manifest.json` (`data/official/sample_submission.tif`, `data/official/existing_faults.tif`, `data/bridge/gems-geodawn-numerical-features.tif`, `data/external/gdr_wellspring_in_footprint.csv`, `data/external/derived_sgmc_faults_100m_u8.tif`, `data/registry/GEMSDOE32__h33-2-b2-zeros.tif`, `data/fleet_registry/calib_r13lattice_00904.tif`).
+- [x] Froze preregistration `docs/HYPOTHESES_S17_CGRD.md` (5 ranked geological hypotheses `H17-1` through `H17-5`, 3-experiment ladder `E1`, `E2`, `E3`).
+- [x] Implemented `src/gems91/cgrd17.py` (26 pure-subsurface Cooper–Cowan Theta-Map / Hyperbolic-Tilt + DOE GDR-1391 geothermometer disequilibrium features + 8 prior-shift-calibrated local auto-context features, provably invariant to `Band 12`/`Band 19` and never reading `dist_known_fault_px`).
+- [x] Implemented `scripts/run_s17_cgrd_lane.py` and unit/integration test suite `tests/test_s17_cgrd.py`.
+
+### Pass 2 — Scientific Bug Review, Edge Cases & Portal/Registry Repair (COMPLETED)
+- [x] **Fixed `IR-91-S15-06` & fold-negative exclusion bug:** Excluded held-out quadrant `f.region_mask` from training negatives (`excl_f = f.region_mask | f.withheld_faults | f.buffer_mask`) and applied `gems91.ptha.prior_shift_calibrate_surface` to all 6 pairwise 2-quadrant and 4 OOF 3-quadrant Stage-1 splits before stitching local auto-context, plus $\ge 3.2\text{ km}$ bowl subtraction (`IR-91-S15-07`). Confirmed `E2` (`0.092125 HOLDOUT-DTI`) improves strictly over `E1` (`0.083981 HOLDOUT-DTI`).
+- [x] **Fixed `readiness.py` format-gate mapping:** Added boolean `validator_output["checks"]` dictionary in `scripts/run_s17_cgrd_lane.py` so `gems91.readiness.gates(card)["format"]` and `["canary"]` evaluate to `True` while `submission_ready(card)` evaluates to `False`.
+- [x] **Fixed `IR-91-S17-01` (PR #95 & PR #96 portal/policy regression):** Updated `scripts/render_geo91_portal.py` so `scripts/render_portal.py` no longer overwrites `docs/index.html` and `docs/executive-summary.html`, registered the 3 unregistered PR #96 artifacts plus the 2 new `S17-CGRD E2` artifacts in `registry/artifact_policy.json`, and regenerated `docs/download-audit.{json,html}` (`64` files audited).
+
+### Pass 3 — End-to-End Re-Verification Against All Requirements (COMPLETED)
+- [x] Full pytest suite: `.venv/bin/pytest -q -rs` -> **475 passed, 0 failed, 0 skipped**.
+- [x] Artifact policy & download audit: `.venv/bin/python scripts/check_artifact_policy.py` (`PASS: 64 explicitly registered prediction artifacts`) & `.venv/bin/python scripts/audit_downloads.py` (`status: "PASS"` on both `gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif` and `.zip`).
+- [x] S16/current evidence verifiers: `.venv/bin/python scripts/verify_s16.py`, `.venv/bin/python scripts/verify_evidence.py`, `.venv/bin/python scripts/verify_current_artifact.py` -> all `PASS`.
+- [x] Headless Chromium + axe-core WCAG 2.1 AA + mobile `390x844` overflow + SHA-256 download check: `node tools/browser/smoke.cjs` -> `status: "PASS"`, `0` console/HTTP errors, `0` mobile overflow, `0` WCAG violations across 21 pages.
+
+---
+
+# GEMSDOE91 — Unique TIF submission pass log (Prior Session `arena/e6fdea6b-gemsdoe91`)
 
 ## Session context
 Branch: arena/e6fdea6b-gemsdoe91 (active). Pinned data restored:
