@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
-"""Verify (default) the current HEXFAR91 candidate download.
+"""Verify the exact current website download (never upload or select a slot).
 
-    python generate_submission.py            # verify docs/run-card-HEXFAR91.json + its TIFF
-    python generate_submission.py --run      # rebuild hexagonal far-field lattice (needs data/)
-    python generate_submission.py --legacy-s16   # the historical S16 verifier
+    python generate_submission.py                 # canonical portal TIFF + ZIP
+    python generate_submission.py --with-data     # also pinned sample/catalogue
+    python generate_submission.py --preflight     # no experiment: lane + capacity blockers
+    python generate_submission.py --legacy-hexfar # historical HEXFAR91 verifier
+    python generate_submission.py --legacy-s16    # historical S16 verifier
 
-Never create mock labels in data/official, read another submission as a feature,
-or describe random noise as a competition candidate. Tests use tools/make_fixture.py.
-Importing this file has no filesystem side effects.
+--run is blocked: this prompt contains no assigned single-method lane. A legacy
+builder must not silently become a new geological experiment. No mock labels,
+prior-submission features, or format-only upload approvals are permitted.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
-import subprocess
 import sys
+import zipfile
 from pathlib import Path
 
 RUN_CARD = "docs/run-card-HEXFAR91.json"
@@ -100,30 +102,44 @@ def verify_olc91(root: Path, with_data: bool = False) -> dict:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--preflight", action="store_true", help="Check experiment plan and pinned registry capacity; never build or submit")
     parser.add_argument("--run", action="store_true",
-                        help="Rerun the frozen OLC91 holdout + final build once; never uploads or selects a slot")
+                        help="Blocked: an assigned method lane is required before any experiment")
+    parser.add_argument("--legacy-hexfar", action="store_true", help="Verify historical HEXFAR91 instead of the current website download")
     parser.add_argument("--legacy-s16", action="store_true", help="Run the historical S16 verifier instead")
     parser.add_argument("--with-data", action="store_true", help="Also verify pinned sample, footprint and catalogue against actual bytes")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
     sys.path[:0] = [str(root), str(root / "src")]
+    if args.preflight:
+        if args.run or args.legacy_s16 or args.legacy_hexfar or args.with_data:
+            parser.error("--preflight is a separate no-experiment check; do not combine with verification/build flags")
+        from scripts.experiment_preflight import main as preflight_main
+        return preflight_main([])
+    if args.run:
+        print(json.dumps({"status": "BLOCKED", "OK_TO_SUBMIT": "NO",
+                          "error": "No assigned method lane; --run cannot execute a legacy builder."}))
+        return 1
+    if args.legacy_s16 and args.legacy_hexfar:
+        parser.error("choose at most one historical verifier")
     if args.legacy_s16:
         from scripts.verify_s16 import verify
         try:
             report = verify(with_data=args.with_data)
-        except (OSError, ValueError, KeyError, TypeError, ImportError) as exc:
+        except (OSError, ValueError, KeyError, TypeError, ImportError, zipfile.BadZipFile) as exc:
             print(json.dumps({"status": "BLOCKED", "ok_to_submit": False, "error": str(exc)}))
             return 1
         print(json.dumps(report, indent=2, allow_nan=False))
         return 0
-    if args.run:
-        rc = subprocess.call([sys.executable, str(root / "scripts" / "build_hexfar_submission.py")], cwd=root)
-        if rc:
-            parser.exit(rc, "build_hexfar_submission failed\n")
     try:
-        report = verify_olc91(root, with_data=args.with_data)
-    except (OSError, ValueError, KeyError, TypeError, ImportError) as exc:
-        print(json.dumps({"status": "BLOCKED", "OK_TO_SUBMIT": "NO", "error": str(exc)}))
+        if args.legacy_hexfar:
+            report = verify_olc91(root, with_data=args.with_data)
+        else:
+            from scripts.verify_front_door import verify
+            report = verify(root, with_data=args.with_data)
+    except (OSError, ValueError, KeyError, TypeError, ImportError, zipfile.BadZipFile) as exc:
+        print(json.dumps({"status": "BLOCKED", "OK_TO_DOWNLOAD": "NO",
+                          "OK_TO_SUBMIT": "NO", "submission_ready": False, "error": str(exc)}))
         return 1
     print(json.dumps(report, indent=2))
     return 0 if report["format_ok"] else 1

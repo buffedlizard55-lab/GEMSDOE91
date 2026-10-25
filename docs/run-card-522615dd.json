@@ -1,0 +1,232 @@
+{
+  "schema_version": "gems91.active-review-run-card.v1",
+  "review_date_utc": "2026-10-25",
+  "session_branch": "arena/522615dd-gemsdoe91",
+  "review": "docs/REVIEW-ACTIVE-522615DD-20261025.md",
+  "hypothesis_menu": "docs/HYPOTHESES-ACTIVE-522615DD-20261025.md",
+  "status": "negative_blocked_no_run",
+  "assignment": {
+    "single_method_paragraph_present": false,
+    "lane_assigned": false,
+    "reason": "The parallel-run prompt requires one assigned method paragraph, but none is present in the active request/context. No lane was inferred or self-assigned."
+  },
+  "data_preflight": {
+    "command": "python scripts/preflight.py",
+    "verdict": "BUILD BLOCKED",
+    "verified_required_inputs": 0,
+    "required_inputs": 2,
+    "missing": [
+      "data/official/sample_submission.tif",
+      "data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif"
+    ],
+    "training_feature_cache_present": false,
+    "ready_axes": [],
+    "blocked_axes": [
+      "PRUNE",
+      "MASS",
+      "SNAP",
+      "CONCENTRATION",
+      "RELIEF",
+      "TRACKB"
+    ],
+    "competition_data_page_access": "ANONYMOUS REQUEST REDIRECTED TO LOGIN",
+    "restored_or_downloaded_data": false
+  },
+  "experiment": {
+    "started": false,
+    "experiments_used": 0,
+    "experiment_limit": 3,
+    "time_budget_hours": 2,
+    "weekly_slots_used": 0,
+    "selector_or_promotion_step_run": false
+  },
+  "hypothesis": {
+    "selected": null,
+    "status": "PROPOSED_MENU_ONLY_NOT_ASSIGNED",
+    "candidates": [
+      "Topographic texture / spectral-slope break",
+      "Within-map-unit potential-field residual displacement",
+      "Seasonal Landsat surface-temperature residuals"
+    ]
+  },
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "dti": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "reason": "No assigned method and required competition inputs are absent. No result is inferred or projected."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN",
+    "feature_auc_values": null,
+    "symmetric_auc_stop_threshold": 0.9,
+    "reason": "No feature was run."
+  },
+  "registry_correlation_overlap": {
+    "status": "NOT_RUN",
+    "surface_max_abs_spearman": null,
+    "surface_stop_threshold": 0.9,
+    "final_dot_overlap_within_3px": null,
+    "final_dot_stop_threshold": 0.7,
+    "registry_raster_sha256": null,
+    "reason": "No candidate surface or placement exists. Do not interpret this as a uniqueness pass."
+  },
+  "raster": {
+    "created": false,
+    "path": null,
+    "sha256": null,
+    "validator_output": {
+      "status": "NOT_RUN_NO_NEW_RASTER",
+      "nan_inside_footprint": null,
+      "range_0_1": null,
+      "crs_match": null,
+      "shape_match": null,
+      "transform_match": null,
+      "reason": "No new TIFF was written; the official sample grid is absent."
+    }
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_char_limit": 140,
+    "ok_to_download": "NO NEW TIFF",
+    "ok_to_submit": "NO",
+    "organizer_confirmed": null
+  },
+  "existing_front_door_artifact": {
+    "path": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+    "sha256_recorded_in_prior_card": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "submission_name_recorded_in_prior_card": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67",
+    "submission_note_recorded_on_prior_portal": "GEMSDOE91 OLC91 E1: PU posterior x 1.1km strike-coherent line support, 37654 3px dots, 2px catalogue collar",
+    "recorded_download_status": "YES — RESEARCH ONLY",
+    "recorded_submit_status": "NO",
+    "prior_result": {
+      "evidence_class": "HOLDOUT-DTI",
+      "dti": 0.083186,
+      "ci95": [
+        0.066866,
+        0.100482
+      ],
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_count": 11321,
+      "status": "PRIOR_SESSION_RESULT_NOT_RERUN_IN_THIS_REVIEW"
+    },
+    "revalidated_in_this_review": false,
+    "registered_tiff_zip_byte_identity_rechecked_in_this_review": true,
+    "format_rechecked_against_official_sample_in_this_review": false,
+    "warning": "Portal rendering and the default current-download verifier rechecked registered TIFF/ZIP identity; the verifier also passed the written raster's technical format checks. The missing official sample prevents a fresh sample-backed grid validation. This is an existing prior negative research artifact, not a new or unique result from the active review. Do not represent it as newly generated or approved for submission.",
+    "written_bytes_format_rechecked_after_merge": true,
+    "sample_backed_grid_validation_rechecked": false
+  },
+  "verdict": "negative",
+  "promote": false,
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "irregularities": [
+    "No single method paragraph or assigned lane is present.",
+    "Required sample and parent raster are absent; the cached training feature stack is absent.",
+    "Historical manifest and preflight local-presence metadata do not match this checkout's file system.",
+    "Public leaderboard, user-reported values, local holdout values, and organizer receipts are distinct evidence classes.",
+    "The GEMSDOE32 owner page explicitly states that no organizer score exists for its artifacts.",
+    "docs/run-card-current-review.json is dated 2026-10-25 but belongs to arena/2f002fa0-gemsdoe91, not the active branch."
+  ],
+  "integration_verification": {
+    "upstream_main_tip": "ee3548998573796c9c02e36633f1f13a492b464b",
+    "current_branch_merge": true,
+    "full_test_suite": {
+      "command": ".venv/bin/python -m pytest -o addopts='' -ra",
+      "collected": 596,
+      "passed": 588,
+      "skipped": 8,
+      "warnings": 78,
+      "duration_seconds": 38.59,
+      "status": "PASS",
+      "note": "Final full-suite run after latest main merge and canonical audit snapshot refresh"
+    },
+    "artifact_policy": {
+      "status": "PASS",
+      "registered_prediction_artifacts": 87,
+      "raw_raster_or_archive_tracked": false
+    },
+    "preflight": {
+      "status": "BUILD BLOCKED",
+      "required_inputs_verified": 0,
+      "required_inputs": 2,
+      "blocked_axes": [
+        "PRUNE",
+        "MASS",
+        "SNAP",
+        "CONCENTRATION",
+        "RELIEF",
+        "TRACKB"
+      ]
+    },
+    "current_download_verifier": {
+      "command": "python generate_submission.py",
+      "status": "TECHNICAL PASS",
+      "ok_to_download": "YES — RESEARCH ONLY",
+      "ok_to_submit": "NO",
+      "reference_checks": "NOT_CHECKED"
+    },
+    "with_data_verification": {
+      "command": "python generate_submission.py --with-data",
+      "status": "BLOCKED",
+      "reason": "data/official/sample_submission.tif is absent"
+    },
+    "experiment_flag": {
+      "command": "python generate_submission.py --run",
+      "status": "BLOCKED",
+      "reason": "No assigned method lane"
+    },
+    "scientific_run_or_slot": false,
+    "artifact_audit_snapshot": {
+      "source_report": "docs/review-6cbfe8ac/download-audit.json",
+      "canonical_report": "docs/download-audit.json",
+      "status": "REUSED_PRIOR_PINNED_REFERENCE_SNAPSHOT_IDENTITY_VERIFIED_NOT_RERUN",
+      "files_checked": 87,
+      "format_pass": 78,
+      "format_fail": 9,
+      "ok_to_submit": false,
+      "all_report_paths_match_current_downloads_and_policy": true,
+      "all_file_hashes_match_current_bytes_and_policy": true,
+      "reference_hashes_match_manifest": true,
+      "previously_tracked_snapshot_files": 85,
+      "newly_included_files": [
+        "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+        "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.zip"
+      ],
+      "local_data_restore_or_fresh_raster_audit": false,
+      "initial_ci_run_40216729640_status": "PUBLISHED_ARTIFACT_FAILED_STALE_AUDIT_DIFF; RESOLVED",
+      "followup_ci_run_40219293388": {
+        "run_number": 342,
+        "conclusion": "SUCCESS",
+        "jobs": {
+          "tests": "PASS",
+          "published-artifact": "PASS",
+          "browser-delivery": "PASS"
+        },
+        "published_audit_diff": "PASS",
+        "started_utc": "2026-10-25T18:01:55Z",
+        "completed_utc": "2026-10-25T18:08:57Z",
+        "ci_restored_pinned_sample_and_catalogue_inside_runner": true,
+        "local_data_restore_or_fresh_raster_audit": false
+      }
+    },
+    "merged_upstream_main_tips": [
+      "5262aa9947d4b50d2fc433a86d409fc5b7f42811",
+      "ee3548998573796c9c02e36633f1f13a492b464b"
+    ],
+    "parallel_checkout_context": {
+      "branch": "arena/ffb91da8-gemsdoe91",
+      "reported_local_preflight": "BUILD BLOCKED: 1/2",
+      "sample_submission_available_in_that_checkout": true,
+      "parent_r0_nan_missing_in_that_checkout": true,
+      "active_checkout_preflight": "BUILD BLOCKED: 0/2",
+      "branch_local_data_not_transferred": true
+    }
+  }
+}

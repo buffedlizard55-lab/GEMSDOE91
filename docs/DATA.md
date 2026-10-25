@@ -2,7 +2,7 @@
 
 The manifest schema is `registry/data_manifest.json` with `schema_version: 1` and a `files`
 list. Paths are `local_subpath`, relative to the gitignored `data/` tree. `scripts/preflight.py`
-owns the build verdict; `tools/pins.py` is the narrow check a builder makes before it reads
+reports data availability only (not experiment approval); `tools/pins.py` is the narrow check a builder makes before it reads
 a byte ("is this file one of the pinned inputs?").
 
 ## Rules
@@ -35,7 +35,8 @@ Check the current state with:
 
 ```bash
 python -m tools.pins --axis CONCENTRATION   # exit 2 and the missing ids, today
-python scripts/preflight.py                 # the repository-wide verdict
+python scripts/preflight.py                 # input availability only
+python generate_submission.py --preflight   # separate necessary protocol/capacity checks
 ```
 
 ## Derived priors (IR-91-18)

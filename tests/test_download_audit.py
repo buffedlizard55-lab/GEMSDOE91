@@ -8,11 +8,11 @@ from rasterio.transform import from_origin
 from scripts.audit_downloads import inspect_raster
 
 
-def encoded(values, *, count=1, transform=None, nodata=None):
+def encoded(values, *, count=1, transform=None, nodata=None, dtype='float32'):
     transform = transform or from_origin(250000, 4500000, 100, 100)
     with MemoryFile() as mem:
         with mem.open(driver='GTiff', height=3, width=4, count=count,
-                      dtype='float32', crs='EPSG:32611', transform=transform,
+                      dtype=dtype, crs='EPSG:32611', transform=transform,
                       nodata=nodata) as dst:
             for band in range(1, count + 1):
                 dst.write(values, band)
@@ -109,4 +109,12 @@ def test_zip_member_identity_and_flat_layout(tmp_path, member, payload, passed):
     (tmp_path / 'registry/artifact_policy.json').write_text(json.dumps(dict(files=policy)))
     report = audit(tmp_path)
     assert report['files'][1]['status'] == ('PASS' if passed else 'FAIL')
+    assert report['ok_to_submit'] is False
+
+
+@pytest.mark.parametrize('dtype', ['uint8', 'float64'])
+def test_non_float32_is_not_format_certified(dtype):
+    report = inspect(encoded(np.zeros((3, 4), dtype=dtype), dtype=dtype))
+    assert report['status'] == 'FAIL'
+    assert report['checks']['float32'] is False
     assert report['ok_to_submit'] is False

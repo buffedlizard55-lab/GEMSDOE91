@@ -1,0 +1,12 @@
+{
+  "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+  "reference_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "footprint_pixels": 5167373,
+  "uncovered_pixels": 6649,
+  "candidate_budget": 37654,
+  "overlap_lower_bound": 0.8234184947150369,
+  "threshold": 0.7,
+  "feasible_at_fixed_budget": false,
+  "largest_budget_by_capacity_only": 22163,
+  "note": "No candidate generated. Necessary bound only; passing capacity is not geological or uniqueness validation."
+}

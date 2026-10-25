@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "scope": "current-run.json research download only",
+  "tif": "downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+  "raster_sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+  "validator_output": {
+    "status": "PASS",
+    "checks": {
+      "single_band": true,
+      "crs_shape_transform_match": true,
+      "no_nodata_tag": true,
+      "all_cells_finite": true,
+      "values_in_0_1": true,
+      "no_nan_inside_footprint": true,
+      "zero_outside_footprint": true,
+      "visible_catalogue_masked": true
+    },
+    "nonfinite_cells": 0,
+    "out_of_range_finite_cells": 0,
+    "ok_to_submit": false,
+    "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+  },
+  "ok_to_download": true,
+  "ok_to_submit": false
+}

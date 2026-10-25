@@ -1728,3 +1728,58 @@ Full detail and sources: `docs/REVIEW-S18-20261025.md`. Machine-readable: `docs/
   `calib_r13lattice_00904.tif` still forces unidirectional 3-px dot overlap `99.84% > 70%` (`IR-S16-03`),
   whereas all 83 real submissions pass `<= 61.87% <= 70%`. Accordingly, `ok_to_submit` remains `False`
   and `0` weekly slots were spent automatically.
+
+## Active checkout `arena/522615dd-gemsdoe91` — 2026-10-25
+
+Full evidence: `docs/REVIEW-ACTIVE-522615DD-20261025.md`; machine no-run card: `docs/run-card-522615dd.json`.
+
+- **IR-91-522615DD-01 — required method lane is absent.** The parallel-run instruction requires one assigned method paragraph; none is present. No candidate was selected or run. The ranked list in `docs/HYPOTHESES-ACTIVE-522615DD-20261025.md` is a menu, not an assignment.
+- **IR-91-522615DD-02 — committed input-presence metadata is stale for this checkout.** `python scripts/preflight.py` found 0/2 required inputs (sample submission and parent R0 NaN TIFF) and all six implemented axes blocked. The local `data/` tree is empty; prior `local_present` claims and older preflight JSON must not be read as current filesystem evidence. `registry/preflight.json` now records the current blocked result.
+- **IR-91-522615DD-03 — incompatible score evidence classes.** The 2026-10-25 official public leaderboard snapshot shows 0.4413 at rank 1. A reported 0.3195 would be rank 24 by insertion but has no receipt here. The 0.2778 report remains `USER_REPORTED_UNVERIFIED`, is below the snapshot's 0.2818 rank-50 value, and the GEMSDOE32 owner page explicitly states “NO ORGANISER SCORE EXISTS.” None is an `ORGANIZER-CONFIRMED` score for this repository.
+- **IR-91-522615DD-04 — official training data page is login-gated for anonymous access.** The sample grid, parent TIFF, and cached feature stack are absent. No credentials were requested, and no mirrored competition data were restored under this review. This is an access/readiness finding, not a statement that the official data are unavailable to registered competitors.
+- **IR-91-522615DD-05 — SGMC link correction, bytes still unverified.** A guessed ScienceBase URL returned not found. The correct 2026 GeMS/SGMC release was identified via DOI `10.5066/P1A3DQZK`; USGS metadata and the NGMDB GIS link were fetched, and the release is marked CC0. No release bytes, map-unit schema, or AOI clip were fetched.
+- **IR-91-522615DD-06 — existing front-door TIFF is prior negative research, not this review's output.** `docs/current-run.json` still points to OLC91 E1. Its previous card reports `HOLDOUT-DTI` 0.083186 (evaluator `gems57-pooled-hide-v2`, 11,321 withheld positives, 95% CI [0.066866, 0.100482]) and a duplicate stop; the active review did not rerun it. Portal rendering rechecked registered TIFF/ZIP byte identity, but the missing official sample prevents a fresh sample-backed grid validation. The website now labels it as an existing research-only file and links the current no-run review.
+- **IR-91-522615DD-07 — public benchmark is not a submission receipt.** The official leaderboard is a public-test snapshot; the organizer's private/final scoring differs. No signed-in submission record, weekly allowance, private score, or receipt was available to this review.
+- **IR-91-522615DD-08 — official product availability is not AOI coverage.** USGS product pages confirm free/unrestricted 3DEP and Landsat products, and the official SGMC source exposes a GIS download link. Exact Great Basin 3DEP tiles, cloud-screened Landsat scenes, SGMC bytes, and project-grid alignment remain unchecked.
+- **IR-91-522615DD-09 — any future use of generative AI requires narrative disclosure.** Official DOE/NLR Rules §3.2, fetched 2026-10-25, permits use but requires disclosure of its extent and role in the submission narrative. Retain `AI_USE.md` with any later submission package.
+- **IR-91-522615DD-10 — historical reported-results URLs contained duplicated Markdown-link text.** All 115 `source_url` fields in `docs/reported-results.csv` were normalized to valid URL strings. No reported value, evidence class, owner claim, or `NOT_AVAILABLE` receipt field changed; every score row remains unverified and should not be treated as an official result.
+- **IR-91-522615DD-11 — `docs/run-card-current-review.json` is stale and belongs to another branch.** It names `arena/2f002fa0-gemsdoe91`; the active branch uses `docs/run-card-522615dd.json`. The older card was left intact as history, not rewritten to impersonate this review.
+
+## Review 6cbfe8ac — 2026-10-25
+
+- **Fixed: default verifier/download mismatch.** `generate_submission.py` verified HEXFAR91 while `docs/current-run.json` and the website advertised OLC91. Default now verifies the canonical pointer, card, TIFF and ZIP; historical HEXFAR is opt-in. `--run` falsely named OLC91 but executed HEXFAR; blocked without an assigned lane.
+- **Not resolved: absent method paragraph.** No new experiment or TIFF generated; no score asserted. The standing prompt has no assigned lane.
+- **Reproduced: literal registry infeasibility at the usual budget.** SHA-pinned lattice dilation leaves 6,649 footprint cells uncovered; 37,654 dots necessarily overlap at least 82.34%, exceeding 70%. No reference/threshold was removed. This is geometry, not HOLDOUT-DTI.
+- **Fresh technical audit:** 87 registered files; 78 PASS / 9 FAIL; all `ok_to_submit=false`. Historical counts elsewhere are snapshots, not this review's totals.
+- **Provenance caveat:** this review restored pinned mirrors using existing tooling despite S18's unresolved recommendation for a rights review. Used for technical verification only; no new model training or raw-data redistribution. Hash identity does not establish licensing or official sample/label semantics.
+- **Scientific/score boundary:** pinned GEMSDOE32 page says no organiser score exists. The claimed 0.2778 remains user-reported; no live leaderboard/account receipt was fetched. Fault recovery is not verified geothermal-vent detection. CPU support is documented by the official reference README, so GPU is not a mandatory prerequisite for every pipeline.
+
+Evidence and three-pass review: `docs/REVIEW-6CBFE8AC-20261025.md`; exact-download verification, capacity calculation and source manifest under `docs/review-6cbfe8ac/`.
+
+## Active review ee76e309 (2026-10-25)
+
+The published-artifact verifier read historical `docs/run-card.json`, while the frontdoor advertises a different artifact through `docs/current-run.json`. Added `scripts/verify_frontdoor.py` and CI coverage for the actual pointer; retained historical verification. Removed misleading LB-DTI navigation labels in source and generated pages. Fresh 87-artifact audit records 78 technical PASS / 9 FAIL, not submission authorization. No lane paragraph supplied, so no new experiment/TIFF/slot. See `docs/REVIEW-EE76E309-20261025.md`.
+
+
+## Active checkout `arena/522615dd-gemsdoe91` — post-merge integration follow-up
+
+- **IR-91-522615DD-12 — integration is tooling only.** Upstream main through `ee35489` adds exact current-download verification/CI checks and a later parallel review. The FFB91 checkout reports 1/2 local inputs, but the active checkout remains 0/2. On this active checkout, the default verifier passes only the OLC91 research TIFF/ZIP/card and still says `OK TO SUBMIT: NO`; reference checks remain unverified because the official sample is absent. `--with-data` and `--run` fail closed for missing inputs/lane. The integrated full suite passed (588 passed, 8 skipped); this does not authorize a candidate or submission.
+
+- **IR-91-522615DD-13 — published-artifact CI snapshot was stale, then corrected.** Initial PR run `40216729640` passed tests/browser checks but failed its published-audit diff: the tracked report covered 85 files while the current inventory held 87. The canonical JSON/HTML were refreshed from a prior pinned-reference snapshot after current path/hash/policy/reference identity checks; this branch did not restore data or rerun the raster audit. Follow-up run `40219293388` passed all CI jobs, including the audit/diff. The workflow restored its two small pinned sample/catalogue references inside the CI runner only. The published snapshot still records 9 technical failures and `ok_to_submit: false`.
+
+- **IR-91-522615DD-14 — parallel preflight state is not portable.** The newly merged `arena/ffb91da8-gemsdoe91` report says its sample submission and catalogue were locally restored, yielding 1/2 required inputs; the parent R0 and feature cache remained missing there. The active `arena/522615dd-gemsdoe91` checkout still verifies 0/2. No ignored data files were copied or restored during this merge.
+
+## IR-91-19912231 — data availability was labeled build authorization
+
+The legacy input preflight printed BUILD ALLOWED once any historical axis had data, without an assigned lane or feasibility check. Fixed: INPUTS AVAILABLE and explicit `experiment_authorized: false`; added separate pinned-byte `experiment_preflight.py`. The 19912231 branch measured a lattice lower bound of 82.341849% at 37,654 dots (geometry, NOT a score). Missing lane and impossible budget remain blocks, not repaired by overriding policy. No candidate or slot. Also removed unsupported hidden-coverage inference from the executive guide and marked completed CWP91 as completed rather than the next untried method. See `docs/REVIEW-19912231-20261025.md`.
+
+## Active checkout `arena/e649e460-gemsdoe91` — follow-up after main integration
+
+- **IR-E649-01 — unassigned lane and no local inputs.** The active review prompt has no assigned single-method paragraph; the current checkout lacks the pinned manifest files. Fresh data preflight and the new experiment preflight both block; experiment preflight cannot verify its sample/lattice capacity witness, so it reports `UNVERIFIED`. No geological experiment or candidate was produced.
+- **IR-E649-02 — historical capacity proof is not this run's evidence.** Upstream `arena/19912231-gemsdoe91` records an 82.341849% minimum lattice overlap at the 37,654-dot budget using pinned bytes. This active checkout's rerun cannot access those bytes; do not present that number as a fresh e649 check or score.
+- **IR-E649-03 — active front-door pointers and language restored after merge.** README, OLC91 portal source/generated page, and executive guide identify e649 as current. The advertised OLC91 TIFF remains historical research only; reference checks are `NOT_CHECKED` and `OK TO SUBMIT` remains `NO`.
+- **IR-E649-04 — score and source caveats.** The official leaderboard snapshot observed 0.4413 as public rank 1; user-provided 0.2778/0.3195 are not submission receipts. The legacy ScienceBase item `6312f0f2d34e36012efa234a` returned not found; current USGS GeMS/SGMC metadata lead is DOI 10.5066/P1A3DQZK, but local payload and footprint coverage are unverified.
+- **IR-E649-05 — S18-UNIQUE arrived from a separate branch during integration.** The merged S18 artifact is a format-certified research demo with 20,000 dots, a partial R0 uniqueness result, and holdout pending. It was not generated, independently revalidated, or selected by this e649 review; no method lane or selector approval was supplied. The portal and README now label it as a separate-branch research download with `OK TO SUBMIT: NO` rather than the active candidate.
+
+Evidence: `docs/REVIEW-ACTIVE-E649E460-20261025.md`, `docs/run-card-E649E460-20261025.json`, and the e649 `python generate_submission.py --preflight` invocation.
+

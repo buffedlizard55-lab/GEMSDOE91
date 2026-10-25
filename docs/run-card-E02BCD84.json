@@ -1,0 +1,83 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "E02BCD84-20261025",
+  "branch": "arena/e02bcd84-gemsdoe91",
+  "hypothesis": "No candidate tested because no exact assigned scientific lane paragraph was supplied. Conditional screening priority: map-unit-conditioned cross-field edge displacement using B02 RTP, B13 isostatic gravity, and official USGS GeMS SGMC polygons.",
+  "mechanism": "Within geologic-unit contexts, signed magnetic-gravity edge displacement may indicate buried fault offsets while controlling for ordinary unit contacts; untested.",
+  "named_non_fault_mimic": "Unfaulted intrusive or stratigraphic contacts, generalized map-unit boundaries, and geophysical survey levelling seams.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN — no lane assignment; no candidate experiment"
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "NOT RUN — no candidate surface or final dots"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT APPLICABLE — no new raster"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "experiments_used": 0,
+  "experiment_budget": 3,
+  "elapsed_experiment_seconds": 0,
+  "competition_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "verification": {
+    "requirements_install": "PASS; requirements.txt installed into ignored .venv",
+    "restore_data": "PASS; 15/15 selected pinned files matched SHA-256 and byte size; no raw data tracked",
+    "preflight": "BUILD ALLOWED; 2/2 required inputs verified; six declared axes READY (local state only)",
+    "pytest": "PASS; one expected skip for unmaterialized legacy release integration; existing Affine pending-deprecation warnings",
+    "artifact_policy": "PASS; 87 explicitly registered prediction artifacts; no raw raster/archive tracked",
+    "download_audit": {
+      "scope": "Pinned-reference technical checks only",
+      "files_checked": 87,
+      "format_pass": 78,
+      "format_fail": 9,
+      "ok_to_submit": false
+    },
+    "current_artifact": "Historical CED91 sample/footprint/catalogue check PASS; submission_ready false; not a new run",
+    "git_diff_check": "PASS"
+  },
+  "existing_portal_download": {
+    "artifact": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+    "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "ok_to_download": true,
+    "scope": "Historical research artifact; technical format audit pass",
+    "ok_to_submit": false,
+    "holdout_dti": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positives": 11321,
+      "ci95": [
+        0.066866,
+        0.100482
+      ],
+      "value": 0.083186,
+      "paired_delta_vs_control": -0.002075,
+      "paired_delta_ci95": [
+        -0.004543,
+        0.000236
+      ],
+      "note": "Prior OLC91 run-card evidence; not rerun in this review"
+    },
+    "registry_status": "DUPLICATE-STOP; recorded final-dot overlap exceeds 70% against non-blanket fleet rasters"
+  },
+  "source_verification": {
+    "drivendata_problem_page": "Fetched; source links in docs/REVIEW-ACTIVE-E02BCD84-20261025.md",
+    "usgs_gems_sgmc_page": "Fetched; DOI 10.5066/P1A3DQZK, CC0 rights stated on source page",
+    "usgs_comcat_page": "Fetched; products verified to exist, local footprint coverage not verified",
+    "leaderboard_receipt": null,
+    "organizer_submission_receipt": null
+  },
+  "note": "Negative research review only; no new TIFF generated and no weekly/competition slot used."
+}
