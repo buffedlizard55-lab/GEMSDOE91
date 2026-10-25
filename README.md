@@ -1,5 +1,9 @@
 # GEMSDOE91 — a new TIFF, an honest automated verdict
 
+> **UNIQUE SUBMISSION (`unique-offcatalogue-damagezone`, branch `arena/e6fdea6b-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — FORMAT-CERTIFIED` · `OK TO SUBMIT: NO — RESEARCH NEGATIVE`.**
+> Damage-zone annulus lattice (1 km lattice, 3 px < d_catalogue <= 10 px): 8,718 unit dots, value 1.0 at dots, 0 elsewhere, NaN outside footprint; EPSG:32611, 3730x3292, 100 m, single-band float32, all values in [0,1]. **HOLDOUT-DTI = 0.0 (CI [0,0], 60,988 withheld) — deliberate off-catalogue negative.** Registry uniqueness: surface |rho| 0.00983 (<= 0.90), dots within 3 px 20.67% (<= 70%) — NOT a duplicate. Zero weekly slots spent.
+> [Download GeoTIFF](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif) (`sha256: a5636b10…ca11`) · [Single-TIFF ZIP](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip) · [Audit](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-audit.json) · [Run card](docs/run-card-unique-offcatalogue-damagezone.json) · Form note (140/140): `Unique off-catalogue damage-zone lattice; format-certified unique GeoTIFF; HOLDOUT-DTI=0.0 deliberate negative; research download only`
+
 > **Parallel Session (`S15-SCGF`, branch `arena/605655a6-gemsdoe91`, merged alongside S16-PGRD & S16-PC91): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**
 > 137-feature Förstner subsurface-junction + multi-wavelength (150–900 m) Salem tilt-depth + 2-D deconfounded aquifer-baffle Dual-Specialist Auto-Context (`99`-col provably `B12`/`B19`-invariant Pure-Subsurface specialist): `E1 = 0.235089`, **`E2 = 0.240633`** (`95% CI [0.227931, 0.254026]`), `E3 = 0.232708` **`HOLDOUT-DTI`** (`gems91-hide-recover-v1.0` = `v1.1-nohalo`, `60,988` withheld) and **`0.097940` Blind Off-Catalogue USGS SGMC DTI** (`+0.002180` vs `S14-PTAC E2 = 0.095760`; `+0.002554` vs `GEMSDOE32 R0 = 0.095386`). Negative under shared readiness gates (`0.240633 < 0.267782 S14-PTAC`; literal 3-px lattice overlap `99.811%`, vs `44.82%` on `GEMSDOE32 R0`); zero weekly slots spent (`slots_used = 0`).
 > [Download GeoTIFF](docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif) (`sha256: 08933227…ca3a1`) · [Single-TIFF ZIP](docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.zip) · [Audit](docs/s15-scgf.html) · [Executive summary](docs/s15-scgf-executive-summary.html) · [Run card](docs/run-card-S15-SCGF.json) · [Preregistration](docs/HYPOTHESES_S15_SCGF.md) · [3-Pass review](docs/REVIEW-S15-SCGF-20261025.md) · Form note (`90/140`): `S15-SCGF E2: Forstner+multi-scale Salem+baffle dual-AC; HOLDOUT-DTI=0.2406; 44k [0,1] dots`
@@ -22,6 +26,9 @@ Read this status, [the full standing brief below](#full-project-brief), [the thr
 **Submission name:** `gems91-s16-pgrd-20261025T040447Z-24d090ad9f42`
 **Note (95/140):** `S16-PGRD: magnetic-gravity transfer residual; 37654 new dots. Research negative; do not submit.`
 **TIFF SHA-256:** `0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9`
+
+> **NEW UNIQUE SUBMISSION (this branch):** [Download GeoTIFF](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif) · [Single-TIFF ZIP](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip) · [Audit](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-audit.json) · [Run card](docs/run-card-unique-offcatalogue-damagezone.json)
+> **Submission name:** `gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119` · **TIFF SHA-256:** `a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11` · **Verdict:** OK TO DOWNLOAD: YES — FORMAT-CERTIFIED · OK TO SUBMIT: NO — RESEARCH NEGATIVE
 
 ## Measured result—not a leaderboard prediction
 
