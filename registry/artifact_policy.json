@@ -546,6 +546,18 @@
       "sha256": "386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of S18-UNIQUE demo; format PASS, NOT OK TO SUBMIT pending holdout."
+    },
+    {
+      "path": "docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif",
+      "sha256": "afc1699914bc517b3c4c0ef1cc16973ced37f7e90fc74cfb7b20869da01f099b",
+      "status": "current_research_only",
+      "reason": "S18-HGBR E1 research GeoTIFF (0.200742 HOLDOUT-DTI, 0.101151 blind SGMC >1km); fail-closed for synthetic lattice overlap."
+    },
+    {
+      "path": "docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.zip",
+      "sha256": "87fb051c1d440d8a67c6fe5530be946c5784af8100fc1d8c8a0acf17800d31bd",
+      "status": "current_research_only",
+      "reason": "S18-HGBR E1 single-TIFF ZIP bundle; fail-closed for synthetic lattice overlap."
     }
   ]
 }
