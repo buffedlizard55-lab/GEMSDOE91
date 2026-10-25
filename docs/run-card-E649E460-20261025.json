@@ -46,11 +46,17 @@
     "checked_utc_date": "2026-10-25"
   },
   "verification": {
-    "pytest": "594 passed, 8 skipped; 78 Rasterio Affine pending-deprecation warnings",
+    "pytest": "626 passed, 8 skipped; 87 Rasterio Affine pending-deprecation warnings",
     "submission_cli": "PASS for advertised TIFF/ZIP identity and stored grid/range; reference checks not checked",
     "artifact_policy": "PASS: 87 registered prediction artifacts; no raw raster/archive tracked",
     "evidence_consistency": "PASS; no geological experiments rerun",
     "preflight": "BUILD BLOCKED: 0/2 minimum inputs, no ready axes",
+    "experiment_preflight": "BLOCKED: no assigned lane; capacity UNVERIFIED because data/official/sample_submission.tif is absent; 0 experiments and no candidate generated",
+    "registry_capacity_hard_stop": {
+      "current_e649_status": "UNVERIFIED: local pinned sample and registry witness are absent",
+      "historical_upstream_evidence": "19912231 review recorded an 82.341849% geometric overlap lower bound for the 37,654-dot budget; not remeasured here and not a score",
+      "decision": "Do not use the 37,654-dot budget unless a valid current witness and authorized resolution exist; do not evade thresholds with noise or unapproved budget changes"
+    },
     "manifest": "16/16 pinned manifest entries missing locally"
   },
   "review": "docs/REVIEW-ACTIVE-E649E460-20261025.md"
