@@ -10,8 +10,10 @@ on:
       - scripts/render_portal.py
       - scripts/render_s16_portal.py
       - scripts/render_s17_portal.py
+      - scripts/render_s19_portal.py
       - scripts/verify_s16.py
       - scripts/verify_s17.py
+      - scripts/verify_s19.py
       - scripts/verify_current_artifact.py
       - scripts/verify_evidence.py
       - registry/**
@@ -65,6 +67,7 @@ jobs:
           python scripts/verify_evidence.py
           python scripts/verify_s16.py
           python scripts/verify_s17.py
+          python scripts/verify_s19.py
       - run: python scripts/render_portal.py
       - name: Build static site with root and existing /docs/ URLs preserved
         run: |

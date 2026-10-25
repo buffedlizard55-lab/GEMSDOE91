@@ -120,10 +120,49 @@ def parallel_s18_callout(root=ROOT) -> str:
 </section>'''
 
 
+def parallel_s19_svhf_callout(root=ROOT) -> str:
+    """Render the S19-SVHF parallel research download only after rechecking bytes and fail-closed status."""
+    docs = root / "docs"
+    card_path = docs / "run-card-S19-SVHF.json"
+    if not card_path.is_file():
+        return ""
+    card = json.loads(card_path.read_text(encoding="utf-8"))
+    if card.get("ok_to_submit") is not False or card.get("submission_ready") is not False or card.get("verdict") != "negative":
+        raise ValueError("S19-SVHF must remain explicitly not approved for submission")
+    art = card.get("artifact", {})
+    tif = (docs / art["file"]).resolve()
+    archive_path = (docs / art["zip"]).resolve()
+    if not tif.is_relative_to((docs / "downloads").resolve()) or not archive_path.is_relative_to((docs / "downloads").resolve()):
+        raise ValueError("S19-SVHF artifact path escapes docs/downloads")
+    tif_bytes, zip_bytes = tif.read_bytes(), archive_path.read_bytes()
+    if hashlib.sha256(tif_bytes).hexdigest() != card.get("raster_sha256"):
+        raise ValueError("S19-SVHF TIFF hash mismatch")
+    if hashlib.sha256(zip_bytes).hexdigest() != art.get("zip_sha256"):
+        raise ValueError("S19-SVHF ZIP hash mismatch")
+    with zipfile.ZipFile(archive_path) as archive:
+        members = [name for name in archive.namelist() if not name.endswith("/")]
+        if members != [tif.name] or archive.read(members[0]) != tif_bytes:
+            raise ValueError("S19-SVHF ZIP must contain exactly its TIFF bytes")
+    note = card.get("note", "")
+    if not isinstance(note, str) or not 0 < len(note) <= 140:
+        raise ValueError("S19-SVHF note must contain 1–140 characters")
+    name = card["submission_name"]
+    h = card["holdout_dti"]
+    sgmc = card["blind_sgmc_diagnostic"]
+    reg = card["registry_comparison"]
+    return f'''<section class="card" style="border:2px solid #17644e;background:#eef6f1" aria-label="S19-SVHF parallel research artifact; not approved for submission">
+<p><span class="badge">OK TO DOWNLOAD: YES — 18/18 DUAL-DECODER CERTIFIED</span> <span class="badge bad">OK TO SUBMIT: NO — NOT OK TO SUBMIT (0 SLOTS SPENT)</span></p>
+<h2>S19-SVHF E3 · Stitched-OOF Semivariogram, Multi-Scale Hurst &amp; Piedmont Flexure · 37,654 dots</h2>
+<p>100% backbone-orthogonal 58-feature PU hierarchy cross-fitted across 3 nested spatial OOF levels and emitted strictly from the stitched 4-fold OOF surface. Passes <strong>90/90 preregistered competitive (&lt;=80k-dot) rasters</strong> (max 3-px dot overlap <code>{reg["max_competitive_le_80k_3px_overlap"]*100:.2f}% &lt;= 70%</code>; post-merge also passes S18-HGBR <code>46.71%</code>, ISO91 <code>27.31%</code>, S18-UNIQUE <code>13.84%</code>) and lifts blind off-catalogue USGS SGMC discovery to <code>{sgmc["sgmc_gt_300m_dti"]:.6f}</code> (&gt;300 m) / <code>{sgmc["sgmc_gt_500m_dti"]:.6f}</code> (&gt;500 m, <code>{sgmc["dots_gt_10px_farfield_share"]*100:.1f}%</code> &gt;1 km). On <code>{esc(h["evaluator_version"])}</code> (60,988 positives): <code>{h["value"]:.6f} HOLDOUT-DTI</code> [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] (trails S18-HGBR/S17-CPAD; synthetic lattice witness <code>99.85% &gt; 70%</code>).</p>
+<p><a class="button" download href="{esc(art["file"], quote=True)}">↓ Download S19-SVHF GeoTIFF</a> <a class="button outline" download href="{esc(art["zip"], quote=True)}">↓ S19-SVHF Single-TIFF ZIP</a> <a href="s19-svhf.html">Full S19-SVHF Audit</a> · <a href="s19-svhf-executive-summary.html">S19-SVHF DrivenData Guide</a> · <a href="run-card-S19-SVHF.json">Run card</a></p>
+<p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · ZIP SHA-256 <code>{esc(art["zip_sha256"])}</code> · name <code>{esc(name)}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
+</section>'''
+
+
 def render() -> None:
     docs = ROOT / "docs"
     current = front_door(ROOT)  # fail before replacing any published page
-    parallel_card = parallel_s18_callout(ROOT)
+    parallel_card = parallel_s19_svhf_callout(ROOT) + parallel_s18_callout(ROOT)
     for source_name, target_name in ((CURRENT["index_src"], "index.html"),
                                      (CURRENT["exec_src"], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")

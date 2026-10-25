@@ -1,0 +1,17 @@
+{
+  "label": "BLIND-SGMC-PROXY",
+  "sgmc_gt_300m_dti": 0.102428,
+  "sgmc_gt_500m_dti": 0.093415,
+  "retention_500m_over_300m": 0.912011,
+  "dots_le_5px_share": 0.141021,
+  "dots_le_10px_share": 0.308387,
+  "dots_gt_10px_farfield_share": 0.691613,
+  "median_catalogue_distance_px": 18.2483,
+  "quadrant_dot_counts": [
+    21964,
+    8053,
+    1870,
+    5767
+  ],
+  "seam_band_density_ratio_vs_global": 1.0703
+}

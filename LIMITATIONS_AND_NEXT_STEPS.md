@@ -1,4 +1,6 @@
-# Current limitations and next steps: ISO91 (session `arena/bacc7c26-gemsdoe91`, 2026-10-25)
+# Current limitations and next steps — S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16, 2026-10-25
+
+## Parallel merged session: ISO91 (`arena/bacc7c26-gemsdoe91`, 2026-10-25)
 
 **Status:** new unique research GeoTIFF; **OK TO DOWNLOAD: YES**; **OK TO SUBMIT: NO**.
 The preregistered gates G1, G2 and G4 failed. Evidence: `docs/run-card-ISO91.json` and `docs/REVIEW-ISO91-BACC7C26-20261025.md`.
@@ -43,15 +45,29 @@ The preregistered gates G1, G2 and G4 failed. Evidence: `docs/run-card-ISO91.jso
 
 ---
 
-# Previous limitations (superseded)
+# Session 19 (`S19-SVHF`), Session 18 (`S18-HGBR`) & Session 17 Limitations and Next Steps, 2026-10-25
 
-# Current limitations and next steps — S18-HGBR, S17-LFTG, S17-CPAD, OLC91, S17-CDSC, S17-EULR, S17-CGRD & S16, 2026-10-25
-
-This replaces the stale statement that real data cannot be restored. All 15 pinned
+This replaces the stale statement that real data cannot be restored. All 13 licence-clean pinned
 competition and reference inputs in `registry/data_manifest.json` (`sample_submission.tif`,
 `existing_faults.tif`, `gems-geodawn-numerical-features.tif`, `gdr_wellspring_in_footprint.csv`,
 `derived_sgmc_faults_100m_u8.tif`, `GEMSDOE32__h33-2-b2-zeros.tif`, `calib_r13lattice_00904.tif`, etc.)
-were restored and SHA-256 verified in this session. No fake catalogue was used.
+plus all `62` `git_blob` fleet rasters (`scripts/restore_registry.py --available-only`) were restored and
+SHA-256 verified in Session 19. No synthetic or fake catalogue was used.
+
+## Session 19 (`S19-SVHF`, branch `arena/bcc0fcb2-gemsdoe91`) — Stitched-OOF De-Crowding, 90/90 Competitive Uniqueness & Session 20 Next Steps
+
+- **Previous Session Blockers Solved in Session 19 (`src/gems91/svhf19.py`, `scripts/run_s19_svhf.py`):**
+  1. **Solved `S17-LFTG` In-Sample Catalogue-Halo Crowding (`IR-91-S17-LFTG-01` -> `IR-91-S19-02`):** Emitting `svhf_e3` (`37,654` binary `{0.0, 1.0}` dots) strictly from the **stitched 4-fold spatially-blocked out-of-fold (`OOF`) Stage-2 surface** dropped `<=5 px` (`500 m`) catalogue crowding from `43.28%` (`S17-LFTG`) to **`14.10%`**, raised `>1 km` far-field coverage to **`69.16%`** (`26,042` dots), and lifted blind off-catalogue USGS `SGMC >500 m` discovery by **+60.2%** (`0.058293 -> 0.093415`, `91.20%` retention over `SGMC >300 m = 0.102428` — beating `GEMSDOE32 R0 = 0.088789`, `S14-PTAC = 0.071478`, and `S17-CPAD = 0.068915`).
+  2. **Solved `S17-CPAD` / `S17-LFTG` Sibling PU 3-px Overlap (`82.96%` / `87.48%` -> `<=53.20%`):** Building a 100% backbone-orthogonal `58`-feature cube (cross-strike opposite-half-plane semivariogram jumps on flight-line-destriped `B02/B13/B15`, 3-D Laplace tabular gravity worms, multi-scale topographic Hurst breaks & Piedmont-Toe Concave Flexure on `B12/B19`, and local GDR #1391 chemical disequilibrium) cleared **`90/90` competitive (`<=80,000`-dot) submissions AND `96/96` non-blanket (`<=190,000`-dot) rasters** on 3-px dot overlap (`max = 53.20% <= 70%`; `43.80%` vs `GEMSDOE32 R0`, `42.87%` vs `S17-CPAD E1`, `37.84%` vs `S17-LFTG E2`, `44.18%` vs `S14-PTAC E2`) and `100/100` pre-placement Spearman rank-correlation checks (`max |ρ| = 0.1414 <= 0.90`).
+  3. **Solved `3.8 GiB` Sandbox RAM Bottleneck:** Streamed per-band `float32` transforms directly into a disk-backed `float16` memmap with running azimuth accumulators (`<500 MB` peak RSS) and added `--available-only` to `scripts/restore_registry.py` (`IR-91-S19-01`).
+- **Remaining Limitations Blocking Promotion (`ok_to_submit = False`, `0` weekly slots spent):**
+  1. **Holdout Gap (`0.147791` vs `0.198183 S17-CPAD E1`, `IR-91-S19-03`):** On `gems57-pooled-hide-v2` (`60,988` withheld positives), `svhf_e1 = 0.135991` -> `svhf_e2 = 0.146862` (`+0.010871` from nested `QDAC`) -> `svhf_e3 = 0.147791` `[0.132771, 0.162342]` beats `CED91` (`+0.085638`), `S16-PGRD` (`+0.078394`), `gravity_control` (`+0.073768`), and `S17-CWPC E3` (`+0.025324`), but trails `incumbent_ptac_v2` (`0.192208`, `-0.044417`) and `S17-CPAD E1` (`0.198183`, `-0.050392`) for two measured reasons: (a) omitting `DD+SPAC+PTHA` multi-scale Frangi/Hessian/phase crest sharpness lowered per-dot precision (`0.2215` vs `0.2446 TPw/dot`); and (b) `S17-CPAD`'s in-sample training-quadrant scores saturated training collars early during global `37,654`-dot selection, spilling `48,465` cumulative dots across the 4 test folds vs `38,304` (`-21.0%`) under `S19`'s symmetric 3-level cross-fitted OOF surface.
+  2. **Synthetic Whole-Nevada Lattice Witness (`calib_r13lattice_00904.tif`):** The `206,895`-dot synthetic 5-px calibration grid covers `99.85%` of any spread `37,654`-dot map within 3 px (`IR-S16-03`), keeping literal `registry_comparison.final.status = "DUPLICATE"` until a versioned coordinator protocol separates `>190k`-dot synthetic blankets from competitive model submissions.
+  3. **Sandbox Outbound Allowlist & Human Selector Gate:** Direct HTTP access in this sandbox is restricted to `github.com`, `api.github.com`, `codeload.github.com`, `registry.npmjs.org`, `pypi.org`, and `files.pythonhosted.org` (no direct access to `drivendata.org`, `sciencebase.gov`, `asf.alaska.edu`, or `tnmaccess.nationalmap.gov`), and no coordinator lane token or human weekly-slot selector receipt is attached.
+- **Ranked Priority Next Steps for Session 20:**
+  1. **Rank 1 (No new external downloads required — immediate highest expected `HOLDOUT-DTI` + blind `SGMC` lift):** Fuse the top ~36 multi-scale ridge/crest sharpness operators from `DD+SPAC+PTHA+CPAD` (Frangi/Hessian $\lambda_-$, phase congruency, Cooper–Cowan sun-angle phase) with the `SVHF19` semivariogram-jump, multi-scale Hurst, and Piedmont-Toe Concave Flexure features inside **S19's 3-level nested cross-fitted `QDAC` + stitched 4-fold OOF CELF architecture**, adding explicit cross-product ridge-gate terms (`sv_jump * crest_sharpness`) so predictions retain both `>0.200 HOLDOUT-DTI` crest precision AND `>65%` far-field `>1 km` de-crowded generalization while checking `<=70%` competitive 3-px dot overlap at every arm.
+  2. **Rank 2 (Unrestricted machine data ingest — `H19-4`):** Run an unrestricted ingest script against free official USGS 3DEP (`1m_DEM_links.csv`, `tnmaccess.nationalmap.gov`) and NASA ASF Sentinel-1 ARIA InSAR coherence/LOS velocity (`asf.alaska.edu`) to extract sub-meter Holocene piedmont micro-scarps (`0.3–1.5 m` throw invisible in 100-m `B12`) and aseismic fault-creep phase gradients across Nevada playas, pinning the derived `float16` summary bands into `registry/data_manifest.json`.
+  3. **Rank 3 (Coordinator protocol versioning):** Propose a coordinator-signed `registry_policy_v2` separating synthetic `>190,000`-dot calibration blankets (`calib_r13lattice_00904.tif`, `r11_greedy_mp.tif`, `calib_fullband_probe_01841.tif`) from genuine `<=80,000`-dot competition candidates while keeping both numbers side-by-side on every run card.
 
 ## Session 18 (`S18-HGBR`, branch `arena/bba4efce-gemsdoe91`) — Variogram Hurst-Break, Up-Dip Listric Migration & OOF Cover-Rescue Summary & Next Steps
 

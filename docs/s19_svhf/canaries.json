@@ -1,0 +1,800 @@
+{
+  "status": "PASS",
+  "features_tested": 72,
+  "max_symmetric_auc": 0.653453,
+  "max_quadrant_symmetric_auc": 0.710134,
+  "features": {
+    "svar_rtp_destriped_hp": {
+      "raw_auc": 0.497542,
+      "symmetric_auc": 0.502458,
+      "quadrant_symmetric_aucs": [
+        0.502654,
+        0.50687,
+        0.50478,
+        0.512766
+      ],
+      "status": "PASS"
+    },
+    "svar_tmi_destriped_hp": {
+      "raw_auc": 0.494502,
+      "symmetric_auc": 0.505498,
+      "quadrant_symmetric_aucs": [
+        0.501287,
+        0.504342,
+        0.515753,
+        0.518948
+      ],
+      "status": "PASS"
+    },
+    "svar_tc_destriped_hp": {
+      "raw_auc": 0.443174,
+      "symmetric_auc": 0.556826,
+      "quadrant_symmetric_aucs": [
+        0.535797,
+        0.596304,
+        0.574603,
+        0.561027
+      ],
+      "status": "PASS"
+    },
+    "svar_flightline_seam_ratio": {
+      "raw_auc": 0.508097,
+      "symmetric_auc": 0.508097,
+      "quadrant_symmetric_aucs": [
+        0.511466,
+        0.515066,
+        0.537908,
+        0.517004
+      ],
+      "status": "PASS"
+    },
+    "svar_rtp_aniso_200m": {
+      "raw_auc": 0.520683,
+      "symmetric_auc": 0.520683,
+      "quadrant_symmetric_aucs": [
+        0.516766,
+        0.534121,
+        0.525727,
+        0.532184
+      ],
+      "status": "PASS"
+    },
+    "svar_rtp_hurst_exp": {
+      "raw_auc": 0.491949,
+      "symmetric_auc": 0.508051,
+      "quadrant_symmetric_aucs": [
+        0.507319,
+        0.507309,
+        0.519801,
+        0.508547
+      ],
+      "status": "PASS"
+    },
+    "svar_rtp_halfplane_sill_jump": {
+      "raw_auc": 0.498606,
+      "symmetric_auc": 0.501394,
+      "quadrant_symmetric_aucs": [
+        0.502655,
+        0.503695,
+        0.514587,
+        0.502503
+      ],
+      "status": "PASS"
+    },
+    "svar_rtp_hurst_step": {
+      "raw_auc": 0.498718,
+      "symmetric_auc": 0.501282,
+      "quadrant_symmetric_aucs": [
+        0.500965,
+        0.508787,
+        0.508812,
+        0.509421
+      ],
+      "status": "PASS"
+    },
+    "svar_grav_aniso_200m": {
+      "raw_auc": 0.502894,
+      "symmetric_auc": 0.502894,
+      "quadrant_symmetric_aucs": [
+        0.503368,
+        0.500003,
+        0.51698,
+        0.532643
+      ],
+      "status": "PASS"
+    },
+    "svar_grav_hurst_exp": {
+      "raw_auc": 0.506797,
+      "symmetric_auc": 0.506797,
+      "quadrant_symmetric_aucs": [
+        0.511858,
+        0.515401,
+        0.533259,
+        0.513698
+      ],
+      "status": "PASS"
+    },
+    "svar_grav_halfplane_sill_jump": {
+      "raw_auc": 0.517865,
+      "symmetric_auc": 0.517865,
+      "quadrant_symmetric_aucs": [
+        0.520745,
+        0.545606,
+        0.518564,
+        0.503525
+      ],
+      "status": "PASS"
+    },
+    "svar_grav_hurst_step": {
+      "raw_auc": 0.510866,
+      "symmetric_auc": 0.510866,
+      "quadrant_symmetric_aucs": [
+        0.521805,
+        0.527528,
+        0.50326,
+        0.526513
+      ],
+      "status": "PASS"
+    },
+    "svar_base_aniso_200m": {
+      "raw_auc": 0.513714,
+      "symmetric_auc": 0.513714,
+      "quadrant_symmetric_aucs": [
+        0.507232,
+        0.531376,
+        0.509906,
+        0.568845
+      ],
+      "status": "PASS"
+    },
+    "svar_base_hurst_exp": {
+      "raw_auc": 0.520649,
+      "symmetric_auc": 0.520649,
+      "quadrant_symmetric_aucs": [
+        0.52121,
+        0.549801,
+        0.552243,
+        0.543287
+      ],
+      "status": "PASS"
+    },
+    "svar_base_halfplane_sill_jump": {
+      "raw_auc": 0.506971,
+      "symmetric_auc": 0.506971,
+      "quadrant_symmetric_aucs": [
+        0.51496,
+        0.530131,
+        0.5296,
+        0.51324
+      ],
+      "status": "PASS"
+    },
+    "svar_base_hurst_step": {
+      "raw_auc": 0.504594,
+      "symmetric_auc": 0.504594,
+      "quadrant_symmetric_aucs": [
+        0.513278,
+        0.521869,
+        0.502317,
+        0.527144
+      ],
+      "status": "PASS"
+    },
+    "tens_grav_cos_theta_200m": {
+      "raw_auc": 0.46233,
+      "symmetric_auc": 0.53767,
+      "quadrant_symmetric_aucs": [
+        0.531742,
+        0.555296,
+        0.52674,
+        0.546825
+      ],
+      "status": "PASS"
+    },
+    "tens_grav_cos_theta_600m": {
+      "raw_auc": 0.460161,
+      "symmetric_auc": 0.539839,
+      "quadrant_symmetric_aucs": [
+        0.531439,
+        0.553762,
+        0.53661,
+        0.567203
+      ],
+      "status": "PASS"
+    },
+    "tens_grav_worm_200m": {
+      "raw_auc": 0.50705,
+      "symmetric_auc": 0.50705,
+      "quadrant_symmetric_aucs": [
+        0.507738,
+        0.505918,
+        0.527533,
+        0.506244
+      ],
+      "status": "PASS"
+    },
+    "tens_grav_worm_600m": {
+      "raw_auc": 0.52859,
+      "symmetric_auc": 0.52859,
+      "quadrant_symmetric_aucs": [
+        0.5282,
+        0.519558,
+        0.530382,
+        0.512219
+      ],
+      "status": "PASS"
+    },
+    "tens_grav_worm_persist": {
+      "raw_auc": 0.521577,
+      "symmetric_auc": 0.521577,
+      "quadrant_symmetric_aucs": [
+        0.521977,
+        0.507423,
+        0.534254,
+        0.511579
+      ],
+      "status": "PASS"
+    },
+    "tens_grav_pedersen_q2d": {
+      "raw_auc": 0.496993,
+      "symmetric_auc": 0.503007,
+      "quadrant_symmetric_aucs": [
+        0.501132,
+        0.502388,
+        0.515812,
+        0.502545
+      ],
+      "status": "PASS"
+    },
+    "tens_grav_tabular_worm": {
+      "raw_auc": 0.4975,
+      "symmetric_auc": 0.5025,
+      "quadrant_symmetric_aucs": [
+        0.502734,
+        0.502987,
+        0.513701,
+        0.502905
+      ],
+      "status": "PASS"
+    },
+    "tens_rtp_cos_theta_250m": {
+      "raw_auc": 0.497965,
+      "symmetric_auc": 0.502035,
+      "quadrant_symmetric_aucs": [
+        0.505073,
+        0.509182,
+        0.504802,
+        0.510133
+      ],
+      "status": "PASS"
+    },
+    "tens_rtp_worm_250m": {
+      "raw_auc": 0.512782,
+      "symmetric_auc": 0.512782,
+      "quadrant_symmetric_aucs": [
+        0.51318,
+        0.504293,
+        0.531671,
+        0.503212
+      ],
+      "status": "PASS"
+    },
+    "tens_grav_mag_worm_concord": {
+      "raw_auc": 0.513305,
+      "symmetric_auc": 0.513305,
+      "quadrant_symmetric_aucs": [
+        0.512866,
+        0.509419,
+        0.537487,
+        0.504722
+      ],
+      "status": "PASS"
+    },
+    "hyd_geotherm_diseq_local": {
+      "raw_auc": 0.502041,
+      "symmetric_auc": 0.502041,
+      "quadrant_symmetric_aucs": [
+        0.502473,
+        0.514111,
+        0.507355,
+        0.500904
+      ],
+      "status": "PASS"
+    },
+    "hyd_thermal_upflow_local": {
+      "raw_auc": 0.506806,
+      "symmetric_auc": 0.506806,
+      "quadrant_symmetric_aucs": [
+        0.502906,
+        0.512018,
+        0.508036,
+        0.512102
+      ],
+      "status": "PASS"
+    },
+    "hyd_claycap_cond_resid": {
+      "raw_auc": 0.500494,
+      "symmetric_auc": 0.500494,
+      "quadrant_symmetric_aucs": [
+        0.515114,
+        0.50154,
+        0.522231,
+        0.508929
+      ],
+      "status": "PASS"
+    },
+    "hyd_mag_destruction_claycap": {
+      "raw_auc": 0.502564,
+      "symmetric_auc": 0.502564,
+      "quadrant_symmetric_aucs": [
+        0.511952,
+        0.514717,
+        0.513448,
+        0.518085
+      ],
+      "status": "PASS"
+    },
+    "hyd_rad_k_alteration_grad": {
+      "raw_auc": 0.506201,
+      "symmetric_auc": 0.506201,
+      "quadrant_symmetric_aucs": [
+        0.500552,
+        0.510426,
+        0.507627,
+        0.51122
+      ],
+      "status": "PASS"
+    },
+    "hyd_transtension_index": {
+      "raw_auc": 0.499859,
+      "symmetric_auc": 0.500141,
+      "quadrant_symmetric_aucs": [
+        0.509671,
+        0.50188,
+        0.501405,
+        0.550274
+      ],
+      "status": "PASS"
+    },
+    "hyd_shear_strain_local": {
+      "raw_auc": 0.509744,
+      "symmetric_auc": 0.509744,
+      "quadrant_symmetric_aucs": [
+        0.502355,
+        0.507759,
+        0.509638,
+        0.542219
+      ],
+      "status": "PASS"
+    },
+    "hyd_dilatation_local": {
+      "raw_auc": 0.510696,
+      "symmetric_auc": 0.510696,
+      "quadrant_symmetric_aucs": [
+        0.50366,
+        0.502783,
+        0.528025,
+        0.537522
+      ],
+      "status": "PASS"
+    },
+    "hyd_seismic_conduit_index": {
+      "raw_auc": 0.465376,
+      "symmetric_auc": 0.534624,
+      "quadrant_symmetric_aucs": [
+        0.51455,
+        0.50045,
+        0.515898,
+        0.535042
+      ],
+      "status": "PASS"
+    },
+    "hyd_basement_grad_worm": {
+      "raw_auc": 0.528572,
+      "symmetric_auc": 0.528572,
+      "quadrant_symmetric_aucs": [
+        0.510975,
+        0.53384,
+        0.53279,
+        0.518443
+      ],
+      "status": "PASS"
+    },
+    "hyd_basement_accommodation_saddle": {
+      "raw_auc": 0.517913,
+      "symmetric_auc": 0.517913,
+      "quadrant_symmetric_aucs": [
+        0.511317,
+        0.532929,
+        0.520273,
+        0.551869
+      ],
+      "status": "PASS"
+    },
+    "sub_b03_tmi_hg_local": {
+      "raw_auc": 0.513806,
+      "symmetric_auc": 0.513806,
+      "quadrant_symmetric_aucs": [
+        0.516085,
+        0.518049,
+        0.512644,
+        0.514832
+      ],
+      "status": "PASS"
+    },
+    "sub_b05_grav_slope_local": {
+      "raw_auc": 0.525822,
+      "symmetric_auc": 0.525822,
+      "quadrant_symmetric_aucs": [
+        0.522739,
+        0.552633,
+        0.510656,
+        0.522281
+      ],
+      "status": "PASS"
+    },
+    "sub_b09_tmi_vg_local": {
+      "raw_auc": 0.489409,
+      "symmetric_auc": 0.510591,
+      "quadrant_symmetric_aucs": [
+        0.503562,
+        0.511198,
+        0.518671,
+        0.529606
+      ],
+      "status": "PASS"
+    },
+    "sub_b11_grav_vg_local": {
+      "raw_auc": 0.50439,
+      "symmetric_auc": 0.50439,
+      "quadrant_symmetric_aucs": [
+        0.501956,
+        0.503643,
+        0.506692,
+        0.531584
+      ],
+      "status": "PASS"
+    },
+    "sub_b18_grav_hg_local": {
+      "raw_auc": 0.487299,
+      "symmetric_auc": 0.512701,
+      "quadrant_symmetric_aucs": [
+        0.530672,
+        0.516198,
+        0.504316,
+        0.512498
+      ],
+      "status": "PASS"
+    },
+    "hpfc_hurst_short_150_450": {
+      "raw_auc": 0.482843,
+      "symmetric_auc": 0.517157,
+      "quadrant_symmetric_aucs": [
+        0.503022,
+        0.521493,
+        0.544459,
+        0.531469
+      ],
+      "status": "PASS"
+    },
+    "hpfc_hurst_meso_450_1200": {
+      "raw_auc": 0.445697,
+      "symmetric_auc": 0.554303,
+      "quadrant_symmetric_aucs": [
+        0.548793,
+        0.537077,
+        0.591482,
+        0.546871
+      ],
+      "status": "PASS"
+    },
+    "hpfc_hurst_scale_break": {
+      "raw_auc": 0.45701,
+      "symmetric_auc": 0.54299,
+      "quadrant_symmetric_aucs": [
+        0.550841,
+        0.525666,
+        0.552973,
+        0.525685
+      ],
+      "status": "PASS"
+    },
+    "hpfc_hurst_step_grad": {
+      "raw_auc": 0.577566,
+      "symmetric_auc": 0.577566,
+      "quadrant_symmetric_aucs": [
+        0.550641,
+        0.619933,
+        0.602305,
+        0.569184
+      ],
+      "status": "PASS"
+    },
+    "hpfc_ptcf_150m": {
+      "raw_auc": 0.472262,
+      "symmetric_auc": 0.527738,
+      "quadrant_symmetric_aucs": [
+        0.516957,
+        0.55866,
+        0.522591,
+        0.524818
+      ],
+      "status": "PASS"
+    },
+    "hpfc_ptcf_400m": {
+      "raw_auc": 0.468529,
+      "symmetric_auc": 0.531471,
+      "quadrant_symmetric_aucs": [
+        0.520425,
+        0.577599,
+        0.514936,
+        0.548431
+      ],
+      "status": "PASS"
+    },
+    "hpfc_ptcf_900m": {
+      "raw_auc": 0.469135,
+      "symmetric_auc": 0.530865,
+      "quadrant_symmetric_aucs": [
+        0.512801,
+        0.589617,
+        0.510846,
+        0.552184
+      ],
+      "status": "PASS"
+    },
+    "hpfc_convex_crest_300m": {
+      "raw_auc": 0.570523,
+      "symmetric_auc": 0.570523,
+      "quadrant_symmetric_aucs": [
+        0.557172,
+        0.620494,
+        0.574869,
+        0.570868
+      ],
+      "status": "PASS"
+    },
+    "hpfc_scarp_dipole_400m": {
+      "raw_auc": 0.543284,
+      "symmetric_auc": 0.543284,
+      "quadrant_symmetric_aucs": [
+        0.542613,
+        0.511945,
+        0.590439,
+        0.541858
+      ],
+      "status": "PASS"
+    },
+    "hpfc_slope_local_100m": {
+      "raw_auc": 0.519019,
+      "symmetric_auc": 0.519019,
+      "quadrant_symmetric_aucs": [
+        0.509207,
+        0.535808,
+        0.52105,
+        0.54179
+      ],
+      "status": "PASS"
+    },
+    "hpfc_slope_ridge_coherence": {
+      "raw_auc": 0.518888,
+      "symmetric_auc": 0.518888,
+      "quadrant_symmetric_aucs": [
+        0.517867,
+        0.519853,
+        0.530297,
+        0.510954
+      ],
+      "status": "PASS"
+    },
+    "hpfc_elev_local_300m": {
+      "raw_auc": 0.423961,
+      "symmetric_auc": 0.576039,
+      "quadrant_symmetric_aucs": [
+        0.554044,
+        0.605083,
+        0.597969,
+        0.572075
+      ],
+      "status": "PASS"
+    },
+    "hpfc_elev_local_1200m": {
+      "raw_auc": 0.413837,
+      "symmetric_auc": 0.586163,
+      "quadrant_symmetric_aucs": [
+        0.561161,
+        0.654574,
+        0.581452,
+        0.606299
+      ],
+      "status": "PASS"
+    },
+    "hpfc_profile_curv_400m": {
+      "raw_auc": 0.392038,
+      "symmetric_auc": 0.607962,
+      "quadrant_symmetric_aucs": [
+        0.592152,
+        0.670493,
+        0.588805,
+        0.622558
+      ],
+      "status": "PASS"
+    },
+    "hpfc_subsurf_corrob_ptcf": {
+      "raw_auc": 0.480897,
+      "symmetric_auc": 0.519103,
+      "quadrant_symmetric_aucs": [
+        0.509974,
+        0.554331,
+        0.511726,
+        0.532722
+      ],
+      "status": "PASS"
+    },
+    "hpfc_cover_ness_index": {
+      "raw_auc": 0.479176,
+      "symmetric_auc": 0.520824,
+      "quadrant_symmetric_aucs": [
+        0.5182,
+        0.518847,
+        0.570408,
+        0.525479
+      ],
+      "status": "PASS"
+    },
+    "qdac_full_std_prob": {
+      "raw_auc": 0.653453,
+      "symmetric_auc": 0.653453,
+      "quadrant_symmetric_aucs": [
+        0.631683,
+        0.710134,
+        0.644878,
+        0.669962
+      ],
+      "status": "PASS"
+    },
+    "qdac_full_axial_max_600m": {
+      "raw_auc": 0.648183,
+      "symmetric_auc": 0.648183,
+      "quadrant_symmetric_aucs": [
+        0.632746,
+        0.694491,
+        0.635351,
+        0.671402
+      ],
+      "status": "PASS"
+    },
+    "qdac_full_axial_runnerup_600m": {
+      "raw_auc": 0.648731,
+      "symmetric_auc": 0.648731,
+      "quadrant_symmetric_aucs": [
+        0.633252,
+        0.695314,
+        0.635717,
+        0.672241
+      ],
+      "status": "PASS"
+    },
+    "qdac_full_axial_coherence_600m": {
+      "raw_auc": 0.510722,
+      "symmetric_auc": 0.510722,
+      "quadrant_symmetric_aucs": [
+        0.510025,
+        0.505052,
+        0.501081,
+        0.514118
+      ],
+      "status": "PASS"
+    },
+    "qdac_full_axial_persist_1300m": {
+      "raw_auc": 0.638143,
+      "symmetric_auc": 0.638143,
+      "quadrant_symmetric_aucs": [
+        0.624288,
+        0.679563,
+        0.62571,
+        0.660116
+      ],
+      "status": "PASS"
+    },
+    "qdac_full_relay_bridge_900m": {
+      "raw_auc": 0.641683,
+      "symmetric_auc": 0.641683,
+      "quadrant_symmetric_aucs": [
+        0.627649,
+        0.681802,
+        0.630062,
+        0.661262
+      ],
+      "status": "PASS"
+    },
+    "qdac_full_stepover_saddle_500m": {
+      "raw_auc": 0.645473,
+      "symmetric_auc": 0.645473,
+      "quadrant_symmetric_aucs": [
+        0.630174,
+        0.687137,
+        0.631913,
+        0.665433
+      ],
+      "status": "PASS"
+    },
+    "qdac_sub_std_prob": {
+      "raw_auc": 0.5623,
+      "symmetric_auc": 0.5623,
+      "quadrant_symmetric_aucs": [
+        0.554477,
+        0.600193,
+        0.542298,
+        0.559263
+      ],
+      "status": "PASS"
+    },
+    "qdac_sub_axial_max_600m": {
+      "raw_auc": 0.571841,
+      "symmetric_auc": 0.571841,
+      "quadrant_symmetric_aucs": [
+        0.565774,
+        0.625143,
+        0.536501,
+        0.570433
+      ],
+      "status": "PASS"
+    },
+    "qdac_sub_axial_runnerup_600m": {
+      "raw_auc": 0.571781,
+      "symmetric_auc": 0.571781,
+      "quadrant_symmetric_aucs": [
+        0.565712,
+        0.624867,
+        0.53675,
+        0.570427
+      ],
+      "status": "PASS"
+    },
+    "qdac_sub_axial_coherence_600m": {
+      "raw_auc": 0.513011,
+      "symmetric_auc": 0.513011,
+      "quadrant_symmetric_aucs": [
+        0.512562,
+        0.527434,
+        0.508635,
+        0.50612
+      ],
+      "status": "PASS"
+    },
+    "qdac_sub_axial_persist_1300m": {
+      "raw_auc": 0.573424,
+      "symmetric_auc": 0.573424,
+      "quadrant_symmetric_aucs": [
+        0.568646,
+        0.630332,
+        0.532042,
+        0.570196
+      ],
+      "status": "PASS"
+    },
+    "qdac_sub_relay_bridge_900m": {
+      "raw_auc": 0.571977,
+      "symmetric_auc": 0.571977,
+      "quadrant_symmetric_aucs": [
+        0.571423,
+        0.627535,
+        0.532359,
+        0.56544
+      ],
+      "status": "PASS"
+    },
+    "qdac_sub_stepover_saddle_500m": {
+      "raw_auc": 0.570796,
+      "symmetric_auc": 0.570796,
+      "quadrant_symmetric_aucs": [
+        0.567522,
+        0.626415,
+        0.533554,
+        0.565446
+      ],
+      "status": "PASS"
+    }
+  }
+}

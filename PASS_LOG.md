@@ -1,4 +1,22 @@
-# GEMSDOE91 — Multi-Pass Verification Log (session `bacc7c26`, ISO91, `arena/bacc7c26-gemsdoe91`)
+# GEMSDOE91 — Multi-Pass Verification Log (Session 19 `S19-SVHF`, `arena/bcc0fcb2-gemsdoe91`)
+
+## Session 19 (`S19-SVHF`, branch `arena/bcc0fcb2-gemsdoe91`, 2026-10-25)
+
+### Pass 1 — Deep Research, Preregistration, Streaming `<500 MB` Implementation & 3-Experiment Run (COMPLETED)
+- [x] Restored and SHA-256 verified all 13 licence-clean inputs in `registry/data_manifest.json` (`scripts/restore_data.py`), built `data/derived/catalogue_mask.tif`, added `--available-only` to `scripts/restore_registry.py` (`IR-91-S19-01`), and restored `62` `git_blob` fleet rasters (`100` unique comparison rasters in `registry/s19_comparison_inventory.json`).
+- [x] Authored `docs/GEOTHERMAL_VENT_RESEARCH_S19.md` (10 official sources, `GEMSDOE32` `0.2778` anatomy, cross-fleet audit, and 12-raster `HOLDOUT-DTI` vs `SGMC >300 m` / `>500 m` calibration proof) and froze preregistered hypotheses `H19-1..H19-4` + 3-experiment matrix `E1..E3` in `docs/HYPOTHESES_S19_SVHF.md` (`sha256: 17babf91835131b975d331a60d48f3db55fe84152c030fdbfd4c9e17bd059d96`).
+- [x] Implemented `src/gems91/svhf19.py` (band-by-band `<500 MB` streaming `58`-col `SVHF19` feature cube, `42`-col bitwise `B12/B19`-free subsurface specialist verified `max_b12_b19_diff == 0.0`, 3-level nested spatial cross-fitting `solo`/`pair`/`oof`, `14`-col `QDAC` Stage-2 fusion, and stitched 4-fold OOF `300 m` CELF submodular dot emission) and `scripts/run_s19_svhf.py`.
+- [x] Executed `E1..E3` (`72/72` canaries `PASS`, `max global AUC = 0.653453 <= 0.90`; `svhf_e1 = 0.135991`, `svhf_e2 = 0.146862`, `svhf_e3 = 0.147791 HOLDOUT-DTI`; Blind `SGMC >300 m = 0.102428`, `SGMC >500 m = 0.093415`, `69.16%` `>1 km` far-field; `90/90` competitive `<=80k`-dot 3-px overlap `PASS` at `max = 53.20% <= 70%`) and wrote `docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.{tif,zip}` + `docs/run-card-S19-SVHF.json`.
+
+### Pass 2 — Critical Bug, Edge-Case, Portal & Governance Review (COMPLETED)
+- [x] Built `scripts/verify_s19.py` (dual-decoder `tifffile` + `rasterio` verification of GeoTIFF + single-TIFF ZIP, `[0, 1]` bounds, `0` NaN/Inf, `EPSG:32611`, affine transform, `>3.0 px` dot spacing & catalogue collar, preregistration & `vendor/gems57/*` SHA-256 locks, and fail-closed readiness) and `scripts/render_s19_portal.py` (`docs/s19-svhf.html`, `docs/s19-svhf-executive-summary.html`, `docs/assets/s19-svhf-support.png` from derived predictions only).
+- [x] Caught and fixed `test_s16_integrity.py` single-`data-submission-ready="false"` invariant across `docs/index.html`, `docs/executive-summary.html`, `docs/s19-svhf.html`, and `docs/s19-svhf-executive-summary.html`; fixed `111/140` submission-note length label; merged `origin/main` (`ISO91`, `S18-HGBR`, `S18-UNIQUE`), verified `S19-SVHF E3` passes 3-px overlap against all 3 newly merged rasters too (`46.71%` vs `S18-HGBR`, `27.31%` vs `ISO91`, `13.84%` vs `S18-UNIQUE`), updated `registry/artifact_policy.json` (`95` registered artifacts) and regenerated `docs/download-audit.{json,html}`.
+- [x] Added `tests/test_s19_svhf.py` and extended `tools/browser/smoke.cjs`, `tests/test_submission_portal.py`, and `.github/workflows/{ci,pages}.yml`.
+
+### Pass 3 — End-to-End Re-Verification Against Full Standing Prompt (COMPLETED)
+- [x] Re-rendered portal (`scripts/render_portal.py`) and verified byte-for-byte reproducibility, `check_artifact_policy.py` (`95` artifacts PASS), `audit_downloads.py` (`0` diff), full `pytest`, `make demo`, `verify_frontdoor.py`, `verify_current_artifact.py --with-data`, `verify_evidence.py`, `verify_s16.py --with-data`, `verify_s17.py --with-data`, `verify_s19.py --with-data`, and real Chromium + axe-core WCAG 2.1 AA + 390px mobile + SHA-256 download smoke checks (`node tools/browser/smoke.cjs`).
+
+---
 
 ## Session bacc7c26 (ISO91, 2026-10-25)
 
