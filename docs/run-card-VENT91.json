@@ -1,0 +1,765 @@
+{
+  "schema_version": "gems91.vent.v1",
+  "generated_utc": "2026-10-25T01:07:29Z",
+  "branch": "arena/43d1cb2b-gemsdoe91",
+  "preregistration": {
+    "path": "docs/HYPOTHESES_VENT91.md",
+    "sha256": "05ea751aea28467e80a2fea707043030b75121f5c0f747f2cd80ebe95d33ccba"
+  },
+  "lane": {
+    "id": "VENT91-E3",
+    "assigned": false,
+    "provisional_name": "Piedmont Flexure Profile-Curvature + Depth-Conditioned Conductivity Clay-Cap + Bouguer-Stripped Basement Gravity + Dinkelbach Allocation",
+    "note": "Prompt references single method paragraph without supplying external selector paragraph (IR-91-S12-01); lane self-declared and frozen in docs/HYPOTHESES_VENT91.md prior to holdout."
+  },
+  "hypothesis": "Piedmont Flexure Profile-Curvature Monocline Warp (400m+1000m) + PTHA H13-1 + Fold-Independent Dinkelbach Expected-DTI Allocation",
+  "hypothesis_id": "VENT-1 + VENT-Dink",
+  "physical_mechanism": "Piedmont tip-propagation monocline detected via LoG profile curvature (400m & 1000m) orthogonal to regional slope, depth-conditioned B17 conductivity residual (12 quantile bins) isolating smectite clay-cap vs basin brine, and Bouguer-stripped B13 gravity residual (R2 0.4664 depth regression) exposing intra-basement horst steps; all fed to HGB+LR ensemble with Topography-Blind Subsurface Specialist and Dinkelbach Expected-DTI submodular dot allocation.",
+  "named_non_fault_mimic_process": "Lahontan terrace risers, saline playa brines, basin-margin lithologic horsts, barren playa probability blobs",
+  "comparable_prior_holdout_best": {
+    "candidate_id": "gems91-s11-mhtr-e2-20261024T175200Z-2d49dc6f",
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "split_sha256": "0f874367d8d34964c9b8802d3d67d348f68ade1f9fbc4301bffc5eafcb524db8",
+    "label": "HOLDOUT-DTI",
+    "value": 0.206406,
+    "ci95": [
+      0.193796,
+      0.220176
+    ],
+    "withheld_positives": 60988
+  },
+  "s11_reference": {
+    "candidate_id": "gems91-s11-mhtr-e2-20261024T175200Z-2d49dc6f",
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "split_sha256": "0f874367d8d34964c9b8802d3d67d348f68ade1f9fbc4301bffc5eafcb524db8",
+    "label": "HOLDOUT-DTI",
+    "value": 0.206406,
+    "ci95": [
+      0.193796,
+      0.220176
+    ],
+    "withheld_positives": 60988
+  },
+  "holdout_dti": {
+    "status": "COMPLETED",
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "split_sha256": "0f874367d8d34964c9b8802d3d67d348f68ade1f9fbc4301bffc5eafcb524db8",
+    "value": 0.254584,
+    "ci95": [
+      0.240093,
+      0.267215
+    ],
+    "withheld_positives": 60988,
+    "paired_vs_s11": {
+      "baseline_id": "S11-MHTR-E2",
+      "delta": 0.04817799999999997,
+      "ci95": [
+        0.040726,
+        0.056524
+      ],
+      "prob_positive": 1.0,
+      "n_paired_5km_tiles": 2008
+    },
+    "paired_vs_s13_delta": 0.009983,
+    "per_fold": [
+      {
+        "fold_id": 0,
+        "name": "NW",
+        "n_withheld_positives": 10757,
+        "n_segments_withheld": 151,
+        "emitted_mass": 6500.0,
+        "T": 2268.914,
+        "M": 964.0,
+        "fold_dti": 0.223174
+      },
+      {
+        "fold_id": 1,
+        "name": "NE",
+        "n_withheld_positives": 12051,
+        "n_segments_withheld": 247,
+        "emitted_mass": 11462.0,
+        "T": 4061.855,
+        "M": 1756.0,
+        "fold_dti": 0.327718
+      },
+      {
+        "fold_id": 2,
+        "name": "SW",
+        "n_withheld_positives": 20541,
+        "n_segments_withheld": 327,
+        "emitted_mass": 12584.0,
+        "T": 3574.438,
+        "M": 1516.0,
+        "fold_dti": 0.184618
+      },
+      {
+        "fold_id": 3,
+        "name": "SE",
+        "n_withheld_positives": 17639,
+        "n_segments_withheld": 188,
+        "emitted_mass": 11464.0,
+        "T": 5097.54,
+        "M": 2077.0,
+        "fold_dti": 0.299712
+      }
+    ],
+    "paired_best": {
+      "baseline_id": "S11-MHTR-E2",
+      "delta": 0.04817799999999997,
+      "ci95": [
+        0.040726,
+        0.056524
+      ],
+      "prob_positive": 1.0,
+      "n_paired_5km_tiles": 2008
+    }
+  },
+  "blind_sgmc_offcatalogue_control": {
+    "label": "BLIND-SGMC-CONTROL-DTI",
+    "value": 0.100527,
+    "r0_reference_value": 0.095386,
+    "s11_e2_reference_value": 0.097623,
+    "delta_vs_r0": 0.005141,
+    "n_offcatalogue_sgmc_positives": 62122
+  },
+  "canaries": {
+    "status": "PASS",
+    "n_features_checked": 81,
+    "max_symmetric_auc": 0.6647,
+    "worst_feature": "ptha_step_elev_abs",
+    "threshold": 0.9
+  },
+  "registry_comparison": {
+    "complete_universal_registry": false,
+    "canonical_registry_scope": {
+      "n_checked": 8,
+      "pass": true,
+      "max_abs_surface_spearman": 0.142671,
+      "surface_closest_raster": "calib_h161_01855.tif",
+      "max_3px_dot_overlap": 0.529023,
+      "dots_closest_raster": "calib_h161_01855.tif",
+      "top_5_by_overlap": [
+        {
+          "raster": "calib_h161_01855.tif",
+          "n_reg_positives": 123939,
+          "surface_spearman_rho": 0.142671,
+          "dots_spearman_rho": 0.034189,
+          "dots_within_3px_fraction": 0.529023
+        },
+        {
+          "raster": "calib_h194_01894.tif",
+          "n_reg_positives": 123779,
+          "surface_spearman_rho": 0.141873,
+          "dots_spearman_rho": 0.033966,
+          "dots_within_3px_fraction": 0.516818
+        },
+        {
+          "raster": "calib_h195_01922.tif",
+          "n_reg_positives": 121131,
+          "surface_spearman_rho": 0.14264,
+          "dots_spearman_rho": 0.032005,
+          "dots_within_3px_fraction": 0.50475
+        },
+        {
+          "raster": "calib_d15_02477.tif",
+          "n_reg_positives": 60069,
+          "surface_spearman_rho": 0.094841,
+          "dots_spearman_rho": 0.021214,
+          "dots_within_3px_fraction": 0.478023
+        },
+        {
+          "raster": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+          "n_reg_positives": 44090,
+          "surface_spearman_rho": 0.070171,
+          "dots_spearman_rho": 0.016615,
+          "dots_within_3px_fraction": 0.458795
+        }
+      ]
+    },
+    "external_dotted_fleet_scope": {
+      "n_checked": 3,
+      "pass": true,
+      "max_abs_surface_spearman": 0.094841,
+      "surface_closest_raster": "calib_d15_02477.tif",
+      "max_3px_dot_overlap": 0.478023,
+      "dots_closest_raster": "calib_d15_02477.tif",
+      "top_5_by_overlap": [
+        {
+          "raster": "calib_d15_02477.tif",
+          "n_reg_positives": 60069,
+          "surface_spearman_rho": 0.094841,
+          "dots_spearman_rho": 0.021214,
+          "dots_within_3px_fraction": 0.478023
+        },
+        {
+          "raster": "GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+          "n_reg_positives": 40199,
+          "surface_spearman_rho": 0.058434,
+          "dots_spearman_rho": 0.018222,
+          "dots_within_3px_fraction": 0.445409
+        },
+        {
+          "raster": "GEMSDOE32__h33-2-b2-zeros.tif",
+          "n_reg_positives": 37654,
+          "surface_spearman_rho": 0.051635,
+          "dots_spearman_rho": 0.01928,
+          "dots_within_3px_fraction": 0.428
+        }
+      ]
+    },
+    "external_all_non_lattice_scope": {
+      "n_checked": 6,
+      "pass": true,
+      "max_abs_surface_spearman": 0.142671,
+      "surface_closest_raster": "calib_h161_01855.tif",
+      "max_3px_dot_overlap": 0.529023,
+      "dots_closest_raster": "calib_h161_01855.tif",
+      "top_5_by_overlap": [
+        {
+          "raster": "calib_h161_01855.tif",
+          "n_reg_positives": 123939,
+          "surface_spearman_rho": 0.142671,
+          "dots_spearman_rho": 0.034189,
+          "dots_within_3px_fraction": 0.529023
+        },
+        {
+          "raster": "calib_h194_01894.tif",
+          "n_reg_positives": 123779,
+          "surface_spearman_rho": 0.141873,
+          "dots_spearman_rho": 0.033966,
+          "dots_within_3px_fraction": 0.516818
+        },
+        {
+          "raster": "calib_h195_01922.tif",
+          "n_reg_positives": 121131,
+          "surface_spearman_rho": 0.14264,
+          "dots_spearman_rho": 0.032005,
+          "dots_within_3px_fraction": 0.50475
+        },
+        {
+          "raster": "calib_d15_02477.tif",
+          "n_reg_positives": 60069,
+          "surface_spearman_rho": 0.094841,
+          "dots_spearman_rho": 0.021214,
+          "dots_within_3px_fraction": 0.478023
+        },
+        {
+          "raster": "GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+          "n_reg_positives": 40199,
+          "surface_spearman_rho": 0.058434,
+          "dots_spearman_rho": 0.018222,
+          "dots_within_3px_fraction": 0.445409
+        }
+      ]
+    },
+    "in_repo_siblings_scope": {
+      "n_checked": 13,
+      "pass": false,
+      "max_abs_surface_spearman": 0.200256,
+      "surface_closest_raster": "gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+      "max_3px_dot_overlap": 0.921205,
+      "dots_closest_raster": "gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+      "top_5_by_overlap": [
+        {
+          "raster": "gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+          "n_reg_positives": 44000,
+          "surface_spearman_rho": 0.200256,
+          "dots_spearman_rho": 0.3545,
+          "dots_within_3px_fraction": 0.921205
+        },
+        {
+          "raster": "gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+          "n_reg_positives": 54000,
+          "surface_spearman_rho": 0.126051,
+          "dots_spearman_rho": 0.071257,
+          "dots_within_3px_fraction": 0.844886
+        },
+        {
+          "raster": "gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif",
+          "n_reg_positives": 48000,
+          "surface_spearman_rho": 0.145559,
+          "dots_spearman_rho": 0.095413,
+          "dots_within_3px_fraction": 0.821886
+        },
+        {
+          "raster": "gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
+          "n_reg_positives": 48000,
+          "surface_spearman_rho": 0.15114,
+          "dots_spearman_rho": 0.097578,
+          "dots_within_3px_fraction": 0.821136
+        },
+        {
+          "raster": "gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
+          "n_reg_positives": 48022,
+          "surface_spearman_rho": 0.123315,
+          "dots_spearman_rho": 0.073807,
+          "dots_within_3px_fraction": 0.722841
+        }
+      ]
+    },
+    "universal_all_files_scope": {
+      "n_checked": 22,
+      "pass": false,
+      "max_abs_surface_spearman": 0.200256,
+      "surface_closest_raster": "gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+      "max_3px_dot_overlap": 0.921205,
+      "dots_closest_raster": "gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+      "top_5_by_overlap": [
+        {
+          "raster": "gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+          "n_reg_positives": 44000,
+          "surface_spearman_rho": 0.200256,
+          "dots_spearman_rho": 0.3545,
+          "dots_within_3px_fraction": 0.921205
+        },
+        {
+          "raster": "gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+          "n_reg_positives": 54000,
+          "surface_spearman_rho": 0.126051,
+          "dots_spearman_rho": 0.071257,
+          "dots_within_3px_fraction": 0.844886
+        },
+        {
+          "raster": "gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif",
+          "n_reg_positives": 48000,
+          "surface_spearman_rho": 0.145559,
+          "dots_spearman_rho": 0.095413,
+          "dots_within_3px_fraction": 0.821886
+        },
+        {
+          "raster": "gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
+          "n_reg_positives": 48000,
+          "surface_spearman_rho": 0.15114,
+          "dots_spearman_rho": 0.097578,
+          "dots_within_3px_fraction": 0.821136
+        },
+        {
+          "raster": "gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
+          "n_reg_positives": 48022,
+          "surface_spearman_rho": 0.123315,
+          "dots_spearman_rho": 0.073807,
+          "dots_within_3px_fraction": 0.722841
+        }
+      ]
+    },
+    "preplacement": {
+      "status": "PASS_WITHIN_INDEXED_SCOPE",
+      "checked": 22,
+      "not_checked_after_stop": 0
+    },
+    "final": {
+      "status": "BLOCKED_SYNTHETIC_AND_DENSE_HALOS",
+      "checked": 22,
+      "not_checked_after_stop": 0
+    },
+    "max_measured_surface_rank_correlation": 0.200256,
+    "max_measured_final_dot_overlap_within_3px": 0.921205,
+    "max_canonical_registry_dot_overlap_within_3px": 0.529023,
+    "max_external_dotted_fleet_dot_overlap_within_3px": 0.478023,
+    "closest_external_dotted_raster": "calib_d15_02477.tif",
+    "note": "Passes canonical (max 0.51) and dotted fleet (max 0.47) Rule 1 checks; exceeds 0.70 on synthetic lattice calib_r13lattice_00904 (99.84%, IR-CED-003) and dense halos; in-repo siblings listed separately."
+  },
+  "artifact": {
+    "candidate_id": "gems91-vent-e3-20261025T000000Z-94bed63d",
+    "primary_zeros_tif": "docs/downloads/gems91-vent-e3-20261025T000000Z-94bed63d-zeros.tif",
+    "primary_zeros_sha256": "e4af9d81604928602ff32af18bd619f3099e4f1ceefa3ca77f94f4700ad63b35",
+    "primary_zeros_bytes": 236267,
+    "zip_bundle": "docs/downloads/gems91-vent-e3-20261025T000000Z-94bed63d-zeros.zip",
+    "zip_sha256": "d988dffdfc06fb1dcc7e9b8a4554cfe7c9b1ad79d50837fb8cdf900e8e697e58",
+    "zip_bytes": 201000,
+    "n_dots": 44000,
+    "dot_set_digest": "c6ebd568b3294e52c5ab9f8914c1d14200f875e6385fb41e5ea0393448f9f418",
+    "min_catalogue_distance_px": 3.1623
+  },
+  "raster_sha256": "e4af9d81604928602ff32af18bd619f3099e4f1ceefa3ca77f94f4700ad63b35",
+  "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "gems91_gates_pass": true,
+      "release_gates_nan_pass": true,
+      "release_gates_zeros_pass": true,
+      "validate_raster_nan_pass": true,
+      "validate_raster_zeros_pass": true,
+      "zero_catalogue_overlap": true,
+      "min_300m_catalogue_clearance": true
+    }
+  },
+  "submission": {
+    "name": "GEMS91-VENT-E3-C6EBD568",
+    "note": "VENT E3: flexure+cond+grav-strip+Dinkelbach; HOLDOUT-DTI=0.2546; 44000 dots",
+    "note_length": 75
+  },
+  "selector_approval": false,
+  "selector_receipt": {
+    "weekly_cap_verified": false,
+    "slot_available": false,
+    "note": "Requires human selector check against live DrivenData 3/rolling-7-day slot counter."
+  },
+  "technical_candidate_verdict": "promote_to_selector",
+  "portal_submission_verdict": "HOLD_PENDING_SELECTOR_SIGN_OFF",
+  "budget": {
+    "experiments_executed": 3,
+    "max_experiments": 3,
+    "elapsed_seconds": 554.82,
+    "max_seconds": 7200.0
+  },
+  "experiments": [
+    {
+      "experiment_number": 1,
+      "exp_id": "E1",
+      "hypothesis_id": "VENT-1",
+      "title": "Piedmont Flexure Profile-Curvature Monocline Warp (400m+1000m) + PTHA H13-1",
+      "n_features": 69,
+      "ptha_cols": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "vent_cols": [
+        0,
+        1
+      ],
+      "emission_mode": "matched_48k_area_quota_submodular",
+      "named_non_fault_mimic": "Lahontan terrace risers and range-front canyon cliffs without basement offset",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.203407,
+        "ci_95": [
+          0.192671,
+          0.215247
+        ],
+        "bootstrap_tiles_5km": 1985,
+        "bootstrap_draws": 200,
+        "pooled_T": 12176.309,
+        "pooled_S": 48000.0,
+        "pooled_M": 4820.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11287.0,
+            "T": 2324.65,
+            "M": 942.0,
+            "fold_dti": 0.208685
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13855.0,
+            "T": 3593.033,
+            "M": 1477.0,
+            "fold_dti": 0.27994
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12564.0,
+            "T": 2608.845,
+            "M": 1029.0,
+            "fold_dti": 0.135443
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 10294.0,
+            "T": 3649.782,
+            "M": 1372.0,
+            "fold_dti": 0.219528
+          }
+        ]
+      },
+      "paired_vs_s11_e2": {
+        "delta": -0.0029990000000000017,
+        "ci95": [
+          -0.009022,
+          0.003262
+        ],
+        "prob_positive": 0.19,
+        "n_paired_5km_tiles": 2037,
+        "n_bootstrap_draws": 400
+      },
+      "paired_vs_s13": -0.04119400000000001,
+      "elapsed_seconds": 41.45
+    },
+    {
+      "experiment_number": 2,
+      "exp_id": "E2",
+      "hypothesis_id": "VENT-1+2+3",
+      "title": "VENT-1 flexure + Depth-Conditioned Conductivity Clay-Cap + Bouguer-Stripped Basement Gravity",
+      "n_features": 81,
+      "ptha_cols": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "vent_cols": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "emission_mode": "matched_48k_area_quota_submodular",
+      "named_non_fault_mimic": "Saline playa brines and basin-margin lithologic horst steps without fault damage zone",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.20152,
+        "ci_95": [
+          0.191751,
+          0.215416
+        ],
+        "bootstrap_tiles_5km": 1974,
+        "bootstrap_draws": 200,
+        "pooled_T": 12060.824,
+        "pooled_S": 48000.0,
+        "pooled_M": 4766.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11287.0,
+            "T": 2235.443,
+            "M": 898.0,
+            "fold_dti": 0.20084
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13855.0,
+            "T": 3568.677,
+            "M": 1454.0,
+            "fold_dti": 0.278048
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12564.0,
+            "T": 2719.775,
+            "M": 1080.0,
+            "fold_dti": 0.141114
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 10294.0,
+            "T": 3536.93,
+            "M": 1334.0,
+            "fold_dti": 0.212932
+          }
+        ]
+      },
+      "paired_vs_s11_e2": {
+        "delta": -0.0048860000000000015,
+        "ci95": [
+          -0.010294,
+          0.001671
+        ],
+        "prob_positive": 0.0725,
+        "n_paired_5km_tiles": 2030,
+        "n_bootstrap_draws": 400
+      },
+      "paired_vs_s13": -0.04308100000000001,
+      "elapsed_seconds": 41.53
+    },
+    {
+      "experiment_number": 3,
+      "exp_id": "E3",
+      "hypothesis_id": "VENT-1 + VENT-Dink",
+      "title": "Piedmont Flexure Profile-Curvature Monocline Warp (400m+1000m) + PTHA H13-1 + Fold-Independent Dinkelbach Expected-DTI Allocation",
+      "n_features": 69,
+      "ptha_cols": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "vent_cols": [
+        0,
+        1
+      ],
+      "base_oof_experiment": "E1",
+      "emission_mode": "fold_independent_dinkelbach_submodular",
+      "fold_dinkelbach_allocation": {
+        "NW": {
+          "q_floor_train": 0.0228372,
+          "tau_dinkelbach_train": 19.1142196,
+          "last_test_gain": 17.7394009,
+          "n_cal_pixels": 3636982,
+          "n_cal_target_dots": 36966,
+          "n_test_emitted_dots": 6500
+        },
+        "NE": {
+          "q_floor_train": 0.0239653,
+          "tau_dinkelbach_train": 18.093732,
+          "last_test_gain": 18.0953489,
+          "n_cal_pixels": 3391025,
+          "n_cal_target_dots": 34466,
+          "n_test_emitted_dots": 11462
+        },
+        "SW": {
+          "q_floor_train": 0.0165298,
+          "tau_dinkelbach_train": 17.5011305,
+          "last_test_gain": 17.5029875,
+          "n_cal_pixels": 3435514,
+          "n_cal_target_dots": 34918,
+          "n_test_emitted_dots": 12584
+        },
+        "SE": {
+          "q_floor_train": 0.0196934,
+          "tau_dinkelbach_train": 15.3418591,
+          "last_test_gain": 15.3423518,
+          "n_cal_pixels": 3681757,
+          "n_cal_target_dots": 37421,
+          "n_test_emitted_dots": 11464
+        }
+      },
+      "named_non_fault_mimic": "Barren playa false positives and bluff-scale probability blobs",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.254584,
+        "ci_95": [
+          0.240093,
+          0.267215
+        ],
+        "bootstrap_tiles_5km": 1877,
+        "bootstrap_draws": 200,
+        "pooled_T": 15002.747,
+        "pooled_S": 42010.0,
+        "pooled_M": 6313.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 6500.0,
+            "T": 2268.914,
+            "M": 964.0,
+            "fold_dti": 0.223174
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 11462.0,
+            "T": 4061.855,
+            "M": 1756.0,
+            "fold_dti": 0.327718
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12584.0,
+            "T": 3574.438,
+            "M": 1516.0,
+            "fold_dti": 0.184618
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 11464.0,
+            "T": 5097.54,
+            "M": 2077.0,
+            "fold_dti": 0.299712
+          }
+        ]
+      },
+      "paired_vs_s11_e2": {
+        "delta": 0.04817799999999997,
+        "ci95": [
+          0.040726,
+          0.056524
+        ],
+        "prob_positive": 1.0,
+        "n_paired_5km_tiles": 2008,
+        "n_bootstrap_draws": 400
+      },
+      "paired_vs_s13": 0.009982999999999964,
+      "elapsed_seconds": 54.25
+    }
+  ],
+  "readiness_gates": {
+    "format": true,
+    "canary": true,
+    "novelty": false,
+    "assigned_lane": false,
+    "beats_comparable_best": true,
+    "separate_selector": false
+  },
+  "submission_ready": false
+}

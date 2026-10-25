@@ -56,6 +56,15 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
     s13=json.loads((ROOT/'docs/run-card-S13.json').read_text())
     s13_file=Path(s13['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
     s13_zip=Path(s13['artifact']['zip_bundle']).relative_to('docs').as_posix()
+    vent_allowed=set()
+    try:
+        vent=json.loads((ROOT/'docs/run-card-VENT91.json').read_text())
+        vent_file=Path(vent['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
+        vent_zip=Path(vent['artifact']['zip_bundle']).relative_to('docs').as_posix()
+        if vent_file: vent_allowed.add(vent_file)
+        if vent_zip: vent_allowed.add(vent_zip)
+    except Exception:
+        pass
     g91_allowed=set()
     try:
         g91=json.loads((ROOT/'docs/run-card-G91.json').read_text())
@@ -65,7 +74,7 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
         if g91_zip: g91_allowed.add(g91_zip)
     except Exception:
         pass
-    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip}|g91_allowed
+    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip}|g91_allowed|vent_allowed
     for name in ('index.html','executive-summary.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states and all(x=='false' for x in p.states)

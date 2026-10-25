@@ -180,6 +180,18 @@
       "sha256": "7aee95a4a64ed53d94a7b99030e8eeb8d9fbe7d974ec282f95a7e025692f975f",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of S13-PTHA E3 candidate GeoTIFF (0.244601 HOLDOUT-DTI #1 in GEMSDOE91; fail-closed pending human selector sign-off; docs/run-card-S13.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-vent-e3-20261025T000000Z-94bed63d-zeros.tif",
+      "sha256": "e4af9d81604928602ff32af18bd619f3099e4f1ceefa3ca77f94f4700ad63b35",
+      "status": "current_research_only",
+      "reason": "VENT91 E3 flexure+grav-strip+Dinkelbach candidate (0.254584 HOLDOUT-DTI NEW #1 in GEMSDOE91, +0.009983 vs S13-PTHA 0.244601 and +0.048178 vs S11-MHTR 0.206406 with paired 95% CI [0.040726,0.056524], SGMC 0.100527; 81-feature canary PASS, canonical 8-raster novelty 52.90% PASS, external dotted 47.80% PASS; in-repo sibling overlap 92.12% vs S13 disclosed IR-VENT-01 mutual exclusion; all [0,1] validators PASS; fail-closed pending selector; docs/run-card-VENT91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-vent-e3-20261025T000000Z-94bed63d-zeros.zip",
+      "sha256": "d988dffdfc06fb1dcc7e9b8a4554cfe7c9b1ad79d50837fb8cdf900e8e697e58",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of VENT91 E3 candidate (0.254584 HOLDOUT-DTI NEW #1 in GEMSDOE91; fail-closed pending human selector sign-off; docs/run-card-VENT91.json)."
     }
   ]
 }
