@@ -1,5 +1,9 @@
 # GEMSDOE91 — a new TIFF, an honest automated verdict
 
+> **ACTIVE CHECKOUT REVIEW (2026-10-25, `arena/adfb5ee6-gemsdoe91`): NO NEW TIFF GENERATED · NO ARTIFACT OK TO SUBMIT.** The current checkout has no assigned single-method lane and no local competition data/cache; preflight is blocked. The detailed [three-pass review, ranked hypotheses, evidence and JSON run card](docs/REVIEW-ARENA-ADFB5EE6-20261025.md) is the status for this branch. Historical downloads below are not newly generated or cleared by this review. Do not rename/reuse one as a new submission.
+>
+> **Standing instructions:** read the [full preserved project brief](#original-user-project-brief--preserved-standing-text-and-supplied-updates) and this review at the start of every session. The full brief is the user's requirements, not evidence that scores, methods, or external claims have been verified.
+
 > **Parallel Session (`S15-SCGF`, branch `arena/605655a6-gemsdoe91`, merged alongside S16-PGRD & S16-PC91): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**
 > 137-feature Förstner subsurface-junction + multi-wavelength (150–900 m) Salem tilt-depth + 2-D deconfounded aquifer-baffle Dual-Specialist Auto-Context (`99`-col provably `B12`/`B19`-invariant Pure-Subsurface specialist): `E1 = 0.235089`, **`E2 = 0.240633`** (`95% CI [0.227931, 0.254026]`), `E3 = 0.232708` **`HOLDOUT-DTI`** (`gems91-hide-recover-v1.0` = `v1.1-nohalo`, `60,988` withheld) and **`0.097940` Blind Off-Catalogue USGS SGMC DTI** (`+0.002180` vs `S14-PTAC E2 = 0.095760`; `+0.002554` vs `GEMSDOE32 R0 = 0.095386`). Negative under shared readiness gates (`0.240633 < 0.267782 S14-PTAC`; literal 3-px lattice overlap `99.811%`, vs `44.82%` on `GEMSDOE32 R0`); zero weekly slots spent (`slots_used = 0`).
 > [Download GeoTIFF](docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif) (`sha256: 08933227…ca3a1`) · [Single-TIFF ZIP](docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.zip) · [Audit](docs/s15-scgf.html) · [Executive summary](docs/s15-scgf-executive-summary.html) · [Run card](docs/run-card-S15-SCGF.json) · [Preregistration](docs/HYPOTHESES_S15_SCGF.md) · [3-Pass review](docs/REVIEW-S15-SCGF-20261025.md) · Form note (`90/140`): `S15-SCGF E2: Forstner+multi-scale Salem+baffle dual-AC; HOLDOUT-DTI=0.2406; 44k [0,1] dots`
@@ -10,7 +14,7 @@
 
 ## Start here every session
 
-Read this status, [the full standing brief below](#full-project-brief), [the latest active-checkout review](docs/REVIEW-ACTIVE-20261025.md), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+Read the [active-checkout review for this branch](docs/REVIEW-ARENA-ADFB5EE6-20261025.md), [the full standing brief below](#original-user-project-brief--preserved-standing-text-and-supplied-updates), the [prior active-checkout review](docs/REVIEW-ACTIVE-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
 
 > **OK TO DOWNLOAD: YES — RESEARCH. OK TO SUBMIT: NO.**
 > The new S16-PGRD file is computed from pinned magnetic/gravity inputs, not copied from a prior submission. Its format passes automated checks. Its literal registry-uniqueness and scientific-improvement gates do not pass. No human image inspection is required, and no selector may override a duplicate stop.
