@@ -6,12 +6,7 @@
     "parent_r0_nan"
   ],
   "ready_axes": [
-    "PRUNE",
-    "MASS",
-    "SNAP",
-    "CONCENTRATION",
-    "RELIEF",
-    "TRACKB"
+    "PRUNE"
   ],
   "axis_readiness": {
     "PRUNE": {
@@ -19,25 +14,40 @@
       "missing": []
     },
     "MASS": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "anc_h19_5",
+        "anc_h19_4",
+        "anc_h16_1"
+      ]
     },
     "SNAP": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "training_features"
+      ]
     },
     "CONCENTRATION": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "training_features"
+      ]
     },
     "RELIEF": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "anc_h19_5",
+        "anc_h19_4",
+        "anc_h16_1",
+        "training_features"
+      ]
     },
     "TRACKB": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "training_features"
+      ]
     }
   },
-  "checked_utc": "2026-10-24"
+  "checked_utc": "2026-10-25"
 }
