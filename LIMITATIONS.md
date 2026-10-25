@@ -67,10 +67,7 @@ archived, not recommendations to upload.
 CI re-reads the published TIFF and ZIP, restores only small format references for
 footprint/catalogue checks, verifies source pins and checks portal policy. A Pages
 workflow refreshes the labelled fleet source feed daily without training, new
-placement experiments or organizer scraping. The direct publisher-setting update was denied by the GitHub integration
-(403). The workflow attempts the existing-site switch with its declared Pages
-write token, but this has not executed successfully here. Workflow creation is
-not deployment success: remote check/deployment outcomes must be observed and recorded separately.
+placement experiments or organizer scraping. GitHub denies publisher-mode changes to the integration token (403), while the repository is configured for legacy `main:/` publishing. PR #70's legacy `pages-build-deployment` completed successfully. The custom workflow now detects `legacy|workflow` without attempting an admin-only mode change: it validates/builds in both modes, uploads/deploys an Actions artifact only in `workflow` mode, and relies on GitHub's automatic `main:/` deployment in `legacy` mode.
 
 The runner budget field is not an internal timeout watchdog; future authorized
 experiments need external wall-clock enforcement and early-failure accounting.

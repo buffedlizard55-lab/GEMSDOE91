@@ -31,6 +31,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      pages_mode: ${{ steps.pages_mode.outputs.mode }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -38,15 +40,15 @@ jobs:
           python-version: '3.11'
           cache: pip
       - run: pip install -r requirements.txt
-      - name: Select Actions publisher for the already-enabled Pages site
+      - name: Detect Pages publisher mode without requiring admin permission
+        id: pages_mode
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TYPE=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type)
-          if [ "$TYPE" != workflow ]; then
-            gh api --method PUT "repos/$GITHUB_REPOSITORY/pages" -f build_type=workflow
-          fi
-          test "$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type)" = workflow
+          MODE=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type)
+          case "$MODE" in legacy|workflow) ;; *) echo "Unsupported Pages build type: $MODE"; exit 1;; esac
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "Pages build type is $MODE. Legacy mode deploys main:/ automatically; workflow mode uses the deploy job below."
       - name: Check every tracked artifact, including quarantined parallel outputs
         run: python scripts/check_artifact_policy.py
       - name: Refresh labelled GitHub source feed (no organizer scraping or experiments)
@@ -66,7 +68,9 @@ jobs:
           cp -R docs _site/docs
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
+        if: steps.pages_mode.outputs.mode == 'workflow'
       - uses: actions/upload-pages-artifact@v3
+        if: steps.pages_mode.outputs.mode == 'workflow'
         with:
           path: _site
       - uses: actions/upload-artifact@v4
@@ -77,6 +81,7 @@ jobs:
             docs/fleet-audit.csv
 
   deploy:
+    if: needs.build.outputs.pages_mode == 'workflow'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
