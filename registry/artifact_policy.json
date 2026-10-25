@@ -476,6 +476,18 @@
       "reason": "Single-TIFF ZIP of the OLC91 E1 research-only file; same verdict (OK TO SUBMIT: NO)."
     },
     {
+      "path": "docs/downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif",
+      "sha256": "690c10998798d3abd54f6a1ec1c12e56c4243d1967ede7b63a533b9ddd628cdd",
+      "status": "current_research_only",
+      "reason": "S17-CPAD (cpad_e1) fresh computation; format PASS, HOLDOUT-DTI=0.198183; passes 95/95 pre-placement Spearman and 50/50 preceding fleet rasters (GEMSDOE32=0.4927), stopped at 51/95 r11_greedy_mp.tif (0.8725 > 0.70); NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip",
+      "sha256": "58562d2df087e3a6ddb64f550039a5ea040758993247771cb1107ca703d0ab5f",
+      "status": "current_research_only",
+      "reason": "S17-CPAD (cpad_e1) fresh computation; format PASS, HOLDOUT-DTI=0.198183; passes 95/95 pre-placement Spearman and 50/50 preceding fleet rasters (GEMSDOE32=0.4927), stopped at 51/95 r11_greedy_mp.tif (0.8725 > 0.70); NOT OK TO SUBMIT."
+    },
+    {
       "path": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif",
       "sha256": "792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5",
       "status": "current_research_only",

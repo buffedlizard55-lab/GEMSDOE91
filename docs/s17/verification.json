@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scope": "S17-CPAD GeoTIFF + ZIP bytes + 2 independent decoders + 7-arm bootstrap replay + 148x4 canaries + 95-raster registry audit",
+  "file": "downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif",
+  "sha256": "690c10998798d3abd54f6a1ec1c12e56c4243d1967ede7b63a533b9ddd628cdd",
+  "zip_sha256": "58562d2df087e3a6ddb64f550039a5ea040758993247771cb1107ca703d0ab5f",
+  "holdout_dti": 0.1981826007955914,
+  "holdout_ci95": [
+    0.1777586279968592,
+    0.21783031334905925
+  ],
+  "blind_sgmc_control_dti": 0.068585,
+  "format_pass": true,
+  "evidence_consistent": true,
+  "template_and_catalogue_rechecked": true,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "reason": "Point estimate beats all prior label-blind benchmarks on gems57-pooled-hide-v2 (0.198183 vs incumbent_ptac_lb 0.194221, paired delta +0.003962, 95% CI [-0.001766, +0.010077]; vs s16_pgrd +0.128786), passes 95/95 pre-placement Spearman checks and 50/50 preceding fleet rasters (max 3 px overlap 0.6168 <= 0.70; GEMSDOE32 R0 = 0.4927), then stops fail-closed at reference 51/95 r11_greedy_mp.tif (272853 dots, 3 px overlap 0.8725 > 0.70); paired 95% CI vs incumbent_ptac_lb also straddles zero.",
+  "geological_experiments_rerun": 0
+}

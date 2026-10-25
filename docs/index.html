@@ -8,20 +8,20 @@
 .wrap{max-width:1020px;margin:0 auto;padding:20px}a{color:var(--ok)}
 header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
 nav a{margin-right:14px;text-decoration:none;font-weight:600}.logo{font-weight:800;font-size:20px}
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}@media(max-width:820px){.hero{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;overflow-wrap:anywhere}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.hero>*{min-width:0}@media(max-width:820px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;overflow-x:auto;overflow-wrap:anywhere}
 .dl{border:2px solid var(--ok)}h1{font-size:32px;line-height:1.15;margin:.2em 0}
 .badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}
 .badge.bad{background:#f7e4e4;color:var(--bad)}.small{color:var(--mut);font-size:14px}
 .button{display:block;text-align:center;background:var(--ok);color:#fff;text-decoration:none;padding:14px;border-radius:10px;font-weight:800;font-size:17px;margin:12px 0}
 .btn2{display:inline-block;border:1px solid var(--ok);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;margin:2px}
 .status{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:7px 0}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
 textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{margin:22px 0}code{font-size:12px;word-break:break-all}
 .warn{background:#fdf3e3;border:1px solid #e6cf9a;border-radius:10px;padding:12px}
 </style></head><body><div class="wrap">
 <header><span class="logo">GEMSDOE91 · Fault Discovery Lab</span>
-<nav aria-label="Main"><a href="index.html">Current candidate</a><a href="executive-summary.html">Executive summary &amp; how to submit</a><a href="research.html">Research archive</a><a href="archive-results.html">Historical archive</a></nav></header>
+<nav aria-label="Main"><a href="index.html">Current candidate</a><a href="s17-cpad.html"><strong>S17-CPAD (0.1982 LB-DTI · #1)</strong></a><a href="s17-cpad-executive-summary.html">S17-CPAD guide</a><a href="executive-summary.html">Executive summary &amp; how to submit</a><a href="research.html">Research archive</a><a href="archive-results.html">Historical archive</a></nav></header>
 
 <main id="main">
 <div class="hero">
@@ -75,7 +75,9 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 
 <section class="card"><h2>What the session learned</h2>
 <p class="small">PU gradient boosting on the 19 official bands lands its dots in the same 15–25% of the footprint every time. Eleven earlier lanes overlap this file by more than 70%. A new file therefore needs a genuinely new <em>information source</em>, not another model on the same stack. Live evidence also shows that new faults are depleted near mapped faults: proximity lanes scored below uniform random, and dots 1–2 px from the catalogue earned about zero. Hide-and-recover splits put 55% of hidden truth within 1 km of visible faults, so they over-reward proximity. See <a href="executive-summary.html">the executive summary</a> and <a href="HYPOTHESES_OLC91.md">the preregistration and results</a>.</p>
-<p class="small">Evidence files: <a href="olc91/holdout-seed20.json">holdout-seed20.json</a> · <a href="olc91/final-E1.json">final-E1.json</a> (registry comparisons) · parallel and previous sessions: <a href="run-card-S17-CWPC.json">S17-CWPC run card</a> · <a href="run-card-XG91.json">XG91 run card</a> · <a href="s17-cdsc.html">S17-CDSC</a> · <a href="s17-cgrd.html">S17-CGRD</a> · <a href="run-card-GEO91.json">GEO91 run card</a>.</p><p class="small"><strong>Parallel-session research downloads (all NOT OK TO SUBMIT, each with its own run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>).</p>
+<p class="small">Evidence files: <a href="olc91/holdout-seed20.json">holdout-seed20.json</a> · <a href="olc91/final-E1.json">final-E1.json</a> (registry comparisons) · parallel and previous sessions: <a href="run-card-S17-CWPC.json">S17-CWPC run card</a> · <a href="s17-cpad.html"><strong>S17-CPAD (0.198183 LB HOLDOUT-DTI)</strong></a> · <a href="run-card-XG91.json">XG91 run card</a> · <a href="s17-cdsc.html">S17-CDSC</a> · <a href="s17-cgrd.html">S17-CGRD</a> · <a href="run-card-GEO91.json">GEO91 run card</a>.</p>
+<p class="small"><strong>Session 17 S17-CPAD E1 research GeoTIFF (0.198183 HOLDOUT-DTI at 37,654 binary dots on canonical <code>gems57-pooled-hide-v2</code> — OK TO DOWNLOAD: YES · OK TO SUBMIT: NO, NOT OK TO SUBMIT):</strong> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a> <a class="btn2" href="s17-cpad.html">Full S17-CPAD Audit ↗</a> <a class="btn2" href="s17-cpad-executive-summary.html">S17-CPAD Guide ↗</a> <a class="btn2" href="run-card-S17-CPAD.json">S17-CPAD Run Card ↗</a></p>
+<p class="small"><strong>Other parallel-session research downloads (all NOT OK TO SUBMIT, each with its own run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>).</p>
 </section>
 </main>
 <footer class="small">Maximize P(Win) · Own the Outcome · 1 of 3 experiments used · 0 competition slots spent · every number is labelled HOLDOUT-DTI or USER-REPORTED; nothing here is ORGANIZER-CONFIRMED.</footer>
