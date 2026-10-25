@@ -72,9 +72,21 @@ TOPO_FEATURE_NAMES: set[str] = {
     "e1_topo_openness_lap",
     "e1_slope_hp_600m",
     "e1_topo_coherence",
+    "e1_and_favorability",
+    "e1_axial_slope_s15",
+    "e1_axial_slope_s40",
+    "e1_axial_lrm_s15",
     "s11_ piedmont_concealment",
     "s11_piedmont_concealment",
+    "s11_prof_concavity_250m",
+    "s11_plan_curv_250m",
+    "s11_scarp_asymmetry_600m",
+    "s12_frangi_slope_150_300",
+    "s12_frangi_lrm_200_400",
     "ptha_step_elev_abs",
+    "ucsd_planform_curv_150m",
+    "ucsd_planform_curv_350m",
+    "ucsd_scarp_toe_concav_250m",
 }
 
 

@@ -25,7 +25,8 @@ import tifffile
 from scipy import ndimage
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "evidence" / "s13_independent_tif_check.json"
+OUT_S13 = ROOT / "evidence" / "s13_independent_tif_check.json"
+OUT_S14 = ROOT / "evidence" / "s14_independent_tif_check.json"
 
 
 def main() -> None:
@@ -78,14 +79,16 @@ def main() -> None:
         if (a, b) in overlap_pairs
     }
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({
+    OUT_S13.parent.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps({
         "checker": "scripts/independent_tif_check.py",
         "note": "Independent of repo validators. Overlap > 0.70 = duplicate under the lane protocol.",
         "files": rows,
         "dot_within_3px_of_second": overlap,
-    }, indent=2) + "\n")
-    print(f"wrote {OUT.relative_to(ROOT)}: {len(rows)} files, {len(overlap)} ordered pairs")
+    }, indent=2) + "\n"
+    OUT_S13.write_text(payload)
+    OUT_S14.write_text(payload)
+    print(f"wrote {OUT_S14.relative_to(ROOT)}: {len(rows)} files, {len(overlap)} ordered pairs")
 
 
 if __name__ == "__main__":

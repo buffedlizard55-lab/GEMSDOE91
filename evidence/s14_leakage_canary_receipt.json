@@ -1,0 +1,131 @@
+{
+  "evaluator_version": "gems91-hide-recover-v1.0",
+  "max_allowed_auc": 0.9,
+  "n_features_checked": 115,
+  "canary_pass": true,
+  "worst_feature": "ptha_step_elev_abs",
+  "worst_symmetric_auc": 0.6647,
+  "flagged_features": [],
+  "ucsd_features": {
+    "ucsd_upward_grav_persist_1500m": {
+      "mean_raw_auc": 0.54748,
+      "mean_symmetric_auc": 0.55475,
+      "max_fold_symmetric_auc": 0.59077,
+      "pass": true
+    },
+    "ucsd_upward_grav_downdip_shift": {
+      "mean_raw_auc": 0.55993,
+      "mean_symmetric_auc": 0.55993,
+      "max_fold_symmetric_auc": 0.6038,
+      "pass": true
+    },
+    "ucsd_upward_mag_persist_1500m": {
+      "mean_raw_auc": 0.52697,
+      "mean_symmetric_auc": 0.54067,
+      "max_fold_symmetric_auc": 0.57266,
+      "pass": true
+    },
+    "ucsd_upward_mag_downdip_shift": {
+      "mean_raw_auc": 0.48545,
+      "mean_symmetric_auc": 0.51788,
+      "max_fold_symmetric_auc": 0.54875,
+      "pass": true
+    },
+    "ucsd_bouguer_strip_res": {
+      "mean_raw_auc": 0.46638,
+      "mean_symmetric_auc": 0.53362,
+      "max_fold_symmetric_auc": 0.54815,
+      "pass": true
+    },
+    "ucsd_bouguer_strip_grad": {
+      "mean_raw_auc": 0.51761,
+      "mean_symmetric_auc": 0.53525,
+      "max_fold_symmetric_auc": 0.55591,
+      "pass": true
+    },
+    "ucsd_bouguer_hess_crest": {
+      "mean_raw_auc": 0.51243,
+      "mean_symmetric_auc": 0.51243,
+      "max_fold_symmetric_auc": 0.5266,
+      "pass": true
+    },
+    "ucsd_cond_deconf_res": {
+      "mean_raw_auc": 0.50001,
+      "mean_symmetric_auc": 0.52601,
+      "max_fold_symmetric_auc": 0.55205,
+      "pass": true
+    },
+    "ucsd_cond_deconf_ridge": {
+      "mean_raw_auc": 0.51664,
+      "mean_symmetric_auc": 0.5169,
+      "max_fold_symmetric_auc": 0.53842,
+      "pass": true
+    },
+    "ucsd_rad_tc_potassic_halo": {
+      "mean_raw_auc": 0.44844,
+      "mean_symmetric_auc": 0.55156,
+      "max_fold_symmetric_auc": 0.5753,
+      "pass": true
+    },
+    "ucsd_basement_hinge_dot": {
+      "mean_raw_auc": 0.49461,
+      "mean_symmetric_auc": 0.52256,
+      "max_fold_symmetric_auc": 0.53434,
+      "pass": true
+    },
+    "ucsd_upward_joint_conduit": {
+      "mean_raw_auc": 0.53576,
+      "mean_symmetric_auc": 0.53576,
+      "max_fold_symmetric_auc": 0.54851,
+      "pass": true
+    },
+    "ucsd_planform_curv_150m": {
+      "mean_raw_auc": 0.50983,
+      "mean_symmetric_auc": 0.52797,
+      "max_fold_symmetric_auc": 0.53978,
+      "pass": true
+    },
+    "ucsd_planform_curv_350m": {
+      "mean_raw_auc": 0.49101,
+      "mean_symmetric_auc": 0.53584,
+      "max_fold_symmetric_auc": 0.56083,
+      "pass": true
+    },
+    "ucsd_scarp_toe_concav_250m": {
+      "mean_raw_auc": 0.62379,
+      "mean_symmetric_auc": 0.62379,
+      "max_fold_symmetric_auc": 0.65529,
+      "pass": true
+    },
+    "ucsd_coulomb_slip_tendency": {
+      "mean_raw_auc": 0.53018,
+      "mean_symmetric_auc": 0.54231,
+      "max_fold_symmetric_auc": 0.58989,
+      "pass": true
+    },
+    "ucsd_swarm_transtens_conduit": {
+      "mean_raw_auc": 0.52197,
+      "mean_symmetric_auc": 0.52197,
+      "max_fold_symmetric_auc": 0.52666,
+      "pass": true
+    },
+    "ucsd_step_bouguer_abs": {
+      "mean_raw_auc": 0.51032,
+      "mean_symmetric_auc": 0.52866,
+      "max_fold_symmetric_auc": 0.53942,
+      "pass": true
+    },
+    "ucsd_step_shallow_mag_abs": {
+      "mean_raw_auc": 0.51156,
+      "mean_symmetric_auc": 0.52988,
+      "max_fold_symmetric_auc": 0.54344,
+      "pass": true
+    },
+    "ucsd_multifield_step_synergy": {
+      "mean_raw_auc": 0.51766,
+      "mean_symmetric_auc": 0.53433,
+      "max_fold_symmetric_auc": 0.56034,
+      "pass": true
+    }
+  }
+}

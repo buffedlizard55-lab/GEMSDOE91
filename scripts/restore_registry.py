@@ -15,6 +15,16 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'buffedlizard55-lab/60GEMSDOE'
+RETRACTED_GEOD_BLOBS = {
+    'docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif': (
+        'buffedlizard55-lab/GEMSDOE91',
+        'ce7a7e3a6270fef922ade0b47a26f5287e16071b',
+    ),
+    'docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif': (
+        'buffedlizard55-lab/GEMSDOE91',
+        '26b756e08bd365a61aa3cb22f5a87af223bc9fe5',
+    ),
+}
 
 
 def validate_rows(rows, candidate_sha):
@@ -30,19 +40,28 @@ def validate_rows(rows, candidate_sha):
 
 
 def restore(row, check=False):
-    dest = ROOT / row['path']
+    rel_path = row['path']
+    dest = ROOT / rel_path
+    retracted_info = RETRACTED_GEOD_BLOBS.get(rel_path)
+    if not dest.is_file() and retracted_info is not None:
+        dest = ROOT / 'data' / 'retracted_geod' / Path(rel_path).name
+    git_repo = REPO
+    git_blob = row.get('git_blob')
+    if git_blob is None and retracted_info is not None:
+        git_repo, git_blob = retracted_info
+
     if dest.is_file():
         data = dest.read_bytes()
     else:
-        if check or 'git_blob' not in row:
+        if check or git_blob is None:
             raise ValueError(f'Missing pinned reference: {row["path"]}')
-        data = subprocess.check_output(['gh', 'api', f'repos/{REPO}/git/blobs/{row["git_blob"]}',
+        data = subprocess.check_output(['gh', 'api', f'repos/{git_repo}/git/blobs/{git_blob}',
                                        '-H', 'Accept: application/vnd.github.raw'], timeout=120)
     if hashlib.sha256(data).hexdigest() != row['sha256'] or len(data) != row['bytes']:
         raise ValueError(f'Registry SHA256/size mismatch: {row["path"]}')
-    if 'git_blob' in row:
+    if git_blob is not None:
         blob = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
-        if blob != row['git_blob']:
+        if blob != git_blob:
             raise ValueError(f'Registry Git blob mismatch: {row["path"]}')
     if not dest.is_file():
         dest.parent.mkdir(parents=True, exist_ok=True)

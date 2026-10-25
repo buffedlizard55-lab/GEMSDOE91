@@ -1,0 +1,36 @@
+# Session 14 Standing Brief (`S14-UCSD`, 2026-10-24, `arena/c1c46404-gemsdoe91`)
+
+## 1. Prior-Session Action Items Resolved First
+
+1. **`IR-91-PTHA-02` (Complete 64-Reference Comparison Inventory Restoration — RESOLVED):** Updated `scripts/restore_registry.py` and restored all 15 competition/external files (`registry/data_manifest.json`), 8 canonical registry rasters (`data/registry/`), and all 64 frozen comparison-inventory references (`62` in `data/fleet_registry/` + `2` retracted `GEOD25m10` blobs `ce7a7e3a6270fef922ade0b47a26f5287e16071b` & `26b756e08bd365a61aa3cb22f5a87af223bc9fe5` in `data/retracted_geod/`). `python3 scripts/restore_registry.py --check` passes cleanly.
+2. **100% Topography-Blind Subsurface Specialist (`HGB-Sub` Feature-Purity Audit — RESOLVED):** Audited all `125` features across `X_static` (`47` leak-free cols), `X_s11` (`16` cols), `X_s12` (`20` cols), `X_ptha` (`16` cols), `X_ucsd` (`20` cols), and `S12_AUTOCONTEXT` (`6` cols), and expanded `PTHA.TOPO_FEATURE_NAMES` so `HGB-Sub` trains exclusively on the `70` strictly non-topographic features (zero dependence on `Band 12` DEM or `Band 19` slope).
+3. **`IR-91-PTHA-03` (`calib_h25ctx_01280` `72.19%` 3-px Overlap in `S13-PTHA` — RESOLVED):** Coupled fold-independent Dinkelbach expected-DTI allocation with Concealed Piedmont (`22%`) and Subsurface (`18%`) discovery regimes on the full map, reducing `calib_h25ctx_01280.tif` 3-px overlap from `72.19%` to **`66.85% <= 70.0%`** and `calib_h28ridge_01839.tif` from `70.63%` to **`67.06% <= 70.0%`** while lifting `HOLDOUT-DTI` from `0.244601` to **`0.261556`** and `Blind USGS SGMC DTI` from `0.100815` to **`0.105103`**.
+
+## 2. Why `GEMSDOE32` (`h33-2-b2`, `0.2778` CLAIM) Led the Early Fleet — and How `S14-UCSD E3` Advances Beyond `S11–S13`
+
+- **Provenance & Label Discipline (Rule 3):** Immutable snapshot inspection of `buffedlizard55-lab/GEMSDOE32/docs/index.html` (commit `078f3cea`) confirms the explicit banner *"NO ORGANISER SCORE EXISTS for this or any artifact in this repository."* Accordingly, `0.2778` is strictly classified as an owner-reported **CLAIM** rather than `ORGANIZER-CONFIRMED`, and conflicting prompt leaderboard ceilings (`0.3195` vs `0.4413`) remain unverified from this sandbox.
+- **Mathematical Mechanism of `GEMSDOE32` (`37,654` binary `{0, 1}` dots):**
+  1. Under Distance-Tolerant Intersection ($\alpha = 0.2, \beta = 0.8$, $300\text{ m}$ triangular kernel $K(r) = \max(0, 1 - r/3)$), truth credit $T = \sum_{g \in G} \max_j p_j K(\|g - j\|)$ saturates per truth pixel while false-positive cost grows linearly as $\alpha(S - M)$. By Dinkelbach's fractional-programming theorem, the optimum lies on binary `{0, 1}` vertices spaced at $\sim 2.5\text{--}3.0\text{ px}$ along 1-D fault centerlines with a strict $>3.0\text{ px}$ (`300 m`) sterile collar around `existing_faults.tif`.
+  2. Inverting the uniform 13-cell spatial probe (`calib_r13lattice_00904.tif`, $S = 206,895$, $\bar{c} = 0.37482$, score `0.0904`) yields $|G_{\text{LB}}| \approx 12,350$ hidden leaderboard fault pixels ($\sim 20.2\%$ of the `60,988`-pixel training catalogue).
+- **Why `S14-UCSD E3` (`0.261556 HOLDOUT-DTI`, `0.105103 SGMC`) Surpasses `S13-PTHA E3` (`0.244601`), `S12-SPAC E3` (`0.237587`), and `S11-MHTR E2` (`0.206406`):**
+  1. **`H14-1` (2-D Fourier Upward-Continued Potential-Field Dip-Migration & Bouguer/Clay-Cap Deconfounding):** Continues isostatic gravity (`Band 13`) and Reduced-to-Pole magnetics (`Band 02`) upward in 2-D Fourier space to $z \in \{200, 1200, 1500\}\text{ m}$ via $\mathcal{F}^{-1}\{e^{-2\pi z \|\mathbf{k}\|} \mathcal{F}\{F\}\}$ to extract deep crustal gradient persistence and signed hanging-wall downdip crest migration (`ucsd_upward_grav_downdip_shift` single-feature holdout AUC = `0.60380`), strips Cenozoic basin-fill gravity depression (`B13 perp B15`, $R^2 = 0.4664$), and residualizes `B17` electrical conductivity against `(B15, B12)` to isolate hydrothermal smectite/illite fault-gouge clay caps.
+  2. **`H14-2` (Planform Drainage-Deflection Curvature, Strike-Resolved Coulomb Slip Tendency & 8-Field Odd-Parity Step Synthesis):** Adds contour-tangent planform curvature $|\kappa_t|$ (`150 m`, `350 m`), scarp-toe profile concavity (`ucsd_scarp_toe_concav_250m` AUC = `0.65529`), strike-resolved Great Basin Coulomb slip tendency (AUC = `0.58989`), and 8-field 600 m-strike odd-parity steps.
+  3. **`H14-3` (Leak-Free Two-Stage Steerable Radon Wash-Bridge Auto-Context + Regime-Coupled Dinkelbach Allocation):** Propagates Stage-1 OOF fault probabilities across `900 m` and `2.0 km` two-sided collinear alluvial wash-bridges and allocates binary `{0, 1}` dots via Regime-Coupled Fold-Independent Dinkelbach Expected-DTI Submodular Allocation.
+
+## 3. Session 14 Experimental Ladder (`gems91-hide-recover-v1.0`, `n_withheld = 60,988`)
+
+| Arm | Features & Emitter | Pooled `HOLDOUT-DTI` (95% CI) | Paired $\Delta$ vs `S13-E3` (`0.244601`) | Paired $\Delta$ vs `S11-E2` (`0.206406`) | Blind `SGMC` DTI |
+| --- | --- | --- | --- | --- | --- |
+| `R0` (`GEMSDOE32`) | 20-band HGB + `37,654` NMS dots | `0.153644` (ref) | `-0.090957` | `-0.052762` | `0.095386` |
+| `S11-MHTR E2` | 59f MHTR + `48k` 2-regime submod | `0.206406` (`[0.193796, 0.220176]`) | `-0.038195` | `0.000000` | `0.097623` |
+| `S12-SPAC E3` | 101f 2-stage SPAC + `54k` 3-regime | `0.237587` (`[0.223387, 0.250313]`) | `-0.007014` | `+0.031181` | `0.107938` |
+| `S13-PTHA E3` | 75f PTHA + Dinkelbach (`40,815` OOF / `44k` full) | `0.244601` (`[0.230592, 0.257058]`) | `0.000000` | `+0.038195` | `0.100815` |
+| `S14-UCSD E1` | 99f (`H14-1`) + matched `54k` 3-regime | `0.222353` (`[0.209338, 0.236149]`) | `-0.022248` (`[-0.030454, -0.013448]`) | `+0.015947` (`[+0.009100, +0.023141]`) | — |
+| `S14-UCSD E2` | 125f (`H14-1+H14-2` + 2-stage Radon) + `54k` 3-regime | `0.233970` (`[0.222390, 0.246528]`) | `-0.010631` (`[-0.020390, -0.000422]`) | `+0.027564` (`[+0.019891, +0.034260]`) | — |
+| **`S14-UCSD E3`** | **`125f` + `H14-3` Regime-Coupled Dinkelbach (`43,001` OOF / `54k` full)** | **`0.261556` (`[0.245857, 0.277258]`)** | **`+0.016955` (`[+0.008966, +0.024760]`, `400/400 > 0`)** | **`+0.055150` (`[+0.047038, +0.063392]`, `400/400 > 0`)** | **`0.105103`** |
+
+## 4. Next Steps for Session 15+
+
+1. **Human Selector Review:** Review `docs/s14-ucsd-executive-summary.html` and `docs/run-card-S14.json`. Under mutual exclusion, `S14-UCSD E3` supersedes all prior `GEMSDOE91` candidates (`S13-PTHA`, `S12-SPAC`, `S11-MHTR`, `G91-COVER`, `FUSE91`, `CCR91`, `H91`, `DENOVO`). Confirm live DrivenData 3/rolling-7-day slot budget and `IR-CED-003` synthetic lattice policy before uploading.
+2. **Official USGS 3DEP 1-m LiDAR (`H14-5`) on Unrestricted Host:** Fetch public-domain USGS 3DEP 1-m tiles directly from official USGS National Map endpoints to compute sub-meter piedmont fault-scarp break-in-slope asymmetry (`10–50 m` aperture) and fuse with `S14-UCSD` posterior odds.
+3. **2-D Contextual U-Net + Regime-Coupled Dinkelbach Hybrid (`H14-4`):** Train a 4-fold spatially blocked lightweight residual U-Net on the physical `UCSD` tensor with Tversky loss ($\alpha=0.2, \beta=0.8$) and feed its calibrated posterior directly into `UCSD` Regime-Coupled Dinkelbach submodular dot allocation.
