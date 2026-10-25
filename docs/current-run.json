@@ -1,10 +1,12 @@
 {
-  "run_card": "run-card-GEO91.json",
+  "run_card": "run-card-XG91.json",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "scope": "Historical research download; byte identity is not science or uniqueness approval",
-  "raster_sha256": "57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f",
-  "tif": "downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
-  "zip": "downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.zip",
-  "zip_sha256": "ccb8df3043104e5eab4932f5ae1278a40c5dae1af9d24d16e4939c3016327fa3"
+  "scope": "Current research download; format pass is not submission approval",
+  "raster_sha256": "4aecf0851bbe0ae3a9f87255f4d438597becc90e50ec49789852cfe1a33d4327",
+  "tif": "downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+  "zip": "downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.zip",
+  "zip_sha256": "fe9d868aeab195f7473aa9e334c11452dd5bb2a5e423ad708f628d7f4801c31e",
+  "verdict": "negative",
+  "note": "Renderer never sets ok_to_submit true."
 }

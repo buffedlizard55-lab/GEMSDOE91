@@ -420,6 +420,18 @@
       "sha256": "139f5ec056b27b0ac20082832271cc9e5f6a67e3433fba75ca00a1abdaed9b82",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of synthetic smoothed-noise format demonstration; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+      "sha256": "4aecf0851bbe0ae3a9f87255f4d438597becc90e50ec49789852cfe1a33d4327",
+      "status": "current_research_only",
+      "reason": "XG91-E1 format PASS; lattice overlap 99.742% and holdout below random; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.zip",
+      "sha256": "fe9d868aeab195f7473aa9e334c11452dd5bb2a5e423ad708f628d7f4801c31e",
+      "status": "current_research_only",
+      "reason": "XG91-E1 format PASS; lattice overlap 99.742% and holdout below random; NOT OK TO SUBMIT."
     }
   ]
 }
