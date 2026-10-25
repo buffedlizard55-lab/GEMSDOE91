@@ -1,37 +1,116 @@
-# Current limitations and next steps — S17-CPAD, 2026-10-25
+# Current limitations and next steps — S17-CPAD, OLC91, S17-CDSC, S17-EULR, S17-CGRD & S16, 2026-10-25
 
-All 15 competition and external public inputs (`sample_submission.tif`, `existing_faults.tif`,
-`gems-geodawn-numerical-features.tif`, GDR #1562 WellSpring CSV, USGS DS-1052 SGMC,
-GeoDAWN radiometrics, and 100 m LiDAR scarp features) plus all 95 comparison-registry
-rasters (`registry/s17_comparison_inventory.json`) were restored and SHA-256 verified in
-Session 17 (`0` missing entries).
+This replaces the stale statement that real data cannot be restored. All 15 pinned
+competition and reference inputs in `registry/data_manifest.json` (`sample_submission.tif`,
+`existing_faults.tif`, `gems-geodawn-numerical-features.tif`, `gdr_wellspring_in_footprint.csv`,
+`derived_sgmc_faults_100m_u8.tif`, `GEMSDOE32__h33-2-b2-zeros.tif`, `calib_r13lattice_00904.tif`, etc.)
+were restored and SHA-256 verified in this session. No fake catalogue was used.
 
-## What Session 17 (`S17-CPAD`) resolved from Session 16's handoff priorities
+## Session 17 (`S17-CPAD`, branch `arena/aecf32eb-gemsdoe91`) — Summary, Forensic Quarantine & Next Steps
 
-1. **Quarantined the legacy S13–S15 oracle buffer-moat leak (`IR-91-S17-01`) and established the true label-blind incumbent bar.**
-   Forensic inspection of `scripts/run_s13_lane.py:87` (`_fold_active_and_eligible`) proved that Sessions 13–15 passed `~fold.buffer_mask` into test-time dot placement, creating an 8-km oracle exclusion moat around hidden truth that inflated `S14-PTAC E2` from **`0.194221`** to `0.267782`. Re-fitting and evaluating `S14-PTAC E2` honestly on canonical label-blind `vendor/gems57/spatial.folds` (`INCUMBENT-PTAC-LB`) established the true common-instrument incumbent bar: **`0.194221 HOLDOUT-DTI`** (`95% CI [0.173855, 0.213233]`).
-2. **Closed every `Band 12` / `Band 19` topographic leak (`IR-91-S17-02`) with programmatic `0.0` bitwise verification.**
-   All 14 subsurface `CPAD` columns and the 100-column Pure-Subsurface specialist (`STRICT_TOPO_FEATURE_NAMES`) were proven bitwise invariant (`max_abs_diff == 0.0`) under `+1,000 m` `Band 12` and `×50` `Band 19` perturbations.
-3. **Implemented exact training-domain Bayes reference-odds calibration (`IR-91-S15-06`) and excluded `>= 2.5 km` bowls (`IR-91-S15-07`) + banned `dist_known_fault_px` (`IR-91-S17-03`).**
-4. **Achieved the highest strict label-blind `gems57-pooled-hide-v2` score in `GEMSDOE91`.**
-   `cpad_e1` (`gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif`, `37,654` binary `{0, 1}` dots, SHA-256 `690c10998798d3abd54f6a1ec1c12e56c4243d1967ede7b63a533b9ddd628cdd`) scored **`0.198183 HOLDOUT-DTI`** (`95% CI [0.177759, 0.217830]`, `60,988` withheld positives), beating `INCUMBENT-PTAC-LB` (`0.194221`, paired `+0.003962`), `CED91` (`0.070886`, paired `+0.127296`), and `S16-PGRD` (`0.069397`, paired `+0.128786`), plus **`0.068585 BLIND-SGMC-CONTROL-DTI`** (`+78.1%` over `S16-PGRD = 0.038501`).
+- **Forensic quarantine of legacy S13–S15 oracle buffer moat (`IR-91-S17-CPAD-01`):** Direct inspection of `scripts/run_s13_lane.py:87` (`_fold_active_and_eligible`) proved that historical `gems91-hide-recover-v1.0` numbers (`S14-PTAC E2 = 0.267782`, `S14-HVDC E2 = 0.262209`, `S15-SCGF E2 = 0.240633`, `S17-CDSC E1 = 0.259972`) passed `~fold.buffer_mask` into holdout dot placement, carving a label-informed moat around withheld truth. Re-fitting and evaluating `S14-PTAC E2` honestly on unchanged `vendor/gems57/evaluate_holdout.py` (`gems57-pooled-hide-v2`, `60,988` withheld positives, `80 px` buffer) establishes the true label-blind 37,654-dot binary incumbent bar: **`INCUMBENT-PTAC-LB = 0.194221 HOLDOUT-DTI`** (`95% CI [0.173855, 0.213233]`).
+- **Dual-Specialist Cooper–Cowan Phase + Accommodation Saddles + Geothermometer Disequilibrium (`src/gems91/cpad17.py`, `scripts/run_s17_cpad.py`):** Tested 3 preregistered arms (`docs/HYPOTHESES_S17_CPAD.md`) combining 16 novel `CPAD` features (`14` subsurface columns verified bitwise `0.0` invariant to `Band 12`/`Band 19` perturbations) with Bayes reference-odds-calibrated (`c0 = 12.0`) Full (`128`-col) and Pure-Subsurface (`100`-col) specialists:
+  - **`cpad_e1` (Full Stage-2 over `X_full + ac_full + ac_sub`, `37,654` global binary NMS dots): `0.198183 HOLDOUT-DTI` (`95% CI [0.177759, 0.217830]`)** — **#1 strict label-blind `37,654`-dot binary `gems57-pooled-hide-v2` score in `GEMSDOE91`**, beating `INCUMBENT-PTAC-LB` (`0.194221`, paired `+0.003962`, `95% CI [-0.001766, +0.010077]`), `CED91` (`0.070886`, paired `+0.127296`), and `S16-PGRD` (`0.069397`, paired `+0.128786`), plus **`0.068585 BLIND-SGMC-CONTROL-DTI`** (`+78.1%` over `S16-PGRD = 0.038501`).
+  - `cpad_e2` (exogenous `[0.28, 0.68]` cover-gated blend): `0.187678 HOLDOUT-DTI`; `cpad_e3` (cover-gated blend + 300-m kernel submodular placement): `0.185966 HOLDOUT-DTI` (showing learned Stage-2 gating outperforms hand-crafted exogenous cover weights by `+0.010505`).
+- **Remaining blockers (`ok_to_submit = False`, `0` slots spent):**
+  1. `cpad_e1` passed `95/95` pre-placement Spearman checks (`max |rho| = 0.2191 <= 0.90`) and `50/50` preceding fleet rasters (`GEMSDOE32 R0 = 0.4927 <= 0.70`), then stopped fail-closed at `51/95 r11_greedy_mp.tif` (`272,853` dots, `0.8725 > 0.70`), alongside shared-backbone overlap (`0.8296`) with in-repo `S14-PTAC E2` and the synthetic lattice bound (`calib_r13lattice_00904.tif >= 82.34%`).
+  2. Paired 20-km block-bootstrap 95% CI vs `INCUMBENT-PTAC-LB` (`[-0.001766, +0.010077]`) slightly straddles `0`.
+  3. Unassigned `[PASTE ONE METHOD]` paragraph and separate human weekly-slot selector (`drivendata.org` outside sandbox outbound allowlist).
+- **Priority for Session 18:** Train a backbone-orthogonal spatial operator (e.g., 2-D multi-scale steerable/Gabor directional filter-bank CNN / U-Net with `Band 12`/`19` dropout on `spatial.folds`) so final dots stay `<= 70%` overlap against the `DD+SPAC+PTHA+HVDC` HGB family while exceeding `0.198183` on `gems57-pooled-hide-v2` with paired `ci95[0] > 0`.
 
-## Remaining blockers preventing live DrivenData submission (`ok_to_submit = False`, `slots_used = 0`)
+## Session 17 (`S17-CGRD`, branch `arena/cbdb6e26-gemsdoe91`) — Summary & Limitations
 
-1. **Dense blanket / lattice registry overlap (`Rule 1`) and shared-backbone overlap.**
-   `cpad_e1` passed `95/95` pre-placement full-footprint Spearman checks (`max |rho| = 0.2191 <= 0.90`) and `50/50` preceding fleet rasters on 3-px dot overlap (`max = 0.6168 <= 0.70`, including `GEMSDOE32 R0 = 0.4927 <= 0.70`), then stopped fail-closed at row `51/95` on `data/fleet_registry/r11_greedy_mp.tif` (`272,853` positive pixels = `5.28%` of footprint, `3-px overlap = 0.8725 > 0.70`), alongside the synthetic 5-px calibration lattice `calib_r13lattice_00904.tif` (`206,895` dots -> `>= 82.34%` mathematical lower bound at `37,654` dots; `IR-S16-03`). Diagnostic post-stop checks also show `82.96%` 3-px dot overlap with in-repo `S14-PTAC E2` (shared `DD + MHTR + SPAC + PTHA + HVDC` HGB backbone) vs `14.96%` on `S16-PGRD` and `13.53%` on `CED91`.
-2. **Paired 20-km block-bootstrap 95% CI vs `INCUMBENT-PTAC-LB` straddles zero.**
-   While `cpad_e1 - incumbent_ptac_lb = +0.003962 HOLDOUT-DTI`, the 1,000-draw 20-km paired spatial-cluster 95% CI is `[-0.001766, +0.010077]`, so `readiness.py`'s `beats_comparable_best` gate (`ci95[0] > 0`) conservatively evaluates `False`.
-3. **Unassigned single-method paragraph (`assigned_lane = False`).**
-   The standing prompt leaves `[PASTE ONE METHOD]` blank; `S17-CPAD` was preregistered as a provisional single lane and remains fail-closed until explicitly assigned by orchestration.
-4. **Separate human weekly-slot selector & unauthenticated external portal (`separate_selector = False`).**
-   Outbound sandbox access permits only GitHub, npm, and PyPI hosts (`drivendata.org`, `gdr.openei.org`, `usgs.gov`, and `docs.nlr.gov` cannot be live-fetched from inside the sandbox). Live weekly submission allowance (`3/week` cap), legal/data-rights attestation, and organizer score receipts (`0.2778`, `0.3195`, `0.4413` remain unverified `CLAIM`s; `ORGANIZER-CONFIRMED: null`) require an authenticated human browser check.
-5. **GitHub Pages legacy mode.**
-   Scheduled workflow runs refresh `docs/fleet-audit.json` as an Actions artifact, while live Pages serves committed `main` snapshots (`HTTP 403` when attempting to switch Pages publisher mode via integration token).
+- **Method & remediation of `IR-91-S15-06` / `IR-91-S15-07`:** Implemented `src/gems91/cgrd17.py` and `scripts/run_s17_cgrd_lane.py` testing Cooper–Cowan multi-altitude Theta-Map ($\cos\theta$) and Hyperbolic Tilt (`HTD`) at $z=200\text{ m}, 600\text{ m}, 1500\text{ m}$ (`B02` RTP magnetics + `B13` isostatic gravity) + DOE GDR-1391 chemical geothermometer disequilibrium ($\Delta T_{\text{eq}}$) upflow plumes + Prior-Shift-Calibrated Subsurface Auto-Context (`34` columns, provably invariant to topographic bands `B12`/`B19` and never reading `dist_known_fault_px`). Applying `gems91.ptha.prior_shift_calibrate_surface` to all 6 pairwise 2-quadrant Stage-1 splits before stitching local auto-context and subtracting $\ge 3.2\text{ km}$ regional bowls caused **`E2` (`0.092125 HOLDOUT-DTI`, `95% CI [0.081283, 0.102562]`) to improve strictly (`+0.008144` / `+9.7%` relative) over `E1` (`0.083981 HOLDOUT-DTI`, `95% CI [0.074440, 0.093453]`)** on `gems91-hide-recover-v1.0` (`60,988` withheld positives), and scored **`0.225235 HOLDOUT-DTI`** (`95% CI [0.197388, 0.252846]`) on `gems57-pooled-hide-v2` (8 km label-blind quadrants).
+- **Real-Registry Uniqueness vs Synthetic Lattice Bound:** Across all 42 real rasters in `data/registry/*.tif` and `docs/downloads/*.tif`, `S17-CGRD E2` passes both Rule-1 uniqueness thresholds (`max_measured_final_dot_overlap_within_3px = 0.56063 <= 0.70`, `max_measured_surface_rank_correlation = 0.08657 <= 0.90`, `max_measured_final_dot_rank_correlation = 0.03162 <= 0.90`), whereas DEM-inclusive `E3` (`0.132279 HOLDOUT-DTI`) reached `77.51% > 70%` overlap with `SPID-E3` and was stopped per Protocol Rule 1. Under the literal 89-file frozen inventory including the `206,895`-dot synthetic 5-px grid `calib_r13lattice_00904.tif` (`docs/s16/registry-feasibility.json`), any `37,654`-dot candidate has overlap $\ge 82.34\% > 70\%$.
+- **Why `ok_to_submit = False` (`verdict = "negative"`, `0` slots spent):** Because `S17-CGRD E2` (`0.092125 HOLDOUT-DTI`) does not beat the comparable full-stack holdout best (`S14-PTAC E2 = 0.267782 HOLDOUT-DTI`), remains subject to the synthetic lattice capacity bound, and has no separate human selector clearance, it is published strictly as a format-certified research artifact (`docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif`, SHA-256 `287af6b2df1c34080c55cd1aef9264f30e5e507b152ff31dcb94d13cf6f521a6`).
+- **Environment & Outbound Network Limitations:** Outbound network access in this sandbox is restricted to `github.com`, `codeload.github.com`, `api.github.com`, `registry.npmjs.org`, `pypi.org`, and `files.pythonhosted.org`. External DrivenData (`drivendata.org`), USGS (`usgs.gov`), and DOE GDR (`openei.org`) web hosts are not directly reachable from the sandbox; all competition and reference datasets are verified from their SHA-256-pinned mirrors in `registry/data_manifest.json`.
+- **Highest-Expected-Value Next Steps:**
+  1. Combine the `S17-CGRD` prior-shift-calibrated pairwise Stage-1 auto-context (`IR-91-S15-06` fix) with the `S15-SCGF` 99-column Förstner + multi-scale Salem subsurface specialist (`0.240633 HOLDOUT-DTI` / `0.097940` Blind SGMC) in a Dual-Specialist architecture where the Stage-2 combiner weights the pure-subsurface specialist higher inside Quaternary alluvial basins (`B15` deep + `B19` low slope) so full-stack holdout DTI approaches `>0.268` while maintaining real-raster 3-px dot overlap $\le 70\%$.
+  2. Formally separate synthetic whole-Nevada calibration grids (`calib_r13lattice_00904.tif`) from genuine model submissions in a versioned registry policy (`v2`), while keeping the literal 89-file capacity bound explicitly reported.
 
-## Priority order for Session 18
+## Blocking an approved competition submission
 
-1. **Protocol / orchestration decision on dense blanket references (`r11_greedy_mp.tif` 272k dots & `calib_r13lattice_00904.tif` 207k dots) and explicit `[PASTE ONE METHOD]` assignment.** Never silently drop registry files or inject anti-registry noise.
-2. **Backbone-orthogonal paradigm to clear BOTH in-repo `S14-PTAC E2` (`<= 70%` 3-px overlap) AND beat `cpad_e1` (`0.198183 HOLDOUT-DTI`) with paired `ci95[0] > 0`.**
-   Any future tree model reusing the `DD + SPAC + PTHA + HVDC` tabular stack will naturally converge onto >75% 3-px overlap with `S14-PTAC E2` and `S17-CPAD E1`. To achieve true `<70%` dot overlap against `S14-PTAC E2` while exceeding `0.198183`, test a genuinely distinct spatial operator family (e.g., multi-scale steerable/Gabor directional filter-bank CNN / 2-D U-Net or graph minimum-cost fault-network linker trained strictly on `spatial.folds` with `80 px` buffer and `Band 12`/`19` dropout).
-3. **Human selector check on DrivenData.** Authenticate remaining weekly slots and record at least one `ORGANIZER-CONFIRMED` submission-page receipt in `ledger/submissions.csv` before any further threshold calibration.
+1. **Literal uniqueness is infeasible at the fixed comparison budget.** The frozen
+   lattice leaves only 6,649 footprint cells more than 3 px from its support.
+   Any 37,654-dot binary result overlaps it by at least 82.34%, above the 70% cap.
+   S16 measured 100% and stopped. An explicit, versioned registry/protocol decision
+   is required; do not drop dense references, use symmetric overlap, or generate
+   anti-registry noise. See `docs/s16/registry-feasibility.json`.
+2. **No scientific improvement established.** S16 = 0.069397 HOLDOUT-DTI, 95% CI
+   [0.057510, 0.081676], `gems57-pooled-hide-v2`, 60,988 withheld positives.
+   Paired delta vs the matched gravity control = −0.004626 HOLDOUT-DTI, 95% CI
+   [−0.010725, +0.001161], same evaluator/population. Negative result; no slot.
+3. **No assigned single-method paragraph.** The prompt omits the lane assignment.
+   PGRD was documented as provisional research, never falsely assigned.
+4. **Registry coverage is incomplete.** 89 frozen entries attempted before
+   placement, including two unavailable historical files; final checks stopped
+   at reference 27. The public fleet feed is not a complete raster registry.
+5. **No common certified current-best benchmark.** Historical scores mix
+   checkerboards, quadrants, label-informed placement and hidden-truth halo
+   deletion. CED's point estimate reproduced exactly; it is not a universal best.
+   Repeated adaptive use of these holdouts also risks overfitting.
+6. **Official account/rules state is unverified.** The official DrivenData web
+   pages and external geological source leads were not fetched/authenticated
+   in the recorded source audit. No authenticated fresh leaderboard, weekly-cap
+   receipt or eligibility/data-rights attestation is available. Existing GitHub mirror hashes prove identity, not
+   official endorsement or redistribution permission. No raw data are published.
+
+## What works autonomously
+
+- Fresh TIFF and single-TIFF ZIP under `docs/downloads/`, not copied from a prior
+  prediction. Shape/CRS/full affine and all-finite [0,1] checks pass from disk.
+- `python generate_submission.py --with-data` validates bytes, recorded evidence
+  and the fail-closed verdict; a zero exit code is **not** slot approval.
+- Candidate and control canaries, paired metric terms, provenance, registry stop,
+  code hashes and source snapshots are stored for audit.
+- A clean current Pages landing page, executive guide, research/source page and
+  explicit historical archive. No human visual inspection requirement.
+- A scheduled bounded GitHub source-feed check saved as an Actions artifact.
+  It does not authenticate organizer scores or launch scientific experiments.
+  **Publication limit:** Pages remains in legacy main-root mode. GitHub denied
+  the publisher-mode update with HTTP 403 (Resource not accessible by integration).
+  Committed snapshots can publish; scheduled refreshed artifacts cannot yet
+  update the live feed. Pages-settings permission is required to enable that.
+
+## Priority order for the next session
+
+1. Resolve the registry feasibility conflict and lane assignment through explicit
+   orchestration policy. Preserve today's negative evidence unchanged.
+2. **Completed in Session 17 (`S17-CDSC`, `docs/REVIEW-S17-CDSC-20261025.md`) & Next Auto-Context Refinement (`IR-91-S17-01` & `IR-91-S17-02`):**
+   - `S17-CDSC` executed the three `S15-SCGF` remediations (`IR-91-S15-06` Bayes prior-shift calibration of 2-quadrant pairwise Stage-1 sub-models to 3-quadrant training sample prevalence before stitching, `IR-91-S15-07` excluding `>= 3 km` GDR/S12 regional bowls from Stage-1 while keeping `16` local `S15` subsurface features in Stage-2, and `IR-91-S15-05` `72`-col bitwise `B12`/`B19`-invariant Pure-Subsurface specialist), recovering Fold 1 (`NE`) by **`+0.058247`** (`0.273196 -> 0.331443`) and lifting pooled `HOLDOUT-DTI` to **`0.259972`** (`+0.019339` over `S15-SCGF E2 = 0.240633`, `+0.015371` over `S13-PTHA E3 = 0.244601`).
+   - Next-session priorities to close the remaining `-0.007810` gap to `S14-PTAC E2` (`0.267782`):
+     1) **`IR-91-S17-01`:** Replace global sample-prevalence scaling of `stitch_p1` with per-quadrant empirical quantile / rank-logit standardization before running `compute_spac_autocontext_features`, ensuring exact `1.000x` `Test_k / Train_k` distribution equality across all 4 quadrants (eliminating the residual `1.429x` `SE` and `1.144x` `SW` spatial fault-density drift and preventing `Train_k` upward calibration from tightening $\lambda^*(\text{Train}_k)$).
+     2) **`IR-91-S17-02`:** Train a dedicated 14-column Stage-2 **Topology Specialist** (`hgb_topo`) solely on `S17_AUTOCONTEXT_NAMES` + `ptha_crest` and pool its calibrated log-odds with `PTAC`'s 85-feature Stage-2 ensemble so adding local subsurface features does not dilute root splits on `ac_wash_bridge_1km` and `ac_wash_bridge_2km`.
+3. Freeze a genuinely untouched control and evaluate the strongest permissible
+   incumbent on the same label-blind whole-segment instrument, using paired CIs.
+4. Verify official rules, input rights, account allowance and organizer receipts
+   through authorized access. Never ask for credentials in chat.
+5. Only then preregister a new bounded experiment; do not continue S16's variants
+   after its duplicate stop. More complex physics is not automatically better.
+
+The submitted-score ceiling is **unknown**. The user's 0.2778, 0.3195 and 0.4413
+are not reclassified as ORGANIZER-CONFIRMED without a submission-page receipt.
+
+## OLC91 session (2026-10-25, `arena/3444a6d3-gemsdoe91`)
+
+* **Result:** negative. E1 OLC 0.0832 vs E0 0.0853 HOLDOUT-DTI (`gems57-pooled-hide-v2`, seed 20,
+  11,321 withheld px); Δ −0.0021 [−0.0045, +0.0002]. The final file is DUPLICATE-STOP (76.8% of
+  dots within 3 px of `gems91-bhar-e3`). OK TO SUBMIT: NO. 0 slots used; 1 of 3 experiments used.
+* **Limitation: instrument mismatch.** On hide-and-recover, 55% of the withheld truth lies within 1 km
+  of visible faults. Live evidence (proximity lanes below random; ≈0 credit for dots 1–2 px from the
+  catalogue) says new faults are depleted there. No offline instrument is calibrated to the live board.
+* **Limitation: convergence on one stack.** PU-HGB on the 19 official bands converges on the same
+  15–25% of the footprint. Eleven earlier rasters overlap this file by more than 70%, so further
+  models on this stack will keep tripping the dot-overlap rule.
+* **Limitation: data provenance.** The pinned lidar-scarp and radiometric stacks are marked
+  "licence unchecked" in `registry/data_manifest.json` and were not used. Getting a verified
+  external source (3DEP 1 m DEM, GNSS strain tensors) requires hosts this sandbox cannot reach.
+* **Next 1:** H2, completeness-weighted PU, with a *hole-shuffled control*. Compute ĉ after
+  removing an equal pixel mass of random **visible** components, so that a gain caused only by
+  holdout-made catalogue holes cancels out.
+* **Next 2:** live-proxy calibration. Score the 13 owner-reported anchors in
+  60GEMSDOE `registry/calibration_manifest.json` on the off-catalogue SGMC control, and report
+  Spearman ρ against their live scores before using any proxy as evidence.
+* **Next 3:** for the selector, not this lane. Pruning R0 to a 3–5 px collar is a cheap live test,
+  because R0 still shows 2.1× and 1.75× area-lift at (2,3] and (3,5] px. It would be an
+  R0-derivative and not unique, so it belongs to R0's owner, not this lane.

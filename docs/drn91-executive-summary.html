@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DRN91 executive summary · GEMSDOE91</title>
+<link rel="stylesheet" href="assets/portal.css"><link rel="stylesheet" href="assets/s16.css"></head>
+<body><div class="wrap"><main>
+<section class="s16-hero"><div><span class="eyebrow">EXECUTIVE SUMMARY · DRN91 (2026-10-25)</span>
+<h1>New unique TIFF generated.<br>Download: YES — research.<br>Submit: NO.</h1>
+<p><span class="badge">OK TO DOWNLOAD: YES · RESEARCH</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<p><strong>Why not submit:</strong> DRN91 scored <strong>0.166217 HOLDOUT-DTI</strong> (95% CI in run card,
+<code>gems57-pooled-hide-v2</code>, 60,988 withheld positives), below the repo's comparable holdout best
+S14-PTAC 0.267782. The promotion gate failed, so no weekly slot may be spent on this file. This verdict is
+automated — no human inspection is required or able to override it.</p>
+<p><strong>What it is:</strong> the repo's first drainage-routing lane — D8 flow accumulation, channel
+distance, flow-direction deflection, channel-weighted knickpoint and convergence features from band 12
+(<code>det_elev</code>), combined with all 19 sponsor bands in a cross-fitted gradient-boosting model,
+emitted as 37,654 spaced unit dots (zeros encoding). Drainage features alone reached 0.163754 HOLDOUT-DTI,
+so the signal is real but insufficient.</p>
+<p><strong>Uniqueness (local scope):</strong> max |Spearman| 0.143 and max 64.6% of dots within 3 px of any
+raster in this repo's <code>docs/downloads/</code> — passes the ≤0.90 / ≤70% lane gates within that indexed
+scope. A universal fleet-registry claim is NOT made (registry incomplete; see run card).</p>
+<p><strong>Format (automated validator PASS):</strong> single-band float32, EPSG:32611, 3730×3292, transform
+matching <code>sample_submission.tif</code>, all values finite in [0,1] (fixes the DrivenData
+“Predicted values must be in range [0, 1]” error — use this <code>-zeros.tif</code>, never a NaN-encoded file),
+0 dots outside the footprint, 0 dots on the mapped catalogue.</p>
+<p><a class="button" download href="downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif">↓ Download DRN91 GeoTIFF (research only)</a>
+<a class="button outline" download href="downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.zip">↓ Single-TIFF ZIP</a>
+<a class="button outline" href="run-card-DRN91.json">Run card (JSON)</a>
+<a class="button outline" href="HYPOTHESES_DRN91.md">Preregistration &amp; 5 ranked hypotheses</a></p>
+<p class="small">File: <code>gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif</code> ·
+sha256 <code>b1623999403b1f6069fb259035a5b5acd795c7d80cf5ce03b8c6c6cda1a19fe3</code><br>
+Suggested DrivenData note (only if a future selector ever clears a successor — NOT this file):
+“DRN91 drainage-deflection dotted HGB; verdict in run card” (≤140 chars).</p>
+<p class="small">Scores labelled HOLDOUT-DTI are hide-and-recover estimates, not organizer scores.
+ORGANIZER-CONFIRMED scores: none this session. The brief's 0.2778 / 0.4413 / 0.3195 figures remain
+unverified claims (see IRREGULARITIES IR-S16-05). Sources for manual review:
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData competition 306</a> ·
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution">official reference solution</a> ·
+<a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> ·
+<a href="https://epsg.io/32611">EPSG:32611</a></p>
+</div></section></main></div></body></html>

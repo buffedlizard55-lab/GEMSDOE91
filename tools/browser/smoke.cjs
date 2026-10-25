@@ -47,7 +47,7 @@ async function main() {
     if (!allStatesFailClosed || stateCount === 0) {
       throw new Error('Missing fail-closed negative submission state');
     }
-    if (!(await page.getByText('NOT OK TO SUBMIT', { exact: true }).count())) {
+    if (!(await page.getByText(/^NOT OK TO SUBMIT\.?$/).count())) {
       throw new Error('Submission warning is not visible');
     }
     // The historical DZ-EDGE file is still downloadable for research, but its
@@ -72,28 +72,26 @@ async function main() {
     if (dzDigest !== dzCard.raster_sha256) throw new Error('DZ-EDGE research download bytes do not match recorded SHA256');
 
     await page.goto(baseURL, { waitUntil: 'networkidle' });
-    // The current candidate has one obvious download and an automated negative verdict.
-    const s16DownloadEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: '↓ Download S16 research TIFF', exact: true }).click();
-    const s16Download = await s16DownloadEvent;
-    const s16Bytes = fs.readFileSync(await s16Download.path());
-    const s16Digest = crypto.createHash('sha256').update(s16Bytes).digest('hex');
-    const s16Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S16.json')));
-    if (s16Digest !== s16Card.raster_sha256 || s16Card.ok_to_submit !== false) {
-      throw new Error('Current S16 download identity/readiness mismatch');
-    }
-    const s16ZipEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: 'Single-TIFF ZIP', exact: true }).click();
-    const s16Zip = await s16ZipEvent;
-    const s16ZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await s16Zip.path())).digest('hex');
-    if (s16ZipDigest !== s16Card.artifact.zip_sha256) throw new Error('Current ZIP download bytes mismatch');
-    const scgfDlEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: '↓ Download S15-SCGF E2 GeoTIFF', exact: true }).click();
-    const scgfDownload = await scgfDlEvent;
-    const scgfDigest = crypto.createHash('sha256').update(fs.readFileSync(await scgfDownload.path())).digest('hex');
-    const scgfCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S15-SCGF.json')));
-    if (scgfDigest !== scgfCard.raster_sha256 || scgfCard.submission_ready !== false) {
-      throw new Error('S15-SCGF one-click download SHA256 or fail-closed state mismatch');
+    // Follow the current manifest instead of assuming an archived S16 page.
+    const current = JSON.parse(fs.readFileSync(path.join(root, 'docs/current-run.json')));
+    if (current.ok_to_submit !== false) throw new Error('Research download must remain blocked');
+    const currentDownloadEvent = page.waitForEvent('download');
+    await page.locator(`a[download][href="${current.tif}"]`).click();
+    const currentDownload = await currentDownloadEvent;
+    const currentDigest = crypto.createHash('sha256').update(fs.readFileSync(await currentDownload.path())).digest('hex');
+    if (currentDigest !== current.raster_sha256) throw new Error('Current TIFF identity mismatch');
+    const currentZipEvent = page.waitForEvent('download');
+    await page.locator(`a[download][href="${current.zip}"]`).click();
+    const currentZip = await currentZipEvent;
+    const currentZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await currentZip.path())).digest('hex');
+    if (currentZipDigest !== current.zip_sha256) throw new Error('Current ZIP identity mismatch');
+    const cgrdDlEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)', exact: true }).click();
+    const cgrdDownload = await cgrdDlEvent;
+    const cgrdDigest = crypto.createHash('sha256').update(fs.readFileSync(await cgrdDownload.path())).digest('hex');
+    const cgrdCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S17-CGRD.json')));
+    if (cgrdDigest !== cgrdCard.raster_sha256 || cgrdCard.submission_ready !== false) {
+      throw new Error('S17-CGRD one-click download SHA256 or fail-closed state mismatch');
     }
     const s17DlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S17-CPAD E1 GeoTIFF', exact: true }).click();
@@ -110,10 +108,22 @@ async function main() {
     if (s17ZipDigest !== s17Card.artifact.zip_sha256) {
       throw new Error('S17-CPAD single-TIFF ZIP download SHA256 mismatch');
     }
-    await page.getByRole('button', { name: 'Copy submission note', exact: true }).click();
-    await page.waitForFunction(() => document.getElementById('copy-status').textContent.length > 0);
     await page.locator('h1').click();
     await page.screenshot({ path: path.join(output, 'desktop.png'), fullPage: true });
+    // Older candidate controls and downloads belong to the archive.
+    await page.goto(new URL('archive-results.html', baseURL).href, { waitUntil: 'networkidle' });
+    const scgfDlEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ Download S15-SCGF E2 GeoTIFF', exact: true }).click();
+    const scgfDownload = await scgfDlEvent;
+    const scgfDigest = crypto.createHash('sha256').update(fs.readFileSync(await scgfDownload.path())).digest('hex');
+    const scgfCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S15-SCGF.json')));
+    if (scgfDigest !== scgfCard.raster_sha256 || scgfCard.submission_ready !== false) {
+      throw new Error('S15-SCGF one-click download SHA256 or fail-closed state mismatch');
+    }
+    await page.getByRole('button', { name: 'Copy submission note', exact: true }).click();
+    await page.waitForFunction(() => document.getElementById('copy-status').textContent.length > 0);
+    await page.locator('h1').first().click();
+    await page.screenshot({ path: path.join(output, 'archive-controls.png'), fullPage: true });
     // Historical downloads remain testable, but no longer masquerade as the current page.
     await page.goto(new URL('archive-results.html', baseURL).href, { waitUntil: 'networkidle' });
     const s14DownloadEvent = page.waitForEvent('download');
@@ -144,7 +154,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'archive-desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const target of ['index.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -168,7 +178,7 @@ async function main() {
 
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const mTarget of ['index.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
@@ -184,12 +194,12 @@ async function main() {
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
       dzedge_download_sha256: dzDigest,
-      s17_download_sha256: s17Digest,
-      s17_zip_download_sha256: s17ZipDigest,
-      s17_submission_ready: s17Card.ok_to_submit,
-      s16_download_sha256: s16Digest,
-      s16_submission_ready: s16Card.ok_to_submit,
-      s16_zip_download_sha256: s16ZipDigest,
+      s17_cpad_download_sha256: s17Digest,
+      s17_cpad_zip_download_sha256: s17ZipDigest,
+      s17_cpad_submission_ready: s17Card.ok_to_submit,
+      current_download_sha256: currentDigest,
+      current_submission_ready: current.ok_to_submit,
+      current_zip_download_sha256: currentZipDigest,
       s14_download_sha256: s14Digest,
       s13_download_sha256: s13Digest,
       download_sha256: digest,

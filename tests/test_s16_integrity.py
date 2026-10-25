@@ -45,18 +45,23 @@ def test_current_real_tiff_and_measured_evidence_verify_without_data_download():
 
 
 def test_root_and_docs_expose_one_current_negative_not_legacy_format_only_approval():
+    current = json.loads((ROOT / 'docs/current-run.json').read_text())
+    # The current run card rotates per session; the safety contract below does not.
+    assert current['run_card'].startswith('run-card-') and current['ok_to_submit'] is False
+    card = json.loads((ROOT / 'docs' / current['run_card']).read_text())
+    current_tif = Path(card['raster_path']).name
+    assert current['raster_sha256'] == card['raster_sha256']
+    assert card['ok_to_submit'] is False
     for name in ('docs/index.html', 'docs/executive-summary.html'):
         p = Page(); p.feed((ROOT / name).read_text())
         text = ' '.join(p.text)
         assert 'OK TO DOWNLOAD: YES' in text and 'OK TO SUBMIT: NO' in text
         assert 'NOT OK TO SUBMIT' in text
         assert p.states == ['false']
-        assert 'run-card-S16.json' in p.links
-        assert any('s16-pgrd' in link and link.endswith('.tif') for link in p.links)
+        assert current['run_card'] in p.links
+        assert any(link.endswith(current_tif) for link in p.links)
         assert 'OK TO SUBMIT: YES' not in text
     assert 'OK TO SUBMIT: YES' not in (ROOT / 'index.html').read_text()
-    current = json.loads((ROOT / 'docs/current-run.json').read_text())
-    assert current['run_card'] == 'run-card-S16.json' and current['ok_to_submit'] is False
 
 
 def test_new_primary_pages_have_no_broken_local_targets_or_fragments():

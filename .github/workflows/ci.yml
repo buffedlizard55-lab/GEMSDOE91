@@ -60,6 +60,11 @@ jobs:
           python scripts/verify_evidence.py
           python scripts/verify_s16.py --with-data
           python scripts/verify_s17.py --with-data
+      - name: Reinspect every TIFF and ZIP against pinned references
+        run: |
+          python scripts/audit_downloads.py --output "$RUNNER_TEMP/download-audit.json" --html "$RUNNER_TEMP/download-audit.html"
+          diff -u docs/download-audit.json "$RUNNER_TEMP/download-audit.json"
+          diff -u docs/download-audit.html "$RUNNER_TEMP/download-audit.html"
       - name: Evidence-derived portal is reproducible
         run: python -m pytest tests/test_submission_portal.py tests/test_s17_cpad.py
       - uses: actions/upload-artifact@v4
@@ -73,7 +78,7 @@ jobs:
             docs/run-card-S17-CPAD.json
             docs/s17/
             docs/downloads/gems91-ced-*
-            docs/downloads/gems91-s17-*
+            docs/downloads/gems91-s17-cpad-*
 
 # Deliberately no automatic multi-arm legacy rebuild or geological experiment.
 # Legacy MODEL forecasts used incompatible instruments; format PASS isn't a

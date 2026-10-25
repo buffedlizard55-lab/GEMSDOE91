@@ -1,0 +1,578 @@
+{
+  "experiments": [
+    {
+      "experiment_number": 1,
+      "exp_id": "E1",
+      "hypothesis_id": "ablation-control (S13 recipe)",
+      "title": "S13 recipe ablation control: 39 static + 16 S11 + 20 PTHA, corridor emission",
+      "n_features": 75,
+      "block_cols": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "emission_mode": "matched_48k_area_quota_submodular",
+      "named_non_fault_mimic": "Unfaulted Tertiary volcanic flow lobes, aeromagnetic flight-line seams, erosional range-front cliffs",
+      "preplacement": {
+        "n_registry_rasters_checked": 85,
+        "surface_max_abs_rank_corr": 0.1592,
+        "surface_closest_raster": "calib_h161_01855.tif",
+        "is_duplicate": false,
+        "uniqueness_pass": true
+      },
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "mask_buffer_predictions": true,
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.198824,
+        "ci_95": [
+          0.188734,
+          0.213287
+        ],
+        "bootstrap_tiles_5km": 1968,
+        "bootstrap_draws": 200,
+        "pooled_T": 11895.454,
+        "pooled_S": 48000.0,
+        "pooled_M": 4702.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11287.0,
+            "T": 2278.728,
+            "M": 916.0,
+            "fold_dti": 0.204635
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13855.0,
+            "T": 3581.6,
+            "M": 1465.0,
+            "fold_dti": 0.279047
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12564.0,
+            "T": 2590.187,
+            "M": 1023.0,
+            "fold_dti": 0.134492
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 10294.0,
+            "T": 3444.939,
+            "M": 1298.0,
+            "fold_dti": 0.207534
+          }
+        ]
+      },
+      "holdout_v1_1_nohalo_receipt": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+        "mask_buffer_predictions": false,
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.198824,
+        "ci_95": [
+          0.18656,
+          0.212771
+        ],
+        "bootstrap_tiles_5km": 1968,
+        "bootstrap_draws": 200,
+        "pooled_T": 11895.454,
+        "pooled_S": 48000.0,
+        "pooled_M": 4702.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11287.0,
+            "T": 2278.728,
+            "M": 916.0,
+            "fold_dti": 0.204635
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13855.0,
+            "T": 3581.6,
+            "M": 1465.0,
+            "fold_dti": 0.279047
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12564.0,
+            "T": 2590.187,
+            "M": 1023.0,
+            "fold_dti": 0.134492
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 10294.0,
+            "T": 3444.939,
+            "M": 1298.0,
+            "fold_dti": 0.207534
+          }
+        ]
+      },
+      "elapsed_seconds": 1333.42
+    },
+    {
+      "experiment_number": 2,
+      "exp_id": "E2",
+      "hypothesis_id": "H17-1",
+      "title": "E1 + 14 Euler deconvolution source-geometry features (mag/grav SI 0/1 density, depth, uncertainty)",
+      "n_features": 89,
+      "block_cols": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "emission_mode": "matched_48k_area_quota_submodular",
+      "named_non_fault_mimic": "Unfaulted lithologic basement contacts; isolated volcanic plugs (point sources scatter at SI 0/1)",
+      "preplacement": {
+        "n_registry_rasters_checked": 85,
+        "surface_max_abs_rank_corr": 0.15972,
+        "surface_closest_raster": "calib_h161_01855.tif",
+        "is_duplicate": false,
+        "uniqueness_pass": true
+      },
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "mask_buffer_predictions": true,
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.199155,
+        "ci_95": [
+          0.187822,
+          0.211187
+        ],
+        "bootstrap_tiles_5km": 1975,
+        "bootstrap_draws": 200,
+        "pooled_T": 11915.011,
+        "pooled_S": 48000.0,
+        "pooled_M": 4728.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11287.0,
+            "T": 2290.35,
+            "M": 922.0,
+            "fold_dti": 0.205658
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13855.0,
+            "T": 3587.78,
+            "M": 1473.0,
+            "fold_dti": 0.279536
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12564.0,
+            "T": 2560.13,
+            "M": 1017.0,
+            "fold_dti": 0.132965
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 10294.0,
+            "T": 3476.752,
+            "M": 1316.0,
+            "fold_dti": 0.209416
+          }
+        ]
+      },
+      "holdout_v1_1_nohalo_receipt": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+        "mask_buffer_predictions": false,
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.199155,
+        "ci_95": [
+          0.186911,
+          0.209615
+        ],
+        "bootstrap_tiles_5km": 1975,
+        "bootstrap_draws": 200,
+        "pooled_T": 11915.011,
+        "pooled_S": 48000.0,
+        "pooled_M": 4728.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 11287.0,
+            "T": 2290.35,
+            "M": 922.0,
+            "fold_dti": 0.205658
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 13855.0,
+            "T": 3587.78,
+            "M": 1473.0,
+            "fold_dti": 0.279536
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 12564.0,
+            "T": 2560.13,
+            "M": 1017.0,
+            "fold_dti": 0.132965
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 10294.0,
+            "T": 3476.752,
+            "M": 1316.0,
+            "fold_dti": 0.209416
+          }
+        ]
+      },
+      "elapsed_seconds": 1533.12,
+      "paired_vs_e1_ablation": {
+        "delta": 0.00033099999999999796,
+        "ci95": [
+          -0.002264,
+          0.003222
+        ],
+        "prob_positive": 0.5975,
+        "n_paired_5km_tiles": 1995,
+        "n_bootstrap_draws": 400
+      }
+    },
+    {
+      "experiment_number": 3,
+      "exp_id": "E3",
+      "hypothesis_id": "H17-1 + Dinkelbach emission",
+      "title": "E1 + 14 Euler deconvolution source-geometry features (mag/grav SI 0/1 density, depth, uncertainty) + fold-independent Dinkelbach allocation",
+      "n_features": 89,
+      "block_cols": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "base_oof_experiment": "E2",
+      "emission_mode": "fold_independent_dinkelbach_submodular",
+      "fold_dinkelbach_allocation": {
+        "NW": {
+          "q_floor_train": 0.0225958,
+          "tau_dinkelbach_train": 17.8801284,
+          "last_test_gain": 13.5094163,
+          "n_cal_pixels": 3636982,
+          "n_cal_target_dots": 36966,
+          "n_test_emitted_dots": 6500
+        },
+        "NE": {
+          "q_floor_train": 0.0236692,
+          "tau_dinkelbach_train": 17.2129557,
+          "last_test_gain": 17.218619,
+          "n_cal_pixels": 3391025,
+          "n_cal_target_dots": 34466,
+          "n_test_emitted_dots": 10232
+        },
+        "SW": {
+          "q_floor_train": 0.016477,
+          "tau_dinkelbach_train": 16.2578209,
+          "last_test_gain": 16.2669547,
+          "n_cal_pixels": 3435514,
+          "n_cal_target_dots": 34918,
+          "n_test_emitted_dots": 13181
+        },
+        "SE": {
+          "q_floor_train": 0.0196462,
+          "tau_dinkelbach_train": 14.6922057,
+          "last_test_gain": 14.6942433,
+          "n_cal_pixels": 3681757,
+          "n_cal_target_dots": 37421,
+          "n_test_emitted_dots": 11198
+        }
+      },
+      "named_non_fault_mimic": "Broad pluton-margin probability blobs and barren interior playa false positives",
+      "holdout": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "mask_buffer_predictions": true,
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.249626,
+        "ci_95": [
+          0.234678,
+          0.264996
+        ],
+        "bootstrap_tiles_5km": 1864,
+        "bootstrap_draws": 200,
+        "pooled_T": 14654.777,
+        "pooled_S": 41111.0,
+        "pooled_M": 6183.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 6500.0,
+            "T": 2231.976,
+            "M": 956.0,
+            "fold_dti": 0.219666
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 10232.0,
+            "T": 3897.021,
+            "M": 1684.0,
+            "fold_dti": 0.321277
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 13181.0,
+            "T": 3630.759,
+            "M": 1550.0,
+            "fold_dti": 0.186335
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 11198.0,
+            "T": 4895.021,
+            "M": 1993.0,
+            "fold_dti": 0.289112
+          }
+        ]
+      },
+      "holdout_v1_1_nohalo_receipt": {
+        "metric_label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+        "mask_buffer_predictions": false,
+        "alpha": 0.2,
+        "beta": 0.8,
+        "kernel_radius_m": 300.0,
+        "n_withheld_positives": 60988,
+        "holdout_dti": 0.249626,
+        "ci_95": [
+          0.235405,
+          0.261315
+        ],
+        "bootstrap_tiles_5km": 1864,
+        "bootstrap_draws": 200,
+        "pooled_T": 14654.777,
+        "pooled_S": 41111.0,
+        "pooled_M": 6183.0,
+        "folds": [
+          {
+            "fold_id": 0,
+            "name": "NW",
+            "n_withheld_positives": 10757,
+            "n_segments_withheld": 151,
+            "emitted_mass": 6500.0,
+            "T": 2231.976,
+            "M": 956.0,
+            "fold_dti": 0.219666
+          },
+          {
+            "fold_id": 1,
+            "name": "NE",
+            "n_withheld_positives": 12051,
+            "n_segments_withheld": 247,
+            "emitted_mass": 10232.0,
+            "T": 3897.021,
+            "M": 1684.0,
+            "fold_dti": 0.321277
+          },
+          {
+            "fold_id": 2,
+            "name": "SW",
+            "n_withheld_positives": 20541,
+            "n_segments_withheld": 327,
+            "emitted_mass": 13181.0,
+            "T": 3630.759,
+            "M": 1550.0,
+            "fold_dti": 0.186335
+          },
+          {
+            "fold_id": 3,
+            "name": "SE",
+            "n_withheld_positives": 17639,
+            "n_segments_withheld": 188,
+            "emitted_mass": 11198.0,
+            "T": 4895.021,
+            "M": 1993.0,
+            "fold_dti": 0.289112
+          }
+        ]
+      },
+      "paired_vs_e1_ablation": {
+        "delta": 0.050801999999999986,
+        "ci95": [
+          0.045026,
+          0.056994
+        ],
+        "prob_positive": 1.0,
+        "n_paired_5km_tiles": 1971,
+        "n_bootstrap_draws": 400
+      },
+      "paired_vs_base_oof": {
+        "delta": 0.05047099999999999,
+        "ci95": [
+          0.045256,
+          0.056369
+        ],
+        "prob_positive": 1.0,
+        "n_paired_5km_tiles": 1978,
+        "n_bootstrap_draws": 400
+      },
+      "elapsed_seconds": 65.03
+    }
+  ],
+  "winner_exp_id": "E3",
+  "experiment_seconds": 2931.58,
+  "max_experiment_seconds": 7200.0,
+  "within_budget": true,
+  "split_sha256": "0f874367d8d34964c9b8802d3d67d348f68ade1f9fbc4301bffc5eafcb524db8"
+}

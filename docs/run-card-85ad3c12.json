@@ -1,0 +1,39 @@
+{
+  "schema": "gems91.review.85ad3c12.v1",
+  "date_utc": "2026-10-25",
+  "branch": "arena/85ad3c12-gemsdoe91",
+  "hypothesis": "No experiment was run because the assigned single-method lane and required local data/cache are absent.",
+  "mechanism": "Repository and execution-state review only; no new prediction surface, placement, or TIFF was generated.",
+  "named_non_fault_process": "Intrusive lithologic contacts and survey levelling/gridding seams can mimic multi-field structural signatures; no feature was evaluated here.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "value": null,
+    "reason": "No assigned lane; sample_submission, registry parent, existing-fault raster, and feature stack are unavailable in this checkout."
+  },
+  "registry_correlation_overlap": {
+    "status": "NOT RUN; no new surface or dots",
+    "surface_rank_correlation": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap_within_3px": null
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN; no raster generated",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": "No candidate raster generated; do not submit any file based on this review.",
+  "experiments_run": 0,
+  "slots_used": 0,
+  "organizer_confirmed": null,
+  "verdict": "negative",
+  "ok_to_download": false,
+  "ok_to_submit": false,
+  "review": "REVIEW-ACTIVE-85AD3C12-20261025.md"
+}
