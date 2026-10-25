@@ -75,7 +75,7 @@ Scientific scoring/writing uses the **unchanged pinned shared template**, not a 
 3. Verify official rules, data-use permission, account allowance and score receipts through authorized access; do not request passwords or tokens in chat.
 4. Reserve an untouched spatial/geological control to limit adaptive holdout overfitting before any further experiments.
 
-Concurrent main reviews were integrated, including the S15 holdout/final-selector fix and removal of invented selector/slot approval. Their [dated review](docs/REVIEW-ARENA-BB16B6AE-20261025.md) is historical secondary evidence, not a fresh S16 external-page fetch or a score receipt. Its missing-input state does not describe the restored S16 inputs.
+Concurrent main reviews were integrated, including the S15 holdout/final-selector fix and removal of invented selector/slot approval. Their [S15 dated review](docs/REVIEW-ARENA-BB16B6AE-20261025.md) is historical secondary evidence, not a fresh S16 external-page fetch or a score receipt. Its missing-input state does not describe the restored S16 inputs. The subsequent [full-grid audit](docs/REVIEW-C6BFB72B-20261025.md), its 11 edge-case tests, and S15 prerequisite/registry fixes are also preserved.
 
 [Prior README, preserved as historical and unverified](docs/archive/README-before-S16.md). [Detailed limitations and next steps](LIMITATIONS_AND_NEXT_STEPS.md).
 

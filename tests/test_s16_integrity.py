@@ -171,3 +171,12 @@ def test_undefined_registry_rank_is_null_not_a_perfect_diversity_pass(tmp_path, 
     dots[1, 1] = np.nan
     with pytest.raises(ValueError, match='finite'):
         EH.check_registry_uniqueness(surface, dots, fp, [path], corr_stride=1)
+
+
+def test_artifact_policy_rejects_duplicate_rows_after_concurrent_merges(tmp_path, monkeypatch):
+    from scripts import check_artifact_policy as policy
+    monkeypatch.setattr(policy, 'ROOT', tmp_path)
+    (tmp_path / 'registry').mkdir()
+    (tmp_path / 'registry/artifact_policy.json').write_text(json.dumps({'files': [{'path': 'repeated'}, {'path': 'repeated'}]}))
+    with pytest.raises(ValueError, match='Duplicate artifact-policy'):
+        policy.main()

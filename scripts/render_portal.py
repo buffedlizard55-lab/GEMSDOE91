@@ -24,7 +24,7 @@ def shell(title, body, updated):
 <title>{escape(title)} · GEMSDOE91</title><meta name="description" content="Automated GEMS fault-mapping research, measured holdout evidence and a clearly labelled GeoTIFF download. Not approved for submission.">
 <link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
 <body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Current candidate</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a><a href="archive-results.html">Historical archive</a></nav></header>
-<main id="main">{body}</main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated {escape(updated)} · UTC</div><div><a href="run-card.json">Machine-readable run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>\n'''
+<main id="main"><aside class="card" aria-label="Historical parallel review"><strong>Historical parallel audit · research downloads only.</strong> That review generated no candidate. Its full-grid and artifact-policy corrections are retained here. <a href="REVIEW-C6BFB72B-20261025.md">Dated audit and proposed tests</a> · <a href="index.html">Current S16 result</a></aside>{body}</main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated {escape(updated)} · UTC</div><div><a href="run-card.json">Machine-readable run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>\n'''
 
 
 def f(value, digits=5):
@@ -34,7 +34,8 @@ def f(value, digits=5):
 # Session 12: one computed status board for every current candidate file. Every
 # value is read from disk at render time (SHA-256, raster format, shared gates);
 # nothing is typed in. Download is research-only; submission is never offered here.
-EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292), 'transform_origin': (243350.0, 4508550.0), 'pixel_m': 100.0}
+EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292),
+                 'transform': (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)}
 BOARD_ROWS = (
     ('S15-HCPA (historical research only; HOLDOUT-DTI 0.091399; final selector not holdout-matched; complete registry unverified)', 'docs/run-card-S15.json', 'docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif', 's15-hcpa.html'),
     ('S14-HVDC E2 (holdout 0.262209 — #1 comparable v1.0 in GEMSDOE91; +0.017608 paired vs S13-PTHA; blind SGMC 0.110429 #1; selector blocked ★)', 'docs/run-card-S14-HVDC.json', 'docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif', 's14-hvdc.html'),
@@ -65,7 +66,7 @@ def _raster_format(path):
         finite = np.isfinite(a)
         ok = (s.count == 1 and s.dtypes[0] == 'float32' and str(s.crs) == EXPECTED_GRID['crs']
               and (s.height, s.width) == EXPECTED_GRID['shape']
-              and tuple(s.transform)[:6] == (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)
+              and tuple(s.transform)[:6] == EXPECTED_GRID['transform']
               and s.nodata is None
               and bool(finite.all()) and float(a.min()) >= 0.0 and float(a.max()) <= 1.0)
     return digest, bool(ok)

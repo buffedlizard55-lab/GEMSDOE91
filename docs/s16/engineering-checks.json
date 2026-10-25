@@ -1,10 +1,10 @@
 {
   "status": "PASS",
   "scope": "Local engineering checks only; not promotion or a geological experiment",
-  "checked_utc": "2026-10-25T04:29:16.964913+00:00",
+  "checked_utc": "2026-10-25T04:33:45.189977+00:00",
   "pytest": {
     "command": "OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 .venv/bin/python -m pytest -ra",
-    "passed": 415,
+    "passed": 427,
     "skipped": 2,
     "skip_reasons": [
       "Optional S15 layers not all restored",
@@ -12,7 +12,7 @@
     ],
     "warnings": 30,
     "warning_kind": "rasterio Affine multiplication deprecation",
-    "duration_seconds": 22.86
+    "duration_seconds": 23.06
   },
   "independent_s16_verifier": "PASS (with pinned sample and catalogue)",
   "historical_ced_evidence_verifier": "PASS (stored source/evidence consistency only)",
@@ -44,8 +44,8 @@
     "final_receipt_location": "https://github.com/buffedlizard55-lab/GEMSDOE91/pull/79",
     "note": "This timestamped engineering snapshot is not a live deployment or readiness feed."
   },
-  "note": "Local full suite plus focused subsequent metadata checks passed; all three remote CI jobs passed at tested_head_sha. Later CI/deployment receipts belong to PR #79. All checks are engineering only; submission remains blocked.",
-  "integrated_main": "911b6a9",
+  "note": "427-pass local full suite after all concurrent integrations. Last completed remote CI is pinned above; latest-head checks and publication receipts are recorded on PR #79. Engineering only; submission remains blocked.",
+  "integrated_main": "332d72a",
   "pages_configuration": {
     "observed_mode": "legacy",
     "requested_mode": "workflow",
