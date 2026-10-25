@@ -1,3 +1,13 @@
+## XG91 / 2026-10-25 — this session (not organizer scores)
+
+- **IR-XG91-01 — assigned lane missing:** the prompt said to stay in the lane described by a method paragraph that was not in the prompt. XG91 was preregistered in `docs/HYPOTHESES_XG91.md` and is not an orchestrated lane. No slot was spent.
+- **IR-XG91-02 — band 6 tag is false:** the GeoTIFF description calls band 6 a signed tilt/curvature. On 5,164,300 footprint pixels it is strictly positive (min 2.953, median 18.482, max 88.567). It was not used as a signed tilt.
+- **IR-XG91-03 — band correlation not as previously recorded:** band 10 versus band 16 Pearson on a 200,000-cell subsample was 0.084104, not the 0.7354 figure in an older note. Band 10 ranges from 0 to 4,962,515 (median 622.8).
+- **IR-XG91-04 — lattice capacity, not a scientific pass:** 99.742% of XG91-E1 dots fall within 3 px of `calib_r13lattice_00904.tif`. The lane stopped. E2 and E3 were not run. Dots were not moved into lattice holes to manufacture uniqueness.
+- **IR-XG91-05 — no improvement over chance:** 0.071171 HOLDOUT-DTI [0.063769, 0.079270], `gems57-pooled-hide-v2`, 60,988 withheld positives. Matched random control 0.073788 on the same instrument. Paired delta −0.002618 [−0.009427, 0.005131] includes zero. The recorded v2 point estimate 0.194267 was not re-scored on this split.
+- **IR-XG91-06 — scores still unreceipted:** 0.2778, 0.3195, and public-leaderboard 0.4413 (fetched 2026-10-25) are not organizer receipts for any file in this repository. The GEMSDOE32 page still says no organiser score exists for `h33-h33-2-b2`.
+- **IR-XG91-07 — inputs are pinned mirrors:** sample, catalogue, and the 19-band stack were restored from SHA-256 pins, not downloaded from DrivenData in this session. Hash match is not a licence grant.
+
 ## S16 / 2026-10-25 — current review findings (not organizer scores)
 
 - **IR-S16-01 — critical synthetic-label overwrite:** the inherited root generator replaced `data/official/existing_faults.tif` with mock labels and generated smooth random noise. Replaced by a side-effect-free entry point to the measured pipeline; protected by regression tests. Real input SHA-256 reverified.

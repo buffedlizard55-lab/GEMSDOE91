@@ -6,8 +6,8 @@
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
-  "files_checked": 64,
-  "format_pass": 56,
+  "files_checked": 66,
+  "format_pass": 58,
   "format_fail": 8,
   "ok_to_submit": false,
   "files": [
@@ -1315,6 +1315,47 @@
         "no_nan_inside_footprint": true,
         "zero_outside_footprint": true,
         "visible_catalogue_masked": false
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "4aecf0851bbe0ae3a9f87255f4d438597becc90e50ec49789852cfe1a33d4327",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "fe9d868aeab195f7473aa9e334c11452dd5bb2a5e423ad708f628d7f4801c31e",
+      "zip_member": "gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
       },
       "nonfinite_cells": 0,
       "out_of_range_finite_cells": 0,

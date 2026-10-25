@@ -1,6 +1,8 @@
 {
-  "run_card": "run-card-GEO91.json",
+  "run_card": "run-card-XG91.json",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "raster_sha256": "57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f"
+  "raster_sha256": "4aecf0851bbe0ae3a9f87255f4d438597becc90e50ec49789852cfe1a33d4327",
+  "verdict": "negative",
+  "note": "Renderer never sets ok_to_submit true."
 }

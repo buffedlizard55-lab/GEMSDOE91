@@ -16,13 +16,25 @@ def render() -> None:
     docs = ROOT / "docs"
     (docs / "index.html").write_bytes((docs / "geo91-index-src.html").read_bytes())
     (docs / "executive-summary.html").write_bytes((docs / "geo91-exec-src.html").read_bytes())
-    card = json.loads((docs / "run-card-GEO91.json").read_text(encoding="utf-8"))
-    current = {
-        "run_card": "run-card-GEO91.json",
-        "ok_to_download": True,
-        "ok_to_submit": False,
-        "raster_sha256": card["e2_raster_sha256"],
-    }
+    xg = docs / "run-card-XG91.json"
+    if xg.is_file():
+        card = json.loads(xg.read_text(encoding="utf-8"))
+        current = {
+            "run_card": "run-card-XG91.json",
+            "ok_to_download": bool(card.get("ok_to_download")),
+            "ok_to_submit": False,
+            "raster_sha256": card.get("raster_sha256"),
+            "verdict": card.get("verdict"),
+            "note": "Renderer never sets ok_to_submit true.",
+        }
+    else:
+        card = json.loads((docs / "run-card-GEO91.json").read_text(encoding="utf-8"))
+        current = {
+            "run_card": "run-card-GEO91.json",
+            "ok_to_download": True,
+            "ok_to_submit": False,
+            "raster_sha256": card["e2_raster_sha256"],
+        }
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
 
 

@@ -46,9 +46,11 @@ def test_current_real_tiff_and_measured_evidence_verify_without_data_download():
 
 def test_root_and_docs_expose_one_current_negative_not_legacy_format_only_approval():
     current = json.loads((ROOT / 'docs/current-run.json').read_text())
-    assert current['run_card'] == 'run-card-GEO91.json' and current['ok_to_submit'] is False
+    assert current['run_card'] == 'run-card-XG91.json' and current['ok_to_submit'] is False
     card = json.loads((ROOT / 'docs' / current['run_card']).read_text())
-    current_tif = Path(card['e2_raster_path']).name
+    current_tif = Path(card['raster_path']).name
+    assert current['raster_sha256'] == card['raster_sha256']
+    assert card['ok_to_submit'] is False
     for name in ('docs/index.html', 'docs/executive-summary.html'):
         p = Page(); p.feed((ROOT / name).read_text())
         text = ' '.join(p.text)
