@@ -1,0 +1,56 @@
+{
+  "schema_version": "gems91.review.0a96aa96.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/0a96aa96-gemsdoe91",
+  "new_tif_generated": false,
+  "hypothesis": "Existing CED91 candidate tests stable cross-scale magnetic–gravity edge-centroid displacement; this review generated no new hypothesis surface or TIFF.",
+  "mechanism": "Parent-free magnetic/gravity edge persistence, axial alignment and signed displacement consistency; final placement uses 32000 separated unit dots.",
+  "named_non_fault_process": "Intrusive lithologic contact or magnetic survey flight-line levelling seam.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 60988,
+    "value": 0.06215312834841347,
+    "ci95": [0.049910294311813645, 0.07511461369633657],
+    "status": "recorded in docs/ced-holdout.json; not rerun in this review",
+    "paired_control_delta": 0.010774852165211193,
+    "paired_control_ci95": [-0.004309741297321481, 0.026597184948876095]
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement": {
+      "label": "indexed-scope measurement",
+      "rasters_checked": 64,
+      "max_abs_spearman": 0.024290527191141956,
+      "scope_complete": false
+    },
+    "final_dots": {
+      "label": "indexed-scope measurement; stopped on duplicate",
+      "rasters_checked": 27,
+      "max_directed_overlap_within_3px": 0.999125,
+      "duplicate_raster": "calib_r13lattice_00904.tif",
+      "not_checked_after_stop": 37,
+      "scope_complete": false
+    }
+  },
+  "raster_sha256": "a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee",
+  "validator_output": {
+    "label": "fresh on-disk verification via scripts/verify_current_artifact.py --with-data",
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "all_cells_finite": true,
+    "values_in_0_1": true,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform_matches_sample": true,
+    "zero_outside_footprint": true,
+    "zero_on_mapped_catalogue": true
+  },
+  "submission_name": "gems91-ced-v1-20261024-d35670b28c81",
+  "submission_note": "CED91 research only; parent-free magnetic/gravity centroid displacement. Not approved for a competition slot.",
+  "organizer_confirmed": null,
+  "ok_to_download": "YES — research only",
+  "ok_to_submit": "NO — duplicate final-dot lane gate; lane assignment absent",
+  "verdict": "negative",
+  "experiments_run_in_review": 0,
+  "weekly_slots_used": 0
+}
