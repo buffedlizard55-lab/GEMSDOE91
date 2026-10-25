@@ -52,7 +52,9 @@ EMIT_BUDGET_E12 = 37_654
 E3_BUDGETS = [30_000, 37_654, 44_000]
 STEM = "gems91-s15-hcpa-e3"
 DATE_TAG = "20261025T030000Z"
-HALO_CAP_FRAC = 0.25  # Winner geometry: at most 25% of dots in 3-10 px catalogue halo (>= 75% far-field)
+HALO_CAP_FRAC = 0.25  # At most 25% in the 3-10 px visible-catalogue halo; remaining quota is far-field.
+HOLDOUT_SELECTOR_POLICY = "farfield75-halo25-visible-catalogue-v2-refill"
+HOLDOUT_SCORE_CACHE_SCHEMA = 2
 
 
 def log(m: str) -> None:
@@ -82,7 +84,7 @@ def emit_capped_quota(w_surf, rank_s, elig_mask, dist_ref, quota, min_spacing=3.
     """Submodular greedy emission with winner geometry: far-field first, halo cap."""
     halo = elig_mask & (dist_ref > 3.0) & (dist_ref <= 10.0)
     far = elig_mask & (dist_ref > 10.0)
-    n_halo_max = int(round(HALO_CAP_FRAC * quota))
+    n_halo_max = int(np.floor(HALO_CAP_FRAC * quota))
     n_far_max = quota - n_halo_max
 
     dots_far, _ = PTHA._lazy_greedy_submodular_select(
@@ -93,18 +95,38 @@ def emit_capped_quota(w_surf, rank_s, elig_mask, dist_ref, quota, min_spacing=3.
         rank_surf=rank_s, max_dots=n_halo_max,
         min_gain_threshold=0.0, min_spacing_px=min_spacing)
     dots = np.maximum(dots_far, dots_halo)
-    return dots, int((dots_far > 0).sum()), int((dots_halo > 0).sum())
+
+    # Halo is a cap, not a reserved quota. If the constrained halo cannot fill
+    # its allocation, refill from far-field so we do not silently waste budget.
+    remaining = max(0, int(quota) - int((dots > 0).sum()))
+    if remaining:
+        refill_mask = far & (~ndi.binary_dilation(dots > 0, iterations=2))
+        dots_far_more, _ = PTHA._lazy_greedy_submodular_select(
+            w_surf, refill_mask, rank_surf=rank_s, max_dots=remaining,
+            min_gain_threshold=0.0, min_spacing_px=min_spacing)
+        dots = np.maximum(dots, dots_far_more)
+
+    final_far = int(((dots > 0) & (dist_ref > 10.0)).sum())
+    final_halo = int(((dots > 0) & (dist_ref > 3.0) & (dist_ref <= 10.0)).sum())
+    return dots, final_far, final_halo
 
 
 def emit_and_score(probs, cals, folds, footprint, crest, piedmont, elig, dvis, budget, tag):
     score_cache = CACHE / f"{tag}_scores.json"
     if score_cache.is_file():
         saved = json.loads(score_cache.read_text())
-        v10 = saved["v10"]
-        v11 = saved["v11"]
-        metas = saved["metas"]
-        log(f"  [{tag}] loaded cached scores: v1.0={v10['holdout_dti']:.6f} CI{v10['ci_95']}")
-        return {}, v10, v11, metas
+        cache_matches = (
+            saved.get("cache_schema") == HOLDOUT_SCORE_CACHE_SCHEMA
+            and saved.get("selector_policy") == HOLDOUT_SELECTOR_POLICY
+            and saved.get("evaluator_version") == EH.EVALUATOR_VERSION
+        )
+        if cache_matches:
+            v10 = saved["v10"]
+            v11 = saved["v11"]
+            metas = saved["metas"]
+            log(f"  [{tag}] loaded matching-policy cached scores: v1.0={v10['holdout_dti']:.6f} CI{v10['ci_95']}")
+            return {}, v10, v11, metas
+        log(f"  [{tag}] rejecting stale score cache (selector/evaluator/schema mismatch); recomputing")
 
     total_elig = sum(int(elig[f.fold_id].sum()) for f in folds)
     fold_dots, metas = {}, {}
@@ -120,15 +142,18 @@ def emit_and_score(probs, cals, folds, footprint, crest, piedmont, elig, dvis, b
             probs[f.fold_id], crest, piedmont, footprint,
             calibration_mask=train_elig,
             pi_true=cals[f.fold_id]["pi_true"], pi_sample=cals[f.fold_id]["pi_sample"])
-        dots, last_gain = PTHA._lazy_greedy_submodular_select(
-            w_surf, elig[f.fold_id], rank_surf=rank_s, max_dots=quota,
-            min_gain_threshold=0.0, min_spacing_px=2.80)
+        dots, n_far, n_halo = emit_capped_quota(
+            w_surf, rank_s, elig[f.fold_id], dvis[f.fold_id], quota,
+            min_spacing=3.0)
         fold_dots[f.fold_id] = dots
         metas[f.name] = {"quota": quota,
                          "n_test_emitted_dots": int((dots > 0).sum()),
-                         "q_floor_train": round(float(q_floor), 7),
-                         "last_gain": round(float(last_gain), 7)}
-        log(f"  [{tag} {f.name}] emitted {metas[f.name]['n_test_emitted_dots']:,}/{quota:,} dots")
+                         "n_far_gt10px_of_visible_catalogue": n_far,
+                         "n_halo_3to10px_of_visible_catalogue": n_halo,
+                         "selector_policy": HOLDOUT_SELECTOR_POLICY,
+                         "q_floor_train": round(float(q_floor), 7)}
+        log(f"  [{tag} {f.name}] emitted {metas[f.name]['n_test_emitted_dots']:,}/{quota:,} dots "
+            f"(far={n_far:,}, halo={n_halo:,})")
 
     v10 = EH.score_pooled_holdout(fold_dots, folds, footprint, n_boot=100, seed=151)
     v11 = EH.score_pooled_holdout(fold_dots, folds, footprint, n_boot=100, seed=151,
@@ -136,7 +161,14 @@ def emit_and_score(probs, cals, folds, footprint, crest, piedmont, elig, dvis, b
     log(f"  [{tag}] HOLDOUT-DTI v1.0={v10['holdout_dti']:.6f} CI{v10['ci_95']} | "
         f"v1.1-nohalo={v11['holdout_dti']:.6f} CI{v11['ci_95']} | "
         f"pooled dots={sum(int((d>0).sum()) for d in fold_dots.values()):,}")
-    score_cache.write_text(json.dumps({"v10": v10, "v11": v11, "metas": metas}, indent=2) + "\n")
+    score_cache.write_text(json.dumps({
+        "cache_schema": HOLDOUT_SCORE_CACHE_SCHEMA,
+        "selector_policy": HOLDOUT_SELECTOR_POLICY,
+        "evaluator_version": EH.EVALUATOR_VERSION,
+        "v10": v10,
+        "v11": v11,
+        "metas": metas,
+    }, indent=2) + "\n")
     return fold_dots, v10, v11, metas
 
 
@@ -414,7 +446,8 @@ def main() -> int:
             "method_paragraph": "Subsurface electrical conductivity plume ratio and excess paired with basement displacement step, thermal spring reservoir heat flux, and tectonic slip/dilation tendency under WNW extension (theta_ext=105°); multi-physics corroboration gating; unit dots placed by exact expected-DTI submodular selection under winner geometry (37,654 dots, 75% far-field, >=3.0 px spacing).",
         },
         "hypothesis": "H15-1 Hydrothermal Convective Plume + H15-2 Tectonic Kinematic Dilatancy + H15-3 Radiometric Metasomatism + H15-4 Multiscale Concavity + H15-5 Winner Geometry Emission",
-        "mechanism": "Hydrothermal upwelling forms conductive clay caps and basement-concordant fluid pathways along critically stressed dilation/shear zones; unit dots emitted via exact submodular DTI selection at winner spacing (3.16 px) and 75% far-field allocation, avoiding redundant kernel saturation.",
+        "mechanism": "Hydrothermal upwelling may form conductive clay caps and basement-concordant fluid pathways along stressed structures; dots are selected with a lazy-greedy expected-DTI heuristic under 75% far-field/25% halo caps and minimum spacing. This is not a proof of globally optimal placement.",
+        "selector_algorithm": "PTHA._lazy_greedy_submodular_select with minimum-spacing constraint; greedy heuristic, not exact global optimization.",
         "named_non_fault_mimic_process": "Saline dry-lake playas, felsic pluton potassium highs, pluvial lake terraces, and non-tectonic erosional bedrock escarpments.",
         "experiments": {
             "E1": {"holdout_v10": e1_v10, "holdout_v11_nohalo": e1_v11, "fold_meta": e1_meta},
@@ -462,7 +495,8 @@ def main() -> int:
             "flagged_features": canary["flagged_features"],
         },
         "registry_comparison": {
-            "complete_universal_registry": True,
+            "complete_universal_registry": False,
+            "scope_note": "8 indexed canonical rasters plus in-repository sibling rasters; not a complete inventory of public GEMSDOE sites.",
             "preplacement": {
                 "status": "PASS_WITHIN_INDEXED_SCOPE",
                 "checked": len(reg_paths),
@@ -497,18 +531,22 @@ def main() -> int:
         "submission_name": bundle["primary_zeros_tif"]["filename"].replace("-zeros.tif", ""),
         "submission_note": "S15-HCPA: Hydrothermal convective plume + kinematic dilatancy + winner geometry (37654 dots, [0,1] all-finite, 0 NaN)",
         "submission": bundle,
-        "selector_approval": automated_inspection_passed,
+        "selector_approval": None,
         "selector_receipt": {
-            "weekly_cap_verified": True,
-            "slot_available": True,
-            "automated_validation": True,
-            "human_intervention_needed": False,
+            "status": "NOT_VERIFIED_BY_LOCAL_RUN",
+            "weekly_cap_verified": None,
+            "slot_available": None,
+            "automated_technical_validation": bool(bundle["validators"]["gems91_gates_verdict"] == "CERTIFIED"),
+            "human_selector_approval": None,
+            "human_intervention_needed": True,
         },
         "automated_inspection": {
             "status": "PASS" if automated_inspection_passed else "FAIL",
             "ok_to_download": "YES",
-            "ok_to_submit": "YES" if automated_inspection_passed else "NO",
-            "reason": "All 5 format, [0, 1] range, 0-NaN, CRS/shape, leakage canary, registry uniqueness, and winner-geometry gates validated automatically.",
+            "ok_to_submit": "NO — separate selector, eligibility/data-rights checks, weekly allowance, and organizer receipt are not verified by this local run",
+            "reason": ("Automated format, range, leakage, scoped novelty, holdout and geometry gates passed; candidate is eligible for separate selector review only."
+                       if automated_inspection_passed else
+                       "Candidate fails one or more automated format, range, leakage, scoped novelty, holdout or geometry gates; do not submit."),
         },
         "verdict": verdict,
         "elapsed_seconds": round(time.perf_counter() - t0, 1),
@@ -523,7 +561,7 @@ def main() -> int:
     log(f"HOLDOUT-DTI v1.0: {win_v10['holdout_dti']:.6f} CI{win_v10['ci_95']}")
     log(f"HOLDOUT-DTI v1.1-nohalo: {win_v11['holdout_dti']:.6f} CI{win_v11['ci_95']}")
     log(f"Dots emitted: {n_dots:,} ({geom['frac_dots_gt10px_of_catalogue']*100:.1f}% far-field, spacing {geom['median_nn_spacing_px']:.2f} px)")
-    log(f"OK TO DOWNLOAD: YES | OK TO SUBMIT: {'YES' if automated_inspection_passed else 'NO'}")
+    log(f"OK TO DOWNLOAD: YES | OK TO SUBMIT: NO (separate selector and organizer receipt not verified by this local run)")
     log(f"Elapsed: {time.perf_counter()-t0:.1f}s")
     return 0
 
