@@ -41,5 +41,13 @@
   "git_diff_check": "PASS",
   "preflight": "BLOCKED as expected; no assigned lane; impossible usual budget",
   "new_candidate_generated": false,
-  "ok_to_submit": false
+  "ok_to_submit": false,
+  "parallel_main_integration": {
+    "commit": "45d4933",
+    "passed": 626,
+    "skipped": 8,
+    "failed": 0,
+    "warnings": 87,
+    "scope": "Combined regression suite after preserving stricter upstream ZIP/promotion-flag checks"
+  }
 }

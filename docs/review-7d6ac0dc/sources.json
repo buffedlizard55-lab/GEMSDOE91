@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+    "snapshot": "official-reference-readme.txt",
+    "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+    "authority": "organizer reference"
+  },
+  {
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/docs/index.html",
+    "snapshot": "gems32-index-source.txt",
+    "sha256": "b88a7f10d064ae33c757d9273ab0d73d1fe29de8ea69029ddfd468bcd73560b1",
+    "authority": "team page; not a submission receipt"
+  }
+]

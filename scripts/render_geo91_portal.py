@@ -18,7 +18,9 @@ def _registered_pair(root, tif_rel, expected_sha):
     tif = (root / tif_rel).resolve()
     if not tif.is_relative_to((docs / "downloads").resolve()) or tif.suffix != ".tif":
         raise ValueError("TIFF must be inside docs/downloads")
-    zipped = tif.with_suffix(".zip")
+    zipped = tif.with_suffix(".zip").resolve()
+    if not zipped.is_relative_to((docs / "downloads").resolve()) or zipped.suffix != ".zip":
+        raise ValueError("ZIP must be inside docs/downloads")
     policy = json.loads((root / "registry/artifact_policy.json").read_text())["files"]
     indexed = {row["path"]: row for row in policy}
     if len(indexed) != len(policy):

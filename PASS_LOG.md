@@ -108,6 +108,14 @@ File: docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9ac
   protocol field. Every number is labelled. The README and site lead with the download. Sources
   are linked.
 
+# Current three-pass review — `arena/522615dd-gemsdoe91` — 2026-10-25
+
+- **Pass 1 — inventory/readiness/provenance:** reread the standing brief and current README; inspected the active branch, current portal and source templates; reran `scripts/preflight.py`. It reports **BUILD BLOCKED: 0/2** and all six implemented axes blocked. `data/` has no files. The official competition data page redirects anonymous access to login. No mirrored competition data were restored.
+- **Pass 2 — scientific/protocol review:** confirmed there is no assigned single-method paragraph; did not infer a lane. Ranked three proposals (topographic spectral-slope/roughness break, within-map-unit potential-field residual, multi-season Landsat surface-temperature residual) in `docs/HYPOTHESES-ACTIVE-522615DD-20261025.md`. Fetched official competition/rules/leaderboard and USGS source pages; kept public-board scores separate from user reports, holdout metrics, and receipts. No model, holdout, canary, placement, TIFF, or slot was run.
+- **Pass 3 — docs/portal/tests:** updated the active README and portal to distinguish the prior OLC91 research download from this no-run review; fixed `LB-DTI` navigation labels; added the branch-specific review/run card, official source records, and tests. Normalized all 115 historical CSV source URL strings without changing their evidence class or receipt status. Re-rendered the portal.
+- **Final verification:** `.venv/bin/python -m pytest -o addopts='' -ra` → **555 passed, 8 skipped, 58 warnings** in 36.15 s (data-dependent skips; Rasterio affine deprecation warnings). `scripts/check_artifact_policy.py` → **PASS, 87 registered artifacts**. `git diff --check` → clean. Expected `scripts/preflight.py` exit 1 remains the active blocker.
+- **Outcome:** negative/blocked; zero experiments and weekly slots, no new score, no new TIFF, no organizer receipt. Prior OLC91 file remains research-only and is not promoted. Current review/run card: `docs/REVIEW-ACTIVE-522615DD-20261025.md` / `docs/run-card-522615dd.json`.
+
 ## Review 6cbfe8ac — 2026-10-25
 
 1. Implemented: fixed default verification of HEXFAR91 when website links OLC91; exact canonical TIFF/ZIP/card/pointer now checked; blocked unassigned `--run`; preserved explicit historical verifiers and clarified executive guide.
@@ -128,8 +136,24 @@ Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 revi
 - **Verdict:** NEGATIVE / NO PROMOTION. No new TIFF is available to download or submit. Run card: `docs/run-card-E02BCD84.json`; detailed review: `docs/REVIEW-ACTIVE-E02BCD84-20261025.md`.
 
 
+## Active-branch integration recheck — `arena/522615dd-gemsdoe91` — 2026-10-25
+
+- Merged upstream main through `ee35489` (including `5262aa9` and PR #124) on the fixed session branch; retained upstream current-download verifier/CI and branch-specific historical reviews, while keeping this checkout's no-lane/no-data status explicit. The FFB91 review reports 1/2 inputs only for its own checkout; current preflight remains 0/2.
+- Re-ran `.venv/bin/python -m pytest -o addopts='' -ra`: **588 passed, 8 skipped, 78 warnings** in 38.59 s (final run after the latest main merge and audit-snapshot refresh). Artifact policy: **PASS, 87 registered prediction artifacts**. `git diff --cached --check`: clean at the integration checkpoint.
+- Default `generate_submission.py` verifies the exact current OLC91 TIFF/ZIP/card and reports technical PASS, **OK TO DOWNLOAD: YES — RESEARCH ONLY**, **OK TO SUBMIT: NO**, references `NOT_CHECKED`. `--with-data` blocks on the absent official sample; `--run` blocks on the absent lane.
+- `scripts/preflight.py`: expected **BUILD BLOCKED: 0/2**, all six axes blocked. No data restored, experiment run, new score/TIFF, selector step, or slot use.
+
+
+## PR #123 published-artifact audit snapshot follow-up — 2026-10-25
+
+- GitHub run `40216729640`: `tests` and `browser-delivery` passed; `published-artifact` failed in its audit/diff step. Job metadata identified step 7; the detailed runner log was inaccessible from this sandbox.
+- Found stale canonical `docs/download-audit.json`/HTML (85 files, 76 PASS / 9 FAIL), while the current registered inventory has 87 files. Reused the latest saved pinned-reference audit from `docs/review-6cbfe8ac/download-audit.json`, after validating all 87 paths, current artifact/policy SHA-256 values, manifest reference hashes, and overlap-record parity; the 2 added CWP91 artifacts are technical PASS. Regenerated the canonical HTML with the current renderer.
+- The refreshed snapshot still reports **78 technical PASS / 9 FAIL**, all not submit-approved. No data were restored or audit rerun locally. Follow-up CI run `40219293388` / run #342 passed `tests`, `published-artifact`, and `browser-delivery`; the published-audit/diff step now passes. Its workflow restored the two pinned sample/catalogue references only inside the CI runner.
+
 ## Review 19912231 — three passes (2026-10-25)
 
 1. Audited latest handoff, sources, shared tools and current download. Refetched 92 GitHub fleet pages; restored only sample/catalogue/lattice; added reusable pinned-witness capacity preflight and distinguished input availability from experiment authorization. No geological run.
 2. Added 32 unit/file tests for exact overlap threshold, empty support, exhaustive placements, altered pins/grids, invalid plans and budget edge cases. Independently verified all 87 published artifacts; 78 technical PASS / 9 FAIL, none approved. Found generated-page drift after refreshing feed; fixed via full shared renderer.
 3. Repeat suite: 610 passed / 8 documented data-dependent skips; browser desktop/mobile delivery, SHA checks, accessibility and link/UI checks PASS. Current TIFF/ZIP unchanged, registry/evaluator/writer unchanged. No new unique TIFF or holdout score; missing lane and infeasible usual budget remain explicit negative outcome. See docs/REVIEW-19912231-20261025.md and its machine verification.
+
+19912231 integration: upstream 45d4933 merged on the fixed branch; preserved stricter ZIP/promotion-flag validation and marked previous review status historical. Combined suite: 626 passed, 8 skipped, 87 deprecation warnings.
