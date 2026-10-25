@@ -1,0 +1,94 @@
+{
+  "schema_version": "gems91.active-review-verification.v1",
+  "review_id": "ARENA-7564A0E0-20261025",
+  "branch": "arena/7564a0e0-gemsdoe91",
+  "checked_utc": "2026-10-25",
+  "scope": "Repository, evidence, portal and delivery verification only; no geological experiment or candidate generation.",
+  "preflight": {
+    "command": ".venv/bin/python scripts/preflight.py",
+    "exit_code": 1,
+    "status": "BUILD BLOCKED — expected fail-closed result",
+    "repository_wide_missing": [
+      "parent_r0_nan"
+    ],
+    "ready_axes": [],
+    "axis_readiness": {
+      "PRUNE": ["parent_r0_nan"],
+      "MASS": ["parent_r0_nan", "anc_h19_5", "anc_h19_4", "anc_h16_1"],
+      "SNAP": ["parent_r0_nan", "training_features"],
+      "CONCENTRATION": ["parent_r0_nan", "training_features"],
+      "RELIEF": ["parent_r0_nan", "anc_h19_5", "anc_h19_4", "anc_h16_1", "training_features"],
+      "TRACKB": ["parent_r0_nan", "training_features"]
+    },
+    "captured_output": "preflight-output.txt"
+  },
+  "existing_research_download": {
+    "command": ".venv/bin/python generate_submission.py --with-data",
+    "result_file": "current-download-verification.json",
+    "exit_code": 0,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "format_ok": true,
+    "reference_checks": "PASS",
+    "raster_sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "submission_ready": false
+  },
+  "download_audit": {
+    "command": ".venv/bin/python scripts/audit_downloads.py --output docs/review-7564a0e0/download-audit.json --html docs/review-7564a0e0/download-audit.html",
+    "report": "download-audit.json",
+    "html": "download-audit.html",
+    "audit_completed": true,
+    "files_checked": 87,
+    "format_pass": 78,
+    "format_fail": 9,
+    "ok_to_submit": false,
+    "scope": "Pinned-reference technical checks only; no scientific/selector approval."
+  },
+  "repo_policy": {
+    "command": ".venv/bin/python scripts/check_artifact_policy.py",
+    "exit_code": 0,
+    "status": "PASS",
+    "registered_prediction_artifacts": 87,
+    "raw_raster_or_archive_tracked": false
+  },
+  "evidence_integrity": {
+    "command": ".venv/bin/python scripts/verify_evidence.py",
+    "exit_code": 0,
+    "status": "PASS",
+    "geological_experiments_rerun": 0,
+    "submission_ready": false
+  },
+  "current_frontdoor": {
+    "command": ".venv/bin/python scripts/verify_frontdoor.py",
+    "exit_code": 0,
+    "status": "PASS",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "scope": "Current research-download pointer only."
+  },
+  "test_suite": {
+    "command": ".venv/bin/python -m pytest -q",
+    "exit_code": 0,
+    "status": "PASS — suite completed",
+    "notes": "No test failures. Rasterio emitted existing PendingDeprecationWarning messages about affine matrix multiplication."
+  },
+  "targeted_tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_active_review_7564a0e0.py tests/test_submission_portal.py",
+    "exit_code": 0,
+    "status": "PASS"
+  },
+  "static_checks": {
+    "git_diff_check": "PASS",
+    "run_card_json": "PASS",
+    "source_audit_json": "PASS",
+    "download_audit_json": "PASS",
+    "portal_templates_match_generated_pages": "PASS"
+  },
+  "experiment_budget": {
+    "used": 0,
+    "maximum": 3,
+    "weekly_slots_used": 0,
+    "candidate_tiff_created": false,
+    "candidate_holdout_run": false
+  }
+}

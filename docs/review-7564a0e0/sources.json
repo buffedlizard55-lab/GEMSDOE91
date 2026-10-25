@@ -1,0 +1,193 @@
+{
+  "schema_version": "gems91.source-audit.v1",
+  "review_id": "ARENA-7564A0E0-20261025",
+  "checked_utc": "2026-10-25",
+  "scores": [
+    {
+      "artifact": "GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "value": 0.2778,
+      "evidence_label": "USER-REPORTED-UNVERIFIED",
+      "organizer_receipt": null,
+      "source": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "source_result": "Fetched GEMSDOE32 page states no organizer score exists for repository artifacts."
+    },
+    {
+      "artifact": "DrivenData public leaderboard rank 1",
+      "value": 0.4413,
+      "evidence_label": "PUBLIC-LEADERBOARD — not a submission-page receipt or private/final score",
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "source_result": "Visible in fetched public leaderboard chunk 0."
+    },
+    {
+      "artifact": "DrivenData public leaderboard rank 24",
+      "value": 0.3169,
+      "evidence_label": "PUBLIC-LEADERBOARD — not a submission-page receipt or private/final score",
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "source_result": "Visible in fetched public leaderboard chunk 1; supplied 0.3195 is not the captured rank-24 row."
+    },
+    {
+      "artifact": "DrivenData public leaderboard rank 50",
+      "value": 0.2818,
+      "evidence_label": "PUBLIC-LEADERBOARD — not a submission-page receipt or private/final score",
+      "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "source_result": "Visible in fetched public leaderboard chunk 2."
+    }
+  ],
+  "sources": [
+    {
+      "id": "drivendata_problem_metric_format",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "source_type": "Official DrivenData competition problem page",
+      "verification": "FETCHED",
+      "confirmed": "Distance-weighted Tversky metric; alpha 0.2, beta 0.8, 300 m triangular support; single-band float32 GeoTIFF, EPSG:32611, 100 m grid, probabilities in [0,1], and null/NaN outside the training bounds.",
+      "not_confirmed": "No private/final score, upload receipt, or active account allowance."
+    },
+    {
+      "id": "drivendata_public_leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "source_type": "Official public leaderboard",
+      "verification": "FETCHED_CHUNKS_0_1_2",
+      "confirmed": "Visible public leaderboard rows through rank 50; observations are labelled PUBLIC-LEADERBOARD only.",
+      "not_confirmed": "No individual submission-page receipt, private leaderboard score, or final-round score."
+    },
+    {
+      "id": "drivendata_data_tab",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "source_type": "Official DrivenData data page",
+      "verification": "FETCHED_AND_REDIRECTED_TO_LOGIN",
+      "confirmed": "The data tab is gated behind DrivenData login in this environment.",
+      "not_confirmed": "No 1m_DEM_links.csv or competition tile download was obtained."
+    },
+    {
+      "id": "nlr_official_rules",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "source_type": "Official NLR competition rules PDF",
+      "verification": "FETCHED",
+      "confirmed": "Rules warn public leaderboard scores may differ from private-test scores; final round uses an expert-updated label set.",
+      "not_confirmed": "No authenticated participant account, slot allowance, or submission receipt."
+    },
+    {
+      "id": "gemsdoe32_project_page",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "source_type": "Repository project page (not organizer source)",
+      "verification": "FETCHED",
+      "confirmed": "Page states that no organizer score exists for repository artifacts; H33-2-B2 is not an organizer receipt.",
+      "not_confirmed": "No organizer score or private score."
+    },
+    {
+      "id": "usgs_geodawn",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "source_type": "Official USGS data release",
+      "verification": "FETCHED",
+      "confirmed": "GeoDAWN survey metadata and CC0 1.0 license are described.",
+      "not_confirmed": "No new feature stack was downloaded in this review."
+    },
+    {
+      "id": "usgs_3dep_overview",
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "source_type": "Official USGS 3DEP page",
+      "verification": "FETCHED",
+      "confirmed": "3DEP program and product discovery links are available.",
+      "not_confirmed": "Exact tile intersection with the study footprint."
+    },
+    {
+      "id": "usgs_3dep_products_services",
+      "url": "https://www.usgs.gov/3d-elevation-program/about-3dep-products-services",
+      "source_type": "Official USGS 3DEP products/services page",
+      "verification": "FETCHED",
+      "confirmed": "Products are free without use restrictions; pages link to 1 m DEM and lidar availability tools.",
+      "not_confirmed": "Area-specific tiles, exact footprint coverage, and tile download."
+    },
+    {
+      "id": "usgs_fdsn_docs",
+      "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "source_type": "Official USGS FDSN event-service documentation",
+      "verification": "FETCHED",
+      "confirmed": "FDSN event query documentation and service endpoint are available.",
+      "not_confirmed": "Completeness or relocated hypocenter/focal-mechanism coverage in the exact study footprint."
+    },
+    {
+      "id": "usgs_fdsn_broad_query",
+      "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2010-01-01&minmagnitude=2.0&minlatitude=37.5&maxlatitude=41.0&minlongitude=-120.0&maxlongitude=-116.0",
+      "source_type": "Official USGS FDSN query result",
+      "verification": "FETCHED_RESPONSE",
+      "confirmed": "Broad bounding-box/time/magnitude query returned 11,357 event records.",
+      "not_confirmed": "Exact project-footprint counts, location quality/completeness, relocation status, or focal-mechanism product availability."
+    },
+    {
+      "id": "usgs_sgmc_2026_doi",
+      "url": "https://doi.org/10.5066/P1A3DQZK",
+      "source_type": "Official USGS/NGMDB 2026 GeMS SGMC release",
+      "verification": "FETCHED_DOI_RESOLUTION",
+      "confirmed": "DOI resolves to official product record describing a 2026 GeMS version of SGMC at 1:1,000,000 scale with a GIS data download link.",
+      "not_confirmed": "The GIS archive was not downloaded; local unit schema and footprint coverage were not checked."
+    },
+    {
+      "id": "usgs_sgmc_product_record",
+      "url": "https://ngmdb.usgs.gov/Prodesc/proddesc_119417.htm",
+      "source_type": "Official USGS National Geologic Map Database product record",
+      "verification": "FETCHED",
+      "confirmed": "Product metadata and GIS-download link exist.",
+      "not_confirmed": "No local GIS data, polygon coverage, or field-level audit."
+    },
+    {
+      "id": "usgs_landsat_surface_temperature",
+      "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature",
+      "source_type": "Official USGS Landsat data page",
+      "verification": "FETCHED",
+      "confirmed": "Landsat Collection 2 surface-temperature products are global, scene-based, and described as having no use restrictions.",
+      "not_confirmed": "No Great Basin scene dates, cloud quality, or exact footprint availability were checked."
+    },
+    {
+      "id": "usgs_geothermal_play_fairway_report",
+      "url": "https://pubs.usgs.gov/publication/70221765",
+      "source_type": "Official USGS publication record",
+      "verification": "FETCHED",
+      "confirmed": "Report describes blind Great Basin geothermal systems and integrated structural/geophysical/geochemical exploration; it cites fault terminations, stepovers and intersections as favorable settings in case studies.",
+      "not_confirmed": "Does not validate any candidate in this repository or imply a geothermal vent at a fault-prediction raster cell."
+    },
+    {
+      "id": "doe_great_basin_structural_inventory",
+      "url": "https://www.osti.gov/dataexplorer/biblio/dataset/1148722",
+      "source_type": "DOE Data Explorer dataset record",
+      "verification": "FETCHED",
+      "confirmed": "Dataset abstract reports structural setting categories for Great Basin geothermal systems, including fault bends, terminations, stepovers/relay ramps, intersections and accommodation zones.",
+      "not_confirmed": "No new local data download or model validation."
+    },
+    {
+      "id": "usgs_landsat_lineaments_background",
+      "url": "https://www.usgs.gov/publications/geologic-evaluation-major-landsat-lineaments-nevada-and-their-relationship-ore",
+      "source_type": "Official USGS publication record",
+      "verification": "FETCHED",
+      "confirmed": "Historical report describes Nevada-wide Landsat lineament systems as expressions of broader structural zones and discusses reactivation interpretation.",
+      "not_confirmed": "Does not establish that thermal lineaments predict the competition's new fault labels."
+    }
+  ],
+  "repository_novelty_checks": [
+    {
+      "candidate": "Hurst/roughness-break",
+      "result": "Previously proposed in docs/REVIEW-S18-20261025.md; no Hurst/fractal-roughness implementation found in searched source."
+    },
+    {
+      "candidate": "direct raw LiDAR scarp analysis",
+      "result": "Previously proposed in docs/HYPOTHESES_S15_SCGF.md and docs/HYPOTHESES_S17.md; derived LiDAR scarp feature code also exists. Not a fresh project-level hypothesis."
+    },
+    {
+      "candidate": "ComCat focal-mechanism or hypocenter lineations",
+      "result": "Previously proposed in docs/REVIEW-ACTIVE-E02BCD84-20261025.md, docs/REVIEW-EE76E309-20261025.md, docs/HYPOTHESES_S15_SCGF.md and docs/HYPOTHESES_S17.md; no focal-mechanism implementation found. Not new."
+    },
+    {
+      "candidate": "SGMC/GeMS lithology conditioning",
+      "result": "Related MUSD proposal already appears in docs/REVIEW-ACTIVE-E02BCD84-20261025.md; SGMC is also used as a repository control. Not a fresh project-level hypothesis."
+    },
+    {
+      "candidate": "Landsat surface-temperature residuals",
+      "result": "Previously proposed in docs/REVIEW-S18-20261025.md; no Landsat/LST implementation found in searched source. Not new."
+    }
+  ],
+  "limits": [
+    "External source availability is not local-area coverage, data completeness, rights to a third-party mirror, or model validation.",
+    "No hidden-test labels or authenticated organizer submission receipt were accessible.",
+    "A fault-prediction raster is not evidence of a geothermal vent or economic geothermal resource."
+  ]
+}
