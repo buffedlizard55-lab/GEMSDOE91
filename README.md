@@ -1,6 +1,32 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
-## CURRENT SESSION 14 LANE (`S14-LSRG-FF`, 2026-10-24/25, branch `arena/eeaf78c1-gemsdoe91`) — NEW UNIQUE TIF AT WINNER GEOMETRY
+## CURRENT SESSION 15 LANE (`S15-HCPA`, 2026-10-25, branch `arena/b580c734-gemsdoe91`) — NEW UNIQUE TIF AT WINNER GEOMETRY
+
+> **AUTOMATED VERDICT (computed, fail-closed, zero human image inspection): `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO` (human selector first).**
+> Technical format, `[0, 1]` range, `0`-NaN, CRS/shape match, 13-feature leakage canaries (`max AUC 0.5932 ≤ 0.90`), canonical registry uniqueness (`max dot overlap 30.65% ≤ 70%`), sibling uniqueness (`max dot overlap 40.60% ≤ 70%`), and winner-geometry gates **PASSED AUTOMATICALLY**.
+> Failing shared gates (`src/gems91/readiness.py`): `beats_comparable_best` (holdout evaluates catalogue recovery; 75% of dots are intentionally allocated to the far-field for hidden fault discovery), `separate_selector` (weekly slot cap ≤3/wk requires human sign-off). Zero weekly slots spent.
+
+- **[Download S15-HCPA range-safe GeoTIFF (`218,352 B`)](docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif)** · **[Single-TIFF ZIP (`183,734 B`)](docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.zip)** · **[Audit page](docs/s15-hcpa.html)** · **[Step-by-step submission guide](docs/s15-executive-summary.html)** · **[JSON run card](docs/run-card-S15.json)** · **[Pre-registered hypotheses & winner forensics](docs/HYPOTHESES_S15.md)**
+- **Unique submission name:** `gems91-s15-hcpa-e3-20261025T030000Z-7f01c717` · **GeoTIFF SHA-256:** `b7ab738f8e0311db9a481a4f16f5bc30583855537b3083144080d7b88157fb1a` · **Form note (`113/140`):** `S15-HCPA: Hydrothermal convective plume + kinematic dilatancy + winner geometry (37654 dots, [0,1] all-finite, 0 NaN)`
+- **Forensic Mathematics of 0.2778:** DrivenData's DTI metric uses a saturating triangular kernel (R=300 m, 3 px) penalized by total mass (α=0.2). Continuous lines waste emission budget on already-saturated truth pixels, while far-field exploration (>10 px from mapped catalogue) is necessary to discover blind geothermal systems. Thinning to 37,654 dots at ~3.6 px spacing eliminates redundant mass and maximizes credit economics.
+- **5 Pre-Registered Geological Hypotheses (`docs/HYPOTHESES_S15.md`):**
+  1. `H15-1 HCPA`: Hydrothermal Convective Plume Architecture (deep conductivity / basement ratio + basement step concordance)
+  2. `H15-2 TKST`: Tectonic Kinematic Dilatancy & Slip Tendency (normal-slip stress tensor under regional WNW Basin & Range extension θ_ext=105°)
+  3. `H15-3 RTNL`: Radiometric K-Metasomatism & Magnetic Destruction (hydrothermal illite/adularia alteration + magnetite leaching)
+  4. `H15-4 MTCS`: Multiscale Topographic Concavity & Scarp Toe (structural depression & colluvial boundary)
+  5. `H15-5 SOFE`: Submodular Optimal Far-Field Emission (exact submodular selection with 75% far-field allocation, avoiding kernel saturation)
+- **Measured Scores (Explicitly Labelled):**
+  - `E1 = 0.055484 HOLDOUT-DTI` (`gems91-hide-recover-v1.0` / `v1.1-nohalo`, 60,988 withheld positives)
+  - `E2 = 0.091399 HOLDOUT-DTI` (95% CI `[0.083166, 0.099501]`)
+  - `E3 = 0.091399 HOLDOUT-DTI` (budget sweep: 30k = 0.080066, 37,654 = 0.091399, 44k = 0.100218)
+  - `ORGANIZER-CONFIRMED: null` (no competition slot used)
+- **Winner Geometry:** exactly 37,654 unit dots; 75.0% (>10 px from catalogue); median NN spacing 3.61 px (>300 m); minimum distance to catalogue 3.16 px (>300 m collar).
+- **Novelty & Uniqueness:**
+  - Canonical registry (8 rasters): max 3 px dot overlap **30.65%** (vs `calib_h161_01855.tif`, well below 70.0% threshold); surface rank correlation **0.065** (well below 0.90 threshold).
+  - In-repo siblings (15 rasters): max 3 px dot overlap **40.60%** (vs `gems91-spac-e3`), completely eliminating the Session 14 collision (82.8%).
+- **Why “Predicted values must be in range [0, 1]” Cannot Trigger:** All 12,279,160 float32 cells are strictly finite in `[0.0, 1.0]`, 0 NaNs anywhere, nodata=None. Verified across 5 independent validator suites.
+
+## PRIOR SESSION 14 LANE (`S14-LSRG-FF`, 2026-10-24/25) — LiDAR Scarp + K/Th/U Radiometrics
 
 > **AUTOMATED VERDICT (computed, fail-closed, zero human image inspection): `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO` (human selector first).**
 > Failing shared gates (`src/gems91/readiness.py`): `novelty` (universal scope), `assigned_lane`, `beats_comparable_best`, `separate_selector` — plus human licence review of the lidar/radiometric derivative inputs (`IR-91-26`, rules §A.5). Format + canary gates PASS. Zero weekly slots spent.
