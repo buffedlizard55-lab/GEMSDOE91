@@ -1,16 +1,22 @@
 # GEMSDOE91 — ACTIVE BRANCH REVIEW (`arena/e02bcd84-gemsdoe91`)
 
-> **Verdict: NEGATIVE / NO PROMOTION. No new TIFF was generated.** The required scientific lane paragraph is not assigned in the prompt or canonical run card. Selecting a method anyway would violate the parallel-run stop rule. No experiment or competition slot was used. Read the [active branch three-pass review](docs/REVIEW-ACTIVE-E02BCD84-20261025.md) and [machine run card](docs/run-card-E02BCD84.json).
+> **Verdict: NEGATIVE / NO PROMOTION. No new TIFF or score was generated.** The required scientific lane paragraph is not assigned in the prompt or canonical run card; selecting a method anyway would violate the parallel-run stop rule. No experiment or competition slot was used. Read the [active branch three-pass review](docs/REVIEW-ACTIVE-E02BCD84-20261025.md) and [machine run card](docs/run-card-E02BCD84.json).
 >
-> **Current portal download (historical OLC91):** [⬇ GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif) · [ZIP](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip) · [run card](docs/run-card-OLC91.json). **OK TO DOWNLOAD: YES — RESEARCH ONLY. OK TO SUBMIT: NO.** The downloaded artifact passes technical format checks but the OLC91 card records a final-dot duplicate stop. It is not a new file or recommendation from this branch.
+> **Current portal download (historical OLC91):** [⬇ GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif) · [ZIP](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip) · [run card](docs/run-card-OLC91.json). **OK TO DOWNLOAD: YES — RESEARCH ONLY. OK TO SUBMIT: NO.** It passes technical format checks but its historical OLC91 card records a final-dot duplicate stop. It is not a new file or recommendation from this branch.
 >
-> **Automated checks on this checkout:** `requirements.txt` installed in ignored `.venv`; 15/15 selected pinned data/reference files restored and hash-checked into ignored `data/`; full pytest **PASS** with one expected skip; artifact policy **PASS** for 87 registered prediction artifacts; technical download audit **78 PASS / 9 FAIL** and global `ok_to_submit: false`. These are format/provenance checks only—not scientific promotion.
+> **Automated checks:** 15/15 selected pinned inputs restored and hash-checked into ignored `data/`; full pytest **PASS** with one expected skip; artifact policy **PASS** for 87 registered artifacts; download audit **78 PASS / 9 FAIL**, global `ok_to_submit: false`. These are technical/provenance checks only, not scientific promotion. The merged front-door verifier in CI additionally checks the actual current download against pinned format references; see its [verification receipt](docs/frontdoor-verification-ee76e309.json) and [review](docs/REVIEW-EE76E309-20261025.md), which are preserved upstream evidence, not results from this branch's experiment.
 >
-> **Science and source boundary:** the reported GEMSDOE32 `0.2778`, `0.3195`, and `0.4413` are not organizer receipts in this checkout. Sparse emission and pruning are a plausible explanation for the reported 0.2778, not causal proof. The official DrivenData specification and USGS GeMS/SGMC source were fetched for this review; a conditional ranked hypothesis screen and the limits of its evidence are in the review above.
+> **Science and sources:** the supplied GEMSDOE32 `0.2778`, `0.3195`, and `0.4413` figures are not organizer receipts in this checkout. Sparse emission/pruning is a plausible explanation for 0.2778, not causal proof. The official DrivenData specification and USGS GeMS/SGMC page were fetched; the [ranked hypothesis screen and evidence boundaries](docs/REVIEW-ACTIVE-E02BCD84-20261025.md) state what remains untested.
 
-Core values: **Maximize P(Win) · Own the Outcome.** Start every session with this status, the [full standing project brief](#full-project-brief), and the [active branch review](docs/REVIEW-ACTIVE-E02BCD84-20261025.md). A technical download, a holdout improvement, registry uniqueness, a selector decision, and organizer confirmation are distinct gates.
+Core values: **Maximize P(Win) · Own the Outcome.** Start every session with this status, the [full standing project brief](#full-project-brief), and the [active branch review](docs/REVIEW-ACTIVE-E02BCD84-20261025.md). A technical download, holdout improvement, registry uniqueness, selector decision, and organizer confirmation are distinct gates.
 
 ---
+
+## Historical review status (not this branch)
+
+### Prior checkout `arena/9278e16d-gemsdoe91`
+
+Its historical three-pass review is archived at [docs/REVIEW-ACTIVE-9278E16D-20261025.md](docs/REVIEW-ACTIVE-9278E16D-20261025.md) with [machine card](docs/run-card-9278e16d.json). The record below is retained as historical context only.
 
 ## Prior checkout record (`arena/9278e16d-gemsdoe91`; historical, not current)
 
