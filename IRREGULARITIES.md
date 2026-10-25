@@ -1782,4 +1782,3 @@ The legacy input preflight printed BUILD ALLOWED once any historical axis had da
 - **IR-E649-05 — S18-UNIQUE arrived from a separate branch during integration.** The merged S18 artifact is a format-certified research demo with 20,000 dots, a partial R0 uniqueness result, and holdout pending. It was not generated, independently revalidated, or selected by this e649 review; no method lane or selector approval was supplied. The portal and README now label it as a separate-branch research download with `OK TO SUBMIT: NO` rather than the active candidate.
 
 Evidence: `docs/REVIEW-ACTIVE-E649E460-20261025.md`, `docs/run-card-E649E460-20261025.json`, and the e649 `python generate_submission.py --preflight` invocation.
-
