@@ -25,7 +25,7 @@ def test_historical_dzedge_card_is_research_only():
 
 
 def test_dzedge_page_says_no_submission_and_warns_before_download():
-    home = (ROOT / "docs/index.html").read_text()
+    home = (ROOT / "docs/archive-review-6feb36e3.html").read_text()
     assert "Current checkout review · 2026-10-25 · arena/6feb36e3-gemsdoe91" in home
     assert "OK TO DOWNLOAD: YES — research only · OK TO SUBMIT: NO" in home
     page = (ROOT / "docs/dzedge-executive-summary.html").read_text()

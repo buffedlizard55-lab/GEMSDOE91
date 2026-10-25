@@ -105,7 +105,7 @@ def test_s14_run_card_and_published_artifact_are_byte_exact_and_fail_closed():
 
 
 def test_s14_portal_makes_download_and_submit_status_unambiguous():
-    for name in ("s14-hvdc.html", "s14-hvdc-executive-summary.html", "index.html"):
+    for name in ("s14-hvdc.html", "s14-hvdc-executive-summary.html", "archive-results.html"):
         text = (ROOT / "docs" / name).read_text()
         assert "OK TO DOWNLOAD" in text
         assert "OK TO SUBMIT" in text

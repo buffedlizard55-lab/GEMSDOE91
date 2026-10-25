@@ -1,3 +1,15 @@
+## S16 / 2026-10-25 — current review findings (not organizer scores)
+
+- **IR-S16-01 — critical synthetic-label overwrite:** the inherited root generator replaced `data/official/existing_faults.tif` with mock labels and generated smooth random noise. Replaced by a side-effect-free entry point to the measured pipeline; protected by regression tests. Real input SHA-256 reverified.
+- **IR-S16-02 — fabricated recovery metrics:** the inherited GEOD recovery script wrote placeholder score/CI/novelty numbers. Entry point now blocks without writes; history is not validated evidence.
+- **IR-S16-03 — uniqueness feasibility:** frozen lattice leaves 6,649 cells outside its 3 px dilation. For 37,654 dots, overlap is necessarily ≥82.34%, above the 70% cap. S16 measured 100% and stopped at reference 27. See `docs/s16/registry-feasibility.json`.
+- **IR-S16-04 — missing lane and incomplete registry:** no promised method paragraph; two unavailable frozen references retained as UNVERIFIED. Provisional lane only, no universal uniqueness claim.
+- **IR-S16-05 — malformed reference ZIP / unconfirmed score:** GEMSDOE32's pinned 216-byte ZIP contains an empty ZIP member; its page calls the TIFF UNSCORED. The supplied 0.2778 and conflicting 0.4413/0.3195 leaderboard claims are not authenticated receipts. See `docs/s16/gems32-forensics.json` and source pins.
+- **IR-S16-06 — evaluator safety:** legacy shared API now defaults to no hidden-truth halo deletion, rejects nonfinite predictions/canaries and missing registry entries. Old component-tail geometry remains explicitly noncanonical. New S16 uses unchanged pinned label-blind template folds/evaluator/writer.
+- **IR-S16-07 — publication defects:** one status reader ignored affine rotation/y scale; fixed. Three inherited S15 raster/ZIP artifacts were unregistered in the artifact policy; now quarantined by exact hash, not approved. DZ-EDGE's format-only submit approval revoked.
+- **IR-S16-08 — historical S15 paired interval:** session-start card paired a negative delta with a positive-only interval. Treat as invalid evidence, not a promotion bar. Concurrent main reviews may correct the historical card; this records the audited starting snapshot.
+- **IR-S16-09 — honest negative:** 0.069397 HOLDOUT-DTI [0.057510, 0.081676], `gems57-pooled-hide-v2`, 60,988 withheld positives; paired gravity-control delta −0.004626 HOLDOUT-DTI [−0.010725,+0.001161], same population/version. One candidate, zero slots. No improvement established.
+
 # IRREGULARITIES
 
 Only items that change a decision. Each entry says what the rule/assumption was,

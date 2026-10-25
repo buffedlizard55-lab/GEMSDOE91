@@ -1,0 +1,114 @@
+{
+  "checked_utc": "2026-10-25T04:21:21.425771+00:00",
+  "sources": [
+    {
+      "claim": "Official example uses U-Net and Tversky training weights alpha 0.2 / beta 0.8. This is not an official implementation of distance-weighted scoring.",
+      "classification": "OFFICIAL_REPOSITORY",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
+      "commit": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0",
+      "bytes": 1578736,
+      "excerpts": [
+        "hs = 5\\n\",\n    \"init_lr = 1e-4\\n\",\n    \"alpha = 0.2  # weight for false positives in Tversky loss\\n\",\n    \"beta = 0.8  # weight for false negatives in Tversky loss\\n\",\n    \"\\n\",\n    \"# image augmentations for training set\\n\",\n    \"train_transform = v2.Compose(\\n\",\n    \"    [\\n\",\n    \"        v2.RandomResizedCrop(\\n\",\n    \"            patch_size,\\n\",\n    \"            s",
+        "alse positives in Tversky loss\\n\",\n    \"beta = 0.8  # weight for false negatives in Tversky loss\\n\",\n    \"\\n\",\n    \"# image augmentations for training set\\n\",\n    \"train_transform = v2.Compose(\\n\",\n    \"    [\\n\",\n    \"        v2.RandomResizedCrop(\\n\",\n    \"            patch_size,\\n\",\n    \"            scale=(0.5, 1.0),\\n\",\n    \"            ratio=(0.75, 1.33),\\n\",\n    \"",
+        "gmentation_models_pytorch.losses import TverskyLoss\\n\",\n    \"from torch.utils.data import DataLoader, Dataset\\n\",\n    \"from torchvision import tv_tensors\\n\",\n    \"from torchvision.transforms.functional import InterpolationMode\"\n   ]\n  },\n  {\n   \"cell_type\": \"code\",\n   \"execution_count\": null,\n   \"metadata\": {},\n   \"outputs\": [],\n   \"source\": [\n    \"FEATURE_DATA_PATH ="
+      ],
+      "verification": "Fetched GitHub bytes at recorded commit; statements only support the scope of the quoted source.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "GEMSDOE32 describes H33-2-B2 as a catalogue-flank prune and explicitly says no organizer score exists in that snapshot.",
+      "classification": "OWNER_SOURCE_NOT_ORGANIZER",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/098f3af9508a135277ef4d1bf2266e2e448be814/docs/index.html",
+      "commit": "098f3af9508a135277ef4d1bf2266e2e448be814",
+      "sha256": "b4a0f68193d7814fd4e406ea86465c0b0350cbed91b4f174d45c425f2b40e0d0",
+      "bytes": 19571,
+      "excerpts": [
+        "live DTI 0.2747 (a MODEL, not a score). NO ORGANISER SCORE EXISTS for this or any artifact in this repository.</p>\n</div>\n<div class=dl>\n<h2>&#9888;&nbsp;The portal error <code>\"Predicted values must be in range [0, 1]\"</code> &mdash; fixed, and here is exactly how</h2>\n<p>DrivenData rejects a submission whose values fall outside <code>[0, 1]</code>, and it also rejec",
+        ": live-anchored gate). 0.2708 base with every dot at d(catalogue) &lt;= 2 px deleted (37,654 dots). 37,654 dots, 0 on the catalogue. Live mirror (spatially blocked, off-catalogue truth, validated on the known live orderings) +0.004870 in 4 quadrants over the 0.2708 base; live-anchored safety factor 2.08; projected live DTI 0.2747 (a MODEL, not a score). NO ORGANISER S"
+      ],
+      "verification": "Fetched GitHub bytes at recorded commit; statements only support the scope of the quoted source.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "The H33-2 candidate builder applies catalogue-distance exclusion buffers 2 and 3 to an existing base.",
+      "classification": "OWNER_SOURCE_NOT_ORGANIZER",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/098f3af9508a135277ef4d1bf2266e2e448be814/scripts/run_h33_validation.py",
+      "commit": "098f3af9508a135277ef4d1bf2266e2e448be814",
+      "sha256": "bb695285cf8da0f0eae68ce7e1cae3d98232aacf072d4af1fd8e82d08a526628",
+      "bytes": 18464,
+      "excerpts": [
+        "_h33_2_flank_sweep(base, labels, d_cat, buffers=(2, 3))\n    for b, m in flank.items():\n        candidates[f\"H33-2-B{b}\"] = {\n            \"mask\": m,\n            \"hypothesis\": \"H33-2\",\n            \"description\": (f\"0.2708 base with every dot at d(catalogue) <= {b} px deleted \"\n                            f\"({int(m.sum()):,} dots)\"),\n        }\n\n    # --- H33-1: thermal-c",
+        "\n    for b, m in flank.items():\n        candidates[f\"H33-2-B{b}\"] = {\n            \"mask\": m,\n            \"hypothesis\": \"H33-2\",\n            \"description\": (f\"0.2708 base with every dot at d(catalogue) <= {b} px deleted \"\n                            f\"({int(m.sum()):,} dots)\"),\n        }\n\n    # --- H33-1: thermal-conduit prune-and-augment on the 0.2708 base -----------"
+      ],
+      "verification": "Fetched GitHub bytes at recorded commit; statements only support the scope of the quoted source.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "Potential-field filters are expressed in angular wavenumber; pole reduction depends on field and source magnetization directions. This is author software, not evidence of a geothermal target.",
+      "classification": "AUTHOR_MAINTAINED_SCIENTIFIC_SOFTWARE",
+      "url": "https://github.com/fatiando/harmonica/blob/a9cd44203308fd5db58acf74ac9ec3b7d1860136/src/harmonica/filters/_filters.py",
+      "commit": "a9cd44203308fd5db58acf74ac9ec3b7d1860136",
+      "sha256": "75cb956815652cfdcd1e98fa9eb6eab8651a5760279012a54323a0c84bac7523",
+      "bytes": 20509,
+      "excerpts": [
+        "}\n        )\n\n    return filtered_grid\n\n\ndef derivative_upward_kernel(fft_grid, order=1):\n    r\"\"\"\n    Filter for upward derivative in frequency domain.\n\n    Return a :class:`xarray.DataArray` with the values of the frequency domain\n    filter for computing the upward derivative. The filter is built upon the\n    frequency coordinates of the passed ``fft_grid`` and is d",
+        "gth) ** 2)\n    )\n    return da_filter\n\n\ndef reduction_to_pole_kernel(\n    fft_grid,\n    inclination,\n    declination,\n    magnetization_inclination,\n    magnetization_declination,\n):\n    r\"\"\"\n    Filter for reduction to the pole in the frequency domain.\n\n    Return a :class:`xarray.DataArray` with the values of the frequency domain\n    filter for applying a reduction ",
+        ",\n    inclination,\n    declination,\n    magnetization_inclination,\n    magnetization_declination,\n):\n    r\"\"\"\n    Filter for reduction to the pole in the frequency domain.\n\n    Return a :class:`xarray.DataArray` with the values of the frequency domain\n    filter for applying a reduction to the pole on magnetic data. The filter\n    is built upon the frequency coordinat"
+      ],
+      "verification": "Fetched GitHub bytes at recorded commit; statements only support the scope of the quoted source.",
+      "organizer_receipt": false
+    },
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "claim": "Official competition problem, metric and format; not freshly authenticated here.",
+      "classification": "OFFICIAL_OR_INSTITUTIONAL_LEAD",
+      "verification": "NOT_FETCHED_OR_AUTHENTICATED: no fetched page or authenticated receipt is in this audit.",
+      "organizer_receipt": false
+    },
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "claim": "Current leaderboard not verified; conflicting prompt figures must not be presented as live data.",
+      "classification": "OFFICIAL_OR_INSTITUTIONAL_LEAD",
+      "verification": "NOT_FETCHED_OR_AUTHENTICATED: no fetched page or authenticated receipt is in this audit.",
+      "organizer_receipt": false
+    },
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/",
+      "claim": "Weekly cap, account eligibility, slot use and score receipts not authenticated in this session.",
+      "classification": "OFFICIAL_OR_INSTITUTIONAL_LEAD",
+      "verification": "NOT_FETCHED_OR_AUTHENTICATED: no fetched page or authenticated receipt is in this audit.",
+      "organizer_receipt": false
+    },
+    {
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "claim": "Official rules lead; no fresh legal/eligibility verification from this host.",
+      "classification": "OFFICIAL_OR_INSTITUTIONAL_LEAD",
+      "verification": "NOT_FETCHED_OR_AUTHENTICATED: no fetched page or authenticated receipt is in this audit.",
+      "organizer_receipt": false
+    },
+    {
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "claim": "Official GeoDAWN source lead; mirror hashes do not prove data-use permission.",
+      "classification": "OFFICIAL_OR_INSTITUTIONAL_LEAD",
+      "verification": "NOT_FETCHED_OR_AUTHENTICATED: no fetched page or authenticated receipt is in this audit.",
+      "organizer_receipt": false
+    },
+    {
+      "url": "https://gdr.openei.org/submissions/1391",
+      "claim": "Official geothermal well/spring data lead; not an input to S16.",
+      "classification": "OFFICIAL_OR_INSTITUTIONAL_LEAD",
+      "verification": "NOT_FETCHED_OR_AUTHENTICATED: no fetched page or authenticated receipt is in this audit.",
+      "organizer_receipt": false
+    },
+    {
+      "url": "https://gbcge.org/current-projects/ingenious/",
+      "claim": "Institutional geothermal exploration project lead; not a verified source for historical numeric geology claims in this session.",
+      "classification": "OFFICIAL_OR_INSTITUTIONAL_LEAD",
+      "verification": "NOT_FETCHED_OR_AUTHENTICATED: no fetched page or authenticated receipt is in this audit.",
+      "organizer_receipt": false
+    }
+  ],
+  "organizer_confirmed_scores": [],
+  "limitation": "No primary source establishes why a specific hidden leaderboard score occurred."
+}

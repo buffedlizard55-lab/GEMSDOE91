@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "scope": "Local engineering checks only; not promotion or a geological experiment",
+  "checked_utc": "2026-10-25T04:51:20.851036+00:00",
+  "pytest": {
+    "command": "OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 .venv/bin/python -m pytest -ra",
+    "passed": 431,
+    "skipped": 2,
+    "skip_reasons": [
+      "Optional S15 layers not all restored",
+      "Legacy release tree not materialized; current artifact tested separately"
+    ],
+    "warnings": 30,
+    "warning_kind": "rasterio Affine multiplication deprecation",
+    "duration_seconds": 22.94
+  },
+  "independent_s16_verifier": "PASS (with pinned sample and catalogue)",
+  "historical_ced_evidence_verifier": "PASS (stored source/evidence consistency only)",
+  "historical_ced_artifact_verifier": "PASS (with pinned sample and catalogue)",
+  "artifact_policy": {
+    "status": "PASS",
+    "registered_prediction_artifacts": 51,
+    "raw_rasters_tracked": 0
+  },
+  "synthetic_legacy_demo": "PASS; synthetic fixture paths only, not scientific evidence",
+  "deterministic_renderer": "PASS (pytest contract test)",
+  "browser_report": "browser-verification.json",
+  "automated_browser_status": "PASS",
+  "no_human_visual_inspection_required": true,
+  "geological_experiments_rerun": 0,
+  "ok_to_submit": false,
+  "remote_ci": {
+    "status": "PASS",
+    "tested_head_sha": "b009408baaa775130629725cf6e77d27c2f294f7",
+    "run_url": "https://github.com/buffedlizard55-lab/GEMSDOE91/actions/runs/40162592115",
+    "jobs": [
+      "tests",
+      "published-artifact",
+      "browser-delivery"
+    ]
+  },
+  "deployment": {
+    "status": "PENDING_MERGE_AT_THIS_SNAPSHOT",
+    "final_receipt_location": "https://github.com/buffedlizard55-lab/GEMSDOE91/pull/79",
+    "note": "This timestamped engineering snapshot is not a live deployment or readiness feed."
+  },
+  "note": "431-pass local full suite after concurrent integrations. Last completed remote CI is pinned above; latest-head checks and publication receipts are recorded on PR #79. Engineering only; submission remains blocked.",
+  "integrated_main": "5146eb9",
+  "pages_configuration": {
+    "observed_mode": "legacy",
+    "requested_mode": "workflow",
+    "update_attempt": "DENIED",
+    "http_status": 403,
+    "message": "Resource not accessible by integration",
+    "effect": "Committed main-root site can still publish. Scheduled refreshed feed artifacts do not auto-publish in legacy mode.",
+    "required_permission": "GitHub Pages settings write access"
+  },
+  "automated_browser_pages_checked": 17,
+  "later_parallel_artifacts": "later-parallel-artifacts.json"
+}

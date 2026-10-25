@@ -60,13 +60,19 @@
   "submission_note": "DZ-EDGE v2: count-holding PRUNE+parent-sparse damage-zone refill <=10px; HOLDOUT-DTI=0.0 gems91-hide-recover-v1.1-nohalo; MODEL only",
   "organizer_confirmed": null,
   "leaderboard_score_confirmed": false,
-  "score_claim": "none - holdout-DTI=0.0 because proxy truth is withheld catalogue segments while this submission deliberately targets off-catalogue blind geothermal truth (>10 px from catalogue, outside the 300 m kernel). Cannot confirm it beats R0's 0.2778 CLAIM or the 0.4413 leaderboard high without an organizer receipt.",
+  "score_claim": "none - holdout-DTI=0.0 against withheld catalogue segments; off-catalogue blind truth is not measured. Not cleared to submit.",
   "download_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
   "zip_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.zip",
   "audit_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-audit.json",
-  "ok_to_download_why": "Fresh byte-level check confirms one-band float32, all cells finite in [0,1], no nodata, 37,654 binary positives, EPSG:32611, 3730x3292 and stored affine. ZIP contains exactly this TIF. Research/education download only; sample-grid and footprint comparison are blocked by missing reference input.",
-  "ok_to_submit_why": "NO: lane is unassigned; complete-registry novelty is unverified; the reported 0.0 HOLDOUT-DTI against withheld catalogue segments does not validate the off-catalogue hypothesis or beat a comparable holdout best; exact sample-grid comparison and separate selector approval/weekly slot are absent.",
+  "ok_to_download_why": "Historical artifact: finite single-band float32 bytes and exact single-TIFF ZIP validated. Reference-grid recheck is recorded separately; no scientific promotion.",
+  "ok_to_submit_why": "NOT CLEARED: lane unassigned, full-registry novelty unverified, no compliant comparable holdout improvement and no separate selector/slot approval. Format checks cannot override these blockers.",
   "verdict": "negative",
+  "superseded_status_audit": {
+    "date": "2026-10-25",
+    "former_ok_to_submit": true,
+    "reason": "Format-only approval violated shared readiness. Parent-derived raster, only one-reference novelty scope and no comparable-best improvement; no slot clearance."
+  },
+  "submission_ready": false,
   "lane_status": {
     "assigned": false,
     "status": "UNASSIGNED_RESEARCH_ONLY",
@@ -106,5 +112,14 @@
       "GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif"
     ],
     "zip_inner_matches_tif": true
+  },
+  "s16_reference_format_recheck": {
+    "status": "PASS_FORMAT_ONLY",
+    "sample_grid_matches": true,
+    "all_cells_finite_in_0_1": true,
+    "zero_on_catalogue": true,
+    "zero_outside_footprint": true,
+    "zip_tiff_bytes_match": true,
+    "scope": "Engineering recheck, not a new candidate, holdout or registry clearance."
   }
 }

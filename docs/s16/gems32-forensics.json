@@ -1,0 +1,59 @@
+{
+  "evidence_class": "LOCAL_GEOMETRY_AND_ARCHIVE_AUDIT_NOT_A_SCORE",
+  "records": [
+    {
+      "id": "anc_h19_5",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "positive_support_pixels": 121131,
+      "min_catalogue_distance_px": 1.0,
+      "support_at_catalogue_distance_le_2px": 17326,
+      "binary_inside_footprint": true
+    },
+    {
+      "id": "anc_d2_8",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "positive_support_pixels": 44090,
+      "min_catalogue_distance_px": 1.0,
+      "support_at_catalogue_distance_le_2px": 6436,
+      "binary_inside_footprint": true
+    },
+    {
+      "id": "anc_solo_d2_8",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "positive_support_pixels": 40199,
+      "min_catalogue_distance_px": 1.4142135623730951,
+      "support_at_catalogue_distance_le_2px": 2545,
+      "binary_inside_footprint": true
+    },
+    {
+      "id": "parent_r0_zeros",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "positive_support_pixels": 37654,
+      "min_catalogue_distance_px": 2.23606797749979,
+      "support_at_catalogue_distance_le_2px": 0,
+      "binary_inside_footprint": true
+    }
+  ],
+  "r0_is_exact_base_with_distance_gt_2": true,
+  "r0_added_vs_base": 0,
+  "r0_removed_vs_base": 2545,
+  "r0_nearest_neighbor_px": {
+    "min": 2.8284271247461903,
+    "median": 3.0
+  },
+  "advertised_zip": {
+    "sha256": "0322d0b413530b9fb445a366ca1ad234c5180868c2f89cdc70fe2ce80bd4439f",
+    "bytes": 216,
+    "members": [
+      {
+        "name": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.zip",
+        "uncompressed_bytes": 0
+      }
+    ],
+    "single_nonempty_tif": false
+  },
+  "user_reported_dti": 0.2778,
+  "score_evidence_class": "USER_REPORTED_UNVERIFIED_NOT_ORGANIZER_CONFIRMED",
+  "score_receipt": null,
+  "conclusion": "The pruned geometry is reproducible; its hidden-score causal gain is not identifiable without organizer truth/receipts."
+}

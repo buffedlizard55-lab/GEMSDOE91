@@ -84,7 +84,7 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
     except Exception:
         pass
     allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip}|g91_allowed|s14_allowed|s15_allowed
-    for name in ('index.html','executive-summary.html'):
+    for name in ('archive-results.html','archive-guide.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states and all(x=='false' for x in p.states)
         assert 'NOT OK TO SUBMIT' in text
@@ -198,7 +198,7 @@ def test_readiness_requires_all_independent_gates_not_just_format():
 
 
 def test_portal_render_is_reproducible():
-    names=['index.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    names=['index.html','archive-results.html','archive-guide.html','archive-research.html','review-0a96aa96-home.html','assets/s16.css','assets/s16-support.png','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
     before={n:(ROOT/'docs'/n).read_bytes() for n in names}
     subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'
