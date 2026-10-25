@@ -107,3 +107,11 @@ File: docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9ac
   explicit (OK TO DOWNLOAD: YES — research only; OK TO SUBMIT: NO). The JSON run card has every
   protocol field. Every number is labelled. The README and site lead with the download. Sources
   are linked.
+
+# Current three-pass review — `arena/522615dd-gemsdoe91` — 2026-10-25
+
+- **Pass 1 — inventory/readiness/provenance:** reread the standing brief and current README; inspected the active branch, current portal and source templates; reran `scripts/preflight.py`. It reports **BUILD BLOCKED: 0/2** and all six implemented axes blocked. `data/` has no files. The official competition data page redirects anonymous access to login. No mirrored competition data were restored.
+- **Pass 2 — scientific/protocol review:** confirmed there is no assigned single-method paragraph; did not infer a lane. Ranked three proposals (topographic spectral-slope/roughness break, within-map-unit potential-field residual, multi-season Landsat surface-temperature residual) in `docs/HYPOTHESES-ACTIVE-522615DD-20261025.md`. Fetched official competition/rules/leaderboard and USGS source pages; kept public-board scores separate from user reports, holdout metrics, and receipts. No model, holdout, canary, placement, TIFF, or slot was run.
+- **Pass 3 — docs/portal/tests:** updated the active README and portal to distinguish the prior OLC91 research download from this no-run review; fixed `LB-DTI` navigation labels; added the branch-specific review/run card, official source records, and tests. Normalized all 115 historical CSV source URL strings without changing their evidence class or receipt status. Re-rendered the portal.
+- **Final verification:** `.venv/bin/python -m pytest -o addopts='' -ra` → **555 passed, 8 skipped, 58 warnings** in 36.15 s (data-dependent skips; Rasterio affine deprecation warnings). `scripts/check_artifact_policy.py` → **PASS, 87 registered artifacts**. `git diff --check` → clean. Expected `scripts/preflight.py` exit 1 remains the active blocker.
+- **Outcome:** negative/blocked; zero experiments and weekly slots, no new score, no new TIFF, no organizer receipt. Prior OLC91 file remains research-only and is not promoted. Current review/run card: `docs/REVIEW-ACTIVE-522615DD-20261025.md` / `docs/run-card-522615dd.json`.

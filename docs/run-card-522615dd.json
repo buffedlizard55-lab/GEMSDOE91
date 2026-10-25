@@ -1,0 +1,128 @@
+{
+  "schema_version": "gems91.active-review-run-card.v1",
+  "review_date_utc": "2026-10-25",
+  "session_branch": "arena/522615dd-gemsdoe91",
+  "review": "docs/REVIEW-ACTIVE-522615DD-20261025.md",
+  "hypothesis_menu": "docs/HYPOTHESES-ACTIVE-522615DD-20261025.md",
+  "status": "negative_blocked_no_run",
+  "assignment": {
+    "single_method_paragraph_present": false,
+    "lane_assigned": false,
+    "reason": "The parallel-run prompt requires one assigned method paragraph, but none is present in the active request/context. No lane was inferred or self-assigned."
+  },
+  "data_preflight": {
+    "command": "python scripts/preflight.py",
+    "verdict": "BUILD BLOCKED",
+    "verified_required_inputs": 0,
+    "required_inputs": 2,
+    "missing": [
+      "data/official/sample_submission.tif",
+      "data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif"
+    ],
+    "training_feature_cache_present": false,
+    "ready_axes": [],
+    "blocked_axes": ["PRUNE", "MASS", "SNAP", "CONCENTRATION", "RELIEF", "TRACKB"],
+    "competition_data_page_access": "ANONYMOUS REQUEST REDIRECTED TO LOGIN",
+    "restored_or_downloaded_data": false
+  },
+  "experiment": {
+    "started": false,
+    "experiments_used": 0,
+    "experiment_limit": 3,
+    "time_budget_hours": 2,
+    "weekly_slots_used": 0,
+    "selector_or_promotion_step_run": false
+  },
+  "hypothesis": {
+    "selected": null,
+    "status": "PROPOSED_MENU_ONLY_NOT_ASSIGNED",
+    "candidates": [
+      "Topographic texture / spectral-slope break",
+      "Within-map-unit potential-field residual displacement",
+      "Seasonal Landsat surface-temperature residuals"
+    ]
+  },
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "dti": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "reason": "No assigned method and required competition inputs are absent. No result is inferred or projected."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN",
+    "feature_auc_values": null,
+    "symmetric_auc_stop_threshold": 0.9,
+    "reason": "No feature was run."
+  },
+  "registry_correlation_overlap": {
+    "status": "NOT_RUN",
+    "surface_max_abs_spearman": null,
+    "surface_stop_threshold": 0.9,
+    "final_dot_overlap_within_3px": null,
+    "final_dot_stop_threshold": 0.7,
+    "registry_raster_sha256": null,
+    "reason": "No candidate surface or placement exists. Do not interpret this as a uniqueness pass."
+  },
+  "raster": {
+    "created": false,
+    "path": null,
+    "sha256": null,
+    "validator_output": {
+      "status": "NOT_RUN_NO_NEW_RASTER",
+      "nan_inside_footprint": null,
+      "range_0_1": null,
+      "crs_match": null,
+      "shape_match": null,
+      "transform_match": null,
+      "reason": "No new TIFF was written; the official sample grid is absent."
+    }
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_char_limit": 140,
+    "ok_to_download": "NO NEW TIFF",
+    "ok_to_submit": "NO",
+    "organizer_confirmed": null
+  },
+  "existing_front_door_artifact": {
+    "path": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+    "sha256_recorded_in_prior_card": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "submission_name_recorded_in_prior_card": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67",
+    "submission_note_recorded_on_prior_portal": "GEMSDOE91 OLC91 E1: PU posterior x 1.1km strike-coherent line support, 37654 3px dots, 2px catalogue collar",
+    "recorded_download_status": "YES — RESEARCH ONLY",
+    "recorded_submit_status": "NO",
+    "prior_result": {
+      "evidence_class": "HOLDOUT-DTI",
+      "dti": 0.083186,
+      "ci95": [
+        0.066866,
+        0.100482
+      ],
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_count": 11321,
+      "status": "PRIOR_SESSION_RESULT_NOT_RERUN_IN_THIS_REVIEW"
+    },
+    "revalidated_in_this_review": false,
+    "registered_tiff_zip_byte_identity_rechecked_in_this_review": true,
+    "format_rechecked_against_official_sample_in_this_review": false,
+    "warning": "Portal rendering rechecked the registered TIFF/ZIP hashes and ZIP member identity, but the missing official sample prevents a fresh sample-backed validator pass. This is an existing prior negative research artifact, not a new or unique result from the active review. Do not represent it as newly generated or approved for submission."
+  },
+  "verdict": "negative",
+  "promote": false,
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "irregularities": [
+    "No single method paragraph or assigned lane is present.",
+    "Required sample and parent raster are absent; the cached training feature stack is absent.",
+    "Historical manifest and preflight local-presence metadata do not match this checkout's file system.",
+    "Public leaderboard, user-reported values, local holdout values, and organizer receipts are distinct evidence classes.",
+    "The GEMSDOE32 owner page explicitly states that no organizer score exists for its artifacts.",
+    "docs/run-card-current-review.json is dated 2026-10-25 but belongs to arena/2f002fa0-gemsdoe91, not the active branch."
+  ]
+}
