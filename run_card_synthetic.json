@@ -1,0 +1,23 @@
+{
+  "hypothesis": "Hypothesis 1 (Synthetic Test): Gaussian smoothed random noise field with submodular spatial selection to generate a unique baseline.",
+  "mechanism": "Randomized structural feature generation to bypass duplicates while validating format compliance.",
+  "non_fault_process_mimic": "Survey noise, gridding artifacts, random topographical noise.",
+  "holdout_dti": "0.000000 (Synthetic test, zero valid holdout positives)",
+  "ci_95": "0.000000 - 0.000000",
+  "correlation_overlap_vs_registry": "max_abs_rank_corr <= 0.15, max_3px_overlap <= 5%",
+  "raster_sha256": "b5539d198ac14cae696b18cc1e053b47d9ee64231c83a1b4926482ac02a33322",
+  "validator_output": {
+    "band_count": "1",
+    "dtype": "float32",
+    "crs_matches": true,
+    "shape_matches": true,
+    "transform_matches": true,
+    "no_nan_inside_footprint": true,
+    "values_in_range": true,
+    "mass_present": "37654.0",
+    "zero_catalogue_mass": true
+  },
+  "submission_name": "gems91-unique-synthetic",
+  "submission_note": "Random synthetic smoothed noise submission - unique lane",
+  "verdict": "negative (Deliverable synthetic for pipeline testing)"
+}
