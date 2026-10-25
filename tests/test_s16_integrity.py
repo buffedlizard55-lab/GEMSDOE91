@@ -180,3 +180,12 @@ def test_artifact_policy_rejects_duplicate_rows_after_concurrent_merges(tmp_path
     (tmp_path / 'registry/artifact_policy.json').write_text(json.dumps({'files': [{'path': 'repeated'}, {'path': 'repeated'}]}))
     with pytest.raises(ValueError, match='Duplicate artifact-policy'):
         policy.main()
+
+
+def test_current_and_preserved_review_pages_have_one_document_not_nested_shells():
+    for name in ['index.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html']:
+        text = (ROOT / 'docs' / name).read_text().lower()
+        assert text.count('<!doctype html>') == 1, name
+        assert text.count('<main ') == 1, name
+        if 'review-0a96' in name or 'active-exec' in name:
+            assert 'historical' in text

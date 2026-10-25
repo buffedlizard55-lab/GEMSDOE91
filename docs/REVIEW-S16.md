@@ -73,7 +73,7 @@ Corrections implemented (engineering checks do not rerun the geological search):
 
 ## Pass 3 — requirement and final-delivery recheck
 
-**Local post-integration result:** 427 tests passed, 2 explicit data-dependent
+**Local post-integration result:** 428 tests passed, 2 explicit data-dependent
 skips; 30 dependency deprecation warnings. Automated Chromium delivery checks
 passed for root redirect, exact TIFF/ZIP download hashes, copy fallback, mobile
 layout and accessibility on 14 current/archive pages. No visual approval was
@@ -117,10 +117,15 @@ publication is claimed before a successful deployment receipt.
 ### Concurrent main integration
 
 Integrated `347ecb4`, the subsequent `911b6a9` DZ-EDGE correction, and
-`332d72a` full-grid validator/prerequisite review from main while remaining on the assigned S16 branch.
+`332d72a` full-grid validator/prerequisite review, and `def38f0` CED91
+portal review from main while remaining on the assigned S16 branch.
 Preserved the S15 selector/cache/readiness fixes, focused regression test,
 corrected historical cards and both dated review records. Regenerated pages
 from the combined renderer rather than discarding concurrent source changes.
+Preserved the later CED review under a dated archive, avoiding both a second
+“current” candidate and its nested-document-shell regression. The CI merge-marker
+check now matches an exact seven-equals separator rather than mistaking pytest
+log headings for unresolved conflicts.
 The other review’s external-page observations remain secondary provenance;
 S16 did not independently fetch/authenticate those official pages. Its absent-
 input state is a dated snapshot, not the current restored S16 data state.

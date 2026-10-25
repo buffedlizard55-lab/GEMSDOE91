@@ -36,7 +36,7 @@ jobs:
             --ledger ledger/submissions.csv
       - name: Source integrity and no conflict markers
         run: |
-          if git grep -nE '^(<<<<<<< |=======|>>>>>>> )' -- .; then
+          if git grep -nE '^(<<<<<<< |=======$|>>>>>>> )' -- .; then
             echo '::error::Unresolved merge conflict'; exit 1
           fi
           python -m pytest tests/test_ced.py::test_shared_template_is_unmodified
