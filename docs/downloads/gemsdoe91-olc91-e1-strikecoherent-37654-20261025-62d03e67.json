@@ -1,0 +1,130 @@
+{
+  "file": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+  "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+  "bytes": 138430,
+  "submission_name": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67",
+  "note": "GEMSDOE91 OLC91 E1: PU posterior x 1.1km strike-coherent line support, 37654 3px dots, 2px catalogue collar",
+  "note_chars": 107,
+  "validator": {
+    "file": "/home/user/GEMSDOE91/docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+    "bytes": 138430,
+    "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE91/docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+    "bytes": 138430,
+    "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip",
+  "zip_sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "OLC91",
+    "arm": "E1",
+    "n_dots": 37654,
+    "model": {
+      "n_pos": 60988,
+      "n_neg": 182964,
+      "n_predicted": 5167373
+    },
+    "min_dot_distance_to_catalogue_px": 2.236
+  }
+}

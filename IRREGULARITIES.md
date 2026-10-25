@@ -1,3 +1,44 @@
+## S17-CDSC / 2026-10-25 — Session 17 remediation & root-cause findings (`arena/1722e30a-gemsdoe91`, not organizer scores)
+
+- **IR-91-S15-05, IR-91-S15-06, IR-91-S15-07 — REMEDIATED & VERIFIED IN `S17-CDSC`:**
+  - `IR-91-S15-06`: Calibrating every 2-quadrant pairwise Stage-1 sub-model `(a, b)` to each fold's 3-quadrant training sample prevalence before stitching aligned `Test_k / Train_k` ratios from `1.4493x -> 1.0329x` (`NW`), `1.5634x -> 1.0902x` (`NE`), `1.6271x -> 1.1442x` (`SW`), and `2.1020x -> 1.4290x` (`SE`), recovering Fold 1 (`NE`) from `6,500` dots / `0.273196` (`S15-SCGF E2`) to **`10,621` dots / `0.331443` (`+0.058247`)**.
+  - `IR-91-S15-07`: Keeping Stage-1 on the 75 local translation-invariant `S13-PTHA` features while injecting the 16 local (`<= 1 km`) `S15` subsurface features into Stage-2 lifted pooled `HOLDOUT-DTI` to **`0.259972`** (`+0.019339` over `S15-SCGF E2 = 0.240633`, `+0.015371` over `S13-PTHA E3 = 0.244601`, `paired 95% CI [+0.010244, +0.021122]`).
+  - `IR-91-S15-05`: Added a `72`-column bitwise `B12`/`B19`-invariant Pure-Subsurface specialist (`hgb_sub`) in Stage-2, verified by perturbation unit test in `tests/test_s17_cdsc.py`.
+- **IR-91-S17-01 (`IR-91-S17-CDSC-01`) — Upward Training-Canvas Calibration Tightens $\lambda^*(\text{Train}_k)$ Across Heterogeneous Quadrant Fault Densities:**
+  - Calibrating 2-quadrant training sub-models *upward* to 3-quadrant sample prevalence warmed `Train_k`'s `ac_*` features while leaving `Test_k` fixed; because Stage-2 is fitted on `Train_k`, its in-sample predictions on `Train_k` rose slightly relative to `Test_k`, raising the training-calibrated Dinkelbach threshold $\lambda^*(\text{Train}_k)$ and emitting `40,122` OOF dots vs `43,633` in `S14-PTAC E2` (`-1,839` dots in `SW`), accounting for the `-0.007810` gap (`0.259972` vs `0.267782`). Next session should standardize `stitch_p1` via per-quadrant empirical quantile / rank-logit mapping before ray integration.
+- **IR-91-S17-02 (`IR-91-S17-CDSC-02`) — Stage-2 Feature-Width Dilution in Fixed-Leaf Trees (`85 -> 105` cols):**
+  - Expanding Stage-2 from `85` to `105` features while keeping `max_leaf_nodes=41` (`hgb_deep`) and `23` (`hgb_shallow`) diluted tree splits on `ac_wash_bridge_1km` and `ac_wash_bridge_2km`. Next session should isolate the 14 auto-context columns into a dedicated Stage-2 Topology Specialist (`hgb_topo`).
+- **IR-91-S17-03 (`IR-91-S17-CDSC-03`) — `evaluate_holdout.run_leakage_canary` Empty Static Block Guard:**
+  - `evaluate_holdout.run_leakage_canary` raises `ValueError("nonempty folds and unique feature names required")` if called with `feature_names=[]` when testing `fold_specific_features` alone; fixed in `scripts/run_s17_cdsc_lane.py` by passing `fold_specific_features=fold_ac` alongside the non-empty `X_ptha` canary call.
+
+## XG91 / 2026-10-25 — this session (not organizer scores)
+
+- **IR-XG91-01 — assigned lane missing:** the prompt said to stay in the lane described by a method paragraph that was not in the prompt. XG91 was preregistered in `docs/HYPOTHESES_XG91.md` and is not an orchestrated lane. No slot was spent.
+- **IR-XG91-02 — band 6 tag is false:** the GeoTIFF description calls band 6 a signed tilt/curvature. On 5,164,300 footprint pixels it is strictly positive (min 2.953, median 18.482, max 88.567). It was not used as a signed tilt.
+- **IR-XG91-03 — band correlation not as previously recorded:** band 10 versus band 16 Pearson on a 200,000-cell subsample was 0.084104, not the 0.7354 figure in an older note. Band 10 ranges from 0 to 4,962,515 (median 622.8).
+- **IR-XG91-04 — lattice capacity, not a scientific pass:** 99.742% of XG91-E1 dots fall within 3 px of `calib_r13lattice_00904.tif`. The lane stopped. E2 and E3 were not run. Dots were not moved into lattice holes to manufacture uniqueness.
+- **IR-XG91-05 — no improvement over chance:** 0.071171 HOLDOUT-DTI [0.063769, 0.079270], `gems57-pooled-hide-v2`, 60,988 withheld positives. Matched random control 0.073788 on the same instrument. Paired delta −0.002618 [−0.009427, 0.005131] includes zero. The recorded v2 point estimate 0.194267 was not re-scored on this split.
+- **IR-XG91-06 — scores still unreceipted:** 0.2778, 0.3195, and public-leaderboard 0.4413 (fetched 2026-10-25) are not organizer receipts for any file in this repository. The GEMSDOE32 page still says no organiser score exists for `h33-h33-2-b2`.
+- **IR-XG91-07 — inputs are pinned mirrors:** sample, catalogue, and the 19-band stack were restored from SHA-256 pins, not downloaded from DrivenData in this session. Hash match is not a licence grant.
+
+## S17-CGRD / 2026-10-25 — Session 17 findings & remediations (`arena/cbdb6e26-gemsdoe91`)
+
+- **IR-91-S17-01 — Portal overwrite & unregistered artifacts from PRs #95 and #96 (RESOLVED):** PR #95 (`GEO91`) appended `render_geo91_portal.py` to `scripts/render_portal.py`, overwriting `docs/index.html` and `docs/executive-summary.html` without `<main>`, `data-submission-ready="false"`, `archive-results.html`, `run-card-S16.json`, or `s16-pgrd*.tif` links, breaking 3 regression tests (`test_h91_holdout_and_writer.py`, `test_s16_integrity.py`). Simultaneously, PR #96 committed 3 `.tif`/`.zip` files under `docs/downloads/` (`gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119*`) without registering them in `registry/artifact_policy.json`, breaking `scripts/check_artifact_policy.py` and `tests/test_download_audit.py`. **Remediation:** Reconciled `scripts/render_geo91_portal.py`, `docs/geo91-index-src.html`, `docs/geo91-exec-src.html`, and `scripts/render_s16_portal.py`; registered the 3 PR #96 files, the 2 `DRN91` files, plus the 2 new `S17-CGRD E2` files (`-zeros.tif` and `-zeros.zip`) in `registry/artifact_policy.json`; and regenerated `docs/download-audit.{json,html}` (`66` files audited).
+- **IR-91-S17-02 — Remediation of `IR-91-S15-06` (prior-shift calibration of pairwise 2-quadrant Stage-1 sub-folds) & `IR-91-S15-07` (regional auto-context bowls) (RESOLVED):** In Session 15 (`S15-SCGF`), uncalibrated pairwise 2-quadrant Stage-1 predictions caused a $3\times$–$6\times$ test/train mean jump across quadrant seams and regional ($\ge 3\text{ km}$) bowls, causing `E2` to degrade relative to `E1`. In `S17-CGRD`, every pairwise 2-quadrant and 3-quadrant OOF Stage-1 split is calibrated via `gems91.ptha.prior_shift_calibrate_surface` using its exact training-domain base rate (`pi_true` vs `pi_sample = 0.1667`, with `f.region_mask` excluded from training negatives) before stitching, and $\ge 3.2\text{ km}$ regional bowls are subtracted. **Result:** `S17-CGRD E2` (`0.092125 HOLDOUT-DTI`, `95% CI [0.081283, 0.102562]`) improves strictly (`+0.008144` / `+9.7%` relative) over `E1` (`0.083981 HOLDOUT-DTI`, `95% CI [0.074440, 0.093453]`) while remaining 100% invariant to topographic bands `B12` (`det_elev`) and `B19` (`det_elev_slope`).
+- **IR-91-S17-03 — Real-registry uniqueness vs synthetic blanket-lattice capacity bound:** Across all 42 real rasters in `data/registry/*.tif` and `docs/downloads/*.tif`, the `B12`/`B19`-blind `S17-CGRD E2` candidate passes both Rule-1 uniqueness thresholds (`max_measured_final_dot_overlap_within_3px = 0.56063 <= 0.70`, `max_measured_surface_rank_correlation = 0.08657 <= 0.90`, `max_measured_final_dot_rank_correlation = 0.03162 <= 0.90`), whereas DEM-inclusive `E3` (`0.132279 HOLDOUT-DTI`) reaches `77.51% > 70%` overlap with `SPID-E3` and is logged as a Rule-1 duplicate stop (never written as a submission). Under the literal 89-file frozen inventory including the `206,895`-dot synthetic 5-px grid `calib_r13lattice_00904.tif` (`docs/s16/registry-feasibility.json`), any `37,654`-dot candidate has overlap $\ge 82.34\% > 70\%$, so `automated_gates["novelty"]` remains `False`.
+- **IR-91-S17-04 — Fail-closed negative verdict (`ok_to_submit = False`, `slots_used = 0`):** Because `S17-CGRD E2` (`0.092125 HOLDOUT-DTI` on `gems91-hide-recover-v1.0`; `0.225235 HOLDOUT-DTI` on `gems57-pooled-hide-v2`) trails the comparable full-stack holdout best (`S14-PTAC E2 = 0.267782 HOLDOUT-DTI`), `verdict = "negative"` and zero weekly submission slots are spent.
+
+---
+
+# Active review irregularities — 2026-10-25, 4975419d
+
+- **IR-4975-01:** GEO91 front door incorrectly asserted near-catalogue mass was pure penalty and pruning mechanically improved hidden DTI. Replaced with conditional explanation; unit counterexample added. Archived geometry is not causal score evidence.
+- **IR-4975-02:** browser CI targeted S16 downloads on the GEO91 front door. Fixed to read the current manifest; history tested in archive. Current TIFF/ZIP identity now checked before render.
+- **IR-4975-03:** two already tracked DRN91 downloads were absent from artifact policy, blocking a fresh all-download audit. Registered as quarantined and regenerated audit: 64 files, 56 technical PASS, 8 FAIL. No promotion.
+- **IR-4975-04:** earlier portal falsely implied a new universally unique file and diagnosed an unseen upload rejection. Corrected both. No new file, assigned lane or full-registry clearance in this review.
+
+---
+
 ## S16 / 2026-10-25 — current review findings (not organizer scores)
 
 - **IR-S16-01 — critical synthetic-label overwrite:** the inherited root generator replaced `data/official/existing_faults.tif` with mock labels and generated smooth random noise. Replaced by a side-effect-free entry point to the measured pipeline; protected by regression tests. Real input SHA-256 reverified.
@@ -1566,3 +1607,34 @@ Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and 
 - **IR-DRN91-01 — lane not assigned:** no single method paragraph was supplied; DRN91 is a PROVISIONAL lane chosen from the repo's own never-implemented list (drainage-deflection). No universal uniqueness claim is made.
 - **IR-DRN91-02 — evaluator version differs from comparable best:** DRN91 used `gems57-pooled-hide-v2`; S14-PTAC's 0.267782 used `gems91-hide-recover-v1.0`. The promotion comparison is therefore indicative, not paired. DRN91 (0.166) is far below under any plausible version effect, so the negative verdict is robust to this caveat.
 - **IR-DRN91-03 — independent_tif_check.py needs imagecodecs** for float-predictor TIFFs; installed from requirements in-session. Its aggregate evidence file was regenerated (31 files).
+
+## OLC91 session irregularities (2026-10-25)
+
+* **IR-OLC91-01 (user claim conflict).** The user calls 0.3195 "highest right now". The public
+  leaderboard on 2026-10-25 shows 0.4413 (xiaofanhu, #1); 0.3195 would rank about #24.
+  Source: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+* **IR-OLC91-02 (no receipt).** GEMSDOE32 0.2778 and every fleet live score used here are
+  USER-REPORTED or owner-report (60GEMSDOE `registry/calibration_manifest.json`). No organizer
+  receipt exists.
+* **IR-OLC91-03 (prune inversion inconsistency).** The rounding intervals of the two R0 prune steps
+  imply T ∈ [5027, 5120]·φ and [5392, 5551]·φ, which do not overlap. Either the pruned dots were not
+  exactly zero-credit, or their public fractions differ.
+* **IR-OLC91-04 (blanket references).** `calib_r13lattice_00904` (3 px coverage 99.87%),
+  `r11_greedy_mp` (74.0%) and `r14_union_tips10_lat6` (76.2%) make the literal 70% rule fail for
+  any dense raster. Literal and chance-corrected values are both reported, and no reference was
+  dropped. The OLC91 stop does not depend on them: the non-blanket `gems91-bhar-e3` gives 76.8%
+  literal and 71.8% corrected.
+* **IR-OLC91-05 (unregistered artifact).** The DRN91 TIFF and ZIP were merged in PR #98 without
+  `registry/artifact_policy.json` entries, so `scripts/check_artifact_policy.py` failed at base
+  `7d74396`. This session registered them, and a parallel PR registered them on `main` too. The
+  merge kept main's rows (union by path), so there are no duplicates.
+* **IR-OLC91-06 (validator exit code).** `scripts/validate_raster.py --allow-zeros-outside` exits 1
+  for a format-valid zeros file. The two gates involved are non-format: NaN-outside (INFO) and
+  parent-diff (UNVERIFIED without a parent). The vendor gems57 validator reports
+  `all_checks_passed: true`.
+* **IR-OLC91-07 (instrument mismatch).** In `buffered_component_draw` seed 20, 55% of the withheld
+  truth lies within 1 km of visible faults, but live evidence shows depletion there. See
+  `docs/HYPOTHESES_OLC91.md` §5.
+* **IR-OLC91-08 (band semantics).** `det_elev` is detrended elevation, so absolute-datum shoreline
+  tests (H3) are infeasible from the stack. The meaning of `tc` ("Tilt angle or total curvature")
+  remains ambiguous in the file's own band description.

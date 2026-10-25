@@ -1,79 +1,93 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Download the current GeoTIFF · GEMSDOE91 GEO91</title>
-<meta name="description" content="One-click download of the current unique, format-validated GeoTIFF. Automated gates state plainly whether it may be submitted. No human inspection.">
+<title>Download the GeoTIFF · not approved to submit · GEMSDOE91</title>
+<meta name="description" content="One-click GeoTIFF download with an automated verdict. This file is not approved for the DOE GEMS competition.">
 <style>
 :root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
 *{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
 .wrap{max-width:1020px;margin:0 auto;padding:20px}a{color:var(--ok)}
 header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
 nav a{margin-right:14px;text-decoration:none;font-weight:600}.logo{font-weight:800;font-size:20px}
-.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
 .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
-.dl{border:2px solid var(--ok)}h1{font-size:34px;line-height:1.15;margin:.2em 0}
-.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin-right:6px}
+.dl{border:3px solid var(--bad)}h1{font-size:34px;line-height:1.15;margin:.2em 0}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}
 .badge.bad{background:#f7e4e4;color:var(--bad)}.small{color:var(--mut);font-size:14px}
 .button{display:block;text-align:center;background:var(--ok);color:#fff;text-decoration:none;padding:14px;border-radius:10px;font-weight:800;font-size:17px;margin:12px 0}
 .btn2{display:inline-block;border:1px solid var(--ok);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;margin:2px}
+.stop{background:#f7e4e4;border:1px solid #e3b4b4;border-radius:10px;padding:12px;margin:10px 0}
 .status{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:7px 0}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
-textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{margin:22px 0}code{font-size:12px;word-break:break-all}
-.warn{background:#fdf3e3;border:1px solid #e6cf9a;border-radius:10px;padding:12px}
+section{margin:22px 0}code{font-size:12px;word-break:break-all}
 </style></head><body><div class="wrap">
 <header><span class="logo">GEMSDOE91 · Fault Discovery Lab</span>
-<nav><a href="index.html">Current candidate</a><a href="executive-summary.html">Executive summary &amp; how to submit</a><a href="research.html">Research archive</a><a href="archive-results.html">Historical archive</a><a href="run-card-GEO91.json">Run card (JSON)</a></nav></header>
+<nav><a href="index.html">Current candidate</a><a href="executive-summary.html">How to submit</a><a href="s17-cdsc.html">S17-CDSC (0.2600)</a><a href="s17-cdsc-executive-summary.html">S17-CDSC guide</a><a href="s17-cgrd.html">S17-CGRD</a><a href="geo91.html">Historical GEO91</a><a href="research.html">Research archive</a><a href="archive-results.html">Historical archive</a><a href="run-card-XG91.json">Run card</a></nav></header>
 
-<main id="main"><div class="hero">
+<main id="main">
+<div class="stop" role="status"><strong>OK TO SUBMIT: NO.</strong> <strong>NOT OK TO SUBMIT</strong> Do not upload this GeoTIFF to DrivenData. It is a research negative. Automated gates failed. No weekly slot was spent.</div>
+<div class="hero">
 <div>
-<span class="badge">OK TO DOWNLOAD: YES</span><span class="badge bad">OK TO SUBMIT: NO — holdout gate failed</span>
-<h1>Download the GeoTIFF.<br>Read the verdict before submitting anything.</h1>
-<p class="small">One fresh, unique file, validated automatically from its written bytes — no human image inspection. It is safe to download and study. It is <strong>not approved for a competition slot</strong>: on the spatially-blocked holdout it lost to a uniform-random control, and this project never spends a weekly slot on an idea that hasn't beaten its control. Negative results are deliverables; this one is labelled as such everywhere.</p>
-<p class="small"><strong>Why 0.2778 leads the fleet (short version):</strong> the GEMSDOE32 file is its 40,199-dot parent with every dot within 200&nbsp;m of a mapped fault deleted. Hidden-fault truth can't sit on mapped faults, so that mass was pure DTI penalty. Dotted (not drawn) emission + catalogue-collar pruning is the verified mechanism. Full line-by-line analysis: <a href="executive-summary.html#why">executive summary</a>. Note: 0.2778, 0.4413 and 0.3195 are all <em>user-reported</em> — no organizer receipt exists in any repo audited.</p>
+<span class="badge">OK TO DOWNLOAD: YES — research only</span><span class="badge bad">OK TO SUBMIT: NO</span>
+<h1>Download the GeoTIFF.<br>Do not submit it.</h1>
+<p class="small">One new file, written by the shared template writer and re-read from disk. No human image inspection. Format validity is not permission to upload. Historical pages for GEO91 and S17-CGRD remain linked below; they are not this file.</p>
+<p class="small"><strong>Submission name:</strong> <code>gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros</code><br>
+<strong>Note (86/140):</strong> <code>XG91 E1 crest; HOLDOUT-DTI 0.071171 gems57-pooled-hide-v2; below random; do not submit</code></p>
 </div>
-
 <div class="card dl" aria-label="Download current candidate" data-submission-ready="false">
-<strong>CURRENT CANDIDATE · GEO91-E2</strong>
-<div class="status"><span>OK to download</span><strong>YES</strong></div>
-<div class="status"><span>OK to submit</span><strong style="color:var(--bad)">NO — see gates ↓</strong></div>
-<div class="status"><span>Values in [0,1], no NaN/Inf</span><strong>PASS</strong></div>
+<strong>CURRENT FILE · XG91-E1 · NOT A SLOT</strong>
+<div class="status"><span>OK to download</span><strong>YES — research</strong></div>
+<div class="status"><span>OK to submit</span><strong style="color:var(--bad)">NO</strong></div>
+<div class="status"><span>Values in [0, 1], no NaN</span><strong>PASS</strong></div>
 <div class="status"><span>CRS / shape / transform</span><strong>PASS · EPSG:32611</strong></div>
-<div class="status"><span>Dots on mapped faults</span><strong>0 · min distance 3.16 px</strong></div>
-<div class="status"><span>Uniqueness vs R0 (0.2778 file)</span><strong>PASS · 17.1% overlap</strong></div>
-<a class="button" download href="downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif">↓ Download GeoTIFF (submit-format file)</a>
-<a class="btn2" download href="downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.zip">↓ Single-TIFF ZIP</a>
-<a class="btn2" href="run-card-GEO91.json">Machine run card ↗</a>
-<p class="small">37,654 binary dots · single band float32 · 3730×3292 · all 12,279,160 cells finite in [0,1] · SHA-256<br><code>57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f</code><br>
-The <code>-zeros.tif</code> is the range-safe historical download. The fresh <a href="download-audit.html">64-file technical audit</a> re-read it against the SHA-pinned sample and catalogue; its format, grid, and range checks pass. The official problem page allows null/NaN outside the data bounds, while this encoding uses zeros outside the sample footprint; organizer acceptance of that distinction is unverified. The earlier reported “Predicted values must be in range [0, 1]” error has no receipt here that identifies its cause. Never upload an audit JSON or catalogue file.</p>
+<div class="status"><span>Dots on mapped faults</span><strong>0</strong></div>
+<div class="status"><span>Holdout vs chance</span><strong style="color:var(--bad)">FAIL</strong></div>
+<a class="button" download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">↓ Download GeoTIFF — not approved to submit</a>
+<a class="btn2" download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.zip">↓ Single-TIFF ZIP</a>
+<a class="btn2" href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.json">Format receipt</a>
+<a class="btn2" href="run-card-XG91.json">JSON run card</a>
+<p class="small">37,654 binary dots · single-band float32 · 3730×3292 · 100 m · all 12,279,160 cells finite in [0, 1] · nodata unset · SHA-256<br><code>4aecf0851bbe0ae3a9f87255f4d438597becc90e50ec49789852cfe1a33d4327</code></p>
 </div></div>
 
-<section class="card"><h2>Submission identity (only for a future cleared candidate)</h2>
-<p class="small">Unique name and ≤140-character note, exactly as written into the file's receipt. For this research negative they identify the experiment — they are <strong>not</strong> an instruction to upload it.</p>
-<label class="small" for="submission-name">Submission name</label><textarea id="submission-name" rows="2" readonly>gems91-geo91e2-stratcover-collar3-20261025T132527Z</textarea>
-<label class="small" for="submission-note">Note · 100/140 characters</label><textarea id="submission-note" rows="2" readonly>GEO91-E2 habitat-stratified broad coverage, collar&gt;3px, 37654 dotted; see run-card-GEO91.json gates.</textarea>
-<p class="warn"><strong>NOT OK TO SUBMIT.</strong> Format, range, CRS, collar and uniqueness gates pass, but the scientific gate fails: HOLDOUT-DTI 0.055267 [0.053367, 0.057308] vs 0.074387 for the matched random control (gems91-hide-recover-v1.1-nohalo, 60,988 withheld positives). A separate selector decision and a holdout win over control are both required before any upload. 0 slots spent.</p></section>
+<section class="card"><h2>Session 17 S17-CDSC E1 (0.259972 HOLDOUT-DTI) — research download</h2>
+<p class="small">S17-CDSC E1 (Prevalence-Calibrated Faulds–Hinz En-Echelon Relay Auto-Context + 16 Local S15 Subsurface Features + 72-col Bitwise B12/B19-Invariant Pure-Subsurface Specialist) remediates <code>IR-91-S15-06</code>, <code>IR-91-S15-07</code>, and <code>IR-91-S15-05</code>, scoring <strong>0.259972 HOLDOUT-DTI</strong> (+0.0154 over S13-PTHA E3 and +0.0193 over S15-SCGF E2; Fold 1 NE +0.0582 to 0.331443; external fleet 3-px overlap 53.16% ≤ 70% PASS &amp; 43.76% vs GEMSDOE32 R0 PASS). Because 0.259972 trails S14-PTAC E2 (0.267782) and literal lattice overlap is 99.834%, it is <strong>NOT OK TO SUBMIT</strong> (0 slots spent).</p>
+<p><a class="btn2" download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">↓ Download S17-CDSC E1 GeoTIFF (-zeros.tif)</a>
+<a class="btn2" download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.zip">↓ S17-CDSC ZIP</a>
+<a class="btn2" href="s17-cdsc.html">S17-CDSC audit</a>
+<a class="btn2" href="s17-cdsc-executive-summary.html">S17-CDSC guide</a>
+<a class="btn2" href="run-card-S17-CDSC.json">S17-CDSC run card</a></p>
+</section>
 
-<section class="card"><h2>Automated gates — no human inspection anywhere</h2>
+<section class="card"><h2>Session 17 S17-EULR E3 (0.249626 HOLDOUT-DTI) — research download</h2>
+<p class="small">S17-EULR (Euler Deconvolution Source-Geometry Fusion: windowed 11×11 px Euler solutions, structural indices 0/1, on B14/B09 magnetics + B13 gravity; 14 label-free density/depth/uncertainty features atop the S13 stack) scored <strong>0.249626 HOLDOUT-DTI</strong> (95% CI [0.234678, 0.264996], <code>gems91-hide-recover-v1.0</code>, 60,988 withheld) with Blind SGMC 0.100737. The preregistered single-change ablation is <strong>null</strong> (paired E2−E1 +0.000331, 95% CI [−0.002264, +0.003222] includes 0): Euler features added no holdout ranking value in this fusion. It trails S14-PTAC E2 (0.267782), and 93.8% of its dots fall within 3 px of the S13 sibling raster (lattice 99.827%; 41.120% vs GEMSDOE32 R0), so it is <strong>NOT OK TO SUBMIT</strong> (0 slots spent). HOLDOUT-DTI is an internal estimate, not a leaderboard score. Submission name (records only): <code>GEMS91-S17-EULR-E3-f2ac27d7</code> · Note (79/140): <code>S17-EULR E3: Euler deconv fusion; HOLDOUT-DTI=0.2496; 44000 dots; HOLD selector</code> · SHA-256 <code>3d07dcb81f01e8b19b5fa2cf2d4d7dc75eb1f7ec2d319a120f6ba7c37bf369d2</code>.</p>
+<p><a class="btn2" download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">↓ Download S17-EULR E3 GeoTIFF (-zeros.tif)</a>
+<a class="btn2" download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.zip">↓ S17-EULR ZIP</a>
+<a class="btn2" href="run-card-S17-EULR.json">S17-EULR run card</a>
+<a class="btn2" href="REVIEW-S17-EULR.md">S17 review &amp; 0.2778 post-mortem</a>
+<a class="btn2" href="HYPOTHESES_S17.md">S17 preregistration</a></p>
+</section>
+
+<section class="card"><h2>Parallel file already on main — not this candidate</h2>
+<p class="small">S17-CGRD is a separate session's research negative. Its own page says it is not approved to submit. Downloading it does not approve XG91, and downloading XG91 does not approve S17-CGRD.</p>
+<p><a class="btn2" download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)</a>
+<a class="btn2" href="s17-cgrd.html">S17-CGRD audit</a>
+<a class="btn2" href="s17-cgrd-executive-summary.html">S17-CGRD guide</a>
+<a class="btn2" href="run-card-S17-CGRD.json">S17-CGRD run card</a></p>
+</section>
+
+<section class="card"><h2>Automated verdict — no human inspection</h2>
 <table><tr><th>Gate</th><th>Verdict</th><th>Evidence</th></tr>
-<tr><td>File format &amp; [0,1] range</td><td><span class="badge">PASS</span></td><td>Reopened from disk: 0 NaN, 0 Inf, min 0.0, max 1.0, nodata unset, 1 band float32, exact transform match vs <code>sample_submission.tif</code> (sha-verified pin).</td></tr>
-<tr><td>Zero mass on catalogue / outside footprint</td><td><span class="badge">PASS</span></td><td>0 / 0 dots; strict &gt;3 px collar (one full 300 m DTI kernel radius — stricter than R0's &gt;2 px).</td></tr>
-<tr><td>Uniqueness (protocol)</td><td><span class="badge">PASS vs measured registry</span></td><td>Surface Spearman ρ=0.0021 vs R0 (limit 0.90); final-dot ≤3 px overlap 17.1% vs R0, max 37.5% vs any file in <code>docs/downloads/</code> (limit 70%). Scope: pinned R0 + this repo's downloads — not a universal fleet clearance.</td></tr>
-<tr><td>Leakage canary</td><td><span class="badge">PASS</span></td><td>Worst single-feature symmetric AUC 0.50691 (limit 0.90), fold-specific features from visible faults only.</td></tr>
-<tr><td>Holdout science</td><td><span class="badge bad">FAIL — negative</span></td><td>E1 geometry 0.001338 and E2 coverage 0.055267 HOLDOUT-DTI both lose to uniform-random controls (0.0766 / 0.0744). Whole-segment buffering starves catalogue-proximity methods; catalogue geometry alone does not predict withheld faults.</td></tr>
-<tr><td>Slot selection</td><td><span class="badge bad">BLOCKED</span></td><td>No selector approval, no organizer receipt. This session never selects submissions.</td></tr></table></section>
+<tr><td>File format and [0, 1] range</td><td><span class="badge">PASS</span></td><td>Reopened from disk: 0 NaN, 0 Inf, min 0.0, max 1.0, no nodata tag, EPSG:32611, transform (100, 0, 243350, 0, −100, 4508550), matching the pinned sample.</td></tr>
+<tr><td>Catalogue and footprint</td><td><span class="badge">PASS</span></td><td>0 positive pixels on mapped faults. 0 positive pixels outside the sample footprint.</td></tr>
+<tr><td>Leakage canary</td><td><span class="badge">PASS</span></td><td>Worst single-feature symmetric AUC 0.55182 (limit 0.90) on the template folds. Passing a canary is not proof of no leakage.</td></tr>
+<tr><td>Uniqueness vs method rasters</td><td><span class="badge">PASS in indexed scope</span></td><td>Surface |Spearman| 0.06791 (limit 0.90). 31.035% of dots within 3 px of the closest method raster (limit 70%). Scope: finite rasters indexed at run time. Not a universal fleet clearance.</td></tr>
+<tr><td>Synthetic lattice rule</td><td><span class="badge bad">FAIL — stop</span></td><td>99.742% of dots lie within 3 px of <code>calib_r13lattice_00904.tif</code>. Literal protocol stop. E2 and E3 were not run. Not promoted.</td></tr>
+<tr><td>Holdout science</td><td><span class="badge bad">FAIL — negative</span></td><td><strong>0.071171 HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, 60,988 withheld positives, 95% CI [0.063769, 0.079270]). Matched random control <strong>0.073788 HOLDOUT-DTI</strong>. Paired delta −0.002618, 95% CI [−0.009427, 0.005131], includes zero. These are not organizer scores.</td></tr>
+<tr><td>Slot selection</td><td><span class="badge bad">NOT DONE</span></td><td>0 slots spent. No selector receipt. The prompt did not assign a method paragraph.</td></tr></table>
+<p class="small">Full numbers: <a href="run-card-XG91.json">run-card-XG91.json</a> · paired control <a href="xg91-paired-control.json">xg91-paired-control.json</a> · hypotheses <a href="HYPOTHESES_XG91.md">HYPOTHESES_XG91.md</a> · <a href="executive-summary.html">submission guide</a> · <a href="executive-summary.html#why">why 0.2778 is not a recipe</a></p></section>
 
-<section class="card"><h2>Session 17 (S17-CWPC) — Multi-Scale Complex Cross-Wavelet Phase-Lag &amp; Calibrated Local Auto-Context</h2>
-<p><span class="badge">OK TO DOWNLOAD: YES (FORMAT-CERTIFIED)</span><span class="badge bad">OK TO SUBMIT: NO — RESEARCH NEGATIVE (0 SLOTS SPENT)</span></p>
-<p class="small">Restored the SHA-pinned 419 MB 19-band GeoDAWN feature stack + 62 fleet reference rasters and executed the preregistered 3-experiment <code>S17-CWPC</code> lane (<a href="HYPOTHESES_S17_CWPC.md">docs/HYPOTHESES_S17_CWPC.md</a>, <a href="run-card-S17-CWPC.json">run-card-S17-CWPC.json</a>): 16 label-blind CWPC physics features (multi-scale complex Riesz cross-wavelet coherence &amp; quadrature across σ={2,4,8} px on <code>rtp×tc</code>, <code>rtp×iso_grav_anom</code>, and <code>iso_grav_anom×cond_surf</code>; cover-conditioned upward-continuation structural index; SI-reconciled Verduzco tilt &amp; Salem wavenumber; Coulomb strain-strike slip-tendency; flight-line oblique filter; within-unit edge Z) + 19 sponsor bands + 8 Sobel gradients + 8 prior-shift-calibrated local (≤900 m) Stage-1 auto-context features (including calibrated B12/B19-blind Pure-Subsurface specialist channel).</p>
-<p><a class="button" download href="downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif">↓ Download S17-CWPC GeoTIFF (-zeros.tif · 138 KB)</a> · <a download href="downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.zip">single-TIFF ZIP (102 KB)</a> · <a href="run-card-S17-CWPC.json">Run card JSON</a></p>
-<p class="small"><strong>Submission name:</strong> <code>gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros</code><br>
-<strong>Note (115/140 chars):</strong> <code>S17-CWPC cross-wavelet phase-lag+cal AC; 37654d [0,1] collar&gt;3px; HOLDOUT-DTI=0.1225 (gems57-v2); research negative</code><br>
-<strong>GeoTIFF SHA-256:</strong> <code>792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5</code> · <strong>ZIP SHA-256:</strong> <code>e36c855d7ee93fed60ad5d8c18d32d0d4e748ff204539fa638f6e8faca9d24b4</code><br>
-<strong>Scores (60,988 withheld positives):</strong> <code>E1_cwpc_physics_hgb = 0.082658 HOLDOUT-DTI</code> [0.073949, 0.091793] · <code>E2_cwpc_integrated_hgb = 0.131810 HOLDOUT-DTI</code> [0.114159, 0.147689] (+0.060477 vs random_null) · <code>E3_cwpc_calibrated_dual_autocontext = 0.122467 HOLDOUT-DTI</code> [0.105656, 0.137559] on <code>gems57-pooled-hide-v2</code> (<code>0.086573 HOLDOUT-DTI</code> on <code>gems91-hide-recover-v1.1-nohalo</code>) · <code>Blind Off-Catalogue USGS SGMC DTI = 0.090912</code> (62,122 off-catalogue fault pixels &gt;300 m from catalogue).<br>
-<strong>Gates:</strong> Format PASS (EPSG:32611, 3730×3292, float32, nodata=None, all 12,279,160 cells finite in [0,1], 37,654 binary dots, 0 on-catalogue, min catalogue distance 3.1623 px &gt; 3.0 px) · Canary PASS (43 base + 8 auto-context features tested, worst AUC 0.62714 ≤ 0.90) · Uniqueness PASS vs pinned R0 (34.97% ≤ 70% 3-px overlap; |ρ|=0.0593 ≤ 0.90) and vs all 43 repository rasters (max overlap 51.92% ≤ 70%), while disclosing 99.06% overlap against the 206,895-dot synthetic blanket lattice <code>calib_r13lattice_00904.tif</code> (Pigeonhole lower bound 82.34%). Verdict: <strong>negative</strong> (trails repo best S14-PTAC 0.267782; 0 slots spent).</p></section>
-
-<section class="card"><h2>What beats 0.2778 — the honest next step</h2>
-<p class="small">The fleet plateau (top ~10 of ~90 sites are dotted derivatives of one habitat surface, 0.26–0.278, all user-reported) shows the ranking surface — not the emission — is saturated. This session proved catalogue geometry cannot replace it. The credible path: restore the 419 MB GeoDAWN feature stack (<code>python3 scripts/restore_data.py</code>, sha-pinned), train a habitat model at least as strong as h19-5/d28, then apply the verified emission recipe (binary dots, ≈2.8–3 px separation, collar sweep &gt;2→&gt;3 px, 37–44k budget) and validate on the same holdout instrument before any slot. Hypotheses ranked with costs: <a href="HYPOTHESES_GEO91.md">docs/HYPOTHESES_GEO91.md</a> (in repo).</p>
-<p class="small">Official sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS #306</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR GEMS PDF</a></p></section>
-
-</main><footer class="small">Maximize P(Win) · Own the Outcome · 2 of max 3 experiments used · 0 competition slots spent · every number labelled HOLDOUT-DTI or USER-REPORTED; nothing here is ORGANIZER-CONFIRMED. Prior-session pages remain under the research archive. Historical S16 research evidence: <a href="run-card-S16.json">run card</a> · <a href="downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif">research TIFF</a>; neither is approved to submit.</footer>
+<section class="card"><h2>What this file is</h2>
+<p class="small">XG91-E1 places 37,654 unit dots on the crests where the horizontal gradients of sponsor RTP magnetics (band 2) and isostatic gravity (band 13) are parallel at 200 m and 600 m. Band 6 was not used: its tag says tilt/curvature, but this session measured it strictly positive on the footprint. No previous submission was copied. The named non-fault mimic is a buried volcanic-flow edge or basin onlap.</p>
+<p class="small">The public DrivenData leaderboard, fetched 2026-10-25, shows rank 1 at 0.4413. That is not a receipt for this file. The GEMSDOE32 page fetched the same day says no organiser score exists for <code>h33-h33-2-b2</code>. The user-reported 0.2778 is unverified. This experiment does not beat either number, and it does not beat chance on the holdout.</p></section>
+</main>
+<footer class="small">Maximize P(Win) · Own the Outcome · 1 experiment scored, then stopped · 0 competition slots spent · nothing here is ORGANIZER-CONFIRMED.</footer>
 </div></body></html>
