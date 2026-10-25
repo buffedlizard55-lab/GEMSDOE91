@@ -1,10 +1,15 @@
-# Current limitations and next steps — S17-CPAD, OLC91, S17-CDSC, S17-EULR, S17-CGRD & S16, 2026-10-25
+# Current limitations and next steps — S17-LFTG, S17-CPAD, OLC91, S17-CDSC, S17-EULR, S17-CGRD & S16, 2026-10-25
 
 This replaces the stale statement that real data cannot be restored. All 15 pinned
 competition and reference inputs in `registry/data_manifest.json` (`sample_submission.tif`,
 `existing_faults.tif`, `gems-geodawn-numerical-features.tif`, `gdr_wellspring_in_footprint.csv`,
 `derived_sgmc_faults_100m_u8.tif`, `GEMSDOE32__h33-2-b2-zeros.tif`, `calib_r13lattice_00904.tif`, etc.)
 were restored and SHA-256 verified in this session. No fake catalogue was used.
+
+## Session 17 (`S17-LFTG`, branch `arena/281b6ba8-gemsdoe91`) — 3-D Laplace Tensor Gravity, SGMC >500 m Discovery & Next Steps
+
+- **3-D Laplace Full-Tensor Gravity + Flight-Line Destriping + Zero-DEM Dual-Specialist (`src/gems91/lftg17.py`, `scripts/run_s17_lftg.py`):** Implemented 20 novel `B12/B19`-free physics features (exact float32 FFT 3-D Eötvös gravity tensor `G_z, \Gamma_{zz}`, Wijns `\cos\theta_G`, Pedersen–Rasmussen `Q_2D = 1 - |I|` with Viète factor `2.0`, directional flight-line notch destriping on `B01/B02/B06/B09/B14`, and basin-margin Bouguer curvature contrast). With **0 bytes of DEM bands `B12`/`B19` in the S17 stack**, `s17_e2_lftg_pcac` achieved **`0.188596 HOLDOUT-DTI`** (`95% CI [0.167180, 0.210009]`) on `gems57-pooled-hide-v2`, beating DEM-assisted `incumbent_ptha_v2` (`0.179206`) across **all 4/4 quadrants** (`+0.009390`), jumping **`+0.011771`** over Stage-1 `E1` (`0.176825`), and beating DEM-assisted `incumbent_ptac_v2` (`0.192208`) on **both southern concealed/playa quadrants** (`SW +0.005372`, `SE +0.013580`), while trailing `incumbent_ptac_v2` (`-0.003612`) and `S17-CPAD E1` (`0.198183`) on northern exposed DEM scarps.
+- **Crucial SGMC `>500 m` Discovery (`IR-91-S17-LFTG-01`, `docs/s17_lftg/blind-sgmc.json`):** Stripping the `5,300` 1:500k registration-offset pixels (`300–500 m` from `existing_faults.tif`) causes in-sample refitted PU models to drop `-22%` to `-30%` (`S17-LFTG`: `0.080522 -> 0.056687`), whereas **`GEMSDOE32 R0` drops only `-7.2%` (`0.095386 -> 0.088516`, #1 at `>500 m`)**. Next session must emit full-map dots from **stitched 4-fold OOF predictions** rather than in-sample refitting on `100%` of `existing_faults.tif`, preventing `300–1,000 m` catalogue-halo crowding.
 
 ## Session 17 (`S17-CPAD`, branch `arena/aecf32eb-gemsdoe91`) — Summary, Forensic Quarantine & Next Steps
 

@@ -93,6 +93,21 @@ async function main() {
     if (cgrdDigest !== cgrdCard.raster_sha256 || cgrdCard.submission_ready !== false) {
       throw new Error('S17-CGRD one-click download SHA256 or fail-closed state mismatch');
     }
+    const lftgDlEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ Download S17-LFTG GeoTIFF', exact: true }).click();
+    const lftgDownload = await lftgDlEvent;
+    const lftgDigest = crypto.createHash('sha256').update(fs.readFileSync(await lftgDownload.path())).digest('hex');
+    const lftgCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S17-LFTG.json')));
+    if (lftgDigest !== lftgCard.raster_sha256 || lftgCard.ok_to_submit !== false || lftgCard.submission_ready !== false) {
+      throw new Error('S17-LFTG one-click download SHA256 or fail-closed state mismatch');
+    }
+    const lftgZipEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ S17-LFTG Single-TIFF ZIP', exact: true }).click();
+    const lftgZip = await lftgZipEvent;
+    const lftgZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await lftgZip.path())).digest('hex');
+    if (lftgZipDigest !== lftgCard.artifact.zip_sha256) {
+      throw new Error('S17-LFTG single-TIFF ZIP download SHA256 mismatch');
+    }
     const s17DlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S17-CPAD E1 GeoTIFF', exact: true }).click();
     const s17Download = await s17DlEvent;
@@ -154,7 +169,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'archive-desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const target of ['index.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -178,7 +193,7 @@ async function main() {
 
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const mTarget of ['index.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
@@ -194,6 +209,8 @@ async function main() {
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
       dzedge_download_sha256: dzDigest,
+      s17_lftg_download_sha256: lftgDigest,
+      s17_lftg_zip_download_sha256: lftgZipDigest,
       s17_cpad_download_sha256: s17Digest,
       s17_cpad_zip_download_sha256: s17ZipDigest,
       s17_cpad_submission_ready: s17Card.ok_to_submit,
