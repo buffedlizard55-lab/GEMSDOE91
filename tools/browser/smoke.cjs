@@ -50,6 +50,28 @@ async function main() {
     if (!(await page.getByText('NOT OK TO SUBMIT', { exact: true }).count())) {
       throw new Error('Submission warning is not visible');
     }
+    // The historical DZ-EDGE file is still downloadable for research, but its
+    // page must conspicuously prohibit submission and the downloaded bytes
+    // must match the run card. This is a delivery check, not a scientific pass.
+    await page.goto(new URL('dzedge-executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
+    if (!(await page.getByText('OK TO DOWNLOAD: YES · RESEARCH ONLY', { exact: true }).count())) {
+      throw new Error('DZ-EDGE page does not clearly label research-only download status');
+    }
+    if (!(await page.getByText('OK TO SUBMIT: NO', { exact: true }).count())) {
+      throw new Error('DZ-EDGE page does not clearly prohibit submission');
+    }
+    if (!(await page.getByText('Do not submit this DZ-EDGE file').count())) {
+      throw new Error('DZ-EDGE page is missing its explicit stop warning');
+    }
+    const dzDownloadEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ Download GeoTIFF', exact: true }).click();
+    const dzDownload = await dzDownloadEvent;
+    const dzBytes = fs.readFileSync(await dzDownload.path());
+    const dzDigest = crypto.createHash('sha256').update(dzBytes).digest('hex');
+    const dzCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-gems91-dzedge-v2-20261025.json')));
+    if (dzDigest !== dzCard.raster_sha256) throw new Error('DZ-EDGE research download bytes do not match recorded SHA256');
+
+    await page.goto(baseURL, { waitUntil: 'networkidle' });
     // The current candidate has one obvious download and an automated negative verdict.
     const s16DownloadEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S16 research TIFF', exact: true }).click();
@@ -99,7 +121,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'archive-desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const target of ['index.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -123,7 +145,7 @@ async function main() {
 
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const mTarget of ['index.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
@@ -138,6 +160,7 @@ async function main() {
       pages_root_redirect_tested: Boolean(process.env.PORTAL_ENTRY_URL),
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
+      dzedge_download_sha256: dzDigest,
       s16_download_sha256: s16Digest,
       s16_submission_ready: s16Card.ok_to_submit,
       s16_zip_download_sha256: s16ZipDigest,

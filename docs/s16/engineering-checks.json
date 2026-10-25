@@ -1,10 +1,10 @@
 {
   "status": "PASS",
   "scope": "Local engineering checks only; not promotion or a geological experiment",
-  "checked_utc": "2026-10-25T04:37:54.300939+00:00",
+  "checked_utc": "2026-10-25T04:47:21.564270+00:00",
   "pytest": {
     "command": "OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 .venv/bin/python -m pytest -ra",
-    "passed": 428,
+    "passed": 431,
     "skipped": 2,
     "skip_reasons": [
       "Optional S15 layers not all restored",
@@ -12,7 +12,7 @@
     ],
     "warnings": 30,
     "warning_kind": "rasterio Affine multiplication deprecation",
-    "duration_seconds": 23.05
+    "duration_seconds": 22.51
   },
   "independent_s16_verifier": "PASS (with pinned sample and catalogue)",
   "historical_ced_evidence_verifier": "PASS (stored source/evidence consistency only)",
@@ -31,8 +31,8 @@
   "ok_to_submit": false,
   "remote_ci": {
     "status": "PASS",
-    "tested_head_sha": "42d5631cd9888913952c5419f432dcc3f1d32227",
-    "run_url": "https://github.com/buffedlizard55-lab/GEMSDOE91/actions/runs/40161882310",
+    "tested_head_sha": "b009408baaa775130629725cf6e77d27c2f294f7",
+    "run_url": "https://github.com/buffedlizard55-lab/GEMSDOE91/actions/runs/40162592115",
     "jobs": [
       "tests",
       "published-artifact",
@@ -44,8 +44,8 @@
     "final_receipt_location": "https://github.com/buffedlizard55-lab/GEMSDOE91/pull/79",
     "note": "This timestamped engineering snapshot is not a live deployment or readiness feed."
   },
-  "note": "428-pass local full suite after concurrent integrations. Last completed remote CI is pinned above; latest-head checks and publication receipts are recorded on PR #79. Engineering only; submission remains blocked.",
-  "integrated_main": "def38f0",
+  "note": "431-pass local full suite after concurrent integrations. Last completed remote CI is pinned above; latest-head checks and publication receipts are recorded on PR #79. Engineering only; submission remains blocked.",
+  "integrated_main": "1053028",
   "pages_configuration": {
     "observed_mode": "legacy",
     "requested_mode": "workflow",
