@@ -621,6 +621,8 @@ def render():
     # One authoritative current entry point; keep legacy reports in an explicit archive.
     from scripts.render_s16_portal import render as render_current
     render_current(archive_legacy=True)
+    from scripts.render_s17_portal import render as render_s17_cpad
+    render_s17_cpad()
     # GEO91 (2026-10-25) is the newest entry point; inject after S16 so the
     # committed front door matches a fresh render byte-for-byte.
     from scripts.render_geo91_portal import render as render_geo91
