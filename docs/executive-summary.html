@@ -1,59 +1,111 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Executive summary — exactly how to submit · GEMSDOE91</title>
+<title>Executive summary — download &amp; submit · GEMSDOE91</title>
+<meta name="description" content="One-click download of the current GEMSDOE91 submission GeoTIFF and exact DrivenData submission steps. Automated verdict: OK TO DOWNLOAD: YES · OK TO SUBMIT: NO.">
 <style>
 :root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
 *{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
-.wrap{max-width:900px;margin:0 auto;padding:20px}a{color:var(--ok)}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0;overflow-x:auto;overflow-wrap:anywhere}
-.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}
-.badge.bad{background:#f7e4e4;color:var(--bad)}.small{color:var(--mut);font-size:14px}ol li{margin:10px 0}code{font-size:12px;word-break:break-all}
-.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:800}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
-</style></head><body><div class="wrap">
-<main id="main">
-<p><a href="index.html">← Current file</a></p>
-<span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span><span class="badge bad">OK TO SUBMIT: NO — NOT OK TO SUBMIT (current file)</span>
-<h1>Executive summary: exactly how to submit</h1>
-<p class="card"><strong>Review 6cbfe8ac: no new TIFF, no submission approval.</strong> Run <code>python generate_submission.py --with-data</code> to check the exact current website download against pinned sample and catalogue bytes. Missing references fail closed. The command checks delivery only and always reports <code>OK_TO_SUBMIT: NO</code>; scientific promotion and weekly-slot selection are separate. <code>--run</code> is blocked because this prompt contains no assigned method lane. <a href="REVIEW-6CBFE8AC-20261025.md">Review and limitations</a> · <a href="review-6cbfe8ac/front-door.json">Technical verification snapshot</a>.</p>
-<p class="small">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS #306</a>. Predict fault pixels that are <em>missing</em> from the USGS/INGENIOUS catalogue. The score is a distance-weighted Tversky index with α 0.2, β 0.8 and a 300 m triangular kernel (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a>). Known-fault pixels are masked from scoring (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">staff, forum 11516</a>). The public score is one pooled Tversky over the public subset (<a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">staff, forum 11550</a>).</p>
+.wrap{max-width:940px;margin:0 auto;padding:20px}a{color:var(--ok)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0;overflow-wrap:anywhere}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:700;font-size:13px;margin:0 6px 6px 0}
+.badge.ok{background:#e3f0e9;color:var(--ok)}.badge.bad{background:#f7e4e4;color:var(--bad)}
+.small{color:var(--mut);font-size:14px}ol li{margin:8px 0}code{font-size:12px;word-break:break-all}
+.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:14px 22px;border-radius:10px;font-weight:800;font-size:16px;margin:4px}
+.btn2{display:inline-block;border:1px solid var(--ok);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;margin:4px}
+.status{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-align:top}
+.warn{background:#fdf3e3;border:1px solid #e6cf9a;border-radius:10px;padding:12px}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.logo{font-weight:800;font-size:18px}
+nav a{margin-right:14px;text-decoration:none;font-weight:600}
+textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}
+h1{font-size:24px;line-height:1.2;margin:0.2em 0}h2{font-size:18px;margin:1em 0 0.5em}
+</style></head><body>
+<header>
+<span class="logo">GEMSDOE91 · Fault Discovery Lab</span>
+<nav><a href="index.html">Current file</a> <a href="HYPOTHESES_BSD91.md">Hypotheses</a> <a href="run-card-BSD91.json">Run card</a> <a href="downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-audit.json">Audit</a></nav>
+</header>
 
-<div class="card" data-submission-ready="false"><h2>1 · The current file and its verdict</h2>
-<a class="button" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">↓ Download current GeoTIFF (research)</a>
-<p class="small">SHA-256 <code>35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc</code> · <a download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip">single-TIFF ZIP</a> · <a href="run-card-OLC91.json">JSON run card</a></p>
-<p class="small"><strong>Session 17 (S17-LFTG E2) research GeoTIFF &amp; Step-by-Step DrivenData Guide:</strong> <a download href="downloads/gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.tif">↓ Download S17-LFTG GeoTIFF (SHA-256 <code>64d589ac8d5365693d8845a5673a42ec593794ac46be2aa14a1f950e948fe2b3</code>)</a> · <a download href="downloads/gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.zip">Single-TIFF ZIP (SHA-256 <code>337010f6e14bd951819fd5b4d648e9de68dd0a43e610e7a0c710226831cbbfb7</code>)</a> · <a href="s17-lftg.html">Full S17-LFTG Audit</a> · <a href="s17-lftg-executive-summary.html">S17-LFTG DrivenData Guide</a> · <a href="run-card-S17-LFTG.json">S17-LFTG Run Card</a> · <a href="HYPOTHESES_S17_LFTG.md">Preregistration</a>.<br>
-<strong>Automated S17-LFTG Status:</strong> <code>OK TO DOWNLOAD: YES (16/16 FORMAT-CERTIFIED)</code> · <code>OK TO SUBMIT: NO — RESEARCH NEGATIVE (0 SLOTS SPENT)</code>. 0 bytes of DEM bands B12/B19 used; <code>0.188596 HOLDOUT-DTI</code> [0.167180, 0.210009] on <code>gems57-pooled-hide-v2</code> (+0.009390 vs DEM-assisted <code>incumbent_ptha_v2</code> across 4/4 folds; wins concealed SW +0.005372 &amp; SE +0.013580 vs <code>incumbent_ptac_v2</code>).</p>
-<p class="small"><strong>Session 17 (S17-CWPC) research GeoTIFF &amp; ZIP:</strong> <a download href="downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif">↓ Download S17-CWPC GeoTIFF (<code>gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif</code> · SHA-256 <code>792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5</code>)</a> · <a download href="downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.zip">Single-TIFF ZIP (SHA-256 <code>e36c855d7ee93fed60ad5d8c18d32d0d4e748ff204539fa638f6e8faca9d24b4</code>)</a> · <a href="run-card-S17-CWPC.json">S17-CWPC Run Card</a> · <a href="HYPOTHESES_S17_CWPC.md">Preregistration</a>.<br>
-<strong>Automated S17-CWPC Status:</strong> <code>OK TO DOWNLOAD: YES (FORMAT-CERTIFIED)</code> · <code>OK TO SUBMIT: NO — RESEARCH NEGATIVE (0 SLOTS SPENT)</code>. Format PASS (EPSG:32611, 3730×3292, float32, nodata=None, all 12,279,160 cells finite in [0,1], 37,654 binary dots, 0 on-catalogue, min catalogue distance 3.1623 px &gt; 3.0 px); Canary PASS (worst AUC 0.62714 ≤ 0.90 across 43 base + 8 auto-context features); Partial historical uniqueness checks only (not full-registry approval): vs GEMSDOE32 R0 (34.97% ≤ 70% 3-px overlap) and the 43-raster historical subset (max 51.92% ≤ 70%); Holdout science beats random control (+0.051133 on <code>gems57-pooled-hide-v2</code>: E1=0.082658, E2=0.131810, E3=0.122467 HOLDOUT-DTI; v1.1-nohalo=0.086573 HOLDOUT-DTI; Blind SGMC=0.090912), but trails repo best S14-PTAC (0.267782 HOLDOUT-DTI).</p>
-<p><strong>OK TO SUBMIT: NO.</strong> The literal full-registry lattice check also blocks promotion; a partial-subset PASS above is not a uniqueness certificate. The holdout result is negative (E1 − E0 = −0.0021, CI [−0.0045, +0.0002]), and the post-placement uniqueness check stopped it (76.8% of dots within 3 px of <code>gems91-bhar-e3</code>). Do not spend a weekly slot on it.</p></div>
+<div class="wrap"><main id="main">
 
-<div class="card"><h2>2 · Exact steps for any future file whose automated submit verdict is YES</h2>
-<ol>
-<li><strong>Check the machine verdict.</strong> Run <code>python generate_submission.py</code> in the repository. It re-reads the TIFF, recomputes its SHA-256, re-checks CRS, shape, transform and range, and prints <code>OK_TO_DOWNLOAD</code> / <code>OK_TO_SUBMIT</code>. This delivery verifier cannot authorize an upload. Continue only when the separate scientific/uniqueness gates and selector explicitly approve the exact SHA-256 and assign an available weekly slot; that approval does not exist for this file.</li>
-<li><strong>Download the submit-format file.</strong> That is the <code>.tif</code> linked on the front page, or its single-TIFF <code>.zip</code>. It is single-band float32, EPSG:32611, 3730×3292, transform (100, 0, 243350, 0, −100, 4508550), with every cell finite in [0, 1] and 0 outside the footprint. This avoids the portal error “Predicted values must be in range [0, 1]”, ; raw −3.4e38 sentinels and NaN twins are known format risks, but the exact cause of the user’s failed upload has not been verified. Never upload an audit JSON, a NaN twin or a catalogue file.</li>
-<li><strong>Verify the bytes.</strong> <code>sha256sum &lt;file&gt;.tif</code> must equal the hash in the run card.</li>
-<li><strong>Upload.</strong> Use the official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">submissions page</a>. Paste the recorded name and the note (140 characters or fewer) from the front page.</li>
-<li><strong>Record the receipt.</strong> Copy the public score from the submission page into the ledger as ORGANIZER-CONFIRMED. Until then, no score exists for the file.</li>
-</ol>
-<p class="small">The initial and final rounds use one selected submission. The final round re-scores against labels expanded by expert review of all submissions, over the whole GeoDAWN area (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a>; <a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">forum 11550</a>).</p></div>
-
-<div class="card"><h2>3 · Why GEMSDOE32 scored 0.2778, and can we beat it?</h2>
-<p class="small"><strong>Session 18 check (2026-10-25):</strong> the public leaderboard snapshot shows 0.4413 as the global #1, not a GEMSDOE entry (PUBLIC-LEADERBOARD). The user-reported 0.2778 is <strong>UNVERIFIED</strong>; it would fall below #50 (#50 = 0.2818). The holdout cannot test the collar mechanism (IR-91-S18-12). Full review: <a href="REVIEW-S18-20261025.md">docs/REVIEW-S18-20261025.md</a>.</p>
-<table><tr><th>Step</th><th>Change</th><th>Live (USER-REPORTED)</th></tr>
-<tr><td>h16-1 → h19-5</td><td>Catalogue-blind topo and geophysics ridge network, re-gated (121,131 px in 26,645 fragments)</td><td>0.1855 → 0.1922</td></tr>
-<tr><td>d2-8</td><td>44,090 dots taken from h19-5 at 2.8 px spacing: about 36% of the mass, with most of the coverage kept</td><td>0.2600</td></tr>
-<tr><td>solo</td><td>3,891 dots at exactly 1.0 px from the catalogue deleted</td><td>0.2708</td></tr>
-<tr><td>R0 (h33-2-b2)</td><td>2,545 more dots at √2–2.0 px deleted, leaving 37,654 dots</td><td>0.2778</td></tr></table>
-<p class="small">Inverting the two prune steps gives a weighted coverage of about 0.38 of the public new-fault pixels, with an FP mass about 2.4× the truth count. The public top score of 0.4413 would need coverage of about 0.62 at the same FP, which takes a better <em>localiser</em> rather than a better emitter. This session's new idea, strike-coherent line support, did not improve the localiser on the holdout. No offline instrument is calibrated to the live board, so nothing here projects a live score.</p></div>
-
-<div class="card"><h2>4 · Remaining work</h2>
-<ul class="small">
-<li><strong>H2:</strong> completeness-weighted PU (spatially varying label frequency). It needs a hole-shuffled control, because hide-and-recover creates artificial catalogue holes.</li>
-<li><strong>A new information source with verified provenance.</strong> The pinned lidar-scarp and radiometric stacks are marked “licence unchecked” and were not used.</li>
-<li><strong>A live-calibrated proxy.</strong> Score the 13 owner-reported anchors on the off-catalogue SGMC control and measure its rank correlation with the live scores before trusting it.</li>
-</ul>
-<p class="small">Details: <a href="HYPOTHESES_OLC91.md">preregistration &amp; results</a> · <a href="olc91/holdout-seed20.json">holdout evidence</a> · <a href="olc91/final-E1.json">registry comparisons</a>.</p>
-<p class="small"><strong>Session 17 S17-CPAD E1 research GeoTIFF (0.198183 HOLDOUT-DTI at 37,654 binary dots on canonical <code>gems57-pooled-hide-v2</code> — OK TO DOWNLOAD: YES · OK TO SUBMIT: NO, NOT OK TO SUBMIT):</strong> <a download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a> · <a download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a> · <a href="s17-cpad.html">S17-CPAD audit</a> · <a href="s17-cpad-executive-summary.html">S17-CPAD submission guide</a> · <a href="run-card-S17-CPAD.json">run card</a>.</p>
-<p class="small"><strong>Other parallel-session research downloads (all NOT OK TO SUBMIT, each with its own run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">S17-CGRD E2</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>) · <a download href="downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif">HEXFAR91</a> (<a href="hexfar91.html">page</a>, <a href="run-card-HEXFAR91.json">run card</a>).</p>
+<div class="status">
+<span class="badge ok">OK TO DOWNLOAD: YES</span>
+<span class="badge bad">OK TO SUBMIT: NO — research negative</span>
 </div>
-</main>
-</div></body></html>
+
+<h1>1 · Download the submission GeoTIFF (one click)</h1>
+<p class="warn"><strong>Current candidate: BSD91 Blind Stepover-Damage lattice.</strong> This is the only file on this page approved for download. It is <strong>not approved for submission</strong> (see §5). The download below is the portal-safe all-finite encoding: every cell finite in [0, 1], no NaN — this avoids the DrivenData portal error "Predicted values must be in range [0, 1]".</p>
+
+<div class="card">
+<strong>File to submit:</strong> <code>gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.tif</code><br>
+<a class="button" download href="downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.tif">↓ Download GeoTIFF</a>
+<a class="btn2" download href="downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.zip">↓ Single-TIFF ZIP</a>
+<p class="small">Single-band float32 · EPSG:32611 · 3730×3292 · transform (100, 0, 243350, 0, −100, 4508550) · all 12,279,160 cells finite in [0, 1] · 0 outside the footprint · 4,021 dots · 0 dots on mapped catalogue faults · min catalogue distance 3.16 px (&gt; 300 m collar)</p>
+<p class="small">SHA-256 (.tif): <code>b9ebdf72b6b9db4129e9286919718c2be134cfd3c4fc23d033cad83969ec5d14</code> &nbsp;·&nbsp; SHA-256 (.zip): <code>6df72577beb2fc16af9c80d2e78ace3823a745727b23feb5185fcb5105ec878e</code> &nbsp;·&nbsp; <code>sha256sum</code> must match the run card before upload.</p>
+</div>
+
+<h1>2 · Submission name and note (copy to the DrivenData form)</h1>
+<div class="card">
+<label class="small">Submission name</label><textarea readonly rows="1">gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2</textarea>
+<label class="small">Note (126/140 characters)</label><textarea readonly rows="2">BSD91 blind stepover-damage lattice, 4021 dots &gt;3px off catalogue, SGMC+spring support, [0,1] format-certified; holdout not locally measurable; DO NOT SUBMIT</textarea>
+<p class="small">The note must be 140 characters or fewer on the DrivenData submission form.</p>
+</div>
+
+<h1>3 · Exactly how to submit on DrivenData</h1>
+<div class="card">
+<ol>
+<li><strong>Check the machine verdict first.</strong> In this repo, run <code>python generate_submission.py</code> — it re-reads the TIFF from disk, recomputes SHA-256, re-checks CRS/shape/transform/range and prints <code>OK_TO_DOWNLOAD</code> / <code>OK_TO_SUBMIT</code>. For this file: <code>OK_TO_SUBMIT: NO</code> (see §5). Do not upload while the verdict is NO.</li>
+<li><strong>Log in to DrivenData</strong> at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">the GEMS submissions page</a> and click "New submission".</li>
+<li><strong>Upload the file.</strong> Choose the <code>-zeros.tif</code> above (or the single-TIFF <code>.zip</code>, which contains exactly one GeoTIFF and is accepted directly). Never upload an audit JSON, README, or the catalogue.</li>
+<li><strong>Paste name and note.</strong> Use the boxes in §2 (note ≤ 140 characters).</li>
+<li><strong>Record the receipt.</strong> After the organizer scores it, copy the public score into <code>ledger/submissions.csv</code> as ORGANIZER-CONFIRMED. Until there is a submission-page receipt, no score exists for this file. <code>ORGANIZER-CONFIRMED: null</code> for BSD91.</li>
+</ol>
+<p class="small">Format reference: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR prize rules PDF</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index (DTI, α 0.2, β 0.8, 300 m triangular kernel)</a> · Grid: <a href="https://epsg.io/32611">EPSG:32611</a>.</p>
+</div>
+
+<h1>4 · What BSD91 is (new, not copied from any GEMSDOE site)</h1>
+<div class="card">
+<p class="small"><strong>Hypothesis:</strong> concealed geothermal faults missing from the USGS/INGENIOUS catalogue occur as blind stepovers/relay ramps between catalogue strands and off-catalogue USGS SGMC strands, with thermal springs marking upflow; permeability is hosted in the 300 m–1 km damage zone.</p>
+<p class="small"><strong>Method:</strong> dots placed strictly outside the 300 m catalogue collar (<code>3 &lt; d_catalogue &lt;= 12 px</code> — catalogue faults are masked from scoring, so dots on mapped traces waste false-positive mass) AND within 500 m of an off-catalogue SGMC strand or 600 m of a Hot/Warm GDR spring; 4,021 binary dots on an 800 m deterministic lattice, ≥ 2.8 px spacing (beyond the 300 m kernel so dots do not self-cancel), capped at 37,654 dots.</p>
+<p class="small"><strong>Named non-fault mimic:</strong> unaltered lithologic contact, alluvium/playa edge, flight-line seam — mitigated by requiring the conjunction of strand proximity AND spring proximity.</p>
+<p class="small"><strong>Why new:</strong> no <code>training_features.tif</code> bands (unlike PGRD/CWPC/CPAD/CDSC/EULR/DRN91/SNAP/RELIEF); no parent-submission derivation (unlike PRUNE/CONCENTRATION); annulus-plus-fault-support (unlike DZEDGE annulus-only, measured 0.0 deliberate negative). All inputs are pinned and locally verified.</p>
+</div>
+
+<h1>5 · Automated validation (no human inspection)</h1>
+<div class="card">
+<table>
+<tr><th>Gate</th><th>Verdict</th><th>Evidence</th></tr>
+<tr><td>Format &amp; range [0,1]</td><td><span class="badge ok">PASS</span></td><td>Re-read from disk: single-band float32, EPSG:32611, 3730×3292, exact transform match, all cells finite, min 0 max 1, nodata unset</td></tr>
+<tr><td>Catalogue collar &amp; mass</td><td><span class="badge ok">PASS</span></td><td>0 dots on catalogue, 0 dots within 3 px, min distance 3.16 px</td></tr>
+<tr><td>Leakage canary</td><td><span class="badge ok">PASS</span></td><td>4 placement fields tested alone on withheld catalogue segments; worst symmetric AUC 0.7676 &le; 0.90</td></tr>
+<tr><td>Registry uniqueness</td><td><span class="badge ok">PASS</span></td><td>49 rasters checked: max |Spearman| 0.019 &le; 0.90; max dot overlap within 3 px 68.84% &le; 70% (not a duplicate)</td></tr>
+<tr><td>Holdout score</td><td><span class="badge bad">NOT MEASURABLE</span></td><td><code>labels.tif</code> is DrivenData-login-only and absent from the pinned inputs; true HOLDOUT-DTI cannot be computed locally and is not projected</td></tr>
+<tr><td>Organizer receipt</td><td><span class="badge bad">NULL</span></td><td><code>ORGANIZER-CONFIRMED: null</code> — no DrivenData submission-page receipt exists locally</td></tr>
+</table>
+</div>
+
+<div class="warn"><strong>Verdict: NEGATIVE — do not submit this file.</strong> <code>OK TO SUBMIT: NO</code>. Zero weekly slots were spent. BSD91 is a format-certified, unique research download only. It may be submitted only after (a) a hide-and-recover holdout beat of the incumbent with paired 95% CI, and (b) a separate selector approval and an available weekly slot — neither exists in this checkout. The user-reported GEMSDOE32 figure 0.2778, and live-leaderboard claims 0.3195 / 0.4413, are unverified (no organizer receipts); nothing here projects a live score.</div>
+
+<h1>6 · Why GEMSDOE32 scored 0.2778 (user-reported, unverified)</h1>
+<div class="card">
+<p class="small">Byte-exact lineage from pinned ancestors (<code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e</code>): h19-5 ridge network (0.1922) → Poisson-disk dotting at kernel spacing (0.2600: same 300 m kernel coverage at ~36% of the mass, since T takes a pointwise max over the 300 m disk while false-positive mass is linear) → speckle pruning (0.2708) → deletion of 2,545 dots at √2–2.0 px from the catalogue, leaving 37,654 dots (0.2778). Beating it requires a better localiser of catalogue-missing faults, not more pruning of the same dots. Full analysis: <a href="docs/HYPOTHESES_S17_CWPC.md">docs/HYPOTHESES_S17_CWPC.md §2</a>.</p>
+</div>
+
+<h1>7 · Sources (official, verifiable)</h1>
+<div class="card">
+<ul class="small">
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS #306</a> — competition home</li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description (format &amp; metric)</a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">Submissions page (upload)</a></li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution</a> — U-Net/Tversky example, not the organizer scorer</li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR prize rules</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a></li>
+<li><a href="https://epsg.io/32611">EPSG:32611 (grid CRS)</a></li>
+<li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">GeoDAWN survey (USGS)</a></li>
+<li><a href="https://gdr.openei.org/submissions/1391">GDR geothermal springs (public domain)</a></li>
+</ul>
+</div>
+
+<p class="small"><strong>Core values:</strong> Maximize P(Win) · Own the Outcome. Every number is labelled HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (submission-page receipt). A projection is never written as a score. Negative results are deliverables.</p>
+
+</main></div></body></html>

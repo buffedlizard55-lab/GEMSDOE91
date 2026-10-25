@@ -1,6 +1,15 @@
-# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/6cbfe8ac-gemsdoe91`)
+# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/94032b4a-gemsdoe91`)
 
-> **Current review: OK TO DOWNLOAD — existing OLC91 research only. OK TO SUBMIT — NO.** No assigned single-method paragraph was supplied; no new geological experiment or TIFF was generated. Fixed a concrete defect: the default `python generate_submission.py` checked HEXFAR91 while the site linked OLC91. It now verifies the exact canonical TIFF + ZIP; `--with-data` checks the pinned sample/catalogue and `--run` blocks unassigned legacy execution. [Three-pass review](docs/REVIEW-6CBFE8AC-20261025.md) · [Run card](docs/run-card-6cbfe8ac.json) · [Download and guide](docs/index.html) · [Fresh 87-file audit](docs/review-6cbfe8ac/download-audit.html). All files remain not approved for submission.
+## This session (2026-10-25, lane BSD91)
+
+> **OK TO DOWNLOAD: YES — new unique submission GeoTIFF. OK TO SUBMIT: NO — research negative.** A new unique TIFF was generated under the preregistered **BSD91 Blind Stepover-Damage lane** (`docs/HYPOTHESES_BSD91.md`, rank 1 of 5), experiment 1 of 3, 0 competition slots spent.
+> - [⬇ Download GeoTIFF](docs/downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.tif) ([single-TIFF ZIP](docs/downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.zip)) · [submission guide](docs/executive-summary.html) · [run card](docs/run-card-BSD91.json) · [audit](docs/downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-audit.json)
+> - Format: PASS — single-band float32, EPSG:32611, 3730×3292, exact transform, all 12,279,160 cells finite in [0,1], 4,021 dots, 0 on catalogue, min catalogue distance 3.16 px (> 300 m collar). SHA-256 `b9ebdf72…2fd832b2`.
+> - Leakage canary: PASS — worst symmetric AUC 0.7676 ≤ 0.90. Registry uniqueness vs 49 rasters: PASS — max |Spearman| 0.019 ≤ 0.90, max 3-px dot overlap 68.84% ≤ 70%.
+> - Holdout HOLDOUT-DTI: **not measurable locally** — `labels.tif` is DrivenData-login-only and absent from `registry/data_manifest.json`; not projected; `ORGANIZER-CONFIRMED: null`. Verdict: **negative**, do not submit until an organizer receipt and a holdout beat of the incumbent exist.
+> - The user-reported GEMSDOE32 figure 0.2778 and live-leaderboard claims 0.3195 / 0.4413 are unverified user reports, not organizer receipts.
+
+> **Current review: OK TO DOWNLOAD — BSD91 research TIFF above. OK TO SUBMIT — NO.** Standalone new experiment and TIFF generated under lane BSD91; all gates automated, no human inspection. Fixed a concrete defect: the default `python generate_submission.py` checked HEXFAR91 while the site linked OLC91. It now verifies the exact canonical TIFF + ZIP; `--with-data` checks the pinned sample/catalogue and `--run` blocks unassigned legacy execution. [Three-pass review](docs/REVIEW-6CBFE8AC-20261025.md) · [Run card](docs/run-card-6cbfe8ac.json) · [Download and guide](docs/index.html) · [Fresh 87-file audit](docs/review-6cbfe8ac/download-audit.html). All files remain not approved for submission.
 
 > **Independent capacity check (not a score):** at 37,654 dots, the registry lattice forces at least 82.34% overlap, so the literal 70% gate cannot pass. [Evidence](docs/review-6cbfe8ac/capacity.json). No registry reference or threshold was removed. The following status blocks are prior-branch history, not this checkout’s results.
 
