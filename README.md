@@ -4,6 +4,8 @@
 >
 > **Verified engineering results:** 473 tests passed, 8 skipped; real Chromium delivery/accessibility/mobile checks passed. All 64 registered downloads were inspected: 56 technical PASS, 8 FAIL. Format PASS is not submission approval. Corrected unsupported claims of guaranteed pruning gains and global uniqueness. Full standing user brief below remains required reading each session. “Maximize P(Win)” and “Own the Outcome” mean protecting submission slots and owning negative evidence, not manufacturing a score.
 
+Parallel review merged from main: [review and access findings](docs/REVIEW-SESSION-20261025.md), retained as historical evidence; it does not supersede this review’s corrected causal interpretation.
+
 ## Historical status records (not current-branch results)
 
 # GEMSDOE91 — CURRENT STATUS (GEO91, 2026-10-25) — read this first

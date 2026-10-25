@@ -1,3 +1,7 @@
+## Integration verification
+
+PR #103 initially conflicted with concurrent PR #101. Merged `origin/main` into the fixed session branch, retained the parallel review and access findings, retained the stricter current-download identity checks and corrected causal prose, and reran tests/browser checks before merge. No duplicate artifact-policy entries or geological experiments were introduced.
+
 # Current three-pass review — `arena/4975419d-gemsdoe91`, 2026-10-25
 
 - **Pass 1:** inspected prior next steps, restored sample/catalogue/R0 with manifest hashes; corrected current portal's unsupported scientific claims and historical/new-file ambiguity; added front-door TIFF/ZIP identity checks.
@@ -9,16 +13,7 @@
 
 # GEMSDOE91 — Unique TIF submission pass log
 
-## Active checkout review — `arena/85ad3c12-gemsdoe91` (2026-10-25)
-
-This section records the current checkout and supersedes neither the historical session record below nor its artifacts. The historical context below names `arena/e6fdea6b-gemsdoe91` and reports locally restored inputs; those statements do not describe this checkout.
-
-- No assigned single-method paragraph (`docs/run-card.json`: `lane.assigned: false`); no lane inferred.
-- `data/` and `.venv/` are absent. `python scripts/preflight.py` exits 1 with `BUILD BLOCKED`, missing `sample_submission` and `parent_r0_nan`; no feature stack or complete registry is available to run the protocol.
-- Base Python initially lacked the pinned packages; installed `requirements.txt` into ignored `.venv/`. The first suite run found three portal/run-card mismatch failures; repaired the GEO91 source templates, renderer pointer, and test contract. Full pytest suite now passes (with six skips and Affine deprecation warnings). A standard-library syntax compilation of 185 Python source/test files found zero syntax errors.
-- No new experiment or TIFF, submission, or weekly slot was used. Holdout and registry uniqueness values for this review are NOT RUN, not zero. A pre-existing historical damage-zone artifact has a separately documented HOLDOUT-DTI 0.0 negative; it was not rerun.
-- Pass 2 found the artifact-policy CI check omitted three already tracked historical files. Added their current byte hashes and do-not-submit status to `registry/artifact_policy.json`; `python scripts/check_artifact_policy.py` now passes for 62 artifacts. This does not upgrade their eligibility.
-- Review: `docs/REVIEW-ACTIVE-85AD3C12-20261025.md`; run card: `docs/run-card-85ad3c12.json`.
+> **Historical entry below describes an earlier branch (`arena/e6fdea6b-gemsdoe91`), not the current checkout.** Current branch: `arena/2f002fa0-gemsdoe91`. Current three-pass review: `docs/REVIEW-SESSION-20261025.md`; no new TIFF/experiment/slot, lane paragraph missing, feature stack absent; current verdict negative. The sample and existing-fault catalogue are present only as SHA-verified audit references. The earlier unique artifact is still research-only and not endorsed for submission. The prior policy omission for that artifact has now been corrected and `scripts/check_artifact_policy.py` passes.
 
 ## Session context
 Branch: arena/e6fdea6b-gemsdoe91 (active). Pinned data restored:
