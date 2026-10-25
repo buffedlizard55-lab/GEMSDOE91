@@ -1668,3 +1668,35 @@ Full detail and sources: `docs/REVIEW-S18-20261025.md`. Machine-readable: `docs/
 * **IR-91-S18-11 (GEMS data-use terms not located).** The rules defer to the NLR PDF and the DrivenData rules page links only to HeroX. No GEMS-specific data-use terms were found. AI-use disclosure is required in the narrative (§3.2); see `AI_USE.md`.
 * **IR-91-S18-12 (holdout structurally blind to collar mechanism).** `ledger/variant-cards-PRUNE-20261023.md` reports a holdout proxy of 0.0 for all three collar-pruned variants (le4, le5, le10) of GEMSDOE32 R0, because removed dots cannot touch withheld catalogue cells. The holdout therefore cannot validate catalogue-collar geometry, the mechanism behind the 0.2778 claim. Judge collar effects only on an off-catalogue control with verified provenance.
 * **IR-91-S18-13 (two renderers overwrite one public page).** `docs/executive-summary.html` is written by `scripts/render_olc91_portal.py` (copies `docs/olc91-exec-src.html`) and by `scripts/render_geo91_portal.py` (copies `docs/geo91-exec-src.html`). The test suite runs renderers, so a hand edit to the published HTML is overwritten. Edit the `*-exec-src.html` source and re-render. Which source is live depends on which renderer ran last. Session 18 found this when a test run reverted an edit to the published page. The OLC91 source is currently live. Unify the two renderers (or make one the sole writer) before relying on this page.
+
+## CWP91 session irregularities (2026-10-25, `arena/24569eef-gemsdoe91`)
+
+* **IR-CWP91-01 (no assigned lane).** The prompt's Parallel-Run Protocol refers to "the single
+  method paragraph below", but no such paragraph is present in the supplied text. CWP91 is a
+  session-declared lane (OLC91's pre-ranked, never-run H2) frozen in
+  `docs/HYPOTHESES_CWP91.md` before any scoring; it is not an orchestrated assignment.
+* **IR-CWP91-02 (registry incompleteness).** 62 of the 64 frozen fleet-inventory rasters were
+  restored and SHA-256/size-verified this session. The two `GEOD25m10` rows
+  (`docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21{,-zeros}.tif`) carry no pinned git
+  blob and are absent from this checkout, so they could not be compared. The CWP91 duplicate-stop
+  does not depend on them (90.8% vs the OLC91-E1 download; R0 itself is present at 36.6%).
+* **IR-CWP91-03 (user-claim conflicts, verified live 2026-10-25).** (a) "0.3195 is the highest
+  score right now" is contradicted by the public leaderboard fetched this session: rank 1 = 0.4413
+  (xiaofanhu); 0.3195 would rank ≈24. (b) `h33-h33-2-b2-…-zeros: 0.2778` is USER-REPORTED: the
+  GEMSDOE32 page fetched this session states "NO ORGANISER SCORE EXISTS" for that file and labels
+  0.2747 a model projection. No fleet number used here is ORGANIZER-CONFIRMED.
+* **IR-CWP91-04 (instrument mismatch, now quantified).** On `buffered_component_draw` seed 20 the
+  completeness field ĉ is *positively* associated with withheld truth (canary AUC 0.7348): hidden
+  components lie in mapped neighbourhoods. A completeness-type mechanism is therefore structurally
+  unvalidatable on this instrument — its significant loss to the hole-shuffled control
+  (−0.0026 [−0.0040, −0.0012]) measures the instrument's hole geometry at least as much as the
+  geology. Promotion is refused either way; a live-calibrated instrument is the blocker.
+* **IR-CWP91-05 (estimator definition frozen pre-scoring).** The preregistration's `p̂_vis` was
+  pinned, in a same-session pre-scoring addendum, to the Elkan–Noto calibrated posterior
+  `clip(p_s / c_bar, 0, 1)` (σ = 10 px, truncate 3.0). Without that pin the raw ratio
+  `(G*cat)/(G*p_s)` inherits the HGB subsampling constant. Recorded here so the frozen text and
+  the code (`src/gems91/cwp.py`) cannot drift apart silently.
+* **IR-CWP91-06 (sandbox egress).** DrivenData/USGS/Dropbox/EarthScope are unreachable from bash
+  in this sandbox (github/npm/pypi only); all competition inputs were restored through the repo's
+  pinned GitHub mirrors and hash-verified. Candidates H3–H5 name their free official sources but
+  are NOT verified-obtainable here and were deferred rather than proposed as viable.

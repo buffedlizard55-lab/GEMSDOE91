@@ -632,6 +632,10 @@ def render():
     # OLC91 (2026-10-25, later session) supersedes GEO91 as the current entry point.
     from scripts.render_olc91_portal import render as render_olc91
     render_olc91()
+    # CWP91 (2026-10-25, completeness-weighted PU) merged as a namespaced parallel
+    # session (docs/cwp91.html); it does NOT replace the current front door above.
+    # Its pages are built by scripts/render_cwp91_portal.py, deliberately not called
+    # here so a fresh render reproduces the committed entry points byte-for-byte.
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 
