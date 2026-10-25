@@ -1,0 +1,35 @@
+{
+  "hypothesis": null,
+  "mechanism": null,
+  "non_fault_mimic": null,
+  "scope": "Engineering review; no assigned geological lane; no candidate generated",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT_RUN"
+  },
+  "registry": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap": null,
+    "status": "NOT_RUN"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "existing_download_report": "review-7d6ac0dc/download-verification.json",
+    "reference_check": "BLOCKED: reference inputs absent"
+  },
+  "submission_name": null,
+  "submission_note": "No candidate: missing method assignment; prior registry capacity conflict and reference-input blockers remain.",
+  "experiments_run": 0,
+  "slots_used": 0,
+  "organizer_confirmed": null,
+  "verdict": "negative",
+  "ok_to_submit": false
+}

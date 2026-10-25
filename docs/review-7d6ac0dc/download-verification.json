@@ -1,0 +1,17 @@
+{
+  "scope": "Current advertised download; technical checks only, never slot approval",
+  "file": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+  "run_card": "docs/run-card-OLC91.json",
+  "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+  "zip_sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b",
+  "format_ok": true,
+  "problems": [],
+  "reference_checks": "NOT_CHECKED",
+  "validator_output": null,
+  "submission_name": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67",
+  "submission_note": "GEMSDOE91 OLC91 E1: PU posterior x 1.1km strike-coherent line support, 37654 3px dots, 2px catalogue collar",
+  "OK_TO_DOWNLOAD": "YES",
+  "OK_TO_SUBMIT": "NO",
+  "submission_ready": false,
+  "why": "Research-only publication; format validity cannot authorize a competition slot."
+}
