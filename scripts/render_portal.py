@@ -24,7 +24,7 @@ def shell(title, body, updated):
 <title>{escape(title)} · GEMSDOE91</title><meta name="description" content="Automated GEMS fault-mapping research, measured holdout evidence and a clearly labelled GeoTIFF download. Not approved for submission.">
 <link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
 <body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Current verdict</a><a href="s15-hcpa.html"><strong>S15-HCPA (historical research only)</strong></a><a href="s15-executive-summary.html">S15 guide</a><a href="s14-hvdc.html"><strong>S14-HVDC (#1 · 0.2622)</strong></a><a href="s14-hvdc-executive-summary.html">HVDC guide</a><a href="s14-lsrg.html">S14-LSRG-FF</a><a href="s14-executive-summary.html">S14 guide</a><a href="s14-ptac.html">S14-PTAC</a><a href="s14-ptac-executive-summary.html">PTAC guide</a><a href="s13-ptha.html"><strong>S13-PTHA (prior #1 · 0.2446)</strong></a><a href="s13-ptha-executive-summary.html">S13 guide</a><a href="s12-spac.html">S12-SPAC (0.2376)</a><a href="s12-executive-summary.html">S12 guide</a><a href="s12-bhar.html">S12-BHAR (0.1986 neg)</a><a href="bhar91-executive-summary.html">BHAR91 guide</a><a href="s12-spid.html">SPID91 (0.1517 neg)</a><a href="spid91-executive-summary.html">SPID91 guide</a><a href="g91.html">G91-COVER (0.1694)</a><a href="fuse91.html">FUSE91 (0.1673)</a><a href="fuse91-executive-summary.html">FUSE91 guide</a><a href="ccr91-executive-summary.html">CCR91 result</a><a href="ucd91.html">UCD91 history</a><a href="mtd91.html">MTD91 history</a><a href="s11-mhtr.html">S11-MHTR history</a><a href="h91-ddvtc.html">H91 history</a><a href="asc91.html">ASC91 history</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a><a href="fleet-audit.csv">Fleet inventory ↗</a></nav></header>
-<main id="main">{body}</main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated {escape(updated)} · UTC</div><div><a href="run-card.json">Machine-readable run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>\n'''
+<main id="main"><aside class="card" aria-label="Latest repository audit"><strong>2026-10-25 audit: no new competition TIFF generated; OK TO SUBMIT: NO.</strong> Existing downloads are research only. Full-grid format checks and the artifact registry were repaired. <a href="REVIEW-C6BFB72B-20261025.md">Audit, blockers and proposed tests</a> · <a href="run-card-REVIEW-C6BFB72B.json">Review run card</a></aside>{body}</main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated {escape(updated)} · UTC</div><div><a href="run-card.json">Machine-readable run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>\n'''
 
 
 def f(value, digits=5):
@@ -34,7 +34,8 @@ def f(value, digits=5):
 # Session 12: one computed status board for every current candidate file. Every
 # value is read from disk at render time (SHA-256, raster format, shared gates);
 # nothing is typed in. Download is research-only; submission is never offered here.
-EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292), 'transform_origin': (243350.0, 4508550.0), 'pixel_m': 100.0}
+EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292),
+                 'transform': (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)}
 BOARD_ROWS = (
     ('S15-HCPA (historical research only; HOLDOUT-DTI 0.091399; final selector not holdout-matched; complete registry unverified)', 'docs/run-card-S15.json', 'docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif', 's15-hcpa.html'),
     ('S14-HVDC E2 (holdout 0.262209 — #1 comparable v1.0 in GEMSDOE91; +0.017608 paired vs S13-PTHA; blind SGMC 0.110429 #1; selector blocked ★)', 'docs/run-card-S14-HVDC.json', 'docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif', 's14-hvdc.html'),
@@ -65,9 +66,7 @@ def _raster_format(path):
         finite = np.isfinite(a)
         ok = (s.count == 1 and s.dtypes[0] == 'float32' and str(s.crs) == EXPECTED_GRID['crs']
               and (s.height, s.width) == EXPECTED_GRID['shape']
-              and abs(s.transform.c - EXPECTED_GRID['transform_origin'][0]) < 1e-6
-              and abs(s.transform.f - EXPECTED_GRID['transform_origin'][1]) < 1e-6
-              and abs(s.transform.a - EXPECTED_GRID['pixel_m']) < 1e-9
+              and tuple(s.transform)[:6] == EXPECTED_GRID['transform']
               and bool(finite.all()) and float(a.min()) >= 0.0 and float(a.max()) <= 1.0)
     return digest, bool(ok)
 

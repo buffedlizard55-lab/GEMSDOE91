@@ -1,6 +1,15 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
-## Current active-branch review (2026-10-25)
+## Latest active-branch review — `arena/c6bfb72b-gemsdoe91` (2026-10-25)
+
+**NEW TIFF GENERATED: NO. OK TO SUBMIT: NO.** This is a repository-repair review, not a new geological experiment. The prompt omits the assigned method paragraph, so this session cannot safely enter a parallel lane. No weekly slot used. Existing files remain **downloadable for research only**, not promoted submissions.
+
+- [Audit and ranked hypotheses](docs/REVIEW-C6BFB72B-20261025.md) · [Review run card](docs/run-card-REVIEW-C6BFB72B.json) · [Existing research downloads and submission guide](docs/executive-summary.html).
+- Restored the pinned sample and catalogue through the existing GitHub mirror; their SHA-256/length checks pass. Freshly revalidated the CED TIFF against them: format/range PASS, submission readiness FALSE. Feature stack and full registry were not restored; these are not the only blockers—lane, novelty and comparable-best evidence also matter.
+- Repaired the portal's incomplete geotransform check, registered the three historical S15 artifacts as quarantined, and fixed the partially-restored-data test prerequisite.
+- The existing complete project brief remains below under **Original user project brief — full text, formatting normalized**. Read it and this latest review at every session start. Prior branch labels and claims below are historical, not current permissions.
+
+## Previous active-branch review (historical; 2026-10-25)
 
 **At every session start:** read this current review and the standing mandate below, then verify the active branch, run card, local inputs and exact artifact before relying on historical status. This review supersedes the earlier main-branch [repository review](docs/REVIEW-REPO-20261025.md), which documented a prior DZ-EDGE checkout state before the S15 review was completed.
 
@@ -13,7 +22,7 @@
 
 - **[Download S15-HCPA range-safe GeoTIFF (`218,352 B`)](docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif)** · **[Single-TIFF ZIP (`183,734 B`)](docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.zip)** · **[Audit page](docs/s15-hcpa.html)** · **[Step-by-step submission guide](docs/s15-executive-summary.html)** · **[JSON run card](docs/run-card-S15.json)** · **[Pre-registered hypotheses & winner forensics](docs/HYPOTHESES_S15.md)**
 - **Unique submission name:** `gems91-s15-hcpa-e3-20261025T030000Z-7f01c717` · **GeoTIFF SHA-256:** `b7ab738f8e0311db9a481a4f16f5bc30583855537b3083144080d7b88157fb1a` · **Form note (`113/140`):** `S15-HCPA: Hydrothermal convective plume + kinematic dilatancy + winner geometry (37654 dots, [0,1] all-finite, 0 NaN)`
-- **Forensic Mathematics of 0.2778:** DrivenData's DTI metric uses a saturating triangular kernel (R=300 m, 3 px) penalized by total mass (α=0.2). Continuous lines waste emission budget on already-saturated truth pixels, while far-field exploration (>10 px from mapped catalogue) is necessary to discover blind geothermal systems. Thinning to 37,654 dots at ~3.6 px spacing eliminates redundant mass and maximizes credit economics.
+- **Forensic correction:** 0.2778 is user-reported, not ORGANIZER-CONFIRMED. Maximum-kernel credit can reward sparse emission, but no spacing or far-field quota is proven optimal. A nearby second dot can still improve credit. See the latest audit before relying on historical causal claims.
 - **5 Pre-Registered Geological Hypotheses (`docs/HYPOTHESES_S15.md`):**
   1. `H15-1 HCPA`: Hydrothermal Convective Plume Architecture (deep conductivity / basement ratio + basement step concordance)
   2. `H15-2 TKST`: Tectonic Kinematic Dilatancy & Slip Tendency (normal-slip stress tensor under regional WNW Basin & Range extension θ_ext=105°)
@@ -29,7 +38,7 @@
 - **Historical novelty scope (not a universal registry clearance):**
   - The recorded S15 check covered 8 canonical registry rasters: max directed 3 px dot overlap **30.65%** (vs `calib_h161_01855.tif`); maximum absolute surface rank correlation **0.065**.
   - It also checked 15 in-repository siblings: max directed 3 px dot overlap **40.60%** (vs `gems91-spac-e3`). The full set of public GEMSDOE site rasters was not verified in this review; treat global uniqueness as unverified.
-- **Why “Predicted values must be in range [0, 1]” Cannot Trigger:** All 12,279,160 float32 cells are strictly finite in `[0.0, 1.0]`, 0 NaNs anywhere, nodata=None. Verified across 5 independent validator suites.
+- **Historical local range check (not a guarantee of organizer acceptance):** All 12,279,160 float32 cells are strictly finite in `[0.0, 1.0]`, 0 NaNs anywhere, nodata=None. Verified across 5 independent validator suites.
 
 ## STANDING PROJECT MANDATE (read at the start of every session)
 
