@@ -1,5 +1,9 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## Current active-branch review (2026-10-25)
+
+**At every session start:** read this current review and the standing mandate below, then verify the active branch, run card, local inputs and exact artifact before relying on historical status. This review supersedes the earlier main-branch [repository review](docs/REVIEW-REPO-20261025.md), which documented a prior DZ-EDGE checkout state before the S15 review was completed.
+
 ## HISTORICAL SESSION 15 LANE (`S15-HCPA`, artifact built on `arena/b580c734-gemsdoe91`) — RESEARCH TIFF ONLY
 
 > **Current active-branch review (`arena/bb16b6ae-gemsdoe91`, 2026-10-25): no new TIFF generated.** The S15 file below is an existing historical artifact, not this review's submission. `python scripts/preflight.py` is `BUILD BLOCKED` because the official sample, catalogue and feature stack are absent locally. Existing S15 evidence is negative for promotion: its historical best is **0.091399 HOLDOUT-DTI** (gems91-hide-recover-v1.0; 60,988 withheld positives; 95% CI [0.083166, 0.099501]) and its final far-field/halo emitter was not evaluated identically in holdout. **OK TO DOWNLOAD: YES (research only); OK TO SUBMIT: NO.** See [active-branch review](docs/REVIEW-ARENA-BB16B6AE-20261025.md) and [review run card](docs/run-card-REVIEW-BB16B6AE.json).
