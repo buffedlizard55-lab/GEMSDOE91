@@ -1,8 +1,10 @@
 # GEMSDOE91 — a new TIFF, an honest automated verdict
 
-> **ACTIVE CHECKOUT REVIEW (2026-10-25, `arena/adfb5ee6-gemsdoe91`): NO NEW TIFF GENERATED · NO ARTIFACT OK TO SUBMIT.** The current checkout has no assigned single-method lane and no local competition data/cache; preflight is blocked. The detailed [three-pass review, ranked hypotheses, evidence and JSON run card](docs/REVIEW-ARENA-ADFB5EE6-20261025.md) is the status for this branch. Historical downloads below are not newly generated or cleared by this review. Do not rename/reuse one as a new submission.
+> **ACTIVE BRANCH REVIEW (2026-10-25, `arena/adfb5ee6-gemsdoe91`): NO NEW TIFF GENERATED · NO ARTIFACT OK TO SUBMIT.** This checkout has no assigned single-method lane and no local competition data/cache; preflight is blocked. See the [three-pass review, ranked hypotheses, evidence and JSON run card](docs/REVIEW-ARENA-ADFB5EE6-20261025.md). Historical downloads below are not newly generated or cleared by this review. Do not rename/reuse one as a new submission.
 >
-> **Standing instructions:** read the [full preserved project brief](#original-user-project-brief--preserved-standing-text-and-supplied-updates) and this review at the start of every session. The full brief is the user's requirements, not evidence that scores, methods, or external claims have been verified.
+> **Latest merged-main safety review (DAA237A4):** fixed the shared novelty gate to require final-dot rank correlation as well as surface correlation and dot overlap; its historical S16 artifact is research-only, not approved to submit. See [audit](docs/REVIEW-DAA237A4-20261025.md) and [run card](docs/run-card-DAA237A4.json). No geological experiment or weekly slot was used there.
+>
+> **Standing instructions:** read the [full preserved project brief](#original-user-project-brief--preserved-standing-text-and-supplied-updates), this branch's review, and the latest merged-main review at the start of every session. The brief is the user's requirements, not proof that scores or claims are verified.
 
 > **Parallel Session (`S15-SCGF`, branch `arena/605655a6-gemsdoe91`, merged alongside S16-PGRD & S16-PC91): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**
 > 137-feature Förstner subsurface-junction + multi-wavelength (150–900 m) Salem tilt-depth + 2-D deconfounded aquifer-baffle Dual-Specialist Auto-Context (`99`-col provably `B12`/`B19`-invariant Pure-Subsurface specialist): `E1 = 0.235089`, **`E2 = 0.240633`** (`95% CI [0.227931, 0.254026]`), `E3 = 0.232708` **`HOLDOUT-DTI`** (`gems91-hide-recover-v1.0` = `v1.1-nohalo`, `60,988` withheld) and **`0.097940` Blind Off-Catalogue USGS SGMC DTI** (`+0.002180` vs `S14-PTAC E2 = 0.095760`; `+0.002554` vs `GEMSDOE32 R0 = 0.095386`). Negative under shared readiness gates (`0.240633 < 0.267782 S14-PTAC`; literal 3-px lattice overlap `99.811%`, vs `44.82%` on `GEMSDOE32 R0`); zero weekly slots spent (`slots_used = 0`).
@@ -14,7 +16,9 @@
 
 ## Start here every session
 
-Read the [active-checkout review for this branch](docs/REVIEW-ARENA-ADFB5EE6-20261025.md), [the full standing brief below](#original-user-project-brief--preserved-standing-text-and-supplied-updates), the [prior active-checkout review](docs/REVIEW-ACTIVE-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+Read the [active-checkout review for this branch](docs/REVIEW-ARENA-ADFB5EE6-20261025.md), [the full standing brief below](#original-user-project-brief--preserved-standing-text-and-supplied-updates), [the latest merged-main safety review](docs/REVIEW-DAA237A4-20261025.md), [the prior active-checkout review](docs/REVIEW-ACTIVE-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+
+Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
 
 > **OK TO DOWNLOAD: YES — RESEARCH. OK TO SUBMIT: NO.**
 > The new S16-PGRD file is computed from pinned magnetic/gravity inputs, not copied from a prior submission. Its format passes automated checks. Its literal registry-uniqueness and scientific-improvement gates do not pass. No human image inspection is required, and no selector may override a duplicate stop.

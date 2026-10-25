@@ -1,0 +1,107 @@
+{
+  "schema_version": "gems91.review-card.v1",
+  "review_id": "ARENA-ABB160F7-20261025",
+  "branch": "arena/abb160f7-gemsdoe91",
+  "review_only": true,
+  "experiments_run_this_review": 0,
+  "budget": {
+    "max_experiments": 3,
+    "max_seconds": 7200,
+    "slots_used": 0
+  },
+  "lane": {
+    "name": null,
+    "assigned": false,
+    "status": "BLOCKED",
+    "reason": "Prompt references a single assigned-method paragraph but does not provide an unambiguous method paragraph; docs/run-card.json records assigned=false."
+  },
+  "hypothesis": "Existing S16-PGRD hypothesis: coherent gravity edges unexplained by locally proportional band-limited RTP pseudogravity may locate concealed altered contacts.",
+  "mechanism": "Recorded S16-PGRD method: label-blind 1/|k| magnetic integration, local ridge transfer residual, two-scale residual/gravity edge persistence and residual coherence. No new method was run in this review.",
+  "named_non_fault_process_that_could_mimic_it": "Unaltered nonmagnetic granite-carbonate contact; reversed-polarity lava and survey-line seams are additional mimics in the source run card.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": 0.06939688563289523,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 60988,
+    "ci95": [
+      0.05751001360811543,
+      0.0816755685735943
+    ],
+    "evidence_status": "Historical S16-PGRD run-card result; evidence arithmetic independently replayed by scripts/verify_s16.py in this review; no geological experiment rerun.",
+    "paired_gravity_control": {
+      "label": "HOLDOUT-DTI paired difference",
+      "value": -0.0046263292415677365,
+      "ci95": [
+        -0.01072502436076323,
+        0.0011612876394765104
+      ],
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positives": 60988
+    },
+    "comparable_prior_holdout_best": null,
+    "organizer_confirmed": null
+  },
+  "registry_comparison": {
+    "evidence_status": "Historical recorded comparison; registry inventory incomplete; not freshly rerun because registry raster inputs are absent locally.",
+    "scope_complete_universal_registry": false,
+    "preplacement": {
+      "status": "UNVERIFIED",
+      "checked": 89,
+      "max_measured_absolute_rank_correlation": 0.038235960029117326,
+      "missing_or_unverified_records_are_passes": false
+    },
+    "final_dots": {
+      "status": "DUPLICATE_STOP",
+      "reference_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "candidate_dots": 37654,
+      "overlap_within_3px_fraction": 1.0,
+      "checked": 27,
+      "not_checked_after_stop": 62
+    }
+  },
+  "raster": {
+    "submission_name": "gems91-s16-pgrd-20261025T040447Z-24d090ad9f42",
+    "file": "downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
+    "sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9",
+    "recorded_origin_branch": "arena/400a3f1a-gemsdoe91",
+    "origin_branch_differs_from_review_branch": true
+  },
+  "validator_output": {
+    "status": "PASS_FORMAT_ONLY; FULL_INPUT_COMPARISON_BLOCKED",
+    "fresh_independent_decoders": [
+      "rasterio 1.4.4",
+      "tifffile 2026.3.3"
+    ],
+    "single_band": true,
+    "dtype": "float32",
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "no_nan_inside_footprint": true,
+    "all_cells_finite": true,
+    "values_in_0_1": true,
+    "positive_pixels": 37654,
+    "zip_single_tiff_and_byte_match": true,
+    "crs_shape_transform_match_to_actual_sample": "BLOCKED: data/official/sample_submission.tif absent",
+    "footprint_and_catalogue_zero_checks": "BLOCKED: required official inputs absent",
+    "tiff_sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9",
+    "zip_sha256": "69a33f11e7be0db156b8e498d08d8259d814b8bbf509b144fc762a0d10cd4337"
+  },
+  "submission_note": "S16-PGRD: magnetic-gravity transfer residual; 37654 new dots. Research negative; do not submit.",
+  "submission_note_characters": 95,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "verdict_reason": "The historical final-dot check crossed the strict >70% duplicate threshold; holdout improvement is not established against the paired gravity control; assigned lane and complete registry are absent; actual sample/footprint/catalogue checks cannot be freshly repeated; no selector receipt exists.",
+  "review_date": "2026-10-25"
+}
