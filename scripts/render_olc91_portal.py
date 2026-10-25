@@ -10,9 +10,11 @@ docs/run-card-OLC91.json (measured 2026-10-25), so update all three together. Ne
 ok_to_submit true.
 """
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 
 def front_door(root=ROOT):

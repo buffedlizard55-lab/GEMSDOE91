@@ -31,6 +31,7 @@ def inspect_raster(data, reference, footprint, catalogue):
         grid = (src.count, src.shape, src.crs, src.transform)
         same_grid = grid == reference
         checks = {'single_band': src.count == 1,
+                  'float32': all(dtype == 'float32' for dtype in src.dtypes),
                   'crs_shape_transform_match': same_grid,
                   'no_nodata_tag': src.nodata is None}
         values = src.read(1)

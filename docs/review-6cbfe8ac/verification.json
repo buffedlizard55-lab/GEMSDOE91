@@ -1,0 +1,54 @@
+{
+  "schema": "gems91.review-verification.v1",
+  "review": "6cbfe8ac-20261025",
+  "passes": {
+    "pass1": "Implemented exact front-door verifier and blocked wrong/unassigned builder",
+    "pass2": "Recomputed pinned lattice geometry; checked references, all registered downloads, corruption and dtype edge cases",
+    "pass3": "Reviewed original request, source claims, executable guide, all local links and canonical-render reproducibility; full final regression passed"
+  },
+  "pytest": {
+    "command": ".venv/bin/python -m pytest -ra",
+    "passed": 568,
+    "skipped": 1,
+    "warnings": 62,
+    "elapsed_seconds": 86.76,
+    "skip_reason": "No legacy releases materialized; not a release certification",
+    "warning_category": "Rasterio Affine PendingDeprecationWarning",
+    "log": "tests.log"
+  },
+  "artifact_policy": {
+    "status": "PASS",
+    "registered_files": 87,
+    "raw_data_tracked": false
+  },
+  "download_audit": {
+    "files_checked": 87,
+    "format_pass": 78,
+    "format_fail": 9,
+    "ok_to_submit": false,
+    "evidence": "download-audit.json"
+  },
+  "current_front_door": {
+    "status": "PASS",
+    "reference_checks": "PASS",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "evidence": "front-door.json"
+  },
+  "capacity": {
+    "status": "REPRODUCED",
+    "evidence": "capacity.json",
+    "candidate_generated": false
+  },
+  "source_verification": "sources.json; pinned GitHub contents checked, not live DrivenData receipts",
+  "new_experiments": 0,
+  "new_tiffs": 0,
+  "competition_slots_used": 0,
+  "limitations": [
+    "No assigned method lane",
+    "Literal lattice novelty rule blocks usual budget",
+    "Rights/official label semantics unresolved",
+    "No current authenticated weekly allowance or submission receipt",
+    "Geological novelty of deferred proposals not certified fleet-wide"
+  ]
+}

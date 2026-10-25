@@ -1700,3 +1700,14 @@ Full detail and sources: `docs/REVIEW-S18-20261025.md`. Machine-readable: `docs/
   in this sandbox (github/npm/pypi only); all competition inputs were restored through the repo's
   pinned GitHub mirrors and hash-verified. Candidates H3–H5 name their free official sources but
   are NOT verified-obtainable here and were deferred rather than proposed as viable.
+
+## Review 6cbfe8ac — 2026-10-25
+
+- **Fixed: default verifier/download mismatch.** `generate_submission.py` verified HEXFAR91 while `docs/current-run.json` and the website advertised OLC91. Default now verifies the canonical pointer, card, TIFF and ZIP; historical HEXFAR is opt-in. `--run` falsely named OLC91 but executed HEXFAR; blocked without an assigned lane.
+- **Not resolved: absent method paragraph.** No new experiment or TIFF generated; no score asserted. The standing prompt has no assigned lane.
+- **Reproduced: literal registry infeasibility at the usual budget.** SHA-pinned lattice dilation leaves 6,649 footprint cells uncovered; 37,654 dots necessarily overlap at least 82.34%, exceeding 70%. No reference/threshold was removed. This is geometry, not HOLDOUT-DTI.
+- **Fresh technical audit:** 87 registered files; 78 PASS / 9 FAIL; all `ok_to_submit=false`. Historical counts elsewhere are snapshots, not this review's totals.
+- **Provenance caveat:** this review restored pinned mirrors using existing tooling despite S18's unresolved recommendation for a rights review. Used for technical verification only; no new model training or raw-data redistribution. Hash identity does not establish licensing or official sample/label semantics.
+- **Scientific/score boundary:** pinned GEMSDOE32 page says no organiser score exists. The claimed 0.2778 remains user-reported; no live leaderboard/account receipt was fetched. Fault recovery is not verified geothermal-vent detection. CPU support is documented by the official reference README, so GPU is not a mandatory prerequisite for every pipeline.
+
+Evidence and three-pass review: `docs/REVIEW-6CBFE8AC-20261025.md`; exact-download verification, capacity calculation and source manifest under `docs/review-6cbfe8ac/`.

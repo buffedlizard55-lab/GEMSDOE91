@@ -1,4 +1,10 @@
-# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/9278e16d-gemsdoe91`)
+# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/6cbfe8ac-gemsdoe91`)
+
+> **Current review: OK TO DOWNLOAD — existing OLC91 research only. OK TO SUBMIT — NO.** No assigned single-method paragraph was supplied; no new geological experiment or TIFF was generated. Fixed a concrete defect: the default `python generate_submission.py` checked HEXFAR91 while the site linked OLC91. It now verifies the exact canonical TIFF + ZIP; `--with-data` checks the pinned sample/catalogue and `--run` blocks unassigned legacy execution. [Three-pass review](docs/REVIEW-6CBFE8AC-20261025.md) · [Run card](docs/run-card-6cbfe8ac.json) · [Download and guide](docs/index.html) · [Fresh 87-file audit](docs/review-6cbfe8ac/download-audit.html). All files remain not approved for submission.
+
+> **Independent capacity check (not a score):** at 37,654 dots, the registry lattice forces at least 82.34% overlap, so the literal 70% gate cannot pass. [Evidence](docs/review-6cbfe8ac/capacity.json). No registry reference or threshold was removed. The following status blocks are prior-branch history, not this checkout’s results.
+
+## Previous active-checkout review (`arena/9278e16d-gemsdoe91`)
 
 > **Verdict: NEGATIVE / NO PROMOTION.** This checkout's parallel-run lane was not assigned: the prompt refers to a single method paragraph but does not provide one. No new experiment, TIFF, score or competition slot was produced on this branch. The no-lane stop takes precedence over the wish to generate a new candidate.
 >
@@ -10,7 +16,7 @@
 >
 > **Why the reported GEMSDOE32 0.2778 may have risen:** sparse dot emission and pruning predictions with low marginal coverage can reduce penalized mass under a spatial DTI objective. That is a plausible metric mechanism, not causal proof or an organizer-confirmed score. The user-provided 0.2778, 0.3195 and 0.4413 are not submission receipts in this checkout.
 
-Core values: **Maximize P(Win) · Own the Outcome.** Start every session with this status, the [full standing project brief](#full-project-brief), and the [current-checkout review](docs/REVIEW-ACTIVE-9278E16D-20261025.md). Download-format validity, holdout improvement, registry uniqueness, selector approval, and an organizer receipt are separate gates.
+Core values: **Maximize P(Win) · Own the Outcome.** Start every session with this status, the [full standing project brief](#full-project-brief), and the [current-checkout review](docs/REVIEW-6CBFE8AC-20261025.md). Download-format validity, holdout improvement, registry uniqueness, selector approval, and an organizer receipt are separate gates.
 
 ---
 
@@ -130,10 +136,10 @@ ORGANIZER-CONFIRMED without a submission-page receipt.
 
 ## Start here every session
 
-**Current review (active branch `arena/9278e16d-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-ACTIVE-9278E16D-20261025.md) · [run card](docs/run-card-9278e16d.json). No method lane was assigned, so this branch ran no new candidate and used no slot. HEXFAR91, S17-CWPC, S17-CDSC, and the S18 review arrived from merged parallel branches; their research artifacts and findings do not constitute lane assignment for this session.
+**Current review (active branch `arena/6cbfe8ac-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-6CBFE8AC-20261025.md) · [run card](docs/run-card-6cbfe8ac.json). No method lane was assigned, so this branch ran no new candidate and used no slot. HEXFAR91, S17-CWPC, S17-CDSC, and the S18 review arrived from merged parallel branches; their research artifacts and findings do not constitute lane assignment for this session.
 
 **Prior review (historical checkout):** [E92C84E1 review](docs/REVIEW-E92C84E1-20261025.md).
-At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this branch's review](docs/REVIEW-ACTIVE-9278E16D-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews below remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
+At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this branch's review](docs/REVIEW-6CBFE8AC-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews below remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
 
 Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
 
@@ -218,6 +224,8 @@ Concurrent main reviews were integrated, including the S15 holdout/final-selecto
 <a id="full-project-brief"></a>
 
 ## Original user project brief — preserved standing text and supplied updates
+
+**2026-10-25 supplied update for this session (claims, not receipts):** GEMSDOE91 `gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367`; `gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823`; GEMSDOE92 `gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255`. These are not ORGANIZER-CONFIRMED and must not be substituted for holdout results. This update plus the standing prompt below preserves the operative requirements; literal byte identity to the repeated long message is not claimed. Start every session by reading this brief and current review. Core values: Maximize P(Win); Own the Outcome.
 
 <details>
 <summary>Preserved standing user prompt; read at every session start</summary>

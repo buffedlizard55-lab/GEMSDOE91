@@ -1,0 +1,49 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "6cbfe8ac-20261025",
+  "branch": "arena/6cbfe8ac-gemsdoe91",
+  "hypothesis": "No candidate tested: required single-method lane absent. Deferred screening priority is directional roughness/Hurst breaks on B12/B19.",
+  "mechanism": "A degraded scarp may create a cross-strike roughness-regime break, not merely high slope. Untested.",
+  "named_non_fault_mimic": "Lahontan shoreline terrace or lithologic erosional boundary",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN; no assigned lane"
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "NOT RUN; no candidate",
+    "separate_capacity_diagnostic": "review-6cbfe8ac/capacity.json"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT APPLICABLE; no new TIFF. Existing OLC91 technical check is separate."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "experiments_used": 0,
+  "competition_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "ok_to_submit": false,
+  "existing_download_verification": "review-6cbfe8ac/front-door.json",
+  "review": "REVIEW-6CBFE8AC-20261025.md",
+  "changes": [
+    "Default CLI now verifies exact canonical portal TIFF and ZIP",
+    "Unassigned --run blocked; historical HEXFAR verifier explicit",
+    "Fail-closed pointer integrity and reference checks",
+    "Front-door and executive guide clarified; no candidate selected"
+  ],
+  "verification": "review-6cbfe8ac/verification.json",
+  "tests": {
+    "passed": 568,
+    "skipped": 1
+  }
+}
