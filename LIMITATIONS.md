@@ -211,3 +211,14 @@ research artifact or revive legacy model-projected queues.
 4. **Full-map dot budget (`44,000` dots) vs unknown exact `|G_LB|`.** Uniform-lattice inversion (`calib_r13lattice_00904` = `0.0904`) estimates `|G_LB| ≈ 12,350` hidden leaderboard fault pixels under a spatially uniform prior, but spatial clustering of hidden test faults near major geothermal basins could shift the true optimal leaderboard dot count between `~34,000` and `~54,000`.
 
 
+
+## Session 14 (`S14-PTAC`) limitations and next steps (2026-10-24)
+
+1. **Negative novelty verdict despite a new holdout best.** E2 achieves `0.267782 HOLDOUT-DTI` (`gems91-hide-recover-v1.0`, 60,988 withheld positives, 95% CI `[0.253687, 0.281135]`) and a paired `+0.023181` over S13 with 95% CI `[+0.017703, +0.028161]`. Final directed overlap is `99.852% > 70%`, so the new TIFF is research-only and NOT OK TO SUBMIT. No slot was used.
+2. **Catalogue recovery is not hidden organizer truth.** The holdout hides whole mapped fault segments with buffers; the organizer evaluates newly interpreted faults absent from the catalogue. S14's gain makes posterior topology a plausible research direction, not a predicted or organizer-confirmed competition score.
+3. **No assigned lane.** `S14-PTAC` was self-declared before fitting because the requested method paragraph was absent. The readiness gate correctly remains false even if novelty policy changes later.
+4. **Registry scope is local, not universal.** The run checks 73 hash-distinct same-grid rasters across the restored fleet, registry, recovered GEOD pair and published downloads. Private, unlinked, differently gridded or future files remain out of scope.
+5. **Strict lattice policy blocks well-spread dot fields.** The current rule applies to every raster and cannot be silently weakened. Future work must first resolve the shared policy's treatment of dense calibration blankets; do not tune a detector around the lattice after observing the failure.
+6. **External-data ceiling remains untested.** Free official USGS 3DEP 1 m DEM is the highest-ranked outside-data idea, but its footprint coverage, download and permitted-use could not be checked from this network. S14 itself used no new external data and only restored hash-pinned local inputs.
+7. **Human-only obligations remain.** Eligibility, AI-use disclosure, data-rights review, live weekly allowance and any upload are outside this autonomous research run. `selector_approval=false`, and no authenticated organizer session exists.
+8. **Next session, in order:** obtain a real assigned lane; resolve or reaffirm the literal dense-lattice policy before fitting; retain the S14 topology result as a frozen baseline; if policy permits a new lane, validate the next preregistered physical hypothesis or official 1 m LiDAR scarp signal on the same split. Never retrofit S14 dots merely to evade a registry raster.
