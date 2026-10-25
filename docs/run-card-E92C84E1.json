@@ -1,0 +1,29 @@
+{
+  "review_id": "E92C84E1-20261025",
+  "hypothesis": "MFTA is the leading untested candidate; no method was assigned or run.",
+  "mechanism": "Paired multi-scale gradient-rotation and ridge-termination geometry at fault tips/relay zones.",
+  "named_non_fault_mimic": "Lithologic contact or survey-line levelling seam.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN"
+  },
+  "organizer_confirmed": null,
+  "registry_correlation_overlap": {
+    "surface_before_placement": null,
+    "final_dots": null,
+    "status": "NOT RUN; no assigned lane/input set"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NO NEW TIFF; current verifier blocked on missing numpy/rasterio"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative"
+}

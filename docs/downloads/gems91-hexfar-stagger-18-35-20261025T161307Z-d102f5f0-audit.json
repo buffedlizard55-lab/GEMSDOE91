@@ -1,0 +1,87 @@
+{
+  "candidate_id": "gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0",
+  "primary_zeros_tif": {
+    "filename": "gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif",
+    "path": "releases/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif",
+    "sha256": "779773ff20cbd1d59520c0f8cce5f914c6f467c9f21471dad57669fc8cf6e49f",
+    "bytes": 96301,
+    "nodata": null,
+    "all_cells_finite": true,
+    "total_cells": 12279160,
+    "nan_cells_anywhere": 0,
+    "min_value": 0.0,
+    "max_value": 1.0
+  },
+  "companion_nan_tif": {
+    "filename": "gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0.tif",
+    "path": "releases/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0.tif",
+    "sha256": "d102f5f069731338745f8ccb44bd12e853e19bc08d8f0da310fe2d52a875c37b",
+    "bytes": 239625,
+    "nodata": "NaN",
+    "nan_inside_footprint": 0,
+    "nan_outside_footprint": 7111787
+  },
+  "zip_bundle": {
+    "path": "docs/downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.zip",
+    "filename": "gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.zip",
+    "inner_geotiff": "gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif",
+    "bytes": 50680,
+    "sha256": "c6325b0031f618e0656e41d13e8f58b78326e6387ff233698ef21b25348d8f27"
+  },
+  "browser_tif_bundle": {
+    "path": "docs/downloads/hexfar_submission_bundle.js",
+    "bytes": 448491,
+    "sha256": "7b00785441c75fc6be6cbd736424c0a4fabbd914e5c214b1fd75a4c66c37f8d4"
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "band_count": 1,
+    "footprint_pixels": 5167373
+  },
+  "dots": {
+    "n_dots": 14985,
+    "dot_set_digest": "9e36f03bc7edd9c7104c6cfae75cb6ba9e7cda2efc5dfc697f77b418311ed7a1",
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 18.0278,
+    "dots_le_3px": 0
+  },
+  "validators": {
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true
+  },
+  "method": "hexagonal far-field 18-35 px stagger lattice",
+  "hypothesis": "unmapped geothermal-hosting step-overs at 1.8-3.5 km off catalogue",
+  "named_non_fault_mimic": "range-front pediment break; playa shoreline",
+  "experiment": 1,
+  "budget_max_experiments": 3,
+  "grid_meta": {
+    "footprint_px": 5167373,
+    "catalogue_px": 60988,
+    "halo_px": 1263946,
+    "n_dots": 14985,
+    "dcat_lo": 18.0,
+    "dcat_hi": 35.0,
+    "step_px": 13,
+    "stagger_px": 6,
+    "dcat_min_dot_px": 18.027756377319946,
+    "dcat_max_dot_px": 35.0
+  },
+  "generated_utc": "2026-10-25T16:13:07.040329+00:00"
+}

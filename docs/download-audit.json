@@ -6,8 +6,8 @@
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
-  "files_checked": 79,
-  "format_pass": 70,
+  "files_checked": 81,
+  "format_pass": 72,
   "format_fail": 9,
   "ok_to_submit": false,
   "files": [
@@ -1183,6 +1183,47 @@
       "ok_to_submit": false,
       "sha256": "58562d2df087e3a6ddb64f550039a5ea040758993247771cb1107ca703d0ab5f",
       "zip_member": "gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "e36c855d7ee93fed60ad5d8c18d32d0d4e748ff204539fa638f6e8faca9d24b4",
+      "zip_member": "gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif",
       "status": "PASS",
       "checks": {
         "single_band": true,

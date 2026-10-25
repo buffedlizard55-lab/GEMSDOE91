@@ -1,0 +1,17 @@
+{
+  "file": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+  "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+  "format_ok": true,
+  "problems": [],
+  "submission_name": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67",
+  "submission_note": "GEMSDOE91 OLC91 E1: PU posterior x 1.1km strike-coherent line support, 37654 3px dots, 2px catalogue collar",
+  "OK_TO_DOWNLOAD": "YES - RESEARCH ONLY (format-valid file)",
+  "reference_checks": "PASS",
+  "recorded_OK_TO_SUBMIT": "NO",
+  "OK_TO_SUBMIT": "NO",
+  "submission_ready": false,
+  "why": [
+    "HOLDOUT: E1 - E0 = -0.0021, 95% CI [-0.0045, 0.0002] (lower bound not > 0; E1 below E0 in 4/4 folds)",
+    "UNIQUENESS: duplicate-stop, 76.8% of dots within 3 px of docs/downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif (chance-corrected 71.8%)"
+  ]
+}

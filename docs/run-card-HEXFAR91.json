@@ -1,0 +1,65 @@
+{
+  "schema": "gems91.run-card.hexfar.v1",
+  "run_id": "hexfar-stagger-18-35-20261025T161307Z",
+  "started_utc": "2026-10-25T16:13:07+00:00",
+  "branch": "arena/5f91d61a-gemsdoe91",
+  "submission_name": "gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0",
+  "submission_note": "HEXFAR91 hex stagger 18-35px 1.8-3.5km off-cat 14985 dots HOLDOUT-DTI=0.0 unique research",
+  "note_length_chars": 95,
+  "hypothesis": "Unmapped geothermal-hosting step-overs and relay ramps sit 1.8-3.5 km off the mapped USGS/INGENIOUS catalogue, outside the 300 m-1 km damage collar already searched.",
+  "mechanism": "Euclidean distance from existing_faults.tif; keep 18 < d <= 35 px; hexagonal lattice step 13 px with 6 px odd-row stagger; unit dots; zeros twin all-finite [0,1].",
+  "named_non_fault_mimic_process": "Range-front pediment break; playa shoreline at kilometre offsets from range-bounding faults.",
+  "experiments_run": 1,
+  "budget": {"max_experiments": 3, "max_seconds": 7200},
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+    "value": 0.0,
+    "ci95": [0.0, 0.0],
+    "withheld_positives": 60988,
+    "note": "Far-field (min 18.03 px from catalogue) cannot cover withheld catalogue segments; honest negative."
+  },
+  "registry_comparison": {
+    "uniqueness_pass": true,
+    "is_duplicate": false,
+    "surface_max_abs_rank_corr": 0.00467,
+    "dots_max_3px_overlap": 0.1691,
+    "max_allowed_rank_corr": 0.90,
+    "max_allowed_dot_overlap_3px": 0.70,
+    "n_compared": 43,
+    "worst": "gems91-mtd91-e1 16.91%"
+  },
+  "raster": {
+    "path": "docs/downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif",
+    "sha256": "779773ff20cbd1d59520c0f8cce5f914c6f467c9f21471dad57669fc8cf6e49f",
+    "n_dots": 14985
+  },
+  "format_validation": {
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "dtype": "float32",
+    "band_count": 1,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 18.0278,
+    "n_dots": 14985,
+    "sha256": "779773ff20cbd1d59520c0f8cce5f914c6f467c9f21471dad57669fc8cf6e49f",
+    "gates": "CERTIFIED"
+  },
+  "organizer_confirmed": null,
+  "selector_approval": false,
+  "slots_used": 0,
+  "verdict": {
+    "OK_TO_DOWNLOAD": "YES — RESEARCH ONLY",
+    "OK_TO_SUBMIT": "NO",
+    "reasons": [
+      "Format gates CERTIFIED: [0,1], no NaN in zeros twin, EPSG:32611 3730x3292 transform match.",
+      "Uniqueness PASS vs 43 local rasters: max |rho|=0.00467, max 3px overlap=16.91% (<70%).",
+      "HOLDOUT-DTI=0.0 [0,0] on gems91-hide-recover-v1.1-nohalo with 60988 withheld — negative; do not spend a slot."
+    ]
+  }
+}
