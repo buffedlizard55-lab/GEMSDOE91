@@ -164,6 +164,18 @@
       "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
     },
     {
+      "path": "docs/downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif",
+      "sha256": "779773ff20cbd1d59520c0f8cce5f914c6f467c9f21471dad57669fc8cf6e49f",
+      "status": "current_research_only",
+      "reason": "HEXFAR91 far-field lattice: format certified, HOLDOUT-DTI 0.0; research-only, NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.zip",
+      "sha256": "c6325b0031f618e0656e41d13e8f58b78326e6387ff233698ef21b25348d8f27",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP for HEXFAR91 research-only negative artifact; NOT OK TO SUBMIT."
+    },
+    {
       "path": "docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
       "sha256": "dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15",
       "status": "current_research_only",
@@ -350,6 +362,42 @@
       "reason": "S17-CGRD E2 research negative single-TIFF ZIP (ok_to_download=true, ok_to_submit=false, 0 slots)"
     },
     {
+      "path": "docs/downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif",
+      "sha256": "690c10998798d3abd54f6a1ec1c12e56c4243d1967ede7b63a533b9ddd628cdd",
+      "status": "current_research_only",
+      "reason": "S17-CPAD (cpad_e1) fresh computation; format PASS, HOLDOUT-DTI=0.198183; passes 95/95 pre-placement Spearman and 50/50 preceding fleet rasters (GEMSDOE32=0.4927), stopped at 51/95 r11_greedy_mp.tif (0.8725 > 0.70); NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip",
+      "sha256": "58562d2df087e3a6ddb64f550039a5ea040758993247771cb1107ca703d0ab5f",
+      "status": "current_research_only",
+      "reason": "S17-CPAD (cpad_e1) fresh computation; format PASS, HOLDOUT-DTI=0.198183; passes 95/95 pre-placement Spearman and 50/50 preceding fleet rasters (GEMSDOE32=0.4927), stopped at 51/95 r11_greedy_mp.tif (0.8725 > 0.70); NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif",
+      "sha256": "792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5",
+      "status": "current_research_only",
+      "reason": "S17-CWPC E3 Multi-Scale Complex Cross-Wavelet Phase-Lag & Quadrature Coherence + Calibrated Local Auto-Context candidate GeoTIFF (0.122467 HOLDOUT-DTI on gems57-pooled-hide-v2, E2=0.131810, 0.090912 Blind SGMC-OFFCAT-CONTROL-DTI; format + canary + R0/repo uniqueness PASS; research negative under fail-closed readiness policy \u2014 NOT OK TO SUBMIT; docs/run-card-S17-CWPC.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.zip",
+      "sha256": "e36c855d7ee93fed60ad5d8c18d32d0d4e748ff204539fa638f6e8faca9d24b4",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S17-CWPC E3 candidate GeoTIFF; research negative \u2014 NOT OK TO SUBMIT (docs/run-card-S17-CWPC.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif",
+      "sha256": "3d07dcb81f01e8b19b5fa2cf2d4d7dc75eb1f7ec2d319a120f6ba7c37bf369d2",
+      "status": "current_research_only",
+      "reason": "S17-EULR E3 Euler-deconvolution fusion winner (0.249626 HOLDOUT-DTI v1.0) trails S14-PTAC 0.267782; Euler ablation paired delta +0.000331 CI includes 0 (null); literal registry gate fails (lattice 99.827%, S13 sibling 93.836%); format+gems57 PASS; research only, NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.zip",
+      "sha256": "78ef3eab493b7b9ba3274bbb817da461cc50e57572f402521a41518baad85885",
+      "status": "current_research_only",
+      "reason": "S17-EULR E3 Euler-deconvolution fusion winner (0.249626 HOLDOUT-DTI v1.0) trails S14-PTAC 0.267782; Euler ablation paired delta +0.000331 CI includes 0 (null); literal registry gate fails (lattice 99.827%, S13 sibling 93.836%); format+gems57 PASS; research only, NOT OK TO SUBMIT."
+    },
+    {
       "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
       "sha256": "0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd",
       "status": "current_research_only",
@@ -452,18 +500,6 @@
       "reason": "XG91-E1 format PASS; lattice overlap 99.742% and holdout below random; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif",
-      "sha256": "3d07dcb81f01e8b19b5fa2cf2d4d7dc75eb1f7ec2d319a120f6ba7c37bf369d2",
-      "status": "current_research_only",
-      "reason": "S17-EULR E3 Euler-deconvolution fusion winner (0.249626 HOLDOUT-DTI v1.0) trails S14-PTAC 0.267782; Euler ablation paired delta +0.000331 CI includes 0 (null); literal registry gate fails (lattice 99.827%, S13 sibling 93.836%); format+gems57 PASS; research only, NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.zip",
-      "sha256": "78ef3eab493b7b9ba3274bbb817da461cc50e57572f402521a41518baad85885",
-      "status": "current_research_only",
-      "reason": "S17-EULR E3 Euler-deconvolution fusion winner (0.249626 HOLDOUT-DTI v1.0) trails S14-PTAC 0.267782; Euler ablation paired delta +0.000331 CI includes 0 (null); literal registry gate fails (lattice 99.827%, S13 sibling 93.836%); format+gems57 PASS; research only, NOT OK TO SUBMIT."
-    },
-    {
       "path": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
       "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
       "status": "current_research_only",
@@ -476,52 +512,16 @@
       "reason": "Single-TIFF ZIP of the OLC91 E1 research-only file; same verdict (OK TO SUBMIT: NO)."
     },
     {
-      "path": "docs/downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif",
-      "sha256": "690c10998798d3abd54f6a1ec1c12e56c4243d1967ede7b63a533b9ddd628cdd",
-      "status": "current_research_only",
-      "reason": "S17-CPAD (cpad_e1) fresh computation; format PASS, HOLDOUT-DTI=0.198183; passes 95/95 pre-placement Spearman and 50/50 preceding fleet rasters (GEMSDOE32=0.4927), stopped at 51/95 r11_greedy_mp.tif (0.8725 > 0.70); NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip",
-      "sha256": "58562d2df087e3a6ddb64f550039a5ea040758993247771cb1107ca703d0ab5f",
-      "status": "current_research_only",
-      "reason": "S17-CPAD (cpad_e1) fresh computation; format PASS, HOLDOUT-DTI=0.198183; passes 95/95 pre-placement Spearman and 50/50 preceding fleet rasters (GEMSDOE32=0.4927), stopped at 51/95 r11_greedy_mp.tif (0.8725 > 0.70); NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif",
-      "sha256": "792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5",
-      "status": "current_research_only",
-      "reason": "S17-CWPC E3 Multi-Scale Complex Cross-Wavelet Phase-Lag & Quadrature Coherence + Calibrated Local Auto-Context candidate GeoTIFF (0.122467 HOLDOUT-DTI on gems57-pooled-hide-v2, E2=0.131810, 0.090912 Blind SGMC-OFFCAT-CONTROL-DTI; format + canary + R0/repo uniqueness PASS; research negative under fail-closed readiness policy \u2014 NOT OK TO SUBMIT; docs/run-card-S17-CWPC.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.zip",
-      "sha256": "e36c855d7ee93fed60ad5d8c18d32d0d4e748ff204539fa638f6e8faca9d24b4",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S17-CWPC E3 candidate GeoTIFF; research negative \u2014 NOT OK TO SUBMIT (docs/run-card-S17-CWPC.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif",
-      "sha256": "779773ff20cbd1d59520c0f8cce5f914c6f467c9f21471dad57669fc8cf6e49f",
-      "status": "current_research_only",
-      "reason": "HEXFAR91 research-only hexagonal far-field lattice GeoTIFF (PR #114 CI repair; OK_TO_SUBMIT=NO)"
-    },
-    {
-      "path": "docs/downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.zip",
-      "sha256": "c6325b0031f618e0656e41d13e8f58b78326e6387ff233698ef21b25348d8f27",
-      "status": "current_research_only",
-      "reason": "HEXFAR91 single-TIFF ZIP archive (PR #114 CI repair; OK_TO_SUBMIT=NO)"
-    },
-    {
       "path": "docs/downloads/gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.tif",
       "sha256": "64d589ac8d5365693d8845a5673a42ec593794ac46be2aa14a1f950e948fe2b3",
       "status": "current_research_only",
-      "reason": "S17-LFTG E2 3D Laplace full-tensor gravity + destriped mag/rad + prior-calibrated dual-specialist GeoTIFF (0 B12/B19 DEM bytes; 0.188596 HOLDOUT-DTI; research negative, OK_TO_SUBMIT=NO)"
+      "reason": "S17-LFTG E2 3D Laplace full-tensor gravity + destriped mag/rad + prior-calibrated dual-specialist GeoTIFF (0 B12/B19 DEM bytes; 0.188596 HOLDOUT-DTI; research negative, NOT OK TO SUBMIT; docs/run-card-S17-LFTG.json)"
     },
     {
       "path": "docs/downloads/gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.zip",
       "sha256": "337010f6e14bd951819fd5b4d648e9de68dd0a43e610e7a0c710226831cbbfb7",
       "status": "current_research_only",
-      "reason": "S17-LFTG E2 single-TIFF ZIP archive (research negative, OK_TO_SUBMIT=NO)"
+      "reason": "S17-LFTG E2 single-TIFF ZIP archive (research negative, NOT OK TO SUBMIT; docs/run-card-S17-LFTG.json)"
     }
   ]
 }
