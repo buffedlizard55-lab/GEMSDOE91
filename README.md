@@ -12,6 +12,8 @@
 >
 > **Score evidence (official public snapshot dated 2026-10-25):** 0.4413 is the rank-1 **PUBLIC-LEADERBOARD** value, not a GEMSDOE91 receipt. 0.3195 is `USER-REPORTED-UNVERIFIED`; by score insertion it would fall at rank 24 in that snapshot, which is not evidence it was submitted. 0.2778 is **USER-REPORTED-UNVERIFIED**, lies below the snapshot's rank-50 value of 0.2818, and the GEMSDOE32 owner page explicitly says **“NO ORGANISER SCORE EXISTS”** for its artifacts. `ORGANIZER-CONFIRMED: null` for this review.
 >
+> **Download-audit snapshot:** `docs/download-audit.json` now covers 87 registered files: 78 technical PASS and 9 FAIL; none is approved to submit. It was refreshed from the prior pinned-reference audit only after each report path/SHA was matched to the current artifact policy and each reference hash matched the manifest. This checkout did **not** restore competition inputs or rerun the data-backed audit; all nine failures remain visible. See the active review’s integration note.
+>
 > **Historical records below are not active-branch results.** The S17-CDSC artifact and OLC91 page remain separate prior research downloads with different evaluators. The website's `docs/current-run.json` still points to OLC91, while S17-CDSC is the latest timestamped merged artifact cited in the older README; neither is new or approved for submission.
 
 Core values: **Maximize P(Win) · Own the Outcome.** Start each session with this status, the [full standing brief](#full-project-brief), and the [active-branch review](docs/REVIEW-ACTIVE-522615DD-20261025.md). A format-valid download, a positive holdout, uniqueness, lane assignment, selector approval, and an organizer receipt are separate gates.

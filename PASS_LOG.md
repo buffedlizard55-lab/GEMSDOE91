@@ -139,6 +139,13 @@ Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 revi
 ## Active-branch integration recheck — `arena/522615dd-gemsdoe91` — 2026-10-25
 
 - Merged upstream main through `5262aa9947d4b50d2fc433a86d409fc5b7f42811` on the fixed session branch; retained upstream current-download verifier/CI and branch-specific historical reviews, while keeping this checkout's no-lane/no-data status explicit.
-- Re-ran `.venv/bin/python -m pytest -o addopts='' -ra`: **588 passed, 8 skipped, 78 warnings** in 37.80 s. Artifact policy: **PASS, 87 registered prediction artifacts**. `git diff --cached --check`: clean at the integration checkpoint.
+- Re-ran `.venv/bin/python -m pytest -o addopts='' -ra`: **588 passed, 8 skipped, 78 warnings** in 38.21 s (final run after the audit-snapshot refresh). Artifact policy: **PASS, 87 registered prediction artifacts**. `git diff --cached --check`: clean at the integration checkpoint.
 - Default `generate_submission.py` verifies the exact current OLC91 TIFF/ZIP/card and reports technical PASS, **OK TO DOWNLOAD: YES — RESEARCH ONLY**, **OK TO SUBMIT: NO**, references `NOT_CHECKED`. `--with-data` blocks on the absent official sample; `--run` blocks on the absent lane.
 - `scripts/preflight.py`: expected **BUILD BLOCKED: 0/2**, all six axes blocked. No data restored, experiment run, new score/TIFF, selector step, or slot use.
+
+
+## PR #123 published-artifact audit snapshot follow-up — 2026-10-25
+
+- GitHub run `40216729640`: `tests` and `browser-delivery` passed; `published-artifact` failed in its audit/diff step. Job metadata identified step 7; the detailed runner log was inaccessible from this sandbox.
+- Found stale canonical `docs/download-audit.json`/HTML (85 files, 76 PASS / 9 FAIL), while the current registered inventory has 87 files. Reused the latest saved pinned-reference audit from `docs/review-6cbfe8ac/download-audit.json`, after validating all 87 paths, current artifact/policy SHA-256 values, manifest reference hashes, and overlap-record parity; the 2 added CWP91 artifacts are technical PASS. Regenerated the canonical HTML with the current renderer.
+- The refreshed snapshot still reports **78 technical PASS / 9 FAIL**, all not submit-approved. No data were restored or audit rerun locally. A new GitHub run is needed to confirm the fix.

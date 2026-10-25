@@ -141,8 +141,9 @@
       "passed": 588,
       "skipped": 8,
       "warnings": 78,
-      "duration_seconds": 37.8,
-      "status": "PASS"
+      "duration_seconds": 38.21,
+      "status": "PASS",
+      "note": "Final full-suite run after canonical audit snapshot refresh"
     },
     "artifact_policy": {
       "status": "PASS",
@@ -179,6 +180,25 @@
       "status": "BLOCKED",
       "reason": "No assigned method lane"
     },
-    "scientific_run_or_slot": false
+    "scientific_run_or_slot": false,
+    "artifact_audit_snapshot": {
+      "source_report": "docs/review-6cbfe8ac/download-audit.json",
+      "canonical_report": "docs/download-audit.json",
+      "status": "REUSED_PRIOR_PINNED_REFERENCE_SNAPSHOT_IDENTITY_VERIFIED_NOT_RERUN",
+      "files_checked": 87,
+      "format_pass": 78,
+      "format_fail": 9,
+      "ok_to_submit": false,
+      "all_report_paths_match_current_downloads_and_policy": true,
+      "all_file_hashes_match_current_bytes_and_policy": true,
+      "reference_hashes_match_manifest": true,
+      "previously_tracked_snapshot_files": 85,
+      "newly_included_files": [
+        "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+        "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.zip"
+      ],
+      "local_data_restore_or_fresh_raster_audit": false,
+      "ci_run_40216729640_status": "PUBLISHED_ARTIFACT_FAILED_AUDIT_DIFF; RERUN_PENDING"
+    }
   }
 }
