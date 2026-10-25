@@ -1,6 +1,12 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
-## CURRENT SESSION 13 DISCOVERY LANE (`S13-PTHA`, 2026-10-24, branch `arena/6a62c2ab-gemsdoe91`) — NEW #1 `HOLDOUT-DTI` (`0.244601`) & `0.100815` BLIND `SGMC`
+## Current checkout audit (2026-10-24)
+
+**Do not submit a file based on the historical banner below.** In this checkout, `docs/run-card.json` identifies CED91 as provisional/unassigned, while the README and published `docs/index.html` still advertise S13-PTHA as current. This inconsistency is documented in [the current review](docs/REVIEW-ARENA-CURRENT-20261024.md) and must be reconciled before relying on a site verdict. The pinned inputs are currently absent (`python scripts/restore_data.py --check`); `pytest` and `numpy` are also missing, so this review could not revalidate TIFFs or run the tests. No new TIFF, score, registry clearance, or submission approval is claimed. Existing downloads are historical/research artifacts only. The requested parallel lane was not specified, so no new experiment was launched.
+
+Read the [standing project brief](docs/SESSION_BRIEF_S12.md) and current review before starting future work. Keep all measured scores explicitly labelled HOLDOUT-DTI (with evaluator, withheld-positive count and 95% CI) or ORGANIZER-CONFIRMED (with receipt).
+
+## Historical session 13 snapshot (not current checkout readiness; see audit above) — `S13-PTHA`
 
 > **AUTOMATED SUBMISSION VERDICT (FAIL-CLOSED): `OK TO DOWNLOAD: YES` (RESEARCH / SELECTOR REVIEW) · `OK TO SUBMIT: NO` (HOLD PENDING HUMAN SELECTOR SIGN-OFF).**
 > Every technical format, `[0, 1]` range, `0`-NaN, `EPSG:32611` `(3730, 3292)` affine, `>300 m` catalogue-collar, 75-feature leakage-canary (`max AUC 0.66470 ≤ 0.90`), same-evaluator holdout-promotion (`0.244601 > 0.237587 S12-SPAC > 0.206406 S11-MHTR`, paired 95% CI `[+0.029931, +0.046719]` vs `S11-MHTR`), canonical 8-raster registry novelty (`≤ 51.39%`), and external dotted-fleet novelty (`≤ 47.36%`) gate **PASSED AUTOMATICALLY**. Shared fail-closed policy (`src/gems91/readiness.py`) holds `submission_ready = False` until a human fleet selector confirms: (1) live DrivenData 3/rolling-7-day slot allowance, (2) eligibility & AI-disclosure attestation, (3) lane assignment (`IR-91-S12-01`), and (4) mutual exclusion vs in-repo siblings (`S12-SPAC` / `S11-MHTR` / `FUSE91`) and synthetic whole-Nevada lattice policy (`calib_r13lattice_00904`, `99.84%`, `IR-CED-003`). Zero weekly slots were spent by this session.
