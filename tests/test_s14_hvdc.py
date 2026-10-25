@@ -99,6 +99,8 @@ def test_s14_run_card_and_published_artifact_are_byte_exact_and_fail_closed():
     assert card["canaries"]["n_features_checked"] == 101
     assert gates(card)["format"] and gates(card)["beats_comparable_best"]
     assert not submission_ready(card) and card["submission_ready"] is False
+    assert card["verdict"] == "negative" and card["technical_candidate_verdict"] == "negative_duplicate_stop"
+    assert card["slots_used"] == 0 and card["organizer_confirmed"] is None
     assert card["selector_approval"] is False
 
 
