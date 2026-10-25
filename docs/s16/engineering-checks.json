@@ -1,10 +1,10 @@
 {
   "status": "PASS",
   "scope": "Local engineering checks only; not promotion or a geological experiment",
-  "checked_utc": "2026-10-25T04:21:24.712426+00:00",
+  "checked_utc": "2026-10-25T04:25:21.525073+00:00",
   "pytest": {
     "command": "OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 .venv/bin/python -m pytest -ra",
-    "passed": 412,
+    "passed": 415,
     "skipped": 2,
     "skip_reasons": [
       "Optional S15 layers not all restored",
@@ -12,7 +12,7 @@
     ],
     "warnings": 30,
     "warning_kind": "rasterio Affine multiplication deprecation",
-    "duration_seconds": 24.76
+    "duration_seconds": 22.86
   },
   "independent_s16_verifier": "PASS (with pinned sample and catalogue)",
   "historical_ced_evidence_verifier": "PASS (stored source/evidence consistency only)",
@@ -31,5 +31,6 @@
   "ok_to_submit": false,
   "remote_ci": "NOT_YET_RUN",
   "deployment": "NOT_YET_DEPLOYED",
-  "note": "A later post-merge test receipt will supersede this local snapshot when recorded."
+  "note": "Post-integration local checks passed. Remote CI/deployment receipts will be linked after they actually complete.",
+  "integrated_main": "347ecb4"
 }

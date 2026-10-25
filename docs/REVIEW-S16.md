@@ -73,6 +73,14 @@ Corrections implemented (engineering checks do not rerun the geological search):
 
 ## Pass 3 — requirement and final-delivery recheck
 
+**Local post-integration result:** 415 tests passed, 2 explicit data-dependent
+skips; 30 dependency deprecation warnings. Automated Chromium delivery checks
+passed for root redirect, exact TIFF/ZIP download hashes, copy fallback, mobile
+layout and accessibility on 14 current/archive pages. No visual approval was
+required. Independent byte/evidence verification and all 48 artifact-policy
+entries passed. Synthetic end-to-end legacy fixture checks also passed; these
+are not scientific experiments or performance evidence.
+
 The final check record is maintained in `s16/verification.json` and
 `s16/engineering-checks.json`. The latter records tests and browser delivery,
 not scientific scores. Source and data verification boundaries are in
@@ -80,7 +88,7 @@ not scientific scores. Source and data verification boundaries are in
 
 | Requirement | Result |
 |---|---|
-| New, non-copied TIFF | Generated from B02/B13; byte and pixel digests are new within the frozen index |
+| New, non-copied TIFF | Generated from B02/B13; byte hash differs from frozen indexed hashes; pixel digest recorded, not a universal final-raster novelty check |
 | Genuine protocol uniqueness | **FAILED** — duplicate stop, not renamed or waived |
 | Obvious download/submit statuses | Download YES; submit NO at the top of both entry points and executive guide |
 | Automated format/score gates | Implemented; no human visual inspection or typed approval flag |
@@ -96,6 +104,16 @@ not scientific scores. Source and data verification boundaries are in
 | Organizer-confirmed improvement | **NOT AVAILABLE** — no organizer receipt or account session |
 | Unique name and ≤140-char note | Recorded in run card, writer receipt and copy controls |
 | Pull request / merge | Recorded in the final response and GitHub PR, after verification |
+
+### Concurrent main integration
+
+Integrated `347ecb4` from main while remaining on the assigned S16 branch.
+Preserved the S15 selector/cache/readiness fixes, focused regression test,
+corrected historical cards and both dated review records. Regenerated pages
+from the combined renderer rather than discarding concurrent source changes.
+The other review’s external-page observations remain secondary provenance;
+S16 did not independently fetch/authenticate those official pages. Its absent-
+input state is a dated snapshot, not the current restored S16 data state.
 
 ## Findings that must not be concealed
 
