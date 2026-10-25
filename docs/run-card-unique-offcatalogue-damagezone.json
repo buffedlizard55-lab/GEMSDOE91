@@ -1,0 +1,62 @@
+{
+  "schema": "gems91.run-card.unique.v1",
+  "run_id": "unique-offcatalogue-damagezone-20261025T132549Z",
+  "started_utc": "2026-10-25T13:25:49.320831+00:00",
+  "branch": "arena/e6fdea6b-gemsdoe91",
+  "submission_name": "gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119",
+  "note": "Unique off-catalogue damage-zone lattice: format-certified unique GeoTIFF; HOLDOUT-DTI=0.0 (deliberate negative); research download only.",
+  "note_length_chars": 140,
+  "hypothesis": "Geothermal permeability is hosted in fault damage zones 300 m-1 km off the mapped catalogue; an off-catalogue, off-collar, fixed-density lattice is a unique, testable discovery design.",
+  "mechanism": "Footprint (sample_submission) x catalogue distance transform; emit unit dots at a 1 km lattice in the annulus 3 px < d_catalogue <= 10 px; value 1.0 at dots, 0 elsewhere, NaN outside footprint.",
+  "named_non_fault_mimic_process": "Unaltered lithologic contact; survey flight-line seam.",
+  "experiments_run": 1,
+  "budget": {"max_experiments": 3, "max_seconds": 7200},
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+    "value": 0.0,
+    "ci95": [0.0, 0.0],
+    "withheld_positives": 60988,
+    "note": "Deliberately off-catalogue damage-zone dots cannot cover withheld catalogue faults -> honest negative result."
+  },
+  "registry_comparison": {
+    "uniqueness_pass": true,
+    "is_duplicate": false,
+    "surface_max_abs_rank_corr": 0.00983,
+    "dots_max_3px_overlap": 0.2067,
+    "max_allowed_rank_corr": 0.90,
+    "max_allowed_dot_overlap_3px": 0.70,
+    "registry_rasters_checked": ["GEMSDOE32__h33-2-b2-zeros.tif"]
+  },
+  "format_validation": {
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "dtype": "float32",
+    "band_count": 1,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 3.1623,
+    "n_dots": 8718,
+    "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+    "sha256_not_in_ledger": true
+  },
+  "organizer_confirmed": null,
+  "selector_approval": false,
+  "slots_used": 0,
+  "files": {
+    "primary_zeros_tif": "downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+    "companion_nan_tif": "downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119.tif",
+    "zip": "downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip",
+    "audit": "downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-audit.json"
+  },
+  "verdict": "promote=negative; research download only, not cleared for a competition slot",
+  "limitations": [
+    "No DrivenData authentication -> cannot auto-download labels/training_features or verify the live leaderboard/slot allowance.",
+    "HOLDOUT-DTI=0.0 by design (off-catalogue damage-zone); not a score-improvement candidate.",
+    "Cannot confirm organizer acceptance; only local format gates are validated."
+  ]
+}

@@ -1,0 +1,495 @@
+{
+  "schema": "gems91.run-card.v2",
+  "lane": {
+    "name": "XG91",
+    "assigned": false,
+    "method_paragraph": "Cross-gradient parallelism of sponsor RTP (band 2) and isostatic gravity (band 13) at 200 m and 600 m, sampled up-dip along the basement-depth gradient (band 15) by clip(H*cot(55 deg)/100 m, 2, 8) px; unit dots, exact catalogue pixels excluded.",
+    "reason": "The prompt's assigned method paragraph was absent. This paragraph was preregistered in docs/HYPOTHESES_XG91.md before scoring. assigned=false so readiness cannot treat it as an orchestrated lane."
+  },
+  "hypothesis": "A covered Basin-and-Range normal fault juxtaposes susceptibility and density downdip of the buried surface trace, which the USGS/INGENIOUS catalogue often misses.",
+  "mechanism": "E1: unshifted cross-gradient crest",
+  "non_fault_mimic": "Buried volcanic-flow edge or sedimentary basin onlap that aligns magnetic and gravity gradients without fault offset.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "COMPLETED",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 60988,
+    "value": 0.07117087208867402,
+    "ci95": [
+      0.06376883492951907,
+      0.07927028477781099
+    ],
+    "tpw": 4045.9367282663034,
+    "fpw": 36243.11649539961,
+    "fnw": 56942.063271733714,
+    "folds": [
+      {
+        "fold": 0,
+        "n_truth": 29319,
+        "n_emitted": 18059,
+        "dti": 0.07428992992213192
+      },
+      {
+        "fold": 1,
+        "n_truth": 12596,
+        "n_emitted": 10076,
+        "dti": 0.0640378998968926
+      },
+      {
+        "fold": 2,
+        "n_truth": 9473,
+        "n_emitted": 4160,
+        "dti": 0.07532298615427883
+      },
+      {
+        "fold": 3,
+        "n_truth": 9600,
+        "n_emitted": 5809,
+        "dti": 0.06741174703284185
+      }
+    ]
+  },
+  "comparable_prior_holdout_best": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "value": 0.1942673386089294,
+    "source": "evidence/spid91_gems57_holdout.json",
+    "same_split_recomputed_here": false,
+    "note": "Highest gems57-pooled-hide-v2 value found in this repo before XG91. Not re-scored here. Not comparable to gems91-hide-recover-v1.0 0.267782."
+  },
+  "beats_recorded_v2_point_estimate": false,
+  "canaries": {
+    "status": "PASS",
+    "max_symmetric_auc": 0.55182,
+    "worst_feature": "xg_shadow",
+    "n_features": 6,
+    "features": {
+      "xg_concord_s2": {
+        "max_symmetric_auc": 0.53731,
+        "pass": true
+      },
+      "xg_concord_s6": {
+        "max_symmetric_auc": 0.54152,
+        "pass": true
+      },
+      "xg_concord": {
+        "max_symmetric_auc": 0.5405,
+        "pass": true
+      },
+      "xg_shadow": {
+        "max_symmetric_auc": 0.55182,
+        "pass": true
+      },
+      "cover_weight_soft": {
+        "max_symmetric_auc": 0.53443,
+        "pass": true
+      },
+      "mag_edge_control": {
+        "max_symmetric_auc": 0.53482,
+        "pass": true
+      }
+    },
+    "split": "vendor/gems57/spatial.folds buffer_px=80, same folds as the score"
+  },
+  "registry_comparison": {
+    "complete_universal_registry": false,
+    "scope": "finite single-band rasters in data/registry, data/fleet_registry (includes the synthetic 5 px lattice), and docs/downloads",
+    "n_checked": 41,
+    "preplacement": {
+      "status": "PASS_WITHIN_INDEXED_SCOPE",
+      "max_abs_spearman": 0.06791,
+      "closest": "gems91-ced-v1-20261024-d35670b28c81.tif"
+    },
+    "final": {
+      "status": "DUPLICATE",
+      "max_abs_spearman": 0.00026,
+      "max_3px_overlap": 0.99742,
+      "closest": "calib_r13lattice_00904.tif"
+    }
+  },
+  "experiments": [
+    {
+      "id": "E1",
+      "mechanism": "unshifted cross-gradient crest",
+      "spacing_px": 2.8,
+      "budget": 37654,
+      "surface_gate": {
+        "uniqueness_gate_version": "gems91-directed-registry-v1.1",
+        "phase": "pre-placement continuous surface",
+        "n_registry_rasters_checked": 41,
+        "max_allowed_rank_corr": 0.9,
+        "surface_max_abs_rank_corr": 0.06791,
+        "surface_closest_raster": "gems91-ced-v1-20261024-d35670b28c81.tif",
+        "is_duplicate": false,
+        "uniqueness_pass": true,
+        "n_comparisons": 41,
+        "closest": [
+          {
+            "registry_raster": "gems91-ced-v1-20261024-d35670b28c81.tif",
+            "surface_abs_rank_corr": 0.06791
+          },
+          {
+            "registry_raster": "GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.tif",
+            "surface_abs_rank_corr": 0.04357
+          },
+          {
+            "registry_raster": "GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4.tif",
+            "surface_abs_rank_corr": 0.04357
+          },
+          {
+            "registry_raster": "gems91-ucd91-20261024T190000Z-df735405-zeros.tif",
+            "surface_abs_rank_corr": 0.03679
+          },
+          {
+            "registry_raster": "gems91-ucd91-20261024T190000Z-df735405.tif",
+            "surface_abs_rank_corr": 0.03679
+          },
+          {
+            "registry_raster": "gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+            "surface_abs_rank_corr": 0.03462
+          },
+          {
+            "registry_raster": "gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+            "surface_abs_rank_corr": 0.03438
+          },
+          {
+            "registry_raster": "gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif",
+            "surface_abs_rank_corr": 0.03362
+          }
+        ]
+      },
+      "dot_gate_method": {
+        "uniqueness_gate_version": "gems91-directed-registry-v1.1",
+        "dot_overlap_policy": "strict directed candidate-within-3px-of-registry for every registry raster",
+        "n_registry_rasters_checked": 40,
+        "max_allowed_rank_corr": 0.9,
+        "max_allowed_dot_overlap_3px": 0.7,
+        "surface_max_abs_rank_corr": 0.06791,
+        "surface_closest_raster": "gems91-ced-v1-20261024-d35670b28c81.tif",
+        "dots_max_abs_rank_corr": 0.01291,
+        "dots_max_3px_overlap": 0.31035,
+        "dots_closest_raster": "gems91-ucd91-20261024T190000Z-df735405-zeros.tif",
+        "dots_max_mutual_3px_overlap": 0.25301,
+        "is_duplicate": false,
+        "rank_comparison_complete": true,
+        "uniqueness_pass": true,
+        "n_comparisons": 40,
+        "closest": [
+          {
+            "registry_raster": "gems91-ced-v1-20261024-d35670b28c81.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 32000,
+            "surface_abs_rank_corr": 0.06791,
+            "dots_abs_rank_corr": 0.01291,
+            "cand_within_3px_of_reg": 0.25301,
+            "reg_within_3px_of_cand": 0.33934,
+            "f1_dot_overlap_3px": 0.28989,
+            "mutual_min_overlap_3px": 0.25301,
+            "effective_dot_overlap_3px": 0.25301,
+            "duplicate_flag": false
+          },
+          {
+            "registry_raster": "GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 37654,
+            "surface_abs_rank_corr": 0.04357,
+            "dots_abs_rank_corr": 0.00898,
+            "cand_within_3px_of_reg": 0.04775,
+            "reg_within_3px_of_cand": 0.29152,
+            "f1_dot_overlap_3px": 0.08206,
+            "mutual_min_overlap_3px": 0.04775,
+            "effective_dot_overlap_3px": 0.04775,
+            "duplicate_flag": false
+          },
+          {
+            "registry_raster": "GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 37654,
+            "surface_abs_rank_corr": 0.04357,
+            "dots_abs_rank_corr": 0.00898,
+            "cand_within_3px_of_reg": 0.04775,
+            "reg_within_3px_of_cand": 0.29152,
+            "f1_dot_overlap_3px": 0.08206,
+            "mutual_min_overlap_3px": 0.04775,
+            "effective_dot_overlap_3px": 0.04775,
+            "duplicate_flag": false
+          },
+          {
+            "registry_raster": "gems91-ucd91-20261024T190000Z-df735405-zeros.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 48000,
+            "surface_abs_rank_corr": 0.03679,
+            "dots_abs_rank_corr": 0.00663,
+            "cand_within_3px_of_reg": 0.31035,
+            "reg_within_3px_of_cand": 0.22198,
+            "f1_dot_overlap_3px": 0.25883,
+            "mutual_min_overlap_3px": 0.22198,
+            "effective_dot_overlap_3px": 0.31035,
+            "duplicate_flag": false
+          },
+          {
+            "registry_raster": "gems91-ucd91-20261024T190000Z-df735405.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 48000,
+            "surface_abs_rank_corr": 0.03679,
+            "dots_abs_rank_corr": 0.00663,
+            "cand_within_3px_of_reg": 0.31035,
+            "reg_within_3px_of_cand": 0.22198,
+            "f1_dot_overlap_3px": 0.25883,
+            "mutual_min_overlap_3px": 0.22198,
+            "effective_dot_overlap_3px": 0.31035,
+            "duplicate_flag": false
+          },
+          {
+            "registry_raster": "gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 44000,
+            "surface_abs_rank_corr": 0.03462,
+            "dots_abs_rank_corr": 0.005,
+            "cand_within_3px_of_reg": 0.28002,
+            "reg_within_3px_of_cand": 0.22466,
+            "f1_dot_overlap_3px": 0.2493,
+            "mutual_min_overlap_3px": 0.22466,
+            "effective_dot_overlap_3px": 0.28002,
+            "duplicate_flag": false
+          },
+          {
+            "registry_raster": "gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 47200,
+            "surface_abs_rank_corr": 0.03438,
+            "dots_abs_rank_corr": 0.00364,
+            "cand_within_3px_of_reg": 0.29174,
+            "reg_within_3px_of_cand": 0.21036,
+            "f1_dot_overlap_3px": 0.24445,
+            "mutual_min_overlap_3px": 0.21036,
+            "effective_dot_overlap_3px": 0.29174,
+            "duplicate_flag": false
+          },
+          {
+            "registry_raster": "gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 37654,
+            "surface_abs_rank_corr": 0.03362,
+            "dots_abs_rank_corr": 0.00655,
+            "cand_within_3px_of_reg": 0.28576,
+            "reg_within_3px_of_cand": 0.2306,
+            "f1_dot_overlap_3px": 0.25523,
+            "mutual_min_overlap_3px": 0.2306,
+            "effective_dot_overlap_3px": 0.28576,
+            "duplicate_flag": false
+          }
+        ]
+      },
+      "dot_gate_lattice": {
+        "uniqueness_gate_version": "gems91-directed-registry-v1.1",
+        "dot_overlap_policy": "strict directed candidate-within-3px-of-registry for every registry raster",
+        "n_registry_rasters_checked": 1,
+        "max_allowed_rank_corr": 0.9,
+        "max_allowed_dot_overlap_3px": 0.7,
+        "surface_max_abs_rank_corr": 0.00796,
+        "surface_closest_raster": "calib_r13lattice_00904.tif",
+        "dots_max_abs_rank_corr": 0.00026,
+        "dots_max_3px_overlap": 0.99742,
+        "dots_closest_raster": "calib_r13lattice_00904.tif",
+        "dots_max_mutual_3px_overlap": 0.1306,
+        "is_duplicate": true,
+        "rank_comparison_complete": true,
+        "uniqueness_pass": false,
+        "n_comparisons": 1,
+        "closest": [
+          {
+            "registry_raster": "calib_r13lattice_00904.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 206895,
+            "surface_abs_rank_corr": 0.00796,
+            "dots_abs_rank_corr": 0.00026,
+            "cand_within_3px_of_reg": 0.99742,
+            "reg_within_3px_of_cand": 0.1306,
+            "f1_dot_overlap_3px": 0.23096,
+            "mutual_min_overlap_3px": 0.1306,
+            "effective_dot_overlap_3px": 0.99742,
+            "duplicate_flag": true
+          }
+        ]
+      },
+      "deploy_dots": 37654,
+      "status": "DUPLICATE_CAPACITY_LATTICE",
+      "dot_gate": {
+        "uniqueness_gate_version": "gems91-directed-registry-v1.1",
+        "dot_overlap_policy": "strict directed candidate-within-3px-of-registry for every registry raster",
+        "n_registry_rasters_checked": 1,
+        "max_allowed_rank_corr": 0.9,
+        "max_allowed_dot_overlap_3px": 0.7,
+        "surface_max_abs_rank_corr": 0.00796,
+        "surface_closest_raster": "calib_r13lattice_00904.tif",
+        "dots_max_abs_rank_corr": 0.00026,
+        "dots_max_3px_overlap": 0.99742,
+        "dots_closest_raster": "calib_r13lattice_00904.tif",
+        "dots_max_mutual_3px_overlap": 0.1306,
+        "is_duplicate": true,
+        "rank_comparison_complete": true,
+        "uniqueness_pass": false,
+        "comparisons": [
+          {
+            "registry_raster": "calib_r13lattice_00904.tif",
+            "rank_comparison_defined": true,
+            "n_registry_positive": 206895,
+            "surface_abs_rank_corr": 0.00796,
+            "dots_abs_rank_corr": 0.00026,
+            "cand_within_3px_of_reg": 0.99742,
+            "reg_within_3px_of_cand": 0.1306,
+            "f1_dot_overlap_3px": 0.23096,
+            "mutual_min_overlap_3px": 0.1306,
+            "effective_dot_overlap_3px": 0.99742,
+            "duplicate_flag": true
+          }
+        ]
+      },
+      "holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 60988,
+        "value": 0.07117087208867402,
+        "ci95": [
+          0.06376883492951907,
+          0.07927028477781099
+        ],
+        "tpw": 4045.9367282663034,
+        "fpw": 36243.11649539961,
+        "fnw": 56942.063271733714,
+        "folds": [
+          {
+            "fold": 0,
+            "n_truth": 29319,
+            "n_emitted": 18059,
+            "dti": 0.07428992992213192
+          },
+          {
+            "fold": 1,
+            "n_truth": 12596,
+            "n_emitted": 10076,
+            "dti": 0.0640378998968926
+          },
+          {
+            "fold": 2,
+            "n_truth": 9473,
+            "n_emitted": 4160,
+            "dti": 0.07532298615427883
+          },
+          {
+            "fold": 3,
+            "n_truth": 9600,
+            "n_emitted": 5809,
+            "dti": 0.06741174703284185
+          }
+        ],
+        "fold_truth_sum": 60988,
+        "implementation_sha256": {
+          "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+          "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+          "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+          "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+        }
+      }
+    },
+    {
+      "id": "E2",
+      "status": "NOT_RUN",
+      "reason": "previous arm duplicate-stopped the lane"
+    },
+    {
+      "id": "E3",
+      "status": "NOT_RUN",
+      "reason": "previous arm duplicate-stopped the lane"
+    }
+  ],
+  "raster_sha256": "4aecf0851bbe0ae3a9f87255f4d438597becc90e50ec49789852cfe1a33d4327",
+  "validator_output": {
+    "file": "/home/user/GEMSDOE91/docs/downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+    "bytes": 142403,
+    "sha256": "4aecf0851bbe0ae3a9f87255f4d438597becc90e50ec49789852cfe1a33d4327",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros",
+  "note": "XG91 E1 crest; HOLDOUT-DTI 0.071171 gems57-pooled-hide-v2; below random; do not submit",
+  "artifact": {
+    "file": "downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+    "zip": "downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.zip",
+    "receipt": "downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.json",
+    "bytes": 142403,
+    "dots": 37654
+  },
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "capacity_stop_synthetic_lattice": true,
+  "negative_reason": "NOT OK TO SUBMIT. Literal 3 px overlap with the synthetic blanket lattice is 0.99742, above 0.70; logged as a capacity duplicate and not promoted. HOLDOUT-DTI 0.071171 (gems57-pooled-hide-v2, 60988 withheld, 95% CI [0.063769, 0.079270]) is below the matched random control 0.073788; paired delta -0.002618, 95% CI [-0.009427, 0.005131] includes zero. Does not exceed the recorded same-evaluator point estimate 0.194267. Lane was not assigned by the prompt. No selector receipt. 0 slots spent. 0.2778 and 0.4413 are not receipts for this file.",
+  "slots_used": 0,
+  "organizer_confirmed": null,
+  "elapsed_s": 81.6,
+  "paired_random_control": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 60988,
+    "xg91_value": 0.07117087208867402,
+    "random_value": 0.07378847330707884,
+    "delta": -0.002617601218404819,
+    "ci95": [
+      -0.00942658134574926,
+      0.005130525605656467
+    ],
+    "interpretation": "Paired 20 km block bootstrap, 400 draws, seed 91. The 95% CI includes zero, so no improvement over the matched random control is established. Not a new experiment; the file was already written."
+  },
+  "raster_path": "docs/downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif"
+}

@@ -46,7 +46,10 @@ def test_verdict_stays_negative_and_gates_honest():
 
 
 def test_site_shows_s17_with_no_submit_verdict():
-    for name in ("docs/index.html", "docs/executive-summary.html"):
+    # geo91-*-src.html are the durable sources copied to index/executive-summary
+    # by scripts/render_geo91_portal.py (last step of render_portal.py).
+    for name in ("docs/index.html", "docs/executive-summary.html",
+                 "docs/geo91-index-src.html", "docs/geo91-exec-src.html"):
         text = (ROOT / name).read_text(encoding="utf-8")
         assert "S17-EULR" in text and "NOT OK TO SUBMIT" in text
         assert CARD["artifact"]["primary_zeros_tif"].split("/")[-1] in text

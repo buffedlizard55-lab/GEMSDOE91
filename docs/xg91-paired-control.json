@@ -1,0 +1,42 @@
+{
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positives": 60988,
+  "xg91": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.07117087208867402,
+    "ci95": [
+      0.0637086666826969,
+      0.07917422394831959
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 4045.9367282663034,
+    "fpw": 36243.11649539961,
+    "fnw": 56942.063271733714
+  },
+  "random_control": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.07378847330707884,
+    "ci95": [
+      0.07032082731035734,
+      0.07680944084998521
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 4201.204286238375,
+    "fpw": 36525.69595029333,
+    "fnw": 56786.79571376161
+  },
+  "paired_difference": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": -0.002617601218404819,
+    "ci95": [
+      -0.00942658134574926,
+      0.005130525605656467
+    ],
+    "withheld_positive_pixels": 60988
+  },
+  "note": "Post-stop diagnostic of the already emitted E1 arm. Not a new experiment and not used to select a different file."
+}
