@@ -99,7 +99,9 @@ ORGANIZER-CONFIRMED without a submission-page receipt.
 
 ## Start here every session
 
-**Current review (2026-10-25):** [Arena branch review and run card](docs/REVIEW-ARENA-6FEDEF59-20261025.md). Current result is negative; no fresh TIFF or score was generated. Existing research-only file is explicitly **not approved to submit**.
+**Current branch review (`arena/e92c84e1-gemsdoe91`, 2026-10-25):** [Three-pass review, ranked hypotheses, limitations, and run card](docs/REVIEW-E92C84E1-20261025.md). No experiment or new TIFF was generated; local preflight is blocked, the installed environment cannot recheck raster format, and nothing is approved to submit. Existing research artifacts are not an authorization to submit.
+
+**Prior review (historical snapshot):** [Arena branch review and run card](docs/REVIEW-ARENA-6FEDEF59-20261025.md). Current result is negative; no fresh TIFF or score was generated. Existing research-only file is explicitly **not approved to submit**.
 
 Read this status, [the full standing brief below](#full-project-brief), [the current review for this branch](docs/REVIEW-08E91DAD-20261025.md), [the integrated parallel review](docs/REVIEW-ARENA-ABB160F7-20261025.md), [the prior active-checkout review (historical snapshot)](docs/REVIEW-ACTIVE-20261025.md), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
 
