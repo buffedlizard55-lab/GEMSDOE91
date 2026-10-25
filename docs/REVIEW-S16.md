@@ -105,6 +105,15 @@ not scientific scores. Source and data verification boundaries are in
 | Unique name and ≤140-char note | Recorded in run card, writer receipt and copy controls |
 | Pull request / merge | Recorded in the final response and GitHub PR, after verification |
 
+### Publication boundary
+
+GitHub denied changing Pages from legacy main-root mode to workflow mode
+(HTTP 403, Resource not accessible by integration). The committed portal can
+still publish through the existing legacy mechanism; scheduled refreshed
+source-feed artifacts do not automatically update the live snapshot. This
+permission limitation is now explicit on the site and in the README. No live
+publication is claimed before a successful deployment receipt.
+
 ### Concurrent main integration
 
 Integrated `347ecb4` and the subsequent `911b6a9` DZ-EDGE correction from main while remaining on the assigned S16 branch.

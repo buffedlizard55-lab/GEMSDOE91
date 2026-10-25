@@ -66,7 +66,7 @@ Scientific scoring/writing uses the **unchanged pinned shared template**, not a 
 - Official reference notebook fetched from [DrivenData's repository](https://github.com/drivendataorg/gems-prize-reference-solution). It supplies a U-Net/Tversky-loss example, **not** an authenticated distance-weighted scorer.
 - Real competition inputs were restored from existing hash-pinned GitHub mirrors. Raw data/caches remain ignored and are not published. Hash identity is not a data-rights attestation.
 - The official DrivenData web pages, USGS, NLR and GDR leads were not fetched/authenticated in the recorded source audit. No authenticated submission-page receipt, live slot allowance, hidden truth or complete private registry is available. No new external-data hypothesis is called viable without access.
-- Daily Pages workflow refreshes the bounded GitHub source feed, not the organizer leaderboard. It does not train, search, pick, or submit candidates.
+- Daily Actions refresh the bounded GitHub source feed into an artifact, not the organizer leaderboard. Pages remains in legacy main-root mode: it publishes committed snapshots, not those scheduled refresh artifacts. Changing publisher mode was denied by GitHub (403: Resource not accessible by integration). The GitHub connection needs Pages-settings permission before daily feed auto-publication can be enabled. No workflow trains, searches, picks, or submits candidates.
 
 ## Next session priorities
 

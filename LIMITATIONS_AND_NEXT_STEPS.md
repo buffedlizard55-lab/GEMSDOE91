@@ -42,8 +42,12 @@ and SHA-256 verified in this session. No fake catalogue was used. The old
   code hashes and source snapshots are stored for audit.
 - A clean current Pages landing page, executive guide, research/source page and
   explicit historical archive. No human visual inspection requirement.
-- A scheduled bounded GitHub source feed. It does not authenticate organizer
-  scores or launch scientific experiments.
+- A scheduled bounded GitHub source-feed check saved as an Actions artifact.
+  It does not authenticate organizer scores or launch scientific experiments.
+  **Publication limit:** Pages remains in legacy main-root mode. GitHub denied
+  the publisher-mode update with HTTP 403 (Resource not accessible by integration).
+  Committed snapshots can publish; scheduled refreshed artifacts cannot yet
+  update the live feed. Pages-settings permission is required to enable that.
 
 ## Priority order for the next session
 
