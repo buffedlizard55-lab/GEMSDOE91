@@ -43,13 +43,13 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 <a class="btn2" download href="downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.zip">↓ Single-TIFF ZIP</a>
 <a class="btn2" href="run-card-GEO91.json">Machine run card ↗</a>
 <p class="small">37,654 binary dots · single band float32 · 3730×3292 · all 12,279,160 cells finite in [0,1] · SHA-256<br><code>57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f</code><br>
-The <code>-zeros.tif</code> is the range-safe historical download, but this review did not revalidate it against the sample grid. The official problem page allows null/NaN outside the data bounds; compare the outside-footprint encoding with the exact competition sample before any future submission. The earlier reported “Predicted values must be in range [0, 1]” error has no submission receipt here that identifies its cause. Never upload an audit JSON or catalogue file.</p>
+The <code>-zeros.tif</code> is the range-safe historical download. The fresh <a href="download-audit.html">64-file technical audit</a> re-read it against the SHA-pinned sample and catalogue; its format, grid, and range checks pass. The official problem page allows null/NaN outside the data bounds, while this encoding uses zeros outside the sample footprint; organizer acceptance of that distinction is unverified. The earlier reported “Predicted values must be in range [0, 1]” error has no receipt here that identifies its cause. Never upload an audit JSON or catalogue file.</p>
 </div></div>
 
 <section class="card"><h2>Submission identity (only for a future cleared candidate)</h2>
 <p class="small">Unique name and ≤140-character note, exactly as written into the file's receipt. For this research negative they identify the experiment — they are <strong>not</strong> an instruction to upload it.</p>
-<label class="small">Submission name</label><textarea rows="2" readonly>gems91-geo91e2-stratcover-collar3-20261025T132527Z</textarea>
-<label class="small">Note · 100/140 characters</label><textarea rows="2" readonly>GEO91-E2 habitat-stratified broad coverage, collar&gt;3px, 37654 dotted; see run-card-GEO91.json gates.</textarea>
+<label class="small" for="submission-name">Submission name</label><textarea id="submission-name" rows="2" readonly>gems91-geo91e2-stratcover-collar3-20261025T132527Z</textarea>
+<label class="small" for="submission-note">Note · 100/140 characters</label><textarea id="submission-note" rows="2" readonly>GEO91-E2 habitat-stratified broad coverage, collar&gt;3px, 37654 dotted; see run-card-GEO91.json gates.</textarea>
 <p class="warn"><strong>NOT OK TO SUBMIT.</strong> Format, range, CRS, collar and uniqueness gates pass, but the scientific gate fails: HOLDOUT-DTI 0.055267 [0.053367, 0.057308] vs 0.074387 for the matched random control (gems91-hide-recover-v1.1-nohalo, 60,988 withheld positives). A separate selector decision and a holdout win over control are both required before any upload. 0 slots spent.</p></section>
 
 <section class="card"><h2>Automated gates — no human inspection anywhere</h2>

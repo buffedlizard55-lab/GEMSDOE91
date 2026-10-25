@@ -5,7 +5,7 @@
   "hypothesis": "Top future screen: localized cross-wavelet phase-lag coherence between competition GeoDAWN RTP magnetics and radiometric total-count; previously proposed in repo notes, not implemented/tested here.",
   "mechanism": "If authorized later, estimate cross-wavelet coherence and signed phase lag over pre-registered wavelengths from cached bands; derive all catalogue-based features from visible faults only, run each feature alone through the leakage canary, then use the shared whole-segment buffered hide-and-recover evaluator.",
   "named_non_fault_process": "Unfaulted lithologic contact and GeoDAWN flight-line levelling seam.",
-  "experiment_status": "NOT RUN: missing exact lane paragraph; no local competition sample, catalogue, or cached feature stack.",
+  "experiment_status": "NOT RUN: missing exact lane paragraph and cached feature stack; sample and existing-fault catalogue were restored only for engineering audit." ,
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
     "evaluator_version": null,
@@ -39,7 +39,7 @@
   ],
   "blockers": [
     "The single-method lane paragraph referenced in the parallel protocol is absent from the prompt.",
-    "No files are present in local data/; scripts/preflight.py blocks all configured build axes.",
+    "Only the SHA-pinned sample and existing-fault catalogue were restored for QA; parent raster, cached feature stack, and remaining axis inputs are absent, so preflight blocks every scientific build axis.",
     "No authenticated organizer receipt, live leaderboard state, or current weekly-cap receipt was obtained.",
     "The landing page's historical research candidate remains NOT OK TO SUBMIT."
   ]
