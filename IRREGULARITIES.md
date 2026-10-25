@@ -1566,3 +1566,33 @@ Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and 
 - **IR-DRN91-01 — lane not assigned:** no single method paragraph was supplied; DRN91 is a PROVISIONAL lane chosen from the repo's own never-implemented list (drainage-deflection). No universal uniqueness claim is made.
 - **IR-DRN91-02 — evaluator version differs from comparable best:** DRN91 used `gems57-pooled-hide-v2`; S14-PTAC's 0.267782 used `gems91-hide-recover-v1.0`. The promotion comparison is therefore indicative, not paired. DRN91 (0.166) is far below under any plausible version effect, so the negative verdict is robust to this caveat.
 - **IR-DRN91-03 — independent_tif_check.py needs imagecodecs** for float-predictor TIFFs; installed from requirements in-session. Its aggregate evidence file was regenerated (31 files).
+
+## OLC91 session irregularities (2026-10-25)
+
+* **IR-OLC91-01 (user claim conflict).** The user calls 0.3195 "highest right now". The public
+  leaderboard on 2026-10-25 shows 0.4413 (xiaofanhu, #1); 0.3195 would rank about #24.
+  Source: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+* **IR-OLC91-02 (no receipt).** GEMSDOE32 0.2778 and every fleet live score used here are
+  USER-REPORTED or owner-report (60GEMSDOE `registry/calibration_manifest.json`). No organizer
+  receipt exists.
+* **IR-OLC91-03 (prune inversion inconsistency).** The rounding intervals of the two R0 prune steps
+  imply T ∈ [5027, 5120]·φ and [5392, 5551]·φ, which do not overlap. Either the pruned dots were not
+  exactly zero-credit, or their public fractions differ.
+* **IR-OLC91-04 (blanket references).** `calib_r13lattice_00904` (3 px coverage 99.87%),
+  `r11_greedy_mp` (74.0%) and `r14_union_tips10_lat6` (76.2%) make the literal 70% rule fail for
+  any dense raster. Literal and chance-corrected values are both reported, and no reference was
+  dropped. The OLC91 stop does not depend on them: the non-blanket `gems91-bhar-e3` gives 76.8%
+  literal and 71.8% corrected.
+* **IR-OLC91-05 (unregistered artifact).** The DRN91 TIFF and ZIP were merged in PR #98 without
+  `registry/artifact_policy.json` entries, so `scripts/check_artifact_policy.py` failed on `main`.
+  They are now registered as `current_research_only`.
+* **IR-OLC91-06 (validator exit code).** `scripts/validate_raster.py --allow-zeros-outside` exits 1
+  for a format-valid zeros file. The two gates involved are non-format: NaN-outside (INFO) and
+  parent-diff (UNVERIFIED without a parent). The vendor gems57 validator reports
+  `all_checks_passed: true`.
+* **IR-OLC91-07 (instrument mismatch).** In `buffered_component_draw` seed 20, 55% of the withheld
+  truth lies within 1 km of visible faults, but live evidence shows depletion there. See
+  `docs/HYPOTHESES_OLC91.md` §5.
+* **IR-OLC91-08 (band semantics).** `det_elev` is detrended elevation, so absolute-datum shoreline
+  tests (H3) are infeasible from the stack. The meaning of `tc` ("Tilt angle or total curvature")
+  remains ambiguous in the file's own band description.
