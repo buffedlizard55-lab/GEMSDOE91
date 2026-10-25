@@ -395,9 +395,9 @@
     "slot_available": false,
     "note": "Requires human fleet selector check against live DrivenData 3/rolling-7-day slot counter."
   },
-  "technical_candidate_verdict": "promote_to_selector",
-  "verdict": "promote",
-  "portal_submission_verdict": "HOLD_PENDING_SELECTOR_SIGN_OFF",
+  "technical_candidate_verdict": "negative_duplicate_stop",
+  "verdict": "negative",
+  "portal_submission_verdict": "NOT_OK_TO_SUBMIT_DUPLICATE_STOP",
   "budget": {
     "experiments_executed": 3,
     "max_experiments": 3,
@@ -765,5 +765,8 @@
     "beats_comparable_best": true,
     "separate_selector": false
   },
-  "submission_ready": false
+  "submission_ready": false,
+  "slots_used": 0,
+  "organizer_confirmed": null,
+  "verdict_reason": "Rule 1 final-dot uniqueness fails: 99.838% vs synthetic lattice, 84.706% vs S13-PTHA, and 70.056% vs dense h25 context. Format and holdout gains do not override duplicate stop."
 }

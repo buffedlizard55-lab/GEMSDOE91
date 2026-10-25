@@ -221,13 +221,13 @@
       "path": "docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif",
       "sha256": "678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720",
       "status": "current_research_only",
-      "reason": "S14-HVDC E2 candidate GeoTIFF (0.262209 HOLDOUT-DTI on gems91-hide-recover-v1.0, #1 in GEMSDOE91, +0.017608 vs S13-PTHA E3 0.244601 with paired 95% CI [+0.009179, +0.026128], P(>0)=1.000, and +0.024622 vs S12-SPAC E3 0.237587; 0.110429 Blind USGS SGMC DTI #1 in GEMSDOE91; 101/101 canaries & all 5 format/[0,1] validators PASS; <=50.07% overlap vs canonical registry & <=46.12% vs external dotted fleet; fail-closed pending human selector sign-off on weekly cap, lane assignment, mutual exclusion vs S13-PTHA/S12-SPAC/S11-MHTR, & IR-CED-003 lattice policy; docs/run-card-S14.json)."
+      "reason": "S14-HVDC E2 range-safe research artifact: 0.262209 HOLDOUT-DTI and 0.110429 Blind SGMC, but Rule 1 final overlap fails (99.838% lattice, 84.706% S13, 70.056% dense h25); verdict negative duplicate stop; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.zip",
       "sha256": "6a15bfd1b29219e450764b0d2de70552c87bc38cc82fc0d490021af6166d4670",
       "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S14-HVDC E2 candidate GeoTIFF (0.262209 HOLDOUT-DTI #1 & 0.110429 Blind SGMC DTI #1 in GEMSDOE91; fail-closed pending human selector sign-off; docs/run-card-S14.json)."
+      "reason": "S14-HVDC E2 range-safe research artifact: 0.262209 HOLDOUT-DTI and 0.110429 Blind SGMC, but Rule 1 final overlap fails (99.838% lattice, 84.706% S13, 70.056% dense h25); verdict negative duplicate stop; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
