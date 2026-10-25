@@ -1,12 +1,13 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
-## Latest active-branch review — `arena/0a96aa96-gemsdoe91` (2026-10-25)
+## Latest active-branch review — `arena/6feb36e3-gemsdoe91` (2026-10-25 UTC)
 
-**NEW TIFF GENERATED: NO. OK TO SUBMIT: NO.** This review inspected the current CED91 result; it did not run another geological experiment. The prompt has no assigned method paragraph, and the existing final dots trip the literal duplicate-stop threshold. No weekly slot used. Existing files are research downloads only.
+**NEW TIFF OR EXPERIMENT: NO. OK TO SUBMIT: NO.** The canonical lane is unassigned and required local competition rasters are absent. No holdout experiment or submission was attempted; no weekly slot was used.
 
-- [Current audit and ranked candidate refinements](docs/REVIEW-ACTIVE-0A96AA96-20261025.md) · [Review run card](docs/run-card-REVIEW-0A96AA96.json) · [Current executive summary](docs/active-executive-summary.html).
-- Restored 15 manifest-pinned inputs from the configured GitHub mirrors and verified their SHA-256/length. This includes the local feature stack; the full fleet registry and original DrivenData provenance/usage authorization were not independently established. Fresh CED TIFF validation against the locally restored sample/catalogue passes format/range/grid checks, but submission readiness is FALSE.
-- Refreshed the landing page with the actual active-branch verdict and registered three previously unregistered S15 artifacts as quarantined. The complete project brief remains below under **Original user project brief — full text, formatting normalized**. Read that brief and this latest review at each session start; historical branch claims are not current permissions.
+- [Current checkout review](docs/REVIEW-ACTIVE-6FEB36E3-20261025.md) · [Review run card](docs/run-card-ARENA-6FEB36E3-20261025.json). At each session start, read both this current status and the standing mandate below, then recheck the active branch, inputs, and exact artifact.
+- Existing DZ-EDGE artifact: **OK TO DOWNLOAD: YES — research/education only; OK TO SUBMIT: NO.** Its TIFF bytes and ZIP identity were freshly checked. Exact sample-grid/footprint comparison remains unavailable; the official null/NaN outside-bounds requirement is unverified because the local sample is missing. A historical 0.0 HOLDOUT-DTI against catalogue-proxy targets does not test its off-catalogue hypothesis.
+- The reported GEMSDOE32 `0.2778` remains unverified: the freshly checked source page marks the named file UNSCORED, says no organizer score exists, and identifies 0.2747 as a projection. The official leaderboard snapshot showed 0.4413 at rank 1; that snapshot is not this repository's submission receipt. No causal explanation is claimed.
+- Ranked next hypotheses, their layers, physical signatures, rationale, costs, and availability are in the current review: MFTA, SACR, LCMD, BFT, and ODSA. These are proposals only. The full project brief remains below under **Original user project brief — full text, formatting normalized**.
 
 ## Previous active-branch review (historical; 2026-10-25)
 

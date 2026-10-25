@@ -18,10 +18,10 @@
     "verification": "Fetched 2026-10-25. The page explicitly states NO ORGANISER SCORE EXISTS for its artifacts; the named h33-h33-2-b2...-zeros.tif is marked UNSCORED and its 0.2747 value is labelled a projection/model. The user-supplied 0.2778 claim is not established by this page; no submission receipt was available."
   },
   {
-    "claim": "Competition target, official DTI metric (alpha=0.2, beta=0.8, R=300m triangular kernel, worked example DTI=0.60) and permitted submission format",
+    "claim": "Official problem scope (faults indicative of geothermal resources), newly expert-labeled private test faults, expert-expanded final labels, official distance-weighted Tversky metric (alpha=0.2, beta=0.8, R=300m), and GeoTIFF format",
     "source": "DrivenData official problem description",
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
-    "verification": "Fetched 2026-10-24. Verified single-band float32 EPSG:32611 100m GeoTIFF in [0, 1], asymmetric DTI formula, worked example TP_w=3.00, FP_w=1.89, FN_w=2.00 -> DTI=0.60, and $50K Phase 1 + $250K Phase 2 prize structure."
+    "verification": "Fetched 2026-10-25. The challenge target is faults indicative of geothermal resources, not vent labels. Experts manually identified faults absent from the public catalogue for the initial private test; a later expert panel expands labels for final-round rescoring. Verified distance-weighted Tversky formula, 300m triangular kernel, alpha=0.2, beta=0.8, worked example TP_w=3.00/FP_w=1.89/FN_w=2.00 -> DTI=0.60, and single-band float32 EPSG:32611 100m GeoTIFF with values in [0,1] and null/NaN outside bounds. This fetched page does not verify any GEMSDOE91 submission."
   },
   {
     "claim": "Competition sponsor (DOE Office of Geothermal) and cited scientific references (Matteo et al. 2021; Hermant et al. 2025)",
@@ -79,7 +79,7 @@
   },
   {
     "claim": "Full-resolution 100 m GeoDAWN numerical stack (19 float32 bands) and Band 03 two-cell central-difference scale factor (200.024 m vs Band 09 nT/m)",
-    "source": "DOE OpenEI Geothermal Data Repository — GeoDAWN Great Basin Numerical Features",
+    "source": "DOE OpenEI Geothermal Data Repository \u2014 GeoDAWN Great Basin Numerical Features",
     "url": "https://gdr.openei.org/submissions/1618",
     "verification": "Official GDR link (host outside sandbox allowlist). Local pinned data/bridge/gems-geodawn-numerical-features.tif SHA256-verified on 2026-10-24; full-resolution 512x512 window derivative audit proved med(B03 / ||grad_m(B14)||) = 200.0242 and R^2(B13 ~ B15) = 0.4664."
   },
