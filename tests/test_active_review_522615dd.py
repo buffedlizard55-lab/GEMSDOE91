@@ -140,6 +140,10 @@ def test_current_portal_exposes_active_review_and_calls_download_historical():
     assert "OK TO SUBMIT: NO" in text
     assert "0.1886 HOLDOUT-DTI" in text and "0.1982 HOLDOUT-DTI" in text
     assert "LB-DTI" not in text
+    assert "LB HOLDOUT-DTI" not in text
+    research = TextLinks()
+    research.feed((DOCS / "research.html").read_text(encoding="utf-8"))
+    assert "LB HOLDOUT-DTI" not in " ".join(research.text)
     assert "Why 0.2778 leads" not in text
 
 

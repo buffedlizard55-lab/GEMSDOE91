@@ -1,5 +1,9 @@
 # GEMSDOE91 — active checkout `arena/522615dd-gemsdoe91`
 
+> **Merged tooling from prior reviews, not current-run evidence:** upstream now includes the `6cbfe8ac` fix so `generate_submission.py` verifies the canonical `docs/current-run.json` download by default and blocks `--run` without an assigned lane; the `ee76e309` follow-up adds a current-frontdoor byte verifier to CI. See [6cbfe8ac review](docs/REVIEW-6CBFE8AC-20261025.md) and [ee76e309 review](docs/REVIEW-EE76E309-20261025.md). Their branch-local data availability, audits, and run results do not describe this checkout.
+>
+> **Prior-branch geometry finding (not a score):** the 6cbfe8ac review measured a minimum 82.34% 3-px overlap at a 37,654-dot budget against the literal 70% rule; see [capacity receipt](docs/review-6cbfe8ac/capacity.json). No registry reference or threshold was changed.
+
 > **Current review: NEGATIVE / BLOCKED — no assigned lane, no experiment, no new score, no TIFF, no weekly slot used.** The required single method paragraph is absent, so no method was inferred. The current preflight is **BUILD BLOCKED: 0/2**; the official sample, parent raster, and cached training-feature stack are absent. No competition data were restored from mirrors.
 >
 > **Start here:** [active three-pass review](docs/REVIEW-ACTIVE-522615DD-20261025.md) · [current no-run card](docs/run-card-522615dd.json) · [ranked hypotheses](docs/HYPOTHESES-ACTIVE-522615DD-20261025.md) · [project brief](#full-project-brief) · [submission guide](docs/executive-summary.html).
@@ -218,6 +222,8 @@ Concurrent main reviews were integrated, including the S15 holdout/final-selecto
 <a id="full-project-brief"></a>
 
 ## Original user project brief — preserved standing text and supplied updates
+
+**2026-10-25 supplied update for this session (claims, not receipts):** GEMSDOE91 `gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367`; `gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823`; GEMSDOE92 `gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255`. These are not ORGANIZER-CONFIRMED and must not be substituted for holdout results. This update plus the standing prompt below preserves the operative requirements; literal byte identity to the repeated long message is not claimed. Start every session by reading this brief and current review. Core values: Maximize P(Win); Own the Outcome.
 
 <details>
 <summary>Preserved standing user prompt; read at every session start</summary>

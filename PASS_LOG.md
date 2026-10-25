@@ -115,3 +115,30 @@ File: docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9ac
 - **Pass 3 — docs/portal/tests:** updated the active README and portal to distinguish the prior OLC91 research download from this no-run review; fixed `LB-DTI` navigation labels; added the branch-specific review/run card, official source records, and tests. Normalized all 115 historical CSV source URL strings without changing their evidence class or receipt status. Re-rendered the portal.
 - **Final verification:** `.venv/bin/python -m pytest -o addopts='' -ra` → **555 passed, 8 skipped, 58 warnings** in 36.15 s (data-dependent skips; Rasterio affine deprecation warnings). `scripts/check_artifact_policy.py` → **PASS, 87 registered artifacts**. `git diff --check` → clean. Expected `scripts/preflight.py` exit 1 remains the active blocker.
 - **Outcome:** negative/blocked; zero experiments and weekly slots, no new score, no new TIFF, no organizer receipt. Prior OLC91 file remains research-only and is not promoted. Current review/run card: `docs/REVIEW-ACTIVE-522615DD-20261025.md` / `docs/run-card-522615dd.json`.
+
+## Review 6cbfe8ac — 2026-10-25
+
+1. Implemented: fixed default verification of HEXFAR91 when website links OLC91; exact canonical TIFF/ZIP/card/pointer now checked; blocked unassigned `--run`; preserved explicit historical verifiers and clarified executive guide.
+2. Reviewed: fixed shared audit float32 omission; added invalid-dtype, re-pinned NaN/Inf/range, pointer, ZIP, note and missing-reference regression cases. Restored pinned inputs and recomputed lattice capacity independently; fresh inventory 87 files, 78 PASS / 9 FAIL, all not approved to submit.
+3. Rechecked: final full suite **568 passed, 1 expected skip**, 62 Rasterio pending-deprecation warnings. Local links and canonical portal rendering checked. No candidate, no scientific HOLDOUT-DTI, no slot. Missing lane and literal uniqueness infeasibility remain explicit, not bypassed.
+
+Evidence: `docs/REVIEW-6CBFE8AC-20261025.md`, `docs/review-6cbfe8ac/verification.json`, `docs/run-card-6cbfe8ac.json`.
+
+Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 review/CI/tests, and delegated this CLI wrapper’s reference check to the shared `verify_frontdoor.py`. Integrated full suite **585 passed, 1 expected skip**, 78 Rasterio warnings. No scientific experiment or slot.
+
+---
+
+## Active branch review (`arena/e02bcd84-gemsdoe91`, 2026-10-25)
+
+- **Pass 1 — inspect:** read the standing brief and repo evidence; confirmed canonical lane assignment is false; installed pinned requirements and restored 15 selected inputs from repository-pinned GitHub mirrors into ignored `data/` (all hashes/sizes matched; no raw data staged). Fetched official DrivenData problem specification and USGS GeMS SGMC/ComCat pages; exact links and source boundaries are in `docs/REVIEW-ACTIVE-E02BCD84-20261025.md`.
+- **Pass 2 — run checks:** full `.venv/bin/pytest -q -ra` passed with one expected legacy-release skip. `scripts/preflight.py` reported BUILD ALLOWED for its local prerequisites; `scripts/check_artifact_policy.py` passed for 87 registered artifacts. `scripts/audit_downloads.py` checked 87 artifacts: 78 format PASS / 9 FAIL, global submit status false. Failures are seven NaN-outside TIFFs and two synthetic TIFF/ZIP catalogue-mask failures; they remain unapproved. Historical CED91 artifact validation passed only its defined format/sample/catalogue checks and reports submission_ready false.
+- **Pass 3 — requirements:** no exact method paragraph assigned, so no experiment, candidate TIFF, submission slot, or score was produced. Ranked five conditional hypotheses and source availability checks are documented; top screen is MUSD, but it is not lane-assigned or holdout-validated. Existing OLC91 portal file is research-only and has a recorded duplicate stop. Updated README start page to point to this branch's review and preserve the existing full prompt.
+- **Verdict:** NEGATIVE / NO PROMOTION. No new TIFF is available to download or submit. Run card: `docs/run-card-E02BCD84.json`; detailed review: `docs/REVIEW-ACTIVE-E02BCD84-20261025.md`.
+
+
+## Active-branch integration recheck — `arena/522615dd-gemsdoe91` — 2026-10-25
+
+- Merged upstream main through `5262aa9947d4b50d2fc433a86d409fc5b7f42811` on the fixed session branch; retained upstream current-download verifier/CI and branch-specific historical reviews, while keeping this checkout's no-lane/no-data status explicit.
+- Re-ran `.venv/bin/python -m pytest -o addopts='' -ra`: **588 passed, 8 skipped, 78 warnings** in 37.80 s. Artifact policy: **PASS, 87 registered prediction artifacts**. `git diff --cached --check`: clean at the integration checkpoint.
+- Default `generate_submission.py` verifies the exact current OLC91 TIFF/ZIP/card and reports technical PASS, **OK TO DOWNLOAD: YES — RESEARCH ONLY**, **OK TO SUBMIT: NO**, references `NOT_CHECKED`. `--with-data` blocks on the absent official sample; `--run` blocks on the absent lane.
+- `scripts/preflight.py`: expected **BUILD BLOCKED: 0/2**, all six axes blocked. No data restored, experiment run, new score/TIFF, selector step, or slot use.

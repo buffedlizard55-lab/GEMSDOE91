@@ -76,7 +76,7 @@ def page_shell(title: str, content: str, card: dict) -> str:
 <link rel="stylesheet" href="assets/portal.css"><link rel="stylesheet" href="assets/s16.css"><script defer src="assets/portal.js"></script></head>
 <body><a class="skip" href="#main">Skip to content</a><div class="wrap">
 <header class="s16-top"><a class="s16-logo" href="index.html"><span class="s16-monogram" aria-hidden="true">91</span><span>GEMSDOE<small>FAULT DISCOVERY LAB</small></span></a>
-<nav aria-label="Main"><a href="index.html">Home &amp; verdicts</a><a href="s17-cpad.html"><strong>S17-CPAD (0.1982 HOLDOUT-DTI)</strong></a><a href="s17-cpad-executive-summary.html">S17 submission guide</a><a href="s15-scgf.html">S15-SCGF</a><a href="executive-summary.html">General guide</a><a href="research.html">S16 &amp; sources</a><a href="archive-results.html">Archive</a></nav></header>
+<nav aria-label="Main"><a href="index.html">Home &amp; verdicts</a><a href="s17-cpad.html"><strong>S17-CPAD · holdout audit</strong></a><a href="s17-cpad-executive-summary.html">S17 submission guide</a><a href="s15-scgf.html">S15-SCGF</a><a href="executive-summary.html">General guide</a><a href="research.html">S16 &amp; sources</a><a href="archive-results.html">Archive</a></nav></header>
 <main id="main">{content}</main>
 <footer class="s16-foot"><div>Maximize P(Win). Own the outcome.<br>3 preregistered S17 arms · 0 competition slots spent · 100% automated byte verification.</div>
 <div><a href="run-card-S17-CPAD.json">S17 JSON run card</a> · <a href="s17/verification.json">Machine audit</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">GitHub repo</a><br>Completed {esc(card['completed_utc'][:19].replace('T', ' '))} UTC.</div></footer></div></body></html>

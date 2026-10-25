@@ -21,7 +21,14 @@
     ],
     "training_feature_cache_present": false,
     "ready_axes": [],
-    "blocked_axes": ["PRUNE", "MASS", "SNAP", "CONCENTRATION", "RELIEF", "TRACKB"],
+    "blocked_axes": [
+      "PRUNE",
+      "MASS",
+      "SNAP",
+      "CONCENTRATION",
+      "RELIEF",
+      "TRACKB"
+    ],
     "competition_data_page_access": "ANONYMOUS REQUEST REDIRECTED TO LOGIN",
     "restored_or_downloaded_data": false
   },
@@ -124,5 +131,54 @@
     "Public leaderboard, user-reported values, local holdout values, and organizer receipts are distinct evidence classes.",
     "The GEMSDOE32 owner page explicitly states that no organizer score exists for its artifacts.",
     "docs/run-card-current-review.json is dated 2026-10-25 but belongs to arena/2f002fa0-gemsdoe91, not the active branch."
-  ]
+  ],
+  "integration_verification": {
+    "upstream_main_tip": "5262aa9947d4b50d2fc433a86d409fc5b7f42811",
+    "current_branch_merge": true,
+    "full_test_suite": {
+      "command": ".venv/bin/python -m pytest -o addopts='' -ra",
+      "collected": 596,
+      "passed": 588,
+      "skipped": 8,
+      "warnings": 78,
+      "duration_seconds": 37.8,
+      "status": "PASS"
+    },
+    "artifact_policy": {
+      "status": "PASS",
+      "registered_prediction_artifacts": 87,
+      "raw_raster_or_archive_tracked": false
+    },
+    "preflight": {
+      "status": "BUILD BLOCKED",
+      "required_inputs_verified": 0,
+      "required_inputs": 2,
+      "blocked_axes": [
+        "PRUNE",
+        "MASS",
+        "SNAP",
+        "CONCENTRATION",
+        "RELIEF",
+        "TRACKB"
+      ]
+    },
+    "current_download_verifier": {
+      "command": "python generate_submission.py",
+      "status": "TECHNICAL PASS",
+      "ok_to_download": "YES — RESEARCH ONLY",
+      "ok_to_submit": "NO",
+      "reference_checks": "NOT_CHECKED"
+    },
+    "with_data_verification": {
+      "command": "python generate_submission.py --with-data",
+      "status": "BLOCKED",
+      "reason": "data/official/sample_submission.tif is absent"
+    },
+    "experiment_flag": {
+      "command": "python generate_submission.py --run",
+      "status": "BLOCKED",
+      "reason": "No assigned method lane"
+    },
+    "scientific_run_or_slot": false
+  }
 }
