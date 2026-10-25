@@ -76,8 +76,8 @@ Corrections implemented (engineering checks do not rerun the geological search):
 **Local post-integration result:** 431 tests passed, 2 explicit data-dependent
 skips; 30 dependency deprecation warnings. Automated Chromium delivery checks
 passed for root redirect, exact TIFF/ZIP download hashes, copy fallback, mobile
-layout and accessibility on 14 current/archive pages. No visual approval was
-required. All three remote CI jobs also passed ([run 40162592115](https://github.com/buffedlizard55-lab/GEMSDOE91/actions/runs/40162592115)); later publication receipts are recorded on [PR #79](https://github.com/buffedlizard55-lab/GEMSDOE91/pull/79). Independent byte/evidence verification and all 48 artifact-policy
+layout and accessibility on 17 current/archive pages. No visual approval was
+required. All three remote CI jobs also passed ([run 40162592115](https://github.com/buffedlizard55-lab/GEMSDOE91/actions/runs/40162592115)); later publication receipts are recorded on [PR #79](https://github.com/buffedlizard55-lab/GEMSDOE91/pull/79). Independent byte/evidence verification and all 51 artifact-policy
 entries passed. Synthetic end-to-end legacy fixture checks also passed; these
 are not scientific experiments or performance evidence.
 
@@ -118,7 +118,7 @@ publication is claimed before a successful deployment receipt.
 
 Integrated `347ecb4`, the subsequent `911b6a9` DZ-EDGE correction, and
 `332d72a` full-grid validator/prerequisite review, and `def38f0` CED91
-portal review, plus `1053028` DZ-EDGE builder retirement from main while remaining on the assigned S16 branch.
+portal review, plus `1053028` DZ-EDGE builder retirement and `5146eb9` parallel H1 artifacts from main while remaining on the assigned S16 branch.
 Preserved the S15 selector/cache/readiness fixes, focused regression test,
 corrected historical cards and both dated review records. Regenerated pages
 from the combined renderer rather than discarding concurrent source changes.
@@ -127,7 +127,10 @@ Preserved the later CED review under a dated archive, avoiding both a second
 check now matches an exact seven-equals separator rather than mistaking pytest
 log headings for unresolved conflicts.
 The other review’s external-page observations remain secondary provenance;
-S16 did not independently fetch/authenticate those official pages. Its absent-
+S16 did not independently fetch/authenticate those official pages. The later H1
+artifacts are hash-registered as quarantined research, not added to frozen S16
+comparisons after its duplicate stop. Its prior landing is preserved as a dated
+archive, not silently discarded or presented as an S16 experiment. Its absent-
 input state is a dated snapshot, not the current restored S16 data state.
 
 ## Findings that must not be concealed

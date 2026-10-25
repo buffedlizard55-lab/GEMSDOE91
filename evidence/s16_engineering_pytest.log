@@ -18,4 +18,4 @@ tests/test_validate_raster.py: 1 warning
 =========================== short test summary info ============================
 SKIPPED [1] tests/test_hcpa_s15.py:40: complete S15 integration inputs not restored
 SKIPPED [1] tests/test_release_integration.py:77: No legacy releases materialized; not a release certification. Current downloadable artifacts have separate tests.
-431 passed, 2 skipped, 30 warnings in 22.51s
+431 passed, 2 skipped, 30 warnings in 22.94s
