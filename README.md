@@ -33,7 +33,7 @@
 >
 > **Why the reported GEMSDOE32 0.2778 may have risen:** sparse dot emission and pruning predictions with low marginal coverage can reduce penalized mass under a spatial DTI objective. That is a plausible metric mechanism, not causal proof or an organizer-confirmed score. The user-provided 0.2778, 0.3195 and 0.4413 are not submission receipts in this checkout.
 
-Core values: **Maximize P(Win) · Own the Outcome.** Start every session with this status, the [full standing project brief](#full-project-brief), and the [current-checkout review](docs/REVIEW-6CBFE8AC-20261025.md). Download-format validity, holdout improvement, registry uniqueness, selector approval, and an organizer receipt are separate gates.
+Core values: **Maximize P(Win) · Own the Outcome.** Start every session with this status, the [current active-branch review](docs/REVIEW-ACTIVE-FFB91DA8-20261025.md) ([run card](docs/run-card-FFB91DA8-20261025.json)), the [full standing project brief](#full-project-brief), and the [merged 6cbfe8ac review](docs/REVIEW-6CBFE8AC-20261025.md) as subsequent main-branch context. Download-format validity, holdout improvement, registry uniqueness, selector approval, and an organizer receipt are separate gates.
 
 ---
 
