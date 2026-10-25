@@ -1,0 +1,7 @@
+{
+  "status": "BLOCKED",
+  "ok_to_download": null,
+  "ok_to_submit": false,
+  "submission_ready": false,
+  "error": "missing pinned sample_submission: data/official/sample_submission.tif"
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": "gems91.review-run-card.v1",
+  "review_id": "ARENA-0585E965-20261025",
+  "branch": "arena/0585e965-gemsdoe91",
+  "reviewed_utc": "2026-10-25T13:48:16Z",
+  "review_passes": [
+    "Evidence and source provenance",
+    "Pinned-data and verifier edge cases",
+    "Rendered-site, full-suite, and readiness final check"
+  ],
+  "lane": {
+    "assigned": false,
+    "status": "BLOCKED",
+    "reason": "The user-specified single-method paragraph for this parallel lane was not present."
+  },
+  "hypothesis": {
+    "rank": 1,
+    "name": "Persistent InSAR deformation discontinuities on concealed fault strands",
+    "status": "RANKED_DESK_HYPOTHESIS_ONLY",
+    "mechanism": "A persistent, narrow Sentinel-1 line-of-sight/shear gradient aligned with independent cached magnetic/gravity structure may expose creeping or recently active blind fault strands without a crisp 100 m scarp.",
+    "named_non_fault_mimic": "Groundwater-driven basin subsidence or seasonal hydrologic loading; volcanic inflation, landslides, atmospheric/orbit ramps, and decorrelation boundaries are additional mimics.",
+    "official_data_availability": "NASA/JPL OPERA is an official-source lead only; not fetched, not present locally, and coverage, product version, and data-use permission are unverified."
+  },
+  "reported_scores": {
+    "gemsdoe32_0_2778": "USER_REPORTED_UNVERIFIED_NOT_ORGANIZER_CONFIRMED",
+    "leaderboard_0_3195": "USER_REPORTED_UNVERIFIED_NOT_ORGANIZER_CONFIRMED",
+    "leaderboard_0_4413": "USER_REPORTED_UNVERIFIED_NOT_ORGANIZER_CONFIRMED",
+    "organizer_confirmed_score": null
+  },
+  "experiment": {
+    "run": false,
+    "experiments_run_this_review": 0,
+    "maximum_experiments": 3,
+    "maximum_wall_clock_seconds": 7200,
+    "data_restored": false,
+    "slots_used": 0,
+    "reason_not_run": "Lane unassigned and all 15 pinned data paths absent; no authorized replacement data available."
+  },
+  "holdout_result": {
+    "label": null,
+    "status": "NOT_RUN_BLOCKED",
+    "required_evaluator_version": "gems91-hide-recover-v1.0 shared whole-segment evaluator",
+    "evaluator_version_used": null,
+    "withheld_positive_count": null,
+    "score": null,
+    "ci95": null,
+    "note": "No score or projection was generated for the ranked hypothesis."
+  },
+  "feature_alone_leakage_canary": {
+    "status": "NOT_RUN_BLOCKED",
+    "maximum_auc_threshold": 0.9,
+    "maximum_auc": null,
+    "features_tested": 0,
+    "reason": "No new feature surface or experiment was built."
+  },
+  "registry_comparison": {
+    "status": "NOT_RUN",
+    "surface_before_placement": "NOT_RUN_NO_SURFACE",
+    "final_dots_after_placement": "NOT_RUN_NO_RASTER",
+    "reason": "No candidate surface or raster was created. Do not interpret this as a uniqueness pass."
+  },
+  "raster_sha256": null,
+  "validator_outcomes": {
+    "new_candidate_created": false,
+    "finite_values_and_range_0_1": "NOT_APPLICABLE_NO_CANDIDATE",
+    "footprint_and_zero_outside": "NOT_APPLICABLE_NO_CANDIDATE",
+    "crs_shape_transform": "NOT_APPLICABLE_NO_CANDIDATE",
+    "catalogue_mask": "NOT_APPLICABLE_NO_CANDIDATE",
+    "registry_uniqueness": "NOT_RUN",
+    "shared_writer": "NOT_RUN",
+    "verify_s16pc_synthetic_regression_tests": "PASS",
+    "verify_s16pc_current_checkout": "BLOCKED_MISSING_PINNED_SAMPLE_TEMPLATE"
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_max_characters": 140,
+    "ok_to_download": false,
+    "ok_to_submit": false,
+    "readiness_scope": "No artifact was created in this review; existing research artifacts have separate status records."
+  },
+  "current_data_state": {
+    "pinned_file_count": 15,
+    "present_count": 0,
+    "missing_count": 15,
+    "checked_utc": "2026-10-25T13:35:24Z",
+    "manifest_sha256_pins_changed": false,
+    "mirror_provenance_or_use_permission_resolved": false
+  },
+  "historical_artifact_context": {
+    "s16_pgrd": {
+      "raster_sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9",
+      "research_download_ready_recorded": true,
+      "submission_ready": false,
+      "holdout": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positive_count": 60988,
+        "score": 0.06939688563289523,
+        "ci95": [
+          0.05751001360811543,
+          0.0816755685735943
+        ]
+      },
+      "registry_status_recorded": "DUPLICATE",
+      "note": "Historical run-card evidence, not re-computed in this review and not comparable by default to other evaluator versions."
+    },
+    "s16_pc91_fresh_verification": {
+      "status": "BLOCKED",
+      "reason": "Pinned sample_submission.tif is absent; no fresh template/catalogue/registry verification."
+    }
+  },
+  "verdict": "negative",
+  "verdict_reason": "No new candidate can be evaluated or cleared while lane assignment, pinned inputs, provenance/use permission, holdout validation, canary, registry comparison, and selector requirements remain unresolved."
+}

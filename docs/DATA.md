@@ -5,6 +5,15 @@ list. Paths are `local_subpath`, relative to the gitignored `data/` tree. `scrip
 owns the build verdict; `tools/pins.py` is the narrow check a builder makes before it reads
 a byte ("is this file one of the pinned inputs?").
 
+## Current checkout status — 2026-10-25
+
+All 15 pinned local input paths are absent in this checkout. `registry/data_manifest.json` was
+updated to set the current `local_present` and `verified_here` flags to false; the immutable
+content SHA-256 pins were not changed. No file was restored. A GitHub owner-repository mirror
+is lineage evidence only: it does not establish organizer provenance, redistribution rights, or
+permission to use the data in a competition submission. Do not run a mirror restore for research
+until those questions are resolved. `scripts/preflight.py` is expected to block a build.
+
 ## Rules
 
 1. **Nothing is built from memory.** An input is usable only if its sha256 appears in the
