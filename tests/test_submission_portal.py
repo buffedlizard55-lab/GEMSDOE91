@@ -36,7 +36,7 @@ def load_card():
 
 
 def test_all_local_page_links_assets_and_fragments_resolve():
-    for name in ('index.html','docs/index.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
+    for name in ('index.html','docs/index.html','docs/current-review.html','docs/executive-summary-current-review.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
         path=ROOT/name; parser=Page(); parser.feed(path.read_text())
         for href in parser.links:
             u=urlsplit(href)
@@ -84,13 +84,14 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
     except Exception:
         pass
     allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip}|g91_allowed|s14_allowed|s15_allowed
-    for name in ('index.html','executive-summary.html'):
+    for name in ('index.html','executive-summary.html','submit.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states and all(x=='false' for x in p.states)
-        assert 'NOT OK TO SUBMIT' in text
-        assert 'research' in text.lower()
-        assert {a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip}.issubset(p.downloads)
-        assert all(x in allowed for x in p.downloads)
+        assert 'OK TO DOWNLOAD: NO' in text
+        assert 'OK TO SUBMIT: NO' in text
+        assert 'no current candidate' in text.lower()
+        assert not p.downloads, f'Current {name} must not offer any historical TIFF or ZIP.'
+        assert 'GEMSDOE32' in text and 'user-reported' in text.lower()
         assert 'bff9fd21.tif' not in text
 
     for hvdc_page_name in ('docs/s14-hvdc.html', 'docs/s14-hvdc-executive-summary.html'):
@@ -198,7 +199,7 @@ def test_readiness_requires_all_independent_gates_not_just_format():
 
 
 def test_portal_render_is_reproducible():
-    names=['index.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    names=['index.html','current-review.html','executive-summary-current-review.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
     before={n:(ROOT/'docs'/n).read_bytes() for n in names}
     subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'

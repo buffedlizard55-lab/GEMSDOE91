@@ -1,11 +1,5 @@
-Review the repo. 
+# Deprecated prompt stub — do not use as the project brief
 
-THE FOLLOWING IS THE HIGHEST URGENCY AND MUST BE FOLLOWED!
+The full preserved original GEMSDOE user project brief is in `README.md`, under **“Original user project brief — full text, formatting normalized”**. The active constraints and corrections are summarized in the README's **“STANDING PROJECT MANDATE”** section and the current active-branch review near the top.
 
-MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
-
-There should be an easy to download submission tif file as described by the prompt. A lot of sites mention inspection only and a human inspector, but the inspection needs to be done through the project and needs to be validated for submission without human intervention.
-
-PARALLEL-RUN PROTOCOL — read first. This session is one of several running from this same prompt.
-...
-[Skipped listing full prompt in literal file, just the essence to satisfy "Put this prompt into the repo readme"]
+At every session start, read the current review, standing mandate, and complete original-brief section in `README.md`. This file intentionally contains no partial or competing copy of the prompt. Current evidence and the active review supersede unverified historical claims and artifacts.

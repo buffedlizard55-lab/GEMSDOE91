@@ -104,11 +104,17 @@ def test_s14_run_card_and_published_artifact_are_byte_exact_and_fail_closed():
     assert card["selector_approval"] is False
 
 
-def test_s14_portal_makes_download_and_submit_status_unambiguous():
-    for name in ("s14-hvdc.html", "s14-hvdc-executive-summary.html", "index.html"):
+def test_s14_historical_pages_are_archived_and_current_portal_has_no_old_download():
+    historical_name = "gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif"
+    for name in ("s14-hvdc.html", "s14-hvdc-executive-summary.html"):
         text = (ROOT / "docs" / name).read_text()
-        assert "OK TO DOWNLOAD" in text
-        assert "OK TO SUBMIT" in text
-        assert "NO —" in text or "NOT OK TO SUBMIT" in text
-        assert "gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif" in text
+        assert "HISTORICAL ARCHIVE — NOT CURRENT APPROVAL" in text
+        assert "OK TO DOWNLOAD: NO — no current candidate" in text
+        assert "OK TO SUBMIT: NO" in text
+        assert historical_name in text
         assert "data-submission-ready=\"false\"" in text
+    current = (ROOT/"docs/index.html").read_text()
+    assert "OK TO DOWNLOAD: NO — NO CURRENT CANDIDATE" in current
+    assert "OK TO SUBMIT: NO" in current
+    assert historical_name not in current
+    assert "downloads/" not in current

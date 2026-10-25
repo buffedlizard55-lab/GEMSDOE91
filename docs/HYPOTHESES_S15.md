@@ -1,45 +1,26 @@
-# Session 15 Pre-Registered Hypotheses (`S15-HCPA`, 2026-10-25)
+# Historical Session 15 Pre-Registered Hypotheses (`S15-HCPA`, 2026-10-25)
 
-**Status:** Pre-registered and frozen *prior* to running any Session 15 holdout score or emitting any candidate GeoTIFF.
+> **Current review supersedes this archive.** GEMSDOE32's `0.2778` is user-reported, not organizer-confirmed; no receipt is available. The prior experiment and data-presence statements below were not rerun in the current checkout. Official inputs are absent, preflight is blocked, and no historical TIFF is approved as a current candidate for download or submission. Qualitative expected gains are hypotheses, not scores. See [current review](REVIEW-ARENA-AE77BA5B-20261025.md).
+
+**Status:** Historically pre-registered and frozen *prior* to the Session 15 holdout run and artifact build; not the current branch's experiment.
 **Branch:** `arena/b580c734-gemsdoe91`
 **Lane:** *Hydrothermal Convective Plume & Kinematic Dilatancy Architecture (`S15-HCPA`).*
 
 ---
 
-## 0. Forensic Analysis: Why `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` Scored 0.2778 and How to Beat It
+## 0. Metric mechanism and the unverified `0.2778` claim
 
-### A. Mathematical Metric Dynamics (DTI Emission Economics)
-The DrivenData GEMS competition evaluates predictions using the Discrete Tversky Index with a 300 m triangular decay kernel ($r = 3$ pixels at 100 m cell size) and parameters $\alpha = 0.2, \beta = 0.8$:
-$$\text{DTI} = \frac{T}{\alpha T + \alpha(S - M) + \beta |G|} = \frac{T}{0.2 T + 0.2(S - M) + 0.8 |G|}$$
-where:
-- $|G|$ is the constant number of ground truth fault pixels (e.g. 60,988 withheld positives).
-- $S = \sum_j p_j$ is the total mass emitted.
-- $T = \sum_{i \in G} \max_j (p_j \cdot K(d(i, j)))$ is the kernel coverage credit.
-- $M = \sum_j p_j \cdot \max_{i \in G} K(d(i, j))$ is the mass credited to ground truth.
+The original prompt supplied `0.2778` for `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`. The linked [GEMSDOE32 page](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html), inspected on 2026-10-25, says “NO ORGANISER SCORE EXISTS,” marks the named H33 artifact unscored, and labels `0.2747` as a projection/model. No organizer receipt confirming `0.2778` was available. Treat that value—and the older fleet progression numbers in this section—as user-reported claims, not verified scores.
 
-Crucially, because $T$ computes the **pointwise maximum** ($\max_j$) over all emitted dots rather than a sum, once a true fault pixel is covered by a unit dot ($p_j = 1.0$), any second dot placed within 300 m yields **zero additional credit** ($\Delta T \approx 0$). However, every additional redundant dot adds directly to total emitted mass $S$. In false positive or misaligned areas ($M = 0$), each extra dot adds $\alpha \cdot 1.0 = 0.2$ directly into the denominator!
+The official DTI uses a 300 m triangular kernel (`r = 3` pixels at 100 m) and `α = 0.2`, `β = 0.8`:
 
-Consequently, contiguous line predictions or clustered dot clouds waste mass:
-- A continuous line places dots at 1.0 px (100 m) spacing, consuming $3\times$ more mass than spaced dots for nearly identical $T$.
-- Thinning along lineaments to dots spaced at $\ge 2.8$ to $3.16$ px ($\approx 300$ m) cuts mass $S$ by $3.3\times$ while preserving $T$.
-- This explains the empirical climb of the GEMSDOE fleet:
-  - 123k solid dots (spacing 1.0 px): scores 0.1855 – 0.1922.
-  - 60k thinned dots (spacing 2.2 px): score jumped to 0.2477.
-  - 44k thinned dots (spacing 3.16 px): score jumped to 0.2600.
-  - 40k thinned dots (spacing 3.0 px): score jumped to 0.2708.
-  - 37,654 dots at 3.16 px spacing (`h33-h33-2-b2`): **0.2778**.
+`DTI = T / (0.2 T + 0.2 (S − M) + 0.8 |G|)`
 
-### B. Far-Field Blind Fault Targeting
-In Basin and Range extensional tectonics, mapped faults in the USGS Quaternary Fault and Fold Database are concentrated along mountain fronts where bedrock or alluvial scarps are exposed. The competition test set targets **undiscovered/blind faults** that host hydrothermal geothermal circulation. Emitting dots in the immediate halo of known faults ($\le 10$ px / $\le 1$ km) yields a high local holdout score (when withholding known fault segments), but fails on the true competition test set because the known fault halo is already thoroughly explored.
-- The 0.2778 winner placed **69.8% of its dots in the far-field** (> 10 px / > 1 km from catalogue), with 0 dots on catalogue.
-- Spearman correlation with organizer scores: `frac_dots_gt10px_of_catalogue` $\rho = +0.857$, `median_nn_spacing_px` $\rho = +0.898$, `n_dots` $\rho = -1.000$.
+`T` is maximum kernel-weighted credit per truth pixel; `S` is prediction mass; `M` is the mass receiving proximity credit. When a truth pixel's maximum is already saturated, extra nearby mass may add no further `T` while still increasing the false-positive term. Thus sparse emission can improve DTI in some configurations. This is a plausible metric mechanism only; it does not establish what caused the reported `0.2778`, whether the number was received, or whether the raster would perform similarly under a properly controlled holdout.
 
-### C. How to Score Higher Than 0.2778 Toward 0.3195 and 0.4413
-At 37,654 dots, 0.2778 corresponds to an average credit per dot of $T / S \approx 0.139$.
-To reach 0.3195 requires $T / S \approx 0.160$. To reach the leaderboard record 0.4413 requires $T / S \approx 0.220$.
-Because emission geometry is already near-optimal (37,654 dots at 3.16 px spacing), **beating 0.2778 requires a significantly more accurate geological probability surface in the far-field basins and pediments**.
-Specifically, Session 15 addresses the blind geothermal discovery problem directly using physical tracers of hydrothermal circulation and crustal strain.
+A historical local file note describes the R0 raster as 37,654 unit-mass dots with a reported deletion of 2,545 near-catalogue dots. Those are raster geometry/lineage observations, not a score receipt. Any far-field fraction or correlation with the user-reported values is descriptive only and cannot establish a causal improvement. No projection, expected score, or claim of beating `0.2778` is made here.
 
+The S15 physical hypotheses below are archived preregistration ideas. The current checkout has no official competition inputs, no validated current candidate, and no source-coverage or external-use clearance; its status is not changed by this historical file.
 ---
 
 ## 1. Five Candidate Geological Hypotheses
@@ -50,7 +31,7 @@ Specifically, Session 15 addresses the blind geothermal discovery problem direct
 | **2** | **H15-2 Tectonic Kinematic Dilatancy & Slip Tendency (`TKST`)** | `geod_dilaterate` (Band 8), `geod_shearrate` (Band 7), `geod_2ndinv` (Band 4), LiDAR strike (Band 11) | Normalized Coulomb slip tendency $T_s = \|\sin(2(\theta - \theta_{ext}))\|$ and dilation propensity $T_d = \sin^2(\theta - \theta_{ext})$ along fault strikes under WNW ($\sigma_3 \approx 105^\circ$) extension | Critically stressed faults in the Walker Lane / Basin and Range transition slip aseismically and remain open to fluid flow without forming large visible scarps | Regional diffuse strain without structural shear localization $\rightarrow$ gated by geodetic 2nd invariant shear gradients | S12 used scalar strain magnitude; TKST resolves kinematic tensor stress onto local strike | **High** / Low |
 | **3** | **H15-3 Radiometric K-Metasomatism & Magnetite Leaching (`RTNL`)** | `geodawn_rad_u8.tif` ($K, Th, U, TC$), `tmi_vg` (Band 9) | Directional cross-strike potassium enrichment $\nabla_\perp (K / Th)$ coincident with negative magnetic vertical gradient ($tmi\_vg < 0$) | Hydrothermal alteration along active blind conduits metasomatically introduces adularia/illite ($K$) while destroying magnetite, leaving a distinct geochemical footprint in basin fill | Felsic plutons (high background $K$) $\rightarrow$ rejected by requiring negative magnetic susceptibility contrast and linear geometry | Prior lanes only used raw total count (TC) or simple log-ratios without directional derivative or magnetic destruction coupling | **Medium** / Low |
 | **4** | **H15-4 Multiscale Topographic Concavity & Scarp Toe (`MTCS`)** | `det_elev` (Band 12), `det_elev_slope` (Band 19), `lidar_scarp_features_u8.tif` (`step_max`, `lapneg_max`, `coh100`) | Asymmetric slope-break with negative Laplacian crest and depositional toe concavity $\kappa$ persisting $>500$ m along strike | Sub-meter Holocene alluvial fan scarps degraded by erosion that were missed on 1:250k regional maps | Pluvial lake shoreline benches $\rightarrow$ rejected by requiring strike concordance with tectonic extension rather than elevation contours | Prior lidar models used raw slope deciles; MTCS isolates profile curvature asymmetry | **Medium** / Med |
-| **5** | **H15-5 Submodular Winner-Geometry Emission (`SOFE`)** | Fused posterior of H15-1 + H15-2 + H15-3, `existing_faults.tif`, DTI greedy selector | Exact submodular DTI selection: $p_j \in \{0, 1\}$, $d_{min} = 3.16$ px spacing, $N = 37,654$ unit dots, $\ge 70\%$ far-field allocation | Matches the empirical geometry of `h33-h33-2-b2` (0.2778) while placing dots according to our superior multi-sensor convective plume and kinematic dilatancy surface | Over-clustering in known fault halos $\rightarrow$ prevented by hard 25% halo cap and 75% far-field quota | Fixes the DTI emission economics fleet-wide | **High** / Low |
+| **5** | **H15-5 Submodular Winner-Geometry Emission (`SOFE`)** | Fused posterior of H15-1 + H15-2 + H15-3, `existing_faults.tif`, DTI greedy selector | Exact submodular DTI selection: $p_j \in \{0, 1\}$, $d_{min} = 3.16$ px spacing, $N = 37,654$ unit dots, $\ge 70\%$ far-field allocation | Matches the reported raster geometry of `h33-h33-2-b2` (its 0.2778 value is unverified) while testing a separate multi-sensor convective-plume and kinematic-dilatancy surface | Over-clustering in known fault halos $\rightarrow$ prevented by hard 25% halo cap and 75% far-field quota | Tests a DTI-motivated emission design; improvement is unverified | **High** / Low |
 
 ---
 
@@ -62,8 +43,9 @@ Specifically, Session 15 addresses the blind geothermal discovery problem direct
 
 ---
 
-## 3. Data Sources & Verification (Zero External Downloads Needed)
-All required data inputs are already pinned, verified, and present in `data/`:
+## 3. Historical data-source record — not current availability or authorization
+
+The prior S15 lane reported the following inputs as pinned and present in its then-current environment. That historical claim is **not true for this checkout**: the current review found 0/15 manifest inputs present and preflight is blocked. Hashes and filenames below are provenance notes only; they do not establish current file presence, contest-use permission, or redistribution/sponsor-sharing rights. No data were restored from a mirror for this review.
 1. `data/bridge/gems-geodawn-numerical-features.tif` (19 bands, 418 MB, SHA-256 `4371c82e3b8339b8...`)
 2. `data/official/sample_submission.tif` (footprint, 1.6 MB, SHA-256 `2176d08e485aa2cd...`)
 3. `data/official/existing_faults.tif` (catalogue, 425 KB, SHA-256 `7ba308ccdc4418b3...`)

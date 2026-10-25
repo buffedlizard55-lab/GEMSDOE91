@@ -1,24 +1,26 @@
-# Pre-Registered Geological Hypotheses (`H91-1` through `H91-5`)
+# Historical Pre-Registered Geological Hypotheses (`H91-1` through `H91-5`)
+
+> **Current evidence correction (2026-10-25):** This is a historical research record, not the current branch's review or a current submission recommendation. The GEMSDOE32 `0.2778` number is user-reported and **not organizer-confirmed** in the evidence inspected; the linked GEMSDOE32 page marks its artifact unscored and says no organizer score exists. No submission receipt supports the score labels in this older document. Counts and byte-level lineage descriptions are not score receipts. The present checkout lacks the official inputs, so none of the historical claims below was re-run in this review. See [current review](REVIEW-ARENA-AE77BA5B-20261025.md) and [run card](run-card-REVIEW-AE77BA5B.json).
 
 **Repository:** `buffedlizard55-lab/GEMSDOE91`  
-**Competition:** [DrivenData #306 — GEMS: Hidden Geothermal Fault Detection](https://www.drivendata.org/competitions/306/gems-geothermal/)  
+**Competition:** [DrivenData #306 — GEMS: Hidden Geothermal Fault Detection](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
 **Official Prize Rules:** [NLR/DOE Official Rules `96647.pdf`](https://docs.nlr.gov/docs/fy26osti/96647.pdf)  
-**Pre-Registration Timestamp:** `2026-10-24T00:00:00Z` (written prior to running the 3-experiment `HOLDOUT-DTI` budget under `PARALLEL-RUN PROTOCOL`)
+**Historical pre-registration timestamp:** `2026-10-24T00:00:00Z` (recorded before a prior three-experiment local run)
 
 ---
 
-## 1. Why `GEMSDOE32` (`0.2778`) Led the Fleet — and Its Structural Ceiling
+## 1. Metric mechanism and historical GEMSDOE32 `0.2778` claim — not a measured causal explanation
 
-Across the entire `GEMSDOE` fleet (`GEMSDOE` through `GEMSDOE92`), the highest organizer-confirmed public leaderboard score is **`0.2778`** (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, `37,654` binary unit-mass dots), achieved via a four-stage progression under the competition's Distance-Tolerant Tversky Index ($\alpha = 0.2$, $\beta = 0.8$, $300\text{ m}$ linear triangular kernel $k(d) = \max(0, 1 - d / 3\text{ px})$):
+The original prompt reported `0.2778` for `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`. The 2026-10-25 page inspection did not verify that value as an organizer score. The following describes the DTI mechanism and historical raster lineage only; it does not establish why the claimed value was reported or what score the artifact received. The competition's Distance-Tolerant Tversky Index uses $\alpha = 0.2$, $\beta = 0.8$, and a $300\text{ m}$ linear triangular kernel $k(d) = \max(0, 1 - d / 3\text{ px})$:
 
 $$\text{DTI}(P, G) = \frac{T}{0.2\,T + 0.2\,(S - M) + 0.8\,|G|}, \qquad T = \sum_{g \in G} \max_{j:\,\|j-g\|_2 \le 3} p_j\,k(\|j-g\|_2)$$
 
-1. **Multi-physics coincidence (`H19-5`, `121,131` px $\to$ `0.1922` ORGANIZER-CONFIRMED):** Required structural tip/relay proximity (`L1`), GDR thermal/geochemical upflow (`L2`), 3DEP topographic break (`L3`), and horizontal potential-field worm (`L4`) simultaneously, eliminating single-layer mimics.
-2. **2-D Poisson disk thinning (`d >= 2.8 px`, `44,090` dots $\to$ `0.2600` ORGANIZER-CONFIRMED):** Under $\max_j$ kernel credit (`scripts/dti.py`), a 3-pixel-wide predicted ribbon contributes $1\times$ to $T$ and $3\times$ to $S$, tripling $(S - M)$ false-positive mass with zero recall gain. Thinning to $\ge 280\text{ m}$ dot spacing boosted DTI by **`+0.0678`**.
-3. **Isolated-speckle pruning (`solo`, `40,199` dots $\to$ `0.2708` ORGANIZER-CONFIRMED):** Removed isolated points lacking strike continuity within $900\text{ m}$, lifting DTI by **`+0.0108`**.
-4. **Known-catalogue collar deletion (`d_cat > 2.0 px`, `37,654` dots $\to$ `0.2778` ORGANIZER-CONFIRMED):** Because DrivenData scores predictions exclusively on **unmapped/withheld** faults while `existing_faults.tif` (`60,988` pixels) carries zero positive test credit, deleting `2,545` near-catalogue dots removed pure $(S - M)$ deadweight for **`+0.0070`**.
+1. **Multi-physics coincidence (`H19-5`, `121,131` px; historical score claim `0.1922`, receipt unavailable):** Required structural tip/relay proximity (`L1`), GDR thermal/geochemical upflow (`L2`), 3DEP topographic break (`L3`), and horizontal potential-field worm (`L4`) simultaneously, eliminating single-layer mimics.
+2. **2-D Poisson disk thinning (`d >= 2.8 px`, `44,090` dots; historical score claim `0.2600`, receipt unavailable):** Under $\max_j$ kernel credit (`scripts/dti.py`), a 3-pixel-wide predicted ribbon may contribute overlapping mass after truth-pixel credit saturates. Thinning can reduce redundant mass; the claimed `+0.0678` change is not receipt-verified and is not a measured causal effect in this review.
+3. **Isolated-speckle pruning (`solo`, `40,199` dots; historical score claim `0.2708`, receipt unavailable):** The older record attributes a `+0.0108` change to pruning isolated points lacking strike continuity within $900\text{ m}$; this attribution is unverified without receipts and a controlled comparison.
+4. **Known-catalogue collar deletion (`d_cat > 2.0 px`, `37,654` dots; reported `0.2778` claim, receipt unavailable):** The local byte-lineage note describes deletion of `2,545` near-catalogue dots. DTI can penalize mass that adds no new maximum truth credit, but no receipt establishes that this deletion produced a `+0.0070` organizer-score change.
 
-### Why R0 Perturbations (`GEMSDOE90`–`GEMSDOE92`) Cannot Break `0.3195`–`0.4413`
+### Historical limits of further R0 morphology edits (not a verified score comparison)
 Every prior candidate in `GEMSDOE91` (`50` builds in `ledger/submissions.csv`) is a post-hoc morphological edit of `R0` (`80%–100%` 3-px dot overlap with `R0`). Relocating or pruning `37,654` pre-frozen dots cannot discover a single blind intrabasinal geothermal fault that `H19-5` missed. Specifically, `H19-5` and subsequent sibling lanes (`GEMSDOE36`, `GEMSDOE70`, `GEMSDOE76`) left four quantitative physical errors on the table:
 
 1. **Plan-view Dip-Offset Error ($200\text{ m}$–$1,000\text{ m} > 300\text{ m}$ DTI kernel):** Great Basin normal faults dip at $\delta \approx 50^\circ\text{–}60^\circ$ into the hanging-wall basin. Where alluvial/playa fill thickness (`Band 15: depth_to_base_surf`) is $H = 300\text{–}1,400\text{ m}$, the maximum basement density/susceptibility contrast lies $H \cot \delta \approx 2.1\text{–}10.0\text{ px}$ **downdip** of the sub-alluvial fault trace. Unshifted gravity/magnetic worms miss the $3\text{ px}$ ($300\text{ m}$) DTI kernel completely.

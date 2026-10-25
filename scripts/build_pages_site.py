@@ -787,6 +787,9 @@ def render_exec_summary_html(rc: dict, uniq: dict, canary: dict, *, prefix: str)
 
 
 def main() -> int:
+    if (ROOT / "docs" / "run-card-REVIEW-AE77BA5B.json").is_file():
+        print("Refusing to publish the obsolete H91 portal: it contains superseded score and approval claims. Run scripts/render_portal.py for the active fail-closed review site.")
+        return 2
     rc = json.loads((ROOT / "evidence" / "run_card.json").read_text(encoding="utf-8"))
     uniq = json.loads((ROOT / "evidence" / "registry_uniqueness.json").read_text(encoding="utf-8"))
     canary = json.loads((ROOT / "evidence" / "leakage_canary.json").read_text(encoding="utf-8"))

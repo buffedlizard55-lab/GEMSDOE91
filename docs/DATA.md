@@ -5,6 +5,12 @@ list. Paths are `local_subpath`, relative to the gitignored `data/` tree. `scrip
 owns the build verdict; `tools/pins.py` is the narrow check a builder makes before it reads
 a byte ("is this file one of the pinned inputs?").
 
+**Active-checkout observation (2026-10-25):** the manifest lists 15 inputs and 0 are present in this
+checkout; preflight is `BUILD BLOCKED`. Date-qualified `historical_local_present_2026-10-23` and
+`historical_verified_here_2026-10-23` fields preserve the prior environment's notes. Current
+`local_present` and `verified_here` are false. A mirror URL or matching hash establishes neither
+contest-use authorization nor permission to redistribute or share data with the sponsor.
+
 ## Rules
 
 1. **Nothing is built from memory.** An input is usable only if its sha256 appears in the

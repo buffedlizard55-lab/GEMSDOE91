@@ -386,8 +386,13 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
             )
             assert ign.returncode != 0, f"GitHub Pages asset {rel_to_root} is gitignored!"
 
-    # Main portal links directly to H91 pages
+    # The current portal must not promote historical H91 artifacts as candidates.
     main_idx = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
-    assert "h91-ddvtc.html" in main_idx and "h91-executive-summary.html" in main_idx
+    assert "OK TO DOWNLOAD: NO — NO CURRENT CANDIDATE" in main_idx
+    assert "OK TO SUBMIT: NO" in main_idx
+    assert "h91-ddvtc.html" not in main_idx and "h91-executive-summary.html" not in main_idx
+    for archived_page in (ROOT/'docs/h91-ddvtc.html', ROOT/'docs/h91-executive-summary.html'):
+        archive_html = archived_page.read_text(encoding='utf-8')
+        assert 'HISTORICAL ARCHIVE — NOT CURRENT APPROVAL' in archive_html
 
 

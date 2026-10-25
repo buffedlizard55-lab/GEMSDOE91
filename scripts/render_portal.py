@@ -21,10 +21,10 @@ JS = '''document.querySelectorAll('[data-copy]').forEach(button=>{button.addEven
 def shell(title, body, updated):
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{escape(title)} · GEMSDOE91</title><meta name="description" content="Automated GEMS fault-mapping research, measured holdout evidence and a clearly labelled GeoTIFF download. Not approved for submission.">
+<title>{escape(title)} · GEMSDOE91</title><meta name="description" content="Current GEMSDOE91 review: no candidate TIFF exists; download and submission status are explicitly blocked.">
 <link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
-<body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Current verdict</a><a href="s15-hcpa.html"><strong>S15-HCPA (historical research only)</strong></a><a href="s15-executive-summary.html">S15 guide</a><a href="s14-hvdc.html"><strong>S14-HVDC (#1 · 0.2622)</strong></a><a href="s14-hvdc-executive-summary.html">HVDC guide</a><a href="s14-lsrg.html">S14-LSRG-FF</a><a href="s14-executive-summary.html">S14 guide</a><a href="s14-ptac.html">S14-PTAC</a><a href="s14-ptac-executive-summary.html">PTAC guide</a><a href="s13-ptha.html"><strong>S13-PTHA (prior #1 · 0.2446)</strong></a><a href="s13-ptha-executive-summary.html">S13 guide</a><a href="s12-spac.html">S12-SPAC (0.2376)</a><a href="s12-executive-summary.html">S12 guide</a><a href="s12-bhar.html">S12-BHAR (0.1986 neg)</a><a href="bhar91-executive-summary.html">BHAR91 guide</a><a href="s12-spid.html">SPID91 (0.1517 neg)</a><a href="spid91-executive-summary.html">SPID91 guide</a><a href="g91.html">G91-COVER (0.1694)</a><a href="fuse91.html">FUSE91 (0.1673)</a><a href="fuse91-executive-summary.html">FUSE91 guide</a><a href="ccr91-executive-summary.html">CCR91 result</a><a href="ucd91.html">UCD91 history</a><a href="mtd91.html">MTD91 history</a><a href="s11-mhtr.html">S11-MHTR history</a><a href="h91-ddvtc.html">H91 history</a><a href="asc91.html">ASC91 history</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a><a href="fleet-audit.csv">Fleet inventory ↗</a></nav></header>
-<main id="main">{body}</main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated {escape(updated)} · UTC</div><div><a href="run-card.json">Machine-readable run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>\n'''
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Current status</a><a href="current-review.html">Evidence review</a><a href="executive-summary-current-review.html">Future upload checklist</a><a href="run-card-REVIEW-AE77BA5B.json">JSON review card</a><a href="REVIEW-ARENA-AE77BA5B-20261025.md">Full review report</a><a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/ae77ba5b-gemsdoe91/README.md">Project mandate ↗</a></nav></header>
+<main id="main">{body}</main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated {escape(updated)} · UTC</div><div><a href="run-card-REVIEW-AE77BA5B.json">Machine-readable current review card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>\n'''
 
 
 def f(value, digits=5):
@@ -168,7 +168,112 @@ def ptac_content(board):
     return top, audit, executive
 
 
+def render_current_review_portal():
+    """Render a fail-closed landing page for a review with no eligible artifact."""
+    card_path = ROOT / 'docs/run-card-REVIEW-AE77BA5B.json'
+    card = json.loads(card_path.read_text())
+    if not (
+        card.get('new_tif_generated_in_review') is False
+        and card.get('raster_sha256') is None
+        and card.get('submission_name') is None
+        and card.get('submission_note') is None
+        and card.get('slots_used') == 0
+        and card.get('organizer_confirmed') is False
+        and card.get('lane', {}).get('experiments_run') == 0
+        and card.get('data_status', {}).get('manifest_inputs_present') == 0
+        and card.get('ok_to_download', '').startswith('NO')
+        and card.get('ok_to_submit', '').startswith('NO')
+    ):
+        raise ValueError('Refusing to render a current page unless the review card is fail-closed with no candidate.')
+    candidates = []
+    for item in card['ranked_hypotheses']:
+        layers = ', '.join(item['layers'])
+        mimics = '; '.join(item['named_non_fault_mimics'])
+        upside = item['expected_holdout_improvement']
+        candidates.append(
+            '<tr>'
+            f'<td><strong>{item["rank"]}. {escape(item["name"])}</strong><br>'
+            f'<span class="small">{escape(item["status"])}</span></td>'
+            f'<td>{escape(layers)}</td>'
+            f'<td>{escape(item["physical_signature"])}<br><strong>Off-catalogue rationale:</strong> '
+            f'{escape(item["off_catalogue_rationale"])}</td>'
+            f'<td>{escape(item["difference_from_repo"])}</td>'
+            f'<td>{escape(mimics)}</td>'
+            f'<td><strong>{escape(upside["qualitative_potential"])}</strong> potential; '
+            f'{escape(upside["confidence"])} confidence; {escape(item["cost"])} cost. '
+            'No numerical Δ or score is forecast.</td>'
+            '</tr>'
+        )
+    source_links = [
+        ('DrivenData competition problem and DTI definition', 'https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/'),
+        ('GEMSDOE32 artifact-status page', 'https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html'),
+        ('DrivenData public leaderboard', 'https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/'),
+        ('NBMG Great Basin groundwater geochemical database', 'https://nbmg.unr.edu/geothermal/GeochemDatabase.html'),
+        ('USGS NURE-HSSR water records', 'https://mrdata.usgs.gov/nure/water/'),
+        ('USGS NURE-HSSR sediment records', 'https://mrdata.usgs.gov/nure/sediment/'),
+        ('NASA ECOSTRESS L2T LSTE V003 catalog', 'https://www.earthdata.nasa.gov/data/catalog/lpcloud-eco-l2t-lste-003'),
+        ('DOE / NLR official competition rules', 'https://docs.nlr.gov/docs/fy26osti/96647.pdf'),
+    ]
+    source_rows = ''.join(
+        f'<li><a href="{escape(url, quote=True)}">{escape(label)}</a></li>'
+        for label, url in source_links
+    )
+    mechanism = escape(card['mechanism'])
+    claim = card['gemsdoe32_claim']
+    old = card['historical_best_local_holdout']
+    review_href = 'REVIEW-ARENA-AE77BA5B-20261025.md'
+    run_card_href = 'run-card-REVIEW-AE77BA5B.json'
+    hero = f'''<section class="hero"><div><span class="eyebrow">CURRENT REVIEW · 2026-10-25 · FAIL-CLOSED STATUS</span><h1>No current TIFF.<br>No submission approval.</h1><p class="lead">The official template inputs and cached feature stack are missing. A unique raster cannot be validated responsibly from this checkout. No historical file is being offered as a substitute.</p><span class="badge bad">OK TO DOWNLOAD: NO — NO CURRENT CANDIDATE</span> <span class="badge bad">OK TO SUBMIT: NO</span><p class="small">0 experiments run · 0 slots used · 0 organizer-confirmed scores</p><p><a class="button outline" href="{review_href}">Read the full evidence review ↗</a> <a class="button outline" href="{run_card_href}">Open JSON review card ↗</a></p></div><aside class="download" data-submission-ready="false"><div class="label">CURRENT AUTOMATED STATUS</div><h2>Build blocked</h2><div class="status"><span>Official manifest inputs</span><strong>{card['data_status']['manifest_inputs_present']} / {card['data_status']['manifest_inputs']}</strong></div><div class="status"><span>Spatial holdout</span><strong>NOT RUN</strong></div><div class="status"><span>New TIFF / ZIP</span><strong>NOT CREATED</strong></div><div class="status"><span>OK to download</span><strong>NO FILE</strong></div><div class="status"><span>OK to submit</span><strong>NO</strong></div><p>No candidate, filename, checksum, or direct download link exists for this review. Do not upload any archived raster.</p></aside></section>'''
+    home = hero + f'''
+<div class="banner"><strong>Preflight: {escape(card['data_status']['preflight'])}.</strong> The required official sample grid and parent fault raster are absent. Do not use a public mirror as authorization, fabricate missing inputs, or relabel a historical TIFF.</div>
+<section class="section"><div class="section-head"><h2>What the 0.2778 claim does—and does not—show</h2><a href="{review_href}">Full analysis ↗</a></div><div class="grid"><article class="card"><span class="eyebrow">GEMSDOE32 CLAIM</span><div class="number">0.2778</div><p><strong>{escape(claim['evidence_class'])}</strong>; no organizer receipt available. The inspected GEMSDOE32 page calls the artifact UNSCORED and 0.2747 a projection/model.</p><span class="small">Not a confirmed competition score</span></article><article class="card"><span class="eyebrow">HISTORICAL LOCAL RESULT</span><div class="number">{old['value']:.6f}</div><p>HOLDOUT-DTI · {old['withheld_positives']:,} withheld positives · 95% CI [{old['ci95'][0]:.6f}, {old['ci95'][1]:.6f}] · {escape(old['evaluator_version'])}.</p><span class="small">Separate spatial holdout; not a leaderboard score; historical duplicate stop</span></article><article class="card"><span class="eyebrow">METRIC MECHANISM</span><p>{mechanism}</p><span class="small">Plausible mechanism only; does not explain the unverified 0.2778 value causally.</span></article></div></section>
+<section class="section"><h2>Ranked untried hypotheses</h2><p>Qualitative research priorities only. Expected improvement is unknown until data coverage, license/use conditions, leakage canaries, and a properly blocked holdout are checked. None is selected or assigned a slot.</p><div class="table-scroll"><table><thead><tr><th>Rank / status</th><th>Relevant layers</th><th>Physical signature / off-catalogue rationale</th><th>Difference from repository</th><th>Named non-fault mimics</th><th>Upside / cost</th></tr></thead><tbody>{''.join(candidates)}</tbody></table></div><p>ASTER alteration ratios and heat-flow-plus-MT are excluded from this “new” list because those families already appear as unexecuted repository proposals (H14-4 and H12-5 respectively).</p></section>
+<section class="section"><div class="twocol"><div><h2>Why no holdout or raster?</h2><p>All {card['data_status']['manifest_inputs']} manifest-listed inputs are absent locally. Preflight blocks every implemented axis. Exact source coverage, challenge-use rights, and sponsor-sharing compatibility have not been confirmed for the candidate external datasets.</p><p>The next valid step is source/coverage/use verification. Only then can one method lane be preregistered and evaluated with the shared holdout and writer; a candidate must pass both pre-placement surface and final-dot novelty checks and the on-disk validator. Even then, a holdout result is not a leaderboard score or automatic slot selection.</p></div><div class="card"><h3>Current release checklist</h3><ul class="checklist"><li><span>Official input availability</span><span class="badge bad">BLOCKED</span></li><li><span>External data-use clearance</span><span class="badge bad">UNVERIFIED</span></li><li><span>Leakage canary / spatial holdout</span><span class="badge bad">NOT RUN</span></li><li><span>Surface &amp; final-dot novelty</span><span class="badge bad">NOT RUN</span></li><li><span>Unique GeoTIFF / validator</span><span class="badge bad">NOT CREATED</span></li><li><span>Submission slot</span><span class="badge bad">NOT SELECTED</span></li></ul><a class="button outline" href="executive-summary-current-review.html">Open the future upload checklist ↗</a></div></div></section>
+<section class="section"><h2>Official and primary sources</h2><p>These links identify source pages. Links do not establish target-footprint coverage, license clearance, or organizer score provenance.</p><ul>{source_rows}</ul><p><a href="{run_card_href}">Machine-readable review card ↗</a> · <a href="REVIEW-ARENA-BB16B6AE-20261025.md">Previous review record (historical) ↗</a></p></section>'''
+    guide = f'''<section class="hero"><div><span class="eyebrow">EXECUTIVE SUMMARY · FUTURE UPLOAD CHECKLIST</span><h1>There is no file to upload.</h1><p class="lead">This is the fail-closed upload guide for the current review. It does not offer a TIFF or ZIP because no candidate was created or validated.</p><span class="badge bad">NOT OK TO DOWNLOAD · NOT OK TO SUBMIT</span><p><a class="button outline" href="index.html">Back to current status ↗</a> <a class="button outline" href="{review_href}">Scientific review ↗</a></p></div><aside class="download" data-submission-ready="false"><div class="label">DO NOT UPLOAD A HISTORICAL ARTIFACT</div><h2>No eligible candidate</h2><div class="status"><span>Current TIFF / ZIP</span><strong>NONE</strong></div><div class="status"><span>Format validator</span><strong>NOT RUN</strong></div><div class="status"><span>HOLDOUT-DTI</span><strong>NOT RUN</strong></div><div class="status"><span>Organizer receipt</span><strong>NONE</strong></div><p>Historical download availability is not current approval. This review used no competition slot.</p></aside></section>
+<section class="section"><h2>Before any future upload can be considered</h2><div class="step"><b>1</b><div><h3>Restore only authorized official inputs</h3><p>Obtain the sample grid, parent raster, catalogue, and cached feature stack through the official competition/data route. Verify hashes and access terms. Never substitute a public mirror or an old TIFF.</p></div></div><div class="step"><b>2</b><div><h3>Check every external source before use</h3><p>Confirm exact footprint coverage, field/sample quality, product terms, and compatibility with contest rules and sponsor sharing. Save source URLs and a reproducible data-use record.</p></div></div><div class="step"><b>3</b><div><h3>Run one preregistered method lane</h3><p>Use the cached stack plus shared <code>scripts/evaluate_holdout.py</code> and <code>scripts/submission_writer.py</code>. Hold out whole fault segments with a buffer; derive catalogue features from visible faults only; mask visible pixels exactly; use pooled DTI with α=0.2, β=0.8 and the 300 m triangular kernel. Test each feature alone; AUC &gt; 0.90 is a leakage canary until explained.</p></div></div><div class="step"><b>4</b><div><h3>Stop on duplication or a failed gate</h3><p>Check both the pre-placement surface and final dots against the available registry. Stop and log a duplicate if surface rank correlation exceeds 0.90 or more than 70% of dots fall within 3 px of a registry raster. Run the shared validator and record SHA-256, evaluator version, withheld positives and 95% CI in a JSON run card.</p></div></div><div class="step"><b>5</b><div><h3>Keep science, download, and selection separate</h3><p>Do not select a slot automatically. If and only if every scientific, novelty, data-use, and format gate passes, the project may label the exact artifact “OK TO SUBMIT”; a separate selector must still verify the live weekly allowance. Do not treat HOLDOUT-DTI or a projection as an organizer score.</p></div></div><div class="step"><b>6</b><div><h3>Upload and record the receipt—only after approval</h3><p>Only then use the authenticated DrivenData submissions page, selecting the exact approved TIFF or single-TIFF ZIP and its ≤140-character note. Copy the organizer's returned receipt, filename, and date. Without that receipt, label no value ORGANIZER-CONFIRMED.</p></div></div></section>
+<section class="section"><div class="banner"><strong>Current decision: stop before upload.</strong> OK TO DOWNLOAD: NO — no current candidate. OK TO SUBMIT: NO — required data and validation gates are blocked. No slot has been chosen or spent.</div><p>The GEMSDOE32 `0.2778` value is a user-reported claim, not organizer-confirmed; the current review found no receipt connecting it to the named TIFF.</p><p><a href="{run_card_href}">Open the JSON run card ↗</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official competition instructions ↗</a></p></section>'''
+    current_review = f'''<section class="hero"><div><span class="eyebrow">CURRENT REVIEW · THREE-PASS EVIDENCE AUDIT</span><h1>Claim review.<br>No fabricated score.</h1><p class="lead">The current review found a plausible DTI sparsity mechanism, but no verified organizer receipt for GEMSDOE32's 0.2778 claim and no local inputs to validate a new candidate.</p><span class="badge bad">NEGATIVE FOR PROMOTION</span><p><a class="button outline" href="{review_href}">Open complete Markdown review ↗</a> <a class="button outline" href="{run_card_href}">JSON run card ↗</a></p></div><aside class="card"><h2>Evidence classes</h2><p><strong>0.2778:</strong> user-reported claim; not organizer-confirmed.</p><p><strong>{old['value']:.6f}:</strong> historical HOLDOUT-DTI, not a competition score; ended in a duplicate stop.</p><p><strong>New candidate:</strong> none. No numerical projection or forecast is reported.</p></aside></section><section class="section"><h2>Summary</h2><p>DTI's per-truth-pixel maximum credit can saturate. Extra prediction mass that adds no new credit may increase the false-positive term, so sparse emission can help in some configurations. This does not prove what caused an unverified organizer score. Inputs, external-source coverage/use, and novelty checks remain blocked.</p><p><a href="index.html">Current status portal ↗</a> · <a href="executive-summary-current-review.html">Future upload checklist ↗</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/ae77ba5b-gemsdoe91/README.md">Repository README ↗</a></p></section>'''
+    pages = [
+        ('index.html', 'Current status — no candidate approved', home),
+        ('current-review.html', 'Current evidence review — GEMSDOE91', current_review),
+        ('executive-summary-current-review.html', 'Executive summary and future upload checklist', guide),
+        ('executive-summary.html', 'Current status and future upload checklist', guide),
+        ('submit.html', 'Submission status — no current candidate', guide),
+    ]
+    for filename, title, body in pages:
+        (ROOT / 'docs' / filename).write_text(shell(title, body, '2026-10-25'))
+    archive_notice = '''<aside id="current-archive-warning" role="alert" style="max-width:1140px;margin:18px auto;padding:18px 22px;border:3px solid #9c3d25;border-left-width:9px;border-radius:8px;background:#fff0e9;color:#5b2116;font:600 15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif"><strong>HISTORICAL ARCHIVE — NOT CURRENT APPROVAL.</strong><br>Active review (2026-10-25): <strong>OK TO DOWNLOAD: NO — no current candidate. OK TO SUBMIT: NO.</strong> Any “OK TO DOWNLOAD: YES” text or file link below describes only a historical research artifact and must not be read as current approval. The GEMSDOE32 0.2778 value is user-reported and not organizer-confirmed. <a href="index.html" style="color:#17644e">Open current status</a> · <a href="REVIEW-ARENA-AE77BA5B-20261025.md" style="color:#17644e">Read current review</a></aside>'''
+    archive_pages = (
+        's14-lsrg.html', 's14-executive-summary.html',
+        's14-hvdc.html', 's14-hvdc-executive-summary.html',
+        's14-ptac.html', 's14-ptac-executive-summary.html',
+        's15-hcpa.html', 's15-executive-summary.html',
+        'h91-ddvtc.html', 'h91-executive-summary.html',
+    )
+    for filename in archive_pages:
+        archived = ROOT / 'docs' / filename
+        if not archived.is_file():
+            continue
+        text = archived.read_text()
+        marker = 'id="current-archive-warning"'
+        if marker in text:
+            continue
+        body_start = text.lower().find('<body')
+        tag_end = text.find('>', body_start) + 1 if body_start >= 0 else -1
+        if tag_end <= 0:
+            continue
+        archived.write_text(text[:tag_end] + '\n' + archive_notice + text[tag_end:])
+    print('Rendered current review portal: no TIFF exists; download NO; submit NO; no slot selected.')
+
+
 def render():
+    if (ROOT / 'docs/run-card-REVIEW-AE77BA5B.json').is_file():
+        render_current_review_portal()
+        return
+    raise RuntimeError('Active review card is missing; refusing to fall back to historical portal content.')
+    # Legacy renderer below is intentionally unreachable: it contains archived
+    # candidate banners and must never restore a stale download as current.
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
     actual = verify_artifact()
     if card.get('artifact') and actual['status'] != 'PASS':

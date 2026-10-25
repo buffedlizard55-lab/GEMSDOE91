@@ -1,0 +1,192 @@
+{
+  "schema_version": "gems91.review.ae77ba5b.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/ae77ba5b-gemsdoe91",
+  "lane": {
+    "id": null,
+    "assigned": false,
+    "experiments_run": 0,
+    "budget_max_experiments": 3,
+    "budget_max_hours": 2,
+    "weekly_slots_used": 0
+  },
+  "hypothesis": "No hypothesis was selected or run. Three untried candidate families are ranked qualitatively in docs/REVIEW-ARENA-AE77BA5B-20261025.md; the ranking is not a score projection or slot choice.",
+  "mechanism": "The official DTI uses maximum kernel-weighted credit per truth pixel and weighted false-positive/false-negative penalties. Sparse emission can reduce redundant mass in some configurations, but this does not establish the cause or validity of the GEMSDOE32-reported 0.2778.",
+  "named_non_fault_mimic_process": "Named mimics for each untested proposal are recorded in the review: paleowater/aquifer mixing and location error; NURE mineralized lithology, survey/lab batch and anthropogenic contamination; ECOSTRESS clouds, vegetation/irrigation, soil moisture and terrain/overpass effects.",
+  "gemsdoe32_claim": {
+    "value": 0.2778,
+    "evidence_class": "USER-REPORTED CLAIM",
+    "organizer_confirmed": false,
+    "receipt_available": false,
+    "source_observation": "The linked GEMSDOE32 page says NO ORGANISER SCORE EXISTS for its artifacts, marks the named h33-2-b2 TIFF UNSCORED, and labels 0.2747 as a projection/model.",
+    "causal_mechanism_established": false
+  },
+  "metric_mechanism": {
+    "source": "DrivenData official problem page and tests/test_dti_official_formula.py",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel": "linear triangular",
+    "kernel_radius_m": 300,
+    "equivalent_formula": "DTI = T / (0.2*T + 0.2*(S-M) + 0.8*|G|)",
+    "interpretation": "Per-truth-pixel max-credit can saturate; additional mass that adds no credit may incur false-positive cost. Plausible mechanism only; not a causal explanation of the unverified 0.2778 claim."
+  },
+  "historical_best_local_holdout": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "withheld_positives": 60988,
+    "value": 0.267782,
+    "ci95": [0.253687, 0.281135],
+    "source_run_card": "docs/run-card-S14-PTAC.json",
+    "organizer_confirmed": false,
+    "registry_status": "STOPPED_DUPLICATE",
+    "closest_registry_raster": "calib_r13lattice_00904.tif",
+    "directed_dot_overlap_within_3px": 0.99852,
+    "promotion_eligible": false
+  },
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H-ISO-GW",
+      "name": "Recharge/age-adjusted groundwater isotope residuals",
+      "status": "UNTESTED; not selected",
+      "layers": [
+        "Great Basin Groundwater Geochemical Database sample/site tables",
+        "Stable-isotope and tritium fields only where present and quality-qualified",
+        "Elevation and aquifer context"
+      ],
+      "physical_signature": "Coherent isotope/residence-time departures from local elevation and aquifer baselines that could indicate fault-controlled recharge/discharge connections or concealed hydraulic compartments.",
+      "off_catalogue_rationale": "Subsurface hydraulic connections may expose blind intrabasinal conduits without a mapped surface trace.",
+      "difference_from_repo": "Isotope/tritium water measurements are not present in the scanned repository or 92-row fleet snapshot; existing GDR features use point well/spring temperature and chemical geothermometry.",
+      "named_non_fault_mimics": [
+        "Paleowater and high-elevation recharge",
+        "Carbonate versus basin-fill aquifers",
+        "Sample-location errors and mixed/seasonal water"
+      ],
+      "expected_holdout_improvement": {
+        "qualitative_potential": "moderate",
+        "confidence": "low",
+        "numeric_delta_or_score": null
+      },
+      "cost": "medium-high",
+      "availability_and_use": "47,500 samples and 16,855 sites are stated for the broad Great Basin database; exact project-footprint counts, field coverage, duplicates with GDR, and challenge-use terms are unverified."
+    },
+    {
+      "rank": 2,
+      "id": "H-NURE-CATCHMENT",
+      "name": "Drainage-conditioned NURE-HSSR multi-element anomalies",
+      "status": "UNTESTED; not selected",
+      "layers": [
+        "USGS NURE-HSSR water samples",
+        "USGS NURE-HSSR sediment/soil samples",
+        "Element, detection-limit, laboratory/method and catchment metadata",
+        "Geology for within-unit background controls"
+      ],
+      "physical_signature": "Within-survey and lithology-normalized multi-element anomalies, handled separately by sample medium and routed to contributing drainage catchments rather than isotropically interpolated.",
+      "off_catalogue_rationale": "Hydrothermal water-rock interaction or altered source rocks may produce catchment-scale signatures above concealed faults absent from surface-fault catalogs.",
+      "difference_from_repo": "No NURE-HSSR, stream-sediment or NURE-water feature was found in the scanned repository or fleet snapshot; the existing GDR geothermometry is a different point-data source.",
+      "named_non_fault_mimics": [
+        "Uranium/mineralized lithology",
+        "Mining or anthropogenic contamination",
+        "Laboratory/batch effects and drainage mixing",
+        "Incomplete survey coverage and reformatting errors"
+      ],
+      "expected_holdout_improvement": {
+        "qualitative_potential": "moderate",
+        "confidence": "low",
+        "numeric_delta_or_score": null
+      },
+      "cost": "high",
+      "availability_and_use": "Official USGS pages list 335,547 water and 397,625 sediment records nationally. These are not target-footprint counts; quadrangle coverage, Nevada sample counts and challenge-use terms are unverified."
+    },
+    {
+      "rank": 3,
+      "id": "H-ECOSTRESS-THERMAL",
+      "name": "Quality-screened ECOSTRESS repeat-scene thermal residuals",
+      "status": "UNTESTED; not selected",
+      "layers": [
+        "NASA ECOSTRESS L2T LSTE v003 land-surface temperature/emissivity",
+        "Cloud and product quality masks",
+        "Acquisition time and terrain/land-cover context"
+      ],
+      "physical_signature": "Spatially coherent local thermal residuals that persist across independent, quality-screened scenes after adjusting for season, emissivity, elevation and observation time.",
+      "off_catalogue_rationale": "A persistent surface thermal expression may reveal shallow hydrothermal circulation near a fault absent from the mapped catalog.",
+      "difference_from_repo": "No ECOSTRESS, satellite repeat-scene thermal, or time-series surface-temperature predictor was found in the scanned repository or fleet snapshot; existing temperature features are point well/spring measurements.",
+      "named_non_fault_mimics": [
+        "Cloud contamination and product quality artifacts",
+        "ISS view/solar-array obstruction",
+        "Evapotranspiration, irrigation and soil moisture",
+        "Bare-rock emissivity, slope/aspect and observation-time effects"
+      ],
+      "expected_holdout_improvement": {
+        "qualitative_potential": "low-moderate",
+        "confidence": "low",
+        "numeric_delta_or_score": null
+      },
+      "cost": "high",
+      "availability_and_use": "Product is active, nominally 70 m and 2018-present, but acquisition timing is variable, historical gaps are documented, and exact footprint scene counts and challenge-use approval are unverified."
+    }
+  ],
+  "data_status": {
+    "manifest_inputs": 15,
+    "manifest_inputs_present": 0,
+    "competition_sample_available": false,
+    "cached_feature_stack_available": false,
+    "preflight": "BUILD BLOCKED",
+    "all_implemented_axes_blocked": true,
+    "external_candidate_downloaded": false,
+    "challenge_use_approved": false
+  },
+  "repository_test_suite": {
+    "command": ".venv/bin/pytest -o addopts='' --disable-warnings",
+    "status": "PASS",
+    "passed": 390,
+    "skipped": 8,
+    "warnings": 30,
+    "scientific_experiments_run_by_this_review": 0
+  },
+  "holdout_dti": {
+    "label": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "NOT RUN — no local competition inputs; no new hypothesis was selected."
+  },
+  "correlation_overlap_vs_registry": {
+    "new_surface_checked": false,
+    "new_final_dots_checked": false,
+    "complete_universal_registry_verified": false,
+    "fleet_snapshot_rows": 92,
+    "fleet_snapshot_checked_utc": "2026-10-24T07:25:26.763110+00:00"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN — no new raster exists",
+    "single_band_float32": null,
+    "no_nan_inside_footprint": null,
+    "all_cells_finite": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "zip_single_tiff_integrity": null
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_max_chars": 140,
+  "new_tif_generated_in_review": false,
+  "ok_to_download": "NO — no current candidate file",
+  "ok_to_submit": "NO — not spatially validated or cleared by gates",
+  "organizer_confirmed": false,
+  "slots_used": 0,
+  "verdict": "negative",
+  "verdict_reason": "The requested unique GeoTIFF cannot be responsibly built or validated without the absent official sample, catalogue and cached feature stack. No data-use approval, new holdout, complete novelty check, or validator receipt exists. Do not upload or relabel a historical artifact.",
+  "official_sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://nbmg.unr.edu/geothermal/GeochemDatabase.html",
+    "https://mrdata.usgs.gov/nure/water/",
+    "https://mrdata.usgs.gov/nure/sediment/",
+    "https://www.earthdata.nasa.gov/data/catalog/lpcloud-eco-l2t-lste-003",
+    "https://www.usgs.gov/data/digital-maps-hydrothermal-alteration-type-key-mineral-groups-and-green-vegetation-western"
+  ]
+}

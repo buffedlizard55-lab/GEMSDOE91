@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""S14 forensics: why did GEMSDOE32 h33-2-b2 (R0) score ORGANIZER-CONFIRMED 0.2778?
+"""Historical S14 forensics for the user-reported GEMSDOE32 h33-2-b2 0.2778 claim.
 
+No organizer receipt is available; this script does not confirm the claim or its cause.
 Re-scores the fleet ancestors + in-repo candidates with the SHARED evaluator
 (scripts/evaluate_holdout.py, gems91-hide-recover-v1.0) and the blind SGMC
 off-catalogue control, measures dot geometry (count, distance-to-catalogue,

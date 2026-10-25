@@ -123,11 +123,51 @@ def test_registry_check_preserves_frozen_inventory():
     assert (ROOT/'registry/comparison_inventory.json').read_bytes() == before
 
 
-def test_renderer_refuses_an_unverified_download(monkeypatch):
+def test_current_review_renderer_fails_closed_without_consulting_legacy_artifact(monkeypatch):
     renderer = module('render_portal')
-    monkeypatch.setattr(renderer, 'verify_artifact', lambda: {'status':'NO_ARTIFACT'})
-    with pytest.raises(ValueError, match='unverified or missing download'):
-        renderer.render()
+    def legacy_must_not_be_consulted():
+        raise AssertionError('the current review has no candidate and must not inspect a legacy download')
+    monkeypatch.setattr(renderer, 'verify_artifact', legacy_must_not_be_consulted)
+    renderer.render()
+    page = (ROOT/'docs/index.html').read_text()
+    assert 'OK TO DOWNLOAD: NO — NO CURRENT CANDIDATE' in page
+    assert 'OK TO SUBMIT: NO' in page
+    assert 'No candidate, filename, checksum, or direct download link exists' in page
+    assert 'downloads/' not in page
+    archive = (ROOT/'docs/s14-lsrg.html').read_text()
+    assert 'HISTORICAL ARCHIVE — NOT CURRENT APPROVAL' in archive
+    assert 'OK TO DOWNLOAD: NO — no current candidate' in archive
+    assert 'user-reported and not organizer-confirmed' in archive
+
+
+def test_current_review_card_has_no_claimed_experiment_or_submission():
+    card = json.loads((ROOT/'docs/run-card-REVIEW-AE77BA5B.json').read_text())
+    assert card['lane']['experiments_run'] == 0 and card['slots_used'] == 0
+    assert card['gemsdoe32_claim']['evidence_class'] == 'USER-REPORTED CLAIM'
+    assert card['gemsdoe32_claim']['organizer_confirmed'] is False
+    assert card['holdout_dti']['status'].startswith('NOT RUN')
+    assert card['raster_sha256'] is None and card['new_tif_generated_in_review'] is False
+    assert card['ok_to_download'].startswith('NO') and card['ok_to_submit'].startswith('NO')
+    assert card['submission_name'] is None and card['submission_note'] is None
+
+
+def test_manifest_distinguishes_current_missing_files_from_historical_verification():
+    manifest = json.loads((ROOT/'registry/data_manifest.json').read_text())
+    observation = manifest['current_workspace_observation']
+    assert observation['manifest_files'] == 15 and observation['present_files'] == 0
+    assert observation['mirror_restore_performed'] is False
+    assert all(row['local_present'] is False and row['verified_here'] is False
+               for row in manifest['files'])
+    assert all(row['historical_local_present_2026-10-23'] is True
+               for row in manifest['files'])
+    assert 'do not establish contest-use' in manifest['policy']
+
+
+def test_prompt_stub_points_to_canonical_readme_brief():
+    stub = (ROOT/'prompt_to_add.txt').read_text()
+    assert 'full preserved original GEMSDOE user project brief is in `README.md`' in stub
+    assert 'omitted-content placeholder' not in stub
+    assert 'do not use as the project brief' in stub
 
 
 def test_evidence_rejects_nonpooled_score_and_omitted_canary(monkeypatch):

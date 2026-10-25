@@ -58,6 +58,8 @@ def _inject(path: Path, fragment: str) -> None:
 
 
 def build() -> None:
+    if (DOCS / "run-card-REVIEW-AE77BA5B.json").is_file():
+        raise RuntimeError("Refusing to inject the superseded S14/S15 portal banner over the active fail-closed review. Run scripts/render_portal.py instead.")
     card = json.loads((DOCS / "run-card-S14-HVDC.json").read_text(encoding="utf-8"))
     artifact = card["artifact"]
     tif = ROOT / artifact["primary_zeros_tif"]
