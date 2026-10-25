@@ -354,6 +354,24 @@
       "sha256": "ccb8df3043104e5eab4932f5ae1278a40c5dae1af9d24d16e4939c3016327fa3",
       "status": "current_research_only",
       "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+      "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+      "status": "current_research_only",
+      "reason": "Primary all-finite zeros GeoTIFF from the historical damage-zone experiment. Audit records format certification but HOLDOUT-DTI 0.0 (gems91-hide-recover-v1.1-nohalo, 60,988 withheld positives, 95% CI [0,0]); research-only, NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip",
+      "sha256": "9a88a5651103b7007db67da3ec01c9d7684d3c28d64c142eaef18612da6eaa00",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of historical damage-zone negative research candidate; HOLDOUT-DTI 0.0 (gems91-hide-recover-v1.1-nohalo, 60,988 withheld positives, 95% CI [0,0]); NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119.tif",
+      "sha256": "b9acc11900faa04c6871bdcd2e6d2107b40fafeee143c5884a7b71b012f81d74",
+      "status": "current_research_only",
+      "reason": "NaN-outside companion of historical damage-zone candidate (7,111,787 NaN cells outside footprint per its audit); research only, do NOT upload."
     }
   ]
 }

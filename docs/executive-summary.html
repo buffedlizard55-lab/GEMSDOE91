@@ -10,12 +10,13 @@
 .button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:800}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left}
 </style></head><body><div class="wrap">
+<main id="main">
 <p><a href="index.html">← Current candidate</a></p>
-<span class="badge">OK TO DOWNLOAD: YES</span><span class="badge bad">OK TO SUBMIT: NO (current file)</span>
+<span class="badge">OK TO DOWNLOAD: YES</span><span class="badge bad">OK TO SUBMIT: NO — NOT OK TO SUBMIT (current file)</span>
 <h1>Executive summary: exactly how a submission happens</h1>
 <p class="small">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS #306</a> — predict fault pixels <em>missing</em> from the supplied catalogue on a 3730×3292, 100 m, EPSG:32611 grid. Metric: distance-weighted Tversky (DTI, α=0.2, β=0.8, 300 m triangular kernel). Validation in this project is fully automated from the written bytes — there is no human-inspection step, and format validity never overrides a failed science or uniqueness gate.</p>
 
-<div class="card"><h2>1 · Download the right file</h2>
+<div class="card" data-submission-ready="false"><h2>1 · Download the right file</h2>
 <a class="button" download href="downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif">↓ Download current GeoTIFF (research)</a>
 <p class="small">Use the <code>-zeros.tif</code> (all-finite, nodata unset) or the ZIP containing exactly that one TIFF. <strong>The DrivenData error “Predicted values must be in range [0, 1]”</strong> is produced by NaN-outside twins, −3.4×10<sup>38</sup> sentinel bleed, or a nodata tag the portal rejects; every current <code>-zeros.tif</code> in this repo was byte-checked: 0 NaN/Inf, values only {0,1}. Current file SHA-256 <code>57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f</code>.</p></div>
 
@@ -41,5 +42,6 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px
 <div class="card"><h2>Limitations &amp; what is needed next</h2>
 <p class="small">No DrivenData login in this environment → no organizer receipts can be fetched or verified here. <code>training_features.tif</code> (419 MB) was not restored this session (free, sha-pinned, via <code>scripts/restore_data.py</code>); it is the blocking input for any credible >0.2778 attempt. The prompt's “single method paragraph” lane was never supplied, so GEO91 is a documented provisional lane. Registry uniqueness was measured against pinned R0 + this repo's downloads, not the whole fleet. Irregularities: see <code>IRREGULARITIES.md</code> (repo root).</p></div>
 
+</main>
 <footer class="small">Maximize P(Win) · Own the Outcome · 0 slots spent · Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR prize PDF</a></footer>
 </div></body></html>
