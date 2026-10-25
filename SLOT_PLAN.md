@@ -1,4 +1,8 @@
-# Slot selection — no S14-HVDC slot (`S14-HVDC E2` is a Rule-1 duplicate-stop negative; 0 slots spent)
+# Slot selection — no automatic slot (`S14-HVDC E2` / `S14-PTAC E2` / `S15-SCGF E2` are Rule-1 duplicate-stop negatives; 0 slots spent)
+
+> **PARALLEL SESSION 15 BANNER (`S15-SCGF`, 2026-10-25, branch `arena/605655a6-gemsdoe91`):**
+> - **Zero weekly DrivenData slots spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` (research) | `OK TO SUBMIT: NO` (`verdict: "negative"`).**
+> - **`gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif`** (`44,000` binary `{0, 1}` dots `> 3.0 px` from catalogue, SHA-256 `0893322792aa46eaebba6f75702051d854efbe7fa5cb219e588ef863459ca3a1`, [`docs/run-card-S15-SCGF.json`](docs/run-card-S15-SCGF.json)) scored **`0.240633 HOLDOUT-DTI`** (`95% CI [0.227931, 0.254026]`) and **`0.097940` Blind Off-Catalogue USGS SGMC DTI** (`+0.002180` vs `S14-PTAC E2`; `+0.002554` vs `GEMSDOE32 R0`), trailing `S14-PTAC E2` (`0.267782`) and `S14-HVDC E2` (`0.262209`) on primary holdout and stopping on literal 3-px lattice overlap (`99.811%`, vs `44.82%` on `R0`). Takes **no slot**.
 
 > **SESSION 14 BANNER (2026-10-24, branch `arena/08009ce4-gemsdoe91`) — CURRENT #1 HOLDOUT RESEARCH RESULT, NOT A SLOT CANDIDATE:**
 > - **No weekly DrivenData slot has been spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` (research) | `OK TO SUBMIT: NO` (`NEGATIVE — RULE 1 DUPLICATE STOP`).** A selector cannot override the explicit lane threshold.

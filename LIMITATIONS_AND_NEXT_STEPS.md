@@ -53,6 +53,14 @@ and SHA-256 verified in this session. No fake catalogue was used. The old
 
 1. Resolve the registry feasibility conflict and lane assignment through explicit
    orchestration policy. Preserve today's negative evidence unchanged.
+2. When running any future two-stage cross-fitted auto-context lane (following
+   `S14-PTAC = 0.267782`, `S14-HVDC = 0.262209`, and `S15-SCGF = 0.240633`
+   `HOLDOUT-DTI` / `0.097940` Blind SGMC), apply `prior_shift_calibrate_surface`
+   to every `2`-quadrant sub-fold and `3`-quadrant OOF Stage-1 split *before*
+   stitching `ac_*` features (`IR-91-S15-06`), exclude `>= 3 km` GDR/regional
+   smooth bowls from Stage-1 (`IR-91-S15-07`), and retain `S15-SCGF`'s bitwise
+   `B12`/`B19`-invariant Pure-Subsurface specialist (`IR-91-S15-05`) and local
+   Förstner/Salem/aquifer-baffle crest concordance (`+0.005544` over `E1`).
 2. Freeze a genuinely untouched control and evaluate the strongest permissible
    incumbent on the same label-blind whole-segment instrument, using paired CIs.
 3. Verify official rules, input rights, account allowance and organizer receipts
