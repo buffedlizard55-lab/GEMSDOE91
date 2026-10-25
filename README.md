@@ -10,7 +10,7 @@
 
 ## Start here every session
 
-Read this status, [the full standing brief below](#full-project-brief), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+Read this status, [the full standing brief below](#full-project-brief), [the active-branch review (2026-10-25)](docs/REVIEW-ACTIVE-DF17E0DC-20261025.md), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
 
 > **OK TO DOWNLOAD: YES — RESEARCH. OK TO SUBMIT: NO.**
 > The new S16-PGRD file is computed from pinned magnetic/gravity inputs, not copied from a prior submission. Its format passes automated checks. Its literal registry-uniqueness and scientific-improvement gates do not pass. No human image inspection is required, and no selector may override a duplicate stop.
