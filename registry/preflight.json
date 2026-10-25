@@ -1,50 +1,74 @@
 {
-  "verdict": "INPUTS AVAILABLE",
+  "verdict": "BUILD BLOCKED",
   "scope": "Data availability only; not experiment or submission approval",
   "experiment_authorized": false,
-  "missing": [],
+  "missing": [
+    "sample_submission",
+    "parent_r0_nan"
+  ],
   "required": [
     "sample_submission",
     "parent_r0_nan"
   ],
-  "ready_axes": [
-    "PRUNE",
-    "SNAP",
-    "CONCENTRATION",
-    "TRACKB"
-  ],
+  "ready_axes": [],
   "axis_readiness": {
     "PRUNE": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "sample_submission",
+        "parent_r0_nan",
+        "existing_faults"
+      ]
     },
     "MASS": {
       "ready": false,
       "missing": [
+        "sample_submission",
+        "parent_r0_nan",
+        "existing_faults",
         "anc_h19_5",
         "anc_h19_4",
         "anc_h16_1"
       ]
     },
     "SNAP": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "sample_submission",
+        "parent_r0_nan",
+        "existing_faults",
+        "training_features"
+      ]
     },
     "CONCENTRATION": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "sample_submission",
+        "parent_r0_nan",
+        "existing_faults",
+        "training_features"
+      ]
     },
     "RELIEF": {
       "ready": false,
       "missing": [
+        "sample_submission",
+        "parent_r0_nan",
+        "existing_faults",
         "anc_h19_5",
         "anc_h19_4",
-        "anc_h16_1"
+        "anc_h16_1",
+        "training_features"
       ]
     },
     "TRACKB": {
-      "ready": true,
-      "missing": []
+      "ready": false,
+      "missing": [
+        "sample_submission",
+        "parent_r0_nan",
+        "existing_faults",
+        "training_features"
+      ]
     }
   },
   "checked_utc": "2026-10-25"
