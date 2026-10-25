@@ -558,6 +558,18 @@
       "sha256": "87fb051c1d440d8a67c6fe5530be946c5784af8100fc1d8c8a0acf17800d31bd",
       "status": "current_research_only",
       "reason": "S18-HGBR E1 single-TIFF ZIP bundle; fail-closed for synthetic lattice overlap."
+    },
+    {
+      "path": "docs/downloads/gemsdoe91-iso91-isolationpu-37654-20261025T190251Z-beaca59b-zeros.tif",
+      "sha256": "69bd28b812d333d4eb1912b6dcb82ad500f5d1074d68c8dd7b86f056543d66f2",
+      "status": "current_research_only",
+      "reason": "ISO91 E1 (isolation-matched PU: trained only on catalogue components isolated by >500 m; 37,654 binary dots, zeros outside, all-finite). HOLDOUT-NEGATIVE: preregistered gates G1/G2 (live-aligned I1 split) and G4 (legacy I2 split) failed. Unique vs the protocol registry (surface rho 0.154; max non-blanket 57.7% within 3 px). Research only; do NOT upload. Verdict: docs/run-card-ISO91.json"
+    },
+    {
+      "path": "docs/downloads/gemsdoe91-iso91-isolationpu-37654-20261025T190251Z-beaca59b-zeros.zip",
+      "sha256": "60d0728e37f4f36286af5a1199b45051d2dbb921be66d354786797dcdbc702f0",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of the ISO91 E1 research-only file; same verdict (OK TO SUBMIT: NO)."
     }
   ]
 }

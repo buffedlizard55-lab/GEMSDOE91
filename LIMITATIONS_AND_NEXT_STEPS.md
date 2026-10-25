@@ -1,3 +1,50 @@
+# Current limitations and next steps: ISO91 (session `arena/bacc7c26-gemsdoe91`, 2026-10-25)
+
+**Status:** new unique research GeoTIFF; **OK TO DOWNLOAD: YES**; **OK TO SUBMIT: NO**.
+The preregistered gates G1, G2 and G4 failed. Evidence: `docs/run-card-ISO91.json` and `docs/REVIEW-ISO91-BACC7C26-20261025.md`.
+
+## Limitations (this session)
+
+1. **The holdout truth is the catalogue, not expert-mapped new faults.**
+   - The new I1 split copies only one live property: new faults lie away from known ones.
+   - It does not reproduce their morphology or how experts identify them.
+   - I1's 500 m separation also builds in an advantage for halo avoidance (CTL_HALO).
+2. **Two key figures are MODEL inferences** from USER-REPORTED scores (uniform lattice and the R0 deletion chain), not measurements:
+   - a public truth set of ≈ 12,500 px;
+   - R0 covering ≈ 40% of it.
+3. **The 19-band 100 m stack is saturated for PU learning.**
+   - Every PU-HGB variant here is below R0 live (USER-REPORTED 0.1367–0.1823).
+   - ISO91 shows that changing which faults are learned does not change where the model puts dots.
+4. **Uniqueness scope.**
+   - The protocol registry is partial (`complete_universal_registry: false`), and one row points at a retracted file (IR-91-ISO-03).
+   - The sibling sweep covers the owner's public GEMSDOE* repositories only.
+   - Dense area rasters need the documented dense-reference rule (IR-91-ISO-04).
+5. **External high-resolution topography (USGS 3DEP) could not be fetched.** The sandbox fails the TLS handshake to the 3DEP hosts.
+
+## Next steps (ranked by expected DTI gain per cost)
+
+1. **H5 on an unrestricted machine.**
+   - Build 1 m and 1/3 arc-second 3DEP scarp morphometry (multi-scale curvature, local relief, openness) aggregated to 100 m.
+   - Preregister and test it on I1 and I2 against E0 with the ISO91 gates.
+   - 3DEP is free and public domain (https://www.usgs.gov/3d-elevation-program/about-3dep-products-services).
+2. **Far-field emission on the best label-blind posterior.**
+   - Allocate dots by distance to the catalogue as R0 does, preregistered on I1 with CTL_HALO as the comparator.
+   - This targets R0's strongest measured trait: 70% of its dots lie more than 1 km from the catalogue.
+3. **Selector-level live test of a wider R0 collar (3–5 px).**
+   - R0 has 15% of its dots at (2, 5] px.
+   - This is an R0-derivative, so it belongs to the selector or R0's owner, not to a lane.
+4. Fix `scripts/restore_registry.py`'s retracted row (IR-91-ISO-03), and propose `gems91.isolated_holdout` upstream to GEMSDOE78's template.
+
+## Access needed
+
+- An unrestricted network or CI job for 3DEP tiles (`prd-tnm.s3.amazonaws.com`), or the competition's `1m_DEM_links.csv` (DrivenData login).
+- An owner decision on making the public data mirrors private (IR-91-09 / IR-91-ISO-06).
+- The signed-in submissions page, to confirm the weekly upload limit (IR-91-ISO-05) and to record organizer receipts.
+
+---
+
+# Previous limitations (superseded)
+
 # Current limitations and next steps — S18-HGBR, S17-LFTG, S17-CPAD, OLC91, S17-CDSC, S17-EULR, S17-CGRD & S16, 2026-10-25
 
 This replaces the stale statement that real data cannot be restored. All 15 pinned

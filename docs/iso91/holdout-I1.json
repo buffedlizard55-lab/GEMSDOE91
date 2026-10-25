@@ -1,0 +1,676 @@
+{
+  "lane": "ISO91",
+  "instrument": "I1",
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "implementation_hashes": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "split": "gems91.isolated_holdout.isolated_component_draw(sep_px=5.0, buffer_px=3, boundary_px=12) [shared extension of pinned vendor gems57], per-fold hidden set",
+  "training": "leave-one-quadrant-out HGB (OLC91 settings), PU, 40 px train buffer",
+  "emission": "submodular_dti_emit, budget 37654 x area share, no dots within 2.0 px of known",
+  "arms": {
+    "E0": "incumbent: all visible catalogue pixels as positives",
+    "E1": "ISO91: only visible components with no other visible component within 5.0 px",
+    "CTL_HALO": "E0 posterior, emission also excluded within 5.0 px of visible faults",
+    "CTL_SUB": "random whole visible components, pixel count matched to E1 positives",
+    "RND": "uniform random dots on the same eligible mask"
+  },
+  "pooled": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "E0": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.09310484299987917,
+        "ci95": [
+          0.07567919679021855,
+          0.11148950856399664
+        ],
+        "withheld_positive_pixels": 11911,
+        "tpw": 1566.2070916157163,
+        "fpw": 34899.65449838498,
+        "fnw": 10344.79290838428
+      },
+      "E1": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.08125304350734804,
+        "ci95": [
+          0.0638503370896176,
+          0.09961729990621515
+        ],
+        "withheld_positive_pixels": 11911,
+        "tpw": 1364.8910784295008,
+        "fpw": 34981.25990625753,
+        "fnw": 10546.108921570492
+      },
+      "CTL_HALO": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.10104407222748708,
+        "ci95": [
+          0.08348036778481376,
+          0.11996521768294166
+        ],
+        "withheld_positive_pixels": 11911,
+        "tpw": 1701.1712022374363,
+        "fpw": 34834.49242055675,
+        "fnw": 10209.82879776256
+      },
+      "CTL_SUB": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.07751032290470931,
+        "ci95": [
+          0.06338145605376165,
+          0.093973358231852
+        ],
+        "withheld_positive_pixels": 11911,
+        "tpw": 1301.5971915521413,
+        "fpw": 35017.23142111641,
+        "fnw": 10609.40280844786
+      },
+      "RND": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.05148291208645685,
+        "ci95": [
+          0.0468550545625877,
+          0.055860491906539085
+        ],
+        "withheld_positive_pixels": 11911,
+        "tpw": 862.3778090744798,
+        "fpw": 35247.41292699171,
+        "fnw": 11048.622190925516
+      }
+    },
+    "best_comparable_control": "CTL_HALO",
+    "paired_differences": {
+      "E0": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.011851799492531137,
+        "ci95": [
+          -0.028488838798910822,
+          0.0031432896754542855
+        ],
+        "withheld_positive_pixels": 11911
+      },
+      "CTL_HALO": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.019791028720139048,
+        "ci95": [
+          -0.036925073699643575,
+          -0.003921485609013351
+        ],
+        "withheld_positive_pixels": 11911
+      },
+      "CTL_SUB": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.0037427206026387216,
+        "ci95": [
+          -0.01376882885162574,
+          0.021743803383426595
+        ],
+        "withheld_positive_pixels": 11911
+      },
+      "RND": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.029770131420891188,
+        "ci95": [
+          0.012587120687749736,
+          0.04781232736882314
+        ],
+        "withheld_positive_pixels": 11911
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "per_fold": [
+    {
+      "fold": "NW",
+      "n_dots": 8000,
+      "withheld_positive_pixels": 1517,
+      "models": {
+        "E0": {
+          "n_pos": 49497,
+          "n_neg": 148491,
+          "n_predicted": 1112173
+        },
+        "E1": {
+          "n_pos": 11407,
+          "n_neg": 34221,
+          "n_predicted": 1112173
+        },
+        "CTL_SUB": {
+          "n_pos": 11443,
+          "n_neg": 34329,
+          "n_predicted": 1112173
+        }
+      },
+      "receipt": {
+        "fold": "NW",
+        "held_components": 85,
+        "withheld_positive_pixels": 1517,
+        "isolation_sep_px": 5.0,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 5.0990195135927845,
+        "split_version": "isolated-whole-components-loqo-v1",
+        "hidden_set": "per-fold",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.073678,
+      "E0_n_emitted": 8000,
+      "E0_dot_geometry_vs_visible": {
+        "n": 8000,
+        "frac_le_5px": 0.1004,
+        "frac_5_10px": 0.1169,
+        "frac_gt_10px": 0.7827,
+        "median_px": 28.045
+      },
+      "E1_dti": 0.073257,
+      "E1_n_emitted": 8000,
+      "E1_dot_geometry_vs_visible": {
+        "n": 8000,
+        "frac_le_5px": 0.0811,
+        "frac_5_10px": 0.095,
+        "frac_gt_10px": 0.8239,
+        "median_px": 30.017
+      },
+      "CTL_HALO_dti": 0.077421,
+      "CTL_HALO_n_emitted": 8000,
+      "CTL_HALO_dot_geometry_vs_visible": {
+        "n": 8000,
+        "frac_le_5px": 0.0,
+        "frac_5_10px": 0.1394,
+        "frac_gt_10px": 0.8606,
+        "median_px": 32.0
+      },
+      "CTL_SUB_dti": 0.062018,
+      "CTL_SUB_n_emitted": 8000,
+      "CTL_SUB_dot_geometry_vs_visible": {
+        "n": 8000,
+        "frac_le_5px": 0.0978,
+        "frac_5_10px": 0.108,
+        "frac_gt_10px": 0.7943,
+        "median_px": 28.284
+      },
+      "RND_dti": 0.038258,
+      "RND_n_emitted": 8000,
+      "RND_dot_geometry_vs_visible": {
+        "n": 8000,
+        "frac_le_5px": 0.0594,
+        "frac_5_10px": 0.0905,
+        "frac_gt_10px": 0.8501,
+        "median_px": 33.526
+      }
+    },
+    {
+      "fold": "NE",
+      "n_dots": 9919,
+      "withheld_positive_pixels": 3522,
+      "models": {
+        "E0": {
+          "n_pos": 48032,
+          "n_neg": 144096,
+          "n_predicted": 1378005
+        },
+        "E1": {
+          "n_pos": 9413,
+          "n_neg": 28239,
+          "n_predicted": 1378005
+        },
+        "CTL_SUB": {
+          "n_pos": 9415,
+          "n_neg": 28245,
+          "n_predicted": 1378005
+        }
+      },
+      "receipt": {
+        "fold": "NE",
+        "held_components": 173,
+        "withheld_positive_pixels": 3522,
+        "isolation_sep_px": 5.0,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 5.0990195135927845,
+        "split_version": "isolated-whole-components-loqo-v1",
+        "hidden_set": "per-fold",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.154095,
+      "E0_n_emitted": 9919,
+      "E0_dot_geometry_vs_visible": {
+        "n": 9919,
+        "frac_le_5px": 0.0949,
+        "frac_5_10px": 0.1048,
+        "frac_gt_10px": 0.8003,
+        "median_px": 26.683
+      },
+      "E1_dti": 0.124815,
+      "E1_n_emitted": 9919,
+      "E1_dot_geometry_vs_visible": {
+        "n": 9919,
+        "frac_le_5px": 0.1023,
+        "frac_5_10px": 0.1085,
+        "frac_gt_10px": 0.7892,
+        "median_px": 27.295
+      },
+      "CTL_HALO_dti": 0.163215,
+      "CTL_HALO_n_emitted": 9919,
+      "CTL_HALO_dot_geometry_vs_visible": {
+        "n": 9919,
+        "frac_le_5px": 0.0,
+        "frac_5_10px": 0.1222,
+        "frac_gt_10px": 0.8778,
+        "median_px": 29.53
+      },
+      "CTL_SUB_dti": 0.124507,
+      "CTL_SUB_n_emitted": 9919,
+      "CTL_SUB_dot_geometry_vs_visible": {
+        "n": 9919,
+        "frac_le_5px": 0.0989,
+        "frac_5_10px": 0.109,
+        "frac_gt_10px": 0.7921,
+        "median_px": 28.284
+      },
+      "RND_dti": 0.051022,
+      "RND_n_emitted": 9919,
+      "RND_dot_geometry_vs_visible": {
+        "n": 9919,
+        "frac_le_5px": 0.0454,
+        "frac_5_10px": 0.0741,
+        "frac_gt_10px": 0.8805,
+        "median_px": 36.125
+      }
+    },
+    {
+      "fold": "SW",
+      "n_dots": 9793,
+      "withheld_positive_pixels": 3637,
+      "models": {
+        "E0": {
+          "n_pos": 37688,
+          "n_neg": 113064,
+          "n_predicted": 1365777
+        },
+        "E1": {
+          "n_pos": 8847,
+          "n_neg": 26541,
+          "n_predicted": 1365777
+        },
+        "CTL_SUB": {
+          "n_pos": 8847,
+          "n_neg": 26541,
+          "n_predicted": 1365777
+        }
+      },
+      "receipt": {
+        "fold": "SW",
+        "held_components": 188,
+        "withheld_positive_pixels": 3637,
+        "isolation_sep_px": 5.0,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 5.0990195135927845,
+        "split_version": "isolated-whole-components-loqo-v1",
+        "hidden_set": "per-fold",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.049676,
+      "E0_n_emitted": 9793,
+      "E0_dot_geometry_vs_visible": {
+        "n": 9793,
+        "frac_le_5px": 0.1103,
+        "frac_5_10px": 0.125,
+        "frac_gt_10px": 0.7647,
+        "median_px": 21.213
+      },
+      "E1_dti": 0.057018,
+      "E1_n_emitted": 9793,
+      "E1_dot_geometry_vs_visible": {
+        "n": 9793,
+        "frac_le_5px": 0.0954,
+        "frac_5_10px": 0.1153,
+        "frac_gt_10px": 0.7893,
+        "median_px": 21.84
+      },
+      "CTL_HALO_dti": 0.056707,
+      "CTL_HALO_n_emitted": 9793,
+      "CTL_HALO_dot_geometry_vs_visible": {
+        "n": 9793,
+        "frac_le_5px": 0.0,
+        "frac_5_10px": 0.1515,
+        "frac_gt_10px": 0.8485,
+        "median_px": 23.601
+      },
+      "CTL_SUB_dti": 0.046782,
+      "CTL_SUB_n_emitted": 9793,
+      "CTL_SUB_dot_geometry_vs_visible": {
+        "n": 9793,
+        "frac_le_5px": 0.1147,
+        "frac_5_10px": 0.1323,
+        "frac_gt_10px": 0.753,
+        "median_px": 21.024
+      },
+      "RND_dti": 0.05507,
+      "RND_n_emitted": 9793,
+      "RND_dot_geometry_vs_visible": {
+        "n": 9793,
+        "frac_le_5px": 0.0716,
+        "frac_5_10px": 0.1084,
+        "frac_gt_10px": 0.82,
+        "median_px": 26.683
+      }
+    },
+    {
+      "fold": "SE",
+      "n_dots": 7891,
+      "withheld_positive_pixels": 3235,
+      "models": {
+        "E0": {
+          "n_pos": 42020,
+          "n_neg": 126060,
+          "n_predicted": 1101841
+        },
+        "E1": {
+          "n_pos": 9428,
+          "n_neg": 28284,
+          "n_predicted": 1101841
+        },
+        "CTL_SUB": {
+          "n_pos": 9447,
+          "n_neg": 28341,
+          "n_predicted": 1101841
+        }
+      },
+      "receipt": {
+        "fold": "SE",
+        "held_components": 132,
+        "withheld_positive_pixels": 3235,
+        "isolation_sep_px": 5.0,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 5.0990195135927845,
+        "split_version": "isolated-whole-components-loqo-v1",
+        "hidden_set": "per-fold",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.085921,
+      "E0_n_emitted": 7891,
+      "E0_dot_geometry_vs_visible": {
+        "n": 7891,
+        "frac_le_5px": 0.1318,
+        "frac_5_10px": 0.1269,
+        "frac_gt_10px": 0.7414,
+        "median_px": 25.239
+      },
+      "E1_dti": 0.064421,
+      "E1_n_emitted": 7891,
+      "E1_dot_geometry_vs_visible": {
+        "n": 7891,
+        "frac_le_5px": 0.1262,
+        "frac_5_10px": 0.1253,
+        "frac_gt_10px": 0.7484,
+        "median_px": 31.016
+      },
+      "CTL_HALO_dti": 0.096357,
+      "CTL_HALO_n_emitted": 7891,
+      "CTL_HALO_dot_geometry_vs_visible": {
+        "n": 7891,
+        "frac_le_5px": 0.0,
+        "frac_5_10px": 0.1554,
+        "frac_gt_10px": 0.8446,
+        "median_px": 31.623
+      },
+      "CTL_SUB_dti": 0.069276,
+      "CTL_SUB_n_emitted": 7891,
+      "CTL_SUB_dot_geometry_vs_visible": {
+        "n": 7891,
+        "frac_le_5px": 0.1279,
+        "frac_5_10px": 0.1153,
+        "frac_gt_10px": 0.7568,
+        "median_px": 31.78
+      },
+      "RND_dti": 0.056735,
+      "RND_n_emitted": 7891,
+      "RND_dot_geometry_vs_visible": {
+        "n": 7891,
+        "frac_le_5px": 0.0719,
+        "frac_5_10px": 0.1082,
+        "frac_gt_10px": 0.8199,
+        "median_px": 31.401
+      }
+    }
+  ],
+  "leakage_canary": {
+    "threshold": 0.9,
+    "worst": {
+      "feature": "grad_det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+      "auc": 0.6144,
+      "symmetric_auc": 0.6144
+    },
+    "stop": false,
+    "n_truth": 11911,
+    "n_unlabelled_sample": 300000,
+    "features": [
+      {
+        "feature": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+        "auc": 0.5498,
+        "symmetric_auc": 0.5498
+      },
+      {
+        "feature": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+        "auc": 0.5156,
+        "symmetric_auc": 0.5156
+      },
+      {
+        "feature": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+        "auc": 0.5205,
+        "symmetric_auc": 0.5205
+      },
+      {
+        "feature": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+        "auc": 0.5212,
+        "symmetric_auc": 0.5212
+      },
+      {
+        "feature": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+        "auc": 0.5053,
+        "symmetric_auc": 0.5053
+      },
+      {
+        "feature": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+        "auc": 0.4642,
+        "symmetric_auc": 0.5358
+      },
+      {
+        "feature": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+        "auc": 0.5137,
+        "symmetric_auc": 0.5137
+      },
+      {
+        "feature": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+        "auc": 0.4882,
+        "symmetric_auc": 0.5118
+      },
+      {
+        "feature": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+        "auc": 0.4936,
+        "symmetric_auc": 0.5064
+      },
+      {
+        "feature": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+        "auc": 0.5088,
+        "symmetric_auc": 0.5088
+      },
+      {
+        "feature": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+        "auc": 0.5482,
+        "symmetric_auc": 0.5482
+      },
+      {
+        "feature": "det_elev - Detrended elevation - topography with regional trends removed",
+        "auc": 0.492,
+        "symmetric_auc": 0.508
+      },
+      {
+        "feature": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+        "auc": 0.4901,
+        "symmetric_auc": 0.5099
+      },
+      {
+        "feature": "tmi - Total magnetic intensity - total strength of magnetic field",
+        "auc": 0.5396,
+        "symmetric_auc": 0.5396
+      },
+      {
+        "feature": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+        "auc": 0.4993,
+        "symmetric_auc": 0.5007
+      },
+      {
+        "feature": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+        "auc": 0.5153,
+        "symmetric_auc": 0.5153
+      },
+      {
+        "feature": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+        "auc": 0.4991,
+        "symmetric_auc": 0.5009
+      },
+      {
+        "feature": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+        "auc": 0.5113,
+        "symmetric_auc": 0.5113
+      },
+      {
+        "feature": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+        "auc": 0.5598,
+        "symmetric_auc": 0.5598
+      },
+      {
+        "feature": "grad_mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+        "auc": 0.5287,
+        "symmetric_auc": 0.5287
+      },
+      {
+        "feature": "grad_rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+        "auc": 0.5256,
+        "symmetric_auc": 0.5256
+      },
+      {
+        "feature": "grad_tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+        "auc": 0.5252,
+        "symmetric_auc": 0.5252
+      },
+      {
+        "feature": "grad_geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+        "auc": 0.5027,
+        "symmetric_auc": 0.5027
+      },
+      {
+        "feature": "grad_iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+        "auc": 0.5257,
+        "symmetric_auc": 0.5257
+      },
+      {
+        "feature": "grad_tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+        "auc": 0.5184,
+        "symmetric_auc": 0.5184
+      },
+      {
+        "feature": "grad_geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+        "auc": 0.494,
+        "symmetric_auc": 0.506
+      },
+      {
+        "feature": "grad_geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+        "auc": 0.5108,
+        "symmetric_auc": 0.5108
+      },
+      {
+        "feature": "grad_tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+        "auc": 0.5225,
+        "symmetric_auc": 0.5225
+      },
+      {
+        "feature": "grad_deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+        "auc": 0.4964,
+        "symmetric_auc": 0.5036
+      },
+      {
+        "feature": "grad_iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+        "auc": 0.5272,
+        "symmetric_auc": 0.5272
+      },
+      {
+        "feature": "grad_det_elev - Detrended elevation - topography with regional trends removed",
+        "auc": 0.5714,
+        "symmetric_auc": 0.5714
+      },
+      {
+        "feature": "grad_iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+        "auc": 0.5088,
+        "symmetric_auc": 0.5088
+      },
+      {
+        "feature": "grad_tmi - Total magnetic intensity - total strength of magnetic field",
+        "auc": 0.5228,
+        "symmetric_auc": 0.5228
+      },
+      {
+        "feature": "grad_depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+        "auc": 0.5225,
+        "symmetric_auc": 0.5225
+      },
+      {
+        "feature": "grad_ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+        "auc": 0.5051,
+        "symmetric_auc": 0.5051
+      },
+      {
+        "feature": "grad_cond_surf - Conductivity surface - electrical conductivity of subsurface",
+        "auc": 0.4944,
+        "symmetric_auc": 0.5056
+      },
+      {
+        "feature": "grad_iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+        "auc": 0.5383,
+        "symmetric_auc": 0.5383
+      },
+      {
+        "feature": "grad_det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+        "auc": 0.6144,
+        "symmetric_auc": 0.6144
+      }
+    ]
+  },
+  "runtime_s": 387.7
+}

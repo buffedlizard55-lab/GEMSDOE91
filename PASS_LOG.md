@@ -1,3 +1,96 @@
+# GEMSDOE91 — Multi-Pass Verification Log (session `bacc7c26`, ISO91, `arena/bacc7c26-gemsdoe91`)
+
+## Session bacc7c26 (ISO91, 2026-10-25)
+
+### Pass 1 — Implement and verify (COMPLETED)
+
+**Data.** Restored 13 of 15 SHA-pinned inputs into gitignored `data/` (`scripts/restore_data.py`). The two licence-unchecked u8 stacks were deliberately not fetched.
+
+**Registry.** Restored 62 fleet registry rasters (`scripts/restore_registry.py`); it then aborts on a retracted row (IR-91-ISO-03).
+
+**Sources.** Fetched and verified the official sources: competition home, problem description, leaderboard, rules link, reference solution and USGS 3DEP.
+
+**Preregistration.** Wrote and committed `docs/HYPOTHESES_ISO91.md` (5 ranked hypotheses, instruments, gates) as commit e02f8a7, before any experiment.
+
+**Implementation**
+- `src/gems91/isolated_holdout.py`: the live-aligned split I1, kept outside the pinned template.
+- `scripts/run_iso91.py`: the lane runner. It reuses the OLC91 feature cache, HGB settings, emitter and registry check, plus the template evaluator and writer.
+- `scripts/sibling_sweep.py`: the 102-repository uniqueness sweep.
+- `scripts/build_iso91_card.py`: the automated run card and gates.
+- `scripts/render_iso91_pages.py`: the site, rendered from the card.
+
+**Experiment 1 (I1).** E1 0.081253 vs E0 0.093105 HOLDOUT-DTI (11,911 positives). G1 and G2 FAIL. The canary passes (max AUC 0.6144).
+
+**Experiment 2 (I2).** E0 reproduced OLC91's 0.085260 exactly. E1 0.068190; E1 − E0 = −0.017070 [−0.028221, −0.004979]. G4 FAIL.
+
+**Experiment 3 (final build).** Wrote a 37,654-dot all-finite TIFF and ZIP through the template writer. The template validator passed every check.
+- Surface |ρ| ≤ 0.154 (pre-placement).
+- Non-blanket overlap ≤ 57.7%.
+- Overlap with R0 31.0%.
+
+**Template pin.** Restored `vendor/gems57/holdout.py` to its pinned bytes and re-ran I1 and I2 with the relocated split. The numbers are identical (IR-91-ISO-02).
+
+**Tests.** `tests/test_iso91.py`: split geometry, per-fold hidden sets, matched controls, E0-fit identity with OLC91, the final positive set reproduced on the pinned catalogue (655 / 13,372), run-card verdict consistency, and an untouched template pin.
+
+
+### Pass 2 — Bug review (COMPLETED; every finding fixed or disclosed)
+
+1. **Split design flaw, caught before any run.** The first draft hid all isolated components in all folds at once,
+   which would have starved ISO91 of training positives. Rewritten with per-fold hidden sets.
+2. **Template pin.** The two new split functions were first appended to the pinned `vendor/gems57/holdout.py`.
+   They moved to `src/gems91/isolated_holdout.py`, the template was restored to `7a0a8417…`, and I1/I2 were re-run
+   with identical results (IR-91-ISO-02).
+3. **Fixture error.** A toy test fixture had a 6 px gap where 5 px was intended. The fixture was fixed; the code was correct.
+4. **Uniqueness tool.** The literal 3-px rule is degenerate for dense area rasters.
+   - Added the dense-reference rule, applied uniformly, with both readings published.
+   - One sparse-class marginal flag (70.1%) remains and is **reported as a G6b failure**, not explained away (IR-91-ISO-04).
+5. **Card builder** read summary fields from the v1 sweep schema. Fixed for v2.
+6. **Over-claims of "unique"** in the page title, H1, root redirect, README and review. All now state:
+   registry PASS plus 1 marginal sweep flag.
+7. **README reproduce command** would have restored the two licence-unchecked stacks. Now uses an explicit `--only` list.
+8. **Sweep provenance** (repo, path and git blob for all 979 files) existed only in gitignored `data/`.
+   It is now committed as `docs/iso91/sibling-sweep-sources.json`.
+9. **Full-suite failure** `test_h91…site_integrity`: the front door must link `archive-results.html`. Link added.
+10. **UI fixes from real-browser screenshots:** the Result column wrapped ("FAI L"), failed gates were mis-grouped,
+    and the arm tables lacked labels.
+11. **IR-91-ISO-04** text was inaccurate after the v2 sweep. Corrected.
+
+### Pass 3 — Recheck against the request (COMPLETED)
+
+| Requirement | Where | Status |
+|---|---|---|
+| PhD-level analysis of 0.2778; can we beat 0.2778 / 0.3195 / 0.4413 | `docs/REVIEW-ISO91-BACC7C26-20261025.md` §1–2, front-door paragraph | done (MODEL/USER-REPORTED labelled) |
+| Unique TIF, not a copy | `docs/downloads/gemsdoe91-iso91-…-beaca59b-zeros.tif` | new file; registry PASS; 1 marginal literal flag in the 977-file sweep (disclosed) |
+| Obvious OK TO DOWNLOAD / OK TO SUBMIT, automated | site front door, `docs/run-card-ISO91.json`, `generate_submission.py --with-data` | YES / NO, computed from gates |
+| 3–5 untried hypotheses, ranked, with layers, signatures and differences | `docs/HYPOTHESES_ISO91.md` (committed before any experiment) | done |
+| Validate top candidate on spatially blocked holdout before any slot | I1 + I2, `docs/iso91/holdout-I*.json` | negative, so 0 slots |
+| External data: free official source and obtainability | USGS 3DEP (free, public domain); sandbox TLS failure | done |
+| Unique name + note ≤ 140 characters | run card, site copy boxes | done (102 characters) |
+| "Predicted values must be in range [0, 1]" fix | all-finite zeros encoding, three independent re-reads | done |
+| Executive summary with exact submission steps | `docs/executive-summary.html` (form text quoted verbatim) | done |
+| Download at the very top, clean site, official links | `docs/index.html` (real-browser smoke: PASS, 0 axe violations) | done |
+| Full prompt kept in README | `README.md#full-project-brief` (unchanged) | done |
+| Knowledge from official sources | `docs/KNOWLEDGE-GEOTHERMAL-FAULTS-ISO91.md` | done |
+| Protocol: lane, reuse, labels, canary, run card, budget | run card plus this log | done (3 experiments, within 2 h of experiment time) |
+| PR + merge, limitations, access needed | `LIMITATIONS_AND_NEXT_STEPS.md`, review §9 | PR next |
+
+**Merge with `main` (338 parallel-session commits: S18-HGBR, S18-UNIQUE, e649e460 and others).**
+- Nine text conflicts resolved structurally: `main` content kept in full, ISO91 sections added, artifact policy is the union (93 entries).
+- Entry pages regenerated from the run card to satisfy `main`'s updated front-door test (e649e460 links, research-audit labels).
+- Uniqueness re-run against the new registry members (`docs/iso91/registry-recheck.json`, 102 rasters): S18-HGBR 23.2%, S18-UNIQUE 9.4%, still PASS.
+- Download audit regenerated (93 files; 84 PASS, 9 historical FAIL).
+
+**Final regression on the finished state.**
+- `PYTHONPATH=.:src python3 -m pytest tests`: **609 passed, 2 skipped, 0 failed**.
+- Artifact policy: 89 artifacts registered.
+- Every CI verifier passed: `verify_frontdoor`, `verify_current_artifact --with-data`, `verify_evidence`, `verify_s16 --with-data`, `verify_s17 --with-data`.
+- The download audit regenerates byte-identically (89 files; 80 PASS, 9 historical FAIL).
+- `make demo` and `validate_release` report CERTIFIED (synthetic).
+- Real-browser `tools/browser/smoke.cjs`: PASS. 0 console/HTTP errors, 0 axe WCAG 2.1 AA violations, no mobile overflow, and the downloaded TIFF/ZIP SHA-256 match.
+
+
+---
+
 # GEMSDOE91 — Multi-Pass Verification Log (Session 18 `S18-HGBR`, `arena/bba4efce-gemsdoe91`)
 
 ## Session 18 (`S18-HGBR`, branch `arena/bba4efce-gemsdoe91`, 2026-10-25)
