@@ -1,4 +1,8 @@
-# Slot selection — no automatic slot (`S17-CPAD E1` / `OLC91 E1` / `S14-HVDC E2` / `S14-PTAC E2` / `S15-SCGF E2` / `S17-EULR E3` are Rule-1 duplicate-stop negatives; 0 slots spent)
+# Slot selection — no automatic slot (`S19-SVHF E3` / `S17-CPAD E1` / `OLC91 E1` / `S14-HVDC E2` / `S14-PTAC E2` / `S15-SCGF E2` / `S17-EULR E3` are negative research artifacts; 0 slots spent)
+
+> **SESSION 19 BANNER (`S19-SVHF`, 2026-10-25, branch `arena/bcc0fcb2-gemsdoe91`):**
+> - **Zero weekly DrivenData slots spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` (research/audit) | `OK TO SUBMIT: NO` (`verdict: "negative"`, `submission_ready: false`; [`docs/run-card-S19-SVHF.json`](docs/run-card-S19-SVHF.json)).**
+> - **`gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.tif`** (`37,654` binary `{0.0, 1.0}` dots `> 3.0 px` from catalogue and `> 3.0 px` inter-dot spacing, SHA-256 `ed26789ab7bdbe6291abe743a25b65c63a5a14c99d3f50e421a1e77e025543d3`) cleared **`90/90` competitive (`<=80,000`-dot) submissions** (`max 3-px dot overlap = 53.20% <= 70%`; `43.80%` vs `GEMSDOE32 R0`, `42.87%` vs `S17-CPAD E1`, `37.84%` vs `S17-LFTG E2`) and lifted blind off-catalogue USGS `SGMC >500 m` discovery to **`0.093415`** (`69.16%` `>1 km` far-field), while scoring **`0.147791 HOLDOUT-DTI`** (`95% CI [0.132771, 0.162342]`) on `gems57-pooled-hide-v2` (trailing `S17-CPAD E1 = 0.198183`) and measuring `99.85% > 70%` on the 206,895-dot synthetic 5-px lattice witness `calib_r13lattice_00904.tif`. Takes **no weekly slot**.
 
 > **SESSION 18 BANNER (`S18`, 2026-10-25, branch `arena/537d6d44-gemsdoe91`):**
 > - **Zero weekly DrivenData slots spent (`slots_used = 0`). No new candidate. `OK TO DOWNLOAD: RESEARCH ONLY` | `OK TO SUBMIT: NO` (`verdict: "negative"`, `promote: false`; [`docs/run-card-S18.json`](docs/run-card-S18.json)).**

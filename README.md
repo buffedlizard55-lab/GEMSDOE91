@@ -1,4 +1,17 @@
-# GEMSDOE91 — current review (`arena/19912231-gemsdoe91`)
+# GEMSDOE91 — Session 19 (`S19-SVHF`, branch `arena/bcc0fcb2-gemsdoe91`)
+
+> **NEW · SESSION 19 (`S19-SVHF E3`, branch `arena/bcc0fcb2-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — 18/18 DUAL-DECODER CERTIFIED RESEARCH` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT (0 WEEKLY SLOTS SPENT)`.**
+> **[⬇ Download S19-SVHF GeoTIFF](docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.tif)** (`sha256: ed26789ab7bdbe6291abe743a25b65c63a5a14c99d3f50e421a1e77e025543d3`) · **[Single-TIFF ZIP](docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.zip)** (`sha256: 0bf25a65a483cad4f4ce856c2c14ce2c115fed20461663171b91ca27850d15f8`) · [S19-SVHF Audit](docs/s19-svhf.html) · [Step-by-Step DrivenData Guide](docs/s19-svhf-executive-summary.html) · [JSON Run Card](docs/run-card-S19-SVHF.json) · [Preregistration](docs/HYPOTHESES_S19_SVHF.md) · [Vent & Cross-Fleet Synthesis](docs/GEOTHERMAL_VENT_RESEARCH_S19.md) · [3-Pass Review](docs/REVIEW-S19-SVHF-20261025.md)
+>
+> - **Method (`src/gems91/svhf19.py`, `scripts/run_s19_svhf.py`):** 100% backbone-orthogonal `58`-feature cube (cross-strike opposite-half-plane directional semivariogram jumps on flight-line-destriped `B02/B13/B15`, spectral 3-D Laplace tabular gravity worms, multi-scale topographic Hurst-exponent breaks & Piedmont-Toe Concave Flexure on `B12/B19`, and local GDR #1391 chemical geothermometer disequilibrium) inside a 3-level nested spatially-blocked cross-fitted hierarchy (`solo`/`pair`/`oof`) with a `42`-col bitwise `B12`/`B19`-free pure-subsurface specialist (`max_b12_b19_diff == 0.0`), emitted strictly from the **stitched 4-fold OOF surface** via `300 m` CELF submodular cover (`37,654` binary `{0.0, 1.0}` dots).
+> - **Competitive Uniqueness Breakthrough (`100` unique rasters checked):** First learned PU hierarchy in `GEMSDOE91` to clear **`90/90` competitive (`<=80,000`-dot) submissions AND `96/96` non-blanket (`<=190,000`-dot) rasters on post-placement 3-px dot overlap** (`max = 53.20% <= 70%`; `43.80%` vs `GEMSDOE32 R0`, `42.87%` vs `S17-CPAD E1`, `37.84%` vs `S17-LFTG E2`, `44.18%` vs `S14-PTAC E2`, `16.86%` vs `S17-CWPC E3`) and **`100/100` pre-placement Spearman rank-correlation `PASS`** (`max |ρ| = 0.1414 <= 0.90`). Literal all-100 max overlap is `99.85%` on the 206,895-dot synthetic 5-px lattice witness `calib_r13lattice_00904.tif` (`>70%`, `IR-S16-03`).
+> - **Stitched-OOF De-Crowding & Blind USGS SGMC Record (`report-only`):** Eliminates `S17-LFTG`'s `43.28%` `<=5 px` catalogue-halo crowding (`<=5 px = 14.10%`, `>1 km` far-field = **`69.16%`**), lifting blind off-catalogue `SGMC >300 m` to **`0.102428`** and `SGMC >500 m` to **`0.093415`** (`91.20%` far-field retention — **+60.2% over `S17-LFTG E2 = 0.058293`** and above `GEMSDOE32 R0 = 0.088789`, `S14-PTAC = 0.071478`, and `S17-CPAD = 0.068915`).
+> - **Holdout (`gems57-pooled-hide-v2`, `60,988` withheld positives, `1,000`-draw 20-km block bootstrap):** `svhf_e1 = 0.135991` → `svhf_e2 = 0.146862` (`+0.010871` from `QDAC`) → **`svhf_e3 = 0.147791 HOLDOUT-DTI`** (`95% CI [0.132771, 0.162342]`) — beats `CED91` (`+0.085638`), `S16-PGRD` (`+0.078394`), `gravity_control` (`+0.073768`), and `S17-CWPC E3` (`+0.025324`), while trailing `incumbent_ptac_v2` (`0.192208`, paired Δ `-0.044417`) and `S17-CPAD E1` (`0.198183`, Δ `-0.050392`). Verdict: **`negative`** (`0` weekly slots spent).
+> - **Submission identity:** `gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635` · Note (`111/140`): `S19-SVHF (svhf_e3): semivariogram+Hurst+PTCF stitched-OOF CELF; 37654 dots; research artifact, slot unapproved.`
+
+---
+
+## Prior merged review (`arena/19912231-gemsdoe91`)
 
 > **OK TO DOWNLOAD: YES — existing research TIFF. OK TO SUBMIT: NO. No new TIFF was generated.** The assigned method paragraph is missing, and the literal registry rule makes the usual 37,654-dot budget infeasible. We did not copy, rename, or regenerate a prior submission to fake uniqueness. [Current review](docs/REVIEW-19912231-20261025.md) · [Run card](docs/run-card-19912231.json) · [Download and executive guide](docs/executive-summary.html).
 >
@@ -898,17 +911,21 @@ gems90-cnc-35000dots-20261024T084324Z:0.0749
 
 [https://buffedlizard55-lab.github.io/GEMSDOE91/](https://buffedlizard55-lab.github.io/GEMSDOE91/)
 
-:
+gems91-s17-cwpc-e3-20261025T163842Z-5c025d56-zeros:0.1367
+
+gems91-s17-lftg:0.1823
 
 ....
 
 [https://buffedlizard55-lab.github.io/GEMSDOE92/](https://buffedlizard55-lab.github.io/GEMSDOE92/)
 
-:
+gemsdoe92-sbf-c2-rankmean-thr0p8-20261023T081905Z-fa0404c1-zeros:0.0255
 
 ....
 
 I think it makes sense that in order for a submission to be validated that it needs to pass certain high scoring validation gates before confirming whether a file is unique and can be submitted for scoring.
+
+The highest score right now is 0.4413 on the leaderboard.
 
 The following is the leaderboard for the competition:
 

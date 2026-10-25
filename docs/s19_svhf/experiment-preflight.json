@@ -1,0 +1,17 @@
+{
+  "witness": "data/fleet_registry/calib_r13lattice_00904.tif",
+  "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+  "footprint_pixels": 5167373,
+  "reference_dots": 206895,
+  "uncovered_pixels": 6649,
+  "candidate_budget": 37654,
+  "minimum_overlapping_dots": 31005,
+  "overlap_lower_bound": 0.8234184947150369,
+  "radius_px": 3,
+  "threshold": 0.7,
+  "feasible_by_capacity_only": false,
+  "largest_budget_by_capacity_only": 22163,
+  "status": "IMPOSSIBLE_AT_BUDGET",
+  "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance."
+}

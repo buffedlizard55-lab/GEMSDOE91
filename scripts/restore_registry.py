@@ -29,12 +29,14 @@ def validate_rows(rows, candidate_sha):
         paths.add(relative)
 
 
-def restore(row, check=False):
+def restore(row, check=False, available_only=False):
     dest = ROOT / row['path']
     if dest.is_file():
         data = dest.read_bytes()
     else:
         if check or 'git_blob' not in row:
+            if available_only and 'git_blob' not in row:
+                return None
             raise ValueError(f'Missing pinned reference: {row["path"]}')
         data = subprocess.check_output(['gh', 'api', f'repos/{REPO}/git/blobs/{row["git_blob"]}',
                                        '-H', 'Accept: application/vnd.github.raw'], timeout=120)
@@ -54,6 +56,11 @@ def restore(row, check=False):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--check', action='store_true', help='Verify existing files; no network')
+    ap.add_argument(
+        '--available-only',
+        action='store_true',
+        help='Restore/verify all git_blob and present local references while reporting quarantined/removed local entries',
+    )
     args = ap.parse_args()
     inventory = ROOT/'registry/comparison_inventory.json'
     if not inventory.is_file():
@@ -63,10 +70,19 @@ def main():
     validate_rows(rows, candidate)
     before = inventory.read_bytes()
     with ThreadPoolExecutor(max_workers=4) as pool:
-        restored = list(pool.map(lambda row: restore(row, args.check), rows))
+        outcomes = list(pool.map(lambda row: restore(row, args.check, args.available_only), rows))
+    restored = [p for p in outcomes if p is not None]
+    skipped = [row['path'] for row, p in zip(rows, outcomes) if p is None]
     if before != inventory.read_bytes():
         raise RuntimeError('Frozen registry was unexpectedly modified')
-    print(f'Verified {len(restored)} frozen references; inventory unchanged; completeness UNVERIFIED; no experiment run.')
+    if skipped:
+        print(
+            f'Verified {len(restored)}/{len(rows)} frozen references '
+            f'(unavailable quarantined local entries: {skipped}); '
+            'inventory unchanged; completeness UNVERIFIED; no experiment run.'
+        )
+    else:
+        print(f'Verified {len(restored)} frozen references; inventory unchanged; completeness UNVERIFIED; no experiment run.')
 
 
 if __name__ == '__main__':

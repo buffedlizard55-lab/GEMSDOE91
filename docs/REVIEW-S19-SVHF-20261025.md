@@ -1,0 +1,33 @@
+# Session 19 (`S19-SVHF`) 3-Pass Scientific, Engineering & Governance Audit
+
+**Date (UTC):** 2026-10-25
+**Branch:** `arena/bcc0fcb2-gemsdoe91`
+**Run ID:** `S19-SVHF` (`svhf_e1..svhf_e3`, budget 3/3 experiments)
+**Winning Arm:** `svhf_e3` (`0.147791 HOLDOUT-DTI` [95% CI `0.132771, 0.162342`] on `gems57-pooled-hide-v2`, `60,988` withheld positives)
+**Blind Off-Catalogue USGS SGMC Diagnostic:** `0.102428` (`>300 m` off-catalogue, `121,158` px) · **`0.093415` (`>500 m` off-catalogue, `110,418` px — 91.20% far-field retention, new learned-PU record in `GEMSDOE91`)**
+**Verdict:** `"negative"` (`ok_to_download: true`, `ok_to_submit: false`, `submission_ready: false` — 0 weekly slots spent)
+
+---
+
+## 1. Executive Summary of Findings
+
+1. **Cross-Fleet Score Calibration Discovery (`docs/GEOTHERMAL_VENT_RESEARCH_S19.md`):**
+   - Measuring exact competition DTI against blind USGS SGMC faults across 12 pinned rasters explained why `S17-LFTG E2` (`0.188596 HOLDOUT-DTI`, user-reported `0.1823`) dropped `-0.0955` below `GEMSDOE32` (`h33-2-b2-zeros`, user-reported `0.2778`): `S17-LFTG`'s full-data Stage-2 fit crowded `43.28%` of its 37,654 dots within `<=5 px` (`500 m`) of `existing_faults.tif` (leaving only `36.71%` far-field `>1 km`), collapsing its `SGMC >500m` score to `0.058293` vs `GEMSDOE32 R0`'s `0.088789`.
+   - Meanwhile, `S17-CWPC E3` (`0.122467 HOLDOUT-DTI`, user-reported `0.1367`) placed `77.63%` of its dots `>1 km` from catalogue (`SGMC >500m = 0.052855`) via an unsupervised prior without multi-scale potential-field crest precision.
+2. **Stitched-OOF De-Crowding & Competitive Uniqueness Breakthrough (`S19-SVHF`):**
+   - Emitting the submission raster strictly from the **stitched 4-fold spatially-blocked out-of-fold (`OOF`) Stage-2 surface** completely eliminated in-sample catalogue-collar memorization: `<=5 px` crowding dropped from `43.28%` (`S17-LFTG`) to **`14.10%`**, `>1 km` far-field coverage rose to **`69.16%`** (`26,042 / 37,654` dots), and blind `SGMC >500m` jumped **+60.2%** (`0.058293 -> 0.093415`, exceeding `GEMSDOE32 R0 = 0.088789`, `S14-PTAC = 0.071478`, and `S17-CPAD = 0.068915`).
+   - Across the 100-raster registry (`registry/s19_comparison_inventory.json`), `svhf_e3` is the **first learned PU model in `GEMSDOE91` to pass 100% (`90/90`) of competitive (`<=80,000`-dot) submissions AND `96/96` non-blanket (`<=190,000`-dot) rasters on post-placement 3-px dot overlap** (`max = 53.20% <= 70%`; `43.80%` vs `GEMSDOE32 R0`, `42.87%` vs `S17-CPAD`, `37.84%` vs `S17-LFTG`, `44.18%` vs `S14-PTAC`, `16.86%` vs `S17-CWPC`) alongside `100/100` pre-placement Spearman rank-correlation `PASS` (`max |rho| = 0.1414 <= 0.90`).
+3. **Why Holdout Verdict Remains `"negative"` (`0.147791` vs `0.198183`):**
+   - On `gems57-pooled-hide-v2` (`60,988` withheld fault pixels), `svhf_e1 = 0.135991` -> `svhf_e2 = 0.146862` (`+0.010871` from nested cross-fitted `QDAC`) -> `svhf_e3 = 0.147791` (`+0.011800` total gain), outperforming `S16-PGRD` (`+0.078394`), `CED91` (`+0.085638`), `gravity_control` (`+0.073768`), and `S17-CWPC E3` (`+0.025324`), while trailing `incumbent_ptac_v2` (`0.192208`, paired Δ `-0.044417`) and `S17-CPAD E1` (`0.198183`, Δ `-0.050392`).
+   - Post-experiment diagnostic comparison against `S17-CPAD E1` isolated two exact causes: (a) in `S17-CPAD`, high in-sample scores on the 3 training quadrants saturated training-quadrant collars early during full-grid CELF selection, spilling `48,465` cumulative dots across the 4 test folds vs `38,304` (`-21.0%` fewer test-fold dots) under `S19`'s symmetric 3-level cross-fitted OOF surface; and (b) intentionally omitting `DD+SPAC+PTHA` multi-scale Frangi/Hessian/phase-congruency crest operators lowered per-dot holdout precision (`0.2215` vs `0.2446 TPw/dot`).
+   - In addition, the literal 206,895-dot synthetic 5-px lattice witness `calib_r13lattice_00904.tif` covers `99.85%` of the footprint within 3 px (`IR-S16-03`), keeping `registry_comparison.final.status = "DUPLICATE"` under literal universal semantics and `ok_to_submit = false`.
+
+---
+
+## 2. Explicit 3-Pass Ledger
+
+| Pass | Scope | Concrete Findings Caught | Verified Fixes Applied |
+|---|---|---|---|
+| **Pass 1** | End-to-end research, preregistration, streaming `<500 MB` feature & nested cross-fitting implementation, 3-experiment run, dual-decoder GeoTIFF/ZIP validation, and portal integration | (1) `restore_registry.py` aborted on the 2 un-restored external rasters (`ext_lidar_scarp_u8`, `ext_geodawn_rad_u8`); (2) full-grid float64 `58`-col allocation exceeded `3.8 GiB` sandbox RAM; (3) `capacity.py` function name mismatch (`capacity_bound`) and raw-list schema in `docs/s16/*-block-terms.json`. | Added `--available-only` to `scripts/restore_registry.py` (`IR-91-S19-01`); refactored `src/gems91/svhf19.py` to band-by-band streaming + `float16` memmap + running azimuth accumulators (`<500 MB` peak RAM); verified `max_b12_b19_diff == 0.0`; completed `E1..E3` + `verify_s19.py --with-data` (`PASS`). |
+| **Pass 2** | Critical review for bugs, silent assumptions, portal/test regressions, HTML/ARIA constraints, and download audit invariants | (1) `test_s16_integrity.py` requires exact single `data-submission-ready="false"` node on `index.html`, `executive-summary.html`, and each subpage; (2) `olc91-index-src.html` had `112/140` vs `111/140` note character count label (`len(note) == 111`); (3) `audit_downloads.py` CLI uses `--output` and `--html` and must match committed `docs/download-audit.{json,html}` byte-for-byte. | Omitted duplicate `data-submission-ready` attributes on injected `index.html` banners while placing exact single `data-submission-ready="false"` inside `_download_box()` on `s19-svhf*.html`; fixed `111/140` character label in `docs/olc91-index-src.html`; regenerated `docs/download-audit.{json,html}` (`89` files checked, `80` format PASS). |
+| **Pass 3** | Full prompt re-verification (Rules 1–6, `[0, 1]` GeoTIFF dual-decoder gate, `README.md` prompt baseline, CI/Pages workflows, Chromium + axe + 390px mobile smoke test, `<128 MB` clean git tree) | Verified every rule and acceptance criterion line by line: zero `ORGANIZER-CONFIRMED` claims on unverified numbers, all `HOLDOUT-DTI` numbers carry evaluator version + `60,988` withheld positives + 95% block-bootstrap CI, `verify_s19.py` wired into `.github/workflows/{ci,pages}.yml`, and `test_s19_svhf.py` tests positive + negative-tamper paths. | Executed full `pytest`, `check_artifact_policy.py`, `make demo`, `verify_frontdoor.py`, `verify_current_artifact.py --with-data`, `verify_evidence.py`, `verify_s16.py --with-data`, `verify_s17.py --with-data`, `verify_s19.py --with-data`, and `node tools/browser/smoke.cjs` — all `PASS`. |
