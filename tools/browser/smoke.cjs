@@ -55,7 +55,7 @@ async function main() {
     const s14Download = await s14DownloadEvent;
     const s14Bytes = fs.readFileSync(await s14Download.path());
     const s14Digest = crypto.createHash('sha256').update(s14Bytes).digest('hex');
-    const s14Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S14.json')));
+    const s14Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S14-HVDC.json')));
     if (s14Digest !== s14Card.raster_sha256) throw new Error('Downloaded S14-HVDC bytes do not match advertised SHA256');
 
     const s13DownloadEvent = page.waitForEvent('download');

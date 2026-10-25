@@ -1,0 +1,69 @@
+{
+  "candidate_id": "gems91-unique-synthetic-20261025T000000Z-b5539d19",
+  "primary_zeros_tif": {
+    "filename": "gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
+    "path": "releases/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
+    "sha256": "3bf918afef6beb33ec8efe1b542680e9a042c01480dfb75773d347ce6d5607e2",
+    "bytes": 66776,
+    "nodata": null,
+    "all_cells_finite": true,
+    "total_cells": 12279160,
+    "nan_cells_anywhere": 0,
+    "min_value": 0.0,
+    "max_value": 1.0
+  },
+  "companion_nan_tif": {
+    "filename": "gems91-unique-synthetic-20261025T000000Z-b5539d19.tif",
+    "path": "releases/gems91-unique-synthetic-20261025T000000Z-b5539d19.tif",
+    "sha256": "b5539d198ac14cae696b18cc1e053b47d9ee64231c83a1b4926482ac02a33322",
+    "bytes": 206306,
+    "nodata": "NaN",
+    "nan_inside_footprint": 0,
+    "nan_outside_footprint": 7111787
+  },
+  "zip_bundle": {
+    "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.zip",
+    "filename": "gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.zip",
+    "inner_geotiff": "gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
+    "bytes": 15022,
+    "sha256": "139f5ec056b27b0ac20082832271cc9e5f6a67e3433fba75ca00a1abdaed9b82"
+  },
+  "browser_tif_bundle": {
+    "path": "docs/downloads/h91_submission_bundle.js",
+    "bytes": 364687,
+    "sha256": "7b780136cecaf064d8191407903451ff64f345a52d8fd318a14f91e87f06bbc0"
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "band_count": 1,
+    "footprint_pixels": 5167373
+  },
+  "dots": {
+    "n_dots": 37654,
+    "dot_set_digest": "b8e7c7bab55e3afe62edc94e4c754fc0d1b0dde01badec4dc9f8057afacaf3cc",
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 419.3948,
+    "dots_le_3px": 0
+  },
+  "validators": {
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true
+  }
+}

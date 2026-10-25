@@ -110,7 +110,7 @@
   {
     "claim": "S14-HVDC E2 measured result and unique range-safe GeoTIFF identity",
     "source": "S14 machine-readable run card",
-    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/08009ce4-gemsdoe91/docs/run-card-S14.json",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/08009ce4-gemsdoe91/docs/run-card-S14-HVDC.json",
     "verification": "HOLDOUT-DTI 0.262209 [0.248940,0.275209], 60,988 withheld positives, paired delta +0.017608 vs S13 with CI [+0.009179,+0.026128]; Blind SGMC control 0.110429; not an organizer score. TIFF SHA-256 678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720 re-read and validated."
   }
 ]

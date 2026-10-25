@@ -1,0 +1,69 @@
+{
+  "candidate_id": "gems91-s14-ptac-e2-20261024T235500Z-76262b89",
+  "primary_zeros_tif": {
+    "filename": "gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.tif",
+    "path": "data/releases/s14/gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.tif",
+    "sha256": "29a3c32b5dad73545b7bdbc8315a14ceed7bbb3472524fe6ca9b0943de7effea",
+    "bytes": 237621,
+    "nodata": null,
+    "all_cells_finite": true,
+    "total_cells": 12279160,
+    "nan_cells_anywhere": 0,
+    "min_value": 0.0,
+    "max_value": 1.0
+  },
+  "companion_nan_tif": {
+    "filename": "gems91-s14-ptac-e2-20261024T235500Z-76262b89.tif",
+    "path": "data/releases/s14/gems91-s14-ptac-e2-20261024T235500Z-76262b89.tif",
+    "sha256": "76262b89f8101303366adef4a20af3325c475157f4dfef1653fa47d1cb310b5e",
+    "bytes": 383140,
+    "nodata": "NaN",
+    "nan_inside_footprint": 0,
+    "nan_outside_footprint": 7111787
+  },
+  "zip_bundle": {
+    "path": "docs/downloads/gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.zip",
+    "filename": "gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.zip",
+    "inner_geotiff": "gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.tif",
+    "bytes": 203023,
+    "sha256": "1e244f1bd5333c3410fa11306b71c5c57877447d781ee3c6703ae1ec40fbbea8"
+  },
+  "browser_tif_bundle": {
+    "path": "docs/downloads/s14_submission_bundle.js",
+    "bytes": 828245,
+    "sha256": "be18dcf4906277e7ad0222fcecad1f8e2b871a4fe034f970cfbf6aed95dbd784"
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "band_count": 1,
+    "footprint_pixels": 5167373
+  },
+  "dots": {
+    "n_dots": 44000,
+    "dot_set_digest": "e84046d8f88980264c54bd98ed9d9399f39cec7858b82446b29e520ceea8fe2e",
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0
+  },
+  "validators": {
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true
+  }
+}

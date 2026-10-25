@@ -77,7 +77,7 @@ def test_continuous_steger_mask_finds_sloping_ridge_without_filling_map():
 
 
 def test_s14_run_card_and_published_artifact_are_byte_exact_and_fail_closed():
-    card = json.loads((ROOT / "docs/run-card-S14.json").read_text())
+    card = json.loads((ROOT / "docs/run-card-S14-HVDC.json").read_text())
     tif = ROOT / card["artifact"]["primary_zeros_tif"]
     zipped = ROOT / card["artifact"]["zip_bundle"]
     assert hashlib.sha256(tif.read_bytes()).hexdigest() == card["raster_sha256"]

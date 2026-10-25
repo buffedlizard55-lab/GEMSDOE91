@@ -1,59 +1,107 @@
-# Session 14 Pre-Registration & Ranked Geothermal-Fault Hypotheses (`S14-HVDC`, 2026-10-24)
+# Session 14 Pre-Registered Hypotheses (`S14-LSRG`, 2026-10-24)
 
-**Branch:** `arena/08009ce4-gemsdoe91`  
-**Evaluator Lock:** `gems91-hide-recover-v1.0` (`scripts/evaluate_holdout.py` + `scripts/dti.py`, $\alpha = 0.2$, $\beta = 0.8$, $R = 300\text{ m} = 3\text{ px}$ triangular kernel, `60,988` withheld catalogue positives across 4 whole-segment buffered spatial quadrants `NW, NE, SW, SE`, `bridge_px = 3`, `buffer_px = 10.0`).  
-**Current Comparable Holdout Best to Beat:** `S13-PTHA E3` = **`0.244601 HOLDOUT-DTI`** (`95% CI [0.230592, 0.257058]`, `docs/run-card-S13.json`), ahead of `S12-SPAC E3` = **`0.237587 HOLDOUT-DTI`** (`0.107938` Blind USGS SGMC DTI) and `S11-MHTR E2` = **`0.206406 HOLDOUT-DTI`** (`0.097623` Blind USGS SGMC DTI).  
-**Hard Protocol Cap (Rule 6):** Maximum **3 experiments** (`E1`, `E2`, `E3`), maximum **7,200 s (2 hours)** wall-clock, **zero live DrivenData slots** spent automatically.
-
----
-
-## 1. PhD Forensic Analysis: Why `GEMSDOE32` (`h33-h33-2-b2`, `0.2778` CLAIM) Led the Early Fleet — and How We Advance Beyond It
-
-### 1.1 Strict Score Provenance (`Rule 3`)
-- Inspecting the immutable GitHub snapshot of `buffedlizard55-lab/GEMSDOE32/docs/index.html` (`commit 078f3cea`) confirms its explicit notice: *"NO ORGANISER SCORE EXISTS for this or any artifact in this repository."* Thus `0.2778` (as well as prompt-listed `0.3195` and `0.4413`) is strictly classified in this repository as an unverified **`CLAIM`** (no submission-page receipt exists in this checkout), never `ORGANIZER-CONFIRMED`, and never equated to local `HOLDOUT-DTI`.
-
-### 1.2 Byte-Verified Mathematical Mechanism of `GEMSDOE32` (`R0`, `37,654` binary `{0, 1}` dots)
-Direct byte-level inspection of the restored 64-raster comparison inventory (`data/registry/` and `data/fleet_registry/`) and the official Distance-Tolerant Intersection (`DTI`) formula (`drivendataorg/gems-prize-reference-solution`, $\alpha = 0.2$, $\beta = 0.8$, $K(r) = \max(0, 1 - r/3)$):
-$$\mathrm{DTI}(p, G) = \frac{T(p, G)}{0.2\,T(p, G) + 0.2\,\big(S(p) - M(p, G)\big) + 0.8\,|G|}, \qquad T(p, G) = \sum_{g \in G} \max_{j} \big[p_j\,K(\|g - j\|_2)\big]$$
-establishes four exact mathematical reasons why `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` outperformed continuous probability maps (`0.0286`–`0.1922` CLAIM) and unpruned dotted rasters (`0.2477`–`0.2708` CLAIM):
-
-1. **Exact Binary `{0, 1}` Vertex Optimality (Dinkelbach Convexity Theorem):** Along any ray $p \mapsto c\cdot p$ ($0 < c < 1$), $T$, $S$, and $M$ scale by $c$ while $0.8\,|G| > 0$ stays constant, strictly reducing $\mathrm{DTI}$. Moreover, under Dinkelbach's fractional transform $\Phi_\lambda(p) = \mathbb{E}[T(p)] - \lambda\big(0.2\,\mathbb{E}[T(p) + S(p) - M(p)] + 0.8\,\mathbb{E}[|G|]\big)$, since $1 - 0.2\lambda \ge 0.8 > 0$ for all $\lambda \in [0, 1]$ and $\max_j p_j K_{gj}$ is convex in $p_j$, the global maximum over $[0, 1]^N$ occurs at an extreme point $p \in \{0, 1\}^N$. Continuous probability halos ($0 < p_j < 1$) suffer linear $0.2\,p_j$ false-positive drag while failing to achieve unit peak credit on covered truth.
-2. **All-Finite `-zeros.tif` Range Safety:** Encoding out-of-footprint pixels as `0.0` with `nodata=None` prevents `NaN` / `-3.4028235e+38` sentinel bleed from triggering DrivenData's *"Predicted values must be in range [0, 1]"* portal validation error.
-3. **Submodular 1-D Kernel Spacing (`~2.5–2.8 px`):** Because $T$ takes a pointwise **maximum** rather than a sum over the $300\text{ m}$ ($3\text{ px}$) cone, decimation from `calib_h195` (`121,131` px, `0.1922` CLAIM) $\to$ `d1.5` (`60,069` px, `0.2477` CLAIM) $\to$ `d2.8` (`44,090` px, `0.2600` CLAIM) cut unmatched false-positive mass $S - M$ by $3\times$ while retaining $\sim 80\%$ of centerline kernel height.
-4. **Catalogue Flank Pruning & Hidden Volume Calibration ($|G_{\text{LB}}| \approx 12,350\text{ px}$):** Known faults in `existing_faults.tif` (`60,988` px) are masked before scoring. Pruning `1–2 px` parallel flank dots (`GEMSDOE28` `solo-d2-8`, `40,199` dots, `0.2708` CLAIM) and low-yield interior dots (`GEMSDOE32` `h33-2-b2`, `37,654` dots, `0.2778` CLAIM) removed zero-reward denominator tax. Inverting the uniform lattice probe `calib_r13lattice_00904.tif` ($S = 206,895$, $\bar{c} = 0.37482$, `0.0904` CLAIM) yields $|G_{\text{LB}}| \approx 12,350$ hidden positive fault pixels ($\sim 20.2\%$ of training catalogue volume), explaining why `~36k–45k` sharply centered binary dots sit near the global DTI optimum.
-
-### 1.3 Four Newly Verified Physical & Mathematical Gaps in Current Repo #1 (`S13-PTHA E3 = 0.244601 HOLDOUT-DTI`)
-Label-blind forensic verification (`scripts/verify_s14_forensics.py` $\to$ `evidence/s14_hydrothermal_forensics.json`, zero fault labels read) uncovered four concrete limitations in `S13-PTHA` and `S12-SPAC`:
-1. **`IR-91-S14-01` (`Band 10` Sign-Inversion in `src/gems91/ptha.py` line 292):** `ptha.py` computed `eq_log_prox = -log1p(b10_deq / 500.0)`, treating `Band 10 (deq_n100a15)` as distance to earthquake. Direct verification across all `5,167,373` footprint pixels confirms `max(B10) = 4,962,515.0` and `r(log1p(B10), log1p(B16)) = +0.735476`: per DOE GDR #1391 (Ruhl et al. 2022, DOI `10.1785/0220220153`), `Band 10` is **Dependent Earthquake Swarm Density**, so negating it actively penalized hydrothermal fluid-swarm conduits.
-2. ** Basin-Floor Hydraulic Offset of Blind Geothermal Outflow (`83.02%` Low-Elevation Bias):** Across `27,092` public-domain GDR-1391 spring/well records (`2,398` unique footprint cells; `dist_known_fault_px` strictly banned and never read), **`83.02%` of blind geothermometric anomalies** ($T_{\text{quartz/chalc/cat}} \ge 90^\circ\text{C}$ in non-Hot/Warm wells, mean `det_elev = -174.7 m`) and **`77.86%` of Hot/Warm springs** (`mean det_elev = -162.9 m` vs footprint median `-75.6 m`) discharge down on the alluvial basin floor, $0.8\text{–}3.0\text{ km}$ **downgradient** of their concealed range-front or relay-ramp feeder faults (Faulds & Hinz 2015). Isotropic radial kernels centered on well coordinates misplace probability onto flat discharge playas instead of back-projecting up the hydraulic gradient ($+\nabla B_{12}$) onto the structural step.
-3. **Playa vs. Depth Misspecification of Shallow Conductivity (`R^2(B17 ~ B15) = 0.00495` vs `R^2(B13 ~ B15) = 0.45851`):** `CCR91` failed because `Band 17 (cond_surf)` has virtually zero linear/nonlinear variance explained by basement depth `Band 15` (`0.50%`), being controlled instead by closed-basin evaporite playas (`low B12, near-zero B19`), whereas `Band 13 (iso_grav_anom)` has **`45.85%`** of its variance masked by `Band 15` basin sediment thickness, and **`12.54%`** of Nevada has shallow Salem et al. (2007) magnetic tilt-depth $z_{\text{Salem}} < 0.5\,B_{15}$ (`std_hf300m(B14)/std_hf300m(B01) = 10.93×`).
-4. **Absence of En-Echelon Relay-Ramp Auto-Context & `M`-Term Self-Credit in `S13-PTHA`:** `S13-PTHA` used a 1-stage pixelwise classifier (no spatial wash-bridge or en-echelon relay-ramp context, explaining why its blind SGMC score `0.100815` trailed `S12-SPAC E3 = 0.107938`), discretized crests onto 4 grid axes (`0°, 45°, 90°, 135°`), and omitted dot-specific self-credit $\widehat{m}_j$ from the Dinkelbach denominator $0.2\,(1 - \widehat{m}_j)$.
+**Status:** Frozen *prior* to computing any Session 14 holdout score or emitting any candidate GeoTIFF.
+**Branch:** `arena/eeaf78c1-gemsdoe91`
+**Lane (self-declared; no external selector paragraph was supplied — standing `IR-91-S12-01`):**
+*LiDAR-Scarp + Radiometric-Ratio + Spring-Geometry surface with Winner-Economics Dinkelbach emission (`S14-LSRG`).*
 
 ---
 
-## 2. Five Ranked Candidate Geological Hypotheses (Not Previously Tested in `GEMSDOE91`)
+## 0. Why did `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` score 0.2778? (Measured answer)
 
-| Rank | ID & Status | Specific Layers Involved | Physical / Mathematical Signature Targeted | Why It Catches Faults Missing from USGS/INGENIOUS Catalogue | Named Non-Fault Mimic & Suppression | How It Differs from All Existing Repo Lanes | Expected Gain & CPU Cost |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **1** | **`H14-1`** (`E1`: **TESTED**) | `GDR-1391` (`temp_c`, `geothermquartz_c`, `geothermchalc_c`, `geothermcat_c`, `thermalclass`; `dist_known_fault_px` banned), `B01`, `B02`, `B03/200`, `B04`, `B06`, `B07`, `B08`, `B09`, `B10`, `B11`, `B12`, `B13`, `B14`, `B15`, `B16`, `B17`, `B18`, `B19` | **Up-Gradient Hydrothermal Plume Back-Projection + Playa-Deconfounded Smectite/Magnetite-Destruction Dipole + Salem Intrabasinal Tilt-Depth + Corrected Ruhl Swarm Conduit:** Advects silica/cation geothermometry enthalpy $0.6\text{–}3.2\text{ km}$ upslope ($+\nabla G_6(B_{12})$) onto subsurface gravity/magnetic steps; strips fold-fitted playa background from `B17` and `B15` basin bowl from `B13`; computes $\log((B_{15}+60)/(z_{\text{Salem}}+60))$; restores positive `log1p(B10)` swarm clustering. | $>75\%$ of Great Basin geothermal systems are blind (Faulds & Hinz 2015): fluids vent in basin-floor wells downgradient of unmapped sub-alluvial/intrabasinal normal faults whose scarps were erased by Quaternary fan progradation. | **Mimic:** Barren evaporite alkali playas (`high B17`), unfaulted reversed volcanic flow lobes (`B14-B01`), agricultural warm wells. **Suppression:** Fold-fitted `(B12, B19)` playa stripping + subsurface step concordance + Topo-Blind Subsurface Specialist. | Fixes `IR-91-S14-01` (`B10` inversion in `S13-PTHA`), replaces `CCR91`'s `B17~B15` (`R^2=0.005`) with playa stripping + `B13~B15` (`R^2=0.459`), and introduces anisotropic hydraulic back-projection + Salem/B15 intrabasinal ratio. | `+0.003` to `+0.008` `HOLDOUT-DTI` over `S13-PTHA E3` (`0.2446`); Low-Med (`~70 s`) |
-| **2** | **`H14-2`** (`E2`: **TESTED**) | Leak-free 6-pair inner OOF Stage-1 calibrated posterior $P^{(1)}(x)$ + multi-physics principal strike (`B02, B11, B12, B18`) + `H14-1` features | **Two-Stage En-Echelon Relay-Ramp Shear-Transfer & Collinear Alluvial-Wash Bridge Auto-Context:** Evaluates both collinear wash bridges $\sqrt{R_+(r)\,R_-(r)}$ ($0.6\text{–}2.2\text{ km}$) AND anti-symmetric en-echelon lateral step-overs $\max_{\delta \in \{\pm 2, \pm 4\text{ px}\}} \sqrt{R_+(s, +\delta\hat{\mathbf{n}})\,R_-(s, -\delta\hat{\mathbf{n}})}$ across 8 strike azimuths on 100% out-of-sample calibrated Stage-1 posteriors. | Surface catalogues stop at alluvial fan mouths and leave $200\text{–}800\text{ m}$ dilational relay ramps unbreached—the exact structural permeability targets prioritized by INGENIOUS geothermal explorationists. | **Mimic:** Braided alluvial fan channels or parallel dike swarms. **Suppression:** Stage-2 fuses relay/wash topology with deep gravity/magnetic/swarm/hydrothermal features and includes a Stage-2 Topo-Blind Subsurface Specialist. | `S13-PTHA` had zero Stage-2 spatial context; `S12-SPAC` tested straight collinear rays only (no `(+delta_n, -delta_n)` en-echelon step-over operators, no 6-field odd steps, and no Dinkelbach emitter). | `+0.005` to `+0.014` `HOLDOUT-DTI` & `+0.004+` Blind `SGMC`; Medium (`~110 s`) |
-| **3** | **`H14-3`** (`E3`: **TESTED**) | Stage-2 calibrated OOF posterior $P^{(2)}(x)$ + unified multi-physics/hydrothermal crest $C_{\text{HVDC}}(x)$ | **Continuous Steger Gradient-Normal Sub-Grid Crest Localization + Self-Credit-Exact (`M`-Term) Dinkelbach Fractional Programming:** Replaces 4-axis discrete staircasing with continuous cross-strike bilinear normal suppression $q(x) \ge q(x \pm 1.35\hat{\mathbf{n}})$ and optimizes exact marginal Dinkelbach surplus $\Delta\widehat{T}(j\mid S) - \tau_k^*(1 - \widehat{m}_j) > 0$ calibrated strictly on `Train_k`. | Concentrates dots onto razor-sharp `N015°–030°E` Great Basin fault centerlines and reallocates saved flank-dot mass to concealed sub-alluvial wash-bridges and hydrothermal relay conduits. | **Mimic:** Multi-row flank packing on broad mountain scarps or over-emission in quiet interiors. **Suppression:** Submodular $300\text{ m}$ max-kernel state $c_S(u)$ + explicit $(1 - \widehat{m}_j)$ unmatched-mass penalty. | `S13-PTHA E3` omitted $(1 - \widehat{m}_j)$ self-credit and used 4-azimuth discrete maxima on a 1-stage surface; `SPID91` tested noisy-OR `M` only on a negative LRM-free surface (`0.1517`). | `+0.002` to `+0.007` `HOLDOUT-DTI` at higher precision/dot; Low (`~25 s`, 0 extra fits) |
-| **4** | **`H14-4`** (Deferred — Budget Cap) | `B02` (`rtp`), `B09` (`tmi_vg`), `B11/B18` (`\nabla_H G`), `B13` (`iso_grav_anom`) | **Cordell–Taylor (1971) FFT Pseudogravity Poisson Breakdown ($\Delta\rho / \Delta J$ Residual):** Local sliding regression between vertical gravity derivative and pseudogravity of RTP magnetics to isolate zones where hydrothermal alteration destroys magnetite ($\Delta J \to 0$) while quartz/adularia silicification densifies host rock ($\Delta\rho > 0$). | Detects completely blind silicified geothermal fault caps beneath uniform volcanic cover lacking topographic relief. | **Mimic:** Non-magnetic granitic pluton roofs or carbonate basement windows. | Never implemented in `GEMSDOE1..91`; deferred behind `H14-1..3` to honor the strict 3-experiment protocol cap (`Rule 6`). | `+0.002` to `+0.005` `HOLDOUT-DTI`; Medium (`~90 s`) |
-| **5** | **`H14-5`** (Blocked — Network Allowlist) | External Competition `1m_DEM_links.csv` + Official USGS 3DEP 1-m LiDAR DEM tiles (`https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/`) | **Sub-Meter Holocene Scarp Profile Curvature & Hanks (2000) Diffusive Scarp-Age Estimator:** $5\text{–}30\text{ m}$ cross-strike second derivative $\partial_{nn}^2 z_{1\text{m}}$ resolving degraded $0.3\text{–}1.5\text{ m}$ Quaternary fan scarps invisible in 100 m DEM (`B12/B19`). | Directly resolves subtle late-Quaternary intrabasinal fault scarps missed by 1:250k compilation maps. | **Mimic:** Pluvial Lake Lahontan/Bonneville recessional shorelines (`horizontal contour alignment -> 0 elevation gradient along strike`). | **Obtainability Audit:** Official USGS `prd-tnm.s3.amazonaws.com` and DrivenData `1m_DEM_links.csv` are outside this sandbox's `github.com/pypi.org/npmjs.org` allowlist, and mirrored `ext_lidar_scarp_u8.tif` is marked `"licence unchecked"` in `registry/data_manifest.json`. Not viable here; zero bytes read. | Requires unrestricted USGS fetch (`+0.010+` potential in future unrestricted run) |
+Measured 2026-10-24 in this sandbox with the shared evaluator (`scripts/evaluate_holdout.py`)
+on sha256-pinned rasters (`registry/data_manifest.json`, all 15 entries re-verified after
+`scripts/restore_data.py`). Raw evidence: `evidence/s14_winner_forensics.json`
+(script: `scripts/s14_forensics.py`). Organizer scores below are **CLAIM-USER-REPORTED**
+(session prompt; no DrivenData receipt is pinned in this repo).
+
+| Raster | CLAIM organizer | dots | med. NN spacing | % dots >10 px from catalogue | SGMC control (measured) | HOLDOUT v1.1 full-map (measured) |
+|---|---:|---:|---:|---:|---:|---:|
+| h16-1 (dense) | 0.1855 | 123,939 | 1.00 px | 59.2% | 0.1113 | 0.1622 |
+| h19-4 (dense) | 0.1894 | 123,779 | 1.00 px | 59.1% | 0.1052 | 0.1628 |
+| h19-5 (dense) | 0.1922 | 121,131 | 1.00 px | 58.9% | 0.0992 | 0.1617 |
+| h19-5 dotted d1.5 | 0.2477 | 60,069 | 2.24 px | 59.3% | 0.0999 | 0.1672 |
+| h19-5 dotted d2.8 | 0.2600 | 44,090 | 3.16 px | 59.6% | 0.0942 | 0.1573 |
+| solo d2.8 | 0.2708 | 40,199 | 3.00 px | 65.4% | 0.0953 | 0.0478 |
+| **R0 = h33-2-b2** | **0.2778** | **37,654** | **3.16 px** | **69.8%** | 0.0954 | 0.0066 |
+
+Spearman ρ vs CLAIM organizer score (n=7): **n_dots ρ = −1.000 (p<0.001)**;
+median spacing ρ = +0.898 (p=0.006); share of dots >1 km from catalogue ρ = +0.857 (p=0.014);
+SGMC control ρ = −0.821 (p=0.023); HOLDOUT v1.1 ρ = −0.750 (p=0.052).
+
+**Mechanism (three additive effects):**
+
+1. **Metric economics of the max-kernel.** DTI = T / (0.2·T + 0.2·(S−M) + 0.8·|G|) with
+   T = Σ_truth max_j p_j·k(‖j−g‖), triangular k, R = 300 m (`scripts/dti.py`). Once a truth
+   pixel is covered at k≈1 by one dot, every additional dot on the same line adds ≈0 to T
+   but full price to the 0.2·(S−M) term. Thinning a continuous line to dots spaced ≈3 px
+   (the kernel radius) therefore keeps T and cuts S by ≈3.3×. The fleet's own ladder is a
+   controlled experiment on one surface: 0.1922 → 0.2477 → 0.2600 → 0.2708 → 0.2778 as
+   dots fall 121k → 37.6k. **Emission geometry, not surface geology, explains most of the
+   0.19 → 0.28 climb.**
+2. **Far-field targeting.** The hidden test faults are absent from the catalogue *by
+   construction*; the catalogue's own 300 m halo is the most thoroughly mapped ground in
+   the area, so mass spent there has near-zero expected yield (ρ = −0.68 for halo share).
+   R0 spends 69.8% of its dots >1 km from any catalogued fault — the highest of the seven.
+3. **Precision of the ancestor surface.** All top scores descend from the h19-5
+   "multi-line corroborated" surface: independent lineament families must agree before a
+   pixel earns mass. Agreement-gating trades recall for precision, which is what the
+   β = 0.8 denominator rewards.
+
+**Corollary (why our holdout misled emission design) — `IR-91-S14-01`:** the shared
+evaluator v1.0 deletes every prediction inside the 1 km buffer around a withheld segment
+("halo deletion"). With a 3 px kernel this makes HOLDOUT-DTI ≡ 0 for *every* real
+submission raster (all carry zero mass exactly on catalogue pixels — measured), while
+OOF fold predictions are allowed to sit on withheld pixels. v1.0 remains the frozen
+comparator for surface ranking; `gems91-hide-recover-v1.1-nohalo` (added 2026-10-24,
+`mask_buffer_predictions=False`) restores leaderboard geometry for emission tuning.
+Both holdout flavours *anti-correlate* with the organizer score across the fleet
+(ρ = −0.75) because recovering catalogued faults is the opposite allocation from
+discovering uncatalogued ones. HOLDOUT-DTI is therefore used here only as a
+*surface sanity gate* (must not collapse), never as the emission objective.
+
+**Can we beat 0.2778?** The remaining headroom is (a) a *better surface* at winner
+emission economics — R0's surface never saw the 1 m LiDAR scarp stack or per-element
+radiometrics, both pinned in this repo and used by **no** prior lane (verified by grep,
+2026-10-24); and (b) *exact* expected-DTI emission (Dinkelbach stopping at λ₀ ≈ target
+score) instead of fixed-spacing thinning, which is provably suboptimal wherever the
+posterior is heterogeneous. Leaderboard best 0.4413 (CLAIM-USER-REPORTED) implies the
+hidden truth is substantially recoverable; 0.2778 is not a ceiling.
 
 ---
 
-## 3. Frozen Pre-Registered Experimental Ladder (`Rule 6`: 3 Experiments Max)
+## 1. Five ranked candidate hypotheses
 
-1. **Reference Baseline Reproduction (`0` experiment budget — frozen benchmark):** Reproduce `S13-PTHA E3` (`0.244601 HOLDOUT-DTI`) identically on the 4 `gems91-hide-recover-v1.0` folds to obtain exact aligned 5-km spatial block-bootstrap tiles (`2,007` active tiles) for paired hypothesis testing against the current `#1` candidate in `GEMSDOE91`.
-2. **Experiment 1 (`E1` — `H14-1` Hydrothermal-Vent, Playa/Basin-Deconfounded, Salem Tilt-Depth & Swarm Multi-Physics Stage-1 + Matched `PTHA` Dinkelbach Emitter):** Tests pure `H14-1` physics (dropping corrupted `X_static` cols `24..28, 32, 47` and inverted `X_ptha` cols `16, 18, 19`, adding the 18 label-free `HVDC` features + fold-safe gravity/playa residuals) under the identical `PTHA` Dinkelbach emitter so any gain over `0.244601` is 100% attributable to `H14-1`.
-3. **Experiment 2 (`E2` — `H14-1 + H14-2` Leak-Free 6-Pair Two-Stage En-Echelon Relay-Ramp & Alluvial-Wash Structural Auto-Context + Matched `PTHA` Dinkelbach Emitter):** Adds the 12 out-of-sample Stage-2 collinear wash-bridge and en-echelon relay-transfer features trained with locked class-prior calibration and dual full/topo-blind specialists under the identical `PTHA` Dinkelbach emitter.
-4. **Experiment 3 (`E3` — `H14-1..2 + H14-3` Continuous Steger Gradient-Normal Crest + Self-Credit-Exact `M`-Term Dinkelbach Fractional Programming):** Reuses the better OOF posterior surfaces of `{E1, E2}` (`0` extra model fits) and applies continuous structure-tensor normal crest localization + `(1 - m_hat_j)` self-credit-exact Dinkelbach net-surplus optimization calibrated strictly on `Train_k`.
+| Rank | ID | Layer(s) | Physical signature | Why it catches *uncatalogued* faults | Named non-fault mimic → rejection | Difference vs everything in this repo | Expected gain / cost |
+|---:|---|---|---|---|---|---|---|
+| 1 | **H14-1 LiDAR scarp direct detection** | `data/external/lidar_scarp_features_u8.tif` (12 bands: ex_max/mean, step_max, lap±, down/upface, cross_max, relief, coh100, strike, valid), aggregated from 1 m DEMs | Signed cross-strike elevation step + laplacian crest + 100 m strike coherence at 100 m cells | Holocene scarps <2 m high are invisible in the 19-band 100 m stack (B12/B19 are smooth) and too subtle for 1:250k catalogue mapping, but are the *direct* surface rupture record | Lake Lahontan shoreline benches, road cuts, dune slipfaces → require corroboration (H14-5 gate) + coh100 strike persistence | No lane in GEMSDOE91 reads this file (grep-verified); prior fleet lidar lanes used raw slope, not this scarp-decomposed stack | High / Low (file pinned, sha256-verified) |
+| 2 | **H14-2 Radiometric ratio alteration** | `data/external/geodawn_rad_u8.tif` bands K, Th, U, TC (USGS GeoDAWN) | Th/K depression (K-metasomatism), U/K enrichment, and their cross-strike steps along lineaments | Hydrothermal fluids rise along permeable *hidden* faults and potassically alter wall rock; alteration is a fluid-pathway tracer independent of scarp preservation | Felsic plutons (high K) → ratio must be *linear* (lineament-coincident), not blob-like; TC level alone excluded as evidence | Only TC (Band 06) was ever used; K/Th/U separately never enter any model here | Medium / Low |
+| 3 | **H14-3 Spring-anchored blind-fault habitat** | GDR well/spring inventory (`gdr_wellspring_in_footprint.csv`, 27,092 records) via existing `e2_gdr_*` static cols (excluded by S12/S13!) + new distance-to-hot-spring field | Thermal springs (temp/geothermometry) cluster where fault permeability taps deep circulation; a hot spring >300 m from catalogue is positive evidence of a blind structure | Springs are *effects* of the hidden faults the contest targets, not of mapping effort | Basin-margin artesian springs, springs on mapped faults (collar-excluded anyway) → used only as habitat multiplier on lineament support | Features exist in the static memmap but S12-SPAC and S13-PTHA dropped cols 34–43; no winning-lineage model uses them | Medium / Low |
+| 4 | **H14-4 Fold-safe tip/stepover geometry** | `existing_faults.tif` via `dd_vtc_pu.compute_fold_safe_catalogue_features` (tip prox, relay stepover, strike continuation), visible-faults-only per fold | Fault growth by tip propagation and relay-ramp linkage concentrates *unmapped* segments in 0.3–3 km tip/stepover corridors (NOT in the 300 m halo) | Catalogue segments end where mapping stopped, not where the fault ends; stepovers are the classic blind-geothermal play | Random lineament crossings → bounded multiplicative boost (≤1.28×) on physical support only | Implemented for H91 but absent from S11/S12/S13 winners; combined here with far-field emission instead of halo-hugging | Medium / Low |
+| 5 | **H14-5 Multi-family corroboration + winner-economics emission** | OOF posterior × independent crest families (PTHA crest, lidar coh100, rad-ratio step) → Dinkelbach greedy (`ptha.dinkelbach_*`) | A pixel earns a dot only if ≥2 physically independent families agree AND its exact marginal expected-DTI gain at λ₀ = 0.28 is positive under the 300 m max-kernel | This is the measured winning mechanism (§0): precision-gating + kernel-saturating unit dots at ≈3 px spacing, far-field weighted | Correlated artefacts (flight-line seams appear in mag *and* rad) → families chosen from independent sensors (lidar vs airborne gamma vs magnetics) | S13 used Dinkelbach on a single-physics-blend surface with λ₀ = 0.206 (its own holdout); here λ₀ is set from the *organizer* frontier (0.28) and tuned on v1.1-nohalo | High / Medium |
 
----
+## 2. Experiments (budget: 3)
 
-## 4. Pre-Registered Promotion & Fail-Closed Governance Criteria
+- **E1 (surface):** HGB ensemble on [static 49 (incl. e2 GDR) + S11 16 + PTHA 20 + **S14 new: lidar 12 + rad-ratio 6**] + fold-safe catalogue geometry (3, per-fold). Report HOLDOUT-DTI v1.0 (comparator vs S13 0.244601) **and** v1.1-nohalo, canary AUC for every new feature (fail if >0.90).
+- **E2 (corroboration):** E1 posterior gated by ≥2-family agreement; same scoring. Keep whichever of E1/E2 wins v1.1 without collapsing v1.0 (>0.20 floor = surface-sanity gate).
+- **E3 (emission):** Dinkelbach λ₀ ∈ {0.24, 0.28, 0.32} on OOF folds scored with v1.1-nohalo; pick λ₀, emit full-map, run all gates (format, [0,1], collar >3 px, registry uniqueness surface ρ ≤0.90 & dots ≤70% within 3 px vs every local + fleet raster, SGMC control reported for the record).
 
-- **Single-Feature Leakage Canary (`Rule 4`):** Every static feature AND every fold-specific Stage-2 Auto-Context feature must satisfy symmetric ROC-AUC $\le 0.90$ across the 4 folds before any candidate score is trusted.
-- **Holdout Promotion Criterion:** The winning experiment must exceed **`0.244601 HOLDOUT-DTI`** (`S13-PTHA E3`, current `#1` in `GEMSDOE91`) on `gems91-hide-recover-v1.0` (`60,988` withheld positives) with a strictly positive paired 5-km block-bootstrap 95% CI (`ci95[0] > 0`). If no arm beats `0.244601`, the deliverable is recorded honestly with `verdict: "negative"`.
-- **Multi-Scope Uniqueness & Portal Gate (`Rule 1` & `src/gems91/readiness.py`):** Pre-placement surface `|Spearman rho| <= 0.90` and post-placement 3-px dot overlap `<= 0.70` are audited across all 5 scopes (`canonical_registry`, `external_dotted_fleet`, `external_all_non_lattice`, `in_repo_siblings`, and `universal_all_files` including `calib_r13lattice_00904.tif`). Because `assigned_lane`, `complete_universal_registry` (`calib_r13lattice_00904` covers `99.87%` of Nevada, `IR-CED-003`), and human `selector_approval` remain `False` in automated runs, `submission_ready` remains **`false`** (`OK TO DOWNLOAD: YES` for research / selector inspection; `NOT OK TO SUBMIT` automatically until human selector sign-off).
+**Promotion rule:** candidate is labelled `promote` only if (i) all format gates pass,
+(ii) uniqueness gates pass, (iii) v1.0 E-score ≥ 0.20 (surface not degenerate) and
+(iv) emission geometry matches winner economics (unit dots, median spacing ≥2.8 px,
+≥60% dots >10 px from catalogue OR v1.1-justified deviation logged). A candidate that
+fails is still delivered as a labelled negative result. **No weekly slot is spent by
+this session; slot use remains a human selector decision (`SLOT_PLAN.md`).**
+
+## 3. External data check (no new data needed)
+
+All layers are already pinned & sha256-verified in `registry/data_manifest.json`
+(15/15 verified 2026-10-24): competition 19-band stack, `existing_faults.tif`,
+`sample_submission.tif`, GeoDAWN radiometrics u8, LiDAR scarp u8, GDR springs CSV,
+USGS SGMC control. Official upstreams for manual review:
+DrivenData competition https://www.drivendata.org/competitions/306/competition-doe-gems/ ·
+reference solution https://github.com/drivendataorg/gems-prize-reference-solution ·
+GeoDAWN https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and ·
+GDR #1391 https://gdr.openei.org/submissions/1391 · INGENIOUS https://gbcge.org/current-projects/ingenious/ ·
+EPSG:32611 https://epsg.io/32611 · Tversky index https://en.wikipedia.org/wiki/Tversky_index ·
+rules PDF https://docs.nlr.gov/docs/fy26osti/96647.pdf

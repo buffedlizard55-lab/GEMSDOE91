@@ -3,14 +3,14 @@
   "generated_utc": "2026-10-25T03:05:48Z",
   "branch": "arena/08009ce4-gemsdoe91",
   "preregistration": {
-    "path": "docs/HYPOTHESES_S14.md",
+    "path": "docs/HYPOTHESES_S14_HVDC.md",
     "sha256": "3ea8e0e105993198b2042fa1ba2c1ebd0c5ad8d29930d82fa6005e9bbcf402bf"
   },
   "lane": {
     "id": "S14-HVDC-E2",
     "assigned": false,
     "provisional_name": "Up-Gradient Hydrothermal Plume Back-Projection + Local Basin/Playa Deconfounding + Salem Tilt-Depth + Ruhl Swarm Excess + Leak-Free En-Echelon Relay-Ramp Auto-Context + Fold-Independent Dinkelbach Allocation",
-    "note": "Prompt references 'the single method paragraph below' without supplying an external selector-assigned paragraph (IR-91-S12-01); lane self-declared and frozen in docs/HYPOTHESES_S14.md prior to any holdout run."
+    "note": "Prompt references 'the single method paragraph below' without supplying an external selector-assigned paragraph (IR-91-S12-01); lane self-declared and frozen in docs/HYPOTHESES_S14_HVDC.md prior to any holdout run."
   },
   "hypothesis": "H14-1 + Leak-Free 6-Pair Two-Stage En-Echelon Relay-Ramp & Collinear Alluvial-Wash Bridge Structural Auto-Context",
   "hypothesis_id": "H14-1 + H14-2",

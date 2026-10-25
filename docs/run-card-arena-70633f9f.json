@@ -1,0 +1,50 @@
+{
+  "schema": "gems91.run-card.v2",
+  "run_id": "ARENA-70633F9F-20261024",
+  "hypothesis": "No lane-specific hypothesis selected because the required assigned method paragraph is not identifiable in the prompt and the competition inputs/cache are absent.",
+  "mechanism": "No experiment or raster build performed; fail-closed review only.",
+  "non_fault_mimic": "Lithologic/intrusive contacts; no feature was evaluated.",
+  "lane": {
+    "name": null,
+    "assigned": false,
+    "status": "STOPPED_NO_IDENTIFIABLE_METHOD_PARAGRAPH"
+  },
+  "experiments_run": 0,
+  "budget": {
+    "max_experiments": 3,
+    "max_seconds": 7200
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT_RUN_MISSING_DATA_AND_LANE"
+  },
+  "registry_comparison": {
+    "preplacement": null,
+    "final": null,
+    "complete_universal_registry": false,
+    "status": "NOT_RUN"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "note": null,
+  "verdict": "negative",
+  "submission_ready": false,
+  "organizer_confirmed": null,
+  "slots_used": 0,
+  "irregularities": [
+    "Competition data directory is absent from checkout.",
+    "pytest is not installed in the current environment.",
+    "Prompt does not identify a single assigned method paragraph/lane.",
+    "Repository fleet registry is not universal."
+  ]
+}
