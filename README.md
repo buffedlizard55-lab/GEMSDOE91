@@ -1,9 +1,26 @@
-# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/6cbfe8ac-gemsdoe91`)
+# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/e649e460-gemsdoe91`)
 
-> **Current review: OK TO DOWNLOAD — existing OLC91 research only. OK TO SUBMIT — NO.** No assigned single-method paragraph was supplied; no new geological experiment or TIFF was generated. Fixed a concrete defect: the default `python generate_submission.py` checked HEXFAR91 while the site linked OLC91. It now verifies the exact canonical TIFF + ZIP; `--with-data` checks the pinned sample/catalogue and `--run` blocks unassigned legacy execution. [Three-pass review](docs/REVIEW-6CBFE8AC-20261025.md) · [Run card](docs/run-card-6cbfe8ac.json) · [Download and guide](docs/index.html) · [Fresh 87-file audit](docs/review-6cbfe8ac/download-audit.html). All files remain not approved for submission.
+> **Current review: OK TO DOWNLOAD — existing OLC91 research file only. OK TO SUBMIT — NO.** No assigned single-method paragraph or local competition data were available, so this review ran no geological experiment and generated no new TIFF or score. Fresh checks: 578 tests passed, 8 integration tests skipped for missing pinned data; build preflight is blocked (0/2 minimum inputs, no ready axes). [Three-pass review](docs/REVIEW-ACTIVE-E649E460-20261025.md) · [Run card](docs/run-card-E649E460-20261025.json) · [Download page](docs/index.html) · [Submission guide](docs/executive-summary.html). Existing OLC91 TIFF: **research download only; do not submit**.
 
-> **Independent capacity check (not a score):** at 37,654 dots, the registry lattice forces at least 82.34% overlap, so the literal 70% gate cannot pass. [Evidence](docs/review-6cbfe8ac/capacity.json). No registry reference or threshold was removed. The following status blocks are prior-branch history, not this checkout’s results.
+> **Start every session here:** read this status, the [current review](docs/REVIEW-ACTIVE-E649E460-20261025.md), the [full standing project brief](#full-project-brief), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Maximize P(Win) · Own the Outcome: a technically valid file is not a scientific promotion, and no real submission slot is selected by this repo.
 
+> **Historical only:** earlier branch reviews below are retained for context. Their branch names, results, test counts, and data-presence claims do not describe this checkout unless explicitly rechecked above.
+
+## Current-session addendum — read before work
+
+The following requirements supplement the preserved standing prompt at [Full project brief](#full-project-brief):
+
+1. Before implementing any method, propose **3–5** geological hypotheses. For each, name its exact layer(s), targeted physical signature/transform, why it could detect a fault missing from USGS/INGENIOUS labels, what differs from implemented repository code, expected DTI improvement rank and implementation cost. If validation needs outside data, identify the exact free official source and check availability; do not call a source viable until access/coverage/rights are substantiated.
+2. Validate the top authorized candidate on the shared spatially blocked hide-and-recover holdout before considering a weekly slot. Withhold whole fault components with a buffer; derive catalogue features from visible faults only; mask visible faults pixel-exactly; use the shared pooled DTI evaluator and writer; run a feature-alone leakage canary. A candidate that does not beat the comparable same-version holdout best cannot be promoted.
+3. Respect the parallel-run single-method lane. If no method paragraph is assigned, do not infer one from historical runs; record a negative result and stop. Check surface rank-correlation before placement and 3-px dot overlap after placement. Stop at three experiments or two hours. Never select a real slot; selector is separate.
+4. Keep submission UX explicit: one-click GeoTIFF/ZIP; a unique run name and note of at most 140 characters; machine checks for one float32 band, [0,1], footprint/CRS/shape/transform and NaNs; clearly distinguish **OK TO DOWNLOAD** from **OK TO SUBMIT**. Format validity does not imply scientific or selector approval.
+5. Label every score by evidence class. HOLDOUT-DTI requires evaluator version, withheld-positive count and 95% CI; ORGANIZER-CONFIRMED requires a submission-page receipt. Public leaderboard rows and user-reported figures must be labeled separately, never presented as a receipt or projection as a score.
+6. Verify claims against official sources, link them for audit, state access/rights limitations, flag irregularities, and do not hallucinate. Make three review passes (implement/review/recheck), but do not violate the no-lane stop to satisfy a request for a new TIFF.
+7. Keep **Maximize P(Win)** and **Own the Outcome** central: protect scarce slots, report negative evidence, and fix shared tooling rather than making private forks.
+
+The user-supplied figures in this session (including GEMSDOE32 0.2778, 0.3195, 0.4413, and GEMSDOE91/92 listed scores) are not receipts. Refer to the current review for the official public-board snapshot and evidence labels.
+
+---
 
 ## Parallel review `arena/e02bcd84-gemsdoe91` (merged history)
 
@@ -33,7 +50,7 @@
 >
 > **Why the reported GEMSDOE32 0.2778 may have risen:** sparse dot emission and pruning predictions with low marginal coverage can reduce penalized mass under a spatial DTI objective. That is a plausible metric mechanism, not causal proof or an organizer-confirmed score. The user-provided 0.2778, 0.3195 and 0.4413 are not submission receipts in this checkout.
 
-Core values: **Maximize P(Win) · Own the Outcome.** Start every session with this status, the [current active-branch review](docs/REVIEW-ACTIVE-FFB91DA8-20261025.md) ([run card](docs/run-card-FFB91DA8-20261025.json)), the [full standing project brief](#full-project-brief), and the [merged 6cbfe8ac review](docs/REVIEW-6CBFE8AC-20261025.md) as subsequent main-branch context. Download-format validity, holdout improvement, registry uniqueness, selector approval, and an organizer receipt are separate gates.
+Core values: **Maximize P(Win) · Own the Outcome.** Start every session with the active-checkout banner at the top, the [current review](docs/REVIEW-ACTIVE-E649E460-20261025.md) and [run card](docs/run-card-E649E460-20261025.json), the [full standing project brief](#full-project-brief), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Download-format validity, holdout improvement, registry uniqueness, selector approval, and an organizer receipt are separate gates.
 
 ---
 
@@ -153,10 +170,10 @@ ORGANIZER-CONFIRMED without a submission-page receipt.
 
 ## Start here every session
 
-**Current review (active branch `arena/6cbfe8ac-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-6CBFE8AC-20261025.md) · [run card](docs/run-card-6cbfe8ac.json). No method lane was assigned, so this branch ran no new candidate and used no slot. HEXFAR91, S17-CWPC, S17-CDSC, and the S18 review arrived from merged parallel branches; their research artifacts and findings do not constitute lane assignment for this session.
+**Current review (active branch `arena/e649e460-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-ACTIVE-E649E460-20261025.md) · [run card](docs/run-card-E649E460-20261025.json). No method lane was assigned and no local data were present, so this branch ran no new candidate and used no slot. Historical files and findings from parallel branches do not constitute lane assignment for this session.
 
 **Prior review (historical checkout):** [E92C84E1 review](docs/REVIEW-E92C84E1-20261025.md).
-At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this branch's review](docs/REVIEW-6CBFE8AC-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews below remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
+At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this branch's review](docs/REVIEW-ACTIVE-E649E460-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews below remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
 
 Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
 

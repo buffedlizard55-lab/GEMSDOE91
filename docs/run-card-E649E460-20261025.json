@@ -1,0 +1,57 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "E649E460-20261025",
+  "branch": "arena/e649e460-gemsdoe91",
+  "hypothesis": "No new candidate tested: assigned method paragraph was absent. Conditional screen priority is a multiscale roughness/spectral-slope break in detrended elevation (B12) and slope (B19); untested and blocked by missing local data.",
+  "mechanism": "Cross-strike change in topographic texture may retain subtle damage-zone or differential-erosion evidence where a single-scale scarp gradient is weak. It cannot detect a fully buried fault with no surface expression.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic weathering contrast, alluvial-fan margin, or playa/shoreline terrace.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN: lane unassigned and all 16 pinned manifest inputs absent locally"
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "NOT RUN: no candidate surface or dot set"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT APPLICABLE: no new raster was generated"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "existing_research_download": {
+    "file": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+    "submission_name": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67",
+    "note": "GEMSDOE91 OLC91 E1: PU posterior x 1.1km strike-coherent line support, 37654 3px dots, 2px catalogue collar",
+    "raster_sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "ok_to_download": "YES — RESEARCH ONLY",
+    "ok_to_submit": "NO",
+    "fresh_reference_check": "NOT CHECKED: pinned sample/catalogue inputs are absent locally"
+  },
+  "verdict": "negative",
+  "experiments_used": 0,
+  "weekly_submission_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "public_leaderboard": {
+    "status": "PUBLIC-LEADERBOARD observation, not a submission receipt",
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "checked_utc_date": "2026-10-25"
+  },
+  "verification": {
+    "pytest": "578 passed, 8 skipped; 78 Rasterio Affine pending-deprecation warnings",
+    "submission_cli": "PASS for advertised TIFF/ZIP identity and stored grid/range; reference checks not checked",
+    "artifact_policy": "PASS: 87 registered prediction artifacts; no raw raster/archive tracked",
+    "evidence_consistency": "PASS; no geological experiments rerun",
+    "preflight": "BUILD BLOCKED: 0/2 minimum inputs, no ready axes",
+    "manifest": "16/16 pinned manifest entries missing locally"
+  },
+  "review": "docs/REVIEW-ACTIVE-E649E460-20261025.md"
+}

@@ -1715,3 +1715,13 @@ Evidence and three-pass review: `docs/REVIEW-6CBFE8AC-20261025.md`; exact-downlo
 ## Active review ee76e309 (2026-10-25)
 
 The published-artifact verifier read historical `docs/run-card.json`, while the frontdoor advertises a different artifact through `docs/current-run.json`. Added `scripts/verify_frontdoor.py` and CI coverage for the actual pointer; retained historical verification. Removed misleading LB-DTI navigation labels in source and generated pages. Fresh 87-artifact audit records 78 technical PASS / 9 FAIL, not submission authorization. No lane paragraph supplied, so no new experiment/TIFF/slot. See `docs/REVIEW-EE76E309-20261025.md`.
+
+## Active review e649e460 (2026-10-25)
+
+- **IR-E649-01 — unassigned lane and no local data.** This checkout has no assigned single-method paragraph, no `data/` directory, and 16/16 manifest inputs are absent. Fresh preflight reports 0/2 required files and no ready axis. No experiment or TIFF was generated; do not run a legacy method by inference.
+- **IR-E649-02 — manifest local-state fields are historical.** `registry/data_manifest.json` retains `local_present: true` / `verified_here: true` metadata from an earlier environment, while fresh filesystem verification currently finds all 16 entries missing. Use `scripts/preflight.py` / `scripts/verify_manifest.py` for present-state claims; do not interpret those manifest booleans as current availability.
+- **IR-E649-03 — leaderboard wording conflict.** The official public leaderboard fetched for this review shows global public rank 1 at 0.4413; 0.3195 is not its top entry. 0.2778 and 0.3195 from the user’s GEMSDOE list remain user-reported, not submission receipts. This public table is not a private score or organizer receipt.
+- **IR-E649-04 — stale published review pointers.** README and the OLC91 page banner named earlier active branches. Updated the README and the renderer source/generated page to point to this active checkout. OLC91 remains an existing historical research download, not a new artifact and not approved for submission.
+- **IR-E649-05 — stale SGMC item identifier.** An inherited ScienceBase item URL (`6312f0f2d34e36012efa234a`) returned “Not Found” during source audit. The current official 2026 GeMS/SGMC release is documented at `https://www.usgs.gov/data/geologic-map-schema-gems-version-state-geologic-map-compilation-sgmc-geodatabase-conterminous` (DOI 10.5066/P1A3DQZK). This does not establish local payload access or coverage.
+
+Evidence: `docs/REVIEW-ACTIVE-E649E460-20261025.md` and `docs/run-card-E649E460-20261025.json`.
