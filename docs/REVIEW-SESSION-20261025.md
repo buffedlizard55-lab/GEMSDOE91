@@ -10,7 +10,7 @@ The existing landing page does make a download button and separate **OK TO DOWNL
 
 ### Pass 1 — inspect and verify
 
-- Confirmed branch `arena/2f002fa0-gemsdoe91`; the checkout was clean before review changes.
+- Confirmed branch `arena/2f002fa0-gemsdoe91`; the checkout was clean before review changes. After PR #98 advanced `main` to `7d74396`, merged that latest base into this branch and retained its prior review/run-card records as inherited history; no work was switched to another branch.
 - Read the current README, prescribed parallel protocol, source/evidence records, preflight, shared evaluator/writer, registry gate, artifact policy, test suite, and current landing page.
 - Initial `data/` was empty. After the first preflight, restored only `sample_submission.tif` and `existing_faults.tif` from immutable GitHub mirror commit `02563d07fb85d2f4d35887503d380d34d4017197`; verified SHA-256 values `2176d08e…54d35cbc` and `7ba308cc…5ae4093` against the pinned manifest. These are mirror copies, not fresh downloads from DrivenData or proof of redistribution rights. Final preflight reports **BUILD BLOCKED: 1/2 required inputs verified** (`sample_submission` present, `parent_r0_nan` absent); remaining feature-stack and registry inputs block every configured axis.
 - The previous GEO91 E2 record reports **0.055267 HOLDOUT-DTI** (`gems91-hide-recover-v1.1-nohalo`, 60,988 withheld positives, 95% CI [0.053367, 0.057308]) versus its matched random control **0.074387 HOLDOUT-DTI** (same evaluator and withheld population, 95% CI [0.071858, 0.076953]). These are inherited evidence records, not a fresh run in this review; the candidate lost to control. Do not treat them as organizer scores or as a comparison to incompatible holdouts.
