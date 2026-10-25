@@ -1,4 +1,8 @@
-# GEMSDOE91 — active checkout `arena/522615dd-gemsdoe91`
+# GEMSDOE91 — Repository review (`arena/7d6ac0dc-gemsdoe91`)
+
+> **OK TO DOWNLOAD: existing research TIFF only. OK TO SUBMIT: NO. No new TIFF generated.** [Current three-pass review](docs/REVIEW-7D6AC0DC-20261025.md) · [Run card](docs/run-card-7d6ac0dc.json) · [Download and submission guide](docs/executive-summary.html). Fixed contradictory promotion flags, ZIP path confinement, and corrupt-ZIP CLI failures. Regression: 594 passed, 8 skipped. Reference-byte checks block on absent local data. Missing method assignment and prior registry feasibility conflict remain unresolved. Start each session with the [full standing prompt](#full-project-brief) and this review.
+
+## Merged historical review (`arena/522615dd-gemsdoe91`)
 
 > **Merged tooling and parallel reviews, not current-run evidence:** upstream includes the `6cbfe8ac` fix so `generate_submission.py` verifies the canonical `docs/current-run.json` download by default and blocks `--run` without an assigned lane; the `ee76e309` follow-up adds a current-frontdoor byte verifier to CI. The newer `ffb91da8` review restored only the pinned sample and catalogue in that checkout (its local preflight was 1/2); this checkout still has neither required file. See [6cbfe8ac review](docs/REVIEW-6CBFE8AC-20261025.md), [ee76e309 review](docs/REVIEW-EE76E309-20261025.md), and [ffb91da8 review](docs/REVIEW-ACTIVE-FFB91DA8-20261025.md) / [run card](docs/run-card-FFB91DA8-20261025.json). Their branch-local inputs, audit runs, and outcomes do not describe this checkout.
 >

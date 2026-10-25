@@ -16,6 +16,7 @@ import argparse
 import hashlib
 import json
 import sys
+import zipfile
 from pathlib import Path
 
 RUN_CARD = "docs/run-card-HEXFAR91.json"
@@ -118,7 +119,7 @@ def main():
         from scripts.verify_s16 import verify
         try:
             report = verify(with_data=args.with_data)
-        except (OSError, ValueError, KeyError, TypeError, ImportError) as exc:
+        except (OSError, ValueError, KeyError, TypeError, ImportError, zipfile.BadZipFile) as exc:
             print(json.dumps({"status": "BLOCKED", "ok_to_submit": False, "error": str(exc)}))
             return 1
         print(json.dumps(report, indent=2, allow_nan=False))
@@ -129,8 +130,9 @@ def main():
         else:
             from scripts.verify_front_door import verify
             report = verify(root, with_data=args.with_data)
-    except (OSError, ValueError, KeyError, TypeError, ImportError) as exc:
-        print(json.dumps({"status": "BLOCKED", "OK_TO_SUBMIT": "NO", "error": str(exc)}))
+    except (OSError, ValueError, KeyError, TypeError, ImportError, zipfile.BadZipFile) as exc:
+        print(json.dumps({"status": "BLOCKED", "OK_TO_DOWNLOAD": "NO",
+                          "OK_TO_SUBMIT": "NO", "submission_ready": False, "error": str(exc)}))
         return 1
     print(json.dumps(report, indent=2))
     return 0 if report["format_ok"] else 1
