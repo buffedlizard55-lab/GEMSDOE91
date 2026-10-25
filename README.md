@@ -1,13 +1,12 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
-## Latest active-branch review — `arena/c6bfb72b-gemsdoe91` (2026-10-25)
+## Latest active-branch review — `arena/0a96aa96-gemsdoe91` (2026-10-25)
 
-**NEW TIFF GENERATED: NO. OK TO SUBMIT: NO.** This is a repository-repair review, not a new geological experiment. The prompt omits the assigned method paragraph, so this session cannot safely enter a parallel lane. No weekly slot used. Existing files remain **downloadable for research only**, not promoted submissions.
+**NEW TIFF GENERATED: NO. OK TO SUBMIT: NO.** This review inspected the current CED91 result; it did not run another geological experiment. The prompt has no assigned method paragraph, and the existing final dots trip the literal duplicate-stop threshold. No weekly slot used. Existing files are research downloads only.
 
-- [Audit and ranked hypotheses](docs/REVIEW-C6BFB72B-20261025.md) · [Review run card](docs/run-card-REVIEW-C6BFB72B.json) · [Existing research downloads and submission guide](docs/executive-summary.html).
-- Restored the pinned sample and catalogue through the existing GitHub mirror; their SHA-256/length checks pass. Freshly revalidated the CED TIFF against them: format/range PASS, submission readiness FALSE. Feature stack and full registry were not restored; these are not the only blockers—lane, novelty and comparable-best evidence also matter.
-- Repaired the portal's incomplete geotransform check, registered the three historical S15 artifacts as quarantined, and fixed the partially-restored-data test prerequisite.
-- The existing complete project brief remains below under **Original user project brief — full text, formatting normalized**. Read it and this latest review at every session start. Prior branch labels and claims below are historical, not current permissions.
+- [Current audit and ranked candidate refinements](docs/REVIEW-ACTIVE-0A96AA96-20261025.md) · [Review run card](docs/run-card-REVIEW-0A96AA96.json) · [Current executive summary](docs/active-executive-summary.html).
+- Restored 15 manifest-pinned inputs from the configured GitHub mirrors and verified their SHA-256/length. This includes the local feature stack; the full fleet registry and original DrivenData provenance/usage authorization were not independently established. Fresh CED TIFF validation against the locally restored sample/catalogue passes format/range/grid checks, but submission readiness is FALSE.
+- Refreshed the landing page with the actual active-branch verdict and registered three previously unregistered S15 artifacts as quarantined. The complete project brief remains below under **Original user project brief — full text, formatting normalized**. Read that brief and this latest review at each session start; historical branch claims are not current permissions.
 
 ## Previous active-branch review (historical; 2026-10-25)
 
