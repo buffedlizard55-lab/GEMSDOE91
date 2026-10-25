@@ -5,6 +5,10 @@
 > **Independent capacity check (not a score):** at 37,654 dots, the registry lattice forces at least 82.34% overlap, so the literal 70% gate cannot pass. [Evidence](docs/review-6cbfe8ac/capacity.json). No registry reference or threshold was removed. The following status blocks are prior-branch history, not this checkout’s results.
 
 
+## Parallel review `arena/e02bcd84-gemsdoe91` (merged history)
+
+[Review and conditional hypothesis screen](docs/REVIEW-ACTIVE-E02BCD84-20261025.md) · [Negative run card](docs/run-card-E02BCD84.json). No candidate or slot was used. Its independent source/access findings are retained, not an assigned lane or current experiment.
+
 ## Parallel review `arena/ee76e309-gemsdoe91` (merged history)
 
 > **OK TO DOWNLOAD: YES — existing research TIFF. OK TO SUBMIT: NO.** [Download existing OLC91 GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif) · [submission guide](docs/executive-summary.html) · [current three-pass review](docs/REVIEW-EE76E309-20261025.md) · [run card](docs/run-card-ee76e309.json).
