@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Download the current GeoTIFF · GEMSDOE91 OLC91</title>
+<title>Download the current GeoTIFF · GEMSDOE91 HEXFAR91</title>
 <meta name="description" content="One-click download of the current format-validated GeoTIFF with an automated, plain-language verdict on whether it may be submitted.">
 <style>
 :root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
@@ -28,8 +28,8 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 <div class="hero">
 <div>
 <span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span><span class="badge bad">OK TO SUBMIT: NO</span>
-<h1>New GeoTIFF: download it, but do not submit it.</h1>
-<p class="small">This is the OLC91 session file (2026-10-25). It is computed fresh from the official GeoDAWN feature bands and validated automatically from its written bytes, with no human image inspection. Two automated gates stop it, which makes it <strong>NOT OK TO SUBMIT</strong>.</p>
+<h1>HEXFAR91 GeoTIFF: download it, but do not submit it.</h1>
+<p class="small">This is the HEXFAR91 hexagonal far-field lattice (2026-10-25). Validated automatically from written bytes (no human image inspection). Format PASS, uniqueness PASS, holdout FAIL (DTI 0.0) → <strong>NOT OK TO SUBMIT</strong>.</p>
 <ol class="small">
 <li><strong>Holdout science:</strong> the new idea, strike-coherent line support (E1), scored 0.0832 HOLDOUT-DTI against 0.0853 for the incumbent recipe (E0) on identical folds. The paired difference is −0.0021 with 95% CI [−0.0045, +0.0002], and E1 lost in all 4 folds.</li>
 <li><strong>Uniqueness:</strong> 76.8% of its dots lie within 3 px of a prior GEMSDOE91 file (<code>gems91-bhar-e3</code>; 71.8% after chance correction). The protocol limit is 70%.</li>
@@ -38,23 +38,23 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 </div>
 
 <div class="card dl" data-submission-ready="false" aria-label="Download current file">
-<strong>CURRENT FILE · OLC91-E1</strong>
+<strong>CURRENT FILE · HEXFAR91</strong>
 <div class="status"><span>OK to download</span><strong>YES — research only</strong></div>
 <div class="status"><span>OK to submit</span><strong style="color:var(--bad)">NO</strong></div>
 <div class="status"><span>Values in [0,1], no NaN/Inf</span><strong>PASS</strong></div>
 <div class="status"><span>CRS / shape / transform</span><strong>PASS · EPSG:32611</strong></div>
 <div class="status"><span>Dots on mapped faults</span><strong>0 · min distance 2.24 px</strong></div>
-<div class="status"><span>Holdout vs incumbent</span><strong style="color:var(--bad)">FAIL · −0.0021</strong></div>
-<div class="status"><span>Registry uniqueness</span><strong style="color:var(--bad)">STOP · 76.8% &gt; 70%</strong></div>
-<a class="button" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">↓ Download GeoTIFF</a>
-<a class="btn2" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip">↓ Single-TIFF ZIP</a>
-<a class="btn2" href="run-card-OLC91.json">Machine run card ↗</a>
-<p class="small">37,654 binary dots · 1 band float32 · 3730×3292 · all 12,279,160 cells finite in [0,1], 0 outside the footprint · SHA-256<br><code>35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc</code></p>
+<div class="status"><span>Holdout vs catalogue hide-recover</span><strong style="color:var(--bad)">FAIL · HOLDOUT-DTI 0.0</strong></div>
+<div class="status"><span>Registry uniqueness</span><strong>PASS · 16.91% 3px · |ρ| 0.00467</strong></div>
+<a class="button" download href="downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif">↓ Download GeoTIFF</a>
+<a class="btn2" download href="downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.zip">↓ Single-TIFF ZIP</a>
+<a class="btn2" href="run-card-HEXFAR91.json">Machine run card ↗</a>
+<p class="small">14,985 binary dots · 1 band float32 · 3730×3292 · all 12,279,160 cells finite in [0,1] · SHA-256<br><code>779773ff20cbd1d59520c0f8cce5f914c6f467c9f21471dad57669fc8cf6e49f</code></p>
 </div></div>
 
 <section class="card"><h2>Submission identity (recorded, not an instruction to upload)</h2>
-<label class="small" for="nm">Submission name</label><textarea id="nm" rows="2" readonly>gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67</textarea>
-<label class="small" for="nt">Note · 107/140 characters</label><textarea id="nt" rows="2" readonly>GEMSDOE91 OLC91 E1: PU posterior x 1.1km strike-coherent line support, 37654 3px dots, 2px catalogue collar</textarea>
+<label class="small" for="nm">Submission name</label><textarea id="nm" rows="2" readonly>gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0</textarea>
+<label class="small" for="nt">Note · 95/140 characters</label><textarea id="nt" rows="2" readonly>HEXFAR91 hex stagger 18-35px 1.8-3.5km off-cat 14985 dots HOLDOUT-DTI=0.0 unique research</textarea>
 <p class="warn"><strong>NOT OK TO SUBMIT.</strong> The format gates pass, but the holdout gate fails and the uniqueness gate stops it. No weekly slot was used. Slot selection belongs to the separate selector.</p></section>
 
 <section class="card"><h2>Automated gates</h2>

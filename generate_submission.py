@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
-"""Verify (default) or regenerate (--run) the current OLC91 candidate download.
+"""Verify (default) the current HEXFAR91 candidate download.
 
-The default command re-reads the published GeoTIFF, recomputes its SHA-256, re-checks the
-submission format against the run card, and prints the automated verdict:
-
-    python generate_submission.py            # verify docs/run-card-OLC91.json + its TIFF
-    python generate_submission.py --run      # rerun the frozen OLC91 experiment (needs data/)
+    python generate_submission.py            # verify docs/run-card-HEXFAR91.json + its TIFF
+    python generate_submission.py --run      # rebuild hexagonal far-field lattice (needs data/)
     python generate_submission.py --legacy-s16   # the historical S16 verifier
 
 Never create mock labels in data/official, read another submission as a feature,
@@ -21,7 +18,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-RUN_CARD = "docs/run-card-OLC91.json"
+RUN_CARD = "docs/run-card-HEXFAR91.json"
 
 
 def verify_olc91(root: Path, with_data: bool = False) -> dict:
@@ -120,10 +117,9 @@ def main():
         print(json.dumps(report, indent=2, allow_nan=False))
         return 0
     if args.run:
-        for step in (["holdout", "--seed", "20"], ["final", "--arm", "E1"]):
-            rc = subprocess.call([sys.executable, str(root / "scripts" / "run_olc91.py"), *step], cwd=root)
-            if rc:
-                parser.exit(rc, "run_olc91 failed (the writer refuses to overwrite an existing TIFF)\n")
+        rc = subprocess.call([sys.executable, str(root / "scripts" / "build_hexfar_submission.py")], cwd=root)
+        if rc:
+            parser.exit(rc, "build_hexfar_submission failed\n")
     try:
         report = verify_olc91(root, with_data=args.with_data)
     except (OSError, ValueError, KeyError, TypeError, ImportError) as exc:
