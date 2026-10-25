@@ -1,15 +1,24 @@
 # Submission guide — current automated decision
 
-**OK to download the new research TIFF. NOT OK TO SUBMIT it.**
+**OK to download the S16-PGRD research TIFF. NOT OK TO SUBMIT it.**
 
-Use the [executive summary](executive-summary.html) for the exact process, short
-name/note, range-error explanation and links to the real file. The [run card](run-card.json)
-is authoritative evidence; `src/gems91/readiness.py` is the shared fail-closed policy.
+The current landing page links the file directly. Use the [executive summary](executive-summary.html)
+for the current name/note and submission instructions. The active artifact's
+[run card](run-card-S16.json) and [independent verification](s16/verification.json)
+are authoritative for S16-PGRD; `src/gems91/readiness.py` is the shared fail-closed policy.
 
 ```bash
-python scripts/restore_data.py --only sample_submission,existing_faults
-python scripts/verify_current_artifact.py --with-data
+# Recheck the published S16-PGRD TIFF/ZIP and replay its recorded evidence.
+python generate_submission.py
+
+# Requires the authorized, hash-pinned competition inputs in data/.
+python generate_submission.py --with-data
 ```
+
+`python scripts/verify_current_artifact.py` is a legacy verifier for the canonical
+CED91 artifact in `docs/run-card.json`; it does **not** validate the active S16-PGRD
+file shown on the landing page. A format/evidence PASS still means research-only here,
+not permission to submit.
 
 A format PASS is not a novelty/science/selector PASS. No human inspector is needed
 to reach the current negative verdict, and no automatic competition upload exists.
