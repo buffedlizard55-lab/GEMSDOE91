@@ -70,6 +70,7 @@ def gates(card):
                            and p['not_checked_after_stop'] == 0 for p in phases)
                    and phases[0].get('checked') == phases[1].get('checked')
                    and _number(registry.get('max_measured_surface_rank_correlation'), -.90, .90)
+                   and _number(registry.get('max_measured_final_dot_rank_correlation'), -.90, .90)
                    and _number(registry.get('max_measured_final_dot_overlap_within_3px'), 0, .70),
         'assigned_lane': _mapping(card.get('lane')).get('assigned') is True,
         'beats_comparable_best': bool(comparable and measured_improvement
