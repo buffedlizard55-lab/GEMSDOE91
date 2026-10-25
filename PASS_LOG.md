@@ -1,5 +1,16 @@
 # GEMSDOE91 — Unique TIF submission pass log
 
+## Active checkout review — `arena/85ad3c12-gemsdoe91` (2026-10-25)
+
+This section records the current checkout and supersedes neither the historical session record below nor its artifacts. The historical context below names `arena/e6fdea6b-gemsdoe91` and reports locally restored inputs; those statements do not describe this checkout.
+
+- No assigned single-method paragraph (`docs/run-card.json`: `lane.assigned: false`); no lane inferred.
+- `data/` and `.venv/` are absent. `python scripts/preflight.py` exits 1 with `BUILD BLOCKED`, missing `sample_submission` and `parent_r0_nan`; no feature stack or complete registry is available to run the protocol.
+- Base Python initially lacked the pinned packages; installed `requirements.txt` into ignored `.venv/`. Full pytest suite result: 3 failures in stale portal/test contracts, with other tests passing/skipping; details in the review. A standard-library syntax compilation of 185 Python source/test files found zero syntax errors.
+- No new experiment or TIFF, submission, or weekly slot was used. Holdout and registry uniqueness values for this review are NOT RUN, not zero. A pre-existing historical damage-zone artifact has a separately documented HOLDOUT-DTI 0.0 negative; it was not rerun.
+- Pass 2 found the artifact-policy CI check omitted three already tracked historical files. Added their current byte hashes and do-not-submit status to `registry/artifact_policy.json`; `python scripts/check_artifact_policy.py` now passes for 62 artifacts. This does not upgrade their eligibility.
+- Review: `docs/REVIEW-ACTIVE-85AD3C12-20261025.md`; run card: `docs/run-card-85ad3c12.json`.
+
 ## Session context
 Branch: arena/e6fdea6b-gemsdoe91 (active). Pinned data restored:
 - data/official/sample_submission.tif (EPSG:32611, 3730x3292, 100 m, footprint 5,167,373 px)

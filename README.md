@@ -1,5 +1,7 @@
 # GEMSDOE91 — CURRENT STATUS (GEO91, 2026-10-25) — read this first
 
+> **Active Arena checkout review (`arena/85ad3c12-gemsdoe91`, 2026-10-25): NO new experiment or TIFF; OK TO SUBMIT: NO.** This checkout has no `data/` directory, the required sample grid and registry parent fail preflight, and `docs/run-card.json` has no assigned single-method lane. The pinned test dependencies were installed into ignored `.venv/`; the full suite exposed three pre-existing portal/test mismatches (details in the review). No lane was inferred and no submission slot was used. See [current-checkout three-pass review and hypothesis shortlist](docs/REVIEW-ACTIVE-85AD3C12-20261025.md) and [machine-readable review card](docs/run-card-85ad3c12.json). Do not treat prior-session files or logs as newly validated in this checkout. The full standing brief below remains a required starting point; honor its lane, shared-tool, leakage, registry, evidence-label, and budget constraints.
+
 **Site / download:** `docs/index.html` leads with the current GeoTIFF and its verdict.
 **Current file:** `gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif`
 (37,654 dotted px, collar >3 px, SHA-256 `57d2c44c…e5befe2f`) — **OK TO DOWNLOAD: YES ·
