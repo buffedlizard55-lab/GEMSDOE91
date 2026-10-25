@@ -1,10 +1,28 @@
-# Current limitations and next steps — S17-CPAD, OLC91, S17-CDSC, S17-EULR, S17-CGRD & S16, 2026-10-25
+# Current limitations and next steps — S18-HGBR, S17-LFTG, S17-CPAD, OLC91, S17-CDSC, S17-EULR, S17-CGRD & S16, 2026-10-25
 
 This replaces the stale statement that real data cannot be restored. All 15 pinned
 competition and reference inputs in `registry/data_manifest.json` (`sample_submission.tif`,
 `existing_faults.tif`, `gems-geodawn-numerical-features.tif`, `gdr_wellspring_in_footprint.csv`,
 `derived_sgmc_faults_100m_u8.tif`, `GEMSDOE32__h33-2-b2-zeros.tif`, `calib_r13lattice_00904.tif`, etc.)
 were restored and SHA-256 verified in this session. No fake catalogue was used.
+
+## Session 18 (`S18-HGBR`, branch `arena/bba4efce-gemsdoe91`) — Variogram Hurst-Break, Up-Dip Listric Migration & OOF Cover-Rescue Summary & Next Steps
+
+- **Completed Priority Next Steps from Sessions 17 (`IR-91-S17-01`, `IR-91-S17-02`, `IR-91-S17-LFTG-01`) and 18 (`H1`):**
+  1. Implemented 16 novel `S18-HGBR` features (`src/gems91/hgbr18.py`, `scripts/run_s18_hgbr.py`): amplitude-gated 1st-order directional variogram Hurst-break, strike-parallel vs cross-strike Hurst anisotropy, and 300–900 m up-dip listric crest-to-scarp migration across `Band 10` (`grav_isostatic`), `Band 11` (`grav_bouguer`), `Band 13` (`mag_tmi`), `Band 14` (`mag_rtp`), `Band 8`/`9` (`sar_vv`/`vh`), `Band 18` (`geotherm_temp`), and `Band 0`/`1` (`elev`/`slope`, strictly isolated to `model_full` per `IR-91-S15-05`).
+  2. Remediated `IR-91-S17-01` (`align_stage1_log_odds_dispersion`), `IR-91-S17-02` (`pool_asymmetric_cover_specialists` positive-part-only cover rescue), and `IR-91-S17-LFTG-01` (`stitch_oof_full_map_surface` 4-fold out-of-fold full-map stitching + structural backbone rescue).
+  3. **Holdout Record (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, `60,988` withheld positives, `80 px` buffer, `37,654` binary dots):** `hgbr_e1` achieved **`0.200742 HOLDOUT-DTI`** (`95% CI [0.180482, 0.221419]`; `hgbr_e2 = 0.200530`, `hgbr_e3 = 0.196442`), beating `S17-CPAD E1` (`0.198183`) on all 4/4 spatial folds (`+0.002560`), `INCUMBENT-PTAC-LB` (`0.194221`) by **`+0.006521`**, `INCUMBENT-PTAC-V2` (`0.192208`) by **`+0.008534`** (`95% CI [+0.002892, +0.014515]`), and `S17-LFTG E2` (`0.188596`) by **`+0.012146`** (`95% CI [+0.007290, +0.017609]`).
+  4. **Untouched Blind Off-Catalogue USGS SGMC Control Record (`docs/s18_hgbr/blind-sgmc.json`):** `hgbr_e1` achieved **`0.103939` (`>300 m`)**, **`0.104995` (`>500 m`)**, and **`0.101151` (`>1 km`)** (`82.21%` of dots `>1 km` from the visible catalogue), beating `GEMSDOE32 R0` (`>1 km = 0.082913`) by **`+22.00%`** and `S17-LFTG` (`>1 km = 0.039897`) by **`+153.53%`**.
+  5. **Real-Submission Uniqueness (`Rule 1`):** `hgbr_e1` passes `<= 70%` 3-px dot overlap and `<= 0.90` `|rho|` across **all 83 real submissions** (`vs GEMSDOE32 R0 = 48.77%`, `canonical real = 57.05%`, `external fleet = 51.29%`, `in-repo downloads = 61.87%`).
+- **Remaining Limitations & Next Steps for Session 19:**
+  1. **Synthetic Calibration Grid Policy (`IR-S16-03`):** Under the literal 100-raster check, the 3 synthetic `192k–273k`-dot calibration grids (`calib_r13lattice_00904.tif` `99.84%`, `r11_greedy_mp.tif` `88.13%`, `r14_union_tips10_lat6.tif` `75.90%`) exceed `70%` unidirectional overlap (`f1_dot_overlap_3px <= 0.2491`). A human selector decision (`D1`) is needed to confirm that real-submission uniqueness (`61.87% <= 70%`) governs live slot selection.
+  2. **Widening the Paired Holdout Margin Over `S17-CPAD E1`:** While `hgbr_e1` beats `S17-CPAD E1` on all 4 folds (`+0.002560`), its 20-km block-bootstrap 95% CI (`[-0.000516, +0.005617]`) slightly touches zero (`P(>0) = 94.1%`). Next session should combine `S18-HGBR` features with a 2-D multi-scale directional convolutional/steerable filter layer trained on `spatial.folds` to push `HOLDOUT-DTI` above `0.205` with paired `ci95[0] > 0` against `S17-CPAD E1`.
+  3. **External Bulk Datasets (`H18-4` MT/AEM & `H18-5` Pre-Dawn Winter Landsat LST):** Requires downloading USGS ScienceBase MT/AEM resistivity grids and winter night-time Landsat C2 L2 scenes on an unrestricted machine (`IR-91-S18-10`).
+
+## Session 17 (`S17-LFTG`, branch `arena/281b6ba8-gemsdoe91`) — 3-D Laplace Tensor Gravity, SGMC >500 m Discovery & Next Steps
+
+- **3-D Laplace Full-Tensor Gravity + Flight-Line Destriping + Zero-DEM Dual-Specialist (`src/gems91/lftg17.py`, `scripts/run_s17_lftg.py`):** Implemented 20 novel `B12/B19`-free physics features (exact float32 FFT 3-D Eötvös gravity tensor `G_z, \Gamma_{zz}`, Wijns `\cos\theta_G`, Pedersen–Rasmussen `Q_2D = 1 - |I|` with Viète factor `2.0`, directional flight-line notch destriping on `B01/B02/B06/B09/B14`, and basin-margin Bouguer curvature contrast). With **0 bytes of DEM bands `B12`/`B19` in the S17 stack**, `s17_e2_lftg_pcac` achieved **`0.188596 HOLDOUT-DTI`** (`95% CI [0.167180, 0.210009]`) on `gems57-pooled-hide-v2`, beating DEM-assisted `incumbent_ptha_v2` (`0.179206`) across **all 4/4 quadrants** (`+0.009390`), jumping **`+0.011771`** over Stage-1 `E1` (`0.176825`), and beating DEM-assisted `incumbent_ptac_v2` (`0.192208`) on **both southern concealed/playa quadrants** (`SW +0.005372`, `SE +0.013580`), while trailing `incumbent_ptac_v2` (`-0.003612`) and `S17-CPAD E1` (`0.198183`) on northern exposed DEM scarps.
+- **Crucial SGMC `>500 m` Discovery (`IR-91-S17-LFTG-01`, `docs/s17_lftg/blind-sgmc.json`):** Stripping the `5,300` 1:500k registration-offset pixels (`300–500 m` from `existing_faults.tif`) causes in-sample refitted PU models to drop `-22%` to `-30%` (`S17-LFTG`: `0.080522 -> 0.056687`), whereas **`GEMSDOE32 R0` drops only `-7.2%` (`0.095386 -> 0.088516`, #1 at `>500 m`)**. Next session must emit full-map dots from **stitched 4-fold OOF predictions** rather than in-sample refitting on `100%` of `existing_faults.tif`, preventing `300–1,000 m` catalogue-halo crowding.
 
 ## Session 17 (`S17-CPAD`, branch `arena/aecf32eb-gemsdoe91`) — Summary, Forensic Quarantine & Next Steps
 
@@ -76,7 +94,8 @@ were restored and SHA-256 verified in this session. No fake catalogue was used.
 
 1. Resolve the registry feasibility conflict and lane assignment through explicit
    orchestration policy. Preserve today's negative evidence unchanged.
-2. **Completed in Session 17 (`S17-CDSC`, `docs/REVIEW-S17-CDSC-20261025.md`) & Next Auto-Context Refinement (`IR-91-S17-01` & `IR-91-S17-02`):**
+2. **Completed in Session 17 (`S17-CWPC`, `docs/run-card-S17-CWPC.json` & `S17-CDSC`, `docs/REVIEW-S17-CDSC-20261025.md`) & Next Auto-Context Refinement (`IR-91-S17-01` & `IR-91-S17-02`):**
+   - `S17-CWPC` (`arena/4f695c18-gemsdoe91`) restored all 15 SHA-256-pinned competition inputs and 62 fleet reference rasters, preregistered 5 ranked geological hypotheses (`docs/HYPOTHESES_S17_CWPC.md`), and executed the 3-experiment Multi-Scale Complex Cross-Wavelet Phase-Lag & Quadrature Coherence + Cover-Conditioned Upward-Continuation Attenuation + Calibrated Local Auto-Context lane (`src/gems91/cwpc17.py`, `scripts/run_s17_cwpc.py`): `E1 = 0.082658`, `E2 = 0.131810`, `E3 = 0.122467 HOLDOUT-DTI` on `gems57-pooled-hide-v2` (`0.086573 HOLDOUT-DTI` on `gems91-hide-recover-v1.1-nohalo`) and `0.090912` Blind Off-Catalogue USGS SGMC DTI, with `34.97% <= 70%` 3-px dot overlap vs `GEMSDOE32 R0` and `51.92% <= 70%` max overlap vs all 43 repository rasters.
    - `S17-CDSC` executed the three `S15-SCGF` remediations (`IR-91-S15-06` Bayes prior-shift calibration of 2-quadrant pairwise Stage-1 sub-models to 3-quadrant training sample prevalence before stitching, `IR-91-S15-07` excluding `>= 3 km` GDR/S12 regional bowls from Stage-1 while keeping `16` local `S15` subsurface features in Stage-2, and `IR-91-S15-05` `72`-col bitwise `B12`/`B19`-invariant Pure-Subsurface specialist), recovering Fold 1 (`NE`) by **`+0.058247`** (`0.273196 -> 0.331443`) and lifting pooled `HOLDOUT-DTI` to **`0.259972`** (`+0.019339` over `S15-SCGF E2 = 0.240633`, `+0.015371` over `S13-PTHA E3 = 0.244601`).
    - Next-session priorities to close the remaining `-0.007810` gap to `S14-PTAC E2` (`0.267782`):
      1) **`IR-91-S17-01`:** Replace global sample-prevalence scaling of `stitch_p1` with per-quadrant empirical quantile / rank-logit standardization before running `compute_spac_autocontext_features`, ensuring exact `1.000x` `Test_k / Train_k` distribution equality across all 4 quadrants (eliminating the residual `1.429x` `SE` and `1.144x` `SW` spatial fault-density drift and preventing `Train_k` upward calibration from tightening $\lambda^*(\text{Train}_k)$).
@@ -114,6 +133,11 @@ are not reclassified as ORGANIZER-CONFIRMED without a submission-page receipt.
 * **Next 3:** for the selector, not this lane. Pruning R0 to a 3–5 px collar is a cheap live test,
   because R0 still shows 2.1× and 1.75× area-lift at (2,3] and (3,5] px. It would be an
   R0-derivative and not unique, so it belongs to R0's owner, not this lane.
+
+
+## Review 19912231 — next-session handoff (2026-10-25)
+
+Run `python generate_submission.py --preflight` before restoring the large training stack or launching a model. Current plan is blocked: no assigned method paragraph, and a pinned witness proves the usual budget impossible under the literal overlap rule. No experiment run; no new TIFF or score. This is a necessary precheck, not a full-registry uniqueness pass, authenticated lane assignment, runtime budget manager or selector. Resolve lane and registry policy explicitly; never drop dense references or place anti-registry noise. Freeze a comparable, untouched holdout incumbent; only then test the authorized top hypothesis using shared cache/evaluator/writer and canaries. CWP91 with hole-shuffled control is already complete and negative. The current portal download remains OLC91 research-only. Fresh official-account/receipt/data-rights access is still absent. See `docs/REVIEW-19912231-20261025.md`.
 
 ## Session 18 `S18-CWGR` limitations & concrete Session 19 next steps (2026-10-25, `arena/892fab6a-gemsdoe91`)
 

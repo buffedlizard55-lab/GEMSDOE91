@@ -1,0 +1,79 @@
+{
+  "schema_version": "gems91.run-card.v1",
+  "session_id": "ARENA-E5BC01F3",
+  "generated_utc": "2026-10-25",
+  "branch": "arena/e5bc01f3-gemsdoe91",
+  "hypothesis": null,
+  "mechanism": "No candidate was authorized or evaluated: the single-method assignment, local feature stack, training labels, and capacity-witness raster are absent. The pinned sample template and existing-fault catalogue were restored only for technical artifact audits; the default system Python lacked dependencies, while the ignored .venv has pinned requirements. No candidate build is allowed. Three conditional transforms are documented in docs/REVIEW-ARENA-E5BC01F3-20261025.md.",
+  "named_non_fault_process": "Not evaluated; proposed candidates document plausible mimics including lithologic contacts, survey seams, intrusive margins, weathering, and alluvial texture.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "NOT RUN",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "No authorized experiment; no new evaluator execution in this session."
+  },
+  "registry_comparison": {
+    "preplacement_rank_correlation": "NOT RUN",
+    "preplacement_overlap_within_3px": "NOT RUN",
+    "final_dot_rank_correlation": "NOT RUN",
+    "final_dot_overlap_within_3px": "NOT RUN",
+    "reason": "No candidate surface or final dots exist for this session."
+  },
+  "raster_sha256": null,
+  "raster_generated": false,
+  "validator_output": {
+    "status": "NOT RUN \u2014 no raster generated",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "ok_to_download": false,
+  "ok_to_submit": false,
+  "weekly_slots_used": 0,
+  "experiments_run": 0,
+  "verdict": "negative",
+  "parallel_branch_artifacts": [
+    {
+      "artifact": "S18-UNIQUE",
+      "source_branch": "arena/2f1f074c-gemsdoe91",
+      "current_session_candidate": false,
+      "download_status": "research artifact; format/byte checks only",
+      "submission_status": "NO \u2014 HOLDOUT-DTI, canary, and full-registry novelty pending",
+      "scientific_validation_by_this_session": "NOT RUN"
+    },
+    {
+      "artifact": "S18-HGBR",
+      "source_branch": "arena/bba4efce-gemsdoe91",
+      "current_session_candidate": false,
+      "download_status": "research artifact; independent byte/format checks only",
+      "submission_status": "NO recommendation from E5BC01F3; separate selector/organizer decision not made here",
+      "upstream_run_card_reported_holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positive_count": 60988,
+        "value": 0.200742,
+        "ci95": [
+          0.180482,
+          0.221419
+        ],
+        "independently_reproduced_by_this_session": false
+      },
+      "upstream_run_card_verdict": "promote; this session does not endorse or select it"
+    }
+  ],
+  "current_preflight": {
+    "status": "BLOCKED",
+    "assignment_metadata_present": false,
+    "assignment_authenticated": false,
+    "capacity_status": "UNVERIFIED",
+    "missing_capacity_witness": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "experiments_run": 0,
+    "candidate_generated": false,
+    "ok_to_submit": false,
+    "scope": "Current machine preflight only; pinned sample/catalogue are present solely for technical artifact audits."
+  }
+}

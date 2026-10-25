@@ -1,0 +1,32 @@
+........................................................................ [ 11%]
+.............................s.......................................... [ 23%]
+........................................................................ [ 35%]
+........................................................................ [ 47%]
+.........................s.............................................. [ 59%]
+........................................................................ [ 71%]
+....................ssssss.............................................. [ 83%]
+........................................................................ [ 95%]
+..........................                                               [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.11/site-packages/rasterio/transform.py:178: 3 warnings
+tests/test_concentration.py: 8 warnings
+tests/test_download_audit.py: 28 warnings
+tests/test_frontdoor_verification.py: 16 warnings
+tests/test_gates.py: 13 warnings
+tests/test_h91_holdout_and_writer.py: 6 warnings
+tests/test_s15_scgf.py: 2 warnings
+tests/test_s17_cgrd.py: 1 warning
+tests/test_validate_raster.py: 1 warning
+  /home/user/GEMSDOE91/.venv/lib/python3.11/site-packages/rasterio/transform.py:178: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication
+    return Affine.translation(west, north) * Affine.scale(xsize, -ysize)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_consensus.py:127: pinned inputs absent - run scripts/restore_data.py
+SKIPPED [1] tests/test_hcpa_s15.py:40: complete S15 integration inputs not restored
+SKIPPED [1] tests/test_release_integration.py:36: pinned inputs absent - run scripts/restore_data.py
+SKIPPED [2] tests/test_release_integration.py:43: pinned inputs absent - run scripts/restore_data.py
+SKIPPED [1] tests/test_release_integration.py:52: pinned inputs absent - run scripts/restore_data.py
+SKIPPED [1] tests/test_release_integration.py:64: pinned inputs absent - run scripts/restore_data.py
+SKIPPED [1] tests/test_release_integration.py:73: pinned inputs absent - run scripts/restore_data.py
+594 passed, 8 skipped, 78 warnings in 39.53s

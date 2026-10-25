@@ -1,0 +1,165 @@
+{
+  "file": "gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+  "sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
+  "bytes": 140375,
+  "submission_name": "gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2",
+  "note": "GEMSDOE91 CWP91 E1: PU posterior x (1-spatial completeness), 37654 dots, 2px catalogue collar",
+  "note_chars": 93,
+  "validator": {
+    "file": "/home/user/GEMSDOE91/docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+    "bytes": 140375,
+    "sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE91/docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+    "bytes": 140375,
+    "sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.zip",
+  "zip_sha256": "3a8a92aa08c2c7764d321a0b08c05370f3e2b1d0b5c14bf4536b607145d7fa4f",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "CWP91",
+    "arm": "E1",
+    "n_dots": 37654,
+    "model_full": {
+      "n_pos": 60988,
+      "n_neg": 182964,
+      "n_predicted": 5167373
+    },
+    "model_loqo": [
+      {
+        "quadrant": 0,
+        "n_pos": 49497,
+        "n_neg": 148491,
+        "n_predicted": 1154738
+      },
+      {
+        "quadrant": 1,
+        "n_pos": 48032,
+        "n_neg": 144096,
+        "n_predicted": 1427727
+      },
+      {
+        "quadrant": 2,
+        "n_pos": 37688,
+        "n_neg": 113064,
+        "n_predicted": 1428627
+      },
+      {
+        "quadrant": 3,
+        "n_pos": 42020,
+        "n_neg": 126060,
+        "n_predicted": 1156281
+      }
+    ],
+    "cwp": {
+      "c_bar": 0.216527,
+      "sigma_px": 10.0,
+      "chat_mean_in_fp": 0.02658,
+      "chat_median_in_fp": 0.002629,
+      "chat_frac_eq_1_in_fp": 9.9e-05,
+      "chat_frac_eq_0_in_fp": 0.335175,
+      "n_visible_catalogue_px": 60988
+    },
+    "min_dot_distance_to_catalogue_px": 2.236
+  }
+}

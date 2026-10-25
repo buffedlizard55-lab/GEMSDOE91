@@ -1,20 +1,151 @@
 {
-  "status": "PASS",
-  "scope": "S18-CWGR GeoTIFF + ZIP bytes + 2 independent decoders + 8-arm + 3-quota bootstrap replay + 174x4 canaries + 108-raster registry audit",
-  "file": "downloads/gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.tif",
-  "sha256": "5bbc888008da8bb08d07c48fcae4ee3eea395119a8f2728a1874ddf800608d56",
-  "zip_sha256": "442094745e83418dd79eb69ee370f4287a96d43f3fd08728cdf8729cd8219403",
-  "holdout_dti": 0.18845990029307813,
-  "holdout_ci95": [
-    0.1699811422146741,
-    0.20652856923180224
-  ],
-  "blind_sgmc_control_dti": 0.065597,
-  "format_pass": true,
-  "evidence_consistent": true,
-  "template_and_catalogue_rechecked": true,
-  "ok_to_download": true,
-  "ok_to_submit": false,
-  "reason": "HOLDOUT-DTI=0.188460 vs prior best cpad_e1=0.198183 (paired delta -0.009723, 95% CI [-0.015477, -0.003909], ci_excludes_zero=False); passes 108/108 pre-placement Spearman checks and 47 real rasters before literal Rule-1 stop on calib_h28ridge_01839.tif (69281 dots, overlap 0.7150 > 0.70); fail-closed negative for live slot expenditure.",
-  "geological_experiments_rerun": 0
+  "schema": "gemsdoe91-s18-verification-v1",
+  "generated_utc": "2026-10-25T20:20:02Z",
+  "sample_template": {
+    "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "sha256_pin_matches": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "footprint_pixels": 5167373,
+    "positive_cells": 60988,
+    "matches_official_description_all_absence": false,
+    "note": "The official page says the sample 'predicts total fault absence'; this restored copy has positive cells. Use only for footprint/CRS/shape/transform, never as values."
+  },
+  "leaderboard": {
+    "ok": true,
+    "problems": [],
+    "n_rows": 50,
+    "rank1": {
+      "rank": 1,
+      "participant": "xiaofanhu",
+      "submissions": 30,
+      "score": 0.4413
+    },
+    "rank50": {
+      "rank": 50,
+      "participant": "moongrega",
+      "submissions": 29,
+      "score": 0.2818
+    },
+    "claim_placements": {
+      "0.4413 (described as GEMSDOE high score)": "rank 1 (exact match)",
+      "0.3195 (described as highest score right now)": "rank 24",
+      "0.2778 (GEMSDOE32, user-reported, no receipt)": "below rank 50 (not in the top 50 of this snapshot)"
+    }
+  },
+  "feasibility": {
+    "ok": true,
+    "problems": [],
+    "uncovered_pixels_U": 6649,
+    "covered_fraction": 0.9987132726822701,
+    "budget_N": 37654,
+    "overlap_lower_bound_at_N": 0.8234184947150369,
+    "threshold": 0.7,
+    "feasible_at_budget": false,
+    "max_budget_satisfying_literal_threshold": 22163,
+    "share_of_dots_that_must_sit_on_uncovered_pixels_at_max_budget": 0.30000000000000004,
+    "note": "Literal 70% threshold is reachable only by placing at least (1 - threshold) of the dots on the U uncovered pixels, i.e. pixels more than 3 px from every lattice dot. That placement is chosen to avoid a registry file, not to detect faults."
+  },
+  "candidates": {
+    "olc91_e1": {
+      "name": "olc91_e1",
+      "file": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+      "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+      "sha256_matches_run_card": true,
+      "format": {
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata_tag": null
+      },
+      "encoding": "zero-filled full grid (no NaN anywhere)",
+      "finite_min": 0.0,
+      "finite_max": 1.0,
+      "positive_cells": 37654,
+      "footprint_status": "VERIFIED against restored pinned sample",
+      "nan_inside_footprint": 0,
+      "dots_inside_footprint": 37654,
+      "dots_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "run_card_verdict_text": {
+        "hypothesis_result": "NEGATIVE",
+        "promote": false,
+        "reasons": [
+          "HOLDOUT: E1 - E0 = -0.0021, 95% CI [-0.0045, 0.0002] (lower bound not > 0; E1 below E0 in 4/4 folds)",
+          "UNIQUENESS: duplicate-stop, 76.8% of dots within 3 px of docs/downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif (chance-corrected 71.8%)"
+        ],
+        "OK_TO_DOWNLOAD": "YES - RESEARCH ONLY (format-valid file)",
+        "OK_TO_SUBMIT": "NO",
+        "replication_seed21": "not run (preregistered: only if E1 wins seed 20)",
+        "experiments_used": "1 of 3",
+        "weekly_slots_used": 0
+      }
+    },
+    "damage_zone_unique": {
+      "name": "damage_zone_unique",
+      "file": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+      "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+      "sha256_matches_run_card": true,
+      "format": {
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata_tag": null
+      },
+      "encoding": "zero-filled full grid (no NaN anywhere)",
+      "finite_min": 0.0,
+      "finite_max": 1.0,
+      "positive_cells": 8718,
+      "footprint_status": "VERIFIED against restored pinned sample",
+      "nan_inside_footprint": 0,
+      "dots_inside_footprint": 8718,
+      "dots_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "run_card_verdict_text": "promote=negative; research download only, not cleared for a competition slot"
+    }
+  },
+  "cited_files": {
+    "ok": true,
+    "missing": [],
+    "checked": 18
+  },
+  "all_ok": true
 }

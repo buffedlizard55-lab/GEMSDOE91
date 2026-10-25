@@ -1,6 +1,9 @@
 {
   "verdict": "BUILD BLOCKED",
+  "scope": "Data availability only; not experiment or submission approval",
+  "experiment_authorized": false,
   "missing": [
+    "sample_submission",
     "parent_r0_nan"
   ],
   "required": [
@@ -12,13 +15,17 @@
     "PRUNE": {
       "ready": false,
       "missing": [
-        "parent_r0_nan"
+        "sample_submission",
+        "parent_r0_nan",
+        "existing_faults"
       ]
     },
     "MASS": {
       "ready": false,
       "missing": [
+        "sample_submission",
         "parent_r0_nan",
+        "existing_faults",
         "anc_h19_5",
         "anc_h19_4",
         "anc_h16_1"
@@ -27,21 +34,27 @@
     "SNAP": {
       "ready": false,
       "missing": [
+        "sample_submission",
         "parent_r0_nan",
+        "existing_faults",
         "training_features"
       ]
     },
     "CONCENTRATION": {
       "ready": false,
       "missing": [
+        "sample_submission",
         "parent_r0_nan",
+        "existing_faults",
         "training_features"
       ]
     },
     "RELIEF": {
       "ready": false,
       "missing": [
+        "sample_submission",
         "parent_r0_nan",
+        "existing_faults",
         "anc_h19_5",
         "anc_h19_4",
         "anc_h16_1",
@@ -51,7 +64,9 @@
     "TRACKB": {
       "ready": false,
       "missing": [
+        "sample_submission",
         "parent_r0_nan",
+        "existing_faults",
         "training_features"
       ]
     }

@@ -21,7 +21,7 @@ sys.path[:0] = [str(ROOT), str(ROOT / "src")]
 
 from gems91.readiness import gates, submission_ready
 from scripts.render_geo91_portal import _registered_pair
-from scripts.verify_s18 import sha, verify
+from scripts.verify_s18_cwgr import sha, verify
 
 
 def load_json(rel_docs: str):
@@ -97,12 +97,12 @@ def nav_html() -> str:
     return (
         '<header><a class="logo" href="index.html">GEMSDOE91 · Fault Discovery Lab</a>'
         '<nav aria-label="Main">'
-        '<a href="index.html">Current candidate (S18-CWGR)</a>'
-        '<a href="executive-summary.html">Executive summary &amp; submit guide</a>'
-        '<a href="s18-cwgr.html">S18-CWGR audit</a>'
-        '<a href="s17-cpad.html"><strong>S17-CPAD (0.1982 LB-DTI · #1)</strong></a>'
+        '<a href="index.html">Portal home</a>'
+        '<a href="executive-summary.html">Executive summary</a>'
+        '<a href="s18-cwgr.html"><strong>S18-CWGR audit</strong></a>'
+        '<a href="s18-cwgr-executive-summary.html">S18-CWGR submit guide</a>'
+        '<a href="s17-cpad.html">S17-CPAD (0.1982 HOLDOUT-DTI)</a>'
         '<a href="s17-cpad-executive-summary.html">S17-CPAD guide</a>'
-        '<a href="olc91.html">OLC91</a>'
         '<a href="research.html">Sources &amp; S16</a>'
         '<a href="archive-results.html">Historical archive</a>'
         "</nav></header>"
@@ -229,7 +229,7 @@ def build_index_html(card: dict, holdout: dict, blind: dict) -> str:
 <section class="card"><h2>Why GEMSDOE32 leads the fleet (0.2778 USER-REPORTED CLAIM) &amp; key Session 18 findings</h2>
 <p class="small"><strong>GEMSDOE32 forensic summary:</strong> <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> (<code>0.2778</code> USER-REPORTED CLAIM; public leaderboard #1 <code>xiaofanhu = 0.4413</code> observed 2026-10-25, distinct from earlier <code>0.3195</code> snapshot) converts a dense 121,131-px multi-physics Hessian/tilt crest network (<code>h19-5</code>, <code>0.1922</code> USER-REPORTED) into 44,090 sparse 2.8-px-spaced dots (<code>0.2600</code>, exploiting DTI's asymmetric &alpha;=0.2 FP weight vs 300-m triangular recall kernel) and prunes 6,436 mapped-catalogue-adjacent dots within 2.0 px to reach <strong>37,654 binary dots</strong> (<code>0.2778</code>; <code>BLIND-SGMC-CONTROL-DTI = 0.088516</code>). Full algebraic inversion and how to beat it are in <a href="executive-summary.html">the executive summary</a> and <a href="HYPOTHESES_S18_CWGR.md">HYPOTHESES_S18_CWGR.md</a>.</p>
 <p class="small"><strong>Session 17 S17-CPAD E1 benchmark download (0.198183 HOLDOUT-DTI — repo #1 label-blind benchmark, OK TO DOWNLOAD: YES · OK TO SUBMIT: NO, NOT OK TO SUBMIT):</strong> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a> <a class="btn2" href="s17-cpad.html">Full S17-CPAD Audit ↗</a> <a class="btn2" href="s17-cpad-executive-summary.html">S17-CPAD Guide ↗</a> <a class="btn2" href="run-card-S17-CPAD.json">S17-CPAD Run Card ↗</a></p>
-<p class="small"><strong>Other research downloads (all NOT OK TO SUBMIT, each with its own verified run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">OLC91 E1</a> (<a href="olc91.html">page</a>, <a href="run-card-OLC91.json">run card</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>) · <a href="download-audit.html">All 81 downloads safety audit</a>.</p>
+<p class="small"><strong>Other research downloads (all NOT OK TO SUBMIT, each with its own verified run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">OLC91 E1</a> (<a href="index.html">page</a>, <a href="run-card-OLC91.json">run card</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>) · <a href="download-audit.html">All 93 downloads safety audit</a>.</p>
 </section>
 </main>
 <footer class="small">Maximize P(Win) · Own the Outcome · 3 of 3 S18 experiments used · 0 competition slots spent · every metric is explicitly labelled HOLDOUT-DTI, BLIND-SGMC-CONTROL-DTI, or USER-REPORTED CLAIM; ORGANIZER-CONFIRMED is null.</footer>
@@ -254,7 +254,7 @@ def build_exec_summary_html(card: dict) -> str:
 
 <div class="card dl" data-submission-ready="false"><h2>1 · Current file status (fail-closed)</h2>
 <a class="button" download href="{esc(a['file'])}">↓ Download current S18-CWGR GeoTIFF (research only)</a>
-<p class="small">GeoTIFF SHA-256: <code>{esc(card['raster_sha256'])}</code> · <a download href="{esc(a['zip'])}">Single-TIFF ZIP</a> (<code>{esc(a['zip_sha256'])}</code>) · <a href="run-card-S18-CWGR.json">Machine JSON run card</a> · <a href="s18/verification.json">Verification receipt</a> · <a href="s18-cwgr.html">Full S18-CWGR audit</a></p>
+<p class="small">GeoTIFF SHA-256: <code>{esc(card['raster_sha256'])}</code> · <a download href="{esc(a['zip'])}">Single-TIFF ZIP</a> (<code>{esc(a['zip_sha256'])}</code>) · <a href="run-card-S18-CWGR.json">Machine JSON run card</a> · <a href="s18/cwgr-verification.json">Verification receipt</a> · <a href="s18-cwgr.html">Full S18-CWGR audit</a></p>
 <p class="warn"><strong>OK TO DOWNLOAD: YES · OK TO SUBMIT: NO (NOT OK TO SUBMIT).</strong> Format checks pass 100% (all 12,279,160 cells finite in <code>[0, 1]</code>, <code>nodata=None</code>, 0 NaN/Inf, 37,654 binary dots, 0 on mapped catalogue) and external competitive fleet novelty passes 46/46 (<code>GEMSDOE32 R0</code> overlap = <code>{reg['gemsdoe32_r0_3px_overlap']:.4f}</code> &le; 0.70), but <code>cwgr_e1</code> scored <code>{h['value']:.6f}</code> HOLDOUT-DTI vs <code>S17-CPAD E1 = 0.198183</code> (paired &Delta; <code>{h['paired_best']['delta']:+.6f}</code>) and literal Rule-1 stopped at #48 calibration probe <code>calib_h28ridge_01839.tif</code> (<code>0.7150</code> &gt; 0.70). Zero weekly DrivenData slots were spent.</p></div>
 
 <div class="card"><h2>2 · Exact step-by-step instructions for submitting any future promoted GeoTIFF</h2>
@@ -283,7 +283,7 @@ def build_exec_summary_html(card: dict) -> str:
 <li><strong>Marginal rank-logit standardization starves high-prevalence grabens (<code>IR-91-S18-02</code>):</strong> forcing equal rank marginals per quadrant erased true NE fault-density prevalence (NE Fold 1 dropped from <code>0.250065</code> in <code>S17-CPAD E1</code> and <code>0.243419</code> under quota to <code>0.226655</code> under global pooling). Next sessions must calibrate cross-quadrant odds via geophysical crustal-extension priors rather than uniform marginal ranks.</li>
 <li><strong>Scarp-penalized Bayes factor trades scarp recall for unverified sub-playa orthogonality (<code>IR-91-S18-03</code>):</strong> <code>cwgr_e3</code> achieved the strongest independence from <code>GEMSDOE32 R0</code> (<code>0.3647</code> 3-px overlap) but lowered <code>HOLDOUT-DTI</code> to <code>0.164534</code> because held-out <code>existing_faults.tif</code> and <code>SGMC</code> faults remain predominantly scarp/outcrop-anchored.</li>
 </ul>
-<p class="small"><strong>Benchmark &amp; archive links:</strong> <a href="s17-cpad.html">S17-CPAD (#1 label-blind 0.198183)</a> · <a download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a> · <a download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a> · <a href="olc91.html">OLC91</a> · <a href="research.html">Verified official links &amp; S16</a> · <a href="download-audit.html">81-file download safety audit</a>.</p>
+<p class="small"><strong>Benchmark &amp; archive links:</strong> <a href="s17-cpad.html">S17-CPAD (#1 label-blind 0.198183)</a> · <a download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a> · <a download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a> · <a href="index.html">OLC91</a> · <a href="research.html">Verified official links &amp; S16</a> · <a href="download-audit.html">93-file download safety audit</a>.</p>
 <p class="small"><strong>Other parallel-session research downloads (all NOT OK TO SUBMIT, each with its own verified run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">S17-CGRD E2</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>).</p>
 </div>
 </main>
@@ -316,7 +316,7 @@ def build_s18_detail_html(card: dict, holdout: dict, blind: dict, feat: dict, no
 <main id="main">
 <span class="badge">OK TO DOWNLOAD: YES · RESEARCH / AUDIT</span><span class="badge bad">OK TO SUBMIT: NO · NOT OK TO SUBMIT</span>
 <h1>Session 18 (S18-CWGR): Steerable Quadrature, Byerlee–Sibson Fault-Valve &amp; SAR Propensity Audit</h1>
-<p class="small">Preregistration: <a href="HYPOTHESES_S18_CWGR.md"><code>docs/HYPOTHESES_S18_CWGR.md</code></a> (SHA-256 <code>{esc(card['preregistration']['sha256'])}</code>) · Feature module: <code>src/gems91/cwgr18.py</code> (SHA-256 <code>{esc(feat['cwgr_code_sha256'])}</code>) · Verification receipt: <a href="s18/verification.json"><code>docs/s18/verification.json</code></a>.</p>
+<p class="small">Preregistration: <a href="HYPOTHESES_S18_CWGR.md"><code>docs/HYPOTHESES_S18_CWGR.md</code></a> (SHA-256 <code>{esc(card['preregistration']['sha256'])}</code>) · Feature module: <code>src/gems91/cwgr18.py</code> (SHA-256 <code>{esc(feat['cwgr_code_sha256'])}</code>) · Verification receipt: <a href="s18/cwgr-verification.json"><code>docs/s18/cwgr-verification.json</code></a>.</p>
 
 <div class="hero">
 <div class="card dl" data-submission-ready="false">
@@ -374,46 +374,19 @@ def render() -> None:
     if submission_ready(card) or card.get("automated_gates") != gates(card):
         raise ValueError("S18-CWGR readiness gates inconsistent")
 
-    tif, zipped, hashes = _registered_pair(ROOT, card["raster_path"], card["raster_sha256"])
+    _registered_pair(ROOT, card["raster_path"], card["raster_sha256"])
     render_preview(card)
-
-    # Preserve prior OLC91 front door as an explicit browsable archive page
-    if (docs / "olc91-index-src.html").is_file():
-        (docs / "olc91.html").write_bytes((docs / "olc91-index-src.html").read_bytes())
 
     holdout = load_json("s18/holdout.json")
     blind = load_json("s18/blind-sgmc-control.json")
     feat = load_json("s18/features.json")
     novelty = load_json("s18/milestone-novelty.json")
 
-    idx_html = build_index_html(card, holdout, blind)
     exec_html = build_exec_summary_html(card)
     detail_html = build_s18_detail_html(card, holdout, blind, feat, novelty)
 
-    (docs / "index.html").write_text(idx_html, encoding="utf-8")
-    (docs / "executive-summary.html").write_text(exec_html, encoding="utf-8")
     (docs / "s18-cwgr.html").write_text(detail_html, encoding="utf-8")
     (docs / "s18-cwgr-executive-summary.html").write_text(exec_html, encoding="utf-8")
-
-    current = {
-        "run_card": "run-card-S18-CWGR.json",
-        "ok_to_download": True,
-        "ok_to_submit": False,
-        "scope": "Current S18-CWGR research download; format pass is not submission approval",
-        "raster_sha256": hashes[".tif"],
-        "tif": tif.relative_to(docs.resolve()).as_posix(),
-        "zip": zipped.relative_to(docs.resolve()).as_posix(),
-        "zip_sha256": hashes[".zip"],
-        "verdict": "negative",
-        "previous_run_cards": [
-            "run-card-S17-CPAD.json",
-            "run-card-OLC91.json",
-            "run-card-XG91.json",
-            "run-card-GEO91.json",
-        ],
-        "note": "Renderer never sets ok_to_submit true.",
-    }
-    (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

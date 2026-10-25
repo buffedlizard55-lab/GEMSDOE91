@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scope": "S18-CWGR GeoTIFF + ZIP bytes + 2 independent decoders + 8-arm + 3-quota bootstrap replay + 174x4 canaries + 108-raster registry audit",
+  "file": "downloads/gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.tif",
+  "sha256": "5bbc888008da8bb08d07c48fcae4ee3eea395119a8f2728a1874ddf800608d56",
+  "zip_sha256": "442094745e83418dd79eb69ee370f4287a96d43f3fd08728cdf8729cd8219403",
+  "holdout_dti": 0.18845990029307813,
+  "holdout_ci95": [
+    0.1699811422146741,
+    0.20652856923180224
+  ],
+  "blind_sgmc_control_dti": 0.065597,
+  "format_pass": true,
+  "evidence_consistent": true,
+  "template_and_catalogue_rechecked": true,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "reason": "HOLDOUT-DTI=0.188460 vs prior best cpad_e1=0.198183 (paired delta -0.009723, 95% CI [-0.015477, -0.003909], ci_excludes_zero=False); passes 108/108 pre-placement Spearman checks and 47 real rasters before literal Rule-1 stop on calib_h28ridge_01839.tif (69281 dots, overlap 0.7150 > 0.70); fail-closed negative for live slot expenditure.",
+  "geological_experiments_rerun": 0
+}

@@ -1,16 +1,14 @@
 {
-  "run_card": "run-card-S18-CWGR.json",
+  "run_card": "run-card-OLC91.json",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "scope": "Current S18-CWGR research download; format pass is not submission approval",
-  "raster_sha256": "5bbc888008da8bb08d07c48fcae4ee3eea395119a8f2728a1874ddf800608d56",
-  "tif": "downloads/gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.tif",
-  "zip": "downloads/gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.zip",
-  "zip_sha256": "442094745e83418dd79eb69ee370f4287a96d43f3fd08728cdf8729cd8219403",
+  "scope": "Current research download; format pass is not submission approval",
+  "raster_sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+  "tif": "downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+  "zip": "downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip",
+  "zip_sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b",
   "verdict": "negative",
   "previous_run_cards": [
-    "run-card-S17-CPAD.json",
-    "run-card-OLC91.json",
     "run-card-XG91.json",
     "run-card-GEO91.json"
   ],

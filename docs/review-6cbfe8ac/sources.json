@@ -1,0 +1,39 @@
+{
+  "sources": [
+    {
+      "repo": "drivendataorg/gems-prize-reference-solution",
+      "ref": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "path": "README.md",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "checked_claim": "CPU-only environment is supported; GPU is faster, not mandatory.",
+      "verification": "GitHub contents API; accessed 2026-10-25",
+      "authority": "official organizer reference repository"
+    },
+    {
+      "repo": "drivendataorg/gems-prize-reference-solution",
+      "ref": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "path": "unet-mc-cv-reference-solution.ipynb",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
+      "sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0",
+      "checked_claim": "Cells 0 and 16: U-Net Monte Carlo patch splits, Tversky training loss with alpha=0.2 and beta=0.8. This is not the spatial holdout scorer.",
+      "verification": "GitHub contents API; accessed 2026-10-25",
+      "authority": "official organizer reference repository"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "012e17b2a115c3c0d5e7885bea625bf9657c99fc",
+      "path": "docs/index.html",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/docs/index.html",
+      "sha256": "b88a7f10d064ae33c757d9273ab0d73d1fe29de8ea69029ddfd468bcd73560b1",
+      "checked_claim": "Page describes <=2px catalogue pruning to 37,654 dots and explicitly states NO ORGANISER SCORE EXISTS. Not an organizer receipt.",
+      "verification": "GitHub contents API; accessed 2026-10-25",
+      "authority": "team-authored method description only"
+    }
+  ],
+  "not_fetched": [
+    "DrivenData live leaderboard and authenticated submission-page receipt",
+    "USGS/DOE external sources outside allowed hosts"
+  ],
+  "limitations": "Pinned data mirrors establish byte identity, not official authorization or external-data eligibility."
+}

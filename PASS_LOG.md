@@ -1,3 +1,26 @@
+# GEMSDOE91 — Multi-Pass Verification Log (Session 18 `S18-HGBR`, `arena/bba4efce-gemsdoe91`)
+
+## Session 18 (`S18-HGBR`, branch `arena/bba4efce-gemsdoe91`, 2026-10-25)
+
+### Pass 1 — Implement & Verify (COMPLETED)
+- [x] Restored and SHA-256 verified all 15 competition and reference inputs in `registry/data_manifest.json` (`scripts/restore_data.py`), restored all 62 available `git_blob` fleet registry rasters, built `data/derived/catalogue_mask.tif` (`60,988 px`), and verified `scripts/preflight.py` (`BUILD ALLOWED: 2/2 required inputs verified`).
+- [x] Conducted exact Two-Factor Live DTI forensic analysis across 22 scored fleet rasters and 48 in-repo downloads, establishing why `GEMSDOE32 R0` (`0.2778 USER-REPORTED`) beat `S17-LFTG` (`0.1823 USER-REPORTED`) and `S17-CWPC` (`0.1367 USER-REPORTED`): `S17-LFTG` refitted its final emission model in-sample on 100% of `existing_faults.tif` (`IR-91-S17-LFTG-01`), collapsing its far-field `>1 km` share to `31.53%` and its Blind Off-Catalogue USGS SGMC `>1 km` DTI to `0.039897` (vs `GEMSDOE32 R0`'s `0.082913`).
+- [x] Preregistered 5 novel geological hypotheses (`H18-1`–`H18-5`) and 3 holdout arms (`hgbr_e1`, `hgbr_e2`, `hgbr_e3`) in `docs/HYPOTHESES_S18_HGBR.md` (`sha256: 7968f20ed794e104dc37b13e08d52d13abcae227a1f3387ff18c52f5e8eeb2aa`) prior to running any holdout evaluation.
+- [x] Implemented `src/gems91/hgbr18.py` (16 novel variogram Hurst-break, directional Hurst anisotropy, and 300–900 m up-dip listric migration features + Stage-1 dispersion alignment `IR-91-S17-01` + positive-part-only asymmetric cover rescue `IR-91-S17-02` + 4-fold OOF stitched full-map emission `IR-91-S17-LFTG-01`) and `scripts/run_s18_hgbr.py`.
+
+### Pass 2 — Review for Bugs, Missing Requirements & Edge Cases (COMPLETED)
+- [x] **Fixed `IR-91-S18-HGBR-01` (2nd-order finite-difference vanishing at fault-step inflection):** Replaced 2nd-order differences `F(x+d) - 2F(x) + F(x-d)` (which vanish at odd fault steps `F''(0) = 0`) with amplitude-gated 1st-order directional variogram increments `_first_diff_lags` (`F(x+d) - F(x-d)`) and an IQR/P90 fallback in `_robust_z` when `MAD < 1e-4`.
+- [x] **Fixed `format_gate` import & raster shape orientation (`(3730, 3292)`):** Used `vendor/gems57/gates.py::format_report(tif_path, SAMPLE, footprint=fp)` and verified `(height, width) == (3730, 3292)` across `scripts/run_s18_hgbr.py`, `docs/run-card-S18-HGBR.json`, and `tests/test_s18_hgbr.py`.
+- [x] **Verified `Rule 1`–`Rule 6` and Registered Artifacts:** Ran `scripts/run_s18_hgbr.py` (`hgbr_e1 = 0.200742 HOLDOUT-DTI`, `hgbr_e2 = 0.200530`, `hgbr_e3 = 0.196442`; Blind SGMC `>1 km = 0.101151`, `+22.00%` vs `GEMSDOE32 R0`; real-submission 3-px dot overlap `<= 61.87% <= 70%` across all 83 real rasters), updated `registry/artifact_policy.json` (`89` registered artifacts), and updated `docs/download-audit.{json,html}` (`scripts/audit_downloads.py`).
+
+### Pass 3 — Re-Check Against Original Prompt, Line-by-Line Verification & Full Test Suite (COMPLETED)
+- [x] Wrote `tests/test_s18_hgbr.py` (5 unit and integration tests covering feature isolation `IR-91-S15-05`, synthetic Hurst step vs ramp, asymmetric cover specialist rescue `IR-91-S17-02`, OOF stitching `IR-91-S17-LFTG-01`, run-card/canary/holdout/SGMC/GeoTIFF/ZIP integrity).
+- [x] Updated `ledger/prior_fleet.csv` with all 13 newly reported `USER-REPORTED` live scores (`GEMSDOE76`–`92`, including `GEMSDOE91` `S17-LFTG = 0.1823` and `S17-CWPC = 0.1367`).
+- [x] Updated `docs/REVIEW-S18-HGBR-20261025.md`, `docs/REVIEW-S18-20261025.md`, `docs/olc91-index-src.html`, `docs/olc91-exec-src.html`, `docs/index.html`, `docs/executive-summary.html`, `README.md`, `LIMITATIONS_AND_NEXT_STEPS.md`, `SLOT_PLAN.md`, and `IRREGULARITIES.md`.
+- [x] Verified `.venv/bin/pytest -q -rs` (`557 passed`), `.venv/bin/python scripts/check_artifact_policy.py` (`PASS: 89 explicitly registered prediction artifacts`), and `.venv/bin/python scripts/audit_downloads.py` (`PASS`).
+
+---
+
 # GEMSDOE91 — Multi-Pass Verification Log (Session 17 `S17-CGRD`, `arena/cbdb6e26-gemsdoe91`)
 
 ## Session 17 (`S17-CGRD`, branch `arena/cbdb6e26-gemsdoe91`, 2026-10-25)
@@ -35,6 +58,25 @@ PR #103 initially conflicted with concurrent PR #101. Merged `origin/main` into 
 ---
 
 # GEMSDOE91 — Unique TIF submission pass log
+
+## Session 17 (`S17-CWPC`) — Branch `arena/4f695c18-gemsdoe91` (2026-10-25)
+
+### Pass 1 — Implement & Verify (COMPLETED)
+- [x] Restored and SHA-256 verified all 15 competition inputs (`scripts/restore_data.py`, including 418.9 MB `gems-geodawn-numerical-features.tif`, 4-band radiometrics, 12-band LiDAR scarp stack, and off-catalogue USGS SGMC control), rebuilt `data/derived/catalogue_mask.tif` (`60,988` positive pixels) and `registry/preflight.json` (`BUILD ALLOWED: 2/2 required inputs verified`, `6/6` axes `READY`), and restored all 62 available `data/fleet_registry/*.tif` reference rasters (`scripts/restore_registry.py`).
+- [x] Preregistered forensic analysis of `GEMSDOE32` (`0.2778 USER-REPORTED`) and 5 ranked geological hypotheses (`H17-1`..`H17-5`) in `docs/HYPOTHESES_S17_CWPC.md` (`sha256: aae8300c48425269f33788cead8f82f673eac11b3a6a571a1bcef6cb647621a9`) prior to running any holdout evaluation.
+- [x] Implemented `src/gems91/cwpc17.py` (16 label-blind `CWPC` geophysical features + `prior_shift_calibrate_surface` fixing `IR-91-S15-06` + `build_local_autocontext_features` fixing `IR-91-S15-07`) and `scripts/run_s17_cwpc.py` (3-experiment evaluation on `gems57-pooled-hide-v2` and `gems91-hide-recover-v1.1-nohalo`, plus Blind Off-Catalogue USGS SGMC Control).
+
+### Pass 2 — Review, Debug & Edge-Case Remediation (COMPLETED)
+- [x] **Memory-Bound Remediation:** First run of `scripts/run_s17_cwpc.py` hit the 3.8 GiB sandbox RAM limit (`exit_code: -1`) when holding all 19 float32 bands + 16 float32 CWPC arrays in memory simultaneously. Refactored `build_cwpc_physics_features` and `build_feature_cube_memmap` to use `LazyBandLoader` + `np.lib.format.open_memmap` (`float16`), reducing peak RAM below 450 MB.
+- [x] **Upper-Tail Saturation Remediation:** Discovered that `robust_norm` clipping at `3.0` truncated the top 1.5% of heavy-tailed fault-scarp and potential-field gradients (`rtp_grad`, `tmi_hg`, `det_elev_grad`, `iso_grav_anom_grad`) where all 37,654 dots (`0.73%` of footprint) are placed, and fixed `GRAD_BAND_INDICES` to include band 18 (`det_elev_slope_grad`). Widening `clip_hi` to `20.0` lifted `E2` from `0.124733` to `0.131810 HOLDOUT-DTI` (`gems57-pooled-hide-v2`) and lifted Blind Off-Catalogue SGMC DTI from `0.078344` to `0.090912`.
+- [x] **Validator & Policy Gate Verification:** Passed `ledger_csv=ROOT / "ledger/submissions.csv"` and `allow_zeros_outside=True` to `validate_raster.py`, verified all 3 validator suites (`vendor/gems57/submission_writer.py`, `scripts/validate_raster.py`, `src/gems91/release_gates.py`), registered `.tif` and `.zip` in `registry/artifact_policy.json`, and updated `docs/download-audit.json` / `docs/download-audit.html` (`66` files audited, `PASS: 66 explicitly registered prediction artifacts`).
+
+### Pass 3 — Re-Check Against Original Prompt & Full Test/Browser Verification (COMPLETED)
+- [x] Added unit and integration tests in `tests/test_s17_cwpc.py`.
+- [x] Updated `README.md` (with prompt and Arena AI Core Values: "Maximize P(Win)" and "Own the Outcome"), `docs/index.html`, `docs/executive-summary.html`, `LIMITATIONS_AND_NEXT_STEPS.md`, and `PASS_LOG.md`.
+- [x] Verified full `pytest` suite and Playwright + axe-core browser smoke suite (`node tools/browser/smoke.cjs`), committed, pushed, and created/merged PR onto `main`.
+
+---
 
 > **Historical entry below describes an earlier branch (`arena/e6fdea6b-gemsdoe91`), not the current checkout.** Current branch: `arena/2f002fa0-gemsdoe91`. Current three-pass review: `docs/REVIEW-SESSION-20261025.md`; no new TIFF/experiment/slot, lane paragraph missing, feature stack absent; current verdict negative. The sample and existing-fault catalogue are present only as SHA-verified audit references. The earlier unique artifact is still research-only and not endorsed for submission. The prior policy omission for that artifact has now been corrected and `scripts/check_artifact_policy.py` passes.
 
@@ -88,6 +130,56 @@ File: docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9ac
   explicit (OK TO DOWNLOAD: YES — research only; OK TO SUBMIT: NO). The JSON run card has every
   protocol field. Every number is labelled. The README and site lead with the download. Sources
   are linked.
+
+# Current three-pass review — `arena/522615dd-gemsdoe91` — 2026-10-25
+
+- **Pass 1 — inventory/readiness/provenance:** reread the standing brief and current README; inspected the active branch, current portal and source templates; reran `scripts/preflight.py`. It reports **BUILD BLOCKED: 0/2** and all six implemented axes blocked. `data/` has no files. The official competition data page redirects anonymous access to login. No mirrored competition data were restored.
+- **Pass 2 — scientific/protocol review:** confirmed there is no assigned single-method paragraph; did not infer a lane. Ranked three proposals (topographic spectral-slope/roughness break, within-map-unit potential-field residual, multi-season Landsat surface-temperature residual) in `docs/HYPOTHESES-ACTIVE-522615DD-20261025.md`. Fetched official competition/rules/leaderboard and USGS source pages; kept public-board scores separate from user reports, holdout metrics, and receipts. No model, holdout, canary, placement, TIFF, or slot was run.
+- **Pass 3 — docs/portal/tests:** updated the active README and portal to distinguish the prior OLC91 research download from this no-run review; fixed `LB-DTI` navigation labels; added the branch-specific review/run card, official source records, and tests. Normalized all 115 historical CSV source URL strings without changing their evidence class or receipt status. Re-rendered the portal.
+- **Final verification:** `.venv/bin/python -m pytest -o addopts='' -ra` → **555 passed, 8 skipped, 58 warnings** in 36.15 s (data-dependent skips; Rasterio affine deprecation warnings). `scripts/check_artifact_policy.py` → **PASS, 87 registered artifacts**. `git diff --check` → clean. Expected `scripts/preflight.py` exit 1 remains the active blocker.
+- **Outcome:** negative/blocked; zero experiments and weekly slots, no new score, no new TIFF, no organizer receipt. Prior OLC91 file remains research-only and is not promoted. Current review/run card: `docs/REVIEW-ACTIVE-522615DD-20261025.md` / `docs/run-card-522615dd.json`.
+
+## Review 6cbfe8ac — 2026-10-25
+
+1. Implemented: fixed default verification of HEXFAR91 when website links OLC91; exact canonical TIFF/ZIP/card/pointer now checked; blocked unassigned `--run`; preserved explicit historical verifiers and clarified executive guide.
+2. Reviewed: fixed shared audit float32 omission; added invalid-dtype, re-pinned NaN/Inf/range, pointer, ZIP, note and missing-reference regression cases. Restored pinned inputs and recomputed lattice capacity independently; fresh inventory 87 files, 78 PASS / 9 FAIL, all not approved to submit.
+3. Rechecked: final full suite **568 passed, 1 expected skip**, 62 Rasterio pending-deprecation warnings. Local links and canonical portal rendering checked. No candidate, no scientific HOLDOUT-DTI, no slot. Missing lane and literal uniqueness infeasibility remain explicit, not bypassed.
+
+Evidence: `docs/REVIEW-6CBFE8AC-20261025.md`, `docs/review-6cbfe8ac/verification.json`, `docs/run-card-6cbfe8ac.json`.
+
+Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 review/CI/tests, and delegated this CLI wrapper’s reference check to the shared `verify_frontdoor.py`. Integrated full suite **585 passed, 1 expected skip**, 78 Rasterio warnings. No scientific experiment or slot.
+
+---
+
+## Active branch review (`arena/e02bcd84-gemsdoe91`, 2026-10-25)
+
+- **Pass 1 — inspect:** read the standing brief and repo evidence; confirmed canonical lane assignment is false; installed pinned requirements and restored 15 selected inputs from repository-pinned GitHub mirrors into ignored `data/` (all hashes/sizes matched; no raw data staged). Fetched official DrivenData problem specification and USGS GeMS SGMC/ComCat pages; exact links and source boundaries are in `docs/REVIEW-ACTIVE-E02BCD84-20261025.md`.
+- **Pass 2 — run checks:** full `.venv/bin/pytest -q -ra` passed with one expected legacy-release skip. `scripts/preflight.py` reported BUILD ALLOWED for its local prerequisites; `scripts/check_artifact_policy.py` passed for 87 registered artifacts. `scripts/audit_downloads.py` checked 87 artifacts: 78 format PASS / 9 FAIL, global submit status false. Failures are seven NaN-outside TIFFs and two synthetic TIFF/ZIP catalogue-mask failures; they remain unapproved. Historical CED91 artifact validation passed only its defined format/sample/catalogue checks and reports submission_ready false.
+- **Pass 3 — requirements:** no exact method paragraph assigned, so no experiment, candidate TIFF, submission slot, or score was produced. Ranked five conditional hypotheses and source availability checks are documented; top screen is MUSD, but it is not lane-assigned or holdout-validated. Existing OLC91 portal file is research-only and has a recorded duplicate stop. Updated README start page to point to this branch's review and preserve the existing full prompt.
+- **Verdict:** NEGATIVE / NO PROMOTION. No new TIFF is available to download or submit. Run card: `docs/run-card-E02BCD84.json`; detailed review: `docs/REVIEW-ACTIVE-E02BCD84-20261025.md`.
+
+
+## Active-branch integration recheck — `arena/522615dd-gemsdoe91` — 2026-10-25
+
+- Merged upstream main through `ee35489` (including `5262aa9` and PR #124) on the fixed session branch; retained upstream current-download verifier/CI and branch-specific historical reviews, while keeping this checkout's no-lane/no-data status explicit. The FFB91 review reports 1/2 inputs only for its own checkout; current preflight remains 0/2.
+- Re-ran `.venv/bin/python -m pytest -o addopts='' -ra`: **588 passed, 8 skipped, 78 warnings** in 38.59 s (final run after the latest main merge and audit-snapshot refresh). Artifact policy: **PASS, 87 registered prediction artifacts**. `git diff --cached --check`: clean at the integration checkpoint.
+- Default `generate_submission.py` verifies the exact current OLC91 TIFF/ZIP/card and reports technical PASS, **OK TO DOWNLOAD: YES — RESEARCH ONLY**, **OK TO SUBMIT: NO**, references `NOT_CHECKED`. `--with-data` blocks on the absent official sample; `--run` blocks on the absent lane.
+- `scripts/preflight.py`: expected **BUILD BLOCKED: 0/2**, all six axes blocked. No data restored, experiment run, new score/TIFF, selector step, or slot use.
+
+
+## PR #123 published-artifact audit snapshot follow-up — 2026-10-25
+
+- GitHub run `40216729640`: `tests` and `browser-delivery` passed; `published-artifact` failed in its audit/diff step. Job metadata identified step 7; the detailed runner log was inaccessible from this sandbox.
+- Found stale canonical `docs/download-audit.json`/HTML (85 files, 76 PASS / 9 FAIL), while the current registered inventory has 87 files. Reused the latest saved pinned-reference audit from `docs/review-6cbfe8ac/download-audit.json`, after validating all 87 paths, current artifact/policy SHA-256 values, manifest reference hashes, and overlap-record parity; the 2 added CWP91 artifacts are technical PASS. Regenerated the canonical HTML with the current renderer.
+- The refreshed snapshot still reports **78 technical PASS / 9 FAIL**, all not submit-approved. No data were restored or audit rerun locally. Follow-up CI run `40219293388` / run #342 passed `tests`, `published-artifact`, and `browser-delivery`; the published-audit/diff step now passes. Its workflow restored the two pinned sample/catalogue references only inside the CI runner.
+
+## Review 19912231 — three passes (2026-10-25)
+
+1. Audited latest handoff, sources, shared tools and current download. Refetched 92 GitHub fleet pages; restored only sample/catalogue/lattice; added reusable pinned-witness capacity preflight and distinguished input availability from experiment authorization. No geological run.
+2. Added 32 unit/file tests for exact overlap threshold, empty support, exhaustive placements, altered pins/grids, invalid plans and budget edge cases. Independently verified all 87 published artifacts; 78 technical PASS / 9 FAIL, none approved. Found generated-page drift after refreshing feed; fixed via full shared renderer.
+3. Repeat suite: 610 passed / 8 documented data-dependent skips; browser desktop/mobile delivery, SHA checks, accessibility and link/UI checks PASS. Current TIFF/ZIP unchanged, registry/evaluator/writer unchanged. No new unique TIFF or holdout score; missing lane and infeasible usual budget remain explicit negative outcome. See docs/REVIEW-19912231-20261025.md and its machine verification.
+
+19912231 integration: upstream 45d4933 merged on the fixed branch; preserved stricter ZIP/promotion-flag validation and marked previous review status historical. Combined suite: 626 passed, 8 skipped, 87 deprecation warnings.
 
 ## Session 18 `S18-CWGR` (2026-10-25, `arena/892fab6a-gemsdoe91`)
 

@@ -316,7 +316,7 @@ def test_rank_logit_standardization_constant_and_empty_quadrant_edge_cases() -> 
 
 def test_published_s18_cwgr_artifact_and_evidence_verify_without_data() -> None:
     import generate_submission as gs
-    from scripts.verify_s18 import verify
+    from scripts.verify_s18_cwgr import verify
 
     root = Path(__file__).resolve().parents[1]
     rep = verify(with_data=False)

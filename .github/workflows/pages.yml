@@ -68,6 +68,7 @@ jobs:
           python scripts/verify_s16.py
           python scripts/verify_s17.py
           python scripts/verify_s18.py
+          python scripts/verify_s18_cwgr.py
       - run: python scripts/render_portal.py
       - name: Build static site with root and existing /docs/ URLs preserved
         run: |
