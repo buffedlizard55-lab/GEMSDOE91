@@ -474,6 +474,18 @@
       "sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of the OLC91 E1 research-only file; same verdict (OK TO SUBMIT: NO)."
+    },
+    {
+      "path": "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+      "sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
+      "status": "current_research_only",
+      "reason": "CWP91 E1 completeness-weighted PU research artifact; HOLDOUT-DTI 0.083170 (gems57-pooled-hide-v2) below E0 0.085260 and hole-shuffled CTL 0.085723; 90.8% 3-px dot overlap vs OLC91-E1 duplicate-stop; NOT OK TO SUBMIT (docs/run-card-CWP91.json)."
+    },
+    {
+      "path": "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.zip",
+      "sha256": "3a8a92aa08c2c7764d321a0b08c05370f3e2b1d0b5c14bf4536b607145d7fa4f",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of the CWP91 E1 research artifact; NOT OK TO SUBMIT (docs/run-card-CWP91.json)."
     }
   ]
 }

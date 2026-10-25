@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Verify (default) or regenerate (--run) the current OLC91 candidate download.
+"""Verify (default) or regenerate (--run) the current CWP91 candidate download.
 
 The default command re-reads the published GeoTIFF, recomputes its SHA-256, re-checks the
 submission format against the run card, and prints the automated verdict:
 
-    python generate_submission.py            # verify docs/run-card-OLC91.json + its TIFF
-    python generate_submission.py --run      # rerun the frozen OLC91 experiment (needs data/)
+    python generate_submission.py            # verify docs/run-card-CWP91.json + its TIFF
+    python generate_submission.py --run      # rerun the frozen CWP91 experiment (needs data/)
     python generate_submission.py --legacy-s16   # the historical S16 verifier
 
 Never create mock labels in data/official, read another submission as a feature,
@@ -21,10 +21,10 @@ import subprocess
 import sys
 from pathlib import Path
 
-RUN_CARD = "docs/run-card-OLC91.json"
+RUN_CARD = "docs/run-card-CWP91.json"
 
 
-def verify_olc91(root: Path) -> dict:
+def verify_cwp91(root: Path) -> dict:
     card = json.loads((root / RUN_CARD).read_text(encoding="utf-8"))
     tif = root / card["raster"]["path"]
     sha = hashlib.sha256(tif.read_bytes()).hexdigest()
@@ -84,12 +84,12 @@ def main():
         print(json.dumps(report, indent=2, allow_nan=False))
         return 0
     if args.run:
-        for step in (["holdout", "--seed", "20"], ["final", "--arm", "E1"]):
-            rc = subprocess.call([sys.executable, str(root / "scripts" / "run_olc91.py"), *step], cwd=root)
+        for step in (["holdout", "--seed", "20"], ["final"]):
+            rc = subprocess.call([sys.executable, str(root / "scripts" / "run_cwp91.py"), *step], cwd=root)
             if rc:
-                parser.exit(rc, "run_olc91 failed (the writer refuses to overwrite an existing TIFF)\n")
+                parser.exit(rc, "run_cwp91 failed (the writer refuses to overwrite an existing TIFF)\n")
     try:
-        report = verify_olc91(root)
+        report = verify_cwp91(root)
     except (OSError, ValueError, KeyError) as exc:
         print(json.dumps({"status": "BLOCKED", "OK_TO_SUBMIT": "NO", "error": str(exc)}))
         return 1

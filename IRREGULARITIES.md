@@ -1638,3 +1638,35 @@ Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and 
 * **IR-OLC91-08 (band semantics).** `det_elev` is detrended elevation, so absolute-datum shoreline
   tests (H3) are infeasible from the stack. The meaning of `tc` ("Tilt angle or total curvature")
   remains ambiguous in the file's own band description.
+
+## CWP91 session irregularities (2026-10-25, `arena/24569eef-gemsdoe91`)
+
+* **IR-CWP91-01 (no assigned lane).** The prompt's Parallel-Run Protocol refers to "the single
+  method paragraph below", but no such paragraph is present in the supplied text. CWP91 is a
+  session-declared lane (OLC91's pre-ranked, never-run H2) frozen in
+  `docs/HYPOTHESES_CWP91.md` before any scoring; it is not an orchestrated assignment.
+* **IR-CWP91-02 (registry incompleteness).** 62 of the 64 frozen fleet-inventory rasters were
+  restored and SHA-256/size-verified this session. The two `GEOD25m10` rows
+  (`docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21{,-zeros}.tif`) carry no pinned git
+  blob and are absent from this checkout, so they could not be compared. The CWP91 duplicate-stop
+  does not depend on them (90.8% vs the OLC91-E1 download; R0 itself is present at 36.6%).
+* **IR-CWP91-03 (user-claim conflicts, verified live 2026-10-25).** (a) "0.3195 is the highest
+  score right now" is contradicted by the public leaderboard fetched this session: rank 1 = 0.4413
+  (xiaofanhu); 0.3195 would rank ≈24. (b) `h33-h33-2-b2-…-zeros: 0.2778` is USER-REPORTED: the
+  GEMSDOE32 page fetched this session states "NO ORGANISER SCORE EXISTS" for that file and labels
+  0.2747 a model projection. No fleet number used here is ORGANIZER-CONFIRMED.
+* **IR-CWP91-04 (instrument mismatch, now quantified).** On `buffered_component_draw` seed 20 the
+  completeness field ĉ is *positively* associated with withheld truth (canary AUC 0.7348): hidden
+  components lie in mapped neighbourhoods. A completeness-type mechanism is therefore structurally
+  unvalidatable on this instrument — its significant loss to the hole-shuffled control
+  (−0.0026 [−0.0040, −0.0012]) measures the instrument's hole geometry at least as much as the
+  geology. Promotion is refused either way; a live-calibrated instrument is the blocker.
+* **IR-CWP91-05 (estimator definition frozen pre-scoring).** The preregistration's `p̂_vis` was
+  pinned, in a same-session pre-scoring addendum, to the Elkan–Noto calibrated posterior
+  `clip(p_s / c_bar, 0, 1)` (σ = 10 px, truncate 3.0). Without that pin the raw ratio
+  `(G*cat)/(G*p_s)` inherits the HGB subsampling constant. Recorded here so the frozen text and
+  the code (`src/gems91/cwp.py`) cannot drift apart silently.
+* **IR-CWP91-06 (sandbox egress).** DrivenData/USGS/Dropbox/EarthScope are unreachable from bash
+  in this sandbox (github/npm/pypi only); all competition inputs were restored through the repo's
+  pinned GitHub mirrors and hash-verified. Candidates H3–H5 name their free official sources but
+  are NOT verified-obtainable here and were deferred rather than proposed as viable.

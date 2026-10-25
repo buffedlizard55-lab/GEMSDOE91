@@ -1,0 +1,326 @@
+{
+  "run_card_version": 1,
+  "lane": "CWP91",
+  "session_branch": "arena/24569eef-gemsdoe91",
+  "date_utc": "2026-10-25",
+  "lane_assigned_in_prompt": false,
+  "lane_declared_by_session": "Completeness-weighted PU (spatially-varying Elkan-Noto label frequency); OLC91's pre-ranked but never-run H2, with the hole-shuffled control OLC91 required",
+  "hypothesis": "H1 CWP: weighting a PU-HGB fault posterior by (1 - chat), where chat is a 1 km spatial catalogue-completeness field (smoothed visible-catalogue density / smoothed Elkan-calibrated expected fault density), improves recovery of withheld faults vs the identical posterior alone AND vs a hole-shuffled control, at identical 37,654-dot emission.",
+  "mechanism": "PU theory with spatially varying label frequency c(x)=P(labelled|fault,x): P(unlabelled fault|x) is proportional to p_y(x)(1-c(x)). Where mapping is already dense relative to predicted fault density (chat->1) a high posterior is most likely an already-mapped fault; where the catalogue is sparser than the geology predicts (chat->0) the same posterior is a discovery candidate. Encodes the independently reported live depletion of new faults near mapped faults.",
+  "named_non_fault_mimic": "A mapping-effort gradient (edge of a detailed 1:24k quadrangle map or land-ownership boundary where field mapping stopped): chat drops because nobody mapped there, not because faults are present-but-unmapped; CWP would promote ordinary lineaments along the survey boundary. Secondary: young alluvial/playa cover where the expected-density denominator is itself depressed.",
+  "preregistration": "docs/HYPOTHESES_CWP91.md",
+  "instrument": {
+    "split": "vendor gems57 buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12)",
+    "training": "leave-one-quadrant-out HGB, PU (hidden components unlabelled), 40 px train buffer",
+    "transform": "E1: p*(1-chat), chat=clip(G10*visible_cat / G10*clip(p/c_bar,0,1),0,1); CTL: same with catalogue shifted (+173,-211) px",
+    "emission": "submodular_dti_emit, budget 37654 x area share, collar > 2.0 px from known",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "implementation_hashes": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "withheld_positive_pixels": 11321,
+    "metric": "pooled DTI, alpha 0.2, beta 0.8, 300 m triangular kernel; paired 20 km-block bootstrap, 1000 draws"
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seed": 20,
+    "E1_candidate": {
+      "dti": 0.08317,
+      "ci95": [
+        0.066671,
+        0.100489
+      ]
+    },
+    "E0_incumbent_recipe": {
+      "dti": 0.08526,
+      "ci95": [
+        0.068716,
+        0.102299
+      ]
+    },
+    "CTL_hole_shuffled": {
+      "dti": 0.085723,
+      "ci95": [
+        0.06919,
+        0.102954
+      ]
+    },
+    "RND_floor": {
+      "dti": 0.043165,
+      "ci95": [
+        0.037666,
+        0.048476
+      ]
+    },
+    "delta_E1_minus_E0": {
+      "delta": -0.00209,
+      "ci95": [
+        -0.003218,
+        -0.001158
+      ]
+    },
+    "delta_E1_minus_CTL": {
+      "delta": -0.002553,
+      "ci95": [
+        -0.004043,
+        -0.001187
+      ]
+    },
+    "delta_E1_minus_RND": {
+      "delta": 0.040006,
+      "ci95": [
+        0.024587,
+        0.057116
+      ]
+    },
+    "per_fold": [
+      {
+        "fold": "NW",
+        "n_dots": 8000,
+        "withheld_positive_pixels": 1923,
+        "E0_dti": 0.081443,
+        "E1_dti": 0.080921,
+        "CTL_dti": 0.080913,
+        "RND_dti": 0.036361,
+        "c_bar": 0.207069
+      },
+      {
+        "fold": "NE",
+        "n_dots": 9919,
+        "withheld_positive_pixels": 2367,
+        "E0_dti": 0.101115,
+        "E1_dti": 0.09935,
+        "CTL_dti": 0.102748,
+        "RND_dti": 0.042168,
+        "c_bar": 0.269152
+      },
+      {
+        "fold": "SW",
+        "n_dots": 9793,
+        "withheld_positive_pixels": 3781,
+        "E0_dti": 0.068262,
+        "E1_dti": 0.065745,
+        "CTL_dti": 0.067928,
+        "RND_dti": 0.044607,
+        "c_bar": 0.167742
+      },
+      {
+        "fold": "SE",
+        "n_dots": 7891,
+        "withheld_positive_pixels": 3250,
+        "E0_dti": 0.093609,
+        "E1_dti": 0.090552,
+        "CTL_dti": 0.094675,
+        "RND_dti": 0.047472,
+        "c_bar": 0.258303
+      }
+    ],
+    "coverage_by_distance_to_visible_catalogue": {
+      "E0": {
+        "4-10px": {
+          "coverage": 0.1135,
+          "n_truth": 6171
+        },
+        "10-30px": {
+          "coverage": 0.1342,
+          "n_truth": 4402
+        },
+        ">30px": {
+          "coverage": 0.1355,
+          "n_truth": 748
+        }
+      },
+      "E1": {
+        "4-10px": {
+          "coverage": 0.1081,
+          "n_truth": 6171
+        },
+        "10-30px": {
+          "coverage": 0.1335,
+          "n_truth": 4402
+        },
+        ">30px": {
+          "coverage": 0.1378,
+          "n_truth": 748
+        }
+      },
+      "CTL": {
+        "4-10px": {
+          "coverage": 0.1141,
+          "n_truth": 6171
+        },
+        "10-30px": {
+          "coverage": 0.1349,
+          "n_truth": 4402
+        },
+        ">30px": {
+          "coverage": 0.1365,
+          "n_truth": 748
+        }
+      },
+      "RND": {
+        "4-10px": {
+          "coverage": 0.0608,
+          "n_truth": 6171
+        },
+        "10-30px": {
+          "coverage": 0.0651,
+          "n_truth": 4402
+        },
+        ">30px": {
+          "coverage": 0.0535,
+          "n_truth": 748
+        }
+      }
+    },
+    "comparability": "Same instrument/recipe/seed as OLC91: E0 re-measured here at 0.085260 HOLDOUT-DTI, byte-for-byte the OLC91 E0 value on this evaluator (per-fold identical), so deltas are attributable to the surface transform only. Not comparable with gems91-hide-recover-v1.0 numbers (e.g. S14-PTAC 0.267782) and not a leaderboard projection."
+  },
+  "leakage_canary": {
+    "threshold_symmetric_auc": 0.9,
+    "stop": false,
+    "worst": {
+      "feature": "cwp_chat",
+      "auc": 0.7348,
+      "symmetric_auc": 0.7348
+    },
+    "cwp_chat": {
+      "auc": 0.7348,
+      "symmetric_auc": 0.7348,
+      "note": "chat is POSITIVELY associated with withheld truth on this instrument (hidden components sit in mapped neighbourhoods within the 1 km smoothing scale); this explains the negative result mechanistically. Below the 0.90 leakage threshold: PASS, reported not hidden."
+    },
+    "n_features_tested": 40
+  },
+  "registry_uniqueness": {
+    "gate": "duplicate-stop if |Spearman|>0.90 (surface pre-placement and dots post-placement) or >70% of dots within 3 px of one raster",
+    "n_unique_rasters_checked": 95,
+    "byte_duplicates_skipped": 17,
+    "surface_max_abs_spearman": 0.21473,
+    "surface_closest": "data/fleet_registry/calib_hedgev2_01563_sample.tif",
+    "surface_verdict": "PASS (<=0.90, pre-placement)",
+    "dots_max_within_3px_literal": 0.99756,
+    "dots_closest_literal": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "dots_max_within_3px_non_blanket": 0.90787,
+    "dots_closest_non_blanket": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+    "dots_verdict": "DUPLICATE-STOP (>0.70 post-placement): 90.8% of dots within 3 px of the OLC91 E1 file (89.5% chance-corrected). Pre-placement surface correlation passed; final-dot placement failed. Per Rule 1 this is lane drift: logged as a duplicate, experiments stopped.",
+    "vs_R0_h33_2_b2": {
+      "dots_within_3px_literal": 0.36562,
+      "surface_abs_spearman": 0.06086,
+      "note": "genuinely different dot set from the 0.2778 (USER-REPORTED) champion lineage; the duplicate-stop is vs this repo's own PU-HGB family, not vs R0"
+    },
+    "blanket_references": [
+      "data/fleet_registry/calib_r13lattice_00904.tif",
+      "data/fleet_registry/r11_greedy_mp.tif",
+      "data/fleet_registry/r14_union_tips10_lat6.tif"
+    ],
+    "registry_incompleteness": "62 of 64 frozen fleet-inventory rasters restored and hash-verified; the 2 GEOD25m10 rows have no pinned git blob and are absent from this checkout (IR-CWP91-02). Registry scope is therefore stated, not universal."
+  },
+  "raster": {
+    "path": "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+    "sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
+    "bytes": 140375,
+    "zip": "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.zip",
+    "zip_sha256": "3a8a92aa08c2c7764d321a0b08c05370f3e2b1d0b5c14bf4536b607145d7fa4f",
+    "n_dots": 37654,
+    "min_dot_distance_to_catalogue_px": 2.236,
+    "values": "1.0 at dots, 0.0 elsewhere (including outside footprint); no NaN anywhere"
+  },
+  "validator": {
+    "file": "/home/user/GEMSDOE91/docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+    "bytes": 140375,
+    "sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2",
+  "submission_note": "GEMSDOE91 CWP91 E1: PU posterior x (1-spatial completeness), 37654 dots, 2px catalogue collar",
+  "submission_note_chars": 93,
+  "verdict": {
+    "hypothesis_result": "NEGATIVE",
+    "promote": false,
+    "reasons": [
+      "HOLDOUT: E1 - E0 = -0.0021, 95% CI [-0.0032, -0.0012] (significantly negative; E1 below E0 in 4/4 folds)",
+      "ARTEFACT CONTROL: E1 - CTL = -0.0026, 95% CI [-0.0040, -0.0012] (aligned completeness loses even to the hole-shuffled control on this instrument)",
+      "UNIQUENESS: duplicate-stop, 90.8% of dots within 3 px of docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif (89.5% chance-corrected); surface rho passed (0.215)"
+    ],
+    "OK_TO_DOWNLOAD": "YES - RESEARCH ONLY (format-valid file)",
+    "OK_TO_SUBMIT": "NO",
+    "replication_seed21": "not run (preregistered: only if E1 beats BOTH E0 and CTL on seed 20)",
+    "experiments_used": "1 of 3",
+    "weekly_slots_used": 0
+  },
+  "why_0_2778": {
+    "evidence_class": "USER-REPORTED, unverified",
+    "gemsdOE32_site_fetched_2026_10_25": "The GEMSDOE32 page itself states NO ORGANISER SCORE EXISTS for h33-2-b2 and calls 0.2747 a model projection; the user-reported 0.2778 remains unverified.",
+    "lineage_remeasured_this_session": "h16-1 123,939 px (0.1855) -> h19-5 121,131 px (0.1922) -> d2-8 44,090 dots subset-exact (0.2600) -> solo minus 3,891 dots at exactly 1.0 px (0.2708) -> R0 minus 2,545 dots at sqrt2-2.0 px = 37,654 dots (0.2778). Dotting (+0.068) is emission geometry under the max-kernel TP; collar pruning removes below-bar mass (k < 0.2*DTI ~ 0.054). Implied coverage ~0.38, FP/G ~2.4; 0.4413 needs coverage ~0.62: a better localiser, not a better emitter.",
+    "can_we_beat_it": "Not demonstrably offline. No offline instrument is calibrated to the live board; this lane's candidate also fails its holdout and uniqueness gates. No live score is projected."
+  },
+  "official_sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ (metric + submission format, fetched 2026-10-25)",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (rank 1 = 0.4413, fetched 2026-10-25; 0.3195 would rank ~24)",
+    "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html (NO ORGANISER SCORE EXISTS for h33-2-b2, fetched 2026-10-25)",
+    "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://gbcge.org/current-projects/ingenious/",
+    "https://epsg.io/32611",
+    "https://en.wikipedia.org/wiki/Tversky_index"
+  ],
+  "organizer_confirmed_scores": null,
+  "raster_path": "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+  "raster_sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
+  "ok_to_submit": false,
+  "submission_ready": false,
+  "result": "negative"
+}

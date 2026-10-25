@@ -1,4 +1,19 @@
-# GEMSDOE91 — CURRENT STATUS (OLC91, 2026-10-25) — read this first
+# GEMSDOE91 — CURRENT STATUS (CWP91, 2026-10-25) — read this first
+
+> **CWP91 session (`arena/24569eef-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH ONLY` · `OK TO SUBMIT: NO`.**
+> **[⬇ Download the GeoTIFF](docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif)** ([ZIP](docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.zip)) · SHA-256 `a9bcec2a…ebf659d68` · [JSON run card](docs/run-card-CWP91.json) · [Site](https://buffedlizard55-lab.github.io/GEMSDOE91/) · [Executive summary / how to submit](docs/executive-summary.html) · [Preregistration + results](docs/HYPOTHESES_CWP91.md) · [Three-pass review](docs/REVIEW-CWP91-20261025.md)
+>
+> * **Lane (declared, none was supplied):** Completeness-Weighted PU. A PU-HGB posterior on the 19 official bands is multiplied by (1 − ĉ), where ĉ is a 1 km spatial catalogue-completeness field derived from visible faults only (Elkan–Noto calibrated), then emitted as 37,654 dots with a 2 px catalogue collar. This was OLC91's pre-ranked, never-run H2, tested with the hole-shuffled control OLC91 required.
+> * **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, buffered whole-component draw seed 20, 11,321 withheld px, LOQO): E1 **0.083170** [0.066671, 0.100489] · E0 incumbent **0.085260** [0.068716, 0.102299] · CTL hole-shuffled **0.085723** [0.069190, 0.102954] · random **0.043165**. Paired E1−E0 **−0.002090** [−0.003218, −0.001158] and E1−CTL **−0.002553** [−0.004043, −0.001187]: **NEGATIVE** (E0 reproduced OLC91's E0 exactly; seed-21 replication preregistered off). Not comparable with v1.0 numbers such as S14-PTAC 0.267782.
+> * **Uniqueness:** surface max |ρ| 0.215 (PASS, pre-placement). Final dots: 90.8% within 3 px of the OLC91-E1 file (89.5% chance-corrected) vs a 70% limit, so **DUPLICATE-STOP** (95 unique rasters; only 36.6% vs the GEMSDOE32 champion R0). Third confirmation that the next lane needs a new information source.
+> * **Format:** PASS (float32, EPSG:32611, 3730×3292, exact transform, 0 NaN, values in [0,1], 0 dots on the catalogue). **Canary:** PASS (max symmetric AUC 0.735 for ĉ itself). **Slots used:** 0. **Experiments used:** 1 of 3.
+> * **Why 0.2778 (USER-REPORTED; GEMSDOE32 itself says no organiser score exists), re-measured pixel-by-pixel:** h19-5 catalogue-blind ridge network (121,131 px) → 44,090 subset-exact dots (0.2600) → delete 3,891 dots at exactly 1 px (0.2708) → delete 2,545 at √2–2 px (**0.2778**). Dotting (+0.068) is emission geometry; beating the verified public top 0.4413 needs ≈0.62 coverage vs R0's ≈0.38 — a better localiser. CWP was that attempt; hide-and-recover cannot validate it (ĉ AUC 0.7348 vs its own truth). Full analysis: [docs/HYPOTHESES_CWP91.md](docs/HYPOTHESES_CWP91.md).
+
+Core values: **Maximize P(Win) · Own the Outcome.** Every number is labelled HOLDOUT-DTI or USER-REPORTED. Nothing is ORGANIZER-CONFIRMED without a submission-page receipt. Read the preserved [full standing prompt](#full-project-brief) every session.
+
+---
+
+## Previous session (OLC91, 2026-10-25 — superseded, still NOT OK TO SUBMIT)
 
 > **OLC91 session (`arena/3444a6d3-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH ONLY` · `OK TO SUBMIT: NO`.**
 > **[⬇ Download the GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif)** ([ZIP](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip)) · SHA-256 `35259f3a…82abf8dc` · [JSON run card](docs/run-card-OLC91.json) · [Site](https://buffedlizard55-lab.github.io/GEMSDOE91/) · [Executive summary / how to submit](docs/executive-summary.html) · [Preregistration + results](docs/HYPOTHESES_OLC91.md)

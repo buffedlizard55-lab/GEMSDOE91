@@ -628,6 +628,9 @@ def render():
     # OLC91 (2026-10-25, later session) supersedes GEO91 as the current entry point.
     from scripts.render_olc91_portal import render as render_olc91
     render_olc91()
+    # CWP91 (2026-10-25, completeness-weighted PU session) supersedes OLC91.
+    from scripts.render_cwp91_portal import render as render_cwp91
+    render_cwp91()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 
