@@ -105,6 +105,18 @@ def test_missing_reference_never_uses_archived_count(monkeypatch):
     assert 'uncovered_pixels' not in r['capacity']
 
 
+def test_missing_runtime_dependency_is_machine_readable_block(monkeypatch):
+    def unavailable(*_):
+        raise ModuleNotFoundError("No module named 'numpy'")
+    monkeypatch.setattr(preflight, 'inspect_witness', unavailable)
+    result = preflight.evaluate(ROOT, plan())
+    assert result['status'] == 'BLOCKED'
+    assert result['capacity'] == {
+        'status': 'UNVERIFIED', 'error': "No module named 'numpy'"}
+    assert result['ok_to_submit'] is False
+    assert result['candidate_generated'] is False
+
+
 def test_pin_rejects_modified_bytes_and_path_escape(tmp_path):
     p = tmp_path / 'a'; p.write_bytes(b'changed')
     with pytest.raises(ValueError, match='SHA256'):

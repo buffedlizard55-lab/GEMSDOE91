@@ -53,7 +53,7 @@ header{display:flex;justify-content:space-between;align-items:center;flex-wrap:w
 th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-align:top}.pass{color:var(--ok);font-weight:700;white-space:nowrap}.fail{color:var(--bad);font-weight:700}td.fail,th.res{white-space:nowrap}
 .copy{display:flex;gap:8px;align-items:center;margin:6px 0}.copy input{flex:1;font-family:ui-monospace,monospace;font-size:13px;padding:7px;border:1px solid var(--line);border-radius:8px}
 .copy button{border:1px solid var(--ok);background:#fff;color:var(--ok);border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer}
-.warn{background:var(--warn);border:1px solid #ead39a;border-radius:10px;padding:10px 12px}ol li{margin:4px 0}footer{margin:24px 0;color:var(--mut);font-size:13px}"""
+.warn{background:var(--warn);border:1px solid #ead39a;border-radius:10px;padding:10px 12px}.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e2f2ea;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}.badge.bad{background:#f8e3e3;color:var(--bad)}.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:10px 14px;border-radius:9px;font-weight:800;margin:4px 6px 4px 0}.button.outline{background:#fff;color:var(--ok);border:1px solid var(--ok)}ol li{margin:4px 0}footer{margin:24px 0;color:var(--mut);font-size:13px}"""
 
 JS = """<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.copy);t.select();navigator.clipboard&&navigator.clipboard.writeText(t.value);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)}))</script>"""
 
@@ -192,7 +192,7 @@ def render_index(c: dict) -> str:
             + f"""<section class="card"><h2>What was tested, in one paragraph</h2>
 <p><strong>Hypothesis (ISO91):</strong> {e(c['hypothesis'])} <strong>Result:</strong> negative. The isolation-trained model barely moved its dots away from known faults, and with four to five times fewer positives it lost to the incumbent on both holdouts. Report-only SGMC control (more than 500 m off-catalogue): ISO91 {sg['ISO91_E1_final']['dti_gt500m']}, incumbent {sg['E0_final_same_emission']['dti_gt500m']}, R0 {sg['R0_gemsdoe32_h33_2_b2']['dti_gt500m']}. Overlap with R0's dots: {100*u['vs_R0_gemsdoe32_h33_2_b2']['within_3px']:.1f}% within 3 px.</p>
 <p><strong>Why GEMSDOE32 h33-2-b2 reached 0.2778 (USER-REPORTED):</strong> 79% of its gain over the dense ridge network came from emission geometry (2.8 px dotting) and 21% from deleting zero-credit dots within 2 px of mapped faults. Its ridges come from sub-100 m topography, and 70% of its dots lie more than 1 km from the catalogue. Two independent routes (MODEL) put the public truth set at about 12,500 px, with R0 covering about 40%. Reaching 0.4413 (PUBLIC-LEADERBOARD #1) needs about 63% more truth credit at the same number of dots. <a href="REVIEW-ISO91-BACC7C26-20261025.md">Full analysis</a> · <a href="HYPOTHESES_ISO91.md">preregistered hypotheses</a> · <a href="KNOWLEDGE-GEOTHERMAL-FAULTS-ISO91.md">knowledge base</a></p></section>
-""" + archive_table() + "</main>\n" + footer())
+""" + "<!--PARALLEL-CALLOUTS-->" + archive_table() + "</main>\n" + footer())
 
 
 def render_exec(c: dict) -> str:
@@ -215,6 +215,7 @@ def render_exec(c: dict) -> str:
 <li>Submit, then record the score receipt in the repository as ORGANIZER-CONFIRMED. A projection is never a score.</li></ol>
 <p class="warn"><strong>Portal error "Predicted values must be in range [0, 1]":</strong> it comes from NaN or −3.4e38 sentinel values or a nodata tag. Every file here uses the all-finite zeros encoding (0 outside the footprint, no nodata tag, every cell finite in [0, 1]), so the error cannot occur.</p></section>
 """ + identity(c) + gates_table(c)
+            + "<!--PARALLEL-CALLOUTS-->"
             + f"""<section class="card"><h2>History and other files</h2>
 <p class="small">Earlier sessions published research files that are all NOT OK TO SUBMIT, including S17-EULR (<a href="run-card-S17-EULR.json">run-card-S17-EULR.json</a>, <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif</a>) and S17-CGRD (<a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif</a>); see the <a href="index.html#archive">archive table</a>. The earlier reviews 522615dd and e649e460 are historical: <a href="REVIEW-ACTIVE-522615DD-20261025.md">522615dd review</a> · <a href="run-card-522615dd.json">no-run card</a> · <a href="REVIEW-ACTIVE-E649E460-20261025.md">e649e460 review</a> · <a href="run-card-E649E460-20261025.json">e649e460 run card</a>. Linking a prior file here is not an approval to upload that file.</p></section>
 <section class="card"><h2>Official sources (verified 2026-10-25)</h2><ul class="small">
