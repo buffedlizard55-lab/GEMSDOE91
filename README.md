@@ -1,4 +1,16 @@
-# GEMSDOE91 — CURRENT STATUS (OLC91, 2026-10-25) — read this first
+# GEMSDOE91 — CURRENT STATUS (HEXFAR91, 2026-10-25) — read this first
+
+> **HEXFAR91 session (`arena/5f91d61a-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH ONLY` · `OK TO SUBMIT: NO`.**
+> **[⬇ Download the GeoTIFF](docs/downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif)** ([ZIP](docs/downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.zip)) · SHA-256 `779773ff20cbd1d59520c0f8cce5f914c6f467c9f21471dad57669fc8cf6e49f` · [JSON run card](docs/run-card-HEXFAR91.json) · [HEXFAR page](docs/hexfar91.html) · [How to submit](docs/executive-summary.html) · [Preregistration](docs/HYPOTHESES_HEXFAR91.md)
+>
+> * **Lane:** hexagonal stagger lattice in the 18–35 px (1.8–3.5 km) far-field halo of `existing_faults.tif` (step 13 px, odd-row offset 6). Not the 3–10 px square lattice. 14,985 unit dots, zeros twin all-finite [0,1], EPSG:32611.
+> * **HOLDOUT-DTI** (`gems91-hide-recover-v1.1-nohalo`, 60,988 withheld): **0.0** 95% CI [0.0, 0.0]. Honest negative (dots cannot cover withheld catalogue).
+> * **Uniqueness vs 43 local rasters:** max |Spearman| 0.00467, max 3 px overlap 16.91% (PASS, under 0.90 / 70%).
+> * **Gates:** CERTIFIED. 0 slots spent. Cannot beat USER-REPORTED 0.2778 (GEMSDOE32 ridge+collar) with this geometry.
+>
+> Form note (95/140): `HEXFAR91 hex stagger 18-35px 1.8-3.5km off-cat 14985 dots HOLDOUT-DTI=0.0 unique research`
+
+# GEMSDOE91 — PRIOR STATUS (OLC91, 2026-10-25)
 
 > **OLC91 session (`arena/3444a6d3-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH ONLY` · `OK TO SUBMIT: NO`.**
 > **[⬇ Download the GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif)** ([ZIP](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip)) · SHA-256 `35259f3a…82abf8dc` · [JSON run card](docs/run-card-OLC91.json) · [Site](https://buffedlizard55-lab.github.io/GEMSDOE91/) · [Executive summary / how to submit](docs/executive-summary.html) · [Preregistration + results](docs/HYPOTHESES_OLC91.md)
