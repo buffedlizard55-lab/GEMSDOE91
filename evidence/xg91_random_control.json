@@ -1,0 +1,46 @@
+{
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positives": 60988,
+  "value": 0.07378847330707884,
+  "ci95": [
+    0.07032082731035734,
+    0.07680944084998521
+  ],
+  "tpw": 4201.204286238375,
+  "fpw": 36525.69595029333,
+  "fnw": 56786.79571376161,
+  "folds": [
+    {
+      "fold": 0,
+      "n_truth": 29319,
+      "n_emitted": 18059,
+      "dti": 0.0729762346012987
+    },
+    {
+      "fold": 1,
+      "n_truth": 12596,
+      "n_emitted": 10076,
+      "dti": 0.07709240548894779
+    },
+    {
+      "fold": 2,
+      "n_truth": 9473,
+      "n_emitted": 4160,
+      "dti": 0.07356693365622756
+    },
+    {
+      "fold": 3,
+      "n_truth": 9600,
+      "n_emitted": 5809,
+      "dti": 0.07196606577114761
+    }
+  ],
+  "fold_truth_sum": 60988,
+  "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  }
+}

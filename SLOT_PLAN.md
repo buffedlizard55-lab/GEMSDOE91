@@ -1,4 +1,8 @@
-# Slot selection — no automatic slot (`S14-HVDC E2` / `S14-PTAC E2` / `S15-SCGF E2` are Rule-1 duplicate-stop negatives; 0 slots spent)
+# Slot selection — no automatic slot (`S14-HVDC E2` / `S14-PTAC E2` / `S15-SCGF E2` / `S17-CDSC E1` are Rule-1 duplicate-stop negatives; 0 slots spent)
+
+> **SESSION 17 BANNER (`S17-CDSC`, 2026-10-25, branch `arena/1722e30a-gemsdoe91`):**
+> - **Zero weekly DrivenData slots spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` (research) | `OK TO SUBMIT: NO` (`verdict: "negative"`).**
+> - **`gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif`** (`44,000` binary `{0, 1}` dots `> 3.0 px` from catalogue, SHA-256 `39aaac68e7640d9914f1f8431bab589ce30eda6bf7a59512e38699f705d21836`, [`docs/run-card-S17-CDSC.json`](docs/run-card-S17-CDSC.json)) remediated `IR-91-S15-06`, `IR-91-S15-07`, and `IR-91-S15-05`, scoring **`0.259972 HOLDOUT-DTI`** (`95% CI [0.244333, 0.275361]`, jumping **`+0.019339`** over `S15-SCGF E2 = 0.240633` and beating `S13-PTHA E3 = 0.244601` by **`+0.015371`** with paired 95% CI `[+0.010244, +0.021122]`). External non-calibration fleet 3-px overlap is **`53.16% <= 70% PASS`** (`43.76% <= 70% PASS` vs `GEMSDOE32 R0`), but it trails `S14-PTAC E2` (`0.267782`) by `-0.007810` and stops on literal all-raster lattice overlap (`99.834%`). Takes **no slot**.
 
 > **PARALLEL SESSION 15 BANNER (`S15-SCGF`, 2026-10-25, branch `arena/605655a6-gemsdoe91`):**
 > - **Zero weekly DrivenData slots spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` (research) | `OK TO SUBMIT: NO` (`verdict: "negative"`).**

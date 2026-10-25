@@ -414,5 +414,10 @@
     "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
     "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527"
   ],
-  "organizer_confirmed_scores": null
+  "organizer_confirmed_scores": null,
+  "raster_path": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+  "raster_sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+  "ok_to_submit": false,
+  "submission_ready": false,
+  "result": "negative"
 }

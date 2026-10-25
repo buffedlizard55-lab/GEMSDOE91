@@ -6,9 +6,9 @@
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
-  "files_checked": 55,
-  "format_pass": 48,
-  "format_fail": 7,
+  "files_checked": 71,
+  "format_pass": 62,
+  "format_fail": 9,
   "ok_to_submit": false,
   "files": [
     {
@@ -401,6 +401,47 @@
       "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
     },
     {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif",
+      "policy_status": "parallel_quarantined",
+      "ok_to_submit": false,
+      "sha256": "b1623999403b1f6069fb259035a5b5acd795c7d80cf5ce03b8c6c6cda1a19fe3",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.zip",
+      "policy_status": "parallel_quarantined",
+      "ok_to_submit": false,
+      "sha256": "4af0bafcc0aec883bb1ce6eb65542ed4a476bf4184dfe9c7350f4b2551e61ee0",
+      "zip_member": "gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
       "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif",
       "policy_status": "current_research_only",
       "ok_to_submit": false,
@@ -426,6 +467,88 @@
       "ok_to_submit": false,
       "sha256": "8f8d262e3a0330cf2f04d0ae95c5947e337ed16e990a87cb37cc4120107cc037",
       "zip_member": "gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "57a0442a6b32d0a91a23f3abb71a673941f0d80a8781c6f6adece3d86e94e11a",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "f72b5f1a18429210f0a5b14e35ff7175faf7a9014e05c700682c34d7cb2d0e5b",
+      "zip_member": "gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "ccb8df3043104e5eab4932f5ae1278a40c5dae1af9d24d16e4939c3016327fa3",
+      "zip_member": "gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
       "status": "PASS",
       "checks": {
         "single_band": true,
@@ -953,6 +1076,47 @@
       "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
     },
     {
+      "path": "docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "287af6b2df1c34080c55cd1aef9264f30e5e507b152ff31dcb94d13cf6f521a6",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "b3f520731ffe64f0bb4d2967755e399ee3ea34fce92b23bd9b0f5e245c324f8f",
+      "zip_member": "gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
       "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
       "policy_status": "current_research_only",
       "ok_to_submit": false,
@@ -1096,6 +1260,128 @@
       "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
     },
     {
+      "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "9a88a5651103b7007db67da3ec01c9d7684d3c28d64c142eaef18612da6eaa00",
+      "zip_member": "gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "b9acc11900faa04c6871bdcd2e6d2107b40fafeee143c5884a7b71b012f81d74",
+      "status": "FAIL",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": false,
+        "all_cells_finite": false,
+        "values_in_0_1": false,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": false,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 7111787,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "dd27cbb1bee4b65343f5e1e40c0cb884c658c89a1deea1bb81fab887802fb912",
+      "zip_member": "gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "b9acc11900faa04c6871bdcd2e6d2107b40fafeee143c5884a7b71b012f81d74",
+      "status": "FAIL",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": false,
+        "all_cells_finite": false,
+        "values_in_0_1": false,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": false,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 7111787,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
       "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
       "policy_status": "current_research_only",
       "ok_to_submit": false,
@@ -1131,6 +1417,47 @@
         "no_nan_inside_footprint": true,
         "zero_outside_footprint": true,
         "visible_catalogue_masked": false
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "4aecf0851bbe0ae3a9f87255f4d438597becc90e50ec49789852cfe1a33d4327",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "fe9d868aeab195f7473aa9e334c11452dd5bb2a5e423ad708f628d7f4801c31e",
+      "zip_member": "gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
       },
       "nonfinite_cells": 0,
       "out_of_range_finite_cells": 0,
