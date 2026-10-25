@@ -1740,3 +1740,54 @@ The published-artifact verifier read historical `docs/run-card.json`, while the 
 - **IR-91-522615DD-13 — published-artifact CI snapshot was stale, then corrected.** Initial PR run `40216729640` passed tests/browser checks but failed its published-audit diff: the tracked report covered 85 files while the current inventory held 87. The canonical JSON/HTML were refreshed from a prior pinned-reference snapshot after current path/hash/policy/reference identity checks; this branch did not restore data or rerun the raster audit. Follow-up run `40219293388` passed all CI jobs, including the audit/diff. The workflow restored its two small pinned sample/catalogue references inside the CI runner only. The published snapshot still records 9 technical failures and `ok_to_submit: false`.
 
 - **IR-91-522615DD-14 — parallel preflight state is not portable.** The newly merged `arena/ffb91da8-gemsdoe91` report says its sample submission and catalogue were locally restored, yielding 1/2 required inputs; the parent R0 and feature cache remained missing there. The active `arena/522615dd-gemsdoe91` checkout still verifies 0/2. No ignored data files were copied or restored during this merge.
+
+## ISO91 session `arena/bacc7c26-gemsdoe91` (2026-10-25)
+
+- **IR-91-ISO-01: a live-aligned holdout split was added, outside the pinned template.**
+  - The legacy split hides truth of which ~55% lies within 1 km of visible faults.
+  - Live evidence: deleted collar dots carried ≈ 0 credit, and R0 has 69.8% of its dots more than 1 km from the catalogue.
+  - Instrument I1 (`isolated-whole-components-loqo-v1`) instead withholds every catalogue component isolated by more
+    than 500 m, wholly inside an eroded quadrant, with per-fold hidden sets: 578 components, 11,911 positives.
+  - It lives in `src/gems91/isolated_holdout.py`. `vendor/gems57/` stays byte-identical to its pin and the new split
+    is proposed for upstream adoption. I1's separation partly builds in a halo-avoidance advantage (CTL_HALO), so
+    CTL_HALO > E0 on I1 is a construction effect, not live evidence.
+- **IR-91-ISO-02: the template was briefly extended, then reverted, and both experiments re-ran identically.**
+  - The first I1/I2 runs executed with the two new functions appended to `vendor/gems57/holdout.py` (sha256 87053050…).
+  - The file was restored to the pinned bytes (7a0a8417…), the functions moved to `gems91.isolated_holdout`, and both
+    experiments re-ran: per-fold and pooled numbers are identical, and only the embedded template hash differs.
+  - The committed `docs/iso91/holdout-I*.json` carry the pinned hash.
+- **IR-91-ISO-03: `scripts/restore_registry.py` aborts on a retracted row.**
+  - The pinned row `docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif` no longer exists; it was
+    retracted, and the portal test asserts `bff9fd21.tif` is absent.
+  - The 62 fleet rasters before it restored and verified.
+  - Not changed here (frozen evidence index). Recommendation: mark the row retracted or point it at `data/retracted_geod/`.
+- **IR-91-ISO-04: the literal 3-px "dots" rule is degenerate for dense area rasters, and one marginal flag remains.**
+  - The first literal sibling sweep (`docs/iso91/sibling-sweep-literal-v1.json`) flagged 13 of 977 rasters.
+  - **12 are dense area surfaces or masks** (167k–4.2M positive px, 32–85% of the footprint), where "dots within 3 px"
+    is degenerate. The shared sweep tool now judges dense references (more than 3× the candidate's dots) in two ways,
+    with both readings published:
+    - **continuous:** their matched-budget top-K dots plus rank correlation;
+    - **binary:** rank correlation.
+  - All 12 clear: matched-budget overlap ≤ 31%, surface |ρ| ≤ 0.46, dots |ρ| ≤ 0.08.
+  - **One flag remains:** `12GEMSDOE_r7-nms3-dem10-scarp` (103,347-pixel binary skeleton, sparse class).
+    - 70.1% of ISO91's dots lie within 3 px of it (chance 29.3%, chance-corrected 57.7%, dots ρ 0.022).
+    - It is logged as a duplicate stop for the extended scope: gate G6b FAIL in `docs/run-card-ISO91.json`.
+    - The 3× threshold was chosen after the literal v1 results were known and was **not** adjusted to clear this flag.
+  - The preregistered protocol registry check (100 rasters, shared `run_olc91.registry_check`, unchanged rules) passes.
+- **IR-91-ISO-05: "3 uploads per rolling 7 days" is unverified.**
+  - It appears on team pages (e.g. 19GEMSDOE), not on the official overview fetched today.
+  - Verify on the signed-in submissions page before planning slots.
+- **IR-91-ISO-06: public competition-data mirrors remain public (IR-91-09).**
+  - This session restored 13 SHA-pinned inputs from the owner's public mirrors into gitignored `data/` only; nothing was committed.
+  - The two licence-unchecked u8 stacks (lidar scarp, GeoDAWN radiometrics) were deliberately not fetched.
+  - Owner decision needed: make `60GEMSDOE` and `GEMSDOE` private.
+- **IR-91-ISO-07: legacy tests pin earlier sessions' content to the front door.**
+  - Several tests require S17-CGRD, S17-EULR, S17-LFTG, S17-CPAD and the 522615dd review links on `docs/index.html`.
+    That is the cause of the earlier clutter.
+  - The new front door keeps them in one compact archive table.
+  - One test asserted the pointer must remain OLC91. It was right for the no-TIFF 522615dd session. It now allows a
+    later measured lane card whose evidence files are committed, and its intent (no fabricated pointer) is kept.
+- **IR-91-ISO-08: the "highest score" figures conflict.**
+  - The brief calls 0.2778 the highest GEMSDOE score and also quotes 0.3195. The latter was #2 (DARD) on 2026-10-04.
+  - On 2026-10-25 the public #1 is 0.4413 and 0.2778 sits below rank 50 (0.2818).
+  - The owner page for 0.2778 says no organiser score exists. All three numbers stay USER-REPORTED or PUBLIC-LEADERBOARD.

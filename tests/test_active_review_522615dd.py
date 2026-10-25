@@ -158,8 +158,17 @@ def test_executive_guide_cannot_be_mistaken_for_current_upload_approval():
 
 
 def test_current_file_pointer_remains_prior_olc91_not_a_fabricated_new_result():
+    # Session 522615dd produced no TIFF, so it could not move the pointer. A LATER session may move it
+    # only to a measured lane card whose holdout evidence is committed (ISO91, session bacc7c26).
     current = _json("docs/current-run.json")
-    assert current["run_card"] == "run-card-OLC91.json"
+    assert current["run_card"] in ("run-card-OLC91.json", "run-card-ISO91.json")
+    if current["run_card"] == "run-card-ISO91.json":
+        card = _json("docs/run-card-ISO91.json")
+        assert card["session"] != "arena/522615dd-gemsdoe91"
+        for name in ("holdout-I1.json", "holdout-I2.json", "final.json"):
+            assert (DOCS / "iso91" / name).is_file()
+        assert card["holdout"]["primary"]["evidence_class"] == "HOLDOUT-DTI"
+        assert card["organizer_confirmed_scores"] is None
     assert current["ok_to_download"] is True
     assert current["ok_to_submit"] is False
     review = (DOCS / "REVIEW-ACTIVE-522615DD-20261025.md").read_text(encoding="utf-8")
