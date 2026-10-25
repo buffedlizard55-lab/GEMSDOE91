@@ -314,6 +314,24 @@
       "reason": "S16 fresh computation; format PASS, literal registry duplicate; NOT OK TO SUBMIT."
     },
     {
+      "path": "docs/downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif",
+      "bytes": 238242,
+      "sha256": "39aaac68e7640d9914f1f8431bab589ce30eda6bf7a59512e38699f705d21836",
+      "status": "current_research_only",
+      "classification": "current_public_download",
+      "git_status": "retained_public_link",
+      "reason": "Session 17 S17-CDSC E1 all-finite [0,1] GeoTIFF (44,000 dots, HOLDOUT-DTI 0.259972, +0.015371 over S13-PTHA E3 and +0.019339 over S15-SCGF E2; Blind SGMC 0.093019); research download only and NOT OK TO SUBMIT (docs/run-card-S17-CDSC.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.zip",
+      "bytes": 201696,
+      "sha256": "fc022924ae02ee940731c43039875b2b475d0371b462a05b206822b542ba3446",
+      "status": "current_research_only",
+      "classification": "current_public_link",
+      "git_status": "retained_public_link",
+      "reason": "Single-TIFF ZIP of Session 17 S17-CDSC E1; research download only and NOT OK TO SUBMIT (docs/run-card-S17-CDSC.json)."
+    },
+    {
       "path": "docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif",
       "bytes": 203212,
       "sha256": "287af6b2df1c34080c55cd1aef9264f30e5e507b152ff31dcb94d13cf6f521a6",

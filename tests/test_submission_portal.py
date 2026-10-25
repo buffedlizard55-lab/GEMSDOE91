@@ -36,7 +36,7 @@ def load_card():
 
 
 def test_all_local_page_links_assets_and_fragments_resolve():
-    for name in ('index.html','docs/index.html','docs/s15-scgf.html','docs/s15-scgf-executive-summary.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
+    for name in ('index.html','docs/index.html','docs/s17-cdsc.html','docs/s17-cdsc-executive-summary.html','docs/s15-scgf.html','docs/s15-scgf-executive-summary.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
         path=ROOT/name; parser=Page(); parser.feed(path.read_text())
         for href in parser.links:
             u=urlsplit(href)
@@ -86,15 +86,27 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
     scgf=json.loads((ROOT/'docs/run-card-S15-SCGF.json').read_text())
     scgf_file=Path(scgf['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
     scgf_zip=Path(scgf['artifact']['zip_bundle']).relative_to('docs').as_posix()
-    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip,scgf_file,scgf_zip}|g91_allowed|s14_allowed|s15_allowed
+    cdsc=json.loads((ROOT/'docs/run-card-S17-CDSC.json').read_text())
+    cdsc_file=Path(cdsc['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
+    cdsc_zip=Path(cdsc['artifact']['zip_bundle']).relative_to('docs').as_posix()
+    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip,scgf_file,scgf_zip,cdsc_file,cdsc_zip}|g91_allowed|s14_allowed|s15_allowed
     for name in ('archive-results.html','archive-guide.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states and all(x=='false' for x in p.states)
         assert 'NOT OK TO SUBMIT' in text
         assert 'research' in text.lower()
-        assert {a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip,scgf_file,scgf_zip}.issubset(p.downloads)
+        assert {a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip,scgf_file,scgf_zip,cdsc_file,cdsc_zip}.issubset(p.downloads)
         assert all(x in allowed for x in p.downloads)
         assert 'bff9fd21.tif' not in text
+
+    for cdsc_page_name in ('docs/s17-cdsc.html', 'docs/s17-cdsc-executive-summary.html'):
+        cp=Page(); cp.feed((ROOT/cdsc_page_name).read_text()); ctext=' '.join(cp.text)
+        assert cp.states and all(x=='false' for x in cp.states)
+        assert cdsc_file in cp.downloads and cdsc_zip in cp.downloads
+        assert 'NOT OK TO SUBMIT' in ctext
+    assert not cdsc['submission_ready'] and not submission_ready(cdsc)
+    assert cdsc['verdict']=='negative' and cdsc['organizer_confirmed'] is None
+    assert hashlib.sha256((ROOT/cdsc['artifact']['primary_zeros_tif']).read_bytes()).hexdigest()==cdsc['raster_sha256']
 
     for scgf_page_name in ('docs/s15-scgf.html', 'docs/s15-scgf-executive-summary.html'):
         sp=Page(); sp.feed((ROOT/scgf_page_name).read_text()); stext=' '.join(sp.text)
@@ -211,7 +223,7 @@ def test_readiness_requires_all_independent_gates_not_just_format():
 
 
 def test_portal_render_is_reproducible():
-    names=['index.html','archive-results.html','archive-guide.html','archive-research.html','review-0a96aa96-home.html','assets/s16.css','assets/s16-support.png','s15-scgf.html','s15-scgf-executive-summary.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    names=['index.html','archive-results.html','archive-guide.html','archive-research.html','review-0a96aa96-home.html','assets/s16.css','assets/s16-support.png','s17-cdsc.html','s17-cdsc-executive-summary.html','s15-scgf.html','s15-scgf-executive-summary.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
     before={n:(ROOT/'docs'/n).read_bytes() for n in names}
     subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'

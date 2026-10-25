@@ -1,3 +1,16 @@
+## S17-CDSC / 2026-10-25 — Session 17 remediation & root-cause findings (`arena/1722e30a-gemsdoe91`, not organizer scores)
+
+- **IR-91-S15-05, IR-91-S15-06, IR-91-S15-07 — REMEDIATED & VERIFIED IN `S17-CDSC`:**
+  - `IR-91-S15-06`: Calibrating every 2-quadrant pairwise Stage-1 sub-model `(a, b)` to each fold's 3-quadrant training sample prevalence before stitching aligned `Test_k / Train_k` ratios from `1.4493x -> 1.0329x` (`NW`), `1.5634x -> 1.0902x` (`NE`), `1.6271x -> 1.1442x` (`SW`), and `2.1020x -> 1.4290x` (`SE`), recovering Fold 1 (`NE`) from `6,500` dots / `0.273196` (`S15-SCGF E2`) to **`10,621` dots / `0.331443` (`+0.058247`)**.
+  - `IR-91-S15-07`: Keeping Stage-1 on the 75 local translation-invariant `S13-PTHA` features while injecting the 16 local (`<= 1 km`) `S15` subsurface features into Stage-2 lifted pooled `HOLDOUT-DTI` to **`0.259972`** (`+0.019339` over `S15-SCGF E2 = 0.240633`, `+0.015371` over `S13-PTHA E3 = 0.244601`, `paired 95% CI [+0.010244, +0.021122]`).
+  - `IR-91-S15-05`: Added a `72`-column bitwise `B12`/`B19`-invariant Pure-Subsurface specialist (`hgb_sub`) in Stage-2, verified by perturbation unit test in `tests/test_s17_cdsc.py`.
+- **IR-91-S17-01 (`IR-91-S17-CDSC-01`) — Upward Training-Canvas Calibration Tightens $\lambda^*(\text{Train}_k)$ Across Heterogeneous Quadrant Fault Densities:**
+  - Calibrating 2-quadrant training sub-models *upward* to 3-quadrant sample prevalence warmed `Train_k`'s `ac_*` features while leaving `Test_k` fixed; because Stage-2 is fitted on `Train_k`, its in-sample predictions on `Train_k` rose slightly relative to `Test_k`, raising the training-calibrated Dinkelbach threshold $\lambda^*(\text{Train}_k)$ and emitting `40,122` OOF dots vs `43,633` in `S14-PTAC E2` (`-1,839` dots in `SW`), accounting for the `-0.007810` gap (`0.259972` vs `0.267782`). Next session should standardize `stitch_p1` via per-quadrant empirical quantile / rank-logit mapping before ray integration.
+- **IR-91-S17-02 (`IR-91-S17-CDSC-02`) — Stage-2 Feature-Width Dilution in Fixed-Leaf Trees (`85 -> 105` cols):**
+  - Expanding Stage-2 from `85` to `105` features while keeping `max_leaf_nodes=41` (`hgb_deep`) and `23` (`hgb_shallow`) diluted tree splits on `ac_wash_bridge_1km` and `ac_wash_bridge_2km`. Next session should isolate the 14 auto-context columns into a dedicated Stage-2 Topology Specialist (`hgb_topo`).
+- **IR-91-S17-03 (`IR-91-S17-CDSC-03`) — `evaluate_holdout.run_leakage_canary` Empty Static Block Guard:**
+  - `evaluate_holdout.run_leakage_canary` raises `ValueError("nonempty folds and unique feature names required")` if called with `feature_names=[]` when testing `fold_specific_features` alone; fixed in `scripts/run_s17_cdsc_lane.py` by passing `fold_specific_features=fold_ac` alongside the non-empty `X_ptha` canary call.
+
 ## XG91 / 2026-10-25 — this session (not organizer scores)
 
 - **IR-XG91-01 — assigned lane missing:** the prompt said to stay in the lane described by a method paragraph that was not in the prompt. XG91 was preregistered in `docs/HYPOTHESES_XG91.md` and is not an orchestrated lane. No slot was spent.
@@ -25,7 +38,6 @@
 - **IR-4975-04:** earlier portal falsely implied a new universally unique file and diagnosed an unseen upload rejection. Corrected both. No new file, assigned lane or full-registry clearance in this review.
 
 ---
-
 
 ## S16 / 2026-10-25 — current review findings (not organizer scores)
 
