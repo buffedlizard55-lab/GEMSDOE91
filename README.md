@@ -1,4 +1,8 @@
-# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/6cbfe8ac-gemsdoe91`)
+# GEMSDOE91 — Repository review (`arena/7d6ac0dc-gemsdoe91`)
+
+> **OK TO DOWNLOAD: existing research TIFF only. OK TO SUBMIT: NO. No new TIFF generated.** [Current three-pass review](docs/REVIEW-7D6AC0DC-20261025.md) · [Run card](docs/run-card-7d6ac0dc.json) · [Download and submission guide](docs/executive-summary.html). Fixed contradictory promotion flags, ZIP path confinement, and corrupt-ZIP CLI failures. Regression: 584 passed, 8 skipped. Reference-byte checks block on absent local data. Missing method assignment and prior registry feasibility conflict remain unresolved. Start each session with the [full standing prompt](#full-project-brief) and this review.
+
+## Prior review (`arena/6cbfe8ac-gemsdoe91`)
 
 > **Current review: OK TO DOWNLOAD — existing OLC91 research only. OK TO SUBMIT — NO.** No assigned single-method paragraph was supplied; no new geological experiment or TIFF was generated. Fixed a concrete defect: the default `python generate_submission.py` checked HEXFAR91 while the site linked OLC91. It now verifies the exact canonical TIFF + ZIP; `--with-data` checks the pinned sample/catalogue and `--run` blocks unassigned legacy execution. [Three-pass review](docs/REVIEW-6CBFE8AC-20261025.md) · [Run card](docs/run-card-6cbfe8ac.json) · [Download and guide](docs/index.html) · [Fresh 87-file audit](docs/review-6cbfe8ac/download-audit.html). All files remain not approved for submission.
 
