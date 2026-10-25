@@ -1,0 +1,39 @@
+{
+  "schema_version": "gems91.run-card.v1",
+  "session_id": "ARENA-E5BC01F3",
+  "generated_utc": "2026-10-25",
+  "branch": "arena/e5bc01f3-gemsdoe91",
+  "hypothesis": null,
+  "mechanism": "No candidate was authorized or evaluated: the required single-method assignment paragraph and local competition data/cache are absent. The default system Python lacked dependencies; a local ignored virtual environment now has the pinned requirements, but no candidate build is allowed. Three conditional transform ideas are documented in docs/REVIEW-ARENA-E5BC01F3-20261025.md.",
+  "named_non_fault_process": "Not evaluated; proposed candidates document plausible mimics including lithologic contacts, survey seams, intrusive margins, weathering, and alluvial texture.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "NOT RUN",
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "No authorized experiment; no new evaluator execution in this session."
+  },
+  "registry_comparison": {
+    "preplacement_rank_correlation": "NOT RUN",
+    "preplacement_overlap_within_3px": "NOT RUN",
+    "final_dot_rank_correlation": "NOT RUN",
+    "final_dot_overlap_within_3px": "NOT RUN",
+    "reason": "No candidate surface or final dots exist for this session."
+  },
+  "raster_sha256": null,
+  "raster_generated": false,
+  "validator_output": {
+    "status": "NOT RUN — no raster generated",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "ok_to_download": false,
+  "ok_to_submit": false,
+  "weekly_slots_used": 0,
+  "experiments_run": 0,
+  "verdict": "negative"
+}

@@ -84,7 +84,7 @@ def evaluate(root: Path, plan: dict) -> dict:
         reasons.append('Time budget exhausted or invalid (must be below 120 minutes)')
     try:
         capacity = inspect_witness(root, plan['registry_witness'], plan['dot_budget'])
-    except (OSError, ValueError, KeyError, TypeError, StopIteration) as exc:
+    except (OSError, ValueError, KeyError, TypeError, StopIteration, ImportError) as exc:
         capacity = {'status': 'UNVERIFIED', 'error': str(exc)}
         reasons.append('Capacity witness unavailable or invalid; no fallback to archived constants')
     else:
