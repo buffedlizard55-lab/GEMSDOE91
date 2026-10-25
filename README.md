@@ -1,4 +1,16 @@
-# GEMSDOE91 — Repository review (`arena/7d6ac0dc-gemsdoe91`)
+# GEMSDOE91 — current review (`arena/19912231-gemsdoe91`)
+
+> **OK TO DOWNLOAD: YES — existing research TIFF. OK TO SUBMIT: NO. No new TIFF was generated.** The assigned method paragraph is missing, and the literal registry rule makes the usual 37,654-dot budget infeasible. We did not copy, rename, or regenerate a prior submission to fake uniqueness. [Current review](docs/REVIEW-19912231-20261025.md) · [Run card](docs/run-card-19912231.json) · [Download and executive guide](docs/executive-summary.html).
+>
+> **New automatic preflight:** `python generate_submission.py --preflight` checks the plan and reopens SHA-pinned reference bytes before any experiment. It independently measures an **82.34% geometric overlap lower bound (NOT a score)** at the usual budget, exceeding 70%. It stops on missing/changed evidence; it never chooses a slot. [Machine evidence](docs/review-19912231/experiment-preflight.json). The old data preflight now says INPUTS AVAILABLE, not BUILD ALLOWED.
+>
+> Fresh review: **92/92 fleet page snapshots fetched**; exact current TIFF/ZIP format PASS; all-download audit reproduced **87 artifacts / 78 technical PASS / 9 FAIL**, none approved. Three ranked conditional new-transform hypotheses, source provenance, limitations and three-pass checks are in the review. Historical claims and reviews below are not this branch's outputs.
+
+**Start every session:** read this status, the [full standing prompt and supplied updates](#full-project-brief), [current review](docs/REVIEW-19912231-20261025.md), and [next steps](LIMITATIONS_AND_NEXT_STEPS.md). **Maximize P(Win) · Own the Outcome.** Format validity is not scientific improvement, registry uniqueness or selector approval.
+
+---
+
+## Merged historical review (`arena/7d6ac0dc-gemsdoe91`)
 
 > **OK TO DOWNLOAD: existing research TIFF only. OK TO SUBMIT: NO. No new TIFF generated.** [Current three-pass review](docs/REVIEW-7D6AC0DC-20261025.md) · [Run card](docs/run-card-7d6ac0dc.json) · [Download and submission guide](docs/executive-summary.html). Fixed contradictory promotion flags, ZIP path confinement, and corrupt-ZIP CLI failures. Regression: 594 passed, 8 skipped. Reference-byte checks block on absent local data. Missing method assignment and prior registry feasibility conflict remain unresolved. Start each session with the [full standing prompt](#full-project-brief) and this review.
 

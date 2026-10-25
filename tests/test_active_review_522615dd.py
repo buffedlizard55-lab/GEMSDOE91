@@ -129,7 +129,7 @@ def test_reported_results_source_urls_are_well_formed_but_remain_unverified():
     assert "GEMSDOE32" in r0["source_url"]
 
 
-def test_current_portal_exposes_active_review_and_calls_download_historical():
+def test_current_portal_preserves_historical_review_and_research_labels():
     page = TextLinks()
     page.feed((DOCS / "index.html").read_text(encoding="utf-8"))
     text = " ".join(page.text)
@@ -138,7 +138,8 @@ def test_current_portal_exposes_active_review_and_calls_download_historical():
     assert "HYPOTHESES-ACTIVE-522615DD-20261025.md" in page.links
     assert "prior research download" in text.lower()
     assert "OK TO SUBMIT: NO" in text
-    assert "0.1886 HOLDOUT-DTI" in text and "0.1982 HOLDOUT-DTI" in text
+    # Navigation uses research labels, not context-free rounded scores.
+    assert "S17-LFTG research audit" in text and "S17-CPAD research audit" in text
     assert "LB-DTI" not in text
     assert "LB HOLDOUT-DTI" not in text
     research = TextLinks()
