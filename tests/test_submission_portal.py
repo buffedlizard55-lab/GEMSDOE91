@@ -65,7 +65,13 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
         if g91_zip: g91_allowed.add(g91_zip)
     except Exception:
         pass
-    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip}|g91_allowed
+    s14_allowed=set(); s14=None
+    try:
+        s14=json.loads((ROOT/'docs/run-card-S14.json').read_text())
+        s14_allowed={s14['artifact']['file'],s14['artifact']['zip']}
+    except Exception:
+        pass
+    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip}|g91_allowed|s14_allowed
     for name in ('index.html','executive-summary.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states and all(x=='false' for x in p.states)
@@ -82,6 +88,16 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
         assert 'NOT OK TO SUBMIT' in stext
     assert not s13['submission_ready'] and not submission_ready(s13)
     assert hashlib.sha256((ROOT/s13['artifact']['primary_zeros_tif']).read_bytes()).hexdigest()==s13['raster_sha256']
+
+    if s14 is not None:
+        for s14_page_name in ('docs/s14-lsrg.html', 'docs/s14-executive-summary.html'):
+            sp=Page(); sp.feed((ROOT/s14_page_name).read_text()); stext=' '.join(sp.text)
+            assert sp.states and all(x=='false' for x in sp.states)
+            assert s14['artifact']['file'] in sp.downloads and s14['artifact']['zip'] in sp.downloads
+            assert 'NOT OK TO SUBMIT' in stext or 'OK TO SUBMIT: NO' in stext
+        assert not s14['submission_ready'] and not submission_ready(s14)
+        assert s14['organizer_confirmed'] is None
+        assert hashlib.sha256((ROOT/'docs'/s14['artifact']['file']).read_bytes()).hexdigest()==s14['raster_sha256']
 
     page=Page(); page.feed((ROOT/'docs/ccr91-executive-summary.html').read_text())
     text=' '.join(page.text)

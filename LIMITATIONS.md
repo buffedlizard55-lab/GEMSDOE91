@@ -211,3 +211,10 @@ research artifact or revive legacy model-projected queues.
 4. **Full-map dot budget (`44,000` dots) vs unknown exact `|G_LB|`.** Uniform-lattice inversion (`calib_r13lattice_00904` = `0.0904`) estimates `|G_LB| ≈ 12,350` hidden leaderboard fault pixels under a spatially uniform prior, but spatial clustering of hidden test faults near major geothermal basins could shift the true optimal leaderboard dot count between `~34,000` and `~54,000`.
 
 
+
+## Session 14 (`S14-LSRG`) additions (2026-10-25, `arena/eeaf78c1-gemsdoe91`)
+
+1. **S14 does not beat S13 on holdout.** `S14-LSRG-FF` HOLDOUT-DTI `0.206822` (E3@44k `0.240111`) vs `S13-PTHA 0.244601`; its case rests on organizer-measured emission economics + unused sensor families (IR-91-S14-06). If the hidden truth instead rewards catalogue-adjacent recovery, S13-PTHA is the better slot candidate. The selector must weigh this explicitly; neither file has an organizer receipt.
+2. **Licence-unchecked derivatives (`IR-91-26`).** The lidar/rad u8 stacks' derivation chain is undocumented; rebuild from official USGS 3DEP/GeoDAWN sources on an unrestricted machine before any §A.5 signing. Sandbox egress (GitHub/PyPI only) prevents that rebuild here — same blocker class as S13 item 3, now load-bearing for the headline candidate.
+3. **Sibling mutual exclusion persists.** 82.8% of FF dots fall within 3 px of S12-SPAC dots (shared 85-feature stack dominates placement); the whole in-repo family is effectively one submission slot wide. A genuinely independent surface (e.g. lidar-only or learned 1 m scarp model) is the open problem for fleet diversity.
+4. **FF fold support shortfall.** OOF FF emission pooled ~28.4k dots vs 37,654 full-map (train-calibrated `q_floor` zeroes most far-field candidates out-of-fold); the 0.206822 holdout therefore understates the delivered dot count's coverage, in an unknown direction for organizer score.

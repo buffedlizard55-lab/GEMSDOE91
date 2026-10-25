@@ -1,0 +1,39 @@
+[00:18:28] S14-LSRG start | prereg sha256=529436a1704fa673
+[00:18:28] footprint=5,167,373 catalogue=60,988
+[00:18:36] building/loading memmaps (static49, s11-16, ptha20, s14-23)...
+[00:21:48]   static ready 200s
+[00:22:32]   s11 ready 244s
+[00:23:57]   ptha ready 329s
+[00:23:57]   s14 ready 329s meta={'n_fp': 5167373, 'n_cols': 23, 'feature_names': ['s14_lid_ex_max', 's14_lid_ex_mean', 's14_lid_step_max', 's14_lid_lapneg_max', 's14_lid_lappos_max', 's14_lid_downface_max', 's14_lid_upface_max', 's14_lid_cross_max', 's14_lid_relief', 's14_lid_coh100', 's14_lid_valid', 's14_lid_step_x_coh', 's14_lid_face_asym', 's14_rad_k', 's14_rad_th', 's14_rad_u', 's14_rad_tc', 's14_rad_log_th_k', 's14_rad_log_u_k', 's14_rad_log_u_th', 's14_rad_thk_step', 's14_rad_uk_step', 's14_rad_tc_step'], 'lidar_valid_frac_of_footprint': 0.7533777801602478}
+[00:26:57] fold-safe catalogue geometry ready
+[00:26:57] running Rule-4 leakage canary (new features)...
+[00:27:11] canary pass=True worst=s14_rad_k AUC=0.63555 n=36
+[00:32:17] [E1 NW] trained in 304s pi_true=0.01254
+[00:37:12] [E1 NE] trained in 295s pi_true=0.01296
+[00:42:18] [E1 SW] trained in 306s pi_true=0.01073
+[00:47:24] [E1 SE] trained in 306s pi_true=0.01073
+[00:47:28]   [E1 NW] emitted 3,000 dots
+[00:47:32]   [E1 NE] emitted 574 dots
+[00:47:37]   [E1 SW] emitted 3,000 dots
+[00:47:41]   [E1 SE] emitted 3,000 dots
+[00:48:10]   [E1] HOLDOUT-DTI v1.0=0.036166 CI[0.029393, 0.043641] | v1.1-nohalo=0.036166 CI[0.029393, 0.043641] | pooled dots=9,574
+[00:48:41]   [E2 NW] emitted 3,000 dots
+[00:48:45]   [E2 NE] emitted 593 dots
+[00:48:50]   [E2 SW] emitted 3,000 dots
+[00:48:54]   [E2 SE] emitted 3,000 dots
+[00:49:24]   [E2] HOLDOUT-DTI v1.0=0.041178 CI[0.034786, 0.048516] | v1.1-nohalo=0.041178 CI[0.034786, 0.048516] | pooled dots=9,593
+[00:49:24] winner by v1.1-nohalo: E2 (E1 0.0362 / E2 0.0412)
+[00:49:28]   [E3-b30000 NW] emitted 3,000 dots
+[00:49:31]   [E3-b30000 NE] emitted 593 dots
+[00:49:35]   [E3-b30000 SW] emitted 3,000 dots
+[00:49:38]   [E3-b30000 SE] emitted 3,000 dots
+[00:50:06]   [E3-b30000] HOLDOUT-DTI v1.0=0.041178 CI[0.034786, 0.048516] | v1.1-nohalo=0.041178 CI[0.034786, 0.048516] | pooled dots=9,593
+[00:50:10]   [E3-b37654 NW] emitted 3,000 dots
+[00:50:13]   [E3-b37654 NE] emitted 593 dots
+[00:50:17]   [E3-b37654 SW] emitted 3,000 dots
+[00:50:21]   [E3-b37654 SE] emitted 3,000 dots
+[00:50:50]   [E3-b37654] HOLDOUT-DTI v1.0=0.041178 CI[0.034786, 0.048516] | v1.1-nohalo=0.041178 CI[0.034786, 0.048516] | pooled dots=9,593
+[00:50:54]   [E3-b44000 NW] emitted 3,000 dots
+[00:50:58]   [E3-b44000 NE] emitted 593 dots
+[00:51:03]   [E3-b44000 SW] emitted 3,000 dots
+[00:51:07]   [E3-b44000 SE] emitted 3,000 dots

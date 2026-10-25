@@ -1,0 +1,428 @@
+{
+  "label_warning": "organizer scores are CLAIM-USER-REPORTED from the session prompt; no DrivenData receipt is pinned in-repo. HOLDOUT/SGMC numbers below are MEASURED in this sandbox with scripts/evaluate_holdout.py gems91-hide-recover-v1.0.",
+  "evaluator_version": "gems91-hide-recover-v1.0",
+  "rows": {
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "organizer_claimed_user_reported": 0.2778,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.006558,
+      "holdout_v11_ci95": [
+        0.006,
+        0.007176
+      ],
+      "holdout_v11_T_S_M": [
+        369.492,
+        37654.0,
+        270.797
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.095386,
+      "n_dots": 37654,
+      "mass": 37654.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        4.0,
+        19.6468827043885,
+        68.00735254367721
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.057656557072289796,
+      "frac_dots_3to10px_of_catalogue": 0.2440378180273012,
+      "frac_dots_gt10px_of_catalogue": 0.698305624900409,
+      "median_nn_spacing_px": 3.1622776601683795,
+      "mass_on_catalogue": 0.0
+    },
+    "anc_h19_5": {
+      "path": "data/registry/calib_h195_01922.tif",
+      "organizer_claimed_user_reported": 0.1922,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.161678,
+      "holdout_v11_ci95": [
+        0.153218,
+        0.1696
+      ],
+      "holdout_v11_T_S_M": [
+        11855.234,
+        121131.0,
+        10307.27
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.099167,
+      "n_dots": 121131,
+      "mass": 121131.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        1.4142135623730951,
+        14.560219778561036,
+        64.93843238021688
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.19951127291940132,
+      "frac_dots_3to10px_of_catalogue": 0.2111680742336809,
+      "frac_dots_gt10px_of_catalogue": 0.5893206528469178,
+      "median_nn_spacing_px": 1.0,
+      "mass_on_catalogue": 0.0
+    },
+    "anc_h19_4": {
+      "path": "data/registry/calib_h194_01894.tif",
+      "organizer_claimed_user_reported": 0.1894,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.162804,
+      "holdout_v11_ci95": [
+        0.15561,
+        0.170556
+      ],
+      "holdout_v11_T_S_M": [
+        12025.857,
+        123779.0,
+        10422.505
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.105156,
+      "n_dots": 123779,
+      "mass": 123779.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        1.4142135623730951,
+        14.7648230602334,
+        65.0
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.1979010979245268,
+      "frac_dots_3to10px_of_catalogue": 0.21139288570759177,
+      "frac_dots_gt10px_of_catalogue": 0.5907060163678814,
+      "median_nn_spacing_px": 1.0,
+      "mass_on_catalogue": 0.0
+    },
+    "anc_h16_1": {
+      "path": "data/registry/calib_h161_01855.tif",
+      "organizer_claimed_user_reported": 0.1855,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.162226,
+      "holdout_v11_ci95": [
+        0.152399,
+        0.169798
+      ],
+      "holdout_v11_T_S_M": [
+        11989.613,
+        123939.0,
+        10345.401
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.111316,
+      "n_dots": 123939,
+      "mass": 123939.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        1.4142135623730951,
+        14.866068747318506,
+        64.20280367709809
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.19681456200227532,
+      "frac_dots_3to10px_of_catalogue": 0.21099089068009264,
+      "frac_dots_gt10px_of_catalogue": 0.5921945473176321,
+      "median_nn_spacing_px": 1.0,
+      "mass_on_catalogue": 0.0
+    },
+    "anc_d1_5": {
+      "path": "data/registry/calib_d15_02477.tif",
+      "organizer_claimed_user_reported": 0.2477,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.167207,
+      "holdout_v11_ci95": [
+        0.15787,
+        0.175049
+      ],
+      "holdout_v11_T_S_M": [
+        10336.523,
+        60069.0,
+        5263.362
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.099911,
+      "n_dots": 60069,
+      "mass": 60069.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        1.4142135623730951,
+        14.866068747318506,
+        64.47945342068536
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.19873811783116083,
+      "frac_dots_3to10px_of_catalogue": 0.20814396777039737,
+      "frac_dots_gt10px_of_catalogue": 0.5931179143984417,
+      "median_nn_spacing_px": 2.23606797749979,
+      "mass_on_catalogue": 0.0
+    },
+    "anc_d2_8": {
+      "path": "data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "organizer_claimed_user_reported": 0.26,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.157302,
+      "holdout_v11_ci95": [
+        0.149314,
+        0.165114
+      ],
+      "holdout_v11_T_S_M": [
+        9231.392,
+        44090.0,
+        3844.644
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.094174,
+      "n_dots": 44090,
+      "mass": 44090.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        1.4142135623730951,
+        15.0,
+        64.47480127925948
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.19521433431617147,
+      "frac_dots_3to10px_of_catalogue": 0.20841460648673168,
+      "frac_dots_gt10px_of_catalogue": 0.5963710591970969,
+      "median_nn_spacing_px": 3.1622776601683795,
+      "mass_on_catalogue": 0.0
+    },
+    "anc_solo_d2_8": {
+      "path": "data/registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "organizer_claimed_user_reported": 0.2708,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.047828,
+      "holdout_v11_ci95": [
+        0.04486,
+        0.051073
+      ],
+      "holdout_v11_T_S_M": [
+        2731.512,
+        40199.0,
+        1326.644
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.095295,
+      "n_dots": 40199,
+      "mass": 40199.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        2.8284271247461903,
+        17.69180601295413,
+        66.48308055437865
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.11731635115301375,
+      "frac_dots_3to10px_of_catalogue": 0.22858777581531878,
+      "frac_dots_gt10px_of_catalogue": 0.6540958730316675,
+      "median_nn_spacing_px": 3.0,
+      "mass_on_catalogue": 0.0
+    },
+    "s13_ptha_e3": {
+      "path": "docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+      "organizer_claimed_user_reported": null,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.0,
+      "holdout_v11_ci95": [
+        0.0,
+        0.0
+      ],
+      "holdout_v11_T_S_M": [
+        0.0,
+        44000.0,
+        0.0
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.100815,
+      "n_dots": 44000,
+      "mass": 44000.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        3.1622776601683795,
+        8.06225774829855,
+        30.265491900843113
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.0,
+      "frac_dots_3to10px_of_catalogue": 0.5813181818181818,
+      "frac_dots_gt10px_of_catalogue": 0.41868181818181816,
+      "median_nn_spacing_px": 3.1622776601683795,
+      "mass_on_catalogue": 0.0
+    },
+    "s12_spac_e3": {
+      "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+      "organizer_claimed_user_reported": null,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.0,
+      "holdout_v11_ci95": [
+        0.0,
+        0.0
+      ],
+      "holdout_v11_T_S_M": [
+        0.0,
+        54000.0,
+        0.0
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.107938,
+      "n_dots": 54000,
+      "mass": 54000.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        4.0,
+        10.0,
+        41.3460962043667
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.0,
+      "frac_dots_3to10px_of_catalogue": 0.5027407407407407,
+      "frac_dots_gt10px_of_catalogue": 0.49725925925925923,
+      "median_nn_spacing_px": 3.1622776601683795,
+      "mass_on_catalogue": 0.0
+    },
+    "denovo_hgbctx": {
+      "path": "docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
+      "organizer_claimed_user_reported": null,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.0,
+      "holdout_v11_ci95": [
+        0.0,
+        0.0
+      ],
+      "holdout_v11_T_S_M": [
+        0.0,
+        37654.0,
+        0.0
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.068703,
+      "n_dots": 37654,
+      "mass": 37654.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        3.1622776601683795,
+        5.0,
+        11.704699910719626
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.0,
+      "frac_dots_3to10px_of_catalogue": 0.8542518723110426,
+      "frac_dots_gt10px_of_catalogue": 0.14574812768895734,
+      "median_nn_spacing_px": 3.0,
+      "mass_on_catalogue": 0.0
+    },
+    "asc91_e3": {
+      "path": "docs/downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif",
+      "organizer_claimed_user_reported": null,
+      "holdout_dti_fullmap_v10_halo": 0.0,
+      "holdout_dti_fullmap_v11_nohalo": 0.0,
+      "holdout_v11_ci95": [
+        0.0,
+        0.0
+      ],
+      "holdout_v11_T_S_M": [
+        0.0,
+        37654.0,
+        0.0
+      ],
+      "holdout_ci95": [
+        0.0,
+        0.0
+      ],
+      "sgmc_offcat_dti": 0.09632,
+      "n_dots": 37654,
+      "mass": 37654.0,
+      "dot_value_min": 1.0,
+      "dot_value_max": 1.0,
+      "frac_dots_unit_value": 1.0,
+      "dist_to_catalogue_px_p10_p50_p90": [
+        3.605551275463989,
+        12.649110640673518,
+        57.21887800367987
+      ],
+      "frac_dots_within_3px_of_catalogue": 0.0,
+      "frac_dots_3to10px_of_catalogue": 0.43288893610240614,
+      "frac_dots_gt10px_of_catalogue": 0.5671110638975939,
+      "median_nn_spacing_px": 3.0,
+      "mass_on_catalogue": 0.0
+    }
+  },
+  "proxy_correlations": {
+    "holdout_dti_fullmap_v11_nohalo": {
+      "spearman_rho_vs_organizer_claimed": -0.7500000000000002,
+      "p": 0.0521814004570578,
+      "n": 7
+    },
+    "sgmc_offcat_dti": {
+      "spearman_rho_vs_organizer_claimed": -0.8214285714285715,
+      "p": 0.0234488083456915,
+      "n": 7
+    },
+    "n_dots": {
+      "spearman_rho_vs_organizer_claimed": -1.0,
+      "p": 0.0,
+      "n": 7
+    },
+    "frac_dots_within_3px_of_catalogue": {
+      "spearman_rho_vs_organizer_claimed": -0.6785714285714287,
+      "p": 0.09375025395983135,
+      "n": 7
+    },
+    "frac_dots_3to10px_of_catalogue": {
+      "spearman_rho_vs_organizer_claimed": 0.42857142857142866,
+      "p": 0.3373683110858243,
+      "n": 7
+    },
+    "frac_dots_gt10px_of_catalogue": {
+      "spearman_rho_vs_organizer_claimed": 0.8571428571428573,
+      "p": 0.013697326615325618,
+      "n": 7
+    },
+    "median_nn_spacing_px": {
+      "spearman_rho_vs_organizer_claimed": 0.8981774262781438,
+      "p": 0.0060110911506044236,
+      "n": 7
+    }
+  }
+}
