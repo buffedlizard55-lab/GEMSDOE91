@@ -1,0 +1,98 @@
+{
+  "control_definition": "USGS SGMC mapped faults strictly >300 m (>3 px, 62,122 px, shared EH.score_off_catalogue_sgmc standard) and >500 m (>5 px, 56,822 px, registration-offset-free) from existing_faults.tif inside valid footprint; diagnostic only, never tuned on.",
+  "n_blind_sgmc_pixels": 62122,
+  "n_blind_sgmc_pixels_gt_500m": 56822,
+  "scores": {
+    "s17_lftg_winner": {
+      "label": "SGMC-OFFCAT-CONTROL-DTI",
+      "dti": 0.080522,
+      "tpw": 4646.45,
+      "fpw": 35387.51,
+      "n_sgmc_pixels": 62122,
+      "dti_gt_500m": 0.056687,
+      "tpw_gt_500m": 3022.34,
+      "fpw_gt_500m": 36270.25,
+      "n_sgmc_pixels_gt_500m": 56822,
+      "n_positive_dots": 37654,
+      "far_field_gt_1km_share": 0.31527
+    },
+    "gemsdoe32_r0": {
+      "label": "SGMC-OFFCAT-CONTROL-DTI",
+      "dti": 0.095386,
+      "tpw": 5517.64,
+      "fpw": 35220.77,
+      "n_sgmc_pixels": 62122,
+      "dti_gt_500m": 0.088516,
+      "tpw_gt_500m": 4737.5,
+      "fpw_gt_500m": 35580.4,
+      "n_sgmc_pixels_gt_500m": 56822,
+      "n_positive_dots": 37654,
+      "far_field_gt_1km_share": 0.69831
+    },
+    "s13_ptha_e3": {
+      "label": "SGMC-OFFCAT-CONTROL-DTI",
+      "dti": 0.100815,
+      "tpw": 5962.58,
+      "fpw": 41267.46,
+      "n_sgmc_pixels": 62122,
+      "dti_gt_500m": 0.077369,
+      "tpw_gt_500m": 4233.72,
+      "fpw_gt_500m": 42083.49,
+      "n_sgmc_pixels_gt_500m": 56822,
+      "n_positive_dots": 44000,
+      "far_field_gt_1km_share": 0.41868
+    },
+    "s14_ptac_e2": {
+      "label": "SGMC-OFFCAT-CONTROL-DTI",
+      "dti": 0.09576,
+      "tpw": 5658.95,
+      "fpw": 41327.62,
+      "n_sgmc_pixels": 62122,
+      "dti_gt_500m": 0.070468,
+      "tpw_gt_500m": 3852.56,
+      "fpw_gt_500m": 42214.29,
+      "n_sgmc_pixels_gt_500m": 56822,
+      "n_positive_dots": 44000,
+      "far_field_gt_1km_share": 0.38864
+    },
+    "s14_hvdc_e2": {
+      "label": "SGMC-OFFCAT-CONTROL-DTI",
+      "dti": 0.110429,
+      "tpw": 6672.0,
+      "fpw": 46933.87,
+      "n_sgmc_pixels": 62122,
+      "dti_gt_500m": 0.086593,
+      "tpw_gt_500m": 4848.25,
+      "fpw_gt_500m": 47807.92,
+      "n_sgmc_pixels_gt_500m": 56822,
+      "n_positive_dots": 50000,
+      "far_field_gt_1km_share": 0.43172
+    },
+    "s15_scgf_e2": {
+      "label": "SGMC-OFFCAT-CONTROL-DTI",
+      "dti": 0.09794,
+      "tpw": 5789.36,
+      "fpw": 41278.34,
+      "n_sgmc_pixels": 62122,
+      "dti_gt_500m": 0.072577,
+      "tpw_gt_500m": 3968.96,
+      "fpw_gt_500m": 42174.91,
+      "n_sgmc_pixels_gt_500m": 56822,
+      "n_positive_dots": 44000,
+      "far_field_gt_1km_share": 0.3835
+    },
+    "s16_pgrd": {
+      "label": "SGMC-OFFCAT-CONTROL-DTI",
+      "dti": 0.040384,
+      "tpw": 2320.56,
+      "fpw": 36506.57,
+      "n_sgmc_pixels": 62122,
+      "dti_gt_500m": 0.038501,
+      "tpw_gt_500m": 2048.23,
+      "fpw_gt_500m": 36659.34,
+      "n_sgmc_pixels_gt_500m": 56822,
+      "n_positive_dots": 37654,
+      "far_field_gt_1km_share": 0.68848
+    }
+  }
+}
