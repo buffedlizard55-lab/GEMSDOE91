@@ -1,3 +1,5 @@
+> **Active review `arena/9c6beb12-gemsdoe91` (2026-10-25): OK TO DOWNLOAD — existing format-valid research only. OK TO SUBMIT — NO.** No new TIFF or slot. Fixed ignored `--with-data` and fail-closed entrypoint approval. Fresh audit: 79 artifacts, 70 technical PASS / 9 FAIL (engineering counts, not scores). [Three-pass review + ranked hypotheses](docs/REVIEW-9C6BEB12-20261025.md) · [Audit](docs/review-9c6beb12/download-audit.html) · [Run card](docs/run-card-9c6beb12.json). Read the [standing full prompt](#full-project-brief) at every session start.
+
 # GEMSDOE91 — CURRENT STATUS (OLC91, 2026-10-25) — read this first
 
 > **OLC91 session (`arena/3444a6d3-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH ONLY` · `OK TO SUBMIT: NO`.**

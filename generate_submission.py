@@ -24,9 +24,11 @@ from pathlib import Path
 RUN_CARD = "docs/run-card-OLC91.json"
 
 
-def verify_olc91(root: Path) -> dict:
+def verify_olc91(root: Path, with_data: bool = False) -> dict:
     card = json.loads((root / RUN_CARD).read_text(encoding="utf-8"))
-    tif = root / card["raster"]["path"]
+    tif = (root / card["raster"]["path"]).resolve()
+    if not tif.is_relative_to((root / "docs/downloads").resolve()):
+        raise ValueError("artifact path escapes docs/downloads")
     sha = hashlib.sha256(tif.read_bytes()).hexdigest()
     problems = []
     if sha != card["raster"]["sha256"]:
@@ -36,6 +38,8 @@ def verify_olc91(root: Path) -> dict:
         import rasterio
         with rasterio.open(tif) as ds:
             a = ds.read(1)
+            if ds.nodata is not None:
+                problems.append("nodata tag is not allowed for the all-finite download")
             if ds.count != 1 or ds.dtypes[0] != "float32":
                 problems.append("not single-band float32")
             if str(ds.crs) != "EPSG:32611":
@@ -51,6 +55,33 @@ def verify_olc91(root: Path) -> dict:
             problems.append("dot count drift")
     except ImportError:
         problems.append("numpy/rasterio unavailable: format re-check skipped (install requirements.txt)")
+    if not card.get("submission_name") or not isinstance(card.get("submission_note"), str) or not 0 < len(card["submission_note"]) <= 140:
+        problems.append("missing name or invalid submission note (1-140 characters)")
+    reference_status = "NOT_CHECKED"
+    if with_data:
+        # Reuse the common delivery inspector, never a private format implementation.
+        from scripts.audit_downloads import inspect_raster
+        import numpy as np
+        import rasterio
+        manifest = json.loads((root / "registry/data_manifest.json").read_text())
+        rows = {r["id"]: r for r in manifest["files"]}
+        paths = {}
+        for key in ("sample_submission", "existing_faults"):
+            row = rows[key]
+            path = root / "data" / row["local_subpath"]
+            if hashlib.sha256(path.read_bytes()).hexdigest() != row["sha256"]:
+                raise ValueError(f"untrusted reference: {key}")
+            paths[key] = path
+        with rasterio.open(paths["sample_submission"]) as src:
+            reference = (src.count, src.shape, src.crs, src.transform)
+            footprint = np.isfinite(src.read(1))
+        with rasterio.open(paths["existing_faults"]) as src:
+            if (src.count, src.shape, src.crs, src.transform) != reference:
+                raise ValueError("catalogue reference grid mismatch")
+            catalogue = (src.read(1) > 0) & footprint
+        inspection = inspect_raster(tif.read_bytes(), reference, footprint, catalogue)
+        problems.extend(name for name, passed in inspection["checks"].items() if not passed)
+        reference_status = inspection["status"]
     v = card["verdict"]
     return {
         "file": card["raster"]["path"],
@@ -60,7 +91,12 @@ def verify_olc91(root: Path) -> dict:
         "submission_name": card["submission_name"],
         "submission_note": card["submission_note"],
         "OK_TO_DOWNLOAD": v["OK_TO_DOWNLOAD"] if not problems else "NO",
-        "OK_TO_SUBMIT": v["OK_TO_SUBMIT"],
+        "reference_checks": reference_status,
+        "recorded_OK_TO_SUBMIT": v["OK_TO_SUBMIT"],
+        # This command checks delivery integrity, not scientific/selector evidence.
+        # A mutable run-card flag can never authorize a competition upload.
+        "OK_TO_SUBMIT": "NO",
+        "submission_ready": False,
         "why": v["reasons"],
     }
 
@@ -70,7 +106,7 @@ def main():
     parser.add_argument("--run", action="store_true",
                         help="Rerun the frozen OLC91 holdout + final build once; never uploads or selects a slot")
     parser.add_argument("--legacy-s16", action="store_true", help="Run the historical S16 verifier instead")
-    parser.add_argument("--with-data", action="store_true", help="(legacy S16) also verify pinned sample/catalogue")
+    parser.add_argument("--with-data", action="store_true", help="Also verify pinned sample, footprint and catalogue against actual bytes")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
     sys.path[:0] = [str(root), str(root / "src")]
@@ -78,7 +114,7 @@ def main():
         from scripts.verify_s16 import verify
         try:
             report = verify(with_data=args.with_data)
-        except (OSError, ValueError, KeyError) as exc:
+        except (OSError, ValueError, KeyError, TypeError, ImportError) as exc:
             print(json.dumps({"status": "BLOCKED", "ok_to_submit": False, "error": str(exc)}))
             return 1
         print(json.dumps(report, indent=2, allow_nan=False))
@@ -89,8 +125,8 @@ def main():
             if rc:
                 parser.exit(rc, "run_olc91 failed (the writer refuses to overwrite an existing TIFF)\n")
     try:
-        report = verify_olc91(root)
-    except (OSError, ValueError, KeyError) as exc:
+        report = verify_olc91(root, with_data=args.with_data)
+    except (OSError, ValueError, KeyError, TypeError, ImportError) as exc:
         print(json.dumps({"status": "BLOCKED", "OK_TO_SUBMIT": "NO", "error": str(exc)}))
         return 1
     print(json.dumps(report, indent=2))
