@@ -138,8 +138,8 @@ Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 revi
 
 ## Active-branch integration recheck — `arena/522615dd-gemsdoe91` — 2026-10-25
 
-- Merged upstream main through `5262aa9947d4b50d2fc433a86d409fc5b7f42811` on the fixed session branch; retained upstream current-download verifier/CI and branch-specific historical reviews, while keeping this checkout's no-lane/no-data status explicit.
-- Re-ran `.venv/bin/python -m pytest -o addopts='' -ra`: **588 passed, 8 skipped, 78 warnings** in 38.21 s (final run after the audit-snapshot refresh). Artifact policy: **PASS, 87 registered prediction artifacts**. `git diff --cached --check`: clean at the integration checkpoint.
+- Merged upstream main through `ee35489` (including `5262aa9` and PR #124) on the fixed session branch; retained upstream current-download verifier/CI and branch-specific historical reviews, while keeping this checkout's no-lane/no-data status explicit. The FFB91 review reports 1/2 inputs only for its own checkout; current preflight remains 0/2.
+- Re-ran `.venv/bin/python -m pytest -o addopts='' -ra`: **588 passed, 8 skipped, 78 warnings** in 38.59 s (final run after the latest main merge and audit-snapshot refresh). Artifact policy: **PASS, 87 registered prediction artifacts**. `git diff --cached --check`: clean at the integration checkpoint.
 - Default `generate_submission.py` verifies the exact current OLC91 TIFF/ZIP/card and reports technical PASS, **OK TO DOWNLOAD: YES — RESEARCH ONLY**, **OK TO SUBMIT: NO**, references `NOT_CHECKED`. `--with-data` blocks on the absent official sample; `--run` blocks on the absent lane.
 - `scripts/preflight.py`: expected **BUILD BLOCKED: 0/2**, all six axes blocked. No data restored, experiment run, new score/TIFF, selector step, or slot use.
 

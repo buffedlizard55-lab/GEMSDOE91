@@ -118,7 +118,9 @@
     "revalidated_in_this_review": false,
     "registered_tiff_zip_byte_identity_rechecked_in_this_review": true,
     "format_rechecked_against_official_sample_in_this_review": false,
-    "warning": "Portal rendering rechecked the registered TIFF/ZIP hashes and ZIP member identity, but the missing official sample prevents a fresh sample-backed validator pass. This is an existing prior negative research artifact, not a new or unique result from the active review. Do not represent it as newly generated or approved for submission."
+    "warning": "Portal rendering and the default current-download verifier rechecked registered TIFF/ZIP identity; the verifier also passed the written raster's technical format checks. The missing official sample prevents a fresh sample-backed grid validation. This is an existing prior negative research artifact, not a new or unique result from the active review. Do not represent it as newly generated or approved for submission.",
+    "written_bytes_format_rechecked_after_merge": true,
+    "sample_backed_grid_validation_rechecked": false
   },
   "verdict": "negative",
   "promote": false,
@@ -133,7 +135,7 @@
     "docs/run-card-current-review.json is dated 2026-10-25 but belongs to arena/2f002fa0-gemsdoe91, not the active branch."
   ],
   "integration_verification": {
-    "upstream_main_tip": "5262aa9947d4b50d2fc433a86d409fc5b7f42811",
+    "upstream_main_tip": "ee3548998573796c9c02e36633f1f13a492b464b",
     "current_branch_merge": true,
     "full_test_suite": {
       "command": ".venv/bin/python -m pytest -o addopts='' -ra",
@@ -141,9 +143,9 @@
       "passed": 588,
       "skipped": 8,
       "warnings": 78,
-      "duration_seconds": 38.21,
+      "duration_seconds": 38.59,
       "status": "PASS",
-      "note": "Final full-suite run after canonical audit snapshot refresh"
+      "note": "Final full-suite run after latest main merge and canonical audit snapshot refresh"
     },
     "artifact_policy": {
       "status": "PASS",
@@ -199,6 +201,18 @@
       ],
       "local_data_restore_or_fresh_raster_audit": false,
       "ci_run_40216729640_status": "PUBLISHED_ARTIFACT_FAILED_AUDIT_DIFF; RERUN_PENDING"
+    },
+    "merged_upstream_main_tips": [
+      "5262aa9947d4b50d2fc433a86d409fc5b7f42811",
+      "ee3548998573796c9c02e36633f1f13a492b464b"
+    ],
+    "parallel_checkout_context": {
+      "branch": "arena/ffb91da8-gemsdoe91",
+      "reported_local_preflight": "BUILD BLOCKED: 1/2",
+      "sample_submission_available_in_that_checkout": true,
+      "parent_r0_nan_missing_in_that_checkout": true,
+      "active_checkout_preflight": "BUILD BLOCKED: 0/2",
+      "branch_local_data_not_transferred": true
     }
   }
 }
