@@ -1,4 +1,16 @@
-# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/9278e16d-gemsdoe91`)
+# GEMSDOE91 — active review `arena/ee76e309-gemsdoe91`
+
+> **OK TO DOWNLOAD: YES — existing research TIFF. OK TO SUBMIT: NO.** [Download existing OLC91 GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif) · [submission guide](docs/executive-summary.html) · [current three-pass review](docs/REVIEW-EE76E309-20261025.md) · [run card](docs/run-card-ee76e309.json).
+>
+> This review generated **no new TIFF or score**: the required method lane is absent. It fixes a real verification gap: CI now checks the actual `docs/current-run.json` research download against SHA-pinned sample/catalogue bytes, not just a historical run card. Fresh audit: **87 artifacts, 78 technical PASS, 9 FAIL**, none approved for submission. [Current-file verification](docs/frontdoor-verification-ee76e309.json) · [all-download audit](docs/review-ee76e309/download-audit.html). Removed misleading LB-DTI labels from active navigation. See the review for ranked conditional hypotheses, verified GitHub source links and remaining blockers.
+>
+> Start each session here, then read the [standing project brief](#full-project-brief). **Maximize P(Win) · Own the Outcome:** never turn format validity into scientific promotion. The full standing prompt below is retained; current supplied updates include GEMSDOE91 CWPC/LFTG and GEMSDOE92 listric-dip results, all USER-REPORTED without organizer receipts. Nothing here establishes those as scores.
+
+---
+
+## Historical review status (not this branch)
+
+### Prior checkout `arena/9278e16d-gemsdoe91`
 
 > **Verdict: NEGATIVE / NO PROMOTION.** This checkout's parallel-run lane was not assigned: the prompt refers to a single method paragraph but does not provide one. No new experiment, TIFF, score or competition slot was produced on this branch. The no-lane stop takes precedence over the wish to generate a new candidate.
 >
