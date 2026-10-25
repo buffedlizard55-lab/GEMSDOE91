@@ -1,0 +1,26 @@
+{
+ "file": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
+ "sha256": "57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f",
+ "shape": [
+  3730,
+  3292
+ ],
+ "crs": "EPSG:32611",
+ "dtype": "float32",
+ "bands": 1,
+ "nodata": null,
+ "transform_match": true,
+ "nan": 0,
+ "inf": 0,
+ "min": 0.0,
+ "max": 1.0,
+ "dots": 37654,
+ "on_catalogue": 0,
+ "outside_footprint": 0,
+ "min_catalogue_dist_px": 3.1622776601683795,
+ "binary": true,
+ "zip_members": [
+  "gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif"
+ ],
+ "status": "PASS"
+}

@@ -1,3 +1,19 @@
+# GEMSDOE91 — CURRENT STATUS (GEO91, 2026-10-25) — read this first
+
+**Site / download:** `docs/index.html` leads with the current GeoTIFF and its verdict.
+**Current file:** `gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif`
+(37,654 dotted px, collar >3 px, SHA-256 `57d2c44c…e5befe2f`) — **OK TO DOWNLOAD: YES ·
+OK TO SUBMIT: NO** (HOLDOUT-DTI 0.055267 [0.053367, 0.057308],
+gems91-hide-recover-v1.1-nohalo, 60,988 withheld, loses to matched random
+control 0.074387; format/canary/uniqueness PASS; 0 slots spent).
+Machine verdict: `docs/run-card-GEO91.json`. Why 0.2778 (USER-REPORTED, no
+organizer receipt) leads the fleet and what beating it requires:
+`docs/HYPOTHESES_GEO91.md`. Core values: **Maximize P(Win) · Own the Outcome.**
+Every number is labelled HOLDOUT-DTI or USER-REPORTED; nothing is
+ORGANIZER-CONFIRMED without a submission-page receipt.
+
+---
+
 # GEMSDOE91 — a new TIFF, an honest automated verdict
 
 > **2026-10-25 repository safety review (`08e91dad`): OK TO DOWNLOAD — RESEARCH ONLY; OK TO SUBMIT — NO.** No new TIFF generated: method-lane assignment is missing and prior duplicate stops remain binding. [All-download audit](docs/download-audit.html): **55** registered TIFF/ZIP files inspected against restored SHA-pinned sample/catalogue references; **48 technical PASS, 7 FAIL**. Technical PASS never authorizes a slot. [Three-pass review and ranked hypothesis shortlist](docs/REVIEW-08E91DAD-20261025.md) · [Review run card](docs/run-card-08e91dad.json). Read the preserved [full standing prompt](#full-project-brief) every session.
