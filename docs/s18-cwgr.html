@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S18-CWGR Scientific Audit &amp; Novelty Forensics · GEMSDOE91</title>
+<meta name="description" content="Complete Session 18 S18-CWGR scientific audit, 18 novel steerable quadrature & fault-valve features, 8-arm + 3-quota holdout table, and 108-raster novelty forensics.">
+<style>
+:root{--ink:#12211d;--mut:#425650;--ok:#145c47;--bad:#942424;--line:#d5e0db;--bg:#f6faf8}
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
+.wrap{max-width:1060px;margin:0 auto;padding:20px}a{color:var(--ok)}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+nav{display:flex;flex-wrap:wrap;gap:12px}nav a{text-decoration:none;font-weight:600}.logo{font-weight:800;font-size:20px;text-decoration:none;color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.hero>*{min-width:0}@media(max-width:840px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:18px 0;overflow-x:auto}
+.hero .card{margin:0}.dl{border:2px solid var(--ok)}h1{font-size:30px;line-height:1.18;margin:.25em 0}h2{font-size:21px;margin:0 0 10px}h3{font-size:17px;margin:12px 0 6px}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#dff0e8;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}
+.badge.bad{background:#f7e2e2;color:var(--bad)}.small{color:var(--mut);font-size:14px}
+.button{display:block;text-align:center;background:var(--ok);color:#fff;text-decoration:none;padding:13px;border-radius:10px;font-weight:800;font-size:16px;margin:12px 0}
+.btn2{display:inline-block;border:1px solid var(--ok);padding:7px 11px;border-radius:8px;text-decoration:none;font-weight:700;margin:3px 4px 3px 0;font-size:14px}
+.status{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:7px 0;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px;padding:6px;border:1px solid var(--line);border-radius:6px}
+code{font-size:12px;word-break:break-all}.warn{background:#fdf2e2;border:1px solid #e3c891;border-radius:10px;padding:12px}
+img.preview{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;display:block}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line)}
+</style></head><body><div class="wrap">
+<header><a class="logo" href="index.html">GEMSDOE91 · Fault Discovery Lab</a><nav aria-label="Main"><a href="index.html">Current candidate (S18-CWGR)</a><a href="executive-summary.html">Executive summary &amp; submit guide</a><a href="s18-cwgr.html">S18-CWGR audit</a><a href="s17-cpad.html"><strong>S17-CPAD (0.1982 LB-DTI · #1)</strong></a><a href="s17-cpad-executive-summary.html">S17-CPAD guide</a><a href="olc91.html">OLC91</a><a href="research.html">Sources &amp; S16</a><a href="archive-results.html">Historical archive</a></nav></header>
+<main id="main">
+<span class="badge">OK TO DOWNLOAD: YES · RESEARCH / AUDIT</span><span class="badge bad">OK TO SUBMIT: NO · NOT OK TO SUBMIT</span>
+<h1>Session 18 (S18-CWGR): Steerable Quadrature, Byerlee–Sibson Fault-Valve &amp; SAR Propensity Audit</h1>
+<p class="small">Preregistration: <a href="HYPOTHESES_S18_CWGR.md"><code>docs/HYPOTHESES_S18_CWGR.md</code></a> (SHA-256 <code>c6d217d6711bdbbfb34540df7618effeff0522a7b9f5424abcd93424d6432eba</code>) · Feature module: <code>src/gems91/cwgr18.py</code> (SHA-256 <code>8759b4877caaa4cc1c018952d8033481df20424c083d0f673e4cae81adb578b5</code>) · Verification receipt: <a href="s18/verification.json"><code>docs/s18/verification.json</code></a>.</p>
+
+<div class="hero">
+<div class="card dl" data-submission-ready="false">
+<h2>S18-CWGR (CWGR_E1) Deliverable</h2>
+<div class="status"><span>OK to download</span><strong>YES · research only</strong></div>
+<div class="status"><span>OK to submit</span><strong style="color:var(--bad)">NO · NOT OK TO SUBMIT</strong></div>
+<div class="status"><span>HOLDOUT-DTI (<code>gems57-pooled-hide-v2</code>)</span><strong>0.188460 [0.169981, 0.206529]</strong></div>
+<div class="status"><span>BLIND-SGMC-CONTROL-DTI (56,822 px)</span><strong>0.065597</strong></div>
+<div class="status"><span>GEMSDOE32 R0 3-px overlap</span><strong>0.4672 (PASS &le; 0.70)</strong></div>
+<div class="status"><span>Positive binary dots / collar / spacing</span><strong>37,654 / 3.16228 px / 3.16228 px</strong></div>
+<a class="button" download href="downloads/gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.tif">↓ Download S18-CWGR E1 GeoTIFF</a>
+<a class="btn2" download href="downloads/gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.zip">↓ S18-CWGR Single-TIFF ZIP</a>
+<a class="btn2" href="run-card-S18-CWGR.json">Run card JSON ↗</a>
+<a class="btn2" href="s18-cwgr-executive-summary.html">S18 Executive Summary ↗</a>
+<p class="small">SHA-256: <code>5bbc888008da8bb08d07c48fcae4ee3eea395119a8f2728a1874ddf800608d56</code><br>Pixel SHA-256: <code>5be5918b57334f22d0501a343aa8559f8f92d856a312ba918677d585310f0def</code></p>
+</div>
+<div class="card">
+<h2>37,654-dot spatial support preview</h2>
+<img class="preview" src="assets/s18-support.png" alt="Spatial map of the 37,654 S18-CWGR E1 binary fault predictions across the Nevada GeoDAWN footprint">
+<p class="small">Deterministic 6× downsampled rendering of <code>gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.tif</code> inside the 5,167,373-px valid <code>sample_submission.tif</code> footprint. Zero NaN/Inf cells anywhere in the 3730×3292 raster.</p>
+</div>
+</div>
+
+<section class="card"><h2>1 · All 8 Primary Holdout Arms + 3 Area-Quota Controls</h2>
+<table>
+<thead><tr><th>Arm</th><th>HOLDOUT-DTI</th><th>95% Bootstrap CI</th><th>Paired &Delta; vs S17-CPAD E1</th><th>BLIND-SGMC-CONTROL-DTI</th></tr></thead>
+<tbody><tr><td><code>cpad_e1</code> — S17-CPAD E1 (repo label-blind #1 benchmark)</td><td><strong>0.198183</strong></td><td>[0.177759, 0.217830]</td><td>—</td><td>0.068585</td></tr><tr><td><code>incumbent_ptac_lb</code> — INCUMBENT-PTAC-LB (S14 label-blind replay)</td><td><strong>0.194221</strong></td><td>[0.173855, 0.213233]</td><td>—</td><td>—</td></tr><tr><td><code>cwgr_e1</code> — S18-CWGR E1 (unweighted SCAR Tri-Specialist · current)</td><td><strong>0.188460</strong></td><td>[0.169981, 0.206529]</td><td>-0.009723 [-0.015477, -0.003909]</td><td>0.065597</td></tr><tr><td><code>cwgr_e2</code> — S18-CWGR E2 (Bekker–Davis SAR IPW Tri-Specialist)</td><td><strong>0.187910</strong></td><td>[0.169111, 0.206425]</td><td>—</td><td>0.059458</td></tr><tr><td><code>cwgr_e3</code> — S18-CWGR E3 (unmapped posterior (1 − 0.65·ê) Bayes factor)</td><td><strong>0.164534</strong></td><td>[0.147003, 0.181264]</td><td>—</td><td>0.045919</td></tr><tr><td><code>ced91</code> — CED91 (unsupervised baseline)</td><td><strong>0.070886</strong></td><td>[0.058862, 0.082984]</td><td>—</td><td>—</td></tr><tr><td><code>s16_pgrd</code> — S16-PGRD (analytic baseline)</td><td><strong>0.069397</strong></td><td>[0.058335, 0.081962]</td><td>—</td><td>0.038501</td></tr><tr><td><code>gravity_control</code> — Gravity-Theta control</td><td><strong>0.057905</strong></td><td>[0.049814, 0.066574]</td><td>—</td><td>—</td></tr><tr><td><code>cwgr_e2_quota37654</code> — S18-CWGR E2 (fixed 37,654 area-quota control · IR-91-S18-02)</td><td>0.182717</td><td>[0.162911, 0.202089]</td><td>Quota ablation</td><td>—</td></tr><tr><td><code>cwgr_e1_quota37654</code> — S18-CWGR E1 (fixed 37,654 area-quota control · IR-91-S18-02)</td><td>0.180949</td><td>[0.161200, 0.199986]</td><td>Quota ablation</td><td>—</td></tr><tr><td><code>cwgr_e3_quota37654</code> — S18-CWGR E3 (fixed 37,654 area-quota control · IR-91-S18-02)</td><td>0.164957</td><td>[0.146267, 0.182850]</td><td>Quota ablation</td><td>—</td></tr></tbody>
+</table></section>
+
+<section class="card"><h2>2 · Exhaustive 108-Raster Novelty Disaggregation (<a href="s18/milestone-novelty.json">milestone-novelty.json</a>)</h2>
+<table>
+<thead><tr><th>Inventory category</th><th>All pass (&le;0.70)</th><th>Non-calib pass (&le;0.70)</th><th>Max non-calib 3-px overlap</th><th>Max category 3-px overlap</th><th>Max |Spearman &rho;|</th></tr></thead>
+<tbody><tr><td><code>preceding_fleet_submission</code></td><td>47 / 48</td><td>46 / 46</td><td><code>0.539651</code> (GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif)</td><td><code>0.714957</code> (calib_h28ridge_01839.tif)</td><td><code>0.114780</code></td></tr><tr><td><code>in_repo_prior_submission</code></td><td>30 / 43</td><td>30 / 43</td><td><code>0.874250</code> (gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif)</td><td><code>0.874250</code> (gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif)</td><td><code>0.124209</code></td></tr><tr><td><code>dense_blanket_or_retracted_reference</code></td><td>12 / 17</td><td>8 / 11</td><td><code>0.997636</code> (r13_lattice_s5_00904.tif)</td><td><code>0.997636</code> (calib_r13lattice_00904.tif)</td><td><code>0.219355</code></td></tr></tbody>
+</table>
+<p class="small"><strong>Key forensic distinction (<code>IR-91-S18-04</code>):</strong> Every single real competitive external fleet submission (<code>46/46</code> non-calibration rasters, 37k–60k dots) passed the 3-px overlap gate (max <code>0.539651</code> on <code>GEMSDOE27</code>; <code>GEMSDOE32 R0 = 0.467201</code>; <code>GEMSDOE36 = 0.422717</code>). Item #48 <code>calib_h28ridge_01839.tif</code> is a 69,281-dot (1.84× budget) metric-calibration probe retained intact in frozen <code>registry/s18_comparison_inventory.json</code>; we honor the literal stop fail-closed without mutating the frozen inventory.</p>
+</section>
+
+<section class="card"><h2>3 · 18 Novel CWGR Continuum-Mechanics &amp; Steerable Quadrature Features</h2>
+<p class="small">Columns <code>0..14</code> are programmatically verified bitwise invariant to zeroing topographic Bands 12 &amp; 19 (<code>verified_cwgr_subsurface_b12_b19_max_diff = 0.0</code>); columns <code>15..17</code> isolate piedmont micro-scarps, pluvial Lake Lahontan contour-parallel shoreline mimics, and Bekker–Davis mapper visibility.</p>
+<ol class="small"><li><code>cwgr_quad_grav_odd_step</code></li><li><code>cwgr_quad_grav_crest</code></li><li><code>cwgr_quad_mag_demag_trough</code></li><li><code>cwgr_quad_rtp_odd_step</code></li><li><code>cwgr_quad_basement_step_crest</code></li><li><code>cwgr_quad_rad_cond_alteration</code></li><li><code>cwgr_quad_cross_physics_lock</code></li><li><code>cwgr_kinematic_regime_index</code></li><li><code>cwgr_byerlee_adaptive_slip_tendency</code></li><li><code>cwgr_sibson_fault_valve_overpressure</code></li><li><code>cwgr_kostrov_aseismic_strain_deficit</code></li><li><code>cwgr_en_echelon_quadrature_relay</code></li><li><code>cwgr_athy_silicification_excess</code></li><li><code>cwgr_salem_intrabasinal_ratio</code></li><li><code>cwgr_subsurface_crest_skeleton</code></li><li><code>cwgr_piedmont_microscarp_quad</code></li><li><code>cwgr_pluvial_contour_orthogonality</code></li><li><code>cwgr_mapper_visibility_index</code></li></ol>
+<p class="small">Raw machine receipts: <a href="s18/holdout.json"><code>s18/holdout.json</code></a> · <a href="s18/canaries.json"><code>s18/canaries.json</code></a> · <a href="s18/blind-sgmc-control.json"><code>s18/blind-sgmc-control.json</code></a> · <a href="s18/registry-surface.json"><code>s18/registry-surface.json</code></a> · <a href="s18/registry-final.json"><code>s18/registry-final.json</code></a> · <a href="s18/writer-receipt.json"><code>s18/writer-receipt.json</code></a> · <a href="s18/features.json"><code>s18/features.json</code></a>.</p>
+</section>
+</main>
+<footer class="small">GEMSDOE91 Session 18 (S18-CWGR) · 0 weekly DrivenData slots spent · NOT OK TO SUBMIT.</footer>
+</div></body></html>

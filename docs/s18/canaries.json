@@ -1,0 +1,2987 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "features_tested": 174,
+  "threshold": 0.9,
+  "max_symmetric_auc": 0.68817,
+  "max_quadrant_symmetric_auc": 0.739793,
+  "status": "PASS",
+  "features": {
+    "cwgr_quad_grav_odd_step": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5166716074276252,
+      "symmetric_auc": 0.5166716074276252,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.506102,
+        0.537408,
+        0.517433,
+        0.520041
+      ],
+      "max_quadrant_symmetric_auc": 0.537408
+    },
+    "cwgr_quad_grav_crest": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5049076645848827,
+      "symmetric_auc": 0.5049076645848827,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.50588,
+        0.51311,
+        0.500197,
+        0.50404
+      ],
+      "max_quadrant_symmetric_auc": 0.51311
+    },
+    "cwgr_quad_mag_demag_trough": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5233636321749693,
+      "symmetric_auc": 0.5233636321749693,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.515147,
+        0.519852,
+        0.528346,
+        0.529171
+      ],
+      "max_quadrant_symmetric_auc": 0.529171
+    },
+    "cwgr_quad_rtp_odd_step": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5282900085009313,
+      "symmetric_auc": 0.5282900085009313,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.518091,
+        0.527168,
+        0.541528,
+        0.518626
+      ],
+      "max_quadrant_symmetric_auc": 0.541528
+    },
+    "cwgr_quad_basement_step_crest": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5085968200084598,
+      "symmetric_auc": 0.5085968200084598,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.50767,
+        0.509269,
+        0.524171,
+        0.50077
+      ],
+      "max_quadrant_symmetric_auc": 0.524171
+    },
+    "cwgr_quad_rad_cond_alteration": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.49909120386212846,
+      "symmetric_auc": 0.5009087961378715,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.502424,
+        0.505692,
+        0.501406,
+        0.515339
+      ],
+      "max_quadrant_symmetric_auc": 0.515339
+    },
+    "cwgr_quad_cross_physics_lock": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5267725953547099,
+      "symmetric_auc": 0.5267725953547099,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.517589,
+        0.529646,
+        0.53665,
+        0.524702
+      ],
+      "max_quadrant_symmetric_auc": 0.53665
+    },
+    "cwgr_kinematic_regime_index": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.4474559635120359,
+      "symmetric_auc": 0.5525440364879641,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.565446,
+        0.523352,
+        0.586775,
+        0.55466
+      ],
+      "max_quadrant_symmetric_auc": 0.586775
+    },
+    "cwgr_byerlee_adaptive_slip_tendency": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5527050607052656,
+      "symmetric_auc": 0.5527050607052656,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.543524,
+        0.543379,
+        0.538439,
+        0.504522
+      ],
+      "max_quadrant_symmetric_auc": 0.543524
+    },
+    "cwgr_sibson_fault_valve_overpressure": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5220764990501789,
+      "symmetric_auc": 0.5220764990501789,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.500251,
+        0.534098,
+        0.505073,
+        0.552872
+      ],
+      "max_quadrant_symmetric_auc": 0.552872
+    },
+    "cwgr_kostrov_aseismic_strain_deficit": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5591277765677907,
+      "symmetric_auc": 0.5591277765677907,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.545855,
+        0.539667,
+        0.575124,
+        0.503034
+      ],
+      "max_quadrant_symmetric_auc": 0.575124
+    },
+    "cwgr_en_echelon_quadrature_relay": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5237791075542648,
+      "symmetric_auc": 0.5237791075542648,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.52168,
+        0.513081,
+        0.526405,
+        0.513267
+      ],
+      "max_quadrant_symmetric_auc": 0.526405
+    },
+    "cwgr_athy_silicification_excess": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.517492962793379,
+      "symmetric_auc": 0.517492962793379,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.515116,
+        0.511829,
+        0.502176,
+        0.545305
+      ],
+      "max_quadrant_symmetric_auc": 0.545305
+    },
+    "cwgr_salem_intrabasinal_ratio": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5117190680734571,
+      "symmetric_auc": 0.5117190680734571,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.511983,
+        0.501479,
+        0.503582,
+        0.514077
+      ],
+      "max_quadrant_symmetric_auc": 0.514077
+    },
+    "cwgr_subsurface_crest_skeleton": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.531294478851794,
+      "symmetric_auc": 0.531294478851794,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.524204,
+        0.530364,
+        0.538444,
+        0.524893
+      ],
+      "max_quadrant_symmetric_auc": 0.538444
+    },
+    "cwgr_piedmont_microscarp_quad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.52991864383759,
+      "symmetric_auc": 0.52991864383759,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.516248,
+        0.551108,
+        0.514499,
+        0.556887
+      ],
+      "max_quadrant_symmetric_auc": 0.556887
+    },
+    "cwgr_pluvial_contour_orthogonality": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.46845043197239483,
+      "symmetric_auc": 0.5315495680276052,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.531944,
+        0.542025,
+        0.533337,
+        0.516763
+      ],
+      "max_quadrant_symmetric_auc": 0.542025
+    },
+    "cwgr_mapper_visibility_index": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5279280641636269,
+      "symmetric_auc": 0.5279280641636269,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "quadrant_symmetric_aucs": [
+        0.525539,
+        0.514279,
+        0.573506,
+        0.523867
+      ],
+      "max_quadrant_symmetric_auc": 0.573506
+    },
+    "b01_mag_anom": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.491009,
+      "symmetric_auc": 0.508991,
+      "quadrant_symmetric_aucs": [
+        0.502308,
+        0.515443,
+        0.545387,
+        0.500505
+      ],
+      "max_quadrant_symmetric_auc": 0.545387,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b02_rtp": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.497525,
+      "symmetric_auc": 0.502475,
+      "quadrant_symmetric_aucs": [
+        0.506546,
+        0.505074,
+        0.540908,
+        0.504556
+      ],
+      "max_quadrant_symmetric_auc": 0.540908,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b03_tmi_hg": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.526791,
+      "symmetric_auc": 0.526791,
+      "quadrant_symmetric_aucs": [
+        0.527213,
+        0.510565,
+        0.534047,
+        0.500459
+      ],
+      "max_quadrant_symmetric_auc": 0.534047,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b04_geod_2ndinv": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.570453,
+      "symmetric_auc": 0.570453,
+      "quadrant_symmetric_aucs": [
+        0.568311,
+        0.53523,
+        0.581032,
+        0.517541
+      ],
+      "max_quadrant_symmetric_auc": 0.581032,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b05_iso_grav_slope": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.533524,
+      "symmetric_auc": 0.533524,
+      "quadrant_symmetric_aucs": [
+        0.528048,
+        0.578456,
+        0.538823,
+        0.564279
+      ],
+      "max_quadrant_symmetric_auc": 0.578456,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b06_tc": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.448021,
+      "symmetric_auc": 0.551979,
+      "quadrant_symmetric_aucs": [
+        0.537932,
+        0.571556,
+        0.573696,
+        0.612861
+      ],
+      "max_quadrant_symmetric_auc": 0.612861,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b07_geod_shearrate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.569211,
+      "symmetric_auc": 0.569211,
+      "quadrant_symmetric_aucs": [
+        0.572231,
+        0.502303,
+        0.593472,
+        0.501278
+      ],
+      "max_quadrant_symmetric_auc": 0.593472,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b08_geod_dilaterate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.525678,
+      "symmetric_auc": 0.525678,
+      "quadrant_symmetric_aucs": [
+        0.502083,
+        0.540088,
+        0.542161,
+        0.568635
+      ],
+      "max_quadrant_symmetric_auc": 0.568635,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b09_tmi_vg": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.486565,
+      "symmetric_auc": 0.513435,
+      "quadrant_symmetric_aucs": [
+        0.507465,
+        0.510687,
+        0.522107,
+        0.523252
+      ],
+      "max_quadrant_symmetric_auc": 0.523252,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b10_deq_n100a15": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.55074,
+      "symmetric_auc": 0.55074,
+      "quadrant_symmetric_aucs": [
+        0.527994,
+        0.559133,
+        0.509941,
+        0.525255
+      ],
+      "max_quadrant_symmetric_auc": 0.559133,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b11_iso_grav_vg": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.527463,
+      "symmetric_auc": 0.527463,
+      "quadrant_symmetric_aucs": [
+        0.514174,
+        0.53033,
+        0.525838,
+        0.567277
+      ],
+      "max_quadrant_symmetric_auc": 0.567277,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b12_det_elev": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.484401,
+      "symmetric_auc": 0.515599,
+      "quadrant_symmetric_aucs": [
+        0.501929,
+        0.548609,
+        0.529349,
+        0.526368
+      ],
+      "max_quadrant_symmetric_auc": 0.548609,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b13_iso_grav_anom": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.459078,
+      "symmetric_auc": 0.540922,
+      "quadrant_symmetric_aucs": [
+        0.542644,
+        0.518378,
+        0.553921,
+        0.516372
+      ],
+      "max_quadrant_symmetric_auc": 0.553921,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b14_tmi": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.488477,
+      "symmetric_auc": 0.511523,
+      "quadrant_symmetric_aucs": [
+        0.503125,
+        0.506351,
+        0.535513,
+        0.50869
+      ],
+      "max_quadrant_symmetric_auc": 0.535513,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b15_depth_to_base": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.511708,
+      "symmetric_auc": 0.511708,
+      "quadrant_symmetric_aucs": [
+        0.515139,
+        0.518781,
+        0.534661,
+        0.526427
+      ],
+      "max_quadrant_symmetric_auc": 0.534661,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b16_ieq_n100a15": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.568842,
+      "symmetric_auc": 0.568842,
+      "quadrant_symmetric_aucs": [
+        0.550095,
+        0.54314,
+        0.500388,
+        0.574877
+      ],
+      "max_quadrant_symmetric_auc": 0.574877,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b17_cond_surf": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.483147,
+      "symmetric_auc": 0.516853,
+      "quadrant_symmetric_aucs": [
+        0.50495,
+        0.532111,
+        0.545796,
+        0.54316
+      ],
+      "max_quadrant_symmetric_auc": 0.545796,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b18_iso_grav_hg": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.499648,
+      "symmetric_auc": 0.500352,
+      "quadrant_symmetric_aucs": [
+        0.531687,
+        0.570453,
+        0.513403,
+        0.508378
+      ],
+      "max_quadrant_symmetric_auc": 0.570453,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "b19_det_elev_slope": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.55773,
+      "symmetric_auc": 0.55773,
+      "quadrant_symmetric_aucs": [
+        0.547896,
+        0.554364,
+        0.592048,
+        0.569462
+      ],
+      "max_quadrant_symmetric_auc": 0.592048,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_lrm_300m": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.424612,
+      "symmetric_auc": 0.575388,
+      "quadrant_symmetric_aucs": [
+        0.555148,
+        0.600778,
+        0.598032,
+        0.580738
+      ],
+      "max_quadrant_symmetric_auc": 0.600778,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_lrm_1km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.412057,
+      "symmetric_auc": 0.587943,
+      "quadrant_symmetric_aucs": [
+        0.559548,
+        0.645071,
+        0.586687,
+        0.603163
+      ],
+      "max_quadrant_symmetric_auc": 0.645071,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_topo_openness_lap": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.422997,
+      "symmetric_auc": 0.577003,
+      "quadrant_symmetric_aucs": [
+        0.558753,
+        0.61129,
+        0.589384,
+        0.57556
+      ],
+      "max_quadrant_symmetric_auc": 0.61129,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_slope_hp_600m": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5421,
+      "symmetric_auc": 0.5421,
+      "quadrant_symmetric_aucs": [
+        0.525207,
+        0.589877,
+        0.523209,
+        0.553784
+      ],
+      "max_quadrant_symmetric_auc": 0.589877,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_topo_coherence": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.559353,
+      "symmetric_auc": 0.559353,
+      "quadrant_symmetric_aucs": [
+        0.561617,
+        0.605969,
+        0.514777,
+        0.56492
+      ],
+      "max_quadrant_symmetric_auc": 0.605969,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_grav_tilt": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.529854,
+      "symmetric_auc": 0.529854,
+      "quadrant_symmetric_aucs": [
+        0.521775,
+        0.532775,
+        0.522178,
+        0.561521
+      ],
+      "max_quadrant_symmetric_auc": 0.561521,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_grav_tilt_zero_prox": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.516698,
+      "symmetric_auc": 0.516698,
+      "quadrant_symmetric_aucs": [
+        0.51035,
+        0.508887,
+        0.548848,
+        0.526978
+      ],
+      "max_quadrant_symmetric_auc": 0.548848,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_grav_tilt_hd": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.518703,
+      "symmetric_auc": 0.518703,
+      "quadrant_symmetric_aucs": [
+        0.521246,
+        0.504245,
+        0.545389,
+        0.503681
+      ],
+      "max_quadrant_symmetric_auc": 0.545389,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_rtp_tilt": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.495111,
+      "symmetric_auc": 0.504889,
+      "quadrant_symmetric_aucs": [
+        0.507874,
+        0.504109,
+        0.500412,
+        0.511514
+      ],
+      "max_quadrant_symmetric_auc": 0.511514,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_rtp_tilt_hd": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.503374,
+      "symmetric_auc": 0.503374,
+      "quadrant_symmetric_aucs": [
+        0.506478,
+        0.505206,
+        0.500508,
+        0.505348
+      ],
+      "max_quadrant_symmetric_auc": 0.506478,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_updip_grav_tilt_zero": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.519465,
+      "symmetric_auc": 0.519465,
+      "quadrant_symmetric_aucs": [
+        0.513427,
+        0.51687,
+        0.551835,
+        0.521077
+      ],
+      "max_quadrant_symmetric_auc": 0.551835,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_updip_grav_tilt_hd": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.518764,
+      "symmetric_auc": 0.518764,
+      "quadrant_symmetric_aucs": [
+        0.523067,
+        0.507052,
+        0.541074,
+        0.501116
+      ],
+      "max_quadrant_symmetric_auc": 0.541074,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_updip_half_grav_slope": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.537431,
+      "symmetric_auc": 0.537431,
+      "quadrant_symmetric_aucs": [
+        0.53059,
+        0.583757,
+        0.532887,
+        0.567752
+      ],
+      "max_quadrant_symmetric_auc": 0.583757,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_updip_rtp_tilt_hd": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.503522,
+      "symmetric_auc": 0.503522,
+      "quadrant_symmetric_aucs": [
+        0.512472,
+        0.518123,
+        0.503623,
+        0.506902
+      ],
+      "max_quadrant_symmetric_auc": 0.518123,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e1_cond_grad_hp": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.50293,
+      "symmetric_auc": 0.50293,
+      "quadrant_symmetric_aucs": [
+        0.500387,
+        0.501449,
+        0.500285,
+        0.50539
+      ],
+      "max_quadrant_symmetric_auc": 0.50539,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e2_axial_ridge_max": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.559266,
+      "symmetric_auc": 0.559266,
+      "quadrant_symmetric_aucs": [
+        0.539019,
+        0.586477,
+        0.573804,
+        0.560143
+      ],
+      "max_quadrant_symmetric_auc": 0.586477,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e2_axial_ridge_anisotropy": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.511803,
+      "symmetric_auc": 0.511803,
+      "quadrant_symmetric_aucs": [
+        0.505902,
+        0.523897,
+        0.515586,
+        0.510758
+      ],
+      "max_quadrant_symmetric_auc": 0.523897,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e2_anderson_slip_dilation": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.569087,
+      "symmetric_auc": 0.569087,
+      "quadrant_symmetric_aucs": [
+        0.544373,
+        0.59837,
+        0.564487,
+        0.564076
+      ],
+      "max_quadrant_symmetric_auc": 0.59837,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e2_multiphysics_coincidence": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.562254,
+      "symmetric_auc": 0.562254,
+      "quadrant_symmetric_aucs": [
+        0.546218,
+        0.5475,
+        0.559584,
+        0.547512
+      ],
+      "max_quadrant_symmetric_auc": 0.559584,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e2_gdr_hot_warm_12px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.509449,
+      "symmetric_auc": 0.509449,
+      "quadrant_symmetric_aucs": [
+        0.534439,
+        0.504783,
+        0.543142,
+        0.500689
+      ],
+      "max_quadrant_symmetric_auc": 0.543142,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e2_gdr_hot_warm_30px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.509449,
+      "symmetric_auc": 0.509449,
+      "quadrant_symmetric_aucs": [
+        0.534439,
+        0.504783,
+        0.543142,
+        0.500689
+      ],
+      "max_quadrant_symmetric_auc": 0.543142,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e2_gdr_blind_geotherm90_12px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.522912,
+      "symmetric_auc": 0.522912,
+      "quadrant_symmetric_aucs": [
+        0.545172,
+        0.538665,
+        0.60473,
+        0.548805
+      ],
+      "max_quadrant_symmetric_auc": 0.60473,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e2_gdr_blind_geotherm90_25px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.522912,
+      "symmetric_auc": 0.522912,
+      "quadrant_symmetric_aucs": [
+        0.545172,
+        0.538665,
+        0.60473,
+        0.548805
+      ],
+      "max_quadrant_symmetric_auc": 0.60473,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e3_mag_destruction_trough": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.508264,
+      "symmetric_auc": 0.508264,
+      "quadrant_symmetric_aucs": [
+        0.503929,
+        0.507037,
+        0.51276,
+        0.51286
+      ],
+      "max_quadrant_symmetric_auc": 0.51286,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e3_claycap_dog_3_12px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.508438,
+      "symmetric_auc": 0.508438,
+      "quadrant_symmetric_aucs": [
+        0.512173,
+        0.511021,
+        0.515246,
+        0.507192
+      ],
+      "max_quadrant_symmetric_auc": 0.515246,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e3_signed_footwall_polarity": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.540569,
+      "symmetric_auc": 0.540569,
+      "quadrant_symmetric_aucs": [
+        0.531124,
+        0.562785,
+        0.534053,
+        0.540796
+      ],
+      "max_quadrant_symmetric_auc": 0.562785,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e3_seismic_conduit_index": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.451165,
+      "symmetric_auc": 0.548835,
+      "quadrant_symmetric_aucs": [
+        0.525635,
+        0.557716,
+        0.509406,
+        0.533111
+      ],
+      "max_quadrant_symmetric_auc": 0.557716,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "e3_hydro_alteration_joint": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.50624,
+      "symmetric_auc": 0.50624,
+      "quadrant_symmetric_aucs": [
+        0.505043,
+        0.501763,
+        0.507486,
+        0.509915
+      ],
+      "max_quadrant_symmetric_auc": 0.509915,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_grav_vec_mag": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.527401,
+      "symmetric_auc": 0.527401,
+      "quadrant_symmetric_aucs": [
+        0.524556,
+        0.563365,
+        0.534834,
+        0.551003
+      ],
+      "max_quadrant_symmetric_auc": 0.563365,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_marussi_svd_lap": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.529264,
+      "symmetric_auc": 0.529264,
+      "quadrant_symmetric_aucs": [
+        0.512979,
+        0.563363,
+        0.532193,
+        0.539125
+      ],
+      "max_quadrant_symmetric_auc": 0.563363,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_marussi_eotvos_curv": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.545159,
+      "symmetric_auc": 0.545159,
+      "quadrant_symmetric_aucs": [
+        0.54067,
+        0.592135,
+        0.522934,
+        0.545748
+      ],
+      "max_quadrant_symmetric_auc": 0.592135,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_marussi_theta_phase": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.522588,
+      "symmetric_auc": 0.522588,
+      "quadrant_symmetric_aucs": [
+        0.508034,
+        0.547997,
+        0.525643,
+        0.538551
+      ],
+      "max_quadrant_symmetric_auc": 0.547997,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_updip_vec_eotvos": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.543855,
+      "symmetric_auc": 0.543855,
+      "quadrant_symmetric_aucs": [
+        0.539606,
+        0.588291,
+        0.525848,
+        0.549311
+      ],
+      "max_quadrant_symmetric_auc": 0.588291,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_updip_vec_svd_abs": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.510922,
+      "symmetric_auc": 0.510922,
+      "quadrant_symmetric_aucs": [
+        0.512661,
+        0.546237,
+        0.538846,
+        0.500011
+      ],
+      "max_quadrant_symmetric_auc": 0.546237,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_topo_grav_cos_align": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.534992,
+      "symmetric_auc": 0.534992,
+      "quadrant_symmetric_aucs": [
+        0.526534,
+        0.583744,
+        0.503362,
+        0.544478
+      ],
+      "max_quadrant_symmetric_auc": 0.583744,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_topo_profile_curv": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.397372,
+      "symmetric_auc": 0.602628,
+      "quadrant_symmetric_aucs": [
+        0.582323,
+        0.649018,
+        0.602189,
+        0.608636
+      ],
+      "max_quadrant_symmetric_auc": 0.649018,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_rad_tc_grad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.501891,
+      "symmetric_auc": 0.501891,
+      "quadrant_symmetric_aucs": [
+        0.506738,
+        0.505034,
+        0.520969,
+        0.504524
+      ],
+      "max_quadrant_symmetric_auc": 0.520969,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_rad_tc_dog": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.446692,
+      "symmetric_auc": 0.553308,
+      "quadrant_symmetric_aucs": [
+        0.529651,
+        0.600533,
+        0.564051,
+        0.550562
+      ],
+      "max_quadrant_symmetric_auc": 0.600533,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_rad_mag_felsic_res": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.471036,
+      "symmetric_auc": 0.528964,
+      "quadrant_symmetric_aucs": [
+        0.522893,
+        0.556524,
+        0.565992,
+        0.571174
+      ],
+      "max_quadrant_symmetric_auc": 0.571174,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_rad_potassic_leach_joint": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.478931,
+      "symmetric_auc": 0.521069,
+      "quadrant_symmetric_aucs": [
+        0.52039,
+        0.524639,
+        0.52779,
+        0.537352
+      ],
+      "max_quadrant_symmetric_auc": 0.537352,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_ctx1km_grav_slope": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5314,
+      "symmetric_auc": 0.5314,
+      "quadrant_symmetric_aucs": [
+        0.525683,
+        0.579197,
+        0.554994,
+        0.57156
+      ],
+      "max_quadrant_symmetric_auc": 0.579197,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_ctx1km_tmi_hg": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.521992,
+      "symmetric_auc": 0.521992,
+      "quadrant_symmetric_aucs": [
+        0.527713,
+        0.530547,
+        0.538616,
+        0.52152
+      ],
+      "max_quadrant_symmetric_auc": 0.538616,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_ctx1km_topo_slope": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.540809,
+      "symmetric_auc": 0.540809,
+      "quadrant_symmetric_aucs": [
+        0.53912,
+        0.519514,
+        0.58495,
+        0.539719
+      ],
+      "max_quadrant_symmetric_auc": 0.58495,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s11_ctx1km_eotvos_curv": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.550766,
+      "symmetric_auc": 0.550766,
+      "quadrant_symmetric_aucs": [
+        0.546071,
+        0.602071,
+        0.542382,
+        0.567307
+      ],
+      "max_quadrant_symmetric_auc": 0.602071,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_tmi_asig_log": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.528623,
+      "symmetric_auc": 0.528623,
+      "quadrant_symmetric_aucs": [
+        0.526459,
+        0.514876,
+        0.546711,
+        0.505875
+      ],
+      "max_quadrant_symmetric_auc": 0.546711,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_tmi_tilt_true": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.491552,
+      "symmetric_auc": 0.508448,
+      "quadrant_symmetric_aucs": [
+        0.509808,
+        0.508004,
+        0.507241,
+        0.517124
+      ],
+      "max_quadrant_symmetric_auc": 0.517124,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_spi_local_wavenum": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.512209,
+      "symmetric_auc": 0.512209,
+      "quadrant_symmetric_aucs": [
+        0.512516,
+        0.50114,
+        0.51936,
+        0.504131
+      ],
+      "max_quadrant_symmetric_auc": 0.51936,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_updip_spi_wavenum": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.513093,
+      "symmetric_auc": 0.513093,
+      "quadrant_symmetric_aucs": [
+        0.516482,
+        0.504381,
+        0.516458,
+        0.500331
+      ],
+      "max_quadrant_symmetric_auc": 0.516482,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_geodawn_shallow_res": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.491745,
+      "symmetric_auc": 0.508255,
+      "quadrant_symmetric_aucs": [
+        0.500957,
+        0.518804,
+        0.50144,
+        0.530367
+      ],
+      "max_quadrant_symmetric_auc": 0.530367,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_geodawn_shallow_grad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.525158,
+      "symmetric_auc": 0.525158,
+      "quadrant_symmetric_aucs": [
+        0.527046,
+        0.51608,
+        0.537057,
+        0.505643
+      ],
+      "max_quadrant_symmetric_auc": 0.537057,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_remanent_rtp_disc": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.485996,
+      "symmetric_auc": 0.514004,
+      "quadrant_symmetric_aucs": [
+        0.509907,
+        0.524442,
+        0.516899,
+        0.511877
+      ],
+      "max_quadrant_symmetric_auc": 0.524442,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_frangi_topo_s1p5": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.572697,
+      "symmetric_auc": 0.572697,
+      "quadrant_symmetric_aucs": [
+        0.548167,
+        0.61036,
+        0.582791,
+        0.580342
+      ],
+      "max_quadrant_symmetric_auc": 0.61036,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_frangi_topo_s4p0": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.568273,
+      "symmetric_auc": 0.568273,
+      "quadrant_symmetric_aucs": [
+        0.549458,
+        0.602114,
+        0.559707,
+        0.578118
+      ],
+      "max_quadrant_symmetric_auc": 0.602114,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_frangi_asig_s2p0": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.515183,
+      "symmetric_auc": 0.515183,
+      "quadrant_symmetric_aucs": [
+        0.515307,
+        0.502376,
+        0.520153,
+        0.511144
+      ],
+      "max_quadrant_symmetric_auc": 0.520153,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_frangi_marussi_s2p5": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.526576,
+      "symmetric_auc": 0.526576,
+      "quadrant_symmetric_aucs": [
+        0.531153,
+        0.553919,
+        0.503378,
+        0.50479
+      ],
+      "max_quadrant_symmetric_auc": 0.553919,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_crossfault_dipole_600m": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.560757,
+      "symmetric_auc": 0.560757,
+      "quadrant_symmetric_aucs": [
+        0.543943,
+        0.596766,
+        0.536001,
+        0.598888
+      ],
+      "max_quadrant_symmetric_auc": 0.598888,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_seis_dep_swarm_log": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.55074,
+      "symmetric_auc": 0.55074,
+      "quadrant_symmetric_aucs": [
+        0.527994,
+        0.559133,
+        0.509941,
+        0.525255
+      ],
+      "max_quadrant_symmetric_auc": 0.559133,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_seis_ind_main_log": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.568842,
+      "symmetric_auc": 0.568842,
+      "quadrant_symmetric_aucs": [
+        0.550095,
+        0.54314,
+        0.500388,
+        0.574877
+      ],
+      "max_quadrant_symmetric_auc": 0.574877,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_seis_swarm_excess": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.501831,
+      "symmetric_auc": 0.501831,
+      "quadrant_symmetric_aucs": [
+        0.521471,
+        0.512282,
+        0.504437,
+        0.578788
+      ],
+      "max_quadrant_symmetric_auc": 0.578788,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_seis_swarm_grad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.512495,
+      "symmetric_auc": 0.512495,
+      "quadrant_symmetric_aucs": [
+        0.501493,
+        0.505817,
+        0.513698,
+        0.514683
+      ],
+      "max_quadrant_symmetric_auc": 0.514683,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_kreemer_kinematic_w": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.445106,
+      "symmetric_auc": 0.554894,
+      "quadrant_symmetric_aucs": [
+        0.566513,
+        0.511202,
+        0.586418,
+        0.552973
+      ],
+      "max_quadrant_symmetric_auc": 0.586418,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_strain_tensor_excess": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.532181,
+      "symmetric_auc": 0.532181,
+      "quadrant_symmetric_aucs": [
+        0.511851,
+        0.528329,
+        0.530509,
+        0.515748
+      ],
+      "max_quadrant_symmetric_auc": 0.530509,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_transtens_work_rate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.567719,
+      "symmetric_auc": 0.567719,
+      "quadrant_symmetric_aucs": [
+        0.554996,
+        0.503168,
+        0.5116,
+        0.594207
+      ],
+      "max_quadrant_symmetric_auc": 0.594207,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "s12_hydro_demag_alter_joint": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.507551,
+      "symmetric_auc": 0.507551,
+      "quadrant_symmetric_aucs": [
+        0.503484,
+        0.503114,
+        0.508359,
+        0.511704
+      ],
+      "max_quadrant_symmetric_auc": 0.511704,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_mag_analytic_sig": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.528623,
+      "symmetric_auc": 0.528623,
+      "quadrant_symmetric_aucs": [
+        0.526459,
+        0.514876,
+        0.546711,
+        0.505875
+      ],
+      "max_quadrant_symmetric_auc": 0.546711,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_mag_verduzco_tilt": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.491552,
+      "symmetric_auc": 0.508448,
+      "quadrant_symmetric_aucs": [
+        0.509808,
+        0.508004,
+        0.507241,
+        0.517124
+      ],
+      "max_quadrant_symmetric_auc": 0.517124,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_mag_tilt_zero_crest": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.506699,
+      "symmetric_auc": 0.506699,
+      "quadrant_symmetric_aucs": [
+        0.507942,
+        0.508419,
+        0.502944,
+        0.504889
+      ],
+      "max_quadrant_symmetric_auc": 0.508419,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_rtp_blakely_crest": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.521979,
+      "symmetric_auc": 0.521979,
+      "quadrant_symmetric_aucs": [
+        0.517408,
+        0.506427,
+        0.538052,
+        0.510272
+      ],
+      "max_quadrant_symmetric_auc": 0.538052,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_rtp_tmi_remanence": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.521534,
+      "symmetric_auc": 0.521534,
+      "quadrant_symmetric_aucs": [
+        0.519686,
+        0.504729,
+        0.503017,
+        0.502849
+      ],
+      "max_quadrant_symmetric_auc": 0.519686,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_multiphys_strike_coh": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.529356,
+      "symmetric_auc": 0.529356,
+      "quadrant_symmetric_aucs": [
+        0.52789,
+        0.56644,
+        0.500019,
+        0.540407
+      ],
+      "max_quadrant_symmetric_auc": 0.56644,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_step_elev_abs": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.58674,
+      "symmetric_auc": 0.58674,
+      "quadrant_symmetric_aucs": [
+        0.578168,
+        0.606797,
+        0.60015,
+        0.587191
+      ],
+      "max_quadrant_symmetric_auc": 0.606797,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_step_grav_abs": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.530007,
+      "symmetric_auc": 0.530007,
+      "quadrant_symmetric_aucs": [
+        0.525621,
+        0.577487,
+        0.53307,
+        0.54935
+      ],
+      "max_quadrant_symmetric_auc": 0.577487,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_step_rtp_abs": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.531316,
+      "symmetric_auc": 0.531316,
+      "quadrant_symmetric_aucs": [
+        0.527429,
+        0.501047,
+        0.549073,
+        0.50907
+      ],
+      "max_quadrant_symmetric_auc": 0.549073,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_step_depth_abs": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.53176,
+      "symmetric_auc": 0.53176,
+      "quadrant_symmetric_aucs": [
+        0.515326,
+        0.577399,
+        0.517066,
+        0.557047
+      ],
+      "max_quadrant_symmetric_auc": 0.577399,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_step_rad_tc_abs": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.503877,
+      "symmetric_auc": 0.503877,
+      "quadrant_symmetric_aucs": [
+        0.506405,
+        0.51153,
+        0.515771,
+        0.500745
+      ],
+      "max_quadrant_symmetric_auc": 0.515771,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_step_normal_concordance": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.546849,
+      "symmetric_auc": 0.546849,
+      "quadrant_symmetric_aucs": [
+        0.5266,
+        0.615775,
+        0.501213,
+        0.578921
+      ],
+      "max_quadrant_symmetric_auc": 0.615775,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_transtension_index": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.541361,
+      "symmetric_auc": 0.541361,
+      "quadrant_symmetric_aucs": [
+        0.517618,
+        0.502955,
+        0.504672,
+        0.555256
+      ],
+      "max_quadrant_symmetric_auc": 0.555256,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_kinematic_angle": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.445241,
+      "symmetric_auc": 0.554759,
+      "quadrant_symmetric_aucs": [
+        0.566477,
+        0.511787,
+        0.586426,
+        0.553111
+      ],
+      "max_quadrant_symmetric_auc": 0.586426,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_strain_shear_grad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.548528,
+      "symmetric_auc": 0.548528,
+      "quadrant_symmetric_aucs": [
+        0.535019,
+        0.514475,
+        0.535913,
+        0.530492
+      ],
+      "max_quadrant_symmetric_auc": 0.535913,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_strain_dil_grad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.568061,
+      "symmetric_auc": 0.568061,
+      "quadrant_symmetric_aucs": [
+        0.555393,
+        0.500763,
+        0.58903,
+        0.543051
+      ],
+      "max_quadrant_symmetric_auc": 0.58903,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_eq_log_prox": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.44926,
+      "symmetric_auc": 0.55074,
+      "quadrant_symmetric_aucs": [
+        0.527994,
+        0.559133,
+        0.509941,
+        0.525255
+      ],
+      "max_quadrant_symmetric_auc": 0.559133,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_eq_log_density_hp": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.504631,
+      "symmetric_auc": 0.504631,
+      "quadrant_symmetric_aucs": [
+        0.501677,
+        0.516069,
+        0.50954,
+        0.514164
+      ],
+      "max_quadrant_symmetric_auc": 0.516069,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_brittle_transtension": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.500239,
+      "symmetric_auc": 0.500239,
+      "quadrant_symmetric_aucs": [
+        0.506185,
+        0.501971,
+        0.500747,
+        0.52372
+      ],
+      "max_quadrant_symmetric_auc": 0.52372,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ptha_aseismic_strain_deficit": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.53289,
+      "symmetric_auc": 0.53289,
+      "quadrant_symmetric_aucs": [
+        0.511383,
+        0.514279,
+        0.502008,
+        0.521072
+      ],
+      "max_quadrant_symmetric_auc": 0.521072,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_therm_enthalpy_local": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.510284,
+      "symmetric_auc": 0.510284,
+      "quadrant_symmetric_aucs": [
+        0.535345,
+        0.527895,
+        0.56278,
+        0.510126
+      ],
+      "max_quadrant_symmetric_auc": 0.56278,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_blind_geotherm_excess": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.504213,
+      "symmetric_auc": 0.504213,
+      "quadrant_symmetric_aucs": [
+        0.52279,
+        0.517478,
+        0.544875,
+        0.514054
+      ],
+      "max_quadrant_symmetric_auc": 0.544875,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_upgrad_feeder_1p2km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.513676,
+      "symmetric_auc": 0.513676,
+      "quadrant_symmetric_aucs": [
+        0.544387,
+        0.529193,
+        0.577585,
+        0.501887
+      ],
+      "max_quadrant_symmetric_auc": 0.577585,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_feeder_step_coupling": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.522124,
+      "symmetric_auc": 0.522124,
+      "quadrant_symmetric_aucs": [
+        0.544229,
+        0.54248,
+        0.558604,
+        0.51443
+      ],
+      "max_quadrant_symmetric_auc": 0.558604,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_hydro_mag_destruct_clay": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.507928,
+      "symmetric_auc": 0.507928,
+      "quadrant_symmetric_aucs": [
+        0.508462,
+        0.506763,
+        0.508777,
+        0.5032
+      ],
+      "max_quadrant_symmetric_auc": 0.508777,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_cond_playa_res_grad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5239,
+      "symmetric_auc": 0.5239,
+      "quadrant_symmetric_aucs": [
+        0.515483,
+        0.519776,
+        0.506966,
+        0.503026
+      ],
+      "max_quadrant_symmetric_auc": 0.519776,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_grav_res_step_600m": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.523927,
+      "symmetric_auc": 0.523927,
+      "quadrant_symmetric_aucs": [
+        0.529025,
+        0.556544,
+        0.527924,
+        0.516891
+      ],
+      "max_quadrant_symmetric_auc": 0.556544,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_salem_tilt_depth_log": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.487546,
+      "symmetric_auc": 0.512454,
+      "quadrant_symmetric_aucs": [
+        0.512844,
+        0.502637,
+        0.518946,
+        0.504816
+      ],
+      "max_quadrant_symmetric_auc": 0.518946,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_intrabasin_mag_ratio": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.514606,
+      "symmetric_auc": 0.514606,
+      "quadrant_symmetric_aucs": [
+        0.516881,
+        0.512398,
+        0.513579,
+        0.514515
+      ],
+      "max_quadrant_symmetric_auc": 0.516881,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_geodawn_drape_diff": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.49174,
+      "symmetric_auc": 0.50826,
+      "quadrant_symmetric_aucs": [
+        0.500933,
+        0.518805,
+        0.501435,
+        0.530366
+      ],
+      "max_quadrant_symmetric_auc": 0.530366,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_geodawn_drape_grad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.525158,
+      "symmetric_auc": 0.525158,
+      "quadrant_symmetric_aucs": [
+        0.527046,
+        0.51608,
+        0.537057,
+        0.505643
+      ],
+      "max_quadrant_symmetric_auc": 0.537057,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_frangi_subsurface_joint": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.506093,
+      "symmetric_auc": 0.506093,
+      "quadrant_symmetric_aucs": [
+        0.504031,
+        0.515884,
+        0.516218,
+        0.511812
+      ],
+      "max_quadrant_symmetric_auc": 0.516218,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_frangi_topo_multiscale": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.569683,
+      "symmetric_auc": 0.569683,
+      "quadrant_symmetric_aucs": [
+        0.551673,
+        0.584021,
+        0.583957,
+        0.573666
+      ],
+      "max_quadrant_symmetric_auc": 0.584021,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_swarm_dep_log": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.55074,
+      "symmetric_auc": 0.55074,
+      "quadrant_symmetric_aucs": [
+        0.527994,
+        0.559133,
+        0.509941,
+        0.525255
+      ],
+      "max_quadrant_symmetric_auc": 0.559133,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_swarm_clustering_excess": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.512503,
+      "symmetric_auc": 0.512503,
+      "quadrant_symmetric_aucs": [
+        0.511627,
+        0.519486,
+        0.501774,
+        0.571359
+      ],
+      "max_quadrant_symmetric_auc": 0.571359,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_swarm_transtension_conduit": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.544506,
+      "symmetric_auc": 0.544506,
+      "quadrant_symmetric_aucs": [
+        0.525969,
+        0.503223,
+        0.500961,
+        0.532552
+      ],
+      "max_quadrant_symmetric_auc": 0.532552,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "hvdc_remanent_rtp_phase_disc": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.486403,
+      "symmetric_auc": 0.513597,
+      "quadrant_symmetric_aucs": [
+        0.507106,
+        0.509369,
+        0.52792,
+        0.519273
+      ],
+      "max_quadrant_symmetric_auc": 0.52792,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_cooper_theta_grav": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.507652,
+      "symmetric_auc": 0.507652,
+      "quadrant_symmetric_aucs": [
+        0.51314,
+        0.55069,
+        0.517616,
+        0.510931
+      ],
+      "max_quadrant_symmetric_auc": 0.55069,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_cooper_theta_rtp": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.521004,
+      "symmetric_auc": 0.521004,
+      "quadrant_symmetric_aucs": [
+        0.511272,
+        0.531927,
+        0.524452,
+        0.527528
+      ],
+      "max_quadrant_symmetric_auc": 0.531927,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_theta_phase_concordance": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.509983,
+      "symmetric_auc": 0.509983,
+      "quadrant_symmetric_aucs": [
+        0.501089,
+        0.540744,
+        0.503508,
+        0.512092
+      ],
+      "max_quadrant_symmetric_auc": 0.540744,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_poisson_demag_deficit": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.490204,
+      "symmetric_auc": 0.509796,
+      "quadrant_symmetric_aucs": [
+        0.503363,
+        0.514873,
+        0.523284,
+        0.50845
+      ],
+      "max_quadrant_symmetric_auc": 0.523284,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_grav_second_deriv_zero_crest": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.522771,
+      "symmetric_auc": 0.522771,
+      "quadrant_symmetric_aucs": [
+        0.525655,
+        0.547615,
+        0.538343,
+        0.547554
+      ],
+      "max_quadrant_symmetric_auc": 0.547615,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_grav_accommodation_saddle": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.527346,
+      "symmetric_auc": 0.527346,
+      "quadrant_symmetric_aucs": [
+        0.521202,
+        0.533317,
+        0.517537,
+        0.537402
+      ],
+      "max_quadrant_symmetric_auc": 0.537402,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_basement_accommodation_saddle": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.502069,
+      "symmetric_auc": 0.502069,
+      "quadrant_symmetric_aucs": [
+        0.504801,
+        0.503418,
+        0.505066,
+        0.50439
+      ],
+      "max_quadrant_symmetric_auc": 0.505066,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_basement_inflection_worm": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.521414,
+      "symmetric_auc": 0.521414,
+      "quadrant_symmetric_aucs": [
+        0.510395,
+        0.551247,
+        0.503212,
+        0.551129
+      ],
+      "max_quadrant_symmetric_auc": 0.551247,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_riedel_synthetic_dilation": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.573282,
+      "symmetric_auc": 0.573282,
+      "quadrant_symmetric_aucs": [
+        0.555831,
+        0.536968,
+        0.520111,
+        0.565505
+      ],
+      "max_quadrant_symmetric_auc": 0.565505,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_conjugate_intersection_mesh": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.547315,
+      "symmetric_auc": 0.547315,
+      "quadrant_symmetric_aucs": [
+        0.534452,
+        0.533411,
+        0.516634,
+        0.537307
+      ],
+      "max_quadrant_symmetric_auc": 0.537307,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_seismic_aseismic_transition": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.525499,
+      "symmetric_auc": 0.525499,
+      "quadrant_symmetric_aucs": [
+        0.506453,
+        0.501798,
+        0.523243,
+        0.524974
+      ],
+      "max_quadrant_symmetric_auc": 0.524974,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_geotherm_disequilibrium_local": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.513311,
+      "symmetric_auc": 0.513311,
+      "quadrant_symmetric_aucs": [
+        0.526803,
+        0.543214,
+        0.532397,
+        0.50005
+      ],
+      "max_quadrant_symmetric_auc": 0.543214,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_diseq_strike_conduit": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.512963,
+      "symmetric_auc": 0.512963,
+      "quadrant_symmetric_aucs": [
+        0.53664,
+        0.536835,
+        0.56304,
+        0.502389
+      ],
+      "max_quadrant_symmetric_auc": 0.56304,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_claycap_subsurface_baffle": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.510617,
+      "symmetric_auc": 0.510617,
+      "quadrant_symmetric_aucs": [
+        0.501683,
+        0.512192,
+        0.509974,
+        0.513475
+      ],
+      "max_quadrant_symmetric_auc": 0.513475,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_claycap_playa_baffle": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.53844,
+      "symmetric_auc": 0.53844,
+      "quadrant_symmetric_aucs": [
+        0.530775,
+        0.544855,
+        0.523827,
+        0.541809
+      ],
+      "max_quadrant_symmetric_auc": 0.544855,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "cpad_cover_concealment_prior": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.46305,
+      "symmetric_auc": 0.53695,
+      "quadrant_symmetric_aucs": [
+        0.535397,
+        0.516415,
+        0.581834,
+        0.535171
+      ],
+      "max_quadrant_symmetric_auc": 0.581834,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_p1_raw": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.683862,
+      "symmetric_auc": 0.683862,
+      "quadrant_symmetric_aucs": [
+        0.65445,
+        0.739793,
+        0.678131,
+        0.706179
+      ],
+      "max_quadrant_symmetric_auc": 0.739793,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_p1_sm2": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.687372,
+      "symmetric_auc": 0.687372,
+      "quadrant_symmetric_aucs": [
+        0.657839,
+        0.734905,
+        0.685181,
+        0.717265
+      ],
+      "max_quadrant_symmetric_auc": 0.734905,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_ray900m_max": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.688137,
+      "symmetric_auc": 0.688137,
+      "quadrant_symmetric_aucs": [
+        0.657179,
+        0.732691,
+        0.684998,
+        0.722279
+      ],
+      "max_quadrant_symmetric_auc": 0.732691,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_ray2km_max": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.678984,
+      "symmetric_auc": 0.678984,
+      "quadrant_symmetric_aucs": [
+        0.648705,
+        0.715445,
+        0.680203,
+        0.718328
+      ],
+      "max_quadrant_symmetric_auc": 0.718328,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_wash_bridge_1km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.68817,
+      "symmetric_auc": 0.68817,
+      "quadrant_symmetric_aucs": [
+        0.657546,
+        0.733727,
+        0.684548,
+        0.721802
+      ],
+      "max_quadrant_symmetric_auc": 0.733727,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_wash_bridge_2km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.680098,
+      "symmetric_auc": 0.680098,
+      "quadrant_symmetric_aucs": [
+        0.650157,
+        0.717491,
+        0.680758,
+        0.718486
+      ],
+      "max_quadrant_symmetric_auc": 0.718486,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_transverse_sharpness": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.667464,
+      "symmetric_auc": 0.667464,
+      "quadrant_symmetric_aucs": [
+        0.632607,
+        0.72265,
+        0.641176,
+        0.698474
+      ],
+      "max_quadrant_symmetric_auc": 0.72265,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_strike_anisotropy": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.556977,
+      "symmetric_auc": 0.556977,
+      "quadrant_symmetric_aucs": [
+        0.542959,
+        0.600103,
+        0.535958,
+        0.559295
+      ],
+      "max_quadrant_symmetric_auc": 0.600103,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_corridor_1p2km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.645526,
+      "symmetric_auc": 0.645526,
+      "quadrant_symmetric_aucs": [
+        0.624628,
+        0.664357,
+        0.655287,
+        0.686367
+      ],
+      "max_quadrant_symmetric_auc": 0.686367,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_full__ac_corridor_3km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.587845,
+      "symmetric_auc": 0.587845,
+      "quadrant_symmetric_aucs": [
+        0.587919,
+        0.58905,
+        0.559989,
+        0.618343
+      ],
+      "max_quadrant_symmetric_auc": 0.618343,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_p1_raw": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.584146,
+      "symmetric_auc": 0.584146,
+      "quadrant_symmetric_aucs": [
+        0.558342,
+        0.633655,
+        0.581074,
+        0.601037
+      ],
+      "max_quadrant_symmetric_auc": 0.633655,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_p1_sm2": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.588943,
+      "symmetric_auc": 0.588943,
+      "quadrant_symmetric_aucs": [
+        0.560078,
+        0.642255,
+        0.582874,
+        0.615373
+      ],
+      "max_quadrant_symmetric_auc": 0.642255,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_ray900m_max": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.590184,
+      "symmetric_auc": 0.590184,
+      "quadrant_symmetric_aucs": [
+        0.560529,
+        0.644631,
+        0.580959,
+        0.622484
+      ],
+      "max_quadrant_symmetric_auc": 0.644631,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_ray2km_max": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.59024,
+      "symmetric_auc": 0.59024,
+      "quadrant_symmetric_aucs": [
+        0.559092,
+        0.645893,
+        0.57647,
+        0.632564
+      ],
+      "max_quadrant_symmetric_auc": 0.645893,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_wash_bridge_1km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.589656,
+      "symmetric_auc": 0.589656,
+      "quadrant_symmetric_aucs": [
+        0.560756,
+        0.643699,
+        0.580483,
+        0.619525
+      ],
+      "max_quadrant_symmetric_auc": 0.643699,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_wash_bridge_2km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.589847,
+      "symmetric_auc": 0.589847,
+      "quadrant_symmetric_aucs": [
+        0.559988,
+        0.644715,
+        0.575801,
+        0.628219
+      ],
+      "max_quadrant_symmetric_auc": 0.644715,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_transverse_sharpness": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.566657,
+      "symmetric_auc": 0.566657,
+      "quadrant_symmetric_aucs": [
+        0.548397,
+        0.603853,
+        0.556336,
+        0.586315
+      ],
+      "max_quadrant_symmetric_auc": 0.603853,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_strike_anisotropy": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.507584,
+      "symmetric_auc": 0.507584,
+      "quadrant_symmetric_aucs": [
+        0.507317,
+        0.508365,
+        0.514809,
+        0.501799
+      ],
+      "max_quadrant_symmetric_auc": 0.514809,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_corridor_1p2km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.580281,
+      "symmetric_auc": 0.580281,
+      "quadrant_symmetric_aucs": [
+        0.553876,
+        0.632465,
+        0.553723,
+        0.625013
+      ],
+      "max_quadrant_symmetric_auc": 0.632465,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    },
+    "ac_rank_sub__ac_corridor_3km": {
+      "evidence_class": "HOLDOUT-DTI",
+      "statistic": "OOF auto-context feature-alone AUROC (not DTI)",
+      "auc": 0.553689,
+      "symmetric_auc": 0.553689,
+      "quadrant_symmetric_aucs": [
+        0.539006,
+        0.600547,
+        0.507036,
+        0.594052
+      ],
+      "max_quadrant_symmetric_auc": 0.600547,
+      "withheld_positive_pixels": 60988,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS"
+    }
+  }
+}

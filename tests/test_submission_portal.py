@@ -36,7 +36,7 @@ def load_card():
 
 
 def test_all_local_page_links_assets_and_fragments_resolve():
-    for name in ('index.html','docs/index.html','docs/s17-cpad.html','docs/s17-cpad-executive-summary.html','docs/s17-cdsc.html','docs/s17-cdsc-executive-summary.html','docs/s15-scgf.html','docs/s15-scgf-executive-summary.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
+    for name in ('index.html','docs/index.html','docs/s18-cwgr.html','docs/s18-cwgr-executive-summary.html','docs/olc91.html','docs/s17-cpad.html','docs/s17-cpad-executive-summary.html','docs/s17-cdsc.html','docs/s17-cdsc-executive-summary.html','docs/s15-scgf.html','docs/s15-scgf-executive-summary.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
         path=ROOT/name; parser=Page(); parser.feed(path.read_text())
         for href in parser.links:
             u=urlsplit(href)
@@ -223,7 +223,7 @@ def test_readiness_requires_all_independent_gates_not_just_format():
 
 
 def test_portal_render_is_reproducible():
-    names=['index.html','archive-results.html','archive-guide.html','archive-research.html','review-0a96aa96-home.html','assets/s16.css','assets/s16-support.png','assets/s17-support.png','s17-cpad.html','s17-cpad-executive-summary.html','s17-cdsc.html','s17-cdsc-executive-summary.html','s15-scgf.html','s15-scgf-executive-summary.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    names=['index.html','s18-cwgr.html','s18-cwgr-executive-summary.html','olc91.html','archive-results.html','archive-guide.html','archive-research.html','review-0a96aa96-home.html','assets/s16.css','assets/s16-support.png','assets/s17-support.png','assets/s18-support.png','s17-cpad.html','s17-cpad-executive-summary.html','s17-cdsc.html','s17-cdsc-executive-summary.html','s15-scgf.html','s15-scgf-executive-summary.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
     before={n:(ROOT/'docs'/n).read_bytes() for n in names}
     subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'

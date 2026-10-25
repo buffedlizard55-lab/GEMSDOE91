@@ -1,0 +1,70 @@
+{
+  "evidence_class": "BLIND-SGMC-CONTROL-DTI",
+  "caveat": "Off-catalogue USGS SGMC bedrock/concealed faults (>500 m from existing_faults.tif); independent geological sanity check, NOT HOLDOUT-DTI or ORGANIZER-CONFIRMED.",
+  "blind_sgmc_positive_pixels": 56822,
+  "scores": {
+    "gemsdoe32_r0": {
+      "evidence_class": "BLIND-SGMC-CONTROL-DTI",
+      "dti": 0.088516,
+      "tp": 4737.499,
+      "fp": 35580.405,
+      "fn": 52084.501,
+      "blind_sgmc_positive_pixels": 56822,
+      "emitted_dots": 37654
+    },
+    "s14_ptac_e2_legacy_artifact": {
+      "evidence_class": "BLIND-SGMC-CONTROL-DTI",
+      "dti": 0.070468,
+      "tp": 3852.561,
+      "fp": 42214.293,
+      "fn": 52969.439,
+      "blind_sgmc_positive_pixels": 56822,
+      "emitted_dots": 44000
+    },
+    "s16_pgrd": {
+      "evidence_class": "BLIND-SGMC-CONTROL-DTI",
+      "dti": 0.038501,
+      "tp": 2048.228,
+      "fp": 36659.342,
+      "fn": 54773.772,
+      "blind_sgmc_positive_pixels": 56822,
+      "emitted_dots": 37654
+    },
+    "cpad_e1": {
+      "evidence_class": "BLIND-SGMC-CONTROL-DTI",
+      "dti": 0.068585,
+      "tp": 3661.968,
+      "fp": 36014.07,
+      "fn": 53160.032,
+      "blind_sgmc_positive_pixels": 56822,
+      "emitted_dots": 37654
+    },
+    "cwgr_e1": {
+      "evidence_class": "BLIND-SGMC-CONTROL-DTI",
+      "dti": 0.065597,
+      "tp": 3501.246,
+      "fp": 36086.857,
+      "fn": 53320.754,
+      "blind_sgmc_positive_pixels": 56822,
+      "emitted_dots": 37654
+    },
+    "cwgr_e2": {
+      "evidence_class": "BLIND-SGMC-CONTROL-DTI",
+      "dti": 0.059458,
+      "tp": 3171.347,
+      "fp": 36227.722,
+      "fn": 53650.653,
+      "blind_sgmc_positive_pixels": 56822,
+      "emitted_dots": 37654
+    },
+    "cwgr_e3": {
+      "evidence_class": "BLIND-SGMC-CONTROL-DTI",
+      "dti": 0.045919,
+      "tp": 2445.22,
+      "fp": 36521.402,
+      "fn": 54376.78,
+      "blind_sgmc_positive_pixels": 56822,
+      "emitted_dots": 37654
+    }
+  }
+}

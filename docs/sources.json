@@ -104,13 +104,25 @@
   {
     "claim": "Session 14 label-blind verification: Band 10/16 positive swarm correlation; Salem tilt-depth distribution; B13-vs-B15 and B17-vs-B15 confounding; GDR thermal/blind-geothermometry cell counts and elevation bias",
     "source": "S14 in-repo forensic receipt (scripts/verify_s14_forensics.py)",
-    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/08009ce4-gemsdoe91/evidence/s14_hydrothermal_forensics.json",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/evidence/s14_hydrothermal_forensics.json",
     "verification": "Measured locally from SHA-pinned inputs without reading existing_faults.tif or dist_known_fault_px: r(log1p B10, log1p B16)=0.735476; R2(B13~B15)=0.458512; R2(B17~B15)=0.004954; 2,060 Hot/Warm cells and 212 non-Hot/Warm cells with geothermometry >=90 C."
   },
   {
     "claim": "S14-HVDC E2 measured result and unique range-safe GeoTIFF identity",
     "source": "S14 machine-readable run card",
-    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/08009ce4-gemsdoe91/docs/run-card-S14-HVDC.json",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/docs/run-card-S14-HVDC.json",
     "verification": "HOLDOUT-DTI 0.262209 [0.248940,0.275209], 60,988 withheld positives, paired delta +0.017608 vs S13 with CI [+0.009179,+0.026128]; Blind SGMC control 0.110429; not an organizer score. TIFF SHA-256 678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720 re-read and validated."
+  },
+  {
+    "claim": "External fleet PINN, dual-head LOQO HGB, and listric fault architecture descriptions (GEMSDOE36 0.2750 USER-REPORTED CLAIM, GEMSDOE70 0.2478 USER-REPORTED CLAIM, GEMSDOE92 negative)",
+    "source": "GitHub sibling fleet repositories (owner evidence, not organizer receipts)",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+    "verification": "Verified in-sandbox on 2026-10-25 via gh api repos/buffedlizard55-lab/GEMSDOE{32,36,70,92}/readme; scores remain USER-REPORTED CLAIMS without submission-page receipts."
+  },
+  {
+    "claim": "Session 18 S18-CWGR measured holdout, area-quota SAR-IPW ablation, 174x4 canaries, 108-raster novelty audit, and range-safe GeoTIFF identity",
+    "source": "Session 18 machine-readable run card (docs/run-card-S18-CWGR.json)",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/main/docs/run-card-S18-CWGR.json",
+    "verification": "Measured on 2026-10-25 via unchanged vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2, 60,988 withheld positives): cwgr_e1 HOLDOUT-DTI 0.188460 [0.169981, 0.206529] vs S17-CPAD E1 0.198183; area-quota cwgr_e2_quota37654 0.182717 > cwgr_e1_quota37654 0.180949 (3/4 folds); 46/46 non-calib external fleet 3-px dot overlap PASS (GEMSDOE32 R0 = 0.467201); TIFF SHA-256 5bbc888008da8bb08d07c48fcae4ee3eea395119a8f2728a1874ddf800608d56 verified by rasterio + tifffile; OK_TO_DOWNLOAD=true, OK_TO_SUBMIT=false."
   }
 ]

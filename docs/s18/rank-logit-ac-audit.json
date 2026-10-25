@@ -1,0 +1,92 @@
+{
+  "folds": [
+    {
+      "fold": 0,
+      "raw_quadrant_means": [
+        0.130184,
+        0.045472,
+        0.209469,
+        0.181662
+      ],
+      "standardized_quadrant_means": [
+        0.105886,
+        0.105886,
+        0.105886,
+        0.105886
+      ],
+      "standardized_quadrant_p95": [
+        0.268573,
+        0.268573,
+        0.268572,
+        0.268572
+      ],
+      "test_to_train_mean_ratio": 1.0
+    },
+    {
+      "fold": 1,
+      "raw_quadrant_means": [
+        0.114453,
+        0.090121,
+        0.118544,
+        0.172701
+      ],
+      "standardized_quadrant_means": [
+        0.105886,
+        0.105886,
+        0.105886,
+        0.105886
+      ],
+      "standardized_quadrant_p95": [
+        0.268573,
+        0.268573,
+        0.268572,
+        0.268572
+      ],
+      "test_to_train_mean_ratio": 1.0
+    },
+    {
+      "fold": 2,
+      "raw_quadrant_means": [
+        0.103938,
+        0.089764,
+        0.137611,
+        0.153378
+      ],
+      "standardized_quadrant_means": [
+        0.105886,
+        0.105886,
+        0.105886,
+        0.105886
+      ],
+      "standardized_quadrant_p95": [
+        0.268573,
+        0.268573,
+        0.268572,
+        0.268572
+      ],
+      "test_to_train_mean_ratio": 1.0
+    },
+    {
+      "fold": 3,
+      "raw_quadrant_means": [
+        0.154621,
+        0.086886,
+        0.114937,
+        0.181583
+      ],
+      "standardized_quadrant_means": [
+        0.105886,
+        0.105886,
+        0.105886,
+        0.105886
+      ],
+      "standardized_quadrant_p95": [
+        0.268573,
+        0.268573,
+        0.268572,
+        0.268572
+      ],
+      "test_to_train_mean_ratio": 1.0
+    }
+  ]
+}

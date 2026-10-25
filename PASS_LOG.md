@@ -88,3 +88,18 @@ File: docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9ac
   explicit (OK TO DOWNLOAD: YES — research only; OK TO SUBMIT: NO). The JSON run card has every
   protocol field. Every number is labelled. The README and site lead with the download. Sources
   are linked.
+
+## Session 18 `S18-CWGR` (2026-10-25, `arena/892fab6a-gemsdoe91`)
+
+* **Pass 1 — Implement & Verify (DONE):**
+  - Restored and SHA-256-verified all 15 manifest inputs + 65 comparison rasters (`108/108` entries in `registry/s18_comparison_inventory.json`, `0` missing on disk); verified `GEMSDOE32`, `GEMSDOE36`, `GEMSDOE70`, `GEMSDOE92`, and `drivendataorg/gems-prize-reference-solution` via `gh api`.
+  - Froze 4 ranked candidate geological hypotheses (`H18-1`..`H18-4`) in `docs/HYPOTHESES_S18_CWGR.md` (`sha256: c6d217d6711bdbbfb34540df7618effeff0522a7b9f5424abcd93424d6432eba`) before writing code.
+  - Implemented `src/gems91/cwgr18.py` (18 novel Freeman–Adelson steerable quadrature, Athy gravity silicification, and Basin-and-Range/Walker Lane Byerlee–Sibson fault-valve features; columns `0..14` verified `0.0` bitwise invariant to zeroing Bands 12 & 19) and `scripts/run_s18_cwgr.py`; executed all 3 preregistered arms (`cwgr_e1=0.188460`, `cwgr_e2=0.187910`, `cwgr_e3=0.164534`) + reproduced benchmarks (`cpad_e1=0.198183`, `incumbent_ptac_lb=0.194221`) + 3 fixed `37,654` area-quota controls (`cwgr_e2_quota37654=0.182717 > cwgr_e1_quota37654=0.180949` in `3/4` folds) on unchanged `vendor/gems57/evaluate_holdout.py`.
+  - Emitted and triple-validated `docs/downloads/gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.{tif,zip}` (`sha256: 5bbc888008da8bb08d07c48fcae4ee3eea395119a8f2728a1874ddf800608d56`) via unchanged `vendor/gems57/submission_writer.py`.
+* **Pass 2 — Review & Fix Bugs, Assumptions & Edge Cases (DONE):**
+  - Fixed steerable quadrature crest operator `(G_1^\phi, 0.78·G_2^\phi)`, explicit `cal_surf[~predict_mask] = 0.0` outside-mask zeroing, oblique `N18E` centerline kernel weighting (`K_anchor[3,3] = 2.35`), `<3.50 GB` single-band streaming memmap build, and Spearman `pre_reg` reuse in `compute_exhaustive_diagnostic_overlaps`.
+  - Fixed Stage-2 feature-count wording (`174`/`129`/`28`) in `run_s18_cwgr.py` & `docs/run-card-S18-CWGR.json`, added `raster_path` + `result`, repaired dead branch URLs in `docs/sources.json`, logged `IR-91-S18-01`..`04` in `IRREGULARITIES.md`, updated `LIMITATIONS_AND_NEXT_STEPS.md` and `SLOT_PLAN.md`, and expanded `tests/test_s18_cwgr.py` to 13 unit + edge-case + published-evidence tests.
+* **Pass 3 — Full End-to-End Re-verification Against Prompt (DONE):**
+  - Verified `README.md` (with preserved `<a id="full-project-brief"></a>`), `docs/index.html`, `docs/executive-summary.html`, `docs/s18-cwgr.html`, and `docs/s18-cwgr-executive-summary.html` make `OK TO DOWNLOAD: YES` and `OK TO SUBMIT: NO` (`NOT OK TO SUBMIT`) immediately obvious at the top.
+  - Re-ran full `pytest`, `check_artifact_policy.py`, `audit_downloads.py` (`diff -u`), `verify_current_artifact.py --with-data`, `verify_evidence.py`, `verify_s16.py --with-data`, `verify_s17.py --with-data`, `verify_s18.py --with-data`, `generate_submission.py --with-data`, `make demo`, `render_portal.py`, and real Chromium `153.0.8010.0` `tools/browser/smoke.cjs` (`0` errors, `0` WCAG 2.1 AA violations across 26 pages, `0` mobile overflow).
+

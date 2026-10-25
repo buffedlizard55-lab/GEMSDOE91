@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""Verify (default) or regenerate (--run) the current OLC91 candidate download.
+"""Verify (default) or regenerate (--run) the current S18-CWGR research candidate download.
 
-The default command re-reads the published GeoTIFF, recomputes its SHA-256, re-checks the
-submission format against the run card, and prints the automated verdict:
+The default command re-reads the published GeoTIFF and single-TIFF ZIP, recomputes
+all SHA-256 digests, re-checks single-band float32 [0, 1] grid/CRS/transform/nodata=None,
+re-audits holdout arithmetic, 174x4 leak canaries, and 108-raster novelty, and prints
+the fail-closed automated verdict:
 
-    python generate_submission.py            # verify docs/run-card-OLC91.json + its TIFF
-    python generate_submission.py --run      # rerun the frozen OLC91 experiment (needs data/)
-    python generate_submission.py --legacy-s16   # the historical S16 verifier
+    python generate_submission.py               # verify docs/run-card-S18-CWGR.json + its TIFF/ZIP
+    python generate_submission.py --with-data   # also re-verify pinned sample/catalogue collar
+    python generate_submission.py --run         # rerun frozen S18-CWGR pipeline (needs data/)
+    python generate_submission.py --legacy-s17  # verify historical S17-CPAD benchmark
+    python generate_submission.py --legacy-olc91 # verify historical OLC91 candidate
+    python generate_submission.py --legacy-s16  # verify historical S16 candidate
 
 Never create mock labels in data/official, read another submission as a feature,
 or describe random noise as a competition candidate. Tests use tools/make_fixture.py.
@@ -21,11 +26,38 @@ import subprocess
 import sys
 from pathlib import Path
 
-RUN_CARD = "docs/run-card-OLC91.json"
+RUN_CARD = "docs/run-card-S18-CWGR.json"
+OLC91_RUN_CARD = "docs/run-card-OLC91.json"
+
+
+def verify_s18_cwgr(root: Path, with_data: bool = False) -> dict:
+    sys.path[:0] = [str(root), str(root / "src")]
+    from scripts.verify_s18 import verify
+
+    rep = verify(with_data=with_data)
+    card = json.loads((root / RUN_CARD).read_text(encoding="utf-8"))
+    return {
+        "file": card["raster_path"],
+        "zip": f"docs/{card['artifact']['zip']}",
+        "sha256": rep["sha256"],
+        "zip_sha256": rep["zip_sha256"],
+        "format_ok": rep["format_pass"] and rep["evidence_consistent"],
+        "problems": [],
+        "submission_name": card["submission_name"],
+        "submission_note": card["note"],
+        "OK_TO_DOWNLOAD": "YES" if rep["ok_to_download"] else "NO",
+        "OK_TO_SUBMIT": "YES" if rep["ok_to_submit"] else "NO",
+        "ok_to_download": rep["ok_to_download"],
+        "ok_to_submit": rep["ok_to_submit"],
+        "holdout_dti": rep["holdout_dti"],
+        "holdout_ci95": rep["holdout_ci95"],
+        "blind_sgmc_control_dti": rep["blind_sgmc_control_dti"],
+        "why": [card["verdict_reason"]],
+    }
 
 
 def verify_olc91(root: Path) -> dict:
-    card = json.loads((root / RUN_CARD).read_text(encoding="utf-8"))
+    card = json.loads((root / OLC91_RUN_CARD).read_text(encoding="utf-8"))
     tif = root / card["raster"]["path"]
     sha = hashlib.sha256(tif.read_bytes()).hexdigest()
     problems = []
@@ -34,6 +66,7 @@ def verify_olc91(root: Path) -> dict:
     try:
         import numpy as np
         import rasterio
+
         with rasterio.open(tif) as ds:
             a = ds.read(1)
             if ds.count != 1 or ds.dtypes[0] != "float32":
@@ -65,17 +98,24 @@ def verify_olc91(root: Path) -> dict:
     }
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--run", action="store_true",
-                        help="Rerun the frozen OLC91 holdout + final build once; never uploads or selects a slot")
+    parser.add_argument(
+        "--run",
+        action="store_true",
+        help="Rerun the frozen S18-CWGR holdout + final build once; never uploads or selects a slot",
+    )
+    parser.add_argument("--legacy-s17", action="store_true", help="Run the S17-CPAD benchmark verifier instead")
+    parser.add_argument("--legacy-olc91", action="store_true", help="Run the historical OLC91 verifier instead")
     parser.add_argument("--legacy-s16", action="store_true", help="Run the historical S16 verifier instead")
-    parser.add_argument("--with-data", action="store_true", help="(legacy S16) also verify pinned sample/catalogue")
+    parser.add_argument("--with-data", action="store_true", help="Also verify pinned sample_submission.tif and existing_faults.tif")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
     sys.path[:0] = [str(root), str(root / "src")]
+
     if args.legacy_s16:
         from scripts.verify_s16 import verify
+
         try:
             report = verify(with_data=args.with_data)
         except (OSError, ValueError, KeyError) as exc:
@@ -83,17 +123,38 @@ def main():
             return 1
         print(json.dumps(report, indent=2, allow_nan=False))
         return 0
+
+    if args.legacy_s17:
+        from scripts.verify_s17 import verify
+
+        try:
+            report = verify(with_data=args.with_data)
+        except (OSError, ValueError, KeyError) as exc:
+            print(json.dumps({"status": "BLOCKED", "ok_to_submit": False, "error": str(exc)}))
+            return 1
+        print(json.dumps(report, indent=2, allow_nan=False))
+        return 0
+
+    if args.legacy_olc91:
+        try:
+            report = verify_olc91(root)
+        except (OSError, ValueError, KeyError) as exc:
+            print(json.dumps({"status": "BLOCKED", "OK_TO_SUBMIT": "NO", "error": str(exc)}))
+            return 1
+        print(json.dumps(report, indent=2))
+        return 0 if report["format_ok"] else 1
+
     if args.run:
-        for step in (["holdout", "--seed", "20"], ["final", "--arm", "E1"]):
-            rc = subprocess.call([sys.executable, str(root / "scripts" / "run_olc91.py"), *step], cwd=root)
-            if rc:
-                parser.exit(rc, "run_olc91 failed (the writer refuses to overwrite an existing TIFF)\n")
+        rc = subprocess.call([sys.executable, str(root / "scripts" / "run_s18_cwgr.py")], cwd=root)
+        if rc:
+            parser.exit(rc, "run_s18_cwgr failed\n")
+
     try:
-        report = verify_olc91(root)
+        report = verify_s18_cwgr(root, with_data=args.with_data)
     except (OSError, ValueError, KeyError) as exc:
-        print(json.dumps({"status": "BLOCKED", "OK_TO_SUBMIT": "NO", "error": str(exc)}))
+        print(json.dumps({"status": "BLOCKED", "OK_TO_SUBMIT": "NO", "ok_to_submit": False, "error": str(exc)}))
         return 1
-    print(json.dumps(report, indent=2))
+    print(json.dumps(report, indent=2, allow_nan=False))
     return 0 if report["format_ok"] else 1
 
 

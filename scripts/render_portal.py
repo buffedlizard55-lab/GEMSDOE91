@@ -630,6 +630,10 @@ def render():
     # OLC91 (2026-10-25, later session) supersedes GEO91 as the current entry point.
     from scripts.render_olc91_portal import render as render_olc91
     render_olc91()
+    # S18-CWGR (2026-10-25, Session 18) supersedes OLC91 as the current entry point,
+    # archiving OLC91 cleanly at docs/olc91.html while rendering S18-CWGR pages.
+    from scripts.render_s18_portal import render as render_s18_cwgr
+    render_s18_cwgr()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 

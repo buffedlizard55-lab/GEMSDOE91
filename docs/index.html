@@ -1,76 +1,90 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Download the current GeoTIFF · GEMSDOE91 OLC91</title>
-<meta name="description" content="One-click download of the current format-validated GeoTIFF with an automated, plain-language verdict on whether it may be submitted.">
+<title>Download the current GeoTIFF · GEMSDOE91 S18-CWGR</title>
+<meta name="description" content="One-click download of the freshly computed S18-CWGR single-band [0, 1] GeoTIFF with fail-closed automated submission gates.">
 <style>
-:root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
+:root{--ink:#12211d;--mut:#425650;--ok:#145c47;--bad:#942424;--line:#d5e0db;--bg:#f6faf8}
 *{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
-.wrap{max-width:1020px;margin:0 auto;padding:20px}a{color:var(--ok)}
-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
-nav a{margin-right:14px;text-decoration:none;font-weight:600}.logo{font-weight:800;font-size:20px}
-.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.hero>*{min-width:0}@media(max-width:820px){.hero{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;overflow-x:auto}
-.dl{border:2px solid var(--ok)}h1{font-size:32px;line-height:1.15;margin:.2em 0}
-.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}
-.badge.bad{background:#f7e4e4;color:var(--bad)}.small{color:var(--mut);font-size:14px}
-.button{display:block;text-align:center;background:var(--ok);color:#fff;text-decoration:none;padding:14px;border-radius:10px;font-weight:800;font-size:17px;margin:12px 0}
-.btn2{display:inline-block;border:1px solid var(--ok);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;margin:2px}
-.status{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:7px 0}
+.wrap{max-width:1060px;margin:0 auto;padding:20px}a{color:var(--ok)}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+nav{display:flex;flex-wrap:wrap;gap:12px}nav a{text-decoration:none;font-weight:600}.logo{font-weight:800;font-size:20px;text-decoration:none;color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.hero>*{min-width:0}@media(max-width:840px){.hero{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:18px 0;overflow-x:auto}
+.hero .card{margin:0}.dl{border:2px solid var(--ok)}h1{font-size:30px;line-height:1.18;margin:.25em 0}h2{font-size:21px;margin:0 0 10px}h3{font-size:17px;margin:12px 0 6px}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#dff0e8;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}
+.badge.bad{background:#f7e2e2;color:var(--bad)}.small{color:var(--mut);font-size:14px}
+.button{display:block;text-align:center;background:var(--ok);color:#fff;text-decoration:none;padding:13px;border-radius:10px;font-weight:800;font-size:16px;margin:12px 0}
+.btn2{display:inline-block;border:1px solid var(--ok);padding:7px 11px;border-radius:8px;text-decoration:none;font-weight:700;margin:3px 4px 3px 0;font-size:14px}
+.status{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:7px 0;font-size:14px}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
-textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{margin:22px 0}code{font-size:12px;word-break:break-all}
-.warn{background:#fdf3e3;border:1px solid #e6cf9a;border-radius:10px;padding:12px}
+textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px;padding:6px;border:1px solid var(--line);border-radius:6px}
+code{font-size:12px;word-break:break-all}.warn{background:#fdf2e2;border:1px solid #e3c891;border-radius:10px;padding:12px}
+img.preview{max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;display:block}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line)}
 </style></head><body><div class="wrap">
-<header><span class="logo">GEMSDOE91 · Fault Discovery Lab</span>
-<nav aria-label="Main"><a href="index.html">Current candidate</a><a href="s17-cpad.html"><strong>S17-CPAD (0.1982 LB-DTI · #1)</strong></a><a href="s17-cpad-executive-summary.html">S17-CPAD guide</a><a href="executive-summary.html">Executive summary &amp; how to submit</a><a href="research.html">Research archive</a><a href="archive-results.html">Historical archive</a></nav></header>
-
+<header><a class="logo" href="index.html">GEMSDOE91 · Fault Discovery Lab</a><nav aria-label="Main"><a href="index.html">Current candidate (S18-CWGR)</a><a href="executive-summary.html">Executive summary &amp; submit guide</a><a href="s18-cwgr.html">S18-CWGR audit</a><a href="s17-cpad.html"><strong>S17-CPAD (0.1982 LB-DTI · #1)</strong></a><a href="s17-cpad-executive-summary.html">S17-CPAD guide</a><a href="olc91.html">OLC91</a><a href="research.html">Sources &amp; S16</a><a href="archive-results.html">Historical archive</a></nav></header>
 <main id="main">
 <div class="hero">
 <div>
 <span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span><span class="badge bad">OK TO SUBMIT: NO</span>
-<h1>New GeoTIFF: download it, but do not submit it.</h1>
-<p class="small">This is the OLC91 session file (2026-10-25). It is computed fresh from the official GeoDAWN feature bands and validated automatically from its written bytes, with no human image inspection. Two automated gates stop it, which makes it <strong>NOT OK TO SUBMIT</strong>.</p>
+<h1>Fresh S18-CWGR GeoTIFF: safe to download, do not submit to DrivenData.</h1>
+<p class="small">Session 18 (<code>S18-CWGR</code>, completed 2026-10-25 19:40:09 UTC) freshly computed <code>gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.tif</code> from the 19 official GeoDAWN geophysical/topographic bands and open GDR thermal/geothermometry tables on canonical 80-px buffered label-blind spatial quadrants. Zero prior submission rasters were used as features, and validation is 100% programmatic with zero human image inspection. Fail-closed science and literal registry gates make it <strong>NOT OK TO SUBMIT</strong>.</p>
 <ol class="small">
-<li><strong>Holdout science:</strong> the new idea, strike-coherent line support (E1), scored 0.0832 HOLDOUT-DTI against 0.0853 for the incumbent recipe (E0) on identical folds. The paired difference is −0.0021 with 95% CI [−0.0045, +0.0002], and E1 lost in all 4 folds.</li>
-<li><strong>Uniqueness:</strong> 76.8% of its dots lie within 3 px of a prior GEMSDOE91 file (<code>gems91-bhar-e3</code>; 71.8% after chance correction). The protocol limit is 70%.</li>
+<li><strong>Range-safe format &amp; leakage canaries (PASS):</strong> single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730×3292</code>, <code>nodata=None</code>, all 12,279,160 cells finite in <code>[0, 1]</code> (exact binary <code>{0.0, 1.0}</code>, 37,654 positive dots, 0 on mapped catalogue, min collar 3.16228 px). All 174 single-feature leakage canaries passed across all 4 quadrants (max pooled symmetric AUC <code>0.688170</code> &le; 0.90).</li>
+<li><strong>Holdout science (FAIL — honest negative):</strong> winning arm <code>cwgr_e1</code> scored <strong><code>0.188460</code> HOLDOUT-DTI</strong> (95% CI <code>[0.169981, 0.206529]</code>) vs repo strict label-blind #1 <code>cpad_e1 = 0.198183</code> (paired &Delta; <code>-0.009723</code>, 95% CI <code>[-0.015477, -0.003909]</code>). Fixed 37,654 area-quota controls (<code>IR-91-S18-02</code>) proved SAR IPW (<code>cwgr_e2_quota37654 = 0.182717</code>) beat unweighted SCAR (<code>cwgr_e1_quota37654 = 0.180949</code>) in 3 of 4 folds (+0.001768), isolating the global regression to marginal rank-logit standardization erasing true NE quadrant fault-density prevalence.</li>
+<li><strong>Fleet novelty (108-raster audit):</strong> passed <strong>108/108</strong> pre-placement Spearman surface checks (max |&rho;| = <code>0.2194</code> &le; 0.90) and <strong>46/46</strong> real competitive external fleet submissions on 3-px dot overlap (max <code>0.5397</code>; <code>GEMSDOE32 R0</code> overlap = <strong><code>0.4672</code></strong> &le; 0.70; <code>cwgr_e3</code> = <code>0.3647</code>), then halted fail-closed at item #48 <code>calib_h28ridge_01839.tif</code> (69,281-dot ridge calibration probe, <code>0.7150</code> &gt; 0.70).</li>
 </ol>
-<p class="small"><strong>Why 0.2778 leads (user-reported, no organizer receipt):</strong> the GEMSDOE32 file is a dotted, catalogue-blind lineament network (h16-1 ridges → h19-5 → 44,090 dots) with every dot within 2 px of a mapped fault deleted. 70% of its dots are more than 1 km from any mapped fault. The full analysis is in <a href="HYPOTHESES_OLC91.md">HYPOTHESES_OLC91.md</a>.</p>
 </div>
 
-<div class="card dl" data-submission-ready="false" aria-label="Download current file">
-<strong>CURRENT FILE · OLC91-E1</strong>
+<div class="card dl" data-submission-ready="false" aria-label="Download current S18-CWGR file">
+<strong>CURRENT FILE · S18-CWGR (CWGR_E1)</strong>
 <div class="status"><span>OK to download</span><strong>YES — research only</strong></div>
 <div class="status"><span>OK to submit</span><strong style="color:var(--bad)">NO</strong></div>
-<div class="status"><span>Values in [0,1], no NaN/Inf</span><strong>PASS</strong></div>
+<div class="status"><span>Values in [0,1], no NaN/Inf, nodata=None</span><strong>PASS · 37,654 dots</strong></div>
 <div class="status"><span>CRS / shape / transform</span><strong>PASS · EPSG:32611</strong></div>
-<div class="status"><span>Dots on mapped faults</span><strong>0 · min distance 2.24 px</strong></div>
-<div class="status"><span>Holdout vs incumbent</span><strong style="color:var(--bad)">FAIL · −0.0021</strong></div>
-<div class="status"><span>Registry uniqueness</span><strong style="color:var(--bad)">STOP · 76.8% &gt; 70%</strong></div>
-<a class="button" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">↓ Download GeoTIFF</a>
-<a class="btn2" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip">↓ Single-TIFF ZIP</a>
-<a class="btn2" href="run-card-OLC91.json">Machine run card ↗</a>
-<p class="small">37,654 binary dots · 1 band float32 · 3730×3292 · all 12,279,160 cells finite in [0,1], 0 outside the footprint · SHA-256<br><code>35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc</code></p>
+<div class="status"><span>Dots on mapped faults</span><strong>0 · min collar 3.16228 px</strong></div>
+<div class="status"><span>Holdout vs S17-CPAD E1</span><strong style="color:var(--bad)">FAIL · -0.009723</strong></div>
+<div class="status"><span>External non-calib fleet overlap</span><strong>PASS · 46/46 (max 54.0%)</strong></div>
+<div class="status"><span>Literal 108-raster Rule-1 gate</span><strong style="color:var(--bad)">STOP · #48 calib probe 71.5%</strong></div>
+<a class="button" download href="downloads/gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.tif">↓ Download Current S18-CWGR GeoTIFF</a>
+<a class="btn2" download href="downloads/gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733-zeros.zip">↓ Single-TIFF ZIP</a>
+<a class="btn2" href="run-card-S18-CWGR.json">Machine run card ↗</a>
+<a class="btn2" href="s18-cwgr.html">Full S18-CWGR audit ↗</a>
+<a class="btn2" href="executive-summary.html">How to submit ↗</a>
+<p class="small">145,655 bytes (.tif) · 112,059 bytes (.zip) · 1 band float32 · 3730×3292 · SHA-256<br><code>5bbc888008da8bb08d07c48fcae4ee3eea395119a8f2728a1874ddf800608d56</code></p>
 </div></div>
 
-<section class="card"><h2>Submission identity (recorded, not an instruction to upload)</h2>
-<label class="small" for="nm">Submission name</label><textarea id="nm" rows="2" readonly>gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67</textarea>
-<label class="small" for="nt">Note · 107/140 characters</label><textarea id="nt" rows="2" readonly>GEMSDOE91 OLC91 E1: PU posterior x 1.1km strike-coherent line support, 37654 3px dots, 2px catalogue collar</textarea>
-<p class="warn"><strong>NOT OK TO SUBMIT.</strong> The format gates pass, but the holdout gate fails and the uniqueness gate stops it. No weekly slot was used. Slot selection belongs to the separate selector.</p></section>
+<section class="card"><h2>Submission identity (recorded for audit, not an upload instruction)</h2>
+<label class="small" for="nm">Unique submission name (48 chars)</label>
+<textarea id="nm" rows="2" readonly>gems91-s18-cwgr-e1-20261025T193926Z-5be5918b5733</textarea>
+<label class="small" for="nt">Submission note · 121 / 140 characters</label>
+<textarea id="nt" rows="2" readonly>S18-CWGR (cwgr_e1): Freeman-Adelson quadrature &amp; Byerlee-Sibson tri-spec; 37654 dots; research artifact, slot unapproved.</textarea>
+<p class="warn"><strong>NOT OK TO SUBMIT.</strong> Technical format and 46/46 competitive external fleet novelty pass, but strict holdout comparison vs <code>S17-CPAD E1</code> is negative (<code>-0.009723</code>), literal Rule-1 stopped at 69,281-dot calibration probe <code>calib_h28ridge_01839.tif</code>, and 0 weekly DrivenData slots were approved or spent.</p></section>
 
-<section class="card"><h2>Automated gates</h2>
-<table><tr><th>Gate</th><th>Verdict</th><th>Evidence</th></tr>
-<tr><td>Format &amp; [0,1] range</td><td><span class="badge">PASS</span></td><td>Reopened from disk: 0 NaN, 0 Inf, min 0, max 1, nodata unset, exact transform match with <code>sample_submission.tif</code>; vendor gems57 validator <code>all_checks_passed: true</code>.</td></tr>
-<tr><td>Leakage canary</td><td><span class="badge">PASS</span></td><td>Each of 38 input features was tested alone. Worst symmetric AUC is 0.601 (<code>grad_det_elev_slope</code>), under the 0.90 limit.</td></tr>
-<tr><td>Holdout (HOLDOUT-DTI, <code>gems57-pooled-hide-v2</code>, 11,321 withheld px / 606 components)</td><td><span class="badge bad">FAIL — negative</span></td><td>E1 0.0832 [0.0669, 0.1005] · E0 0.0853 [0.0687, 0.1023] · random floor 0.0432 [0.0377, 0.0485]. Not comparable with v1.0 numbers such as S14-PTAC 0.267782, or with leaderboard scores.</td></tr>
-<tr><td>Uniqueness before placement (surface)</td><td><span class="badge">PASS</span></td><td>Max |Spearman| 0.216 against 90 unique registry rasters (7 local, 62 fleet at 60GEMSDOE@02563d07, and this repo's downloads).</td></tr>
-<tr><td>Uniqueness after placement (dots)</td><td><span class="badge bad">DUPLICATE-STOP</span></td><td>11 non-blanket rasters exceed 70% within 3 px; the highest is 76.8% (<code>gems91-bhar-e3</code>). The three blanket lattices are reported both literally and chance-corrected; none were dropped.</td></tr>
-<tr><td>Slot selection</td><td><span class="badge bad">BLOCKED</span></td><td>No selector approval and no organizer receipt. This session never selects submissions.</td></tr></table></section>
+<section class="card"><h2>Automated fail-closed gate summary</h2>
+<table>
+<thead><tr><th>Gate</th><th>Verdict</th><th>Measured receipt</th></tr></thead>
+<tbody>
+<tr><td>Format &amp; strict <code>[0, 1]</code> range</td><td><span class="badge">PASS</span></td><td>Decoded independently via <code>rasterio</code> + <code>tifffile</code>: 1 band <code>float32</code>, <code>3730×3292</code>, <code>EPSG:32611</code>, <code>nodata=None</code>, 0 NaN/Inf anywhere, min <code>0.0</code>, max <code>1.0</code>, 0 outside footprint, 0 on mapped catalogue; eliminates <code>"Predicted values must be in range [0, 1]"</code>.</td></tr>
+<tr><td>Rule 4 single-feature leakage canaries</td><td><span class="badge">PASS</span></td><td>All 174 Stage-1 + Stage-2 features tested individually across all 4 spatial folds; max pooled symmetric AUC = <code>0.688170</code>, max quadrant AUC = <code>0.739793</code> (&le; 0.90); CWGR subsurface cols <code>0..14</code> bitwise invariant to zeroing Bands 12 &amp; 19 (<code>max_diff = 0.0</code>).</td></tr>
+<tr><td>Holdout DTI (<code>HOLDOUT-DTI</code>, <code>gems57-pooled-hide-v2</code>, 60,988 px)</td><td><span class="badge bad">FAIL — negative</span></td><td><code>cwgr_e1 = 0.188460</code> [<code>0.169981</code>, <code>0.206529</code>] vs <code>cpad_e1 = 0.198183</code> (&Delta; <code>-0.009723</code>) and <code>incumbent_ptac_lb = 0.194221</code> (&Delta; <code>-0.005761</code>). Beats all label-blind analytic baselines (<code>ced91 = 0.070886</code>, <code>s16_pgrd = 0.069397</code>, <code>gravity_control = 0.057905</code>) by +0.1176 to +0.1306.</td></tr>
+<tr><td>Pre-placement surface novelty (108 rasters)</td><td><span class="badge">PASS</span></td><td>108/108 rasters in <code>registry/s18_comparison_inventory.json</code> passed <code>|Spearman &rho;| &le; 0.90</code> across all 5,167,373 footprint pixels (max <code>0.219355</code>).</td></tr>
+<tr><td>Post-placement 3-px dot overlap (108 rasters)</td><td><span class="badge bad">DUPLICATE-STOP (#48)</span></td><td>Passed <strong>46/46</strong> non-calibration external fleet submissions (<code>GEMSDOE32 R0 = 0.4672</code>, <code>GEMSDOE36 = 0.4227</code>, max <code>0.5397</code> on <code>GEMSDOE27</code>) + <code>calib_d15_02477</code>; halted at #48 <code>calib_h28ridge_01839.tif</code> (69,281 dots, <code>0.7150</code> &gt; 0.70).</td></tr>
+<tr><td>Weekly DrivenData slot selector</td><td><span class="badge bad">BLOCKED</span></td><td><code>slots_used = 0</code>, <code>selector_approval = false</code>, <code>ORGANIZER-CONFIRMED = null</code>.</td></tr>
+</tbody></table></section>
 
-<section class="card"><h2>What the session learned</h2>
-<p class="small">PU gradient boosting on the 19 official bands lands its dots in the same 15–25% of the footprint every time. Eleven earlier lanes overlap this file by more than 70%. A new file therefore needs a genuinely new <em>information source</em>, not another model on the same stack. Live evidence also shows that new faults are depleted near mapped faults: proximity lanes scored below uniform random, and dots 1–2 px from the catalogue earned about zero. Hide-and-recover splits put 55% of hidden truth within 1 km of visible faults, so they over-reward proximity. See <a href="executive-summary.html">the executive summary</a> and <a href="HYPOTHESES_OLC91.md">the preregistration and results</a>.</p>
-<p class="small">Evidence files: <a href="olc91/holdout-seed20.json">holdout-seed20.json</a> · <a href="olc91/final-E1.json">final-E1.json</a> (registry comparisons) · parallel and previous sessions: <a href="s17-cpad.html"><strong>S17-CPAD (0.198183 LB HOLDOUT-DTI)</strong></a> · <a href="run-card-XG91.json">XG91 run card</a> · <a href="s17-cdsc.html">S17-CDSC</a> · <a href="s17-cgrd.html">S17-CGRD</a> · <a href="run-card-GEO91.json">GEO91 run card</a>.</p>
-<p class="small"><strong>Session 17 S17-CPAD E1 research GeoTIFF (0.198183 HOLDOUT-DTI at 37,654 binary dots on canonical <code>gems57-pooled-hide-v2</code> — OK TO DOWNLOAD: YES · OK TO SUBMIT: NO, NOT OK TO SUBMIT):</strong> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a> <a class="btn2" href="s17-cpad.html">Full S17-CPAD Audit ↗</a> <a class="btn2" href="s17-cpad-executive-summary.html">S17-CPAD Guide ↗</a> <a class="btn2" href="run-card-S17-CPAD.json">S17-CPAD Run Card ↗</a></p>
-<p class="small"><strong>Other parallel-session research downloads (all NOT OK TO SUBMIT, each with its own run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>).</p>
+<section class="card"><h2>Pooled Holdout DTI &amp; Blind SGMC Control across all evaluated arms</h2>
+<p class="small">All numbers below are strictly labelled <code>HOLDOUT-DTI</code> (unchanged <code>vendor/gems57/evaluate_holdout.py</code>, <code>gems57-pooled-hide-v2</code>, 60,988 withheld pixels, 161 clusters, 1,000 paired bootstrap draws) or post-hoc <code>BLIND-SGMC-CONTROL-DTI</code> (56,822 USGS DS-1052 bedrock fault pixels &gt;500 m from <code>existing_faults.tif</code>, never used in training/tuning). None are live DrivenData scores.</p>
+<table>
+<thead><tr><th>Arm</th><th>HOLDOUT-DTI</th><th>95% Bootstrap CI</th><th>Paired &Delta; vs S17-CPAD E1</th><th>BLIND-SGMC-CONTROL-DTI</th></tr></thead>
+<tbody><tr><td><code>cpad_e1</code> — S17-CPAD E1 (repo label-blind #1 benchmark)</td><td><strong>0.198183</strong></td><td>[0.177759, 0.217830]</td><td>—</td><td>0.068585</td></tr><tr><td><code>incumbent_ptac_lb</code> — INCUMBENT-PTAC-LB (S14 label-blind replay)</td><td><strong>0.194221</strong></td><td>[0.173855, 0.213233]</td><td>—</td><td>—</td></tr><tr><td><code>cwgr_e1</code> — S18-CWGR E1 (unweighted SCAR Tri-Specialist · current)</td><td><strong>0.188460</strong></td><td>[0.169981, 0.206529]</td><td>-0.009723 [-0.015477, -0.003909]</td><td>0.065597</td></tr><tr><td><code>cwgr_e2</code> — S18-CWGR E2 (Bekker–Davis SAR IPW Tri-Specialist)</td><td><strong>0.187910</strong></td><td>[0.169111, 0.206425]</td><td>—</td><td>0.059458</td></tr><tr><td><code>cwgr_e3</code> — S18-CWGR E3 (unmapped posterior (1 − 0.65·ê) Bayes factor)</td><td><strong>0.164534</strong></td><td>[0.147003, 0.181264]</td><td>—</td><td>0.045919</td></tr><tr><td><code>ced91</code> — CED91 (unsupervised baseline)</td><td><strong>0.070886</strong></td><td>[0.058862, 0.082984]</td><td>—</td><td>—</td></tr><tr><td><code>s16_pgrd</code> — S16-PGRD (analytic baseline)</td><td><strong>0.069397</strong></td><td>[0.058335, 0.081962]</td><td>—</td><td>0.038501</td></tr><tr><td><code>gravity_control</code> — Gravity-Theta control</td><td><strong>0.057905</strong></td><td>[0.049814, 0.066574]</td><td>—</td><td>—</td></tr><tr><td><code>cwgr_e2_quota37654</code> — S18-CWGR E2 (fixed 37,654 area-quota control · IR-91-S18-02)</td><td>0.182717</td><td>[0.162911, 0.202089]</td><td>Quota ablation</td><td>—</td></tr><tr><td><code>cwgr_e1_quota37654</code> — S18-CWGR E1 (fixed 37,654 area-quota control · IR-91-S18-02)</td><td>0.180949</td><td>[0.161200, 0.199986]</td><td>Quota ablation</td><td>—</td></tr><tr><td><code>cwgr_e3_quota37654</code> — S18-CWGR E3 (fixed 37,654 area-quota control · IR-91-S18-02)</td><td>0.164957</td><td>[0.146267, 0.182850]</td><td>Quota ablation</td><td>—</td></tr></tbody>
+</table></section>
+
+<section class="card"><h2>Why GEMSDOE32 leads the fleet (0.2778 USER-REPORTED CLAIM) &amp; key Session 18 findings</h2>
+<p class="small"><strong>GEMSDOE32 forensic summary:</strong> <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> (<code>0.2778</code> USER-REPORTED CLAIM; public leaderboard #1 <code>xiaofanhu = 0.4413</code> observed 2026-10-25, distinct from earlier <code>0.3195</code> snapshot) converts a dense 121,131-px multi-physics Hessian/tilt crest network (<code>h19-5</code>, <code>0.1922</code> USER-REPORTED) into 44,090 sparse 2.8-px-spaced dots (<code>0.2600</code>, exploiting DTI's asymmetric &alpha;=0.2 FP weight vs 300-m triangular recall kernel) and prunes 6,436 mapped-catalogue-adjacent dots within 2.0 px to reach <strong>37,654 binary dots</strong> (<code>0.2778</code>; <code>BLIND-SGMC-CONTROL-DTI = 0.088516</code>). Full algebraic inversion and how to beat it are in <a href="executive-summary.html">the executive summary</a> and <a href="HYPOTHESES_S18_CWGR.md">HYPOTHESES_S18_CWGR.md</a>.</p>
+<p class="small"><strong>Session 17 S17-CPAD E1 benchmark download (0.198183 HOLDOUT-DTI — repo #1 label-blind benchmark, OK TO DOWNLOAD: YES · OK TO SUBMIT: NO, NOT OK TO SUBMIT):</strong> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a> <a class="btn2" href="s17-cpad.html">Full S17-CPAD Audit ↗</a> <a class="btn2" href="s17-cpad-executive-summary.html">S17-CPAD Guide ↗</a> <a class="btn2" href="run-card-S17-CPAD.json">S17-CPAD Run Card ↗</a></p>
+<p class="small"><strong>Other research downloads (all NOT OK TO SUBMIT, each with its own verified run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">OLC91 E1</a> (<a href="olc91.html">page</a>, <a href="run-card-OLC91.json">run card</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>) · <a href="download-audit.html">All 81 downloads safety audit</a>.</p>
 </section>
 </main>
-<footer class="small">Maximize P(Win) · Own the Outcome · 1 of 3 experiments used · 0 competition slots spent · every number is labelled HOLDOUT-DTI or USER-REPORTED; nothing here is ORGANIZER-CONFIRMED.</footer>
+<footer class="small">Maximize P(Win) · Own the Outcome · 3 of 3 S18 experiments used · 0 competition slots spent · every metric is explicitly labelled HOLDOUT-DTI, BLIND-SGMC-CONTROL-DTI, or USER-REPORTED CLAIM; ORGANIZER-CONFIRMED is null.</footer>
 </div></body></html>
