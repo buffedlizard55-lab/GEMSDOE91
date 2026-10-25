@@ -1,19 +1,20 @@
-> **NEW UNIQUE SUBMISSION 2026-10-25: S18-UNIQUE — 20,000-dot basin-stripped Bouguer curvature × RTP gradient (playa-gated) — OK TO DOWNLOAD: YES — FORMAT-CERTIFIED — See [Executive Summary: How to Submit](docs/s18-unique-executive-summary.html) for exact upload steps and `Predicted values must be in range [0, 1]` fix.** TIF SHA256 `af01bc71…f892bb6`, 20,000 dots, EPSG:32611 3730×3292, all-finite [0,1], 2.83 px catalogue collar, real-raster uniqueness 22.6% vs R0 (<70%) PASS. **OK TO SUBMIT: NO — RESEARCH DEMO** (holdout pending GPU, selector must check weekly slot). [Download TIF](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif) · [ZIP](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip) · [Run Card](docs/run-card-S18-UNIQUE.json) · [5 Ranked Hypotheses](docs/HYPOTHESES_S18_UNIQUE.md)
+# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/e649e460-gemsdoe91`)
 
-# GEMSDOE91 — repository status (`arena/bb27ae93-gemsdoe91`)
-## Merged historical review (`arena/19912231-gemsdoe91`)
+> **Current disposition: NEGATIVE / BLOCKED. Existing OLC91 TIFF: OK TO DOWNLOAD — RESEARCH ONLY; OK TO SUBMIT — NO.** This checkout has no assigned method paragraph; no experiment, new TIFF, score, or slot was produced. Its local authorized-data inputs are absent. [Three-pass current review](docs/REVIEW-ACTIVE-E649E460-20261025.md) · [Run card](docs/run-card-E649E460-20261025.json) · [research download page](docs/index.html) · [submission guide](docs/executive-summary.html).
+>
+> **Integrated fail-closed experiment preflight:** `python generate_submission.py --preflight` was rerun here. It returned **BLOCKED**, with no assignment and no local `sample_submission.tif`; the capacity witness is **UNVERIFIED** (not a rerun of the historical 82.34% lattice result documented by review 19912231). No fallback to archived constants, candidate generation, or slot selection occurs. The old preflight is not build authorization.
+>
+> Latest local verification after main integration: 626 passed, 8 skipped (inputs absent), 87 Rasterio warnings. The existing OLC91 download passes file-identity/format checks only; reference checks are NOT CHECKED. Its research-only status does not authorize submission. Historical reviews below are not current-run evidence.
+>
+> **Merged research artifact from a separate branch:** S18-UNIQUE (20,000-dot curvature/gradient TIFF) is retained from upstream main, but it was not produced or selected by this e649 review. Its holdout remains pending and its run card labels it a research demo; **OK TO SUBMIT: NO**. [Research-only TIFF](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif) · [ZIP](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip) · [run card](docs/run-card-S18-UNIQUE.json) · [five hypotheses](docs/HYPOTHESES_S18_UNIQUE.md).
 
-> **Current checkout review (2026-10-25): no new experiment or TIFF. OK TO DOWNLOAD: no new file. OK TO SUBMIT: NO.** The checkout has no `data/` directory; the SHA-pinned sample/catalogue and feature stack are not locally present. The experiment preflight is BLOCKED because no assigned single-method lane is recorded and the sample raster is missing. No candidate uniqueness check or new HOLDOUT-DTI was run, no prior TIFF was copied/renamed, and no slot was used. See [this checkout's review](docs/REVIEW-ARENA-BB27AE93-20261025.md).
->
-> **Historical status below belongs to other session branches and is not a result of this checkout.** In particular, prior research download links are not upload recommendations. Current official score/receipt remains unverified here. The next step is a recorded method assignment plus SHA-verified data restoration—not running a legacy builder.
->
-> **New automatic preflight:** `python generate_submission.py --preflight` checks the plan and reopens SHA-pinned reference bytes before any experiment. It independently measures an **82.34% geometric overlap lower bound (NOT a score)** at the usual budget, exceeding 70%. It stops on missing/changed evidence; it never chooses a slot. [Machine evidence](docs/review-19912231/experiment-preflight.json). The old data preflight now says INPUTS AVAILABLE, not BUILD ALLOWED.
->
-> Fresh review: **92/92 fleet page snapshots fetched**; exact current TIFF/ZIP format PASS; all-download audit reproduced **87 artifacts / 78 technical PASS / 9 FAIL**, none approved. Three ranked conditional new-transform hypotheses, source provenance, limitations and three-pass checks are in the review. Historical claims and reviews below are not this branch's outputs.
-
-**Start every session:** read this status, the [full standing prompt and supplied updates](#full-project-brief), [this checkout's review](docs/REVIEW-ARENA-BB27AE93-20261025.md), and [next steps](LIMITATIONS_AND_NEXT_STEPS.md). Historical reviews are context, not current-run evidence. **Maximize P(Win) · Own the Outcome.** Format validity is not scientific improvement, registry uniqueness or selector approval.
+**Start every session:** read this status, the [full standing project brief and supplied updates](#full-project-brief), [current e649 review](docs/REVIEW-ACTIVE-E649E460-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). **Maximize P(Win) · Own the Outcome.** Format validity, scientific improvement, registry uniqueness, lane assignment, selector approval, and an organizer receipt are separate gates.
 
 ---
+
+## Merged historical review (`arena/19912231-gemsdoe91`)
+
+> This upstream review added `generate_submission.py --preflight`, a pinned-byte capacity check, and guards separating input availability from experiment authorization. Its branch-local 82.34% lattice lower bound at 37,654 dots is a geometry finding, **not a score**; it is not freshly verified in this checkout because the official sample is absent. See [review](docs/REVIEW-19912231-20261025.md), [run card](docs/run-card-19912231.json), and [preflight evidence](docs/review-19912231/experiment-preflight.json). The current e649 preflight rerun is blocked with capacity `UNVERIFIED`.
 
 ## Merged historical review (`arena/7d6ac0dc-gemsdoe91`)
 
@@ -25,9 +26,9 @@
 >
 > **Prior-branch geometry finding (not a score):** the 6cbfe8ac review measured a minimum 82.34% 3-px overlap at a 37,654-dot budget against the literal 70% rule; see [capacity receipt](docs/review-6cbfe8ac/capacity.json). No registry reference or threshold was changed.
 
-> **Current review: NEGATIVE / BLOCKED — no assigned lane, no experiment, no new score, no TIFF, no weekly slot used.** The required single method paragraph is absent, so no method was inferred. The current preflight is **BUILD BLOCKED: 0/2**; the official sample, parent raster, and cached training-feature stack are absent. No competition data were restored from mirrors.
+> **Historical 522615dd review:** NEGATIVE / BLOCKED — no assigned lane, no experiment, no new score, no TIFF, no weekly slot used. At that time its preflight reported BUILD BLOCKED: 0/2. This checkout's current status and exact preflight are at the top of this README.
 >
-> **Start here:** [active three-pass review](docs/REVIEW-ACTIVE-522615DD-20261025.md) · [current no-run card](docs/run-card-522615dd.json) · [ranked hypotheses](docs/HYPOTHESES-ACTIVE-522615DD-20261025.md) · [project brief](#full-project-brief) · [submission guide](docs/executive-summary.html).
+> **Historical review files:** [522615dd three-pass review](docs/REVIEW-ACTIVE-522615DD-20261025.md) · [no-run card](docs/run-card-522615dd.json) · [ranked hypotheses](docs/HYPOTHESES-ACTIVE-522615DD-20261025.md).
 >
 > **Download / submit status:** no new file exists (**OK TO DOWNLOAD: NO NEW TIFF; OK TO SUBMIT: NO**). The website still offers the prior [OLC91 E1 GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif) as a **research-only** download; that prior run was negative and duplicate-stopped. It is not output from this review, and its link is not an upload recommendation. The existing executive guide explains the upload workflow but does not approve any current file.
 >
@@ -37,7 +38,7 @@
 >
 > **Historical records below are not active-branch results.** The S17-CDSC artifact and OLC91 page remain separate prior research downloads with different evaluators. The website's `docs/current-run.json` still points to OLC91, while S17-CDSC is the latest timestamped merged artifact cited in the older README; neither is new or approved for submission.
 
-Core values: **Maximize P(Win) · Own the Outcome.** Start each session with this status, the [full standing brief](#full-project-brief), and the [active-branch review](docs/REVIEW-ACTIVE-522615DD-20261025.md). A format-valid download, a positive holdout, uniqueness, lane assignment, selector approval, and an organizer receipt are separate gates.
+Core values: **Maximize P(Win) · Own the Outcome.** Start each session with the current status and [full standing prompt](#full-project-brief) linked at the top. The 522615dd review above is historical, not the active branch report. A format-valid download, positive holdout, uniqueness, lane assignment, selector approval, and organizer receipt are separate gates.
 
 ---
 
@@ -157,10 +158,10 @@ ORGANIZER-CONFIRMED without a submission-page receipt.
 
 ## Start here every session
 
-**Current review (active branch `arena/522615dd-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-ACTIVE-522615DD-20261025.md) · [no-run card](docs/run-card-522615dd.json) · [ranked hypotheses](docs/HYPOTHESES-ACTIVE-522615DD-20261025.md). The method lane is unassigned; the official sample and parent raster are absent; the training-feature cache is absent. No experiment, TIFF, new score, or slot was produced. Do not infer a lane from merged parallel work.
+**Current review (active branch `arena/e649e460-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-ACTIVE-E649E460-20261025.md) · [run card](docs/run-card-E649E460-20261025.json). The method lane is unassigned; authorized inputs are absent; experiment preflight is blocked with no capacity witness. No experiment, new TIFF, new score, or slot was produced. Do not infer a lane from merged parallel work.
 
 **Prior review (historical checkout):** [E92C84E1 review](docs/REVIEW-E92C84E1-20261025.md).
-At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this active-branch review](docs/REVIEW-ACTIVE-522615DD-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
+At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this active-branch review](docs/REVIEW-ACTIVE-E649E460-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
 
 Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
 

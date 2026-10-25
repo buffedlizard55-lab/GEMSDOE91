@@ -1,10 +1,10 @@
 # Hypotheses S18-UNIQUE — Five Ranked Geological Hypotheses Not Tested in Repo History
 
-**Branch:** `arena/2f1f074c-gemsdoe91` (active)  
-**Generated:** 2026-10-25T18:30Z  
-**Lane Declared:** S18-UNIQUE — Basin-Stripped Bouguer Curvature × RTP Magnetic Gradient  
-**Status:** One demo raster emitted; full holdout pending. This doc frozen before any S18 holdout DTI was computed.  
-**Core Values:** Maximize P(Win) · Own the Outcome  
+**Branch:** `arena/2f1f074c-gemsdoe91` (active)
+**Generated:** 2026-10-25T18:30Z
+**Lane Declared:** S18-UNIQUE — Basin-Stripped Bouguer Curvature × RTP Magnetic Gradient
+**Status:** One demo raster emitted; full holdout pending. This doc frozen before any S18 holdout DTI was computed.
+**Core Values:** Maximize P(Win) · Own the Outcome
 **Sources:** All claims anchored to official government / peer-reviewed sources with manual-review links; no hallucinations.
 
 ---
@@ -124,4 +124,3 @@
 5. **DTI ≠ geothermal productivity** — fault prediction ≠ permeable reservoir; temperature, fluid, connectivity not measured by TIFF.
 
 **Next Session:** Train full HGB-PU on `gems57-pooled-hide-v2` with 20-column VAD-augmented stack, validate paired CI95 >0, then selector decides slot.
-
