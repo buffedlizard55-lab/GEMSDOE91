@@ -10,10 +10,10 @@
     "id": "S15-HCPA",
     "assigned": true,
     "title": "Hydrothermal Convective Plume & Kinematic Dilatancy Architecture",
-    "method_paragraph": "Subsurface electrical conductivity plume ratio and excess paired with basement displacement step, thermal spring reservoir heat flux, and tectonic slip/dilation tendency under WNW extension (theta_ext=105\u00b0); multi-physics corroboration gating; unit dots placed by exact expected-DTI submodular selection under winner geometry (37,654 dots, 75% far-field, >=3.0 px spacing)."
+    "method_paragraph": "Subsurface electrical conductivity plume ratio and excess paired with basement displacement step, thermal spring reservoir heat flux, and tectonic slip/dilation tendency under WNW extension (theta_ext=105°); multi-physics corroboration gating; unit dots placed by exact expected-DTI submodular selection under winner geometry (37,654 dots, 75% far-field, >=3.0 px spacing)."
   },
   "hypothesis": "H15-1 Hydrothermal Convective Plume + H15-2 Tectonic Kinematic Dilatancy + H15-3 Radiometric Metasomatism + H15-4 Multiscale Concavity + H15-5 Winner Geometry Emission",
-  "mechanism": "Hydrothermal upwelling forms conductive clay caps and basement-concordant fluid pathways along critically stressed dilation/shear zones; unit dots emitted via exact submodular DTI selection at winner spacing (3.16 px) and 75% far-field allocation, avoiding redundant kernel saturation.",
+  "mechanism": "Hydrothermal upwelling may form conductive clay caps and basement-concordant fluid pathways along stressed structures; dots are selected with a lazy-greedy expected-DTI heuristic under 75% far-field/25% halo caps and minimum spacing. This is not a proof of globally optimal placement.",
   "named_non_fault_mimic_process": "Saline dry-lake playas, felsic pluton potassium highs, pluvial lake terraces, and non-tectonic erosional bedrock escarpments.",
   "experiments": {
     "E1": {
@@ -830,7 +830,7 @@
     "flagged_features": []
   },
   "registry_comparison": {
-    "complete_universal_registry": true,
+    "complete_universal_registry": false,
     "preplacement": {
       "status": "PASS_WITHIN_INDEXED_SCOPE",
       "checked": 8,
@@ -1196,7 +1196,8 @@
           "duplicate_flag": false
         }
       ]
-    }
+    },
+    "scope_note": "Historical check covers 8 indexed canonical rasters and 15 in-repository siblings; not a complete inventory of all public GEMSDOE sites."
   },
   "validator_output": {
     "status": "PASS",
@@ -1292,18 +1293,20 @@
       "range_0_1_portal_safe": true
     }
   },
-  "selector_approval": false,
+  "selector_approval": null,
   "selector_receipt": {
-    "weekly_cap_verified": true,
-    "slot_available": true,
-    "automated_validation": true,
-    "human_intervention_needed": false
+    "status": "NOT_VERIFIED_BY_LOCAL_RUN",
+    "weekly_cap_verified": null,
+    "slot_available": null,
+    "automated_technical_validation": true,
+    "human_selector_approval": null,
+    "human_intervention_needed": true
   },
   "automated_inspection": {
     "status": "FAIL",
     "ok_to_download": "YES",
-    "ok_to_submit": "NO",
-    "reason": "All 5 format, [0, 1] range, 0-NaN, CRS/shape, leakage canary, registry uniqueness, and winner-geometry gates validated automatically."
+    "ok_to_submit": "NO — local run does not verify selector approval, eligibility/data rights, weekly allowance, or an organizer receipt.",
+    "reason": "Historical technical checks and scoped registry checks were recorded, but HOLDOUT-DTI is below the comparable best; the final emission policy was not holdout-matched; complete-registry uniqueness and selector status remain unverified."
   },
   "verdict": "negative",
   "elapsed_seconds": 91.1,
@@ -1318,5 +1321,8 @@
     "dots": 37654
   },
   "note": "S15-HCPA: Hydrothermal convective plume + kinematic dilatancy + winner geometry (37654 dots, [0,1] all-finite, 0 NaN)",
-  "note_length": 117
+  "note_length": 117,
+  "holdout_selector_policy_matches_final_emission": false,
+  "holdout_selector_policy_note": "Historical holdout score path used unconstrained greedy selection; final map used far-field/halo quota. Do not treat HOLDOUT-DTI as validation of the final emission policy.",
+  "selector_algorithm": "PTHA._lazy_greedy_submodular_select with minimum-spacing constraint; greedy heuristic, not exact global optimization."
 }

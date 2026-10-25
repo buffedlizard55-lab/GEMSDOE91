@@ -1,16 +1,15 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
-## Current checkout review (2026-10-25)
+## Current active-branch review (2026-10-25)
 
-**Review verdict: no new experiment; no artifact freshly verified; do not treat the inherited DZ-EDGE card's `ok_to_submit: true` as approval.** The repository's canonical run card records no assigned lane, the DZ-EDGE card reports HOLDOUT-DTI 0.0 and still labels itself `promote`, and the verification command cannot run in this environment because NumPy is not installed and the local `data/` inputs are absent. Current evidence therefore supports **NOT CLEARED TO SUBMIT**. Read [the full repo review](docs/REVIEW-REPO-20261025.md) and [the current canonical run card](docs/run-card.json) before any build or download decision. No organizer score is confirmed here.
+**At every session start:** read this current review and the standing mandate below, then verify the active branch, run card, local inputs and exact artifact before relying on historical status. This review supersedes the earlier main-branch [repository review](docs/REVIEW-REPO-20261025.md), which documented a prior DZ-EDGE checkout state before the S15 review was completed.
 
-**At every session start:** read this review and the standing mandate below, then verify the active branch's lane, current run card, local inputs, and artifact before relying on any historical status section.
+## HISTORICAL SESSION 15 LANE (`S15-HCPA`, artifact built on `arena/b580c734-gemsdoe91`) — RESEARCH TIFF ONLY
 
-## CURRENT SESSION 15 LANE (`S15-HCPA`, 2026-10-25, branch `arena/b580c734-gemsdoe91`) — NEW UNIQUE TIF AT WINNER GEOMETRY
+> **Current active-branch review (`arena/bb16b6ae-gemsdoe91`, 2026-10-25): no new TIFF generated.** The S15 file below is an existing historical artifact, not this review's submission. `python scripts/preflight.py` is `BUILD BLOCKED` because the official sample, catalogue and feature stack are absent locally. Existing S15 evidence is negative for promotion: its historical best is **0.091399 HOLDOUT-DTI** (gems91-hide-recover-v1.0; 60,988 withheld positives; 95% CI [0.083166, 0.099501]) and its final far-field/halo emitter was not evaluated identically in holdout. **OK TO DOWNLOAD: YES (research only); OK TO SUBMIT: NO.** See [active-branch review](docs/REVIEW-ARENA-BB16B6AE-20261025.md) and [review run card](docs/run-card-REVIEW-BB16B6AE.json).
 
-> **AUTOMATED VERDICT (computed, fail-closed, zero human image inspection): `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO` (human selector first).**
-> Technical format, `[0, 1]` range, `0`-NaN, CRS/shape match, 13-feature leakage canaries (`max AUC 0.5932 ≤ 0.90`), canonical registry uniqueness (`max dot overlap 30.65% ≤ 70%`), sibling uniqueness (`max dot overlap 40.60% ≤ 70%`), and winner-geometry gates **PASSED AUTOMATICALLY**.
-> Failing shared gates (`src/gems91/readiness.py`): `beats_comparable_best` (holdout evaluates catalogue recovery; 75% of dots are intentionally allocated to the far-field for hidden fault discovery), `separate_selector` (weekly slot cap ≤3/wk requires human sign-off). Zero weekly slots spent.
+> **HISTORICAL ARTIFACT VERDICT (not a new build on the active branch): `OK TO DOWNLOAD: YES` for research · `OK TO SUBMIT: NO`.**
+> Its recorded format/range checks and its scoped checks against 8 canonical rasters and 15 repository siblings passed at build time. The complete public registry is not verified. The historical HOLDOUT-DTI used a different selector from the final far-field/halo emission and is below the comparable-best gate. The current runner now uses matching selectors, but required data are absent and that correction has not been scientifically rerun. Human selector, weekly cap, eligibility, and organizer receipt are not established by local code. Zero weekly slots spent.
 
 - **[Download S15-HCPA range-safe GeoTIFF (`218,352 B`)](docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif)** · **[Single-TIFF ZIP (`183,734 B`)](docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.zip)** · **[Audit page](docs/s15-hcpa.html)** · **[Step-by-step submission guide](docs/s15-executive-summary.html)** · **[JSON run card](docs/run-card-S15.json)** · **[Pre-registered hypotheses & winner forensics](docs/HYPOTHESES_S15.md)**
 - **Unique submission name:** `gems91-s15-hcpa-e3-20261025T030000Z-7f01c717` · **GeoTIFF SHA-256:** `b7ab738f8e0311db9a481a4f16f5bc30583855537b3083144080d7b88157fb1a` · **Form note (`113/140`):** `S15-HCPA: Hydrothermal convective plume + kinematic dilatancy + winner geometry (37654 dots, [0,1] all-finite, 0 NaN)`
@@ -20,16 +19,16 @@
   2. `H15-2 TKST`: Tectonic Kinematic Dilatancy & Slip Tendency (normal-slip stress tensor under regional WNW Basin & Range extension θ_ext=105°)
   3. `H15-3 RTNL`: Radiometric K-Metasomatism & Magnetic Destruction (hydrothermal illite/adularia alteration + magnetite leaching)
   4. `H15-4 MTCS`: Multiscale Topographic Concavity & Scarp Toe (structural depression & colluvial boundary)
-  5. `H15-5 SOFE`: Submodular Optimal Far-Field Emission (exact submodular selection with 75% far-field allocation, avoiding kernel saturation)
+  5. `H15-5 SOFE`: Submodular Far-Field Emission (lazy-greedy heuristic with 75% far-field target; not a proven global optimum)
 - **Measured Scores (Explicitly Labelled):**
   - `E1 = 0.055484 HOLDOUT-DTI` (`gems91-hide-recover-v1.0` / `v1.1-nohalo`, 60,988 withheld positives)
   - `E2 = 0.091399 HOLDOUT-DTI` (95% CI `[0.083166, 0.099501]`)
   - `E3 = 0.091399 HOLDOUT-DTI` (budget sweep: 30k = 0.080066, 37,654 = 0.091399, 44k = 0.100218)
   - `ORGANIZER-CONFIRMED: null` (no competition slot used)
 - **Winner Geometry:** exactly 37,654 unit dots; 75.0% (>10 px from catalogue); median NN spacing 3.61 px (>300 m); minimum distance to catalogue 3.16 px (>300 m collar).
-- **Novelty & Uniqueness:**
-  - Canonical registry (8 rasters): max 3 px dot overlap **30.65%** (vs `calib_h161_01855.tif`, well below 70.0% threshold); surface rank correlation **0.065** (well below 0.90 threshold).
-  - In-repo siblings (15 rasters): max 3 px dot overlap **40.60%** (vs `gems91-spac-e3`), completely eliminating the Session 14 collision (82.8%).
+- **Historical novelty scope (not a universal registry clearance):**
+  - The recorded S15 check covered 8 canonical registry rasters: max directed 3 px dot overlap **30.65%** (vs `calib_h161_01855.tif`); maximum absolute surface rank correlation **0.065**.
+  - It also checked 15 in-repository siblings: max directed 3 px dot overlap **40.60%** (vs `gems91-spac-e3`). The full set of public GEMSDOE site rasters was not verified in this review; treat global uniqueness as unverified.
 - **Why “Predicted values must be in range [0, 1]” Cannot Trigger:** All 12,279,160 float32 cells are strictly finite in `[0.0, 1.0]`, 0 NaNs anywhere, nodata=None. Verified across 5 independent validator suites.
 
 ## STANDING PROJECT MANDATE (read at the start of every session)
@@ -37,7 +36,7 @@
 **Goal:** place top of the GEMS DOE geothermal-fault-mapping competition (DrivenData #306) by generating a **unique, format-valid GeoTIFF submission** that is **obviously** OK to download and OK (or not OK) to submit, with no human visual inspection required for validation.
 
 ### The question to answer (PhD level)
-GEMSDOE32's `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` scored **0.2778** (highest on that site). Why: the DTI metric caps per-truth-pixel credit (max triangular kernel, R=300 m = 3 px) while charging α=0.2 per redundant predicted pixel, so thinning 121k → ~37,654 dots at ~3 px spacing lifted 0.1922 → 0.2778 by reducing redundant false-positive mass. Can we beat it? Only with a better spatial surface at the same dot economics — and only an organizer submission-page receipt (ORGANIZER-CONFIRMED) can confirm a score. **Never write a projection as a score.**
+The prompt reports `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` at **0.2778**, but this is not verified by an organizer receipt in this checkout. The currently fetched GEMSDOE32 page labels that named candidate `UNSCORED`, says “NO ORGANISER SCORE EXISTS,” and marks its 0.2747 number as a projection. The official DTI metric uses max kernel-weighted credit per truth pixel (triangular radius 300 m) and penalizes false positives; sparse emission can therefore reduce redundant mass. That makes thinning a plausible mechanism, not a demonstrated cause of the claimed 0.2778: candidate surfaces differ and a controlled density-only comparison is absent. Beating any verified score requires improved spatial ranking under the same emission budget; only a copied organizer receipt confirms a competition score. **Never write a projection as a score.**
 
 ### Deliverables
 1. **A unique TIF submission** (never copy a prior submission; for learning/analysis only). One-click downloadable `*.tif` (and single-TIFF `*.zip`) under `docs/downloads/`, plus SHA-256 and an audit JSON.
@@ -66,7 +65,8 @@ GEMSDOE32's `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` scored **0.2778** (hi
 - Rules/format PDF: https://docs.nlr.gov/docs/fy26osti/96647.pdf
 - DOE GDR submission #1391: https://gdr.openei.org/submissions/1391
 - GEMSDOE32 (highest on that site, 0.2778): https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html
-- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (current high 0.4413 per this prompt; GEMSDOE32 page cites 0.2778 as its site high)
+- [Official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) (fetched 2026-10-25: rank 1 displayed 0.4413; 0.3195 is not the current top on this snapshot). This public leaderboard is not a receipt for our raster.
+- [GEMSDOE32 page](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) (fetched 2026-10-25: named H33-2-B2 file marked UNSCORED; page says no organizer score exists; its 0.2747 is labeled model/projection. The prompt's 0.2778 claim is unverified here.)
 - CRS: https://epsg.io/32611; Tversky index: https://en.wikipedia.org/wiki/Tversky_index
 - GeoDAWN survey: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
 - INGENIOUS: https://gbcge.org/current-projects/ingenious/

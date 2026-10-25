@@ -1,0 +1,52 @@
+{
+  "schema_version": "gems91.review.bb16b6ae.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/bb16b6ae-gemsdoe91",
+  "lane": {
+    "id": "S15-HCPA",
+    "historical_assignment": true,
+    "new_lane_experiment_run": false
+  },
+  "hypothesis": "Historical S15-HCPA HCPA/kinematic multiphysics surface; no new hypothesis was run in this review.",
+  "mechanism": "Historical model combined conductivity, basement/gravity, thermal spring, strain, radiometric and scarp features; final candidate used 37,654 sparse unit dots and far-field/halo quotas.",
+  "named_non_fault_process": "Saline basin fill and lithologic contacts can mimic conductive or basement-edge signatures.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "withheld_positives": 60988,
+    "value": 0.091399,
+    "ci95": [0.083166, 0.099501],
+    "evidence_status": "historical S15 run-card value; not rerun in this review; final emission geometry differs from the scored holdout selector"
+  },
+  "correlation_overlap_vs_registry": {
+    "historical_scope_only": true,
+    "canonical_rasters_checked": 8,
+    "surface_max_abs_spearman": 0.06501,
+    "final_candidate_directed_overlap_within_3px": 0.3065,
+    "in_repo_sibling_rasters_checked": 15,
+    "sibling_max_directed_overlap_within_3px": 0.40596,
+    "complete_public_registry_verified": false
+  },
+  "raster_sha256": "b7ab738f8e0311db9a481a4f16f5bc30583855537b3083144080d7b88157fb1a",
+  "validator_output": {
+    "validation_scope": "re-read of historical TIFF bytes; sample raster absent from this checkout",
+    "single_band_float32": true,
+    "no_nan_inside_footprint": true,
+    "all_cells_finite": true,
+    "values_in_0_1": true,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "matches_recorded_grid": true,
+    "sample_reference_available": false,
+    "matches_sample_raster_rerun": null,
+    "zip_single_tiff_integrity": true
+  },
+  "submission_name": "gems91-s15-hcpa-e3-20261025T030000Z-7f01c717",
+  "submission_note": "S15-HCPA research only; final emission not holdout-matched; do not submit.",
+  "new_tif_generated_in_review": false,
+  "ok_to_download": "YES — existing historical file, research only",
+  "ok_to_submit": "NO",
+  "organizer_confirmed": null,
+  "verdict": "negative"
+}
