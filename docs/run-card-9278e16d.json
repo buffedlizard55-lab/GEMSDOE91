@@ -55,22 +55,23 @@
     "restore_data": "PASS; 15 SHA-256 and byte-length pins verified from pinned GitHub mirrors; source authorization not attested",
     "artifact_policy": "PASS; 83 prediction artifacts registered after HEXFAR91 policy repair",
     "download_audit": {
-      "format_pass": 72,
+      "format_pass": 74,
       "format_fail": 9,
-      "files_checked": 81,
+      "files_checked": 83,
       "ok_to_submit": false
     },
     "verify_current_artifact_with_data": "PASS for docs/run-card.json's historical CED91 artifact; submission_ready false",
     "verify_evidence": "PASS for stated historical evidence scope; no experiments rerun",
     "verify_s16_with_data": "PASS for historical artifact and its defined checks",
-    "full_pytest": "PASS; one expected release integration skip; Rasterio Affine pending-deprecation warnings",
-    "merge_integration": "PASS after registering HEXFAR91 TIFF/ZIP, restoring historical shared evidence card, and regenerating canonical portal",
-    "verify_s17": "PASS for S17-CPAD defined artifact/evidence scope; template/catalogue recheck explicitly false"
+    "full_pytest": "PASS after merging S18; one expected release integration skip; Rasterio Affine pending-deprecation warnings",
+    "merge_integration": "PASS after registering HEXFAR91 TIFF/ZIP, restoring historical shared evidence card, regenerating canonical portal, merging S18 review/tooling, and rerunning the full suite",
+    "verify_s17": "PASS for S17-CPAD defined artifact/evidence scope; template/catalogue recheck explicitly false",
+    "verify_s18": "PASS for historical S18 sample, leaderboard snapshot, feasibility, and two artifact checks; no experiment rerun"
   },
   "portal_current_download": {
     "artifact": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
     "run_card": "docs/run-card-OLC91.json",
-    "status": "research only; docs/current-run.json points to OLC91 although HEXFAR91 is a newer merged artifact"
+    "status": "research only; docs/current-run.json remains on OLC91 although the latest timestamped merged artifact is S17-CDSC"
   },
   "parallel_artifacts": {
     "S17-CWPC": {

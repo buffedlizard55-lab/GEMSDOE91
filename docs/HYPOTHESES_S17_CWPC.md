@@ -1,7 +1,7 @@
 # Preregistered Hypotheses & Forensic Analysis — Session 17 (`S17-CWPC`, 2026-10-25 UTC)
 
-**Branch:** `arena/4f695c18-gemsdoe91` (active)
-**Frozen before any `S17-CWPC` holdout evaluation or dot emission.**
+**Branch:** `arena/4f695c18-gemsdoe91` (active)  
+**Frozen before any `S17-CWPC` holdout evaluation or dot emission.**  
 **Core Values:** **Maximize P(Win)** · **Own the Outcome**
 
 ---
