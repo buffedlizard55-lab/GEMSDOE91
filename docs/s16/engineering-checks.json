@@ -31,6 +31,6 @@
   "ok_to_submit": false,
   "remote_ci": "NOT_YET_RUN",
   "deployment": "NOT_YET_DEPLOYED",
-  "note": "Post-integration local checks passed. Remote CI/deployment receipts will be linked after they actually complete.",
-  "integrated_main": "347ecb4"
+  "note": "415-pass full suite at the previous integration; subsequent DZ-EDGE metadata-only merge checked by focused readiness/portal tests. Remote CI pending.",
+  "integrated_main": "911b6a9"
 }

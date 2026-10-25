@@ -107,7 +107,7 @@ not scientific scores. Source and data verification boundaries are in
 
 ### Concurrent main integration
 
-Integrated `347ecb4` from main while remaining on the assigned S16 branch.
+Integrated `347ecb4` and the subsequent `911b6a9` DZ-EDGE correction from main while remaining on the assigned S16 branch.
 Preserved the S15 selector/cache/readiness fixes, focused regression test,
 corrected historical cards and both dated review records. Regenerated pages
 from the combined renderer rather than discarding concurrent source changes.
