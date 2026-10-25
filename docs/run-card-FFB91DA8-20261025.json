@@ -1,0 +1,40 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "FFB91DA8-20261025",
+  "branch": "arena/ffb91da8-gemsdoe91",
+  "hypothesis": "Detrended-relief texture / local spectral-slope break across subtle structural lineaments; proposed, not tested.",
+  "mechanism": "Contrast local roughness/spectral slope on opposing sides of candidate lineaments using official det_elev (B12); optional 1 m DEM route is blocked pending verified data access.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic contact, alluvial-fan margin, or playa margin.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "95_percent_CI": null,
+    "status": "NOT RUN — unassigned lane and required rasters/cache absent"
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dots_within_3px": null,
+    "status": "NOT RUN — no candidate surface or dots"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_NaN_inside_footprint": null,
+    "values_in_0_1": null,
+    "CRS_shape_transform_match": null,
+    "status": "NOT APPLICABLE — no new raster"
+  },
+  "submission_name": null,
+  "submission_note_max_140_characters": null,
+  "verdict": "negative",
+  "experiments_used": 0,
+  "weekly_submission_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "verification": {
+    "preflight": "BUILD BLOCKED; missing sample_submission, parent_r0_nan, existing_faults and feature stack; no axes ready",
+    "pytest": "545 passed, 8 skipped, 58 warnings; skipped integrations require absent inputs",
+    "evidence_consistency_audit": "PASS; 0 experiments rerun; submission_ready=false",
+    "artifact_policy": "PASS; 87 registered artifacts; no raw raster/archive tracked",
+    "fresh_holdout_canary_registry_comparison_writer_validator": "NOT RUN; no assigned lane / candidate / required data"
+  }
+}
