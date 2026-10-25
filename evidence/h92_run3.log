@@ -1,0 +1,12 @@
+[02:08:17] H92-CGTF starting — checking preregistration
+[02:08:17] prereg sha256 d1dc57b41706
+[02:08:17] Loading grid and bands
+[02:08:18] grid (3730, 3292) footprint 5167373 / 12279160 (42.1%)
+[02:08:18] catalogue 60988 fault pixels
+[02:09:02] loaded 19 bands
+[02:09:07] built 4 holdout folds (buffer 80px=8km)
+[02:09:07]   fold 0: truth 29319 held_all 29563 train 2508386 region 2449030
+[02:09:07]   fold 1: truth 12596 held_all 12678 train 3636842 region 1366431
+[02:09:07]   fold 2: truth 9473 held_all 9956 train 4383314 region 564135
+[02:09:07]   fold 3: truth 9600 held_all 9968 train 4263431 region 787777
+[02:09:07] === Building global deterministic surfaces (label-free) ===

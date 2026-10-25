@@ -1,0 +1,13 @@
+[02:06:56] H92-CGTF starting — checking preregistration
+[02:06:56] prereg sha256 d1dc57b41706
+[02:06:56] Loading grid and bands
+[02:06:57] grid (3730, 3292) footprint 5167373 / 12279160 (42.1%)
+[02:06:57] catalogue 60988 fault pixels
+[02:07:42] loaded 19 bands
+[02:07:46] built 4 holdout folds (buffer 80px=8km)
+[02:07:46]   fold 0: truth 29319 held_all 29563 train 2508386 region 2449030
+[02:07:46]   fold 1: truth 12596 held_all 12678 train 3636842 region 1366431
+[02:07:46]   fold 2: truth 9473 held_all 9956 train 4383314 region 564135
+[02:07:46]   fold 3: truth 9600 held_all 9968 train 4263431 region 787777
+[02:07:46] === E1/E2 per-fold training (fold-safe regressions) ===
+[02:07:46] Fold 0 fit_mask 2508386 train pixels

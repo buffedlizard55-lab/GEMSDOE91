@@ -1,0 +1,22 @@
+[02:14:43] load grid
+[02:14:44] footprint 5167373
+[02:14:44] catalogue 60988
+[02:14:46] band det_elev -589.98 1469.91 med -75.60
+[02:14:48] band iso_grav_anom -45.76 24.23 med -7.26
+[02:14:51] band depth_to_base_surf -14.84 7135.31 med 316.45
+[02:14:53] band cond_surf 0.19 4.97 med 2.89
+[02:14:55] band iso_grav_anom_slope 0.00 0.65 med 0.10
+[02:14:58] band tmi_hg 0.00 2200.44 med 13.15
+[02:15:00] band tmi_vg -7.65 20.51 med -0.01
+[02:15:00] fit g_intra
+[02:15:00] g_coeff [-1.41864714e+00 -1.58166434e-02  2.12836475e-06]
+[02:15:01] g_intra_grad
+[02:15:01] c_res
+[02:15:01] c_coeff [ 2.87520465e+00 -9.21206191e-05  8.24912217e-05 -5.01961297e-07]
+[02:15:02] c_res_grad
+[02:15:02] robust
+Traceback (most recent call last):
+  File "/home/user/GEMSDOE91/scripts/run_h92_simple.py", line 118, in <module>
+    b15c=np.clip(B['depth_to_base_surf'] if 'depth_to_base_surf' in B else b15,-500,5000)  # B already gone, use original b15 variable still exists
+                                                                    ^
+NameError: name 'B' is not defined

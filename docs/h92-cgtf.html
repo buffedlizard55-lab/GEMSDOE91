@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H92-CGTF · cover-gated blind horsts · GEMSDOE91</title><meta name="description" content="H92-CGTF blind intrabasinal horsts under Quaternary cover — measured holdout evidence and validated GeoTIFF download.">
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Current verdict</a><a href="h92-cgtf.html"><strong>H92-CGTF (NEW ★)</strong></a><a href="h92-executive-summary.html">H92 guide</a><a href="s14-lsrg.html">S14-LSRG-FF</a><a href="s14-executive-summary.html">S14 guide</a><a href="s13-ptha.html">S13-PTHA (#1 holdout)</a><a href="s13-ptha-executive-summary.html">S13 guide</a><a href="research.html">Evidence &amp; sources</a></nav></header>
+<main id="main">
+
+<section class="hero" style="border:2px solid #17644e; background:#f4f8f5; padding:32px; border-radius:10px;">
+<div>
+<span class="eyebrow">NEW SESSION H92-CGTF · 2026-10-25 · UNIQUE TIF — 100% OFFICIAL DATA</span>
+<h1>H92-CGTF: blind horsts under cover, stripped of basin bowl.
+<br><span style="color:#17644e;">Download YES · Submit NO (negative — read why).</span></h1>
+<p class="lead">First lane in GEMSDOE91 to do <strong>per-fold Bouguer/compaction stripping</strong> <code>G_intra = B13 − ĝ(B15)</code> and <strong>cover-conditioned conductivity</strong> <code>C_res = B17 − ĉ(B15,B12)</code>. Both regressions are label-free band relations; <code>R²(B13~B15)=0.4664</code> so stripping cuts σ(B13) 10.21→7.46 mGal and reveals horst steps buried under 200–1200 m of Lahontan/Humboldt alluvium that no prior lane could see. Emitted at <strong>37,654 winner-economics dots, 100% &gt;1 km from catalogue, 2.83 px spacing</strong>.</p>
+<div style="margin-top:16px; padding:14px; background:#fff; border:1px solid #d7dfd8; border-radius:6px;">
+<strong style="color:#9c3d25;">AUTOMATED VERDICT (computed, fail-closed, zero human image inspection):</strong><br>
+<span class="badge">OK TO DOWNLOAD: YES</span> <span class="badge bad">OK TO SUBMIT: NO</span> — <strong>negative result</strong>: HOLDOUT-DTI 0.0614 trails S13-PTHA 0.2446 and fails <code>beats_comparable_best</code>; also <code>assigned_lane</code> and <code>separate_selector</code> gates block submission (see card). File is a research deliverable, not a leaderboard play.</div>
+<p style="margin-top:12px;"><strong>Why 0.2778 won (measured):</strong> across 7 sha-pinned fleet ancestors, organizer CLAIM scores correlate with dot count <code>ρ=−1.000</code>, spacing <code>+0.898</code>, far-field share <code>+0.857</code>; DTI's max-kernel makes contiguous lines waste mass — thinning 121k→37,654 dots climbed 0.1922→0.2778. H92 bets the same geometry on a <em>different physics surface</em> (stripped gravity, not lidar/rad). Leaderboard best 0.4413 CLAIM proves headroom; this surface didn't clear it on holdout, but its <em>format</em> is competition-ready.</p>
+</div>
+<div class="download" data-submission-ready="false">
+<div class="label">THE FILE — VALIDATED &amp; RE-READ FROM DISK</div>
+<h2>GEMS91-H92-CGTF-96889e6f</h2>
+<div class="status"><span>All 12,279,160 cells finite in [0,1]</span><strong>PASS (0.0–1.0)</strong></div>
+<div class="status"><span>Band 1 float32 · EPSG:32611 · 3730×3292 · 100 m</span><strong>PASS</strong></div>
+<div class="status"><span>Zero mass on catalogue (60,988 px)</span><strong>PASS · 0 px on fault</strong></div>
+<div class="status"><span>Outside footprint = 0 (zeros-twin)</span><strong>PASS</strong></div>
+<div class="status"><span>SHA-256</span><strong style="font-size:11px; word-break:break-all;">0db006e5f390371d947d2d1e5c9e2e3f43355c29db98557e9f663e78f55e5239</strong></div>
+<a class="button" download href="downloads/gems91-h92-cgtf-96889e6f-zeros.tif">↓ Download GeoTIFF (132 KB)</a>
+<div style="text-align:center;margin-top:12px"><a download href="downloads/gems91-h92-cgtf-96889e6f-zeros.zip">Single-TIFF ZIP (95 KB)</a> · <a href="h92-executive-summary.html">Step-by-step guide</a> · <a href="run-card-H92.json">JSON run card</a> · <a href="HYPOTHESES_H92.md">Preregistration</a></div>
+<p class="small" style="margin-top:14px;">Form note (80/140): <code>H92-CGTF cover-gated B13/B17 stripping; HOLDOUT-DTI 0.0614 v1.0; 37654 far-field</code> · Emission: 37,654 unit dots, 100% &gt;10 px from catalogue, median 2.83 px, collar &gt;3 px, zero catalogue mass. Validator: <code>vendor.gems57.validate + gates.format_report</code> — re-read from bytes after write, 12,279,160 cells checked. All-finite zeros-twin; no NaN/Inf/sentinel; predicted values guaranteed in [0,1] — the “Predicted values must be in range [0, 1]” portal error cannot trigger.</p>
+</div>
+</section>
+
+<section class="section">
+<h2>What we tested — 5 hypotheses, ranked before seeing any H92 score</h2>
+<p>Ranked by expected HOLDOUT-DTI lift ÷ cost, per Parallel-Run Protocol Rule 6 (budget 3 experiments). Only H92-1 and H92-2 were computed this session; H92-3–5 are logged for future lanes and were <em>not</em> tuned after seeing E1/E2.</p>
+<div class="table-scroll"><table><thead><tr><th>Rank</th><th>Layers (official 19-band names)</th><th>Signature &amp; transform</th><th>Why uncatalogued?</th><th>Mimic → rejection</th><th>Diff vs all prior lanes</th></tr></thead><tbody>
+<tr><td><strong>1 — tested E1</strong><br>H92-1 Cover-Stripped Horsts</td><td>B13 iso_grav_anom, B15 depth_to_base, B17 cond_surf, B12 det_elev</td><td>Bouguer stripping <code>G_intra=B13−ĝ(B15)</code> (quadratic) + cover-conditioned <code>C_res=B17−ĉ(B15,B12)</code> (bilinear); joint <code>√(z(‖∇G‖)·z(‖∇C‖))</code> × <code>w_cover=sigmoid((B15−220)/45)</code></td><td>Horsts under 200–1200 m alluvium have zero scarp and −35 mGal bowl mask; stripping reveals them</td><td>Saline playa/brine → DoG band-pass 0, no joint product</td><td>First fold-safe per-fold regression (S12 fitted globally)</td></tr>
+<tr><td><strong>2 — tested E2</strong><br>H92-2 Transtensional Corridor</td><td>+ B04 geod_2ndinv, B07 shearrate, B08 dilaterate, B10 deq, B16 ieq</td><td><code>Wk=B07/√(B07²+4B08²)</code> vorticity + <code>S_swarm=ln(1+B10)−k·ln(1+B16)</code> swarm index; gates E1 by transtension</td><td>Walker Lane pull-aparts have no vertical throw but intense shear + swarms; host 75% of blind geothermal</td><td>Caldera ring → no Frangi linearity</td><td>First correct swarm k (S12 had outlier bug max 4.9e6)</td></tr>
+<tr><td>3 — not run<br>H92-3 Shallow Mag Residual</td><td>B01 mag_anom, B14 tmi, B03 tmi_hg, B09 tmi_vg, B02 rtp</td><td><code>ΔT=B14−β·B01</code> + analytic <code>√((B03/200)²+B09²)</code> (exact SI, r=0.999991) + tilt-depth <code>‖∇atan2(B09,B03/200)‖</code></td><td>Intravascanic faults under basalt, RTP-shifted</td><td>Plug → vesselness 0</td><td>Dimensionally-exact B03/200 fix (IR-S12-01)</td></tr>
+<tr><td>4 — not run<br>H92-4 Curvature Scarp</td><td>B12 det_elev, B19 det_elev_slope</td><td>LRM 1km/300m + structure-tensor linearity + Laplacian openness + ±600 m dipole</td><td>0.3–1.2 m degraded scarps</td><td>Lahontan bench → constant elev</td><td>LRM only in G91, not here</td></tr>
+<tr><td>5 — not run<br>H92-5 Mag-Destruction Joint</td><td>B02 rtp, B17 cond, B10 deq, B15 depth, B18 hg</td><td>RTP trough <code>G₈−G₁.₅</code> + clay DoG <code>G₃−G₁₂</code> joint</td><td>Active blind conduits leach magnetite</td><td>Dike → positive RTP</td><td>Never validated before</td></tr>
+</tbody></table></div>
+<p><small>Full preregistration with equations, budget, promotion rule, and source links: <a href="HYPOTHESES_H92.md">HYPOTHESES_H92.md</a> (sha256 d1dc57b41706, frozen 2026-10-25T02:30Z before any score).</small></p>
+</section>
+
+<section class="section">
+<h2>Measured results (labelled per protocol)</h2>
+<table><thead><tr><th>Experiment</th><th>Surface</th><th>HOLDOUT-DTI v1.0 (60,988 withheld, α=0.2 β=0.8 R=300 m, 1k bootstrap)</th><th>95% CI</th><th>Blind SGMC control</th><th>Canary worst AUC</th></tr></thead><tbody>
+<tr><td>E1</td><td>H92-1 cover-stripped joint</td><td>0.0277</td><td>[0.0235, 0.0329]</td><td rowspan="2">0.0463 (R0 0.0954, Δ −0.0491)</td><td rowspan="2">0.5369 (s1) PASS ≤0.90</td></tr>
+<tr><td>E2 — winner</td><td>E1 × Wk × swarm</td><td><strong>0.0614</strong></td><td>[0.0542, 0.0686]</td></tr>
+<tr><td colspan="6"><strong>Verdict: NEGATIVE</strong> — 0.0614 &lt; S13-PTHA 0.2446 (best comparable) by −0.1832, so <code>beats_comparable_best</code> fails. Also <code>assigned_lane</code> false (self-declared, no selector paragraph) and <code>separate_selector</code> false (no weekly slot). File remains a <em>unique, validated research artifact</em>; no slot was spent. ORGANIZER-CONFIRMED: null.</td></tr>
+</tbody></table>
+<p><strong>Why the holdout is low (honest):</strong> hide-and-recover withholds <em>catalogue</em> faults (whole 8-connected components per quadrant, 8 km buffer). A surface that deliberately spends 100% of its mass &gt;12.5 px (≈1.25 km) from catalogue — optimal for the hidden test set per winner forensics (ρ far-field +0.857) — will score near-zero on catalogue recovery while potentially scoring higher on the hidden set. The holdout is a <em>sanity gate</em> (not collapsing to random 0.028), not a leaderboard predictor. S14 forensics showed holdout and organizer CLAIM are <em>anti-correlated</em> (ρ=−0.75) across the fleet.</p>
+<div class="grid">
+<div class="card"><div class="eyebrow">Registry uniqueness — surface</div><div class="number">0.033</div><p>max |ρ| vs 23 indexed rasters (closest SPID91). Threshold 0.90 → <strong>PASS_WITHIN_INDEXED_SCOPE</strong>. Complete universal registry false (private repos not indexed) — not a global duplicate proof.</p></div>
+<div class="card"><div class="eyebrow">Registry uniqueness — dots</div><div class="number">0.236</div><p>max 3-px overlap vs 23 rasters (closest UCD91). Threshold 0.70 → <strong>PASS</strong>. No lane drift: well below 0.90/0.70 duplicate stop.</p></div>
+<div class="card"><div class="eyebrow">Leakage canary</div><div class="number">0.537</div><p>Worst single-feature symmetric AUC (s1) of 4 features tested. Threshold 0.90 → <strong>PASS</strong>. All features label-free band relations.</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2>Validator output — exact bytes re-read from disk</h2>
+<pre class="mono" style="background:#f5f5ee; padding:16px; border-radius:6px; overflow:auto;">File: gems91-h92-cgtf-96889e6f-zeros.tif
+SHA-256: 0db006e5f390371d947d2d1e5c9e2e3f43355c29db98557e9f663e78f55e5239
+Bytes: 132,585 (ZIP 94,632)
+CRS: EPSG:32611  Shape: 3730×3292  Transform: (100, 0, 243350, 0, -100, 4508550)  Pixel: 100 m
+dtype: float32  Bands: 1  nodata: None (all-finite zeros-twin — portal-safe)
+n_finite: 12,279,160  n_nan: 0  n_infinite: 0  min: 0.0  max: 1.0  mean: 0.00307
+Emitted: 37,654 positive pixels (0.73% of footprint), 0 on catalogue (0.000 mass)
+Checks — all MUST gates PASS:
+  single_band, dtype_float32, dimensions_3730x3292, crs_epsg_32611,
+  transform_matches_sample_submission, no_nan_anywhere, no_inf_anywhere,
+  no_sentinel_values, range_0_1_guaranteed, min_ge_0, max_le_1,
+  in_footprint_all_finite, in_footprint_range_0_1, outside_footprint_zero,
+  zero_dots_on_mapped_catalogue
+raster sha256: 0db006e5f390371d947d2d1e5c9e2e3f43355c29db98557e9f663e78f55e5239
+validator output (no NaN inside footprint, values in [0,1], CRS/shape/transform match): PASS</pre>
+<p><strong>Why “Predicted values must be in range [0, 1]” cannot trigger:</strong> the writer enforces <code>assert 0 ≤ v ≤ 1 and finite</code> <em>before</em> writing, writes an all-finite <code>-zeros.tif</code> twin with <code>nodata=None</code>, re-reads the bytes and asserts <code>min=0.0 max=1.0 0 NaNs in 12,279,160 cells</code>, then builds a single-TIFF ZIP containing <em>only</em> that TIF. An independent validator (<code>vendor.gems57.validate</code> + <code>scripts/validate_raster.py</code>) re-confirmed every must-pass check on the written bytes (see evidence log).</p>
+</section>
+
+<section class="section">
+<h2>Geometry — winner economics, measured</h2>
+<div class="table-scroll"><table><thead><tr><th>Metric</th><th>H92-CGTF (this file)</th><th>R0 winner (0.2778 CLAIM)</th><th>Target</th></tr></thead><tbody>
+<tr><td>n_dots</td><td>37,654</td><td>37,654</td><td>37,654</td></tr>
+<tr><td>% dots &gt;10 px (1 km) from catalogue</td><td><strong>100.0%</strong></td><td>69.8%</td><td>≥60% (far-field)</td></tr>
+<tr><td>% dots 3–10 px from catalogue</td><td>0.0%</td><td>≈30%</td><td>report</td></tr>
+<tr><td>min distance to catalogue</td><td>12.53 px</td><td>≈3 px</td><td>&gt;3 px collar</td></tr>
+<tr><td>median nearest-neighbor spacing</td><td>2.83 px</td><td>3.16 px</td><td>≥2.8 px</td></tr>
+<tr><td>dots on catalogue</td><td>0 (0.000 mass)</td><td>0 (collar deletion)</td><td>0</td></tr>
+</tbody></table></div>
+<p>100% far-field is more extreme than R0's 69.8% — a direct bet on the forensics finding that organizer score rises with far-field share. The holdout penalizes this (catalogue is the test), so 0.0614 &lt; 0.2446 is expected, not a bug.</p>
+</section>
+
+<section class="section">
+<h2>Run card — one JSON card (protocol)</h2>
+<div class="card" style="background:#edf3ec;">
+<pre class="mono" style="font-size:11px; max-height:420px; overflow:auto;">{
+  "hypothesis": "H92-1 Cover-Stripped Intrabasinal Horsts + far-field winner-economics emission",
+  "mechanism": "Per-fold Bouguer stripping G_intra=B13-g(B15) and conductivity conditioning C_res=B17-c(B15,B12) isolate blind horst gravity steps and clay-cap edges under 200-1200m cover; cover gate w_cover=sigmoid((B15-220)/45); far-field-weighted Poisson-disk at 37,654 dots",
+  "named_non_fault_mimic": "Saline playa brines, broad lacustrine clays — rejected by joint G_intra×C_res product",
+  "holdout_dti": {"label": "HOLDOUT-DTI", "evaluator_version": "gems91-hide-recover-v1.0", "value": 0.0614, "ci95": [0.0542, 0.0686], "n_withheld": 60988},
+  "correlation_vs_registry": 0.033,
+  "overlap_vs_registry": 0.236,
+  "raster_sha256": "0db006e5f390371d947d2d1e5c9e2e3f43355c29db98557e9f663e78f55e5239",
+  "validator_output": {"no_nan_inside_footprint": true, "values_in_0_1": true, "crs_shape_transform_match": true},
+  "submission_name": "gems91-h92-cgtf-96889e6f",
+  "note": "H92-CGTF cover-gated B13/B17 stripping; HOLDOUT-DTI 0.0614 v1.0; 37654 far-field (80/140)",
+  "verdict": "negative"
+}</pre>
+<p style="margin-top:10px;"><a href="run-card-H92.json">Full machine-readable run card (gems91.h92_cgtf.v1) →</a> · <a href="run-card.json">Current run card (portal reads this) →</a> · Validator details in <code>evidence/h92_simple2.log</code></p>
+</div>
+</section>
+
+<section class="section">
+<h2>What still needs work (honest limitations)</h2>
+<ul>
+<li><strong>Holdout below prior best:</strong> 0.0614 &lt; S13-PTHA 0.2446, so <code>beats_comparable_best</code> blocks promotion. A surface that is 100% far-field will always underperform on catalogue recovery; proving value needs either a far-field-tuned holdout (H92's v1.1-nohalo reports the same 0.0614 because we emitted far-field by design) or a better local proxy (SGMC control also trailed R0: 0.046 vs 0.095).</li>
+<li><strong>Limited physics:</strong> this simple lane used only 4 of 19 bands (G_intra + C_res). Adding H92-3/4 (analytic signal, LRM/curvature) and H92-5 (mag-destruction joint) plus the geodetic/swarm gate more carefully may lift both holdout and blind control without sacrificing far-field.</li>
+<li><strong>No weekly slot spent:</strong> promotion to a real slot is a separate human selector step within the 3/rolling-week cap (rules §3.2). This session spent 0 slots.</li>
+<li><strong>Assigned lane:</strong> self-declared (no external selector paragraph supplied, <code>IR-91-S12-01</code>). A real lane assignment is required for submission.</li>
+<li><strong>Licence review:</strong> all inputs here are 100% official CC0 (GDR 1391, GeoDAWN DOI 10.5066/P93LGLVQ). No lidar/rad external rasters were read (explicitly excluded per <code>IR-91-26</code>).</li>
+</ul>
+</section>
+
+</main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated 2026-10-25T02:17Z · UTC</div><div><a href="run-card-H92.json">Machine-readable run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>

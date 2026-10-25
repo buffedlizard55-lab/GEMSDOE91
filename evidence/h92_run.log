@@ -1,0 +1,35 @@
+[02:03:39] H92-CGTF starting — checking preregistration
+[02:03:39] prereg sha256 d1dc57b41706
+[02:03:39] Loading grid and bands
+[02:03:39] grid (3730, 3292) footprint 5167373 / 12279160 (42.1%)
+[02:03:39] catalogue 60988 fault pixels
+[02:04:22] loaded 19 bands
+[02:04:26] built 4 holdout folds (buffer 80px=8km)
+[02:04:27]   fold 0: truth 29319 held_all 29563 train 2508386 region 2449030
+[02:04:27]   fold 1: truth 12596 held_all 12678 train 3636842 region 1366431
+[02:04:27]   fold 2: truth 9473 held_all 9956 train 4383314 region 564135
+[02:04:27]   fold 3: truth 9600 held_all 9968 train 4263431 region 787777
+[02:04:27] === E1/E2 per-fold training (fold-safe regressions) ===
+[02:04:27] Fold 0 fit_mask 2508386 train pixels
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:200: RuntimeWarning: overflow encountered in multiply
+  analytic = np.sqrt(h_tmi*h_tmi + b09*b09).astype(np.float32)
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:88: RuntimeWarning: overflow encountered in multiply
+  gyy = gaussian(grad_y*grad_y, sigma)
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:89: RuntimeWarning: overflow encountered in multiply
+  gxx = gaussian(grad_x*grad_x, sigma)
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:90: RuntimeWarning: overflow encountered in multiply
+  gxy = gaussian(grad_y*grad_x, sigma)
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:92: RuntimeWarning: invalid value encountered in multiply
+  det = gyy*gxx - gxy*gxy
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:92: RuntimeWarning: overflow encountered in multiply
+  det = gyy*gxx - gxy*gxy
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:92: RuntimeWarning: invalid value encountered in subtract
+  det = gyy*gxx - gxy*gxy
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:93: RuntimeWarning: invalid value encountered in subtract
+  disc = np.sqrt(np.maximum(trace*trace - 4*det, 0))
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:213: RuntimeWarning: overflow encountered in exp
+  cover_w = (1/(1+np.exp(-(b15 - 220)/45))).astype(np.float32)
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:222: RuntimeWarning: overflow encountered in multiply
+  wk = (b07 / np.sqrt(b07*b07 + 4*b08*b08 + 1e-8)).astype(np.float32)
+/home/user/GEMSDOE91/scripts/run_h92_lane.py:71: RuntimeWarning: overflow encountered in divide
+  out = np.clip((arr-med)/mad, -6, 6)

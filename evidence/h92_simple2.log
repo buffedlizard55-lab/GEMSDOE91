@@ -1,0 +1,60 @@
+[02:15:04] load grid
+[02:15:04] footprint 5167373
+[02:15:04] catalogue 60988
+[02:15:07] band det_elev -589.98 1469.91 med -75.60
+[02:15:09] band iso_grav_anom -45.76 24.23 med -7.26
+[02:15:12] band depth_to_base_surf -14.84 7135.31 med 316.45
+[02:15:14] band cond_surf 0.19 4.97 med 2.89
+[02:15:16] band iso_grav_anom_slope 0.00 0.65 med 0.10
+[02:15:18] band tmi_hg 0.00 2200.44 med 13.15
+[02:15:21] band tmi_vg -7.65 20.51 med -0.01
+[02:15:21] fit g_intra
+[02:15:21] g_coeff [-1.41864714e+00 -1.58166434e-02  2.12836475e-06]
+[02:15:21] g_intra_grad
+[02:15:22] c_res
+[02:15:22] c_coeff [ 2.87520465e+00 -9.21206191e-05  8.24912217e-05 -5.01961297e-07]
+[02:15:22] c_res_grad
+[02:15:23] robust
+[02:15:24] s1 mean 0.4992 max 1.0000
+[02:15:24] s2 mean 0.4742
+[02:15:24] build folds
+[02:15:28] 4 folds
+[02:15:28]  fold 0 truth 29319 train 2508386 region 2449030
+[02:15:28]  fold 1 truth 12596 train 3636842 region 1366431
+[02:15:28]  fold 2 truth 9473 train 4383314 region 564135
+[02:15:28]  fold 3 truth 9600 train 4263431 region 787777
+[02:15:28] E1 evaluate
+[02:15:31] E1 total eligible 5167040
+[02:15:33]  fold 0 E1 emitted 18957/18957
+[02:15:35]  fold 1 E1 emitted 10578/10578
+[02:15:38]  fold 2 E1 emitted 4367/4367
+[02:15:40]  fold 3 E1 emitted 6098/6098
+[02:15:41]  E1 DTI 0.0277 CI [0.0235,0.0329] tp 1575.5 fp 38595.6 fn 59412.5 n_truth 60988
+[02:15:41] E2 evaluate
+[02:15:44] E2 total eligible 5167040
+[02:15:46]  fold 0 E2 emitted 18957/18957
+[02:15:50]  fold 1 E2 emitted 10578/10578
+[02:15:52]  fold 2 E2 emitted 4367/4367
+[02:15:55]  fold 3 E2 emitted 6098/6098
+[02:15:56]  E2 DTI 0.0614 CI [0.0542,0.0686] tp 3508.9 fp 38145.5 fn 57479.1 n_truth 60988
+[02:15:56] canary
+[02:15:59]  canary g_intra_grad 0.5360
+[02:16:02]  canary c_res_grad 0.5238
+[02:16:05]  canary joint 0.5188
+[02:16:07]  canary s1 0.5369
+[02:16:07] worst s1 0.5369 PASS
+[02:16:07] winner E2 0.0614
+[02:16:07] full emission
+[02:16:08] full eligible 4722579
+[02:16:14] emitted 37654
+[02:16:14] final 37654
+[02:16:14] geom frac>10 1.000 med_spacing 2.83
+[02:16:14] SGMC 62122
+[02:16:16] SGMC DTI 0.0463
+[02:16:17] R0 SGMC 0.0954
+[02:16:17] uniqueness vs 23
+[02:17:05] surface max|rho| 0.033 gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif dot 0.236 gems91-ucd91-20261024T190000Z-df735405-zeros.tif
+[02:17:06] written /home/user/GEMSDOE91/docs/downloads/gems91-h92-cgtf-96889e6f-zeros.tif sha 0db006e5f390 bytes 132585
+[02:17:06] validate True []
+[02:17:06] run card /home/user/GEMSDOE91/docs/run-card-H92.json verdict promote DTI 0.0614
+[02:17:06] zip /home/user/GEMSDOE91/docs/downloads/gems91-h92-cgtf-96889e6f-zeros.zip 94632
