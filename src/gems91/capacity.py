@@ -5,15 +5,12 @@ references. No candidate or labels are used. At most one binary dot per cell.
 """
 from __future__ import annotations
 
-import numpy as np
-from scipy.ndimage import distance_transform_edt
-
 RADIUS_PX = 3
 OVERLAP_NUMERATOR = 7
 OVERLAP_DENOMINATOR = 10
 
 
-def capacity_bound(footprint: np.ndarray, reference_dots: np.ndarray, budget: int) -> dict:
+def capacity_bound(footprint, reference_dots, budget: int) -> dict:
     """A witness that can rule out a budget, never establish uniqueness.
 
     If U eligible cells are farther than 3 px from reference dots, at least
@@ -21,7 +18,14 @@ def capacity_bound(footprint: np.ndarray, reference_dots: np.ndarray, budget: in
     percentages, to respect the strictly-greater-than 70% stopping rule.
     The full footprint is deliberately generous: catalogue masking and spacing
     can only reduce capacity, so impossibility here also implies it there.
+
+    NumPy/SciPy are imported lazily so command-line preflight can report missing
+    runtime dependencies as machine-readable BLOCKED output instead of crashing
+    during module import.
     """
+    import numpy as np
+    from scipy.ndimage import distance_transform_edt
+
     fp, ref = np.asarray(footprint), np.asarray(reference_dots)
     if fp.dtype != bool or ref.dtype != bool or fp.ndim != 2 or fp.shape != ref.shape:
         raise ValueError('footprint and reference must be equal-shape 2-D boolean masks')

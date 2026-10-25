@@ -1,0 +1,335 @@
+{
+  "lane": "ISO91",
+  "instrument": "I2",
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "implementation_hashes": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "split": "vendor gems57 buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12)",
+  "training": "leave-one-quadrant-out HGB (OLC91 settings), PU, 40 px train buffer",
+  "emission": "submodular_dti_emit, budget 37654 x area share, no dots within 2.0 px of known",
+  "arms": {
+    "E0": "incumbent: all visible catalogue pixels as positives",
+    "E1": "ISO91: only visible components with no other visible component within 5.0 px",
+    "CTL_HALO": "E0 posterior, emission also excluded within 5.0 px of visible faults",
+    "CTL_SUB": "random whole visible components, pixel count matched to E1 positives",
+    "RND": "uniform random dots on the same eligible mask"
+  },
+  "pooled": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "E0": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.08526008331650262,
+        "ci95": [
+          0.068962017071896,
+          0.10285582206572741
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 1392.3663505992868,
+        "fpw": 34977.691236380895,
+        "fnw": 9928.633649400712
+      },
+      "E1": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.06819001054974792,
+        "ci95": [
+          0.05214234765539522,
+          0.08539118653686557
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 1111.436142038756,
+        "fpw": 35100.088868029205,
+        "fnw": 10209.563857961244
+      },
+      "RND": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04316456551148885,
+        "ci95": [
+          0.037444157215182204,
+          0.04841784180223352
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 701.9807950763619,
+        "fpw": 35328.49402449756,
+        "fnw": 10619.019204923638
+      }
+    },
+    "best_comparable_control": "E0",
+    "paired_differences": {
+      "E0": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.017070072766754693,
+        "ci95": [
+          -0.02822107725228068,
+          -0.004979339330261082
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "RND": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.02502544503825907,
+        "ci95": [
+          0.009507397960526453,
+          0.04137515155399011
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 159,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "per_fold": [
+    {
+      "fold": "NW",
+      "n_dots": 8000,
+      "withheld_positive_pixels": 1923,
+      "models": {
+        "E0": {
+          "n_pos": 38975,
+          "n_neg": 116925,
+          "n_predicted": 1112173
+        },
+        "E1": {
+          "n_pos": 12102,
+          "n_neg": 36306,
+          "n_predicted": 1112173
+        }
+      },
+      "receipt": {
+        "fold": "NW",
+        "seed": 20,
+        "held_components": 96,
+        "withheld_positive_pixels": 1923,
+        "eligible_components": 598,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.081443,
+      "E0_n_emitted": 8000,
+      "E0_dot_geometry_vs_visible": {
+        "n": 8000,
+        "frac_le_5px": 0.115,
+        "frac_5_10px": 0.1305,
+        "frac_gt_10px": 0.7545,
+        "median_px": 24.739
+      },
+      "E1_dti": 0.063342,
+      "E1_n_emitted": 8000,
+      "E1_dot_geometry_vs_visible": {
+        "n": 8000,
+        "frac_le_5px": 0.1037,
+        "frac_5_10px": 0.116,
+        "frac_gt_10px": 0.7802,
+        "median_px": 26.048
+      },
+      "RND_dti": 0.036361,
+      "RND_n_emitted": 8000,
+      "RND_dot_geometry_vs_visible": {
+        "n": 8000,
+        "frac_le_5px": 0.055,
+        "frac_5_10px": 0.099,
+        "frac_gt_10px": 0.846,
+        "median_px": 30.083
+      }
+    },
+    {
+      "fold": "NE",
+      "n_dots": 9919,
+      "withheld_positive_pixels": 2367,
+      "models": {
+        "E0": {
+          "n_pos": 37954,
+          "n_neg": 113862,
+          "n_predicted": 1378005
+        },
+        "E1": {
+          "n_pos": 10442,
+          "n_neg": 31326,
+          "n_predicted": 1378005
+        }
+      },
+      "receipt": {
+        "fold": "NE",
+        "seed": 20,
+        "held_components": 145,
+        "withheld_positive_pixels": 2367,
+        "eligible_components": 628,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.101115,
+      "E0_n_emitted": 9919,
+      "E0_dot_geometry_vs_visible": {
+        "n": 9919,
+        "frac_le_5px": 0.1501,
+        "frac_5_10px": 0.151,
+        "frac_gt_10px": 0.6989,
+        "median_px": 19.416
+      },
+      "E1_dti": 0.060819,
+      "E1_n_emitted": 9919,
+      "E1_dot_geometry_vs_visible": {
+        "n": 9919,
+        "frac_le_5px": 0.1103,
+        "frac_5_10px": 0.124,
+        "frac_gt_10px": 0.7657,
+        "median_px": 25.0
+      },
+      "RND_dti": 0.042168,
+      "RND_n_emitted": 9919,
+      "RND_dot_geometry_vs_visible": {
+        "n": 9919,
+        "frac_le_5px": 0.0597,
+        "frac_5_10px": 0.0986,
+        "frac_gt_10px": 0.8417,
+        "median_px": 30.017
+      }
+    },
+    {
+      "fold": "SW",
+      "n_dots": 9793,
+      "withheld_positive_pixels": 3781,
+      "models": {
+        "E0": {
+          "n_pos": 29872,
+          "n_neg": 89616,
+          "n_predicted": 1365777
+        },
+        "E1": {
+          "n_pos": 9581,
+          "n_neg": 28743,
+          "n_predicted": 1365777
+        }
+      },
+      "receipt": {
+        "fold": "SW",
+        "seed": 20,
+        "held_components": 223,
+        "withheld_positive_pixels": 3781,
+        "eligible_components": 983,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.068262,
+      "E0_n_emitted": 9793,
+      "E0_dot_geometry_vs_visible": {
+        "n": 9793,
+        "frac_le_5px": 0.1198,
+        "frac_5_10px": 0.1507,
+        "frac_gt_10px": 0.7295,
+        "median_px": 18.439
+      },
+      "E1_dti": 0.058084,
+      "E1_n_emitted": 9793,
+      "E1_dot_geometry_vs_visible": {
+        "n": 9793,
+        "frac_le_5px": 0.121,
+        "frac_5_10px": 0.1596,
+        "frac_gt_10px": 0.7194,
+        "median_px": 18.0
+      },
+      "RND_dti": 0.044607,
+      "RND_n_emitted": 9793,
+      "RND_dot_geometry_vs_visible": {
+        "n": 9793,
+        "frac_le_5px": 0.0802,
+        "frac_5_10px": 0.1322,
+        "frac_gt_10px": 0.7876,
+        "median_px": 22.361
+      }
+    },
+    {
+      "fold": "SE",
+      "n_dots": 7891,
+      "withheld_positive_pixels": 3250,
+      "models": {
+        "E0": {
+          "n_pos": 33021,
+          "n_neg": 99063,
+          "n_predicted": 1101841
+        },
+        "E1": {
+          "n_pos": 10285,
+          "n_neg": 30855,
+          "n_predicted": 1101841
+        }
+      },
+      "receipt": {
+        "fold": "SE",
+        "seed": 20,
+        "held_components": 142,
+        "withheld_positive_pixels": 3250,
+        "eligible_components": 648,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.093609,
+      "E0_n_emitted": 7891,
+      "E0_dot_geometry_vs_visible": {
+        "n": 7891,
+        "frac_le_5px": 0.1436,
+        "frac_5_10px": 0.156,
+        "frac_gt_10px": 0.7004,
+        "median_px": 19.235
+      },
+      "E1_dti": 0.09063,
+      "E1_n_emitted": 7891,
+      "E1_dot_geometry_vs_visible": {
+        "n": 7891,
+        "frac_le_5px": 0.1179,
+        "frac_5_10px": 0.1272,
+        "frac_gt_10px": 0.7549,
+        "median_px": 25.456
+      },
+      "RND_dti": 0.047472,
+      "RND_n_emitted": 7891,
+      "RND_dot_geometry_vs_visible": {
+        "n": 7891,
+        "frac_le_5px": 0.0797,
+        "frac_5_10px": 0.1218,
+        "frac_gt_10px": 0.7985,
+        "median_px": 25.239
+      }
+    }
+  ],
+  "runtime_s": 246.2
+}

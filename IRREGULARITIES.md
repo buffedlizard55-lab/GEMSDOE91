@@ -1707,6 +1707,34 @@ Full detail and sources: `docs/REVIEW-S18-20261025.md`. Machine-readable: `docs/
   pinned GitHub mirrors and hash-verified. Candidates H3–H5 name their free official sources but
   are NOT verified-obtainable here and were deferred rather than proposed as viable.
 
+## Session 18 (`S18-HGBR`) irregularities & resolved items (2026-10-25, `arena/bba4efce-gemsdoe91`)
+
+* **IR-91-S18-HGBR-01 (RESOLVED — Second-order variogram differences vanish on odd fault-step inflections).**
+  During Pass 2 engineering of `src/gems91/hgbr18.py`, second-order central finite differences
+  `F(x+d) - 2F(x) + F(x-d)` produced near-zero response at the exact inflection center (`F''(0) = 0`)
+  of step-like normal-fault anomalies and amplified quantization noise on flat basin floors when
+  `MAD < 1e-4`. Replaced with amplitude-gated 1st-order symmetric increments (`F(x+d) - F(x-d)`)
+  multiplied by a smooth local RMS signal envelope `rms / (rms + rms_floor)` and an IQR/P90 fallback
+  in `_robust_z`. Verified that all 16 `HGBR` features are finite with `max_pooled_symmetric_auc = 0.5651 <= 0.90`.
+* **IR-91-S18-HGBR-02 (RESOLVED — Remediated `IR-91-S17-01`, `IR-91-S17-02`, and `IR-91-S17-LFTG-01`).**
+  `S18-HGBR` implemented: (a) Stage-1 upper-tail log-odds dispersion alignment (`align_stage1_log_odds_dispersion`,
+  fixing `IR-91-S17-01`), (b) positive-part-only asymmetric cover-gated specialist rescue
+  (`pool_asymmetric_cover_specialists`, fixing `IR-91-S17-02` so exposed scarps with `l_full >= l_sub`
+  are never suppressed), and (c) distance-feathered 4-fold out-of-fold (`OOF`) stitched full-map
+  emission with structural backbone rescue (`stitch_oof_full_map_surface`, fixing `IR-91-S17-LFTG-01`).
+  This simultaneously lifted `HOLDOUT-DTI` to **`0.200742`** (`gems57-pooled-hide-v2`, new all-time
+  label-blind repo record) and lifted untouched Blind Off-Catalogue USGS SGMC `>1 km` DTI from
+  `0.039897` (`S17-LFTG`) to **`0.101151`** (`+153.53%` vs `S17-LFTG`, `+22.00%` vs `GEMSDOE32 R0 = 0.082913`).
+* **IR-91-S18-HGBR-03 (OPEN — Paired 95% CI vs `S17-CPAD E1` slightly straddles zero and synthetic lattice bound `IR-S16-03` remains active).**
+  While `hgbr_e1` (`0.200742 HOLDOUT-DTI`) beats `S17-CPAD E1` (`0.198183 HOLDOUT-DTI`) on all 4
+  spatial folds (`+0.002560`, `+144.3 tpw`, `-364.1 fpw`) and beats `INCUMBENT-PTAC-V2` (`+0.008534`,
+  `95% CI [+0.002892, +0.014515]`) and `S17-LFTG E2` (`+0.012146`, `95% CI [+0.007290, +0.017609]`)
+  with 95% CIs strictly above zero, its paired 20-km block-bootstrap 95% CI against `S17-CPAD E1`
+  is `[-0.000516, +0.005617]`, and the `206,895`-dot synthetic 5-px calibration grid
+  `calib_r13lattice_00904.tif` still forces unidirectional 3-px dot overlap `99.84% > 70%` (`IR-S16-03`),
+  whereas all 83 real submissions pass `<= 61.87% <= 70%`. Accordingly, `ok_to_submit` remains `False`
+  and `0` weekly slots were spent automatically.
+
 ## Active checkout `arena/522615dd-gemsdoe91` — 2026-10-25
 
 Full evidence: `docs/REVIEW-ACTIVE-522615DD-20261025.md`; machine no-run card: `docs/run-card-522615dd.json`.
@@ -1749,4 +1777,66 @@ The published-artifact verifier read historical `docs/run-card.json`, while the 
 
 ## IR-91-19912231 — data availability was labeled build authorization
 
-The legacy input preflight printed BUILD ALLOWED once any historical axis had data, without an assigned lane or feasibility check. Fixed: INPUTS AVAILABLE and explicit `experiment_authorized: false`; added separate pinned-byte `experiment_preflight.py`. Independently measured lattice lower bound 82.341849% at 37,654 dots (geometry, NOT a score). Missing lane and impossible budget remain blocks, not repaired by overriding policy. No candidate or slot. Also removed unsupported hidden-coverage inference from the executive guide and marked completed CWP91 as completed rather than the next untried method. See `docs/REVIEW-19912231-20261025.md`.
+The legacy input preflight printed BUILD ALLOWED once any historical axis had data, without an assigned lane or feasibility check. Fixed: INPUTS AVAILABLE and explicit `experiment_authorized: false`; added separate pinned-byte `experiment_preflight.py`. The 19912231 branch measured a lattice lower bound of 82.341849% at 37,654 dots (geometry, NOT a score). Missing lane and impossible budget remain blocks, not repaired by overriding policy. No candidate or slot. Also removed unsupported hidden-coverage inference from the executive guide and marked completed CWP91 as completed rather than the next untried method. See `docs/REVIEW-19912231-20261025.md`.
+
+## Active checkout `arena/e649e460-gemsdoe91` — follow-up after main integration
+
+- **IR-E649-01 — unassigned lane and no local inputs.** The active review prompt has no assigned single-method paragraph; the current checkout lacks the pinned manifest files. Fresh data preflight and the new experiment preflight both block; experiment preflight cannot verify its sample/lattice capacity witness, so it reports `UNVERIFIED`. No geological experiment or candidate was produced.
+- **IR-E649-02 — historical capacity proof is not this run's evidence.** Upstream `arena/19912231-gemsdoe91` records an 82.341849% minimum lattice overlap at the 37,654-dot budget using pinned bytes. This active checkout's rerun cannot access those bytes; do not present that number as a fresh e649 check or score.
+- **IR-E649-03 — active front-door pointers and language restored after merge.** README, OLC91 portal source/generated page, and executive guide identify e649 as current. The advertised OLC91 TIFF remains historical research only; reference checks are `NOT_CHECKED` and `OK TO SUBMIT` remains `NO`.
+- **IR-E649-04 — score and source caveats.** The official leaderboard snapshot observed 0.4413 as public rank 1; user-provided 0.2778/0.3195 are not submission receipts. The legacy ScienceBase item `6312f0f2d34e36012efa234a` returned not found; current USGS GeMS/SGMC metadata lead is DOI 10.5066/P1A3DQZK, but local payload and footprint coverage are unverified.
+- **IR-E649-05 — S18-UNIQUE arrived from a separate branch during integration.** The merged S18 artifact is a format-certified research demo with 20,000 dots, a partial R0 uniqueness result, and holdout pending. It was not generated, independently revalidated, or selected by this e649 review; no method lane or selector approval was supplied. The portal and README now label it as a separate-branch research download with `OK TO SUBMIT: NO` rather than the active candidate.
+
+Evidence: `docs/REVIEW-ACTIVE-E649E460-20261025.md`, `docs/run-card-E649E460-20261025.json`, and the e649 `python generate_submission.py --preflight` invocation.
+
+## ISO91 session `arena/bacc7c26-gemsdoe91` (2026-10-25)
+
+- **IR-91-ISO-01: a live-aligned holdout split was added, outside the pinned template.**
+  - The legacy split hides truth of which ~55% lies within 1 km of visible faults.
+  - Live evidence: deleted collar dots carried ≈ 0 credit, and R0 has 69.8% of its dots more than 1 km from the catalogue.
+  - Instrument I1 (`isolated-whole-components-loqo-v1`) instead withholds every catalogue component isolated by more
+    than 500 m, wholly inside an eroded quadrant, with per-fold hidden sets: 578 components, 11,911 positives.
+  - It lives in `src/gems91/isolated_holdout.py`. `vendor/gems57/` stays byte-identical to its pin and the new split
+    is proposed for upstream adoption. I1's separation partly builds in a halo-avoidance advantage (CTL_HALO), so
+    CTL_HALO > E0 on I1 is a construction effect, not live evidence.
+- **IR-91-ISO-02: the template was briefly extended, then reverted, and both experiments re-ran identically.**
+  - The first I1/I2 runs executed with the two new functions appended to `vendor/gems57/holdout.py` (sha256 87053050…).
+  - The file was restored to the pinned bytes (7a0a8417…), the functions moved to `gems91.isolated_holdout`, and both
+    experiments re-ran: per-fold and pooled numbers are identical, and only the embedded template hash differs.
+  - The committed `docs/iso91/holdout-I*.json` carry the pinned hash.
+- **IR-91-ISO-03: `scripts/restore_registry.py` aborts on a retracted row.**
+  - The pinned row `docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif` no longer exists; it was
+    retracted, and the portal test asserts `bff9fd21.tif` is absent.
+  - The 62 fleet rasters before it restored and verified.
+  - Not changed here (frozen evidence index). Recommendation: mark the row retracted or point it at `data/retracted_geod/`.
+- **IR-91-ISO-04: the literal 3-px "dots" rule is degenerate for dense area rasters, and one marginal flag remains.**
+  - The first literal sibling sweep (`docs/iso91/sibling-sweep-literal-v1.json`) flagged 13 of 977 rasters.
+  - **12 are dense area surfaces or masks** (167k–4.2M positive px, 32–85% of the footprint), where "dots within 3 px"
+    is degenerate. The shared sweep tool now judges dense references (more than 3× the candidate's dots) in two ways,
+    with both readings published:
+    - **continuous:** their matched-budget top-K dots plus rank correlation;
+    - **binary:** rank correlation.
+  - All 12 clear: matched-budget overlap ≤ 31%, surface |ρ| ≤ 0.46, dots |ρ| ≤ 0.08.
+  - **One flag remains:** `12GEMSDOE_r7-nms3-dem10-scarp` (103,347-pixel binary skeleton, sparse class).
+    - 70.1% of ISO91's dots lie within 3 px of it (chance 29.3%, chance-corrected 57.7%, dots ρ 0.022).
+    - It is logged as a duplicate stop for the extended scope: gate G6b FAIL in `docs/run-card-ISO91.json`.
+    - The 3× threshold was chosen after the literal v1 results were known and was **not** adjusted to clear this flag.
+  - The preregistered protocol registry check passes under the shared `run_olc91.registry_check` with unchanged rules:
+    100 rasters at the final build, 102 after merging `main` (S18 files 23.2% and 9.4%).
+- **IR-91-ISO-05: "3 uploads per rolling 7 days" is unverified.**
+  - It appears on team pages (e.g. 19GEMSDOE), not on the official overview fetched today.
+  - Verify on the signed-in submissions page before planning slots.
+- **IR-91-ISO-06: public competition-data mirrors remain public (IR-91-09).**
+  - This session restored 13 SHA-pinned inputs from the owner's public mirrors into gitignored `data/` only; nothing was committed.
+  - The two licence-unchecked u8 stacks (lidar scarp, GeoDAWN radiometrics) were deliberately not fetched.
+  - Owner decision needed: make `60GEMSDOE` and `GEMSDOE` private.
+- **IR-91-ISO-07: legacy tests pin earlier sessions' content to the front door.**
+  - Several tests require S17-CGRD, S17-EULR, S17-LFTG, S17-CPAD and the 522615dd review links on `docs/index.html`.
+    That is the cause of the earlier clutter.
+  - The new front door keeps them in one compact archive table.
+  - One test asserted the pointer must remain OLC91. It was right for the no-TIFF 522615dd session. It now allows a
+    later measured lane card whose evidence files are committed, and its intent (no fabricated pointer) is kept.
+- **IR-91-ISO-08: the "highest score" figures conflict.**
+  - The brief calls 0.2778 the highest GEMSDOE score and also quotes 0.3195. The latter was #2 (DARD) on 2026-10-04.
+  - On 2026-10-25 the public #1 is 0.4413 and 0.2778 sits below rank 50 (0.2818).
+  - The owner page for 0.2778 says no organiser score exists. All three numbers stay USER-REPORTED or PUBLIC-LEADERBOARD.

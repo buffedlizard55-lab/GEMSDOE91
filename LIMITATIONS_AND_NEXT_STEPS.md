@@ -1,4 +1,51 @@
-# Current limitations and next steps — S19-SVHF, S17-LFTG, S17-CPAD, OLC91, S17-CDSC, S17-EULR, S17-CGRD & S16, 2026-10-25
+# Current limitations and next steps — S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16, 2026-10-25
+
+## Parallel merged session: ISO91 (`arena/bacc7c26-gemsdoe91`, 2026-10-25)
+
+**Status:** new unique research GeoTIFF; **OK TO DOWNLOAD: YES**; **OK TO SUBMIT: NO**.
+The preregistered gates G1, G2 and G4 failed. Evidence: `docs/run-card-ISO91.json` and `docs/REVIEW-ISO91-BACC7C26-20261025.md`.
+
+## Limitations (this session)
+
+1. **The holdout truth is the catalogue, not expert-mapped new faults.**
+   - The new I1 split copies only one live property: new faults lie away from known ones.
+   - It does not reproduce their morphology or how experts identify them.
+   - I1's 500 m separation also builds in an advantage for halo avoidance (CTL_HALO).
+2. **Two key figures are MODEL inferences** from USER-REPORTED scores (uniform lattice and the R0 deletion chain), not measurements:
+   - a public truth set of ≈ 12,500 px;
+   - R0 covering ≈ 40% of it.
+3. **The 19-band 100 m stack is saturated for PU learning.**
+   - Every PU-HGB variant here is below R0 live (USER-REPORTED 0.1367–0.1823).
+   - ISO91 shows that changing which faults are learned does not change where the model puts dots.
+4. **Uniqueness scope.**
+   - The protocol registry is partial (`complete_universal_registry: false`), and one row points at a retracted file (IR-91-ISO-03).
+   - The sibling sweep covers the owner's public GEMSDOE* repositories only.
+   - Dense area rasters need the documented dense-reference rule (IR-91-ISO-04).
+5. **External high-resolution topography (USGS 3DEP) could not be fetched.** The sandbox fails the TLS handshake to the 3DEP hosts.
+
+## Next steps (ranked by expected DTI gain per cost)
+
+1. **H5 on an unrestricted machine.**
+   - Build 1 m and 1/3 arc-second 3DEP scarp morphometry (multi-scale curvature, local relief, openness) aggregated to 100 m.
+   - Preregister and test it on I1 and I2 against E0 with the ISO91 gates.
+   - 3DEP is free and public domain (https://www.usgs.gov/3d-elevation-program/about-3dep-products-services).
+2. **Far-field emission on the best label-blind posterior.**
+   - Allocate dots by distance to the catalogue as R0 does, preregistered on I1 with CTL_HALO as the comparator.
+   - This targets R0's strongest measured trait: 70% of its dots lie more than 1 km from the catalogue.
+3. **Selector-level live test of a wider R0 collar (3–5 px).**
+   - R0 has 15% of its dots at (2, 5] px.
+   - This is an R0-derivative, so it belongs to the selector or R0's owner, not to a lane.
+4. Fix `scripts/restore_registry.py`'s retracted row (IR-91-ISO-03), and propose `gems91.isolated_holdout` upstream to GEMSDOE78's template.
+
+## Access needed
+
+- An unrestricted network or CI job for 3DEP tiles (`prd-tnm.s3.amazonaws.com`), or the competition's `1m_DEM_links.csv` (DrivenData login).
+- An owner decision on making the public data mirrors private (IR-91-09 / IR-91-ISO-06).
+- The signed-in submissions page, to confirm the weekly upload limit (IR-91-ISO-05) and to record organizer receipts.
+
+---
+
+# Session 19 (`S19-SVHF`), Session 18 (`S18-HGBR`) & Session 17 Limitations and Next Steps, 2026-10-25
 
 This replaces the stale statement that real data cannot be restored. All 13 licence-clean pinned
 competition and reference inputs in `registry/data_manifest.json` (`sample_submission.tif`,
@@ -21,6 +68,19 @@ SHA-256 verified in Session 19. No synthetic or fake catalogue was used.
   1. **Rank 1 (No new external downloads required — immediate highest expected `HOLDOUT-DTI` + blind `SGMC` lift):** Fuse the top ~36 multi-scale ridge/crest sharpness operators from `DD+SPAC+PTHA+CPAD` (Frangi/Hessian $\lambda_-$, phase congruency, Cooper–Cowan sun-angle phase) with the `SVHF19` semivariogram-jump, multi-scale Hurst, and Piedmont-Toe Concave Flexure features inside **S19's 3-level nested cross-fitted `QDAC` + stitched 4-fold OOF CELF architecture**, adding explicit cross-product ridge-gate terms (`sv_jump * crest_sharpness`) so predictions retain both `>0.200 HOLDOUT-DTI` crest precision AND `>65%` far-field `>1 km` de-crowded generalization while checking `<=70%` competitive 3-px dot overlap at every arm.
   2. **Rank 2 (Unrestricted machine data ingest — `H19-4`):** Run an unrestricted ingest script against free official USGS 3DEP (`1m_DEM_links.csv`, `tnmaccess.nationalmap.gov`) and NASA ASF Sentinel-1 ARIA InSAR coherence/LOS velocity (`asf.alaska.edu`) to extract sub-meter Holocene piedmont micro-scarps (`0.3–1.5 m` throw invisible in 100-m `B12`) and aseismic fault-creep phase gradients across Nevada playas, pinning the derived `float16` summary bands into `registry/data_manifest.json`.
   3. **Rank 3 (Coordinator protocol versioning):** Propose a coordinator-signed `registry_policy_v2` separating synthetic `>190,000`-dot calibration blankets (`calib_r13lattice_00904.tif`, `r11_greedy_mp.tif`, `calib_fullband_probe_01841.tif`) from genuine `<=80,000`-dot competition candidates while keeping both numbers side-by-side on every run card.
+
+## Session 18 (`S18-HGBR`, branch `arena/bba4efce-gemsdoe91`) — Variogram Hurst-Break, Up-Dip Listric Migration & OOF Cover-Rescue Summary & Next Steps
+
+- **Completed Priority Next Steps from Sessions 17 (`IR-91-S17-01`, `IR-91-S17-02`, `IR-91-S17-LFTG-01`) and 18 (`H1`):**
+  1. Implemented 16 novel `S18-HGBR` features (`src/gems91/hgbr18.py`, `scripts/run_s18_hgbr.py`): amplitude-gated 1st-order directional variogram Hurst-break, strike-parallel vs cross-strike Hurst anisotropy, and 300–900 m up-dip listric crest-to-scarp migration across `Band 10` (`grav_isostatic`), `Band 11` (`grav_bouguer`), `Band 13` (`mag_tmi`), `Band 14` (`mag_rtp`), `Band 8`/`9` (`sar_vv`/`vh`), `Band 18` (`geotherm_temp`), and `Band 0`/`1` (`elev`/`slope`, strictly isolated to `model_full` per `IR-91-S15-05`).
+  2. Remediated `IR-91-S17-01` (`align_stage1_log_odds_dispersion`), `IR-91-S17-02` (`pool_asymmetric_cover_specialists` positive-part-only cover rescue), and `IR-91-S17-LFTG-01` (`stitch_oof_full_map_surface` 4-fold out-of-fold full-map stitching + structural backbone rescue).
+  3. **Holdout Record (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, `60,988` withheld positives, `80 px` buffer, `37,654` binary dots):** `hgbr_e1` achieved **`0.200742 HOLDOUT-DTI`** (`95% CI [0.180482, 0.221419]`; `hgbr_e2 = 0.200530`, `hgbr_e3 = 0.196442`), beating `S17-CPAD E1` (`0.198183`) on all 4/4 spatial folds (`+0.002560`), `INCUMBENT-PTAC-LB` (`0.194221`) by **`+0.006521`**, `INCUMBENT-PTAC-V2` (`0.192208`) by **`+0.008534`** (`95% CI [+0.002892, +0.014515]`), and `S17-LFTG E2` (`0.188596`) by **`+0.012146`** (`95% CI [+0.007290, +0.017609]`).
+  4. **Untouched Blind Off-Catalogue USGS SGMC Control Record (`docs/s18_hgbr/blind-sgmc.json`):** `hgbr_e1` achieved **`0.103939` (`>300 m`)**, **`0.104995` (`>500 m`)**, and **`0.101151` (`>1 km`)** (`82.21%` of dots `>1 km` from the visible catalogue), beating `GEMSDOE32 R0` (`>1 km = 0.082913`) by **`+22.00%`** and `S17-LFTG` (`>1 km = 0.039897`) by **`+153.53%`**.
+  5. **Real-Submission Uniqueness (`Rule 1`):** `hgbr_e1` passes `<= 70%` 3-px dot overlap and `<= 0.90` `|rho|` across **all 83 real submissions** (`vs GEMSDOE32 R0 = 48.77%`, `canonical real = 57.05%`, `external fleet = 51.29%`, `in-repo downloads = 61.87%`).
+- **Remaining Limitations & Next Steps for Session 19:**
+  1. **Synthetic Calibration Grid Policy (`IR-S16-03`):** Under the literal 100-raster check, the 3 synthetic `192k–273k`-dot calibration grids (`calib_r13lattice_00904.tif` `99.84%`, `r11_greedy_mp.tif` `88.13%`, `r14_union_tips10_lat6.tif` `75.90%`) exceed `70%` unidirectional overlap (`f1_dot_overlap_3px <= 0.2491`). A human selector decision (`D1`) is needed to confirm that real-submission uniqueness (`61.87% <= 70%`) governs live slot selection.
+  2. **Widening the Paired Holdout Margin Over `S17-CPAD E1`:** While `hgbr_e1` beats `S17-CPAD E1` on all 4 folds (`+0.002560`), its 20-km block-bootstrap 95% CI (`[-0.000516, +0.005617]`) slightly touches zero (`P(>0) = 94.1%`). Next session should combine `S18-HGBR` features with a 2-D multi-scale directional convolutional/steerable filter layer trained on `spatial.folds` to push `HOLDOUT-DTI` above `0.205` with paired `ci95[0] > 0` against `S17-CPAD E1`.
+  3. **External Bulk Datasets (`H18-4` MT/AEM & `H18-5` Pre-Dawn Winter Landsat LST):** Requires downloading USGS ScienceBase MT/AEM resistivity grids and winter night-time Landsat C2 L2 scenes on an unrestricted machine (`IR-91-S18-10`).
 
 ## Session 17 (`S17-LFTG`, branch `arena/281b6ba8-gemsdoe91`) — 3-D Laplace Tensor Gravity, SGMC >500 m Discovery & Next Steps
 
