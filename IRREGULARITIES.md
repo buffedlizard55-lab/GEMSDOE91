@@ -1519,3 +1519,24 @@ Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and 
 - **IR-91-S14-03 — Multi-Scope Uniqueness & Mutual-Exclusion Audit of `S14-HVDC E2` (`docs/run-card-S14-HVDC.json`):**
   - **Actual:** Across all **8 canonical `data/registry/` rasters** (`max 3-px overlap = 50.07%` on `calib_h161_01855.tif`, `R0 GEMSDOE32 = 40.31%`, `max |rho| = 0.1390`, **PASS**) and all **34 external dotted fleet submission rasters (`< 65,000` positives, including restored retracted `GEOD25m10`)** (`max 3-px overlap = 46.12%` on `GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif`, `max |rho| = 0.0945`, **PASS**), `S14-HVDC E2` (`50,000` dots) is even more distinct than `S13-PTHA E3` (`51.39%` / `47.36%`) and drops below `70%` even on dense halo `calib_h28ridge_01839.tif` (`69,281` px). Against the un-dotted `174,232 px` continuous probability ribbon `calib_h25ctx_01280.tif` (`70.06%`), against unsubmitted in-repo predecessor checkpoints (`S13-PTHA = 84.71%`, `S12-SPAC = 80.69%`) which `S14-HVDC E2` supersedes by `+0.017608` and `+0.024622` `HOLDOUT-DTI`, and against synthetic whole-Nevada lattice `calib_r13lattice_00904.tif` (`99.84%`, `IR-CED-003`), directed `3-px` overlap exceeds `0.70`.
   - **Decision it changes:** Despite leading the comparable holdout and blind SGMC controls, `S14-HVDC E2` is a **negative Rule 1 duplicate stop** and enters no live-slot queue. `submission_ready = false`, `verdict = negative`, `OK TO DOWNLOAD: YES` (research), `OK TO SUBMIT: NO`. A selector cannot override the explicit >70% lane threshold.
+
+## Session 16 (`S16-PC91`, 2026-10-25, `arena/3b49ef79-gemsdoe91`)
+
+- **IR-91-S16-01 — root `generate_submission.py` fabricated a fake catalogue and emitted validated-looking random noise.**
+  - **Expected:** a submission generator reads the pinned `existing_faults.tif` (sha256 `7ba308cc…`) and validates against it.
+  - **Actual:** the pre-S16 `generate_submission.py` *wrote* `data/official/existing_faults.tif` containing a single positive pixel, emitted top-K smoothed random noise, and certified it against that fake catalogue. Its product `gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif` places **515 dots on the real catalogue** with NN spacing 1.0 px everywhere (MEASURED, `evidence/s16_forensics.json`).
+  - **Decision it changes:** script replaced by a fail-closed tombstone; the synthetic file is labelled never-submit. Any catalogue file not matching the pinned sha256 must be treated as hostile until re-restored.
+
+- **IR-91-S16-02 — DZEDGE run card promotes a candidate with HOLDOUT-DTI = 0.0.**
+  - **Actual:** `docs/run-card-gems91-dzedge-v2-20261025.json` records `verdict: promote`, `ok_to_submit: true` alongside `holdout_dti.score = 0.0` (all dots >10 px from catalogue vs 3 px kernel) — it beats no holdout best, violating the protocol promotion rule. Measured NN spacing min = 1.0 px also contradicts its "~3 px spacing" claim (`evidence/s16_forensics.json`).
+  - **Decision it changes:** DZEDGE must be read as a negative/contrarian research file, not a promoted submission, until an organizer receipt exists.
+
+- **IR-91-S16-03 — S15-HCPA site copy ("promote-to-selector ★") contradicts its own run card.**
+  - **Actual:** `docs/run-card-S15.json` = verdict negative, best 0.100218 HOLDOUT-DTI (v1.0 budget sweep) vs prior best 0.262209; README/index copy nevertheless carries star/promote language. Run cards are authoritative; page copy is stale at render time.
+
+- **IR-91-S16-04 — v1.0 evaluator is exact-hit (halo deletion); cross-version comparisons in older cards must be rechecked before reuse.** (Restates IR-91-S14-01 family; S16 reports v1.0 + v1.1-nohalo side by side, never mixed.)
+
+- **IR-91-S16-05 — stack-family dot overlap makes Rule 1 unsatisfiable for accretion lanes under the strict all-downloads registry.**
+  - **Actual:** S16 E3 (shared static stack + PC) final dots overlap DDVTC 86.00%, SPAC 85.46%, MHTR 82.92% within 3 px (MEASURED). Any future "stack + X" lane will duplicate-stop against sibling downloads even when it passes vs `data/registry/` alone (max coverage there 20.9%). Governance must choose the registry scope explicitly; S16 used the strict scope and logged E3 as duplicate stop.
+
+- **IR-91-S16-06 — sandbox limits measured:** 3 GB RAM (float64 full-grid FFT OOM-killed; fixed with single-precision streaming, peak 1.37 GB); unauthenticated api.github.com urllib returns HTTP 502 while `gh`-token requests succeed; DrivenData/USGS/dropbox unreachable from bash (fetch tool could read DrivenData pages; leaderboard + metric verified 2026-10-25: #1 0.4413).

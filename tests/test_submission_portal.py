@@ -83,7 +83,14 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
         s15_allowed={s15['artifact']['file'],s15['artifact']['zip']}
     except Exception:
         pass
-    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip}|g91_allowed|s14_allowed|s15_allowed
+    s16_allowed=set()
+    try:
+        s16=json.loads((ROOT/'docs/run-card-S16.json').read_text())
+        s16_allowed={'downloads/'+s16['validator_output']['primary_zeros_tif']['filename'],
+                     'downloads/'+s16['validator_output']['zip_bundle']['filename']}
+    except Exception:
+        pass
+    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip}|g91_allowed|s14_allowed|s15_allowed|s16_allowed
     for name in ('index.html','executive-summary.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states and all(x=='false' for x in p.states)

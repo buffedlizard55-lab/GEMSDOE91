@@ -1,5 +1,16 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## CURRENT SESSION 16 LANE (`S16-PC91`, 2026-10-25, branch `arena/3b49ef79-gemsdoe91`) — UNIQUE TIF, HONEST NEGATIVE
+
+> **AUTOMATED VERDICT (computed, fail-closed, zero human inspection): `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**
+> New detector (Kovesi phase congruency) falsified on the comparable holdout: E1 PC-only `0.123600`, E2 PC+raw19 `0.137450`, E3 stack+PC `0.174120` **HOLDOUT-DTI** (`gems91-hide-recover-v1.0`, 60,988 withheld) vs prior comparable best S14-HVDC `0.262209`. E3 additionally Rule-1 duplicate-stops (86.00% dot overlap vs DDVTC sibling) and was never written as a submission. Zero weekly slots spent.
+
+- **[Download S16-PC91 range-safe GeoTIFF](docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif)** · **[Single-TIFF ZIP](docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.zip)** · **[Audit page](docs/s16-pc91.html)** · **[Executive summary / exact submission steps](docs/s16-executive-summary.html)** · **[JSON run card](docs/run-card-S16.json)** · **[Preregistered hypotheses](docs/HYPOTHESES_S16.md)** · **[Session report](docs/S16_20261025.md)**
+- **Unique submission name:** `gems91-s16-pc91-20261025T051716Z-9c6f182a` · **SHA-256:** `dfee391717d1b89e9e179ec2d0ba00096ec40d5963d841670c2e9a4eea4f9df6` · **Form note (69/140):** `S16-PC91 phase-congruency monogenic E1 37654d HOLDOUT-DTI 0.1236 v1.0` · all-finite [0,1], 0 NaN, triple-gate CERTIFIED, independently re-verified (`scripts/verify_s16.py`).
+- **Why R0 0.2778 (CLAIM, no receipt) led the fleet:** measured 37,654 unit dots at 2.828–3.0 px spacing; max-credit saturation makes sparsification + collar deletion worth ~+0.086 over the continuous parent, while the h19-5 detector underneath caps rearrangements — beating it needs a better detector, and phase congruency is now measured *not* to be one for catalogue recovery (blind SGMC control 0.108622 vs R0 0.095386, report-only, is the one positive signal). Leaderboard verified 2026-10-25: #1 0.4413.
+- **Safety fixes this session:** root `generate_submission.py` (fabricated a fake 1-px catalogue; emitted "validated" noise now in downloads as `gems91-unique-synthetic-…`, 515 dots on the real catalogue) is a fail-closed tombstone — see IR-91-S16-01. DZEDGE "promote" with HOLDOUT-DTI 0.0 flagged IR-91-S16-02.
+- **Session prompt & protocol:** the verbatim fleet brief already carried in this README (see §"SESSION 11" history / IR-91-S11-09) plus S16 preregistration `docs/HYPOTHESES_S16.md` govern this lane; Core Values: Maximize P(Win), Own the Outcome.
+
 ## CURRENT SESSION 15 LANE (`S15-HCPA`, 2026-10-25, branch `arena/b580c734-gemsdoe91`) — NEW UNIQUE TIF AT WINNER GEOMETRY
 
 > **AUTOMATED VERDICT (computed, fail-closed, zero human image inspection): `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO` (human selector first).**
