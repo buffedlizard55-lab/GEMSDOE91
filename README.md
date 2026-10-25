@@ -8,6 +8,8 @@
 
 **Start every session:** read this status, the [full standing prompt and supplied updates](#full-project-brief), [current review](docs/REVIEW-ARENA-E5BC01F3-20261025.md), and [next steps](LIMITATIONS_AND_NEXT_STEPS.md). **Maximize P(Win) · Own the Outcome.** Format validity is not scientific improvement, registry uniqueness, selector approval, or an organizer-confirmed result.
 
+> The merged [`BB27AE93` review](docs/REVIEW-ARENA-BB27AE93-20261025.md) describes its originating session's blocked state, not this branch's new code changes. It is retained as historical evidence.
+
 ---
 
 ## Merged historical review (`arena/7d6ac0dc-gemsdoe91`)
