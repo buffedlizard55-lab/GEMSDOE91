@@ -47,7 +47,7 @@ async function main() {
     if (!allStatesFailClosed || stateCount === 0) {
       throw new Error('Missing fail-closed negative submission state');
     }
-    if (!(await page.getByText(/NOT OK TO SUBMIT/).count())) {
+    if (!(await page.getByText(/^NOT OK TO SUBMIT\.?$/).count())) {
       throw new Error('Submission warning is not visible');
     }
     // The historical DZ-EDGE file is still downloadable for research, but its
@@ -72,25 +72,34 @@ async function main() {
     if (dzDigest !== dzCard.raster_sha256) throw new Error('DZ-EDGE research download bytes do not match recorded SHA256');
 
     await page.goto(baseURL, { waitUntil: 'networkidle' });
-    // The current GEO91 page exposes a research-only negative, with a one-click TIFF and ZIP.
-    const geo91DownloadEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: '↓ Download GeoTIFF (submit-format file)', exact: true }).click();
-    const geo91Download = await geo91DownloadEvent;
-    const geo91Bytes = fs.readFileSync(await geo91Download.path());
-    const geo91Digest = crypto.createHash('sha256').update(geo91Bytes).digest('hex');
-    const geo91Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-GEO91.json')));
-    if (geo91Digest !== geo91Card.e2_raster_sha256 || geo91Card.submission_ready !== false) {
-      throw new Error('Current GEO91 download identity/readiness mismatch');
-    }
-    const geo91ZipEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: '↓ Single-TIFF ZIP', exact: true }).click();
-    const geo91Zip = await geo91ZipEvent;
-    const geo91ZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await geo91Zip.path())).digest('hex');
-    const policy = JSON.parse(fs.readFileSync(path.join(root, 'registry/artifact_policy.json')));
-    const zipRecord = policy.files.find(row => row.path.endsWith('gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.zip'));
-    if (!zipRecord || geo91ZipDigest !== zipRecord.sha256) throw new Error('Current GEO91 ZIP download bytes mismatch');
-    await page.locator('h1').click();
+    // Follow the current manifest instead of assuming an archived S16 page.
+    const current = JSON.parse(fs.readFileSync(path.join(root, 'docs/current-run.json')));
+    if (current.ok_to_submit !== false) throw new Error('Research download must remain blocked');
+    const currentDownloadEvent = page.waitForEvent('download');
+    await page.locator(`a[download][href="${current.tif}"]`).click();
+    const currentDownload = await currentDownloadEvent;
+    const currentDigest = crypto.createHash('sha256').update(fs.readFileSync(await currentDownload.path())).digest('hex');
+    if (currentDigest !== current.raster_sha256) throw new Error('Current TIFF identity mismatch');
+    const currentZipEvent = page.waitForEvent('download');
+    await page.locator(`a[download][href="${current.zip}"]`).click();
+    const currentZip = await currentZipEvent;
+    const currentZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await currentZip.path())).digest('hex');
+    if (currentZipDigest !== current.zip_sha256) throw new Error('Current ZIP identity mismatch');
     await page.screenshot({ path: path.join(output, 'desktop.png'), fullPage: true });
+    // Older candidate controls and downloads belong to the archive.
+    await page.goto(new URL('archive-results.html', baseURL).href, { waitUntil: 'networkidle' });
+    const scgfDlEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ Download S15-SCGF E2 GeoTIFF', exact: true }).click();
+    const scgfDownload = await scgfDlEvent;
+    const scgfDigest = crypto.createHash('sha256').update(fs.readFileSync(await scgfDownload.path())).digest('hex');
+    const scgfCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S15-SCGF.json')));
+    if (scgfDigest !== scgfCard.raster_sha256 || scgfCard.submission_ready !== false) {
+      throw new Error('S15-SCGF one-click download SHA256 or fail-closed state mismatch');
+    }
+    await page.getByRole('button', { name: 'Copy submission note', exact: true }).click();
+    await page.waitForFunction(() => document.getElementById('copy-status').textContent.length > 0);
+    await page.locator('h1').first().click();
+    await page.screenshot({ path: path.join(output, 'archive-controls.png'), fullPage: true });
     // Historical downloads remain testable, but no longer masquerade as the current page.
     await page.goto(new URL('archive-results.html', baseURL).href, { waitUntil: 'networkidle' });
     const s14DownloadEvent = page.waitForEvent('download');
@@ -161,9 +170,9 @@ async function main() {
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
       dzedge_download_sha256: dzDigest,
-      geo91_download_sha256: geo91Digest,
-      geo91_submission_ready: geo91Card.submission_ready,
-      geo91_zip_download_sha256: geo91ZipDigest,
+      current_download_sha256: currentDigest,
+      current_submission_ready: current.ok_to_submit,
+      current_zip_download_sha256: currentZipDigest,
       s14_download_sha256: s14Digest,
       s13_download_sha256: s13Digest,
       download_sha256: digest,

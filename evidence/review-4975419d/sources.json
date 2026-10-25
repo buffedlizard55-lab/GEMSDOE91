@@ -1,0 +1,28 @@
+{
+  "checked_utc": "2026-10-25",
+  "sources": [
+    {
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "status": "FETCHED_OFFICIAL_GITHUB",
+      "snapshot": "evidence/review-4975419d/official-reference-readme.md",
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "supported_claims": [
+        "Reference solution supports CPU-only environments; GPU is faster, not mandatory.",
+        "Competition data must be downloaded separately."
+      ],
+      "not_supported": [
+        "Leaderboard scores",
+        "Weekly cap",
+        "Optimal emission recipe",
+        "External input rights"
+      ]
+    }
+  ],
+  "unfetched_source_leads": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
+  ],
+  "limitation": "Network allowlist excludes those hosts; no claim of current page or receipt verification."
+}

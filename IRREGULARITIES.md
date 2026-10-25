@@ -1,3 +1,12 @@
+# Active review irregularities — 2026-10-25, 4975419d
+
+- **IR-4975-01:** GEO91 front door incorrectly asserted near-catalogue mass was pure penalty and pruning mechanically improved hidden DTI. Replaced with conditional explanation; unit counterexample added. Archived geometry is not causal score evidence.
+- **IR-4975-02:** browser CI targeted S16 downloads on the GEO91 front door. Fixed to read the current manifest; history tested in archive. Current TIFF/ZIP identity now checked before render.
+- **IR-4975-03:** two already tracked DRN91 downloads were absent from artifact policy, blocking a fresh all-download audit. Registered as quarantined and regenerated audit: 64 files, 56 technical PASS, 8 FAIL. No promotion.
+- **IR-4975-04:** earlier portal falsely implied a new universally unique file and diagnosed an unseen upload rejection. Corrected both. No new file, assigned lane or full-registry clearance in this review.
+
+---
+
 ## S16 / 2026-10-25 — current review findings (not organizer scores)
 
 - **IR-S16-01 — critical synthetic-label overwrite:** the inherited root generator replaced `data/official/existing_faults.tif` with mock labels and generated smooth random noise. Replaced by a side-effect-free entry point to the measured pipeline; protected by regression tests. Real input SHA-256 reverified.
