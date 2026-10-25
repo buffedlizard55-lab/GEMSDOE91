@@ -1,8 +1,20 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
-## Current active-branch review (2026-10-25)
+## Current checkout status — `arena/6feb36e3-gemsdoe91` (2026-10-25 UTC)
 
-**At every session start:** read this current review and the standing mandate below, then verify the active branch, run card, local inputs and exact artifact before relying on historical status. This review supersedes the earlier main-branch [repository review](docs/REVIEW-REPO-20261025.md), which documented a prior DZ-EDGE checkout state before the S15 review was completed.
+**Start every session by reading this block and the [standing project mandate](#standing-project-mandate-read-at-the-start-of-every-session), then verify the active branch, local inputs and run card.** The branch-specific [current review](docs/REVIEW-ACTIVE-6FEB36E3-20261025.md) and [run card](docs/run-card-ARENA-6FEB36E3-20261025.json) supersede inherited branch-status claims below.
+
+> **Current decision: no new experiment or TIFF was generated; no candidate is approved to submit.** The canonical `docs/run-card.json` says `lane.assigned: false`; `python scripts/preflight.py` is BUILD BLOCKED because required local rasters are missing. Pinned dependencies were installed into ignored `.venv/` so tests and file-byte verification can run, but no competition sample/catalogue/feature rasters are present. The historical DZ-EDGE TIF is **OK TO DOWNLOAD: YES (research/education only)** and **OK TO SUBMIT: NO**. Its TIFF bytes were freshly checked for finite [0,1] values, grid metadata, and ZIP identity, but sample-grid/footprint equality, the official null/NaN outside-bounds requirement, holdout, and complete-registry novelty were not rerun; its historical 0.0 HOLDOUT-DTI does not validate its off-catalogue hypothesis. No organizer receipt or separate selector approval is present.
+
+**Answer on the reported 0.2778:** thinning sparse predictions can plausibly reduce redundant mass in the official distance-weighted Tversky metric, but a score alone cannot show causation or blind-vent discovery. Freshly fetched [GEMSDOE32 source page](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html) labels the named artifact `UNSCORED`, says “NO ORGANISER SCORE EXISTS,” and calls 0.2747 a projection; the prompt's 0.2778 therefore remains unverified. A fresh [official leaderboard snapshot](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) displayed rank 1 at 0.4413, while the prompt's 0.3195 is stale for that snapshot; the leaderboard observation is not a submission receipt. A matched ablation and receipt are needed. This repo does not prove a higher score is achievable.
+
+**Next research candidates, ranked:** MFTA fault-tip termination asymmetry (first; existing layers; medium potential, low–medium cost), SACR flight-line artefact rejection (existing sponsor bands; low–medium potential, medium cost), LCMD lithology-conditioned magnetic–gravity displacement (requires official USGS SGMC access; not verified), BFT geomorphic-domain transfer (new evaluation design; uncertain gain), and ODSA high-resolution scarp asymmetry (competition `1m_DEM_links.csv` and linked USGS 3DEP; data access not verified). These are proposals, not results. No new experiment may run until the exact single method paragraph is assigned; use the shared feature cache/evaluator/writer, compare against the same holdout best, and stop within the 3-experiment/2-hour budget.
+
+For line-by-line sources and blockers, see [current review](docs/REVIEW-ACTIVE-6FEB36E3-20261025.md), [review run card](docs/run-card-ARENA-6FEB36E3-20261025.json), [official DrivenData competition](https://www.drivendata.org/competitions/306/competition-doe-gems/), [problem statement](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/), [official reference solution](https://github.com/drivendataorg/gems-prize-reference-solution), [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), and [USGS 3DEP](https://www.usgs.gov/3d-elevation-program). User-supplied historical scores are not relabelled as ORGANIZER-CONFIRMED without a receipt.
+
+## Inherited historical session notes (not current checkout approvals)
+
+At every session start, use the branch-specific status above and the standing mandate below; do not treat historical session notes as current approvals.
 
 ## HISTORICAL SESSION 15 LANE (`S15-HCPA`, artifact built on `arena/b580c734-gemsdoe91`) — RESEARCH TIFF ONLY
 
