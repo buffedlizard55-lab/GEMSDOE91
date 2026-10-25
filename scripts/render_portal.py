@@ -37,6 +37,7 @@ def f(value, digits=5):
 EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292),
                  'transform': (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)}
 BOARD_ROWS = (
+    ('S17-EULR E3 (Session 17: Euler deconvolution source-geometry fusion, 44,000 dots; HOLDOUT-DTI 0.249626 v1.0, Blind SGMC 0.100737; Euler paired ablation +0.000331 CI includes 0 — null; negative — research only)', 'docs/run-card-S17-EULR.json', 'docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif', 'REVIEW-S17-EULR.md'),
     ('S15-SCGF E2 (NEW parallel lane: Förstner junctions + multi-scale Salem worms + aquifer-baffle dual-specialist, 44,000 dots; HOLDOUT-DTI 0.240633, Blind SGMC 0.097940 [+0.0022 vs PTAC]; negative — research only)', 'docs/run-card-S15-SCGF.json', 'docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif', 's15-scgf.html'),
     ('S15-HCPA (historical research only; HOLDOUT-DTI 0.091399; final selector not holdout-matched; complete registry unverified)', 'docs/run-card-S15.json', 'docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif', 's15-hcpa.html'),
     ('S14-HVDC E2 (holdout 0.262209 — #1 comparable v1.0 in GEMSDOE91; +0.017608 paired vs S13-PTHA; blind SGMC 0.110429 #1; selector blocked ★)', 'docs/run-card-S14-HVDC.json', 'docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif', 's14-hvdc.html'),
