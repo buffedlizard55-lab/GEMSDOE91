@@ -36,7 +36,7 @@ def load_card():
 
 
 def test_all_local_page_links_assets_and_fragments_resolve():
-    for name in ('index.html','docs/index.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
+    for name in ('index.html','docs/index.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s15r-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
         path=ROOT/name; parser=Page(); parser.feed(path.read_text())
         for href in parser.links:
             u=urlsplit(href)
@@ -139,6 +139,30 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
         assert not s15.get('submission_ready', False) and not submission_ready(s15)
         assert s15['organizer_confirmed'] is None
         assert hashlib.sha256((ROOT/'docs'/s15['artifact']['file']).read_bytes()).hexdigest()==s15['raster_sha256']
+
+    # S15R is a corrected negative revalidation, deliberately unlike historical
+    # research artifacts: no release TIFF may leak into the public portal.
+    s15r=json.loads((ROOT/'docs/run-card-S15R-HCPA-20261025.json').read_text())
+    s15r_page=Page(); s15r_page.feed((ROOT/'docs/s15r-executive-summary.html').read_text())
+    s15r_text=' '.join(s15r_page.text)
+    assert s15r['verdict']=='NEGATIVE_DO_NOT_PROMOTE'
+    assert s15r['submission']['ok_to_download'] is False
+    assert s15r['submission']['ok_to_submit'] is False
+    assert s15r['registry_comparison']['final_dots']['is_duplicate'] is True
+    assert s15r['registry_comparison']['available_frozen_references_checked']==62
+    assert s15r['raster_sha256'] == s15r['quarantined_raster']['sha256']
+    assert (ROOT/'docs/data/s15_revalidation_registry_20261025.json').read_bytes() == (ROOT/'evidence/s15_revalidation_registry_20261025.json').read_bytes()
+    assert s15r_page.states==['false']
+    assert s15r_page.downloads==[]
+    assert 'OK TO DOWNLOAD: NO' in s15r_text and 'OK TO SUBMIT: NO' in s15r_text
+    assert '99.599%' in s15r_text
+    # S16 is now the active portal, but it must retain a reachable archival link
+    # to this corrected negative rather than treating S15R as a current file.
+    landing=(ROOT/'docs/index.html').read_text()
+    research=(ROOT/'docs/research.html').read_text()
+    assert 'SESSION 16' in landing
+    assert 's15r-executive-summary.html' in research
+    assert 'DZ-EDGE v2' not in (ROOT/'index.html').read_text()
 
     page=Page(); page.feed((ROOT/'docs/ccr91-executive-summary.html').read_text())
     text=' '.join(page.text)

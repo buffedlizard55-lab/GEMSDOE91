@@ -48,7 +48,7 @@ def _rel_or_str(path: Path) -> str:
         return str(path)
 
 
-def write_validated_submission_bundle(
+def _write_validated_submission_bundle_impl(
     dot_or_prob_grid: np.ndarray,
     *,
     stem_prefix: str,
@@ -111,6 +111,15 @@ def write_validated_submission_bundle(
         cand_id = f"{stem_prefix}-{date_tag}-{sha8}"
         final_nan = releases_p / f"{cand_id}.tif"
         final_zeros = releases_p / f"{cand_id}-zeros.tif"
+        # Never overwrite a prior content-addressed artifact.  This also lets
+        # the public transactional wrapper distinguish a new failed bundle
+        # from a pre-existing valid release.
+        clashes = [path for path in (final_nan, final_zeros) if path.exists()]
+        if clashes:
+            raise FileExistsError(
+                "Refusing to overwrite an existing content-addressed artifact: "
+                + ", ".join(str(path) for path in clashes)
+            )
         tmp_nan.replace(final_nan)
         tmp_zeros.replace(final_zeros)
     finally:
@@ -208,7 +217,21 @@ def write_validated_submission_bundle(
         parent=eff_parent,
         allow_zeros_outside=True,
     )
-    if not vr_nan.ok or not vr_zeros.ok:
+    # ``ledger_path=None`` is retained strictly for isolated format tests.
+    # In that mode, accept every validate_raster MUST gate *except* the one
+    # deliberately unverifiable ledger claim.  The audit labels this result
+    # TEST_ONLY_NO_LEDGER, never writer-certifiable/publishable.  Do not weaken
+    # any geometric, range, raster, catalogue, or parent-diff gate here.
+    def _vr_test_mode_ok(report):
+        return all(
+            gate.ok
+            for gate in report.gates
+            if gate.must_pass and gate.name != "sha256 not already in ledger"
+        )
+
+    vr_nan_ok = vr_nan.ok if ledger_path is not None else _vr_test_mode_ok(vr_nan)
+    vr_zeros_ok = vr_zeros.ok if ledger_path is not None else _vr_test_mode_ok(vr_zeros)
+    if not vr_nan_ok or not vr_zeros_ok:
         raise RuntimeError(
             f"validate_raster failed:\nNAN:\n{vr_nan.text()}\nZEROS:\n{vr_zeros.text()}"
         )
@@ -220,6 +243,8 @@ def write_validated_submission_bundle(
         dl_dir.mkdir(parents=True, exist_ok=True)
         # Single-member ZIP containing `<cand_id>-zeros.tif` (directly accepted by DrivenData)
         zip_path = dl_dir / f"{cand_id}-zeros.zip"
+        if zip_path.exists():
+            raise FileExistsError(f"Refusing to overwrite existing ZIP: {zip_path}")
         with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
             zi = zipfile.ZipInfo(filename=final_zeros.name, date_time=(2026, 10, 24, 0, 0, 0))
             zi.compress_type = zipfile.ZIP_DEFLATED
@@ -239,6 +264,8 @@ def write_validated_submission_bundle(
         if Path(bundle_js_filename).name != bundle_js_filename:
             raise ValueError("bundle_js_filename must be a plain filename")
         b64_js_path = dl_dir / bundle_js_filename
+        if b64_js_path.exists():
+            raise FileExistsError(f"Refusing to overwrite existing browser bundle: {b64_js_path}")
         payload = {
             "candidate_id": cand_id,
             "primary_zeros": {
@@ -309,12 +336,93 @@ def write_validated_submission_bundle(
             "gems91_gates_verdict": g_nan.verdict,
             "release_gates_nan_pass": bool(rg_nan["PASS"]),
             "release_gates_zeros_pass": bool(rg_zeros["PASS"]),
-            "validate_raster_nan_pass": bool(vr_nan.ok or eff_parent is None),
-            "validate_raster_zeros_pass": bool(vr_zeros.ok or eff_parent is None),
+            "validate_raster_nan_pass": bool(vr_nan_ok),
+            "validate_raster_zeros_pass": bool(vr_zeros_ok),
+            "ledger_gate_verified": ledger_path is not None,
             "range_0_1_portal_safe": True,
+        },
+        "publication_eligibility": {
+            "ledger_mode": "VERIFIED_LEDGER" if ledger_path is not None else "TEST_ONLY_NO_LEDGER",
+            "writer_certifiable": bool(ledger_path is not None and g_nan.verdict == "CERTIFIED"),
+            "note": (
+                "A writer call without the SHA ledger is a format-test mode only; it cannot certify a "
+                "publishable submission or bypass duplicate-history review."
+                if ledger_path is None
+                else "Writer-level certification only; scientific novelty, holdout, eligibility, and human-controlled upload remain separate gates."
+            ),
         },
     }
     if downloads_dir is not None:
         audit_path = Path(downloads_dir) / f"{cand_id}-audit.json"
+        if audit_path.exists():
+            raise FileExistsError(f"Refusing to overwrite existing audit: {audit_path}")
         audit_path.write_text(json.dumps(audit, indent=2) + "\n", encoding="utf-8")
     return audit
+
+
+def _snapshot_regular_files(directory: Path | None) -> set[Path]:
+    """Return resolved regular-file paths already present under one output root."""
+    if directory is None or not directory.exists():
+        return set()
+    return {path.resolve() for path in directory.rglob("*") if path.is_file()}
+
+
+def write_validated_submission_bundle(
+    dot_or_prob_grid: np.ndarray,
+    *,
+    stem_prefix: str,
+    date_tag: str,
+    template_path: str | Path,
+    catalogue_path: str | Path,
+    ledger_path: str | Path | None = ROOT / "ledger" / "submissions.csv",
+    parent_compare_path: str | Path | None = None,
+    releases_dir: str | Path = ROOT / "releases",
+    downloads_dir: str | Path | None = ROOT / "docs" / "downloads",
+    floor_px: float = 3.0,
+    bundle_js_filename: str = "h91_submission_bundle.js",
+) -> dict:
+    """Write a bundle atomically from the caller's perspective.
+
+    The implementation intentionally performs strict post-write re-reads: a
+    GeoTIFF cannot be trusted merely because an encoder returned success.  If a
+    later range/CRS/collar/ledger validator rejects the bundle, this wrapper
+    removes every newly-created release/download file before re-raising.  It
+    does not delete pre-existing files, and the implementation refuses to
+    overwrite content-addressed outputs in the first place.
+
+    Passing ``ledger_path=None`` is an explicit isolated *format-test* mode.
+    Its audit is marked ``TEST_ONLY_NO_LEDGER`` and is never writer-certifiable
+    or publishable. Writers are expected to be serialized per output directory:
+    two processes must not attempt to claim the same date-tag/browser bundle.
+    """
+    releases_p = Path(releases_dir)
+    downloads_p = None if downloads_dir is None else Path(downloads_dir)
+    roots = [releases_p] + ([] if downloads_p is None else [downloads_p])
+    before = set().union(*(_snapshot_regular_files(root) for root in roots))
+    try:
+        return _write_validated_submission_bundle_impl(
+            dot_or_prob_grid,
+            stem_prefix=stem_prefix,
+            date_tag=date_tag,
+            template_path=template_path,
+            catalogue_path=catalogue_path,
+            ledger_path=ledger_path,
+            parent_compare_path=parent_compare_path,
+            releases_dir=releases_p,
+            downloads_dir=downloads_p,
+            floor_px=floor_px,
+            bundle_js_filename=bundle_js_filename,
+        )
+    except BaseException:
+        # The implementation may have passed its initial write then failed a
+        # re-read gate. Remove *only* files that did not exist at entry; this
+        # includes TIFF twins, ZIP, audit JSON, browser payload, and stale temp
+        # products. Cleanup failures must not hide the scientific gate error.
+        for root in roots:
+            for path in _snapshot_regular_files(root):
+                if path not in before:
+                    try:
+                        path.unlink()
+                    except OSError:
+                        pass
+        raise

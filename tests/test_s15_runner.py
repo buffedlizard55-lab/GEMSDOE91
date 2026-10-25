@@ -14,6 +14,33 @@ assert SPEC and SPEC.loader
 SPEC.loader.exec_module(RUNNER)
 
 
+def test_s15_promotion_guard_uses_current_same_instrument_quality_bar():
+    base = {
+        "evaluator_version": RUNNER.CURRENT_COMPARABLE_EVALUATOR,
+        "n_withheld_positives": RUNNER.CURRENT_COMPARABLE_WITHHELD,
+        "holdout_dti": RUNNER.CURRENT_COMPARABLE_HOLDOUT_BEST,
+    }
+    assert not RUNNER.beats_current_comparable_best(base)
+    base["holdout_dti"] += 0.000001
+    assert RUNNER.beats_current_comparable_best(base)
+    base["evaluator_version"] = "other"
+    assert not RUNNER.beats_current_comparable_best(base)
+
+
+def test_s15_pre_emission_guard_blocks_losing_holdout_and_incomplete_inventory():
+    winning = {
+        "evaluator_version": RUNNER.CURRENT_COMPARABLE_EVALUATOR,
+        "n_withheld_positives": RUNNER.CURRENT_COMPARABLE_WITHHELD,
+        "holdout_dti": RUNNER.CURRENT_COMPARABLE_HOLDOUT_BEST + 0.01,
+    }
+    assert RUNNER.pre_emission_block_reason(winning, {"complete_inventory": True}) is None
+    assert (RUNNER.pre_emission_block_reason(winning, {"complete_inventory": False})
+            == "frozen_registry_inventory_incomplete")
+    losing = dict(winning, holdout_dti=RUNNER.CURRENT_COMPARABLE_HOLDOUT_BEST)
+    assert (RUNNER.pre_emission_block_reason(losing, {"complete_inventory": True})
+            == "holdout_does_not_beat_current_comparable_best")
+
+
 def test_s15_holdout_uses_same_farfield_halo_quota_policy_and_invalidates_legacy_cache(tmp_path, monkeypatch):
     monkeypatch.setattr(RUNNER, "CACHE", tmp_path)
     cache_path = tmp_path / "s15_test_scores.json"

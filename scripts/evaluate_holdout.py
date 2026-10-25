@@ -22,6 +22,8 @@ PARALLEL-RUN PROTOCOL compliance:
 from __future__ import annotations
 
 import glob
+import hashlib
+import json
 import math
 import sys
 from dataclasses import dataclass
@@ -708,8 +710,102 @@ def check_registry_uniqueness(
     }
 
 
+def _sha256_file(path: Path) -> str:
+    """Return a streaming SHA-256 without loading a raster into memory."""
+    digest = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def frozen_registry_paths(*, verify_hashes: bool = True) -> tuple[list[Path], dict]:
+    """Load the frozen registry inventory without pretending it is universal.
+
+    The parallel-run protocol is an *any registry raster* gate.  Earlier callers
+    used only ``data/registry`` (usually eight convenience references), even
+    when the checked-in frozen inventory named many more references in
+    ``data/fleet_registry``.  That is a scoped diagnostic, not a valid complete
+    gate.  This helper reads ``registry/comparison_inventory.json``, reports
+    every missing or hash-mismatched pin, and returns only verified paths.
+
+    ``complete_inventory`` means every file named by the frozen inventory is
+    available and (when requested) matches its pinned hash.  It deliberately
+    does **not** mean that the inventory is a universal public registry; that
+    provenance boundary is carried separately in the JSON inventory.
+    """
+    inventory_path = ROOT / "registry" / "comparison_inventory.json"
+    status = {
+        "inventory_path": str(inventory_path.relative_to(ROOT)),
+        "inventory_present": inventory_path.is_file(),
+        "complete_inventory": False,
+        "complete_universal_registry": False,
+        "n_declared": 0,
+        "n_verified": 0,
+        "missing": [],
+        "hash_mismatches": [],
+        "invalid_rows": [],
+    }
+    if not inventory_path.is_file():
+        return [], status
+
+    try:
+        payload = json.loads(inventory_path.read_text(encoding="utf-8"))
+        rows = payload["files"]
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        status["invalid_rows"].append(f"inventory parse error: {exc}")
+        return [], status
+
+    status["complete_universal_registry"] = bool(payload.get("complete_universal_registry", False))
+    verified: list[Path] = []
+    seen_paths: set[Path] = set()
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict) or not isinstance(row.get("path"), str) or not isinstance(row.get("sha256"), str):
+            status["invalid_rows"].append(f"row {index}: missing path or sha256")
+            continue
+        path = ROOT / row["path"]
+        try:
+            path.resolve().relative_to(ROOT.resolve())
+        except ValueError:
+            status["invalid_rows"].append(f"row {index}: path escapes repository")
+            continue
+        if not path.is_file():
+            status["missing"].append(row["path"])
+            continue
+        if verify_hashes and _sha256_file(path) != row["sha256"]:
+            status["hash_mismatches"].append(row["path"])
+            continue
+        if path not in seen_paths:
+            verified.append(path)
+            seen_paths.add(path)
+
+    status["n_declared"] = len(rows)
+    status["n_verified"] = len(verified)
+    status["complete_inventory"] = not (
+        status["missing"] or status["hash_mismatches"] or status["invalid_rows"]
+    ) and len(verified) == len(rows)
+    return sorted(verified), status
+
+
 def default_registry_paths() -> list[Path]:
-    paths = sorted((ROOT / "data" / "registry").glob("*.tif"))
-    paths += sorted((ROOT / "data" / "registry_siblings").glob("*.tif"))
-    # Keep NaN/zeros twins as separate references; neither is presumed to pass.
-    return paths
+    """Return every locally available frozen-reference raster, not just eight.
+
+    This remains a local index, so callers that decide whether an artifact is
+    submittable must also inspect :func:`frozen_registry_paths` and reject an
+    incomplete or non-universal scope. The legacy locations remain available
+    for cold checkouts and compatibility with historical evidence; NaN/zeros
+    twins are intentionally retained as separate references.
+    """
+    paths, _status = frozen_registry_paths(verify_hashes=False)
+    legacy_dirs = (
+        ROOT / "data" / "registry",
+        ROOT / "data" / "registry_siblings",
+        ROOT / "data" / "fleet_registry",
+    )
+    seen = {path.resolve() for path in paths}
+    for folder in legacy_dirs:
+        for path in sorted(folder.glob("*.tif")):
+            if path.resolve() not in seen:
+                paths.append(path)
+                seen.add(path.resolve())
+    return sorted(paths)

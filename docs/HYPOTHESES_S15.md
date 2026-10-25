@@ -4,6 +4,8 @@
 **Branch:** `arena/b580c734-gemsdoe91`
 **Lane:** *Hydrothermal Convective Plume & Kinematic Dilatancy Architecture (`S15-HCPA`).*
 
+> **Correction controlling current interpretation (2026-10-25):** this is the original preregistration, not current promotion evidence. The selector-matched isolated revalidation is recorded in [`REVIEW-S15R-HCPA-20261025.md`](REVIEW-S15R-HCPA-20261025.md) and ended `NEGATIVE_DO_NOT_PROMOTE`: best E2 was `0.084995 HOLDOUT-DTI` (95% CI `[0.075507, 0.094735]`; 60,988 withheld positives), and final dots had `99.599%` directed 3-px overlap with `calib_r13lattice_00904.tif`. No new TIFF is downloadable or submittable. References below to `0.2778` are hypotheses/forensic claims only; no organizer receipt verifies that value in this checkout.
+
 ---
 
 ## 0. Forensic Analysis: Why `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` Scored 0.2778 and How to Beat It

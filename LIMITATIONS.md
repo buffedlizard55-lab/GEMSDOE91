@@ -97,6 +97,16 @@ research artifact or revive legacy model-projected queues.
 7. **Rules and eligibility are not decided by the agent** (README, "Decisions only the human can make"). Generative-AI disclosure is required in any narrative (rules §3.2).
 8. **Git history still contains the GEOD TIFs** on `main` (IR-91-S10-01). Removal from the working tree does not remove them from history.
 
+## S15R corrected revalidation (2026-10-25)
+
+1. **Negative result; no candidate artifact.** The corrected S15-HCPA replay selected E2 at `0.084995 HOLDOUT-DTI` (95% CI `[0.075507, 0.094735]`; `gems91-hide-recover-v1.0`; 60,988 withheld positives), far below the current same-instrument internal quality bar `0.267782`. It is not a leaderboard score or promotion.
+2. **Available-fleet final dots are duplicate.** Although the pre-placement surface reached max `|rho|=0.15881`, `99.599%` of the frozen 37,654 final dots sit within 3 px of `calib_r13lattice_00904.tif`. The literal Rule-1 gate fails; byte uniqueness cannot override spatial duplication.
+3. **Registry coverage remains incomplete.** Only 62 of the 64 frozen pins are locally available. Universal novelty is unverified and must fail closed.
+4. **No TIFF is released.** The isolated output lacked its SHA ledger and is quarantined outside this checkout. It must not be copied to `docs/downloads/` or represented as a format-certified candidate.
+5. **Geological mechanism remains non-unique.** Conductivity/depth, basement gradients, thermal proxies, and extension can also express saline/clay basin fill, depositional contacts, sparse thermal sampling, or broad strain. The successful canary (`AUC=0.5932`) does not resolve this confounding.
+
+See [`docs/REVIEW-S15R-HCPA-20261025.md`](docs/REVIEW-S15R-HCPA-20261025.md) and its JSON run card for the complete negative evidence.
+
 ## Session 11 additions (2026-10-24)
 
 1. **No assigned lane.** The brief has no "single method paragraph", so the lane-overlap protocol cannot be applied as written (IR-91-S11-01).
