@@ -56,6 +56,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Re-read actual published TIFF and single-TIFF ZIP; never promote
         run: |
+          python scripts/verify_frontdoor.py
           python scripts/verify_current_artifact.py --with-data
           python scripts/verify_evidence.py
           python scripts/verify_s16.py --with-data

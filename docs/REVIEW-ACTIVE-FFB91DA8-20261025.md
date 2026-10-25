@@ -49,7 +49,8 @@ The ordering is qualitative expected value versus implementation cost, condition
 
 ## Pass 3 — final verification and disposition
 
-- Final serial `.venv/bin/python -m pytest -ra`: **PASS** (545 passed, 8 skipped, 58 warnings; skips require absent pinned inputs, warnings are Rasterio `Affine` pending-deprecation warnings). A first run concurrent with other verification returned three portal-test failures; the three targeted tests passed immediately afterward and a full serial rerun passed. Treat that initial nondeterminism as an unresolved test-harness irregularity, not as proof of a production bug or proof of its absence.
+- Before integrating newer `main`, final serial `.venv/bin/python -m pytest -ra` passed (545 passed, 8 skipped, 58 warnings). The run includes 8 integration skips due to absent pinned inputs. A first concurrent run surfaced three portal-test failures; targeted rerun and a full serial rerun passed, so the transient remains an unresolved test-harness irregularity.
+- After integrating `origin/main` changes, `.venv/bin/python -m pytest -ra` passed again (578 passed, 8 skipped, 78 warnings; skips require absent full experiment inputs; warnings are Rasterio `Affine` pending-deprecation warnings).
 - `node tools/browser/smoke.cjs`: **PASS** after installing the locked browser dependencies and serving `docs/` locally; the smoke check reports no console/HTTP errors, no mobile overflow, and no axe violations on its 25-page sample. These are UI/download-delivery checks, not scientific or organizer validation.
 - `.venv/bin/python scripts/verify_evidence.py`: **PASS** for its stated consistency-audit scope; it reports zero experiments rerun and `submission_ready: false`.
 - `.venv/bin/python scripts/check_artifact_policy.py`: **PASS**, 87 registered prediction artifacts, no raw raster/archive tracked.
