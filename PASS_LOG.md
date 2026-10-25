@@ -1,3 +1,16 @@
+## Integration verification
+
+PR #103 initially conflicted with concurrent PR #101. Merged `origin/main` into the fixed session branch, retained the parallel review and access findings, retained the stricter current-download identity checks and corrected causal prose, and reran tests/browser checks before merge. No duplicate artifact-policy entries or geological experiments were introduced.
+
+# Current three-pass review — `arena/4975419d-gemsdoe91`, 2026-10-25
+
+- **Pass 1:** inspected prior next steps, restored sample/catalogue/R0 with manifest hashes; corrected current portal's unsupported scientific claims and historical/new-file ambiguity; added front-door TIFF/ZIP identity checks.
+- **Pass 2:** fixed browser smoke tests that targeted obsolete landing-page controls; added corruption/path/approval regression tests and a synthetic counterexample to guaranteed collar-pruning gains. Found unregistered pre-existing DRN91 TIFF/ZIP; quarantined them and regenerated the stale all-download audit. Initial incomplete audit was BLOCKED, not a pass.
+- **Pass 3:** `python -m pytest -ra`: **473 passed, 8 skipped, 57 warnings**. Skips require absent full integration inputs; warnings are existing Affine deprecations. `verify_current_artifact.py --with-data`, `verify_evidence.py`, `verify_s16.py --with-data`: PASS for their historical artifacts/evidence (not new science). Artifact policy: PASS for **64** registered artifacts. All-download technical audit: **56 PASS / 8 FAIL**. Real Chromium download SHA checks, desktop/mobile layout and accessibility: PASS, receipt in `evidence/review-4975419d/browser-verification.json`. Portal regeneration tested byte-for-byte by pytest; `git diff --check` clean.
+- **Outcome:** no new geological experiment or raster; no slot used. Missing lane, registry feasibility, incomplete cache, unmatched current-best instrument and unverified organizer/account state remain blockers. Existing TIFFs were not copied or renamed as new submissions. Current review: `docs/REVIEW-4975419D-20261025.md`.
+
+---
+
 # GEMSDOE91 — Unique TIF submission pass log
 
 > **Historical entry below describes an earlier branch (`arena/e6fdea6b-gemsdoe91`), not the current checkout.** Current branch: `arena/2f002fa0-gemsdoe91`. Current three-pass review: `docs/REVIEW-SESSION-20261025.md`; no new TIFF/experiment/slot, lane paragraph missing, feature stack absent; current verdict negative. The sample and existing-fault catalogue are present only as SHA-verified audit references. The earlier unique artifact is still research-only and not endorsed for submission. The prior policy omission for that artifact has now been corrected and `scripts/check_artifact_policy.py` passes.

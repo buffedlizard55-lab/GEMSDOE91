@@ -110,3 +110,20 @@ def test_perfect_and_empty_predictions_against_literal_formula():
     assert official_dti_bruteforce(g.copy(), g)[0] == pytest.approx(1.0)
     assert official_dti_bruteforce(np.zeros((7, 7)), g)[0] == pytest.approx(0.0)
     assert D.dti(g.copy(), g) == pytest.approx(1.0)
+
+
+def test_near_catalogue_dot_is_not_necessarily_pure_penalty():
+    """Counterexample to the old portal's guaranteed collar-pruning claim.
+
+    A mapped pixel is (4,4); distinct hidden truth at (4,6) is not mapped.
+    The prediction at (4,5) is near both. No real labels or experiment involved.
+    """
+    truth = np.zeros((9, 9))
+    truth[4, 6] = 1
+    pred = np.zeros_like(truth)
+    pred[4, 5] = 1
+    before = D.components(pred, truth)
+    pred[4, 5] = 0  # delete a dot within 200 m of the mapped pixel
+    after = D.components(pred, truth)
+    assert before.T > 0
+    assert before.score > after.score
