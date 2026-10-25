@@ -1,3 +1,19 @@
+# GEMSDOE91 — CURRENT STATUS (GEO91, 2026-10-25) — read this first
+
+**Site / download:** `docs/index.html` leads with the current GeoTIFF and its verdict.
+**Current file:** `gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif`
+(37,654 dotted px, collar >3 px, SHA-256 `57d2c44c…e5befe2f`) — **OK TO DOWNLOAD: YES ·
+OK TO SUBMIT: NO** (HOLDOUT-DTI 0.055267 [0.053367, 0.057308],
+gems91-hide-recover-v1.1-nohalo, 60,988 withheld, loses to matched random
+control 0.074387; format/canary/uniqueness PASS; 0 slots spent).
+Machine verdict: `docs/run-card-GEO91.json`. Why 0.2778 (USER-REPORTED, no
+organizer receipt) leads the fleet and what beating it requires:
+`docs/HYPOTHESES_GEO91.md`. Core values: **Maximize P(Win) · Own the Outcome.**
+Every number is labelled HOLDOUT-DTI or USER-REPORTED; nothing is
+ORGANIZER-CONFIRMED without a submission-page receipt.
+
+---
+
 # GEMSDOE91 — a new TIFF, an honest automated verdict
 
 > **Parallel Session (`S15-SCGF`, branch `arena/605655a6-gemsdoe91`, merged alongside S16-PGRD & S16-PC91): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**

@@ -330,6 +330,30 @@
       "sha256": "9c6f182adbf77540db05bebe6691051bf8a89e2b5ac335ee7cce7e3949c8cf86",
       "status": "parallel_quarantined",
       "reason": "NaN-twin companion of concurrent S16-PC91 phase-congruency artifact preserved from main; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.tif",
+      "sha256": "57a0442a6b32d0a91a23f3abb71a673941f0d80a8781c6f6adece3d86e94e11a",
+      "status": "current_research_only",
+      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.zip",
+      "sha256": "f72b5f1a18429210f0a5b14e35ff7175faf7a9014e05c700682c34d7cb2d0e5b",
+      "status": "current_research_only",
+      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
+      "sha256": "57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f",
+      "status": "current_research_only",
+      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.zip",
+      "sha256": "ccb8df3043104e5eab4932f5ae1278a40c5dae1af9d24d16e4939c3016327fa3",
+      "status": "current_research_only",
+      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
     }
   ]
 }

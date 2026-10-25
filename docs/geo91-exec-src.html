@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executive summary — exactly how to submit · GEMSDOE91</title>
+<style>
+:root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding:20px}a{color:var(--ok)}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin-right:6px}
+.badge.bad{background:#f7e4e4;color:var(--bad)}.small{color:var(--mut);font-size:14px}ol li{margin:10px 0}code{font-size:12px;word-break:break-all}
+.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:800}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left}
+</style></head><body><div class="wrap">
+<p><a href="index.html">← Current candidate</a></p>
+<span class="badge">OK TO DOWNLOAD: YES</span><span class="badge bad">OK TO SUBMIT: NO (current file)</span>
+<h1>Executive summary: exactly how a submission happens</h1>
+<p class="small">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS #306</a> — predict fault pixels <em>missing</em> from the supplied catalogue on a 3730×3292, 100 m, EPSG:32611 grid. Metric: distance-weighted Tversky (DTI, α=0.2, β=0.8, 300 m triangular kernel). Validation in this project is fully automated from the written bytes — there is no human-inspection step, and format validity never overrides a failed science or uniqueness gate.</p>
+
+<div class="card"><h2>1 · Download the right file</h2>
+<a class="button" download href="downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif">↓ Download current GeoTIFF (research)</a>
+<p class="small">Use the <code>-zeros.tif</code> (all-finite, nodata unset) or the ZIP containing exactly that one TIFF. <strong>The DrivenData error “Predicted values must be in range [0, 1]”</strong> is produced by NaN-outside twins, −3.4×10<sup>38</sup> sentinel bleed, or a nodata tag the portal rejects; every current <code>-zeros.tif</code> in this repo was byte-checked: 0 NaN/Inf, values only {0,1}. Current file SHA-256 <code>57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f</code>.</p></div>
+
+<div class="card"><h2>2 · Check the gates (machine-read, not eyeballed)</h2>
+<p class="small">Open <a href="run-card-GEO91.json">run-card-GEO91.json</a>. A file may be submitted only if <em>all</em> hold: format PASS · zero catalogue/outside mass · canary AUC ≤0.90 · surface |ρ| ≤0.90 and ≤3 px dot overlap ≤70% vs registry · holdout beats its matched control · separate selector approval. <strong>The current file fails the holdout gate → do not upload it.</strong></p></div>
+
+<div class="card"><h2>3 · Upload (future cleared candidate only)</h2>
+<ol>
+<li>Go to DrivenData → competition 306 → <strong>New submission</strong>.</li>
+<li><strong>File to submit:</strong> choose the cleared single-band <code>.tif</code> (or <code>.zip</code> with one TIFF). It must match the sample's CRS, shape and geotransform — the writer enforces this byte-for-byte.</li>
+<li><strong>Note (optional):</strong> paste the cleared file's recorded ≤140-char note (current research file's, for format reference: “GEO91-E2 habitat-stratified broad coverage, collar&gt;3px, 37654 dotted; see run-card-GEO91.json gates.”).</li>
+<li>Submit once, then copy the receipt: submission ID, timestamp, score. Only that score may be labelled ORGANIZER-CONFIRMED.</li>
+</ol></div>
+
+<div class="card" id="why"><h2>Why 0.2778 is the fleet best — and what it does not prove</h2>
+<p class="small">Verified here against sha-pinned inputs: R0 = 40,199-dot parent minus 2,545 dots ≤200 m from mapped faults (measured min distance 2.236 px, 0 on-catalogue, median spacing 3.0 px). Under DTI = T/(0.2T+0.2(S−M)+0.8|G|) with max-kernel credit, near-catalogue dots pay penalty without earning hidden-truth credit; deleting them mechanically lifts the score, and dosing mass as separated dots (not lines) avoids paying twice per kernel footprint. Fleet gradient (all USER-REPORTED, no receipts): continuous 0.1922 → dotted 0.2477 → 0.2600 → solo 0.2708 → pruned 0.2778. GEMSDOE32's own page called the file unscored and its advertised ZIP is malformed (216 bytes, empty member) — so treat 0.2778 as a claim with a sound mechanism, not a confirmed score. The prompt's 0.4413 vs 0.3195 leaderboard figures conflict; neither is receipted here.</p>
+<table><tr><th>This session (HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo, 60,988 withheld)</th><th>Value [95% CI]</th></tr>
+<tr><td>E1 tip+relay geometry</td><td>0.001338 [0.000671, 0.002171]</td></tr>
+<tr><td>E2 stratified coverage (current file's method)</td><td>0.055267 [0.053367, 0.057308]</td></tr>
+<tr><td>Uniform-random controls (matched)</td><td>0.076603 / 0.074387</td></tr></table>
+<p class="small">Verdict: <strong>negative</strong>. Catalogue geometry alone cannot beat chance at recovering withheld segments — consistent with live fleet tip/relay scores (0.005–0.016, USER-REPORTED). Beating 0.2778 needs the GeoDAWN geophysical stack plus the emission recipe above. Holdout numbers from other instruments (e.g. gems57-pooled-hide-v2) are not comparable to these and are never mixed.</p></div>
+
+<div class="card"><h2>Limitations &amp; what is needed next</h2>
+<p class="small">No DrivenData login in this environment → no organizer receipts can be fetched or verified here. <code>training_features.tif</code> (419 MB) was not restored this session (free, sha-pinned, via <code>scripts/restore_data.py</code>); it is the blocking input for any credible >0.2778 attempt. The prompt's “single method paragraph” lane was never supplied, so GEO91 is a documented provisional lane. Registry uniqueness was measured against pinned R0 + this repo's downloads, not the whole fleet. Irregularities: see <code>IRREGULARITIES.md</code> (repo root).</p></div>
+
+<footer class="small">Maximize P(Win) · Own the Outcome · 0 slots spent · Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR prize PDF</a></footer>
+</div></body></html>

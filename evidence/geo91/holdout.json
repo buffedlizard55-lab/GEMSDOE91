@@ -1,0 +1,185 @@
+{
+ "candidate": {
+  "metric_label": "HOLDOUT-DTI",
+  "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+  "mask_buffer_predictions": false,
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel_radius_m": 300.0,
+  "n_withheld_positives": 60988,
+  "holdout_dti": 0.001338,
+  "ci_95": [
+   0.000671,
+   0.002171
+  ],
+  "bootstrap_tiles_5km": 1267,
+  "bootstrap_draws": 200,
+  "pooled_T": 65.751,
+  "pooled_S": 1665.0,
+  "pooled_M": 26.319,
+  "folds": [
+   {
+    "fold_id": 0,
+    "name": "NW",
+    "n_withheld_positives": 10757,
+    "n_segments_withheld": 151,
+    "emitted_mass": 206.0,
+    "T": 6.638,
+    "M": 2.643,
+    "fold_dti": 0.000768
+   },
+   {
+    "fold_id": 1,
+    "name": "NE",
+    "n_withheld_positives": 12051,
+    "n_segments_withheld": 247,
+    "emitted_mass": 369.0,
+    "T": 1.921,
+    "M": 0.667,
+    "fold_dti": 0.000198
+   },
+   {
+    "fold_id": 2,
+    "name": "SW",
+    "n_withheld_positives": 20541,
+    "n_segments_withheld": 327,
+    "emitted_mass": 720.0,
+    "T": 38.557,
+    "M": 15.776,
+    "fold_dti": 0.002325
+   },
+   {
+    "fold_id": 3,
+    "name": "SE",
+    "n_withheld_positives": 17639,
+    "n_segments_withheld": 188,
+    "emitted_mass": 370.0,
+    "T": 18.635,
+    "M": 7.233,
+    "fold_dti": 0.001313
+   }
+  ]
+ },
+ "control_band_only": {
+  "metric_label": "HOLDOUT-DTI",
+  "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+  "mask_buffer_predictions": false,
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel_radius_m": 300.0,
+  "n_withheld_positives": 60988,
+  "holdout_dti": 0.001516,
+  "ci_95": [
+   0.000727,
+   0.002245
+  ],
+  "bootstrap_tiles_5km": 1264,
+  "bootstrap_draws": 200,
+  "pooled_T": 74.489,
+  "pooled_S": 1658.0,
+  "pooled_M": 30.488,
+  "folds": [
+   {
+    "fold_id": 0,
+    "name": "NW",
+    "n_withheld_positives": 10757,
+    "n_segments_withheld": 151,
+    "emitted_mass": 203.0,
+    "T": 8.342,
+    "M": 3.252,
+    "fold_dti": 0.000965
+   },
+   {
+    "fold_id": 1,
+    "name": "NE",
+    "n_withheld_positives": 12051,
+    "n_segments_withheld": 247,
+    "emitted_mass": 371.0,
+    "T": 2.312,
+    "M": 1.195,
+    "fold_dti": 0.000238
+   },
+   {
+    "fold_id": 2,
+    "name": "SW",
+    "n_withheld_positives": 20541,
+    "n_segments_withheld": 327,
+    "emitted_mass": 697.0,
+    "T": 37.728,
+    "M": 15.576,
+    "fold_dti": 0.002276
+   },
+   {
+    "fold_id": 3,
+    "name": "SE",
+    "n_withheld_positives": 17639,
+    "n_segments_withheld": 188,
+    "emitted_mass": 387.0,
+    "T": 26.107,
+    "M": 10.464,
+    "fold_dti": 0.00184
+   }
+  ]
+ },
+ "control_random": {
+  "metric_label": "HOLDOUT-DTI",
+  "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+  "mask_buffer_predictions": false,
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel_radius_m": 300.0,
+  "n_withheld_positives": 60988,
+  "holdout_dti": 0.076603,
+  "ci_95": [
+   0.074395,
+   0.079022
+  ],
+  "bootstrap_tiles_5km": 2192,
+  "bootstrap_draws": 200,
+  "pooled_T": 4389.681,
+  "pooled_S": 39805.0,
+  "pooled_M": 1624.108,
+  "folds": [
+   {
+    "fold_id": 0,
+    "name": "NW",
+    "n_withheld_positives": 10757,
+    "n_segments_withheld": 151,
+    "emitted_mass": 8964.0,
+    "T": 783.024,
+    "M": 298.336,
+    "fold_dti": 0.074607
+   },
+   {
+    "fold_id": 1,
+    "name": "NE",
+    "n_withheld_positives": 12051,
+    "n_segments_withheld": 247,
+    "emitted_mass": 11044.0,
+    "T": 886.947,
+    "M": 336.483,
+    "fold_dti": 0.074161
+   },
+   {
+    "fold_id": 2,
+    "name": "SW",
+    "n_withheld_positives": 20541,
+    "n_segments_withheld": 327,
+    "emitted_mass": 10907.0,
+    "T": 1412.08,
+    "M": 534.935,
+    "fold_dti": 0.075152
+   },
+   {
+    "fold_id": 3,
+    "name": "SE",
+    "n_withheld_positives": 17639,
+    "n_segments_withheld": 188,
+    "emitted_mass": 8890.0,
+    "T": 1307.63,
+    "M": 454.353,
+    "fold_dti": 0.081422
+   }
+  ]
+ }
+}
