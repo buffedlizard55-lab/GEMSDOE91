@@ -8,7 +8,7 @@ Protocol compliance:
   - Rule 2 (Reuse): Shared evaluate_holdout.py and submission_writer.py reused without private forks.
   - Rule 3 (Label): All numbers explicitly labelled HOLDOUT-DTI or ORGANIZER-CONFIRMED.
   - Rule 4 (Leakage Canary): Tested on holdout before trusting (AUC <= 0.90).
-  - Rule 5 (Run Card): JSON run card produced with all verified fields.
+  - Rule 5 (Run Card): an emitted bundle gets a JSON run card; a failed pre-emission gate stops before any TIFF and must be recorded as a negative result.
   - Rule 6 (Budget): 3 experiments (E1 surface, E2 corroboration, E3 winner-geometry emission).
 """
 from __future__ import annotations
@@ -55,6 +55,39 @@ DATE_TAG = "20261025T030000Z"
 HALO_CAP_FRAC = 0.25  # At most 25% in the 3-10 px visible-catalogue halo; remaining quota is far-field.
 HOLDOUT_SELECTOR_POLICY = "farfield75-halo25-visible-catalogue-v2-refill"
 HOLDOUT_SCORE_CACHE_SCHEMA = 2
+
+# Internal quality bar only: this is the highest same-split, same-evaluator
+# HOLDOUT-DTI recorded locally when this guard was added.  It is not an
+# organizer score, and its own final raster is a protocol duplicate.  The user
+# protocol still requires a new lane to beat the current holdout best before a
+# new full-map candidate is written.
+CURRENT_COMPARABLE_HOLDOUT_BEST = 0.267782
+CURRENT_COMPARABLE_EVALUATOR = "gems91-hide-recover-v1.0"
+CURRENT_COMPARABLE_WITHHELD = 60_988
+
+
+def beats_current_comparable_best(result: dict) -> bool:
+    """Return true only for a completed, compatible holdout improvement."""
+    return bool(
+        result.get("evaluator_version") == CURRENT_COMPARABLE_EVALUATOR
+        and result.get("n_withheld_positives") == CURRENT_COMPARABLE_WITHHELD
+        and isinstance(result.get("holdout_dti"), (int, float))
+        and float(result["holdout_dti"]) > CURRENT_COMPARABLE_HOLDOUT_BEST
+    )
+
+
+def pre_emission_block_reason(result: dict, registry_inventory: dict) -> str | None:
+    """Return a fail-closed pre-emission stop reason, if any.
+
+    Research holdout computation can still be useful with a partial inventory,
+    but no full-map TIFF may be emitted unless the result improves the current
+    comparable bar and every frozen pin has been hash-verified.
+    """
+    if not beats_current_comparable_best(result):
+        return "holdout_does_not_beat_current_comparable_best"
+    if not bool(registry_inventory.get("complete_inventory")):
+        return "frozen_registry_inventory_incomplete"
+    return None
 
 
 def log(m: str) -> None:
@@ -178,6 +211,22 @@ def main() -> int:
         raise RuntimeError("pre-registration docs/HYPOTHESES_S15.md missing")
     prereg_sha = sha256(PREREG)
     log(f"S15-HCPA start | prereg sha256={prereg_sha[:16]}")
+
+    # Shared full-registry preflight happens before model work. A partial frozen
+    # index does not invalidate a research holdout, but it does irrevocably
+    # block full-map candidate emission later in this run. Reporting it now
+    # prevents a scoped convenience directory from being mistaken for Rule 1.
+    reg_paths, registry_inventory = EH.frozen_registry_paths(verify_hashes=True)
+    if registry_inventory["complete_inventory"]:
+        log(f"frozen registry preflight: {len(reg_paths)}/{registry_inventory['n_declared']} hash-verified")
+    else:
+        log(
+            "frozen registry preflight: INCOMPLETE "
+            f"({registry_inventory['n_verified']}/{registry_inventory['n_declared']} verified; "
+            f"missing={len(registry_inventory['missing'])}, "
+            f"hash_mismatches={len(registry_inventory['hash_mismatches'])}); "
+            "research holdout may proceed, but no TIFF can be emitted."
+        )
     CACHE.mkdir(parents=True, exist_ok=True)
 
     with rasterio.open(TEMPLATE) as ds:
@@ -335,6 +384,32 @@ def main() -> int:
     best_budget = 37_654
     log(f"E3 selected budget for final candidate: {best_budget:,} dots (winner geometry)")
 
+    # The protocol forbids emitting a new candidate after a failed comparable
+    # holdout.  A historical S15 runner continued to full-map writing here even
+    # when its score was far below the local best; that could leave an
+    # engineering-valid but scientifically ineligible TIFF behind.  Preserve
+    # E1/E2/E3 evidence, then stop before any artifact is written.
+    stop_reason = pre_emission_block_reason(win_v10, registry_inventory)
+    if stop_reason == "holdout_does_not_beat_current_comparable_best":
+        log(
+            "STOP BEFORE FULL-MAP EMISSION: winner HOLDOUT-DTI "
+            f"{win_v10['holdout_dti']:.6f} does not beat current comparable best "
+            f"{CURRENT_COMPARABLE_HOLDOUT_BEST:.6f}; no TIFF will be written."
+        )
+        return 0
+
+    # A complete frozen index is required before a newly emitted raster can be
+    # called Rule-1 checked. Its `complete_universal_registry` flag remains a
+    # separate, stricter submission-readiness condition checked before writer.
+    if stop_reason == "frozen_registry_inventory_incomplete":
+        log(
+            "STOP BEFORE FULL-MAP EMISSION: frozen registry inventory is incomplete "
+            f"({registry_inventory['n_verified']}/{registry_inventory['n_declared']} verified; "
+            f"missing={len(registry_inventory['missing'])}, "
+            f"hash_mismatches={len(registry_inventory['hash_mismatches'])}); no TIFF will be written."
+        )
+        return 0
+
     # ---------------- Full-Map Model & Emission ----------------
     log("Training full-map model...")
     full_dat = CACHE / "s15_full_prob.dat"
@@ -369,27 +444,50 @@ def main() -> int:
     w_surf, rank_s, _ = PTHA.build_dinkelbach_expected_intensity(
         full_prob, crest, piedmont, footprint=footprint, calibration_mask=full_elig,
         pi_true=full_cal["pi_true"], pi_sample=full_cal["pi_sample"])
+
+    # Rule 1 phase 1: the surface must clear both the complete locally verified
+    # frozen index and every already-published in-repository candidate before
+    # dot placement.  This ordering is deliberate and is tested independently.
+    # Check every locally published GeoTIFF, not only conventional `-zeros`
+    # twins: a NaN-outside or legacy-named raster can still encode a duplicate
+    # dot field under Rule 1.
+    sib_paths = sorted((ROOT / "docs/downloads").glob("*.tif"))
+    registry_by_path = {path.resolve(): path for path in reg_paths + sib_paths}
+    all_registry_paths = sorted(registry_by_path.values())
+    log(f"pre-placement uniqueness vs {len(all_registry_paths)} available registry/sibling rasters...")
+    surf_check = EH.check_registry_surface_uniqueness(
+        full_prob[footprint].astype(np.float64), footprint, all_registry_paths)
+    log(f"surface max |rho|: {surf_check['surface_max_abs_rank_corr']:.3f} "
+        f"({surf_check['surface_closest_raster']}) pass={surf_check['uniqueness_pass']}")
+    if not surf_check["uniqueness_pass"]:
+        log("STOP BEFORE DOT PLACEMENT: surface is a Rule-1 duplicate; no TIFF will be written.")
+        return 0
+
     full_dots, n_far, n_halo = emit_capped_quota(
         w_surf, rank_s, full_elig, d_cat, best_budget, min_spacing=3.0)
     n_dots = int((full_dots > 0).sum())
     log(f"full-map dots emitted: {n_dots:,} (far-field={n_far:,}, halo={n_halo:,})")
 
-    # ---------------- Rule 1 Uniqueness Checks ----------------
-    reg_paths = EH.default_registry_paths()
-    sib_paths = sorted(p for p in (ROOT / "docs/downloads").glob("*-zeros.tif")
-                       if not p.name.startswith("gems91-s15"))
-    log(f"uniqueness vs {len(reg_paths)} canonical registry rasters...")
-    surf_check = EH.check_registry_surface_uniqueness(
-        full_prob[footprint].astype(np.float64), footprint, reg_paths)
+    # Rule 1 phase 2: final dots are checked before writer invocation, so a
+    # duplicate cannot leave a downloadable candidate behind.
     dot_reg = EH.check_registry_uniqueness(
-        full_prob[footprint].astype(np.float64), full_dots, footprint, reg_paths)
+        full_prob[footprint].astype(np.float64), full_dots, footprint, all_registry_paths)
+    # Keep the narrower sibling diagnostic for the run card, but never use it
+    # in place of the complete available comparison above.
     dot_sib = EH.check_registry_uniqueness(
         full_prob[footprint].astype(np.float64), full_dots, footprint, sib_paths)
 
     log(f"registry dots max 3px overlap: {dot_reg['dots_max_3px_overlap']:.3f} "
         f"({dot_reg['dots_closest_raster']}) pass={dot_reg['uniqueness_pass']}")
-    log(f"surface max |rho|: {surf_check['surface_max_abs_rank_corr']:.3f} "
-        f"({surf_check['surface_closest_raster']}) pass={surf_check['uniqueness_pass']}")
+    if not dot_reg["uniqueness_pass"]:
+        log("STOP AFTER DOT PLACEMENT: final dots are a Rule-1 duplicate; no TIFF will be written.")
+        return 0
+    if not registry_inventory["complete_universal_registry"]:
+        log(
+            "STOP BEFORE WRITER: frozen inventory is not established as a complete universal registry; "
+            "a scoped pass cannot authorize a new TIFF."
+        )
+        return 0
 
     # Geometry forensics
     ys, xs = np.nonzero(full_dots > 0)
@@ -418,7 +516,7 @@ def main() -> int:
         bundle_js_filename="s15_submission_bundle.js")
     log(f"bundle written: {bundle['primary_zeros_tif']['filename']}")
 
-    sane = bool(win_v10["holdout_dti"] >= 0.20)
+    sane = beats_current_comparable_best(win_v10)
     geom_ok = bool(geom["median_nn_spacing_px"] >= 2.8 and geom["frac_dots_gt10px_of_catalogue"] >= 0.70)
     uniqueness_ok = bool(dot_reg["uniqueness_pass"] and surf_check["uniqueness_pass"])
 
@@ -465,16 +563,20 @@ def main() -> int:
             "status": "COMPLETED",
             "split_sha256": "gems91-spatially-blocked-4fold-v1",
             "paired_best": {
-                "delta": round(float(win_v10["holdout_dti"] - 0.206406), 6),
-                "ci95": [0.005, 0.035],
+                "status": "NOT_COMPUTED",
+                "baseline_id": "S14-PTAC-E2 internal HOLDOUT-DTI quality bar",
+                "delta": round(float(win_v10["holdout_dti"] - CURRENT_COMPARABLE_HOLDOUT_BEST), 6),
+                "ci95": None,
+                "note": "A paired spatial-bootstrap interval was not computed by this runner; do not treat the point difference as a promotion result.",
             },
         },
         "comparable_prior_holdout_best": {
-            "evaluator_version": "gems91-hide-recover-v1.0",
-            "split_sha256": "gems91-spatially-blocked-4fold-v1",
-            "value": 0.206406,
-            "ci95": [0.192, 0.221],
-            "withheld_positives": win_v10["n_withheld_positives"],
+            "evaluator_version": CURRENT_COMPARABLE_EVALUATOR,
+            "split_sha256": "0f874367d8d34964c9b8802d3d67d348f68ade1f9fbc4301bffc5eafcb524db8",
+            "value": CURRENT_COMPARABLE_HOLDOUT_BEST,
+            "ci95": [0.253687, 0.281135],
+            "withheld_positives": CURRENT_COMPARABLE_WITHHELD,
+            "status": "HOLDOUT-DTI internal quality bar only; the baseline itself is a final-dot duplicate and not submittable.",
         },
         "holdout_dti_v11_nohalo": {
             "label": "HOLDOUT-DTI",
@@ -495,8 +597,9 @@ def main() -> int:
             "flagged_features": canary["flagged_features"],
         },
         "registry_comparison": {
-            "complete_universal_registry": False,
-            "scope_note": "8 indexed canonical rasters plus in-repository sibling rasters; not a complete inventory of public GEMSDOE sites.",
+            "complete_universal_registry": bool(registry_inventory["complete_universal_registry"]),
+            "frozen_inventory": registry_inventory,
+            "scope_note": "All hash-verified locally available files in registry/comparison_inventory.json plus in-repository published downloads; the inventory's universal scope remains explicitly false unless independently established.",
             "preplacement": {
                 "status": "PASS_WITHIN_INDEXED_SCOPE",
                 "checked": len(reg_paths),

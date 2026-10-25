@@ -5,6 +5,18 @@ what is actually true, and what I did differently because of it.
 
 ---
 
+## IR-91-S15R-01 — Corrected S15-HCPA revalidation rejects the historical artifact and exposes incomplete registry recovery
+
+**Expected:** correcting the historical far-field/halo selector mismatch could establish whether S15-HCPA is a scientifically promotable, unique geothermal-fault candidate.
+
+**Actual:** the corrected isolated replay passed its feature-alone leakage screen (worst symmetric AUC `0.5932`) but selected only `E2 = 0.084995 HOLDOUT-DTI` (95% CI `[0.075507, 0.094735]`; `gems91-hide-recover-v1.0`; 60,988 withheld positives), well below the current comparable internal quality bar `0.267782`. Its frozen 37,654-dot geometry has `99.599%` directed 3-px overlap with `calib_r13lattice_00904.tif`, although the surface rank check itself is low (`max |rho| = 0.15881`). Only 62/64 frozen references are recoverable; the two GEOD25m10 paths lack pinned blobs. The isolated writer also correctly refused the absent SHA ledger.
+
+**What I did:** recorded the result as a quarantined negative in `docs/run-card-S15R-HCPA-20261025.json`, retained full available-fleet evidence in `evidence/s15_revalidation_registry_20261025.json`, and did not copy the replay TIFF into `docs/downloads/`. Shared registry discovery now reports inventory completeness, restoration reports every unavailable pin, the S15 runner stops before TIFF emission on failed comparable holdout/incomplete registry/surface duplicate/final duplicate, and the writer removes failed post-write bundles.
+
+**Decision it changes:** no S15R file is eligible for download or submission. Surface novelty, byte distinction, a passing canary, and a plausible hydrothermal mechanism cannot override the failed holdout, literal final-dot duplicate, incomplete frozen inventory, or ledger refusal. See `docs/REVIEW-S15R-HCPA-20261025.md`.
+
+---
+
 ## IR-91-01 — The repo was an empty scaffold; the brief assumes an existing lineage
 
 **Expected** (brief §5): "verify manifest hashes; rebuild R0 and match its sha256;

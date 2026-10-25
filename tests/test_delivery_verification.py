@@ -1,4 +1,5 @@
 """No scientific reruns: test source/evidence consistency and restore failures."""
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -121,6 +122,52 @@ def test_registry_check_preserves_frozen_inventory():
     restore.validate_rows(rows, json.loads((ROOT/'docs/run-card.json').read_text())['raster_sha256'])
     assert len(rows) == 64
     assert (ROOT/'registry/comparison_inventory.json').read_bytes() == before
+
+
+def test_registry_restore_reports_all_unrecoverable_pins(tmp_path, monkeypatch, capsys):
+    """A partial restore must name every missing pin, never stop at the first."""
+    restore = module('restore_registry')
+    (tmp_path/'registry').mkdir()
+    (tmp_path/'docs').mkdir()
+    (tmp_path/'docs'/'run-card.json').write_text(json.dumps({'raster_sha256': 'candidate'}))
+    rows = [
+        {'path': 'docs/downloads/a.tif', 'sha256': 'a', 'bytes': 1},
+        {'path': 'docs/downloads/b.tif', 'sha256': 'b', 'bytes': 1},
+    ]
+    (tmp_path/'registry'/'comparison_inventory.json').write_text(json.dumps({'files': rows}))
+    monkeypatch.setattr(restore, 'ROOT', tmp_path)
+    monkeypatch.setattr(sys, 'argv', ['restore_registry.py', '--check'])
+    assert restore.main() == 1
+    output = capsys.readouterr().out
+    assert 'docs/downloads/a.tif' in output
+    assert 'docs/downloads/b.tif' in output
+    assert 'Verified 0/2' in output
+
+
+def test_frozen_registry_helper_reports_partial_scope(tmp_path, monkeypatch):
+    from scripts import evaluate_holdout as evaluator
+
+    (tmp_path/'registry').mkdir()
+    good = tmp_path/'data'/'fleet_registry'/'good.tif'
+    good.parent.mkdir(parents=True)
+    good.write_bytes(b'good')
+    digest = hashlib.sha256(b'good').hexdigest()
+    inventory = {
+        'complete_universal_registry': False,
+        'files': [
+            {'path': 'data/fleet_registry/good.tif', 'sha256': digest},
+            {'path': 'docs/downloads/missing.tif', 'sha256': '0' * 64},
+        ],
+    }
+    (tmp_path/'registry'/'comparison_inventory.json').write_text(json.dumps(inventory))
+    monkeypatch.setattr(evaluator, 'ROOT', tmp_path)
+    paths, status = evaluator.frozen_registry_paths()
+    assert paths == [good]
+    assert status['n_declared'] == 2
+    assert status['n_verified'] == 1
+    assert status['missing'] == ['docs/downloads/missing.tif']
+    assert not status['complete_inventory']
+    assert not status['complete_universal_registry']
 
 
 def test_renderer_refuses_an_unverified_download(monkeypatch):

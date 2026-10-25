@@ -1,0 +1,140 @@
+{
+  "schema_version": "gems91-negative-run-card-v1",
+  "run_id": "S15R-HCPA-20261025",
+  "completed_date_utc": "2026-10-25",
+  "completed_utc": null,
+  "lane": "Corrected isolated revalidation of historical S15-HCPA; not a new submission lane",
+  "hypothesis": "HCPA: concealed geothermal fault continuations are preferentially expressed where a deep conductivity-to-basement-depth proxy, basement-step concordance, thermal field, and kinematic dilatancy agree.",
+  "mechanism": "A multiphysics surface is converted to sparse, catalogue-cleared far-field/halo dots using the same selector during spatially blocked hide-and-recover evaluation and full-map emission.",
+  "named_non_fault_mimic": [
+    "saline or clay-rich basin-fill conductivity anomaly",
+    "basin-margin depositional contact",
+    "road, drainage, or mapped structural-lineament alignment",
+    "near-universal calibration lattice coverage"
+  ],
+  "provenance": {
+    "execution": "isolated historical revalidation in /home/user/repro-s15-hcpa; scientific inputs were symlinked read-only from the restored shared cache",
+    "log": "/home/user/repro-s15-hcpa/evidence/s15_revalidation_20261025.log",
+    "purpose": "Correct the historical mismatch between holdout selector and final emitter. The isolated output is quarantined and is not a new candidate."
+  },
+  "protocol": {
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "withheld_positives": 60988,
+    "holdout_design": "whole fault-segment hiding with buffer; visible-fault-only catalogue features; visible faults masked pixel-exactly; pooled DTI with alpha=0.2, beta=0.8, 300 m triangular kernel",
+    "budget": {
+      "experiments_run": 3,
+      "budget_limit_experiments": 3,
+      "stop_after_result": true
+    }
+  },
+  "leakage_canary": {
+    "status": "PASS",
+    "worst_feature": "hcpa_lidar_scarp_asym",
+    "worst_symmetric_auc": 0.5932,
+    "threshold": 0.9,
+    "interpretation": "No single-feature leakage canary exceeded the protocol threshold. This does not rescue the failed holdout or duplicate final dots."
+  },
+  "experiments": [
+    {
+      "id": "E1",
+      "name": "HCPA surface",
+      "holdout_dti": 0.05335,
+      "ci95": [0.043133, 0.060825],
+      "pooled_dots": 11292,
+      "label": "HOLDOUT-DTI; gems91-hide-recover-v1.0; 60,988 withheld positives"
+    },
+    {
+      "id": "E2",
+      "name": "HCPA multiphysics corroboration gate",
+      "holdout_dti": 0.084995,
+      "ci95": [0.075507, 0.094735],
+      "pooled_dots": 28568,
+      "selected_surface": true,
+      "label": "HOLDOUT-DTI; gems91-hide-recover-v1.0; 60,988 withheld positives"
+    },
+    {
+      "id": "E3",
+      "name": "Selected E2 geometry budget diagnostic",
+      "budget_dots": {
+        "30000": {
+          "holdout_dti": 0.073231,
+          "ci95": [0.063916, 0.080307]
+        },
+        "37654": {
+          "holdout_dti": 0.084995,
+          "ci95": [0.075507, 0.094735],
+          "frozen_final_geometry": true
+        },
+        "44000": {
+          "holdout_dti": 0.094359,
+          "ci95": [0.085239, 0.103018]
+        }
+      },
+      "label": "HOLDOUT-DTI; gems91-hide-recover-v1.0; 60,988 withheld positives"
+    }
+  ],
+  "comparable_best_gate": {
+    "current_comparable_best": {
+      "name": "S14-PTAC E2 internal same-evaluator quality bar",
+      "holdout_dti": 0.267782,
+      "ci95": [0.253687, 0.281135],
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "withheld_positives": 60988,
+      "status": "HOLDOUT-DTI only; its own final dots are duplicate-negative and it is not submittable."
+    },
+    "selected_S15R_result": 0.084995,
+    "pass": false,
+    "reason": "E2 is 0.182787 below the current comparable holdout quality bar; no candidate may be promoted."
+  },
+  "registry_comparison": {
+    "evidence": "evidence/s15_revalidation_registry_20261025.json",
+    "available_frozen_references_checked": 62,
+    "frozen_inventory_declared": 64,
+    "missing_frozen_references": [
+      "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
+      "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif"
+    ],
+    "complete_inventory": false,
+    "complete_universal_registry": false,
+    "surface_preplacement": {
+      "max_abs_rank_correlation": 0.15881,
+      "closest_raster": "calib_hedgev2_01563_sample.tif",
+      "threshold": 0.9,
+      "pass_within_available_scope": true
+    },
+    "final_dots": {
+      "n_dots": 37654,
+      "max_directed_overlap_within_3px": 0.99599,
+      "closest_raster": "calib_r13lattice_00904.tif",
+      "threshold": 0.7,
+      "pass": false,
+      "is_duplicate": true
+    },
+    "reason": "The surface is not rank-correlated with the checked fleet, but 99.599% of final candidate dots are within 3 px of one registry raster. Byte distinction does not cure spatial duplication."
+  },
+  "raster_sha256": "9c6e99c0e8c37a83d8d7d287d0cfb253defa797a8e4f80cf670bac90b156225f",
+  "raster_sha256_scope": "Quarantined isolated replay only; this is not a published or submittable raster SHA-256.",
+  "quarantined_raster": {
+    "status": "DO_NOT_PUBLISH_OR_SUBMIT",
+    "path": "/home/user/repro-s15-hcpa/releases/gems91-s15-hcpa-e3-20261025T030000Z-745eb015-zeros.tif",
+    "sha256": "9c6e99c0e8c37a83d8d7d287d0cfb253defa797a8e4f80cf670bac90b156225f",
+    "reason": "An isolated writer correctly refused SHA-ledger certification; independently, the failed holdout and 99.599% directed overlap make this artifact ineligible. It is intentionally not copied to docs/downloads/."
+  },
+  "validator_output": {
+    "status": "NOT_A_PUBLISHABLE_BUNDLE",
+    "single_band_geotiff": "format checks passed in isolated writer before ledger refusal",
+    "crs_shape_transform": "not a promotion path; no release receipt is issued",
+    "range_and_nan": "not a promotion path; no release receipt is issued",
+    "ledger": "UNVERIFIED in isolated workspace and not bypassed"
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_length": 0,
+    "ok_to_download": false,
+    "ok_to_submit": false
+  },
+  "organizer_confirmed": null,
+  "verdict": "NEGATIVE_DO_NOT_PROMOTE",
+  "verdict_reason": "Corrected HCPA holdout lost decisively to the current comparable internal best, final dots are a literal Rule-1 duplicate against the available fleet, and 2 of 64 frozen references remain unavailable. No new TIFF, ZIP, note, or competition slot is authorized."
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>S15R-HCPA corrected revalidation — negative verdict · GEMSDOE91</title>
+  <meta name="description" content="Corrected S15-HCPA holdout revalidation: no downloadable or submittable TIFF.">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+      <nav aria-label="Main"><a href="index.html">Current verdict</a><a href="s15-hcpa.html">Historical S15</a><a href="REVIEW-S15R-HCPA-20261025.md">S15R review</a><a href="run-card-S15R-HCPA-20261025.json">S15R JSON</a><a href="research.html">Evidence &amp; sources</a></nav>
+    </header>
+    <main id="main">
+      <section class="hero">
+        <div>
+          <span class="eyebrow">CORRECTED S15-HCPA REVALIDATION · 2026-10-25</span>
+          <h1>No candidate file.<br>Unambiguous negative verdict.</h1>
+          <p class="lead">The historical HCPA lane was rerun with the holdout selector matched to the far-field/halo emitter. The rerun is useful evidence precisely because it does not make a plausible hydrothermal story look competitive.</p>
+          <p><span class="badge bad">OK TO DOWNLOAD: NO</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+        </div>
+        <aside class="download" data-submission-ready="false">
+          <div class="label">AUTOMATED FAIL-CLOSED STATUS</div>
+          <h2>S15R-HCPA</h2>
+          <div class="status"><span>New TIFF / ZIP</span><strong>NOT ISSUED</strong></div>
+          <div class="status"><span>Best corrected result</span><strong>0.084995 HOLDOUT-DTI</strong></div>
+          <div class="status"><span>95% CI</span><strong>[0.075507, 0.094735]</strong></div>
+          <div class="status"><span>Final-dot overlap</span><strong>99.599% — DUPLICATE</strong></div>
+          <p>No download button exists because no S15R release exists. The replay TIFF is quarantined outside this Pages site.</p>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="banner"><strong>Do not upload or recreate S15R.</strong> It loses the local comparable holdout gate, fails the literal final-dot uniqueness gate, and cannot claim complete frozen-registry coverage. A range-safe encoding or byte-distinct hash would not change those facts.</div>
+        <div class="grid">
+          <article class="card"><span class="eyebrow">HOLDOUT</span><div class="number">FAIL</div><p><strong>0.084995 HOLDOUT-DTI</strong>; 95% CI [0.075507, 0.094735]; `gems91-hide-recover-v1.0`; 60,988 withheld positives. The same-instrument internal quality bar is 0.267782.</p></article>
+          <article class="card"><span class="eyebrow">LEAKAGE SCREEN</span><div class="number">PASS</div><p>Worst feature-alone symmetric AUC = 0.5932, below the 0.90 alarm. This only says no single feature showed obvious leakage.</p></article>
+          <article class="card"><span class="eyebrow">NOVELTY</span><div class="number">FAIL</div><p>Surface max |rho| = 0.15881, but 99.599% of 37,654 final dots fall within 3 px of `calib_r13lattice_00904.tif`; protocol limit = 70%.</p></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>What was tested</h2>
+        <p>HCPA fused a conductivity-to-basement-depth proxy, basement-step concordance, thermal-field information, and extensional kinematic context to seek concealed hydrothermal fault continuations. The test withheld whole fault segments with a buffer, used only visible-fault catalogue features, masked visible faults exactly, and computed pooled DTI with the 300 m triangular kernel (`alpha=0.2`, `beta=0.8`).</p>
+        <p>That mechanism remains scientifically plausible but not unique: saline/clay basin fill, basin-margin contacts, sparse thermal sampling, broad regional strain, roads/drainage, and calibration-grid coverage can produce similar spatial signals. The implementation did not localize withheld faults well enough to clear the project's quality bar.</p>
+      </section>
+
+      <section class="section">
+        <h2>Why sparse dot geometry did not save it</h2>
+        <p>DTI gives max triangular-kernel credit around truth pixels and penalizes excess emitted mass. Sparse spacing can reduce redundant cost, but it cannot make a poorly ranked surface discover faults. The 30,000 / 37,654 / 44,000-dot E3 diagnostics scored 0.073231 / 0.084995 / 0.094359 HOLDOUT-DTI, respectively; none approaches 0.267782. The frozen 37,654-dot geometry is also a directed spatial duplicate.</p>
+      </section>
+
+      <section class="section">
+        <h2>Evidence and controlled next steps</h2>
+        <ul>
+          <li><a href="REVIEW-S15R-HCPA-20261025.md">Read the scientific review and geological interpretation</a></li>
+          <li><a href="run-card-S15R-HCPA-20261025.json">Inspect the JSON run card</a></li>
+          <li><a href="data/s15_revalidation_registry_20261025.json">Inspect the 62-reference available-fleet comparison</a></li>
+          <li><a href="S15R-20261025-LIMITATIONS.md">Read limitations and irregularities</a></li>
+        </ul>
+        <p><strong>Next action: stop this lane.</strong> Do not tune around the lattice, package the quarantined output, or treat a partial inventory as a pass. Any future lane must be independently preregistered, evaluated, novelty-checked before and after dot placement, and pass a complete ledger-backed writer.</p>
+      </section>
+    </main>
+    <footer><div>Research, not a leaderboard prediction.<br>Evidence updated 2026-10-25 · UTC</div><div>No automatic competition uploads. No credentials stored.</div></footer>
+  </div>
+</body>
+</html>

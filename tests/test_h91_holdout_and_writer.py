@@ -210,7 +210,7 @@ def test_gdr_blind_geothermometer_parser_handles_whitespace_and_blind_90c(tmp_pa
     assert int(masks["blind_geotherm90"].sum()) == 1
 
 
-def test_submission_writer_enforces_range_0_1_collar_and_zip_sha(tmp_path: Path) -> None:
+def test_submission_writer_enforces_range_0_1_collar_and_zip_sha(tmp_path: Path, monkeypatch) -> None:
     tpl_path, cat_path, footprint, cat_mask = _make_mini_template_and_cat(tmp_path)
     d_cat = ndi.distance_transform_edt(~cat_mask)
 
@@ -239,6 +239,7 @@ def test_submission_writer_enforces_range_0_1_collar_and_zip_sha(tmp_path: Path)
     assert (dl_dir / "test-custom-submission.js").is_file()
     assert audit["validators"]["gems91_gates_verdict"] == "CERTIFIED"
     assert audit["validators"]["range_0_1_portal_safe"] is True
+    assert audit["publication_eligibility"]["writer_certifiable"] is True
     assert audit["primary_zeros_tif"]["nan_cells_anywhere"] == 0
     assert audit["primary_zeros_tif"]["nodata"] is None
     assert 0.0 <= audit["primary_zeros_tif"]["min_value"] <= audit["primary_zeros_tif"]["max_value"] <= 1.0
@@ -277,6 +278,51 @@ def test_submission_writer_enforces_range_0_1_collar_and_zip_sha(tmp_path: Path)
             releases_dir=rel_dir,
             downloads_dir=None,
         )
+    # The failure happens after TIFF writing; the public writer must roll the
+    # failed bundle back rather than leaving a tempting orphaned raster behind.
+    assert not list(rel_dir.glob("bad-collar*"))
+    assert not list(rel_dir.glob("_tmp_bad-collar*"))
+
+    # Force a late failure after TIFF twins, ZIP, and browser payload exist.
+    # Transactional cleanup must remove the whole newly-created bundle, while
+    # preserving the original validator exception.
+    rollback_rel = tmp_path / "rollback-releases"
+    rollback_dl = tmp_path / "rollback-downloads"
+    real_write_text = Path.write_text
+    def reject_audit(self, text, *args, **kwargs):
+        if self.name.endswith("-audit.json"):
+            raise OSError("simulated audit persistence failure")
+        return real_write_text(self, text, *args, **kwargs)
+    monkeypatch.setattr(Path, "write_text", reject_audit)
+    with pytest.raises(OSError, match="simulated audit persistence failure"):
+        SW.write_validated_submission_bundle(
+            valid_dots,
+            stem_prefix="rollback-late-failure",
+            date_tag="20261024T000002Z",
+            template_path=tpl_path,
+            catalogue_path=cat_path,
+            releases_dir=rollback_rel,
+            downloads_dir=rollback_dl,
+            bundle_js_filename="rollback-browser-payload.js",
+        )
+    assert not [p for p in rollback_rel.rglob("*") if p.is_file()]
+    assert not [p for p in rollback_dl.rglob("*") if p.is_file()]
+
+    # Explicit no-ledger mode is useful to test byte/range geometry in an
+    # isolated temporary workspace, but it must never certify publication.
+    no_ledger = SW.write_validated_submission_bundle(
+        valid_dots,
+        stem_prefix="format-test-only",
+        date_tag="20261024T000001Z",
+        template_path=tpl_path,
+        catalogue_path=cat_path,
+        ledger_path=None,
+        releases_dir=tmp_path / "test-only-releases",
+        downloads_dir=None,
+    )
+    assert no_ledger["publication_eligibility"]["ledger_mode"] == "TEST_ONLY_NO_LEDGER"
+    assert no_ledger["publication_eligibility"]["writer_certifiable"] is False
+    assert no_ledger["validators"]["ledger_gate_verified"] is False
 
 
 def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
