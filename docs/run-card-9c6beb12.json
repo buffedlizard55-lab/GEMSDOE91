@@ -1,0 +1,49 @@
+{
+  "session_branch": "arena/9c6beb12-gemsdoe91",
+  "hypothesis": "No scientific hypothesis tested: unassigned lane and inherited duplicate-stop; delivery-verifier safety review only.",
+  "mechanism": "Reference-backed automated delivery inspection, never scientific promotion.",
+  "named_non_fault_process_that_could_mimic_it": "Lithologic contacts and survey flight-line artifacts can mimic inherited fault lineaments.",
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "withheld_positives": null,
+  "evaluator_version": null,
+  "correlation_overlap_vs_registry": {
+    "new_raster": null,
+    "reason": "No new raster generated or registry experiment run; inherited duplicate stop remains binding."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": null,
+    "existing_OLC91_reinspection": {
+      "file": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+      "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+      "format_ok": true,
+      "problems": [],
+      "submission_name": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67",
+      "submission_note": "GEMSDOE91 OLC91 E1: PU posterior x 1.1km strike-coherent line support, 37654 3px dots, 2px catalogue collar",
+      "OK_TO_DOWNLOAD": "YES - RESEARCH ONLY (format-valid file)",
+      "reference_checks": "PASS",
+      "recorded_OK_TO_SUBMIT": "NO",
+      "OK_TO_SUBMIT": "NO",
+      "submission_ready": false,
+      "why": [
+        "HOLDOUT: E1 - E0 = -0.0021, 95% CI [-0.0045, 0.0002] (lower bound not > 0; E1 below E0 in 4/4 folds)",
+        "UNIQUENESS: duplicate-stop, 76.8% of dots within 3 px of docs/downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif (chance-corrected 71.8%)"
+      ]
+    },
+    "all_downloads": {
+      "checked": 79,
+      "technical_pass": 70,
+      "technical_fail": 9,
+      "evidence": "review-9c6beb12/download-audit.json"
+    }
+  },
+  "submission_name": null,
+  "submission_note": "No new submission: missing lane, inherited duplicate stop; delivery safety review only.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "experiments_used": 0,
+  "weekly_slots_used": 0,
+  "organizer_confirmed": null,
+  "new_unique_tif_requirement_satisfied": false
+}
