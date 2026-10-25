@@ -55,8 +55,12 @@ def current_download(root=ROOT):
 def render() -> None:
     docs = ROOT / "docs"
     current = current_download(ROOT)  # fail before replacing any published page
-    (docs / "index.html").write_bytes((docs / "geo91-index-src.html").read_bytes())
-    (docs / "executive-summary.html").write_bytes((docs / "geo91-exec-src.html").read_bytes())
+    idx_bytes = (docs / "geo91-index-src.html").read_bytes()
+    exe_bytes = (docs / "geo91-exec-src.html").read_bytes()
+    (docs / "index.html").write_bytes(idx_bytes)
+    (docs / "executive-summary.html").write_bytes(exe_bytes)
+    (docs / "geo91.html").write_bytes(idx_bytes)
+    (docs / "geo91-executive-summary.html").write_bytes(exe_bytes)
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
 
 

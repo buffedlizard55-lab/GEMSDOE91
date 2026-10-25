@@ -2,40 +2,34 @@
   "policy": "Only explicitly registered prediction artifacts may be tracked. Training, label, sample, cache and external rasters remain ignored.",
   "files": [
     {
-      "path": "docs/downloads/gems91-ced-v1-20261024-d35670b28c81.tif",
-      "sha256": "a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee",
+      "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
+      "sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
       "status": "current_research_only",
-      "reason": "Local format PASS; duplicate stop; not a competition-approved submission."
+      "reason": "DZ-EDGE v2 all-finite research artifact; HOLDOUT-DTI 0.0 does not beat comparable best; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-ced-v1-20261024-d35670b28c81.zip",
-      "sha256": "237821ec2e75a1f92d3392c038e386833936875bc04acf4c8d7181a0fd05bea4",
+      "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.zip",
+      "sha256": "633f22a98a13395b69f942678b582a4e016184d653070fdf199e8631df8bf34d",
       "status": "current_research_only",
-      "reason": "Local format PASS; duplicate stop; not a competition-approved submission."
+      "reason": "Single-TIFF ZIP of DZ-EDGE v2 research artifact; HOLDOUT-DTI 0.0; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
-      "sha256": "8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb",
+      "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.tif",
+      "sha256": "da0fa0de24946769de509ec105486f5e9e2fc093107d32cf20af05c2897b5b64",
       "status": "parallel_quarantined",
-      "reason": "Concurrent PR32 artifact preserved without new evaluation. Different instrument, partial 7-file novelty scope, no common-protocol or selector clearance; NOT OK TO SUBMIT."
+      "reason": "Concurrent H1 artifact preserved from main after S16 duplicate stop. Not rerun, selected or tested against the frozen S16 inventory. No submission approval."
     },
     {
-      "path": "docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.zip",
-      "sha256": "0050182ff1d7babb100f4257b62706c94f307633f5c7ee780f2a2ac5580412ae",
+      "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.zip",
+      "sha256": "57c51932093264ee0acccc92d5a133e8a5d00b10e1909a3a69687b2e95f64d55",
       "status": "parallel_quarantined",
-      "reason": "Concurrent PR32 artifact preserved without new evaluation. Different instrument, partial 7-file novelty scope, no common-protocol or selector clearance; NOT OK TO SUBMIT."
+      "reason": "Concurrent H1 artifact preserved from main after S16 duplicate stop. Not rerun, selected or tested against the frozen S16 inventory. No submission approval."
     },
     {
-      "path": "docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif",
-      "sha256": "0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119",
-      "status": "current_research_only",
-      "reason": "H91-1 E1 dip-deprojected Verduzco candidate (0.174030 HOLDOUT-DTI, 13/13 technical & 20-real-raster uniqueness gates PASS; awaits human fleet-selector review of calib_r13lattice synthetic cover & weekly slot cap)."
-    },
-    {
-      "path": "docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip",
-      "sha256": "bb8979945d08b1434f0fdda3fd8ff0e704dbb3b274150845c2ba1a781abb5acc",
-      "status": "current_research_only",
-      "reason": "H91-1 E1 dip-deprojected Verduzco candidate (0.174030 HOLDOUT-DTI, 13/13 technical & 20-real-raster uniqueness gates PASS; awaits human fleet-selector review of calib_r13lattice synthetic cover & weekly slot cap)."
+      "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4.tif",
+      "sha256": "8626b7d4766020fb9c0118e61c310ee833411a96d9bf5acfd216b5fc4d0199a3",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent H1 artifact preserved from main after S16 duplicate stop. Not rerun, selected or tested against the frozen S16 inventory. No submission approval."
     },
     {
       "path": "docs/downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif",
@@ -48,18 +42,6 @@
       "sha256": "581fe73a10cb67308bac9627f11eeba7e30debbfff79c7cd185fd6bd8d84aad3",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of the ASC91 E3 research artifact; NOT OK TO SUBMIT (docs/run-card-ASC91.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
-      "sha256": "dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15",
-      "status": "current_research_only",
-      "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC candidate (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
-    },
-    {
-      "path": "docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip",
-      "sha256": "ba7ec5ae98595ad205f7482ed691a61b83ba75e72e4966fd4ca8e82e90b8f5de",
-      "status": "current_research_only",
-      "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC single-TIFF ZIP (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
     },
     {
       "path": "docs/downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
@@ -86,6 +68,114 @@
       "reason": "Single-TIFF ZIP of CCR91 E1 negative research artifact; NOT OK TO SUBMIT (docs/run-card-CCR91.json)."
     },
     {
+      "path": "docs/downloads/gems91-ced-v1-20261024-d35670b28c81.tif",
+      "sha256": "a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee",
+      "status": "current_research_only",
+      "reason": "Local format PASS; duplicate stop; not a competition-approved submission."
+    },
+    {
+      "path": "docs/downloads/gems91-ced-v1-20261024-d35670b28c81.zip",
+      "sha256": "237821ec2e75a1f92d3392c038e386833936875bc04acf4c8d7181a0fd05bea4",
+      "status": "current_research_only",
+      "reason": "Local format PASS; duplicate stop; not a competition-approved submission."
+    },
+    {
+      "path": "docs/downloads/gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.tif",
+      "sha256": "c76e6d7b58d0cdd17bc4ddeec69ac87663f4604c2cb75bf8c3f7bd01560fd051",
+      "status": "current_research_only",
+      "reason": "G91-COVER E1 cover-gated step x context candidate GeoTIFF (0.16939 HOLDOUT-DTI on checkerboard instrument; format + canary + surface novelty PASS; literal family overlap 91.2% vs unsubmitted FUSE91/DENOVO family disclosed in IR-G91-01; superseded on holdout by S12-SPAC E3 at 0.237587 and S13-PTHA E3 at 0.244601)."
+    },
+    {
+      "path": "docs/downloads/gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.zip",
+      "sha256": "d7d1a407c86bc49ec87c88071e8cf21f956a4d143a7ebafc6a7a33e9ec34504d",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of G91-COVER E1 research candidate (docs/run-card-G91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif",
+      "sha256": "0c11eaab094064841c2635bc302e9604a61fc96f257430cb8b22fae6a6a04119",
+      "status": "current_research_only",
+      "reason": "H91-1 E1 dip-deprojected Verduzco candidate (0.174030 HOLDOUT-DTI, 13/13 technical & 20-real-raster uniqueness gates PASS; awaits human fleet-selector review of calib_r13lattice synthetic cover & weekly slot cap)."
+    },
+    {
+      "path": "docs/downloads/gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.zip",
+      "sha256": "bb8979945d08b1434f0fdda3fd8ff0e704dbb3b274150845c2ba1a781abb5acc",
+      "status": "current_research_only",
+      "reason": "H91-1 E1 dip-deprojected Verduzco candidate (0.174030 HOLDOUT-DTI, 13/13 technical & 20-real-raster uniqueness gates PASS; awaits human fleet-selector review of calib_r13lattice synthetic cover & weekly slot cap)."
+    },
+    {
+      "path": "docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.tif",
+      "sha256": "8cbad0309ae38c50996346640202ada6bef34c758bf6136cb7b0ed6d40dbe9fb",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent PR32 artifact preserved without new evaluation. Different instrument, partial 7-file novelty scope, no common-protocol or selector clearance; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-denovo-hgbctx-37654dots-s2.8-20261024-7941b7ab-zeros.zip",
+      "sha256": "0050182ff1d7babb100f4257b62706c94f307633f5c7ee780f2a2ac5580412ae",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent PR32 artifact preserved without new evaluation. Different instrument, partial 7-file novelty scope, no common-protocol or selector clearance; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif",
+      "sha256": "b1623999403b1f6069fb259035a5b5acd795c7d80cf5ce03b8c6c6cda1a19fe3",
+      "status": "parallel_quarantined",
+      "reason": "Parallel-session DRN91 artifact inherited from origin/main; its run card gives a negative verdict and ok_to_submit=false. Preserved as a research artifact; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.zip",
+      "sha256": "4af0bafcc0aec883bb1ce6eb65542ed4a476bf4184dfe9c7350f4b2551e61ee0",
+      "status": "parallel_quarantined",
+      "reason": "Single-TIFF ZIP of the parallel-session DRN91 research artifact inherited from origin/main; run card verdict is negative; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif",
+      "sha256": "feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3",
+      "status": "current_research_only",
+      "reason": "FUSE91 E1 step x context fusion candidate GeoTIFF (0.167293 HOLDOUT-DTI identical instrument, new repo best vs 0.142885; canary + all format suites PASS; surface novelty PASS; literal directed dot gate FAILS vs unsubmitted in-repo DENOVO/MHTR/DDVTC predecessors - disclosed deviation IR-F91-01, submit only as single family candidate pending human selector; docs/run-card-F91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.zip",
+      "sha256": "8f8d262e3a0330cf2f04d0ae95c5947e337ed16e990a87cb37cc4120107cc037",
+      "status": "current_research_only",
+      "reason": "FUSE91 E1 step x context fusion candidate single-TIFF ZIP (0.167293 HOLDOUT-DTI identical instrument, new repo best vs 0.142885; canary + all format suites PASS; surface novelty PASS; literal directed dot gate FAILS vs unsubmitted in-repo DENOVO/MHTR/DDVTC predecessors - disclosed deviation IR-F91-01, submit only as single family candidate pending human selector; docs/run-card-F91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.tif",
+      "sha256": "57a0442a6b32d0a91a23f3abb71a673941f0d80a8781c6f6adece3d86e94e11a",
+      "status": "current_research_only",
+      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.zip",
+      "sha256": "f72b5f1a18429210f0a5b14e35ff7175faf7a9014e05c700682c34d7cb2d0e5b",
+      "status": "current_research_only",
+      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
+      "sha256": "57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f",
+      "status": "current_research_only",
+      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.zip",
+      "sha256": "ccb8df3043104e5eab4932f5ae1278a40c5dae1af9d24d16e4939c3016327fa3",
+      "status": "current_research_only",
+      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
+      "sha256": "dbfe7dfc27a93792abc0e73aa9e2ade3a7bbe69e6f71ec0927e176466e588b15",
+      "status": "current_research_only",
+      "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC candidate (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
+    },
+    {
+      "path": "docs/downloads/gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.zip",
+      "sha256": "ba7ec5ae98595ad205f7482ed691a61b83ba75e72e4966fd4ca8e82e90b8f5de",
+      "status": "current_research_only",
+      "reason": "S11-MHTR E2 Marussi Gravity Hessian + Official Band 06 Radiometric TC single-TIFF ZIP (0.206406 HOLDOUT-DTI, 0.097623 SGMC-Control, 62/62 real-raster uniqueness & all 4 validator suites PASS; awaits human fleet-selector review of weekly slot cap & IR-CED-003 lattice policy)."
+    },
+    {
       "path": "docs/downloads/gems91-mtd91-e1-37654dots-s2p8-20261024-20261024T180000Z-3afa853a-zeros.tif",
       "sha256": "de595c67d459a7e764fb059285725db7eabb089d6672f7cd820af135d2558dc9",
       "status": "current_research_only",
@@ -104,72 +194,6 @@
       "reason": "MTD91 parallel-lane NaN-outside companion; research only, not the preferred upload encoding. NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405-zeros.tif",
-      "sha256": "949953f80973efbb1d5de3e66a3684c1cfdd54c449c07c2e865d58449654952d",
-      "status": "current_research_only",
-      "reason": "UCD91 E2 unique zeros TIFF; HOLDOUT-DTI 0.113442 (gems91-hide-recover-v1.0, 60,988 withheld, 95% CI [0.103611, 0.121110]) is below prior 0.206406 HOLDOUT-DTI. Research-only; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405-zeros.zip",
-      "sha256": "b66abbb25998e52b36e893876207c4c66ebad51bb19ec8c6bb45e16137694edb",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of the UCD91 negative research artifact; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405.tif",
-      "sha256": "df735405d066b462f13c6196b97d7b689035594b40c1bffbab84c17c25b08afb",
-      "status": "current_research_only",
-      "reason": "UCD91 NaN-outside companion for research; not the all-finite recommended encoding. Research-only; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.tif",
-      "sha256": "feac1d6dd79429f24ea12bbc5937b1fb9bfcde4999989bcce7dd936e84a050a3",
-      "status": "current_research_only",
-      "reason": "FUSE91 E1 step x context fusion candidate GeoTIFF (0.167293 HOLDOUT-DTI identical instrument, new repo best vs 0.142885; canary + all format suites PASS; surface novelty PASS; literal directed dot gate FAILS vs unsubmitted in-repo DENOVO/MHTR/DDVTC predecessors - disclosed deviation IR-F91-01, submit only as single family candidate pending human selector; docs/run-card-F91.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-fuse91-e1-37654dots-20261024T184241Z-730f6bda-zeros.zip",
-      "sha256": "8f8d262e3a0330cf2f04d0ae95c5947e337ed16e990a87cb37cc4120107cc037",
-      "status": "current_research_only",
-      "reason": "FUSE91 E1 step x context fusion candidate single-TIFF ZIP (0.167293 HOLDOUT-DTI identical instrument, new repo best vs 0.142885; canary + all format suites PASS; surface novelty PASS; literal directed dot gate FAILS vs unsubmitted in-repo DENOVO/MHTR/DDVTC predecessors - disclosed deviation IR-F91-01, submit only as single family candidate pending human selector; docs/run-card-F91.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.tif",
-      "sha256": "c76e6d7b58d0cdd17bc4ddeec69ac87663f4604c2cb75bf8c3f7bd01560fd051",
-      "status": "current_research_only",
-      "reason": "G91-COVER E1 cover-gated step x context candidate GeoTIFF (0.16939 HOLDOUT-DTI on checkerboard instrument; format + canary + surface novelty PASS; literal family overlap 91.2% vs unsubmitted FUSE91/DENOVO family disclosed in IR-G91-01; superseded on holdout by S12-SPAC E3 at 0.237587 and S13-PTHA E3 at 0.244601)."
-    },
-    {
-      "path": "docs/downloads/gems91-cover91-e1-37654dots-20261024T194354Z-328b876d-zeros.zip",
-      "sha256": "d7d1a407c86bc49ec87c88071e8cf21f956a4d143a7ebafc6a7a33e9ec34504d",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of G91-COVER E1 research candidate (docs/run-card-G91.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
-      "sha256": "0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd",
-      "status": "current_research_only",
-      "reason": "S12-SPAC E3 3-D Magnetic Analytic Signal/SPI + Swarm + Fold-Safe Two-Stage Steerable Radon Auto-Context candidate (0.237587 HOLDOUT-DTI, +0.031181 paired over S11-E2 [P(>0)=100%], 0.107938 SGMC-Control, 64/64 external registry uniqueness & all 5 validator suites PASS; awaits human fleet-selector review of weekly slot cap, mutual exclusion vs S13-PTHA E3, & IR-CED-003 lattice policy)."
-    },
-    {
-      "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.zip",
-      "sha256": "e21e77e1ec65a04ccfc4a5ee970d50f0f0e8d3a1f986cc092497a13e84642a62",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S12-SPAC E3 candidate (0.237587 HOLDOUT-DTI, 0.107938 SGMC-Control; docs/run-card-S12.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
-      "sha256": "f59ec7a60cd9346f94e69257b0ab7123c2e74421ef7954a10fee9a0bbd7ee1ee",
-      "status": "current_research_only",
-      "reason": "SPID91 E3 Laplace-SPI + Depth-Deconfounded Conductivity + Weingarten Scarp-Toe MoE + Self-Credit Dinkelbach deliverable (0.151682 HOLDOUT-DTI on gems91-hide-recover-v1.0 & 0.145009 on gems57-pooled-hide-v2; passes all 85 leakage canaries & all 4 [0,1] validator suites; 67/67 real-raster unique <= 0.6663 at branch base and 74/75 post-merge [71.13% vs concurrent S12-SPAC E3]; verdict=negative \u2014 NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.zip",
-      "sha256": "37b52582dcf7d943af25f10d560cbf741443d5defba04a26ece32b5fca52c82c",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of SPID91 E3 research/ensemble artifact (format PASS [0,1], verdict=negative \u2014 NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
-    },
-    {
       "path": "docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
       "sha256": "421c589072e3b959fc0f8e71a7e879822ce8f9a81172a7f0fd24e7932eadd452",
       "status": "current_research_only",
@@ -182,16 +206,16 @@
       "reason": "Single-TIFF ZIP of S13-PTHA E3 candidate GeoTIFF (0.244601 HOLDOUT-DTI #1 in GEMSDOE91; fail-closed pending human selector sign-off; docs/run-card-S13.json)."
     },
     {
-      "path": "docs/downloads/gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.tif",
-      "sha256": "29a3c32b5dad73545b7bdbc8315a14ceed7bbb3472524fe6ca9b0943de7effea",
+      "path": "docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif",
+      "sha256": "678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720",
       "status": "current_research_only",
-      "reason": "S14-PTAC E2 cross-fitted posterior-topology candidate: 0.267782 HOLDOUT-DTI (gems91-hide-recover-v1.0, 60,988 withheld, 95% CI [0.253687, 0.281135]) beats S13 locally, but final directed 3px overlap is 99.852% >70%; duplicate stop; NOT OK TO SUBMIT."
+      "reason": "S14-HVDC E2 range-safe research artifact: 0.262209 HOLDOUT-DTI and 0.110429 Blind SGMC, but Rule 1 final overlap fails (99.838% lattice, 84.706% S13, 70.056% dense h25); verdict negative duplicate stop; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.zip",
-      "sha256": "1e244f1bd5333c3410fa11306b71c5c57877447d781ee3c6703ae1ec40fbbea8",
+      "path": "docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.zip",
+      "sha256": "6a15bfd1b29219e450764b0d2de70552c87bc38cc82fc0d490021af6166d4670",
       "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of the S14-PTAC E2 negative research artifact; final novelty gate failed; NOT OK TO SUBMIT (docs/run-card-S14-PTAC.json)."
+      "reason": "S14-HVDC E2 range-safe research artifact: 0.262209 HOLDOUT-DTI and 0.110429 Blind SGMC, but Rule 1 final overlap fails (99.838% lattice, 84.706% S13, 70.056% dense h25); verdict negative duplicate stop; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-s14-lsrg-e3-20261024T235900Z-e6540657-zeros.tif",
@@ -218,52 +242,16 @@
       "reason": "Single-TIFF ZIP of S14-LSRG-FF; research only and NOT OK TO SUBMIT (docs/run-card-S14.json)."
     },
     {
-      "path": "docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif",
-      "sha256": "678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720",
+      "path": "docs/downloads/gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.tif",
+      "sha256": "29a3c32b5dad73545b7bdbc8315a14ceed7bbb3472524fe6ca9b0943de7effea",
       "status": "current_research_only",
-      "reason": "S14-HVDC E2 range-safe research artifact: 0.262209 HOLDOUT-DTI and 0.110429 Blind SGMC, but Rule 1 final overlap fails (99.838% lattice, 84.706% S13, 70.056% dense h25); verdict negative duplicate stop; NOT OK TO SUBMIT."
+      "reason": "S14-PTAC E2 cross-fitted posterior-topology candidate: 0.267782 HOLDOUT-DTI (gems91-hide-recover-v1.0, 60,988 withheld, 95% CI [0.253687, 0.281135]) beats S13 locally, but final directed 3px overlap is 99.852% >70%; duplicate stop; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.zip",
-      "sha256": "6a15bfd1b29219e450764b0d2de70552c87bc38cc82fc0d490021af6166d4670",
+      "path": "docs/downloads/gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.zip",
+      "sha256": "1e244f1bd5333c3410fa11306b71c5c57877447d781ee3c6703ae1ec40fbbea8",
       "status": "current_research_only",
-      "reason": "S14-HVDC E2 range-safe research artifact: 0.262209 HOLDOUT-DTI and 0.110429 Blind SGMC, but Rule 1 final overlap fails (99.838% lattice, 84.706% S13, 70.056% dense h25); verdict negative duplicate stop; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
-      "sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
-      "status": "current_research_only",
-      "reason": "DZ-EDGE v2 all-finite research artifact; HOLDOUT-DTI 0.0 does not beat comparable best; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.zip",
-      "sha256": "633f22a98a13395b69f942678b582a4e016184d653070fdf199e8631df8bf34d",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of DZ-EDGE v2 research artifact; HOLDOUT-DTI 0.0; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
-      "sha256": "3bf918afef6beb33ec8efe1b542680e9a042c01480dfb75773d347ce6d5607e2",
-      "status": "current_research_only",
-      "reason": "Synthetic smoothed-noise format demonstration; no validated scientific promotion evidence; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.zip",
-      "sha256": "139f5ec056b27b0ac20082832271cc9e5f6a67e3433fba75ca00a1abdaed9b82",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of synthetic smoothed-noise format demonstration; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
-      "sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9",
-      "status": "current_research_only",
-      "reason": "S16 fresh computation; format PASS, literal registry duplicate; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.zip",
-      "sha256": "69a33f11e7be0db156b8e498d08d8259d814b8bbf509b144fc762a0d10cd4337",
-      "status": "current_research_only",
-      "reason": "S16 fresh computation; format PASS, literal registry duplicate; NOT OK TO SUBMIT."
+      "reason": "Single-TIFF ZIP of the S14-PTAC E2 negative research artifact; final novelty gate failed; NOT OK TO SUBMIT (docs/run-card-S14-PTAC.json)."
     },
     {
       "path": "docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif",
@@ -282,24 +270,6 @@
       "sha256": "7f01c7171384fe92478c6e25412bd1dad825b98f8bdecdf4204f816aaac9aca2",
       "status": "parallel_quarantined",
       "reason": "Inherited S15 artifact was absent from artifact policy. Preserved for research only; unverified full-registry novelty and inconsistent historical paired CI; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.tif",
-      "sha256": "da0fa0de24946769de509ec105486f5e9e2fc093107d32cf20af05c2897b5b64",
-      "status": "parallel_quarantined",
-      "reason": "Concurrent H1 artifact preserved from main after S16 duplicate stop. Not rerun, selected or tested against the frozen S16 inventory. No submission approval."
-    },
-    {
-      "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.zip",
-      "sha256": "57c51932093264ee0acccc92d5a133e8a5d00b10e1909a3a69687b2e95f64d55",
-      "status": "parallel_quarantined",
-      "reason": "Concurrent H1 artifact preserved from main after S16 duplicate stop. Not rerun, selected or tested against the frozen S16 inventory. No submission approval."
-    },
-    {
-      "path": "docs/downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4.tif",
-      "sha256": "8626b7d4766020fb9c0118e61c310ee833411a96d9bf5acfd216b5fc4d0199a3",
-      "status": "parallel_quarantined",
-      "reason": "Concurrent H1 artifact preserved from main after S16 duplicate stop. Not rerun, selected or tested against the frozen S16 inventory. No submission approval."
     },
     {
       "path": "docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif",
@@ -332,28 +302,76 @@
       "reason": "NaN-twin companion of concurrent S16-PC91 phase-congruency artifact preserved from main; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.tif",
-      "sha256": "57a0442a6b32d0a91a23f3abb71a673941f0d80a8781c6f6adece3d86e94e11a",
+      "path": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
+      "sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9",
       "status": "current_research_only",
-      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+      "reason": "S16 fresh computation; format PASS, literal registry duplicate; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.zip",
-      "sha256": "f72b5f1a18429210f0a5b14e35ff7175faf7a9014e05c700682c34d7cb2d0e5b",
+      "path": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.zip",
+      "sha256": "69a33f11e7be0db156b8e498d08d8259d814b8bbf509b144fc762a0d10cd4337",
       "status": "current_research_only",
-      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+      "reason": "S16 fresh computation; format PASS, literal registry duplicate; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
-      "sha256": "57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f",
+      "path": "docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif",
+      "bytes": 203212,
+      "sha256": "287af6b2df1c34080c55cd1aef9264f30e5e507b152ff31dcb94d13cf6f521a6",
       "status": "current_research_only",
-      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+      "classification": "current_public_download",
+      "git_status": "retained_public_link",
+      "reason": "S17-CGRD E2 research negative primary [0,1] GeoTIFF (ok_to_download=true, ok_to_submit=false, 0 slots)"
     },
     {
-      "path": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.zip",
-      "sha256": "ccb8df3043104e5eab4932f5ae1278a40c5dae1af9d24d16e4939c3016327fa3",
+      "path": "docs/downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.zip",
+      "bytes": 164903,
+      "sha256": "b3f520731ffe64f0bb4d2967755e399ee3ea34fce92b23bd9b0f5e245c324f8f",
       "status": "current_research_only",
-      "reason": "GEO91 catalogue-geometry lane (E1 0.001338 / E2 0.055267 HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo) loses to matched random controls; format+canary+uniqueness PASS, science/selector gates FAIL; NOT OK TO SUBMIT (docs/run-card-GEO91.json)."
+      "classification": "current_public_download",
+      "git_status": "retained_public_link",
+      "reason": "S17-CGRD E2 research negative single-TIFF ZIP (ok_to_download=true, ok_to_submit=false, 0 slots)"
+    },
+    {
+      "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+      "sha256": "0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd",
+      "status": "current_research_only",
+      "reason": "S12-SPAC E3 3-D Magnetic Analytic Signal/SPI + Swarm + Fold-Safe Two-Stage Steerable Radon Auto-Context candidate (0.237587 HOLDOUT-DTI, +0.031181 paired over S11-E2 [P(>0)=100%], 0.107938 SGMC-Control, 64/64 external registry uniqueness & all 5 validator suites PASS; awaits human fleet-selector review of weekly slot cap, mutual exclusion vs S13-PTHA E3, & IR-CED-003 lattice policy)."
+    },
+    {
+      "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.zip",
+      "sha256": "e21e77e1ec65a04ccfc4a5ee970d50f0f0e8d3a1f986cc092497a13e84642a62",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S12-SPAC E3 candidate (0.237587 HOLDOUT-DTI, 0.107938 SGMC-Control; docs/run-card-S12.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+      "sha256": "f59ec7a60cd9346f94e69257b0ab7123c2e74421ef7954a10fee9a0bbd7ee1ee",
+      "status": "current_research_only",
+      "reason": "SPID91 E3 Laplace-SPI + Depth-Deconfounded Conductivity + Weingarten Scarp-Toe MoE + Self-Credit Dinkelbach deliverable (0.151682 HOLDOUT-DTI on gems91-hide-recover-v1.0 & 0.145009 on gems57-pooled-hide-v2; passes all 85 leakage canaries & all 4 [0,1] validator suites; 67/67 real-raster unique <= 0.6663 at branch base and 74/75 post-merge [71.13% vs concurrent S12-SPAC E3]; verdict=negative \u2014 NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.zip",
+      "sha256": "37b52582dcf7d943af25f10d560cbf741443d5defba04a26ece32b5fca52c82c",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of SPID91 E3 research/ensemble artifact (format PASS [0,1], verdict=negative \u2014 NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405-zeros.tif",
+      "sha256": "949953f80973efbb1d5de3e66a3684c1cfdd54c449c07c2e865d58449654952d",
+      "status": "current_research_only",
+      "reason": "UCD91 E2 unique zeros TIFF; HOLDOUT-DTI 0.113442 (gems91-hide-recover-v1.0, 60,988 withheld, 95% CI [0.103611, 0.121110]) is below prior 0.206406 HOLDOUT-DTI. Research-only; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405-zeros.zip",
+      "sha256": "b66abbb25998e52b36e893876207c4c66ebad51bb19ec8c6bb45e16137694edb",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of the UCD91 negative research artifact; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-ucd91-20261024T190000Z-df735405.tif",
+      "sha256": "df735405d066b462f13c6196b97d7b689035594b40c1bffbab84c17c25b08afb",
+      "status": "current_research_only",
+      "reason": "UCD91 NaN-outside companion for research; not the all-finite recommended encoding. Research-only; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
@@ -374,18 +392,6 @@
       "reason": "NaN-outside companion of the prior off-catalogue research negative; not the recommended upload; NOT OK TO SUBMIT."
     },
     {
-      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif",
-      "sha256": "b1623999403b1f6069fb259035a5b5acd795c7d80cf5ce03b8c6c6cda1a19fe3",
-      "status": "parallel_quarantined",
-      "reason": "Parallel-session DRN91 artifact inherited from origin/main; its run card gives a negative verdict and ok_to_submit=false. Preserved as a research artifact; NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.zip",
-      "sha256": "4af0bafcc0aec883bb1ce6eb65542ed4a476bf4184dfe9c7350f4b2551e61ee0",
-      "status": "parallel_quarantined",
-      "reason": "Single-TIFF ZIP of the parallel-session DRN91 research artifact inherited from origin/main; run card verdict is negative; NOT OK TO SUBMIT."
-    },
-    {
       "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119-zeros.tif",
       "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
       "status": "current_research_only",
@@ -402,6 +408,18 @@
       "sha256": "b9acc11900faa04c6871bdcd2e6d2107b40fafeee143c5884a7b71b012f81d74",
       "status": "current_research_only",
       "reason": "NaN-outside companion of the new off-catalogue research negative; not the recommended upload; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
+      "sha256": "3bf918afef6beb33ec8efe1b542680e9a042c01480dfb75773d347ce6d5607e2",
+      "status": "current_research_only",
+      "reason": "Synthetic smoothed-noise format demonstration; no validated scientific promotion evidence; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.zip",
+      "sha256": "139f5ec056b27b0ac20082832271cc9e5f6a67e3433fba75ca00a1abdaed9b82",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of synthetic smoothed-noise format demonstration; NOT OK TO SUBMIT."
     }
   ]
 }
