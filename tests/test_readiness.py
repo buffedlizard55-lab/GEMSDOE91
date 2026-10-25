@@ -14,6 +14,7 @@ def good():
             'preplacement': {'status': 'PASS_WITHIN_INDEXED_SCOPE', 'checked': 20, 'not_checked_after_stop': 0},
             'final': {'status': 'PASS_WITHIN_INDEXED_SCOPE', 'checked': 20, 'not_checked_after_stop': 0},
             'max_measured_surface_rank_correlation': .9,
+            'max_measured_final_dot_rank_correlation': -.9,
             'max_measured_final_dot_overlap_within_3px': .7},
         'lane': {'assigned': True},
         'holdout_dti': {'status': 'COMPLETED', 'label': 'HOLDOUT-DTI', 'value': .2,
@@ -90,3 +91,22 @@ def test_delta_outside_its_interval_is_blocked(good):
 def test_matching_rounded_float_delta_passes(good):
     good['holdout_dti']['paired_best']['delta'] = .0200000001
     assert submission_ready(good)
+
+
+@pytest.mark.parametrize('value', [None, True, '0.1', float('nan'), float('inf'),
+                                 -.900001, .900001, 10**1000])
+def test_final_dot_correlation_cannot_bypass_novelty(good, value):
+    good['registry_comparison']['max_measured_final_dot_rank_correlation'] = value
+    assert not gates(good)['novelty']
+    assert not submission_ready(good)
+
+
+def test_missing_final_dot_correlation_is_unverified(good):
+    del good['registry_comparison']['max_measured_final_dot_rank_correlation']
+    assert not gates(good)['novelty']
+
+
+@pytest.mark.parametrize('value', [-.9, 0, .9])
+def test_final_dot_correlation_inclusive_boundary(good, value):
+    good['registry_comparison']['max_measured_final_dot_rank_correlation'] = value
+    assert gates(good)['novelty']
