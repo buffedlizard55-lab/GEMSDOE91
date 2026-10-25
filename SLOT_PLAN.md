@@ -1,6 +1,11 @@
-# Slot selection — human selector queue (`S12-SPAC E3` #1 candidate; 0 slots spent automatically)
+# Slot selection — human selector queue (`S14-PTAC E2` #1 holdout candidate; `S15-SCGF E2` negative; 0 slots spent automatically)
 
-> **SESSION 12 BANNER (2026-10-24, branch `arena/03c185c4-gemsdoe91`) — READ FIRST:**
+> **SESSION 15 BANNER (2026-10-25, branch `arena/605655a6-gemsdoe91`) — READ FIRST:**
+> - **Zero weekly DrivenData slots have been spent automatically (`slots_used = 0`).** Under [Official Rules §3.2](https://docs.nlr.gov/docs/fy26osti/96647.pdf) (`3 submissions/week` cap) and `src/gems91/readiness.py`, live slot promotion requires explicit human selector sign-off.
+> - **Session 15 (`S15-SCGF E2`, `gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif`, [`docs/run-card-S15.json`](docs/run-card-S15.json)) takes NO slot (`verdict: "negative"`, `NOT OK TO SUBMIT`):** Scored **`0.240633 HOLDOUT-DTI`** (`95% CI [0.227931, 0.254026]`) — trailing repo holdout best **`S14-PTAC E2 = 0.267782`** (`docs/run-card-S14-PTAC.json`) and `S13-PTHA E3 = 0.244601` (`docs/run-card-S13.json`) — while lifting Blind Off-Catalogue USGS SGMC recovery to **`0.097940`** (`+0.002180` vs `S14-PTAC E2`; `+0.002554` vs `GEMSDOE32 R0`). Published strictly as a range-safe `[0, 1]` research download.
+> - **Current #1 Holdout Reference in `GEMSDOE91` (Pending Human Selector Review):** **`S14-PTAC E2`** (`0.267782 HOLDOUT-DTI`, `44,000` dots, `41.15%` 3-px overlap vs `GEMSDOE32 R0`; fail-closed `submission_ready = False` pending human selector resolution of `IR-CED-003` synthetic lattice blanket & mutual exclusion vs `S13-PTHA` / `S12-SPAC` / `S15-SCGF`).
+
+> **SESSION 12 BANNER (2026-10-24, branch `arena/03c185c4-gemsdoe91`) — HISTORICAL:**
 > - **No weekly DrivenData slot has been spent automatically (`slots_used = 0`).** Under [Official Rules §3.2](https://docs.nlr.gov/docs/fy26osti/96647.pdf) (`3 submissions/week` cap) and `src/gems91/readiness.py`, live slot promotion belongs strictly to the human fleet selector.
 > - **Current #1 Validated Selector Candidate in `GEMSDOE91`:** **`gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif`** (`54,000` unit-mass dots `> 3.0 px` from catalogue, SHA-256 `0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd`, [`docs/run-card-S12.json`](docs/run-card-S12.json)):
 >   - **`0.237587` `HOLDOUT-DTI`** (`95% CI [0.223387, 0.250313]`, `gems91-hide-recover-v1.0`, `60,988` withheld positives), beating `S11-MHTR E2` (`0.206406`) by **`+0.031181` (`+15.1%`) with paired 95% CI `[+0.024186, +0.038231]`, `P(>0) = 100.0%` (`200/200` draws)**, `H91-DDVTC E1` (`0.174030`) by `+36.5%`, and `B0` (`0.138999`) by `+70.9%`.

@@ -216,6 +216,42 @@
       "sha256": "aed4257ef7300e620cf5e7c93c182dbcfebc0ac1317b3ee815ac87902a92c1d1",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of S14-LSRG-FF; research only and NOT OK TO SUBMIT (docs/run-card-S14.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.tif",
+      "sha256": "3bf918afef6beb33ec8efe1b542680e9a042c01480dfb75773d347ce6d5607e2",
+      "status": "legacy_quarantined",
+      "reason": "PR66 synthetic random-noise fixture built against a 1-pixel mock catalogue (515 dots land on real existing_faults.tif pixels; HOLDOUT-DTI not evaluated on real truth). Quarantined; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-unique-synthetic-20261025T000000Z-b5539d19-zeros.zip",
+      "sha256": "139f5ec056b27b0ac20082832271cc9e5f6a67e3433fba75ca00a1abdaed9b82",
+      "status": "legacy_quarantined",
+      "reason": "Single-TIFF ZIP of PR66 synthetic random-noise fixture; quarantined and NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
+      "sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
+      "status": "legacy_quarantined",
+      "reason": "PR68 DZ-EDGE v2 PRUNE+refill derivative of R0 (copies 26,294 parent R0 dots, HOLDOUT-DTI=0.0, incomplete 1-raster registry check). Quarantined; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.zip",
+      "sha256": "633f22a98a13395b69f942678b582a4e016184d653070fdf199e8631df8bf34d",
+      "status": "legacy_quarantined",
+      "reason": "Single-TIFF ZIP of PR68 DZ-EDGE v2 negative artifact; quarantined and NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif",
+      "sha256": "0893322792aa46eaebba6f75702051d854efbe7fa5cb219e588ef863459ca3a1",
+      "status": "current_research_only",
+      "reason": "Session 15 S15-SCGF E2 all-finite [0,1] GeoTIFF (44,000 dots, HOLDOUT-DTI 0.240633, Blind SGMC 0.097940); research download only and NOT OK TO SUBMIT (docs/run-card-S15.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.zip",
+      "sha256": "e14e41057a58eb87807f6bdfb85bae5f4b68c96952ee3b578ba0307a7e92847f",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of Session 15 S15-SCGF E2; research download only and NOT OK TO SUBMIT (docs/run-card-S15.json)."
     }
   ]
 }

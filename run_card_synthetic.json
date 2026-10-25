@@ -15,9 +15,12 @@
     "no_nan_inside_footprint": true,
     "values_in_range": true,
     "mass_present": "37654.0",
-    "zero_catalogue_mass": true
+    "zero_catalogue_mass": false,
+    "measured_dots_on_real_catalogue": 515,
+    "measured_dots_le_3px_of_real_catalogue": 3793
   },
+  "ok_to_submit": false,
   "submission_name": "gems91-unique-synthetic",
-  "submission_note": "Random synthetic smoothed noise submission - unique lane",
-  "verdict": "negative (Deliverable synthetic for pipeline testing)"
+  "submission_note": "Quarantined synthetic random-noise fixture (515 dots on real catalogue); DO NOT SUBMIT",
+  "verdict": "negative"
 }

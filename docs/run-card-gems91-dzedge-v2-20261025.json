@@ -54,15 +54,15 @@
     "range_0_1_portal_safe": true
   },
   "ok_to_download": true,
-  "ok_to_submit": true,
-  "submission_note": "DZ-EDGE v2: count-holding PRUNE+parent-sparse damage-zone refill <=10px; HOLDOUT-DTI=0.0 gems91-hide-recover-v1.1-nohalo; MODEL only",
+  "ok_to_submit": false,
+  "submission_note": "DZ-EDGE v2 research only: copies 26294 R0 dots & HOLDOUT-DTI=0.0; not validated above holdout best; do not submit.",
   "organizer_confirmed": null,
   "leaderboard_score_confirmed": false,
-  "score_claim": "none - holdout-DTI=0.0 because proxy truth is withheld catalogue segments while this submission deliberately targets off-catalogue blind geothermal truth (>10 px from catalogue, outside the 300 m kernel). Cannot confirm it beats R0's 0.2778 CLAIM or the 0.4413 leaderboard high without an organizer receipt.",
+  "score_claim": "none - holdout-DTI=0.0 because proxy truth is withheld catalogue segments while this submission deleted within 10 px of the full catalogue (including withheld faults). Fails promotion gate and complete registry check; quarantined as negative.",
   "download_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
   "zip_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.zip",
   "audit_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-audit.json",
   "ok_to_download_why": "all-finite, values in [0.0,1.0], 0 NaN, EPSG:32611, 3730x3292, transform matches sample_submission.tif, zero catalogue mass, min catalogue distance 10.05 px (>3 px collar), all 4 format gate suites CERTIFIED.",
-  "ok_to_submit_why": "technical format gates PASS and lane uniqueness PASS (rho 0.696 <= 0.90, 3-px overlap 69.83% <= 70%). Caveat: leaderboard score is UNCONFIRMED (holdout-DTI=0 vs catalogue truth; targets off-catalogue blind truth); submit only as a deliberate contrarian blind-truth hypothesis, not as a confirmed improvement.",
-  "verdict": "promote"
+  "ok_to_submit_why": "NOT OK TO SUBMIT: HOLDOUT-DTI=0.0 fails the mandatory holdout promotion bar, 26,294 pixels were inherited from parent R0, and full 73-raster registry novelty was not passed.",
+  "verdict": "negative"
 }
