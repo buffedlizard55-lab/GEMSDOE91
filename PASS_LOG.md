@@ -1,3 +1,39 @@
+# GEMSDOE91 — Multi-Pass Verification Log (Session 17 `S17-CGRD`, `arena/cbdb6e26-gemsdoe91`)
+
+## Session 17 (`S17-CGRD`, branch `arena/cbdb6e26-gemsdoe91`, 2026-10-25)
+
+### Pass 1 — Preregistration, Feature Engineering & 3-Experiment Execution (COMPLETED)
+- [x] Restored and SHA-256 verified all 15 competition/reference files in `registry/data_manifest.json` (`data/official/sample_submission.tif`, `data/official/existing_faults.tif`, `data/bridge/gems-geodawn-numerical-features.tif`, `data/external/gdr_wellspring_in_footprint.csv`, `data/external/derived_sgmc_faults_100m_u8.tif`, `data/registry/GEMSDOE32__h33-2-b2-zeros.tif`, `data/fleet_registry/calib_r13lattice_00904.tif`).
+- [x] Froze preregistration `docs/HYPOTHESES_S17_CGRD.md` (5 ranked geological hypotheses `H17-1` through `H17-5`, 3-experiment ladder `E1`, `E2`, `E3`).
+- [x] Implemented `src/gems91/cgrd17.py` (26 pure-subsurface Cooper–Cowan Theta-Map / Hyperbolic-Tilt + DOE GDR-1391 geothermometer disequilibrium features + 8 prior-shift-calibrated local auto-context features, provably invariant to `Band 12`/`Band 19` and never reading `dist_known_fault_px`).
+- [x] Implemented `scripts/run_s17_cgrd_lane.py` and unit/integration test suite `tests/test_s17_cgrd.py`.
+
+### Pass 2 — Scientific Bug Review, Edge Cases & Portal/Registry Repair (COMPLETED)
+- [x] **Fixed `IR-91-S15-06` & fold-negative exclusion bug:** Excluded held-out quadrant `f.region_mask` from training negatives (`excl_f = f.region_mask | f.withheld_faults | f.buffer_mask`) and applied `gems91.ptha.prior_shift_calibrate_surface` to all 6 pairwise 2-quadrant and 4 OOF 3-quadrant Stage-1 splits before stitching local auto-context, plus $\ge 3.2\text{ km}$ bowl subtraction (`IR-91-S15-07`). Confirmed `E2` (`0.092125 HOLDOUT-DTI`) improves strictly over `E1` (`0.083981 HOLDOUT-DTI`).
+- [x] **Fixed `readiness.py` format-gate mapping:** Added boolean `validator_output["checks"]` dictionary in `scripts/run_s17_cgrd_lane.py` so `gems91.readiness.gates(card)["format"]` and `["canary"]` evaluate to `True` while `submission_ready(card)` evaluates to `False`.
+- [x] **Fixed `IR-91-S17-01` (portal/policy reconciliation):** Reconciled `scripts/render_geo91_portal.py`, `docs/geo91-index-src.html`, `docs/geo91-exec-src.html`, and `scripts/render_s16_portal.py`; registered all 66 prediction artifacts in `registry/artifact_policy.json`; and regenerated `docs/download-audit.{json,html}` (`66` files audited).
+
+### Pass 3 — End-to-End Re-Verification Against All Requirements (COMPLETED)
+- [x] Full pytest suite: `.venv/bin/pytest -q -rs` -> all tests passed (`0 failed, 0 skipped`).
+- [x] Artifact policy & download audit: `.venv/bin/python scripts/check_artifact_policy.py` (`PASS: 66 explicitly registered prediction artifacts`) & `.venv/bin/python scripts/audit_downloads.py` (`status: "PASS"` on both `gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif` and `.zip`).
+- [x] S16/current evidence verifiers: `.venv/bin/python scripts/verify_s16.py`, `.venv/bin/python scripts/verify_evidence.py`, `.venv/bin/python scripts/verify_current_artifact.py` -> all `PASS`.
+- [x] Headless Chromium + axe-core WCAG 2.1 AA + mobile `390x844` overflow + SHA-256 download check: `node tools/browser/smoke.cjs` -> `status: "PASS"`, `0` console/HTTP errors, `0` mobile overflow, `0` WCAG violations across 21 pages.
+
+---
+
+## Integration verification
+
+PR #103 initially conflicted with concurrent PR #101. Merged `origin/main` into the fixed session branch, retained the parallel review and access findings, retained the stricter current-download identity checks and corrected causal prose, and reran tests/browser checks before merge. No duplicate artifact-policy entries or geological experiments were introduced.
+
+# Current three-pass review — `arena/4975419d-gemsdoe91`, 2026-10-25
+
+- **Pass 1:** inspected prior next steps, restored sample/catalogue/R0 with manifest hashes; corrected current portal's unsupported scientific claims and historical/new-file ambiguity; added front-door TIFF/ZIP identity checks.
+- **Pass 2:** fixed browser smoke tests that targeted obsolete landing-page controls; added corruption/path/approval regression tests and a synthetic counterexample to guaranteed collar-pruning gains. Found unregistered pre-existing DRN91 TIFF/ZIP; quarantined them and regenerated the stale all-download audit. Initial incomplete audit was BLOCKED, not a pass.
+- **Pass 3:** `python -m pytest -ra`: **473 passed, 8 skipped, 57 warnings**. Skips require absent full integration inputs; warnings are existing Affine deprecations. `verify_current_artifact.py --with-data`, `verify_evidence.py`, `verify_s16.py --with-data`: PASS for their historical artifacts/evidence (not new science). Artifact policy: PASS for **64** registered artifacts. All-download technical audit: **56 PASS / 8 FAIL**. Real Chromium download SHA checks, desktop/mobile layout and accessibility: PASS, receipt in `evidence/review-4975419d/browser-verification.json`. Portal regeneration tested byte-for-byte by pytest; `git diff --check` clean.
+- **Outcome:** no new geological experiment or raster; no slot used. Missing lane, registry feasibility, incomplete cache, unmatched current-best instrument and unverified organizer/account state remain blockers. Existing TIFFs were not copied or renamed as new submissions. Current review: `docs/REVIEW-4975419D-20261025.md`.
+
+---
+
 # GEMSDOE91 — Unique TIF submission pass log
 
 > **Historical entry below describes an earlier branch (`arena/e6fdea6b-gemsdoe91`), not the current checkout.** Current branch: `arena/2f002fa0-gemsdoe91`. Current three-pass review: `docs/REVIEW-SESSION-20261025.md`; no new TIFF/experiment/slot, lane paragraph missing, feature stack absent; current verdict negative. The sample and existing-fault catalogue are present only as SHA-verified audit references. The earlier unique artifact is still research-only and not endorsed for submission. The prior policy omission for that artifact has now been corrected and `scripts/check_artifact_policy.py` passes.

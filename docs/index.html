@@ -18,18 +18,18 @@ nav a{margin-right:14px;text-decoration:none;font-weight:600}.logo{font-weight:8
 .stop{background:#f7e4e4;border:1px solid #e3b4b4;border-radius:10px;padding:12px;margin:10px 0}
 .status{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:7px 0}
 table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
-textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{margin:22px 0}code{font-size:12px;word-break:break-all}
+section{margin:22px 0}code{font-size:12px;word-break:break-all}
 </style></head><body><div class="wrap">
 <header><span class="logo">GEMSDOE91 · Fault Discovery Lab</span>
-<nav><a href="index.html">Current candidate</a><a href="executive-summary.html">How to submit</a><a href="research.html">Research archive</a><a href="archive-results.html">Historical archive</a><a href="run-card-XG91.json">Run card</a></nav></header>
+<nav><a href="index.html">Current candidate</a><a href="executive-summary.html">How to submit</a><a href="s17-cgrd.html">S17-CGRD</a><a href="geo91.html">Historical GEO91</a><a href="research.html">Research archive</a><a href="archive-results.html">Historical archive</a><a href="run-card-XG91.json">Run card</a></nav></header>
 
 <main id="main">
-<div class="stop" role="status"><strong>OK TO SUBMIT: NO.</strong> Do not upload this GeoTIFF to DrivenData. It is a research negative. Automated gates failed. No weekly slot was spent.</div>
+<div class="stop" role="status"><strong>OK TO SUBMIT: NO.</strong> <strong>NOT OK TO SUBMIT</strong> Do not upload this GeoTIFF to DrivenData. It is a research negative. Automated gates failed. No weekly slot was spent.</div>
 <div class="hero">
 <div>
-<span class="badge">OK TO DOWNLOAD: YES — research only</span><span class="badge bad">OK TO SUBMIT: NO — NOT OK TO SUBMIT</span>
+<span class="badge">OK TO DOWNLOAD: YES — research only</span><span class="badge bad">OK TO SUBMIT: NO</span>
 <h1>Download the GeoTIFF.<br>Do not submit it.</h1>
-<p class="small">One new file, written by the shared template writer and re-read from disk. No human image inspection. Format validity is not permission to upload.</p>
+<p class="small">One new file, written by the shared template writer and re-read from disk. No human image inspection. Format validity is not permission to upload. Historical pages for GEO91 and S17-CGRD remain linked below; they are not this file.</p>
 <p class="small"><strong>Submission name:</strong> <code>gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros</code><br>
 <strong>Note (86/140):</strong> <code>XG91 E1 crest; HOLDOUT-DTI 0.071171 gems57-pooled-hide-v2; below random; do not submit</code></p>
 </div>
@@ -48,20 +48,28 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 <p class="small">37,654 binary dots · single-band float32 · 3730×3292 · 100 m · all 12,279,160 cells finite in [0, 1] · nodata unset · SHA-256<br><code>4aecf0851bbe0ae3a9f87255f4d438597becc90e50ec49789852cfe1a33d4327</code></p>
 </div></div>
 
+<section class="card"><h2>Parallel file already on main — not this candidate</h2>
+<p class="small">S17-CGRD is a separate session's research negative. Its own page says it is not approved to submit. Downloading it does not approve XG91, and downloading XG91 does not approve S17-CGRD.</p>
+<p><a class="btn2" download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)</a>
+<a class="btn2" href="s17-cgrd.html">S17-CGRD audit</a>
+<a class="btn2" href="s17-cgrd-executive-summary.html">S17-CGRD guide</a>
+<a class="btn2" href="run-card-S17-CGRD.json">S17-CGRD run card</a></p>
+</section>
+
 <section class="card"><h2>Automated verdict — no human inspection</h2>
 <table><tr><th>Gate</th><th>Verdict</th><th>Evidence</th></tr>
 <tr><td>File format and [0, 1] range</td><td><span class="badge">PASS</span></td><td>Reopened from disk: 0 NaN, 0 Inf, min 0.0, max 1.0, no nodata tag, EPSG:32611, transform (100, 0, 243350, 0, −100, 4508550), matching the pinned sample.</td></tr>
 <tr><td>Catalogue and footprint</td><td><span class="badge">PASS</span></td><td>0 positive pixels on mapped faults. 0 positive pixels outside the sample footprint.</td></tr>
 <tr><td>Leakage canary</td><td><span class="badge">PASS</span></td><td>Worst single-feature symmetric AUC 0.55182 (limit 0.90) on the template folds. Passing a canary is not proof of no leakage.</td></tr>
-<tr><td>Uniqueness vs method rasters</td><td><span class="badge">PASS in indexed scope</span></td><td>Surface |Spearman| 0.06791 (limit 0.90). 31.035% of dots within 3 px of the closest method raster (limit 70%). Scope: 40 finite rasters in <code>data/registry</code> and <code>docs/downloads</code>. Not a universal fleet clearance.</td></tr>
-<tr><td>Synthetic lattice rule</td><td><span class="badge bad">FAIL — stop</span></td><td>99.742% of dots lie within 3 px of <code>calib_r13lattice_00904.tif</code> (SHA-256 <code>b4570b40…c9b2</code>). Literal protocol stop. E2 and E3 were not run. Not promoted.</td></tr>
-<tr><td>Holdout science</td><td><span class="badge bad">FAIL — negative</span></td><td><strong>0.071171 HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, 60,988 withheld positives, 95% CI [0.063769, 0.079270]). Matched random control <strong>0.073788 HOLDOUT-DTI</strong> (same evaluator and population). Paired delta −0.002618, 95% CI [−0.009427, 0.005131], includes zero. Recorded same-evaluator point estimate in this repo: 0.194267. These are not organizer scores.</td></tr>
-<tr><td>Slot selection</td><td><span class="badge bad">NOT DONE</span></td><td>0 slots spent. No selector receipt. The prompt did not assign a method paragraph; XG91 was preregistered here and is not an orchestrated lane.</td></tr></table>
+<tr><td>Uniqueness vs method rasters</td><td><span class="badge">PASS in indexed scope</span></td><td>Surface |Spearman| 0.06791 (limit 0.90). 31.035% of dots within 3 px of the closest method raster (limit 70%). Scope: finite rasters indexed at run time. Not a universal fleet clearance.</td></tr>
+<tr><td>Synthetic lattice rule</td><td><span class="badge bad">FAIL — stop</span></td><td>99.742% of dots lie within 3 px of <code>calib_r13lattice_00904.tif</code>. Literal protocol stop. E2 and E3 were not run. Not promoted.</td></tr>
+<tr><td>Holdout science</td><td><span class="badge bad">FAIL — negative</span></td><td><strong>0.071171 HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, 60,988 withheld positives, 95% CI [0.063769, 0.079270]). Matched random control <strong>0.073788 HOLDOUT-DTI</strong>. Paired delta −0.002618, 95% CI [−0.009427, 0.005131], includes zero. These are not organizer scores.</td></tr>
+<tr><td>Slot selection</td><td><span class="badge bad">NOT DONE</span></td><td>0 slots spent. No selector receipt. The prompt did not assign a method paragraph.</td></tr></table>
 <p class="small">Full numbers: <a href="run-card-XG91.json">run-card-XG91.json</a> · paired control <a href="xg91-paired-control.json">xg91-paired-control.json</a> · hypotheses <a href="HYPOTHESES_XG91.md">HYPOTHESES_XG91.md</a> · <a href="executive-summary.html">submission guide</a> · <a href="executive-summary.html#why">why 0.2778 is not a recipe</a></p></section>
 
 <section class="card"><h2>What this file is</h2>
-<p class="small">XG91-E1 places 37,654 unit dots on the crests where the horizontal gradients of sponsor RTP magnetics (band 2) and isostatic gravity (band 13) are parallel at 200 m and 600 m (Gallardo–Meju cross-gradient). Band 6 was not used: its tag says tilt/curvature, but this session measured it strictly positive (minimum 2.95) on 5,164,300 footprint pixels. No previous submission was copied. The named non-fault mimic is a buried volcanic-flow edge or basin onlap.</p>
+<p class="small">XG91-E1 places 37,654 unit dots on the crests where the horizontal gradients of sponsor RTP magnetics (band 2) and isostatic gravity (band 13) are parallel at 200 m and 600 m. Band 6 was not used: its tag says tilt/curvature, but this session measured it strictly positive on the footprint. No previous submission was copied. The named non-fault mimic is a buried volcanic-flow edge or basin onlap.</p>
 <p class="small">The public DrivenData leaderboard, fetched 2026-10-25, shows rank 1 at 0.4413. That is not a receipt for this file. The GEMSDOE32 page fetched the same day says no organiser score exists for <code>h33-h33-2-b2</code>. The user-reported 0.2778 is unverified. This experiment does not beat either number, and it does not beat chance on the holdout.</p></section>
 </main>
-<footer class="small">Maximize P(Win) · Own the Outcome · 1 experiment scored, then stopped · 0 competition slots spent · nothing here is ORGANIZER-CONFIRMED. Historical pages remain in the <a href="archive-results.html">archive</a>.</footer>
+<footer class="small">Maximize P(Win) · Own the Outcome · 1 experiment scored, then stopped · 0 competition slots spent · nothing here is ORGANIZER-CONFIRMED.</footer>
 </div></body></html>

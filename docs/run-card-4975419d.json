@@ -1,0 +1,33 @@
+{
+  "hypothesis": "No new assigned hypothesis; audit historical delivery and preserve the preregistered shortlist.",
+  "mechanism": "Fail-closed byte validation and correction of unsupported near-catalogue pruning claims.",
+  "non_fault_mimic": "Lithologic contacts and mapping-effort bias can mimic fault-related geometry.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT_RUN_THIS_REVIEW",
+    "value": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NOT_RUN_THIS_REVIEW",
+    "full_registry_clearance": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": "NOT_GENERATED",
+    "historical_downloads_checked": 64,
+    "technical_pass": 56,
+    "technical_fail": 8,
+    "report": "download-audit.json",
+    "scope": "Historical bytes only; no new candidate or promotion"
+  },
+  "submission_name": null,
+  "note": "No new TIFF: missing lane and unresolved registry constraints. Historical research downloads only; do not submit.",
+  "verdict": "negative",
+  "experiments": 0,
+  "slots_used": 0,
+  "organizer_confirmed": null,
+  "ok_to_submit": false
+}
