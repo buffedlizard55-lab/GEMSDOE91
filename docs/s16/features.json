@@ -1,0 +1,54 @@
+{
+  "cache_key": "422290961701f210c5a015687bc32835818336df7ff5b3944b0f82f2daa2da40",
+  "inputs": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  },
+  "code_sha256": "3a6198d9fff699b926bc98d36640f2d0e6269f0e7e61cad40360894773ab14a2",
+  "shared_primitives_sha256": "4cd9b789ecf3b3a06864d1841ac57b9c64d66368e044787e476c0c23a8324192",
+  "catalogue_features": [],
+  "reference_rasters_used": false,
+  "band_tags": {
+    "2": {
+      "band_name": "rtp",
+      "data_category": "magnetic_data",
+      "data_type": "numeric",
+      "description": "Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects"
+    },
+    "13": {
+      "band_name": "iso_grav_anom",
+      "data_category": "gravity_data",
+      "data_type": "numeric",
+      "description": "Isostatic gravity anomaly - gravity after compensating for topographic mass"
+    }
+  },
+  "files": {
+    "rtp_rank": "c6934f68cab78368450c86590358961c3b1f18c08cf5b706329e5b4770cc186c",
+    "gravity_rank": "ae09088a8bfef5d70e7c586c6257831460e1c398a56fa2515804fb5046b7dbe9",
+    "pseudogravity_rank": "a83ecc8a02e78dec4dd4939d39eec40f6e1d368255c42fa2e5b2f73e96073cfc",
+    "band_gravity_rank": "4a14025f99a773d5f4785e9ac69b027c34fc220b7fd9f5acca21cf71a7a36d2c",
+    "transfer_slope_rank": "34159a0c4498074db6da539f38065a9c8082bce5487a2dec7f8bc863fffc79f4",
+    "residual_rank": "a0bf5d010845d358181c89f95153196e64a903230ddb00bbce48b6d7e8c3f717",
+    "discordance": "d28632a61d01b62a9683a9217d71592436c3788a92af7be5e2aac9244f918e84",
+    "gravity_edge_fine": "7f40c8263c8e018de03b31f076588553dae06c85e5870b00788a84a02749e42c",
+    "gravity_edge_coarse": "c6fa6029a34c6ef2dd917437d5f45143e794c8a656fbbfff2e6821f59d7f2f8b",
+    "gravity_persistence": "98564944ba97058be2215947cbe5603d4f797739a8a85dfc36d18b793a93e712",
+    "residual_edge_fine": "23eadedf1239f549d64820404ae258c09f51b1094b014edbad72c2f0331c15bf",
+    "residual_edge_coarse": "3f1a8d232f5506c29368065c2a68c5c9c3eb8ab1bd41e9f06a0f9a214e2bd094",
+    "residual_persistence": "83d93acaf862ab8dbcedf1a5cb37fe4bc0d11bb9206ab3d4b333b47e17e38d70",
+    "residual_coherence": "5f53fcf7abb26294e6bd8cdca9d88127b04f25b5d1de515ed8cf35e880b65ba1",
+    "input_support": "58daab6ee0b08b8c3bfb3b182d48ba192ade7ab3d17515a5350bafeb191343cf",
+    "surface": "bb3a09399d3df217797f5acbe8d4e2a4a2b1d26245c54451df124b8f5101694b"
+  },
+  "feature_model": "label-blind; no supervised or catalogue fit"
+}

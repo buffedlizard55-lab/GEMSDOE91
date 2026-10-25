@@ -58,6 +58,7 @@ jobs:
         run: |
           python scripts/verify_current_artifact.py --with-data
           python scripts/verify_evidence.py
+          python scripts/verify_s16.py --with-data
       - name: Evidence-derived portal is reproducible
         run: python -m pytest tests/test_submission_portal.py
       - uses: actions/upload-artifact@v4
@@ -66,6 +67,8 @@ jobs:
           path: |
             docs/run-card.json
             docs/ced-*.json
+            docs/run-card-S16.json
+            docs/s16/
             docs/downloads/gems91-ced-*
 
 # Deliberately no automatic multi-arm legacy rebuild or geological experiment.

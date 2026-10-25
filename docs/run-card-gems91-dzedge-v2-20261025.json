@@ -54,7 +54,7 @@
     "range_0_1_portal_safe": true
   },
   "ok_to_download": true,
-  "ok_to_submit": true,
+  "ok_to_submit": false,
   "submission_note": "DZ-EDGE v2: count-holding PRUNE+parent-sparse damage-zone refill <=10px; HOLDOUT-DTI=0.0 gems91-hide-recover-v1.1-nohalo; MODEL only",
   "organizer_confirmed": null,
   "leaderboard_score_confirmed": false,
@@ -64,5 +64,11 @@
   "audit_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-audit.json",
   "ok_to_download_why": "all-finite, values in [0.0,1.0], 0 NaN, EPSG:32611, 3730x3292, transform matches sample_submission.tif, zero catalogue mass, min catalogue distance 10.05 px (>3 px collar), all 4 format gate suites CERTIFIED.",
   "ok_to_submit_why": "technical format gates PASS and lane uniqueness PASS (rho 0.696 <= 0.90, 3-px overlap 69.83% <= 70%). Caveat: leaderboard score is UNCONFIRMED (holdout-DTI=0 vs catalogue truth; targets off-catalogue blind truth); submit only as a deliberate contrarian blind-truth hypothesis, not as a confirmed improvement.",
-  "verdict": "promote"
+  "verdict": "negative",
+  "superseded_status_audit": {
+    "date": "2026-10-25",
+    "former_ok_to_submit": true,
+    "reason": "Format-only approval violated shared readiness. Parent-derived raster, only one-reference novelty scope and no comparable-best improvement; no slot clearance."
+  },
+  "submission_ready": false
 }

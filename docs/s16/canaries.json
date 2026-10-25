@@ -1,0 +1,793 @@
+{
+  "label": "HOLDOUT-DTI",
+  "statistic": "feature-alone symmetric AUROC, not a DTI score",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "split_sha256": "c79f1acaf337fd548d0873d576a8a3c286d373ae2cb19cfce4464597d448d18a",
+  "withheld_positives": 60988,
+  "features": {
+    "rtp_rank": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.506545903725203,
+        "symmetric_auc": 0.506545903725203,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.49492568535091513,
+        "symmetric_auc": 0.5050743146490848,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5409076883782202,
+        "symmetric_auc": 0.5409076883782202,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5045562761722804,
+        "symmetric_auc": 0.5045562761722804,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "gravity_rank": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4573562221114194,
+        "symmetric_auc": 0.5426437778885806,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4816222705825958,
+        "symmetric_auc": 0.5183777294174041,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4460789537650406,
+        "symmetric_auc": 0.5539210462349594,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4836281880600429,
+        "symmetric_auc": 0.5163718119399572,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "pseudogravity_rank": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5012021934752904,
+        "symmetric_auc": 0.5012021934752904,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5130458034504837,
+        "symmetric_auc": 0.5130458034504837,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5065443692972629,
+        "symmetric_auc": 0.5065443692972629,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4837219877488241,
+        "symmetric_auc": 0.5162780122511759,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "band_gravity_rank": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5165278455949016,
+        "symmetric_auc": 0.5165278455949016,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5577219438801493,
+        "symmetric_auc": 0.5577219438801493,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5394813200175463,
+        "symmetric_auc": 0.5394813200175463,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5546318837033006,
+        "symmetric_auc": 0.5546318837033006,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "transfer_slope_rank": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5163786948272564,
+        "symmetric_auc": 0.5163786948272564,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4958515552475061,
+        "symmetric_auc": 0.5041484447524939,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4902611365609732,
+        "symmetric_auc": 0.5097388634390267,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5546744411002681,
+        "symmetric_auc": 0.5546744411002681,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "residual_rank": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5283621657217646,
+        "symmetric_auc": 0.5283621657217646,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5513000794669265,
+        "symmetric_auc": 0.5513000794669265,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5396879949860833,
+        "symmetric_auc": 0.5396879949860833,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5730127232327392,
+        "symmetric_auc": 0.5730127232327392,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "discordance": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4984235114243632,
+        "symmetric_auc": 0.5015764885756369,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.46582711180611786,
+        "symmetric_auc": 0.5341728881938821,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5129947663686307,
+        "symmetric_auc": 0.5129947663686307,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4872036535389764,
+        "symmetric_auc": 0.5127963464610237,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "gravity_edge_fine": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5366915891260928,
+        "symmetric_auc": 0.5366915891260928,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.572884881074279,
+        "symmetric_auc": 0.572884881074279,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4906310891986227,
+        "symmetric_auc": 0.5093689108013773,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5410213396448794,
+        "symmetric_auc": 0.5410213396448794,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "gravity_edge_coarse": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5343367176936759,
+        "symmetric_auc": 0.5343367176936759,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5735196299678585,
+        "symmetric_auc": 0.5735196299678585,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.487185748377494,
+        "symmetric_auc": 0.512814251622506,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5439261458591683,
+        "symmetric_auc": 0.5439261458591683,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "gravity_persistence": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5355280979313,
+        "symmetric_auc": 0.5355280979313,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5732155172199551,
+        "symmetric_auc": 0.5732155172199551,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.48880889574147546,
+        "symmetric_auc": 0.5111911042585245,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5423257978529734,
+        "symmetric_auc": 0.5423257978529734,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "residual_edge_fine": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5368537993412008,
+        "symmetric_auc": 0.5368537993412008,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5754455850898081,
+        "symmetric_auc": 0.5754455850898081,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.49984231202440144,
+        "symmetric_auc": 0.5001576879755986,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5207322355378875,
+        "symmetric_auc": 0.5207322355378875,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "residual_edge_coarse": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5345739967803345,
+        "symmetric_auc": 0.5345739967803345,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5760526740930789,
+        "symmetric_auc": 0.5760526740930789,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4962595530512355,
+        "symmetric_auc": 0.5037404469487645,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5244715276858607,
+        "symmetric_auc": 0.5244715276858607,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "residual_persistence": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5357463405048125,
+        "symmetric_auc": 0.5357463405048125,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5759007636473372,
+        "symmetric_auc": 0.5759007636473372,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.49806914115000156,
+        "symmetric_auc": 0.5019308588499984,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5227445349970722,
+        "symmetric_auc": 0.5227445349970722,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "residual_coherence": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.48517268707435035,
+        "symmetric_auc": 0.5148273129256496,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4983501760602598,
+        "symmetric_auc": 0.5016498239397402,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.49698601175448864,
+        "symmetric_auc": 0.5030139882455114,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.501644891281161,
+        "symmetric_auc": 0.501644891281161,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "input_support": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5001589250377819,
+        "symmetric_auc": 0.5001589250377819,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.49868510625420304,
+        "symmetric_auc": 0.501314893745797,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.47509957469938574,
+        "symmetric_auc": 0.5249004253006142,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5010209934832736,
+        "symmetric_auc": 0.5010209934832736,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "surface": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5311835434912466,
+        "symmetric_auc": 0.5311835434912466,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5635965705858482,
+        "symmetric_auc": 0.5635965705858482,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.483864591628451,
+        "symmetric_auc": 0.516135408371549,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5288391783777984,
+        "symmetric_auc": 0.5288391783777984,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ],
+    "ced_control_surface": [
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5288276964022386,
+        "symmetric_auc": 0.5288276964022386,
+        "withheld_positive_pixels": 29319,
+        "negative_proxy_pixels": 2419711,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5289397449818531,
+        "symmetric_auc": 0.5289397449818531,
+        "withheld_positive_pixels": 12596,
+        "negative_proxy_pixels": 1353835,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.4660699559152996,
+        "symmetric_auc": 0.5339300440847004,
+        "withheld_positive_pixels": 9473,
+        "negative_proxy_pixels": 554662,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      },
+      {
+        "evidence_class": "HOLDOUT-DTI",
+        "statistic": "feature-alone AUROC (not DTI)",
+        "auc": 0.5400852206770868,
+        "symmetric_auc": 0.5400852206770868,
+        "withheld_positive_pixels": 9600,
+        "negative_proxy_pixels": 778177,
+        "threshold": 0.9,
+        "status": "PASS",
+        "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage."
+      }
+    ]
+  },
+  "threshold": 0.9,
+  "passing_is_not_proof_of_no_leakage": true
+}

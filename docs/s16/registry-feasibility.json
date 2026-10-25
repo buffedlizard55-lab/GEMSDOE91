@@ -1,0 +1,19 @@
+{
+  "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+  "reference": {
+    "path": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "bytes": 1706456,
+    "git_blob": "81c802618e6d46c6d62289d856ae74439439bbc6",
+    "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/calib_r13lattice_00904.tif"
+  },
+  "footprint_pixels": 5167373,
+  "uncovered_pixels": 6649,
+  "covered_fraction": 0.9987132726822701,
+  "candidate_budget": 37654,
+  "overlap_lower_bound": 0.8234184947150369,
+  "threshold": 0.7,
+  "feasible_at_fixed_budget": false,
+  "calculation": "At most one binary dot per uncovered cell; overlap >= (budget - uncovered_cells)/budget. Spacing can only tighten this bound.",
+  "policy": "No reference removed or threshold changed. A source-feed inventory is not universal raster uniqueness."
+}

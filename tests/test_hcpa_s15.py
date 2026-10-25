@@ -28,7 +28,11 @@ def test_hcpa_feature_names():
     assert "hcpa_coulomb_crit_permeability" in S15.HCPA_FEATURE_NAMES
 
 
-@pytest.mark.skipif(not Path("data/official/sample_submission.tif").is_file(), reason="data not restored")
+@pytest.mark.skipif(not all((DATA / p).is_file() for p in (
+    "official/sample_submission.tif", "bridge/gems-geodawn-numerical-features.tif",
+    "external/gdr_wellspring_in_footprint.csv", "external/lidar_scarp_features_u8.tif",
+    "external/geodawn_rad_u8.tif",
+)), reason="optional S15 integration inputs not fully restored")
 def test_build_or_load_s15_memmap(tmp_path):
     import rasterio
     with rasterio.open("data/official/sample_submission.tif") as ds:
