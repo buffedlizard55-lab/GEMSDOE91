@@ -120,3 +120,8 @@ are not reclassified as ORGANIZER-CONFIRMED without a submission-page receipt.
 * **Next 3:** for the selector, not this lane. Pruning R0 to a 3–5 px collar is a cheap live test,
   because R0 still shows 2.1× and 1.75× area-lift at (2,3] and (3,5] px. It would be an
   R0-derivative and not unique, so it belongs to R0's owner, not this lane.
+
+
+## Review 19912231 — next-session handoff (2026-10-25)
+
+Run `python generate_submission.py --preflight` before restoring the large training stack or launching a model. Current plan is blocked: no assigned method paragraph, and a pinned witness proves the usual budget impossible under the literal overlap rule. No experiment run; no new TIFF or score. This is a necessary precheck, not a full-registry uniqueness pass, authenticated lane assignment, runtime budget manager or selector. Resolve lane and registry policy explicitly; never drop dense references or place anti-registry noise. Freeze a comparable, untouched holdout incumbent; only then test the authorized top hypothesis using shared cache/evaluator/writer and canaries. CWP91 with hole-shuffled control is already complete and negative. The current portal download remains OLC91 research-only. Fresh official-account/receipt/data-rights access is still absent. See `docs/REVIEW-19912231-20261025.md`.

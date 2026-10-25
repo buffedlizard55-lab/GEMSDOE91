@@ -7,7 +7,9 @@ verdict is therefore reported **per axis** from the manifest's
 section 4.2). A stale global verdict is what stalled sessions 1-3 while every
 input the repository actually needed was already pinned and fetchable.
 
-Exit 0 = at least one axis is ready, 1 = no axis is ready.
+Exit 0 = at least one axis has inputs, 1 = none does. This is DATA readiness
+only, never permission to run an experiment or submit. For protocol blockers
+use scripts/experiment_preflight.py; data availability cannot assign a lane.
 """
 
 from __future__ import annotations
@@ -50,7 +52,7 @@ def main() -> int:
     # The global verdict must reflect actual per-axis readiness. The two
     # minimum references can be present while every implemented axis is still
     # missing an additional input (for example the catalogue or feature stack).
-    verdict = "BUILD ALLOWED" if ready_axes else "BUILD BLOCKED"
+    verdict = "INPUTS AVAILABLE" if ready_axes else "BUILD BLOCKED"
     print("\n".join(lines))
     print(f"\n{verdict}: {len(REQUIRED_FOR_BUILD) - len(missing)}/{len(REQUIRED_FOR_BUILD)} "
           f"required inputs verified")
@@ -62,12 +64,14 @@ def main() -> int:
         extra = "" if st["ready"] else f"  (missing: {', '.join(st['missing'])})"
         print(f"  [{mark}] {axis}{extra}")
     if ready_axes:
-        print(f"\n{len(ready_axes)} axis/axes can build here: {', '.join(ready_axes)}")
+        print(f"\n{len(ready_axes)} axis/axes have inputs here (NOT experiment approval): {', '.join(ready_axes)}")
     else:
         print("\nNo axis has all of its pinned inputs; a build cannot start.")
     Path("registry").mkdir(exist_ok=True)
     Path("registry/preflight.json").write_text(json.dumps(
-        {"verdict": "BUILD ALLOWED" if ready_axes else "BUILD BLOCKED",
+        {"verdict": "INPUTS AVAILABLE" if ready_axes else "BUILD BLOCKED",
+         "scope": "Data availability only; not experiment or submission approval",
+         "experiment_authorized": False,
          "missing": missing,
          "required": REQUIRED_FOR_BUILD,
          "ready_axes": ready_axes,

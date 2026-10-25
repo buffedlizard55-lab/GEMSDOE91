@@ -116,3 +116,58 @@ def test_invalid_values_fail_even_after_repinning_all_hashes(published, value):
     assert report['OK_TO_DOWNLOAD'] == 'NO'
     assert not report['format_ok']
     assert report['OK_TO_SUBMIT'] == 'NO'
+
+
+@pytest.mark.parametrize('mutation', ['promote', 'ready', 'verdict_list', 'card_list'])
+def test_contradictory_or_malformed_research_card_fails_closed(published, mutation):
+    root, pointer = published
+    path = root / 'docs' / pointer['run_card']
+    card = json.loads(path.read_text())
+    if mutation == 'promote':
+        card['verdict']['promote'] = True
+    elif mutation == 'ready':
+        card['submission_ready'] = True
+    elif mutation == 'verdict_list':
+        card['verdict'] = []
+    else:
+        card = []
+    path.write_text(json.dumps(card))
+    with pytest.raises(ValueError, match='negative research card'):
+        verify(root)
+
+
+def test_zip_symlink_cannot_escape_download_directory(published):
+    root, pointer = published
+    archive = root / 'docs' / pointer['zip']
+    external = root / 'outside.zip'
+    archive.rename(external)
+    archive.symlink_to(external)
+    with pytest.raises(ValueError, match='ZIP must be inside'):
+        verify(root)
+
+
+def test_cli_reports_corrupt_repin_zip_as_blocked_json(published):
+    """Exercise the real ZIP decoder, not only an easier SHA mismatch."""
+    import hashlib
+    root, pointer = published
+    archive = root / 'docs' / pointer['zip']
+    archive.write_bytes(b'not a ZIP despite matching the registry hash')
+    path = root / 'registry/artifact_policy.json'
+    policy = json.loads(path.read_text())
+    for row in policy['files']:
+        if row['path'] == 'docs/' + pointer['zip']:
+            row['sha256'] = hashlib.sha256(archive.read_bytes()).hexdigest()
+    path.write_text(json.dumps(policy))
+    # Copy the CLI to the fixture: __file__ determines its root. Import shared
+    # scripts from the checkout so there is no private validator implementation.
+    shutil.copyfile(ROOT / 'generate_submission.py', root / 'generate_submission.py')
+    import os
+    env = dict(os.environ, PYTHONPATH=str(ROOT))
+    result = subprocess.run([sys.executable, str(root / 'generate_submission.py')],
+                            cwd=root, env=env, capture_output=True, text=True)
+    assert result.returncode == 1
+    report = json.loads(result.stdout)
+    assert report['status'] == 'BLOCKED'
+    assert report['OK_TO_DOWNLOAD'] == report['OK_TO_SUBMIT'] == 'NO'
+    assert report['submission_ready'] is False
+    assert not result.stderr

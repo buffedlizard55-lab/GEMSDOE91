@@ -1,3 +1,6 @@
+$ .venv/bin/python scripts/preflight.py
+exit_code: 1 (expected fail-closed BUILD BLOCKED)
+
 OK     sample_submission    OK sample_submission
 BLOCK  parent_r0_nan        MISSING data/registry/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif
 
@@ -13,5 +16,3 @@ axis readiness:
   [blocked] TRACKB  (missing: parent_r0_nan, training_features)
 
 No axis has all of its pinned inputs; a build cannot start.
-
-exit_code=1 (1 is expected for BUILD BLOCKED)

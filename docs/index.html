@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Existing OLC91 research GeoTIFF · GEMSDOE91</title>
-<meta name="description" content="One-click download of the existing OLC91 research GeoTIFF with a clear verdict: download yes, submit no.">
+<title>GEMSDOE91 research GeoTIFFs · download and submit verdicts</title>
+<meta name="description" content="One-click download of the current format-validated GeoTIFF with an automated, plain-language verdict on whether it may be submitted.">
 <style>
 :root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
 *{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
@@ -20,25 +20,38 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px
 textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{margin:22px 0}code{font-size:12px;word-break:break-all}
 .warn{background:#fdf3e3;border:1px solid #e6cf9a;border-radius:10px;padding:12px}
 </style></head><body>
-<aside style="padding:1rem;background:#fff3cd;color:#332600"><strong>Active review arena/7564a0e0 (2026-10-25):</strong> Existing OLC91 file below: <strong>OK TO DOWNLOAD: YES — RESEARCH ONLY. OK TO SUBMIT: NO.</strong> This review produced no new TIFF, score, or slot use. No method lane is assigned; parent R0 and the official training-feature stack are missing, so preflight blocks every implemented axis. <a href="review-7564a0e0.html">Current review summary</a> · <a href="REVIEW-ARENA-7564A0E0-20261025.md">Three-pass review</a> · <a href="run-card-7564a0e0.json">Current run card</a>. The merged <a href="REVIEW-6CBFE8AC-20261025.md">6cbfe8ac review</a> is historical context.</aside><div class="wrap"><header><span class="logo">GEMSDOE91 · Fault Discovery Lab</span>
-<nav aria-label="Main"><a href="index.html">Current candidate</a><a href="s17-lftg.html"><strong>S17-LFTG research audit</strong></a><a href="s17-lftg-executive-summary.html">S17-LFTG guide</a><a href="s17-cpad.html"><strong>S17-CPAD research audit</strong></a><a href="s17-cpad-executive-summary.html">S17-CPAD guide</a><a href="executive-summary.html">Executive summary &amp; how to submit</a><a href="research.html">Research archive</a><a href="archive-results.html">Historical archive</a></nav></header>
+<aside style="padding:1rem;background:#fff3cd;color:#332600"><strong>Active review arena/7564a0e0 (2026-10-25):</strong> this review created no experiment, TIFF, score, or slot use. The assigned lane is absent; the parent R0 and official training-feature stack are missing. The links below are pre-existing research artifacts: <strong>OK TO DOWNLOAD: YES — RESEARCH ONLY. OK TO SUBMIT: NO.</strong> <a href="review-7564a0e0.html">Current review summary</a> · <a href="REVIEW-ARENA-7564A0E0-20261025.md">Three-pass review</a> · <a href="run-card-7564a0e0.json">Negative run card</a> · <a href="review-7564a0e0/verification.json">Verification</a>.</aside><div class="wrap"><header><span class="logo">GEMSDOE91 · Fault Discovery Lab</span>
+<nav aria-label="Main"><a href="index.html">Current research file</a><a href="s17-lftg.html"><strong>S17-LFTG research audit</strong></a><a href="s17-lftg-executive-summary.html">S17-LFTG guide</a><a href="s17-cpad.html"><strong>S17-CPAD research audit</strong></a><a href="s17-cpad-executive-summary.html">S17-CPAD guide</a><a href="executive-summary.html">Executive summary &amp; how to submit</a><a href="research.html">Research archive</a><a href="archive-results.html">Historical archive</a></nav></header>
 
 <main id="main">
+
+<div class="card" style="border-left:6px solid #9c2b2b; background:#fff8f4">
+<span class="badge">OK TO DOWNLOAD: YES — UPSTREAM FORMAT-PASS DEMO</span><span class="badge bad">OK TO SUBMIT: NO — HOLDOUT NOT RUN</span>
+<h2 style="margin:.4em 0">Existing upstream artifact: S18-UNIQUE research demo (not produced by this review)</h2>
+<p class="small">Merged from PR #130; the S18 run card records a 20,000-dot float32 GeoTIFF and a null HOLDOUT-DTI result. The fresh pinned-reference audit confirms technical format only. <strong>Uniqueness is not cleared:</strong> the old page claimed 22.6% overlap versus R0, while the run card says real-raster uniqueness is pending and has no surface-rank-correlation result. Treat the discrepancy as unresolved; this file is not a submission recommendation, lane assignment, or output of branch 7564a0e0.</p>
+<a class="button" download href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif">↓ Download S18-UNIQUE research GeoTIFF</a>
+<a class="btn2" download href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip">↓ Single-TIFF ZIP</a>
+<a class="btn2" href="run-card-S18-UNIQUE.json">Machine run card ↗</a> <a class="btn2" href="s18-unique-executive-summary.html">Research-demo gates ↗</a>
+<p class="small">SHA-256 <code>af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6</code> · 20,000 dots · EPSG:32611 · 3730×3292 · float32 · all finite in [0,1]. Run-card holdout: <code>null / NOT RUN</code>; no selector approval or organizer receipt.</p>
+</div>
+
+<p class="small"><strong>Current branch review:</strong> <a href="REVIEW-ARENA-7564A0E0-20261025.md">three-pass review</a> · <a href="run-card-7564a0e0.json">JSON run card</a> · <a href="review-7564a0e0.html">browser summary</a>. No candidate was eligible to run; the S18 demo above is upstream research only.</p>
+<p class="small"><strong>Historical review `arena/522615dd` (not current-branch results):</strong> <a href="REVIEW-ACTIVE-522615DD-20261025.md">review</a> · <a href="run-card-522615dd.json">no-run card</a> · <a href="HYPOTHESES-ACTIVE-522615DD-20261025.md">conditional hypotheses</a>. The prior research download remains unchanged.</p>
 <p class="warn"><strong>Parallel review ee76e309 (historical):</strong> existing research download only; no new TIFF or slot. <a href="REVIEW-EE76E309-20261025.md">Three-pass review</a> · <a href="frontdoor-verification-ee76e309.json">Current-file byte verification</a> · <a href="review-ee76e309/download-audit.html">All-download audit</a></p>
 <div class="hero">
 <div>
 <span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span><span class="badge bad">OK TO SUBMIT: NO</span>
-<h1>Existing OLC91 GeoTIFF: research download only. Do not submit it.</h1>
-<p class="small">This is the historical OLC91 session file (2026-10-25), retained as the canonical research download, not selected by this review. It was computed from the official GeoDAWN feature bands and validated automatically from its written bytes, with no human image inspection. Two automated gates stop it, which makes it <strong>NOT OK TO SUBMIT</strong>.</p>
+<h1>Existing OLC91 file: research download only; not generated by this review.</h1>
+<p class="small">This is the pre-existing OLC91 session file (2026-10-25), not an output of branch 7564a0e0. The current byte/reference verification is linked from the active review; it checks delivery only. Two prior gates stopped the file, so it remains <strong>NOT OK TO SUBMIT</strong>.</p>
 <ol class="small">
-<li><strong>Holdout science:</strong> the new idea, strike-coherent line support (E1), scored 0.0832 HOLDOUT-DTI against 0.0853 for the incumbent recipe (E0) on identical folds. The paired difference is −0.0021 with 95% CI [−0.0045, +0.0002], and E1 lost in all 4 folds.</li>
-<li><strong>Uniqueness:</strong> 76.8% of its dots lie within 3 px of a prior GEMSDOE91 file (<code>gems91-bhar-e3</code>; 71.8% after chance correction). The protocol limit is 70%.</li>
+<li><strong>Prior holdout science:</strong> OLC91 E1 recorded 0.083186 <strong>HOLDOUT-DTI</strong> (95% CI [0.066866, 0.100482], evaluator <code>gems57-pooled-hide-v2</code>, 11,321 withheld positives) versus 0.085260 <strong>HOLDOUT-DTI</strong> for E0 (95% CI [0.068716, 0.102299], same evaluator/population). Paired E1−E0 was −0.002075 <strong>HOLDOUT-DTI</strong> (95% CI [−0.004543, +0.000236]); it is a prior result, not rerun here.</li>
+<li><strong>Prior uniqueness stop:</strong> the run card records 76.8% of dots within 3 px of a prior GEMSDOE91 raster (71.8% after chance correction); the stated team limit is 70%.</li>
 </ol>
-<p class="small"><strong>Why the GEMSDOE32 0.2778 claim could arise (USER-REPORTED-UNVERIFIED; no organizer receipt):</strong> the archived geometry is a dotted, catalogue-blind lineament network pruned near mapped faults; the metric could reward deleting predictions that add unmatched mass. This mechanism is plausible, not proven, and the advertised ZIP has no nonempty TIFF. See the <a href="REVIEW-ARENA-7564A0E0-20261025.md">current evidence review</a> and <a href="HYPOTHESES_OLC91.md">OLC91 research history</a>.</p>
+<p class="small"><strong>GEMSDOE32 mechanism (0.2778 is user-reported, no organizer receipt):</strong> the GEMSDOE32 file is a dotted, catalogue-blind lineament network (h16-1 ridges → h19-5 → 44,090 dots) with every dot within 2 px of a mapped fault deleted. 70% of its dots are more than 1 km from any mapped fault. The full analysis is in <a href="HYPOTHESES_OLC91.md">HYPOTHESES_OLC91.md</a>.</p>
 </div>
 
 <div class="card dl" data-submission-ready="false" aria-label="Download existing research file">
-<strong>EXISTING FILE · OLC91-E1 (NOT GENERATED THIS REVIEW)</strong>
+<strong>EXISTING OLC91-E1 RESEARCH DOWNLOAD · NOT THIS REVIEW’S OUTPUT</strong>
 <div class="status"><span>OK to download</span><strong>YES — research only</strong></div>
 <div class="status"><span>OK to submit</span><strong style="color:var(--bad)">NO</strong></div>
 <div class="status"><span>Values in [0,1], no NaN/Inf</span><strong>PASS</strong></div>
@@ -46,7 +59,7 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 <div class="status"><span>Dots on mapped faults</span><strong>0 · min distance 2.24 px</strong></div>
 <div class="status"><span>Holdout vs incumbent</span><strong style="color:var(--bad)">FAIL · −0.0021</strong></div>
 <div class="status"><span>Registry uniqueness</span><strong style="color:var(--bad)">STOP · 76.8% &gt; 70%</strong></div>
-<a class="button" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">↓ Download existing research GeoTIFF</a>
+<a class="button" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">↓ Download OLC91 research GeoTIFF</a>
 <a class="btn2" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip">↓ Single-TIFF ZIP</a>
 <a class="btn2" href="run-card-OLC91.json">Machine run card ↗</a>
 <p class="small">37,654 binary dots · 1 band float32 · 3730×3292 · all 12,279,160 cells finite in [0,1], 0 outside the footprint · SHA-256<br><code>35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc</code></p>
@@ -58,6 +71,7 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 <p class="warn"><strong>NOT OK TO SUBMIT.</strong> The format gates pass, but the holdout gate fails and the uniqueness gate stops it. No weekly slot was used. Slot selection belongs to the separate selector.</p></section>
 
 <section class="card"><h2>Automated gates</h2>
+<p class="small"><strong>Before any new experiment:</strong> <code>scripts/preflight.py</code> reports <strong>BUILD BLOCKED: 1/2</strong>; the parent R0 and feature stack are absent. <code>generate_submission.py --preflight</code> is also <strong>BLOCKED</strong>: no assigned method paragraph and the local pinned capacity witness is missing, so no current capacity result is claimed. An archived 82.34% bound is historical evidence, not revalidated here. Neither check runs a model or consumes a slot. See the <a href="review-7564a0e0/preflight-output.txt">axis preflight</a>, <a href="review-7564a0e0/experiment-preflight-output.json">experiment preflight</a>, and <a href="REVIEW-ARENA-7564A0E0-20261025.md">review</a>.</p>
 <table><tr><th>Gate</th><th>Verdict</th><th>Evidence</th></tr>
 <tr><td>Format &amp; [0,1] range</td><td><span class="badge">PASS</span></td><td>Reopened from disk: 0 NaN, 0 Inf, min 0, max 1, nodata unset, exact transform match with <code>sample_submission.tif</code>; vendor gems57 validator <code>all_checks_passed: true</code>.</td></tr>
 <tr><td>Leakage canary</td><td><span class="badge">PASS</span></td><td>Each of 38 input features was tested alone. Worst symmetric AUC is 0.601 (<code>grad_det_elev_slope</code>), under the 0.90 limit.</td></tr>
@@ -84,10 +98,10 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 
 <section class="card"><h2>What the session learned</h2>
 <p class="small">PU gradient boosting on the 19 official bands lands its dots in the same 15–25% of the footprint every time. Eleven earlier lanes overlap this file by more than 70%. A new file therefore needs a genuinely new <em>information source</em>, not another model on the same stack. Live evidence also shows that new faults are depleted near mapped faults: proximity lanes scored below uniform random, and dots 1–2 px from the catalogue earned about zero. Hide-and-recover splits put 55% of hidden truth within 1 km of visible faults, so they over-reward proximity. See <a href="executive-summary.html">the executive summary</a> and <a href="HYPOTHESES_OLC91.md">the preregistration and results</a>.</p>
-<p class="small">Evidence files: <a href="olc91/holdout-seed20.json">holdout-seed20.json</a> · <a href="olc91/final-E1.json">final-E1.json</a> (registry comparisons) · parallel and previous sessions: <a href="run-card-S17-CWPC.json">S17-CWPC run card</a> · <a href="s17-cpad.html"><strong>S17-CPAD (0.198183 LB HOLDOUT-DTI)</strong></a> · <a href="run-card-XG91.json">XG91 run card</a> · <a href="s17-cdsc.html">S17-CDSC</a> · <a href="s17-cgrd.html">S17-CGRD</a> · <a href="run-card-GEO91.json">GEO91 run card</a>.</p>
+<p class="small">Evidence files: <a href="olc91/holdout-seed20.json">holdout-seed20.json</a> · <a href="olc91/final-E1.json">final-E1.json</a> (registry comparisons) · parallel and previous sessions: <a href="run-card-S17-CWPC.json">S17-CWPC run card</a> · <a href="s17-cpad.html"><strong>S17-CPAD research audit</strong></a> · <a href="run-card-XG91.json">XG91 run card</a> · <a href="s17-cdsc.html">S17-CDSC</a> · <a href="s17-cgrd.html">S17-CGRD</a> · <a href="run-card-GEO91.json">GEO91 run card</a>.</p>
 <p class="small"><strong>Session 17 S17-CPAD E1 research GeoTIFF (0.198183 HOLDOUT-DTI at 37,654 binary dots on canonical <code>gems57-pooled-hide-v2</code> — OK TO DOWNLOAD: YES · OK TO SUBMIT: NO, NOT OK TO SUBMIT):</strong> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a> <a class="btn2" download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a> <a class="btn2" href="s17-cpad.html">Full S17-CPAD Audit ↗</a> <a class="btn2" href="s17-cpad-executive-summary.html">S17-CPAD Guide ↗</a> <a class="btn2" href="run-card-S17-CPAD.json">S17-CPAD Run Card ↗</a></p>
 <p class="small"><strong>Other parallel-session research downloads (all NOT OK TO SUBMIT, each with its own run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>) · <a download href="downloads/gems91-hexfar-stagger-18-35-20261025T161307Z-d102f5f0-zeros.tif">HEXFAR91</a> (<a href="hexfar91.html">page</a>, <a href="run-card-HEXFAR91.json">run card</a>).</p>
 </section>
 </main>
-<footer class="small">Maximize P(Win) · Own the Outcome · current review: 0 experiments and 0 slots · historical OLC91 run: 1 of 3 experiments · scores retain HOLDOUT-DTI, USER-REPORTED, or PUBLIC-LEADERBOARD evidence labels; none is a new ORGANIZER-CONFIRMED receipt.</footer>
+<footer class="small">Active review arena/7564a0e0: 0 of 3 experiments and 0 slots used · upstream S18-UNIQUE is research-only with holdout NOT RUN · no artifact is approved to submit · no ORGANIZER-CONFIRMED score.</footer>
 </div></body></html>

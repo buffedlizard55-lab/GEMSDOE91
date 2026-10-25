@@ -30,22 +30,22 @@
     "verification": "Fetched 2026-10-24. Verified DOE Office of Geothermal sponsorship and structural fault-permeability framing."
   },
   {
-    "claim": "Live public leaderboard benchmark scores (top #1 = 0.4413, #2 = 0.3916, #5 = 0.3539)",
+    "claim": "Official public leaderboard snapshot (2026-10-25); 0.3195 is a user-reported value whose hypothetical rank is inferred, not an observed entry",
     "source": "DrivenData official leaderboard",
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "verification": "Fetched 2026-10-25. The official public leaderboard displayed #1 xiaofanhu at 0.4413, #2 cfld__ at 0.3916, #3 Batik Shirt Brothers at 0.3904, #4 BrandenKMurray at 0.3724, and #5 No Fault of Our Own at 0.3539. The earlier 0.3195 figure is not the current rank-1 value on this snapshot. This is a public leaderboard observation, not a submission-page receipt for GEMSDOE91."
+    "verification": "Fetched 2026-10-25. Official public snapshot shows #1 xiaofanhu = 0.4413 and #50 = 0.2818. The prompt/user-supplied 0.3195 is USER_REPORTED_UNVERIFIED; insertion at that value would be rank 24, an arithmetic placement only. `PUBLIC-LEADERBOARD` values are not private/final scores or receipts for GEMSDOE files."
   },
   {
     "claim": "Official data access and sample grid",
     "source": "DrivenData official data page",
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
-    "verification": "Fetched 2026-10-25; anonymous request redirected to the DrivenData login page. The required official rasters are absent from this checkout: scripts/preflight.py reports sample_submission and parent_r0_nan missing, and all implemented axes blocked. Do not infer current local availability from historical manifest entries."
+    "verification": "Fetched 2026-10-25. Anonymous request redirects to the DrivenData login page. No protected data, account state, or submission receipt was accessed. Required sample/parent and cached feature stack are absent from this checkout; historical local-presence fields are stale."
   },
   {
     "claim": "Official Rules (15 U.S.C. 3719): 3 submissions/week cap, generative AI narrative disclosure requirement, and U.S. eligibility",
     "source": "Official DOE / NLR rules PDF (96647, Sept 2026)",
     "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
-    "verification": "Fetched 2026-10-24 (chunks 0-2). Section 3.2 explicitly confirms three submissions per week limit and required narrative disclosure of generative AI usage."
+    "verification": "Fetched 2026-10-25 (chunks 0-6). Sections 3.2/3.4 confirm up to three platform submissions per week and one final submission; §3.2 requires narrative disclosure of generative-AI use; §§3.3-3.6 describe training/test and private/final evaluation. No participant-specific account, eligibility, slot allowance or receipt was checked."
   },
   {
     "claim": "GeoDAWN airborne magnetic and radiometric survey provenance (149,030 line-km, E-W flight lines, CC0 1.0 Public Domain)",
@@ -79,7 +79,7 @@
   },
   {
     "claim": "Full-resolution 100 m GeoDAWN numerical stack (19 float32 bands) and Band 03 two-cell central-difference scale factor (200.024 m vs Band 09 nT/m)",
-    "source": "DOE OpenEI Geothermal Data Repository \u2014 GeoDAWN Great Basin Numerical Features",
+    "source": "DOE OpenEI Geothermal Data Repository — GeoDAWN Great Basin Numerical Features",
     "url": "https://gdr.openei.org/submissions/1618",
     "verification": "Official GDR link (host outside sandbox allowlist). Local pinned data/bridge/gems-geodawn-numerical-features.tif SHA256-verified on 2026-10-24; full-resolution 512x512 window derivative audit proved med(B03 / ||grad_m(B14)||) = 200.0242 and R^2(B13 ~ B15) = 0.4664."
   },
@@ -92,8 +92,8 @@
   {
     "claim": "External candidate dataset H12-4 / H13-5: 1 m / 1/3 arc-sec bare-earth LiDAR elevation for sub-100 m scarp curvature",
     "source": "USGS 3D Elevation Program (3DEP) / The National Map",
-    "url": "https://www.usgs.gov/3d-elevation-program",
-    "verification": "Official public-domain U.S. Government dataset lead; not fetched in-sandbox because usgs.gov is outside sandbox outbound allowlist. Logged as unrun external hypothesis H12-4 / H13-5."
+    "url": "https://www.usgs.gov/3d-elevation-program/about-3dep-products-services",
+    "verification": "This H12-4/H13-5 lead was not fetched in its earlier review. In the active 2026-10-25 review, the linked USGS 3DEP products/services page was fetched and says products are free and without use restrictions. Exact GeoDAWN-footprint tiles, resolution availability, and data bytes were not checked."
   },
   {
     "claim": "External candidate dataset H12-5: 30 m Sentinel-1 vertical/eastward surface velocity for aseismic fault creep",
@@ -112,5 +112,41 @@
     "source": "S14 machine-readable run card",
     "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/08009ce4-gemsdoe91/docs/run-card-S14-HVDC.json",
     "verification": "HOLDOUT-DTI 0.262209 [0.248940,0.275209], 60,988 withheld positives, paired delta +0.017608 vs S13 with CI [+0.009179,+0.026128]; Blind SGMC control 0.110429; not an organizer score. TIFF SHA-256 678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720 re-read and validated."
+  },
+  {
+    "claim": "Current competition deadline and two-round timeline as displayed by DrivenData",
+    "source": "DrivenData official competition home",
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+    "verification": "Fetched 2026-10-25. The public page displays a competition end date of 2026-12-03 23:59 UTC and describes the initial private-test round and expanded expert-relabeled final round. This is a dated page observation; no user-specific submission or eligibility state was checked."
+  },
+  {
+    "claim": "Updated 2026 GeMS version of the State Geologic Map Compilation (SGMC): CC0, conterminous-US compilation, 48 state maps, 1:50,000 to 1:1,000,000 scale; official GIS download link exists",
+    "source": "USGS 2026 GeMS/SGMC data release and NGMDB product page",
+    "url": "https://www.usgs.gov/data/geologic-map-schema-gems-version-state-geologic-map-compilation-sgmc-geodatabase-conterminous",
+    "verification": "Fetched 2026-10-25. USGS page links DOI 10.5066/P1A3DQZK and identifies CC0 1.0. NGMDB product page fetched and exposes a GIS data download link. The release states map units are unreconciled across state borders and notes only bedrock maps are represented in states with bedrock and surficial maps. Dataset bytes, exact AOI fields, and a local clip were not downloaded or tested."
+  },
+  {
+    "claim": "Official NGMDB product landing page and GIS download path for the 2026 GeMS/SGMC release",
+    "source": "USGS National Geologic Map Database product description",
+    "url": "https://ngmdb.usgs.gov/Prodesc/proddesc_119417.htm",
+    "verification": "Fetched 2026-10-25. Page identifies the 2026 GeMS/SGMC data release, DOI 10.5066/P1A3DQZK, and links GIS data at https://ngmdb.usgs.gov/ngm-bin/gems_download.pl?id=4742&pid=119417. The link itself was not followed to retrieve or hash the data bytes."
+  },
+  {
+    "claim": "USGS Landsat Collection 2 Level-2 surface temperature product availability and usage rights",
+    "source": "USGS Landsat Missions product documentation",
+    "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature",
+    "verification": "Fetched 2026-10-25 along with the Collection 2 Level-2 science products page. USGS describes scene-based surface-temperature products and broad Landsat 4-9 mission availability with no use restrictions. Exact project-footprint scene dates, cloud coverage, and suitability were not queried; no scene data were downloaded."
+  },
+  {
+    "claim": "3D Elevation Program product availability and rights for a possible high-resolution roughness sensitivity test",
+    "source": "USGS 3DEP products and services",
+    "url": "https://www.usgs.gov/3d-elevation-program/about-3dep-products-services",
+    "verification": "Fetched 2026-10-25. USGS says 3DEP products are free and without use restrictions. This establishes product-level terms only; exact GeoDAWN-footprint tiles, resolution availability, and bytes were not checked."
+  },
+  {
+    "claim": "GEMSDOE32 owner-page evidence class for the advertised 0.2778 result",
+    "source": "GEMSDOE32 owner-controlled GitHub Pages site (not organizer evidence)",
+    "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+    "verification": "Fetched 2026-10-25. Page explicitly states “NO ORGANISER SCORE EXISTS” for its artifacts and labels modeled values as projections. The user-reported 0.2778 remains USER_REPORTED_UNVERIFIED; no organizer receipt was obtained."
   }
 ]

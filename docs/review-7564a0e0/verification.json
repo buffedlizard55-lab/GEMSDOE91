@@ -13,14 +13,46 @@
     ],
     "ready_axes": [],
     "axis_readiness": {
-      "PRUNE": ["parent_r0_nan"],
-      "MASS": ["parent_r0_nan", "anc_h19_5", "anc_h19_4", "anc_h16_1"],
-      "SNAP": ["parent_r0_nan", "training_features"],
-      "CONCENTRATION": ["parent_r0_nan", "training_features"],
-      "RELIEF": ["parent_r0_nan", "anc_h19_5", "anc_h19_4", "anc_h16_1", "training_features"],
-      "TRACKB": ["parent_r0_nan", "training_features"]
+      "PRUNE": [
+        "parent_r0_nan"
+      ],
+      "MASS": [
+        "parent_r0_nan",
+        "anc_h19_5",
+        "anc_h19_4",
+        "anc_h16_1"
+      ],
+      "SNAP": [
+        "parent_r0_nan",
+        "training_features"
+      ],
+      "CONCENTRATION": [
+        "parent_r0_nan",
+        "training_features"
+      ],
+      "RELIEF": [
+        "parent_r0_nan",
+        "anc_h19_5",
+        "anc_h19_4",
+        "anc_h16_1",
+        "training_features"
+      ],
+      "TRACKB": [
+        "parent_r0_nan",
+        "training_features"
+      ]
     },
-    "captured_output": "preflight-output.txt"
+    "captured_output": "preflight-output.txt",
+    "repository_wide_verified": "1/2",
+    "capacity_preflight": {
+      "command": ".venv/bin/python generate_submission.py --preflight",
+      "exit_code": 1,
+      "status": "BLOCKED — expected fail-closed result",
+      "assignment_metadata_present": false,
+      "capacity_witness": "UNVERIFIED — missing data/fleet_registry/calib_r13lattice_00904.tif",
+      "captured_output": "experiment-preflight-output.json",
+      "note": "No archived capacity constant treated as current evidence."
+    }
   },
   "existing_research_download": {
     "command": ".venv/bin/python generate_submission.py --with-data",
@@ -38,8 +70,8 @@
     "report": "download-audit.json",
     "html": "download-audit.html",
     "audit_completed": true,
-    "files_checked": 87,
-    "format_pass": 78,
+    "files_checked": 89,
+    "format_pass": 80,
     "format_fail": 9,
     "ok_to_submit": false,
     "scope": "Pinned-reference technical checks only; no scientific/selector approval."
@@ -48,7 +80,7 @@
     "command": ".venv/bin/python scripts/check_artifact_policy.py",
     "exit_code": 0,
     "status": "PASS",
-    "registered_prediction_artifacts": 87,
+    "registered_prediction_artifacts": 89,
     "raw_raster_or_archive_tracked": false
   },
   "evidence_integrity": {
@@ -69,20 +101,24 @@
   "test_suite": {
     "command": ".venv/bin/python -m pytest -q",
     "exit_code": 0,
-    "status": "PASS — suite completed",
+    "status": "PASS — full suite completed after main integration",
     "notes": "No test failures. Rasterio emitted existing PendingDeprecationWarning messages about affine matrix multiplication."
   },
   "targeted_tests": {
-    "command": ".venv/bin/python -m pytest -q tests/test_active_review_7564a0e0.py tests/test_submission_portal.py",
+    "command": ".venv/bin/python -m pytest -q tests/test_active_review_7564a0e0.py tests/test_active_review_522615dd.py tests/test_s16_integrity.py tests/test_s17_cgrd.py tests/test_submission_portal.py",
     "exit_code": 0,
-    "status": "PASS"
+    "status": "PASS — 43 passed; one existing Rasterio PendingDeprecationWarning"
   },
   "static_checks": {
     "git_diff_check": "PASS",
     "run_card_json": "PASS",
     "source_audit_json": "PASS",
     "download_audit_json": "PASS",
-    "portal_templates_match_generated_pages": "PASS"
+    "portal_templates_match_generated_pages": "PASS",
+    "upstream_artifact_audit": "PASS — S18-UNIQUE TIFF/ZIP are technical passes; ok_to_submit false",
+    "experiment_preflight_json": "PASS — parseable; records BLOCKED status",
+    "sources_json": "PASS",
+    "audit_count": "89 files / 80 PASS / 9 FAIL; no submission approvals"
   },
   "experiment_budget": {
     "used": 0,
@@ -90,5 +126,15 @@
     "weekly_slots_used": 0,
     "candidate_tiff_created": false,
     "candidate_holdout_run": false
+  },
+  "upstream_research_demo": {
+    "artifact": "S18-UNIQUE merged from upstream PR #130; not output of this review",
+    "tif_sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+    "zip_sha256": "386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b",
+    "technical_audit": "PASS",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "holdout": "NOT RUN / null",
+    "uniqueness": "NOT CERTIFIED — portal claims 22.6% vs R0; run card says pending and has no surface-rank-correlation result"
   }
 }

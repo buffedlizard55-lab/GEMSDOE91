@@ -188,6 +188,22 @@
   "limits": [
     "External source availability is not local-area coverage, data completeness, rights to a third-party mirror, or model validation.",
     "No hidden-test labels or authenticated organizer submission receipt were accessible.",
-    "A fault-prediction raster is not evidence of a geothermal vent or economic geothermal resource."
+    "A fault-prediction raster is not evidence of a geothermal vent or economic geothermal resource.",
+    "The upstream S18-UNIQUE portal summary and run card disagree on real-raster uniqueness; the run-card holdout is null. The current review therefore treats uniqueness as pending and submission eligibility as NO."
+  ],
+  "repository_artifact_checks": [
+    {
+      "artifact_id": "S18-UNIQUE",
+      "origin": "Upstream branch arena/2f1f074c-gemsdoe91, merged into main via PR #130; not output of arena/7564a0e0-gemsdoe91",
+      "run_card": "docs/run-card-S18-UNIQUE.json",
+      "tif": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+      "tif_sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+      "zip": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip",
+      "zip_sha256": "386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b",
+      "fresh_pinned_reference_audit": "PASS — technical raster/ZIP checks only; ok_to_submit false",
+      "holdout": "NOT RUN; upstream run-card value is null",
+      "uniqueness": "CONFLICT: older page banner claims 22.6% vs R0 PASS; run-card registry_uniqueness.note says real-raster check pending and records no surface-rank-correlation. Not certified.",
+      "decision": "Downloadable research demo only; not a lane assignment, current-review experiment, uniqueness certificate, or submission approval."
+    }
   ]
 }

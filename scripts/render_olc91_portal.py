@@ -21,8 +21,10 @@ def front_door(root=ROOT):
     from scripts.render_geo91_portal import _registered_pair
     docs = root / "docs"
     card = json.loads((docs / "run-card-OLC91.json").read_text(encoding="utf-8"))
-    if card.get("ok_to_submit") is not False or card.get("result") != "negative" \
-            or card["verdict"].get("OK_TO_SUBMIT") != "NO":
+    verdict = card.get("verdict") if isinstance(card, dict) else None
+    if not isinstance(verdict, dict) or card.get("ok_to_submit") is not False \
+            or card.get("submission_ready") is not False or card.get("result") != "negative" \
+            or verdict.get("promote") is not False or verdict.get("OK_TO_SUBMIT") != "NO":
         raise ValueError("Front door requires an explicitly negative research card")
     tif, zipped, hashes = _registered_pair(root, card["raster_path"], card["raster_sha256"])
     return {

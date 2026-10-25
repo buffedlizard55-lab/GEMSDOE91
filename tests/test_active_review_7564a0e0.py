@@ -58,11 +58,37 @@ def test_current_run_card_is_negative_and_does_not_fabricate_a_candidate():
     assert delivery["values_in_0_1"] and delivery["crs"] == "EPSG:32611"
     assert delivery["shape"] == [3730, 3292] and delivery["transform_matches_sample"]
     assert existing["research_download_note_characters"] <= card["submission_note_max_characters"]
+
+    upstream = card["upstream_research_demo"]
+    s18_tif = ROOT / upstream["path"]
+    s18_zip = ROOT / upstream["zip_path"]
+    assert s18_tif.is_file() and s18_zip.is_file()
+    assert hashlib.sha256(s18_tif.read_bytes()).hexdigest() == upstream["raster_sha256"]
+    assert hashlib.sha256(s18_zip.read_bytes()).hexdigest() == upstream["zip_sha256"]
+    assert upstream["ok_to_download"] is True and upstream["ok_to_submit"] is False
+    assert upstream["holdout_dti"]["value"] is None
+    assert upstream["registry_uniqueness"]["status"].startswith("NOT CERTIFIED")
+    assert upstream["submission_note_characters"] <= card["submission_note_max_characters"]
+
     prior = existing["prior_olc91_holdout"]
     assert prior["candidate"]["label"] == "HOLDOUT-DTI"
     assert prior["candidate"]["evaluator_version"] == "gems57-pooled-hide-v2"
     assert prior["candidate"]["withheld_positives"] == 11321
     assert prior["candidate"]["ci95"][0] < prior["candidate"]["value"] < prior["candidate"]["ci95"][1]
+
+
+def test_current_download_audit_covers_s18_without_granting_submission_approval():
+    audit = json.loads((ROOT / "docs/review-7564a0e0/download-audit.json").read_text())
+    assert audit["files_checked"] == 89
+    assert audit["format_pass"] == 80 and audit["format_fail"] == 9
+    assert audit["ok_to_submit"] is False
+    rows = {row["path"]: row for row in audit["files"]}
+    for suffix in (
+        "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+        "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip",
+    ):
+        assert rows[suffix]["status"] == "PASS"
+        assert rows[suffix]["ok_to_submit"] is False
 
 
 def test_claim_and_public_leaderboard_values_have_distinct_evidence_classes():
@@ -92,7 +118,9 @@ def test_active_review_pages_links_and_readme_prompt_are_preserved():
     summary = (ROOT / "docs/review-7564a0e0.html").read_text()
     assert "OK TO DOWNLOAD: YES" in summary
     assert "OK TO SUBMIT: NO" in summary
-    assert "no new candidate, raster, score, or slot use" in summary
+    assert "no candidate, raster, score, or slot use" in summary
+    assert "OK TO SUBMIT: NO — OLC91 NEGATIVE; S18 HOLDOUT NOT RUN" in summary
+    assert "S18-UNIQUE research demo" in summary
     assert "USER-REPORTED-UNVERIFIED" in summary
     assert "PUBLIC-LEADERBOARD" in summary
 
@@ -114,4 +142,7 @@ def test_active_portal_status_is_generated_from_current_source_templates():
     index = (ROOT / "docs/index.html").read_text()
     assert "Active review arena/7564a0e0" in index
     assert "review-7564a0e0.html" in index
+    assert "EXISTING OLC91-E1 RESEARCH DOWNLOAD" in index
+    assert "OK TO SUBMIT: NO — HOLDOUT NOT RUN" in index
+    assert "S18-UNIQUE research demo" in index
     assert "REVIEW-ACTIVE-FFB91DA8-20261025.md" not in index

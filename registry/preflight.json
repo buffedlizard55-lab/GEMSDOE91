@@ -1,5 +1,7 @@
 {
   "verdict": "BUILD BLOCKED",
+  "scope": "Data availability only; not experiment or submission approval",
+  "experiment_authorized": false,
   "missing": [
     "parent_r0_nan"
   ],

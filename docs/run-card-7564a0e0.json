@@ -54,9 +54,19 @@
       "no_nan_inside_footprint": true,
       "values_in_0_1": true,
       "crs": "EPSG:32611",
-      "shape": [3730, 3292],
+      "shape": [
+        3730,
+        3292
+      ],
       "transform_matches_sample": true,
-      "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
       "nonfinite_cells": 0,
       "out_of_range_finite_cells": 0,
       "zero_outside_footprint": true,
@@ -130,5 +140,54 @@
       "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
     }
   },
-  "stop_reason": "The parallel-run protocol requires a declared single-method paragraph. None is present in this checkout. Preflight also lacks parent_r0_nan and training_features, leaving every implemented axis blocked. No hypothesis was promoted to an experiment or selector decision."
+  "stop_reason": "The assigned single-method paragraph is absent. scripts/preflight.py reports BUILD BLOCKED because parent_r0_nan and training_features/axis ancestors are missing. generate_submission.py --preflight also blocks because its local pinned capacity witness is absent; no archived capacity constant was treated as current evidence. The upstream S18-UNIQUE file is a separate format-pass demo with null HOLDOUT-DTI and conflicting uniqueness claims; it is not this review's experiment or an approved submission.",
+  "preflight": {
+    "scripts_preflight": {
+      "status": "BUILD BLOCKED",
+      "verified_required_inputs": "1/2",
+      "missing": [
+        "parent_r0_nan",
+        "training_features",
+        "axis-specific ancestors"
+      ],
+      "ready_axes": 0
+    },
+    "experiment_preflight": {
+      "status": "BLOCKED",
+      "assignment_metadata_present": false,
+      "capacity_witness_status": "UNVERIFIED",
+      "missing_capacity_witness": "data/fleet_registry/calib_r13lattice_00904.tif",
+      "archived_capacity_estimate": "82.34% at 37,654 dots; prior-session evidence only, not revalidated in this checkout"
+    }
+  },
+  "upstream_research_demo": {
+    "artifact_id": "S18-UNIQUE",
+    "origin": "Merged upstream from arena/2f1f074c-gemsdoe91 via PR #130; not created or evaluated by this review",
+    "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+    "raster_sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+    "zip_path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip",
+    "zip_sha256": "386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b",
+    "ok_to_download": true,
+    "download_verdict": "YES — technical format PASS in the current 89-file pinned-reference audit; research demo only",
+    "ok_to_submit": false,
+    "holdout_dti": {
+      "label": "HOLDOUT-DTI",
+      "status": "NOT RUN / null in upstream run card",
+      "value": null,
+      "evaluator_version": "gems57-pooled-hide-v2 (specified, not run)",
+      "withheld_positives": null,
+      "ci95": null
+    },
+    "registry_uniqueness": {
+      "status": "NOT CERTIFIED — evidence conflict",
+      "portal_claim": "22.6% within 3 px vs R0, labelled PASS in the prior portal banner",
+      "run_card": "real-raster uniqueness pending full restore; no surface-rank-correlation result recorded",
+      "decision": "Do not treat the portal claim as an independently verified complete registry pass."
+    },
+    "submission_name": "gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405",
+    "submission_note": "S18-UNIQUE basin-stripped Bouguer curvature x RTP grad 20000 dots playa-gated 2.25px collar",
+    "submission_note_characters": 91,
+    "verdict": "negative — upstream research demo; no holdout/selector approval",
+    "promote": false
+  }
 }
