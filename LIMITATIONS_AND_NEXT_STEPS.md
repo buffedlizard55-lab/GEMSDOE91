@@ -53,6 +53,28 @@ and SHA-256 verified in this session. No fake catalogue was used. The old
 
 1. Resolve the registry feasibility conflict and lane assignment through explicit
    orchestration policy. Preserve today's negative evidence unchanged.
+
+---
+
+## Session 17 (`S17-CWPC`, 2026-10-25, branch `arena/4f695c18-gemsdoe91`) — Update, Findings & Next Steps
+
+### What was completed in Session 17
+1. **Autonomous Data & Registry Restoration:** Restored and SHA-256 verified all 15 competition inputs (`scripts/restore_data.py`, including the 418.9 MB 19-band `gems-geodawn-numerical-features.tif`, 4-band radiometrics, 12-band LiDAR scarp stack, and off-catalogue USGS SGMC control), rebuilt `data/derived/catalogue_mask.tif` (`60,988` positive pixels) and `registry/preflight.json` (`BUILD ALLOWED: 2/2 required inputs verified`, `6/6` axes `READY`), and restored all 62 available `data/fleet_registry/*.tif` reference rasters (`scripts/restore_registry.py`).
+2. **Preregistration (`docs/HYPOTHESES_S17_CWPC.md`):** Preregistered 5 ranked geological hypotheses (`H17-1`..`H17-5`) and the forensic analysis of `GEMSDOE32` (`0.2778 USER-REPORTED`) before running any holdout experiment.
+3. **Implementation & S15 Root-Cause Remediation (`src/gems91/cwpc17.py`, `scripts/run_s17_cwpc.py`):**
+   - Implemented 16 label-blind `CWPC` geophysical features (multi-scale complex Riesz cross-wavelet coherence & quadrature across $\sigma \in \{2, 4, 8\}\text{ px}$ on `rtp × tc`, `rtp × iso_grav_anom`, and `iso_grav_anom × cond_surf`; cover-conditioned upward-continuation structural index; SI-reconciled Verduzco tilt & Salem wavenumber; Coulomb strain-strike slip-tendency; flight-line oblique filter; within-unit edge Z), streaming into a disk-backed `float16` memmap (`< 450 MB` peak RAM).
+   - Fixed `IR-91-S15-06` via `CWPC.prior_shift_calibrate_surface` (exact Bayes prior-shift calibration across Stage-1 training vs OOF evaluation domains) and `IR-91-S15-07` via `CWPC.build_local_autocontext_features` (strictly local $\le 900\text{ m}$ auto-context operators plus calibrated `B12`/`B19`-blind `ac_subsurf_cal`).
+4. **Measured Holdout & Control Results (`docs/run-card-S17-CWPC.json`):**
+   - `E1_cwpc_physics_hgb` (16 label-blind CWPC physics features alone, zero topographic bands): **`0.082658 HOLDOUT-DTI`** (`95% CI [0.073949, 0.091793]`, `+0.011325` vs `random_null` on `gems57-pooled-hide-v2`; `0.044412 HOLDOUT-DTI` on `gems91-hide-recover-v1.1-nohalo`).
+   - `E2_cwpc_integrated_hgb` (43 features: 16 CWPC + 19 sponsor bands + 8 gradients): **`0.131810 HOLDOUT-DTI`** (`95% CI [0.114159, 0.147689]`, `+0.060477` vs `random_null`, `+0.049153` vs `E1` on `gems57-pooled-hide-v2`; `0.089250 HOLDOUT-DTI` on `gems91-hide-recover-v1.1-nohalo`).
+   - `E3_cwpc_calibrated_dual_autocontext` (43 features + 8 prior-shift-calibrated local $\le 900\text{ m}$ auto-context channels): **`0.122467 HOLDOUT-DTI`** (`95% CI [0.105656, 0.137559]`, `+0.051133` vs `random_null` on `gems57-pooled-hide-v2`; `0.086573 HOLDOUT-DTI` on `gems91-hide-recover-v1.1-nohalo`).
+   - **Blind Off-Catalogue USGS SGMC Control (`SGMC-OFFCAT-CONTROL-DTI`):** **`0.090912`** (`62,122` off-catalogue bedrock/concealed fault pixels $> 300\text{ m}$ from `existing_faults.tif`, exceeding `E3`'s own `v1.1-nohalo` catalogue score `0.086573`).
+   - **Unique Artifact:** `docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif` (`sha256: 792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5`) and `.zip` (`sha256: e36c855d7ee93fed60ad5d8c18d32d0d4e748ff204539fa638f6e8faca9d24b4`); passes all format/CRS/`[0,1]`/collar gates, all 43+8 leakage canaries (`worst AUC = 0.62714 <= 0.90`), and registry uniqueness vs `GEMSDOE32 R0` (`34.97% <= 70%`) and all 43 repository rasters (`max 51.92% <= 70%`).
+
+### Remaining Limitations & Priority Next Steps for Session 18
+1. **Quadrant-Transfer vs Checkerboard Gap:** Under the strict 4-quadrant whole-component 8 km buffer (`gems57-pooled-hide-v2`), 37,654-dot models trained on 3 quadrants transfer at `0.122–0.194 HOLDOUT-DTI`, whereas 12.8 km checkerboard models (`S14-PTAC = 0.267782`) benefit from closer spatial proximity of training blocks. Next session should evaluate `S14-PTAC`'s exact 89-feature cube + `CWPC` cross-wavelet quadrature channels on **both** `gems57-pooled-hide-v2` and `gems91-hide-recover-v1.1-nohalo` under identical 44,090-dot and 37,654-dot budgets.
+2. **Stage-2 Auto-Context Regularization Across Quadrants:** While `prior_shift_calibrate_surface` (`IR-91-S15-06`) reduced fold calibration drift to `0.67–1.25x` (down from `0.82–1.67x`), fitting a fresh 31-leaf tree on `tr_dom` still slightly underperforms Stage-1 `E2` (`-0.009344` on `gems57-pooled-hide-v2`) because Stage-1 training-domain residuals are smaller than OOF residuals. Next session should generate Stage-1 training-domain predictions via **3-way inner spatial sub-fold cross-fitting** before computing `build_local_autocontext_features`.
+3. **Dense Registry Blanket Lattice (`calib_r13lattice_00904.tif`):** Requires an explicit selector/protocol rule separating real $\le 60,000$-dot candidate submissions from 206,895-dot calibration lattices (`Pigeonhole lower bound = 82.34%` at `37,654` dots).
 2. When running any future two-stage cross-fitted auto-context lane (following
    `S14-PTAC = 0.267782`, `S14-HVDC = 0.262209`, and `S15-SCGF = 0.240633`
    `HOLDOUT-DTI` / `0.097940` Blind SGMC), apply `prior_shift_calibrate_surface`
