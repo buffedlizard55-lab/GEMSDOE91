@@ -1,5 +1,9 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## Current checkout review — Arena session `70633f9f` (2026-10-24)
+
+**Negative / no new candidate generated; do not submit a file from this session.** This checkout has no `data/` directory, the prompt does not identify the required single assigned method paragraph, and `pytest` is unavailable. Without those prerequisites, hide-and-recover evaluation, leakage canaries, format verification, and pre-/post-placement registry checks cannot be truthfully completed. No competition slot was used. See the [three-pass repository review](docs/REVIEW-ARENA-70633F9F-20261024.md) and [machine-readable run card](docs/run-card-arena-70633f9f.json). The existing S13 entry below is historical work from an earlier branch, not a new artifact from this checkout.
+
 ## CURRENT SESSION 13 DISCOVERY LANE (`S13-PTHA`, 2026-10-24, branch `arena/6a62c2ab-gemsdoe91`) — NEW #1 `HOLDOUT-DTI` (`0.244601`) & `0.100815` BLIND `SGMC`
 
 > **AUTOMATED SUBMISSION VERDICT (FAIL-CLOSED): `OK TO DOWNLOAD: YES` (RESEARCH / SELECTOR REVIEW) · `OK TO SUBMIT: NO` (HOLD PENDING HUMAN SELECTOR SIGN-OFF).**
