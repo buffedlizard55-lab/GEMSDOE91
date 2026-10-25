@@ -130,7 +130,7 @@ def test_pooled_holdout_and_submodular_beats_ribbon(tmp_path: Path) -> None:
     res_sub = EH.score_pooled_holdout(sub_preds, folds, footprint, n_boot=40, seed=11)
     res_rib = EH.score_pooled_holdout(rib_preds, folds, footprint, n_boot=40, seed=11)
     assert res_sub["metric_label"] == "HOLDOUT-DTI"
-    assert res_sub["evaluator_version"] == EH.EVALUATOR_VERSION
+    assert res_sub["evaluator_version"] == EH.EVALUATOR_VERSION_V11
     assert res_sub["n_withheld_positives"] == int(cat_mask.sum())
     assert res_sub["holdout_dti"] > res_rib["holdout_dti"]
 
@@ -432,8 +432,9 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
             )
             assert ign.returncode != 0, f"GitHub Pages asset {rel_to_root} is gitignored!"
 
-    # Main portal links directly to H91 pages
+    # Current portal links to a clearly historical archive, not dozens of competing "current" candidates.
     main_idx = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
-    assert "h91-ddvtc.html" in main_idx and "h91-executive-summary.html" in main_idx
+    archive = (ROOT / "docs" / "archive-results.html").read_text(encoding="utf-8")
+    assert "archive-results.html" in main_idx and "h91-ddvtc.html" in archive
 
 

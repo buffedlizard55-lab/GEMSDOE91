@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>H1 blind-damage-zone — full technical audit · GEMSDOE91</title>
+<link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script>
+</head><body><a class="skip" href="#main">Skip to content</a>
+<div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a>
+<nav aria-label="Main"><a href="index.html">Current verdict</a>
+<a href="h1-blind-zone-executive-summary.html">Executive summary &amp; submission guide</a>
+<a href="run-card-H1-blind-damage-zone.json">Run card (JSON)</a>
+<a href="downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-audit.json">Audit JSON (raw)</a></nav></header>
+
+<main id="main"><section class="section"><div>
+<span class="eyebrow">FULL TECHNICAL AUDIT — COMPUTED, NOT HAND-EDITED</span>
+<h1>GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4</h1>
+<p><span class="badge bad">OK TO SUBMIT: NO</span> &mdash; format CERTIFIED, unique lane, holdout locally uninformative (structurally 0.0), no organizer receipt.</p>
+
+<h2>1) Run card (Rule 5)</h2>
+<pre style="background:#f5f5f5;padding:12px;border-radius:6px;overflow:auto;font-size:12.5px">{ "schema": "gems91.run-card.v1", "lane": "H1-blind-damage-zone", "verdict": "negative",
+ "holdout_dti": { "evaluator_version": "gems91-hide-recover-v1.1-nohalo", "n_withheld_positives": 60988,
+   "holdout_dti": 0.0, "ci_95": [0.0, 0.0], "note": "structurally 0.0: collar &gt;3 px == kernel radius 3 px" },
+ "leakage_canary": { "worst_symmetric_auc": 0.62004, "all_pass": true },
+ "registry": { "surface_max_abs_rank_corr": 0.00636, "dots_max_3px_overlap": 0.29248, "uniqueness_pass": true },
+ "submission": { "sha256": "da0fa0de24946769de509ec105486f5e9e2fc093107d32cf20af05c2897b5b64", "n_dots": 37654 } }</pre>
+<p><a href="run-card-H1-blind-damage-zone.json">Full JSON run card &rarr;</a></p>
+
+<h2>2) Validator output (re-read from disk)</h2>
+<table><thead><tr><th>Gate suite</th><th>Result</th><th>Detail</th></tr></thead><tbody>
+<tr><td>gems91.gates (format, collar, ledger)</td><td><strong>CERTIFIED</strong></td><td>CRS EPSG:32611, 3730&times;3292, 100 m transform, float32, 1 band, values [0,1], 0 NaN inside footprint, zero catalogue mass, 0 dots &le;3 px from catalogue, sha256 unseen in ledger, re-read identical</td></tr>
+<tr><td>release_gates (nan + zeros twins)</td><td><strong>PASS / PASS</strong></td><td>min catalogue distance 3.1623 px &gt; floor 3.0 px; unit-mass dots {0,1}; sha not in ledger; 37,654 dots</td></tr>
+<tr><td>validate_raster (nan + zeros)</td><td><strong>PASS / PASS</strong></td><td>band/dtype/CRS/shape/transform match sample_submission.tif; re-read from disk matches; parent-diff vs R0 recorded</td></tr>
+<tr><td>Range [0,1] portal-safety</td><td><strong>PASS</strong></td><td>all-finite -zeros.tif twin, nodata=None, 0 NaNs anywhere</td></tr>
+</tbody></table>
+
+<h2>3) Holdout-DTI (Rule 3 — labelled, not projected)</h2>
+<table><thead><tr><th>Evaluator</th><th>Withheld positives</th><th>Holdout-DTI</th><th>95% CI</th><th>Label</th></tr></thead><tbody>
+<tr><td>gems91-hide-recover-v1.1-nohalo</td><td>60,988</td><td>0.0</td><td>[0.0, 0.0]</td><td>HOLDOUT-DTI</td></tr>
+<tr><td>gems91-hide-recover-v1.0 (halo)</td><td>60,988</td><td>0.0</td><td>[0.0, 0.0]</td><td>HOLDOUT-DTI</td></tr>
+</tbody></table>
+<p class="small">Structurally 0.0 under current gates (collar radius == kernel radius); applies equally to every collar-compliant raster. Historical positive holdout numbers in this lineage are not reproducible with current tools.</p>
+
+<h2>3b) Leakage canary (Rule 4)</h2>
+<p>Max symmetric AUC across 5 catalogue-independent features = 0.62004 &le; 0.90 &rarr; PASS. Worst feature: scarps_B19 (0.62004). No feature alone recovers withheld faults.</p>
+
+<h2>4) Rule 1 lane (surface before placement AND final dots)</h2>
+<table><thead><tr><th>Check</th><th>Limit</th><th>Measured</th><th>Pass</th></tr></thead><tbody>
+<tr><td>Surface max |Spearman &rho;| vs registry rasters</td><td>&le; 0.90</td><td>0.00636</td><td><strong>PASS</strong></td></tr>
+<tr><td>Dots within 3 px of any registry raster's dots</td><td>&le; 70%</td><td>29.25%</td><td><strong>PASS</strong></td></tr>
+</tbody></table>
+<p class="small">Checked against 3 locally available registry rasters: GEMSDOE32 h33-2-b2 zeros, GEMSDOE32 h33-2-b2 NaN twin (same dot set), GEMSDOE25 dotted-h19-5-d2-8. The complete public GEMSDOE registry was not fetchable from this sandbox; treat global uniqueness as verified against available registry rasters only.</p>
+
+<h2>5) Files</h2>
+<ul>
+<li><a download href="downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.tif">GeoTIFF -zeros</a> (104,976 B) · sha256 da0fa0de…5b64</li>
+<li><a download href="downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-zeros.zip">single-TIFF ZIP</a> (55,511 B) · sha256 57c51932…f64d55</li>
+<li><a href="downloads/GEMS91-H1-blind-damage-zone-20261025T000000Z-8626b7d4-audit.json">audit.json</a> &middot; <a href="downloads/h1_blind_zone_submission_bundle.js">browser b64 bundle</a></li>
+</ul>
+</div></section></main>
+<footer><div>GEMSDOE91 &middot; Research, not a leaderboard prediction &middot; No automatic uploads, no credentials stored</div></footer>
+</div></body></html>

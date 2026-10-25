@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "scope": "Delivery/UI engineering checks, not a competition score or scientific experiment",
-  "checked_utc": "2026-10-25T03:19:59.353Z",
+  "checked_utc": "2026-10-25T04:40:32.623Z",
   "browser": "153.0.8010.0",
   "pages_root_redirect_tested": true,
   "desktop": {
@@ -12,6 +12,7 @@
     "width": 390,
     "height": 844
   },
+  "dzedge_download_sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
   "s14_download_sha256": "678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720",
   "s13_download_sha256": "421c589072e3b959fc0f8e71a7e879822ce8f9a81172a7f0fd24e7932eadd452",
   "download_sha256": "ab500a3caa50f00ec0855dc88006a2d3e31f5e5f4cde726ef391e30f6eb4cd6b",
@@ -21,6 +22,10 @@
   "accessibility": [
     {
       "page": "index.html",
+      "violations": []
+    },
+    {
+      "page": "dzedge-executive-summary.html",
       "violations": []
     },
     {

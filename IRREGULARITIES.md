@@ -1,3 +1,15 @@
+## S16 / 2026-10-25 — current review findings (not organizer scores)
+
+- **IR-S16-01 — critical synthetic-label overwrite:** the inherited root generator replaced `data/official/existing_faults.tif` with mock labels and generated smooth random noise. Replaced by a side-effect-free entry point to the measured pipeline; protected by regression tests. Real input SHA-256 reverified.
+- **IR-S16-02 — fabricated recovery metrics:** the inherited GEOD recovery script wrote placeholder score/CI/novelty numbers. Entry point now blocks without writes; history is not validated evidence.
+- **IR-S16-03 — uniqueness feasibility:** frozen lattice leaves 6,649 cells outside its 3 px dilation. For 37,654 dots, overlap is necessarily ≥82.34%, above the 70% cap. S16 measured 100% and stopped at reference 27. See `docs/s16/registry-feasibility.json`.
+- **IR-S16-04 — missing lane and incomplete registry:** no promised method paragraph; two unavailable frozen references retained as UNVERIFIED. Provisional lane only, no universal uniqueness claim.
+- **IR-S16-05 — malformed reference ZIP / unconfirmed score:** GEMSDOE32's pinned 216-byte ZIP contains an empty ZIP member; its page calls the TIFF UNSCORED. The supplied 0.2778 and conflicting 0.4413/0.3195 leaderboard claims are not authenticated receipts. See `docs/s16/gems32-forensics.json` and source pins.
+- **IR-S16-06 — evaluator safety:** legacy shared API now defaults to no hidden-truth halo deletion, rejects nonfinite predictions/canaries and missing registry entries. Old component-tail geometry remains explicitly noncanonical. New S16 uses unchanged pinned label-blind template folds/evaluator/writer.
+- **IR-S16-07 — publication defects:** one status reader ignored affine rotation/y scale; fixed. Three inherited S15 raster/ZIP artifacts were unregistered in the artifact policy; now quarantined by exact hash, not approved. DZ-EDGE's format-only submit approval revoked.
+- **IR-S16-08 — historical S15 paired interval:** session-start card paired a negative delta with a positive-only interval. Treat as invalid evidence, not a promotion bar. Concurrent main reviews may correct the historical card; this records the audited starting snapshot.
+- **IR-S16-09 — honest negative:** 0.069397 HOLDOUT-DTI [0.057510, 0.081676], `gems57-pooled-hide-v2`, 60,988 withheld positives; paired gravity-control delta −0.004626 HOLDOUT-DTI [−0.010725,+0.001161], same population/version. One candidate, zero slots. No improvement established.
+
 # IRREGULARITIES
 
 Only items that change a decision. Each entry says what the rule/assumption was,
@@ -1531,3 +1543,14 @@ Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and 
 - **IR-91-S14-03 — Multi-Scope Uniqueness & Mutual-Exclusion Audit of `S14-HVDC E2` (`docs/run-card-S14-HVDC.json`):**
   - **Actual:** Across all **8 canonical `data/registry/` rasters** (`max 3-px overlap = 50.07%` on `calib_h161_01855.tif`, `R0 GEMSDOE32 = 40.31%`, `max |rho| = 0.1390`, **PASS**) and all **34 external dotted fleet submission rasters (`< 65,000` positives, including restored retracted `GEOD25m10`)** (`max 3-px overlap = 46.12%` on `GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif`, `max |rho| = 0.0945`, **PASS**), `S14-HVDC E2` (`50,000` dots) is even more distinct than `S13-PTHA E3` (`51.39%` / `47.36%`) and drops below `70%` even on dense halo `calib_h28ridge_01839.tif` (`69,281` px). Against the un-dotted `174,232 px` continuous probability ribbon `calib_h25ctx_01280.tif` (`70.06%`), against unsubmitted in-repo predecessor checkpoints (`S13-PTHA = 84.71%`, `S12-SPAC = 80.69%`) which `S14-HVDC E2` supersedes by `+0.017608` and `+0.024622` `HOLDOUT-DTI`, and against synthetic whole-Nevada lattice `calib_r13lattice_00904.tif` (`99.84%`, `IR-CED-003`), directed `3-px` overlap exceeds `0.70`.
   - **Decision it changes:** Despite leading the comparable holdout and blind SGMC controls, `S14-HVDC E2` is a **negative Rule 1 duplicate stop** and enters no live-slot queue. `submission_ready = false`, `verdict = negative`, `OK TO DOWNLOAD: YES` (research), `OK TO SUBMIT: NO`. A selector cannot override the explicit >70% lane threshold.
+
+## IR-91-C6BFB72B — fresh review, 2026-10-25
+
+- No assigned single method paragraph in the current prompt. No scientific experiment or new TIFF generated; do not inherit historical lane permissions.
+- Fixed portal format false-positive risk: all six affine coefficients are now compared, not just x resolution and origins.
+- Fixed CI artifact inventory: three previously tracked but unregistered S15 raster/archive files are now hash-pinned as quarantined, not approved.
+- Fixed S15 integration prerequisite: restoring only sample/catalogue must not trigger a feature-build test requiring four additional scientific files.
+- Fresh restore of sample/catalogue succeeded through pinned GitHub mirrors. Blanket claims that no data can be restored here are stale. Official provenance/rights and full-feature availability are separate questions.
+- GEMSDOE32 repository source freshly says UNSCORED and NO ORGANISER SCORE EXISTS; user-reported 0.2778 remains unverified. No fresh leaderboard/weekly-cap claim was made.
+- Final local verification: 398 passed, 8 data-dependent skipped; 46 artifact-policy files PASS; evidence verifier PASS; existing CED sample-backed format PASS and submission_ready=false. No new HOLDOUT-DTI or organizer result.
+- Full review: docs/REVIEW-C6BFB72B-20261025.md; machine-readable negative card: docs/run-card-REVIEW-C6BFB72B.json.

@@ -1,0 +1,24 @@
+{
+  "scope": "Scientific code and environment used by completed S16 run; captured immediately after completion before any modification of these sources",
+  "code_sha256": {
+    "scripts/run_s16_pgrd.py": "9b6d5839f41c85f21381f08e7cfb9ce5c116c46ded60fb7ce72d9497f6f9b76a",
+    "src/gems91/pgrd.py": "3a6198d9fff699b926bc98d36640f2d0e6269f0e7e61cad40360894773ab14a2",
+    "src/gems91/ced.py": "4cd9b789ecf3b3a06864d1841ac57b9c64d66368e044787e476c0c23a8324192",
+    "scripts/run_ced.py": "c9c26e50b80bbf7fb11e016b2a7f0dc5e4a3127f73577e3c85035c5199fbb8c9",
+    "src/gems91/novelty.py": "1a3f8b4fd2e51bcde7139901999f80cf7ed62db3b84f9b25295ba9c65199f729",
+    "vendor/gems57/evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "vendor/gems57/spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8",
+    "vendor/gems57/submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
+    "vendor/gems57/metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f"
+  },
+  "python": "3.11.2",
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "rasterio": "1.4.4",
+    "tifffile": "2026.3.3"
+  },
+  "command": "OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 .venv/bin/python scripts/run_s16_pgrd.py",
+  "log": "evidence/s16_execution.log",
+  "log_sha256": "3c08671a9e5f4165cd36d06770f7f1ec3fd966631c286a30803af47a02a6eafb"
+}

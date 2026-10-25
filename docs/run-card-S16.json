@@ -1,0 +1,202 @@
+{
+  "schema_version": "gems91.s16-pgrd.v1",
+  "branch": "arena/400a3f1a-gemsdoe91",
+  "started_utc": "2026-10-25T04:03:00.153941+00:00",
+  "preregistration": {
+    "path": "docs/HYPOTHESES_S16.md",
+    "sha256": "fc993d3ccfb0d3982da5415126013f813f244cc078aec3b5f58b68c38265da5f"
+  },
+  "lane": {
+    "name": "S16-PGRD",
+    "assigned": false,
+    "status": "PROVISIONAL_RESEARCH_ONLY",
+    "reason": "No single-method assignment paragraph in user message."
+  },
+  "hypothesis": "Coherent gravity edges unexplained by locally proportional band-limited RTP pseudogravity may locate concealed altered contacts.",
+  "mechanism": "Label-blind 1/|k| magnetic integration, local ridge transfer residual, two-scale residual/gravity edge persistence and residual coherence.",
+  "named_non_fault_mimic_process": "Unaltered nonmagnetic granite-carbonate contact; reversed-polarity lava and survey-line seams also mimic the signal.",
+  "experiments_run": 1,
+  "budget": {
+    "max_experiments": 3,
+    "planned_candidates": 1,
+    "max_seconds": 7200
+  },
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_sha256": "c79f1acaf337fd548d0873d576a8a3c286d373ae2cb19cfce4464597d448d18a",
+    "value": 0.06939688563289523,
+    "ci95": [
+      0.05751001360811543,
+      0.0816755685735943
+    ],
+    "withheld_positives": 60988,
+    "status": "COMPLETED",
+    "file": "s16/holdout.json",
+    "paired_controls": {
+      "gravity_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.0046263292415677365,
+        "ci95": [
+          -0.01072502436076323,
+          0.0011612876394765104
+        ],
+        "withheld_positive_pixels": 60988
+      },
+      "ced_benchmark": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.007243757284481761,
+        "ci95": [
+          -0.00671783521805885,
+          0.021363678126570546
+        ],
+        "withheld_positive_pixels": 60988
+      }
+    },
+    "ci_method": "1000 paired 20km physical-block resamples; conditional on catalogue and fixed design, not leaderboard uncertainty"
+  },
+  "comparable_prior_holdout_best": null,
+  "organizer_confirmed": null,
+  "selector_approval": false,
+  "selector_receipt": null,
+  "slots_used": 0,
+  "registry_comparison": {
+    "scope": "buffedlizard55-lab/60GEMSDOE@02563d07fb85d2f4d35887503d380d34d4017197:registry/rasters plus inherited checkout downloads; plus every inherited docs/downloads/*.tif",
+    "complete_universal_registry": false,
+    "inventory": "registry/s16_comparison_inventory.json",
+    "missing_scope": [
+      "Other fleet downloads not in the pinned registry",
+      "Local ledger entries whose raster is not present",
+      "Private, inaccessible and unlinked artifacts; assigned lane not supplied"
+    ],
+    "preplacement": {
+      "status": "UNVERIFIED",
+      "checked": 89,
+      "not_checked_after_stop": 0
+    },
+    "max_measured_surface_rank_correlation": 0.038235960029117326,
+    "final": {
+      "status": "DUPLICATE",
+      "stopped_on": {
+        "file": "data/fleet_registry/calib_r13lattice_00904.tif",
+        "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "surface": {
+          "status": "PASS",
+          "rank_correlation": 0.0006079433725165464
+        },
+        "dots": {
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37654,
+          "registry_dots": 206895
+        },
+        "status": "DUPLICATE"
+      },
+      "checked": 27,
+      "not_checked_after_stop": 62
+    },
+    "max_measured_final_dot_overlap_within_3px": 1.0,
+    "max_measured_final_dot_rank_correlation": 0.003146254236033102
+  },
+  "inputs": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    }
+  },
+  "raster_sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9",
+  "validator_output": {
+    "status": "PASS",
+    "checks": {
+      "single_band": true,
+      "float32": true,
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "all_cells_finite": true,
+      "range_0_1": true,
+      "zero_outside": true,
+      "zero_on_catalogue": true,
+      "no_nodata_tag": true,
+      "exact_dot_count": true,
+      "spacing_strictly_over_3px": true,
+      "identity_new_vs_frozen_hashes": true
+    },
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "min": 0.0,
+    "max": 1.0,
+    "nan_inside": 0,
+    "nan_anywhere": 0,
+    "positive_pixels": 37654,
+    "min_spacing_px": 3.1622776601683795,
+    "source": "Reopened generated TIFF; shared writer also reopens ZIP and verifies its exact TIFF bytes."
+  },
+  "submission_name": "gems91-s16-pgrd-20261025T040447Z-24d090ad9f42",
+  "note": "S16-PGRD: magnetic-gravity transfer residual; 37654 new dots. Research negative; do not submit.",
+  "verdict": "negative",
+  "submission_ready": false,
+  "features": {
+    "file": "s16/features.json",
+    "cache_key": "422290961701f210c5a015687bc32835818336df7ff5b3944b0f82f2daa2da40",
+    "count": 16
+  },
+  "canaries": {
+    "status": "PASS",
+    "max_symmetric_auc": 0.5760526740930789,
+    "features_tested": 17,
+    "file": "s16/canaries.json"
+  },
+  "benchmark_integrity": {
+    "ced_reproduced": true,
+    "absolute_difference": 0.0,
+    "note": "CED is a reproduced comparator, not a certified repository-wide current best. Other historical instruments are not comparable."
+  },
+  "raster_pixel_sha256": "24d090ad9f4275d10b0c1e3a6d3c63a81104bdbd7e5cbe80f17628e43aa257c8",
+  "artifact": {
+    "file": "downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
+    "zip": "downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.zip",
+    "bytes": 130258,
+    "zip_sha256": "69a33f11e7be0db156b8e498d08d8259d814b8bbf509b144fc762a0d10cd4337",
+    "audit": "s16/writer-receipt.json"
+  },
+  "byte_identity_unique": true,
+  "byte_identity_caveat": "Different bytes are not a protocol uniqueness pass.",
+  "verdict_reason": "Literal Rule 1 duplicate stop. New computation and byte identity do not establish protocol uniqueness; no further experiments.",
+  "completed_utc": "2026-10-25T04:04:55.763804+00:00",
+  "elapsed_seconds": 116.207,
+  "automated_gates": {
+    "format": true,
+    "canary": true,
+    "novelty": false,
+    "assigned_lane": false,
+    "beats_comparable_best": false,
+    "separate_selector": false
+  },
+  "ok_to_download": true,
+  "ok_to_submit": false
+}

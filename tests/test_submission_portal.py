@@ -84,7 +84,7 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
     except Exception:
         pass
     allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip}|g91_allowed|s14_allowed|s15_allowed
-    for name in ('index.html','executive-summary.html'):
+    for name in ('archive-results.html','archive-guide.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states and all(x=='false' for x in p.states)
         assert 'NOT OK TO SUBMIT' in text
@@ -156,11 +156,12 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
     assert s15r_page.downloads==[]
     assert 'OK TO DOWNLOAD: NO' in s15r_text and 'OK TO SUBMIT: NO' in s15r_text
     assert '99.599%' in s15r_text
-    # The rendered landing page must lead with the correction, not the stale
-    # historical S15 or DZ-EDGE submit-ready language.
+    # S16 is now the active portal, but it must retain a reachable archival link
+    # to this corrected negative rather than treating S15R as a current file.
     landing=(ROOT/'docs/index.html').read_text()
-    assert 'corrected S15R-HCPA is a closed negative' in landing
-    assert 'OK TO DOWNLOAD: NO' in landing and 'OK TO SUBMIT: NO' in landing
+    research=(ROOT/'docs/research.html').read_text()
+    assert 'SESSION 16' in landing
+    assert 's15r-executive-summary.html' in research
     assert 'DZ-EDGE v2' not in (ROOT/'index.html').read_text()
 
     page=Page(); page.feed((ROOT/'docs/ccr91-executive-summary.html').read_text())
@@ -221,7 +222,7 @@ def test_readiness_requires_all_independent_gates_not_just_format():
 
 
 def test_portal_render_is_reproducible():
-    names=['index.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    names=['index.html','archive-results.html','archive-guide.html','archive-research.html','review-0a96aa96-home.html','assets/s16.css','assets/s16-support.png','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
     before={n:(ROOT/'docs'/n).read_bytes() for n in names}
     subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'
