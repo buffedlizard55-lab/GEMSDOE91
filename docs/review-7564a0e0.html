@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Active review · GEMSDOE91 · arena/7564a0e0</title>
+<meta name="description" content="Three-pass review, candidate screen, score evidence, and explicit download/submit verdict for GEMSDOE91 branch arena/7564a0e0-gemsdoe91.">
+<style>
+:root{color-scheme:light;--ink:#17251f;--muted:#53645c;--line:#d2ddd6;--bg:#f5f8f6;--green:#17644e;--red:#9a2a2a;--amber:#fff2cf}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:1120px;margin:auto;padding:1.4rem}a{color:var(--green);overflow-wrap:anywhere}header,section,.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:1.2rem;margin:1rem 0}
+h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin:.2rem 0 .7rem}h2{margin-top:.2rem}table{border-collapse:collapse;width:100%;font-size:.94rem}th,td{border:1px solid var(--line);padding:.65rem;vertical-align:top;text-align:left}th{background:#eef4f0}.scroll{overflow-x:auto}.badge{display:inline-block;padding:.24rem .7rem;border-radius:99px;background:#e5f1ea;color:var(--green);font-weight:750}.bad{background:#fae7e7;color:var(--red)}.callout{background:var(--amber);border:1px solid #e6cf98;border-radius:10px;padding:1rem}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}.small{color:var(--muted);font-size:.93rem}ul,ol{padding-left:1.3rem}
+</style>
+</head>
+<body><main>
+<p><a href="index.html">← GEMSDOE91 research-download page</a> · <a href="executive-summary.html">Executive summary and submission guide</a></p>
+<header>
+<p><strong>ACTIVE BRANCH REVIEW · 2026-10-25</strong></p>
+<h1>No TIFF from this review.<br>Upstream S18 demo stays research-only.</h1>
+<p><span class="badge">OK TO DOWNLOAD: YES — OLC91 / UPSTREAM S18 RESEARCH</span> <span class="badge bad">OK TO SUBMIT: NO — OLC91 NEGATIVE; S18 HOLDOUT NOT RUN</span></p>
+<p class="callout"><strong>This branch generated no candidate, raster, score, or slot use.</strong> The parallel-run prompt has no assigned single-method paragraph; the parent R0 and official feature stack are missing. Upstream PR #130 added the downloadable S18-UNIQUE format-pass demo to main, but its holdout is null and its uniqueness status conflicts between page and run card. Neither it nor the pre-existing OLC91 file is approved for submission.</p>
+<p><a href="REVIEW-ARENA-7564A0E0-20261025.md">Full three-pass review</a> · <a href="run-card-7564a0e0.json">Machine run card</a> · <a href="review-7564a0e0/sources.json">Source/claim audit JSON</a> · <a href="review-7564a0e0/download-audit.html">89-file technical audit</a> · <a href="review-7564a0e0/verification.json">Verification snapshot</a> · <a href="../README.md#full-project-brief">Full standing prompt in README</a></p>
+</header>
+<section>
+<h2>GEMSDOE32 H33-2-B2: what the evidence says</h2>
+<p>The <strong>0.2778 value is USER-REPORTED-UNVERIFIED</strong>; the GEMSDOE32 page says no organizer score exists for repository artifacts. Local forensics reconstruct the 37,654-dot geometry as a 40,199-dot base with 2,545 catalogue-near dots removed and no additions. Its advertised 216-byte ZIP contains a zero-byte member, not a nonempty TIFF.</p>
+<p>Pruning may reduce unmatched false-positive mass under the official distance-weighted Tversky metric, but this is a plausible mechanism—not proof of a score, causation, or out-of-sample benefit. The official public-board observations are labelled separately: rank 1 <strong>0.4413 PUBLIC-LEADERBOARD</strong>, rank 24 <strong>0.3169 PUBLIC-LEADERBOARD</strong>, rank 50 <strong>0.2818 PUBLIC-LEADERBOARD</strong>. None is a submission-page receipt or private/final score.</p>
+<p>Sources: <a href="https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html">GEMSDOE32 artifact page</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official metric and submission format</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official public leaderboard</a> · <a href="s16/gems32-forensics.json">local geometry/archive forensic JSON</a>.</p>
+</section>
+<section>
+<h2>Upstream S18-UNIQUE research demo — downloadable, not submission-ready</h2>
+<p><a class="badge" download href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif">↓ Download S18-UNIQUE research GeoTIFF</a> <a href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip">Single-TIFF ZIP</a> · <a href="run-card-S18-UNIQUE.json">upstream run card</a> · <a href="s18-unique-executive-summary.html">research-demo gate guide</a></p>
+<p class="small">Merged from PR #130; this is not an output of branch 7564a0e0. SHA-256 <span class="mono">af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6</span>. The fresh 89-file audit reports technical PASS for its TIFF and ZIP, so it is <strong>OK TO DOWNLOAD: YES — FORMAT PASS / RESEARCH DEMO</strong>. Its run card has `HOLDOUT-DTI: null / NOT RUN`, and records real-raster uniqueness as pending.</p>
+<p class="callout"><strong>OK TO SUBMIT: NO.</strong> The older portal banner says 22.6% overlap vs R0, but the card does not record that result and says real-raster uniqueness is pending; no pre-placement surface-rank correlation is recorded. Treat this as an unresolved evidence conflict, not a uniqueness certificate or a lane assignment. No slot was selected.</p>
+</section>
+<section>
+<h2>Existing OLC91 file — research only</h2>
+<p><a class="badge" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">↓ Download existing OLC91 GeoTIFF</a> <a href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip">Single-TIFF ZIP</a> · <a href="run-card-OLC91.json">prior OLC91 run card</a></p>
+<p class="small">SHA-256 <span class="mono">35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc</span>. The current `generate_submission.py --with-data` byte/reference check passed. It remains <strong>OK TO DOWNLOAD: YES — research only; OK TO SUBMIT: NO</strong>.</p>
+<p class="small">Its prior result is <strong>0.083186 HOLDOUT-DTI</strong> (evaluator <code>gems57-pooled-hide-v2</code>, 11,321 withheld positives, 95% CI [0.066866, 0.100482]), versus <strong>0.085260 HOLDOUT-DTI</strong> for the matched incumbent (same evaluator/split, 95% CI [0.068716, 0.102299]); paired difference <strong>−0.002075 HOLDOUT-DTI</strong> (95% CI [−0.004543, 0.000236]). Its previous registry audit recorded a 76.781% final-dot overlap within 3 pixels of a non-blanket raster, above the internal duplicate-stop threshold.</p>
+</section>
+<section>
+<h2>Ranked hypothesis screen — desk review only, no implementation</h2>
+<p class="small">Benefits are qualitative, not score projections. Novelty was checked against repository code and prior hypothesis/review documents. No candidate below is a new project-level hypothesis.</p>
+<div class="scroll"><table>
+<thead><tr><th>Rank</th><th>Hypothesis / mechanism</th><th>Named non-fault mimic</th><th>Novelty and cost/benefit</th><th>Official data / availability</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Multi-scale roughness/Hurst-exponent break from detrended elevation: fault damage or degraded scarps may change roughness scaling across a trace.</td><td>Lithologic boundary; alluvial-fan or playa margin.</td><td>Previously proposed in S18; no Hurst implementation found. Moderate potential, uncertain; low compute on 100 m data.</td><td>Official feature stack is missing locally. USGS 3DEP is free, but exact tile coverage was not checked.</td></tr>
+<tr><td>2</td><td>Raw 1 m DEM cross-strike scarp-profile asymmetry and strike continuity.</td><td>Pluvial shoreline/terrace riser or road cut.</td><td>Direct LiDAR scarp analysis was already proposed; derived scarp features exist. Potentially high local ceiling, very high coverage/I/O/QA cost.</td><td>USGS 3DEP products are free. The DrivenData data tab redirected to login; no 1 m link-list CSV or exact tiles were obtained.</td></tr>
+<tr><td>3</td><td>Uncertainty-weighted focal-mechanism nodal-plane orientations aligned to independent local geophysical strike; not another smoothed event-density feature.</td><td>Regional stress direction unrelated to a local fault; quarry/induced events.</td><td>Previously proposed in E02/EE76; no mechanism-orientation implementation found. Potentially useful only where products are dense; high uncertainty and high QC cost.</td><td>USGS FDSN service responds, but the broad query does not establish exact-footprint completeness or focal-mechanism availability.</td></tr>
+<tr><td>4</td><td>GeMS/SGMC unit-conditioned fault propensity, with fault/linework removed to avoid copying the label.</td><td>Unfaulted stratigraphic contact or cartographic seam.</td><td>Related MUSD idea already proposed; SGMC is used as a repository control. Low-to-moderate uncertain ceiling; medium schema/leakage cost.</td><td>USGS 2026 GeMS SGMC is a public 1:1,000,000 release; actual download and local coverage were not checked.</td></tr>
+<tr><td>5</td><td>Terrain/albedo-normalized multi-season Landsat surface-temperature residual lineaments as indirect evidence of shallow fault-controlled upflow.</td><td>Irrigation/evaporation, albedo/aspect, urban heat or playa moisture.</td><td>Previously proposed in S18; no Landsat/LST implementation found. Weak fit to fault labels, uncertain low-to-moderate benefit; high scene/QA cost.</td><td>USGS C2 surface-temperature products are global and scene-based; no local scene or cloud-quality check was done.</td></tr>
+</tbody></table></div>
+<p>Sources: <a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP</a> · <a href="https://earthquake.usgs.gov/fdsnws/event/1/">USGS FDSN</a> · <a href="https://doi.org/10.5066/P1A3DQZK">USGS 2026 GeMS SGMC</a> · <a href="https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature">USGS Landsat surface temperature</a> · <a href="https://pubs.usgs.gov/publication/70221765">USGS Great Basin play-fairway report</a>.</p>
+</section>
+<section>
+<h2>Three-pass gate review</h2>
+<ol>
+<li><strong>Repo and artifact:</strong> reference TIFFs and existing download identity checked; parent R0 and training feature stack are missing. Preflight reports every implemented axis blocked.</li>
+<li><strong>Geology and novelty:</strong> five hypotheses were ranked and screened against prior code and review files; none was treated as a fresh project-level proposal.</li>
+<li><strong>Protocol and release:</strong> no lane, candidate raster, holdout, leakage canary, surface-correlation screen, final-dot comparison, or new-raster validator exists for this branch. No slot or promotion decision was made.</li>
+</ol>
+<p>For a future assigned lane, reuse the shared `evaluate_holdout.py`/`submission_writer.py`, hide whole buffered fault segments, derive catalogue features from visible faults only, mask visible faults exactly, and report pooled DTI with the required evaluator/count/95% CI. Stop at the specified leakage or registry-duplicate thresholds.</p>
+<p><strong>Maximize P(Win) · Own the Outcome.</strong> Format validity and download availability are not scientific promotion or upload approval.</p>
+</section>
+<footer class="small">Evidence snapshot date 2026-10-25. Full details and limitations: <a href="REVIEW-ARENA-7564A0E0-20261025.md">three-pass review</a> · machine status: <a href="run-card-7564a0e0.json">JSON run card</a>.</footer>
+</main></body></html>

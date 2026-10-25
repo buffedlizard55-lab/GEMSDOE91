@@ -1,0 +1,147 @@
+{
+  "schema_version": "gems91.active-review-verification.v1",
+  "review_id": "ARENA-7564A0E0-20261025",
+  "branch": "arena/7564a0e0-gemsdoe91",
+  "checked_utc": "2026-10-25",
+  "scope": "Repository, evidence, portal and delivery verification only; no geological experiment or candidate generation.",
+  "preflight": {
+    "command": ".venv/bin/python scripts/preflight.py",
+    "exit_code": 1,
+    "status": "BUILD BLOCKED \u2014 expected fail-closed result",
+    "repository_wide_missing": [
+      "parent_r0_nan"
+    ],
+    "ready_axes": [],
+    "axis_readiness": {
+      "PRUNE": [
+        "parent_r0_nan"
+      ],
+      "MASS": [
+        "parent_r0_nan",
+        "anc_h19_5",
+        "anc_h19_4",
+        "anc_h16_1"
+      ],
+      "SNAP": [
+        "parent_r0_nan",
+        "training_features"
+      ],
+      "CONCENTRATION": [
+        "parent_r0_nan",
+        "training_features"
+      ],
+      "RELIEF": [
+        "parent_r0_nan",
+        "anc_h19_5",
+        "anc_h19_4",
+        "anc_h16_1",
+        "training_features"
+      ],
+      "TRACKB": [
+        "parent_r0_nan",
+        "training_features"
+      ]
+    },
+    "captured_output": "preflight-output.txt",
+    "repository_wide_verified": "1/2",
+    "capacity_preflight": {
+      "command": ".venv/bin/python generate_submission.py --preflight",
+      "exit_code": 1,
+      "status": "BLOCKED \u2014 expected fail-closed result",
+      "assignment_metadata_present": false,
+      "capacity_witness": "UNVERIFIED \u2014 missing data/fleet_registry/calib_r13lattice_00904.tif",
+      "captured_output": "experiment-preflight-output.json",
+      "note": "No archived capacity constant treated as current evidence."
+    }
+  },
+  "existing_research_download": {
+    "command": ".venv/bin/python generate_submission.py --with-data",
+    "result_file": "current-download-verification.json",
+    "exit_code": 0,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "format_ok": true,
+    "reference_checks": "PASS",
+    "raster_sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "submission_ready": false,
+    "zip_sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b"
+  },
+  "download_audit": {
+    "command": ".venv/bin/python scripts/audit_downloads.py --output docs/review-7564a0e0/download-audit.json --html docs/review-7564a0e0/download-audit.html",
+    "report": "download-audit.json",
+    "html": "download-audit.html",
+    "audit_completed": true,
+    "files_checked": 89,
+    "format_pass": 80,
+    "format_fail": 9,
+    "ok_to_submit": false,
+    "scope": "Pinned-reference technical checks only; no scientific/selector approval."
+  },
+  "repo_policy": {
+    "command": ".venv/bin/python scripts/check_artifact_policy.py",
+    "exit_code": 0,
+    "status": "PASS",
+    "registered_prediction_artifacts": 89,
+    "raw_raster_or_archive_tracked": false
+  },
+  "evidence_integrity": {
+    "command": ".venv/bin/python scripts/verify_evidence.py",
+    "exit_code": 0,
+    "status": "PASS",
+    "geological_experiments_rerun": 0,
+    "submission_ready": false
+  },
+  "current_frontdoor": {
+    "command": ".venv/bin/python scripts/verify_frontdoor.py",
+    "exit_code": 0,
+    "status": "PASS",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "scope": "Current research-download pointer only."
+  },
+  "test_suite": {
+    "command": ".venv/bin/python -m pytest -q",
+    "exit_code": 0,
+    "status": "PASS \u2014 full suite completed after second main integration and final portal/README reconciliation",
+    "notes": "Full pytest suite passed after the final source/template reconciliation. Rasterio emitted existing PendingDeprecationWarning messages about affine matrix multiplication."
+  },
+  "targeted_tests": {
+    "command": ".venv/bin/python -m pytest -q tests/test_active_review_522615dd.py tests/test_active_review_7564a0e0.py",
+    "exit_code": 0,
+    "status": "PASS \u2014 15 active/historical review assertions after the final portal-source reconciliation."
+  },
+  "static_checks": {
+    "git_diff_check": "PASS \u2014 git diff --cached --check; no unresolved paths",
+    "run_card_json": "PASS",
+    "source_audit_json": "PASS",
+    "download_audit_json": "PASS",
+    "portal_templates_match_generated_pages": "PASS \u2014 both portal source templates were rendered after the 984c211 main integration",
+    "upstream_artifact_audit": "PASS \u2014 S18-UNIQUE TIFF/ZIP are technical passes; ok_to_submit false",
+    "experiment_preflight_json": "PASS \u2014 refreshed JSON capture; BLOCKED, no candidate generated",
+    "sources_json": "PASS",
+    "audit_count": "89 files / 80 PASS / 9 FAIL; no submission approvals"
+  },
+  "experiment_budget": {
+    "used": 0,
+    "maximum": 3,
+    "weekly_slots_used": 0,
+    "candidate_tiff_created": false,
+    "candidate_holdout_run": false
+  },
+  "upstream_research_demo": {
+    "artifact": "S18-UNIQUE merged from upstream PR #130; not output of this review",
+    "tif_sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+    "zip_sha256": "386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b",
+    "technical_audit": "PASS",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "holdout": "NOT RUN / null",
+    "uniqueness": "NOT CERTIFIED \u2014 portal claims 22.6% vs R0; run card says pending and has no surface-rank-correlation result"
+  },
+  "upstream_main_integration": {
+    "origin_main_commit": "984c211",
+    "upstream_review": "PR #127 / e649 historical review and run card preserved",
+    "active_checkout_difference": "e649 snapshot reported sample absent; active 7564 snapshot verifies pinned sample and existing_faults references, but parent R0/features/capacity witness remain missing",
+    "active_review_and_S18_demo": "S18-UNIQUE remains a separate technical-format-pass research demo; holdout null and uniqueness discrepancy unresolved"
+  }
+}
