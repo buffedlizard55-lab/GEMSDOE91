@@ -180,6 +180,42 @@
       "sha256": "7aee95a4a64ed53d94a7b99030e8eeb8d9fbe7d974ec282f95a7e025692f975f",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of S13-PTHA E3 candidate GeoTIFF (0.244601 HOLDOUT-DTI #1 in GEMSDOE91; fail-closed pending human selector sign-off; docs/run-card-S13.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s14-lsrg-e3-20261024T235900Z-e6540657-zeros.tif",
+      "sha256": "ebeecbcd216813bbbb115c8727ab9ebee00334c1b4a1a5d51e7eddcd2802969f",
+      "status": "current_research_only",
+      "reason": "S14-LSRG E3@44k LiDAR+radiometric candidate GeoTIFF (0.240111 HOLDOUT-DTI below S13-PTHA 0.244601, verdict=negative, IR-91-26 licence unchecked; NOT OK TO SUBMIT; docs/run-card-S14.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s14-lsrg-e3-20261024T235900Z-e6540657-zeros.zip",
+      "sha256": "427c95a6fb284e310c901eafec8a82b87006419aeb5859873e93a751c51e0ec3",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S14-LSRG E3@44k negative research artifact; NOT OK TO SUBMIT (docs/run-card-S14.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s14-lsrg-ff-20261025T004500Z-1fcf17ee-zeros.tif",
+      "sha256": "09f9ca2acdca7c6616df329aad7d0c8d73dec2626b04e6d8619d2b1452ea7359",
+      "status": "current_research_only",
+      "reason": "S14-LSRG-FF post-budget far-field candidate GeoTIFF (0.206822 HOLDOUT-DTI below S13-PTHA 0.244601, IR-91-26 licence unchecked, fail-closed pending human selector sign-off; NOT OK TO SUBMIT; docs/run-card-S14.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s14-lsrg-ff-20261025T004500Z-1fcf17ee-zeros.zip",
+      "sha256": "aed4257ef7300e620cf5e7c93c182dbcfebc0ac1317b3ee815ac87902a92c1d1",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S14-LSRG-FF far-field candidate; fail-closed pending human selector & IR-91-26 licence sign-off; NOT OK TO SUBMIT (docs/run-card-S14.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s15-euas-e3-20261025T053000Z-14c4b900-zeros.tif",
+      "sha256": "6eff023b589293322c481563c9c8a2adbccc8419758080d6a68b161710af21be",
+      "status": "current_research_only",
+      "reason": "S15-EUAS E3 candidate GeoTIFF (0.267958 HOLDOUT-DTI on gems91-hide-recover-v1.0 & v1.1-nohalo, ALL-TIME #1 in GEMSDOE91, +0.023357 vs S13-PTHA E3 0.244601 with paired 95% CI [+0.014291, +0.032134]; 0.103333 Blind USGS SGMC DTI; 109/109 canaries & all 5 format/[0,1] validators CERTIFIED; 0 bytes from IR-91-26 u8 files; PASS <=70% 3px overlap across canonical 0.6100, ext_dotted 0.5612, ext_all_real 0.6100, and siblings 0.6876; fail-closed pending human selector sign-off on weekly 3-slot cap, lane assignment, & IR-CED-003 lattice policy; docs/run-card-S15.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s15-euas-e3-20261025T053000Z-14c4b900-zeros.zip",
+      "sha256": "3e7b706ef3b5d98afc6b53235b96666045b32c8221c019aaf2a19698aafedb73",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S15-EUAS E3 candidate GeoTIFF (0.267958 HOLDOUT-DTI ALL-TIME #1 in GEMSDOE91; fail-closed pending human selector sign-off; docs/run-card-S15.json)."
     }
   ]
 }

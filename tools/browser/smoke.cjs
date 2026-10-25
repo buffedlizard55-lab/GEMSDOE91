@@ -50,6 +50,14 @@ async function main() {
     if (!(await page.getByText('NOT OK TO SUBMIT', { exact: true }).count())) {
       throw new Error('Submission warning is not visible');
     }
+    const s15DownloadEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ Download S15-EUAS E3 GeoTIFF', exact: true }).click();
+    const s15Download = await s15DownloadEvent;
+    const s15Bytes = fs.readFileSync(await s15Download.path());
+    const s15Digest = crypto.createHash('sha256').update(s15Bytes).digest('hex');
+    const s15Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S15.json')));
+    if (s15Digest !== s15Card.raster_sha256) throw new Error('Downloaded S15-EUAS bytes do not match advertised SHA256');
+
     const s13DownloadEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S13-PTHA E3 GeoTIFF', exact: true }).click();
     const s13Download = await s13DownloadEvent;
@@ -70,7 +78,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 'executive-summary.html', 'research.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const target of ['index.html', 'executive-summary.html', 'research.html', 's15-euas.html', 's15-euas-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -94,7 +102,7 @@ async function main() {
 
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const mTarget of ['index.html', 's15-euas.html', 's15-euas-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
@@ -109,6 +117,7 @@ async function main() {
       pages_root_redirect_tested: Boolean(process.env.PORTAL_ENTRY_URL),
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
+      s15_download_sha256: s15Digest,
       s13_download_sha256: s13Digest,
       download_sha256: digest,
       copy_status: copyStatus,
