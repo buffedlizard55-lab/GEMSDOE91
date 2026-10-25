@@ -25,12 +25,17 @@
   },
   "leakage_canary": {
     "threshold_symmetric_auc": 0.9,
-    "note": "Individual feature AUCs checked in prior sessions (max 0.60-0.75); these composite features are derived from same bands and expected PASS.",
+    "note": "PENDING_MEASUREMENT for this exact stack. AUCs from prior sessions do not certify these composite features; test each feature alone and treat symmetric AUC >0.90 as leakage until resolved.",
     "result": "PENDING_MEASUREMENT"
   },
   "registry_uniqueness": {
-    "gate": "duplicate-stop if |Spearman|>0.90 or >70% dots within 3px of one raster",
-    "note": "Capacity-feasible at 20000 dots: lower bound overlap vs synthetic lattice 66.75% <70% (22163 max). Real-raster check pending full restore; design targets intrabasinal curvilinear steps distinct from HGB ridge family.",
+    "status": "PENDING_WITH_CONFLICTING_UPSTREAM_REPORTS",
+    "gate": "duplicate-stop if any |Spearman|>0.90 before placement or >70% of dots fall within 3px after placement against any registry raster",
+    "surface_rank_correlation_max_abs": null,
+    "final_dot_overlap_max_fraction_within_3px": null,
+    "complete_registry_checked": false,
+    "reported_overlap_would_trigger_literal_stop_if_confirmed": true,
+    "note": "The 20,000-dot 66.75% synthetic-lattice figure is a geometric capacity lower bound only, not a final uniqueness PASS or budget authorization. Real full-registry checks are pending. The separate executive guide reports a conflicting 99.6% lattice overlap and partial-set PASS; fail closed, and if >70% is confirmed against any registered raster, stop as duplicate.",
     "capacity_bound": {
       "footprint_pixels": 5167373,
       "uncovered_pixels": 6649,
@@ -38,7 +43,8 @@
       "minimum_overlapping_dots": 13351,
       "overlap_lower_bound": 0.66755,
       "largest_budget_by_capacity_only": 22163,
-      "feasible": true
+      "feasible_by_geometry_only": true,
+      "scope": "Necessary geometric lower bound only; no final registry uniqueness or budget authorization."
     }
   },
   "raster": {
@@ -80,11 +86,11 @@
     "hypothesis_result": "FORMAT-CERTIFIED_DEMO",
     "promote": false,
     "OK_TO_DOWNLOAD": "YES",
-    "OK_TO_SUBMIT": "NO \u2014 RESEARCH DEMO: format PASS but full holdout not measured; human selector must validate slot and decide",
+    "OK_TO_SUBMIT": "NO — RESEARCH DEMO: holdout/canary/full-registry checks pending or conflicting; do not submit or invoke selector",
     "reasons": [
       "Format, CRS, shape, transform, [0,1] range, NaN-free, nodata=None, catalogue-collar PASS \u2014 verified on disk",
-      "Capacity-feasible at 20k dots vs synthetic lattice (66.75% <70%); real-raster uniqueness and holdout pending",
-      "No organizer receipt; submission readiness requires separate human slot verification"
+      "Synthetic-lattice capacity arithmetic (66.75% lower bound) is not a final placement pass; full-registry checks are pending and this card flags the separate guide's conflicting 99.6% lattice-overlap claim. If confirmed for a registered raster, literal >70% means duplicate-stop.",
+      "No organizer receipt. The selector/slot step is prohibited until the holdout, canary, and every-registry uniqueness gates pass."
     ]
   },
   "ok_to_download": true,

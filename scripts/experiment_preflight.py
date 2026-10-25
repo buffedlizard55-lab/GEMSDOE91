@@ -19,7 +19,6 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
-from gems91.capacity import capacity_bound  # noqa: E402
 
 
 def pinned_path(root: Path, relative: str, digest: str, size: int) -> Path:
@@ -35,6 +34,7 @@ def pinned_path(root: Path, relative: str, digest: str, size: int) -> Path:
 def inspect_witness(root: Path, witness_path: str, budget: int) -> dict:
     import numpy as np
     import rasterio
+    from gems91.capacity import capacity_bound
 
     manifest = json.loads((root / 'registry/data_manifest.json').read_text())
     row = next(r for r in manifest['files'] if r['id'] == 'sample_submission')
@@ -84,7 +84,7 @@ def evaluate(root: Path, plan: dict) -> dict:
         reasons.append('Time budget exhausted or invalid (must be below 120 minutes)')
     try:
         capacity = inspect_witness(root, plan['registry_witness'], plan['dot_budget'])
-    except (OSError, ValueError, KeyError, TypeError, StopIteration) as exc:
+    except (ImportError, OSError, ValueError, KeyError, TypeError, StopIteration) as exc:
         capacity = {'status': 'UNVERIFIED', 'error': str(exc)}
         reasons.append('Capacity witness unavailable or invalid; no fallback to archived constants')
     else:

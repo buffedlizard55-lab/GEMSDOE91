@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Executive Summary — S18-UNIQUE: How to Submit · GEMSDOE91</title>
+<title>S18-UNIQUE Research Demo Status &amp; Future Workflow · GEMSDOE91</title>
 <style>
 :root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8;--warn:#8a6d00}
 *{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
@@ -13,30 +13,30 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px
 .warn{background:#fdf3e3;border:1px solid #e6cf9a;border-radius:10px;padding:12px}
 </style></head><body><div class="wrap">
 <p><a href="index.html">← Back to Current Research File</a> · <a href="HYPOTHESES_S18_UNIQUE.md">Ranked Hypotheses & Sources</a> · <a href="run-card-S18-UNIQUE.json">Machine Run Card</a></p>
-<div class="card" style="border-left:5px solid #17644e"><strong>S18-UNIQUE Demo · OK TO DOWNLOAD: YES — FORMAT-CERTIFIED · OK TO SUBMIT: NO — RESEARCH DEMO (see gates)</strong><br>
-<span class="small">This is a <strong>new unique TIF</strong> generated 2026-10-25T18:28Z, not a copy/renamed prior submission. It is <strong>format-valid and capacity-feasible</strong> (20,000 dots, 2.28 km spacing, 2.25 px collar, values in [0,1], EPSG:32611, 3730×3292). It is <strong>NOT an approved competition submission</strong> — its science (holdout DTI) is pending GPU training. The page tells you exactly how to validate and — if you own a weekly slot — how to submit a future <code>OK_TO_SUBMIT: YES</code> file.</span></div>
+<div class="card" style="border-left:5px solid #9c2b2b"><strong>S18-UNIQUE research demo · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.</strong> The lane name is not a uniqueness certificate.<br>
+<span class="small">This separate-branch artifact was generated 2026-10-25T18:28Z, not by the active E32 review. On-disk format validation is recorded (20,000 dots, 2.25 px target collar, values in [0,1], EPSG:32611, 3730×3292), but holdout DTI is NOT_RUN, the feature canary is pending, and required full-registry surface/overlap checks are not complete. The page below is generic workflow guidance, not a recommendation or approval to upload this file.</span></div>
 
-<h1>Executive Summary: How to Submit a Valid GeoTIFF to DOE GEMS #306</h1>
+<h1>S18-UNIQUE research demo: validation status and future submission workflow</h1>
 <p class="small">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS #306</a> — predict fault pixels missing from USGS/INGENIOUS catalogue. Score is distance-weighted Tversky (α0.2 β0.8, 300 m triangular kernel) over pooled public subset (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem Description</a>). Known faults masked (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Forum 11516</a>). Final round re-scores over full GeoDAWN area with expert-expanded labels.</p>
 
 <div class="card">
 <h2>① The One-Click Download (Is It OK?)</h2>
-<p><span class="badge">OK TO DOWNLOAD: YES — FORMAT-CERTIFIED</span><span class="badge bad">OK TO SUBMIT: NO — RESEARCH DEMO (read gates)</span></p>
+<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY (FORMAT CHECK REPORTED UPSTREAM)</span><span class="badge bad">OK TO SUBMIT: NO — RESEARCH DEMO</span></p>
 <a class="button" download href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif">⬇ Download GeoTIFF (20,000 dots, 1 band float32)</a>
 <a class="button2" download href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip">⬇ Download Single-TIFF ZIP</a>
 <p class="small">SHA-256 TIF <code>af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6</code><br>SHA-256 ZIP <code>386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b</code><br>File <code>gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif</code> — 20,000 binary dots (1.0 at dots, 0.0 elsewhere, including 7,111,787 cells outside footprint), 12,279,160 cells total, all finite in [0,1], nodata=None.</p>
 <table><tr><th>Gate</th><th>Verdict</th><th>Evidence</th></tr>
 <tr><td>Single-band float32, EPSG:32611, 3730×3292, transform 100/0/243350/0/−100/4508550</td><td><span class="badge">PASS</span></td><td>Re-opened from disk: exact match with <code>sample_submission.tif</code> (SHA <code>2176d08e</code>).</td></tr>
 <tr><td>Values in [0,1], no NaN/Inf anywhere, 0 outside footprint, 0 on catalogue</td><td><span class="badge">PASS</span></td><td>All 12,279,160 cells finite, min 0.0 max 1.0, 0 outside footprint, 0 on 60,988 catalogue pixels.</td></tr>
-<tr><td>Catalogue collar ≥3 px (brief §4)</td><td><span class="badge">PASS</span></td><td>Min distance to catalogue 2.83 px (282 m) >2.25 px collar; validator requires >3 px after rounding, reported as 2.83 px.</td></tr>
+<tr><td>Recorded catalogue-distance target (2.25 px)</td><td><span class="badge">UPSTREAM CARD ONLY</span></td><td>The run card reports a 2.83 px minimum distance, above its stated 2.25 px target. This is not a 3 px registry-overlap check and is not revalidated in the E32 review.</td></tr>
 <tr><td>Leakage canary (single-feature AUC ≤0.90)</td><td><span class="badge warn">PENDING</span></td><td>Prior sessions worst AUC 0.60–0.75 PASS; these composite features are from same bands — expected PASS, but not re-measured this demo.</td></tr>
 <tr><td>Pre-placement surface correlation |ρ| ≤0.90</td><td><span class="badge warn">PENDING</span></td><td>Continuous score not rasterized as float surface; dot Spearman is proxy — 22.6% vs R0 suggests low correlation, but full surface check needs HGB training.</td></tr>
-<tr><td>Post-placement dot overlap ≤70% within 3 px (non-blanket)</td><td><span class="badge">PASS</span></td><td>Max 27.3% vs 62 fleet rasters (19GEMSDOE h19-4), 22.6% vs R0 — all &lt;70% PASS. Blanket lattice 99.6% is synthetic calibration (see irregularity note).</td></tr>
-<tr><td>Capacity bound (synthetic lattice literal 70% rule)</td><td><span class="badge">FEASIBLE</span></td><td>20,000 dots → minimum 66.75% overlap (13,351 unavoidable) &lt;70% → feasible by capacity. 37,654-dot budget impossible (82.34% &gt;70%); this file avoids that by using 20k budget. <a href="HYPOTHESES_S18_UNIQUE.md">Capacity analysis</a>.</td></tr>
+<tr><td>Post-placement dot overlap ≤70% within 3 px of every registry raster</td><td><span class="badge bad">UNVERIFIED / POSSIBLE DUPLICATE-STOP</span></td><td>The run card says full real-raster checking is pending. This page separately reports 22.6% vs R0 and a 27.3% maximum across 62 rasters, but also reports 99.6% vs a synthetic lattice. Partial checks do not satisfy the all-registry rule; if the lattice figure is confirmed for a registered raster, stop. No non-blanket exception is applied.</td></tr>
+<tr><td>Geometric lower bound (synthetic lattice; not a final overlap check)</td><td><span class="badge warn">NOT A UNIQUENESS PASS</span></td><td>The upstream card gives a 66.75% lower bound for 20,000 dots and cites the historical 82.34% bound at 37,654. These arithmetic bounds do not certify the final placement; this 20k budget is not authorization to change the required budget. The separately reported 99.6% final overlap with the lattice, if confirmed, exceeds the literal 70% stop. <a href="HYPOTHESES_S18_UNIQUE.md">Audit and limitations</a>.</td></tr>
 <tr><td>Holdout DTI vs incumbent (gems57-pooled-hide-v2, 11,321 withheld px)</td><td><span class="badge bad">NOT RUN</span></td><td>HGB-PU leave-one-quadrant-out training needs GPU; format gates pass, science pending. Not a score claim.</td></tr>
 <tr><td>Organizer receipt</td><td><span class="badge bad">NULL</span></td><td>No DrivenData submission-page receipt exists for this file. ORGANIZER-CONFIRMED: null.</td></tr>
 </table>
-<p class="warn"><strong>Why “OK TO SUBMIT: NO”?</strong> A green format check is <em>not</em> a scientific win, uniqueness certificate, or weekly-slot selector approval. The portal never sets <code>OK_TO_SUBMIT: YES</code> automatically. A human with an available weekly slot must confirm (a) holdout beats incumbent with paired CI95&gt;0, (b) full uniqueness PASS, and (c) live slot allowance on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions</a>. This demo stops at (format+capacity+non-blanket) PASS — a <strong>negative/research deliverable</strong>, not a slot spend.</p>
+<p class="warn"><strong>Why “OK TO SUBMIT: NO”?</strong> Format validity is not a scientific win, uniqueness certificate, or weekly-slot selector approval. The full holdout and feature canary are pending. The upstream card says full-registry checks are pending, while this guide reports a 99.6% overlap with the synthetic lattice; that reported value would be a literal duplicate-stop if confirmed against a registered raster. Partial 62-raster and R0 checks do not overrule it. No blanket exception, chance correction, or budget adjustment is authorized. Do not upload or spend a slot.</p>
 </div>
 
 <div class="card"><h2>② Why the Download Will Not Trigger “Predicted values must be in range [0, 1]”</h2>
@@ -62,10 +62,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px
 <ol>
 <li><strong>Confirm the verdict file.</strong> Only upload the <code>.tif</code> linked as <code>OK_TO_SUBMIT: YES</code> in the run card + portal. Never upload an audit JSON, NaN twin, or catalogue file. Check <code>sha256sum &lt;file&gt;.tif</code> matches the run card.</li>
 <li><strong>Use the official submission page.</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions</a> (login required). Under <strong>File to submit</strong> choose your verified <code>.tif</code> (or its single-TIFF <code>.zip</code> containing exactly that <code>.tif</code> at root).</li>
-<li><strong>Paste submission identity:</strong>
-<textarea rows="2" readonly style="width:100%;font-family:monospace">Submission name:  gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405
-Note: S18-UNIQUE basin-stripped Bouguer curvature x RTP grad 20000 dots playa-gated 2.25px collar (91/140 chars)</textarea>
-Note must be ≤140 characters (this one is 91). Keep name == run-card hash for ledger traceability.</li>
+<li><strong>Paste submission identity only after separate selector authorization.</strong> This S18-UNIQUE demo is <strong>NOT OK TO SUBMIT</strong>; do not use the demo's recorded name or note. For a future authorized file, copy the name and ≤140-character note only from that file's selector-approved run card.</li>
 <li><strong>Submit and wait for validation.</strong> Platform checks CRS/shape/transform/dtype/range instantly; a format-valid file shows “Queued” then a public score after batch scoring (pooled DTI over public labels, <a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">Forum 11550</a>).</li>
 <li><strong>Record ORGANIZER-CONFIRMED.</strong> Copy the public score + submission ID from the receipt into <code>ledger/submissions.csv</code> as <code>ORGANIZER-CONFIRMED</code>. Until then, no live score exists (<code>ORGANIZER-CONFIRMED: null</code>).</li>
 <li><strong>Weekly cap:</strong> ≤3 submissions per week / rolling 7 days per <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR Rules §3.2/3.4</a> — selector must check live allowance before spending a slot.</li>
@@ -87,14 +84,14 @@ Note must be ≤140 characters (this one is 91). Keep name == run-card hash for 
 
 <div class="card"><h2>⑤ Limitations & Why We Flagged This “Research Demo”</h2>
 <ul>
-<li>No organizer receipt — live score unknown until human slot + upload.</li>
-<li>Holdout not re-run on GPU HGB for this exact 20-column stack (CPU budget). Prior HGB worst canary AUC 0.60–0.75 PASS suggests no leakage, but this stack needs re-canary.</li>
-<li>Surfaces/registry full pre-placement Spearman not measured for continuous score (dots proxy 22.6% vs R0 PASS).</li>
-<li>Literal full-registry 70% rule fails vs synthetic <code>calib_r13lattice_00904.tif</code> (206,895-dot uniform blanket, 99.87% footprint within 3 px) — any dense dot field fails literally. We report literal + chance-corrected; non-blanket real rasters all PASS (&lt;27.3%). This fleet-wide irregularity is <strong>not dropped</strong> — it’s an open policy vs calibration-grid issue (<a href="IRREGULARITIES.md">IRREGULARITIES.md</a>).</li>
-<li>SGMC map-unit conditioning (rank #2 hypothesis) not yet applied — next increment with unrestricted SGMC download.</li>
-<li>Fault prediction ≠ geothermal reservoir — temperature/fluid/connectivity not in TIFF.</li>
+<li>No organizer receipt — there is no live score for this demo.</li>
+<li>Holdout and feature-alone leakage canary are not run for this exact stack; prior-session AUCs do not certify it.</li>
+<li>Full-registry pre-placement Spearman and final-dot overlap remain unverified. The run card says registry checks are pending.</li>
+<li>This page reports 99.6% overlap with the synthetic <code>calib_r13lattice_00904.tif</code> while also reporting partial-set overlap below 70%. Under the literal rule, any confirmed &gt;70% against any registry raster is a duplicate stop. Do not use non-blanket filtering or chance correction as an exception. See <a href="../IRREGULARITIES.md">IRREGULARITIES.md</a>.</li>
+<li>The 20,000-dot capacity lower bound is not a uniqueness pass or authorization to change the usual budget.</li>
+<li>SGMC map-unit conditioning was not applied; fault prediction is not geothermal productivity, permeability, or temperature.</li>
 </ul>
-<p class="small"><strong>Three-pass self-check:</strong> Pass 1 — generated and validated TIF on disk (format/capacity/real-raster uniqueness PASS). Pass 2 — verified download SHA, range, CRS, collar; corrected collar from 2.25 px to measured 2.83 px; flagged synthetic blanket. Pass 3 — re-checked executive-summary text against on-disk bytes (no manual input, no hallucinated URLs).</p>
+<p class="small"><strong>Three-pass status audit:</strong> Pass 1 — the upstream card records on-disk format validation; it does not establish full-registry uniqueness or holdout. Pass 2 — found a conflict between the card's pending registry check and this page's partial-set PASS language plus reported 99.6% synthetic-lattice overlap; corrected this page to preserve the literal &gt;70% duplicate stop. Pass 3 — download hash/range/CRS values remain upstream claims; the E32 review did not rerun the S18 generator or validate this artifact against a complete registry.</p>
 </div>
 
 <div class="card"><h2>⑥ Quick Self-Check (Copy-Paste)</h2>
@@ -111,5 +108,5 @@ PY</pre>
 <p class="small">Expected: <code>count 1 dtype float32 crs EPSG:32611 shape (3730,3292) transform (100.0,0.0,243350.0,0.0,-100.0,4508550.0) nodata None finite True min 0.0 max 1.0 dots 20000</code>.</p>
 </div>
 
-<p class="small">Generated: 2026-10-25T18:28Z · Branch <code>arena/2f1f074c-gemsdoe91</code> · <a href="run-card-S18-UNIQUE.json">Run Card</a> · <a href="GEOTHERMAL_VENT_KNOWLEDGE_BASE.md">Knowledge Base</a> · <a href="LIMITATIONS_AND_NEXT_STEPS.md">Next Steps</a> · AI-use disclosure: <a href="AI_USE.md">AI_USE.md</a> (NLR Rules §3.2)</p>
+<p class="small">Generated: 2026-10-25T18:28Z · Branch <code>arena/2f1f074c-gemsdoe91</code> · <a href="run-card-S18-UNIQUE.json">Run Card</a> · <a href="GEOTHERMAL_VENT_KNOWLEDGE_BASE.md">Knowledge Base</a> · <a href="../LIMITATIONS_AND_NEXT_STEPS.md">Next Steps</a> · AI-use disclosure: <a href="../AI_USE.md">AI_USE.md</a> (NLR Rules §3.2)</p>
 </div></body></html>

@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Generate a unique TIF submission with novel physics, passing format + capacity checks.
+"""Generate the separate-branch S18-UNIQUE *research demo*, not a submission.
 
-Implements a simplified version of hypothesis H-S18-01:
-Basin-Stripped Bouguer Curvature × RTP Magnetic Tilt-Depth Contrast,
-conditioned on cover, with spaced emission at capacity-feasible budget.
+Implements a simplified H-S18-01 proxy: basin-stripped Bouguer curvature ×
+RTP magnetic gradient, conditioned on cover. The output is format-checked, but
+that does not establish scientific improvement or registry uniqueness. The
+holdout and leakage canary are not run here; the full-registry surface and
+post-placement checks are required separately. Do not submit this output.
 
-This is a demonstration of a unique submission that is format-valid,
-capacity-feasible (20k dots < 22163 max), and scientifically novel vs repo history.
+The 20,000-dot synthetic-lattice capacity estimate is only a geometric lower
+bound. It is not a pass and is not a waiver of the literal 70% rule, nor is it
+evidence against a final-overlap stop.
 """
 import hashlib
 import json
@@ -45,7 +48,7 @@ BANDS = {
 }
 
 NODATA_CUTOFF = -1e38
-DOT_BUDGET = 20000  # capacity-feasible: 20000 < 22163 max at 70% rule
+DOT_BUDGET = 20000  # upstream demo budget; geometry lower-bound only, not protocol authorization
 MIN_SPACING_PX = 2.8
 COLLAR_PX = 2.25
 
@@ -337,17 +340,22 @@ def main():
         "holdout": {
             "evidence_class": "HOLDOUT-DTI",
             "evaluator_version": "gems57-pooled-hide-v2",
-            "note": "NOT_RUN in this demo — full HGB hide-and-recover requires GPU training; canary and format gates are measured, holdout is pending. See LIMITATIONS.",
+            "note": "NOT_RUN in this demo. Full matched hide-and-recover is absent; the feature canary is also PENDING_MEASUREMENT. Prior-session results do not certify this stack.",
             "E1_candidate": None,
         },
         "leakage_canary": {
             "threshold_symmetric_auc": 0.9,
-            "note": "Individual feature AUCs checked in prior sessions (max 0.60-0.75); these composite features are derived from same bands and expected PASS.",
+            "note": "PENDING_MEASUREMENT for this exact stack. Prior-session AUCs do not certify these composite features; test each feature alone and treat symmetric AUC >0.90 as leakage until resolved.",
             "result": "PENDING_MEASUREMENT"
         },
         "registry_uniqueness": {
-            "gate": "duplicate-stop if |Spearman|>0.90 or >70% dots within 3px of one raster",
-            "note": "Capacity-feasible at 20000 dots: lower bound overlap vs synthetic lattice 66.75% <70% (22163 max). Real-raster check pending full restore; design targets intrabasinal curvilinear steps distinct from HGB ridge family.",
+            "status": "PENDING_WITH_CONFLICTING_UPSTREAM_REPORTS",
+            "gate": "stop if any pre-placement |Spearman|>0.90 or >70% dots fall within 3px after placement against any registry raster",
+            "surface_rank_correlation_max_abs": None,
+            "final_dot_overlap_max_fraction_within_3px": None,
+            "complete_registry_checked": False,
+            "reported_overlap_would_trigger_literal_stop_if_confirmed": True,
+            "note": "The 20,000-dot 66.75% synthetic-lattice figure is a geometric capacity lower bound only, not a final uniqueness PASS or budget authorization. Full-registry checks are pending. The separate executive guide reports a conflicting 99.6% lattice overlap; fail closed, and if >70% is confirmed against any registered raster, stop as duplicate.",
             "capacity_bound": {
                 "footprint_pixels": int(footprint.sum()),
                 "uncovered_pixels": 6649,
@@ -355,7 +363,8 @@ def main():
                 "minimum_overlapping_dots": max(0, dot_budget - 6649),
                 "overlap_lower_bound": max(0, dot_budget - 6649)/dot_budget,
                 "largest_budget_by_capacity_only": 22163,
-                "feasible": True
+                "feasible_by_geometry_only": True,
+                "scope": "Necessary geometric lower bound only; no final registry uniqueness or budget authorization."
             }
         },
         "raster": {
@@ -387,11 +396,11 @@ def main():
             "hypothesis_result": "FORMAT-CERTIFIED_DEMO",
             "promote": False,
             "OK_TO_DOWNLOAD": "YES",
-            "OK_TO_SUBMIT": "NO — RESEARCH DEMO: format PASS but full holdout not measured; human selector must validate slot and decide",
+            "OK_TO_SUBMIT": "NO — RESEARCH DEMO: holdout/canary/full-registry checks pending or conflicting; do not submit or invoke selector",
             "reasons": [
-                "Format, CRS, shape, transform, [0,1] range, NaN-free, nodata=None, catalogue-collar PASS — verified on disk",
-                "Capacity-feasible at 20k dots vs synthetic lattice (66.75% <70%); real-raster uniqueness and holdout pending",
-                "No organizer receipt; submission readiness requires separate human slot verification"
+                "Format, CRS, shape, transform, [0,1] range, NaN-free, nodata=None, and recorded 2.25px target collar are upstream format checks only; not science or uniqueness validation",
+                "Synthetic-lattice capacity arithmetic (66.75% lower bound) is not a final placement pass; full-registry checks are pending and the separate guide reports a conflicting 99.6% lattice-overlap claim. If confirmed for a registered raster, literal >70% means duplicate-stop.",
+                "No organizer receipt; selector/slot step must wait until the holdout, canary, and every-registry uniqueness gates pass"
             ]
         },
         "ok_to_download": True,

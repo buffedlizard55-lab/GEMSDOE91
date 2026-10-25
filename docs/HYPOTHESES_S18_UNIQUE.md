@@ -1,15 +1,15 @@
-# Hypotheses S18-UNIQUE — Five Ranked Geological Hypotheses Not Tested in Repo History
+# Hypotheses S18-UNIQUE — Five Ranked Proposals and a Research-Demo Audit
 
-**Branch:** `arena/2f1f074c-gemsdoe91` (active)
+**Branch:** `arena/2f1f074c-gemsdoe91` (historical source branch; its artifact was merged upstream)
 **Generated:** 2026-10-25T18:30Z
-**Lane Declared:** S18-UNIQUE — Basin-Stripped Bouguer Curvature × RTP Magnetic Gradient
-**Status:** One demo raster emitted; full holdout pending. This doc frozen before any S18 holdout DTI was computed.
+**Lane self-declared, not externally assigned:** S18-UNIQUE — Basin-Stripped Bouguer Curvature × RTP Magnetic Gradient
+**Status:** One format-validated demo raster emitted; HOLDOUT-DTI not run, feature-alone canary pending, and full-registry uniqueness unverified. This doc was frozen before any S18 holdout DTI was computed.
 **Core Values:** Maximize P(Win) · Own the Outcome
 **Sources:** All claims anchored to official government / peer-reviewed sources with manual-review links; no hallucinations.
 
 ---
 
-## 1. Why GEMSDOE32 (`0.2778` USER-REPORTED-UNVERIFIED) Was Highest Fleet Score
+## 1. Why GEMSDOE32's reported `0.2778` might have resulted (not causal proof)
 
 **Artifact Provenance (verified SHA-256, `registry/data_manifest.json`):**
 
@@ -84,13 +84,14 @@
 
 **Instrument:** `vendor/gems57/evaluate_holdout.py` `gems57-pooled-hide-v2`, pooled DTI α0.2 β0.8 300 m triangular kernel, 20 km physical-block bootstrap, 606 withheld components (11,321 px on seed 20; 60,988 px on full v2 with 80 px buffer). Training: leave-one-quadrant-out HGB-PU, visible faults only, 2.25 px collar.
 
-**Gates before holdout:**
-- Leakage canary: each feature alone AUC ≤0.90 (prior worst 0.601–0.75, expected PASS)
-- Pre-placement surface |Spearman| ≤0.90 vs all registry rasters
-- Post-placement dot overlap ≤0.70 (non-blanket) / chance-corrected for blankets
-- Demo here validates format + capacity + non-blanket real-raster overlap (22.6% vs R0, <70% PASS). Full HGB holdout requires GPU training — noted as limitation, not skipped.
+**Required gates before any selector step:**
+- Leakage canary: test each feature alone; symmetric AUC >0.90 is leakage until resolved. This demo's canary is `PENDING_MEASUREMENT`; prior-session AUCs do not certify this stack.
+- Pre-placement surface rank correlation: compare against every registry raster and stop if any |ρ| >0.90. This check is not recorded as complete for the demo.
+- Post-placement dot overlap: compare against every registry raster and stop if >70% of dots are within 3 px of any one raster. No non-blanket, chance-corrected, or partial-registry exception is authorized by the standing protocol.
+- Upstream evidence conflicts: the run card says the real-raster comparison is pending full restore; this executive file reports partial checks on 62 rasters and also reports 99.6% overlap with a synthetic lattice. The 22.6% R0 / 27.3% partial-fleet figures cannot establish a full-registry pass. If the reported lattice overlap is correct and that raster is in the registry, it is a literal duplicate-stop. None of these figures was remeasured by the E32 review.
+- The 20,000-dot synthetic-lattice capacity bound is arithmetic only, not a uniqueness pass or authorization to change the usual budget. Full HGB holdout and paired CI are also not run.
 
-**If holdout Δ(E1−E0) CI95 lower bound >0 and non-blanket uniqueness PASS → promote to selector. Else negative deliverable (this demo is format-pass, science-pending).**
+**Promotion condition:** only a resolved feature canary, |ρ| ≤0.90 against every registry surface, ≤70% within 3 px against every registry raster, and a matched HOLDOUT-DTI improvement with paired 95% CI entirely above zero could make an artifact eligible for a separate selector review. Any stop condition remains negative; no selector is invoked here.
 
 ---
 
@@ -117,10 +118,10 @@
 
 ## 5. Limitations & What We Need Next
 
-1. **Holdout not re-run on GPU HGB** — demo is format + capacity + real-raster uniqueness PASS (22.6% vs R0 <70%), but pooled DTI vs incumbent needs full leave-one-quadrant-out HGB-PU training (GPU needed). Treat as science-pending, not live-score claim.
-2. **SGMC map-unit conditioning not applied** — demo uses basin-stripping only; adding SGMC interior-vs-boundary gate is next increment (source verified obtainable).
-3. **Landsat thermal (H-S18-05) blocked** — needs unrestricted network to fetch from [USGS EarthExplorer](https://earthexplorer.usgs.gov/) / [AWS landsat-pds](https://registry.opendata.aws/landsat).
-4. **Synthetic lattice blanket irregularity** — literal full-registry 70% rule fails for any dense dot field due to `calib_r13lattice_00904.tif` (206,895 dots, 99.87% footprint coverage within 3 px). We report literal + chance-corrected; non-blanket real submissions are the informative check (22.6% here). Do not optimize anti-lattice noise.
-5. **DTI ≠ geothermal productivity** — fault prediction ≠ permeable reservoir; temperature, fluid, connectivity not measured by TIFF.
+1. **Holdout not run** — the demo is format-validated only; pooled DTI and paired CI versus a matched incumbent are absent. Do not treat it as a science result or score.
+2. **Canary and continuous-surface check pending** — the demo stack needs feature-alone leakage checks and pre-placement comparison with every registry surface.
+3. **Full-registry overlap unresolved; reported exception is not allowed.** This executive file reports 22.6% vs R0 and at most 27.3% across 62 rasters, but also reports 99.6% vs the synthetic lattice; the run card says full real-raster checks are pending. The former partial checks cannot overrule the latter or substitute for the all-registry rule. If 99.6% is confirmed against a registered raster, stop as duplicate. No chance correction or “non-blanket” waiver is applied.
+4. **The 20,000-dot budget is not an approved workaround.** A 66.75% geometric lower bound against a synthetic lattice is not a final placement comparison, not a uniqueness pass, and does not resolve the separately documented 37,654-dot capacity conflict. Do not change the required budget or optimize against the lattice without protocol authorization.
+5. **SGMC/Landsat and geological interpretation remain limited.** SGMC conditioning was not applied; exact Landsat footprint/scene suitability was not checked. Fault mapping is not geothermal productivity, permeability, or temperature.
 
-**Next Session:** Train full HGB-PU on `gems57-pooled-hide-v2` with 20-column VAD-augmented stack, validate paired CI95 >0, then selector decides slot.
+**Next step:** do not run this lane unless the coordinator assigns it. If assigned, first obtain authorized pinned inputs and the full registry; reconcile the conflicting 99.6% claim, run the leakage canary and pre-placement test, then compare final dots to every registry raster. Run the required matched spatial holdout only after those gates, and leave any selector/slot decision separate.

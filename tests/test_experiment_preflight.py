@@ -120,6 +120,19 @@ def test_cli_missing_plan_is_machine_readable_and_nonzero(tmp_path):
     assert json.loads(result.stdout)['status'] == 'BLOCKED'
 
 
+def test_cli_missing_scientific_dependencies_fails_closed_as_json():
+    # -S disables site packages, reproducing a clean interpreter before install.
+    result = subprocess.run([sys.executable, '-S', str(ROOT / 'generate_submission.py'),
+                             '--preflight'], capture_output=True, text=True)
+    assert result.returncode == 1
+    report = json.loads(result.stdout)
+    assert report['status'] == 'BLOCKED'
+    assert report['ok_to_submit'] is False
+    assert report['candidate_generated'] is False
+    assert 'No module named' in report['capacity']['error']
+    assert result.stderr == ''
+
+
 def test_repository_plan_does_not_invent_assignment():
     p = json.loads((ROOT / 'registry/experiment_plan.json').read_text())
     assert p['lane'] is None
