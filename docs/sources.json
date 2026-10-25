@@ -79,7 +79,7 @@
   },
   {
     "claim": "Full-resolution 100 m GeoDAWN numerical stack (19 float32 bands) and Band 03 two-cell central-difference scale factor (200.024 m vs Band 09 nT/m)",
-    "source": "DOE OpenEI Geothermal Data Repository — GeoDAWN Great Basin Numerical Features",
+    "source": "DOE OpenEI Geothermal Data Repository \u2014 GeoDAWN Great Basin Numerical Features",
     "url": "https://gdr.openei.org/submissions/1618",
     "verification": "Official GDR link (host outside sandbox allowlist). Local pinned data/bridge/gems-geodawn-numerical-features.tif SHA256-verified on 2026-10-24; full-resolution 512x512 window derivative audit proved med(B03 / ||grad_m(B14)||) = 200.0242 and R^2(B13 ~ B15) = 0.4664."
   },
@@ -100,5 +100,17 @@
     "source": "NASA JPL OPERA L3_DISP_S1 (ASF DAAC)",
     "url": "https://www.jpl.nasa.gov/go/opera/products/disp-product-suite",
     "verification": "Official open NASA/JPL product lead; not fetched in-sandbox because jpl.nasa.gov and asf.alaska.edu are outside sandbox outbound allowlist. Logged as unrun external hypothesis H12-5."
+  },
+  {
+    "claim": "Session 14 label-blind verification: Band 10/16 positive swarm correlation; Salem tilt-depth distribution; B13-vs-B15 and B17-vs-B15 confounding; GDR thermal/blind-geothermometry cell counts and elevation bias",
+    "source": "S14 in-repo forensic receipt (scripts/verify_s14_forensics.py)",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/08009ce4-gemsdoe91/evidence/s14_hydrothermal_forensics.json",
+    "verification": "Measured locally from SHA-pinned inputs without reading existing_faults.tif or dist_known_fault_px: r(log1p B10, log1p B16)=0.735476; R2(B13~B15)=0.458512; R2(B17~B15)=0.004954; 2,060 Hot/Warm cells and 212 non-Hot/Warm cells with geothermometry >=90 C."
+  },
+  {
+    "claim": "S14-HVDC E2 measured result and unique range-safe GeoTIFF identity",
+    "source": "S14 machine-readable run card",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE91/blob/arena/08009ce4-gemsdoe91/docs/run-card-S14.json",
+    "verification": "HOLDOUT-DTI 0.262209 [0.248940,0.275209], 60,988 withheld positives, paired delta +0.017608 vs S13 with CI [+0.009179,+0.026128]; Blind SGMC control 0.110429; not an organizer score. TIFF SHA-256 678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720 re-read and validated."
   }
 ]
