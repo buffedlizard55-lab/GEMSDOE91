@@ -1,0 +1,442 @@
+{
+  "summary": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "hurst_break": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.07104392642125103,
+        "ci95": [
+          0.0631731758784071,
+          0.07904334625083319
+        ],
+        "withheld_positive_pixels": 60988,
+        "tpw": 4033.64393135832,
+        "fpw": 35898.15406152367,
+        "fnw": 56954.35606864169
+      },
+      "gradient_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.053115420787021125,
+        "ci95": [
+          0.04495929682327456,
+          0.06115594508740615
+        ],
+        "withheld_positive_pixels": 60988,
+        "tpw": 3010.929635924621,
+        "fpw": 36469.79021370791,
+        "fnw": 57977.07036407536
+      },
+      "random_null": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.07264347664228565,
+        "ci95": [
+          0.06949299163334095,
+          0.07553409447402935
+        ],
+        "withheld_positive_pixels": 60988,
+        "tpw": 4128.959561540236,
+        "fpw": 36112.456859885046,
+        "fnw": 56859.0404384598
+      }
+    },
+    "best_comparable_control": "random_null",
+    "paired_differences": {
+      "gradient_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.017928505634229902,
+        "ci95": [
+          0.0075558174506266595,
+          0.028583938774133587
+        ],
+        "withheld_positive_pixels": 60988
+      },
+      "random_null": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.0015995502210346263,
+        "ci95": [
+          -0.009883642268606477,
+          0.0075487323738327675
+        ],
+        "withheld_positive_pixels": 60988
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 161,
+      "draws": 1000,
+      "seed": 520819,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "folds": [
+    {
+      "fold": {
+        "fold": 0,
+        "split_version": "label-blind-quadrants-v2",
+        "evaluation_region_label_blind": true,
+        "truth_px": 29319,
+        "evaluation_px": 2449030,
+        "training_domain_px": 2508386,
+        "held_components": 1830,
+        "shared_train_truth_components": 0,
+        "buffer_px": 80,
+        "nearest_training_to_region_px": 80.00624975587844,
+        "held_pixels_without_feature_support": 0,
+        "held_positive_pixels_outside_this_evaluation_region": 244
+      },
+      "budget": 17846,
+      "arms": {
+        "hurst_break": {
+          "tp": 1539.1304510755165,
+          "fp": 17172.06119052673,
+          "fn": 27779.869548924482,
+          "n_truth": 29319,
+          "n_emitted": 17846,
+          "dti": 0.05659100803890172,
+          "coverage": 0.05249600774499528,
+          "tpw": 1539.1304510755165,
+          "fpw": 17172.06119052673,
+          "fnw": 27779.869548924482,
+          "emitted": 17846,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 29319
+        },
+        "gradient_control": {
+          "tp": 1320.4159611157656,
+          "fp": 17316.22923361264,
+          "fn": 27998.584038884233,
+          "n_truth": 29319,
+          "n_emitted": 17846,
+          "dti": 0.04857590547310531,
+          "coverage": 0.045036186811138364,
+          "tpw": 1320.4159611157656,
+          "fpw": 17316.22923361264,
+          "fnw": 27998.584038884233,
+          "emitted": 17846,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 29319
+        },
+        "random_null": {
+          "tp": 1987.2008695972295,
+          "fp": 17098.36937512044,
+          "fn": 27331.79913040277,
+          "n_truth": 29319,
+          "n_emitted": 17846,
+          "dti": 0.07286513590416097,
+          "coverage": 0.06777860328105424,
+          "tpw": 1987.2008695972295,
+          "fpw": 17098.36937512044,
+          "fnw": 27331.79913040277,
+          "emitted": 17846,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 29319
+        }
+      },
+      "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI)",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 29319,
+      "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC"
+    },
+    {
+      "fold": {
+        "fold": 1,
+        "split_version": "label-blind-quadrants-v2",
+        "evaluation_region_label_blind": true,
+        "truth_px": 12596,
+        "evaluation_px": 1366431,
+        "training_domain_px": 3636842,
+        "held_components": 687,
+        "shared_train_truth_components": 0,
+        "buffer_px": 80,
+        "nearest_training_to_region_px": 80.00624975587844,
+        "held_pixels_without_feature_support": 0,
+        "held_positive_pixels_outside_this_evaluation_region": 82
+      },
+      "budget": 9957,
+      "arms": {
+        "hurst_break": {
+          "tp": 1120.7237076634776,
+          "fp": 9457.784854763957,
+          "fn": 11475.276292336523,
+          "n_truth": 12596,
+          "n_emitted": 9957,
+          "dti": 0.09191909372592688,
+          "coverage": 0.08897457190087946,
+          "tpw": 1120.7237076634776,
+          "fpw": 9457.784854763957,
+          "fnw": 11475.276292336523,
+          "emitted": 9957,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 12596
+        },
+        "gradient_control": {
+          "tp": 647.4328682440107,
+          "fp": 9696.872545468921,
+          "fn": 11948.56713175599,
+          "n_truth": 12596,
+          "n_emitted": 9957,
+          "dti": 0.053305691953147695,
+          "coverage": 0.05139987839345909,
+          "tpw": 647.4328682440107,
+          "fpw": 9696.872545468921,
+          "fnw": 11948.56713175599,
+          "emitted": 9957,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 12596
+        },
+        "random_null": {
+          "tp": 854.2372228148374,
+          "fp": 9625.292700400054,
+          "fn": 11741.762777185162,
+          "n_truth": 12596,
+          "n_emitted": 9957,
+          "dti": 0.07017644424276233,
+          "coverage": 0.06781813455182895,
+          "tpw": 854.2372228148374,
+          "fpw": 9625.292700400054,
+          "fnw": 11741.762777185162,
+          "emitted": 9957,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 12596
+        }
+      },
+      "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI)",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 12596,
+      "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC"
+    },
+    {
+      "fold": {
+        "fold": 2,
+        "split_version": "label-blind-quadrants-v2",
+        "evaluation_region_label_blind": true,
+        "truth_px": 9473,
+        "evaluation_px": 564135,
+        "training_domain_px": 4383314,
+        "held_components": 382,
+        "shared_train_truth_components": 0,
+        "buffer_px": 80,
+        "nearest_training_to_region_px": 80.00624975587844,
+        "held_pixels_without_feature_support": 0,
+        "held_positive_pixels_outside_this_evaluation_region": 483
+      },
+      "budget": 4111,
+      "arms": {
+        "hurst_break": {
+          "tp": 629.2498164040506,
+          "fp": 3836.7756941771568,
+          "fn": 8843.75018359595,
+          "n_truth": 9473,
+          "n_emitted": 4111,
+          "dti": 0.07427751988190069,
+          "coverage": 0.06642561135902572,
+          "tpw": 629.2498164040506,
+          "fpw": 3836.7756941771568,
+          "fnw": 8843.75018359595,
+          "emitted": 4111,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 9473
+        },
+        "gradient_control": {
+          "tp": 533.9429911859868,
+          "fp": 3907.69293701563,
+          "fn": 8939.057008814014,
+          "n_truth": 9473,
+          "n_emitted": 4111,
+          "dti": 0.06306368204370169,
+          "coverage": 0.056364719854954795,
+          "tpw": 533.9429911859868,
+          "fpw": 3907.69293701563,
+          "fnw": 8939.057008814014,
+          "emitted": 4111,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 9473
+        },
+        "random_null": {
+          "tp": 631.6654997266785,
+          "fp": 3880.955519907238,
+          "fn": 8841.334500273322,
+          "n_truth": 9473,
+          "n_emitted": 4111,
+          "dti": 0.07448073871880714,
+          "coverage": 0.06668061857137955,
+          "tpw": 631.6654997266785,
+          "fpw": 3880.955519907238,
+          "fnw": 8841.334500273322,
+          "emitted": 4111,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 9473
+        }
+      },
+      "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI)",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 9473,
+      "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC"
+    },
+    {
+      "fold": {
+        "fold": 3,
+        "split_version": "label-blind-quadrants-v2",
+        "evaluation_region_label_blind": true,
+        "truth_px": 9600,
+        "evaluation_px": 787777,
+        "training_domain_px": 4263431,
+        "held_components": 329,
+        "shared_train_truth_components": 0,
+        "buffer_px": 80,
+        "nearest_training_to_region_px": 80.00624975587844,
+        "held_pixels_without_feature_support": 0,
+        "held_positive_pixels_outside_this_evaluation_region": 368
+      },
+      "budget": 5740,
+      "arms": {
+        "hurst_break": {
+          "tp": 744.5399562152761,
+          "fp": 5431.5323220558275,
+          "fn": 8855.460043784724,
+          "n_truth": 9600,
+          "n_emitted": 5740,
+          "dti": 0.08351340956729007,
+          "coverage": 0.07755624543909126,
+          "tpw": 744.5399562152761,
+          "fpw": 5431.5323220558275,
+          "fnw": 8855.460043784724,
+          "emitted": 5740,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 9600
+        },
+        "gradient_control": {
+          "tp": 509.1378153788602,
+          "fp": 5548.995497610724,
+          "fn": 9090.862184621139,
+          "n_truth": 9600,
+          "n_emitted": 5740,
+          "dti": 0.0572603680629684,
+          "coverage": 0.0530351891019646,
+          "tpw": 509.1378153788602,
+          "fpw": 5548.995497610724,
+          "fnw": 9090.862184621139,
+          "emitted": 5740,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 9600
+        },
+        "random_null": {
+          "tp": 655.8559694014914,
+          "fp": 5507.839264457336,
+          "fn": 8944.144030598509,
+          "n_truth": 9600,
+          "n_emitted": 5740,
+          "dti": 0.0735863538649261,
+          "coverage": 0.06831833014598869,
+          "tpw": 655.8559694014914,
+          "fpw": 5507.839264457336,
+          "fnw": 8944.144030598509,
+          "emitted": 5740,
+          "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "spatial_bootstrap_cluster_m": 20000.0,
+          "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI; pooled summary is reportable)",
+          "ci95": null,
+          "ci_status": "not estimated per fold; pooled 95% CI is reported in summary.scores",
+          "withheld_positive_pixels": 9600
+        }
+      },
+      "score_scope": "FOLD-DIAGNOSTIC (not a reportable score; no standalone 95% CI)",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 9600,
+      "evidence_class": "HOLDOUT-DTI-FOLD-DIAGNOSTIC"
+    }
+  ],
+  "scope": "Known-catalogue hide-and-recover over label-blind quadrants; this is not the hidden competition fault set.",
+  "fold_protocol": {
+    "component_rule": "whole 8-connected catalogue components",
+    "quadrants": "fixed and label-blind",
+    "buffer_px": 80,
+    "buffer_m": 8000,
+    "visible_catalogue_mask": "pixel-exact before placement and in evaluation",
+    "withheld_positive_pixels": 60988
+  },
+  "budget": {
+    "global_dots": 37654,
+    "radius_px": 3.0
+  },
+  "bootstrap": {
+    "block_px": 200,
+    "block_m": 20000,
+    "draws": 1000,
+    "seed": 520819
+  },
+  "fold_score_note": "Per-fold HOLDOUT-DTI values are descriptive diagnostics only and have no standalone 95% CI; only pooled 20-km spatial-block summaries in summary.scores are reportable candidate/control scores."
+}

@@ -1,0 +1,56 @@
+{
+  "evidence_class": "LEAKAGE-CANARY-AUC",
+  "statistic": "maximum symmetric feature-alone AUROC (not DTI)",
+  "split": "label-blind feature fields evaluated on catalogue positives vs catalogue-zero proxies",
+  "features": {
+    "effective_hurst_like": {
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.4983831967080978,
+      "symmetric_auc": 0.5016168032919022,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "evidence_class": "LEAKAGE-CANARY-AUC",
+      "catalogue_positive_pixels": 60988
+    },
+    "roughness_break": {
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5565255473824012,
+      "symmetric_auc": 0.5565255473824012,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "evidence_class": "LEAKAGE-CANARY-AUC",
+      "catalogue_positive_pixels": 60988
+    },
+    "gradient_control_b19": {
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5577300102310019,
+      "symmetric_auc": 0.5577300102310019,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "evidence_class": "LEAKAGE-CANARY-AUC",
+      "catalogue_positive_pixels": 60988
+    },
+    "surface": {
+      "statistic": "feature-alone AUROC (not DTI)",
+      "auc": 0.5565255473824012,
+      "symmetric_auc": 0.5565255473824012,
+      "negative_proxy_pixels": 5106385,
+      "threshold": 0.9,
+      "status": "PASS",
+      "caveat": "Catalogue-zero pixels are unlabeled proxies, not verified absence; passing is not proof of no leakage.",
+      "evidence_class": "LEAKAGE-CANARY-AUC",
+      "catalogue_positive_pixels": 60988
+    }
+  },
+  "max_symmetric_auc": 0.5577300102310019,
+  "threshold": 0.9,
+  "interpretation": "AUC >0.90 is treated as leakage until disproven; catalogue-zero pixels are proxies, not verified absences; passing is not proof of independence.",
+  "implementation": "gems91.ced.auc_canary exact empirical AUROC",
+  "catalogue_positive_pixels": 60988
+}

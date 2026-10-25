@@ -1,4 +1,28 @@
-# Current limitations and next steps — S17-LFTG, S17-CPAD, OLC91, S17-CDSC, S17-EULR, S17-CGRD & S16, 2026-10-25
+# Current limitations and next steps — active review `arena/05c6d613-gemsdoe91` (2026-10-25)
+
+## Active review: HURST-BREAK outcome and blockers
+
+- **HOLDOUT-DTI:** HURST-BREAK scored `0.0710439264` on `gems57-pooled-hide-v2` (60,988 withheld positives; 95% CI `[0.0631731759, 0.0790433463]`). The recorded `cpad_e1` comparator is `0.1981826008 HOLDOUT-DTI` on the same evaluator/population (95% CI `[0.1777586280, 0.2178303133]`); the stored artifacts do not provide aligned paired CPAD block terms. HURST-BREAK is a negative research result, not a leaderboard prediction.
+- **Controls and leakage:** every returned feature's canary passed; maximum symmetric feature-alone AUC was `0.5577300` (LEAKAGE-CANARY-AUC, not DTI). The candidate's paired HOLDOUT-DTI difference vs B19 slope control was `+0.0179285` (95% CI `[0.0075558, 0.0285839]`; 60,988 withheld positives; same evaluator), but the difference vs seeded random was `−0.0015996` (95% CI `[−0.0098836, 0.0075487]`; same evaluator/population), so the candidate did not distinguish itself from random.
+- **Registry:** pre-placement surface screening compared 92 locally available indexed rasters; maximum positive Spearman `ρ = 0.0328984`, far below the `>0.90` stop threshold. Three indexed TIFFs were missing, so pre-placement status remains `UNVERIFIED`, and the inventory is not universal. Final dots stopped at the first violation after 52 checks: `76.5603%` of the 37,654 dots were within 3 px of `data/fleet_registry/r14_union_tips10_lat6.tif` (192,231 reference dots), above the 70% team rule. Do not anti-registry-place or call it unique.
+- **Delivery:** no HURST-BREAK TIFF was written (`raster_sha256: null`; writer/format validator not run after the duplicate stop). **New candidate: OK TO DOWNLOAD — NO. OK TO SUBMIT — NO.** The existing OLC91 TIFF remains a research-only download; it is still **not approved for submission**. Zero slots used; one experiment used; do not rerun H11 or HURST-BREAK.
+- **GEMSDOE32 claim:** `0.2778` remains USER-REPORTED / NOT ORGANIZER-CONFIRMED. We reverified the pixel geometry: a 40,199-dot parent becomes the 37,654-dot R0 by removing 2,545 pixels within 200 m of the catalogue and adding none. The immutable GEMSDOE32 project page says no organizer score exists; the internal projection is not a score. The metric makes sparse pruning a plausible mechanism only if removed dots carry false-positive cost without lowering hidden-truth coverage; hidden truth/receipt is absent, so causation is not identifiable.
+- **Research scope:** four geological hypotheses were ranked in `docs/HYPOTHESES_05C6D613.md`; HURST-BREAK was the only one tested. It had been proposed in earlier review text, so this is not a claim of first proposal. Multispectral alteration, seasonal thermal, and measured GNSS-axis candidates remain untested; their sources are official leads, but AOI coverage/access was not checked and they are not approved experiments.
+- **Sources/access:** the official DrivenData problem-description search result and USGS GeoDAWN, Landsat, and EarthScope source records were checked as source leads. No live leaderboard page, organizer submission receipt, target-AOI external data inventory, or rights attestation was obtained. The 19-band stack was restored from its pinned project mirror and hash-verified; that proves mirror identity, not authorization or independent organizer provenance. USGS GeoDAWN’s record identifies CC0, but the exact bridge-processing lineage still needs review.
+
+### Highest-value next steps
+
+1. Keep the negative result and duplicate stop unchanged; do not spend another candidate or submission slot on the Hurst lane.
+2. Resolve the missing three registry rasters and define a complete, versioned comparison scope before any future uniqueness claim. The duplicate gate is a team protocol, not an organizer rule; do not waive it locally.
+3. Obtain an authorized organizer receipt or direct public leaderboard snapshot before classifying any score as ORGANIZER-CONFIRMED. Do not infer from the GEMSDOE Pages page or a live-mirror projection.
+4. Have a human review third-party input provenance/rights and the official source pages. For external candidates, first check scene/station coverage, licenses and data access in the actual study area; do not treat the search-visible source record as proof of usable coverage.
+5. Only after explicit lane assignment and provenance review, preregister one new-source hypothesis (e.g., optical alteration or measured GNSS orientation) with a non-fault mimic and holdout/registry plan. Stay within the three-experiment/two-hour cap.
+
+**Status authority:** [current review](docs/REVIEW-05C6D613-20261025.md) · [run card](docs/run-card-Hurst-Break.json) · [preregistration/results](docs/HYPOTHESES_05C6D613.md) · [front door](docs/index.html). The remaining sections below are retained prior-session context; they are not current-branch outcomes or lane assignments.
+
+---
+
+## Archived session notes
 
 This replaces the stale statement that real data cannot be restored. All 15 pinned
 competition and reference inputs in `registry/data_manifest.json` (`sample_submission.tif`,

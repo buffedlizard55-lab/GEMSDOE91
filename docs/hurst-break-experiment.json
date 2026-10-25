@@ -1,0 +1,10 @@
+{
+  "run_id": "HURST-BREAK-v1-20261025",
+  "status": "STOPPED_FINAL_DOT_DUPLICATE",
+  "started_utc": "2026-10-25T18:30:16.241152+00:00",
+  "preregistration_sha256": "b9c3bc0a4b9e41162c1e56011c80d5af9013f52993805c5d7dfad3449d113d55",
+  "experiment_count": 1,
+  "max_experiments": 3,
+  "max_elapsed_seconds": 7200,
+  "completed_utc": "2026-10-25T18:31:11.939266+00:00"
+}

@@ -1,5 +1,7 @@
 # OLC91 — preregistration (written before any experiment ran)
 
+> **Evidence correction from active review `arena/05c6d613-gemsdoe91` (2026-10-25):** The claimed `0.2778` is USER-REPORTED, not ORGANIZER-CONFIRMED. The immutable GEMSDOE32 project page states “NO ORGANISER SCORE EXISTS” for any artifact in that repository and labels its projected value “a MODEL, not a score.” The raster-only fact reverified here is a 40,199-dot parent pruned to a 37,654-dot exact subset by removing 2,545 pixels within 200 m of the catalogue, with no additions. All causal language and score-gain values below are hypotheses/user-reported context, not verified hidden-score effects. See [the current audit](REVIEW-05C6D613-20261025.md) and [pixel forensics](s16/gems32-forensics.json).
+
 **Lane (single method paragraph).** No lane was supplied in the prompt, so this session
 declares one: *Oriented Line-integral Coherence (OLC).* A positive-unlabeled (PU)
 gradient-boosting posterior is trained on the 19 official GeoDAWN numerical bands plus their
@@ -14,12 +16,11 @@ are suppressed, such as an outcrop patch, an alluvial fan or a magnetic body. Th
 
 Run date 2026-10-25. Branch `arena/3444a6d3-gemsdoe91`. Budget: 3 experiments / 2 hours.
 
-## 1. Why GEMSDOE32 `h33-h33-2-b2-…-e5eb6e7e-zeros` scored 0.2778 (USER-REPORTED)
+## 1. GEMSDOE32's `0.2778` claim and reverified raster lineage
 
-Exact lineage, verified pixel by pixel in this session (`work/forensics_r0.json`; the
-containment check is in `docs/run-card-OLC91.json`; path typo corrected after the run):
+The value and stepwise scores below are USER-REPORTED; the immutable GEMSDOE32 page says no organizer score exists. Only the raster geometry was independently rechecked here (`work/forensics_r0.json`; containment check in `docs/run-card-OLC91.json`). These score claims were not reproduced with hidden truth, an authenticated leaderboard, or a submission receipt.
 
-| Step | Raster | Dots / px | Change | Live (user-reported) |
+| Step | Raster | Dots / px | Geometry / claimed change | User-reported live-value claim |
 |---|---|---:|---|---:|
 | 0 | `h16-1` topo+geophys multiscale ridges | 123,939 px | base ridge network | 0.1855 |
 | 1 | `h19-5` power-law-budget, 4-line corroborated re-gate of h16-1 | 121,131 px in 26,645 fragments (median 2 px) | re-ranked ridge network | 0.1922 |
@@ -27,37 +28,15 @@ containment check is in `docs/run-card-OLC91.json`; path typo corrected after th
 | 3 | `solo` | 40,199 = d2-8 − 3,891 dots at **exactly 1.0 px** from the catalogue | collar prune 1 | 0.2708 |
 | 4 | **R0 `h33-2-b2`** | 37,654 = solo − 2,545 dots at **√2–2.0 px** | collar prune 2 | **0.2778** |
 
-Mechanism, with the metric verified on the official problem page (k(d) = max(1 − d/300 m, 0),
-TP = Σ_truth max p·k, FP = Σ p·(1 − max k), DTI = TP/(TP + 0.2 FP + 0.8 FN)):
+The official problem description specifies a distance-weighted Tversky index with 300 m triangular support and α=0.2, β=0.8. That metric makes sparse pruning a plausible mechanism, but it does not verify a submitted score:
 
-1. **The surface is a catalogue-blind lineament network.** 70% of R0's dots are more than
-   1 km from any mapped fault. The dot-to-catalogue distance histogram tracks the area
-   histogram, with lift 0.8–2.1 in every band. The score therefore comes from h19-5 finding
-   lineaments *everywhere*, not from hugging known faults.
-2. **Dotting is the largest gain (+0.068).** Under the max-kernel TP, a truth pixel is credited
-   once by its best dot, but every emitted pixel pays FP. Dots 3 px apart keep most of the
-   300 m coverage at about 36% of the mass.
-3. **Collar pruning (+0.0108, then +0.0070).** Known-fault pixels are masked from scoring (DrivenData
-   staff, forum 11516). A dot 1–2 px from a mapped trace spends most of its kernel on masked
-   or empty ground. The observed gains match those dots carrying ≈0 credit.
-4. **Implied geometry of the public truth.** Inverting the two prune steps (pooled scoring, staff
-   forum 11550) gives T ≈ 5.1–5.5k·φ, G ≈ 12.5–14.5k·φ, coverage T/G ≈ 0.38 and
-   FP/G ≈ 2.4, where φ is the unknown public fraction. Rounding intervals of the two steps do
-   not overlap, so the removed dots were not exactly zero-credit or φ differs by subset; this
-   is flagged. Reaching the public top of 0.4413 would need coverage ≈ 0.62 at the same FP:
-   **a better localiser, not a better emitter.**
-5. **What the evidence says about where new faults are.** Pure proximity lanes scored *below
-   uniform random*: km-faultzone 0.0106, relay-ramp 0.0053, basement-step 0.0009, against
-   ≈0.052 expected for 37,654 uniform dots. Dots 1–2 px from the catalogue earned ≈0. Live
-   new faults are therefore depleted near mapped faults. A hide-and-recover holdout that hides
-   components clustered with visible faults will *over-reward* proximity. This is why
-   catalogue-context features are excluded from every arm here.
+1. **Reverified geometry, not score causation.** The 37,654-dot R0 is an exact subset of the 40,199-dot parent after 2,545 catalogue-proximate pixels (≤2 px) are removed; no dots are added. This establishes a delete-only distance prune, not that a score improved or why.
+2. **Plausible metric mechanism.** Under a max-kernel TP, redundant predictions may add false-positive cost while contributing little additional truth coverage. Removing them could improve DTI only if the lost weighted TP is smaller than the FP-cost reduction. Hidden truth is unavailable here, so the net effect is unidentified.
+3. **Claimed stepwise gains are not measured here.** The user-reported sequence implies 0.1922→0.2600 on dotting and 0.2600→0.2708→0.2778 on two pruning steps. Those differences are arithmetic on unverified claims, not reproduced `HOLDOUT-DTI` scores or organizer receipts; they cannot establish that the operations caused the reported changes.
+4. **Any top-score comparison is also unverified.** The often-cited 0.4413 appears in an S18 source record but was not freshly fetched or independently confirmed in this checkout. The ≈0.62 coverage figure in the earlier discussion is a model inversion conditioned on reported values, not an observed score or validated requirement.
+5. **Other proximity numbers are not evidence in this review.** The inherited 0.0106 / 0.0053 / 0.0009 values and ≈0.052 random comparison lack a verified organizer receipt and are not presented here as `HOLDOUT-DTI`; no conclusion about the distribution of new faults follows from those claims alone.
 
-**Can we beat 0.2778?** Not demonstrably offline. R0 was built with the full catalogue, so it
-cannot be scored on any hide-and-recover split, and no offline instrument has a verified
-calibration to the live board. 19GEMSDOE measured Spearman ρ = +0.11 for known-fault proxies
-across 15 live files. This lane can only show that OLC beats the incumbent recipe on identical
-folds. Any live number stays unknown until an organizer receipt exists.
+**Can this method be shown to beat the reported 0.2778?** Not with the available offline evidence. R0 was built with the full catalogue, so it cannot be evaluated as a proper held-out candidate on these hide-and-recover folds, and no offline instrument has a verified calibration to the live board. A prior 19GEMSDOE source record reports Spearman ρ = +0.11 for known-fault proxies across 15 live files; that statistic was not recomputed in this review. This lane could only test OLC against a comparable incumbent on identical folds. Any live-score claim remains unknown until an organizer receipt exists.
 
 ## 2. Ranked untried hypotheses
 
@@ -109,17 +88,15 @@ folds. Any live number stays unknown until an organizer receipt exists.
 **Experiment 1 (seed 20): NEGATIVE.** HOLDOUT-DTI, `gems57-pooled-hide-v2`, 11,321 withheld
 positive px in 606 whole components, LOQO models, identical emission for every arm:
 
-| Arm | HOLDOUT-DTI | 95% CI | NW | NE | SW | SE |
+| Arm | Pooled HOLDOUT-DTI | 95% CI | NW fold diagnostic | NE fold diagnostic | SW fold diagnostic | SE fold diagnostic |
 |---|---:|---|---:|---:|---:|---:|
 | E1 OLC √(p·C) | 0.083186 | [0.066866, 0.100482] | 0.0811 | 0.0980 | 0.0653 | 0.0922 |
 | E0 incumbent recipe | 0.085260 | [0.068716, 0.102299] | 0.0814 | 0.1011 | 0.0683 | 0.0936 |
 | RND floor | 0.043165 | [0.037666, 0.048476] | 0.0364 | 0.0422 | 0.0446 | 0.0475 |
 
-Paired Δ(E1 − E0) = −0.002075, 95% CI [−0.004543, +0.000236]. E1 was lower in 4/4 folds, so
-the preregistered rule says: no promotion and no seed-21 replication. E0 vs RND = +0.0400
-[+0.0240, +0.0569]: the posterior carries real signal, about 2× the random floor.
+The four per-fold values are descriptive diagnostics only, without standalone 95% CIs; the reportable scores are the pooled values and intervals above. Paired E1−E0 = `−0.0020745794 HOLDOUT-DTI` (same evaluator and 11,321 withheld positives), 95% CI [−0.0045433461, +0.0002357064]. E1 was lower in 4/4 folds, so the preregistered rule says: no promotion and no seed-21 replication. Paired E1−RND = `+0.0400209384 HOLDOUT-DTI` (same evaluator/population), 95% CI [+0.0240261042, +0.0568989031].
 
-**Leakage canary: PASS.** Worst single feature is `grad_det_elev_slope`, symmetric AUC 0.601.
+**Leakage canary: PASS.** Worst individual feature, `grad_det_elev_slope`, had `0.601 LEAKAGE-CANARY-AUC` (not DTI).
 
 **Coverage by distance of the withheld truth to the visible catalogue:**
 
