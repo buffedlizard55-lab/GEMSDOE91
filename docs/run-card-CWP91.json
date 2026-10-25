@@ -322,5 +322,6 @@
   "raster_sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
   "ok_to_submit": false,
   "submission_ready": false,
-  "result": "negative"
+  "result": "negative",
+  "merge_note": "Merged as a namespaced parallel session (docs/cwp91.html, docs/cwp91-executive-summary.html); merged main's front door and generate_submission.py belong to the HEXFAR91/OLC91 machinery, not to CWP91. Raster bytes, holdout numbers and verdict unchanged. Uniqueness measured vs the 95-raster pre-merge registry; merged main added HEXFAR/CPAD/CWPC rasters (comparisons only grow; the 90.8% OLC91 duplicate-stop stands)."
 }

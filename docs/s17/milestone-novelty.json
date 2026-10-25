@@ -1,0 +1,77 @@
+{
+  "milestones": [
+    {
+      "label": "GEMSDOE32 R0 (unscored parent)",
+      "file": "GEMSDOE32__h33-2-b2-zeros.tif",
+      "preplacement_spearman_rho": 0.07462203495539106,
+      "final_dot_spearman_rho": 0.029016346781667025,
+      "final_3px_dot_overlap": 0.49267010145004514,
+      "status": "PASS"
+    },
+    {
+      "label": "S14-PTAC E2 (legacy-fold best)",
+      "file": "gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.tif",
+      "preplacement_spearman_rho": 0.12957766633499032,
+      "final_dot_spearman_rho": null,
+      "final_3px_dot_overlap": null,
+      "status": "PASS",
+      "diagnostic_post_stop_3px_overlap": 0.8295533011101078,
+      "diagnostic_post_stop_registry_dots": 44000
+    },
+    {
+      "label": "S14-HVDC E2",
+      "file": "gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif",
+      "preplacement_spearman_rho": 0.12724876904456642,
+      "final_dot_spearman_rho": null,
+      "final_3px_dot_overlap": null,
+      "status": "PASS",
+      "diagnostic_post_stop_3px_overlap": 0.7759866149678653,
+      "diagnostic_post_stop_registry_dots": 50000
+    },
+    {
+      "label": "S15-SCGF E2",
+      "file": "gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif",
+      "preplacement_spearman_rho": 0.12999240495064587,
+      "final_dot_spearman_rho": null,
+      "final_3px_dot_overlap": null,
+      "status": "PASS",
+      "diagnostic_post_stop_3px_overlap": 0.8342805545227598,
+      "diagnostic_post_stop_registry_dots": 44000
+    },
+    {
+      "label": "S16-PGRD (strict label-blind)",
+      "file": "gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
+      "preplacement_spearman_rho": 0.022166688298936272,
+      "final_dot_spearman_rho": null,
+      "final_3px_dot_overlap": null,
+      "status": "PASS",
+      "diagnostic_post_stop_3px_overlap": 0.1496255377914697,
+      "diagnostic_post_stop_registry_dots": 37654
+    },
+    {
+      "label": "S16-PC91",
+      "file": "gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif",
+      "preplacement_spearman_rho": 0.048518650288540036,
+      "final_dot_spearman_rho": null,
+      "final_3px_dot_overlap": null,
+      "status": "PASS",
+      "diagnostic_post_stop_3px_overlap": 0.39424762309449196,
+      "diagnostic_post_stop_registry_dots": 37654
+    },
+    {
+      "label": "CED91",
+      "file": "gems91-ced-v1-20261024-d35670b28c81.tif",
+      "preplacement_spearman_rho": 0.017832788807702105,
+      "final_dot_spearman_rho": null,
+      "final_3px_dot_overlap": null,
+      "status": "PASS",
+      "diagnostic_post_stop_3px_overlap": 0.13531098953630424,
+      "diagnostic_post_stop_registry_dots": 32000
+    }
+  ],
+  "passed_before_stop_count": 50,
+  "max_passed_before_stop_3px_overlap": 0.6168268975407659,
+  "non_calibration_checked": 51,
+  "max_checked_3px_overlap": 0.8724703882721623,
+  "max_checked_rank_corr": 0.04773735349825665
+}

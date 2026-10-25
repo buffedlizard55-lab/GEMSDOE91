@@ -1,0 +1,70 @@
+{
+  "checked_utc": "2026-10-25T15:31:23.756084+00:00",
+  "organizer_confirmed_scores": [],
+  "sources": [
+    {
+      "claim": "Official DrivenData DOE GEMS reference repository uses a U-Net baseline with Tversky loss weights alpha=0.2 (FP) and beta=0.8 (FN) at commit aebe92f7.",
+      "classification": "OFFICIAL_REPOSITORY_FETCHED",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
+      "commit": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0",
+      "verification": "Fetched via GitHub API on 2026-10-25; confirms repository state and Tversky loss weights.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "GEMSDOE32 latest main commit 012e17b2a1 (2026-10-25T09:56:58Z) explicitly marks gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif as UNSCORED and states NO ORGANISER SCORE EXISTS in the repository; user-reported 0.2778 remains an unverified CLAIM.",
+      "classification": "OWNER_REPOSITORY_FETCHED_NOT_ORGANIZER",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/docs/index.html",
+      "commit": "012e17b2a115c3c0d5e7885bea625bf9657c99fc",
+      "verification": "Fetched via GitHub API on 2026-10-25; confirms UNSCORED label and 37,654-dot B2 catalogue-flank prune lineage.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "DOE Geothermal Data Repository (GDR) Submission #1562 (Great Basin WellSpring thermal wells/springs compilation; local in-footprint extract 2,175 records, SHA-256 7671f89c3b85fb6d...). Only geothermometer/temperature columns used; dist_known_fault_px strictly excluded.",
+      "classification": "PUBLIC_FEDERAL_DATA_HASH_PINNED",
+      "url": "https://gdr.openei.org/submissions/1562",
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "verification": "Local CSV bytes verified against registry/data_manifest.json SHA-256 pin; gdr.openei.org host outside sandbox outbound allowlist.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "DOE GDR Submission #1749 (GeoDAWN 20-band 100 m EPSG:32611 numerical feature stack, 418,912,844 bytes, SHA-256 4371c82e3b8339b8...).",
+      "classification": "PUBLIC_FEDERAL_DATA_HASH_PINNED",
+      "url": "https://gdr.openei.org/submissions/1749",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "verification": "Local GeoTIFF bytes verified against registry/data_manifest.json SHA-256 pin; gdr.openei.org host outside sandbox outbound allowlist.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "USGS Open-File Report 2009-1258 / GeoDAWN Terrestrial Gamma-Ray K/U/Th Radiometric Ratios (local footprint-aligned geodawn_rad_u8.tif verified by SHA-256).",
+      "classification": "PUBLIC_FEDERAL_DATA_HASH_PINNED",
+      "url": "https://pubs.usgs.gov/of/2009/1258/",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "verification": "Local GeoTIFF bytes verified against registry/data_manifest.json SHA-256 pin; pubs.usgs.gov outside sandbox outbound allowlist.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "USGS Data Series 1052 State Geologic Map Compilation (derived_sgmc_faults_100m_u8.tif on EPSG:32611 grid used exclusively as independent blind auxiliary control; never used in training or placement).",
+      "classification": "PUBLIC_FEDERAL_DATA_HASH_PINNED",
+      "url": "https://pubs.usgs.gov/ds/1052/",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "verification": "Local GeoTIFF bytes verified against registry/data_manifest.json SHA-256 pin; pubs.usgs.gov outside sandbox outbound allowlist.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "USGS 3DEP / OpenTopography Great Basin 100 m scarp & relief feature mosaic (lidar_scarp_features_u8.tif verified by SHA-256; excluded from Pure-Subsurface specialist).",
+      "classification": "PUBLIC_FEDERAL_DATA_HASH_PINNED",
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "verification": "Local GeoTIFF bytes verified against registry/data_manifest.json SHA-256 pin; usgs.gov outside sandbox outbound allowlist.",
+      "organizer_receipt": false
+    },
+    {
+      "claim": "DrivenData DOE GEMS Competition problem description, leaderboard, and submission portal (weekly slot allowance, live scores, and legal eligibility require manual human check in authenticated browser).",
+      "classification": "OFFICIAL_COMPETITION_PORTAL_UNFETCHED",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+      "verification": "NOT_FETCHED_IN_SANDBOX: drivendata.org is outside sandbox outbound allowlist; user-supplied 0.4413, 0.3195, and 0.2778 remain labelled CLAIM.",
+      "organizer_receipt": false
+    }
+  ]
+}

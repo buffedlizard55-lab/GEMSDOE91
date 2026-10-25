@@ -1,15 +1,14 @@
 {
-  "run_card": "run-card-CWP91.json",
+  "run_card": "run-card-OLC91.json",
   "ok_to_download": true,
   "ok_to_submit": false,
   "scope": "Current research download; format pass is not submission approval",
-  "raster_sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
-  "tif": "downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
-  "zip": "downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.zip",
-  "zip_sha256": "3a8a92aa08c2c7764d321a0b08c05370f3e2b1d0b5c14bf4536b607145d7fa4f",
+  "raster_sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+  "tif": "downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+  "zip": "downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip",
+  "zip_sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b",
   "verdict": "negative",
   "previous_run_cards": [
-    "run-card-OLC91.json",
     "run-card-XG91.json",
     "run-card-GEO91.json"
   ],

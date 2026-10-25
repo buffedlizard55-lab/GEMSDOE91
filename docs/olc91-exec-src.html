@@ -4,11 +4,11 @@
 <style>
 :root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
 *{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
-.wrap{max-width:900px;margin:0 auto;padding:20px}a{color:var(--ok)}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0}
+.wrap{max-width:900px;margin:0 auto;padding:20px}a{color:var(--ok)}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0;overflow-x:auto;overflow-wrap:anywhere}
 .badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}
 .badge.bad{background:#f7e4e4;color:var(--bad)}.small{color:var(--mut);font-size:14px}ol li{margin:10px 0}code{font-size:12px;word-break:break-all}
 .button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:800}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-align:top}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
 </style></head><body><div class="wrap">
 <main id="main">
 <p><a href="index.html">← Current file</a></p>
@@ -19,6 +19,8 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px
 <div class="card" data-submission-ready="false"><h2>1 · The current file and its verdict</h2>
 <a class="button" download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif">↓ Download current GeoTIFF (research)</a>
 <p class="small">SHA-256 <code>35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc</code> · <a download href="downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip">single-TIFF ZIP</a> · <a href="run-card-OLC91.json">JSON run card</a></p>
+<p class="small"><strong>Session 17 (S17-CWPC) Unique GeoTIFF &amp; ZIP:</strong> <a download href="downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif">↓ Download S17-CWPC GeoTIFF (<code>gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif</code> · SHA-256 <code>792af6255a7e1048e5c2053c178feee5f807f5de83b5d07e51617a7164115ec5</code>)</a> · <a download href="downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.zip">Single-TIFF ZIP (SHA-256 <code>e36c855d7ee93fed60ad5d8c18d32d0d4e748ff204539fa638f6e8faca9d24b4</code>)</a> · <a href="run-card-S17-CWPC.json">S17-CWPC Run Card</a> · <a href="HYPOTHESES_S17_CWPC.md">Preregistration</a>.<br>
+<strong>Automated S17-CWPC Status:</strong> <code>OK TO DOWNLOAD: YES (FORMAT-CERTIFIED)</code> · <code>OK TO SUBMIT: NO — RESEARCH NEGATIVE (0 SLOTS SPENT)</code>. Format PASS (EPSG:32611, 3730×3292, float32, nodata=None, all 12,279,160 cells finite in [0,1], 37,654 binary dots, 0 on-catalogue, min catalogue distance 3.1623 px &gt; 3.0 px); Canary PASS (worst AUC 0.62714 ≤ 0.90 across 43 base + 8 auto-context features); Uniqueness PASS vs GEMSDOE32 R0 (34.97% ≤ 70% 3-px overlap) and all 43 repository rasters (max 51.92% ≤ 70%); Holdout science beats random control (+0.051133 on <code>gems57-pooled-hide-v2</code>: E1=0.082658, E2=0.131810, E3=0.122467 HOLDOUT-DTI; v1.1-nohalo=0.086573 HOLDOUT-DTI; Blind SGMC=0.090912), but trails repo best S14-PTAC (0.267782 HOLDOUT-DTI).</p>
 <p><strong>OK TO SUBMIT: NO.</strong> The holdout result is negative (E1 − E0 = −0.0021, CI [−0.0045, +0.0002]), and the post-placement uniqueness check stopped it (76.8% of dots within 3 px of <code>gems91-bhar-e3</code>). Do not spend a weekly slot on it.</p></div>
 
 <div class="card"><h2>2 · Exact steps for any future file whose automated submit verdict is YES</h2>
@@ -32,6 +34,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px
 <p class="small">The initial and final rounds use one selected submission. The final round re-scores against labels expanded by expert review of all submissions, over the whole GeoDAWN area (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a>; <a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">forum 11550</a>).</p></div>
 
 <div class="card"><h2>3 · Why GEMSDOE32 scored 0.2778, and can we beat it?</h2>
+<p class="small"><strong>Session 18 check (2026-10-25):</strong> the public leaderboard snapshot shows 0.4413 as the global #1, not a GEMSDOE entry (PUBLIC-LEADERBOARD). The user-reported 0.2778 is <strong>UNVERIFIED</strong>; it would fall below #50 (#50 = 0.2818). The holdout cannot test the collar mechanism (IR-91-S18-12). Full review: <a href="REVIEW-S18-20261025.md">docs/REVIEW-S18-20261025.md</a>.</p>
 <table><tr><th>Step</th><th>Change</th><th>Live (USER-REPORTED)</th></tr>
 <tr><td>h16-1 → h19-5</td><td>Catalogue-blind topo and geophysics ridge network, re-gated (121,131 px in 26,645 fragments)</td><td>0.1855 → 0.1922</td></tr>
 <tr><td>d2-8</td><td>44,090 dots taken from h19-5 at 2.8 px spacing: about 36% of the mass, with most of the coverage kept</td><td>0.2600</td></tr>
@@ -45,7 +48,9 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px
 <li><strong>A new information source with verified provenance.</strong> The pinned lidar-scarp and radiometric stacks are marked “licence unchecked” and were not used.</li>
 <li><strong>A live-calibrated proxy.</strong> Score the 13 owner-reported anchors on the off-catalogue SGMC control and measure its rank correlation with the live scores before trusting it.</li>
 </ul>
-<p class="small">Details: <a href="HYPOTHESES_OLC91.md">preregistration &amp; results</a> · <a href="olc91/holdout-seed20.json">holdout evidence</a> · <a href="olc91/final-E1.json">registry comparisons</a>.</p><p class="small"><strong>Parallel-session research downloads (all NOT OK TO SUBMIT, each with its own run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">S17-CGRD E2</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>).</p>
+<p class="small">Details: <a href="HYPOTHESES_OLC91.md">preregistration &amp; results</a> · <a href="olc91/holdout-seed20.json">holdout evidence</a> · <a href="olc91/final-E1.json">registry comparisons</a>.</p>
+<p class="small"><strong>Session 17 S17-CPAD E1 research GeoTIFF (0.198183 HOLDOUT-DTI at 37,654 binary dots on canonical <code>gems57-pooled-hide-v2</code> — OK TO DOWNLOAD: YES · OK TO SUBMIT: NO, NOT OK TO SUBMIT):</strong> <a download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.tif">↓ Download S17-CPAD E1 GeoTIFF</a> · <a download href="downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip">↓ S17-CPAD Single-TIFF ZIP</a> · <a href="s17-cpad.html">S17-CPAD audit</a> · <a href="s17-cpad-executive-summary.html">S17-CPAD submission guide</a> · <a href="run-card-S17-CPAD.json">run card</a>.</p>
+<p class="small"><strong>Other parallel-session research downloads (all NOT OK TO SUBMIT, each with its own run card):</strong> <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">S17-CGRD E2</a> (<a href="s17-cgrd.html">audit</a>) · <a download href="downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif">S17-CDSC E1</a> (<a href="s17-cdsc.html">audit</a>) · <a download href="downloads/gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif">XG91 E1</a> (<a href="run-card-XG91.json">run card</a>) · <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">S17-EULR E3</a> (<a href="run-card-S17-EULR.json">run card</a>).</p>
 </div>
 </main>
 </div></body></html>

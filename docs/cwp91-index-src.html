@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Download the current GeoTIFF · GEMSDOE91 CWP91</title>
-<meta name="description" content="One-click download of the current format-validated GeoTIFF with an automated, plain-language verdict on whether it may be submitted.">
+<title>CWP91 session GeoTIFF — research only, do not submit · GEMSDOE91</title>
+<meta name="description" content="One-click download of the CWP91 session GeoTIFF (parallel session; not the current front-door candidate) with an automated, plain-language verdict on whether it may be submitted.">
 <style>
 :root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
 *{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
@@ -27,7 +27,8 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 <div class="hero">
 <div>
 <span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span><span class="badge bad">OK TO SUBMIT: NO</span>
-<h1>New GeoTIFF: download it, but do not submit it.</h1>
+<h1>CWP91 session GeoTIFF: download it for research, do not submit it.</h1>
+<p class="small">Parallel-session page. The repository’s current front-door candidate is on the <a href="index.html">front page</a>; this CWP91 file is preserved here with its own run card and verdict.</p>
 <p class="small">This is the CWP91 session file (2026-10-25): a PU fault posterior weighted by a 1 km catalogue-completeness field. It is computed fresh from the official GeoDAWN feature bands and validated automatically from its written bytes, with no human image inspection. Two automated gates stop it, which makes it <strong>NOT OK TO SUBMIT</strong>.</p>
 <ol class="small">
 <li><strong>Holdout science:</strong> the new idea, completeness-weighted PU (E1), scored 0.0832 HOLDOUT-DTI against 0.0853 for the incumbent recipe (E0) and 0.0857 for a hole-shuffled control (CTL) on identical folds. E1 − E0 = −0.0021, 95% CI [−0.0032, −0.0012]; E1 − CTL = −0.0026, 95% CI [−0.0040, −0.0012]. E1 lost to E0 in all 4 folds.</li>
@@ -37,7 +38,7 @@ textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{ma
 </div>
 
 <div class="card dl" data-submission-ready="false" aria-label="Download current file">
-<strong>CURRENT FILE · CWP91-E1</strong>
+<strong>SESSION FILE · CWP91-E1</strong>
 <div class="status"><span>OK to download</span><strong>YES — research only</strong></div>
 <div class="status"><span>OK to submit</span><strong style="color:var(--bad)">NO</strong></div>
 <div class="status"><span>Values in [0,1], no NaN/Inf</span><strong>PASS</strong></div>

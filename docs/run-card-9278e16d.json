@@ -1,0 +1,120 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "9278e16d-20261025",
+  "branch": "arena/9278e16d-gemsdoe91",
+  "hypothesis": "No candidate tested because no assigned method lane was supplied. Conditional screening priority: residual-endpoint pairing on B02 RTP, B13 isostatic gravity, and B03/B18 gradients; this was previously proposed/deferred, not validated.",
+  "mechanism": "Pair compatible, scale-persistent endpoints in signed local cross-field transfer residuals; a segmented buried fault conduit could produce a finite residual break where a continuous-ridge score is weak.",
+  "named_non_fault_mimic": "Intrusive apophysis, volcanic contact, or magnetic/gravity survey levelling seam.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN \u2014 no lane assignment; no candidate score"
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "NOT RUN \u2014 no candidate surface or dots"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT APPLICABLE \u2014 no new raster"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "experiments_used": 0,
+  "experiment_budget": 3,
+  "elapsed_experiment_seconds": 0,
+  "competition_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "existing_download": {
+    "artifact": "docs/downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif",
+    "sha256": "39aaac68e7640d9914f1f8431bab589ce30eda6bf7a59512e38699f705d21836",
+    "ok_to_download": true,
+    "scope": "latest timestamped merged parallel research artifact; full audit marks format PASS; strict literal blanket-lattice novelty gate fails",
+    "ok_to_submit": false,
+    "holdout_dti": {
+      "label": "HOLDOUT-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "withheld_positives": 60988,
+      "ci95": [
+        0.244333,
+        0.275361
+      ],
+      "value": 0.259972,
+      "note": "historical other-branch result; not generated in this review"
+    }
+  },
+  "verification": {
+    "pytest": "PASS; one expected release integration skip",
+    "restore_data": "PASS; 15 SHA-256 and byte-length pins verified from pinned GitHub mirrors; source authorization not attested",
+    "artifact_policy": "PASS; 83 prediction artifacts registered after HEXFAR91 policy repair",
+    "download_audit": {
+      "format_pass": 74,
+      "format_fail": 9,
+      "files_checked": 83,
+      "ok_to_submit": false
+    },
+    "verify_current_artifact_with_data": "PASS for docs/run-card.json's historical CED91 artifact; submission_ready false",
+    "verify_evidence": "PASS for stated historical evidence scope; no experiments rerun",
+    "verify_s16_with_data": "PASS for historical artifact and its defined checks",
+    "full_pytest": "PASS after merging S18; one expected release integration skip; Rasterio Affine pending-deprecation warnings",
+    "merge_integration": "PASS after registering HEXFAR91 TIFF/ZIP, restoring historical shared evidence card, regenerating canonical portal, merging S18 review/tooling, and rerunning the full suite",
+    "verify_s17": "PASS for S17-CPAD defined artifact/evidence scope; template/catalogue recheck explicitly false",
+    "verify_s18": "PASS for historical S18 sample, leaderboard snapshot, feasibility, and two artifact checks; no experiment rerun"
+  },
+  "portal_current_download": {
+    "artifact": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+    "run_card": "docs/run-card-OLC91.json",
+    "status": "research only; docs/current-run.json remains on OLC91 although the latest timestamped merged artifact is S17-CDSC"
+  },
+  "parallel_artifacts": {
+    "S17-CWPC": {
+      "artifact": "docs/downloads/gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros.tif",
+      "holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 60988,
+        "ci95": [
+          0.105656,
+          0.137559
+        ],
+        "value": 0.122467
+      },
+      "strict_registry_status": "DUPLICATE against blanket lattice; recorded literal overlap 0.99057; not submission-approved"
+    },
+    "HEXFAR91": {
+      "holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+        "withheld_positives": 60988,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "value": 0.0
+      },
+      "strict_registry_scope": "43 local rasters only; not a complete fleet test"
+    },
+    "S17-CDSC": {
+      "artifact": "docs/downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif",
+      "sha256": "39aaac68e7640d9914f1f8431bab589ce30eda6bf7a59512e38699f705d21836",
+      "holdout_dti": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "withheld_positives": 60988,
+        "ci95": [
+          0.244333,
+          0.275361
+        ],
+        "value": 0.259972
+      },
+      "strict_registry_status": "literal 3-px blanket-lattice overlap is above 70%; not submission-ready"
+    }
+  }
+}

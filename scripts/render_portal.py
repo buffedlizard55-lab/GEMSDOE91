@@ -621,6 +621,8 @@ def render():
     # One authoritative current entry point; keep legacy reports in an explicit archive.
     from scripts.render_s16_portal import render as render_current
     render_current(archive_legacy=True)
+    from scripts.render_s17_portal import render as render_s17_cpad
+    render_s17_cpad()
     # GEO91 (2026-10-25) is the newest entry point; inject after S16 so the
     # committed front door matches a fresh render byte-for-byte.
     from scripts.render_geo91_portal import render as render_geo91
@@ -628,9 +630,10 @@ def render():
     # OLC91 (2026-10-25, later session) supersedes GEO91 as the current entry point.
     from scripts.render_olc91_portal import render as render_olc91
     render_olc91()
-    # CWP91 (2026-10-25, completeness-weighted PU session) supersedes OLC91.
-    from scripts.render_cwp91_portal import render as render_cwp91
-    render_cwp91()
+    # CWP91 (2026-10-25, completeness-weighted PU) merged as a namespaced parallel
+    # session (docs/cwp91.html); it does NOT replace the current front door above.
+    # Its pages are built by scripts/render_cwp91_portal.py, deliberately not called
+    # here so a fresh render reproduces the committed entry points byte-for-byte.
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 
