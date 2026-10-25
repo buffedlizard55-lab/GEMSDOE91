@@ -36,7 +36,7 @@ async function main() {
     });
     if (process.env.PORTAL_ENTRY_URL) {
       await page.goto(process.env.PORTAL_ENTRY_URL, { waitUntil: 'networkidle' });
-      await page.waitForURL(new URL('index.html', baseURL).href);
+      await page.waitForURL(url => url.pathname.endsWith('/docs/s16-pc91.html'));
     }
     await page.goto(baseURL, { waitUntil: 'networkidle' });
     const submissionStates = page.locator('[data-submission-ready]');
@@ -72,21 +72,24 @@ async function main() {
     if (dzDigest !== dzCard.raster_sha256) throw new Error('DZ-EDGE research download bytes do not match recorded SHA256');
 
     await page.goto(baseURL, { waitUntil: 'networkidle' });
-    // The current candidate has one obvious download and an automated negative verdict.
-    const s16DownloadEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: '↓ Download S16 research TIFF', exact: true }).click();
-    const s16Download = await s16DownloadEvent;
-    const s16Bytes = fs.readFileSync(await s16Download.path());
-    const s16Digest = crypto.createHash('sha256').update(s16Bytes).digest('hex');
-    const s16Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S16.json')));
-    if (s16Digest !== s16Card.raster_sha256 || s16Card.ok_to_submit !== false) {
-      throw new Error('Current S16 download identity/readiness mismatch');
+    // The current PC91 candidate has an obvious research download and automated negative verdict.
+    const currentDownloadEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: /Download GeoTIFF \(gems91-s16-pc91-/ }).click();
+    const currentDownload = await currentDownloadEvent;
+    const currentBytes = fs.readFileSync(await currentDownload.path());
+    const currentDigest = crypto.createHash('sha256').update(currentBytes).digest('hex');
+    const currentCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S16PC.json')));
+    if (currentDigest !== currentCard.raster_sha256 || currentCard.ok_to_submit !== false || currentCard.verdict !== 'negative') {
+      throw new Error('Current PC91 download identity/readiness mismatch');
     }
-    const s16ZipEvent = page.waitForEvent('download');
+    const currentZipEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: 'Single-TIFF ZIP', exact: true }).click();
-    const s16Zip = await s16ZipEvent;
-    const s16ZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await s16Zip.path())).digest('hex');
-    if (s16ZipDigest !== s16Card.artifact.zip_sha256) throw new Error('Current ZIP download bytes mismatch');
+    const currentZip = await currentZipEvent;
+    const currentZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await currentZip.path())).digest('hex');
+    const expectedZip = currentCard.validator_output.zip_bundle.sha256;
+    if (currentZipDigest !== expectedZip) throw new Error('Current PC91 ZIP download bytes mismatch');
+    await page.screenshot({ path: path.join(output, 'desktop.png'), fullPage: true });
+    await page.goto(new URL('s15-scgf.html', baseURL).href, { waitUntil: 'networkidle' });
     const scgfDlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S15-SCGF E2 GeoTIFF', exact: true }).click();
     const scgfDownload = await scgfDlEvent;
@@ -95,10 +98,10 @@ async function main() {
     if (scgfDigest !== scgfCard.raster_sha256 || scgfCard.submission_ready !== false) {
       throw new Error('S15-SCGF one-click download SHA256 or fail-closed state mismatch');
     }
-    await page.getByRole('button', { name: 'Copy submission note', exact: true }).click();
+    await page.getByRole('button', { name: 'Copy', exact: true }).last().click();
     await page.waitForFunction(() => document.getElementById('copy-status').textContent.length > 0);
     await page.locator('h1').click();
-    await page.screenshot({ path: path.join(output, 'desktop.png'), fullPage: true });
+    await page.screenshot({ path: path.join(output, 'scgf-desktop.png'), fullPage: true });
     // Historical downloads remain testable, but no longer masquerade as the current page.
     await page.goto(new URL('archive-results.html', baseURL).href, { waitUntil: 'networkidle' });
     const s14DownloadEvent = page.waitForEvent('download');
@@ -169,9 +172,9 @@ async function main() {
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
       dzedge_download_sha256: dzDigest,
-      s16_download_sha256: s16Digest,
-      s16_submission_ready: s16Card.ok_to_submit,
-      s16_zip_download_sha256: s16ZipDigest,
+      current_candidate_download_sha256: currentDigest,
+      current_candidate_submission_ready: currentCard.ok_to_submit,
+      current_candidate_zip_download_sha256: currentZipDigest,
       s14_download_sha256: s14Digest,
       s13_download_sha256: s13Digest,
       download_sha256: digest,

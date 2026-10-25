@@ -28,17 +28,18 @@ def main() -> int:
     if not card.get("ok_to_download") or card.get("ok_to_submit"):
         raise SystemExit("Refusing to publish: S16-PC91 must be download=yes, submit=no")
 
-    (DOCS / "index.html").write_text("""<!doctype html>
+    file_link = f"downloads/{artifact.name}"
+    (DOCS / "index.html").write_text(f"""<!doctype html>
 <html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">
 <meta http-equiv=\"refresh\" content=\"0;url=s16-pc91.html\"><title>GEMSDOE91 — current research candidate</title></head>
 <body><main data-submission-ready=\"false\"><h1>OK TO DOWNLOAD: YES — RESEARCH · OK TO SUBMIT: NO</h1>
 <p><strong>NOT OK TO SUBMIT.</strong> This is a research-only GeoTIFF. Its holdout result trails the comparable best and a later experiment variant hit the duplicate-stop rule.</p>
-<p><a href=\"downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif\" download>Download the range-checked research TIFF</a></p>
+<p><a href=\"{file_link}\" download>Download the range-checked research TIFF</a></p>
 <p><a href=\"run-card-S16PC.json\">Run card</a> · <a href=\"s16-pc91.html\">Open the full audit</a> · <a href=\"s16-executive-summary.html\">Executive summary and submission guidance</a> · <a href=\"archive-results.html\">Historical results archive</a></p></main></body></html>\n""", encoding="utf-8")
-    (DOCS / "executive-summary.html").write_text("""<!doctype html>
+    (DOCS / "executive-summary.html").write_text(f"""<!doctype html>
 <html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">
 <meta http-equiv=\"refresh\" content=\"0;url=s16-executive-summary.html\"><title>Executive summary · GEMSDOE91</title></head>
-<body><main data-submission-ready=\"false\"><h1>OK TO DOWNLOAD: YES — RESEARCH. OK TO SUBMIT: NO.</h1><p><strong>NOT OK TO SUBMIT.</strong> This candidate is a measured negative; do not upload it.</p><p><a href=\"downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif\" download>Download the research-only TIFF</a></p><p><a href=\"run-card-S16PC.json\">Run card</a> · <a href=\"s16-executive-summary.html\">Open the current executive summary and future submission guidance</a></p></main></body></html>\n""", encoding="utf-8")
+<body><main data-submission-ready=\"false\"><h1>OK TO DOWNLOAD: YES — RESEARCH. OK TO SUBMIT: NO.</h1><p><strong>NOT OK TO SUBMIT.</strong> This candidate is a measured negative; do not upload it.</p><p><a href=\"{file_link}\" download>Download the research-only TIFF</a></p><p><a href=\"run-card-S16PC.json\">Run card</a> · <a href=\"s16-executive-summary.html\">Open the current executive summary and future submission guidance</a></p></main></body></html>\n""", encoding="utf-8")
     (DOCS / "current-run.json").write_text(json.dumps({
         "run_card": "run-card-S16PC.json",
         "candidate": card["submission_name"],

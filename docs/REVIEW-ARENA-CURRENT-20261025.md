@@ -56,7 +56,7 @@ Read README standing brief and current run cards, inspected the PC91 feature pre
 
 ### Pass 2 — hunt for regressions and incorrect assumptions
 
-Found two further risks during review: the PC91 audit implied global uniqueness from 33 rasters, and its summary repeated the unverified `0.4413` leaderboard value as current. Tightened both scope and wording, removed instruction to upload a negative, and changed current-page labels to explicitly distinguish download permission from submit approval. Added fail-closed routing checks for TIF presence, SHA identity, and `ok_to_download=true` / `ok_to_submit=false`.
+Found two further risks during review: the PC91 audit implied global uniqueness from 33 rasters, and its summary repeated the unverified `0.4413` leaderboard value as current. Tightened both scope and wording, removed instruction to upload a negative, and changed current-page labels to explicitly distinguish download permission from submit approval. The first PR CI run also revealed browser smoke still expected the older PGRD page and its S15 download. Updated it to assert the PC91 negative, download its TIF/ZIP, and then navigate to the S15 archive page for that separate check. Added fail-closed routing checks for TIF presence, SHA identity, and `ok_to_download=true` / `ok_to_submit=false`.
 
 ### Pass 3 — re-run checks against the request
 
@@ -65,6 +65,7 @@ Found two further risks during review: the PC91 audit implied global uniqueness 
 - `.venv/bin/python scripts/check_artifact_policy.py`: **PASS**, 55 prediction artifacts explicitly registered; no raw raster/archive tracked.
 - `.venv/bin/python scripts/preflight.py`: **BUILD BLOCKED** as expected, exit 1; `sample_submission` and parent reference are missing, and all build axes lack inputs.
 - Re-read PC91 download TIFF with Rasterio: all file values are in `[0,1]`, no NaN/Inf, correct one-band float32 metadata; ZIP member hash matches. Sample grid and catalogue cannot be freshly compared with missing data.
+- `PORTAL_BASE_URL=http://127.0.0.1:8000/docs/ PORTAL_ENTRY_URL=http://127.0.0.1:8000/ node tools/browser/smoke.cjs`: **PASS** in Chromium 153; current TIFF and ZIP downloads matched their run-card hashes, desktop/mobile delivery passed, no console/HTTP errors, no mobile overflow, and zero axe violations across 19 audited pages. Receipt: [`docs/browser-verification.json`](browser-verification.json). Clipboard API was unavailable in this headless run; the UI selected the form note and displayed keyboard-copy fallback.
 - This turn did not run any geological experiment, did not alter the shared template, did not select or use a slot, and did not generate a new raster.
 
 ## Official review links / limitations
