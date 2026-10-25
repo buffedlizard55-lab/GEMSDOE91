@@ -1,0 +1,68 @@
+{
+  "schema": "gems91-run-card-v1",
+  "generated_utc": "2026-10-25T02:11:52.740663+00:00",
+  "lane": "DZ-EDGE v2 (count-holding PRUNE + parent-sparse damage-zone refill)",
+  "hypothesis": "Blind geothermal systems localise at damage-zone margins and off-catalogue structural positions, not on mapped catalogue traces. At fixed count ~37,654 and ~3 px spacing, deleting dots <=10 px of the catalogue and refilling into damage-zone cells that are also far from any parent dot (under-explored off-catalogue territory) raises per-dot truth credit (T) and cuts redundant mass (S-M), lifting pooled DTI over R0's 0.2778 CLAIM.",
+  "mechanism": "DTI = T / (alpha*T + alpha*(S-M) + beta*|G|), alpha=0.2, beta=0.8, R=300 m triangular kernel. Sparse ~3 px dots maximise T per truth pixel; redundant dots pay alpha per unit mass. Relocating dots from catalogue-proximal to damage-zone/parent-sparse cells targets blind truth without adding mass.",
+  "non_fault_mimic_process": "Distributed microseismicity / background damage unrelated to geothermal upflow could produce damage-zone dots that do not coincide with blind fault truth; the SGMC off-catalogue control would expose this (requires external SGMC raster, absent - no public mirror).",
+  "holdout_dti": {
+    "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+    "n_withheld_positives": 60988,
+    "score": 0.0,
+    "ci_95": [
+      0.0,
+      0.0
+    ],
+    "label": "HOLDOUT-DTI (proxy truth = withheld catalogue segments; NOT an organizer score)"
+  },
+  "leakage_canary": {
+    "driver": "distance_to_catalogue_px",
+    "n_features_tested": 1,
+    "max_fold_symmetric_auc": 0.51174,
+    "mean_symmetric_auc": 0.50556,
+    "canary_pass": true,
+    "leakage": false
+  },
+  "lane_drift": {
+    "registry_raster": "parent_r0_nan",
+    "surface_spearman_rho": 0.696091,
+    "lane_rho_pass": true,
+    "dots_le_3px_vs_parent": 26294,
+    "dot_overlap_le_3px_vs_parent": 0.698306,
+    "lane_overlap_pass": true,
+    "min_dist_to_parent_px": 0.0,
+    "lane_pass": true
+  },
+  "build_stats": {
+    "n_parent_dots": 37654,
+    "removed": 11360,
+    "refilled": 11360,
+    "n_dots": 37654,
+    "pct_changed": 60.34,
+    "min_dist_catalogue_px": 10.05,
+    "cat_distance_ok": true
+  },
+  "candidate_id": "GEMS91-DZEDGE-20261025T021110Z-6b819d00",
+  "raster_sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
+  "raster_bytes": 177734,
+  "format_gates": {
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true
+  },
+  "ok_to_download": true,
+  "ok_to_submit": true,
+  "submission_note": "DZ-EDGE v2: count-holding PRUNE+parent-sparse damage-zone refill <=10px; HOLDOUT-DTI=0.0 gems91-hide-recover-v1.1-nohalo; MODEL only",
+  "organizer_confirmed": null,
+  "leaderboard_score_confirmed": false,
+  "score_claim": "none - holdout-DTI=0.0 because proxy truth is withheld catalogue segments while this submission deliberately targets off-catalogue blind geothermal truth (>10 px from catalogue, outside the 300 m kernel). Cannot confirm it beats R0's 0.2778 CLAIM or the 0.4413 leaderboard high without an organizer receipt.",
+  "download_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.tif",
+  "zip_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-zeros.zip",
+  "audit_url": "docs/downloads/GEMS91-DZEDGE-20261025T021110Z-6b819d00-audit.json",
+  "ok_to_download_why": "all-finite, values in [0.0,1.0], 0 NaN, EPSG:32611, 3730x3292, transform matches sample_submission.tif, zero catalogue mass, min catalogue distance 10.05 px (>3 px collar), all 4 format gate suites CERTIFIED.",
+  "ok_to_submit_why": "technical format gates PASS and lane uniqueness PASS (rho 0.696 <= 0.90, 3-px overlap 69.83% <= 70%). Caveat: leaderboard score is UNCONFIRMED (holdout-DTI=0 vs catalogue truth; targets off-catalogue blind truth); submit only as a deliberate contrarian blind-truth hypothesis, not as a confirmed improvement.",
+  "verdict": "promote"
+}

@@ -26,7 +26,64 @@
   - In-repo siblings (15 rasters): max 3 px dot overlap **40.60%** (vs `gems91-spac-e3`), completely eliminating the Session 14 collision (82.8%).
 - **Why “Predicted values must be in range [0, 1]” Cannot Trigger:** All 12,279,160 float32 cells are strictly finite in `[0.0, 1.0]`, 0 NaNs anywhere, nodata=None. Verified across 5 independent validator suites.
 
-## PRIOR SESSION 14 LANE (`S14-LSRG-FF`, 2026-10-24/25) — LiDAR Scarp + K/Th/U Radiometrics
+## STANDING PROJECT MANDATE (read at the start of every session)
+
+**Goal:** place top of the GEMS DOE geothermal-fault-mapping competition (DrivenData #306) by generating a **unique, format-valid GeoTIFF submission** that is **obviously** OK to download and OK (or not OK) to submit, with no human visual inspection required for validation.
+
+### The question to answer (PhD level)
+GEMSDOE32's `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` scored **0.2778** (highest on that site). Why: the DTI metric caps per-truth-pixel credit (max triangular kernel, R=300 m = 3 px) while charging α=0.2 per redundant predicted pixel, so thinning 121k → ~37,654 dots at ~3 px spacing lifted 0.1922 → 0.2778 by reducing redundant false-positive mass. Can we beat it? Only with a better spatial surface at the same dot economics — and only an organizer submission-page receipt (ORGANIZER-CONFIRMED) can confirm a score. **Never write a projection as a score.**
+
+### Deliverables
+1. **A unique TIF submission** (never copy a prior submission; for learning/analysis only). One-click downloadable `*.tif` (and single-TIFF `*.zip`) under `docs/downloads/`, plus SHA-256 and an audit JSON.
+2. **Obvious download/submit status** at the top of the site and on an executive summary subpage: OK TO DOWNLOAD: YES/NO, OK TO SUBMIT: YES/NO, with why.
+3. **Executive summary subpage** explaining exactly how to submit (download → verify SHA-256 → confirm human-only items → upload → paste note ≤140 chars → record receipt).
+4. **JSON run card** per submission: hypothesis, mechanism, the named non-fault mimic process, holdout DTI + 95% CI, correlation/overlap vs registry, raster SHA-256, validator output, submission name + note (≤140 chars), verdict promote/negative.
+5. **This mandate stored in README.md.**
+
+### Parallel-run protocol (binding)
+1. **LANE:** raster rank-correlation with any registry raster ≤0.90 AND ≤70% of dots within 3 px of any registry raster's dots — checked on the surface before placement AND on final dots; else log as duplicate and stop.
+2. **REUSE, DON'T REBUILD:** use the cached feature stack, `scripts/evaluate_holdout.py`, `scripts/submission_writer.py`. Holdout = hide-and-recover (whole fault segments with buffer); catalogue features only from visible faults; mask visible faults pixel-exactly; pooled DTI α=0.2, β=0.8, 300 m triangular kernel. Fix shared tools once in the template — no private forks.
+3. **LABEL every number:** HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (submission-page receipt). A projection is never a score.
+4. **LEAKAGE CANARY:** each feature alone on holdout; AUC >0.90 = leakage until proven otherwise.
+5. **RUN CARD:** one JSON card ending each experiment (hypothesis; mechanism; named non-fault mimic process; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator output — no NaN inside footprint, values in [0,1], CRS/shape/transform match; submission name + ≤140-char note; verdict promote/negative). Negative results are deliverables.
+6. **BUDGET:** stop after 3 experiments or 2 hours. Promotion to a real slot is a separate selector step (weekly cap: 3 submissions).
+
+### Submission format rules (DrivenData #306)
+- Single-band GeoTIFF `.tif` (or `.zip` containing one GeoTIFF).
+- Must match the submission format's CRS (`EPSG:32611`), shape (`3730×3292`), 100 m geotransform (`(100, 0, 243350, 0, -100, 4508550)`), float32, one band, values strictly in `[0, 1]`, no NaN inside the footprint.
+- Short note (≤140 chars) to tell submissions apart.
+- Error `"Predicted values must be in range [0, 1]"` comes from NaN-outside encodings / float32 sentinels; the shared writer eliminates both by writing an all-finite `-zeros.tif` twin (`nodata=None`).
+
+### Official / verified sources
+- Competition: https://www.drivendata.org/competitions/306/competition-doe-gems/ (overview/page 967), about page 968, data tab (login-gated)
+- Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
+- Rules/format PDF: https://docs.nlr.gov/docs/fy26osti/96647.pdf
+- DOE GDR submission #1391: https://gdr.openei.org/submissions/1391
+- GEMSDOE32 (highest on that site, 0.2778): https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html
+- Leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ (current high 0.4413 per this prompt; GEMSDOE32 page cites 0.2778 as its site high)
+- CRS: https://epsg.io/32611; Tversky index: https://en.wikipedia.org/wiki/Tversky_index
+- GeoDAWN survey: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+- INGENIOUS: https://gbcge.org/current-projects/ingenious/
+
+### Core values
+- Maximize P(Win): weigh trade-offs, assess risk, choose the path that maximizes probability of winning.
+- Own the Outcome: own results end-to-end; treat failure and success as signals.
+
+## PRIOR SESSION 14 DISCOVERY LANES (`S14-HVDC` & `S14-LSRG-FF`, 2026-10-24/25)
+
+### S14-HVDC Discovery Lane (`0.262209` HOLDOUT-DTI, Negative — Duplicate Stop)
+> **AUTOMATED SUBMISSION VERDICT (FAIL-CLOSED): `OK TO DOWNLOAD: YES` (RESEARCH) · `OK TO SUBMIT: NO` (`NEGATIVE — RULE 1 DUPLICATE STOP`).**
+> The actual all-finite TIFF passed every technical format, `[0, 1]` range, `0`-NaN, `EPSG:32611` `(3730, 3292)` affine, `>300 m` catalogue-collar, `101/101` feature-alone leakage-canary (`max symmetric AUC 0.75201 ≤ 0.90`), comparable holdout (`0.262209 > 0.244601 S13-PTHA`), but fails final-dot lane gate against registry entries (`84.706%` vs S13-PTHA, `70.056%` vs h25 context). Per Rule 1, duplicate stop; `submission_ready=false`, `verdict=negative`.
+
+- **[⬇ Download S14-HVDC E2 Range-Safe `{0,1}` GeoTIFF (`258,126 B`)](docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif)** · **[Single-TIFF ZIP (`223,398 B`)](docs/downloads/gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.zip)** · **[S14 Full Scientific Audit](docs/s14-hvdc.html)** · **[S14 Executive Summary & Exact Submission Guide](docs/s14-hvdc-executive-summary.html)** · **[JSON Run Card](docs/run-card-S14-HVDC.json)** · **[5 Ranked Pre-Registered Hypotheses](docs/HYPOTHESES_S14_HVDC.md)**
+- **Unique Submission Name:** `GEMS91-S14-HVDC-E2-d3670e31` · **GeoTIFF SHA-256:** `678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720` · **ZIP SHA-256:** `6a15bfd1b29219e450764b0d2de70552c87bc38cc82fc0d490021af6166d4670` · **Form Note (`85/140` chars):** `S14-HVDC E2: HydroPlume+Salem+Swarm+RelayWashCtx+Dink; HOLDOUT-DTI=0.2622; 50000 dots`
+
+### S14-LSRG-FF Discovery Lane (`0.206822` HOLDOUT-DTI, Winner Geometry)
+> **AUTOMATED VERDICT (computed, fail-closed, zero human image inspection): `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO` (human selector first).**
+> Failing shared gates (`src/gems91/readiness.py`): `novelty` (universal scope), `assigned_lane`, `beats_comparable_best`, `separate_selector`. Zero weekly slots spent.
+
+- **[Download S14-LSRG-FF range-safe GeoTIFF (`213,748 B`)](docs/downloads/gems91-s14-lsrg-ff-20261025T004500Z-1fcf17ee-zeros.tif)** · **[Single-TIFF ZIP (`178,064 B`)](docs/downloads/gems91-s14-lsrg-ff-20261025T004500Z-1fcf17ee-zeros.zip)** · **[Audit page](docs/s14-lsrg.html)** · **[Step-by-step submission guide](docs/s14-executive-summary.html)** · **[JSON run card](docs/run-card-S14.json)** · **[Pre-registered hypotheses + winner forensics](docs/HYPOTHESES_S14.md)**
+- **Unique submission name:** `GEMS91-S14-LSRG-FF-1fcf17ee` · **GeoTIFF SHA-256:** `09f9ca2acdca7c6616df329aad7d0c8d73dec2626b04e6d8619d2b1452ea7359` · **Form note (`104/140`):** `S14-LSRG-FF: lidar scarp + K/Th/U ratio surface; 37654 dots, 75% far-field; HOLDOUT-DTI 0.2068 v1.0/v1.1`
 
 > **AUTOMATED VERDICT (computed, fail-closed, zero human image inspection): `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO` (human selector first).**
 > Failing shared gates (`src/gems91/readiness.py`): `novelty` (universal scope), `assigned_lane`, `beats_comparable_best`, `separate_selector` — plus human licence review of the lidar/radiometric derivative inputs (`IR-91-26`, rules §A.5). Format + canary gates PASS. Zero weekly slots spent.
