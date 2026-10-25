@@ -625,6 +625,9 @@ def render():
     # committed front door matches a fresh render byte-for-byte.
     from scripts.render_geo91_portal import render as render_geo91
     render_geo91()
+    # OLC91 (2026-10-25, later session) supersedes GEO91 as the current entry point.
+    from scripts.render_olc91_portal import render as render_olc91
+    render_olc91()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 

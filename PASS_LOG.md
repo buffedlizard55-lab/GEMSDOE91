@@ -74,3 +74,17 @@ Generate a UNIQUE TIF submission, easy to download, values in [0,1], CRS/shape/t
 OK TO DOWNLOAD: YES — FORMAT-CERTIFIED, UNIQUE (8,718 unit dots, all values in [0,1], EPSG:32611 3730x3292, zero catalogue mass, 3.16 px min catalogue distance).
 OK TO SUBMIT: NO — RESEARCH NEGATIVE. HOLDOUT-DTI = 0.0 by design (off-catalogue damage-zone dots cannot cover withheld catalogue faults). No DrivenData authentication available to confirm organizer acceptance or live score; no weekly slot spent. Not a score-improvement candidate.
 File: docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif (sha256 a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11)
+
+## OLC91 (2026-10-25, `arena/3444a6d3-gemsdoe91`)
+
+* **Pass 1 (implement/verify):** data restored with SHA-256 verified. R0 lineage forensics were
+  done, the preregistration was written before running, and holdout seed 20 was run
+  (E0/E1/RND + canary). The final E1 file came from the fail-closed vendor writer, with
+  independent validation and the run card.
+* **Pass 2 (review/fix):** the uniqueness stop was honoured, not weakened. The artifact policy was
+  repaired (DRN91 entries). `generate_submission.py` now verifies the current run card. The portal
+  test was generalised from a hard-coded GEO91 to `docs/current-run.json`.
+* **Pass 3 (recheck vs request):** the unique name and the 107/140 note are present. The verdict is
+  explicit (OK TO DOWNLOAD: YES — research only; OK TO SUBMIT: NO). The JSON run card has every
+  protocol field. Every number is labelled. The README and site lead with the download. Sources
+  are linked.

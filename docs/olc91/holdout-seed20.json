@@ -1,0 +1,456 @@
+{
+  "lane": "OLC91",
+  "seed": 20,
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "implementation_hashes": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "split": "vendor gems57 buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12)",
+  "training": "leave-one-quadrant-out HGB, PU (hidden components unlabelled), 40 px train buffer",
+  "emission": "submodular_dti_emit, budget 37654 x area share, collar > 2.0 px from known",
+  "pooled": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "E0": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.08526008331650262,
+        "ci95": [
+          0.06871557560407664,
+          0.10229945781075278
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 1392.3663505992868,
+        "fpw": 34977.691236380895,
+        "fnw": 9928.633649400712
+      },
+      "E1": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.08318550389795752,
+        "ci95": [
+          0.06686609477362426,
+          0.1004821460731477
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 1357.078725860247,
+        "fpw": 34928.34516829297,
+        "fnw": 9963.921274139755
+      },
+      "RND": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.04316456551148885,
+        "ci95": [
+          0.03766573574489508,
+          0.048475671030615106
+        ],
+        "withheld_positive_pixels": 11321,
+        "tpw": 701.9807950763619,
+        "fpw": 35328.49402449756,
+        "fnw": 10619.019204923638
+      }
+    },
+    "best_comparable_control": "E0",
+    "paired_differences": {
+      "E0": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.0020745794185450944,
+        "ci95": [
+          -0.004543346083970058,
+          0.00023570636091364668
+        ],
+        "withheld_positive_pixels": 11321
+      },
+      "RND": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.04002093838646867,
+        "ci95": [
+          0.024026104172850143,
+          0.056898903141466395
+        ],
+        "withheld_positive_pixels": 11321
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 158,
+      "draws": 1000,
+      "seed": 520810,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "per_fold": [
+    {
+      "fold": "NW",
+      "n_dots": 8000,
+      "withheld_positive_pixels": 1923,
+      "n_pos": 38975,
+      "n_neg": 116925,
+      "n_predicted": 1131190,
+      "receipt": {
+        "fold": "NW",
+        "seed": 20,
+        "held_components": 96,
+        "withheld_positive_pixels": 1923,
+        "eligible_components": 598,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.081443,
+      "E0_n_emitted": 8000,
+      "E1_dti": 0.08108,
+      "E1_n_emitted": 7948,
+      "RND_dti": 0.036361,
+      "RND_n_emitted": 8000
+    },
+    {
+      "fold": "NE",
+      "n_dots": 9919,
+      "withheld_positive_pixels": 2367,
+      "n_pos": 37954,
+      "n_neg": 113862,
+      "n_predicted": 1400277,
+      "receipt": {
+        "fold": "NE",
+        "seed": 20,
+        "held_components": 145,
+        "withheld_positive_pixels": 2367,
+        "eligible_components": 628,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.101115,
+      "E0_n_emitted": 9919,
+      "E1_dti": 0.09805,
+      "E1_n_emitted": 9919,
+      "RND_dti": 0.042168,
+      "RND_n_emitted": 9919
+    },
+    {
+      "fold": "SW",
+      "n_dots": 9793,
+      "withheld_positive_pixels": 3781,
+      "n_pos": 29872,
+      "n_neg": 89616,
+      "n_predicted": 1394780,
+      "receipt": {
+        "fold": "SW",
+        "seed": 20,
+        "held_components": 223,
+        "withheld_positive_pixels": 3781,
+        "eligible_components": 983,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.068262,
+      "E0_n_emitted": 9793,
+      "E1_dti": 0.065316,
+      "E1_n_emitted": 9793,
+      "RND_dti": 0.044607,
+      "RND_n_emitted": 9793
+    },
+    {
+      "fold": "SE",
+      "n_dots": 7891,
+      "withheld_positive_pixels": 3250,
+      "n_pos": 33021,
+      "n_neg": 99063,
+      "n_predicted": 1127452,
+      "receipt": {
+        "fold": "SE",
+        "seed": 20,
+        "held_components": 142,
+        "withheld_positive_pixels": 3250,
+        "eligible_components": 648,
+        "boundary_buffer_px": 12,
+        "feature_buffer_px": 3,
+        "nearest_visible_to_truth_px": 3.1622776601683795,
+        "split_version": "buffered-whole-components-loqo-v2",
+        "evaluation_region_label_blind": true
+      },
+      "E0_dti": 0.093609,
+      "E0_n_emitted": 7891,
+      "E1_dti": 0.0922,
+      "E1_n_emitted": 7891,
+      "RND_dti": 0.047472,
+      "RND_n_emitted": 7891
+    }
+  ],
+  "coverage_by_distance_to_visible": {
+    "E0": {
+      "4-10px": {
+        "coverage": 0.1135,
+        "n_truth": 6171
+      },
+      "10-30px": {
+        "coverage": 0.1342,
+        "n_truth": 4402
+      },
+      ">30px": {
+        "coverage": 0.1355,
+        "n_truth": 748
+      }
+    },
+    "E1": {
+      "4-10px": {
+        "coverage": 0.1136,
+        "n_truth": 6171
+      },
+      "10-30px": {
+        "coverage": 0.1269,
+        "n_truth": 4402
+      },
+      ">30px": {
+        "coverage": 0.1302,
+        "n_truth": 748
+      }
+    },
+    "RND": {
+      "4-10px": {
+        "coverage": 0.0608,
+        "n_truth": 6171
+      },
+      "10-30px": {
+        "coverage": 0.0651,
+        "n_truth": 4402
+      },
+      ">30px": {
+        "coverage": 0.0535,
+        "n_truth": 748
+      }
+    }
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "worst": {
+      "feature": "grad_det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+      "auc": 0.6009,
+      "symmetric_auc": 0.6009
+    },
+    "stop": false,
+    "n_truth": 11321,
+    "n_unlabelled_sample": 300000,
+    "features": [
+      {
+        "feature": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+        "auc": 0.5094,
+        "symmetric_auc": 0.5094
+      },
+      {
+        "feature": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+        "auc": 0.5177,
+        "symmetric_auc": 0.5177
+      },
+      {
+        "feature": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+        "auc": 0.5283,
+        "symmetric_auc": 0.5283
+      },
+      {
+        "feature": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+        "auc": 0.5669,
+        "symmetric_auc": 0.5669
+      },
+      {
+        "feature": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+        "auc": 0.5244,
+        "symmetric_auc": 0.5244
+      },
+      {
+        "feature": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+        "auc": 0.4721,
+        "symmetric_auc": 0.5279
+      },
+      {
+        "feature": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+        "auc": 0.5661,
+        "symmetric_auc": 0.5661
+      },
+      {
+        "feature": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+        "auc": 0.5173,
+        "symmetric_auc": 0.5173
+      },
+      {
+        "feature": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+        "auc": 0.4872,
+        "symmetric_auc": 0.5128
+      },
+      {
+        "feature": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+        "auc": 0.5374,
+        "symmetric_auc": 0.5374
+      },
+      {
+        "feature": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+        "auc": 0.5134,
+        "symmetric_auc": 0.5134
+      },
+      {
+        "feature": "det_elev - Detrended elevation - topography with regional trends removed",
+        "auc": 0.5117,
+        "symmetric_auc": 0.5117
+      },
+      {
+        "feature": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+        "auc": 0.4589,
+        "symmetric_auc": 0.5411
+      },
+      {
+        "feature": "tmi - Total magnetic intensity - total strength of magnetic field",
+        "auc": 0.5092,
+        "symmetric_auc": 0.5092
+      },
+      {
+        "feature": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+        "auc": 0.5248,
+        "symmetric_auc": 0.5248
+      },
+      {
+        "feature": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+        "auc": 0.5431,
+        "symmetric_auc": 0.5431
+      },
+      {
+        "feature": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+        "auc": 0.4777,
+        "symmetric_auc": 0.5223
+      },
+      {
+        "feature": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+        "auc": 0.4917,
+        "symmetric_auc": 0.5083
+      },
+      {
+        "feature": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+        "auc": 0.5623,
+        "symmetric_auc": 0.5623
+      },
+      {
+        "feature": "grad_mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+        "auc": 0.5391,
+        "symmetric_auc": 0.5391
+      },
+      {
+        "feature": "grad_rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+        "auc": 0.5353,
+        "symmetric_auc": 0.5353
+      },
+      {
+        "feature": "grad_tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+        "auc": 0.5302,
+        "symmetric_auc": 0.5302
+      },
+      {
+        "feature": "grad_geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+        "auc": 0.5275,
+        "symmetric_auc": 0.5275
+      },
+      {
+        "feature": "grad_iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+        "auc": 0.5262,
+        "symmetric_auc": 0.5262
+      },
+      {
+        "feature": "grad_tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+        "auc": 0.5028,
+        "symmetric_auc": 0.5028
+      },
+      {
+        "feature": "grad_geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+        "auc": 0.5432,
+        "symmetric_auc": 0.5432
+      },
+      {
+        "feature": "grad_geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+        "auc": 0.5304,
+        "symmetric_auc": 0.5304
+      },
+      {
+        "feature": "grad_tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+        "auc": 0.5312,
+        "symmetric_auc": 0.5312
+      },
+      {
+        "feature": "grad_deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+        "auc": 0.5106,
+        "symmetric_auc": 0.5106
+      },
+      {
+        "feature": "grad_iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+        "auc": 0.5254,
+        "symmetric_auc": 0.5254
+      },
+      {
+        "feature": "grad_det_elev - Detrended elevation - topography with regional trends removed",
+        "auc": 0.5739,
+        "symmetric_auc": 0.5739
+      },
+      {
+        "feature": "grad_iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+        "auc": 0.5281,
+        "symmetric_auc": 0.5281
+      },
+      {
+        "feature": "grad_tmi - Total magnetic intensity - total strength of magnetic field",
+        "auc": 0.5304,
+        "symmetric_auc": 0.5304
+      },
+      {
+        "feature": "grad_depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+        "auc": 0.5434,
+        "symmetric_auc": 0.5434
+      },
+      {
+        "feature": "grad_ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+        "auc": 0.5189,
+        "symmetric_auc": 0.5189
+      },
+      {
+        "feature": "grad_cond_surf - Conductivity surface - electrical conductivity of subsurface",
+        "auc": 0.5228,
+        "symmetric_auc": 0.5228
+      },
+      {
+        "feature": "grad_iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+        "auc": 0.5252,
+        "symmetric_auc": 0.5252
+      },
+      {
+        "feature": "grad_det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+        "auc": 0.6009,
+        "symmetric_auc": 0.6009
+      }
+    ]
+  },
+  "e1_beats_e0_ci_lower_gt_0": false,
+  "runtime_s": 206.5
+}

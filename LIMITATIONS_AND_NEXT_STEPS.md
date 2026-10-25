@@ -78,3 +78,27 @@ were restored and SHA-256 verified in this session. No fake catalogue was used.
 
 The submitted-score ceiling is **unknown**. The user's 0.2778, 0.3195 and 0.4413
 are not reclassified as ORGANIZER-CONFIRMED without a submission-page receipt.
+
+## OLC91 session (2026-10-25, `arena/3444a6d3-gemsdoe91`)
+
+* **Result:** negative. E1 OLC 0.0832 vs E0 0.0853 HOLDOUT-DTI (`gems57-pooled-hide-v2`, seed 20,
+  11,321 withheld px); Δ −0.0021 [−0.0045, +0.0002]. The final file is DUPLICATE-STOP (76.8% of
+  dots within 3 px of `gems91-bhar-e3`). OK TO SUBMIT: NO. 0 slots used; 1 of 3 experiments used.
+* **Limitation: instrument mismatch.** On hide-and-recover, 55% of the withheld truth lies within 1 km
+  of visible faults. Live evidence (proximity lanes below random; ≈0 credit for dots 1–2 px from the
+  catalogue) says new faults are depleted there. No offline instrument is calibrated to the live board.
+* **Limitation: convergence on one stack.** PU-HGB on the 19 official bands converges on the same
+  15–25% of the footprint. Eleven earlier rasters overlap this file by more than 70%, so further
+  models on this stack will keep tripping the dot-overlap rule.
+* **Limitation: data provenance.** The pinned lidar-scarp and radiometric stacks are marked
+  "licence unchecked" in `registry/data_manifest.json` and were not used. Getting a verified
+  external source (3DEP 1 m DEM, GNSS strain tensors) requires hosts this sandbox cannot reach.
+* **Next 1:** H2, completeness-weighted PU, with a *hole-shuffled control*. Compute ĉ after
+  removing an equal pixel mass of random **visible** components, so that a gain caused only by
+  holdout-made catalogue holes cancels out.
+* **Next 2:** live-proxy calibration. Score the 13 owner-reported anchors in
+  60GEMSDOE `registry/calibration_manifest.json` on the off-catalogue SGMC control, and report
+  Spearman ρ against their live scores before using any proxy as evidence.
+* **Next 3:** for the selector, not this lane. Pruning R0 to a 3–5 px collar is a cheap live test,
+  because R0 still shows 2.1× and 1.75× area-lift at (2,3] and (3,5] px. It would be an
+  R0-derivative and not unique, so it belongs to R0's owner, not this lane.

@@ -1,4 +1,19 @@
-# GEMSDOE91 — CURRENT STATUS (Session 17 `S17-CDSC`, `S17-CGRD` & Parallel Lanes, 2026-10-25) — read this first at every session
+# GEMSDOE91 — CURRENT STATUS (OLC91, 2026-10-25) — read this first
+
+> **OLC91 session (`arena/3444a6d3-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH ONLY` · `OK TO SUBMIT: NO`.**
+> **[⬇ Download the GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif)** ([ZIP](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip)) · SHA-256 `35259f3a…82abf8dc` · [JSON run card](docs/run-card-OLC91.json) · [Site](https://buffedlizard55-lab.github.io/GEMSDOE91/) · [Executive summary / how to submit](docs/executive-summary.html) · [Preregistration + results](docs/HYPOTHESES_OLC91.md)
+>
+> * **Lane (declared, none was supplied):** Oriented Line-integral Coherence. A PU-HGB posterior on the 19 official bands is multiplied by its own 1.1 km strike-coherent line support, then emitted as 37,654 dots with no dots on or within 2 px of the catalogue.
+> * **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, buffered whole-component draw seed 20, 11,321 withheld px / 606 components, LOQO): E1 **0.0832** [0.0669, 0.1005] · E0 incumbent recipe **0.0853** [0.0687, 0.1023] · random **0.0432** [0.0377, 0.0485]. Paired E1−E0 **−0.0021** [−0.0045, +0.0002], with E1 lower in 4/4 folds. **Result: NEGATIVE.** Not comparable with v1.0 numbers such as S14-PTAC 0.267782.
+> * **Uniqueness:** surface max |ρ| 0.216 (PASS). Final dots: 76.8% within 3 px of `gems91-bhar-e3` (71.8% chance-corrected), against a 70% limit, so **DUPLICATE-STOP**. This compared 90 unique rasters, including 62 fleet rasters.
+> * **Format:** PASS (float32, EPSG:32611, 3730×3292, exact transform, 0 NaN, values in [0,1], 0 dots on the catalogue). **Canary:** PASS (max AUC 0.601). **Slots used:** 0. **Experiments used:** 1 of 3.
+> * **Why 0.2778 (USER-REPORTED):** h19-5 catalogue-blind ridge network → 44,090 dots (0.2600) → delete 3,891 dots at 1 px (0.2708) → delete 2,545 dots at √2–2 px (**0.2778**). 70% of its dots are more than 1 km from mapped faults. Beating the public top 0.4413 needs a better localiser, at about 0.62 coverage against R0's ≈0.38. Full analysis: [docs/HYPOTHESES_OLC91.md](docs/HYPOTHESES_OLC91.md).
+
+Core values: **Maximize P(Win) · Own the Outcome.** Every number is labelled HOLDOUT-DTI or USER-REPORTED. Nothing is ORGANIZER-CONFIRMED without a submission-page receipt. Read the preserved [full standing prompt](#full-project-brief) every session.
+
+---
+
+## Parallel sessions merged on main the same day (S17-CDSC, XG91, S17-CGRD; all OK TO SUBMIT: NO)
 
 > **SESSION 17 (`S17-CDSC`, branch `arena/1722e30a-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**
 > 105-feature Prevalence-Calibrated Faulds–Hinz En-Echelon Relay Auto-Context + 16 Local (`<= 1 km`) `S15` Subsurface-Junction / Multi-Wavelength Salem / Aquifer-Baffle Stage-2 Fusion + `72`-col Bitwise `B12`/`B19`-Invariant Pure-Subsurface Specialist: remediates `IR-91-S15-06` (`Test_k / Train_k` prevalence alignment `1.45x/1.56x -> 1.03x/1.09x`, lifting Fold 1 `NE` by **`+0.058247`** from `0.273196` to **`0.331443`**), `IR-91-S15-07` (excluding `>= 3 km` GDR/S12 regional bowls from Stage-1), and `IR-91-S15-05` (`72`-col bitwise `B12`/`B19`-free Stage-2 specialist). Winner **`E1 = 0.259972 HOLDOUT-DTI`** (`95% CI [0.244333, 0.275361]`, `E2 = 0.259854`, `E3 = 0.252062` on `gems91-hide-recover-v1.0` = `v1.1-nohalo`, `60,988` withheld), jumping **`+0.019339`** over `S15-SCGF E2` (`0.240633`) and beating `S13-PTHA E3` (`0.244601`) by **`+0.015371`** (`paired 95% CI [+0.010244, +0.021122]`, `P(>0) = 100%`). External non-calibration fleet 3-px overlap is **`53.16% <= 70% PASS`** (`43.76% <= 70% PASS` vs `GEMSDOE32 R0`), but submission remains fail-closed (`0.259972 < 0.267782 S14-PTAC E2`; literal all-raster lattice overlap `99.834%`); zero weekly slots spent (`slots_used = 0`).
@@ -27,7 +42,7 @@ The public leaderboard, fetched 2026-10-25 from the DrivenData page, shows rank 
 
 ## Historical status records (not current-branch results)
 
-# GEMSDOE91 — CURRENT STATUS (GEO91, 2026-10-25) — read this first
+# GEMSDOE91 — PREVIOUS STATUS (GEO91, 2026-10-25, superseded)
 
 > **Active Arena checkout review (`arena/85ad3c12-gemsdoe91`, 2026-10-25): NO new experiment or TIFF; OK TO SUBMIT: NO.** See [current-checkout three-pass review and hypothesis shortlist](docs/REVIEW-ACTIVE-85AD3C12-20261025.md) and [machine-readable review card](docs/run-card-85ad3c12.json).
 
