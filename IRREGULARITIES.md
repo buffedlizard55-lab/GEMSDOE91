@@ -1700,3 +1700,31 @@ Full detail and sources: `docs/REVIEW-S18-20261025.md`. Machine-readable: `docs/
   in this sandbox (github/npm/pypi only); all competition inputs were restored through the repo's
   pinned GitHub mirrors and hash-verified. Candidates H3–H5 name their free official sources but
   are NOT verified-obtainable here and were deferred rather than proposed as viable.
+
+## Session 18 (`S18-HGBR`) irregularities & resolved items (2026-10-25, `arena/bba4efce-gemsdoe91`)
+
+* **IR-91-S18-HGBR-01 (RESOLVED — Second-order variogram differences vanish on odd fault-step inflections).**
+  During Pass 2 engineering of `src/gems91/hgbr18.py`, second-order central finite differences
+  `F(x+d) - 2F(x) + F(x-d)` produced near-zero response at the exact inflection center (`F''(0) = 0`)
+  of step-like normal-fault anomalies and amplified quantization noise on flat basin floors when
+  `MAD < 1e-4`. Replaced with amplitude-gated 1st-order symmetric increments (`F(x+d) - F(x-d)`)
+  multiplied by a smooth local RMS signal envelope `rms / (rms + rms_floor)` and an IQR/P90 fallback
+  in `_robust_z`. Verified that all 16 `HGBR` features are finite with `max_pooled_symmetric_auc = 0.5651 <= 0.90`.
+* **IR-91-S18-HGBR-02 (RESOLVED — Remediated `IR-91-S17-01`, `IR-91-S17-02`, and `IR-91-S17-LFTG-01`).**
+  `S18-HGBR` implemented: (a) Stage-1 upper-tail log-odds dispersion alignment (`align_stage1_log_odds_dispersion`,
+  fixing `IR-91-S17-01`), (b) positive-part-only asymmetric cover-gated specialist rescue
+  (`pool_asymmetric_cover_specialists`, fixing `IR-91-S17-02` so exposed scarps with `l_full >= l_sub`
+  are never suppressed), and (c) distance-feathered 4-fold out-of-fold (`OOF`) stitched full-map
+  emission with structural backbone rescue (`stitch_oof_full_map_surface`, fixing `IR-91-S17-LFTG-01`).
+  This simultaneously lifted `HOLDOUT-DTI` to **`0.200742`** (`gems57-pooled-hide-v2`, new all-time
+  label-blind repo record) and lifted untouched Blind Off-Catalogue USGS SGMC `>1 km` DTI from
+  `0.039897` (`S17-LFTG`) to **`0.101151`** (`+153.53%` vs `S17-LFTG`, `+22.00%` vs `GEMSDOE32 R0 = 0.082913`).
+* **IR-91-S18-HGBR-03 (OPEN — Paired 95% CI vs `S17-CPAD E1` slightly straddles zero and synthetic lattice bound `IR-S16-03` remains active).**
+  While `hgbr_e1` (`0.200742 HOLDOUT-DTI`) beats `S17-CPAD E1` (`0.198183 HOLDOUT-DTI`) on all 4
+  spatial folds (`+0.002560`, `+144.3 tpw`, `-364.1 fpw`) and beats `INCUMBENT-PTAC-V2` (`+0.008534`,
+  `95% CI [+0.002892, +0.014515]`) and `S17-LFTG E2` (`+0.012146`, `95% CI [+0.007290, +0.017609]`)
+  with 95% CIs strictly above zero, its paired 20-km block-bootstrap 95% CI against `S17-CPAD E1`
+  is `[-0.000516, +0.005617]`, and the `206,895`-dot synthetic 5-px calibration grid
+  `calib_r13lattice_00904.tif` still forces unidirectional 3-px dot overlap `99.84% > 70%` (`IR-S16-03`),
+  whereas all 83 real submissions pass `<= 61.87% <= 70%`. Accordingly, `ok_to_submit` remains `False`
+  and `0` weekly slots were spent automatically.

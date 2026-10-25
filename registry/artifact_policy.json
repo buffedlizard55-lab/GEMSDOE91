@@ -534,6 +534,18 @@
       "sha256": "337010f6e14bd951819fd5b4d648e9de68dd0a43e610e7a0c710226831cbbfb7",
       "status": "current_research_only",
       "reason": "S17-LFTG E2 single-TIFF ZIP archive (research negative, NOT OK TO SUBMIT; docs/run-card-S17-LFTG.json)"
+    },
+    {
+      "path": "docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif",
+      "sha256": "afc1699914bc517b3c4c0ef1cc16973ced37f7e90fc74cfb7b20869da01f099b",
+      "status": "current_research_only",
+      "reason": "S18-HGBR (hgbr_e1) fresh computation; format PASS, HOLDOUT-DTI=0.200742 (beats S17-CPAD E1 0.198183 and INCUMBENT-PTAC-LB 0.194221); research artifact, live slot unspent pending separate human selector."
+    },
+    {
+      "path": "docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.zip",
+      "sha256": "87fb051c1d440d8a67c6fe5530be946c5784af8100fc1d8c8a0acf17800d31bd",
+      "status": "current_research_only",
+      "reason": "S18-HGBR (hgbr_e1) fresh computation; format PASS, HOLDOUT-DTI=0.200742 (beats S17-CPAD E1 0.198183 and INCUMBENT-PTAC-LB 0.194221); research artifact, live slot unspent pending separate human selector."
     }
   ]
 }

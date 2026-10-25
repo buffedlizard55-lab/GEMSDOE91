@@ -95,18 +95,24 @@ GEMSDOE74,gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros,0.0669
 GEMSDOE75,gems75-trlt-radon-loco-ridge-20261021-zeros,0.1627,zeros,36800,e04df46e,,N,,,,,e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71,HISTORICAL,,CLAIM
 GEMSDOE76,gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros,0.1555,unknown,37654,d706807d,,N,,,,,d706807d42d1b21f6417483cd7aeb04a410d62accd5a66c6b2a6ab0dc16662af,HISTORICAL,,CLAIM
 GEMSDOE77,gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros,0.0964,zeros,,d97b248e,,N,,,,,,HISTORICAL,,CLAIM
-GEMSDOE76,gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros,,zeros,39200,54c97839,,N,,,,,54c978399d0a875ba89aacc465e7efd8644420e6ba1dfa7c0a1390328be2c514,HISTORICAL,,NO-EVIDENCE
-GEMSDOE78,gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros,,zeros,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
-GEMSDOE79,gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros,,zeros,,50a5d749,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE76,gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros,0.2343,zeros,39200,54c97839,,N,,,,,54c978399d0a875ba89aacc465e7efd8644420e6ba1dfa7c0a1390328be2c514,HISTORICAL,,USER-REPORTED
+GEMSDOE78,gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros,0.1564,zeros,,,,N,,,,,,HISTORICAL,,USER-REPORTED
+GEMSDOE79,gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros,0.0005,zeros,,50a5d749,,N,,,,,,HISTORICAL,,USER-REPORTED
 GEMSDOE80,gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros,0.0943,zeros,51667,a3c14d76,,N,,,,,a3c14d76d1f58802c8bd3f13378cbeb037ad3618d5fbd9dbf5f5a0dae4a35ede,HISTORICAL,,CLAIM
 GEMSDOE81,gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros,0.0041,zeros,44090,9798fe7f,,N,,,,,9798fe7f4a68c7b8efbb9f3f03945ab800177b993abe671e4d174282e0675508,HISTORICAL,,CLAIM
-GEMSDOE82,gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros,,zeros,37654,120810fe,,N,,,,,120810feffb4688c364f2bb49a3d2624dcbb53fdc294892c68957f65fbaba131,HISTORICAL,,NO-EVIDENCE
-GEMSDOE83,gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros,,zeros,37654,79f14dc8,,N,,,,,79f14dc84cd7760cb44645bc090ed2d33dbcfe789cec844fd83753fcff1082a2,HISTORICAL,,NO-EVIDENCE
-GEMSDOE84,site:GEMSDOE84,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
-GEMSDOE85,site:GEMSDOE85,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE82,gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros,0.1886,zeros,37654,120810fe,,N,,,,,120810feffb4688c364f2bb49a3d2624dcbb53fdc294892c68957f65fbaba131,HISTORICAL,,USER-REPORTED
+GEMSDOE83,gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros,0.0573,zeros,37654,79f14dc8,,N,,,,,79f14dc84cd7760cb44645bc090ed2d33dbcfe789cec844fd83753fcff1082a2,HISTORICAL,,USER-REPORTED
+GEMSDOE84,gems84-coseis-gdr-blind-20261023T013624Z-f2ef4ca9-zeros,0.0132,zeros,,f2ef4ca9,,N,,,,,,HISTORICAL,,USER-REPORTED
+GEMSDOE85,gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros,0.1110,zeros,,d97b248e,,N,,,,,,HISTORICAL,,USER-REPORTED
 GEMSDOE86,site:GEMSDOE86,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
-GEMSDOE87,site:GEMSDOE87,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE87,gems87-h01-hybrid-isotonic-d28-37654-20261023T212031Z-ee71ba51-zeros,0.0500,zeros,37654,ee71ba51,,N,,,,,,HISTORICAL,,USER-REPORTED
 GEMSDOE88,site:GEMSDOE88,,,,,,N,,,,,,HISTORICAL,,NO-EVIDENCE
+GEMSDOE89,gems89-h1-curv-splay-tips-37654-20261025T005614Z-38c3c0085d-zeros,0.0301,zeros,37654,38c3c008,,N,,,,,,HISTORICAL,,USER-REPORTED
+GEMSDOE90,gems90-h90a-tilt-mag-grav-scarp-submod300-37654dots-20261025T052328Z-942c66d8-zeros,0.0749,zeros,37654,942c66d8,,N,,,,,,HISTORICAL,,USER-REPORTED
+GEMSDOE91,gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros,0.1367,zeros,37654,4d124f1d,,N,gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros,CWPC,e3,,4d124f1d961f47044a2072ce3dbac7621632c9eb9f5e6d23600baefdf522f270,HISTORICAL,,USER-REPORTED
+GEMSDOE91,gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros,0.1823,zeros,37654,bb703f39,,N,gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros,LFTG,e2,,bb703f39d0ba56ba30574d124d9ed0f1fffa1b73fb1a5195e231ec28070acdf6,HISTORICAL,,USER-REPORTED
+GEMSDOE91,gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros,,zeros,37654,afc16999,,N,gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros,HGBR,e1,,afc1699914bc517b42b230719736b1b6d9cc94e32f88c2cf7f113ef030c57c5e,BUILT,"0.200742 HOLDOUT-DTI (95% CI [0.180482, 0.221419]; gems57-pooled-hide-v2, 60,988 withheld positives). Blind SGMC >1km DTI = 0.101151 (+22.00% vs GEMSDOE32 R0, +153.53% vs S17-LFTG).",HOLDOUT-DTI
+GEMSDOE92,gems92-ptha-anisotropic-submod-37654-20261025T082301Z-755dc188-zeros,0.0255,zeros,37654,755dc188,,N,,,,,,HISTORICAL,,USER-REPORTED
 GEMSDOE86,h33-h33-2-b2-prune3-20261023-withdrawn,,nan,35483,,,N,h33-h33-2-b2-prune3-20261023-withdrawn,PRUNE,3,5.7657,,WITHDRAWN,"-0.003 (95% range -0.010..+0.004). MODEL. Mechanism: the 2-3 px collar holds 5.8% of the dots at 2.1x the background density but is NOT evidence-poor (tmi_hg percentile 0.528 vs 0.542 elsewhere), and the organiser says new truth can sit within 300 m of known traces, so most of these dots still carry new-fault credit; only the masked-sliver redundancy argues for a gain.",MODEL
 GEMSDOE86,h33-h33-2-b2-prune4-20261023-de4c2a98,,nan,33829,de4c2a98,h33-h33-2-b2,N,h33-h33-2-b2-prune4-20261023-de4c2a98,PRUNE,4,10.1583,de4c2a98bd13c518697442655c0a3980ba51d6712216c2ea0e330dc01924ebc5,BUILT,"-0.008 (95% range -0.025..+0.003). MODEL. Mechanism: extends the same deletion to the 3-4 px ring (1,654 more dots at 1.9x background density) where a dot's whole kernel sits in unmasked terrain, so the lost coverage is no longer excusable as masked.",MODEL
 GEMSDOE86,h33-h33-2-b2-prune3r-20261023-8c20bd7e,,nan,37654,8c20bd7e,h33-h33-2-b2,N,h33-h33-2-b2-prune3r-20261023-8c20bd7e,PRUNE,3r,11.5313,8c20bd7eeaf1a1518b7d7f4711613169bd1ab00c4a4b3d74c87bf2b70d552c2e,BUILT,"-0.003 (95% range -0.012..+0.006). MODEL. Mechanism: identical count to R0, identical deletions to prune3, collar pushed just past 3 px (mean move 1.14 px). Reads out whether any prune3 effect is mass or collar position.",MODEL

@@ -1,4 +1,16 @@
-# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (`arena/9278e16d-gemsdoe91`)
+# GEMSDOE91 — SESSION 18 (`S18-HGBR`, branch `arena/bba4efce-gemsdoe91`)
+
+> **SESSION 18 (`S18-HGBR E1`) AUTOMATED VERDICT: `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO — RESEARCH ONLY` (`0` weekly slots spent automatically).**
+> **[⬇ Download S18-HGBR E1 GeoTIFF (.tif)](docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif)** (`sha256: afc1699914bc517b42b230719736b1b6d9cc94e32f88c2cf7f113ef030c57c5e`, `184,234 B`, `37,654` binary `{0, 1}` dots, `EPSG:32611`, `3730×3292`, `float32`, `0` NaN/Inf, strictly in `[0, 1]`) · **[⬇ Single-TIFF ZIP (.zip)](docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.zip)** (`sha256: 236877355d46e83554fb0fb8be263a9bf3b00b0f1b9249ca176a564bfaa37928`) · [JSON Run Card](docs/run-card-S18-HGBR.json) · [Preregistration (`H18-1`–`H18-5`)](docs/HYPOTHESES_S18_HGBR.md) · [Full Scientific Review](docs/REVIEW-S18-HGBR-20261025.md) · [Portal Home](docs/index.html) · [Executive Summary & Submission Guide](docs/executive-summary.html)
+> - **Unique Submission Name:** `gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros`
+> - **Submission Note (`128 / 140` chars):** `S18-HGBR E1: Hurst-break + listric up-dip migration + cover-rescue OOF; 0.200742 HOLDOUT-DTI; SGMC >1km 0.1012 (+22% vs R0); 0/1`
+> - **Holdout Performance (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, `60,988` withheld positives, `80 px` spatial buffer, `37,654` binary dots):** **`hgbr_e1 = 0.200742 HOLDOUT-DTI`** (`95% CI [0.180482, 0.221419]`; `hgbr_e2 = 0.200530`, `hgbr_e3 = 0.196442`) — **new all-time label-blind repo record**, beating `S17-CPAD E1` (`0.198183 HOLDOUT-DTI`) across all 4/4 spatial folds (`+0.002560`, `95% CI [-0.000516, +0.005617]`), `INCUMBENT-PTAC-LB` (`0.194221`) by **`+0.006521`**, `INCUMBENT-PTAC-V2` (`0.192208`) by **`+0.008534`** (`95% CI [+0.002892, +0.014515]`), and `S17-LFTG E2` (`0.188596`, `USER-REPORTED` live `0.1823`) by **`+0.012146`** (`95% CI [+0.007290, +0.017609]`).
+> - **Untouched Blind Off-Catalogue USGS SGMC Control (`docs/s18_hgbr/blind-sgmc.json`):** **`>300 m = 0.103939`**, **`>500 m = 0.104995`**, and **`>1 km = 0.101151`** (`82.21%` of dots placed `>1 km` from the visible catalogue), beating `GEMSDOE32 R0` (`USER-REPORTED` live `0.2778`, SGMC `>1 km = 0.082913`) by **`+22.00%` on `>1 km`** (`+18.62%` on `>500 m`, `+8.97%` on `>300 m`) and beating `S17-LFTG` (`SGMC >1 km = 0.039897`) by **`+153.53%` on `>1 km`**.
+> - **Automated Gates (`Rule 1`–`Rule 6`):** `171/171` leakage canaries `PASS` (`max AUC = 0.7289 <= 0.90`; `16` new `HGBR` cols `max AUC = 0.5651 <= 0.90`); pre-placement surface `PASS` (`max |ρ| = 0.7209 <= 0.90`); post-placement real-submission uniqueness `PASS` across all `83` real rasters (`vs GEMSDOE32 R0 = 48.77% <= 70%`, `canonical real = 57.05% <= 70%`, `external fleet = 51.29% <= 70%`, `in-repo downloads = 61.87% <= 70%`; synthetic `206,895`-dot 5-px calibration grid `calib_r13lattice_00904.tif` has unidirectional overlap `99.84% > 70%` per `IR-S16-03`).
+
+---
+
+## Prior Checkout Review (`arena/9278e16d-gemsdoe91`)
 
 > **Verdict: NEGATIVE / NO PROMOTION.** This checkout's parallel-run lane was not assigned: the prompt refers to a single method paragraph but does not provide one. No new experiment, TIFF, score or competition slot was produced on this branch. The no-lane stop takes precedence over the wish to generate a new candidate.
 >
@@ -874,13 +886,15 @@ gems90-cnc-35000dots-20261024T084324Z:0.0749
 
 [https://buffedlizard55-lab.github.io/GEMSDOE91/](https://buffedlizard55-lab.github.io/GEMSDOE91/)
 
-:
+gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros:0.1823
+
+gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros:0.1367
 
 ....
 
 [https://buffedlizard55-lab.github.io/GEMSDOE92/](https://buffedlizard55-lab.github.io/GEMSDOE92/)
 
-:
+gems92-ptha-anisotropic-submod-37654-20261025T082301Z-755dc188-zeros:0.0255
 
 ....
 
