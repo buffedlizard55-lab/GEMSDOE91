@@ -1,0 +1,84 @@
+{
+  "schema_version": "gems91.registry-revalidation.v1",
+  "purpose": "Post-hoc directed dot comparison only; not a new experiment or universal registry clearance.",
+  "pinned_inputs": {
+    "sample_submission_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "r13_path": "data/fleet_registry/r13_lattice_s5_00904.tif",
+    "r13_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2"
+  },
+  "grid": {
+    "bands": 1,
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "r13_reference": {
+    "dots_in_footprint": 206895,
+    "footprint_pixels": 5167373,
+    "cells_more_than_3px_from_dots": 6649,
+    "covered_fraction_within_3px": 0.9987132726822701
+  },
+  "historical_artifacts": [
+    {
+      "artifact": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+      "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+      "candidate_dots": 8718,
+      "reference_dots": 206895,
+      "candidate_dots_within_3px": 8718,
+      "overlap_within_3px": 1.0,
+      "final_dot_spearman": 0.20129220468293435,
+      "surface_rank_correlation": null,
+      "status": "DUPLICATE"
+    },
+    {
+      "artifact": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
+      "sha256": "57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f",
+      "candidate_dots": 37654,
+      "reference_dots": 206895,
+      "candidate_dots_within_3px": 37522,
+      "overlap_within_3px": 0.9964943963456737,
+      "final_dot_spearman": -0.00011162554059641283,
+      "surface_rank_correlation": null,
+      "status": "DUPLICATE"
+    },
+    {
+      "artifact": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
+      "sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9",
+      "candidate_dots": 37654,
+      "reference_dots": 206895,
+      "candidate_dots_within_3px": 37654,
+      "overlap_within_3px": 1.0,
+      "final_dot_spearman": 0.0006079433725165084,
+      "surface_rank_correlation": null,
+      "status": "DUPLICATE"
+    }
+  ],
+  "fixed_budget_capacity_bound": {
+    "candidate_budget": 37654,
+    "minimum_overlap_with_r13": 0.8234184947150369,
+    "duplicate_threshold": 0.7,
+    "feasible": false,
+    "derivation": "At most one dot per uncovered cell; spacing can only increase overlap."
+  },
+  "frozen_inventory": {
+    "rows": 64,
+    "complete_universal_registry": false,
+    "missing_references": [
+      "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
+      "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif"
+    ],
+    "not_universal": true
+  },
+  "verdict": "negative",
+  "ok_to_submit": false
+}

@@ -1,69 +1,50 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Download the current GeoTIFF · GEMSDOE91 GEO91</title>
-<meta name="description" content="One-click download of the current unique, format-validated GeoTIFF. Automated gates state plainly whether it may be submitted. No human inspection.">
+<title>GEMSDOE91 · current safety verdict</title>
+<meta name="description" content="Three-pass GEMS competition repository review. Historical research TIFF is downloadable; no fresh candidate is authorized or approved for submission.">
 <style>
-:root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
-.wrap{max-width:1020px;margin:0 auto;padding:20px}a{color:var(--ok)}
-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
-nav a{margin-right:14px;text-decoration:none;font-weight:600}.logo{font-weight:800;font-size:20px}
-.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}@media(max-width:800px){.hero{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
-.dl{border:2px solid var(--ok)}h1{font-size:34px;line-height:1.15;margin:.2em 0}
-.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin-right:6px}
-.badge.bad{background:#f7e4e4;color:var(--bad)}.small{color:var(--mut);font-size:14px}
-.button{display:block;text-align:center;background:var(--ok);color:#fff;text-decoration:none;padding:14px;border-radius:10px;font-weight:800;font-size:17px;margin:12px 0}
-.btn2{display:inline-block;border:1px solid var(--ok);padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;margin:2px}
-.status{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:7px 0}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
-textarea{width:100%;font-family:ui-monospace,monospace;font-size:13px}section{margin:22px 0}code{font-size:12px;word-break:break-all}
-.warn{background:#fdf3e3;border:1px solid #e6cf9a;border-radius:10px;padding:12px}
+:root{--ink:#142521;--muted:#4e655e;--green:#17644e;--red:#9c2b2b;--line:#d5e0d9;--paper:#f5f8f5;--card:#fff;--amber:#805600}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--green);text-underline-offset:3px}.wrap{width:min(1080px,calc(100% - 36px));margin:auto}header{padding:20px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.brand{font-weight:800;font-size:20px;color:var(--ink);text-decoration:none}nav{display:flex;gap:16px;flex-wrap:wrap}nav a{font-size:14px;font-weight:650;text-decoration:none}.skip{position:absolute;left:-9999px}.skip:focus{left:8px;top:8px;background:white;padding:8px;z-index:9}main{padding:26px 0 48px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:start}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin:18px 0;min-width:0;overflow-wrap:anywhere}.statusbox{border:2px solid var(--green)}.badge{display:inline-block;border-radius:999px;background:#e3f0e9;color:var(--green);padding:5px 10px;margin:0 6px 7px 0;font-size:13px;font-weight:800}.badge.bad{background:#f8e6e6;color:var(--red)}h1{font-size:clamp(30px,4vw,44px);line-height:1.12;margin:12px 0 16px;letter-spacing:-1px}h2{font-size:23px;line-height:1.25;margin:0 0 12px}h3{font-size:17px;margin:0 0 8px}.lead{font-size:18px;color:var(--muted)}.small{font-size:14px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.metric{background:#f4f7f4;border-radius:8px;padding:12px}.metric strong{display:block;font-size:18px}.button{display:inline-block;background:var(--green);color:white;border-radius:8px;padding:12px 16px;font-weight:800;text-decoration:none;margin:5px 8px 5px 0}.button.outline{background:transparent;border:1px solid var(--green);color:var(--green)}.warning{border-left:4px solid var(--amber);background:#fff7e5;padding:13px 16px;border-radius:5px}.badbox{border-color:#dca5a5;background:#fffafa}ol li,ul li{margin:8px 0}code{font:12px ui-monospace,Consolas,monospace;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px;vertical-align:top}footer{border-top:1px solid var(--line);padding:20px 0 34px;color:var(--muted);font-size:13px}@media(max-width:760px){.hero,.grid{grid-template-columns:1fr}.wrap{width:calc(100% - 24px)}header{align-items:flex-start;flex-direction:column}nav{gap:12px}}
 </style></head><body><div class="wrap">
-<header><span class="logo">GEMSDOE91 · Fault Discovery Lab</span>
-<nav><a href="index.html">Current candidate</a><a href="executive-summary.html">Executive summary &amp; how to submit</a><a href="research.html">Research archive</a><a href="run-card-GEO91.json">Run card (JSON)</a></nav></header>
-
-<div class="hero">
+<a class="skip" href="#main">Skip to content</a>
+<header><a class="brand" href="index.html">GEMSDOE91 · Fault Discovery Lab</a>
+<nav aria-label="Main"><a href="index.html">Current verdict</a><a href="executive-summary.html">Submission instructions</a><a href="research.html">Research &amp; sources</a><a href="archive-results.html">Historical archive</a><a href="download-audit.html">Download audit</a></nav></header>
+<main id="main" data-submission-ready="false">
+<section class="hero">
 <div>
-<span class="badge">OK TO DOWNLOAD: YES</span><span class="badge bad">OK TO SUBMIT: NO — holdout gate failed</span>
-<h1>Download the GeoTIFF.<br>Read the verdict before submitting anything.</h1>
-<p class="small">One fresh, unique file, validated automatically from its written bytes — no human image inspection. It is safe to download and study. It is <strong>not approved for a competition slot</strong>: on the spatially-blocked holdout it lost to a uniform-random control, and this project never spends a weekly slot on an idea that hasn't beaten its control. Negative results are deliverables; this one is labelled as such everywhere.</p>
-<p class="small"><strong>Why 0.2778 leads the fleet (short version):</strong> the GEMSDOE32 file is its 40,199-dot parent with every dot within 200&nbsp;m of a mapped fault deleted. Hidden-fault truth can't sit on mapped faults, so that mass was pure DTI penalty. Dotted (not drawn) emission + catalogue-collar pruning is the verified mechanism. Full line-by-line analysis: <a href="executive-summary.html#why">executive summary</a>. Note: 0.2778, 0.4413 and 0.3195 are all <em>user-reported</em> — no organizer receipt exists in any repo audited.</p>
+<span class="badge">OK TO DOWNLOAD: YES — HISTORICAL RESEARCH ONLY</span><span class="badge bad">OK TO SUBMIT: NO</span>
+<h1>No fresh, unique TIFF was generated in this review.</h1>
+<p class="lead">The downloadable file below is an inherited negative research artifact, not a new submission. It passes the technical raster audit, but a direct comparison finds every one of its dots within 3 px of the dense R13 registry raster. The current protocol therefore says duplicate. No weekly slot was selected or used.</p>
+<div class="warning"><strong>Submission instructions first:</strong> Do not upload this file. A future file is upload-eligible only when its run card and this site explicitly say <strong>OK TO SUBMIT: YES</strong>, all science and novelty gates pass, and a separate selector approves a slot. No automatic upload is performed.</div>
 </div>
-
-<div class="card dl" aria-label="Download current candidate">
-<strong>CURRENT CANDIDATE · GEO91-E2</strong>
-<div class="status"><span>OK to download</span><strong>YES</strong></div>
-<div class="status"><span>OK to submit</span><strong style="color:var(--bad)">NO — see gates ↓</strong></div>
-<div class="status"><span>Values in [0,1], no NaN/Inf</span><strong>PASS</strong></div>
-<div class="status"><span>CRS / shape / transform</span><strong>PASS · EPSG:32611</strong></div>
-<div class="status"><span>Dots on mapped faults</span><strong>0 · min distance 3.16 px</strong></div>
-<div class="status"><span>Uniqueness vs R0 (0.2778 file)</span><strong>PASS · 17.1% overlap</strong></div>
-<a class="button" download href="downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif">↓ Download GeoTIFF (submit-format file)</a>
-<a class="btn2" download href="downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.zip">↓ Single-TIFF ZIP</a>
-<a class="btn2" href="run-card-GEO91.json">Machine run card ↗</a>
-<p class="small">37,654 binary dots · single band float32 · 3730×3292 · all 12,279,160 cells finite in [0,1] · SHA-256<br><code>57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f</code><br>
-Always upload the <code>-zeros.tif</code> (or its ZIP). Never upload a NaN-outside twin, audit JSON, or catalogue file — that is what triggers DrivenData's “Predicted values must be in range [0, 1]”.</p>
-</div></div>
-
-<section class="card"><h2>Submission identity (only for a future cleared candidate)</h2>
-<p class="small">Unique name and ≤140-character note, exactly as written into the file's receipt. For this research negative they identify the experiment — they are <strong>not</strong> an instruction to upload it.</p>
-<label class="small">Submission name</label><textarea rows="2" readonly>gems91-geo91e2-stratcover-collar3-20261025T132527Z</textarea>
-<label class="small">Note · 100/140 characters</label><textarea rows="2" readonly>GEO91-E2 habitat-stratified broad coverage, collar&gt;3px, 37654 dotted; see run-card-GEO91.json gates.</textarea>
-<p class="warn"><strong>NOT OK TO SUBMIT.</strong> Format, range, CRS, collar and uniqueness gates pass, but the scientific gate fails: HOLDOUT-DTI 0.055267 [0.053367, 0.057308] vs 0.074387 for the matched random control (gems91-hide-recover-v1.1-nohalo, 60,988 withheld positives). A separate selector decision and a holdout win over control are both required before any upload. 0 slots spent.</p></section>
-
-<section class="card"><h2>Automated gates — no human inspection anywhere</h2>
-<table><tr><th>Gate</th><th>Verdict</th><th>Evidence</th></tr>
-<tr><td>File format &amp; [0,1] range</td><td><span class="badge">PASS</span></td><td>Reopened from disk: 0 NaN, 0 Inf, min 0.0, max 1.0, nodata unset, 1 band float32, exact transform match vs <code>sample_submission.tif</code> (sha-verified pin).</td></tr>
-<tr><td>Zero mass on catalogue / outside footprint</td><td><span class="badge">PASS</span></td><td>0 / 0 dots; strict &gt;3 px collar (one full 300 m DTI kernel radius — stricter than R0's &gt;2 px).</td></tr>
-<tr><td>Uniqueness (protocol)</td><td><span class="badge">PASS vs measured registry</span></td><td>Surface Spearman ρ=0.0021 vs R0 (limit 0.90); final-dot ≤3 px overlap 17.1% vs R0, max 37.5% vs any file in <code>docs/downloads/</code> (limit 70%). Scope: pinned R0 + this repo's downloads — not a universal fleet clearance.</td></tr>
-<tr><td>Leakage canary</td><td><span class="badge">PASS</span></td><td>Worst single-feature symmetric AUC 0.50691 (limit 0.90), fold-specific features from visible faults only.</td></tr>
-<tr><td>Holdout science</td><td><span class="badge bad">FAIL — negative</span></td><td>E1 geometry 0.001338 and E2 coverage 0.055267 HOLDOUT-DTI both lose to uniform-random controls (0.0766 / 0.0744). Whole-segment buffering starves catalogue-proximity methods; catalogue geometry alone does not predict withheld faults.</td></tr>
-<tr><td>Slot selection</td><td><span class="badge bad">BLOCKED</span></td><td>No selector approval, no organizer receipt. This session never selects submissions.</td></tr></table></section>
-
-<section class="card"><h2>What beats 0.2778 — the honest next step</h2>
-<p class="small">The fleet plateau (top ~10 of ~90 sites are dotted derivatives of one habitat surface, 0.26–0.278, all user-reported) shows the ranking surface — not the emission — is saturated. This session proved catalogue geometry cannot replace it. The credible path: restore the 419 MB GeoDAWN feature stack (<code>python3 scripts/restore_data.py</code>, sha-pinned), train a habitat model at least as strong as h19-5/d28, then apply the verified emission recipe (binary dots, ≈2.8–3 px separation, collar sweep &gt;2→&gt;3 px, 37–44k budget) and validate on the same holdout instrument before any slot. Hypotheses ranked with costs: <a href="HYPOTHESES_GEO91.md">docs/HYPOTHESES_GEO91.md</a> (in repo).</p>
-<p class="small">Official sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData GEMS #306</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> · <a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a> · <a href="https://epsg.io/32611">EPSG:32611</a> · <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR GEMS PDF</a></p></section>
-
-<footer class="small">Maximize P(Win) · Own the Outcome · 2 of max 3 experiments used · 0 competition slots spent · every number labelled HOLDOUT-DTI or USER-REPORTED; nothing here is ORGANIZER-CONFIRMED. Prior-session pages remain under the research archive.</footer>
+<div class="card statusbox">
+<h2>Historical research download</h2>
+<p><strong>Artifact:</strong> <code>gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119</code></p>
+<p><span class="badge">OK TO DOWNLOAD: YES</span><span class="badge bad">NOT OK TO SUBMIT</span></p>
+<a class="button" download href="downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif">↓ Download all-finite GeoTIFF</a>
+<a class="button outline" download href="downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip">Single-TIFF ZIP</a>
+<p class="small">SHA-256 <code>a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11</code><br>8718 binary dots · one float32 band · EPSG:32611 · 3730×3292 · all values in [0,1].</p>
+<p class="small">Historical <strong>HOLDOUT-DTI 0.000000</strong>, 95% CI [0.000000, 0.000000], evaluator <code>gems91-hide-recover-v1.1-nohalo</code>, 60,988 withheld positives. This score was read from the inherited card, not rerun here.</p>
+<p><a href="run-card-ARENA-4F073E28.json">Current review run card ↗</a> · <a href="run-card-unique-offcatalogue-damagezone.json">Historical artifact card, with current revalidation ↗</a></p>
+</div></section>
+<section class="card"><h2>Why the verdict is negative</h2>
+<div class="grid">
+<div class="metric"><strong>Lane: unassigned</strong><span class="small">The canonical <code>docs/run-card.json</code> has <code>lane.assigned: false</code>. The promised method paragraph is absent; no lane was invented.</span></div>
+<div class="metric"><strong>2 pinned references missing</strong><span class="small">62 pinned remote rasters were restored. The frozen comparison inventory is incomplete; this is not universal fleet clearance.</span></div>
+<div class="metric"><strong>100.0000% directed overlap</strong><span class="small">All 8718 dots in the historical TIFF lie within 3 px of the pinned 206,895-dot R13 lattice. The 70% duplicate-stop threshold is exceeded.</span></div>
+<div class="metric"><strong>82.34% lower bound at 37,654 dots</strong><span class="small">Only 6,649 footprint cells are farther than 3 px from R13. At the historical 37,654-dot budget, even the best possible placement exceeds the duplicate threshold.</span></div>
+</div>
+<p class="small">A fresh holdout and feature-alone canaries were not run because no method lane is assigned. The new review card therefore records HOLDOUT-DTI as NOT RUN, not as zero. The existing artifact's HOLDOUT-DTI is inherited historical evidence only.</p>
+<p><a href="registry-revalidation-4F073E28.json">Open reproducible pinned-raster revalidation ↗</a> · <a href="download-audit.json">Open all-download format audit ↗</a> · <a href="REVIEW-ARENA-4F073E28-20261025.md">Read the three-pass review ↗</a></p>
+</section>
+<section class="card"><h2>Historical v2 reference — not a promotion comparator or live score</h2>
+<p><strong>HOLDOUT-DTI 0.194267</strong>, 95% CI [0.175859, 0.212112], <code>gems57-pooled-hide-v2</code>, 60,988 withheld positives. The stored split receipts and evaluator implementation hashes match, but emission-budget equivalence is unverified; do not use this as an eligible promotion comparator. It is historical repository evidence, not ORGANIZER-CONFIRMED and not comparable with results using other instruments.</p>
+</section>
+<section class="card"><h2>Current evidence and sources</h2>
+<p>The official challenge targets newly identified geological faults indicative of geothermal resources; it does not provide a geothermal-vent label. The competition page describes an initial private expert-labelled set and an expert-expanded final label set. All local validation here is a research holdout, not the competition test.</p>
+<ul><li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official GEMS problem, metric and format</a></li><li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard snapshot</a> — not a submission-page receipt for this repository</li><li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release</a></li><li><a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP products and services</a></li></ul>
+<p class="small">The reported GEMSDOE32 0.2778, 0.3195 and 0.4413 remain USER-REPORTED under the receipt-only score policy. A public leaderboard listing is not a submission-page receipt for a GEMSDOE91 artifact. No causal explanation or promise to exceed those values is made.</p>
+</section>
+</main>
+<footer>Maximize P(Win) · Own the Outcome · 0 experiments in this review · 0 slots used · All checks run automatically from file bytes; no human image inspection is required. <a href="../README.md">Project brief and full standing prompt</a></footer>
 </div></body></html>

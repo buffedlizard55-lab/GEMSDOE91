@@ -84,7 +84,7 @@
   "verdict": {
     "ok_to_download": true,
     "ok_to_submit": false,
-    "reason": "format-certified and registry-unique; HOLDOUT-DTI=0.0 (off-catalogue damage-zone design, deliberate negative); no organizer authentication/slot authorization available"
+    "reason": "Historical format-certified research file; current review directly revalidated 100% of its 8,718 dots within 3 px of the pinned dense R13 lattice, so it is a protocol duplicate. HOLDOUT-DTI remains an inherited deliberate negative. NOT OK TO SUBMIT."
   },
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
@@ -97,14 +97,44 @@
     "withheld_positives": 60988,
     "note": "deliberately off-catalogue damage-zone dots cannot cover withheld catalogue faults -> honest negative"
   },
-  "registry_uniqueness": {
-    "is_duplicate": false,
-    "uniqueness_pass": true,
-    "surface_max_abs_rank_corr": 0.00983,
-    "dots_max_3px_overlap": 0.2067,
-    "thresholds": {
-      "rank_corr": 0.9,
-      "dot_overlap": 0.7
+  "current_review_revalidation": {
+    "report": "docs/registry-revalidation-4F073E28.json",
+    "registry_reference": "data/fleet_registry/r13_lattice_s5_00904.tif",
+    "registry_reference_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "candidate_dots": 8718,
+    "candidate_dots_within_3px": 8718,
+    "overlap_within_3px": 1.0,
+    "final_dot_spearman": 0.20129220468293435,
+    "status": "DUPLICATE",
+    "scope": "One pinned raster rechecked; not a complete fleet clearance."
+  },
+  "historical_registry_uniqueness_claim_scope": "The original PASS compared a single GEMSDOE32 raster and is not universal novelty clearance.",
+  "historical_registry_uniqueness_claim": {
+    "status": "SUPERSEDED_SCOPE_LIMITED",
+    "scope": "Original single comparison against GEMSDOE32__h33-2-b2-zeros.tif; not a universal fleet clearance.",
+    "result": {
+      "is_duplicate": false,
+      "uniqueness_pass": true,
+      "surface_max_abs_rank_corr": 0.00983,
+      "dots_max_3px_overlap": 0.2067,
+      "thresholds": {
+        "rank_corr": 0.9,
+        "dot_overlap": 0.7
+      }
     }
+  },
+  "registry_uniqueness": {
+    "is_duplicate": true,
+    "uniqueness_pass": false,
+    "surface_max_abs_rank_corr": null,
+    "final_dot_spearman": 0.20129220468293435,
+    "dots_max_3px_overlap": 1.0,
+    "thresholds": {
+      "rank_corr_abs": 0.9,
+      "dot_overlap": 0.7
+    },
+    "reference": "data/fleet_registry/r13_lattice_s5_00904.tif",
+    "revalidation_report": "docs/registry-revalidation-4F073E28.json",
+    "status": "DUPLICATE"
   }
 }

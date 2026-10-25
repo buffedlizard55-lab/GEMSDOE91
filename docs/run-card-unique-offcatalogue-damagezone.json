@@ -5,35 +5,81 @@
   "branch": "arena/e6fdea6b-gemsdoe91",
   "submission_name": "gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119",
   "note": "Unique off-catalogue damage-zone lattice: format-certified unique GeoTIFF; HOLDOUT-DTI=0.0 (deliberate negative); research download only.",
-  "note_length_chars": 140,
+  "note_length_chars": 137,
   "hypothesis": "Geothermal permeability is hosted in fault damage zones 300 m-1 km off the mapped catalogue; an off-catalogue, off-collar, fixed-density lattice is a unique, testable discovery design.",
   "mechanism": "Footprint (sample_submission) x catalogue distance transform; emit unit dots at a 1 km lattice in the annulus 3 px < d_catalogue <= 10 px; value 1.0 at dots, 0 elsewhere, NaN outside footprint.",
   "named_non_fault_mimic_process": "Unaltered lithologic contact; survey flight-line seam.",
   "experiments_run": 1,
-  "budget": {"max_experiments": 3, "max_seconds": 7200},
+  "budget": {
+    "max_experiments": 3,
+    "max_seconds": 7200
+  },
   "holdout_dti": {
     "label": "HOLDOUT-DTI",
     "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
     "value": 0.0,
-    "ci95": [0.0, 0.0],
+    "ci95": [
+      0.0,
+      0.0
+    ],
     "withheld_positives": 60988,
     "note": "Deliberately off-catalogue damage-zone dots cannot cover withheld catalogue faults -> honest negative result."
   },
   "registry_comparison": {
-    "uniqueness_pass": true,
-    "is_duplicate": false,
-    "surface_max_abs_rank_corr": 0.00983,
-    "dots_max_3px_overlap": 0.2067,
-    "max_allowed_rank_corr": 0.90,
-    "max_allowed_dot_overlap_3px": 0.70,
-    "registry_rasters_checked": ["GEMSDOE32__h33-2-b2-zeros.tif"]
+    "uniqueness_pass": false,
+    "is_duplicate": true,
+    "surface_max_abs_rank_corr": null,
+    "dots_max_3px_overlap": 1.0,
+    "max_allowed_rank_corr": 0.9,
+    "max_allowed_dot_overlap_3px": 0.7,
+    "registry_rasters_checked": [
+      "data/fleet_registry/r13_lattice_s5_00904.tif"
+    ],
+    "current_review_revalidation": {
+      "date_utc": "2026-10-25",
+      "status": "DUPLICATE",
+      "reference_raster": "data/fleet_registry/r13_lattice_s5_00904.tif",
+      "reference_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "reference_dots_in_footprint": 206895,
+      "candidate_dots": 8718,
+      "candidate_dots_within_3px": 8718,
+      "overlap_within_3px": 1.0,
+      "surface_rank_correlation": null,
+      "scope": "Direct revalidation against this one pinned dense reference; full indexed fleet remains incomplete.",
+      "supersedes_historical_uniqueness_pass_for_current_status": true,
+      "final_dot_spearman": 0.20129220468293435,
+      "rank_definition": "Spearman correlation of the binary candidate and reference dot masks inside the valid footprint; not continuous-surface correlation.",
+      "max_allowed_dot_overlap_3px": 0.7,
+      "max_allowed_abs_rank_corr": 0.9
+    },
+    "historical_uniqueness_claim_scope": "The original pass compared only GEMSDOE32__h33-2-b2-zeros.tif; it was not a universal fleet clearance.",
+    "historical_initial_comparison": {
+      "uniqueness_pass": true,
+      "is_duplicate": false,
+      "surface_max_abs_rank_corr": 0.00983,
+      "dots_max_3px_overlap": 0.2067,
+      "registry_rasters_checked": [
+        "GEMSDOE32__h33-2-b2-zeros.tif"
+      ],
+      "scope": "Original check against GEMSDOE32__h33-2-b2-zeros.tif only; not full fleet clearance."
+    }
   },
   "format_validation": {
     "ok_to_download": true,
     "ok_to_submit": false,
     "crs": "EPSG:32611",
-    "shape": [3730, 3292],
-    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
     "dtype": "float32",
     "band_count": 1,
     "values_in_0_1": true,
@@ -58,5 +104,13 @@
     "No DrivenData authentication -> cannot auto-download labels/training_features or verify the live leaderboard/slot allowance.",
     "HOLDOUT-DTI=0.0 by design (off-catalogue damage-zone); not a score-improvement candidate.",
     "Cannot confirm organizer acceptance; only local format gates are validated."
-  ]
+  ],
+  "current_review_status": "negative: current registry_comparison is DUPLICATE; original single-raster uniqueness pass is archived only",
+  "historical_note_length_chars_claimed": 140,
+  "note_length_chars_recomputed": 137,
+  "note_length_validation": {
+    "status": "MISMATCH_IN_HISTORICAL_METADATA",
+    "historical_claim": 140,
+    "recomputed_from_exact_text": 137
+  }
 }

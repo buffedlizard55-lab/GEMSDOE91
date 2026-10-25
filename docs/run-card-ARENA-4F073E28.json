@@ -1,0 +1,234 @@
+{
+  "schema_version": "gems91.review.v1.1",
+  "review_id": "ARENA-4F073E28",
+  "branch": "arena/4f073e28-gemsdoe91",
+  "date_utc": "2026-10-25",
+  "review_status": "BLOCKED_BEFORE_EXPERIMENT",
+  "lane": {
+    "name": null,
+    "assigned": false,
+    "status": "UNASSIGNED",
+    "source": "docs/run-card.json",
+    "reason": "The standing prompt's promised single-method lane paragraph is absent; user instructions say not to invent it."
+  },
+  "hypothesis_status": "PROPOSED_NOT_SELECTED_OR_RUN",
+  "hypothesis": "Future assigned-lane candidate: localized cross-bicoherence between B02 reduced-to-pole magnetic and B13 isostatic-gravity fields may expose scale-coupled phase structure across a concealed fault-related contact.",
+  "mechanism": "Proposed only: test localized third-order phase coupling between spatial frequencies f1 and f2 in the RTP field and f1+f2 in the gravity field. This is distinct in form from the repository's linear magnetic-gravity transfer residual and monogenic phase-congruency methods, but no fault-specific coupling is established.",
+  "named_non_fault_mimic_process": "A sharp intrusive lithologic contact or acquisition-line/leveling seam can create coherent cross-band phase structure without a fault.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT_RUN_IN_THIS_REVIEW",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null
+  },
+  "comparable_prior_holdout_best": {
+    "label": "HOLDOUT-DTI",
+    "status": "HISTORICAL_SAME_EVALUATOR_AND_SPLIT_REFERENCE_NOT_PROMOTION_COMPARATOR",
+    "candidate": "S11-MHTR E2",
+    "value": 0.1942673386089294,
+    "ci95": [
+      0.17585859104411655,
+      0.21211160555697525
+    ],
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 60988,
+    "split_sha256": "c79f1acaf337fd548d0873d576a8a3c286d373ae2cb19cfce4464597d448d18a",
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "source": "evidence/spid91_gems57_holdout.json#/scores/s11_mhtr_e2; its four fold receipts match the independently reconstructed split and the S16 v2 receipts.",
+    "caveat": "Historical local HOLDOUT-DTI reference only. The evaluator implementation, split digest, fold receipts and withheld-positive count match, but emission-budget equivalence is unverified; this is not eligible as a promotion comparator. It is not a leaderboard score or organizer receipt. Results using other instruments are also not ranked against it.",
+    "same_evaluator_and_split_verified": true,
+    "emission_budget_equivalence": "UNVERIFIED",
+    "eligible_for_promotion_comparison": false
+  },
+  "registry_correlation_overlap": {
+    "new_surface": {
+      "status": "NOT_RUN_NO_NEW_SURFACE",
+      "surface_rank_correlation": null,
+      "final_dot_rank_correlation": null,
+      "final_dot_overlap_within_3px": null
+    },
+    "historical_artifact_rechecks": [
+      {
+        "artifact": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+        "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+        "candidate_dots": 8718,
+        "reference": "data/fleet_registry/r13_lattice_s5_00904.tif",
+        "reference_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "reference_dots_in_footprint": 206895,
+        "candidate_dots_within_3px": 8718,
+        "overlap_within_3px": 1.0,
+        "surface_rank_correlation": null,
+        "status": "DUPLICATE",
+        "final_dot_spearman": 0.20129220468293435
+      },
+      {
+        "artifact": "docs/downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif",
+        "sha256": "57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f",
+        "candidate_dots": 37654,
+        "reference": "data/fleet_registry/r13_lattice_s5_00904.tif",
+        "reference_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "candidate_dots_within_3px": 37522,
+        "overlap_within_3px": 0.9964943963456737,
+        "surface_rank_correlation": null,
+        "status": "DUPLICATE",
+        "final_dot_spearman": -0.00011162554059641283
+      },
+      {
+        "artifact": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
+        "sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9",
+        "candidate_dots": 37654,
+        "reference": "data/fleet_registry/r13_lattice_s5_00904.tif",
+        "reference_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+        "candidate_dots_within_3px": 37654,
+        "overlap_within_3px": 1.0,
+        "surface_rank_correlation": null,
+        "status": "DUPLICATE",
+        "final_dot_spearman": 0.0006079433725165084
+      }
+    ],
+    "r13_coverage": {
+      "footprint_pixels": 5167373,
+      "cells_more_than_3px_from_reference_dots": 6649,
+      "covered_fraction_within_3px": 0.9987132726822701,
+      "reference_dot_count": 206895,
+      "fixed_budget_capacity_bound": {
+        "candidate_budget": 37654,
+        "minimum_overlap": 0.8234184947150369,
+        "threshold": 0.7,
+        "feasible": false
+      }
+    },
+    "inventory_scope": {
+      "pinned_remote_rasters_restored": 62,
+      "comparison_inventory_rows": 64,
+      "missing_local_references": [
+        "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
+        "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif"
+      ],
+      "complete_universal_registry": false,
+      "note": "The measured R13 overlaps are direct checks against one pinned reference, not universal novelty clearance."
+    },
+    "revalidation_report": "registry-revalidation-4F073E28.json"
+  },
+  "raster_sha256": null,
+  "historical_research_artifact": {
+    "freshly_generated": false,
+    "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+    "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+    "holdout_dti": {
+      "label": "HOLDOUT-DTI",
+      "status": "INHERITED_NOT_RERUN",
+      "value": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+      "withheld_positives": 60988
+    },
+    "technical_validation": {
+      "status": "PASS",
+      "single_band_float32": true,
+      "shape": [
+        3730,
+        3292
+      ],
+      "crs": "EPSG:32611",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "all_cells_finite": true,
+      "inside_footprint_finite": true,
+      "values_in_0_1": true,
+      "zero_outside_footprint": true,
+      "visible_catalogue_masked": true,
+      "source": "docs/download-audit.json"
+    },
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "reason": "Historical research download only; duplicate against the dense R13 reference and negative holdout evidence.",
+    "submission_name": "gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119",
+    "submission_note": "Unique off-catalogue damage-zone lattice: format-certified unique GeoTIFF; HOLDOUT-DTI=0.0 (deliberate negative); research download only.",
+    "submission_note_length": 137
+  },
+  "validator_output": {
+    "new_raster": "NOT_GENERATED",
+    "historical_artifact_validation": "PASS",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "all_cells_finite": true,
+    "zero_outside_footprint": true,
+    "mapped_catalogue_masked": true,
+    "note": "Historical artifact verification does not create a fresh unique candidate or authorize submission."
+  },
+  "submission_name": null,
+  "submission_note": "Review only; no fresh candidate or slot. Historical TIFF is for research; do not submit.",
+  "submission_note_length": 88,
+  "experiments_run": 0,
+  "budget": {
+    "max_experiments": 3,
+    "max_seconds": 7200,
+    "experiments_used": 0,
+    "slots_used": 0
+  },
+  "organizer_confirmed": null,
+  "selector_approval": false,
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "reason": "No fresh experiment is authorized while lane.assigned is false; the restored pinned registry contains a dense reference that marks previous high-budget outputs as duplicates; the indexed inventory is incomplete.",
+  "ranked_shortlist": [
+    {
+      "rank": 1,
+      "id": "H1",
+      "status": "PROPOSED_NOT_RUN",
+      "geological_hypothesis": "A concealed basin-transfer or relay fault beneath sediment cover produces a narrow basement/gravity discontinuity and a conductivity residual after fold-safe conditioning on basement depth.",
+      "mechanism": "Use B15 depth_to_base_surf to condition B17 cond_surf; require an independently measured B13 isostatic gravity edge/curvature (B05 may corroborate). Do not use catalogue geometry or historical dots to shape the surface.",
+      "named_non_fault_mimic": "Saline playa groundwater or clay-rich basin fill that follows the same basement-depth trend.",
+      "rank_basis": "Best input availability and explicit falsifiable cross-physics test; method overlaps prior CCR/BHAR work and is not claimed novel."
+    },
+    {
+      "rank": 2,
+      "id": "H2",
+      "status": "PROPOSED_NOT_RUN",
+      "geological_hypothesis": "A concealed fault juxtaposing magnetically distinct units is partly hidden by remanent magnetization and cover, but remains visible to a magnetization-direction-robust contact measure.",
+      "mechanism": "Compare B01 mag_anom, B02 RTP, B14 TMI, B03 horizontal gradient and B09 vertical gradient; derive a unit-consistent 3-D analytic-signal/contact measure and condition its interpretation on B15 basement depth. Require independent geological controls; no radiometric layer is assumed.",
+      "named_non_fault_mimic": "Unfaulted reversed-magnetization lava-flow margin, intrusive lithologic contact, or survey flight-line seam.",
+      "rank_basis": "Cached magnetic/depth bands are described, but related analytic-signal work exists in prior lanes; the specific cross-channel residual and independent-control test remain unrun and require an exact novelty audit."
+    },
+    {
+      "rank": 3,
+      "id": "H3",
+      "status": "PROPOSED_NOT_RUN",
+      "geological_hypothesis": "An active transfer or accommodation fault is expressed by a localized geodetic-strain transition aligned with an independent gravity discontinuity.",
+      "mechanism": "Test spatially blocked co-location of B07 geod_shearrate and B08 geod_dilaterate with B13/B18 gravity structure; treat B04 strain invariant and B16 seismic density as corroborators, not labels.",
+      "named_non_fault_mimic": "Sparse-station interpolation seam, unrelated earthquake swarm, or distributed regional strain gradient.",
+      "rank_basis": "Geological mechanism is plausible but spatial support is coarse and related strain/seismic features were used in prior lanes."
+    },
+    {
+      "rank": 4,
+      "id": "H4",
+      "status": "SPECULATIVE_PROPOSED_NOT_RUN",
+      "geological_hypothesis": "Fault-related contact geometry creates localized scale-coupled magnetic–gravity phase structure.",
+      "mechanism": "Potentially test localized cross-bicoherence between B02 RTP and B13 isostatic gravity at frequencies f1, f2 and f1+f2, requiring stability across scales and predictive value beyond each feature alone. No bicoherence map is computed in this review.",
+      "named_non_fault_mimic": "Sharp intrusive lithologic contact or acquisition-line/leveling seam coherent in both fields without a fault.",
+      "rank_basis": "Lowest confidence. The located bicoherence methods paper is a time-series study, not geological fault mapping; no fault-specific validation was located."
+    }
+  ],
+  "review_report": "docs/REVIEW-ARENA-4F073E28-20261025.md",
+  "ranked_shortlist_report": "docs/current-review-research-src.html",
+  "input_metadata_irregularity": "The restored numerical-feature TIFF embeds B06 name tc and description Tilt angle or total curvature (magnetic derivative); some historical repository text calls B06 total count. This review follows the raster’s embedded description and does not assume an accessible radiometric total-count band."
+}

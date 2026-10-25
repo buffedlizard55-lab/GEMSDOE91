@@ -1,6 +1,14 @@
 {
-  "run_card": "run-card-S16.json",
+  "run_card": "run-card-ARENA-4F073E28.json",
+  "review_status": "BLOCKED_BEFORE_EXPERIMENT",
+  "fresh_candidate_generated": false,
   "ok_to_download": true,
   "ok_to_submit": false,
-  "raster_sha256": "0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9"
+  "raster_sha256": null,
+  "historical_research_artifact": {
+    "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+    "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+    "ok_to_download": true,
+    "ok_to_submit": false
+  }
 }

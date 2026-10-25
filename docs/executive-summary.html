@@ -1,45 +1,40 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Executive summary — exactly how to submit · GEMSDOE91</title>
+<title>GEMSDOE91 · submission instructions and current verdict</title>
+<meta name="description" content="Clear submission instructions: current verdict is download for research only, not approved for competition submission.">
 <style>
-:root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8}
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
-.wrap{max-width:900px;margin:0 auto;padding:20px}a{color:var(--ok)}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0}
-.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin-right:6px}
-.badge.bad{background:#f7e4e4;color:var(--bad)}.small{color:var(--mut);font-size:14px}ol li{margin:10px 0}code{font-size:12px;word-break:break-all}
-.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:800}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left}
+:root{--ink:#142521;--muted:#4e655e;--green:#17644e;--red:#9c2b2b;--line:#d5e0d9;--paper:#f5f8f5;--card:#fff;--amber:#805600}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:var(--green);text-underline-offset:3px}.wrap{width:min(980px,calc(100% - 36px));margin:auto}header{padding:20px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.brand{font-weight:800;font-size:20px;color:var(--ink);text-decoration:none}nav{display:flex;gap:16px;flex-wrap:wrap}nav a{font-size:14px;font-weight:650;text-decoration:none}main{padding:26px 0 48px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin:18px 0;overflow-wrap:anywhere}.badge{display:inline-block;border-radius:999px;background:#e3f0e9;color:var(--green);padding:5px 10px;margin:0 6px 7px 0;font-size:13px;font-weight:800}.badge.bad{background:#f8e6e6;color:var(--red)}h1{font-size:clamp(30px,4vw,42px);line-height:1.12;margin:12px 0 16px;letter-spacing:-1px}h2{font-size:23px;line-height:1.25;margin:0 0 12px}h3{font-size:17px;margin:0 0 8px}.lead{font-size:18px;color:var(--muted)}.small{font-size:14px;color:var(--muted)}.warning{border-left:4px solid var(--amber);background:#fff7e5;padding:13px 16px;border-radius:5px}.button{display:inline-block;background:var(--green);color:#fff;border-radius:8px;padding:12px 16px;font-weight:800;text-decoration:none;margin:5px 8px 5px 0}.button.outline{background:transparent;border:1px solid var(--green);color:var(--green)}ol li,ul li{margin:9px 0}code{font:12px ui-monospace,Consolas,monospace;overflow-wrap:anywhere}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px;vertical-align:top}footer{border-top:1px solid var(--line);padding:20px 0 34px;color:var(--muted);font-size:13px}
 </style></head><body><div class="wrap">
-<p><a href="index.html">← Current candidate</a></p>
-<span class="badge">OK TO DOWNLOAD: YES</span><span class="badge bad">OK TO SUBMIT: NO (current file)</span>
-<h1>Executive summary: exactly how a submission happens</h1>
-<p class="small">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS #306</a> — predict fault pixels <em>missing</em> from the supplied catalogue on a 3730×3292, 100 m, EPSG:32611 grid. Metric: distance-weighted Tversky (DTI, α=0.2, β=0.8, 300 m triangular kernel). Validation in this project is fully automated from the written bytes — there is no human-inspection step, and format validity never overrides a failed science or uniqueness gate.</p>
-
-<div class="card"><h2>1 · Download the right file</h2>
-<a class="button" download href="downloads/gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif">↓ Download current GeoTIFF (research)</a>
-<p class="small">Use the <code>-zeros.tif</code> (all-finite, nodata unset) or the ZIP containing exactly that one TIFF. <strong>The DrivenData error “Predicted values must be in range [0, 1]”</strong> is produced by NaN-outside twins, −3.4×10<sup>38</sup> sentinel bleed, or a nodata tag the portal rejects; every current <code>-zeros.tif</code> in this repo was byte-checked: 0 NaN/Inf, values only {0,1}. Current file SHA-256 <code>57d2c44c50ca54e8f9ac42b9a63786ba2fc80f4619b40e912dc3eaf1e5befe2f</code>.</p></div>
-
-<div class="card"><h2>2 · Check the gates (machine-read, not eyeballed)</h2>
-<p class="small">Open <a href="run-card-GEO91.json">run-card-GEO91.json</a>. A file may be submitted only if <em>all</em> hold: format PASS · zero catalogue/outside mass · canary AUC ≤0.90 · surface |ρ| ≤0.90 and ≤3 px dot overlap ≤70% vs registry · holdout beats its matched control · separate selector approval. <strong>The current file fails the holdout gate → do not upload it.</strong></p></div>
-
-<div class="card"><h2>3 · Upload (future cleared candidate only)</h2>
+<header><a class="brand" href="index.html">GEMSDOE91 · Fault Discovery Lab</a><nav aria-label="Main"><a href="index.html">Current verdict</a><a href="executive-summary.html">Submission instructions</a><a href="research.html">Research &amp; sources</a><a href="archive-results.html">Historical archive</a><a href="download-audit.html">Download audit</a></nav></header>
+<main id="main" data-submission-ready="false">
+<span class="badge">OK TO DOWNLOAD: YES — HISTORICAL RESEARCH ONLY</span><span class="badge bad">OK TO SUBMIT: NO</span>
+<h1>Submission instructions: do not upload the current research TIFF.</h1>
+<p class="lead">This page starts with the decision to prevent a format-valid download from being mistaken for a competition-approved candidate. The historical GeoTIFF is available for research, but it is a measured duplicate under the current registry rule and has a negative inherited holdout result.</p>
+<div class="warning"><strong>Current gate:</strong> OK TO DOWNLOAD means the historical file can be obtained and its bytes pass this repository's technical raster checks. It does <strong>not</strong> mean the file is unique, scientifically promoted, eligible, or approved for a weekly slot. Current verdict: <strong>NOT OK TO SUBMIT.</strong></div>
+<section class="card"><h2>Available historical file — research only</h2>
+<p><strong>gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119</strong><br>SHA-256: <code>a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11</code><br>8718 dots · EPSG:32611 · 3730×3292 · one float32 band.</p>
+<a class="button" download href="downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif">Download historical GeoTIFF</a><a class="button outline" download href="downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip">Download single-TIFF ZIP</a>
+<p><strong>NOT OK TO SUBMIT.</strong> The all-finite primary TIFF passes the automated format audit. Its duplicate overlap is 100.0000% against the dense R13 raster, above the 70% limit. Its inherited <strong>HOLDOUT-DTI 0.000000</strong> (95% CI [0.000000, 0.000000], <code>gems91-hide-recover-v1.1-nohalo</code>, 60,988 withheld positives) was not rerun in this review.</p>
+</section>
+<section class="card"><h2>How to submit a future candidate — only after every gate turns green</h2>
 <ol>
-<li>Go to DrivenData → competition 306 → <strong>New submission</strong>.</li>
-<li><strong>File to submit:</strong> choose the cleared single-band <code>.tif</code> (or <code>.zip</code> with one TIFF). It must match the sample's CRS, shape and geotransform — the writer enforces this byte-for-byte.</li>
-<li><strong>Note (optional):</strong> paste the cleared file's recorded ≤140-char note (current research file's, for format reference: “GEO91-E2 habitat-stratified broad coverage, collar&gt;3px, 37654 dotted; see run-card-GEO91.json gates.”).</li>
-<li>Submit once, then copy the receipt: submission ID, timestamp, score. Only that score may be labelled ORGANIZER-CONFIRMED.</li>
-</ol></div>
-
-<div class="card" id="why"><h2>Why 0.2778 is the fleet best — and what it does not prove</h2>
-<p class="small">Verified here against sha-pinned inputs: R0 = 40,199-dot parent minus 2,545 dots ≤200 m from mapped faults (measured min distance 2.236 px, 0 on-catalogue, median spacing 3.0 px). Under DTI = T/(0.2T+0.2(S−M)+0.8|G|) with max-kernel credit, near-catalogue dots pay penalty without earning hidden-truth credit; deleting them mechanically lifts the score, and dosing mass as separated dots (not lines) avoids paying twice per kernel footprint. Fleet gradient (all USER-REPORTED, no receipts): continuous 0.1922 → dotted 0.2477 → 0.2600 → solo 0.2708 → pruned 0.2778. GEMSDOE32's own page called the file unscored and its advertised ZIP is malformed (216 bytes, empty member) — so treat 0.2778 as a claim with a sound mechanism, not a confirmed score. The prompt's 0.4413 vs 0.3195 leaderboard figures conflict; neither is receipted here.</p>
-<table><tr><th>This session (HOLDOUT-DTI, gems91-hide-recover-v1.1-nohalo, 60,988 withheld)</th><th>Value [95% CI]</th></tr>
-<tr><td>E1 tip+relay geometry</td><td>0.001338 [0.000671, 0.002171]</td></tr>
-<tr><td>E2 stratified coverage (current file's method)</td><td>0.055267 [0.053367, 0.057308]</td></tr>
-<tr><td>Uniform-random controls (matched)</td><td>0.076603 / 0.074387</td></tr></table>
-<p class="small">Verdict: <strong>negative</strong>. Catalogue geometry alone cannot beat chance at recovering withheld segments — consistent with live fleet tip/relay scores (0.005–0.016, USER-REPORTED). Beating 0.2778 needs the GeoDAWN geophysical stack plus the emission recipe above. Holdout numbers from other instruments (e.g. gems57-pooled-hide-v2) are not comparable to these and are never mixed.</p></div>
-
-<div class="card"><h2>Limitations &amp; what is needed next</h2>
-<p class="small">No DrivenData login in this environment → no organizer receipts can be fetched or verified here. <code>training_features.tif</code> (419 MB) was not restored this session (free, sha-pinned, via <code>scripts/restore_data.py</code>); it is the blocking input for any credible >0.2778 attempt. The prompt's “single method paragraph” lane was never supplied, so GEO91 is a documented provisional lane. Registry uniqueness was measured against pinned R0 + this repo's downloads, not the whole fleet. Irregularities: see <code>IRREGULARITIES.md</code> (repo root).</p></div>
-
-<footer class="small">Maximize P(Win) · Own the Outcome · 0 slots spent · Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR prize PDF</a></footer>
+<li><strong>Confirm the method lane first.</strong> The current canonical card records <code>lane.assigned: false</code>. Do not infer an assignment from an old artifact, review, or shortlist.</li>
+<li><strong>Wait for a fresh run card.</strong> It must identify a newly computed raster, evaluator version, withheld-positive count, 95% CI, feature-alone canaries, complete registry scope, both novelty phases, byte hash, and validator output. A historical file or format audit is not a fresh experiment.</li>
+<li><strong>Require a strict promotion verdict.</strong> The candidate must beat the best comparable HOLDOUT-DTI on the same split/evaluator with paired uncertainty, pass the duplicate rules and leakage canaries, and pass the actual written-byte validator. No score projection qualifies.</li>
+<li><strong>Use a separate selector.</strong> Only after the card says <em>OK TO SUBMIT: YES</em> should the human selector verify the current weekly allowance and choose one candidate. This review neither selects nor uploads a slot.</li>
+<li><strong>Upload the exact named file to DrivenData.</strong> Then preserve the submission-page receipt, identifier, timestamp, and score. Only a score copied from that receipt is labeled ORGANIZER-CONFIRMED under this project’s policy.</li>
+</ol>
+</section>
+<section class="card"><h2>What the official format and metric say</h2>
+<p>The official problem asks for faults indicative of geothermal resources, with an initial private expert-labelled fault set and later expert review/expanded labels. It does not provide a geothermal-vent label. The documented prediction file is one float32 GeoTIFF in EPSG:32611 at 100 m, with values in [0,1] and null/NaN outside bounds. The official metric uses a 300 m triangular distance kernel and alpha 0.2 / beta 0.8. This repository’s zero-filled outside-footprint encoding is validated locally; local validation does not guarantee organizer acceptance.</p>
+<p>Official links: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem, metric, and format</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">rules</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">public leaderboard</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a>.</p>
+</section>
+<section class="card"><h2>Why a sparse reported result may rise — not causal proof</h2>
+<p>The official DTI gives each truth pixel its best distance-weighted prediction credit and charges unmatched prediction mass through the false-positive term. Removing low-marginal-utility dots can therefore improve the ratio if coverage credit is retained. But a dot near an already mapped fault is not automatically zero-credit: an unmapped truth pixel may be within the 300 m kernel. A matched, same-fold ablation is needed to prove why a particular file scored as it did.</p>
+<p>The user-reported GEMSDOE32 value 0.2778 is not confirmed by a submission-page receipt; its own published page says no organizer score exists. The supplied 0.3195 and 0.4413 are also not receipts for this repository. The current public leaderboard is linked above, but a public listing is not an ORGANIZER-CONFIRMED receipt for GEMSDOE91.</p>
+</section>
+<section class="card"><h2>Automated evidence and reports</h2>
+<ul><li><a href="run-card-ARENA-4F073E28.json">Current review run card</a> — no fresh TIFF; HOLDOUT-DTI marked NOT RUN.</li><li><a href="REVIEW-ARENA-4F073E28-20261025.md">Three-pass review and ranked hypotheses</a>.</li><li><a href="registry-revalidation-4F073E28.json">Pinned R13 duplicate revalidation</a>.</li><li><a href="download-audit.html">All-download technical audit</a> (62 files, 54 technical PASS, 8 FAIL). A PASS is not a science or novelty clearance.</li><li><a href="../README.md#full-project-brief">Preserved full standing prompt</a>.</li></ul>
+</section>
+</main><footer>Maximize P(Win) · Own the Outcome · No experiment or slot used in this review · No automatic submission.</footer>
 </div></body></html>

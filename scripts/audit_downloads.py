@@ -119,7 +119,7 @@ def render_html(report):
     return '''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>All-download safety audit · GEMSDOE91</title>
 <link rel="stylesheet" href="assets/portal.css"></head><body><div class="wrap"><main id="main">
-<p><a href="index.html">← Current candidate</a> · <a href="executive-summary.html">Submission guide</a></p>
+<p><a href="index.html">← Current safety verdict</a> · <a href="executive-summary.html">Submission instructions</a></p>
 <h1>All-download safety audit</h1><p><strong>OK TO SUBMIT: NO — for every file listed here.</strong></p>
 <p>Research downloads are available. PASS means technical checks only, not unique science, improved holdout performance, or competition approval.
 FAIL means at least one strict range-safe delivery or masking check failed. Historical files are preserved, not repaired into a new submission.</p>
