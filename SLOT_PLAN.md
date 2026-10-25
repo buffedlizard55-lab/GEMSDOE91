@@ -1,3 +1,9 @@
+# Slot selection — no automatic slot (`S14-HVDC E2` / `S14-PTAC E2` / `S15-SCGF E2` / `S17-EULR E3` are Rule-1 duplicate-stop negatives; 0 slots spent)
+
+> **SESSION 17 BANNER (`S17-EULR`, 2026-10-25, branch `arena/597b6f3f-gemsdoe91`):**
+> - **Zero weekly DrivenData slots spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` (research) | `OK TO SUBMIT: NO` (`verdict: "negative"`).**
+> - **`gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif`** (`44,000` binary `{0, 1}` dots `> 3.0 px` from catalogue, SHA-256 `3d07dcb81f01e8b19b5fa2cf2d4d7dc75eb1f7ec2d319a120f6ba7c37bf369d2`, [`docs/run-card-S17-EULR.json`](docs/run-card-S17-EULR.json)) scored **`0.249626 HOLDOUT-DTI`** (`95% CI [0.234678, 0.264996]`, `gems91-hide-recover-v1.0`) and **`0.100737` Blind Off-Catalogue USGS SGMC DTI** (`+0.005351` vs `GEMSDOE32 R0`), trailing `S14-PTAC E2` (`0.267782`, point comparison) with a null Euler ablation (paired `+0.000331`, CI includes 0) and literal registry failure (lattice `99.827%`; S13 sibling `93.836%`; `41.120%` on `R0`). Takes **no slot**.
+
 # Slot selection — no automatic slot (`S14-HVDC E2` / `S14-PTAC E2` / `S15-SCGF E2` / `S17-CDSC E1` are Rule-1 duplicate-stop negatives; 0 slots spent)
 
 > **SESSION 17 BANNER (`S17-CDSC`, 2026-10-25, branch `arena/1722e30a-gemsdoe91`):**

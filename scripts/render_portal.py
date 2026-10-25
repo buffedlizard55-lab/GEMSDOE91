@@ -37,6 +37,7 @@ def f(value, digits=5):
 EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292),
                  'transform': (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)}
 BOARD_ROWS = (
+    ('S17-EULR E3 (Session 17: Euler deconvolution source-geometry fusion, 44,000 dots; HOLDOUT-DTI 0.249626 v1.0, Blind SGMC 0.100737; Euler paired ablation +0.000331 CI includes 0 — null; negative — research only)', 'docs/run-card-S17-EULR.json', 'docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif', 'REVIEW-S17-EULR.md'),
     ('S17-CDSC E1 (NEW Session 17 lane: prevalence-calibrated Faulds–Hinz en-echelon relay AC + 16 local S15 subsurface features + 72-col Pure-Subsurface specialist, 44,000 dots; HOLDOUT-DTI 0.259972 [+0.015371 vs S13-PTHA, +0.019339 vs S15-SCGF], Blind SGMC 0.093019; negative — research only)', 'docs/run-card-S17-CDSC.json', 'docs/downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif', 's17-cdsc.html'),
     ('S15-SCGF E2 (NEW parallel lane: Förstner junctions + multi-scale Salem worms + aquifer-baffle dual-specialist, 44,000 dots; HOLDOUT-DTI 0.240633, Blind SGMC 0.097940 [+0.0022 vs PTAC]; negative — research only)', 'docs/run-card-S15-SCGF.json', 'docs/downloads/gems91-s15-scgf-e2-20261025T060000Z-5b7e74e5-zeros.tif', 's15-scgf.html'),
     ('S15-HCPA (historical research only; HOLDOUT-DTI 0.091399; final selector not holdout-matched; complete registry unverified)', 'docs/run-card-S15.json', 'docs/downloads/gems91-s15-hcpa-e3-20261025T030000Z-7f01c717-zeros.tif', 's15-hcpa.html'),
