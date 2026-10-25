@@ -10,7 +10,7 @@
 
 ## Start here every session
 
-Read this status, [the full standing brief below](#full-project-brief), [the current review for this branch](docs/REVIEW-ARENA-ABB160F7-20261025.md), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+Read this status, [the full standing brief below](#full-project-brief), [the current review for this branch](docs/REVIEW-ARENA-ABB160F7-20261025.md), [the prior active-checkout review (historical snapshot)](docs/REVIEW-ACTIVE-20261025.md), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
 
 The current S16-PGRD TIFF is **OK TO DOWNLOAD: YES — RESEARCH; OK TO SUBMIT: NO**. The active run card is [S16-PGRD](docs/run-card-S16.json); the no-input verifier is `python generate_submission.py`. Do not substitute the legacy CED91 `docs/run-card.json` or `scripts/verify_current_artifact.py` as evidence for the landing-page artifact. The full standing user brief is preserved below and must be read again in each new session.
 
