@@ -623,6 +623,8 @@ def render():
     render_current(archive_legacy=True)
     from scripts.render_s17_portal import render as render_s17_cpad
     render_s17_cpad()
+    from scripts.render_s17_lftg_portal import render as render_s17_lftg
+    render_s17_lftg()
     # GEO91 (2026-10-25) is the newest entry point; inject after S16 so the
     # committed front door matches a fresh render byte-for-byte.
     from scripts.render_geo91_portal import render as render_geo91
