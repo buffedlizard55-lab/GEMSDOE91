@@ -3,6 +3,7 @@
 
     python generate_submission.py                 # canonical portal TIFF + ZIP
     python generate_submission.py --with-data     # also pinned sample/catalogue
+    python generate_submission.py --preflight     # no experiment: lane + capacity blockers
     python generate_submission.py --legacy-hexfar # historical HEXFAR91 verifier
     python generate_submission.py --legacy-s16    # historical S16 verifier
 
@@ -100,6 +101,7 @@ def verify_olc91(root: Path, with_data: bool = False) -> dict:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--preflight", action="store_true", help="Check experiment plan and pinned registry capacity; never build or submit")
     parser.add_argument("--run", action="store_true",
                         help="Blocked: an assigned method lane is required before any experiment")
     parser.add_argument("--legacy-hexfar", action="store_true", help="Verify historical HEXFAR91 instead of the current website download")
@@ -108,6 +110,11 @@ def main():
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
     sys.path[:0] = [str(root), str(root / "src")]
+    if args.preflight:
+        if args.run or args.legacy_s16 or args.legacy_hexfar or args.with_data:
+            parser.error("--preflight is a separate no-experiment check; do not combine with verification/build flags")
+        from scripts.experiment_preflight import main as preflight_main
+        return preflight_main([])
     if args.run:
         print(json.dumps({"status": "BLOCKED", "OK_TO_SUBMIT": "NO",
                           "error": "No assigned method lane; --run cannot execute a legacy builder."}))

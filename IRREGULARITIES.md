@@ -1715,3 +1715,8 @@ Evidence and three-pass review: `docs/REVIEW-6CBFE8AC-20261025.md`; exact-downlo
 ## Active review ee76e309 (2026-10-25)
 
 The published-artifact verifier read historical `docs/run-card.json`, while the frontdoor advertises a different artifact through `docs/current-run.json`. Added `scripts/verify_frontdoor.py` and CI coverage for the actual pointer; retained historical verification. Removed misleading LB-DTI navigation labels in source and generated pages. Fresh 87-artifact audit records 78 technical PASS / 9 FAIL, not submission authorization. No lane paragraph supplied, so no new experiment/TIFF/slot. See `docs/REVIEW-EE76E309-20261025.md`.
+
+
+## IR-91-19912231 — data availability was labeled build authorization
+
+The legacy input preflight printed BUILD ALLOWED once any historical axis had data, without an assigned lane or feasibility check. Fixed: INPUTS AVAILABLE and explicit `experiment_authorized: false`; added separate pinned-byte `experiment_preflight.py`. Independently measured lattice lower bound 82.341849% at 37,654 dots (geometry, NOT a score). Missing lane and impossible budget remain blocks, not repaired by overriding policy. No candidate or slot. Also removed unsupported hidden-coverage inference from the executive guide and marked completed CWP91 as completed rather than the next untried method. See `docs/REVIEW-19912231-20261025.md`.

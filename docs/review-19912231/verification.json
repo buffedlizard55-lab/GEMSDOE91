@@ -1,0 +1,45 @@
+{
+  "checked_utc": "2026-10-25T18:20:03.937307+00:00",
+  "evidence_class": "ENGINEERING_CHECKS_NOT_A_SCORE",
+  "status": "PASS_WITH_DOCUMENTED_SKIPS",
+  "pytest": {
+    "command": ".venv/bin/python -m pytest -ra",
+    "passed": 610,
+    "skipped": 8,
+    "failed": 0,
+    "warnings": 87,
+    "skip_reason": "Large pinned integration inputs deliberately not restored for a blocked experiment",
+    "warning": "Rasterio affine multiplication PendingDeprecationWarning",
+    "initial_failure": "Portal reproducibility after source-feed refresh: dependent archived pages needed regeneration. Full shared render fixed it; repeat suite passed."
+  },
+  "browser": {
+    "status": "PASS",
+    "report": "browser-verification.json",
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "mobile_overflow": false,
+    "console_or_http_errors": [],
+    "accessibility_violations": 0
+  },
+  "download_audit": {
+    "path": "docs/download-audit.json",
+    "sha256": "dee554ede50204ceb70d0adc7975920a6c27746b35e056f43415ade27b08ac52",
+    "fresh_audit_byte_identical": true,
+    "artifacts": 87,
+    "technical_pass": 78,
+    "technical_fail": 9,
+    "approved": 0
+  },
+  "artifact_policy": "PASS: 87 registered; no raw raster/archive tracked",
+  "shared_evaluator_writer_and_frozen_registry": "UNCHANGED",
+  "git_diff_check": "PASS",
+  "preflight": "BLOCKED as expected; no assigned lane; impossible usual budget",
+  "new_candidate_generated": false,
+  "ok_to_submit": false
+}

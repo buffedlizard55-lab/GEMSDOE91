@@ -1,0 +1,10 @@
+{
+  "schema": "gems91.experiment-plan.v1",
+  "lane": null,
+  "assignment_note": "The supplied prompt refers to a single method paragraph but supplies none. Deferred hypotheses are not lane assignments.",
+  "dot_budget": 37654,
+  "registry_witness": "data/fleet_registry/calib_r13lattice_00904.tif",
+  "experiments_used": 0,
+  "elapsed_minutes": 0,
+  "budget_note": "Prospective plan counters, not an elapsed-time recorder. Runner/orchestrator must update them before each future experiment. No experiment is launched by this preflight."
+}
