@@ -1,16 +1,14 @@
-# GEMSDOE91 — CURRENT STATUS (OLC91, 2026-10-25) — read this first
+# GEMSDOE91 — ACTIVE CHECKOUT REVIEW (2026-10-25) — read this first
 
-> **OLC91 session (`arena/3444a6d3-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH ONLY` · `OK TO SUBMIT: NO`.**
-> **[⬇ Download the GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif)** ([ZIP](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip)) · SHA-256 `35259f3a…82abf8dc` · [JSON run card](docs/run-card-OLC91.json) · [Site](https://buffedlizard55-lab.github.io/GEMSDOE91/) · [Executive summary / how to submit](docs/executive-summary.html) · [Preregistration + results](docs/HYPOTHESES_OLC91.md)
+> **Active branch:** `arena/9278e16d-gemsdoe91`. **Verdict: NEGATIVE / NO PROMOTION.** No new experiment, TIFF, score, or competition slot was produced in this review: the exact method paragraph required to assign this parallel session's lane was not supplied, and the protocol forbids selecting a different lane by inference.
 >
-> * **Lane (declared, none was supplied):** Oriented Line-integral Coherence. A PU-HGB posterior on the 19 official bands is multiplied by its own 1.1 km strike-coherent line support, then emitted as 37,654 dots with no dots on or within 2 px of the catalogue.
-> * **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, buffered whole-component draw seed 20, 11,321 withheld px / 606 components, LOQO): E1 **0.0832** [0.0669, 0.1005] · E0 incumbent recipe **0.0853** [0.0687, 0.1023] · random **0.0432** [0.0377, 0.0485]. Paired E1−E0 **−0.0021** [−0.0045, +0.0002], with E1 lower in 4/4 folds. **Result: NEGATIVE.** Not comparable with v1.0 numbers such as S14-PTAC 0.267782.
-> * **Uniqueness:** surface max |ρ| 0.216 (PASS). Final dots: 76.8% within 3 px of `gems91-bhar-e3` (71.8% chance-corrected), against a 70% limit, so **DUPLICATE-STOP**. This compared 90 unique rasters, including 62 fleet rasters.
-> * **Format:** PASS (float32, EPSG:32611, 3730×3292, exact transform, 0 NaN, values in [0,1], 0 dots on the catalogue). **Canary:** PASS (max AUC 0.601). **Slots used:** 0. **Experiments used:** 1 of 3.
-> * **Why 0.2778 (USER-REPORTED):** h19-5 catalogue-blind ridge network → 44,090 dots (0.2600) → delete 3,891 dots at 1 px (0.2708) → delete 2,545 dots at √2–2 px (**0.2778**). 70% of its dots are more than 1 km from mapped faults. Beating the public top 0.4413 needs a better localiser, at about 0.62 coverage against R0's ≈0.38. Full analysis: [docs/HYPOTHESES_OLC91.md](docs/HYPOTHESES_OLC91.md).
+> **Existing research download only:** [⬇ OLC91 GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif) ([single-TIFF ZIP](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip)) · [OLC91 run card](docs/run-card-OLC91.json) · [submission instructions](docs/executive-summary.html). **OK TO DOWNLOAD: YES — RESEARCH ONLY. OK TO SUBMIT: NO.** This is a historical artifact, not a new output from the active branch.
+>
+> **Review:** [three-pass active-checkout review](docs/REVIEW-ACTIVE-9278E16D-20261025.md) · [machine run card](docs/run-card-9278e16d.json). Restored 15 inputs from pinned GitHub mirrors with SHA-256 and byte-length checks; full test suite passed (one expected skip); 79 artifacts were registered; download-format audit found 70 PASS / 9 FAIL and `ok_to_submit: false`. The OLC91 holdout/novelty failures remain negative; no leaderboard comparison is implied.
+>
+> **Why the reported GEMSDOE32 0.2778 may have risen:** sparse dotted emission and pruning low-marginal-coverage predictions can reduce penalized mass under a spatial DTI objective. This is a plausible mechanism, not causal proof or an organizer-confirmed score. The user-provided 0.2778, 0.3195 and 0.4413 are not receipts in this checkout.
 
-Core values: **Maximize P(Win) · Own the Outcome.** Every number is labelled HOLDOUT-DTI or USER-REPORTED. Nothing is ORGANIZER-CONFIRMED without a submission-page receipt. Read the preserved [full standing prompt](#full-project-brief) every session.
-
+Core values: **Maximize P(Win) · Own the Outcome.** Every future session starts with this status, the [full standing project brief](#full-project-brief), and the current review. Download-format validity, holdout improvement, registry uniqueness, selector approval, and an organizer receipt are separate gates.
 ---
 
 ## Parallel sessions merged on main the same day (S17-CPAD, S17-CDSC, S17-EULR, XG91, S17-CGRD; all OK TO SUBMIT: NO)
@@ -99,9 +97,9 @@ ORGANIZER-CONFIRMED without a submission-page receipt.
 
 ## Start here every session
 
-**Current review (2026-10-25):** [Arena branch review and run card](docs/REVIEW-ARENA-6FEDEF59-20261025.md). Current result is negative; no fresh TIFF or score was generated. Existing research-only file is explicitly **not approved to submit**.
+**Current review (active branch `arena/9278e16d-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-ACTIVE-9278E16D-20261025.md) · [run card](docs/run-card-9278e16d.json). No method lane was assigned, so no new candidate was run and no slot was used. The linked OLC91 file is a previously generated research download and is **NOT CLEARED TO SUBMIT**.
 
-Read this status, [the full standing brief below](#full-project-brief), [the current review for this branch](docs/REVIEW-08E91DAD-20261025.md), [the integrated parallel review](docs/REVIEW-ARENA-ABB160F7-20261025.md), [the prior active-checkout review (historical snapshot)](docs/REVIEW-ACTIVE-20261025.md), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this branch's review](docs/REVIEW-ACTIVE-9278E16D-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews below remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
 
 Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
 

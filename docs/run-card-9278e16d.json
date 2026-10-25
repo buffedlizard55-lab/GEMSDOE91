@@ -1,0 +1,55 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "9278e16d-20261025",
+  "branch": "arena/9278e16d-gemsdoe91",
+  "hypothesis": "No candidate tested: assigned method lane was not specified. Screening priority only: cross-wavelet phase-lag coherence between GeoDAWN B02 RTP magnetics and B13 isostatic gravity.",
+  "mechanism": "Scale-localized cross-wavelet coherence and signed phase lag between magnetic and gravity boundaries may identify a shared buried structural offset where individual ridges are weak.",
+  "named_non_fault_mimic": "Lithologic contact or intrusive body; survey levelling seams are an additional concern.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN — no lane assignment; no candidate score"
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "NOT RUN — no candidate surface or dots"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT APPLICABLE — no new raster"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "experiments_used": 0,
+  "experiment_budget": 3,
+  "elapsed_experiment_seconds": 0,
+  "competition_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "existing_download": {
+    "artifact": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+    "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "ok_to_download": true,
+    "scope": "research only; historical OLC91 artifact, not generated in this review",
+    "ok_to_submit": false
+  },
+  "verification": {
+    "pytest": "PASS; one expected release integration skip",
+    "restore_data": "PASS; 15 SHA-256 and byte-length pins verified from pinned GitHub mirrors; source authorization not attested",
+    "artifact_policy": "PASS; 79 prediction artifacts registered",
+    "download_audit": {
+      "format_pass": 70,
+      "format_fail": 9,
+      "ok_to_submit": false
+    },
+    "verify_current_artifact_with_data": "PASS for docs/run-card.json's historical CED91 artifact; submission_ready false",
+    "verify_evidence": "PASS for stated historical evidence scope; no experiments rerun",
+    "verify_s16_with_data": "PASS for historical artifact and its defined checks"
+  }
+}
