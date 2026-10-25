@@ -1,0 +1,46 @@
+{
+  "schema": "gems91.run-card.review.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/2f002fa0-gemsdoe91",
+  "hypothesis": "Top future screen: localized cross-wavelet phase-lag coherence between competition GeoDAWN RTP magnetics and radiometric total-count; previously proposed in repo notes, not implemented/tested here.",
+  "mechanism": "If authorized later, estimate cross-wavelet coherence and signed phase lag over pre-registered wavelengths from cached bands; derive all catalogue-based features from visible faults only, run each feature alone through the leakage canary, then use the shared whole-segment buffered hide-and-recover evaluator.",
+  "named_non_fault_process": "Unfaulted lithologic contact and GeoDAWN flight-line levelling seam.",
+  "experiment_status": "NOT RUN: missing exact lane paragraph; no local competition sample, catalogue, or cached feature stack.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "status": "NOT RUN in this review; no new score is claimed."
+  },
+  "registry_correlation_overlap": {
+    "preplacement_surface_rank_correlation": null,
+    "final_dots_within_3px_overlap": null,
+    "status": "NOT RUN in this review; inherited comparisons are not fresh complete-registry clearance."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NO TIFF generated in this review; cannot validate without the pinned sample."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "ok_to_download": false,
+  "ok_to_submit": false,
+  "weekly_slots_used": 0,
+  "official_review_sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
+  ],
+  "blockers": [
+    "The single-method lane paragraph referenced in the parallel protocol is absent from the prompt.",
+    "No files are present in local data/; scripts/preflight.py blocks all configured build axes.",
+    "No authenticated organizer receipt, live leaderboard state, or current weekly-cap receipt was obtained.",
+    "The landing page's historical research candidate remains NOT OK TO SUBMIT."
+  ]
+}

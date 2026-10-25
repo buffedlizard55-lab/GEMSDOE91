@@ -1,5 +1,7 @@
 # GEMSDOE91 — Unique TIF submission pass log
 
+> **Historical entry below describes an earlier branch (`arena/e6fdea6b-gemsdoe91`), not the current checkout.** Current branch: `arena/2f002fa0-gemsdoe91`. Current three-pass review: `docs/REVIEW-SESSION-20261025.md`; no new TIFF/experiment/slot, lane paragraph missing, local data absent; current verdict negative. The earlier unique artifact is still research-only and not endorsed for submission. The prior policy omission for that artifact has now been corrected and `scripts/check_artifact_policy.py` passes.
+
 ## Session context
 Branch: arena/e6fdea6b-gemsdoe91 (active). Pinned data restored:
 - data/official/sample_submission.tif (EPSG:32611, 3730x3292, 100 m, footprint 5,167,373 px)

@@ -1,16 +1,10 @@
-# GEMSDOE91 — CURRENT STATUS (GEO91, 2026-10-25) — read this first
+# GEMSDOE91 — CURRENT STATUS — read this first at every session
 
-**Site / download:** `docs/index.html` leads with the current GeoTIFF and its verdict.
-**Current file:** `gems91-geo91e2-stratcover-collar3-20261025T132527Z-zeros.tif`
-(37,654 dotted px, collar >3 px, SHA-256 `57d2c44c…e5befe2f`) — **OK TO DOWNLOAD: YES ·
-OK TO SUBMIT: NO** (HOLDOUT-DTI 0.055267 [0.053367, 0.057308],
-gems91-hide-recover-v1.1-nohalo, 60,988 withheld, loses to matched random
-control 0.074387; format/canary/uniqueness PASS; 0 slots spent).
-Machine verdict: `docs/run-card-GEO91.json`. Why 0.2778 (USER-REPORTED, no
-organizer receipt) leads the fleet and what beating it requires:
-`docs/HYPOTHESES_GEO91.md`. Core values: **Maximize P(Win) · Own the Outcome.**
-Every number is labelled HOLDOUT-DTI or USER-REPORTED; nothing is
-ORGANIZER-CONFIRMED without a submission-page receipt.
+**Latest branch review (2026-10-25): no new TIFF generated; no experiment or weekly slot used; verdict negative / NOT OK TO SUBMIT.** The parallel protocol references a single-method paragraph that is absent from the prompt, and this checkout has no local competition data in `data/`; the shared preflight is blocked. Do not invent a lane, relabel an old artifact, or use the download link as submission approval. Read the [three-pass current review](docs/REVIEW-SESSION-20261025.md) and its [JSON run card](docs/run-card-current-review.json) before work.
+
+**Existing project landing/download:** `docs/index.html` still provides a one-click GeoTIFF with separate **OK TO DOWNLOAD: YES / OK TO SUBMIT: NO** labels. It is a prior research negative, not generated or revalidated in this review. Its historical record is `docs/run-card-GEO91.json`; **0.055267 HOLDOUT-DTI** (`gems91-hide-recover-v1.1-nohalo`, 60,988 withheld positives, 95% CI [0.053367, 0.057308]) lost to its matched random control, **0.074387 HOLDOUT-DTI** (same evaluator/population, 95% CI [0.071858, 0.076953]). These are inherited holdout records, not organizer scores. The reported GEMSDOE32 **0.2778** is **USER-REPORTED / unverified**, not an organizer receipt; mechanism and caveats are reviewed in `docs/HYPOTHESES_GEO91.md` and the latest review. Core values: **Maximize P(Win) · Own the Outcome.**
+
+**Standing project brief:** the full preserved user prompt remains below under [Full project brief](#full-project-brief). This session's exact additional gates, ranking, and current blockers are summarized in the linked review. No claim is ORGANIZER-CONFIRMED without a submission-page receipt.
 
 ---
 
@@ -36,9 +30,11 @@ ORGANIZER-CONFIRMED without a submission-page receipt.
 
 ## Start here every session
 
-Read this status, [the full standing brief below](#full-project-brief), [the current review for this branch](docs/REVIEW-08E91DAD-20261025.md), [the integrated parallel review](docs/REVIEW-ARENA-ABB160F7-20261025.md), [the prior active-checkout review (historical snapshot)](docs/REVIEW-ACTIVE-20261025.md), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+Read this status, [the full standing brief below](#full-project-brief), [the latest three-pass review for this branch](docs/REVIEW-SESSION-20261025.md), its [run card](docs/run-card-current-review.json), prior [repository safety review](docs/REVIEW-08E91DAD-20261025.md), the [integrated parallel review](docs/REVIEW-ARENA-ABB160F7-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
 
 Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
+
+**Latest brief addendum (read with the full preserved prompt):** review the repository in three passes; explain the unverified GEMSDOE32 result without claiming causal proof; rank 3–5 scientifically plausible, genuinely differentiated hypotheses with layers, signatures, non-fault mimics, novelty caveats, implementation cost, and verified official source availability; test the top authorized candidate on the shared spatially blocked holdout before any slot; obey the single assigned method lane, shared evaluator/writer, per-feature leakage canaries, pre-placement/final-dot novelty limits, and experiment/time cap; end with a JSON run card; make download and submission verdicts distinct; no human visual gate; no upload or slot selection without a separate selector. Preserve negative results and label all scores as HOLDOUT-DTI with evaluator/population/CI or as ORGANIZER-CONFIRMED from a receipt. The current review finds the assigned method paragraph missing and required local data absent, so no new candidate or TIFF may be produced safely this session.
 
 > **OK TO DOWNLOAD: YES — RESEARCH. OK TO SUBMIT: NO.**
 > The new S16-PGRD file is computed from pinned magnetic/gravity inputs, not copied from a prior submission. Its format passes automated checks. Its literal registry-uniqueness and scientific-improvement gates do not pass. No human image inspection is required, and no selector may override a duplicate stop.
@@ -51,8 +47,8 @@ Historical S16-PGRD material below is a prior-session research artifact, not a n
 **Note (95/140):** `S16-PGRD: magnetic-gravity transfer residual; 37654 new dots. Research negative; do not submit.`
 **TIFF SHA-256:** `0564f679035f797b2c279c5da2c013ac65b6a845f95da97fba89490205f846b9`
 
-> **NEW UNIQUE SUBMISSION (this branch):** [Download GeoTIFF](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif) · [Single-TIFF ZIP](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip) · [Audit](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-audit.json) · [Run card](docs/run-card-unique-offcatalogue-damagezone.json)
-> **Submission name:** `gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119` · **TIFF SHA-256:** `a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11` · **Verdict:** OK TO DOWNLOAD: YES — FORMAT-CERTIFIED · OK TO SUBMIT: NO — RESEARCH NEGATIVE
+> **Prior unique research artifact (inherited from an earlier branch; not generated or revalidated in this review):** [Download GeoTIFF](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif) · [Single-TIFF ZIP](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip) · [Audit](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-audit.json) · [Run card](docs/run-card-unique-offcatalogue-damagezone.json)
+> **Submission name:** `gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119` · **TIFF SHA-256:** `a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11` · **Verdict from its preserved run card:** OK TO DOWNLOAD: YES — FORMAT-CERTIFIED · OK TO SUBMIT: NO — RESEARCH NEGATIVE. This session does not endorse upload.
 
 ## Measured result—not a leaderboard prediction
 
