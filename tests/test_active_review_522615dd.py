@@ -129,14 +129,14 @@ def test_reported_results_source_urls_are_well_formed_but_remain_unverified():
     assert "GEMSDOE32" in r0["source_url"]
 
 
-def test_current_portal_preserves_historical_review_and_research_labels():
+def test_current_portal_preserves_active_review_and_research_labels():
     page = TextLinks()
     page.feed((DOCS / "index.html").read_text(encoding="utf-8"))
     text = " ".join(page.text)
-    assert "REVIEW-ACTIVE-522615DD-20261025.md" in page.links
-    assert "run-card-522615dd.json" in page.links
-    assert "HYPOTHESES-ACTIVE-522615DD-20261025.md" in page.links
-    assert "prior research download" in text.lower()
+    assert "REVIEW-E32A98BE-20261025.md" in page.links
+    assert "run-card-E32A98BE-20261025.json" in page.links
+    assert "HYPOTHESES-E32A98BE-20261025.md" in page.links
+    assert "historical and unchanged" in text.lower()
     assert "OK TO SUBMIT: NO" in text
     # Navigation uses research labels, not context-free rounded scores.
     assert "S17-LFTG research audit" in text and "S17-CPAD research audit" in text
@@ -152,8 +152,8 @@ def test_executive_guide_cannot_be_mistaken_for_current_upload_approval():
     page = TextLinks()
     page.feed((DOCS / "executive-summary.html").read_text(encoding="utf-8"))
     text = " ".join(page.text)
-    assert "REVIEW-ACTIVE-522615DD-20261025.md" in page.links
-    assert "run-card-522615dd.json" in page.links
+    assert "REVIEW-E32A98BE-20261025.md" in page.links
+    assert "run-card-E32A98BE-20261025.json" in page.links
     assert "not an approval to upload that file" in text.lower()
     assert "OK TO SUBMIT: NO" in text
 
@@ -163,7 +163,31 @@ def test_current_file_pointer_remains_prior_olc91_not_a_fabricated_new_result():
     assert current["run_card"] == "run-card-OLC91.json"
     assert current["ok_to_download"] is True
     assert current["ok_to_submit"] is False
-    review = (DOCS / "REVIEW-ACTIVE-522615DD-20261025.md").read_text(encoding="utf-8")
-    assert "not an output of this review" in review
-    assert "ORGANIZER-CONFIRMED: null" in review
-    assert "no TIFF" in review
+    review = (DOCS / "REVIEW-E32A98BE-20261025.md").read_text(encoding="utf-8")
+    assert "not this review's output" in review
+    assert "ORGANIZER-CONFIRMED" in review and "null" in review
+    assert "no new tiff" in review.lower()
+
+
+def test_e32_run_card_and_hypotheses_remain_fail_closed():
+    card = _json("docs/run-card-E32A98BE-20261025.json")
+    assert card["branch"] == "arena/e32a98be-gemsdoe91"
+    assert card["lane"]["assigned"] is False
+    assert card["experiments_used"] == 0
+    assert card["weekly_submission_slots_used"] == 0
+    assert card["holdout_dti"]["label"] == "HOLDOUT-DTI"
+    assert card["holdout_dti"]["status"] == "NOT_RUN"
+    assert card["holdout_dti"]["value"] is None
+    assert card["registry_comparison"]["surface_rank_correlation"] is None
+    assert card["registry_comparison"]["final_dot_overlap_within_3px"] is None
+    assert card["raster_sha256"] is None
+    assert card["validator_output"]["status"] == "NOT_RUN_NO_NEW_RASTER"
+    assert card["download_verdict"] == "NO_NEW_TIFF"
+    assert card["submit_verdict"] == "NO"
+    assert card["promotion_verdict"] == "negative"
+    assert card["verdict"] == "negative"
+    hypotheses = (DOCS / "HYPOTHESES-E32A98BE-20261025.md").read_text(encoding="utf-8")
+    assert hypotheses.count("| **") >= 4
+    assert "not new to the written repository" in hypotheses
+    sources = _json("docs/e32a98be/sources.json")
+    assert any("redirected to the DrivenData login page" in item["verification"] for item in sources["items"])

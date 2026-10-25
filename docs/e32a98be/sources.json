@@ -1,0 +1,140 @@
+{
+  "schema": "gems91.source-audit.v1",
+  "review_id": "E32A98BE-20261025",
+  "checked_utc": "2026-10-25",
+  "items": [
+    {
+      "id": "DD-PROBLEM-967",
+      "authority": "DrivenData competition organizer",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "verification": "Official problem/metric page fetched. It specifies distance-weighted Tversky parameters alpha=0.2, beta=0.8, a 300 m triangular kernel, and submission grid/format requirements including float32 probabilities in [0,1] and EPSG:32611.",
+      "limits": "A public problem page is not a submission receipt, private score, or live slot-availability check."
+    },
+    {
+      "id": "DD-LEADERBOARD-20261025",
+      "authority": "DrivenData-hosted public leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "verification": "Fetched 2026-10-25 and saved as docs/s18/leaderboard-top50-20261025.json. Public snapshot records rank 1 at 0.4413 and rank 50 at 0.2818; the fetched first chunk includes rank 23 at 0.3217 and rank 24 at 0.3169.",
+      "limits": "Public-leaderboard values only. They are not submission-page receipts for GEMSDOE32 or this review."
+    },
+    {
+      "id": "DD-DATA-LOGIN",
+      "authority": "DrivenData competition organizer",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "verification": "Anonymous fetch redirected to the DrivenData login page.",
+      "limits": "No account credentials were requested or used; pinned competition inputs were not restored."
+    },
+    {
+      "id": "DD-SUBMISSIONS-LOGIN",
+      "authority": "DrivenData competition organizer",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/",
+      "verification": "Anonymous fetch redirected to the DrivenData login page.",
+      "limits": "No own-submission receipt, private score, live weekly cap, or slot availability was inspected."
+    },
+    {
+      "id": "DD-RULES",
+      "authority": "DrivenData / National Laboratory competition rules",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/rules/",
+      "verification": "Official rules page and linked rules text were fetched in the prior same-day review. The source record identifies original-work, third-party-rights, and generative-AI disclosure requirements; the rules describe the weekly process.",
+      "limits": "The live submission-page cap/slot state remains unverified because the submissions page requires login. The user's 0.90/70% uniqueness thresholds are internal protocol, not represented as official rules."
+    },
+    {
+      "id": "GEMSDOE32-OWNER-RESEARCH-PINNED",
+      "authority": "Owner-controlled GEMSDOE32 GitHub Pages/repository snapshot",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/docs/research.html",
+      "verification": "Pinned owner research page fetched. It calls 0.2747 a model projection and states no organizer score exists for the artifacts. Local docs/s16/gems32-forensics.json records score_receipt=null and reproduces deletion-only parent/result geometry.",
+      "limits": "Owner-controlled statement, not organizer evidence. Geometry does not identify a hidden-score causal effect."
+    },
+    {
+      "id": "GEMSDOE32-OWNER-HYPOTHESES-PINNED",
+      "authority": "Owner-controlled GEMSDOE32 GitHub Pages/repository snapshot",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/docs/hypotheses.html",
+      "verification": "Pinned owner hypothesis page fetched; H33-2-B2 is described as a selected winner, while the research page distinguishes projections from organizer scores.",
+      "limits": "Not an authenticated competition result."
+    },
+    {
+      "id": "USGS-GEODAWN",
+      "authority": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "verification": "Official data-release page fetched. GeoDAWN describes magnetic data for subsurface structure/geology interpretation, radiometrics as surface-geology/soil information, and coordinated lidar collection; release is identified as CC0 in the source audit.",
+      "limits": "Scientific context only; this checkout's pinned competition feature TIFF is absent and no source bytes were downloaded."
+    },
+    {
+      "id": "GBCGE-INGENIOUS",
+      "authority": "Great Basin Center for Geothermal Energy",
+      "url": "https://gbcge.org/current-projects/ingenious/",
+      "verification": "Project overview fetched. It describes integrating geophysical, geological, play-fairway, and 3-D conceptual-modeling approaches for hidden geothermal exploration.",
+      "limits": "Program context, not validation of any candidate transform or score."
+    },
+    {
+      "id": "USGS-SGMC-2026-METADATA",
+      "authority": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/data/geologic-map-schema-gems-version-state-geologic-map-compilation-sgmc-geodatabase-conterminous",
+      "verification": "Official 2026 metadata page fetched; it links DOI 10.5066/P1A3DQZK, marks the work CC0, describes a GeMS version of the SGMC, and notes scale/generalization and unreconciled unit-boundary limitations.",
+      "limits": "The GIS bytes, local footprint coverage, schema, and rasterization were not checked. Not a current validation input."
+    },
+    {
+      "id": "USGS-SGMC-NGMDB-GIS",
+      "authority": "U.S. Geological Survey National Geologic Map Database",
+      "url": "https://ngmdb.usgs.gov/Prodesc/proddesc_119417.htm",
+      "verification": "Official product page fetched; identifies the 2026 SGMC GeMS release, map scale, DOI 10.5066/P1A3DQZK, and an explicit GeMS GIS data download link.",
+      "limits": "A download link is not proof of downloaded bytes or useful coverage at the competition footprint."
+    },
+    {
+      "id": "USGS-LANDSAT-ST",
+      "authority": "U.S. Geological Survey Landsat Missions",
+      "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature",
+      "verification": "Official product page fetched. It describes Collection 2 surface temperature, a DN scale factor, global scene-based product availability across Landsat missions, and no use restrictions.",
+      "limits": "Exact scenes, dates, cloud/quality masks, and project-footprint suitability were not queried. Product-level availability does not make the proposed experiment ready."
+    },
+    {
+      "id": "USGS-LANDSAT-L2",
+      "authority": "U.S. Geological Survey Landsat Missions",
+      "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products",
+      "verification": "Official Level-2 science-product page fetched; it describes global scene-based surface reflectance and surface-temperature products and their scaling/quality bands.",
+      "limits": "No scene inventory or data download was performed."
+    },
+    {
+      "id": "USGS-3DEP",
+      "authority": "U.S. Geological Survey 3D Elevation Program",
+      "url": "https://www.usgs.gov/3d-elevation-program/about-3dep-products-services",
+      "verification": "Official page fetched; it describes lidar and DEM products and states products are free of charge and without use restrictions.",
+      "limits": "Exact 3DEP tile availability/resolution over the project area was not checked."
+    },
+    {
+      "id": "CANDela-2012-FAULT-ROUGHNESS",
+      "authority": "Peer-reviewed JGR: Solid Earth article",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2011JB009041",
+      "verification": "Article page fetched. Candela et al. measured scale-dependent anisotropic self-affine roughness on fault surfaces and earthquake ruptures across a large scale range.",
+      "limits": "This supports scale dependence of fault-surface geometry, not a 100 m regional DEM texture classifier or expected competition gain."
+    },
+    {
+      "id": "NAKAYA-2002-SEMIVARIOGRAM",
+      "authority": "Peer-reviewed Water Resources Research article",
+      "url": "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2001WR000672",
+      "verification": "Article page fetched. Nakaya et al. describe directional semivariograms of a three-dimensional permeability field and a dam-site case where correlation anisotropy aligns with major fault strike.",
+      "limits": "A permeability-field result is not direct evidence that airborne magnetic/gravity semivariograms detect faults."
+    },
+    {
+      "id": "USGS-ROWAN-WETLAUFER-1979",
+      "authority": "U.S. Geological Survey Open-File Report 79-544",
+      "url": "https://www.usgs.gov/publications/geologic-evaluation-major-landsat-lineaments-nevada-and-their-relationship-ore",
+      "verification": "Official USGS publication page fetched; describes major Nevada Landsat lineaments as morphological/tonal expressions of broad structural zones.",
+      "limits": "It does not validate Landsat thermal residuals as fault truth or geothermal discovery."
+    },
+    {
+      "id": "USGS-NV-GEOTHERMAL-ML",
+      "authority": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/data/usgs-contributions-nevada-geothermal-machine-learning-project-de-foa-0001956-geophysics-heat",
+      "verification": "Official data release page fetched. It describes a Nevada geothermal ML data package containing geophysics, heat flow, and slip/dilation tendency products and identifies CC0 rights.",
+      "limits": "No bytes were downloaded and no new external predictor was selected from this release."
+    },
+    {
+      "id": "USGS-GB-TEMPERATURE-3D",
+      "authority": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/data/three-dimensional-temperature-model-great-basin-usa",
+      "verification": "Official Great Basin 3-D temperature-model data release page fetched; it links DOI 10.5066/P149FR54 and marks the work CC0.",
+      "limits": "Regional model context only; data were not fetched or proposed as a validated local predictor."
+    }
+  ]
+}

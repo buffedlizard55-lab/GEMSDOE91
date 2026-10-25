@@ -1,0 +1,68 @@
+{
+  "schema": "gems91.review-verification.v1",
+  "review_id": "E32A98BE-20261025",
+  "checked_utc": "2026-10-25",
+  "branch": "arena/e32a98be-gemsdoe91",
+  "software_checks": {
+    "focused_experiment_preflight": {
+      "command": ".venv/bin/python -m pytest tests/test_experiment_preflight.py -o addopts='' -ra",
+      "status": "PASS",
+      "passed": 25,
+      "failed": 0
+    },
+    "active_review_regressions": {
+      "command": ".venv/bin/python -m pytest tests/test_active_review_522615dd.py -o addopts='' -ra",
+      "status": "PASS",
+      "passed": 11,
+      "failed": 0,
+      "note": "Tests retain predecessor 522615DD evidence as historical and assert E32A98BE as the current portal review."
+    },
+    "first_full_suite": {
+      "status": "FAILED_THEN_RESOLVED",
+      "failed": 2,
+      "reason": "Two tests still expected the predecessor 522615DD review to be the current portal banner; assertions were updated to the active E32A98BE review. No scientific gate was weakened."
+    },
+    "final_full_suite": {
+      "command": ".venv/bin/python -m pytest -o addopts='' -ra",
+      "status": "PASS",
+      "collected": 636,
+      "passed": 628,
+      "skipped": 8,
+      "failed": 0,
+      "warnings": 87,
+      "warning_class": "Existing Rasterio Affine multiplication pending-deprecation warnings",
+      "skip_reason": "Pinned competition/integration inputs are absent from this checkout."
+    },
+    "portal_renderer": {
+      "command": ".venv/bin/python scripts/render_portal.py",
+      "status": "PASS",
+      "note": "Generated index and executive guide link the active no-run review and retain the prior OLC91 research artifact as historical."
+    },
+    "json_parse": {
+      "status": "PASS",
+      "files": [
+        "docs/run-card-E32A98BE-20261025.json",
+        "docs/e32a98be/sources.json"
+      ]
+    },
+    "git_diff_check": "PASS"
+  },
+  "scientific_validation": {
+    "candidate_run": false,
+    "holdout_run": false,
+    "feature_alone_canaries": false,
+    "registry_surface_comparison": false,
+    "final_dot_overlap_comparison": false,
+    "tiff_written": false,
+    "weekly_slot_used": false,
+    "reason": "No assigned lane and required local inputs are absent; no candidate may be inferred or run."
+  },
+  "current_preflight": {
+    "status": "BLOCKED",
+    "lane_assigned": false,
+    "missing_required_inputs": ["sample_submission", "parent_r0_nan"],
+    "feature_stack_present": false,
+    "experiment_authorized": false
+  },
+  "organizer_confirmed": null
+}

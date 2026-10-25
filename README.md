@@ -1,12 +1,14 @@
-# GEMSDOE91 — current review (`arena/19912231-gemsdoe91`)
+# GEMSDOE91 — active review (`arena/e32a98be-gemsdoe91`, 2026-10-25 UTC)
 
-> **OK TO DOWNLOAD: YES — existing research TIFF. OK TO SUBMIT: NO. No new TIFF was generated.** The assigned method paragraph is missing, and the literal registry rule makes the usual 37,654-dot budget infeasible. We did not copy, rename, or regenerate a prior submission to fake uniqueness. [Current review](docs/REVIEW-19912231-20261025.md) · [Run card](docs/run-card-19912231.json) · [Download and executive guide](docs/executive-summary.html).
+> **This review: NEGATIVE / BLOCKED. No experiment, new score, or new TIFF was produced.** `OK TO DOWNLOAD: NO NEW TIFF` · `OK TO SUBMIT: NO`. The pre-existing OLC91 file remains **OK TO DOWNLOAD: YES — RESEARCH ONLY** and **OK TO SUBMIT: NO**; it is not this review's output, and no current sample-backed recheck was possible. [Active three-pass review](docs/REVIEW-E32A98BE-20261025.md) · [Run card](docs/run-card-E32A98BE-20261025.json) · [Ranked hypotheses](docs/HYPOTHESES-E32A98BE-20261025.md) · [Executive submission guide](docs/executive-summary.html).
 >
-> **New automatic preflight:** `python generate_submission.py --preflight` checks the plan and reopens SHA-pinned reference bytes before any experiment. It independently measures an **82.34% geometric overlap lower bound (NOT a score)** at the usual budget, exceeding 70%. It stops on missing/changed evidence; it never chooses a slot. [Machine evidence](docs/review-19912231/experiment-preflight.json). The old data preflight now says INPUTS AVAILABLE, not BUILD ALLOWED.
+> **Current preflight:** `python generate_submission.py --preflight` returns machine-readable `BLOCKED`; the method lane is unassigned, `sample_submission` and `parent_r0_nan` are absent, and the feature cache is not present. `registry/preflight.json` is a data-availability record, not experiment or submission authorization. No mirror was restored. The missing lane is not inferred from the ranked hypothesis menu.
 >
-> Fresh review: **92/92 fleet page snapshots fetched**; exact current TIFF/ZIP format PASS; all-download audit reproduced **87 artifacts / 78 technical PASS / 9 FAIL**, none approved. Three ranked conditional new-transform hypotheses, source provenance, limitations and three-pass checks are in the review. Historical claims and reviews below are not this branch's outputs.
+> **Score evidence:** GEMSDOE32's `0.2778` and the user-provided `0.3195` are **USER-REPORTED / UNVERIFIED**; no organizer receipt exists for the GEMSDOE32 artifact in the pinned owner page. The fetched 2026-10-25 official public snapshot shows rank 1 at `0.4413` and rank 50 at `0.2818` (**PUBLIC-LEADERBOARD**, not a submission receipt). Historical `HOLDOUT-DTI` records are labeled with their evaluator, withheld-positive count and 95% CI in the active review; do not compare across evaluator versions or with leaderboard values.
+>
+> The **82.34%** lower bound at 37,654 dots is a prior geometric-capacity receipt, **not a score and not rechecked against current local data**. Neither the 0.90 surface-correlation stop nor the 70% final-dot stop was waived or gamed.
 
-**Start every session:** read this status, the [full standing prompt and supplied updates](#full-project-brief), [current review](docs/REVIEW-19912231-20261025.md), and [next steps](LIMITATIONS_AND_NEXT_STEPS.md). **Maximize P(Win) · Own the Outcome.** Format validity is not scientific improvement, registry uniqueness or selector approval.
+**Start every session:** read this status, the [full standing prompt and supplied updates](#full-project-brief), [active review](docs/REVIEW-E32A98BE-20261025.md), [hypothesis screen](docs/HYPOTHESES-E32A98BE-20261025.md), and [next steps](LIMITATIONS_AND_NEXT_STEPS.md). **Maximize P(Win) · Own the Outcome.** A format check is not a scientific improvement, a uniqueness pass, selector approval, or an organizer-confirmed score.
 
 ---
 
@@ -152,12 +154,13 @@ ORGANIZER-CONFIRMED without a submission-page receipt.
 
 ## Start here every session
 
-**Current review (active branch `arena/522615dd-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-ACTIVE-522615DD-20261025.md) · [no-run card](docs/run-card-522615dd.json) · [ranked hypotheses](docs/HYPOTHESES-ACTIVE-522615DD-20261025.md). The method lane is unassigned; the official sample and parent raster are absent; the training-feature cache is absent. No experiment, TIFF, new score, or slot was produced. Do not infer a lane from merged parallel work.
+**Current active checkout (`arena/e32a98be-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-E32A98BE-20261025.md) · [no-run JSON card](docs/run-card-E32A98BE-20261025.json) · [ranked hypothesis screen](docs/HYPOTHESES-E32A98BE-20261025.md). The method lane is unassigned; the sample, parent reference, and feature cache are absent. No experiment, holdout, new score, new TIFF, or weekly slot was produced. Do not infer a lane from prior branches.
 
-**Prior review (historical checkout):** [E92C84E1 review](docs/REVIEW-E92C84E1-20261025.md).
-At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this active-branch review](docs/REVIEW-ACTIVE-522615DD-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
+**Historical main review:** [522615DD review](docs/REVIEW-ACTIVE-522615DD-20261025.md) and [E92C84E1 review](docs/REVIEW-E92C84E1-20261025.md). These records describe their own checkouts, not this active review.
 
-Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
+At every session start, read this current status, [the full standing project brief below](#full-project-brief), [the active review](docs/REVIEW-E32A98BE-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
+
+Historical downloads and measured results below are retained for audit and learning only. They are not new outputs from this branch and none is implicitly approved for upload. The full standing user brief remains preserved below and must be read again each session.
 
 > **OK TO DOWNLOAD: YES — RESEARCH. OK TO SUBMIT: NO.**
 > The new S16-PGRD file is computed from pinned magnetic/gravity inputs, not copied from a prior submission. Its format passes automated checks. Its literal registry-uniqueness and scientific-improvement gates do not pass. No human image inspection is required, and no selector may override a duplicate stop.
@@ -240,6 +243,8 @@ Concurrent main reviews were integrated, including the S15 holdout/final-selecto
 <a id="full-project-brief"></a>
 
 ## Original user project brief — preserved standing text and supplied updates
+
+**Active review addendum (`arena/e32a98be-gemsdoe91`, 2026-10-25):** Review the repository and supplied score claims; investigate the reported GEMSDOE32 `0.2778` and whether improvement is demonstrated; rank 3–5 untried, scientifically grounded hypotheses with layers, physical signatures, missing-fault rationale, repository difference, named non-fault mimics, cost, and verified data-source availability where needed. Validate the top candidate on the required spatial holdout before any selector/slot step. Generate a unique, technically validated GeoTIFF and make download/submit verdicts unmistakable only if protocol and evidence allow; do not copy a previous submission. Preserve an executive submission guide, keep the full prompt here and read it each session, perform multiple review passes, cite trusted sources, flag irregularities, and create/merge a PR if tooling and permissions allow. Keep organizer receipts, owner reports, public leaderboard values, and local holdout results separate. No method was assigned in the active lane, and this addendum does not assign one.
 
 **2026-10-25 supplied update for this session (claims, not receipts):** GEMSDOE91 `gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367`; `gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823`; GEMSDOE92 `gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255`. These are not ORGANIZER-CONFIRMED and must not be substituted for holdout results. This update plus the standing prompt below preserves the operative requirements; literal byte identity to the repeated long message is not claimed. Start every session by reading this brief and current review. Core values: Maximize P(Win); Own the Outcome.
 
