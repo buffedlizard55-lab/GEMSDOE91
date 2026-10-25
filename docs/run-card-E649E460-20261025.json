@@ -27,6 +27,15 @@
   },
   "submission_name": null,
   "submission_note": null,
+  "later_upstream_integration_not_selected": {
+    "artifact": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+    "produced_by_this_review": false,
+    "source": "separate upstream branch merged after e649 review work",
+    "holdout": "PENDING in upstream run card; not rerun here",
+    "ok_to_download": "RESEARCH ONLY",
+    "ok_to_submit": "NO",
+    "selection": "NOT SELECTED: no lane assignment or selector approval"
+  },
   "existing_research_download": {
     "file": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
     "submission_name": "gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67",
@@ -48,7 +57,7 @@
   "verification": {
     "pytest": "626 passed, 8 skipped; 87 Rasterio Affine pending-deprecation warnings",
     "submission_cli": "PASS for advertised TIFF/ZIP identity and stored grid/range; reference checks not checked",
-    "artifact_policy": "PASS: 87 registered prediction artifacts; no raw raster/archive tracked",
+    "artifact_policy": "PASS: 89 registered prediction artifacts after upstream S18 integration; no raw raster/archive tracked",
     "evidence_consistency": "PASS; no geological experiments rerun",
     "preflight": "BUILD BLOCKED: 0/2 minimum inputs, no ready axes",
     "experiment_preflight": "BLOCKED: no assigned lane; capacity UNVERIFIED because data/official/sample_submission.tif is absent; 0 experiments and no candidate generated",
