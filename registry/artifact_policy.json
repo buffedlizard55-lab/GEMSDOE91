@@ -191,7 +191,31 @@
       "path": "docs/downloads/gems91-s14-ptac-e2-20261024T235500Z-76262b89-zeros.zip",
       "sha256": "1e244f1bd5333c3410fa11306b71c5c57877447d781ee3c6703ae1ec40fbbea8",
       "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of the S14-PTAC E2 negative research artifact; final novelty gate failed; NOT OK TO SUBMIT (docs/run-card-S14.json)."
+      "reason": "Single-TIFF ZIP of the S14-PTAC E2 negative research artifact; final novelty gate failed; NOT OK TO SUBMIT (docs/run-card-S14-PTAC.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s14-lsrg-e3-20261024T235900Z-e6540657-zeros.tif",
+      "sha256": "ebeecbcd216813bbbb115c8727ab9ebee00334c1b4a1a5d51e7eddcd2802969f",
+      "status": "current_research_only",
+      "reason": "S14-LSRG E3 range-safe research GeoTIFF; sibling overlap exceeds the literal lane threshold and the artifact is NOT OK TO SUBMIT (docs/run-card-S14.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s14-lsrg-e3-20261024T235900Z-e6540657-zeros.zip",
+      "sha256": "427c95a6fb284e310c901eafec8a82b87006419aeb5859873e93a751c51e0ec3",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S14-LSRG E3; research only and NOT OK TO SUBMIT (docs/run-card-S14.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s14-lsrg-ff-20261025T004500Z-1fcf17ee-zeros.tif",
+      "sha256": "09f9ca2acdca7c6616df329aad7d0c8d73dec2626b04e6d8619d2b1452ea7359",
+      "status": "current_research_only",
+      "reason": "S14-LSRG-FF range-safe research GeoTIFF; readiness remains fail-closed and sibling overlap is 82.8%; NOT OK TO SUBMIT (docs/run-card-S14.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s14-lsrg-ff-20261025T004500Z-1fcf17ee-zeros.zip",
+      "sha256": "aed4257ef7300e620cf5e7c93c182dbcfebc0ac1317b3ee815ac87902a92c1d1",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S14-LSRG-FF; research only and NOT OK TO SUBMIT (docs/run-card-S14.json)."
     }
   ]
 }

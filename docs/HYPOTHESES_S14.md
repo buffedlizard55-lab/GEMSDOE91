@@ -1,43 +1,107 @@
-# Session 14 preregistration — Cross-fit Posterior-Topology Auto-Context (`S14-PTAC`)
+# Session 14 Pre-Registered Hypotheses (`S14-LSRG`, 2026-10-24)
 
-**Frozen before any S14 model fit, S14 holdout score, or S14 GeoTIFF emission.**
-**Date:** 2026-10-24 UTC
-**Branch:** `arena/ed1ec9e1-gemsdoe91`
-**Shared evaluator/writer:** `scripts/evaluate_holdout.py` (`gems91-hide-recover-v1.0`) and `scripts/submission_writer.py`
-**Promotion bar:** `0.244601 HOLDOUT-DTI`, 95% CI `[0.230592, 0.257058]`, `60,988` withheld positives (S13-PTHA E3, same evaluator).
-**Experiment/time ceiling:** at most 3 experiments and 2 hours for the S14 experiment ladder. Restoring pinned inputs and reproducing the frozen S13 baseline are engineering preparation, not S14 experiments.
+**Status:** Frozen *prior* to computing any Session 14 holdout score or emitting any candidate GeoTIFF.
+**Branch:** `arena/eeaf78c1-gemsdoe91`
+**Lane (self-declared; no external selector paragraph was supplied — standing `IR-91-S12-01`):**
+*LiDAR-Scarp + Radiometric-Ratio + Spring-Geometry surface with Winner-Economics Dinkelbach emission (`S14-LSRG`).*
 
-## Provisional lane (Rule 1)
+---
 
-> **`S14-PTAC`: fold-safe cross-fitted posterior-topology auto-context over the S13 dimensional PTHA sponsor-layer stack, followed by posterior/structural concordance and the shared Dinkelbach 300 m emitter.**
+## 0. Why did `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` score 0.2778? (Measured answer)
 
-The prompt again says that a single assigned method paragraph follows, but no external selector-assigned paragraph is present. This lane is therefore self-declared, frozen here, and marked `assigned: false`. That missing assignment remains a readiness blocker; it is not silently inferred.
+Measured 2026-10-24 in this sandbox with the shared evaluator (`scripts/evaluate_holdout.py`)
+on sha256-pinned rasters (`registry/data_manifest.json`, all 15 entries re-verified after
+`scripts/restore_data.py`). Raw evidence: `evidence/s14_winner_forensics.json`
+(script: `scripts/s14_forensics.py`). Organizer scores below are **CLAIM-USER-REPORTED**
+(session prompt; no DrivenData receipt is pinned in this repo).
 
-## Ranked geological hypotheses (before implementation)
+| Raster | CLAIM organizer | dots | med. NN spacing | % dots >10 px from catalogue | SGMC control (measured) | HOLDOUT v1.1 full-map (measured) |
+|---|---:|---:|---:|---:|---:|---:|
+| h16-1 (dense) | 0.1855 | 123,939 | 1.00 px | 59.2% | 0.1113 | 0.1622 |
+| h19-4 (dense) | 0.1894 | 123,779 | 1.00 px | 59.1% | 0.1052 | 0.1628 |
+| h19-5 (dense) | 0.1922 | 121,131 | 1.00 px | 58.9% | 0.0992 | 0.1617 |
+| h19-5 dotted d1.5 | 0.2477 | 60,069 | 2.24 px | 59.3% | 0.0999 | 0.1672 |
+| h19-5 dotted d2.8 | 0.2600 | 44,090 | 3.16 px | 59.6% | 0.0942 | 0.1573 |
+| solo d2.8 | 0.2708 | 40,199 | 3.00 px | 65.4% | 0.0953 | 0.0478 |
+| **R0 = h33-2-b2** | **0.2778** | **37,654** | **3.16 px** | **69.8%** | 0.0954 | 0.0066 |
 
-| Rank | ID | Specific layers | Physical signature and missing-fault mechanism | Named non-fault mimic and rejection | Difference from this repository | Expected holdout gain / cost / viability |
-|---:|---|---|---|---|---|---|
-| **1** | **H14-1: posterior-topology auto-context** | Sponsor bands already transformed by S13-PTHA: `B01/B02/B03/B09/B14` magnetics; `B06` radiometric TC; `B11/B13/B18` gravity; `B12/B19` topography; `B15` basement depth; `B17` conductivity; `B04/B07/B08` strain; `B10/B16` seismicity; plus a **cross-fitted S13 Stage-1 posterior**, never a prior submission raster | Detect two-sided, strike-coherent `0.9–2.0 km` continuation of a dimensionally consistent multi-physics fault posterior across alluvial washes and playa cover. A concealed strand may have no mapped scarp, while magnetic/gravity/radiometric/depth steps remain collinear on both sides of the cover gap. | Braided ephemeral channels, roads and Lake Lahontan shorelines. Require two-sided collinearity, transverse sharpness, anisotropy, and the S13 subsurface posterior rather than DEM continuity alone. | S12 used Radon auto-context over its lower-scoring SPAC posterior and fixed three-regime quotas. No lane has cross-fitted auto-context over S13-PTHA and then used fold-independent Dinkelbach stopping. | **High: +0.003 to +0.012 HOLDOUT-DTI** / medium CPU. **Viable now** from restored, hash-pinned sponsor bands. |
-| **2** | **H14-2: bridge × physical-crest concordance** | H14-1 posterior; its `900 m` and `2 km` wash-bridge fields; S13 Blakely RTP curvature, true magnetic tilt crest, Marussi gravity edge, radiometric step and signed normal-fault concordance | Promote a bridge only where an independent potential-field/radiometric crest crosses the cover gap. This targets buried fault continuity rather than merely interpolating the visible map geometry. | Straight canals, roads and flight-line seams. Reject a posterior bridge lacking the multi-field S13 structural crest. | S12 added bridge confidence directly to a fixed-quota emitter; S13 used physical crests without cross-fitted posterior topology. Their multiplicative concordance has not been tested. | **Medium-high: +0.002 to +0.008** / low incremental cost once H14-1 exists. **Viable now.** |
-| **3** | **H14-3: stage-consensus log-opinion pool** | Cross-fitted S13 Stage-1 posterior, H14 Stage-2 posterior and H14-2 bridge/crest field | Suppress broad false-positive posterior lobes unless independently supported by both the local multi-physics classifier and the contextual continuity classifier. The target is weak but spatially persistent intrabasin linework. | Broad pluton margins, basin-wide strain interpolation lobes and diffuse alteration halos. Geometric/log-odds consensus penalizes one-stage-only blobs before 1-D ridge extraction. | Prior lanes used arithmetic blends or single-stage posteriors; no S13/S14 log-opinion consensus precedes Dinkelbach placement. | **Medium: +0.001 to +0.006** / low incremental cost. **Viable now.** |
-| **4** | **H14-4: sub-100 m micro-scarp asymmetry** | Official USGS 3DEP 1 m bare-earth DEM tiles named by the competition's `1m_DEM_links.csv`, fused with `B12/B19` | Detect `0.3–1.5 m` piedmont scarps and asymmetric scarp profiles that are aliased out of the 100 m sponsor grid and may be absent from the catalogue. | Roads, terrace risers and shorelines; reject using repeatable strike length, cross-profile asymmetry and multi-epoch/landform masks. | Existing checked-in methods use 100 m detrended elevation; the sibling derived LiDAR raster has unresolved provenance and is excluded. | **High ceiling / high I/O. Not viable in this sandbox:** official USGS hosts and the authenticated competition CSV are outside the outbound allowlist. Free official source lead: <https://www.usgs.gov/3d-elevation-program/about-3dep-products-services>. Availability over the exact footprint is **not established here**. |
-| **5** | **H14-5: InSAR aquifer-baffle discontinuity** | Official NASA/USGS OPERA or ASF Sentinel-1 displacement time series plus `B15/B17` | A buried fault can partition seasonal groundwater deformation, producing a persistent displacement-gradient line with no surface scarp. | Pumping bowls, atmospheric ramps and agricultural boundaries; require repeat seasons, opposite-side phase persistence and subsurface structural support. | No current repository method ingests an independently sourced InSAR time series. | **Unknown / high. Not viable here:** source coverage, terms and bulk accessibility over the footprint were not verified under the host allowlist. It is a research lead, not an available input. |
+Spearman ρ vs CLAIM organizer score (n=7): **n_dots ρ = −1.000 (p<0.001)**;
+median spacing ρ = +0.898 (p=0.006); share of dots >1 km from catalogue ρ = +0.857 (p=0.014);
+SGMC control ρ = −0.821 (p=0.023); HOLDOUT v1.1 ρ = −0.750 (p=0.052).
 
-## Frozen S14 experiment ladder
+**Mechanism (three additive effects):**
 
-All three arms use **only H14-1 through H14-3** and remain inside `S14-PTAC`.
+1. **Metric economics of the max-kernel.** DTI = T / (0.2·T + 0.2·(S−M) + 0.8·|G|) with
+   T = Σ_truth max_j p_j·k(‖j−g‖), triangular k, R = 300 m (`scripts/dti.py`). Once a truth
+   pixel is covered at k≈1 by one dot, every additional dot on the same line adds ≈0 to T
+   but full price to the 0.2·(S−M) term. Thinning a continuous line to dots spaced ≈3 px
+   (the kernel radius) therefore keeps T and cuts S by ≈3.3×. The fleet's own ladder is a
+   controlled experiment on one surface: 0.1922 → 0.2477 → 0.2600 → 0.2708 → 0.2778 as
+   dots fall 121k → 37.6k. **Emission geometry, not surface geology, explains most of the
+   0.19 → 0.28 climb.**
+2. **Far-field targeting.** The hidden test faults are absent from the catalogue *by
+   construction*; the catalogue's own 300 m halo is the most thoroughly mapped ground in
+   the area, so mass spent there has near-zero expected yield (ρ = −0.68 for halo share).
+   R0 spends 69.8% of its dots >1 km from any catalogued fault — the highest of the seven.
+3. **Precision of the ancestor surface.** All top scores descend from the h19-5
+   "multi-line corroborated" surface: independent lineament families must agree before a
+   pixel earns mass. Agreement-gating trades recall for precision, which is what the
+   β = 0.8 denominator rewards.
 
-1. **E1 — H14-1:** build six pairwise-quadrant Stage-1 S13 surfaces; for each held-out fold, stitch a fully cross-fitted S13 surface (the held-out quadrant is predicted by the three-quadrant model; every visible quadrant is predicted by a model trained on the other two visible quadrants). Compute ten S12-style directional auto-context features; run every new feature alone through the `0.90` symmetric-AUC canary; train an 85-feature Stage-2 model; blend `0.72 Stage-2 + 0.28 Stage-1`; use the unchanged S13 Dinkelbach emitter.
-2. **E2 — H14-1 + H14-2:** reuse E1 model outputs; multiply the S13 structural crest by cross-fitted two-sided bridge support before the unchanged Dinkelbach emitter. No extra model fit.
-3. **E3 — H14-1 + H14-2 + H14-3:** reuse the same fitted outputs; form a `0.65 Stage-2 + 0.35 Stage-1` **log-odds** opinion pool, then apply H14-2 bridge/crest concordance and the unchanged Dinkelbach emitter. No extra model fit.
+**Corollary (why our holdout misled emission design) — `IR-91-S14-01`:** the shared
+evaluator v1.0 deletes every prediction inside the 1 km buffer around a withheld segment
+("halo deletion"). With a 3 px kernel this makes HOLDOUT-DTI ≡ 0 for *every* real
+submission raster (all carry zero mass exactly on catalogue pixels — measured), while
+OOF fold predictions are allowed to sit on withheld pixels. v1.0 remains the frozen
+comparator for surface ranking; `gems91-hide-recover-v1.1-nohalo` (added 2026-10-24,
+`mask_buffer_predictions=False`) restores leaderboard geometry for emission tuning.
+Both holdout flavours *anti-correlate* with the organizer score across the fleet
+(ρ = −0.75) because recovering catalogued faults is the opposite allocation from
+discovering uncatalogued ones. HOLDOUT-DTI is therefore used here only as a
+*surface sanity gate* (must not collapse), never as the emission objective.
 
-For each arm, the continuous OOF mosaic is checked against the registry **before** dot placement. If `|rho| > 0.90`, stop as duplicate. After placement, if more than `70%` of candidate dots fall within 3 px of any indexed raster, log duplicate and stop per the literal protocol. The synthetic near-universal lattice remains in the all-files scope and is not privately exempted.
+**Can we beat 0.2778?** The remaining headroom is (a) a *better surface* at winner
+emission economics — R0's surface never saw the 1 m LiDAR scarp stack or per-element
+radiometrics, both pinned in this repo and used by **no** prior lane (verified by grep,
+2026-10-24); and (b) *exact* expected-DTI emission (Dinkelbach stopping at λ₀ ≈ target
+score) instead of fixed-spacing thinning, which is provably suboptimal wherever the
+posterior is heterogeneous. Leaderboard best 0.4413 (CLAIM-USER-REPORTED) implies the
+hidden truth is substantially recoverable; 0.2778 is not a ceiling.
 
-The winning arm must beat `0.244601 HOLDOUT-DTI` on the identical `60,988` withheld positives before a full-map candidate is written. A written raster is still a negative deliverable if final uniqueness fails. No DrivenData slot is used.
+---
 
-## Evidence and source boundary
+## 1. Five ranked candidate hypotheses
 
-- **Organizer-maintained code source, fetched at commit `aebe92f7c8a990f0e3443451b7a825d9afd6336b`:** <https://github.com/drivendataorg/gems-prize-reference-solution>. Its README confirms that competition data must be downloaded separately and provides CPU/GPU environments; it does not authenticate this repository's mirrored raster copies.
-- **Existing local physical-unit receipts:** `evidence/s13_band06_and_units_audit.json`; **existing S13 score/run receipt:** `docs/run-card-S13.json`; **shared metric/evaluator tests:** `tests/test_dti_official_formula.py`, `tests/test_s13_ptha.py`.
-- **Manual-review official leads, not freshly fetched from this sandbox:** competition problem <https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/>, GeoDAWN <https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and>, GDR #1391 <https://gdr.openei.org/submissions/1391>, USGS 3DEP link above.
-- Restored local inputs match repository-declared SHA-256 pins. That verifies identity to the declared mirrors, not organizer authenticity, redistribution permission, or eligibility.
+| Rank | ID | Layer(s) | Physical signature | Why it catches *uncatalogued* faults | Named non-fault mimic → rejection | Difference vs everything in this repo | Expected gain / cost |
+|---:|---|---|---|---|---|---|---|
+| 1 | **H14-1 LiDAR scarp direct detection** | `data/external/lidar_scarp_features_u8.tif` (12 bands: ex_max/mean, step_max, lap±, down/upface, cross_max, relief, coh100, strike, valid), aggregated from 1 m DEMs | Signed cross-strike elevation step + laplacian crest + 100 m strike coherence at 100 m cells | Holocene scarps <2 m high are invisible in the 19-band 100 m stack (B12/B19 are smooth) and too subtle for 1:250k catalogue mapping, but are the *direct* surface rupture record | Lake Lahontan shoreline benches, road cuts, dune slipfaces → require corroboration (H14-5 gate) + coh100 strike persistence | No lane in GEMSDOE91 reads this file (grep-verified); prior fleet lidar lanes used raw slope, not this scarp-decomposed stack | High / Low (file pinned, sha256-verified) |
+| 2 | **H14-2 Radiometric ratio alteration** | `data/external/geodawn_rad_u8.tif` bands K, Th, U, TC (USGS GeoDAWN) | Th/K depression (K-metasomatism), U/K enrichment, and their cross-strike steps along lineaments | Hydrothermal fluids rise along permeable *hidden* faults and potassically alter wall rock; alteration is a fluid-pathway tracer independent of scarp preservation | Felsic plutons (high K) → ratio must be *linear* (lineament-coincident), not blob-like; TC level alone excluded as evidence | Only TC (Band 06) was ever used; K/Th/U separately never enter any model here | Medium / Low |
+| 3 | **H14-3 Spring-anchored blind-fault habitat** | GDR well/spring inventory (`gdr_wellspring_in_footprint.csv`, 27,092 records) via existing `e2_gdr_*` static cols (excluded by S12/S13!) + new distance-to-hot-spring field | Thermal springs (temp/geothermometry) cluster where fault permeability taps deep circulation; a hot spring >300 m from catalogue is positive evidence of a blind structure | Springs are *effects* of the hidden faults the contest targets, not of mapping effort | Basin-margin artesian springs, springs on mapped faults (collar-excluded anyway) → used only as habitat multiplier on lineament support | Features exist in the static memmap but S12-SPAC and S13-PTHA dropped cols 34–43; no winning-lineage model uses them | Medium / Low |
+| 4 | **H14-4 Fold-safe tip/stepover geometry** | `existing_faults.tif` via `dd_vtc_pu.compute_fold_safe_catalogue_features` (tip prox, relay stepover, strike continuation), visible-faults-only per fold | Fault growth by tip propagation and relay-ramp linkage concentrates *unmapped* segments in 0.3–3 km tip/stepover corridors (NOT in the 300 m halo) | Catalogue segments end where mapping stopped, not where the fault ends; stepovers are the classic blind-geothermal play | Random lineament crossings → bounded multiplicative boost (≤1.28×) on physical support only | Implemented for H91 but absent from S11/S12/S13 winners; combined here with far-field emission instead of halo-hugging | Medium / Low |
+| 5 | **H14-5 Multi-family corroboration + winner-economics emission** | OOF posterior × independent crest families (PTHA crest, lidar coh100, rad-ratio step) → Dinkelbach greedy (`ptha.dinkelbach_*`) | A pixel earns a dot only if ≥2 physically independent families agree AND its exact marginal expected-DTI gain at λ₀ = 0.28 is positive under the 300 m max-kernel | This is the measured winning mechanism (§0): precision-gating + kernel-saturating unit dots at ≈3 px spacing, far-field weighted | Correlated artefacts (flight-line seams appear in mag *and* rad) → families chosen from independent sensors (lidar vs airborne gamma vs magnetics) | S13 used Dinkelbach on a single-physics-blend surface with λ₀ = 0.206 (its own holdout); here λ₀ is set from the *organizer* frontier (0.28) and tuned on v1.1-nohalo | High / Medium |
+
+## 2. Experiments (budget: 3)
+
+- **E1 (surface):** HGB ensemble on [static 49 (incl. e2 GDR) + S11 16 + PTHA 20 + **S14 new: lidar 12 + rad-ratio 6**] + fold-safe catalogue geometry (3, per-fold). Report HOLDOUT-DTI v1.0 (comparator vs S13 0.244601) **and** v1.1-nohalo, canary AUC for every new feature (fail if >0.90).
+- **E2 (corroboration):** E1 posterior gated by ≥2-family agreement; same scoring. Keep whichever of E1/E2 wins v1.1 without collapsing v1.0 (>0.20 floor = surface-sanity gate).
+- **E3 (emission):** Dinkelbach λ₀ ∈ {0.24, 0.28, 0.32} on OOF folds scored with v1.1-nohalo; pick λ₀, emit full-map, run all gates (format, [0,1], collar >3 px, registry uniqueness surface ρ ≤0.90 & dots ≤70% within 3 px vs every local + fleet raster, SGMC control reported for the record).
+
+**Promotion rule:** candidate is labelled `promote` only if (i) all format gates pass,
+(ii) uniqueness gates pass, (iii) v1.0 E-score ≥ 0.20 (surface not degenerate) and
+(iv) emission geometry matches winner economics (unit dots, median spacing ≥2.8 px,
+≥60% dots >10 px from catalogue OR v1.1-justified deviation logged). A candidate that
+fails is still delivered as a labelled negative result. **No weekly slot is spent by
+this session; slot use remains a human selector decision (`SLOT_PLAN.md`).**
+
+## 3. External data check (no new data needed)
+
+All layers are already pinned & sha256-verified in `registry/data_manifest.json`
+(15/15 verified 2026-10-24): competition 19-band stack, `existing_faults.tif`,
+`sample_submission.tif`, GeoDAWN radiometrics u8, LiDAR scarp u8, GDR springs CSV,
+USGS SGMC control. Official upstreams for manual review:
+DrivenData competition https://www.drivendata.org/competitions/306/competition-doe-gems/ ·
+reference solution https://github.com/drivendataorg/gems-prize-reference-solution ·
+GeoDAWN https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and ·
+GDR #1391 https://gdr.openei.org/submissions/1391 · INGENIOUS https://gbcge.org/current-projects/ingenious/ ·
+EPSG:32611 https://epsg.io/32611 · Tversky index https://en.wikipedia.org/wiki/Tversky_index ·
+rules PDF https://docs.nlr.gov/docs/fy26osti/96647.pdf

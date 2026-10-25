@@ -35,8 +35,8 @@ S14 is a genuinely distinct detector and its same-split paired interval is wholl
 
 1. Restored all 15 hash-pinned inputs and recovered the two missing GEOD registry rasters byte-for-byte from immutable repository history.
 2. Reproduced the frozen S13 comparator before S14 work.
-3. Preregistered five ranked geological hypotheses in `docs/HYPOTHESES_S14.md` before any S14 fit. Each names layers, signature, missing-fault rationale, mimics, difference from existing methods, expected gain, cost, and data availability.
-4. Implemented `src/gems91/ptac14.py`, `scripts/run_s14_lane.py`, and synthetic tests in `tests/test_ptac14.py`.
+3. Preregistered five ranked geological hypotheses in `docs/HYPOTHESES_S14_PTAC.md` before any S14 fit. Each names layers, signature, missing-fault rationale, mimics, difference from existing methods, expected gain, cost, and data availability.
+4. Implemented `src/gems91/ptac14.py`, `scripts/run_s14_ptac_lane.py`, and synthetic tests in `tests/test_ptac14.py`.
 5. Reused the shared evaluator, S13 Dinkelbach emitter, and shared submission writer.
 6. Ran all 85 features alone as leakage canaries; worst symmetric AUC was `0.74517`, below `0.90`.
 7. Executed exactly three preregistered arms, within the 7,200-second cap.
@@ -63,7 +63,7 @@ Verification after fixes:
 
 ## Pass 3 — final line-by-line recheck
 
-1. Confirmed the preregistration hash in the run card matches `docs/HYPOTHESES_S14.md`.
+1. Confirmed the preregistration path and hash in both PTAC receipts match `docs/HYPOTHESES_S14_PTAC.md` (`e0d2e13279b4a23db65253ab6ac8abf5cd5ca76490121062ae96d604da8b9bb9`). PR conflict resolution exposed that the final pre-commit trailing-whitespace cleanup had changed this byte hash after the run; both receipts are now synchronized. No hypothesis text, experiment, score, artifact, or verdict changed.
 2. Confirmed E1/E2/E3 values, confidence intervals, paired deltas and per-fold values are labelled HOLDOUT-DTI only.
 3. Confirmed no organizer-confirmed score, live slot state, deadline or leaderboard claim is fabricated.
 4. Confirmed the surface test ran before placement (`max |ρ|=0.22119 < 0.90`) and the final literal test checked all 73 hash-distinct local same-grid references (`99.852% > 70%`, duplicate).
@@ -76,7 +76,7 @@ Verification after fixes:
 
 - Organizer-maintained reference code: <https://github.com/drivendataorg/gems-prize-reference-solution>, fetched through GitHub at commit `aebe92f7c8a990f0e3443451b7a825d9afd6336b`.
 - GEMSDOE32 lineage source: <https://github.com/buffedlizard55-lab/GEMSDOE32>. This is forensic lineage, not organizer evidence.
-- Official source leads are retained in `docs/HYPOTHESES_S14.md` and `docs/sources.json`. Non-GitHub DrivenData, NLR, USGS and GDR hosts and authenticated organizer account state were not reachable in this sandbox.
+- Official source leads are retained in `docs/HYPOTHESES_S14_PTAC.md` and `docs/sources.json`. Non-GitHub DrivenData, NLR, USGS and GDR hosts and authenticated organizer account state were not reachable in this sandbox.
 - Restored input hashes establish identity to repository pins, not organizer authenticity, redistribution permission, eligibility, or current account state.
 
 ## Next steps

@@ -1,0 +1,48 @@
+[01:28:58] S14-LSRG start | prereg sha256=529436a1704fa673
+[01:28:58] footprint=5,167,373 catalogue=60,988
+[01:29:06] building/loading memmaps (static49, s11-16, ptha20, s14-23)...
+[01:29:06]   static ready 8s
+[01:29:06]   s11 ready 8s
+[01:29:07]   ptha ready 8s
+[01:29:07]   s14 ready 8s meta={'n_fp': 5167373, 'n_cols': 23, 'feature_names': ['s14_lid_ex_max', 's14_lid_ex_mean', 's14_lid_step_max', 's14_lid_lapneg_max', 's14_lid_lappos_max', 's14_lid_downface_max', 's14_lid_upface_max', 's14_lid_cross_max', 's14_lid_relief', 's14_lid_coh100', 's14_lid_valid', 's14_lid_step_x_coh', 's14_lid_face_asym', 's14_rad_k', 's14_rad_th', 's14_rad_u', 's14_rad_tc', 's14_rad_log_th_k', 's14_rad_log_u_k', 's14_rad_log_u_th', 's14_rad_thk_step', 's14_rad_uk_step', 's14_rad_tc_step'], 'lidar_valid_frac_of_footprint': 0.7533777801602478}
+[01:29:43] fold-safe catalogue geometry ready
+[01:29:43] loaded cached canary pass=True worst=0.63555
+[01:29:46] [E1 NW] loaded cached OOF
+[01:29:46] [E1 NE] loaded cached OOF
+[01:29:46] [E1 SW] loaded cached OOF
+[01:29:46] [E1 SE] loaded cached OOF
+[01:29:49]   [E1 NW] emitted 9,420/9,420 dots
+[01:29:51]   [E1 NE] emitted 7,051/11,542 dots
+[01:29:54]   [E1 SW] emitted 10,463/10,463 dots
+[01:29:56]   [E1 SE] emitted 8,575/8,575 dots
+[01:30:27]   [E1] HOLDOUT-DTI v1.0=0.232488 CI[0.218109, 0.245853] | v1.1-nohalo=0.232488 CI[0.218109, 0.245853] | pooled dots=35,509
+[01:30:56]   [E2 NW] emitted 9,420/9,420 dots
+[01:30:58]   [E2 NE] emitted 7,247/11,542 dots
+[01:31:01]   [E2 SW] emitted 10,463/10,463 dots
+[01:31:03]   [E2 SE] emitted 8,575/8,575 dots
+[01:31:34]   [E2] HOLDOUT-DTI v1.0=0.232623 CI[0.219923, 0.245889] | v1.1-nohalo=0.232623 CI[0.219923, 0.245889] | pooled dots=35,705
+[01:31:34] winner by v1.1-nohalo: E2 (E1 0.2325 / E2 0.2326)
+[01:31:37]   [E3-b30000 NW] emitted 7,065/7,065 dots
+[01:31:39]   [E3-b30000 NE] emitted 7,247/8,656 dots
+[01:31:41]   [E3-b30000 SW] emitted 7,847/7,847 dots
+[01:31:44]   [E3-b30000 SE] emitted 6,432/6,432 dots
+[01:32:13]   [E3-b30000] HOLDOUT-DTI v1.0=0.210374 CI[0.196273, 0.224235] | v1.1-nohalo=0.210374 CI[0.196273, 0.224235] | pooled dots=28,591
+[01:32:15]   [E3-b37654 NW] emitted 8,867/8,867 dots
+[01:32:17]   [E3-b37654 NE] emitted 7,247/10,865 dots
+[01:32:20]   [E3-b37654 SW] emitted 9,849/9,849 dots
+[01:32:22]   [E3-b37654 SE] emitted 8,073/8,073 dots
+[01:32:52]   [E3-b37654] HOLDOUT-DTI v1.0=0.228351 CI[0.21372, 0.241529] | v1.1-nohalo=0.228351 CI[0.21372, 0.241529] | pooled dots=34,036
+[01:32:55]   [E3-b44000 NW] emitted 10,362/10,362 dots
+[01:32:57]   [E3-b44000 NE] emitted 7,247/12,696 dots
+[01:33:00]   [E3-b44000 SW] emitted 11,509/11,509 dots
+[01:33:02]   [E3-b44000 SE] emitted 9,433/9,433 dots
+[01:33:32]   [E3-b44000] HOLDOUT-DTI v1.0=0.240111 CI[0.225138, 0.25395] | v1.1-nohalo=0.240111 CI[0.225138, 0.25395] | pooled dots=38,551
+[01:33:32] E3 best budget by v1.1: 44000
+[01:33:32] loaded cached full-map posterior
+[01:33:42] full-map dots emitted: 44,000
+[01:33:42] uniqueness vs 21 registry/sibling rasters...
+[01:33:52] surface max|rho|=0.163 (calib_h195_01922.tif) dots max3px=0.852 (gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif) pass=False
+[01:33:58] geometry={'n_dots': 44000, 'frac_dots_gt10px_of_catalogue': 0.36775, 'frac_dots_3to10px_of_catalogue': 0.63225, 'min_dist_to_catalogue_px': 3.1622776601683795, 'median_nn_spacing_px': 3.1622776601683795} SGMC=0.0904
+[01:34:18] bundle written: {"candidate_id": "gems91-s14-lsrg-e3-20261024T235900Z-e6540657", "primary_zeros_tif": {"filename": "gems91-s14-lsrg-e3-20261024T235900Z-e6540657-zeros.tif", "path": "releases/gems91-s14-lsrg-e3-20261024T235900Z-e6540657-zeros.tif", "sha256": "ebeecbcd216813bbbb115c8727ab9ebee00334c1b4a1a5d51e7eddcd2802969f", "bytes": 235404, "nodata": null, "all_cells_finite": true, "total_cells": 12279160, "nan_cells_anywhere": 0, "min_value": 0.0, "max_value": 1.0}, "companion_nan_tif": {"filename": "gems91-s14-lsrg-e3-20261024T235900Z-e6540657.tif", "path": "releases/gems91-s14-lsrg-e3-20261024T235900Z-e654
+[01:34:18] RUN CARD verdict=negative v11=0.2401 v10=0.2401 budget=44000 dots=44,000 elapsed=320s
+EXIT=0
