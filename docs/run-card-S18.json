@@ -1,0 +1,128 @@
+{
+  "schema": "gems91.run-card.v1",
+  "run_id": "S18-20261025",
+  "date_utc": "2026-10-25",
+  "branch": "arena/537d6d44-gemsdoe91",
+  "competition": "DrivenData competition-doe-gems (prize 306)",
+  "session_type": "review, feasibility and protocol audit (no candidate generated)",
+  "review_document": "docs/REVIEW-S18-20261025.md",
+  "verification_output": "docs/s18/verification.json",
+  "verifier": "scripts/verify_s18.py",
+  "hypothesis": {
+    "id": "H1",
+    "statement": "Local topographic roughness (Hurst-exponent / spectral-slope break of detrended elevation) changes across concealed lineaments that the catalogue does not list.",
+    "status": "UNTESTED - ranked first, not run",
+    "layer": "det_elev (100 m, already a training feature); 1 m DEM is the higher-resolution option",
+    "non_fault_mimic": "lithologic contacts (hard vs soft rock) and alluvial-fan / playa margins"
+  },
+  "mechanism": "Fracturing and erosion along fault zones change the texture of the surface even where relief is low, so a spectral-slope break can flag an unmapped scarp under thin alluvium. Mechanism is reasoned, not measured.",
+  "experiments": {
+    "used": 0,
+    "budget": "3 experiments or 2 hours (whichever first)",
+    "note": "No experiment was run this session. The budget is unspent."
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "dti": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "reason": "No candidate was generated this session."
+  },
+  "reference_holdout_numbers_in_repo": {
+    "note": "Quoted from existing run cards and SLOT_PLAN.md; not produced this session.",
+    "OLC91_E1_minus_E0": {
+      "evidence_class": "HOLDOUT-DTI",
+      "delta": -0.002075,
+      "ci95": [
+        -0.004543,
+        0.000236
+      ],
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "seed": 20,
+      "withheld_positive_pixels": 11321,
+      "withheld_components": 606,
+      "source": "docs/run-card-OLC91.json"
+    },
+    "unique_damagezone_HOLDOUT_DTI": {
+      "evidence_class": "HOLDOUT-DTI",
+      "dti": 0.0,
+      "source": "docs/run-card-unique-offcatalogue-damagezone.json"
+    }
+  },
+  "correlation_and_overlap": {
+    "candidate": "none generated this session",
+    "lattice_overlap_lower_bound_at_N_37654": 0.823418,
+    "lattice_overlap_lower_bound_formula": "(N - U) / N with U = 6649 uncovered footprint px (docs/s16/registry-feasibility.json)",
+    "team_gate_overlap": 0.7,
+    "team_gate_rank_corr": 0.9,
+    "max_dots_for_team_gate_with_lattice": 22163,
+    "min_share_of_dots_on_uncovered_px_for_gate": 0.3,
+    "result": "A dense candidate cannot clear the 70% team gate against the lattice. Clearing it at N <= 22163 requires placing >= 30% of dots on uncovered pixels, which is registry-targeted placement and was not implemented."
+  },
+  "raster_sha256": {
+    "OLC91_E1": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
+    "unique_damagezone": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+    "status": "existing files, re-verified this session; no new raster"
+  },
+  "validator_output": {
+    "tool": "scripts/verify_s18.py",
+    "candidates_checked": [
+      "OLC91_E1",
+      "unique_damagezone"
+    ],
+    "sha256_matches_run_card": true,
+    "single_band_float32_EPSG32611_3730x3292": true,
+    "values_in_0_1_no_NaN": true,
+    "dots_inside_footprint": true,
+    "encoding": "zero-filled full grid (valid per format check)",
+    "ok_to_submit": false,
+    "ok_to_download": "research only"
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_chars": null,
+    "reason": "No new submission file was produced. Both existing files are research-only."
+  },
+  "leaderboard_figures": {
+    "evidence_class": "PUBLIC-LEADERBOARD (organizer-hosted public page snapshot; not a submission-page receipt, so not ORGANIZER-CONFIRMED)",
+    "snapshot_date": "2026-10-25",
+    "rank_1": 0.4413,
+    "rank_50": 0.2818,
+    "user_reported_unverified": {
+      "GEMSDOE32_0.2778": "below rank 50",
+      "claimed_0.3195": "would be rank 24"
+    },
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "transcription": "docs/s18/leaderboard-top50-20261025.json"
+  },
+  "verdict": "negative",
+  "promote": false,
+  "verdict_reason": "No candidate passed the team's uniqueness gate and holdout gate. The dense competitive route is blocked by the 70% gate against the lattice. The only protocol-compliant file has HOLDOUT-DTI 0.0. Promotion is a separate selector step; nothing is selected here.",
+  "official_sources": [
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf (GEMS Official Rules, Sept 2026; reached via https://www.herox.com/GEMSPrize/resource/2274)",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/rules/",
+    "https://waterservices.usgs.gov/"
+  ],
+  "irregularities": [
+    "IR-91-S18-01",
+    "IR-91-S18-02",
+    "IR-91-S18-03",
+    "IR-91-S18-04",
+    "IR-91-S18-05",
+    "IR-91-S18-06",
+    "IR-91-S18-07",
+    "IR-91-S18-08",
+    "IR-91-S18-09",
+    "IR-91-S18-10",
+    "IR-91-S18-11",
+    "IR-91-S18-12",
+    "IR-91-S18-13"
+  ],
+  "ok_to_submit": false,
+  "human_inspection_required": false
+}

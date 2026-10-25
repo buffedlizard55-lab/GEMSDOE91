@@ -1,5 +1,14 @@
 # GEMSDOE91 — CURRENT STATUS (OLC91, 2026-10-25) — read this first
 
+> **SESSION 18 (`S18`, branch `arena/537d6d44-gemsdoe91`, 2026-10-25): AUTOMATED VERDICT `OK TO DOWNLOAD: RESEARCH ONLY` · `OK TO SUBMIT: NO`. No new file generated; 0 weekly slots spent; 0 experiments run.**
+>
+> * **Review and evidence:** [`docs/REVIEW-S18-20261025.md`](docs/REVIEW-S18-20261025.md) · [run card](docs/run-card-S18.json) · verifier `scripts/verify_s18.py` (exit 0; [`docs/s18/verification.json`](docs/s18/verification.json)) · tests `tests/test_s18_review.py`.
+> * **Leaderboard (PUBLIC-LEADERBOARD, not a receipt):** #1 = 0.4413 is the global top score, not a GEMSDOE entry. 0.3195 would rank #24. The user-reported 0.2778 (**UNVERIFIED**) would fall below #50 (#50 = 0.2818).
+> * **Why the dense route is blocked:** the team's 70% gate against the public lattice gives an overlap lower bound of 0.8234 at N = 37,654. The only literal route is N ≤ 22,163 with ≥ 30% of dots on uncovered pixels: registry-targeted placement, rejected.
+> * **The holdout cannot test the 0.2778 mechanism:** the PRUNE collar variants score a holdout proxy of 0.0 ([IR-91-S18-12](IRREGULARITIES.md)). Only an off-catalogue control with verified provenance can test it.
+> * **Next:** H1 (topographic roughness / Hurst break) is ranked first and untested. Decisions D1–D4 are listed in the review for the user.
+> * **Irregularities:** IR-91-S18-01 to IR-91-S18-12 in [`IRREGULARITIES.md`](IRREGULARITIES.md).
+
 > **OLC91 session (`arena/3444a6d3-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH ONLY` · `OK TO SUBMIT: NO`.**
 > **[⬇ Download the GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif)** ([ZIP](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.zip)) · SHA-256 `35259f3a…82abf8dc` · [JSON run card](docs/run-card-OLC91.json) · [Site](https://buffedlizard55-lab.github.io/GEMSDOE91/) · [Executive summary / how to submit](docs/executive-summary.html) · [Preregistration + results](docs/HYPOTHESES_OLC91.md)
 >
