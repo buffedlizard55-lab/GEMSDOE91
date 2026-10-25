@@ -1,0 +1,41 @@
+{
+  "audit_version": "s14-hydrothermal-forensics-v1.0",
+  "label_blind": true,
+  "banned_columns_never_read": [
+    "dist_known_fault_px"
+  ],
+  "footprint_pixels": 5167373,
+  "ir_91_s14_01_band10_swarm_audit": {
+    "band10_max": 4962515.0,
+    "band16_max": 7869.5,
+    "pearson_r_log1p_b10_vs_log1p_b16": 0.735476,
+    "ptha_line292_defect": "src/gems91/ptha.py computed -log1p(B10/500), inverting Dependent Earthquake Swarm Density into aseismic quietness"
+  },
+  "salem_tilt_depth_vs_b15": {
+    "salem_depth_p25_m": 386.95,
+    "salem_depth_p50_m": 606.04,
+    "salem_depth_p75_m": 1027.04,
+    "b15_depth_p50_m": 316.51,
+    "shallow_intrabasin_fraction_zsalem_lt_half_b15": 0.12543
+  },
+  "basin_depth_confounding": {
+    "r2_isostatic_gravity_b13_on_depth_b15": 0.458512,
+    "r2_conductivity_b17_on_depth_b15": 0.004954
+  },
+  "geodawn_drape_vs_regional": {
+    "std_hf300m_ratio_b14_over_b01": 10.9257
+  },
+  "gdr_hydrothermal_vent_and_blind_geothermometry": {
+    "csv_rows_scanned": 27092,
+    "unique_footprint_cells": 2398,
+    "hot_warm_manifestation_cells": 2060,
+    "blind_non_thermal_cells_geotherm_ge_90C": 212,
+    "cells_reservoir_temp_ge_120C": 376,
+    "cells_reservoir_temp_ge_150C": 219,
+    "footprint_det_elev_median_m": -75.58,
+    "hot_warm_mean_det_elev_m": -162.89,
+    "blind_geotherm_mean_det_elev_m": -174.7,
+    "frac_hot_warm_in_low_elev_basin_half": 0.7786,
+    "frac_blind_geotherm_in_low_elev_basin_half": 0.8302
+  }
+}

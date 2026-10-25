@@ -57,6 +57,7 @@ try:
         releases_dir=Path('./releases'),
         downloads_dir=Path('./docs/downloads'),
         floor_px=3.0,
+        bundle_js_filename='synthetic_submission_bundle.js',
     )
     print("Successfully created submission!")
     print(receipt['zip_bundle']['filename'])
