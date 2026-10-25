@@ -10,6 +10,11 @@
 
 # GEMSDOE91 — a new TIFF, an honest automated verdict
 
+> **DRN91 session (2026-10-25, this branch): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**
+> First drainage-routing lane (D8 flow-accumulation/deflection/knickpoint on B12 + 19 sponsor bands, cross-fitted HGB, 37,654 dotted zeros TIFF).
+> `E1 drainage-only = 0.163754`, **`E2 = 0.166217` HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 60,988 withheld; CI in run card) — below S14-PTAC 0.267782 comparable best, so promotion gate FAILED and 0 slots were spent. Leakage canary max AUC 0.594 (pass). Uniqueness within this repo's indexed downloads: max |Spearman| 0.143, max 3-px dot overlap 64.6% (pass, local scope only).
+> [Download GeoTIFF](docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif) (sha256 `b1623999…a19fe3`) · [Executive summary](docs/drn91-executive-summary.html) · [Run card](docs/run-card-DRN91.json) · [Preregistration](docs/HYPOTHESES_DRN91.md)
+>
 > **UNIQUE SUBMISSION (`unique-offcatalogue-damagezone`, branch `arena/e6fdea6b-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — FORMAT-CERTIFIED` · `OK TO SUBMIT: NO — RESEARCH NEGATIVE`.**
 > Damage-zone annulus lattice (1 km lattice, 3 px < d_catalogue <= 10 px): 8,718 unit dots, value 1.0 at dots, 0 elsewhere, NaN outside footprint; EPSG:32611, 3730x3292, 100 m, single-band float32, all values in [0,1]. **HOLDOUT-DTI = 0.0 (CI [0,0], 60,988 withheld) — deliberate off-catalogue negative.** Registry uniqueness: surface |rho| 0.00983 (<= 0.90), dots within 3 px 20.67% (<= 70%) — NOT a duplicate. Zero weekly slots spent.
 > [Download GeoTIFF](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif) (`sha256: a5636b10…ca11`) · [Single-TIFF ZIP](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip) · [Audit](docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-audit.json) · [Run card](docs/run-card-unique-offcatalogue-damagezone.json) · Form note (140/140): `Unique off-catalogue damage-zone lattice; format-certified unique GeoTIFF; HOLDOUT-DTI=0.0 deliberate negative; research download only`
@@ -30,7 +35,9 @@
 
 ## Start here every session
 
-Read this status, [the full standing brief below](#full-project-brief), [the latest three-pass review for this branch](docs/REVIEW-SESSION-20261025.md), its [run card](docs/run-card-current-review.json), prior [repository safety review](docs/REVIEW-08E91DAD-20261025.md), the [integrated parallel review](docs/REVIEW-ARENA-ABB160F7-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+Read this status, [the full standing brief below](#full-project-brief), [the latest three-pass review for this branch](docs/REVIEW-SESSION-20261025.md), its [run card](docs/run-card-current-review.json), [the main-branch parallel review](docs/REVIEW-ARENA-6FEDEF59-20261025.md), prior [repository safety review](docs/REVIEW-08E91DAD-20261025.md), [the integrated parallel review](docs/REVIEW-ARENA-ABB160F7-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.
+
+Main has also received parallel-session DRN91 files since this branch diverged. Those are inherited artifacts, not experiments from this review; their own run card and verdict govern them. Do not treat their presence or merge into this branch as selector approval.
 
 Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
 

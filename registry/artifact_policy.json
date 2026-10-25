@@ -372,6 +372,18 @@
       "sha256": "b9acc11900faa04c6871bdcd2e6d2107b40fafeee143c5884a7b71b012f81d74",
       "status": "current_research_only",
       "reason": "NaN-outside companion of the prior off-catalogue research negative; not the recommended upload; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif",
+      "sha256": "b1623999403b1f6069fb259035a5b5acd795c7d80cf5ce03b8c6c6cda1a19fe3",
+      "status": "parallel_quarantined",
+      "reason": "Parallel-session DRN91 artifact inherited from origin/main; its run card gives a negative verdict and ok_to_submit=false. Preserved as a research artifact; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.zip",
+      "sha256": "4af0bafcc0aec883bb1ce6eb65542ed4a476bf4184dfe9c7350f4b2551e61ee0",
+      "status": "parallel_quarantined",
+      "reason": "Single-TIFF ZIP of the parallel-session DRN91 research artifact inherited from origin/main; run card verdict is negative; NOT OK TO SUBMIT."
     }
   ]
 }
