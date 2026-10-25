@@ -1,0 +1,38 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "ecf7ccd9",
+  "branch": "arena/ecf7ccd9-gemsdoe91",
+  "hypothesis": "No assigned lane; candidate hypotheses are proposals only and were not tested.",
+  "mechanism": "No mechanism evaluated in this run. Conditional candidate: B12 multiscale roughness/spectral-slope break compared across sides of an independently detected lineament.",
+  "named_non_fault_process": "Lithologic contact, playa/alluvial-fan margin, or lava-flow boundary can create a topographic texture break without a fault.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "status": "NOT_RUN",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "value": null,
+    "ci95": null,
+    "reason": "No lane assignment and required inputs/cache are unavailable; no experiment was started."
+  },
+  "registry_correlation_overlap": {
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "final_dots_rank_correlation": null,
+    "registry_completeness": "NOT_VERIFIED_IN_THIS_CHECKOUT"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": "No new TIFF: missing lane assignment and local data/cache; prior portal artifact is research-only, not approved to submit.",
+  "ok_to_download_new_tiff": false,
+  "ok_to_submit": false,
+  "weekly_slots_used": 0,
+  "experiments_run": 0,
+  "verdict": "negative"
+}
