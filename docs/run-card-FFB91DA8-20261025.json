@@ -35,6 +35,7 @@
     "pytest": "545 passed, 8 skipped, 58 warnings; skipped integrations require absent inputs",
     "evidence_consistency_audit": "PASS; 0 experiments rerun; submission_ready=false",
     "artifact_policy": "PASS; 87 registered artifacts; no raw raster/archive tracked",
+    "published_download_audit": "87 checked; 78 technical PASS, 9 FAIL; ok_to_submit=false; 7 NaN-outside TIFF variants and 2 synthetic catalogue-mask failures; stale audit refreshed",
     "fresh_holdout_canary_registry_comparison_writer_validator": "NOT RUN; no assigned lane / candidate / required data"
   }
 }

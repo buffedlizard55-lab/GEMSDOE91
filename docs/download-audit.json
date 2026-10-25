@@ -6,8 +6,8 @@
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
-  "files_checked": 85,
-  "format_pass": 76,
+  "files_checked": 87,
+  "format_pass": 78,
   "format_fail": 9,
   "ok_to_submit": false,
   "files": [
@@ -1694,6 +1694,47 @@
       "ok_to_submit": false,
       "sha256": "fe9d868aeab195f7473aa9e334c11452dd5bb2a5e423ad708f628d7f4801c31e",
       "zip_member": "gems91-xg91-e1-20261025T145301Z-3c1b8f6a-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "a9bcec2abe649a18908f532e9eee2a58ea8e79c411c2ba8bf8a5832ebf659d68",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "3a8a92aa08c2c7764d321a0b08c05370f3e2b1d0b5c14bf4536b607145d7fa4f",
+      "zip_member": "gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
       "status": "PASS",
       "checks": {
         "single_band": true,
