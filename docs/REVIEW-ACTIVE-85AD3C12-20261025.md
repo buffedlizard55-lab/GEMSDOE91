@@ -1,6 +1,6 @@
 # Active-checkout repository review — 2026-10-25 UTC
 
-**Branch:** `arena/85ad3c12-gemsdoe91` (active)  
+**Branch:** `arena/85ad3c12-gemsdoe91` (active)
 **Decision:** **No experiment, TIFF, or submission was produced. OK TO SUBMIT: NO.** This is a deliberate protocol stop, not a claim that a high-scoring candidate was found. The prompt's assigned single-method paragraph is absent, and this checkout lacks the sample grid, fault catalogue, registry parent and cached feature stack needed to run the shared holdout/writer workflow. Inventing a lane or manufacturing a raster without these controls would violate the user's higher-priority parallel-run protocol.
 
 ## What was checked (facts from this checkout)

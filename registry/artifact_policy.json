@@ -161,13 +161,13 @@
       "path": "docs/downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
       "sha256": "f59ec7a60cd9346f94e69257b0ab7123c2e74421ef7954a10fee9a0bbd7ee1ee",
       "status": "current_research_only",
-      "reason": "SPID91 E3 Laplace-SPI + Depth-Deconfounded Conductivity + Weingarten Scarp-Toe MoE + Self-Credit Dinkelbach deliverable (0.151682 HOLDOUT-DTI on gems91-hide-recover-v1.0 & 0.145009 on gems57-pooled-hide-v2; passes all 85 leakage canaries & all 4 [0,1] validator suites; 67/67 real-raster unique <= 0.6663 at branch base and 74/75 post-merge [71.13% vs concurrent S12-SPAC E3]; verdict=negative \u2014 NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
+      "reason": "SPID91 E3 Laplace-SPI + Depth-Deconfounded Conductivity + Weingarten Scarp-Toe MoE + Self-Credit Dinkelbach deliverable (0.151682 HOLDOUT-DTI on gems91-hide-recover-v1.0 & 0.145009 on gems57-pooled-hide-v2; passes all 85 leakage canaries & all 4 [0,1] validator suites; 67/67 real-raster unique <= 0.6663 at branch base and 74/75 post-merge [71.13% vs concurrent S12-SPAC E3]; verdict=negative — NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
     },
     {
       "path": "docs/downloads/gems91-spid-e3-20261024T190000Z-25a94861-zeros.zip",
       "sha256": "37b52582dcf7d943af25f10d560cbf741443d5defba04a26ece32b5fca52c82c",
       "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of SPID91 E3 research/ensemble artifact (format PASS [0,1], verdict=negative \u2014 NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
+      "reason": "Single-TIFF ZIP of SPID91 E3 research/ensemble artifact (format PASS [0,1], verdict=negative — NOT OK TO SUBMIT; docs/run-card-SPID91.json)."
     },
     {
       "path": "docs/downloads/gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
@@ -359,19 +359,31 @@
       "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
       "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
       "status": "current_research_only",
-      "reason": "Primary all-finite zeros GeoTIFF from the historical damage-zone experiment. Audit records format certification but HOLDOUT-DTI 0.0 (gems91-hide-recover-v1.1-nohalo, 60,988 withheld positives, 95% CI [0,0]); research-only, NOT OK TO SUBMIT."
+      "reason": "Unique off-catalogue damage-zone GeoTIFF; prior run card classifies it as HOLDOUT-DTI 0.0 deliberate negative. Research download only; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.zip",
       "sha256": "9a88a5651103b7007db67da3ec01c9d7684d3c28d64c142eaef18612da6eaa00",
       "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of historical damage-zone negative research candidate; HOLDOUT-DTI 0.0 (gems91-hide-recover-v1.1-nohalo, 60,988 withheld positives, 95% CI [0,0]); NOT OK TO SUBMIT."
+      "reason": "Single-TIFF ZIP of the unique off-catalogue damage-zone research negative; NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119.tif",
       "sha256": "b9acc11900faa04c6871bdcd2e6d2107b40fafeee143c5884a7b71b012f81d74",
       "status": "current_research_only",
-      "reason": "NaN-outside companion of historical damage-zone candidate (7,111,787 NaN cells outside footprint per its audit); research only, do NOT upload."
+      "reason": "NaN-outside companion of the prior off-catalogue research negative; not the recommended upload; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.tif",
+      "sha256": "b1623999403b1f6069fb259035a5b5acd795c7d80cf5ce03b8c6c6cda1a19fe3",
+      "status": "parallel_quarantined",
+      "reason": "Parallel-session DRN91 artifact inherited from origin/main; its run card gives a negative verdict and ok_to_submit=false. Preserved as a research artifact; NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-drn91-e2-37654dots-20261025T134012Z-4a2e588a-zeros.zip",
+      "sha256": "4af0bafcc0aec883bb1ce6eb65542ed4a476bf4184dfe9c7350f4b2551e61ee0",
+      "status": "parallel_quarantined",
+      "reason": "Single-TIFF ZIP of the parallel-session DRN91 research artifact inherited from origin/main; run card verdict is negative; NOT OK TO SUBMIT."
     }
   ]
 }
