@@ -1,0 +1,88 @@
+[00:59:04] S14-LSRG start | prereg sha256=529436a1704fa673
+[00:59:05] footprint=5,167,373 catalogue=60,988
+[00:59:12] building/loading memmaps (static49, s11-16, ptha20, s14-23)...
+[00:59:12]   static ready 8s
+[00:59:12]   s11 ready 8s
+[00:59:12]   ptha ready 8s
+[00:59:12]   s14 ready 8s meta={'n_fp': 5167373, 'n_cols': 23, 'feature_names': ['s14_lid_ex_max', 's14_lid_ex_mean', 's14_lid_step_max', 's14_lid_lapneg_max', 's14_lid_lappos_max', 's14_lid_downface_max', 's14_lid_upface_max', 's14_lid_cross_max', 's14_lid_relief', 's14_lid_coh100', 's14_lid_valid', 's14_lid_step_x_coh', 's14_lid_face_asym', 's14_rad_k', 's14_rad_th', 's14_rad_u', 's14_rad_tc', 's14_rad_log_th_k', 's14_rad_log_u_k', 's14_rad_log_u_th', 's14_rad_thk_step', 's14_rad_uk_step', 's14_rad_tc_step'], 'lidar_valid_frac_of_footprint': 0.7533777801602478}
+[00:59:48] fold-safe catalogue geometry ready
+[00:59:48] loaded cached canary pass=True worst=0.63555
+[00:59:50] [E1 NW] loaded cached OOF
+/home/user/GEMSDOE91/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:599: ConvergenceWarning: lbfgs failed to converge after 250 iteration(s) (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT
+
+Increase the number of iterations to improve the convergence (max_iter=250).
+You might also want to scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+[01:05:37] [E1 NE] trained in 347s pi_true=0.01296
+/home/user/GEMSDOE91/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:599: ConvergenceWarning: lbfgs failed to converge after 250 iteration(s) (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT
+
+Increase the number of iterations to improve the convergence (max_iter=250).
+You might also want to scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+[01:11:22] [E1 SW] trained in 345s pi_true=0.01073
+/home/user/GEMSDOE91/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:599: ConvergenceWarning: lbfgs failed to converge after 250 iteration(s) (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT
+
+Increase the number of iterations to improve the convergence (max_iter=250).
+You might also want to scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+[01:17:45] [E1 SE] trained in 383s pi_true=0.01073
+[01:17:48]   [E1 NW] emitted 9,420/9,420 dots
+[01:17:50]   [E1 NE] emitted 7,051/11,542 dots
+[01:17:53]   [E1 SW] emitted 10,463/10,463 dots
+[01:17:55]   [E1 SE] emitted 8,575/8,575 dots
+[01:18:24]   [E1] HOLDOUT-DTI v1.0=0.232488 CI[0.218109, 0.245853] | v1.1-nohalo=0.232488 CI[0.218109, 0.245853] | pooled dots=35,509
+[01:18:53]   [E2 NW] emitted 9,420/9,420 dots
+[01:18:55]   [E2 NE] emitted 7,247/11,542 dots
+[01:18:58]   [E2 SW] emitted 10,463/10,463 dots
+[01:19:00]   [E2 SE] emitted 8,575/8,575 dots
+[01:19:28]   [E2] HOLDOUT-DTI v1.0=0.232623 CI[0.219923, 0.245889] | v1.1-nohalo=0.232623 CI[0.219923, 0.245889] | pooled dots=35,705
+[01:19:28] winner by v1.1-nohalo: E2 (E1 0.2325 / E2 0.2326)
+[01:19:31]   [E3-b30000 NW] emitted 7,065/7,065 dots
+[01:19:32]   [E3-b30000 NE] emitted 7,247/8,656 dots
+[01:19:35]   [E3-b30000 SW] emitted 7,847/7,847 dots
+[01:19:37]   [E3-b30000 SE] emitted 6,432/6,432 dots
+[01:20:09]   [E3-b30000] HOLDOUT-DTI v1.0=0.210374 CI[0.196273, 0.224235] | v1.1-nohalo=0.210374 CI[0.196273, 0.224235] | pooled dots=28,591
+[01:20:11]   [E3-b37654 NW] emitted 8,867/8,867 dots
+[01:20:14]   [E3-b37654 NE] emitted 7,247/10,865 dots
+[01:20:16]   [E3-b37654 SW] emitted 9,849/9,849 dots
+[01:20:19]   [E3-b37654 SE] emitted 8,073/8,073 dots
+[01:20:48]   [E3-b37654] HOLDOUT-DTI v1.0=0.228351 CI[0.21372, 0.241529] | v1.1-nohalo=0.228351 CI[0.21372, 0.241529] | pooled dots=34,036
+[01:20:51]   [E3-b44000 NW] emitted 10,362/10,362 dots
+[01:20:53]   [E3-b44000 NE] emitted 7,247/12,696 dots
+[01:20:55]   [E3-b44000 SW] emitted 11,509/11,509 dots
+[01:20:58]   [E3-b44000 SE] emitted 9,433/9,433 dots
+[01:21:26]   [E3-b44000] HOLDOUT-DTI v1.0=0.240111 CI[0.225138, 0.25395] | v1.1-nohalo=0.240111 CI[0.225138, 0.25395] | pooled dots=38,551
+[01:21:26] E3 best budget by v1.1: 44000
+/home/user/GEMSDOE91/.venv/lib/python3.11/site-packages/sklearn/linear_model/_logistic.py:599: ConvergenceWarning: lbfgs failed to converge after 250 iteration(s) (status=1):
+STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT
+
+Increase the number of iterations to improve the convergence (max_iter=250).
+You might also want to scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+[01:28:02] full-map model trained in 397s
+[01:28:14] full-map dots emitted: 44,000
+[01:28:14] uniqueness vs 21 registry/sibling rasters...
+Traceback (most recent call last):
+  File "/home/user/GEMSDOE91/scripts/run_s14_lane.py", line 383, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/user/GEMSDOE91/scripts/run_s14_lane.py", line 309, in main
+    log(f"surface max|rho|={surf_check['max_abs_surface_spearman']:.3f} "
+                            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'max_abs_surface_spearman'
+EXIT=1

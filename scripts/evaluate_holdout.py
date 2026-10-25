@@ -271,6 +271,9 @@ def run_leakage_canary(
     }
 
 
+EVALUATOR_VERSION_V11 = "gems91-hide-recover-v1.1-nohalo"
+
+
 def score_pooled_holdout(
     fold_predictions: dict[int, np.ndarray],
     folds: list[HoldoutFold],
@@ -279,6 +282,7 @@ def score_pooled_holdout(
     n_boot: int = 200,
     tile_px: int = 50,
     seed: int = 91,
+    mask_buffer_predictions: bool = True,
 ) -> dict:
     """Rule 2 & Rule 3: Score hide-and-recover holdout predictions using exact
     pooled DTI (`alpha=0.2, beta=0.8, R=300 m` triangular kernel).
@@ -291,6 +295,21 @@ def score_pooled_holdout(
       - Pooled `T`, `S`, `M`, `|G|` across all 4 folds yield exact pooled `HOLDOUT-DTI`.
       - Spatial block-bootstrap (`tile_px x tile_px` = 5x5 km tiles, `n_boot` draws)
         yields a spatially-honest 95% confidence interval.
+
+    `mask_buffer_predictions` (S14, IR-91-S14-01): with the v1.0 default
+    (`True`) every prediction inside the 1 km (10 px) buffer around a withheld
+    segment is deleted before scoring. Because the DTI kernel radius is only
+    3 px, this "halo deletion" makes near-miss credit impossible and forces
+    HOLDOUT-DTI = 0 for ANY real submission raster (all fleet rasters carry
+    zero mass exactly on catalogue pixels; measured 2026-10-24,
+    evidence/s14_winner_forensics.json). The PARALLEL-RUN PROTOCOL only
+    requires "mask visible faults pixel-exactly"; the buffer's role is to
+    exclude *training* samples/features near withheld segments. Passing
+    `False` therefore scores with evaluator version
+    `gems91-hide-recover-v1.1-nohalo`: identical folds, identical masking of
+    visible faults, but predictions in the buffer earn honest 300 m-kernel
+    credit exactly as on the DrivenData leaderboard. v1.0 numbers and v1.1
+    numbers are NEVER comparable; every result dict carries its version.
     """
     radius = D.kernel_radius_px()
     dy_off, dx_off, k_w = D._kernel_offsets(radius)
@@ -323,8 +342,11 @@ def score_pooled_holdout(
                 other_withheld |= f2.withheld_faults
 
         domain = ((f.region_mask & (~other_withheld)) | f.withheld_faults) & footprint
-        # Mask visible faults & buffer pixel-exactly
-        active_domain = domain & (~f.visible_faults) & (~f.buffer_mask)
+        # Mask visible faults pixel-exactly; buffer masking of predictions is
+        # the v1.0 halo deletion (see docstring / IR-91-S14-01).
+        active_domain = domain & (~f.visible_faults)
+        if mask_buffer_predictions:
+            active_domain &= ~f.buffer_mask
 
         p = np.where(active_domain, pred_raw, 0.0)
         g = f.withheld_faults
@@ -387,7 +409,8 @@ def score_pooled_holdout(
     ci_lo, ci_hi = np.percentile(boot_scores, [2.5, 97.5])
     return {
         "metric_label": "HOLDOUT-DTI",
-        "evaluator_version": EVALUATOR_VERSION,
+        "evaluator_version": EVALUATOR_VERSION if mask_buffer_predictions else EVALUATOR_VERSION_V11,
+        "mask_buffer_predictions": bool(mask_buffer_predictions),
         "alpha": D.ALPHA,
         "beta": D.BETA,
         "kernel_radius_m": D.KERNEL_RADIUS_M,

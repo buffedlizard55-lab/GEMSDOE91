@@ -1,0 +1,86 @@
+[
+  {
+    "name": "band count == 1",
+    "ok": true,
+    "detail": "candidate bands=1, reference bands=1",
+    "must_pass": true
+  },
+  {
+    "name": "dtype float32",
+    "ok": true,
+    "detail": "candidate dtype=float32",
+    "must_pass": true
+  },
+  {
+    "name": "CRS matches",
+    "ok": true,
+    "detail": "candidate=EPSG:32611 reference=EPSG:32611",
+    "must_pass": true
+  },
+  {
+    "name": "shape matches",
+    "ok": true,
+    "detail": "candidate=(3730, 3292) reference=(3730, 3292)",
+    "must_pass": true
+  },
+  {
+    "name": "transform matches",
+    "ok": true,
+    "detail": "candidate=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0) reference=(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+    "must_pass": true
+  },
+  {
+    "name": "re-read from disk matches in-memory band",
+    "ok": true,
+    "detail": "sha256=09f9ca2acdca",
+    "must_pass": true
+  },
+  {
+    "name": "no NaN/Inf inside footprint",
+    "ok": true,
+    "detail": "0 non-finite of 5167373 footprint pixels",
+    "must_pass": true
+  },
+  {
+    "name": "NaN outside footprint",
+    "ok": false,
+    "detail": "7111787 finite of 7111787 outside pixels  (<id>-zeros.tif fallback: this gate is reported as INFO by design)",
+    "must_pass": false
+  },
+  {
+    "name": "values in [0,1]",
+    "ok": true,
+    "detail": "min=0 max=1",
+    "must_pass": true
+  },
+  {
+    "name": "mass present",
+    "ok": true,
+    "detail": "sum=37654.0 over 37654 positive pixels",
+    "must_pass": true
+  },
+  {
+    "name": "zero catalogue mass",
+    "ok": true,
+    "detail": "0 positive pixels on catalogue, mass=0.000",
+    "must_pass": true
+  },
+  {
+    "name": "sha256 not already in ledger",
+    "ok": true,
+    "detail": "sha256=09f9ca2acdca7c6616df329aad7d0c8d73dec2626b04e6d8619d2b1452ea7359 new among 0 submitted hashes",
+    "must_pass": true
+  },
+  {
+    "name": "parent-diff statistics recorded",
+    "ok": true,
+    "detail": "71940 pixels changed (191.06% of parent dots), parent dots=37654 child dots=37654, mass 37654.0 -> 37654.0",
+    "must_pass": true
+  },
+  {
+    "name": "sha256",
+    "ok": true,
+    "detail": "09f9ca2acdca7c6616df329aad7d0c8d73dec2626b04e6d8619d2b1452ea7359",
+    "must_pass": true
+  }
+]
