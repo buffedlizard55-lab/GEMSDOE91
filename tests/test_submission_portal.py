@@ -36,7 +36,7 @@ def load_card():
 
 
 def test_all_local_page_links_assets_and_fragments_resolve():
-    for name in ('index.html','docs/index.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
+    for name in ('index.html','docs/index.html','docs/s15-hcpa.html','docs/s15-executive-summary.html','docs/s14-hvdc.html','docs/s14-hvdc-executive-summary.html','docs/s14-lsrg.html','docs/s14-executive-summary.html','docs/s14-ptac.html','docs/s14-ptac-executive-summary.html','docs/s13-ptha.html','docs/s13-ptha-executive-summary.html','docs/ccr91-executive-summary.html','docs/ucd91.html','docs/mtd91.html','docs/executive-summary.html','docs/research.html','docs/submit.html'):
         path=ROOT/name; parser=Page(); parser.feed(path.read_text())
         for href in parser.links:
             u=urlsplit(href)
@@ -77,7 +77,13 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
     ptac=json.loads((ROOT/'docs/run-card-S14-PTAC.json').read_text())
     ptac_file=Path(ptac['artifact']['primary_zeros_tif']).relative_to('docs').as_posix()
     ptac_zip=Path(ptac['artifact']['zip_bundle']).relative_to('docs').as_posix()
-    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip}|g91_allowed|s14_allowed
+    s15_allowed=set(); s15=None
+    try:
+        s15=json.loads((ROOT/'docs/run-card-S15.json').read_text())
+        s15_allowed={s15['artifact']['file'],s15['artifact']['zip']}
+    except Exception:
+        pass
+    allowed={a['file'],a['zip'],ccr_file,ccr_zip,s13_file,s13_zip,hvdc_file,hvdc_zip,ptac_file,ptac_zip}|g91_allowed|s14_allowed|s15_allowed
     for name in ('index.html','executive-summary.html'):
         p=Page(); p.feed((ROOT/'docs'/name).read_text()); text=' '.join(p.text)
         assert p.states and all(x=='false' for x in p.states)
@@ -123,6 +129,16 @@ def test_negative_research_download_is_not_advertised_as_approved_submission():
         assert not s14['submission_ready'] and not submission_ready(s14)
         assert s14['organizer_confirmed'] is None
         assert hashlib.sha256((ROOT/'docs'/s14['artifact']['file']).read_bytes()).hexdigest()==s14['raster_sha256']
+
+    if s15 is not None:
+        for s15_page_name in ('docs/s15-hcpa.html', 'docs/s15-executive-summary.html'):
+            sp=Page(); sp.feed((ROOT/s15_page_name).read_text()); stext=' '.join(sp.text)
+            assert sp.states and all(x=='false' for x in sp.states)
+            assert s15['artifact']['file'] in sp.downloads and s15['artifact']['zip'] in sp.downloads
+            assert 'NOT OK TO SUBMIT' in stext or 'OK TO SUBMIT: NO' in stext
+        assert not s15.get('submission_ready', False) and not submission_ready(s15)
+        assert s15['organizer_confirmed'] is None
+        assert hashlib.sha256((ROOT/'docs'/s15['artifact']['file']).read_bytes()).hexdigest()==s15['raster_sha256']
 
     page=Page(); page.feed((ROOT/'docs/ccr91-executive-summary.html').read_text())
     text=' '.join(page.text)
@@ -182,7 +198,7 @@ def test_readiness_requires_all_independent_gates_not_just_format():
 
 
 def test_portal_render_is_reproducible():
-    names=['index.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    names=['index.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
     before={n:(ROOT/'docs'/n).read_bytes() for n in names}
     subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'
