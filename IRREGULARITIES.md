@@ -1700,3 +1700,7 @@ Full detail and sources: `docs/REVIEW-S18-20261025.md`. Machine-readable: `docs/
   in this sandbox (github/npm/pypi only); all competition inputs were restored through the repo's
   pinned GitHub mirrors and hash-verified. Candidates H3–H5 name their free official sources but
   are NOT verified-obtainable here and were deferred rather than proposed as viable.
+
+## Active review ee76e309 (2026-10-25)
+
+The published-artifact verifier read historical `docs/run-card.json`, while the frontdoor advertises a different artifact through `docs/current-run.json`. Added `scripts/verify_frontdoor.py` and CI coverage for the actual pointer; retained historical verification. Removed misleading LB-DTI navigation labels in source and generated pages. Fresh 87-artifact audit records 78 technical PASS / 9 FAIL, not submission authorization. No lane paragraph supplied, so no new experiment/TIFF/slot. See `docs/REVIEW-EE76E309-20261025.md`.
