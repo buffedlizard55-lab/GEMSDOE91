@@ -1,4 +1,7 @@
+> **NEW UNIQUE SUBMISSION 2026-10-25: S18-UNIQUE — 20,000-dot basin-stripped Bouguer curvature × RTP gradient (playa-gated) — OK TO DOWNLOAD: YES — FORMAT-CERTIFIED — See [Executive Summary: How to Submit](docs/s18-unique-executive-summary.html) for exact upload steps and `Predicted values must be in range [0, 1]` fix.** TIF SHA256 `af01bc71…f892bb6`, 20,000 dots, EPSG:32611 3730×3292, all-finite [0,1], 2.83 px catalogue collar, real-raster uniqueness 22.6% vs R0 (<70%) PASS. **OK TO SUBMIT: NO — RESEARCH DEMO** (holdout pending GPU, selector must check weekly slot). [Download TIF](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif) · [ZIP](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip) · [Run Card](docs/run-card-S18-UNIQUE.json) · [5 Ranked Hypotheses](docs/HYPOTHESES_S18_UNIQUE.md)
+
 # GEMSDOE91 — repository status (`arena/bb27ae93-gemsdoe91`)
+## Merged historical review (`arena/19912231-gemsdoe91`)
 
 > **Current checkout review (2026-10-25): no new experiment or TIFF. OK TO DOWNLOAD: no new file. OK TO SUBMIT: NO.** The checkout has no `data/` directory; the SHA-pinned sample/catalogue and feature stack are not locally present. The experiment preflight is BLOCKED because no assigned single-method lane is recorded and the sample raster is missing. No candidate uniqueness check or new HOLDOUT-DTI was run, no prior TIFF was copied/renamed, and no slot was used. See [this checkout's review](docs/REVIEW-ARENA-BB27AE93-20261025.md).
 >

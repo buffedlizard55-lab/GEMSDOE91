@@ -534,6 +534,18 @@
       "sha256": "337010f6e14bd951819fd5b4d648e9de68dd0a43e610e7a0c710226831cbbfb7",
       "status": "current_research_only",
       "reason": "S17-LFTG E2 single-TIFF ZIP archive (research negative, NOT OK TO SUBMIT; docs/run-card-S17-LFTG.json)"
+    },
+    {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+      "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+      "status": "current_research_only",
+      "reason": "S18-UNIQUE demo: basin-stripped Bouguer curvature x RTP gradient, playa-gated, 20k dots, 2.8px spacing, 2.25px collar (actual 2.83px), format PASS, real-raster uniqueness PASS (22.6% vs R0 <70%), capacity-feasible 66.75% <70% vs synthetic lattice literal 99.6% (blanket), holdout pending GPU training, NOT OK TO SUBMIT pending selector."
+    },
+    {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip",
+      "sha256": "386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S18-UNIQUE demo; format PASS, NOT OK TO SUBMIT pending holdout."
     }
   ]
 }
