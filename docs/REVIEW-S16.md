@@ -77,7 +77,7 @@ Corrections implemented (engineering checks do not rerun the geological search):
 skips; 30 dependency deprecation warnings. Automated Chromium delivery checks
 passed for root redirect, exact TIFF/ZIP download hashes, copy fallback, mobile
 layout and accessibility on 14 current/archive pages. No visual approval was
-required. Independent byte/evidence verification and all 48 artifact-policy
+required. All three remote CI jobs also passed ([run 40161882310](https://github.com/buffedlizard55-lab/GEMSDOE91/actions/runs/40161882310)); later publication receipts are recorded on [PR #79](https://github.com/buffedlizard55-lab/GEMSDOE91/pull/79). Independent byte/evidence verification and all 48 artifact-policy
 entries passed. Synthetic end-to-end legacy fixture checks also passed; these
 are not scientific experiments or performance evidence.
 

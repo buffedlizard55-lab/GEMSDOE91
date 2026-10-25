@@ -147,6 +147,7 @@ def test_dzedge_format_only_approval_is_revoked():
     card = json.loads((ROOT / 'docs/run-card-gems91-dzedge-v2-20261025.json').read_text())
     assert card['ok_to_submit'] is False and card['submission_ready'] is False
     assert 'OK TO SUBMIT: YES' not in (ROOT / 'docs/dzedge-executive-summary.html').read_text()
+    assert 'NOT CLEARED' in card['ok_to_submit_why']
 
 
 @pytest.mark.parametrize('reference_value', [0, 1])
