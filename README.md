@@ -4,7 +4,7 @@
 
 **Do not submit a file based on the historical banner below.** In this checkout, `docs/run-card.json` identifies CED91 as provisional/unassigned, while the README and published `docs/index.html` still advertise S13-PTHA as current. This inconsistency is documented in [the current review](docs/REVIEW-ARENA-CURRENT-20261024.md) and must be reconciled before relying on a site verdict. The pinned inputs are currently absent (`python scripts/restore_data.py --check`); `pytest` and `numpy` are also missing, so this review could not revalidate TIFFs or run the tests. No new TIFF, score, registry clearance, or submission approval is claimed. Existing downloads are historical/research artifacts only. The requested parallel lane was not specified, so no new experiment was launched.
 
-Read the [standing project brief](docs/SESSION_BRIEF_S12.md) and current review before starting future work. Keep all measured scores explicitly labelled HOLDOUT-DTI (with evaluator, withheld-positive count and 95% CI) or ORGANIZER-CONFIRMED (with receipt).
+Read the [standing project brief](docs/SESSION_BRIEF_S12.md) and current review before starting future work. Keep all measured scores explicitly labelled HOLDOUT-DTI (with evaluator, withheld-positive count and 95% CI) or ORGANIZER-CONFIRMED (with receipt). Also see the [prior checkout review](docs/REVIEW-ARENA-70633F9F-20261024.md) and [its run card](docs/run-card-arena-70633f9f.json); both document blockers at an earlier checkout.
 
 ## Historical session 13 snapshot (not current checkout readiness; see audit above) — `S13-PTHA`
 
