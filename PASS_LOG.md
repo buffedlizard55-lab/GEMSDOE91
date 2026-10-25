@@ -108,6 +108,16 @@ File: docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9ac
   protocol field. Every number is labelled. The README and site lead with the download. Sources
   are linked.
 
+## Review 6cbfe8ac — 2026-10-25
+
+1. Implemented: fixed default verification of HEXFAR91 when website links OLC91; exact canonical TIFF/ZIP/card/pointer now checked; blocked unassigned `--run`; preserved explicit historical verifiers and clarified executive guide.
+2. Reviewed: fixed shared audit float32 omission; added invalid-dtype, re-pinned NaN/Inf/range, pointer, ZIP, note and missing-reference regression cases. Restored pinned inputs and recomputed lattice capacity independently; fresh inventory 87 files, 78 PASS / 9 FAIL, all not approved to submit.
+3. Rechecked: final full suite **568 passed, 1 expected skip**, 62 Rasterio pending-deprecation warnings. Local links and canonical portal rendering checked. No candidate, no scientific HOLDOUT-DTI, no slot. Missing lane and literal uniqueness infeasibility remain explicit, not bypassed.
+
+Evidence: `docs/REVIEW-6CBFE8AC-20261025.md`, `docs/review-6cbfe8ac/verification.json`, `docs/run-card-6cbfe8ac.json`.
+
+Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 review/CI/tests, and delegated this CLI wrapper’s reference check to the shared `verify_frontdoor.py`. Integrated full suite **585 passed, 1 expected skip**, 78 Rasterio warnings. No scientific experiment or slot.
+
 ---
 
 ## Active branch review (`arena/e02bcd84-gemsdoe91`, 2026-10-25)

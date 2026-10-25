@@ -1,0 +1,24 @@
+........................................................................ [ 12%]
+........................................................................ [ 25%]
+........................................................................ [ 37%]
+........................................................................ [ 50%]
+........................................................................ [ 63%]
+................................................................s....... [ 75%]
+........................................................................ [ 88%]
+.................................................................        [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.11/site-packages/rasterio/transform.py:178: 3 warnings
+tests/test_concentration.py: 8 warnings
+tests/test_download_audit.py: 28 warnings
+tests/test_gates.py: 13 warnings
+tests/test_h91_holdout_and_writer.py: 6 warnings
+tests/test_s15_scgf.py: 2 warnings
+tests/test_s17_cgrd.py: 1 warning
+tests/test_validate_raster.py: 1 warning
+  /home/user/GEMSDOE91/.venv/lib/python3.11/site-packages/rasterio/transform.py:178: PendingDeprecationWarning: Use `@` matmul instead of `*` mul operator for matrix multiplication
+    return Affine.translation(west, north) * Affine.scale(xsize, -ysize)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_release_integration.py:77: No legacy releases materialized; not a release certification. Current downloadable artifacts have separate tests.
+568 passed, 1 skipped, 62 warnings in 86.76s (0:01:26)
