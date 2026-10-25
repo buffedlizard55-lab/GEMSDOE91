@@ -27,12 +27,19 @@ Generate a UNIQUE TIF submission, easy to download, values in [0,1], CRS/shape/t
 - [x] Note 140 chars; name < 140 chars
 - [x] Download link + verdict obvious in README
 
-## Pass 3 — final (IN PROGRESS)
-- [ ] Commit + push to arena/e6fdea6b-gemsdoe91
-- [ ] Open PR from this branch to main, merge
-- [ ] Report limitations / next steps
+## Pass 3 — final (DONE)
+- [x] Commit + push to arena/e6fdea6b-gemsdoe91 (commit 097b737)
+- [x] Opened PR #96 from arena/e6fdea6b-gemsdoe91 to main — MERGED (merge commit 75df07dbd4a03833eef72387ba1d44b16ac317cb)
+- [x] Limitations / next steps reported below
 
 ## Verdict
 OK TO DOWNLOAD: YES — FORMAT-CERTIFIED, UNIQUE (8,718 unit dots, all values in [0,1], EPSG:32611 3730x3292, zero catalogue mass, 3.16 px min catalogue distance).
 OK TO SUBMIT: NO — RESEARCH NEGATIVE. HOLDOUT-DTI = 0.0 by design (off-catalogue damage-zone dots cannot cover withheld catalogue faults). No DrivenData authentication available to confirm organizer acceptance or live score; no weekly slot spent. Not a score-improvement candidate.
 File: docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif (sha256 a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11)
+
+## Limitations / next steps (for a future session)
+1. No DrivenData authentication -> cannot auto-download training_features.tif / labels.tif / sample_submission.tif, cannot verify live leaderboard or weekly slot allowance. To actually compete for a top score, authenticate to DrivenData and restore the full pinned training data.
+2. HOLDOUT-DTI = 0.0 by design: this candidate is deliberately off-catalogue. A score-improvement candidate needs fault-targeted dots, which requires the geophysical feature bands (training_features.tif, bands 3/5/6/12/18/19 etc.) not publicly available without DrivenData login.
+3. Budget used: 1 of 3 experiments, well under 2 hours. Two experiments remain if fault-targeted data becomes available.
+4. The registry lattice covers ~99.87% of the footprint within 3 px, so any dense dot result is at risk of the >70% 3px overlap duplicate stop; a genuinely protocol-unique high-scoring candidate requires careful lane management.
+5. Submission form requires a unique name (<=140 chars) and short note (<=140 chars); both recorded in docs/run-card-unique-offcatalogue-damagezone.json and the audit.
