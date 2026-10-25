@@ -16,7 +16,7 @@ No number here is ORGANIZER-CONFIRMED.
 | New file | `docs/downloads/gemsdoe91-iso91-isolationpu-37654-20261025T190251Z-beaca59b-zeros.tif` (+ single-TIFF `.zip`) |
 | SHA-256 | `69bd28b812d333d4eb1912b6dcb82ad500f5d1074d68c8dd7b86f056543d66f2` |
 | **OK TO DOWNLOAD** | **YES**: format-valid on three independent re-reads (template validator, card builder, shared download audit) |
-| **Uniqueness** | Preregistered protocol registry (100 rasters): **PASS**. Extended sweep of 977 GeoTIFFs from 102 GEMSDOE repos: **1 marginal literal flag**, 70.1% of dots within 3 px of a 103k-pixel 12GEMSDOE scarp skeleton (chance-corrected 57.7%, dots ρ 0.02), logged as a stop for that scope (G6b) |
+| **Uniqueness** | Preregistered protocol registry: **PASS** over 102 rasters, rechecked after merging `main` (S18-HGBR 23.2%, S18-UNIQUE 9.4%; `docs/iso91/registry-recheck.json`). Extended sweep of 977 GeoTIFFs from 102 GEMSDOE repos: **1 marginal literal flag**, 70.1% of dots within 3 px of a 103k-pixel 12GEMSDOE scarp skeleton (chance-corrected 57.7%, dots ρ 0.02), logged as a stop for that scope (G6b) |
 | **OK TO SUBMIT** | **NO**: the preregistered holdout gates G1, G2 and G4 failed. ISO91 did not beat the incumbent |
 | Slots used | 0. Slot selection is the separate selector's job |
 | Recommendation to the selector | No file in this repository beats R0 (GEMSDOE32 h33-2-b2, 0.2778 USER-REPORTED) on any evidence. Keep R0 as the selected submission. |
@@ -180,7 +180,7 @@ so it belongs to the selector or the R0 owner, not to this lane.
 
 ## 5. Uniqueness (G6)
 
-**Before placement:** the surface's maximum |Spearman| against 100 unique registry rasters is **0.154**.
+**Before placement:** the surface's maximum |Spearman| against 100 unique registry rasters is **0.154**. A recheck after merging `main` added S18-HGBR E1 (23.2% within 3 px, ρ 0.035) and S18-UNIQUE (9.4%, ρ 0.007): 102 rasters, maxima unchanged.
 
 After placement:
 

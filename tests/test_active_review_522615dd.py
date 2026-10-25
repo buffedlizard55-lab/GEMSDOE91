@@ -129,16 +129,16 @@ def test_reported_results_source_urls_are_well_formed_but_remain_unverified():
     assert "GEMSDOE32" in r0["source_url"]
 
 
-def test_current_portal_exposes_active_review_and_calls_download_historical():
+def test_current_portal_preserves_historical_review_and_research_labels():
     page = TextLinks()
     page.feed((DOCS / "index.html").read_text(encoding="utf-8"))
     text = " ".join(page.text)
-    assert "REVIEW-ACTIVE-522615DD-20261025.md" in page.links
-    assert "run-card-522615dd.json" in page.links
-    assert "HYPOTHESES-ACTIVE-522615DD-20261025.md" in page.links
-    assert "prior research download" in text.lower()
+    assert "REVIEW-ACTIVE-E649E460-20261025.md" in page.links
+    assert "run-card-E649E460-20261025.json" in page.links
+    assert "historical" in text.lower() and "research" in text.lower()
     assert "OK TO SUBMIT: NO" in text
-    assert "0.1886 HOLDOUT-DTI" in text and "0.1982 HOLDOUT-DTI" in text
+    # Navigation uses research labels, not context-free rounded scores.
+    assert "S17-LFTG research audit" in text and "S17-CPAD research audit" in text
     assert "LB-DTI" not in text
     assert "LB HOLDOUT-DTI" not in text
     research = TextLinks()
@@ -151,8 +151,8 @@ def test_executive_guide_cannot_be_mistaken_for_current_upload_approval():
     page = TextLinks()
     page.feed((DOCS / "executive-summary.html").read_text(encoding="utf-8"))
     text = " ".join(page.text)
-    assert "REVIEW-ACTIVE-522615DD-20261025.md" in page.links
-    assert "run-card-522615dd.json" in page.links
+    assert "REVIEW-ACTIVE-E649E460-20261025.md" in page.links
+    assert "run-card-E649E460-20261025.json" in page.links
     assert "not an approval to upload that file" in text.lower()
     assert "OK TO SUBMIT: NO" in text
 

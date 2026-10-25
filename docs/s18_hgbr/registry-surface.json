@@ -1,0 +1,22 @@
+{
+  "hgbr_e1": {
+    "uniqueness_gate_version": "gems91-directed-registry-v1.1",
+    "phase": "pre-placement continuous surface",
+    "n_registry_rasters_checked": 100,
+    "max_allowed_rank_corr": 0.9,
+    "surface_max_abs_rank_corr": 0.16542,
+    "surface_closest_raster": "19GEMSDOE__h19-4-multiline-corroborated.tif",
+    "is_duplicate": false,
+    "uniqueness_pass": true
+  },
+  "hgbr_e2": {
+    "uniqueness_gate_version": "gems91-directed-registry-v1.1",
+    "phase": "pre-placement continuous surface",
+    "n_registry_rasters_checked": 100,
+    "max_allowed_rank_corr": 0.9,
+    "surface_max_abs_rank_corr": 0.16295,
+    "surface_closest_raster": "19GEMSDOE__h19-4-multiline-corroborated.tif",
+    "is_duplicate": false,
+    "uniqueness_pass": true
+  }
+}

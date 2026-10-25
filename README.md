@@ -21,7 +21,8 @@ All numbers are HOLDOUT-DTI with evaluator `gems57-pooled-hide-v2`:
 The leakage canary passes (max AUC 0.614).
 
 **Uniqueness**
-- **Protocol registry: PASS** over 100 rasters. Surface ρ ≤ 0.154, at most 57.7% of dots within 3 px of any non-blanket raster, and 31.0% vs R0.
+- **Protocol registry: PASS** over 102 rasters, rechecked after merging `main`. That count includes the parallel S18-HGBR and S18-UNIQUE files, at 23.2% and 9.4% overlap.
+  Surface ρ ≤ 0.154, at most 57.7% of dots within 3 px of any non-blanket raster, and 31.0% vs R0.
 - **Extended sweep: 1 marginal literal flag.** Across 977 GeoTIFFs from all 102 GEMSDOE repos, one 103k-pixel 12GEMSDOE scarp skeleton has 70.1% of our dots within 3 px.
   It is 57.7% chance-corrected, with dot ρ 0.02, and it is logged as a stop for that scope.
 
@@ -51,8 +52,48 @@ python3 scripts/sibling_sweep.py check docs/downloads/gemsdoe91-iso91-isolationp
 
 The two licence-unchecked u8 stacks in the manifest are deliberately not restored (IR-91-26 / IR-91-ISO-06). Sources of the 979 swept files: `docs/iso91/sibling-sweep-sources.json`.
 
-## Previous status (`arena/7d6ac0dc-gemsdoe91`, superseded)
+## Parallel session merged on main before ISO91 (research only, NOT OK TO SUBMIT): GEMSDOE91 — SESSION 18 (`S18-HGBR`, branch `arena/bba4efce-gemsdoe91`)
 
+> **SESSION 18 (`S18-HGBR E1`) AUTOMATED VERDICT: `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO — RESEARCH ONLY` (`0` weekly slots spent automatically).**
+> **[⬇ Download S18-HGBR E1 GeoTIFF (.tif)](docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif)** (`sha256: afc1699914bc517b3c4c0ef1cc16973ced37f7e90fc74cfb7b20869da01f099b`, `184,234 B`, `37,654` binary `{0, 1}` dots, `EPSG:32611`, `3730×3292`, `float32`, `0` NaN/Inf, strictly in `[0, 1]`) · **[⬇ Single-TIFF ZIP (.zip)](docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.zip)** (`sha256: 87fb051c1d440d8a67c6fe5530be946c5784af8100fc1d8c8a0acf17800d31bd`) · [JSON Run Card](docs/run-card-S18-HGBR.json) · [Preregistration (`H18-1`–`H18-5`)](docs/HYPOTHESES_S18_HGBR.md) · [Full Scientific Review](docs/REVIEW-S18-HGBR-20261025.md) · [Portal Home](docs/index.html) · [Executive Summary & Submission Guide](docs/executive-summary.html)
+> - **Unique Submission Name:** `gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros`
+> - **Submission Note (`128 / 140` chars):** `S18-HGBR E1: Hurst-break + listric up-dip migration + cover-rescue OOF; 0.200742 HOLDOUT-DTI; SGMC >1km 0.1012 (+22% vs R0); 0/1`
+> - **Holdout Performance (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, `60,988` withheld positives, `80 px` spatial buffer, `37,654` binary dots):** **`hgbr_e1 = 0.200742 HOLDOUT-DTI`** (`95% CI [0.180482, 0.221419]`; `hgbr_e2 = 0.200530`, `hgbr_e3 = 0.196442`) — **new all-time label-blind repo record**, beating `S17-CPAD E1` (`0.198183 HOLDOUT-DTI`) across all 4/4 spatial folds (`+0.002560`, `95% CI [-0.000516, +0.005617]`), `INCUMBENT-PTAC-LB` (`0.194221`) by **`+0.006521`**, `INCUMBENT-PTAC-V2` (`0.192208`) by **`+0.008534`** (`95% CI [+0.002892, +0.014515]`), and `S17-LFTG E2` (`0.188596`, `USER-REPORTED` live `0.1823`) by **`+0.012146`** (`95% CI [+0.007290, +0.017609]`).
+> - **Untouched Blind Off-Catalogue USGS SGMC Control (`docs/s18_hgbr/blind-sgmc.json`):** **`>300 m = 0.103939`**, **`>500 m = 0.104995`**, and **`>1 km = 0.101151`** (`82.21%` of dots placed `>1 km` from the visible catalogue), beating `GEMSDOE32 R0` (`USER-REPORTED` live `0.2778`, SGMC `>1 km = 0.082913`) by **`+22.00%` on `>1 km`** (`+18.62%` on `>500 m`, `+8.97%` on `>300 m`) and beating `S17-LFTG` (`SGMC >1 km = 0.039897`) by **`+153.53%` on `>1 km`**.
+> - **Automated Gates (`Rule 1`–`Rule 6`):** `171/171` leakage canaries `PASS` (`max AUC = 0.7289 <= 0.90`; `16` new `HGBR` cols `max AUC = 0.5651 <= 0.90`); pre-placement surface `PASS` (`max |ρ| = 0.7209 <= 0.90`); post-placement real-submission uniqueness `PASS` across all `83` real rasters (`vs GEMSDOE32 R0 = 48.77% <= 70%`, `canonical real = 57.05% <= 70%`, `external fleet = 51.29% <= 70%`, `in-repo downloads = 61.87% <= 70%`; synthetic `206,895`-dot 5-px calibration grid `calib_r13lattice_00904.tif` has unidirectional overlap `99.84% > 70%` per `IR-S16-03`).
+
+---
+
+## Parallel Checkout Review (`arena/e649e460-gemsdoe91`)
+
+> **NEW UNIQUE SUBMISSION 2026-10-25: S18-UNIQUE — 20,000-dot basin-stripped Bouguer curvature × RTP gradient (playa-gated) — OK TO DOWNLOAD: YES — FORMAT-CERTIFIED — See [Executive Summary: How to Submit](docs/s18-unique-executive-summary.html) for exact upload steps and `Predicted values must be in range [0, 1]` fix.** TIF SHA256 `af01bc71…f892bb6`, 20,000 dots, EPSG:32611 3730×3292, all-finite [0,1], 2.83 px catalogue collar, real-raster uniqueness 22.6% vs R0 (<70%) PASS. **OK TO SUBMIT: NO — RESEARCH DEMO** (holdout pending GPU, selector must check weekly slot). [Download TIF](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif) · [ZIP](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip) · [Run Card](docs/run-card-S18-UNIQUE.json) · [5 Ranked Hypotheses](docs/HYPOTHESES_S18_UNIQUE.md)
+
+> **Current disposition: NEGATIVE / BLOCKED. Existing OLC91 TIFF: OK TO DOWNLOAD — RESEARCH ONLY; OK TO SUBMIT — NO.** This checkout has no assigned method paragraph; no experiment, new TIFF, score, or slot was produced. Its local authorized-data inputs are absent. [Three-pass current review](docs/REVIEW-ACTIVE-E649E460-20261025.md) · [Run card](docs/run-card-E649E460-20261025.json) · [research download page](docs/index.html) · [submission guide](docs/executive-summary.html).
+>
+> **Integrated fail-closed experiment preflight:** `python generate_submission.py --preflight` was rerun here. It returned **BLOCKED**, with no assignment and no local `sample_submission.tif`; the capacity witness is **UNVERIFIED** (not a rerun of the historical 82.34% lattice result documented by review 19912231). No fallback to archived constants, candidate generation, or slot selection occurs. The old preflight is not build authorization.
+>
+> Latest local verification after main integration: 626 passed, 8 skipped (inputs absent), 87 Rasterio warnings. The existing OLC91 download passes file-identity/format checks only; reference checks are NOT CHECKED. Its research-only status does not authorize submission. Historical reviews below are not current-run evidence.
+>
+> **Merged research artifact from a separate branch:** S18-UNIQUE (20,000-dot curvature/gradient TIFF) is retained from upstream main, but it was not produced or selected by this e649 review. Its holdout remains pending and its run card labels it a research demo; **OK TO SUBMIT: NO**. [Research-only TIFF](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif) · [ZIP](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip) · [run card](docs/run-card-S18-UNIQUE.json) · [five hypotheses](docs/HYPOTHESES_S18_UNIQUE.md).
+
+## Parallel branch review (`arena/ecf7ccd9-gemsdoe91`, merged as review only)
+
+> **Branch verdict: NEGATIVE / BLOCKED — this branch ran no experiment and generated no TIFF. OK TO SUBMIT: NO.** This branch's checkout had no assigned single-method lane and none of the pinned local inputs (sample, parent raster, 19-band feature cache), so preflight returned BLOCKED and no candidate was started; nothing was copied, renamed, or fabricated. This verdict covers only this branch's own (non-)run: it neither evaluates nor supersedes the S18-UNIQUE artifact announced above, whose status is governed by its own run card (**OK TO DOWNLOAD: YES — format-certified; OK TO SUBMIT: NO — research demo, holdout not measured**). [Branch review](docs/REVIEW-ACTIVE-ECF7CCD9-20261025.md) · [Run card](docs/run-card-ecf7ccd9.json).
+>
+> **Current-source clarification (2026-10-25):** the official public leaderboard currently displays **0.4413 (PUBLIC-LEADERBOARD, rank 1)**; 0.3195 appears on GEMSDOE32's page as a historical 2026-10-04 snapshot value, and its owner page says no organizer score exists for its artifacts. The supplied 0.2778 is therefore not organizer-confirmed. These are not HOLDOUT-DTI numbers and do not establish performance of a local file. See the [official leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) and [score evidence review](docs/REVIEW-ACTIVE-ECF7CCD9-20261025.md#current-source-checks-and-score-reconciliation).
+>
+> This branch's experiment preflight returns **BLOCKED**: no lane and no local pinned sample. Its run card records null HOLDOUT-DTI, registry comparison, TIFF hash, and validator fields because this branch produced no candidate. Pre-merge repository checks on this branch: **626 passed, 8 skipped**, artifact policy PASS for the then-registered 87 prediction files; the merged-tree result is recorded in the branch review's integration note.
+
+
+**Start every session:** read this status, the [full standing project brief and supplied updates](#full-project-brief), the [current e649 review](docs/REVIEW-ACTIVE-E649E460-20261025.md), the [ecf7ccd9 branch review](docs/REVIEW-ACTIVE-ECF7CCD9-20261025.md), the [bb27ae93 checkout review](docs/REVIEW-ARENA-BB27AE93-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical reviews are context, not current-run evidence. **Maximize P(Win) · Own the Outcome.** Format validity, a HOLDOUT-DTI result, uniqueness, lane assignment, selector approval, and an organizer receipt are separate gates.
+
+---
+
+## Merged historical review (`arena/19912231-gemsdoe91`)
+
+> This upstream review added `generate_submission.py --preflight`, a pinned-byte capacity check, and guards separating input availability from experiment authorization. Its branch-local 82.34% lattice lower bound at 37,654 dots is a geometry finding, **not a score**; it is not freshly verified in this checkout because the official sample is absent. See [review](docs/REVIEW-19912231-20261025.md), [run card](docs/run-card-19912231.json), and [preflight evidence](docs/review-19912231/experiment-preflight.json). The current e649 preflight rerun is blocked with capacity `UNVERIFIED`.
+
+## Merged historical review (`arena/7d6ac0dc-gemsdoe91`)
 
 > **OK TO DOWNLOAD: existing research TIFF only. OK TO SUBMIT: NO. No new TIFF generated.** [Current three-pass review](docs/REVIEW-7D6AC0DC-20261025.md) · [Run card](docs/run-card-7d6ac0dc.json) · [Download and submission guide](docs/executive-summary.html). Fixed contradictory promotion flags, ZIP path confinement, and corrupt-ZIP CLI failures. Regression: 594 passed, 8 skipped. Reference-byte checks block on absent local data. Missing method assignment and prior registry feasibility conflict remain unresolved. Start each session with the [full standing prompt](#full-project-brief) and this review.
 
@@ -62,9 +103,9 @@ The two licence-unchecked u8 stacks in the manifest are deliberately not restore
 >
 > **Prior-branch geometry finding (not a score):** the 6cbfe8ac review measured a minimum 82.34% 3-px overlap at a 37,654-dot budget against the literal 70% rule; see [capacity receipt](docs/review-6cbfe8ac/capacity.json). No registry reference or threshold was changed.
 
-> **Current review: NEGATIVE / BLOCKED — no assigned lane, no experiment, no new score, no TIFF, no weekly slot used.** The required single method paragraph is absent, so no method was inferred. The current preflight is **BUILD BLOCKED: 0/2**; the official sample, parent raster, and cached training-feature stack are absent. No competition data were restored from mirrors.
+> **Historical 522615dd review:** NEGATIVE / BLOCKED — no assigned lane, no experiment, no new score, no TIFF, no weekly slot used. At that time its preflight reported BUILD BLOCKED: 0/2. This checkout's current status and exact preflight are at the top of this README.
 >
-> **Start here:** [active three-pass review](docs/REVIEW-ACTIVE-522615DD-20261025.md) · [current no-run card](docs/run-card-522615dd.json) · [ranked hypotheses](docs/HYPOTHESES-ACTIVE-522615DD-20261025.md) · [project brief](#full-project-brief) · [submission guide](docs/executive-summary.html).
+> **Historical review files:** [522615dd three-pass review](docs/REVIEW-ACTIVE-522615DD-20261025.md) · [no-run card](docs/run-card-522615dd.json) · [ranked hypotheses](docs/HYPOTHESES-ACTIVE-522615DD-20261025.md).
 >
 > **Download / submit status:** no new file exists (**OK TO DOWNLOAD: NO NEW TIFF; OK TO SUBMIT: NO**). The website still offers the prior [OLC91 E1 GeoTIFF](docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif) as a **research-only** download; that prior run was negative and duplicate-stopped. It is not output from this review, and its link is not an upload recommendation. The existing executive guide explains the upload workflow but does not approve any current file.
 >
@@ -74,7 +115,7 @@ The two licence-unchecked u8 stacks in the manifest are deliberately not restore
 >
 > **Historical records below are not active-branch results.** The S17-CDSC artifact and OLC91 page remain separate prior research downloads with different evaluators. The website's `docs/current-run.json` still points to OLC91, while S17-CDSC is the latest timestamped merged artifact cited in the older README; neither is new or approved for submission.
 
-Core values: **Maximize P(Win) · Own the Outcome.** Start each session with this status, the [full standing brief](#full-project-brief), and the [active-branch review](docs/REVIEW-ACTIVE-522615DD-20261025.md). A format-valid download, a positive holdout, uniqueness, lane assignment, selector approval, and an organizer receipt are separate gates.
+Core values: **Maximize P(Win) · Own the Outcome.** Start each session with the current status and [full standing prompt](#full-project-brief) linked at the top. The 522615dd review above is historical, not the active branch report. A format-valid download, positive holdout, uniqueness, lane assignment, selector approval, and organizer receipt are separate gates.
 
 ---
 
@@ -194,10 +235,10 @@ ORGANIZER-CONFIRMED without a submission-page receipt.
 
 ## Start here every session
 
-**Current review (active branch `arena/522615dd-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-ACTIVE-522615DD-20261025.md) · [no-run card](docs/run-card-522615dd.json) · [ranked hypotheses](docs/HYPOTHESES-ACTIVE-522615DD-20261025.md). The method lane is unassigned; the official sample and parent raster are absent; the training-feature cache is absent. No experiment, TIFF, new score, or slot was produced. Do not infer a lane from merged parallel work.
+**Current review (active branch `arena/e649e460-gemsdoe91`, 2026-10-25):** [three-pass review](docs/REVIEW-ACTIVE-E649E460-20261025.md) · [run card](docs/run-card-E649E460-20261025.json). The method lane is unassigned; authorized inputs are absent; experiment preflight is blocked with no capacity witness. No experiment, new TIFF, new score, or slot was produced. Do not infer a lane from merged parallel work.
 
 **Prior review (historical checkout):** [E92C84E1 review](docs/REVIEW-E92C84E1-20261025.md).
-At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this active-branch review](docs/REVIEW-ACTIVE-522615DD-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
+At every session start, read this current status, [the full standing project brief below](#full-project-brief), [this active-branch review](docs/REVIEW-ACTIVE-E649E460-20261025.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md). Historical branch reviews remain useful context but are not current-branch results. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the Outcome** means reporting negative results and fixing unsafe tooling.
 
 Historical S16-PGRD material below is a prior-session research artifact, not a new output from this branch. Its stated gate failures remain explicit; do not treat the historical download link as approval to submit. The full standing user brief is preserved below and must be read again each session.
 
@@ -283,7 +324,7 @@ Concurrent main reviews were integrated, including the S15 holdout/final-selecto
 
 ## Original user project brief — preserved standing text and supplied updates
 
-**2026-10-25 supplied update for this session (claims, not receipts):** GEMSDOE91 `gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367`; `gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823`; GEMSDOE92 `gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255`. These are not ORGANIZER-CONFIRMED and must not be substituted for holdout results. This update plus the standing prompt below preserves the operative requirements; literal byte identity to the repeated long message is not claimed. Start every session by reading this brief and current review. Core values: Maximize P(Win); Own the Outcome.
+**2026-10-25 supplied updates (claims, not receipts):** GEMSDOE91 `gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367`; `gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823`; GEMSDOE92 `gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255`. These user-supplied site values are not ORGANIZER-CONFIRMED and are not HOLDOUT-DTI unless accompanied by the evaluator, withheld-positive count, and CI. The repeated request also describes 0.3195 as a current leader while separately reporting 0.4413; this is internally inconsistent. On 2026-10-25, the official public leaderboard page was fetched and displayed 0.4413 at rank 1; the GEMSDOE32 page labels its 0.3195 leaderboard transcription as dated 2026-10-04 and says no organizer score exists for its artifacts. Store 0.3195 as a historical page report, not a current organizer receipt; treat h33's 0.2778 as USER-REPORTED / UNVERIFIED. The current session also requests a fresh unique TIFF, 3–5 ranked candidates, validation before any slot, 3-pass review, source links, and an eventual PR. These requests do not waive the parallel-run protocol, missing lane assignment, missing official inputs, holdout/uniqueness gates, or separate selector step. This update plus the standing prompt below preserves the operative requirements; literal byte identity to the repeated long message is not claimed. Start every session by reading this brief and current review. Core values: Maximize P(Win); Own the Outcome.
 
 <details>
 <summary>Preserved standing user prompt; read at every session start</summary>
@@ -940,13 +981,15 @@ gems90-cnc-35000dots-20261024T084324Z:0.0749
 
 [https://buffedlizard55-lab.github.io/GEMSDOE91/](https://buffedlizard55-lab.github.io/GEMSDOE91/)
 
-:
+gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros:0.1823
+
+gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros:0.1367
 
 ....
 
 [https://buffedlizard55-lab.github.io/GEMSDOE92/](https://buffedlizard55-lab.github.io/GEMSDOE92/)
 
-:
+gems92-ptha-anisotropic-submod-37654-20261025T082301Z-755dc188-zeros:0.0255
 
 ....
 

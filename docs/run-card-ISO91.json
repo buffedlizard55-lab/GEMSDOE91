@@ -150,7 +150,7 @@
   },
   "uniqueness": {
     "registry_scope": "protocol registry: data/registry (8 pinned) + data/fleet_registry (62 restored, 60GEMSDOE@02563d07) + docs/downloads",
-    "n_unique_rasters_checked": 100,
+    "n_unique_rasters_checked": 102,
     "byte_duplicates_skipped": 17,
     "surface_before_placement_max_abs_spearman": 0.1536,
     "surface_closest": "data/fleet_registry/calib_hedgev2_01563_sample.tif",
@@ -182,7 +182,7 @@
     ],
     "vs_R0_gemsdoe32_h33_2_b2": {
       "within_3px": 0.30964,
-      "surface_abs_spearman": 0.05054
+      "surface_abs_spearman": 0.05039
     },
     "any_duplicate_literal": true,
     "any_duplicate_chance_corrected": false,
@@ -282,10 +282,15 @@
     },
     "evidence": [
       "docs/iso91/final.json",
-      "docs/iso91/surface-precheck.json"
+      "docs/iso91/surface-precheck.json",
+      "docs/iso91/registry-recheck.json"
+    ],
+    "rechecked_after_main_merge": [
+      "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+      "docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif"
     ]
   },
-  "uniqueness_summary": "Protocol registry (preregistered G6a): PASS over 100 rasters (surface rho max 0.1536, non-blanket overlap max 57.7%). Extended GEMSDOE sweep (G6b): 12GEMSDOE__12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif: 70.1% of dots within 3 px (chance-corrected 57.7%, dots rho 0.02206) - literal duplicate flag, logged",
+  "uniqueness_summary": "Protocol registry (preregistered G6a): PASS over 102 rasters (surface rho max 0.1536, non-blanket overlap max 57.7%). Extended GEMSDOE sweep (G6b): 12GEMSDOE__12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif: 70.1% of dots within 3 px (chance-corrected 57.7%, dots rho 0.02206) - literal duplicate flag, logged",
   "sgmc_control_report_only": {
     "n_truth_gt300m": 62122,
     "n_truth_gt500m": 56822,
@@ -465,7 +470,7 @@
       "pass": true,
       "value": {
         "scope": "preregistered: protocol registry (data/registry + data/fleet_registry + docs/downloads)",
-        "n_checked": 100,
+        "n_checked": 102,
         "surface_max_abs_spearman": 0.1536,
         "dots_max_within_3px_non_blanket": 0.57657,
         "dots_closest_non_blanket": "data/fleet_registry/calib_h25ctx_01280.tif"

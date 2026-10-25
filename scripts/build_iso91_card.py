@@ -91,6 +91,12 @@ def main():
     s1, d1 = i1["pooled"]["scores"], i1["pooled"]["paired_differences"]
     s2, d2 = i2["pooled"]["scores"], i2["pooled"]["paired_differences"]
     reg = fin["registry"]
+    recheck_p = OUT / "registry-recheck.json"
+    if recheck_p.exists():  # superset re-run after merging main (new parallel-session downloads)
+        rc = json.loads(recheck_p.read_text())
+        if rc["candidate_sha256"] != sha(ROOT / fin["tif"]):
+            raise ValueError("registry recheck belongs to a different raster")
+        reg = rc
     canary = i1["leakage_canary"]
     non_blanket_max = reg["dots_max_within_3px_non_blanket"]
     sweep_ok = sweep is not None and sweep["verdict"] == "UNIQUE"
@@ -101,8 +107,8 @@ def main():
         "G4_I2_E1_noninferior_to_E0_ci_upper_ge_0": dict(pass_=d2["E0"]["ci95"][1] >= 0, value=d2["E0"]),
         "G5_leakage_canary_max_auc_le_0_90": dict(pass_=not canary["stop"], value=canary["worst"]),
         "G6a_uniqueness_protocol_registry": dict(
-            pass_=(not fin["surface_precheck"]["stop"]) and (not reg["any_duplicate_chance_corrected"])
-                  and non_blanket_max <= 0.70,
+            pass_=(not fin["surface_precheck"]["stop"]) and (reg["surface_max_abs_spearman"] <= 0.90)
+                  and (not reg["any_duplicate_chance_corrected"]) and non_blanket_max <= 0.70,
             value=dict(scope="preregistered: protocol registry (data/registry + data/fleet_registry + docs/downloads)",
                        n_checked=reg["n_unique_rasters_checked"],
                        surface_max_abs_spearman=reg["surface_max_abs_spearman"],
@@ -187,7 +193,8 @@ def main():
                 max_dots_abs_spearman=sweep["max_dots_abs_spearman"],
                 max_surface_abs_spearman=sweep["max_surface_abs_spearman"],
                 evidence=["docs/iso91/sibling-sweep.json", "docs/iso91/sibling-sweep-literal-v1.json"]),
-            "evidence": ["docs/iso91/final.json", "docs/iso91/surface-precheck.json"],
+            "evidence": ["docs/iso91/final.json", "docs/iso91/surface-precheck.json", "docs/iso91/registry-recheck.json"],
+            "rechecked_after_main_merge": reg.get("new_since_final_build"),
         },
         "uniqueness_summary": (
             "Protocol registry (preregistered G6a): " + ("PASS" if gates["G6a_uniqueness_protocol_registry"]["pass"] else "FAIL")

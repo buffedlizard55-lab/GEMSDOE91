@@ -155,6 +155,9 @@ LINK_NAMES = {  # exact accessible names exercised by tools/browser/smoke.cjs (r
     "S17-LFTG E2": ("↓ Download S17-LFTG GeoTIFF", ("↓ S17-LFTG Single-TIFF ZIP", "downloads/gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.zip")),
     "S17-CPAD E1": ("↓ Download S17-CPAD E1 GeoTIFF", ("↓ S17-CPAD Single-TIFF ZIP", "downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip")),
 }
+AUDIT_PAGES = {"S17-LFTG E2": ("S17-LFTG research audit", "s17-lftg.html"), "S17-CPAD E1": ("S17-CPAD research audit", "s17-cpad.html"),
+               "S17-CGRD E2": ("S17-CGRD research audit", "s17-cgrd.html"), "S17-CDSC E1": ("S17-CDSC research audit", "s17-cdsc.html"),
+               "HEXFAR91": ("HEXFAR91 research page", "hexfar91.html")}
 
 
 def archive_table() -> str:
@@ -165,10 +168,13 @@ def archive_table() -> str:
         if zipped:
             cell += f" · <a download href=\"{e(zipped[1])}\">{e(zipped[0])}</a>"
         cell += f"<br><code>{e(Path(t).name)}</code>"
-        rows.append(f"<tr><td>{e(n)}</td><td>{cell}</td><td><a href=\"{e(rc)}\">{e(rc)}</a></td><td>{e(ev)}</td><td class=\"fail\">NOT OK TO SUBMIT</td></tr>")
+        card_cell = f"<a href=\"{e(rc)}\">{e(rc)}</a>"
+        if n in AUDIT_PAGES:
+            card_cell += f"<br><a href=\"{e(AUDIT_PAGES[n][1])}\">{e(AUDIT_PAGES[n][0])}</a>"
+        rows.append(f"<tr><td>{e(n)}</td><td>{cell}</td><td>{card_cell}</td><td>{e(ev)}</td><td class=\"fail\">NOT OK TO SUBMIT</td></tr>")
     return f"""<section class="card" id="archive"><h2>Archive: prior research downloads</h2>
 <p class="small">Each row is a prior research download from an earlier session, kept for learning. None is OK to submit. HOLDOUT-DTI values come from different instruments and are not comparable with one another or with the leaderboard.
-Full previous front page: <a href="previous-sessions.html">previous-sessions.html</a> · older sessions' historical archive: <a href="archive-results.html">archive-results.html</a> · earlier no-TIFF review 522615dd (historical): <a href="REVIEW-ACTIVE-522615DD-20261025.md">review</a> · <a href="run-card-522615dd.json">no-run card</a> · <a href="HYPOTHESES-ACTIVE-522615DD-20261025.md">hypotheses</a>.</p>
+Full previous front page: <a href="previous-sessions.html">previous-sessions.html</a> · older sessions' historical archive: <a href="archive-results.html">archive-results.html</a> · earlier no-TIFF reviews (historical): 522615dd <a href="REVIEW-ACTIVE-522615DD-20261025.md">review</a> · <a href="run-card-522615dd.json">no-run card</a> · <a href="HYPOTHESES-ACTIVE-522615DD-20261025.md">hypotheses</a>; e649e460 <a href="REVIEW-ACTIVE-E649E460-20261025.md">review</a> · <a href="run-card-E649E460-20261025.json">run card</a>. Parallel S18 research files (S18-HGBR, S18-UNIQUE) are listed on their own pages and are also NOT OK TO SUBMIT.</p>
 <table><tr><th>Lane</th><th>Download</th><th>Run card</th><th>Recorded evidence</th><th>Verdict</th></tr>{''.join(rows)}</table></section>"""
 
 
@@ -210,7 +216,7 @@ def render_exec(c: dict) -> str:
 <p class="warn"><strong>Portal error "Predicted values must be in range [0, 1]":</strong> it comes from NaN or −3.4e38 sentinel values or a nodata tag. Every file here uses the all-finite zeros encoding (0 outside the footprint, no nodata tag, every cell finite in [0, 1]), so the error cannot occur.</p></section>
 """ + identity(c) + gates_table(c)
             + f"""<section class="card"><h2>History and other files</h2>
-<p class="small">Earlier sessions published research files that are all NOT OK TO SUBMIT, including S17-EULR (<a href="run-card-S17-EULR.json">run-card-S17-EULR.json</a>, <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif</a>) and S17-CGRD (<a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif</a>); see the <a href="index.html#archive">archive table</a>. The earlier no-TIFF review 522615dd is historical: <a href="REVIEW-ACTIVE-522615DD-20261025.md">review</a> · <a href="run-card-522615dd.json">no-run card</a>. Linking a prior file here is not an approval to upload that file.</p></section>
+<p class="small">Earlier sessions published research files that are all NOT OK TO SUBMIT, including S17-EULR (<a href="run-card-S17-EULR.json">run-card-S17-EULR.json</a>, <a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif</a>) and S17-CGRD (<a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif</a>); see the <a href="index.html#archive">archive table</a>. The earlier reviews 522615dd and e649e460 are historical: <a href="REVIEW-ACTIVE-522615DD-20261025.md">522615dd review</a> · <a href="run-card-522615dd.json">no-run card</a> · <a href="REVIEW-ACTIVE-E649E460-20261025.md">e649e460 review</a> · <a href="run-card-E649E460-20261025.json">e649e460 run card</a>. Linking a prior file here is not an approval to upload that file.</p></section>
 <section class="card"><h2>Official sources (verified 2026-10-25)</h2><ul class="small">
 <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition home</a>: deadline Dec 3, 2026, 23:59 UTC; the same submission is scored in both prize rounds.</li>
 <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem description</a>: DTI metric (α 0.2, β 0.8, 300 m) and submission format.</li>

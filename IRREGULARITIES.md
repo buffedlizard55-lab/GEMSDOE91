@@ -1701,6 +1701,34 @@ Full detail and sources: `docs/REVIEW-S18-20261025.md`. Machine-readable: `docs/
   pinned GitHub mirrors and hash-verified. Candidates H3–H5 name their free official sources but
   are NOT verified-obtainable here and were deferred rather than proposed as viable.
 
+## Session 18 (`S18-HGBR`) irregularities & resolved items (2026-10-25, `arena/bba4efce-gemsdoe91`)
+
+* **IR-91-S18-HGBR-01 (RESOLVED — Second-order variogram differences vanish on odd fault-step inflections).**
+  During Pass 2 engineering of `src/gems91/hgbr18.py`, second-order central finite differences
+  `F(x+d) - 2F(x) + F(x-d)` produced near-zero response at the exact inflection center (`F''(0) = 0`)
+  of step-like normal-fault anomalies and amplified quantization noise on flat basin floors when
+  `MAD < 1e-4`. Replaced with amplitude-gated 1st-order symmetric increments (`F(x+d) - F(x-d)`)
+  multiplied by a smooth local RMS signal envelope `rms / (rms + rms_floor)` and an IQR/P90 fallback
+  in `_robust_z`. Verified that all 16 `HGBR` features are finite with `max_pooled_symmetric_auc = 0.5651 <= 0.90`.
+* **IR-91-S18-HGBR-02 (RESOLVED — Remediated `IR-91-S17-01`, `IR-91-S17-02`, and `IR-91-S17-LFTG-01`).**
+  `S18-HGBR` implemented: (a) Stage-1 upper-tail log-odds dispersion alignment (`align_stage1_log_odds_dispersion`,
+  fixing `IR-91-S17-01`), (b) positive-part-only asymmetric cover-gated specialist rescue
+  (`pool_asymmetric_cover_specialists`, fixing `IR-91-S17-02` so exposed scarps with `l_full >= l_sub`
+  are never suppressed), and (c) distance-feathered 4-fold out-of-fold (`OOF`) stitched full-map
+  emission with structural backbone rescue (`stitch_oof_full_map_surface`, fixing `IR-91-S17-LFTG-01`).
+  This simultaneously lifted `HOLDOUT-DTI` to **`0.200742`** (`gems57-pooled-hide-v2`, new all-time
+  label-blind repo record) and lifted untouched Blind Off-Catalogue USGS SGMC `>1 km` DTI from
+  `0.039897` (`S17-LFTG`) to **`0.101151`** (`+153.53%` vs `S17-LFTG`, `+22.00%` vs `GEMSDOE32 R0 = 0.082913`).
+* **IR-91-S18-HGBR-03 (OPEN — Paired 95% CI vs `S17-CPAD E1` slightly straddles zero and synthetic lattice bound `IR-S16-03` remains active).**
+  While `hgbr_e1` (`0.200742 HOLDOUT-DTI`) beats `S17-CPAD E1` (`0.198183 HOLDOUT-DTI`) on all 4
+  spatial folds (`+0.002560`, `+144.3 tpw`, `-364.1 fpw`) and beats `INCUMBENT-PTAC-V2` (`+0.008534`,
+  `95% CI [+0.002892, +0.014515]`) and `S17-LFTG E2` (`+0.012146`, `95% CI [+0.007290, +0.017609]`)
+  with 95% CIs strictly above zero, its paired 20-km block-bootstrap 95% CI against `S17-CPAD E1`
+  is `[-0.000516, +0.005617]`, and the `206,895`-dot synthetic 5-px calibration grid
+  `calib_r13lattice_00904.tif` still forces unidirectional 3-px dot overlap `99.84% > 70%` (`IR-S16-03`),
+  whereas all 83 real submissions pass `<= 61.87% <= 70%`. Accordingly, `ok_to_submit` remains `False`
+  and `0` weekly slots were spent automatically.
+
 ## Active checkout `arena/522615dd-gemsdoe91` — 2026-10-25
 
 Full evidence: `docs/REVIEW-ACTIVE-522615DD-20261025.md`; machine no-run card: `docs/run-card-522615dd.json`.
@@ -1741,6 +1769,20 @@ The published-artifact verifier read historical `docs/run-card.json`, while the 
 
 - **IR-91-522615DD-14 — parallel preflight state is not portable.** The newly merged `arena/ffb91da8-gemsdoe91` report says its sample submission and catalogue were locally restored, yielding 1/2 required inputs; the parent R0 and feature cache remained missing there. The active `arena/522615dd-gemsdoe91` checkout still verifies 0/2. No ignored data files were copied or restored during this merge.
 
+## IR-91-19912231 — data availability was labeled build authorization
+
+The legacy input preflight printed BUILD ALLOWED once any historical axis had data, without an assigned lane or feasibility check. Fixed: INPUTS AVAILABLE and explicit `experiment_authorized: false`; added separate pinned-byte `experiment_preflight.py`. The 19912231 branch measured a lattice lower bound of 82.341849% at 37,654 dots (geometry, NOT a score). Missing lane and impossible budget remain blocks, not repaired by overriding policy. No candidate or slot. Also removed unsupported hidden-coverage inference from the executive guide and marked completed CWP91 as completed rather than the next untried method. See `docs/REVIEW-19912231-20261025.md`.
+
+## Active checkout `arena/e649e460-gemsdoe91` — follow-up after main integration
+
+- **IR-E649-01 — unassigned lane and no local inputs.** The active review prompt has no assigned single-method paragraph; the current checkout lacks the pinned manifest files. Fresh data preflight and the new experiment preflight both block; experiment preflight cannot verify its sample/lattice capacity witness, so it reports `UNVERIFIED`. No geological experiment or candidate was produced.
+- **IR-E649-02 — historical capacity proof is not this run's evidence.** Upstream `arena/19912231-gemsdoe91` records an 82.341849% minimum lattice overlap at the 37,654-dot budget using pinned bytes. This active checkout's rerun cannot access those bytes; do not present that number as a fresh e649 check or score.
+- **IR-E649-03 — active front-door pointers and language restored after merge.** README, OLC91 portal source/generated page, and executive guide identify e649 as current. The advertised OLC91 TIFF remains historical research only; reference checks are `NOT_CHECKED` and `OK TO SUBMIT` remains `NO`.
+- **IR-E649-04 — score and source caveats.** The official leaderboard snapshot observed 0.4413 as public rank 1; user-provided 0.2778/0.3195 are not submission receipts. The legacy ScienceBase item `6312f0f2d34e36012efa234a` returned not found; current USGS GeMS/SGMC metadata lead is DOI 10.5066/P1A3DQZK, but local payload and footprint coverage are unverified.
+- **IR-E649-05 — S18-UNIQUE arrived from a separate branch during integration.** The merged S18 artifact is a format-certified research demo with 20,000 dots, a partial R0 uniqueness result, and holdout pending. It was not generated, independently revalidated, or selected by this e649 review; no method lane or selector approval was supplied. The portal and README now label it as a separate-branch research download with `OK TO SUBMIT: NO` rather than the active candidate.
+
+Evidence: `docs/REVIEW-ACTIVE-E649E460-20261025.md`, `docs/run-card-E649E460-20261025.json`, and the e649 `python generate_submission.py --preflight` invocation.
+
 ## ISO91 session `arena/bacc7c26-gemsdoe91` (2026-10-25)
 
 - **IR-91-ISO-01: a live-aligned holdout split was added, outside the pinned template.**
@@ -1773,7 +1815,8 @@ The published-artifact verifier read historical `docs/run-card.json`, while the 
     - 70.1% of ISO91's dots lie within 3 px of it (chance 29.3%, chance-corrected 57.7%, dots ρ 0.022).
     - It is logged as a duplicate stop for the extended scope: gate G6b FAIL in `docs/run-card-ISO91.json`.
     - The 3× threshold was chosen after the literal v1 results were known and was **not** adjusted to clear this flag.
-  - The preregistered protocol registry check (100 rasters, shared `run_olc91.registry_check`, unchanged rules) passes.
+  - The preregistered protocol registry check passes under the shared `run_olc91.registry_check` with unchanged rules:
+    100 rasters at the final build, 102 after merging `main` (S18 files 23.2% and 9.4%).
 - **IR-91-ISO-05: "3 uploads per rolling 7 days" is unverified.**
   - It appears on team pages (e.g. 19GEMSDOE), not on the official overview fetched today.
   - Verify on the signed-in submissions page before planning slots.

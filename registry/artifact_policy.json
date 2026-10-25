@@ -536,6 +536,30 @@
       "reason": "S17-LFTG E2 single-TIFF ZIP archive (research negative, NOT OK TO SUBMIT; docs/run-card-S17-LFTG.json)"
     },
     {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+      "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+      "status": "current_research_only",
+      "reason": "S18-UNIQUE demo: basin-stripped Bouguer curvature x RTP gradient, playa-gated, 20k dots, 2.8px spacing, 2.25px collar (actual 2.83px), format PASS, real-raster uniqueness PASS (22.6% vs R0 <70%), capacity-feasible 66.75% <70% vs synthetic lattice literal 99.6% (blanket), holdout pending GPU training, NOT OK TO SUBMIT pending selector."
+    },
+    {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip",
+      "sha256": "386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S18-UNIQUE demo; format PASS, NOT OK TO SUBMIT pending holdout."
+    },
+    {
+      "path": "docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif",
+      "sha256": "afc1699914bc517b3c4c0ef1cc16973ced37f7e90fc74cfb7b20869da01f099b",
+      "status": "current_research_only",
+      "reason": "S18-HGBR E1 research GeoTIFF (0.200742 HOLDOUT-DTI, 0.101151 blind SGMC >1km); fail-closed for synthetic lattice overlap."
+    },
+    {
+      "path": "docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.zip",
+      "sha256": "87fb051c1d440d8a67c6fe5530be946c5784af8100fc1d8c8a0acf17800d31bd",
+      "status": "current_research_only",
+      "reason": "S18-HGBR E1 single-TIFF ZIP bundle; fail-closed for synthetic lattice overlap."
+    },
+    {
       "path": "docs/downloads/gemsdoe91-iso91-isolationpu-37654-20261025T190251Z-beaca59b-zeros.tif",
       "sha256": "69bd28b812d333d4eb1912b6dcb82ad500f5d1074d68c8dd7b86f056543d66f2",
       "status": "current_research_only",
