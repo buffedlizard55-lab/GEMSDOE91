@@ -1,5 +1,11 @@
 # GEMSDOE91 — measured research, explicit submission gates
 
+## Current checkout review (2026-10-25)
+
+**Review verdict: no new experiment; no artifact freshly verified; do not treat the inherited DZ-EDGE card's `ok_to_submit: true` as approval.** The repository's canonical run card records no assigned lane, the DZ-EDGE card reports HOLDOUT-DTI 0.0 and still labels itself `promote`, and the verification command cannot run in this environment because NumPy is not installed and the local `data/` inputs are absent. Current evidence therefore supports **NOT CLEARED TO SUBMIT**. Read [the full repo review](docs/REVIEW-REPO-20261025.md) and [the current canonical run card](docs/run-card.json) before any build or download decision. No organizer score is confirmed here.
+
+**At every session start:** read this review and the standing mandate below, then verify the active branch's lane, current run card, local inputs, and artifact before relying on any historical status section.
+
 ## CURRENT SESSION 15 LANE (`S15-HCPA`, 2026-10-25, branch `arena/b580c734-gemsdoe91`) — NEW UNIQUE TIF AT WINNER GEOMETRY
 
 > **AUTOMATED VERDICT (computed, fail-closed, zero human image inspection): `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO` (human selector first).**
