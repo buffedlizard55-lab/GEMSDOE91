@@ -47,7 +47,7 @@ async function main() {
     if (!allStatesFailClosed || stateCount === 0) {
       throw new Error('Missing fail-closed negative submission state');
     }
-    if (!(await page.getByText('NOT OK TO SUBMIT', { exact: true }).count())) {
+    if (!(await page.getByText(/OK TO SUBMIT: NO/i).count())) {
       throw new Error('Submission warning is not visible');
     }
     // The historical DZ-EDGE file is still downloadable for research, but its
@@ -80,6 +80,7 @@ async function main() {
     const s14Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S14-HVDC.json')));
     if (s14Digest !== s14Card.raster_sha256) throw new Error('Downloaded S14-HVDC bytes do not match advertised SHA256');
 
+    await page.goto(new URL('s13-ptha.html', baseURL).href, { waitUntil: 'networkidle' });
     const s13DownloadEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S13-PTHA E3 GeoTIFF', exact: true }).click();
     const s13Download = await s13DownloadEvent;
@@ -88,13 +89,15 @@ async function main() {
     const s13Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S13.json')));
     if (s13Digest !== s13Card.raster_sha256) throw new Error('Downloaded S13-PTHA bytes do not match advertised SHA256');
 
+    await page.goto(new URL('ccr91-executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
     const downloadEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: '↓ Download new CCR91 GeoTIFF', exact: true }).click();
+    await page.getByRole('link', { name: '↓ Download research GeoTIFF', exact: true }).click();
     const download = await downloadEvent;
     const bytes = fs.readFileSync(await download.path());
     const digest = crypto.createHash('sha256').update(bytes).digest('hex');
     const card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-CCR91.json')));
     if (digest !== card.raster_sha256) throw new Error('Downloaded CCR91 bytes do not match advertised SHA256');
+    await page.goto(new URL('executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
     await page.getByRole('button', { name: 'Copy submission note', exact: true }).click();
     await page.waitForFunction(() => document.getElementById('copy-status').textContent.length > 0);
     const copyStatus = await page.locator('#copy-status').textContent();
