@@ -2155,3 +2155,51 @@ replicate on SGMC-only faults — a measured negative, recorded as such (`docs/M
 The identical intervention was built independently as `GEOD25m10` (`bff9fd21…`, PR #30) with an
 opposite-signed claim (**+0.0090** `MODEL`); the disagreement and this lane's non-promotion verdict are
 recorded in IR-91-45. Nothing in this lane is submission-ready or queued by its authors.
+
+## Current Focus and Guidelines
+MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
+There should be an easy to download submission tif file as described by the prompt. A lot of sites mention inspection only and a human inspector, but the inspection needs to be done through the project and needs to be validated for submission without human intervention.
+
+PARALLEL-RUN PROTOCOL — read first. This session is one of several running from this same prompt.
+1. LANE. Stay inside it. If your raster's rank-correlation with any registry raster exceeds [0.90], or more than [70%] of your dots fall within 3 px of one registry raster's dots, you have drifted into another lane: log it as a duplicate and stop.
+2. REUSE, DON'T REBUILD.
+3. LABEL EVERY NUMBER as HOLDOUT-DTI or ORGANIZER-CONFIRMED.
+4. LEAKAGE CANARY.
+5. RUN CARD.
+6. BUDGET.
+
+## Geological Hypotheses (3-5 Candidate Strategies)
+
+1. **Hypothesis 1: Multi-scale Edge Detection on Isostatic Residual Gravity (Targeting deep-seated basement faults)**
+   - **Layer(s):** Isostatic Gravity Anomaly, DEM (Elevation).
+   - **Signature:** Coincidence of high horizontal gravity gradient with subtle topographic lineaments.
+   - **Why it catches missing faults:** USGS catalogues often rely heavily on surface mapping. Deep-seated faults driving geothermal activity might have minimal surface expression but significant gravity contrast due to basement offsets.
+   - **Difference from repo:** Uses a combined multi-scale Canny edge detector on gravity fused with DEM curvature, rather than just tilt derivative.
+   - **Expected DTI Improvement:** High. Gravity directly proxies fault-controlled permeability depth.
+   - **Implementation Cost:** Medium. Requires computing gradients at multiple scales.
+
+2. **Hypothesis 2: Thermal-Hydraulic Sink Confluence (Thermal infrared + Hydrography)**
+   - **Layer(s):** Surface Temperature (ASTER/Landsat if available, or inferred from vegetation), Flow Accumulation.
+   - **Signature:** Anomalous warm zones near flow accumulation intersections (springs).
+   - **Why it catches missing faults:** Blind geothermal systems leak heat. Small springs on unmapped faults are excellent geothermal indicators.
+   - **Difference from repo:** Introduces hydrology (flow accumulation) as a mask for thermal anomalies.
+   - **Expected DTI Improvement:** Medium-High.
+   - **Implementation Cost:** High. Requires external DEM-derived hydrography and thermal data (e.g., from ASTER, free from EarthExplorer).
+
+3. **Hypothesis 3: Lithologic Contrast Masking on Radiometrics (K/Th/U)**
+   - **Layer(s):** Radiometric K, Th, U.
+   - **Signature:** Sharp discontinuities in K/Th ratio.
+   - **Why it catches missing faults:** Hydrothermal alteration along faults often depletes or enriches certain radioactive elements (potassium alteration).
+   - **Difference from repo:** Repo uses K/Th/U as direct features; this would apply a specialized ratio-contrast boundary detector (e.g., Gabor filter on K/Th).
+   - **Expected DTI Improvement:** Medium.
+   - **Implementation Cost:** Low. Can be implemented purely on existing features.
+
+4. **Hypothesis 4: Structural Relay Ramp Locator**
+   - **Layer(s):** Existing Faults, DEM, Gravity.
+   - **Signature:** Gap zones between overlapping en-echelon faults showing low gravity anomaly.
+   - **Why it catches missing faults:** Many catalogues miss the complex linkage structures (relay ramps) between major fault segments, which are prime geothermal targets.
+   - **Difference from repo:** Explicitly searches for spatial gaps between known catalogued faults and scores them based on gravity signature.
+   - **Expected DTI Improvement:** Medium.
+   - **Implementation Cost:** Medium.
+
+**Validation Strategy:** To validate Hypothesis 1, we will evaluate its features alone using `evaluate_holdout.py` against the spatially-blocked segments before generating dots. (Currently relying on synthetic pipeline due to data-access limits).
