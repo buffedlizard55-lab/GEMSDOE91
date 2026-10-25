@@ -1,5 +1,9 @@
 # GEMSDOE91 — a new TIFF, an honest automated verdict
 
+> **Parallel Session 16B (`S16-PC91`, branch `arena/3b49ef79-gemsdoe91`, merged alongside S16-PGRD): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — RESEARCH` · `OK TO SUBMIT: NO`.**
+> Kovesi phase-congruency detector falsified on the comparable holdout: E1 `0.123600` / E2 `0.137450` / E3 `0.174120` HOLDOUT-DTI (`gems91-hide-recover-v1.0`, 60,988 withheld) vs prior best `0.262209`; E3 Rule-1 duplicate-stop (86.00% vs DDVTC), never written. Unique delivered TIF `gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif` (SHA-256 `dfee391717…4f9df6`), triple-gate CERTIFIED + independently re-verified. Zero weekly slots spent.
+> [Download](docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.tif) · [ZIP](docs/downloads/gems91-s16-pc91-20261025T051716Z-9c6f182a-zeros.zip) · [Audit](docs/s16-pc91.html) · [Executive summary](docs/s16-executive-summary.html) · [Run card](docs/run-card-S16PC.json) · [Preregistration](docs/HYPOTHESES_S16PC.md) · [Session report](docs/S16PC_20261025.md) · Form note (69/140): `S16-PC91 phase-congruency monogenic E1 37654d HOLDOUT-DTI 0.1236 v1.0`
+
 ## Start here every session
 
 Read this status, [the full standing brief below](#full-project-brief), [the three-pass review](docs/REVIEW-S16.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md) before changing the project. **Maximize P(Win)** means protecting scarce slots from unsupported claims. **Own the outcome** means reporting negative results and fixing unsafe tooling.

@@ -1542,3 +1542,14 @@ Meanwhile `_grad_mag(B02)` was in `nT / 100 m` (`100×` larger than `nT/m`) and 
 - GEMSDOE32 repository source freshly says UNSCORED and NO ORGANISER SCORE EXISTS; user-reported 0.2778 remains unverified. No fresh leaderboard/weekly-cap claim was made.
 - Final local verification: 398 passed, 8 data-dependent skipped; 46 artifact-policy files PASS; evidence verifier PASS; existing CED sample-backed format PASS and submission_ready=false. No new HOLDOUT-DTI or organizer result.
 - Full review: docs/REVIEW-C6BFB72B-20261025.md; machine-readable negative card: docs/run-card-REVIEW-C6BFB72B.json.
+
+## Session 16B (`S16-PC91`, 2026-10-25, `arena/3b49ef79-gemsdoe91`; parallel to S16-PGRD)
+
+- **IR-91-S16PC-01 — root `generate_submission.py` fabricated a fake catalogue and emitted validated-looking random noise.** Pre-fix script *wrote* a 1-pixel `data/official/existing_faults.tif`, emitted top-K smoothed noise, certified it against the fake. Product `gems91-unique-synthetic-…-zeros.tif` places 515 dots on the real catalogue, NN spacing 1.0 px (MEASURED, `evidence/s16_forensics.json`). Fixed independently by both S16 sessions (fail-closed); synthetic file = never submit.
+- **IR-91-S16PC-02 — DZEDGE run card promotes HOLDOUT-DTI = 0.0** (`verdict: promote, ok_to_submit: true`; all dots >10 px from catalogue vs 3 px kernel; measured NN min 1.0 px vs "~3 px" claim). Read as negative research, not promoted. (Concurrent main later quarantined the DZ-EDGE builder — consistent.)
+- **IR-91-S16PC-03 — S15-HCPA star/promote copy contradicts its negative run card** (best 0.100218 HOLDOUT-DTI v1.0 vs prior best 0.262209). Run cards authoritative.
+- **IR-91-S16PC-04 — v1.0 evaluator is exact-hit (10 px halo deletion); never compare across v1.0/v1.1-nohalo.** S16PC reports both.
+- **IR-91-S16PC-05 — stack-family dot overlap (74–86% vs sibling downloads) makes Rule 1 unsatisfiable for accretion lanes under the strict all-downloads registry** (MEASURED; E3 logged duplicate stop). Registry scope is a governance choice; S16PC used the strict scope.
+- **IR-91-S16PC-06 — sandbox limits measured:** 3 GB RAM (float64 full-grid FFT OOM; single-precision streaming peak 1.37 GB); unauthenticated api.github.com urllib = HTTP 502 (gh token works); DrivenData/USGS/dropbox unreachable from bash. Leaderboard + metric verified via fetch 2026-10-25 (#1 0.4413).
+- **IR-91-S16PC-07 — parallel-session name collision:** two lanes independently took "S16" (PGRD pseudogravity on main; PC91 phase congruency here). Resolved at merge by renaming PC91 artifacts `*S16PC*` (run card carries `merge_rename_note`); no score/raster/verdict changed. S16PC uniqueness was measured against the 33 rasters present at build time (pre-H1/PGRD downloads).
+
