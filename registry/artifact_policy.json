@@ -452,6 +452,18 @@
       "reason": "XG91-E1 format PASS; lattice overlap 99.742% and holdout below random; NOT OK TO SUBMIT."
     },
     {
+      "path": "docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif",
+      "sha256": "3d07dcb81f01e8b19b5fa2cf2d4d7dc75eb1f7ec2d319a120f6ba7c37bf369d2",
+      "status": "current_research_only",
+      "reason": "S17-EULR E3 Euler-deconvolution fusion winner (0.249626 HOLDOUT-DTI v1.0) trails S14-PTAC 0.267782; Euler ablation paired delta +0.000331 CI includes 0 (null); literal registry gate fails (lattice 99.827%, S13 sibling 93.836%); format+gems57 PASS; research only, NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.zip",
+      "sha256": "78ef3eab493b7b9ba3274bbb817da461cc50e57572f402521a41518baad85885",
+      "status": "current_research_only",
+      "reason": "S17-EULR E3 Euler-deconvolution fusion winner (0.249626 HOLDOUT-DTI v1.0) trails S14-PTAC 0.267782; Euler ablation paired delta +0.000331 CI includes 0 (null); literal registry gate fails (lattice 99.827%, S13 sibling 93.836%); format+gems57 PASS; research only, NOT OK TO SUBMIT."
+    },
+    {
       "path": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
       "sha256": "35259f3abe1df772cef3fb5646b01eb12eb7776192fd870f291405a482abf8dc",
       "status": "current_research_only",
