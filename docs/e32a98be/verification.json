@@ -10,57 +10,112 @@
       "passed": 25,
       "failed": 0
     },
-    "active_review_regressions": {
-      "command": ".venv/bin/python -m pytest tests/test_active_review_522615dd.py -o addopts='' -ra",
+    "active_review_portal_and_preflight_regressions": {
+      "command": ".venv/bin/python -m pytest tests/test_active_review_522615dd.py tests/test_submission_portal.py tests/test_experiment_preflight.py -o addopts='' -ra",
       "status": "PASS",
-      "passed": 11,
+      "passed": 44,
       "failed": 0,
-      "note": "Tests retain predecessor 522615DD evidence as historical and assert E32A98BE as the current portal review."
+      "note": "Includes E32 active-front-door and run-card assertions plus a regression that prevents a partial/non-blanket uniqueness waiver for the separate S18 research demo."
     },
-    "first_full_suite": {
-      "status": "FAILED_THEN_RESOLVED",
-      "failed": 2,
-      "reason": "Two tests still expected the predecessor 522615DD review to be the current portal banner; assertions were updated to the active E32A98BE review. No scientific gate was weakened."
+    "earlier_stale_portal_assertions": {
+      "status": "RESOLVED",
+      "note": "An initial full suite found stale predecessor-review link assertions; tests now assert E32A98BE is current and preserve predecessor reviews as historical. No scientific gate was weakened."
     },
     "final_full_suite": {
       "command": ".venv/bin/python -m pytest -o addopts='' -ra",
       "status": "PASS",
-      "collected": 636,
-      "passed": 628,
+      "collected": 637,
+      "passed": 629,
       "skipped": 8,
       "failed": 0,
       "warnings": 87,
       "warning_class": "Existing Rasterio Affine multiplication pending-deprecation warnings",
       "skip_reason": "Pinned competition/integration inputs are absent from this checkout."
     },
+    "experiment_preflight_command": {
+      "command": ".venv/bin/python generate_submission.py --preflight",
+      "status": "BLOCKED_AS_EXPECTED",
+      "exit_code": 1,
+      "assignment_authenticated": false,
+      "capacity_witness": "UNVERIFIED",
+      "candidate_generated": false,
+      "experiments_run": 0,
+      "submission_approved": false,
+      "reason": "No assigned method and data/official/sample_submission.tif is absent."
+    },
     "portal_renderer": {
       "command": ".venv/bin/python scripts/render_portal.py",
       "status": "PASS",
-      "note": "Generated index and executive guide link the active no-run review and retain the prior OLC91 research artifact as historical."
+      "note": "Generated index and executive guide identify E32 as active, retain the S18-UNIQUE file as a separate research demo, and mark it NOT OK TO SUBMIT."
+    },
+    "artifact_policy": {
+      "command": ".venv/bin/python scripts/check_artifact_policy.py",
+      "status": "PASS",
+      "registered_prediction_artifacts": 89,
+      "raw_raster_or_archive_tracked": false
+    },
+    "current_download_delivery_verifier": {
+      "command": ".venv/bin/python generate_submission.py",
+      "status": "FORMAT_PASS_RESEARCH_ONLY",
+      "file": "docs/downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif",
+      "format_ok": true,
+      "reference_checks": "NOT_CHECKED",
+      "ok_to_download": "YES",
+      "ok_to_submit": "NO",
+      "note": "This verifies the existing docs/current-run OLC91 file only, not the separate S18-UNIQUE demo and not an E32 output."
     },
     "json_parse": {
       "status": "PASS",
       "files": [
         "docs/run-card-E32A98BE-20261025.json",
-        "docs/e32a98be/sources.json"
+        "docs/run-card-S18-UNIQUE.json",
+        "docs/e32a98be/sources.json",
+        "docs/e32a98be/verification.json"
       ]
+    },
+    "python_compile": {
+      "status": "PASS",
+      "files": [
+        "scripts/experiment_preflight.py",
+        "scripts/generate_unique_tif.py"
+      ],
+      "note": "Compilation only; the S18 generator was not executed."
+    },
+    "local_markdown_links": {
+      "status": "PASS",
+      "note": "Checked changed Markdown/HTML links; corrected three S18 guide links that incorrectly pointed to docs/ instead of repository-root files."
     },
     "git_diff_check": "PASS"
   },
   "scientific_validation": {
-    "candidate_run": false,
-    "holdout_run": false,
+    "E32_candidate_run": false,
+    "E32_holdout_run": false,
     "feature_alone_canaries": false,
-    "registry_surface_comparison": false,
-    "final_dot_overlap_comparison": false,
-    "tiff_written": false,
+    "E32_registry_surface_comparison": false,
+    "E32_final_dot_overlap_comparison": false,
+    "E32_tiff_written": false,
     "weekly_slot_used": false,
-    "reason": "No assigned lane and required local inputs are absent; no candidate may be inferred or run."
+    "organizer_confirmed": null,
+    "reason": "No assigned lane and required local inputs are absent; no E32 experiment or artifact may be inferred or run."
+  },
+  "separate_branch_research_artifact": {
+    "lane": "S18-UNIQUE",
+    "branch": "arena/2f1f074c-gemsdoe91",
+    "merged_unchanged_from_upstream_main": true,
+    "tiff_sha256_matches_upstream_card": true,
+    "zip_sha256_matches_upstream_card": true,
+    "holdout_dti": "NOT_RUN",
+    "leakage_canary": "PENDING_MEASUREMENT",
+    "full_registry_uniqueness": "UNVERIFIED_WITH_CONFLICTING_UPSTREAM_OVERLAP_REPORTS",
+    "download": "YES_RESEARCH_ONLY",
+    "submit": "NO",
+    "E32_generated_or_selected": false
   },
   "current_preflight": {
     "status": "BLOCKED",
     "lane_assigned": false,
     "missing_required_inputs": ["sample_submission", "parent_r0_nan"],
+    "capacity_witness": "UNVERIFIED",
     "feature_stack_present": false,
     "experiment_authorized": false
   },

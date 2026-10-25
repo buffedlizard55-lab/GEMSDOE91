@@ -136,8 +136,8 @@ def test_current_portal_preserves_active_review_and_research_labels():
     assert "REVIEW-E32A98BE-20261025.md" in page.links
     assert "run-card-E32A98BE-20261025.json" in page.links
     assert "HYPOTHESES-E32A98BE-20261025.md" in page.links
-    assert "historical and unchanged" in text.lower()
-    assert "OK TO SUBMIT: NO" in text
+    assert "S18-UNIQUE" in text and "OK TO SUBMIT: NO" in text
+    assert "research" in text.lower() and "pending" in text.lower()
     # Navigation uses research labels, not context-free rounded scores.
     assert "S17-LFTG research audit" in text and "S17-CPAD research audit" in text
     assert "LB-DTI" not in text
@@ -154,8 +154,8 @@ def test_executive_guide_cannot_be_mistaken_for_current_upload_approval():
     text = " ".join(page.text)
     assert "REVIEW-E32A98BE-20261025.md" in page.links
     assert "run-card-E32A98BE-20261025.json" in page.links
-    assert "not an approval to upload that file" in text.lower()
-    assert "OK TO SUBMIT: NO" in text
+    assert "S18-UNIQUE" in text and "OK TO SUBMIT: NO" in text
+    assert "not an approval" in text.lower() and "do not upload" in text.lower()
 
 
 def test_current_file_pointer_remains_prior_olc91_not_a_fabricated_new_result():
@@ -165,8 +165,14 @@ def test_current_file_pointer_remains_prior_olc91_not_a_fabricated_new_result():
     assert current["ok_to_submit"] is False
     review = (DOCS / "REVIEW-E32A98BE-20261025.md").read_text(encoding="utf-8")
     assert "not this review's output" in review
-    assert "ORGANIZER-CONFIRMED" in review and "null" in review
-    assert "no new tiff" in review.lower()
+    assert "ORGANIZER-CONFIRMED: null" in review
+    assert "no new e32 tiff" in review.lower()
+    card = _json("docs/run-card-E32A98BE-20261025.json")
+    assert card["candidate_generated"] is False
+    assert card["raster_sha256"] is None
+    assert card["submit_verdict"] == "NO"
+    assert card["separate_branch_research_artifact"]["holdout_dti"]["status"] == "NOT_RUN"
+    assert card["separate_branch_research_artifact"]["submit_verdict"] == "NO_HOLDOUT_CANARY_REGISTRY_CHECKS_PENDING"
 
 
 def test_e32_run_card_and_hypotheses_remain_fail_closed():
@@ -184,10 +190,31 @@ def test_e32_run_card_and_hypotheses_remain_fail_closed():
     assert card["validator_output"]["status"] == "NOT_RUN_NO_NEW_RASTER"
     assert card["download_verdict"] == "NO_NEW_TIFF"
     assert card["submit_verdict"] == "NO"
-    assert card["promotion_verdict"] == "negative"
     assert card["verdict"] == "negative"
     hypotheses = (DOCS / "HYPOTHESES-E32A98BE-20261025.md").read_text(encoding="utf-8")
     assert hypotheses.count("| **") >= 4
-    assert "not new to the written repository" in hypotheses
+    assert "not new to the written backlog" in hypotheses
     sources = _json("docs/e32a98be/sources.json")
     assert any("redirected to the DrivenData login page" in item["verification"] for item in sources["items"])
+    verify = _json("docs/e32a98be/verification.json")
+    assert verify["scientific_validation"]["E32_candidate_run"] is False
+    assert verify["organizer_confirmed"] is None
+
+
+def test_separate_s18_demo_does_not_receive_a_literal_uniqueness_waiver():
+    card = _json("docs/run-card-S18-UNIQUE.json")
+    assert card["holdout"]["E1_candidate"] is None
+    assert card["leakage_canary"]["result"] == "PENDING_MEASUREMENT"
+    gates = card["registry_uniqueness"]
+    assert gates["complete_registry_checked"] is False
+    assert gates["surface_rank_correlation_max_abs"] is None
+    assert gates["final_dot_overlap_max_fraction_within_3px"] is None
+    assert gates["reported_overlap_would_trigger_literal_stop_if_confirmed"] is True
+    assert card["verdict"]["OK_TO_SUBMIT"].startswith("NO")
+    guide = (DOCS / "s18-unique-executive-summary.html").read_text(encoding="utf-8").lower()
+    assert "no non-blanket exception is applied" in guide
+    assert "do not upload or spend a slot" in guide
+    assert "possible duplicate-stop" in guide
+    generator = (ROOT / "scripts/generate_unique_tif.py").read_text(encoding="utf-8").lower()
+    assert "not a submission" in generator
+    assert "not a waiver" in generator

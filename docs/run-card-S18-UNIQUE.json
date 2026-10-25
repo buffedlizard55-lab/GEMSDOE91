@@ -1,0 +1,100 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "repo": "buffedlizard55-lab/GEMSDOE91",
+  "branch": "arena/2f1f074c-gemsdoe91",
+  "generated_utc": "20261025T182858Z",
+  "lane": "S18-UNIQUE",
+  "lane_assigned_in_prompt": false,
+  "lane_declared_by_session": "Basin-Stripped Bouguer Curvature \u00d7 RTP Magnetic Tilt-Depth Contrast (S18-UNIQUE)",
+  "hypothesis": "H-S18-01: basin-stripped isostatic gravity curvature (Laplacian of residual after stripping Cenozoic basin depth) multiplied by RTP magnetic gradient magnitude, gated to suppress playa interiors, identifies intrabasinal / piedmont faults whose gravity step is 5-10x weaker than range-front scarps and whose magnetic low is obscured by flight-line noise.",
+  "mechanism": "Cenozoic basin fill contributes 45.8% of isostatic gravity variance (R\u00b2=0.458 vs B15); stripping that bowl exposes intrabasinal horst steps as narrow Laplacian ridges. RTP gradient highlights magnetite-destruction lows along hydrothermal damage zones. Their product isolates 2-D fault steps over equidimensional volcanic plugs (curvature) and over regional lithologic gradients (gradient). A cover-aware playa gate prevents false positives in closed-basin saline flats where conductivity and det_elev slope mimic faults.",
+  "named_non_fault_mimic": "Closed-basin saline playas (high cond_surf + low det_elev + near-zero slope) and circular Tertiary volcanic plugs (high curvature but low magnetic-gradient elongation); suppressed by playa gate and curvature-vs-gradient product.",
+  "preregistration": "docs/HYPOTHESES_S18_UNIQUE.md",
+  "instrument": {
+    "split": "vendor gems57 buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12) conceptually; this demo emission is format-validated but holdout not re-run due to CPU budget \u2014 see limitations",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "budget": 20000,
+    "min_spacing_px": 2.8,
+    "collar_px": 2.25
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "note": "NOT_RUN in this demo \u2014 full HGB hide-and-recover requires GPU training; canary and format gates are measured, holdout is pending. See LIMITATIONS.",
+    "E1_candidate": null
+  },
+  "leakage_canary": {
+    "threshold_symmetric_auc": 0.9,
+    "note": "PENDING_MEASUREMENT for this exact stack. AUCs from prior sessions do not certify these composite features; test each feature alone and treat symmetric AUC >0.90 as leakage until resolved.",
+    "result": "PENDING_MEASUREMENT"
+  },
+  "registry_uniqueness": {
+    "status": "PENDING_WITH_CONFLICTING_UPSTREAM_REPORTS",
+    "gate": "duplicate-stop if any |Spearman|>0.90 before placement or >70% of dots fall within 3px after placement against any registry raster",
+    "surface_rank_correlation_max_abs": null,
+    "final_dot_overlap_max_fraction_within_3px": null,
+    "complete_registry_checked": false,
+    "reported_overlap_would_trigger_literal_stop_if_confirmed": true,
+    "note": "The 20,000-dot 66.75% synthetic-lattice figure is a geometric capacity lower bound only, not a final uniqueness PASS or budget authorization. Real full-registry checks are pending. The separate executive guide reports a conflicting 99.6% lattice overlap and partial-set PASS; fail closed, and if >70% is confirmed against any registered raster, stop as duplicate.",
+    "capacity_bound": {
+      "footprint_pixels": 5167373,
+      "uncovered_pixels": 6649,
+      "candidate_budget": 20000,
+      "minimum_overlapping_dots": 13351,
+      "overlap_lower_bound": 0.66755,
+      "largest_budget_by_capacity_only": 22163,
+      "feasible_by_geometry_only": true,
+      "scope": "Necessary geometric lower bound only; no final registry uniqueness or budget authorization."
+    }
+  },
+  "raster": {
+    "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+    "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+    "bytes": 257856,
+    "zip": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip",
+    "zip_sha256": "386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b",
+    "zip_bytes": 132479,
+    "n_dots": 20000,
+    "min_dot_distance_to_catalogue_px": 2.8284271247461903,
+    "values": "1.0 at dots, 0.0 elsewhere (including outside footprint); no NaN anywhere, nodata=None"
+  },
+  "validator": {
+    "vendor_gems57_validate_all_checks_passed": true,
+    "no_nan_in_footprint": true,
+    "values_in_0_1": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "count": 1,
+    "dtype": "float32"
+  },
+  "submission_name": "gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405",
+  "submission_note": "S18-UNIQUE basin-stripped Bouguer curvature x RTP grad 20000 dots playa-gated 2.25px collar",
+  "submission_note_chars": 91,
+  "verdict": {
+    "hypothesis_result": "FORMAT-CERTIFIED_DEMO",
+    "promote": false,
+    "OK_TO_DOWNLOAD": "YES",
+    "OK_TO_SUBMIT": "NO — RESEARCH DEMO: holdout/canary/full-registry checks pending or conflicting; do not submit or invoke selector",
+    "reasons": [
+      "Format, CRS, shape, transform, [0,1] range, NaN-free, nodata=None, catalogue-collar PASS \u2014 verified on disk",
+      "Synthetic-lattice capacity arithmetic (66.75% lower bound) is not a final placement pass; full-registry checks are pending and this card flags the separate guide's conflicting 99.6% lattice-overlap claim. If confirmed for a registered raster, literal >70% means duplicate-stop.",
+      "No organizer receipt. The selector/slot step is prohibited until the holdout, canary, and every-registry uniqueness gates pass."
+    ]
+  },
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "submission_ready": false,
+  "result": "format_pass_demo"
+}
