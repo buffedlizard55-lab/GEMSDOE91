@@ -200,7 +200,21 @@
         "docs/downloads/gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.zip"
       ],
       "local_data_restore_or_fresh_raster_audit": false,
-      "ci_run_40216729640_status": "PUBLISHED_ARTIFACT_FAILED_AUDIT_DIFF; RERUN_PENDING"
+      "initial_ci_run_40216729640_status": "PUBLISHED_ARTIFACT_FAILED_STALE_AUDIT_DIFF; RESOLVED",
+      "followup_ci_run_40219293388": {
+        "run_number": 342,
+        "conclusion": "SUCCESS",
+        "jobs": {
+          "tests": "PASS",
+          "published-artifact": "PASS",
+          "browser-delivery": "PASS"
+        },
+        "published_audit_diff": "PASS",
+        "started_utc": "2026-10-25T18:01:55Z",
+        "completed_utc": "2026-10-25T18:08:57Z",
+        "ci_restored_pinned_sample_and_catalogue_inside_runner": true,
+        "local_data_restore_or_fresh_raster_audit": false
+      }
     },
     "merged_upstream_main_tips": [
       "5262aa9947d4b50d2fc433a86d409fc5b7f42811",
