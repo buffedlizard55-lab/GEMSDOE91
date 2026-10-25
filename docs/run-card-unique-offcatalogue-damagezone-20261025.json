@@ -1,0 +1,94 @@
+{
+  "schema": "gems91.run-card.unique.v1",
+  "run_id": "unique-offcatalogue-damagezone-20261025T144238Z",
+  "started_utc": "2026-10-25T14:42:38.114620+00:00",
+  "branch": "arena/5ffdedce-gemsdoe91",
+  "submission_name": "gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119",
+  "note": "Unique off-catalogue damage-zone lattice; format-certified GeoTIFF; holdout not run; research download only, not cleared to submit.",
+  "note_length_chars": 139,
+  "hypothesis": "Geothermal permeability is hosted in fault damage zones 300 m-1 km off the mapped USGS/INGENIOUS catalogue; an off-catalogue, off-collar (>3 px), fixed 1 km lattice is a unique, testable discovery design that no prior GEMSDOE fleet submission targets at fixed systematic density.",
+  "mechanism": "Footprint = non-null pixels of pinned sample_submission.tif; catalogue mask = positive pixels of pinned existing_faults.tif; exact Euclidean distance transform from the catalogue; candidate pixels = footprint AND (3.0 px < d_catalogue <= 10.0 px) — strictly outside the 3 px (300 m) catalogue collar but still fault-associated; deterministic 1 km/10 px lattice subsampling with fixed phase; emitted value = 1.0 at dots, 0.0 elsewhere inside footprint, NaN outside; single-band float32, all values in [0,1], no NaN inside footprint.",
+  "named_non_fault_mimic_process": "Unaltered lithologic contact; survey flight-line levelling seam.",
+  "experiments_run": 1,
+  "budget": {"max_experiments": 3, "max_seconds": 7200},
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "value": null,
+    "ci95": null,
+    "withheld_positives": null,
+    "status": "NOT RUN — the exact single-method lane paragraph was not supplied and the cached GeoDAWN feature stack is absent, so preflight blocks every scientific build axis; no holdout score is claimed and none may be compared to 0.2778."
+  },
+  "leakage_canary": {
+    "status": "NOT RUN — holdout evaluator inputs absent; no feature-alone AUC was computed.",
+    "max_allowed_auc": 0.90
+  },
+  "registry_comparison": {
+    "uniqueness_pass": true,
+    "is_duplicate": false,
+    "surface_max_abs_rank_corr": 0.00157,
+    "dots_max_3px_overlap": 0.2067,
+    "dots_max_abs_rank_corr": 0.00157,
+    "max_allowed_rank_corr": 0.90,
+    "max_allowed_dot_overlap_3px": 0.70,
+    "registry_rasters_checked": ["GEMSDOE32__h33-2-b2-zeros.tif"],
+    "scope": "local pinned registry only; not a whole-fleet clearance"
+  },
+  "format_validation": {
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "dtype": "float32",
+    "band_count": 1,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 3.1623,
+    "n_dots": 8718,
+    "total_cells": 12279160,
+    "nan_cells_anywhere": 0,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "sha256": "a5636b10237757cda5de1a7561a0d5f2600479cdd8610226dfd4c1650b66ca11",
+    "sha256_not_in_ledger": true,
+    "parent_drift_pct_of_parent_dots": 122.59,
+    "validator_suites": {
+      "gems91_gates_verdict": "CERTIFIED",
+      "release_gates_nan_pass": true,
+      "release_gates_zeros_pass": true,
+      "validate_raster_pass": true,
+      "range_0_1_portal_safe": true
+    }
+  },
+  "organizer_confirmed": null,
+  "selector_approval": false,
+  "slots_used": 0,
+  "verdict": "negative — format-certified unique research download; NOT cleared for a competition slot; holdout not run, no organizer receipt.",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "files": {
+    "primary_zeros_tif": "downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119-zeros.tif",
+    "companion_nan_tif": "downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119.tif",
+    "zip": "downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119-zeros.zip",
+    "audit": "downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119-audit.json",
+    "run_card": "docs/run-card-unique-offcatalogue-damagezone-20261025.json"
+  },
+  "limitations": [
+    "No DrivenData authentication -> cannot auto-download training_features.tif/labels.tif or verify the live leaderboard, eligibility, or weekly-cap allowance.",
+    "The GEMSDOE32 0.2778 and the prompt's 0.4413/0.3195 leaderboard figures are USER-REPORTED and UNVERIFIED; no organizer receipt exists in any repo audited. Beating 0.2778 cannot be claimed from this artifact.",
+    "HOLDOUT-DTI not run; no score improvement over any holdout best is established.",
+    "Registry uniqueness measured against pinned local registry raster only, not the whole fleet.",
+    "This is experiment 1 of 3 (budget); no weekly slot was spent."
+  ],
+  "official_review_sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://gbcge.org/current-projects/ingenious/",
+    "https://epsg.io/32611",
+    "https://en.wikipedia.org/wiki/Tversky_index"
+  ]
+}
