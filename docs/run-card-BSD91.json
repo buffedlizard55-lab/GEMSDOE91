@@ -1,0 +1,125 @@
+{
+  "schema": "gems91.run-card.v1",
+  "session": "arena/94032b4a-gemsdoe91",
+  "generated_utc": "2026-10-25T18:24:00+00:00",
+  "lane": "BSD91 Blind Stepover-Damage lattice (docs/HYPOTHESES_BSD91.md, rank 1 of 5)",
+  "experiment": 1,
+  "budget_max_experiments": 3,
+  "slots_used": 0,
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "submission_name": "gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2",
+  "submission_note": "BSD91 blind stepover-damage lattice, 4021 dots >3px off catalogue, SGMC+spring support, [0,1] format-certified; holdout not locally measurable; DO NOT SUBMIT",
+  "submission_note_chars": 126,
+  "hypothesis": "Concealed geothermal faults missing from the USGS/INGENIOUS catalogue occur as blind stepovers/relay ramps linking catalogue strands to off-catalogue USGS SGMC strands, with thermal springs marking upflow; permeability is hosted in the 300 m-1 km damage zone. Dots are placed strictly outside the 300 m catalogue collar (3 < d_catalogue <= 12 px) on SGMC-strand or spring support, at >= 2.8 px spacing, <= 37,654 binary dots.",
+  "mechanism": "Catalogue faults are masked out of the competition scoring, so dots on/near mapped traces pay false-positive mass for no hidden truth (GEMSDOE32's +0.0070 came from deleting dots <= 2 px from the catalogue). BSD91 targets off-catalogue fault-associated ground no fleet lane targets systematically: DZEDGE used the annulus with no fault support (measured HOLDOUT-DTI 0.0 deliberate negative), SNAP snaps to catalogue-proximate edge crests, PRUNE refills from parent ridge support. Inter-dot spacing beyond the 300 m kernel radius keeps the matched-mass term M from self-cancelling.",
+  "named_non_fault_mimic": "unaltered lithologic contact; alluvium/playa edge; flight-line radiometric seam (mitigated by requiring the conjunction of off-catalogue SGMC strand proximity AND thermal-spring proximity, never either alone)",
+  "layers": [
+    "data/official/sample_submission.tif (footprint; CRS/shape/transform reference)",
+    "data/official/existing_faults.tif (catalogue; zero-mass and >=3 px collar gates)",
+    "data/external/derived_sgmc_faults_100m_u8.tif (off-catalogue USGS SGMC strands, USGS public domain)",
+    "data/external/gdr_wellspring_in_footprint.csv (thermal springs, prior only, never truth)"
+  ],
+  "holdout_dti": null,
+  "holdout_dti_reason": "labels.tif (organizer truth) is DrivenData-login-only and is absent from registry/data_manifest.json, so a true hide-and-recover HOLDOUT-DTI (vendor/gems57 evaluate_holdout, gems57-pooled-hide-v2 or gems91-hide-recover) cannot be computed locally and is not projected. ORGANIZER-CONFIRMED: null.",
+  "holdout_folds": {
+    "evaluator": "scripts/evaluate_holdout.py build_segment_buffered_folds (bridge 3 px, buffer 10 px, 4 spatial quadrants)",
+    "n_withheld_positives": [10757, 12051, 20541, 17639],
+    "n_withheld_total": 60988,
+    "note": "folds built from catalogue only; no truth scores produced without labels.tif"
+  },
+  "leakage_canary": {
+    "rule": "AUC > 0.90 on any single feature => leakage, fail closed",
+    "features_tested": ["d_sgmc_clip12", "d_spring_clip12", "damage_zone_annulus", "sgmc_or_spring_support"],
+    "worst_feature": "d_sgmc_clip12",
+    "worst_symmetric_auc": 0.7676,
+    "all_pass": true,
+    "flagged_features": []
+  },
+  "registry_uniqueness": {
+    "rule": "surface |Spearman rho| <= 0.90 AND dots within 3 px of any one registry raster <= 70% (both pre-placement surface and final dots)",
+    "n_registry_rasters_checked": 49,
+    "surface_max_abs_rank_corr": 0.01906,
+    "surface_closest_raster": "gems91-unique-offcatalogue-damagezone-20261025T132549Z-b9acc119-zeros.tif",
+    "dots_max_3px_overlap": 0.68839,
+    "dots_closest_raster": "gems91-geo91-tiprelay-collar3-20261025T132242Z-zeros.tif",
+    "dots_max_abs_rank_corr": null,
+    "is_duplicate": false,
+    "uniqueness_pass": true,
+    "note": "49 registry rasters = GEMSDOE32 parent R0 + d2-8 ancestor from registry/ plus all fleet rasters finite inside the footprint in docs/downloads/ (candidate excluded from its own comparison set)"
+  },
+  "sgmc_offcatalogue_control": {
+    "metric": "blind DTI vs USGS SGMC faults > 3 px off catalogue (report-only, not organizer truth)",
+    "n_offcatalogue_sgmc_positives": 62122,
+    "dti": 0.043538
+  },
+  "raster": {
+    "filename_zeros": "gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.tif",
+    "filename_nan": "gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2.tif",
+    "filename_zip": "gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.zip",
+    "path": "docs/downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.tif",
+    "sha256_zeros_tif": "b9ebdf72b6b9db4129e9286919718c2be134cfd3c4fc23d033cad83969ec5d14",
+    "sha256_nan_tif": "2fd832b2c3435a88487d8aa71611ef2bd0b79bb8a249b0ce41a2dcabe1d2e914",
+    "sha256_zip": "6df72577beb2fc16af9c80d2e78ace3823a745727b23feb5185fcb5105ec878e",
+    "bytes_zeros_tif": 73417,
+    "bytes_zip": 24512,
+    "grid_meta": {
+      "footprint_px": 5167373,
+      "catalogue_px": 60988,
+      "sgmc_px": 83593,
+      "spring_px": 2060,
+      "support_pixels": 253495,
+      "lattice_step_px": 8,
+      "min_spacing_px": 2.8,
+      "n_dots": 4021,
+      "dcat_min_dot_px": 3.1622776601683795,
+      "dcat_max_dot_px": 12.0,
+      "dsgmc_max_dot_px": 175.6359872008012,
+      "dspring_max_dot_px": 262.9923953273174
+    }
+  },
+  "validator_output": {
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": [0.0, 1.0],
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "dtype": "float32",
+    "band_count": 1,
+    "nodata": null,
+    "zero_catalogue_mass": true,
+    "dots_le_3px": 0,
+    "min_catalogue_distance_px": 3.1623,
+    "re_read_from_disk": true,
+    "sha256_not_in_ledger": true
+  },
+  "scores_are": "HOLDOUT-DTI not measurable locally (no labels.tif); ORGANIZER-CONFIRMED: null; 0.2778/0.3195/0.4413 are USER-REPORTED, UNVERIFIED figures, not receipts",
+  "limitations": [
+    "No labels.tif locally: no true holdout DTI, no paired CI, cannot claim to beat 0.2778/0.3195/0.4413",
+    "training_features.tif (418 MB) not fetched: hypotheses 2-5 of docs/HYPOTHESES_BSD91.md not implemented this session",
+    "No DrivenData auth: cannot auto-submit or read the live weekly slot cap; promotion is a separate selector step",
+    "Dot overlap vs closest fleet raster 68.84% passes the 70% gate but is close to it"
+  ],
+  "download_urls": {
+    "tif_zeros_portal_safe": "docs/downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.tif",
+    "tif_nan_spec_primary": "docs/downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2.tif",
+    "zip_single_member": "docs/downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-zeros.zip",
+    "audit": "docs/downloads/gems91-bsd91-blind-stepperover-damage-20261025T182319Z-2fd832b2-audit.json"
+  },
+  "sources": {
+    "competition_format_metric": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "tversky_index": "https://en.wikipedia.org/wiki/Tversky_index",
+    "crs": "https://epsg.io/32611",
+    "geodawn_survey": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "gdr_springs": "https://gdr.openei.org/submissions/1391",
+    "nlr_rules": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "reference_solution": "https://github.com/drivendataorg/gems-prize-reference-solution"
+  }
+}
