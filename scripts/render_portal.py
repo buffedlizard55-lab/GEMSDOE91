@@ -640,6 +640,10 @@ def render():
     # OLC91 / S20-RHTW (2026-10-26, I2=0.1368 & I1=0.1133 HOLDOUT-DTI) runs last as the authoritative front door.
     from scripts.render_olc91_portal import render as render_olc91
     render_olc91()
+    # S21-FAM3 (2026-10-26) banner + executive summary: injected last so a fresh render reproduces the front door.
+    if (ROOT / 'docs/run-card-S21-FAM3.json').is_file():
+        from scripts.render_s21_fam3_pages import render as render_s21
+        render_s21()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 

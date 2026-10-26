@@ -1,5 +1,25 @@
 # Current limitations and next steps — Session 20 (`S20-RHTW`), 2026-10-26
 
+## Session 21 (`S21-FAM3`, branch `arena/11ddffe8-gemsdoe91`, 2026-10-26)
+
+**Status:** new unique GeoTIFF (`docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif`, sha256 `2603acc8...145fd3`). **OK TO DOWNLOAD: YES. OK TO SUBMIT: NO (G4 failed in all variants).** Verdict negative; 0 slots used. Evidence: `docs/run-card-S21-FAM3.json`, `docs/s21-fam3-executive-summary.html`, `docs/s21/`.
+
+### Limitations
+
+1. **The design component is a negative result.** Replacing S20's consensus covariate with distance-to-GEMSDOE33/GEMSDOE36 + |grad B15| degraded LOSO on identical anchors (RMSE 0.0270 vs 0.0198; Spearman 0.942 vs 0.957) and the sensor coefficients are ridge-unstable. Use the S20 design for any future inversion.
+2. **Uniqueness is the binding constraint on skill.** Pass 1 (registry-unique) projected 0.365-0.453 vs reported R0 but duplicated 7 sibling rasters. Enforcing <=65% overlap vs 312 references moved the projection to 0.160-0.224 (all PROJECTION).
+3. **No ORGANIZER-CONFIRMED score exists for any file in this repo**, including the 0.2778 anchor. The prompt's 0.3195/0.4413 ceiling figures conflict.
+4. **Public-to-private transfer untested** (IR-S20-02); optimizer's curse applies to all PROJECTIONs.
+5. **hide-v2 remains invalid as a live proxy** and is exactly inverted among the nine leaders (IR-S21-01). S21's candidate scores 0.0 on it by construction.
+6. **Budget overrun** (IR-S21-06): >2x the 2 h protocol budget.
+
+### Next steps (ranked by expected DTI gain per cost)
+
+1. **Submit-and-learn with the S20 design (selector/human decision).** Each new live score is one more exact-DTI equation; refit `scripts/run_lfi.py aggregate|fit`.
+2. **1 m DEM scarp morphometry** on an unrestricted host: USGS 3DEP (free, public domain) — the only identified information source that escapes the uniqueness wall legitimately.
+3. **Template fixes:** port the ratio-aware fill into `src/gems91/lfi_emit.py`/`run_lfi_emit.py` (IR-S21-03); cache sibling-sweep halo bit-matrices; parallelise the gate bootstrap.
+4. **Decide the gating instrument** (LFI LOSO + blinded variant vs hide-v2).
+
 ## Session 20 (`S20-RHTW`, branch `arena/06420fd7-gemsdoe91`, 2026-10-26)
 
 **Status:** New unique, format-certified research GeoTIFF generated (`docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.{tif,zip}`, `sha256: 06e5f52d...50f2b`); **`OK TO DOWNLOAD: YES`**; **`OK TO SUBMIT: NO`** (human weekly-slot selector step required under Parallel-Run Protocol Rule 6; `0` weekly slots spent automatically). Evidence: `docs/run-card-S20-RHTW.json` and `docs/REVIEW-S20-RHTW-20261026.md`.

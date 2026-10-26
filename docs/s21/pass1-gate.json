@@ -1,0 +1,44 @@
+{
+ "ridge10": {
+  "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+  "model_cand": 0.44736627133072615,
+  "model_r0": 0.2717957922583591,
+  "delta": 0.17557047907236706,
+  "boot_delta_ci95": [
+   0.03006743628690191,
+   0.22278092748369155
+  ],
+  "p_delta_gt0": 1.0,
+  "boot": 60,
+  "projection_vs_reported_r0": 0.453370479072367,
+  "n_fit_anchors": 112
+ },
+ "ridge1": {
+  "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+  "model_cand": 0.3933298910935482,
+  "model_r0": 0.28185948618423884,
+  "delta": 0.11147040490930937,
+  "boot_delta_ci95": [
+   0.049306785408103605,
+   0.24428329527686793
+  ],
+  "p_delta_gt0": 1.0,
+  "boot": 60,
+  "projection_vs_reported_r0": 0.3892704049093093,
+  "n_fit_anchors": 112
+ },
+ "ridge1_blind_nine": {
+  "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+  "model_cand": 0.40737919488889385,
+  "model_r0": 0.31998772928724445,
+  "delta": 0.0873914656016494,
+  "boot_delta_ci95": [
+   -0.015713192151875933,
+   0.20338186688946183
+  ],
+  "p_delta_gt0": 0.95,
+  "boot": 60,
+  "projection_vs_reported_r0": 0.36519146560164945,
+  "n_fit_anchors": 95
+ }
+}
