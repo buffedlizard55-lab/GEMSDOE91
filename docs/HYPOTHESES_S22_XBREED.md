@@ -97,3 +97,13 @@ Free official sources, all public domain or open data:
 - If arm A does not reproduce `0.181443` (|Δ| > 0.002) the S21 number was not reproducible from the pinned inputs and is reported as such before anything else.
 - If C − A is ≤ 0 with its CI including 0, H22-1 is reported as a **measured null**; the TIF is still emitted from the better arm and labelled research-only.
 - A live score for any S22 file would be one more equation for the LFI inversion; it overrides every projection here.
+
+---
+
+## Amendment A1 (written 2026-10-26, **before any S22 holdout, projection or TIF number existed**)
+
+Reading `scripts/run_s21_pdwc.py` showed three design details that §4 stated imprecisely. No result had been seen; the amendment is recorded in git before any run.
+
+1. **Equalized-quadrant design = fold-level models only.** S21's `pdwc_e1` evaluated each fold with a *symmetric* surface (12 pair-level models) and a **global** 37,654-dot budget. The "9,413 dots per quadrant" design recommended in S21's next steps needs only the 4 fold-level models per specialist: for fold *q* the surface is the out-of-fold prediction on test quadrant *q*, and **exactly 9,414 / 9,414 / 9,413 / 9,413 dots** (sum 37,654) are emitted **inside that quadrant only**, so no test-quadrant spillover is possible.
+2. **Consequence for E1's reproducibility claim.** Arm A under the equalized design is a *different estimator* from S21's `pdwc_e1`, so it is **not expected to equal 0.181443**. Reproducing S21's number needs S21's symmetric design (12 extra fits); it is demoted to an **optional arm `A-sym`**, run only if the budget allows, and its absence will be reported.
+3. **Arms and emission.** E1 gets a third, cheap arm **B** = HGBR16 only (14 subsurface-only columns for the sub-model), to show whether the cross-breed gain is additive. Each arm's out-of-fold surface is emitted twice, **NMS** (S21's E1 recipe) and **CELF** (S21's E2/E3 recipe, no reference caps during evaluation); the paired C − A difference is reported for both and **G4 uses the CELF numbers** (the recipe the final file uses). The pinned references 0.195724 and 0.200742 come from the *global-budget* design; they are quoted as external context and G4's nominal comparison to them is reported, but the **decisive G4 statistic is the paired C − A interval under one design**.
