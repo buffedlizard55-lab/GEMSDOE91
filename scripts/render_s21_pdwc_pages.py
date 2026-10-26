@@ -88,22 +88,35 @@ def render() -> None:
     </section>
     <!--S21-PDWC-END-->"""
 
-    # Update docs/index.html idempotently, keeping S20-LFI below without duplicate data-submission-ready attribute
+    # Update docs/index.html idempotently. The current audit notice is rendered
+    # ahead of older research cards, but deliberately has no submission-ready
+    # data attribute: the page retains exactly one machine submission marker.
+    current_notice = '''<!--CURRENT-REVIEW-BEGIN-->
+    <section class="card" id="current-review-20261026" aria-label="Current branch review status">
+    <h2>Current branch review · arena/5cd5e4f7-gemsdoe91 · 2026-10-26</h2>
+    <div class="verdicts"><div class="v no">NO NEW TIFF GENERATED<small>No assigned lane; required data and registry witness are absent. No new candidate was validated.</small></div>
+    <div class="v no">OK TO DOWNLOAD: NO NEW CANDIDATE · OK TO SUBMIT: NO<small>Do not treat any historical download below as cleared for upload. 0 experiments and 0 weekly slots used.</small></div></div>
+    <p><a class="btn2" href="high-score-submissions-review.html">Nine-site executive summary &amp; submission guide</a> <a class="btn2" href="nine-site-audit-20261026.html">Pinned source audit</a> <a class="btn2" href="run-card-ARENA-5CD5E4F7-20261026.json">Current no-run JSON card</a></p>
+    <p class="small">The highest value in the user-supplied nine-site list is GEMSDOE32 0.2778, USER/OWNER-REPORTED and unverified. It is a forensic benchmark only. Earlier candidate cards and download links are historical research outputs, not current approval.</p>
+    </section>
+    <!--CURRENT-REVIEW-END-->'''
     idx = (DOCS / "index.html").read_text()
+    idx = re.sub(r"<!--CURRENT-REVIEW-BEGIN-->.*?<!--CURRENT-REVIEW-END-->\n?", "", idx, flags=re.S)
     idx = re.sub(r"<!--S21-PDWC-BEGIN-->.*?<!--S21-PDWC-END-->\n?", "", idx, flags=re.S)
     idx = re.sub(r' data-submission-ready="(?:true|false)"', "", idx)
-    idx = idx.replace('<main id="main">', '<main id="main">\n' + banner, 1)
+    idx = idx.replace("GEMSDOE91 · DOE GEMS Prize (Session 20 · S20-RHTW)", "GEMSDOE91 · DOE GEMS Prize · Current Review")
+    idx = idx.replace('<main id="main">', '<main id="main">\n' + current_notice + "\n" + banner, 1)
     if ".s21-grid{" not in idx and "</style>" in idx:
         idx = idx.replace("</style>", extra_css + "\n</style>", 1)
     (DOCS / "index.html").write_text(idx)
 
-    # Update root index.html while preserving scoped statements required by test_site_audit.py
-    root_html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=docs/index.html"><title>GEMSDOE91 — Session 21 S21-PDWC GeoTIFF &amp; 9-Site Executive Summary</title></head><body><main><h1>GEMSDOE91 — Current Status (2026-10-26)</h1>
-<p><strong>NEW · Session 21 (S21-PDWC, 2026-10-26, branch arena/a31c96c3-gemsdoe91): new unique validated GeoTIFF (<code>{esc(fname)}</code>).</strong> OK TO DOWNLOAD: {'YES' if okd else 'NO'}. {esc(sb_text)}. HOLDOUT-DTI = {h['holdout_dti']:.6f} (95% CI [{h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}], #1 symmetric OOF in GEMSDOE91). <a href="docs/index.html">Open portal &amp; one-click download</a> &middot; <a href="docs/s21-pdwc-executive-summary.html">9-Site Executive Summary &amp; Step-by-Step DrivenData Submission Guide</a> &middot; <a href="docs/run-card-S21-PDWC.json">JSON Run Card</a></p>
-<p>Prior Session 20 (S20-LFI, 2026-10-26): research GeoTIFF (OK TO DOWNLOAD: YES; OK TO SUBMIT: NO). <a href="docs/s20-lfi-executive-summary.html">S20 executive summary</a></p>
-<p>Parallel 2026-10-26 nine-site audit (arena/af73263f, read-only review): <strong>NO NEW TIFF GENERATED.</strong> OK TO DOWNLOAD: NO NEW TIFF FROM THIS REVIEW. OK TO SUBMIT: NO. <a href="docs/nine-site-audit-20261026.html">Open the nine-site audit</a></p>
-<p>The prior ISO91 GeoTIFF remains a separate negative research artifact, not an approved submission: <a href="docs/index.html">historical research/download portal</a> · <a href="docs/executive-summary.html">submission guide (none currently approved)</a>.</p></main></body></html>
-"""
+    # Root landing is the auditable current review, not a historical TIFF pitch.
+    root_html = '''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=docs/index.html"><title>GEMSDOE91 — Current review status</title></head><body><main><h1>GEMSDOE91 — Current Review (2026-10-26)</h1>
+<p><strong>Current review: NO NEW TIFF GENERATED. OK TO DOWNLOAD: NO NEW TIFF. OK TO SUBMIT: NO.</strong> No lane is assigned and required competition inputs are absent. Earlier research downloads are not approval to upload.</p>
+<p><a href="docs/high-score-submissions-review.html">Nine-site executive summary</a> · <a href="docs/nine-site-audit-20261026.html">Pinned source audit</a> · <a href="docs/run-card-ARENA-5CD5E4F7-20261026.json">Current run card</a> · <a href="docs/index.html">Open project portal</a></p>
+<p>Highest score value in the supplied nine-site list: GEMSDOE32 0.2778, USER/OWNER-REPORTED and unverified; it is a benchmark only, not a recommendation.</p>
+<p>Earlier S21-PDWC file <code>gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif</code> (<code>74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8</code>) is a historical research artifact, not cleared to submit. The older portal remains a historical research/download portal.</p></main></body></html>
+'''
     (ROOT / "index.html").write_text(root_html)
 
     # Build 9-site table rows
@@ -219,12 +232,13 @@ def render() -> None:
 <footer>Generated automatically from <code>docs/run-card-S21-PDWC.json</code> &amp; <code>docs/nine-site-executive-summary-s21.json</code> by <code>scripts/render_s21_pdwc_pages.py</code>. Zero manual numbers, zero automatic competition uploads.</footer>
 </div>{copy_js}</body></html>
 """
-    (DOCS / "s21-pdwc-executive-summary.html").write_text(exec_body)
+    clean_html = lambda value: re.sub(r"[ \t]+$", "", value, flags=re.M).rstrip() + "\n"
+    (DOCS / "s21-pdwc-executive-summary.html").write_text(clean_html(exec_body))
     (DOCS / "s21-pdwc.html").write_text(
-        exec_body.replace(
+        clean_html(exec_body.replace(
             "<title>GEMSDOE91 · Session 21 S21-PDWC · 9-Site Executive Summary &amp; How to Submit</title>",
             "<title>GEMSDOE91 · Session 21 S21-PDWC · Scientific Audit &amp; Run Card</title>",
-        )
+        ))
     )
 
 
