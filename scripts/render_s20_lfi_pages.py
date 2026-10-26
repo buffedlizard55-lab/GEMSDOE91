@@ -98,7 +98,7 @@ def render():
     <h1>NEW · Session 20 · LFI GeoTIFF · automated verdict</h1>
     <div class="verdicts"><div class="v {dl_class}">OK TO DOWNLOAD: {'YES' if okd else 'NO'}<small>format re-validated from disk · unique vs {reg['protocol_and_anchor_registry']['n_compared'] + reg['sibling_sweep']['n_compared']} rasters</small></div>
     <div class="v {sb_class}">{esc(sb_text)}<small>{esc(sb_small)}</small></div></div>
-    <a class="btn" download href="downloads/{fname}">↓ Download GeoTIFF (.tif, {tif_kb} KB)</a><a class="btn2" download href="downloads/{zname}">↓ ZIP with the one GeoTIFF</a><a class="btn2" href="s20-lfi-executive-summary.html">Executive summary &amp; how to submit</a><a class="btn2" href="run-card-S20-LFI.json">Run card</a>
+    <a class="btn" download href="downloads/{fname}">↓ Download S20-LFI GeoTIFF</a><a class="btn2" download href="downloads/{zname}">↓ S20-LFI Single-TIFF ZIP</a><a class="btn2" href="s20-lfi-executive-summary.html">Executive summary &amp; how to submit</a><a class="btn2" href="run-card-S20-LFI.json">Run card</a>
     <p class="small">Name <code>{esc(sub['name'])}</code><br>Note ({sub['note_chars']}/140) <code>{esc(sub['note'])}</code><br>SHA-256 <code>{sub['sha256']}</code> · {sub['n_dots']:,} binary dots · all-finite zeros float32</p>
     </section>
     <!--S20-LFI-END-->"""
@@ -149,7 +149,7 @@ def render():
     {decision}
     <section class="card"><h2>1 · How to submit (DrivenData form: file + optional note)</h2>
     <ol>
-    <li>Click <strong>↓ Download GeoTIFF</strong> above. The ZIP holding the one TIFF is equally valid.</li>
+    <li>Click <strong>↓ Download S20-LFI GeoTIFF</strong> above ({tif_kb} KB). The ZIP holding the one TIFF is equally valid.</li>
     <li>Optional check: SHA-256 of the downloaded file must equal <code>{sub['sha256']}</code> (<code>sha256sum {esc(fname)}</code>).</li>
     <li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org → DOE GEMS → Submissions</a> and sign in.</li>
     <li>Choose the file in the upload box.</li>
