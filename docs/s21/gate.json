@@ -1,0 +1,44 @@
+{
+ "ridge10": {
+  "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+  "model_cand": 0.21826367226413557,
+  "model_r0": 0.2717957922583591,
+  "delta": -0.053532119994223526,
+  "boot_delta_ci95": [
+   -0.09898690555323891,
+   -0.01458139165674478
+  ],
+  "p_delta_gt0": 0.016666666666666666,
+  "boot": 60,
+  "projection_vs_reported_r0": 0.22426788000577647,
+  "n_fit_anchors": 112
+ },
+ "ridge1": {
+  "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+  "model_cand": 0.2134902878381134,
+  "model_r0": 0.28185948618423884,
+  "delta": -0.06836919834612543,
+  "boot_delta_ci95": [
+   -0.10573441018175614,
+   -0.01169325823200322
+  ],
+  "p_delta_gt0": 0.016666666666666666,
+  "boot": 60,
+  "projection_vs_reported_r0": 0.20943080165387457,
+  "n_fit_anchors": 112
+ },
+ "ridge1_blind_nine": {
+  "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+  "model_cand": 0.20195299826485183,
+  "model_r0": 0.31998772928724445,
+  "delta": -0.11803473102239262,
+  "boot_delta_ci95": [
+   -0.1709674864542664,
+   -0.038097046643552526
+  ],
+  "p_delta_gt0": 0.016666666666666666,
+  "boot": 60,
+  "projection_vs_reported_r0": 0.1597652689776074,
+  "n_fit_anchors": 95
+ }
+}

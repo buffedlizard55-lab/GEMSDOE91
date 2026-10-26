@@ -1,0 +1,509 @@
+{
+ "run_id": "S21-FAM3",
+ "branch": "arena/11ddffe8-gemsdoe91",
+ "lane": {
+  "name": "S21-FAM3 three-family complementarity inversion",
+  "assigned": true,
+  "preregistration": "docs/HYPOTHESES_S21_FAM3.md"
+ },
+ "hypothesis": "Live truth density for uncatalogued faults is carried by distance to the three nine-site family networks (h19-5 ridge, GEMSDOE33 tip-stepover, GEMSDOE36 Anderson PINN), catalogue distance, B19/B15/B12 terciles and the B15 basement-step gradient; inverting 112 USER-REPORTED live scores with exact DTI algebra and emitting greedy expected-DTI dots at a >3 px catalogue collar beats GEMSDOE32 R0 (0.2778 USER-REPORTED).",
+ "mechanism": "log E[G]=theta.phi, phi = dcat(9) + dnet-h19-5(6) + dGEMSDOE33(3) + dGEMSDOE36(3) + B19/B15/B12/|grad B15| terciles; ridge least squares on USER-REPORTED scores (src/gems91/lfi.py unchanged); two-pool coverage-aware ranked emission (src/gems91/lfi_emit.py unchanged) with hard 65% within-3-px caps vs 312 references and a ratio-aware fill; shared GeoTIFF writer.",
+ "non_fault_mimic": "Lithologic contacts / intrusive margins and volcanic flow lobes step basement depth and align with potential-field edges; erosional ridge crests mimic the h19-5 sensor. All family sensors read the same 19 bands, so agreement can encode shared bias.",
+ "evidence": {
+  "surrogate_E1": {
+   "label": "MODEL (leave-one-site-out on USER-REPORTED live scores; not a holdout DTI)",
+   "n_anchors": 112,
+   "ridge10": {
+    "loso_rmse": 0.02704356519086654,
+    "loso_spearman": 0.9421776699809159,
+    "loso_pearson": 0.9470191472445901,
+    "in_sample_rmse": 0.023635429212551066,
+    "f_public": 0.7623636915516754,
+    "K_public_truth_px": 10698.88410640978
+   },
+   "ridge1": {
+    "loso_rmse": 0.023163791914222676,
+    "loso_spearman": 0.9498229625752678,
+    "loso_pearson": 0.9614754251778442,
+    "f_public": 0.8473913561266581,
+    "K_public_truth_px": 12782.807066756286
+   },
+   "s20_design_stored": {
+    "loso_rmse": 0.019816204799190794,
+    "loso_spearman": 0.9570027038328685,
+    "note": "S20 design (with consensus covariate) predicts held-out live scores BETTER than S21; S21 family-sensor component is a negative result."
+   }
+  },
+  "projection_G4": {
+   "ridge10": {
+    "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+    "model_cand": 0.21826367226413557,
+    "model_r0": 0.2717957922583591,
+    "delta": -0.053532119994223526,
+    "boot_delta_ci95": [
+     -0.09898690555323891,
+     -0.01458139165674478
+    ],
+    "p_delta_gt0": 0.016666666666666666,
+    "boot": 60,
+    "projection_vs_reported_r0": 0.22426788000577647,
+    "n_fit_anchors": 112
+   },
+   "ridge1": {
+    "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+    "model_cand": 0.2134902878381134,
+    "model_r0": 0.28185948618423884,
+    "delta": -0.06836919834612543,
+    "boot_delta_ci95": [
+     -0.10573441018175614,
+     -0.01169325823200322
+    ],
+    "p_delta_gt0": 0.016666666666666666,
+    "boot": 60,
+    "projection_vs_reported_r0": 0.20943080165387457,
+    "n_fit_anchors": 112
+   },
+   "ridge1_blind_nine": {
+    "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+    "model_cand": 0.20195299826485183,
+    "model_r0": 0.31998772928724445,
+    "delta": -0.11803473102239262,
+    "boot_delta_ci95": [
+     -0.1709674864542664,
+     -0.038097046643552526
+    ],
+    "p_delta_gt0": 0.016666666666666666,
+    "boot": 60,
+    "projection_vs_reported_r0": 0.1597652689776074,
+    "n_fit_anchors": 95
+   }
+  },
+  "projection_G4_pass1": {
+   "note": "Pass-1 candidate (30,000 dots, registry-unique only) passed the G4 bar but was a DUPLICATE vs 7 sibling-sweep rasters; retained as evidence, never downloadable.",
+   "variants": {
+    "ridge10": {
+     "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+     "model_cand": 0.44736627133072615,
+     "model_r0": 0.2717957922583591,
+     "delta": 0.17557047907236706,
+     "boot_delta_ci95": [
+      0.03006743628690191,
+      0.22278092748369155
+     ],
+     "p_delta_gt0": 1.0,
+     "boot": 60,
+     "projection_vs_reported_r0": 0.453370479072367,
+     "n_fit_anchors": 112
+    },
+    "ridge1": {
+     "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+     "model_cand": 0.3933298910935482,
+     "model_r0": 0.28185948618423884,
+     "delta": 0.11147040490930937,
+     "boot_delta_ci95": [
+      0.049306785408103605,
+      0.24428329527686793
+     ],
+     "p_delta_gt0": 1.0,
+     "boot": 60,
+     "projection_vs_reported_r0": 0.3892704049093093,
+     "n_fit_anchors": 112
+    },
+    "ridge1_blind_nine": {
+     "label": "PROJECTION (surrogate, paired vs R0, site bootstrap; not a score)",
+     "model_cand": 0.40737919488889385,
+     "model_r0": 0.31998772928724445,
+     "delta": 0.0873914656016494,
+     "boot_delta_ci95": [
+      -0.015713192151875933,
+      0.20338186688946183
+     ],
+     "p_delta_gt0": 0.95,
+     "boot": 60,
+     "projection_vs_reported_r0": 0.36519146560164945,
+     "n_fit_anchors": 95
+    }
+   }
+  },
+  "holdout_dti_hide_v2": {
+   "label": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "split_sha256": "c79f1acaf337fd548d0873d576a8a3c286d373ae2cb19cfce4464597d448d18a",
+   "withheld_positives": 60988,
+   "candidate": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 0.0,
+    "fpw": 23481.0,
+    "fnw": 60988.0
+   },
+   "r0_gemsdoe32": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.006697041784474405,
+    "ci95": [
+     0.005990353973258847,
+     0.0073682311241048135
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 377.3190358808101,
+    "fpw": 37376.43107272676,
+    "fnw": 60610.68096411921
+   },
+   "paired_vs_r0": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": -0.006697041784474405,
+    "ci95": [
+     -0.007368231124104814,
+     -0.005990353973258847
+    ],
+    "withheld_positive_pixels": 60988
+   },
+   "nine_site_bests": {
+    "GEMSDOE24": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.1716896513713997,
+     "ci95": [
+      0.15752840253780592,
+      0.18525699972714366
+     ],
+     "withheld_positive_pixels": 60988,
+     "tpw": 10618.323104508012,
+     "fpw": 54659.820345967375,
+     "fnw": 50369.67689549202
+    },
+    "GEMSDOE25/30": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.16150584038345975,
+     "ci95": [
+      0.1479152554805839,
+      0.17465849789664908
+     ],
+     "withheld_positive_pixels": 60988,
+     "tpw": 9482.855742323745,
+     "fpw": 40141.39264005089,
+     "fnw": 51505.14425767624
+    },
+    "GEMSDOE27": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.1725007903012063,
+     "ci95": [
+      0.1582102338817106,
+      0.18598497144832424
+     ],
+     "withheld_positive_pixels": 60988,
+     "tpw": 10712.680558266125,
+     "fpw": 55846.37679864627,
+     "fnw": 50275.31944173393
+    },
+    "GEMSDOE28/31": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.04900108353734264,
+     "ci95": [
+      0.04488711750666879,
+      0.053045721991795455
+     ],
+     "withheld_positive_pixels": 60988,
+     "tpw": 2798.8627258213373,
+     "fpw": 38841.059306717565,
+     "fnw": 58189.13727417866
+    },
+    "GEMSDOE28b": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.046136570426040795,
+     "ci95": [
+      0.0420471505860933,
+      0.05005375678845965
+     ],
+     "withheld_positive_pixels": 60988,
+     "tpw": 2611.0051854280505,
+     "fpw": 36401.805735403344,
+     "fnw": 58376.99481457193
+    },
+    "GEMSDOE33": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.08639150287864672,
+     "ci95": [
+      0.0792340738926083,
+      0.09284501518635589
+     ],
+     "withheld_positive_pixels": 60988,
+     "tpw": 4985.561939788986,
+     "fpw": 39607.13132663984,
+     "fnw": 56002.43806021104
+    },
+    "GEMSDOE36": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "dti": 0.00691757449450298,
+     "ci95": [
+      0.006202057939114118,
+      0.007605357168770822
+     ],
+     "withheld_positive_pixels": 60988,
+     "tpw": 391.4088003055382,
+     "fpw": 38565.579470488796,
+     "fnw": 60596.5911996945
+    }
+   },
+   "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 159,
+    "draws": 1000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+   },
+   "construction_note": "Candidate TPw is identically 0: every dot is >3.01 px from the full catalogue, and hide-v2 truth is a subset of that catalogue inside a 3 px kernel."
+  },
+  "instrument_validity": {
+   "n": 8,
+   "spearman_hide_v2_vs_live": -1.0,
+   "s20_full_112_anchor_spearman": 0.10539315416727152,
+   "s20_split_sha256": "c79f1acaf337fd548d0873d576a8a3c286d373ae2cb19cfce4464597d448d18a",
+   "split_matches_s20": true,
+   "note": "USER-REPORTED live scores; hide-v2 withholds catalogued pixels, live truth excludes the catalogue.",
+   "hide_v2_valid_as_live_proxy": false
+  },
+  "canaries": {
+   "dcat": {
+    "auc": 0.48915270872836925,
+    "symmetric_auc": 0.5108472912716308
+   },
+   "dnet_h195": {
+    "auc": 0.3528974047058671,
+    "symmetric_auc": 0.6471025952941329
+   },
+   "d_gemsdoe33": {
+    "auc": 0.45193757967249937,
+    "symmetric_auc": 0.5480624203275006
+   },
+   "d_gemsdoe36": {
+    "auc": 0.5453223951145025,
+    "symmetric_auc": 0.5453223951145025
+   },
+   "det_elev_slope_B19": {
+    "auc": 0.5563867832857743,
+    "symmetric_auc": 0.5563867832857743
+   },
+   "depth_to_base_B15": {
+    "auc": 0.5084787674219866,
+    "symmetric_auc": 0.5084787674219866
+   },
+   "det_elev_B12": {
+    "auc": 0.4954923708748082,
+    "symmetric_auc": 0.5045076291251918
+   },
+   "grad_B15": {
+    "auc": 0.5295567104658948,
+    "symmetric_auc": 0.5295567104658948
+   }
+  },
+  "nine_site_forensics": "docs/s21/nine-site-forensics.json"
+ },
+ "registry_comparison": {
+  "surface_preplacement": {
+   "phase": "surface_preplacement",
+   "ridge": 10.0,
+   "f": 0.7623636915516754,
+   "K_model": 10698.88410640978,
+   "rule": "duplicate-stop if |Spearman(q-surface, reference)| > 0.90 (stride-5 footprint sample, as sibling_sweep.cmd_check)",
+   "n_compared": 199,
+   "max_surface_abs_spearman": 0.1406,
+   "verdict": "PASS",
+   "worst": [
+    {
+     "raster": "data/lfi_anchors/20GEMSDOE__gems20-h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan.tif",
+     "surface_abs_spearman": 0.1406,
+     "n_positive": 123829
+    },
+    {
+     "raster": "data/lfi_anchors/20GEMSDOE__gems20-h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan.tif",
+     "surface_abs_spearman": 0.13989,
+     "n_positive": 121258
+    },
+    {
+     "raster": "data/fleet_registry/19GEMSDOE__h19-4-multiline-corroborated.tif",
+     "surface_abs_spearman": 0.13905,
+     "n_positive": 123779
+    },
+    {
+     "raster": "data/fleet_registry/calib_h194_01894.tif",
+     "surface_abs_spearman": 0.13905,
+     "n_positive": 123779
+    },
+    {
+     "raster": "data/fleet_registry/calib_h161_01855.tif",
+     "surface_abs_spearman": 0.13846,
+     "n_positive": 123939
+    },
+    {
+     "raster": "data/fleet_registry/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+     "surface_abs_spearman": 0.13293,
+     "n_positive": 121131
+    },
+    {
+     "raster": "data/fleet_registry/calib_h195_01922.tif",
+     "surface_abs_spearman": 0.13293,
+     "n_positive": 121131
+    },
+    {
+     "raster": "data/lfi_anchors/GEMSDOE48__gemsdoe48-h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8.tif",
+     "surface_abs_spearman": 0.10583,
+     "n_positive": 37723
+    },
+    {
+     "raster": "data/lfi_anchors/GEMSDOE22__gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+     "surface_abs_spearman": 0.10459,
+     "n_positive": 335879
+    },
+    {
+     "raster": "docs/downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif",
+     "surface_abs_spearman": 0.09439,
+     "n_positive": 29671
+    }
+   ]
+  },
+  "protocol_and_anchor_registry": {
+   "n_compared": 201,
+   "n_skipped": 24,
+   "n_dense": 36,
+   "verdict": "UNIQUE",
+   "literal_verdict": "LITERAL-FLAGS",
+   "duplicates": []
+  },
+  "sibling_sweep": {
+   "scope": "every unique */downloads/*.tif (<20 MB, excluding -nan/allfinite twins) in buffedlizard55-lab's GEMSDOE* repositories at sweep time",
+   "n_compared": 1078,
+   "n_skipped": 2,
+   "n_dense": 182,
+   "verdict": "UNIQUE",
+   "literal_verdict": "LITERAL-FLAGS",
+   "duplicates": []
+  },
+  "pass1_sibling_duplicates": [
+   "data/sibling_sweep/rasters/GEMSDOE40__gems40-euler-augmented-incumbent-20261005-ac1c1927-zeros.tif",
+   "data/sibling_sweep/rasters/GEMSDOE40__gems40-euler-augmented-incumbent-20261005-ac1c1927.tif",
+   "data/sibling_sweep/rasters/GEMSDOE48__GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07-nan-outside.tif",
+   "data/sibling_sweep/rasters/GEMSDOE48__GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07.tif",
+   "data/sibling_sweep/rasters/GEMSDOE52__gems52-h87-boardcal-marginal-20261010-61427px.tif",
+   "data/sibling_sweep/rasters/GEMSDOE92__gemsdoe92-riedelvalve-riedel_n90k-90000-20261025-e57353de-zeros.tif",
+   "data/sibling_sweep/rasters/GEMSDOE92__gemsdoe92-riedelvent-tail85k-85000-20261025-1cc99d0f-zeros.tif"
+  ],
+  "max_literal_sparse_sibling": {
+   "raster": "data/sibling_sweep/rasters/GEMSDOE52__gems52-h87-boardcal-marginal-20261010-61427px.tif",
+   "within_3px_literal": 0.64997
+  },
+  "max_dots_abs_spearman": 0.07604,
+  "max_surface_abs_spearman_sibling": 0.52089,
+  "vs_s20_candidate": {
+   "within_3px_literal": 0.44849,
+   "dots_abs_spearman": 0.07604,
+   "surface_abs_spearman": 0.09439
+  },
+  "rule": "duplicate if surface or dots |Spearman| > 0.90, or > 70% of candidate dots within 3 px of the reference's dots; reference dots = its positive pixels when sparse (<= 3x candidate dots), its top-K pixels (K = candidate dots) when dense and continuous; dense binary area masks are judged by rank correlation; literal readings always reported"
+ },
+ "submission": {
+  "file": "docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif",
+  "zip": "docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.zip",
+  "sha256": "2603acc849274715780305e777e82b87bbd0838b6a024c23e699c84e02145fd3",
+  "zip_sha256": "2884db5330b6d28a9d6780f6db82da80edbaa37ff54f5ea364565aa084c9cee1",
+  "bytes": 117218,
+  "name": "gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros",
+  "note": "S21-FAM3: nine-site 3-family live-score inversion + gradB15, >3px collar, greedy E[DTI], 23481 dots",
+  "note_chars": 99,
+  "n_dots": 23481,
+  "encoding": "all-finite zeros, float32, no nodata"
+ },
+ "raster_sha256": "2603acc849274715780305e777e82b87bbd0838b6a024c23e699c84e02145fd3",
+ "validator_output": {
+  "file": "/home/user/GEMSDOE91/outputs/s21/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif",
+  "bytes": 117218,
+  "sha256": "2603acc849274715780305e777e82b87bbd0838b6a024c23e699c84e02145fd3",
+  "meta": {
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "count": 1,
+   "nodata": null,
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "profile_compress": "deflate"
+  },
+  "band_description": [
+   null
+  ],
+  "n_finite": 12279160,
+  "n_nan": 0,
+  "n_infinite": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "mean": 0.0019122643861919641,
+  "emitted_positive_pixels": 23481,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "all_checks_passed": true,
+  "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+  "on_catalogue_positive_pixels": 0,
+  "in_footprint_positive_pixels": 23481,
+  "footprint_fraction": 0.004544088456552294
+ },
+ "gates": {
+  "G1_format": true,
+  "G2_uniqueness": true,
+  "G3_leakage_canary": true,
+  "G4_surrogate_projection": false,
+  "G5_instrument_rule": true
+ },
+ "s21_preregistered_gates_all_pass": false,
+ "standing_rule_beats_spatially_blocked_holdout_best": false,
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "verdict": "negative",
+ "organizer_confirmed": null,
+ "deviations": [
+  "Pass-2 re-emission: pass-1 candidate duplicated 7 sibling-sweep rasters; 130 sparse sibling references (>=0.50 literal overlap) were added as hard caps (312 total) and all gates re-run unchanged. Pass-1 evidence: docs/s21/pass1-*.json.",
+  "Emitter fix in pass 2: S20-pattern fill_exact ratchets to 681 dots and fixed-floor fill collapses to ~1.9k under 312 caps (reproduced on work/s21/emit_debug.npz); replaced with a ratio-aware fill in the S21 driver only. Latent bug also present in scripts/run_lfi_emit.py - reported in IRREGULARITIES.md (IR-S21-03) for a template-level fix.",
+  "G5: hide-v2 reported but not gating, preregistered on S20 E2 evidence (112-anchor Spearman 0.105; S21 nine-site recomputation -1.0, split sha identical). The candidate does not beat hide-v2 (0.0 by construction) and also fails G4, so the verdict is negative on both instruments.",
+  "Budget: 3 experiments (E1 fits, E2 holdout/canaries, E3 emission incl. pass-2 re-emission); wall-clock exceeded the 2 h protocol budget (long gate bootstrap and two 1,078-raster sibling checks)."
+ ],
+ "slots_used": 0,
+ "slot_selection": "not made by this run (protocol: promotion/selector is a separate step)"
+}

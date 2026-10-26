@@ -1,0 +1,26 @@
+{
+ "units": "fractions of dots; dcat/dnet in 100 m px",
+ "candidate": {
+  "n": 23481,
+  "dcat_le5": 0.05,
+  "dcat_gt10": 0.836,
+  "dnet_le1": 0.384,
+  "dnet_gt6": 0.008,
+  "min_dcat": 3.1622776985168457
+ },
+ "r0": {
+  "n": 37654,
+  "dcat_le5": 0.15,
+  "dcat_gt10": 0.698,
+  "dnet_le1": 1.0,
+  "dnet_gt6": 0.0,
+  "min_dcat": 2.2360680103302
+ },
+ "footprint": {
+  "n": 5167373,
+  "dcat_le5": 0.138,
+  "dcat_gt10": 0.747,
+  "dnet_le1": 0.072,
+  "dnet_gt6": 0.633
+ }
+}
