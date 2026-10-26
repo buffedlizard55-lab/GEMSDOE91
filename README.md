@@ -1,15 +1,16 @@
-# GEMSDOE91 — S22 OMTJ · current status (2026-10-26)
+# GEMSDOE91 — S18-UNIQUE unique candidate · current status (2026-10-26)
 
-**OK TO DOWNLOAD: YES — research only. OK TO SUBMIT: NO.**
+**OK TO DOWNLOAD: YES — research only. OK TO SUBMIT: NO — holdout-DTI 0.000624 did not beat incumbent 0.066223; per budget rule, no weekly slot spent.**
 
-[**Download the new TIFF**](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif) · [Single-TIFF ZIP](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.zip) · [**Nine-site executive summary & submission guide**](docs/executive-summary.html) · [Run card](docs/s22/run-card.json) · [Three-pass review](docs/s22/review.md) · [Portal consistency review](docs/PORTAL-REVIEW-20261026.md)
+[**Download the new TIFF**](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif) · [Single-TIFF ZIP](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip) · [**Nine-site executive summary & submission guide**](docs/executive-summary.html) · [Run card](docs/run-card-S18-UNIQUE.json)
 
-- **New generated predictions, not a copied raster. Strict protocol uniqueness: FAIL.** The final dot mask overlaps a registered calibration lattice by **98.57%** within 3 pixels. The run stopped after **one** experiment; no dense-raster exemption and **zero** submission slots.
-- **HOLDOUT-DTI: 0.066223**, 95% CI **[0.048015, 0.086803]**; evaluator `gems57-pooled-hide-v2`, **60,988 withheld positive pixels**. This is not a leaderboard estimate and does not establish an improvement over a matched incumbent.
-- Local TIFF/ZIP validation: one float32 band, all finite [0,1], no NaN/Inf, matching CRS/shape/transform. **Local format PASS is not organizer acceptance or permission to upload.**
+- **New generated predictions, not a copied raster. Strict protocol uniqueness: PASS.** Final dots overlap 21.44% within 3 px of registry rasters (≤70% required); surface |Spearman| ρ=0.0098 (≤0.90 required). Not a duplicate of any GEMSDOE24/25/27/28/30/31/32/33/36 leader.
+- **Holdout-DTI: 0.000624**, 95% CI **[0.000536, 0.000716]**, evaluator `gems91-hide-recover-v1.1-nohalo`, **60,988 withheld positive pixels**. Near-zero by design: dots are deliberately off-catalogue to hunt new faults, not recover known ones. Did not beat incumbent 0.066223 → no slot spent.
+- **Leakage canary: PASS.** Seven features × four folds; max symmetric AUC 0.5615 ≤ 0.90 (worst: det_elev_slope).
+- Local TIFF/ZIP validation: one float32 band, all finite [0,1], no NaN/Inf, matching CRS/shape/transform. Zero mass on catalogue pixels. SHA-256 new in ledger. **Local format PASS is not organizer acceptance or permission to upload.**
 - Exact historical leader files from **GEMSDOE24/25/27/28/30/31/32/33/36** re-hashed and compared. **GEMSDOE32 leads the supplied claims (0.2778, unverified); none of those nine leaders meets the peer-overlap uniqueness rule.** No receipt-linked score or calibrated leaderboard estimate is available.
-- Unique file name: `gems91-s22-omtj-e1-20261026-a99b8923f0-zeros`. Note: `S22 OMTJ E1: magnetic third-moment boundary x gravity normal; research only; not approved for submission.`
-- TIFF SHA256: `f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042`.
+- Unique file name: `gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405`. Note (96/140): `S18-UNIQUE basin-stripped Bouguer curvature x RTP grad 20000 dots playa-gated 2.25px collar`.
+- TIFF SHA256: `af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6`.
 
 ## Start every session here
 
