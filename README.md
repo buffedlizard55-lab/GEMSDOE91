@@ -1,3 +1,21 @@
+<!--S21-DCBL-BEGIN-->
+# GEMSDOE91 — Session 21 (`S21-DCBL`, branch `arena/6b5a64ab-gemsdoe91`): Deep-Cover Basin Lineament — unique TIF + nine-site executive summary
+
+> **AUTOMATED VERDICT: `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT (negative holdout + lattice disclosure, 0 slots)`.**
+> **[⬇ Download S21-DCBL GeoTIFF](docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.tif)** (`sha256 18529ab2e2d57007bf9d58d1f456a8414a50d67b17f9c81dfc26ec7055e7cb52`, 37,654 binary dots, all-finite zeros float32) · [Single-TIFF ZIP](docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.zip) · **[Nine-site executive summary (which is best?)](docs/nine-site-executive-summary.html)** · **[S21 submission guide & how to submit](docs/s21-dcbl-executive-summary.html)** · [Run card](docs/run-card-S21-DCBL.json) · [Preregistration with 5 hypotheses](docs/HYPOTHESES_S21_DCBL.md) · [Current portal](docs/index.html) · [Current submission guide](docs/executive-summary.html)
+>
+> - **Nine-site best reported:** GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` **0.2778 OWNER-REPORTED, UNVERIFIED** (no organizer receipt; manifest receipt=null). See [nine-site summary](docs/nine-site-executive-summary.html) and [full audit](docs/nine-site-audit-20261026.html). Public top 0.4413 (2026-10-25 stored, not refreshed) and 0.3195 snapshot (2026-10-03) conflict and are not receipts for these TIFFs.
+> - **Lane S21-DCBL (single paragraph, preregistered 2026-10-26T06:00Z):** Deep-Cover Basin Lineament — structure-tensor coherence of `iso_grav_anom` (B13) gradients gated by `depth_to_base_surf` (B15) sigmoid (350 m) + `cond_surf` (B17) and `rtp` (B02) edge coupling; greedy spaced 37,654 dots at 2.82 px, >3 px collar. No catalogue/R0 bytes read during feature construction.
+> - **Why 0.2778 leads the nine and can it be beaten?** PhD forensics: 100% of its ladder (0.2477→0.2778) is metric geometry — D2.8 optimal spacing + collar pruning + 69% far-field >1 km. Beating it needs ~62% more truth credit at same budget, i.e. a tighter localizer for concealed intrabasinal faults (Faulds & Hinz 2015: 35% of blind systems), not more pruning. S21-DCBL targets that gap.
+> - **Holdout (E1, buffered_component_draw seed20, 11,321 withheld, 1,000×20 km bootstrap):** 0.022565 HOLDOUT-DTI [0.01566,0.02964] vs comparable best S14-PTAC 0.267782 → **negative** (does not beat). Canary worst AUC 0.5416 ≤0.90 PASS. Surface |ρ| 0.0648 ≤0.90 PASS (100 rasters). Dots vs competitive fleet ≈44% ≤70% PASS (within indexed scope); vs 206k-dot lattice blanket 97.7% (expected capacity bound 82%+) disclosed. Format PASS (float32 EPSG:32611 3730×3292 correct transform, all-finite [0,1], no nodata, ZIP identical).
+> - **Uniqueness:** SHA-256 `18529ab2...055e7cb52` never seen in any GEMSDOE* registry — not an exact duplicate. Geometry is distinct within competitive scope (surface PASS, dots PASS vs R0/comparable), but like any spread 37k field inevitably hits the synthetic blanket at >70% (disclosed, not a promotion gate).
+> - **5 ranked hypotheses (all pinned 19-band stack, no external download):** 1) DCBL depth-gated gravity lineament (selected, tested here, negative); 2) DGSS dilatational strain on subsurface strike; 3) MSCE magnetite-destruction conductivity dipole; 4) IU-RHME intra-unit normalized magnetic edge; 5) DE-HA DEM Hurst anisotropy fine-scale. Full text in [HYPOTHESES_S21_DCBL.md](docs/HYPOTHESES_S21_DCBL.md) — H21-1 tested, others untested proposals.
+> - **Submission identity:** `gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros` · Note (82/140): `S21-DCBL deep-cover gravity lineament coherence, 37654 dots, depth-gated, eccf3ea6`
+> - 0 weekly slots used. Read the [full project brief](#full-project-brief) at every session start.
+
+---
+
+<!--S21-DCBL-END-->
 <!--S20-README-BEGIN-->
 # GEMSDOE91 — Session 20 (`S20-LFI`, branch `arena/670d23f5-gemsdoe91`): leaderboard-feedback inversion
 

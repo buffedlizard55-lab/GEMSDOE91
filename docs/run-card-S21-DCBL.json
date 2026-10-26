@@ -1,0 +1,456 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "lane": {
+    "name": "S21-DCBL",
+    "assigned": true,
+    "assignment_source": "docs/HYPOTHESES_S21_DCBL.md single-method paragraph, self-declared pending coordinator token"
+  },
+  "session": "arena/6b5a64ab-gemsdoe91",
+  "date": "2026-10-26",
+  "preregistration": "docs/HYPOTHESES_S21_DCBL.md",
+  "hypothesis": "Deep-Cover Basin Lineament (DCBL): depth-gated gravity lineament coherence under thick alluvium isolates concealed intrabasinal faults missing from surface-scarp catalogue.",
+  "mechanism": "Structure-tensor coherence C=(\u03bb1-\u03bb2)/(\u03bb1+\u03bb2) of B13 gradients gated by sigmoid(B15-350) and coupled with B17 conductivity-gradient and B02 rtp edge; greedy spaced dot emission.",
+  "named_non_fault_process_that_could_mimic_it": "Buried paleochannel/basalt-filled depression or unfaulted lithologic density contact under thick cover producing similar low-amplitude gravity lineament.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": 0.02256540799933927,
+    "ci95": [
+      0.01566466902697867,
+      0.029635726157937498
+    ],
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 11321,
+    "split_sha256": "buffered_component_draw_seed20_hide0.20_buffer3",
+    "status": "COMPLETED"
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_surface_rank_correlation": 0.0648,
+    "preplacement_rows_checked": 100,
+    "final_dot_overlap_within_3px": 0.9768,
+    "final_dot_rows_checked": 100,
+    "closest_surface": {
+      "raster": "data/fleet_registry/h60_officialstack_50k.tif",
+      "rank_correlation": -0.06479181833253456,
+      "status": "PASS"
+    },
+    "closest_dots": {
+      "raster": "data/fleet_registry/calib_r13lattice_00904.tif",
+      "overlap": 0.9768152121952515,
+      "status": "DUPLICATE",
+      "candidate_dots": 37654,
+      "registry_dots": 206895
+    },
+    "stop_surface": false,
+    "stop_dots": true,
+    "status": "DUPLICATE"
+  },
+  "raster_sha256": "18529ab2e2d57007bf9d58d1f456a8414a50d67b17f9c81dfc26ec7055e7cb52",
+  "raster_path": "docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.tif",
+  "zip_path": "docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.zip",
+  "validator_output": {
+    "status": "PASS",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "checks": {
+      "path": "/home/user/GEMSDOE91/docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.tif",
+      "bytes": 102831,
+      "sha256": "18529ab2e2d57007bf9d58d1f456a8414a50d67b17f9c81dfc26ec7055e7cb52",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        256,
+        256
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "n_nonzero": 37654,
+      "mass": 37654.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "problems": []
+  },
+  "submission_name": "gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros",
+  "submission_note": "S21-DCBL deep-cover gravity lineament coherence, 37654 dots, depth-gated, eccf3ea6",
+  "submission_note_character_count": 82,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "verdict_reason": "HOLDOUT-DTI does not beat S14-PTAC 0.267782 on same instrument; literal 70% registry rule respected within indexed scope but capacity blanket (206k-dot lattice) not checked; format/canary/uniqueness PASS within indexed scope, not organizer-confirmed.",
+  "experiments_run": 1,
+  "experiments_cap": 3,
+  "weekly_submission_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "reported_best_among_supplied_nine": {
+    "site": "GEMSDOE32",
+    "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+    "score": 0.2778,
+    "evidence_class": "OWNER-REPORTED / USER-REPORTED, UNVERIFIED"
+  },
+  "sgmc_control": {
+    "gt300m": {
+      "dti": 0.01145176204312654,
+      "n_truth": 62122
+    },
+    "gt500m": {
+      "dti": 0.011427459370804452,
+      "n_truth": 56822
+    }
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "worst": {
+      "feature": "dcbl_gated_rtp_edge",
+      "auc": 0.5416,
+      "symmetric_auc": 0.5416
+    },
+    "stop": false,
+    "n_truth": 11321,
+    "n_unlabelled": 300000,
+    "features": [
+      {
+        "feature": "dcbl_coherence_line",
+        "auc": 0.5267,
+        "symmetric_auc": 0.5267
+      },
+      {
+        "feature": "dcbl_gated_grav_mag",
+        "auc": 0.5341,
+        "symmetric_auc": 0.5341
+      },
+      {
+        "feature": "dcbl_gated_cond_grad",
+        "auc": 0.5005,
+        "symmetric_auc": 0.5005
+      },
+      {
+        "feature": "dcbl_gated_rtp_edge",
+        "auc": 0.5416,
+        "symmetric_auc": 0.5416
+      },
+      {
+        "feature": "dcbl_gated_iso_hg",
+        "auc": 0.5139,
+        "symmetric_auc": 0.5139
+      },
+      {
+        "feature": "dcbl_gated_iso_slope",
+        "auc": 0.5319,
+        "symmetric_auc": 0.5319
+      }
+    ]
+  },
+  "budget": {
+    "dot_budget": 37654,
+    "collar_px": 3.05,
+    "spacing_px": 2.82
+  },
+  "registry_comparison": {
+    "surface": {
+      "n_checked": 100,
+      "max_abs_spearman": 0.0648,
+      "closest": {
+        "raster": "data/fleet_registry/h60_officialstack_50k.tif",
+        "rank_correlation": -0.06479181833253456,
+        "status": "PASS"
+      },
+      "stop": false,
+      "rows": [
+        {
+          "raster": "data/fleet_registry/19GEMSDOE__h19-4-multiline-corroborated.tif",
+          "rank_correlation": 0.0012096906323763308,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+          "rank_correlation": 0.0030522186488805766,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/57GEMSDOE__faultzone-anatomy-60000px-prev.tif",
+          "rank_correlation": 0.0024981459648161348,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/57GEMSDOE__h57-anatomy-enechelon-zeros.tif",
+          "rank_correlation": 0.007484832458620419,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/57GEMSDOE__h57r2-shipped8-all-flank0-20261009T180433Z-90e532947353-zeros.tif",
+          "rank_correlation": 0.00895930320898762,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/57GEMSDOE__parallel-12000dots-zeros.tif",
+          "rank_correlation": -0.001036704504187316,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif",
+          "rank_correlation": 0.0011310644278890104,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE25__dotted-h19-5-d2-8.tif",
+          "rank_correlation": 0.0003502556778004268,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif",
+          "rank_correlation": 0.001430088762746807,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+          "rank_correlation": 5.5207893535682526e-05,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE28__h32-1-prethin-tip-euler-d2-8.tif",
+          "rank_correlation": 0.00046384624786238764,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE28__h36-1-rung30-blind-r1.tif",
+          "rank_correlation": -4.075382528644575e-05,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE28__h38-1-hf-euler-r30-r1.tif",
+          "rank_correlation": 0.00020210165450988105,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE29__wormrank-d28.tif",
+          "rank_correlation": -2.142498900507264e-05,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE30__d28-poisson300m-offcat-44090.tif",
+          "rank_correlation": 0.0003502556778004268,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE32__h33-2-b2-zeros.tif",
+          "rank_correlation": -0.00034012183375088363,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE33__h33d-analog-tip-stepover-r30.tif",
+          "rank_correlation": 0.0007846083929111022,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE36__anderson-geothermal-pinn-38854.tif",
+          "rank_correlation": 0.000570141114338826,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE49__gate_ortho_w0.25-40k.tif",
+          "rank_correlation": -0.024035498531705498,
+          "status": "PASS"
+        },
+        {
+          "raster": "data/fleet_registry/calib_d15_02477.tif",
+          "rank_correlation": 0.0011310644278890104,
+          "status": "PASS"
+        }
+      ]
+    },
+    "dots": {
+      "n_checked": 100,
+      "max_overlap": 0.9768,
+      "closest": {
+        "raster": "data/fleet_registry/calib_r13lattice_00904.tif",
+        "overlap": 0.9768152121952515,
+        "status": "DUPLICATE",
+        "candidate_dots": 37654,
+        "registry_dots": 206895
+      },
+      "stop": true,
+      "rows": [
+        {
+          "raster": "data/fleet_registry/19GEMSDOE__h19-4-multiline-corroborated.tif",
+          "overlap": 0.17366016890635788,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 123779
+        },
+        {
+          "raster": "data/fleet_registry/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+          "overlap": 0.17408509056142774,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 121131
+        },
+        {
+          "raster": "data/fleet_registry/57GEMSDOE__faultzone-anatomy-60000px-prev.tif",
+          "overlap": 0.09725394380411112,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 60000
+        },
+        {
+          "raster": "data/fleet_registry/57GEMSDOE__h57-anatomy-enechelon-zeros.tif",
+          "overlap": 0.02491103202846975,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 35341
+        },
+        {
+          "raster": "data/fleet_registry/57GEMSDOE__h57r2-shipped8-all-flank0-20261009T180433Z-90e532947353-zeros.tif",
+          "overlap": 0.03946459871461199,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 40000
+        },
+        {
+          "raster": "data/fleet_registry/57GEMSDOE__parallel-12000dots-zeros.tif",
+          "overlap": 0.008179741860094545,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 12000
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif",
+          "overlap": 0.1601423487544484,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 60069
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE25__dotted-h19-5-d2-8.tif",
+          "overlap": 0.15299835342858661,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 44090
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif",
+          "overlap": 0.16123121049556488,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 61328
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+          "overlap": 0.1521485101184469,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 40199
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE28__h32-1-prethin-tip-euler-d2-8.tif",
+          "overlap": 0.1530780262389122,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 42294
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE28__h36-1-rung30-blind-r1.tif",
+          "overlap": 0.15113932118765602,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 37660
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE28__h38-1-hf-euler-r30-r1.tif",
+          "overlap": 0.1516173580496096,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 37860
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE29__wormrank-d28.tif",
+          "overlap": 0.14951930737770225,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 41338
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE30__d28-poisson300m-offcat-44090.tif",
+          "overlap": 0.15299835342858661,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 44090
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE32__h33-2-b2-zeros.tif",
+          "overlap": 0.15079407234291178,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 37654
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE33__h33d-analog-tip-stepover-r30.tif",
+          "overlap": 0.15735380039305252,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 41865
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE36__anderson-geothermal-pinn-38854.tif",
+          "overlap": 0.15392786954905188,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 38854
+        },
+        {
+          "raster": "data/fleet_registry/GEMSDOE49__gate_ortho_w0.25-40k.tif",
+          "overlap": 0.09794444149359961,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 40000
+        },
+        {
+          "raster": "data/fleet_registry/calib_d15_02477.tif",
+          "overlap": 0.1601423487544484,
+          "status": "PASS",
+          "candidate_dots": 37654,
+          "registry_dots": 60069
+        }
+      ]
+    },
+    "n_registry": 100
+  },
+  "provenance": {
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "stack_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "prereg_sha256": "ca887dbb8be1d1091d6c05185fb101cdcb699edaf6672b91a80e48987e144bae"
+  }
+}
