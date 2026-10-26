@@ -42,6 +42,21 @@ The raw cached stack and registry can be restored for research using the instruc
 <details>
 <summary>Historical sessions and preserved full project brief — not the current submission verdict</summary>
 
+### Concurrent historical 5cd5e4f7 review (not the active S22 outcome)
+
+<!--CURRENT-REVIEW-BEGIN-->
+# GEMSDOE91 — Current Review (2026-10-26)
+
+> **Current review status:** `NO NEW TIFF GENERATED` · `OK TO DOWNLOAD: NO NEW CANDIDATE` · `OK TO SUBMIT: NO` · **0 experiments, 0 weekly slots used.** The current branch has no assigned single-method lane and no competition inputs under `data/`; both the scientific preflight and build readiness are blocked. Earlier TIFFs linked elsewhere in this repository are historical research artifacts, not approval to upload.
+>
+> **Nine-site executive summary:** [Open the site-by-site review](docs/high-score-submissions-review.html) · [Pinned source audit](docs/nine-site-audit-20261026.html) · [Three-pass review](docs/REVIEW-SITE-AUDIT-20261026.md) · [Current run card](docs/run-card-ARENA-5CD5E4F7-20261026.json).
+>
+> **Highest value among the scores supplied in the request:** GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, `0.2778 USER/OWNER-REPORTED, UNVERIFIED`. This is a forensic benchmark only, not an `ORGANIZER-CONFIRMED` score and not a recommended download or submission. A merged-main parallel review records an official public-leaderboard observation of `0.4437` (rank 1, retrieved 2026-10-26; see [its provenance note](docs/REVIEW-ACTIVE-8F9CFF19-20261026.md)); this branch did not independently refresh it, and it is not a receipt for any focus-site TIFF. The evidence-qualified table and explanation are in the executive summary.
+>
+> **No new submission was generated intentionally.** There is no basis to copy/relabel an old raster or infer a method lane. To resume, first provide the assigned method paragraph and resolve authorized placement of the exact pinned inputs; then run the shared holdout, per-feature canaries, both registry checks and format validator. Keep weekly-slot selection separate. The earlier S21-PDWC research TIFF (`gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif`, SHA-256 `74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8`) remains a historical download and is **not cleared to submit**.
+
+<!--CURRENT-REVIEW-END-->
+
 ### Concurrent historical no-run review (preserved; superseded by S22 status above)
 
 <!--ACTIVE-8F9CFF19-BEGIN-->
