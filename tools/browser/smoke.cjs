@@ -265,6 +265,15 @@ async function main() {
   }
   fs.writeFileSync(path.join(output, 'browser-verification.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
-  if (report.status !== 'PASS') process.exitCode = 1;
+  if (report.status !== 'PASS') {
+    const bad = { errors: report.console_or_http_errors, accessibility: (report.accessibility || []).filter(a => a.violations.length) };
+    console.log(`::error title=browser smoke report FAIL::${JSON.stringify(bad).slice(0, 900)}`);
+    process.exitCode = 1;
+  }
 }
-main().catch(error => { console.error(error); process.exitCode = 1; });
+main().catch(error => {
+  console.error(error);
+  // Surface the reason as a GitHub annotation so it is visible without raw log access.
+  console.log(`::error title=browser smoke::${String(error && error.message || error).replace(/\r?\n/g, ' ').slice(0, 900)}`);
+  process.exitCode = 1;
+});
