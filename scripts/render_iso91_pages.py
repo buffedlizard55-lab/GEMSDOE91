@@ -66,13 +66,21 @@ def fmt_ci(x) -> str:
     return f"{x['dti']:.6f} [{x['ci95'][0]:.6f}, {x['ci95'][1]:.6f}]"
 
 
+def current_review_notice() -> str:
+    return """<section class=\"card\" style=\"border:2px solid #a12c2c;background:#fff0e9\" aria-label=\"Current review status\">
+<p><strong>2026-10-26 CURRENT REVIEW: NO NEW TIFF GENERATED.</strong> OK TO DOWNLOAD: NO NEW TIFF FROM THIS REVIEW. OK TO SUBMIT: NO.</p>
+<p>The ISO91 TIFF linked farther down is a separate 2026-10-25 negative research artifact. It was not produced by this review and is <strong>NOT OK TO SUBMIT</strong>. Do not treat its download link or format check as approval.</p>
+<p><a href=\"nine-site-audit-20261026.html\">Nine-site executive audit</a> · <a href=\"REVIEW-SITE-AUDIT-20261026.md\">Three-pass review</a> · <a href=\"run-card-SITE-AUDIT-20261026.json\">No-run JSON card</a> · <a href=\"research/nine-site-audit-20261026.json\">Pinned claim register</a></p>
+</section>"""
+
+
 def head(title: str, desc: str) -> str:
     return (f"<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" "
             f"content=\"width=device-width,initial-scale=1\"><title>{e(title)}</title><meta name=\"description\" "
             f"content=\"{e(desc)}\"><style>{CSS}</style></head><body><div class=\"wrap\">\n"
             "<header><span class=\"logo\">GEMSDOE91 · DOE GEMS Prize</span><nav aria-label=\"Main\">"
-            "<a href=\"index.html\">Download</a><a href=\"executive-summary.html\">Executive summary &amp; how to submit</a>"
-            "<a href=\"REVIEW-ISO91-BACC7C26-20261025.md\">Full review</a><a href=\"index.html#archive\">Archive</a></nav></header>\n")
+            "<a href=\"nine-site-audit-20261026.html\">Current audit</a><a href=\"index.html\">Research archive</a><a href=\"executive-summary.html\">Submission guide</a>"
+            "<a href=\"REVIEW-SITE-AUDIT-20261026.md\">Current three-pass review</a><a href=\"REVIEW-ISO91-BACC7C26-20261025.md\">ISO91 history</a></nav></header>\n")
 
 
 def download_card(c: dict) -> str:
@@ -95,7 +103,7 @@ def download_card(c: dict) -> str:
     sub_why = ("every preregistered gate passed" if ok_sub else
                f"NOT OK TO SUBMIT — failed {e(failed)}; do not spend a weekly slot")
     return f"""<section class="card dl" data-submission-ready="{'true' if ok_sub else 'false'}" aria-label="Current download and automated verdict">
-<h1>ISO91 · new research GeoTIFF · automated verdict</h1>
+<h1>ISO91 · prior negative research GeoTIFF · 2026-10-25</h1>
 <div class="verdicts"><div class="v {'yes' if ok_dl else 'no'}">{'OK TO DOWNLOAD: YES' if ok_dl else 'OK TO DOWNLOAD: NO'}<small>format re-checked from disk · {e(uniq_short)}</small></div>
 <div class="v {'yes' if ok_sub else 'no'}">{sub_line}<small>{sub_why}</small></div></div>
 <a class="btn" download href="{e(tif)}">↓ Download GeoTIFF (.tif, {r['bytes']/1024:.0f} KB)</a><a class="btn2" download href="{e(zp)}">↓ ZIP with the one GeoTIFF</a><a class="btn2" href="run-card-ISO91.json">Machine run card</a>
@@ -105,10 +113,10 @@ single band · float32 · EPSG:32611 · 3730 rows × 3292 columns · transform (
 
 
 def identity(c: dict) -> str:
-    return f"""<section class="card"><h2>Submission form values</h2>
-<label class="small" for="nm">Unique submission name</label><div class="copy"><input id="nm" readonly value="{e(c['submission_name'])}"><button type="button" data-copy="nm">Copy</button></div>
-<label class="small" for="nt">Note (optional field) · {c['submission_note_chars']}/140 characters</label><div class="copy"><input id="nt" readonly value="{e(c['submission_note'])}"><button type="button" data-copy="nt">Copy</button></div>
-<p class="small">Recorded for traceability. The verdict above decides whether an upload is justified; this site never uploads or selects a slot.</p></section>"""
+    return f"""<section class="card"><h2>Historical ISO91 research metadata — not approved for upload</h2>
+<label class="small" for="nm">Prior ISO91 research name (not a current submission)</label><div class="copy"><input id="nm" readonly value="{e(c['submission_name'])}"><button type="button" data-copy="nm">Copy</button></div>
+<label class="small" for="nt">Prior research note · {c['submission_note_chars']}/140 characters</label><div class="copy"><input id="nt" readonly value="{e(c['submission_note'])}"><button type="button" data-copy="nt">Copy</button></div>
+<p class="small">These values identify the historical ISO91 file only. The current review approves no upload; do not paste this name or note into a live submission. A selector must separately approve an exact candidate, and this site never uploads or chooses a slot.</p></section>"""
 
 
 def gates_table(c: dict) -> str:
@@ -186,9 +194,9 @@ def footer() -> str:
 def render_index(c: dict) -> str:
     sg = c["sgmc_control_report_only"]["arms"]
     u = c["uniqueness"]
-    return (head("GEMSDOE91 · ISO91 GeoTIFF with automated verdict",
-                 "One-click download of a new, format-validated GeoTIFF with an automated OK-to-download / OK-to-submit verdict.")
-            + "<main id=\"main\">\n" + download_card(c) + identity(c) + gates_table(c)
+    return (head("GEMSDOE91 · prior ISO91 research artifact and current review status",
+                 "Current 2026-10-26 review generated no TIFF; the older ISO91 file remains a negative research artifact only.")
+            + "<main id=\"main\">\n" + current_review_notice() + download_card(c) + identity(c) + gates_table(c)
             + f"""<section class="card"><h2>What was tested, in one paragraph</h2>
 <p><strong>Hypothesis (ISO91):</strong> {e(c['hypothesis'])} <strong>Result:</strong> negative. The isolation-trained model barely moved its dots away from known faults, and with four to five times fewer positives it lost to the incumbent on both holdouts. Report-only SGMC control (more than 500 m off-catalogue): ISO91 {sg['ISO91_E1_final']['dti_gt500m']}, incumbent {sg['E0_final_same_emission']['dti_gt500m']}, R0 {sg['R0_gemsdoe32_h33_2_b2']['dti_gt500m']}. Overlap with R0's dots: {100*u['vs_R0_gemsdoe32_h33_2_b2']['within_3px']:.1f}% within 3 px.</p>
 <p><strong>Why GEMSDOE32 h33-2-b2 reached 0.2778 (USER-REPORTED):</strong> 79% of its gain over the dense ridge network came from emission geometry (2.8 px dotting) and 21% from deleting zero-credit dots within 2 px of mapped faults. Its ridges come from sub-100 m topography, and 70% of its dots lie more than 1 km from the catalogue. Two independent routes (MODEL) put the public truth set at about 12,500 px, with R0 covering about 40%. Reaching 0.4413 (PUBLIC-LEADERBOARD #1) needs about 63% more truth credit at the same number of dots. <a href="REVIEW-ISO91-BACC7C26-20261025.md">Full analysis</a> · <a href="HYPOTHESES_ISO91.md">preregistered hypotheses</a> · <a href="KNOWLEDGE-GEOTHERMAL-FAULTS-ISO91.md">knowledge base</a></p></section>
@@ -198,22 +206,22 @@ def render_index(c: dict) -> str:
 def render_exec(c: dict) -> str:
     r = c["raster"]
     tif = Path(r["path"]).relative_to("docs").as_posix()
-    return (head("GEMSDOE91 · executive summary and exact submission steps",
-                 "Executive summary of the ISO91 experiment, the automated verdict, and step-by-step DrivenData submission instructions.")
-            + "<main id=\"main\">\n" + download_card(c)
+    return (head("GEMSDOE91 · executive summary, current no-run status, and submission steps",
+                 "The 2026-10-26 review produced no file; ISO91 is an earlier negative research artifact, not approved for submission.")
+            + "<main id=\"main\">\n" + current_review_notice() + download_card(c)
             + """<section class="card"><h2>Executive summary</h2><ul>
-<li><strong>Delivered:</strong> a new GeoTIFF (ISO91), generated by this session's own model and validated automatically. <strong>Uniqueness:</strong> """ + e(c["uniqueness_summary"]) + """ Only """ + f"{100*c['uniqueness']['vs_R0_gemsdoe32_h33_2_b2']['within_3px']:.1f}" + """% of its dots lie near R0's dots.</li>
+<li><strong>Historical artifact only:</strong> ISO91 was generated and checked in the separate 2026-10-25 session; this 2026-10-26 review generated no TIFF. <strong>Uniqueness:</strong> """ + e(c["uniqueness_summary"]) + """ Only """ + f"{100*c['uniqueness']['vs_R0_gemsdoe32_h33_2_b2']['within_3px']:.1f}" + """% of its dots lie near R0's dots.</li>
 <li><strong>Science:</strong> the preregistered hypothesis (learn only from isolated faults) failed on both spatially blocked holdouts. The negative result is published with every number.</li>
-<li><strong>Decision:</strong> NOT OK TO SUBMIT. Keep GEMSDOE32 h33-2-b2 (0.2778 USER-REPORTED) as the selected entry, because no file in this repository beats it on any evidence.</li>
-<li><strong>Biggest remaining lever:</strong> sub-100 m topography from USGS 3DEP (free and public domain). It is not reachable from this sandbox and needs an unrestricted machine.</li>
+<li><strong>Decision:</strong> No submission or slot is selected here. ISO91 is NOT OK TO SUBMIT. The nine-site review treats GEMSDOE32 h33-h33-2-b2 (0.2778) as owner-reported/unverified; this review does not choose it or another real slot.</li>
+<li><strong>Current blockers and ranked proposals:</strong> see the <a href=\"nine-site-audit-20261026.html\">nine-site audit</a> and <a href=\"REVIEW-SITE-AUDIT-20261026.md#ranked-hypotheses-proposals-not-results\">ranked hypotheses</a>. The assigned lane and required local data are absent; the proposed top candidate remains untested.</li>
 </ul></section>
 <section class="card" id="how-to-submit"><h2>How to submit on DrivenData (only after the selector approves a file)</h2><ol>
 <li>Sign in and open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition page</a>. Click <strong>Submit</strong> in the sidebar, then <strong>Make new submission</strong>, as described on the official page.</li>
-<li><strong>File to submit:</strong> the form says <q>You can submit a single-band GeoTIFF (.tif) file, or a .zip file containing a single GeoTIFF, with your predictions. It must match the submission format's CRS, shape, and geotransform.</q> Choose the .tif or the .zip from the download box above.</li>
-<li>For this competition that means EPSG:32611, 3730 rows × 3292 columns, transform (100, 0, 243350, 0, −100, 4508550), and values in [0, 1]. This page checks all of these automatically from the file bytes.</li>
-<li><strong>Note (optional):</strong> the form describes it as <q>A short comment to help you or your team tell submissions apart later</q>. Paste the note from the box below; it is at most 140 characters.</li>
-<li>Submit, then record the score receipt in the repository as ORGANIZER-CONFIRMED. A projection is never a score.</li></ol>
-<p class="warn"><strong>Portal error "Predicted values must be in range [0, 1]":</strong> it comes from NaN or −3.4e38 sentinel values or a nodata tag. Every file here uses the all-finite zeros encoding (0 outside the footprint, no nodata tag, every cell finite in [0, 1]), so the error cannot occur.</p></section>
+<li><strong>File to submit:</strong> none is approved by the current review. Stop unless a selector separately approves an exact file. Do not upload the historical ISO91 research TIFF linked on this page or any other unapproved research download. The official form accepts one single-band GeoTIFF or a ZIP containing one GeoTIFF, matching the submission CRS, shape, and geotransform.</li>
+<li>For this competition an approved candidate must match EPSG:32611, 3730 rows × 3292 columns, transform (100, 0, 243350, 0, −100, 4508550), and values in [0, 1]. The stored validator checks only the specific historical ISO91 bytes; it does not validate another candidate or confer upload approval.</li>
+<li><strong>Note (optional):</strong> after a selector approves a specific file, use that file's own run-card note (at most 140 characters). The saved ISO91 note below belongs to a historical, unapproved research file; do not use it for a current submission.</li>
+<li>Only after separate approval, upload the exact approved file and record the resulting organizer receipt in the repository as ORGANIZER-CONFIRMED. A projection is never a score.</li></ol>
+<p class="warn"><strong>Portal error "Predicted values must be in range [0, 1]":</strong> it comes from NaN or −3.4e38 sentinel values or a nodata tag. The historical ISO91 TIFF was generated with all-finite zeros (0 outside the footprint, no nodata tag, every cell finite in [0, 1]) and passed its stored validation. That does not establish the format of a different file; validate the exact bytes intended for upload.</p></section>
 """ + identity(c) + gates_table(c)
             + "<!--PARALLEL-CALLOUTS-->"
             + f"""<section class="card"><h2>History and other files</h2>
