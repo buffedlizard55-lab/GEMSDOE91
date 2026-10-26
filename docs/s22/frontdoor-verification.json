@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "scope": "current-run.json research download only",
+  "tif": "downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+  "raster_sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+  "validator_output": {
+    "status": "PASS",
+    "checks": {
+      "single_band": true,
+      "float32": true,
+      "crs_shape_transform_match": true,
+      "no_nodata_tag": true,
+      "all_cells_finite": true,
+      "values_in_0_1": true,
+      "no_nan_inside_footprint": true,
+      "zero_outside_footprint": true,
+      "visible_catalogue_masked": true
+    },
+    "nonfinite_cells": 0,
+    "out_of_range_finite_cells": 0,
+    "ok_to_submit": false,
+    "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+  },
+  "ok_to_download": true,
+  "ok_to_submit": false
+}

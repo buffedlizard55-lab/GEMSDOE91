@@ -66,6 +66,7 @@ jobs:
       - name: Verify current download identity and pinned-grid format
         run: |
           python scripts/verify_current_artifact.py
+          python scripts/verify_s22.py
           python scripts/verify_evidence.py
           python scripts/verify_s16.py
           python scripts/verify_s17.py

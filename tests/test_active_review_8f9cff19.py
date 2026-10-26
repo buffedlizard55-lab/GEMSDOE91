@@ -13,9 +13,8 @@ def test_active_review_and_readme_fail_closed():
     review = (DOCS / "REVIEW-ACTIVE-8F9CFF19-20261026.md").read_text(encoding="utf-8")
     card = json.loads((DOCS / "run-card-8f9cff19.json").read_text(encoding="utf-8"))
 
-    # The 8f9cff19 review was merged from another lane; it is preserved as
-    # evidence, but the session-fixed branch's current status must lead README.
-    assert readme.startswith("<!--CURRENT-REVIEW-BEGIN-->")
+    assert "<!--ACTIVE-8F9CFF19-BEGIN-->" in readme
+    assert readme.startswith("# GEMSDOE91 — S22 OMTJ")  # Later measured run owns current status.
     assert "#full-project-brief" in readme
     assert "NO NEW TIFF GENERATED" in readme
     assert "0.2778 USER/OWNER-REPORTED" in readme

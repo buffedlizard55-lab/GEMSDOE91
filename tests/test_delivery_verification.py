@@ -125,7 +125,10 @@ def test_registry_check_preserves_frozen_inventory():
 
 def test_renderer_refuses_an_unverified_download(monkeypatch):
     renderer = module('render_portal')
-    monkeypatch.setattr(renderer, 'verify_artifact', lambda: {'status':'NO_ARTIFACT'})
+    from scripts import render_olc91_portal as authority
+    def missing_current(root):
+        raise ValueError('unverified or missing download')
+    monkeypatch.setattr(authority, 'front_door', missing_current)
     with pytest.raises(ValueError, match='unverified or missing download'):
         renderer.render()
 

@@ -1,3 +1,10 @@
+# Current submission guide — S22 (2026-10-26)
+
+**OK TO DOWNLOAD: YES — new S22 research TIFF. OK TO SUBMIT: NO.**
+The input data were restored and one experiment ran in S22. Its local format checks pass, but literal registry overlap fails. There is no approved new competition submission. See the [current executive summary and exact steps](executive-summary.html#how-to-submit), [canonical run card](s22/run-card.json), and [verified file/status pointer](current-run.json). The earlier portal-pointer mismatch below has been fixed.
+
+<details><summary>Historical no-run review and older submission guidance — not current data availability</summary>
+
 # Submission guide — active checkout decision (2026-10-26)
 
 > **This checkout has no new TIFF that is approved to submit. `OK TO SUBMIT: NO`.** The nine-site maximum supplied in the prompt (GEMSDOE32 `h33-h33-2-b2`, 0.2778) is owner/user-reported and not confirmed by a receipt tied to the exact file. No new candidate beat it in a controlled test because no experiment ran: the method lane is unassigned and required local inputs are missing. See [active review](REVIEW-ACTIVE-8F9CFF19-20261026.md), [run card](run-card-8f9cff19.json), and [nine-site summary](nine-site-audit-20261026.html).
@@ -108,3 +115,5 @@ USGS DS-1052): R0 0.095386 -> -0.00382 / -0.01356 / -0.01036. Band leakage canar
 
 **Do not** upload a strain arm ahead of the revised queue, and do not upload more than one:
 they are one experiment whose control already answered against it.
+
+</details>

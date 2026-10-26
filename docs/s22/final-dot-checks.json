@@ -1,0 +1,245 @@
+[
+  {
+    "path": "data/fleet_registry/19GEMSDOE__h19-4-multiline-corroborated.tif",
+    "status": "PASS",
+    "rank_correlation": -0.00046073792111510034,
+    "overlap_within_3px": 0.1989164497795719,
+    "candidate_dots": 37654,
+    "registry_dots": 123779,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+    "status": "PASS",
+    "rank_correlation": -0.000731872211919331,
+    "overlap_within_3px": 0.19153343602273332,
+    "candidate_dots": 37654,
+    "registry_dots": 121131,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/57GEMSDOE__faultzone-anatomy-60000px-prev.tif",
+    "status": "PASS",
+    "rank_correlation": 3.79657766015546e-05,
+    "overlap_within_3px": 0.11117012800764858,
+    "candidate_dots": 37654,
+    "registry_dots": 60000,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/57GEMSDOE__h57-anatomy-enechelon-zeros.tif",
+    "status": "PASS",
+    "rank_correlation": -9.733003980132367e-05,
+    "overlap_within_3px": 0.03526849737079726,
+    "candidate_dots": 37654,
+    "registry_dots": 35341,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/57GEMSDOE__h57r2-shipped8-all-flank0-20261009T180433Z-90e532947353-zeros.tif",
+    "status": "PASS",
+    "rank_correlation": 3.959244720982524e-05,
+    "overlap_within_3px": 0.05117650183247464,
+    "candidate_dots": 37654,
+    "registry_dots": 40000,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/57GEMSDOE__parallel-12000dots-zeros.tif",
+    "status": "PASS",
+    "rank_correlation": -0.0015808675940455453,
+    "overlap_within_3px": 0.0091358155840017,
+    "candidate_dots": 37654,
+    "registry_dots": 12000,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif",
+    "status": "PASS",
+    "rank_correlation": -0.00024868473525612334,
+    "overlap_within_3px": 0.17509427949221862,
+    "candidate_dots": 37654,
+    "registry_dots": 60069,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE25__dotted-h19-5-d2-8.tif",
+    "status": "PASS",
+    "rank_correlation": -0.00035322385181073084,
+    "overlap_within_3px": 0.16763159292505445,
+    "candidate_dots": 37654,
+    "registry_dots": 44090,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE27__topo-gap-closure-t-v2-on-d1-5.tif",
+    "status": "PASS",
+    "rank_correlation": -0.00022879785731227614,
+    "overlap_within_3px": 0.18051203059435916,
+    "candidate_dots": 37654,
+    "registry_dots": 61328,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+    "status": "PASS",
+    "rank_correlation": 0.000364516143779444,
+    "overlap_within_3px": 0.16452435332235618,
+    "candidate_dots": 37654,
+    "registry_dots": 40199,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE28__h32-1-prethin-tip-euler-d2-8.tif",
+    "status": "PASS",
+    "rank_correlation": -0.00018160259228912402,
+    "overlap_within_3px": 0.16640994316672864,
+    "candidate_dots": 37654,
+    "registry_dots": 42294,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE28__h36-1-rung30-blind-r1.tif",
+    "status": "PASS",
+    "rank_correlation": 0.0006306760566830434,
+    "overlap_within_3px": 0.16194826578849525,
+    "candidate_dots": 37654,
+    "registry_dots": 37660,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE28__h38-1-hf-euler-r30-r1.tif",
+    "status": "PASS",
+    "rank_correlation": 0.0006168174466324321,
+    "overlap_within_3px": 0.16224039942635576,
+    "candidate_dots": 37654,
+    "registry_dots": 37860,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE29__wormrank-d28.tif",
+    "status": "PASS",
+    "rank_correlation": -0.0002611608266707586,
+    "overlap_within_3px": 0.16518829340840283,
+    "candidate_dots": 37654,
+    "registry_dots": 41338,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE30__d28-poisson300m-offcat-44090.tif",
+    "status": "PASS",
+    "rank_correlation": -0.00035322385181073084,
+    "overlap_within_3px": 0.16763159292505445,
+    "candidate_dots": 37654,
+    "registry_dots": 44090,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE32__h33-2-b2-zeros.tif",
+    "status": "PASS",
+    "rank_correlation": 0.0008726685013062434,
+    "overlap_within_3px": 0.16120465289212302,
+    "candidate_dots": 37654,
+    "registry_dots": 37654,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE33__h33d-analog-tip-stepover-r30.tif",
+    "status": "PASS",
+    "rank_correlation": 0.0003536959081341142,
+    "overlap_within_3px": 0.16640994316672864,
+    "candidate_dots": 37654,
+    "registry_dots": 41865,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE36__anderson-geothermal-pinn-38854.tif",
+    "status": "PASS",
+    "rank_correlation": 0.0007605664164908842,
+    "overlap_within_3px": 0.16324958835714665,
+    "candidate_dots": 37654,
+    "registry_dots": 38854,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/GEMSDOE49__gate_ortho_w0.25-40k.tif",
+    "status": "PASS",
+    "rank_correlation": 0.0057512570064048975,
+    "overlap_within_3px": 0.1780952886811494,
+    "candidate_dots": 37654,
+    "registry_dots": 40000,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/calib_d15_02477.tif",
+    "status": "PASS",
+    "rank_correlation": -0.00024868473525612334,
+    "overlap_within_3px": 0.17509427949221862,
+    "candidate_dots": 37654,
+    "registry_dots": 60069,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/calib_h161_01855.tif",
+    "status": "PASS",
+    "rank_correlation": -0.00040342950096755787,
+    "overlap_within_3px": 0.20231582302013065,
+    "candidate_dots": 37654,
+    "registry_dots": 123939,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/calib_h194_01894.tif",
+    "status": "PASS",
+    "rank_correlation": -0.00046073792111510034,
+    "overlap_within_3px": 0.1989164497795719,
+    "candidate_dots": 37654,
+    "registry_dots": 123779,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/calib_h195_01922.tif",
+    "status": "PASS",
+    "rank_correlation": -0.000731872211919331,
+    "overlap_within_3px": 0.19153343602273332,
+    "candidate_dots": 37654,
+    "registry_dots": 121131,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/calib_h25ctx_01280.tif",
+    "status": "PASS",
+    "rank_correlation": 0.0011268632959784074,
+    "overlap_within_3px": 0.26849737079725927,
+    "candidate_dots": 37654,
+    "registry_dots": 174232,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/calib_h28ridge_01839.tif",
+    "status": "PASS",
+    "rank_correlation": 0.0011505784375373303,
+    "overlap_within_3px": 0.27734105274340043,
+    "candidate_dots": 37654,
+    "registry_dots": 69281,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/calib_hedgev2_01563_sample.tif",
+    "status": "PASS",
+    "rank_correlation": -0.0020053815020373705,
+    "overlap_within_3px": 0.27202953205502733,
+    "candidate_dots": 37654,
+    "registry_dots": 227507,
+    "rank_status": "PASS"
+  },
+  {
+    "path": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "status": "DUPLICATE",
+    "rank_correlation": -5.359578953898351e-05,
+    "overlap_within_3px": 0.9856588941413926,
+    "candidate_dots": 37654,
+    "registry_dots": 206895,
+    "rank_status": "PASS"
+  }
+]

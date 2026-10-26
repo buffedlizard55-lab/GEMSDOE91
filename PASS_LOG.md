@@ -1,3 +1,13 @@
+## S22 OMTJ — three passes (2026-10-26)
+
+1. **Implement/measure:** restored pinned data automatically; audited exact nine-site leaders; preregistered four hypotheses; ran one third-moment magnetic/gravity experiment using shared evaluator/writer. New numeric/grid-valid TIFF; literal duplicate stop; no further experiment or slot.
+2. **Review/fix:** consolidated conflicting current pointers; kept historical pages immutable; corrected historical-page test assumptions and archive browser routes; disclosed score/provenance/NaN wording and unmatched-budget limitations. All scientific failures remain negative.
+3. **Re-check:** 689 local tests passed, 8 skipped before integrating the concurrent no-run review; new TIFF/ZIP hashes verified through real Chromium, 27-page accessibility check clean, no mobile overflow. All-download inventory: 107 artifacts, 98 technical PASS, 9 historical FAIL. Current evidence and shared template hashes pass. After integrating concurrent main PRs 149–151: **695 passed, 8 skipped**. GitHub CI outcomes are reported with PR #152.
+
+Evidence: `docs/s22/verification.json`, `docs/s22/browser-verification.json`, `docs/s22/evidence-verification.json`, `docs/s22/run-card.json`. Source research and limitations: `docs/s22/research-and-limitations.md`.
+
+---
+
 # GEMSDOE91 — Multi-Pass Verification Log (latest: active review `8F9CFF19`, 2026-10-26)
 
 ## Active checkout review `8F9CFF19` (`arena/8f9cff19-gemsdoe91`, 2026-10-26)

@@ -1,3 +1,9 @@
+## S22 OMTJ disclosure (2026-10-26)
+
+An Arena.ai coding agent reviewed the repository and official sources, proposed four hypotheses, implemented one catalogue-independent magnetic third-moment / gravity-normal feature, ran the shared holdout/validator/novelty pipeline, generated a new negative research TIFF, built the executive-summary UI, and wrote tests/documentation. Generative AI was used for code, research synthesis and prose; the prediction pixels came from deterministic numerical processing of the cached geophysical inputs, not image generation or copied prior submissions. No claim of confirmed geothermal vents or improved leaderboard performance is made. One experiment stopped at a literal duplicate witness, with zero competition uploads. The official rules require disclosure in any eventual submission narrative; this log is supporting documentation, not a substitute for eligibility attestations.
+
+---
+
 # AI use disclosure
 
 Required by the competition rules (NLR rules PDF, reproducible code + generative-AI

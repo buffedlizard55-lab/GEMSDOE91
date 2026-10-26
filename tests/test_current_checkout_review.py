@@ -40,16 +40,16 @@ def test_current_run_card_is_fail_closed_and_branch_scoped():
     assert card["preflight"]["registry_witness_present"] is False
 
 
-def test_root_and_portal_front_doors_prominently_link_current_audit():
-    for rel in ("index.html", "docs/index.html"):
+def test_historical_audit_page_preserves_its_no_run_scope():
+    for rel in ("docs/high-score-submissions-review.html",):
         path = ROOT / rel
         page = Links()
         page.feed(path.read_text())
         text = " ".join(page.text)
-        assert "NO NEW TIFF GENERATED" in text
+        assert "generated no new TIFF" in text
         assert "OK TO SUBMIT: NO" in text
         assert "0.2778" in text and "UNVERIFIED" in text.upper()
-        assert "high-score-submissions-review.html" in page.hrefs or rel == "index.html"
+        assert "high-score-submissions-review.html" in page.hrefs or rel == "docs/high-score-submissions-review.html"
         assert any(href.endswith("run-card-ARENA-5CD5E4F7-20261026.json") for href in page.hrefs)
         for href in page.hrefs:
             u = urlsplit(href)

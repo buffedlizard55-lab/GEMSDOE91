@@ -295,6 +295,13 @@ def ptac_content(board):
 
 
 def render():
+    # A current lane owns its two entry points. Historical reports are immutable
+    # evidence, not inputs whose CSS or banners should be rebuilt from that page.
+    from scripts.render_olc91_portal import CURRENT, render as render_current
+    if CURRENT['run_card'] == 'run-card-S22-OMTJ.json':
+        render_current()
+        print('Rendered S22 current portal; historical pages preserved; no promotion.')
+        return
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
     actual = verify_artifact()
     if card.get('artifact') and actual['status'] != 'PASS':

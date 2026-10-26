@@ -57,7 +57,7 @@ def test_uniqueness_evidence_refers_to_this_file():
 
 
 def test_portal_banner_matches_card():
-    page = (ROOT / "docs/index.html").read_text()
+    page = (ROOT / "docs/s20-lfi-executive-summary.html").read_text()
     assert page.count('data-submission-ready="') == 1
     assert f'data-submission-ready="{str(CARD["ok_to_submit"]).lower()}"' in page
     assert Path(CARD["submission"]["file"]).name in page and CARD["submission"]["sha256"] in page
