@@ -46,7 +46,7 @@ def test_historical_audit_page_preserves_its_no_run_scope():
         page = Links()
         page.feed(path.read_text())
         text = " ".join(page.text)
-        assert "NO NEW TIFF GENERATED" in text
+        assert "generated no new TIFF" in text
         assert "OK TO SUBMIT: NO" in text
         assert "0.2778" in text and "UNVERIFIED" in text.upper()
         assert "high-score-submissions-review.html" in page.hrefs or rel == "docs/high-score-submissions-review.html"
