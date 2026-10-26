@@ -296,6 +296,16 @@ def ptac_content(board):
 
 
 def render():
+    # A current lane owns its two entry points. Historical reports are immutable
+    # evidence, not inputs whose CSS or banners should be rebuilt from that page.
+    from scripts.render_olc91_portal import CURRENT, render as render_current
+    if CURRENT['run_card'] == 'run-card-S22-OMTJ.json':
+        render_current()  # injects the S22-XB parallel-lane callout through the <!--PARALLEL-CALLOUTS--> slot
+        if (ROOT / 'docs/run-card-S22-XB.json').is_file():
+            from scripts.render_s22_xbreed_pages import render as render_s22xb
+            render_s22xb()  # the parallel lane's own self-contained executive-summary page
+        print('Rendered S22 current portal; historical pages preserved; no promotion.')
+        return
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
     actual = verify_artifact()
     if card.get('artifact') and actual['status'] != 'PASS':
@@ -650,8 +660,8 @@ def render():
     if (ROOT / 'docs/run-card-S21-PDWC.json').is_file():
         from scripts.render_s21_pdwc_pages import render as render_s21_pdwc
         render_s21_pdwc()
-    # S22-XB (2026-10-26): newest front door; must render AFTER S21 so its banner stays on top with the only
-    # data-submission-ready attribute (state taken from docs/run-card-S22-XB.json, not typed).
+    # S22-XB (2026-10-26) parallel lane: writes only docs/s22-xbreed-executive-summary.html (the front door is owned
+    # by CURRENT in render_olc91_portal.py; this lane's callout is injected there).
     if (ROOT / 'docs/run-card-S22-XB.json').is_file():
         from scripts.render_s22_xbreed_pages import render as render_s22
         render_s22()

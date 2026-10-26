@@ -1,5 +1,44 @@
+# GEMSDOE91 — S22 OMTJ · current status (2026-10-26)
+
+**OK TO DOWNLOAD: YES — research only. OK TO SUBMIT: NO.**
+
+[**Download the new TIFF**](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif) · [Single-TIFF ZIP](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.zip) · [**Nine-site executive summary & submission guide**](docs/executive-summary.html) · [Run card](docs/s22/run-card.json) · [Three-pass review](docs/s22/review.md)
+
+- **New generated predictions, not a copied raster. Strict protocol uniqueness: FAIL.** The final dot mask overlaps a registered calibration lattice by **98.57%** within 3 pixels. The run stopped after **one** experiment; no dense-raster exemption and **zero** submission slots.
+- **HOLDOUT-DTI: 0.066223**, 95% CI **[0.048015, 0.086803]**; evaluator `gems57-pooled-hide-v2`, **60,988 withheld positive pixels**. This is not a leaderboard estimate and does not establish an improvement over a matched incumbent.
+- Local TIFF/ZIP validation: one float32 band, all finite [0,1], no NaN/Inf, matching CRS/shape/transform. **Local format PASS is not organizer acceptance or permission to upload.**
+- Exact historical leader files from **GEMSDOE24/25/27/28/30/31/32/33/36** re-hashed and compared. **GEMSDOE32 leads the supplied claims (0.2778, unverified); none of those nine leaders meets the peer-overlap uniqueness rule.** No receipt-linked score or calibrated leaderboard estimate is available.
+- Unique file name: `gems91-s22-omtj-e1-20261026-a99b8923f0-zeros`. Note: `S22 OMTJ E1: magnetic third-moment boundary x gravity normal; research only; not approved for submission.`
+- TIFF SHA256: `f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042`.
+
+## Start every session here
+
+Read this status, the [preserved standing user prompt](#full-project-brief), [four preregistered hypotheses](docs/s22/preregistration.md), [official-source scientific review](docs/s22/research-and-limitations.md), and [next steps](LIMITATIONS_AND_NEXT_STEPS.md). The standing brief below retains the original requirements and supplied score claims; this header is the active outcome. Earlier session banners below are **historical**, not competing current recommendations.
+
+**Maximize P(Win):** reject unsupported score forecasts and do not spend a slot on a negative or duplicate candidate. **Own the Outcome:** restore data, inspect bytes automatically, report failures and keep the portal consistent with its machine-readable evidence.
+
+### Operative request preserved for this session
+
+The current user request reiterates the nine-site focus, unique TIFF mandate, high-scoring automated gates, no copying, no human visual inspection, three-to-five new geological hypotheses before implementation, whole-segment buffered hide-and-recover, pooled DTI (alpha .2/beta .8/300 m), per-feature leakage canaries, pre-placement and final registry checks (rho > .90 or >70% overlap within 3 px means stop), three experiments/two hours maximum, one JSON run card, three review passes, official-source research, clear download/name/note/estimated-score table, and a PR merged to main. **A projection is never a score; selecting a real submission slot is separate.** This supplements the preserved long prompt rather than claiming literal byte identity to all its repeated paragraphs.
+
+Current-session supplied updates remain claims, not receipts: GEMSDOE24 GVC1 0.0859; GEMSDOE25 H66 0.0742; GEMSDOE27 H29 0.2190; GEMSDOE28 S18-MXTP 0.0217; GEMSDOE30 MSDB1 0.1462; GEMSDOE91 CWPC 0.1367 / LFTG 0.1823; S18-UNIQUE has no supplied result; GEMSDOE92 listricdip 0.0255. Their historical leader claims are preserved in the nine-site table and standing brief.
+
+### Verify without rerunning the stopped experiment
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/restore_data.py --only sample_submission,existing_faults
+python generate_submission.py --with-data
+python scripts/verify_s22.py --with-data
+python scripts/check_artifact_policy.py
+python scripts/render_portal.py
+python -m pytest -ra
+```
+
+The raw cached stack and registry can be restored for research using the instructions in [the review](docs/s22/review.md). No GPU was needed for this experiment. Authenticated score receipts, organizer-origin input authentication, full registry clearance, current remaining weekly quota and a genuinely improved candidate are still missing. Official page text can be researched with page-reading tools, while shell bulk downloads remain host-restricted.
+
 <!--S22-README-BEGIN-->
-# GEMSDOE91 — Session 22 (`S22-XB`, branch `arena/c722cd53-gemsdoe91`): official-source re-baselining, why 0.2778, and a unique PDWC×HGBR cross-breed
+# GEMSDOE91 — Parallel Session 22 lane (`S22-XB`, branch `arena/c722cd53-gemsdoe91`): official-source re-baselining, why 0.2778, and a unique PDWC×HGBR cross-breed
 
 > **AUTOMATED VERDICT: `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT` (failed gates: `G4_holdout_paired`, `G5_live_anchored_projection`)** (0 weekly slots spent by the project).
 > **[⬇ Download S22-XB GeoTIFF (.tif)](docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif)** (`sha256: 663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b`, `37,654` binary `{0.0, 1.0}` dots, all-finite zeros `float32`, EPSG:32611, 3730×3292) · **[⬇ single-TIFF ZIP](docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.zip)** · **[9-site executive summary & how to submit](docs/s22-xbreed-executive-summary.html)** · [run card](docs/run-card-S22-XB.json) · [preregistration + amendments](docs/HYPOTHESES_S22_XBREED.md) · [why 0.2778](docs/R0_ANALYSIS_S22.md) · [official sources](docs/OFFICIAL_SOURCES_VERIFIED_S22.md)
@@ -15,6 +54,46 @@
 
 ---
 <!--S22-README-END-->
+
+---
+
+<details>
+<summary>Historical sessions and preserved full project brief — not the current submission verdict</summary>
+
+### Concurrent historical 5cd5e4f7 review (not the active S22 outcome)
+
+<!--CURRENT-REVIEW-BEGIN-->
+# GEMSDOE91 — Current Review (2026-10-26)
+
+> **Current review status:** `NO NEW TIFF GENERATED` · `OK TO DOWNLOAD: NO NEW CANDIDATE` · `OK TO SUBMIT: NO` · **0 experiments, 0 weekly slots used.** The current branch has no assigned single-method lane and no competition inputs under `data/`; both the scientific preflight and build readiness are blocked. Earlier TIFFs linked elsewhere in this repository are historical research artifacts, not approval to upload.
+>
+> **Nine-site executive summary:** [Open the site-by-site review](docs/high-score-submissions-review.html) · [Pinned source audit](docs/nine-site-audit-20261026.html) · [Three-pass review](docs/REVIEW-SITE-AUDIT-20261026.md) · [Current run card](docs/run-card-ARENA-5CD5E4F7-20261026.json).
+>
+> **Highest value among the scores supplied in the request:** GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, `0.2778 USER/OWNER-REPORTED, UNVERIFIED`. This is a forensic benchmark only, not an `ORGANIZER-CONFIRMED` score and not a recommended download or submission. A merged-main parallel review records an official public-leaderboard observation of `0.4437` (rank 1, retrieved 2026-10-26; see [its provenance note](docs/REVIEW-ACTIVE-8F9CFF19-20261026.md)); this branch did not independently refresh it, and it is not a receipt for any focus-site TIFF. The evidence-qualified table and explanation are in the executive summary.
+>
+> **No new submission was generated intentionally.** There is no basis to copy/relabel an old raster or infer a method lane. To resume, first provide the assigned method paragraph and resolve authorized placement of the exact pinned inputs; then run the shared holdout, per-feature canaries, both registry checks and format validator. Keep weekly-slot selection separate. The earlier S21-PDWC research TIFF (`gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif`, SHA-256 `74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8`) remains a historical download and is **not cleared to submit**.
+
+<!--CURRENT-REVIEW-END-->
+
+### Concurrent historical no-run review (preserved; superseded by S22 status above)
+
+<!--ACTIVE-8F9CFF19-BEGIN-->
+# GEMSDOE91 — Active checkout review (`arena/8f9cff19-gemsdoe91`, 2026-10-26)
+
+> **CURRENT REVIEW: NEGATIVE / BLOCKED. No experiment, no new TIFF, no new score. `OK TO DOWNLOAD: NO NEW TIFF FROM THIS REVIEW`. `OK TO SUBMIT: NO`. Zero weekly slots used.**
+>
+> Start here each session: [active-branch three-pass review](docs/REVIEW-ACTIVE-8F9CFF19-20261026.md) · [no-run JSON card](docs/run-card-8f9cff19.json) · [nine-site forensic summary](docs/nine-site-audit-20261026.html) · [pinned nine-site evidence register](docs/research/nine-site-audit-20261026.json) · [current limitations / next steps](LIMITATIONS_AND_NEXT_STEPS.md) · [full standing user brief](#full-project-brief).
+>
+> The supplied nine-site maximum is GEMSDOE32 `h33-h33-2-b2` **0.2778 USER/OWNER-REPORTED, not organizer-confirmed**; the exact score-to-file receipt was not verified. The supplied leaderboard values `0.3195` and `0.4413` are stale/conflicting; the official public leaderboard fetched 2026-10-26 showed #1 at **0.4437** (public-board observation, not a receipt tied to a specific audited TIFF). No candidate beats 0.2778 on evidence from this review.
+>
+> **Why there is no new TIFF:** `scripts/preflight.py` found **0/2** required pinned inputs, every displayed build axis is blocked, and no single-method lane is assigned to this checkout. No experiment, holdout, leakage canary, novelty comparison, or candidate validation was run. Existing TIFFs belong to earlier sessions and have `OK TO SUBMIT: NO`; do not treat them as this review's output.
+>
+> **Repository irregularity:** `docs/index.html` advertises S21-PDWC first, but `docs/current-run.json` and the canonical front-door verifier identify S20-RHTW. Both artifacts are marked not approved to submit. The active review records this identity mismatch; do not assume either is the current selected candidate.
+>
+> Three evidence-qualified hypotheses and their official-source needs are ranked in the active review. The leading proposal remains untested and is not an assigned lane. The complete project prompt is preserved below and should be reread at each session start. **Maximize P(Win) · Own the Outcome.**
+
+<!--ACTIVE-8F9CFF19-END-->
+
 <!--S21-README-BEGIN-->
 # GEMSDOE91 — Session 21 (`S21-PDWC`, branch `arena/a31c96c3-gemsdoe91`): Dipping-Contact Cauchy–Hilbert Waveform, Log-Gabor Phase Congruency & Clay-Cap Baffle OOF + 300 m CELF
 
@@ -493,7 +572,7 @@ Concurrent main reviews were integrated, including the S15 holdout/final-selecto
 
 ## Original user project brief — preserved standing text and supplied updates
 
-**2026-10-26 supplied update for Session 22 (claims, not receipts) — PARAPHRASED summary of the brief as received (IR-S22-11); the verbatim cumulative text remains in the Session 20 addendum below and in `prompt_to_add.txt`.**
+**2026-10-26 supplied update for Session 22, S22-XB lane (claims, not receipts) — PARAPHRASED summary of the brief as received (IR-S22XB-11); the verbatim cumulative text remains in the Session 20 addendum below and in `prompt_to_add.txt`.**
 
 Standing goal: place at the top of the DrivenData DOE GEMS geothermal-fault competition (<https://www.drivendata.org/competitions/306/competition-doe-gems/>); submission = single-band float32 GeoTIFF in [0, 1], EPSG:32611, 3730×3292, sample-submission geotransform; metric = pooled distance-weighted Tversky index (α 0.2, β 0.8, 300 m triangular kernel). Core values: **Maximize P(Win)** and **Own the Outcome**.
 
@@ -1404,5 +1483,7 @@ Key standing requirements preserved verbatim:
 - Clear, obvious executive summary on every one of the 9 sites above identifying the best submission without duplication.
 - PhD-level analysis of why and how `GEMSDOE32` (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros: 0.2778`) obtained the highest reported score among the 9 sites, and how to surpass `0.2778` / `0.3195` toward leaderboard top `0.4413`.
 - PARALLEL-RUN PROTOCOL (`LANE`, `REUSE, DON'T REBUILD`, `LABEL EVERY NUMBER`, `LEAKAGE CANARY`, `RUN CARD`, `BUDGET` 3 experiments / 2 hours), Arena AI Core Values (`Maximize P(Win)` and `Own the Outcome`), `[0, 1]` range validation (`"Predicted values must be in range [0, 1]"` fix), 3-pass execution (`Pass 1`, `Pass 2`, `Pass 3`), and PR creation + merge onto `main`.
+
+</details>
 
 </details>

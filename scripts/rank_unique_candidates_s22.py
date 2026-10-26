@@ -2,10 +2,10 @@
 """Rank every GEMSDOE91 candidate raster by the two live-aligned instruments (E2 showed hide-v2 is not one).
 
 For each ``docs/downloads/*-zeros.tif`` plus the S22 file: dot count, blind-SGMC DTI (>300 m / >500 m; Spearman vs live
-+0.43 / +0.44 across 112 anchors, `docs/s22/instruments.json`), the S20 live-anchored LFI projection (MODEL, LOSO RMSE
++0.43 / +0.44 across 112 anchors, `docs/s22-xb/instruments.json`), the S20 live-anchored LFI projection (MODEL, LOSO RMSE
 ~0.02), and the share of the file's dots within 3 px of GEMSDOE32 R0 (a *derivative-of-R0* flag).  Nothing here is a score.
 
-Output: docs/s22/unique-candidates.json
+Output: docs/s22-xb/unique-candidates.json
 """
 from __future__ import annotations
 
@@ -52,7 +52,7 @@ def main() -> int:
     rows.sort(key=lambda r: -r["lfi_ridge10"])
     out = {"label": "MODEL projections and diagnostic controls - never scores", "r0_reference_lfi_ridge10":
            proj[ref_key], "rows": rows}
-    (ROOT / "docs/s22/unique-candidates.json").write_text(json.dumps(out, indent=1) + "\n")
+    (ROOT / "docs/s22-xb/unique-candidates.json").write_text(json.dumps(out, indent=1) + "\n")
     return 0
 
 

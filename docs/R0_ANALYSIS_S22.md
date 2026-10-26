@@ -1,6 +1,6 @@
 # Why GEMSDOE32 "R0" scored highest — and whether it can be beaten (Session 22)
 
-**Evidence classes used below.** `BYTES` = recomputed from SHA-256-pinned rasters; `USER-REPORTED` = a live score copied from `registry/lfi_live_anchors.csv` (not an organizer receipt); `OFFICIAL` = text read from a cited DrivenData / DOE page on 2026-10-26; `MODEL` = derived from the previous classes under stated assumptions. Nothing here is `ORGANIZER-CONFIRMED`. Reproduce with `python3 scripts/analyze_r0_lineage_s22.py` → `docs/s22/r0-decomposition.json`.
+**Evidence classes used below.** `BYTES` = recomputed from SHA-256-pinned rasters; `USER-REPORTED` = a live score copied from `registry/lfi_live_anchors.csv` (not an organizer receipt); `OFFICIAL` = text read from a cited DrivenData / DOE page on 2026-10-26; `MODEL` = derived from the previous classes under stated assumptions. Nothing here is `ORGANIZER-CONFIRMED`. Reproduce with `python3 scripts/analyze_r0_lineage_s22.py` → `docs/s22-xb/r0-decomposition.json`.
 
 **The file.** `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, 37,654 binary dots, USER-REPORTED **0.2778** (GEMSDOE32). For scale: the public board on 2026-10-26 reads #1 0.4437, #10 0.3379, #24 0.3169, #50 0.2826 (OFFICIAL), so 0.2778 sits just below rank 50.
 
@@ -22,7 +22,7 @@ Adding one unmatched dot (expected credit ≈ 0, matched kernel mass ≈ 0) lowe
 
 ## 2. The lineage, proven from bytes
 
-(`BYTES`; `docs/s22/r0-decomposition.json → nesting_exact`, `difference_sets`)
+(`BYTES`; `docs/s22-xb/r0-decomposition.json → nesting_exact`, `difference_sets`)
 
 | Raster | Dots | Relation (pixel-exact) | USER-REPORTED |
 |---|---:|---|---:|
@@ -55,12 +55,12 @@ H19-5 network → R0 is +0.0856: **dotting to 2.8 px spacing +0.0678 (79%)**, **
 
 ## 6. Why the repo's own holdout ranks R0 last (collar paradox)
 
-The hide-and-recover holdout (`gems57-pooled-hide-v2`) withholds parts of the *catalogue* and scores against them. A raster that has been collar-stripped of every dot within 2 px of the catalogue is blind to exactly that truth, so a static R0 scores **0.006697** there (95% CI [0.005969, 0.007450]; S21 reported the same value and this session re-measured it as the `static_R0` arm in `docs/s22/holdout.json`). The same holdout gives a random equalized null **0.0713**. The holdout measures catalogue recovery; the live board measures *new* faults. Across 112 anchors the Spearman correlation between hide-v2 and the live score is **+0.105, 95% CI [−0.093, +0.294]** (bootstrap over anchors; `docs/s22/instruments.json`; S20 reported 0.105), i.e. not distinguishable from zero. The blind-SGMC control, which S14-era notes called an *anti*-proxy on seven ancestors, is moderately and significantly *positive* on 112 anchors: **+0.442 [+0.264, +0.605]** (>500 m) — still only ≈ 20% of rank variance, never a gate (IR-S22-04).
+The hide-and-recover holdout (`gems57-pooled-hide-v2`) withholds parts of the *catalogue* and scores against them. A raster that has been collar-stripped of every dot within 2 px of the catalogue is blind to exactly that truth, so a static R0 scores **0.006697** there (95% CI [0.005969, 0.007450]; S21 reported the same value and this session re-measured it as the `static_R0` arm in `docs/s22-xb/holdout.json`). The same holdout gives a random equalized null **0.0713**. The holdout measures catalogue recovery; the live board measures *new* faults. Across 112 anchors the Spearman correlation between hide-v2 and the live score is **+0.105, 95% CI [−0.093, +0.294]** (bootstrap over anchors; `docs/s22-xb/instruments.json`; S20 reported 0.105), i.e. not distinguishable from zero. The blind-SGMC control, which S14-era notes called an *anti*-proxy on seven ancestors, is moderately and significantly *positive* on 112 anchors: **+0.442 [+0.264, +0.605]** (>500 m) — still only ≈ 20% of rank variance, never a gate (IR-S22XB-04).
 
 ## 7. Can R0 be beaten? What the evidence says
 
 1. **More pruning.** If an oracle could remove *k* more dead dots from R0 the score would reach `0.281 / 0.294 / 0.313 / 0.358` for `k = 1k / 5k / 10k / 20k` (`MODEL`). That headroom is real, but it is unidentifiable without information about *which* dots are dead; the 1,200-dot GEMSDOE36 experiment shows far-field model dots can have one-tenth of R0's average credit.
-2. **New detectors on the same 100 m stack.** Earlier independent lanes (hide-v2 0.15 – 0.20) project to 0.15 – 0.21 on the live-anchored inversion (re-run today; S21's card stored 0.16 – 0.20), with a leave-one-site-out error of about 0.02; none projects above R0's own model value (0.273 when S21's own function is re-run today; S21's card stored 0.254, see IR-S22-03).
+2. **New detectors on the same 100 m stack.** Earlier independent lanes (hide-v2 0.15 – 0.20) project to 0.15 – 0.21 on the live-anchored inversion (re-run today; S21's card stored 0.16 – 0.20), with a leave-one-site-out error of about 0.02; none projects above R0's own model value (0.273 when S21's own function is re-run today; S21's card stored 0.254, see IR-S22XB-03).
 3. **The uniqueness rule.** A raster that overlaps no registered raster by more than 70% within 3 px must put most dots where the fleet is not; the same inversion says the fleet already occupies the zones that carry value (truth factor ×19 where three independent fleet rasters agree). Pass-2 projections under hard caps were 0.16 – 0.22 (S21-FAM3).
 4. **New information.** The only identified escape is a new data layer. A rank-5 team states publicly that it uses "20 m lidar-derivative U-Net ensembles" (OFFICIAL forum 11531); USGS 3DEP 1 m DEMs are free and public domain, but all eight official hosts tested from the sandbox return no connection (see `docs/OFFICIAL_SOURCES_VERIFIED_S22.md`).
 

@@ -1,0 +1,93 @@
+{
+  "retrieved_date_utc": "2026-10-26",
+  "method": "functions.fetch_page; observations/excerpts transcribed from tool output, not byte-identical full-page snapshots",
+  "sources": [
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "chunks_read": [
+        0,
+        1
+      ],
+      "authority": "organizer problem description",
+      "observations": [
+        "Target is faults indicative of geothermal resources, not vent labels",
+        "Triangular radius 300 m, alpha 0.2 and beta 0.8",
+        "Single float32 layer, EPSG 32611, 100 m, values [0,1]",
+        "Outside bounds null/NaN wording; acceptance of all-finite zeros not authenticated"
+      ]
+    },
+    {
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "chunks_read": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "authority": "official rules",
+      "observations": [
+        "Up to three weekly submissions subject to website limits",
+        "One final submission across both rounds",
+        "Generative AI disclosure and reproducible code required",
+        "Eligibility and legal attestation not inferred from file validation"
+      ]
+    },
+    {
+      "url": "https://gdr.openei.org/submissions/1391",
+      "chunks_read": [
+        0
+      ],
+      "authority": "DOE-funded public GDR dataset",
+      "observations": [
+        "CC BY 4.0 on retrieved page",
+        "Public download links for paleo-geothermal features, temperature probes, wells/springs and other layers",
+        "Bulk downloads not attempted by page tool; no claim source bytes ingested"
+      ]
+    },
+    {
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "chunks_read": [
+        0
+      ],
+      "authority": "USGS release",
+      "observations": [
+        "CC0",
+        "Area 2 flight lines spaced 400 m",
+        "Variable terrain clearance and four acquisition blocks",
+        "Magnetics and radiometrics do not directly prove permeability"
+      ]
+    },
+    {
+      "url": "https://www.usgs.gov/centers/gmeg/science/geothermal-resource-investigations-project",
+      "chunks_read": [
+        0
+      ],
+      "authority": "USGS science overview",
+      "observations": [
+        "Hydrothermal systems involve groundwater circulation in hot rock; deep permeability is central"
+      ]
+    },
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "authority": "organizer",
+      "observations": [
+        "Redirect to accounts/login; no authenticated data or receipt access"
+      ]
+    },
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "chunks_read": [
+        0
+      ],
+      "authority": "official public leaderboard, NOT submission-page receipt",
+      "observations": [
+        "Rank 1 xiaofanhu displayed 0.4437"
+      ],
+      "evidence_class": "PUBLIC_LEADERBOARD_OBSERVATION_NOT_CANDIDATE_RECEIPT",
+      "candidate_score": null
+    }
+  ]
+}

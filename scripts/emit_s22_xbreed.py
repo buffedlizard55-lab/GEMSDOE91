@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """S22-XB E3: final unique file from the preregistered best arm + every automated gate + the run card.
 
-Reads (never recomputes) docs/s22/holdout.json written by ``run_s22_xbreed.py evaluate``; picks the arm with the
+Reads (never recomputes) docs/s22-xb/holdout.json written by ``run_s22_xbreed.py evaluate``; picks the arm with the
 highest CELF pooled HOLDOUT-DTI (preregistered rule); builds the stitched 4-fold out-of-fold surface; emits the equalized
 per-quadrant CELF dots with the **global** catalogue collar; screens them against every raster in the registry, the
 repo downloads and the 102-repo sibling sweep; falls back to a hard-capped global CELF only if the screen fails; writes the
@@ -46,7 +46,7 @@ from gems91 import xbreed22 as X  # noqa: E402
 from gems91.pdwc21 import emit_dots_celf_submodular  # noqa: E402
 from gems91.release_gates import validate_release  # noqa: E402
 
-EVIDENCE = ROOT / "docs/s22"
+EVIDENCE = ROOT / "docs/s22-xb"
 DOWNLOADS = ROOT / "docs/downloads"
 PINNED_HOLDOUT = {"S21 pdwc_e3": 0.195724, "S18 hgbr_e1": 0.200742}
 

@@ -14,7 +14,7 @@ unchanged and the denominator moves by exactly ``0.2 * |difference|``; one live-
 and that single number must then predict every other nested step.  The script reports where this holds and where it
 does not (a residual means the difference set carried credit).
 
-Output: docs/s22/r0-decomposition.json
+Output: docs/s22-xb/r0-decomposition.json
 """
 from __future__ import annotations
 
@@ -36,7 +36,7 @@ from gems91.xbreed22 import credit_from_pure_fp_step, predicted_dti_after_pure_f
 ANCHORS = ROOT / "registry/lfi_live_anchors.csv"
 FLEET = ROOT / "data/fleet_registry"
 LFI = ROOT / "data/lfi_anchors"
-OUT = ROOT / "docs/s22/r0-decomposition.json"
+OUT = ROOT / "docs/s22-xb/r0-decomposition.json"
 
 FILES = {
     "H19-5 binary network": FLEET / "19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",

@@ -2,8 +2,8 @@
 """Pre-registered predictions for the two existing GEMSDOE32 calibration probes (S2 = values x 0.5, S3 = +2,000 null dots).
 
 Written BEFORE either probe has a live score.  Base raster = D2.8 (44,090 dots, USER-REPORTED 0.2600).  The credit T comes from the
-nested-step natural experiments (docs/s22/r0-decomposition.json); the unobservable matched mass M is bracketed in [0, T/2]
-(a dot centred on a 1-px line has M:T of about 1:2.1 at 2.8 px spacing).  Output: docs/s22/probe-predictions.json
+nested-step natural experiments (docs/s22-xb/r0-decomposition.json); the unobservable matched mass M is bracketed in [0, T/2]
+(a dot centred on a 1-px line has M:T of about 1:2.1 at 2.8 px spacing).  Output: docs/s22-xb/probe-predictions.json
 """
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ from gems91 import xbreed22 as X  # noqa: E402
 
 
 def main() -> int:
-    r0 = json.loads((ROOT / "docs/s22/r0-decomposition.json").read_text())
+    r0 = json.loads((ROOT / "docs/s22-xb/r0-decomposition.json").read_text())
     n_base, dti1, lam, k = 44090, r0["live_scores_user_reported"]["D2.8"], 0.5, 2000
     t_lo = r0["pure_fp_model"]["T_from_step1_D2.8_to_H27-4"]
     t_hi = r0["pure_fp_model"]["T_from_step2_H27-4_to_R0"]
@@ -48,7 +48,7 @@ def main() -> int:
         "slots_needed": 2,
         "caveat": "probes are calibration instruments, not competitive entries; they are derivatives of D2.8 and are NOT unique under the 70% rule",
     }
-    (ROOT / "docs/s22/probe-predictions.json").write_text(json.dumps(out, indent=1) + "\n")
+    (ROOT / "docs/s22-xb/probe-predictions.json").write_text(json.dumps(out, indent=1) + "\n")
     print(json.dumps({"S2_range": out["predictions"]["S2_range"], "S3_range": out["predictions"]["S3_range"]}))
     return 0
 

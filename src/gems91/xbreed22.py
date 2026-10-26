@@ -176,7 +176,7 @@ def stitched_oof_surface(arm: str, folds, footprint, cover_fp, crest_fp) -> np.n
 
 
 # --------------------------------------------------------------------------------------------
-# Exact DTI algebra for nested rasters (used by docs/s22/r0-decomposition.json)
+# Exact DTI algebra for nested rasters (used by docs/s22-xb/r0-decomposition.json)
 # --------------------------------------------------------------------------------------------
 
 def credit_from_pure_fp_step(n_before: int, n_after: int, dti_before: float, dti_after: float,
@@ -230,10 +230,10 @@ MAX_CAP_REFS = 240
 
 
 def active_reference_paths(path: Path | None = None) -> list[Path]:
-    """Active-reference set persisted by ``emit_s22_xbreed.py capped`` (docs/s22/active-references.json)."""
+    """Active-reference set persisted by ``emit_s22_xbreed.py capped`` (docs/s22-xb/active-references.json)."""
     import json
 
-    src = path or (ROOT / "docs/s22/active-references.json")
+    src = path or (ROOT / "docs/s22-xb/active-references.json")
     rows = json.loads(Path(src).read_text())["references"]
     return [ROOT / r["path"] for r in rows]
 

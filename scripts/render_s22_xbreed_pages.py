@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render the S22-XB front door: docs/s22-xbreed-executive-summary.html, the banner in docs/index.html, root index.html.
 
-100% data-driven from docs/run-card-S22-XB.json and docs/s22/{nine-sites,r0-decomposition,instruments,holdout,
+100% data-driven from docs/run-card-S22-XB.json and docs/s22-xb/{nine-sites,r0-decomposition,instruments,holdout,
 holdout-capped,official-sources}.json.  Zero numbers are typed by hand; every number carries its evidence class.
 """
 from __future__ import annotations
@@ -13,8 +13,23 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-S22 = DOCS / "s22"
+S22 = DOCS / "s22-xb"
 RAW = "https://github.com/buffedlizard55-lab"
+
+
+BASE_CSS = """
+*{box-sizing:border-box}body{margin:0;background:#f3f5f2;color:#1d302b;font:16px/1.6 system-ui,sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:0 20px 40px}header{display:flex;gap:24px;justify-content:space-between;flex-wrap:wrap;
+border-bottom:1px solid #d6dfd9;padding:18px 0}nav{display:flex;gap:18px;flex-wrap:wrap}.logo{font-weight:800}a{color:#17604a;text-underline-offset:3px}
+h2{font-size:24px;line-height:1.3;margin:0 0 10px}.card{background:#fff;border:1px solid #d6dfd9;border-radius:12px;padding:24px;margin:20px 0}
+.card.dl{border-top:5px solid #194d3e}.verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:12px 0}
+.v{border-radius:8px;padding:12px 14px;font-weight:800;font-size:17px}.v small{display:block;font-weight:500;font-size:13px;margin-top:4px}
+.v.yes{background:#dff3e6;color:#115c3e}.v.no{background:#fde8e2;color:#982c17}
+.btn,.btn2{display:inline-block;text-decoration:none;padding:11px 16px;border-radius:6px;font-weight:650;margin:4px 8px 4px 0}
+.btn{background:#194d3e;color:#fff}.btn2{background:#e8eeea;color:#194d3e}.small{font-size:13px;color:#3d544d}code{background:#eef2ef;padding:1px 4px;border-radius:3px;word-break:break-all}
+.copy{display:flex;gap:8px;margin:6px 0}.copy input{flex:1;padding:8px;font:13px monospace;border:1px solid #c7d3cc;border-radius:4px}.copy button{padding:8px 12px}
+table{border-collapse:collapse;width:100%}th,td{border-bottom:1px solid #e0e7e2;padding:6px 8px;text-align:left}th{background:#f1f5f2}footer{font-size:12px;color:#587068;padding:20px 0}
+"""
 
 
 def _j(p: Path):
@@ -29,6 +44,32 @@ UNIQ = '<span class="s22-ok">UNIQUE</span>'
 
 def _f(x, d=4):
     return "n/a" if x is None else f"{x:.{d}f}"
+
+
+def parallel_callout_html() -> str:
+    """Compact callout injected into the current-lane entry pages through their <!--PARALLEL-CALLOUTS--> slot.
+
+    No data-submission-ready attribute (the current lane's hero owns the page's single state), no ``download`` attribute.
+    Returns "" when this lane has not produced a run card.  Every value comes from docs/run-card-S22-XB.json.
+    """
+    card = _j(DOCS / "run-card-S22-XB.json")
+    if card is None:
+        return ""
+    sub, val, gates, uniq = card["submission"], card["validator"], card["gates"], card["uniqueness"]
+    me = card["lfi_projection"]["all"]["S22-XB (this file)"]["r10"]
+    okd, oks = card["ok_to_download"], card["ok_to_submit"]
+    verdict = ("OK TO SUBMIT: YES — ELIGIBLE (unique, valid, every automated gate passed)" if oks else
+               "OK TO SUBMIT: NO — NOT OK TO SUBMIT (" + ", ".join(g.split("_")[0] for g in card["failed_gates"]) + " failed)")
+    tif, zp = Path(sub["tif_file"]).name, Path(sub["zip_file"]).name
+    return (f'<section id="s22-xb-parallel" style="background:#fff;border:1px solid #cfe0d6;border-left:6px solid #194d3e;border-radius:12px;padding:20px 24px;margin:0 0 24px">'
+            f'<h2 style="margin:0 0 8px;font-size:21px">Parallel Session 22 lane · S22-XB (PDWC×HGBR cross-breed) · automated verdict</h2>'
+            f'<p style="margin:6px 0"><strong>OK TO DOWNLOAD: {"YES" if okd else "NO"}</strong> · <strong>{esc(verdict)}</strong> · 0 weekly slots spent. '
+            f'Unique GeoTIFF ({val["n_dots"]:,} dots; max 3-px overlap {uniq["dots_max_3px_overlap_competitive"]*100:.1f}% vs {uniq["n_competitive_non_blanket_rasters"]} competitive rasters; '
+            f'all cells finite in [0,1]). Estimated score: PROJECTION {me["projected"]:.3f} &plusmn; {me["loso_rmse"]:.3f} (a model, not a score; your reported best is 0.2778).</p>'
+            f'<p style="margin:6px 0"><a href="downloads/{esc(tif)}">&darr; S22-XB GeoTIFF</a> · <a href="downloads/{esc(zp)}">single-TIFF ZIP</a> · '
+            f'<a href="s22-xbreed-executive-summary.html"><strong>S22-XB 9-site table, why 0.2778 and how to submit</strong></a> · '
+            f'<a href="run-card-S22-XB.json">run card</a> · <a href="OFFICIAL_SOURCES_VERIFIED_S22.md">official sources</a></p>'
+            f'<p class="small" style="margin:6px 0;font-size:13px">Name <code>{esc(sub["name"])}</code> · note ({sub["note_length"]}/140) <code>{esc(sub["note"])}</code> · SHA-256 <code>{esc(sub["sha256"][:16])}…</code></p></section>')
 
 
 def render() -> None:
@@ -61,8 +102,7 @@ def render() -> None:
         sb_txt = "OK TO SUBMIT: NO — NOT OK TO SUBMIT (" + ", ".join(g.split("_")[0] for g in failed) + " failed; 0 weekly slots spent)"
         sb_small = "Failed gates: " + "; ".join(failed) + ". The file is still valid and unique to download for research."
 
-    style_src = (DOCS / "index.html").read_text()
-    base_style = style_src.split("<style>", 1)[1].split("</style>", 1)[0] if "<style>" in style_src and "</style>" in style_src else ""
+    base_style = BASE_CSS
     css = """
     .s22-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin:14px 0}
     .s22-kpi{background:#f7faf8;border:1px solid #cfe0d6;border-radius:8px;padding:12px 14px}
@@ -99,27 +139,6 @@ def render() -> None:
     GeoTIFF SHA-256: <code>{esc(sub['sha256'])}</code> &middot; ZIP SHA-256: <code>{esc(sub['zip_sha256'])}</code></p>
     </section>
     <!--S22-XB-END-->"""
-
-    # ---- docs/index.html: put the S22 banner on top, exactly one data-submission-ready attribute ----
-    idx = (DOCS / "index.html").read_text()
-    idx = re.sub(r"<!--S22-XB-BEGIN-->.*?<!--S22-XB-END-->\n?", "", idx, flags=re.S)
-    idx = re.sub(r' data-submission-ready="(?:true|false)"', "", idx)
-    banner_attr = banner  # keeps its own attribute
-    idx = idx.replace('<main id="main">', '<main id="main">\n' + banner_attr, 1)
-    if ".s22-grid{" not in idx and "</style>" in idx:
-        idx = idx.replace("</style>", css + "\n</style>", 1)
-    (DOCS / "index.html").write_text(idx)
-
-    # ---- root index.html: prepend an S22 paragraph, keep every older statement the audit tests require ----
-    root = (ROOT / "index.html").read_text()
-    root = re.sub(r"<!--S22-XB-ROOT-BEGIN-->.*?<!--S22-XB-ROOT-END-->\n?", "", root, flags=re.S)
-    para = (f"<!--S22-XB-ROOT-BEGIN--><p><strong>NEW · Session 22 (S22-XB, 2026-10-26, branch arena/c722cd53-gemsdoe91): new unique validated GeoTIFF "
-            f"(<code>{esc(fname)}</code>).</strong> OK TO DOWNLOAD: {'YES' if okd else 'NO'}. {esc(sb_txt)}. "
-            f"Estimated score: PROJECTION {me['r10']['projected']:.3f} (not a score). <a href=\"docs/index.html\">Open portal</a> &middot; "
-            f"<a href=\"docs/s22-xbreed-executive-summary.html\">9-site executive summary &amp; how to submit</a></p><!--S22-XB-ROOT-END-->\n")
-    root = root.replace("<main>", "<main>" + para, 1) if "<main>" in root else root + para
-    root = re.sub(r"<title>.*?</title>", "<title>GEMSDOE91 — Session 22 S22-XB GeoTIFF &amp; 9-Site Executive Summary</title>", root, count=1, flags=re.S)
-    (ROOT / "index.html").write_text(root)
 
     # ---- nine-site table ----
     uniq9 = nine["uniqueness_among_nine"]
@@ -324,7 +343,7 @@ def render() -> None:
 <section class="card" id="gates">
   <h2>5 &middot; Automated gates (code, not inspection)</h2>
   <div class="s22-wrap"><table class="s22"><thead><tr><th>Gate</th><th>Result</th></tr></thead><tbody>{gate_rows}</tbody></table></div>
-  <p class="small">Definitions are in the preregistration &sect;4 (+A1&ndash;A3). G4 requires the paired C&minus;A interval above 0 under both the uncapped and the shipped (capped) recipe. G5 compares the live-anchored projection with every independent-model comparator ({esc(best_cmp or 'n/a')} is the strongest). <code>docs/s22/registry-screen-final.json</code> lists every reference compared.</p>
+  <p class="small">Definitions are in the preregistration &sect;4 (+A1&ndash;A3). G4 requires the paired C&minus;A interval above 0 under both the uncapped and the shipped (capped) recipe. G5 compares the live-anchored projection with every independent-model comparator ({esc(best_cmp or 'n/a')} is the strongest). <code>docs/s22-xb/registry-screen-final.json</code> lists every reference compared.</p>
 </section>
 
 <section class="card" id="limits">
@@ -335,7 +354,7 @@ def render() -> None:
     <li><strong>Data access:</strong> USGS 3DEP 1 m LiDAR ({'<a href="https://apps.nationalmap.gov/downloader/">The National Map</a>'}, <a href="https://registry.opendata.aws/usgs-lidar/">AWS Open Data</a>), the DrivenData data page (login), ComCat, ScienceBase and GDR are <strong>all unreachable from the sandbox</strong> (curl HTTP 000, tested today). A trained scarp detector on 20 m LiDAR derivatives needs a machine with open internet and a GPU or a few CPU-hours.</li>
     <li><strong>Eligibility flag:</strong> about 150 live scores in four weeks is hard to reconcile with three submissions per week for one entity (OFFICIAL forum 11553, Rules &sect;3.4). Please confirm the account setup complies; nothing here asserts a violation.</li>
   </ul>
-  <p class="small">All sources with exact wording and dates: <a href="OFFICIAL_SOURCES_VERIFIED_S22.md">docs/OFFICIAL_SOURCES_VERIFIED_S22.md</a> &middot; irregularities <a href="../IRREGULARITIES.md">IRREGULARITIES.md</a> (IR-S22-01&hellip;) &middot; next steps <a href="../LIMITATIONS_AND_NEXT_STEPS.md">LIMITATIONS_AND_NEXT_STEPS.md</a>.</p>
+  <p class="small">All sources with exact wording and dates: <a href="OFFICIAL_SOURCES_VERIFIED_S22.md">docs/OFFICIAL_SOURCES_VERIFIED_S22.md</a> &middot; irregularities <a href="../IRREGULARITIES.md">IRREGULARITIES.md</a> (IR-S22XB-01&hellip;) &middot; next steps <a href="../LIMITATIONS_AND_NEXT_STEPS.md">LIMITATIONS_AND_NEXT_STEPS.md</a>.</p>
 </section>
 
 <section class="card" id="candidate-ranking">
@@ -346,7 +365,7 @@ def render() -> None:
   {probe_box}
 </section>
 </main>
-<footer>Generated from <code>docs/run-card-S22-XB.json</code> and <code>docs/s22/*.json</code> by <code>scripts/render_s22_xbreed_pages.py</code>. No number on this page is typed by hand.</footer>
+<footer>Generated from <code>docs/run-card-S22-XB.json</code> and <code>docs/s22-xb/*.json</code> by <code>scripts/render_s22_xbreed_pages.py</code>. No number on this page is typed by hand.</footer>
 </div>{copy_js}</body></html>
 """
     (DOCS / "s22-xbreed-executive-summary.html").write_text(body)

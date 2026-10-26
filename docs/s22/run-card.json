@@ -1,0 +1,131 @@
+{
+  "schema_version": "gems-s22-run-card-v1",
+  "lane": "S22-OMTJ",
+  "hypothesis": "Concealed displacement juxtaposes magnetic texture with different signed third moments.",
+  "mechanism": "B14 local skewness boundary aligned with the smoothed B13 gravity gradient.",
+  "named_non_fault_mimic": "Unfaulted volcanic flow margin or intrusive lithologic contact",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "leaderboard_score_estimate": null,
+  "submission_slots_used": 0,
+  "preregistration_sha256": "16b10aa0cb73b6c2cfd6fc8a8c33854da7a943b0b086cbd5e6df014f8ec296f6",
+  "experiments_run": 1,
+  "budget_max_experiments": 3,
+  "registry_scope": {
+    "available_unique_bytes": 112,
+    "missing": 2,
+    "organizer_complete": false,
+    "dense_exemptions": false
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.06622318062610064,
+    "ci95": [
+      0.0480153209879553,
+      0.0868031263517965
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 3752.3183555308933,
+    "fpw": 35604.20896488495,
+    "fnw": 57235.681644469114
+  },
+  "raster_sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+  "validator_output": {
+    "file": "/home/user/GEMSDOE91/docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+    "bytes": 116095,
+    "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gems91-s22-omtj-e1-20261026-a99b8923f0-zeros",
+  "submission_note": "S22 OMTJ E1: magnetic third-moment boundary x gravity normal; research only; not approved for submission.",
+  "artifact": {
+    "tif": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+    "zip": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.zip",
+    "zip_sha256": "8862229cb572b53b41951de6f7d287ba16b4c0412898658b07cf591e5e63efb2",
+    "support_sha256": "a99b8923f0761299b5594c246a08b9959c428f2463ab8d78995593c67443448b"
+  },
+  "leakage_canary": {
+    "max_symmetric_auc": 0.5774484105353622,
+    "threshold": 0.9,
+    "passed": true,
+    "tests": 28,
+    "feature_count": 7
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_rank_correlation": 0.05011820660983286,
+    "surface_checked": 112,
+    "surface_unverified": [],
+    "final_dot_checks": {
+      "checked_before_stop": 27,
+      "duplicate": {
+        "path": "data/fleet_registry/calib_r13lattice_00904.tif",
+        "status": "DUPLICATE",
+        "rank_correlation": -5.359578953898351e-05,
+        "overlap_within_3px": 0.9856588941413926,
+        "candidate_dots": 37654,
+        "registry_dots": 206895,
+        "rank_status": "PASS"
+      },
+      "registry_clearance": false
+    }
+  },
+  "exact_file_hash_unseen_in_frozen_registry": true,
+  "ok_to_download": true,
+  "download_scope": "Negative research artifact; not a protocol-unique competition submission",
+  "stop_reason": "FINAL_DOTS_DUPLICATE_STOP \u2014 no dense-raster exception; no more experiments",
+  "elapsed_seconds": 53.88,
+  "within_two_hour_budget": true,
+  "generated_utc": "2026-10-26T16:12:33.206462+00:00"
+}

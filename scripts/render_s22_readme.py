@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Insert/replace the generated S22 block above the S21 block in README.md and the S22 supplied-update addendum.
 
-Data-driven from docs/run-card-S22-XB.json and docs/s22/*.json (no hand-typed numbers in the block).
+Data-driven from docs/run-card-S22-XB.json and docs/s22-xb/*.json (no hand-typed numbers in the block).
 """
 from __future__ import annotations
 
@@ -18,9 +18,9 @@ def _j(p):
 
 def render() -> None:
     card = _j("docs/run-card-S22-XB.json")
-    nine = _j("docs/s22/nine-sites.json")
-    inst = _j("docs/s22/instruments.json")
-    r0 = _j("docs/s22/r0-decomposition.json")
+    nine = _j("docs/s22-xb/nine-sites.json")
+    inst = _j("docs/s22-xb/instruments.json")
+    r0 = _j("docs/s22-xb/r0-decomposition.json")
     sub, gates, hd, uniq, val = card["submission"], card["gates"], card["holdout"], card["uniqueness"], card["validator"]
     okd, oks = card["ok_to_download"], card["ok_to_submit"]
     lfi = card["lfi_projection"]["all"]
@@ -32,7 +32,7 @@ def render() -> None:
     verdict = ("`OK TO SUBMIT: YES — ELIGIBLE (unique, valid, every automated gate passed; the slot decision is yours; projected BELOW your current best, so use it as a learning probe)`"
                if oks else "`OK TO SUBMIT: NO — NOT OK TO SUBMIT` (failed gates: " + ", ".join(f"`{g}`" for g in card["failed_gates"]) + ")")
     block = f"""<!--S22-README-BEGIN-->
-# GEMSDOE91 — Session 22 (`S22-XB`, branch `arena/c722cd53-gemsdoe91`): official-source re-baselining, why 0.2778, and a unique PDWC×HGBR cross-breed
+# GEMSDOE91 — Parallel Session 22 lane (`S22-XB`, branch `arena/c722cd53-gemsdoe91`): official-source re-baselining, why 0.2778, and a unique PDWC×HGBR cross-breed
 
 > **AUTOMATED VERDICT: `OK TO DOWNLOAD: {'YES' if okd else 'NO'}` · {verdict}** (0 weekly slots spent by the project).
 > **[⬇ Download S22-XB GeoTIFF (.tif)](docs/downloads/{Path(sub['tif_file']).name})** (`sha256: {sub['sha256']}`, `{val['n_dots']:,}` binary `{{0.0, 1.0}}` dots, all-finite zeros `float32`, EPSG:32611, 3730×3292) · **[⬇ single-TIFF ZIP](docs/downloads/{Path(sub['zip_file']).name})** · **[9-site executive summary & how to submit](docs/s22-xbreed-executive-summary.html)** · [run card](docs/run-card-S22-XB.json) · [preregistration + amendments](docs/HYPOTHESES_S22_XBREED.md) · [why 0.2778](docs/R0_ANALYSIS_S22.md) · [official sources](docs/OFFICIAL_SOURCES_VERIFIED_S22.md)
@@ -52,8 +52,12 @@ def render() -> None:
     txt = (ROOT / "README.md").read_text()
     if "<!--S22-README-BEGIN-->" in txt:
         txt = re.sub(r"<!--S22-README-BEGIN-->.*?<!--S22-README-END-->\n", block, txt, count=1, flags=re.S)
-    else:
-        txt = txt.replace("<!--S21-README-BEGIN-->", block + "<!--S21-README-BEGIN-->", 1)
+    else:  # after the current-lane status, before the historical <details> block (or above the S21 block as a fallback)
+        anchor = "\n---\n\n<details>"
+        if anchor in txt:
+            txt = txt.replace(anchor, "\n" + block + anchor, 1)
+        else:
+            txt = txt.replace("<!--S21-README-BEGIN-->", block + "<!--S21-README-BEGIN-->", 1)
     (ROOT / "README.md").write_text(txt)
     print("README S22 block rendered")
 

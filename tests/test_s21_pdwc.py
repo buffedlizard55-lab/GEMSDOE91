@@ -167,7 +167,7 @@ def test_nine_site_executive_summary_covers_all_requested_sites() -> None:
 def test_s21_pages_and_readme_links_and_verdict_are_consistent() -> None:
     tif_name = Path(CARD["submission"]["tif_file"]).name
     zip_name = Path(CARD["submission"]["zip_file"]).name
-    for rel in ("docs/index.html", "docs/s21-pdwc-executive-summary.html", "docs/s21-pdwc.html"):
+    for rel in ("docs/s21-pdwc-executive-summary.html", "docs/s21-pdwc.html"):
         page_path = ROOT / rel
         assert page_path.is_file()
         p = _LinkParser()

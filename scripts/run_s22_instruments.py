@@ -15,7 +15,7 @@ scripts/restore_lfi_anchors.py) and the unchanged S20 leaderboard-feedback-inver
     unchanged S20 design; accepted only if LOSO RMSE does not worsen by > 0.0005 AND the site-jackknife 95% interval of
     the fitted (hi vs lo) log-effect lies ABOVE 0 (direction predicted by H22-2; Amendment A2).
 
-Outputs: docs/s22/instruments.json (+ docs/s22/anchor-table.csv).  All fitted quantities are MODEL (never scores).
+Outputs: docs/s22-xb/instruments.json (+ docs/s22-xb/anchor-table.csv).  All fitted quantities are MODEL (never scores).
 """
 from __future__ import annotations
 
@@ -43,7 +43,7 @@ from scipy.stats import spearmanr  # noqa: E402
 from gems57.metric import dti_binary  # noqa: E402
 from gems91 import lfi as L  # noqa: E402
 
-OUT = ROOT / "docs/s22"
+OUT = ROOT / "docs/s22-xb"
 SGMC = ROOT / "data/external/derived_sgmc_faults_100m_u8.tif"
 RIDGE = 10.0
 

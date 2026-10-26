@@ -1,6 +1,6 @@
 # Official sources verified in Session 22 (2026-10-26 UTC)
 
-Every statement below was read from the cited page on 2026-10-26 with the Arena `fetch_page` / `web_search` tools. They return **text pages only**; no binary data were downloaded from any of these hosts. Quotations are short and exact; anything else is paraphrase and says so. Machine-readable receipts: `docs/s22/official-sources.json`.
+Every statement below was read from the cited page on 2026-10-26 with the Arena `fetch_page` / `web_search` tools. They return **text pages only**; no binary data were downloaded from any of these hosts. Quotations are short and exact; anything else is paraphrase and says so. Machine-readable receipts: `docs/s22-xb/official-sources.json`.
 
 > **How to use this file.** If a claim in the README, a run card or an earlier session's note conflicts with a row here, the row here wins (it carries a URL you can open). Anything *not* in this table is unverified.
 
@@ -49,7 +49,7 @@ URL: <https://docs.nlr.gov/docs/fy26osti/96647.pdf> (sections cited in brackets)
 
 ## D. What these facts changed
 
-1. A4 + A5 explain the **collar effect**: pixels on the catalogue are excluded, and a new fault is by definition *not* a catalogue pixel, so a dot 1–2 px beside a mapped trace is almost always an unmatched false positive. See `docs/s22/r0-decomposition.json`.
+1. A4 + A5 explain the **collar effect**: pixels on the catalogue are excluded, and a new fault is by definition *not* a catalogue pixel, so a dot 1–2 px beside a mapped trace is almost always an unmatched false positive. See `docs/s22-xb/r0-decomposition.json`.
 2. A6 + B3 mean the public board measures only a hidden subset; a gain found by fitting the public score need not transfer to the private set or to the Phase 2 area.
 3. A10 kills the seismicity-residual hypothesis before any compute (the layers are smoothed rate densities).
 4. A7 + A8 + B4 mean the Phase 2 score depends on expert review of geologically credible predictions; a raster that only games the metric earns no Phase 2 credit.

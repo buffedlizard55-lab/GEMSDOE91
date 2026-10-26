@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Protocol uniqueness screen of an existing candidate raster against every other raster (same code as the S21/S22 screen).
 
-Usage: python3 scripts/check_candidate_uniqueness_s22.py docs/downloads/<file>-zeros.tif docs/s22/<out>.json
+Usage: python3 scripts/check_candidate_uniqueness_s22.py docs/downloads/<file>-zeros.tif docs/s22-xb/<out>.json
 The candidate's dots stand in for its surface in the Spearman phase (conservative: dots are rougher than a surface).
 """
 from __future__ import annotations

@@ -114,16 +114,16 @@ The E2(c) acceptance rule in §4 said the H22-2 effect interval must "exclude 1"
 
 ## Amendment A3 (written 2026-10-26 **after** the uncapped E1 result and the pass-1 uniqueness screen were known, **before any capped number existed**)
 
-Known when this was written: uncapped paired difference `C − A` (CELF) = **+0.004378**, 95% CI **[+0.000069, +0.008234]**; the pass-1 file (equalized per-quadrant CELF on arm C's stitched OOF surface, no caps) overlaps the S21-PDWC E3 raster by **71.88%** and a 90,000-dot sibling raster by 70.26% (> 70%), so it is **not unique** (`docs/s22/registry-screen-pass1.json`). The cross-breed shares its features with PDWC, so this was foreseeable.
+Known when this was written: uncapped paired difference `C − A` (CELF) = **+0.004378**, 95% CI **[+0.000069, +0.008234]**; the pass-1 file (equalized per-quadrant CELF on arm C's stitched OOF surface, no caps) overlaps the S21-PDWC E3 raster by **71.88%** and a 90,000-dot sibling raster by 70.26% (> 70%), so it is **not unique** (`docs/s22-xb/registry-screen-pass1.json`). The cross-breed shares its features with PDWC, so this was foreseeable.
 
 1. **Shipped recipe.** Equalized per-quadrant CELF **with hard per-reference 3-px caps of 0.64** (the value S21 used) on the *active* reference set = every non-blanket reference whose pass-1 overlap is ≥ 0.48 (at most 240, frozen from `registry-screen-pass1.json`). A cap applied inside each quadrant call bounds the global overlap by the same fraction, so the per-quadrant recipe is kept. This replaces the global-CELF fallback in the draft emit script, which would have broken the link between the evaluated and the shipped recipe.
-2. **Evaluation under the shipped recipe.** Arms A and C are re-evaluated on hide-v2 with the identical capped emitter and the identical reference set (`docs/s22/holdout-capped.json`).
+2. **Evaluation under the shipped recipe.** Arms A and C are re-evaluated on hide-v2 with the identical capped emitter and the identical reference set (`docs/s22-xb/holdout-capped.json`).
 3. **G4 made stricter.** G4 now requires the paired `C − A` 95% interval to lie above 0 under **both** the uncapped recipe (already observed, above) **and** the capped recipe. Pinned S21/S18 comparisons stay context-only (A1).
 
 
 ---
 
-## Outcomes (appended after all experiments; **not** part of the frozen text; numbers from `docs/run-card-S22-XB.json` and `docs/s22/*.json`)
+## Outcomes (appended after all experiments; **not** part of the frozen text; numbers from `docs/run-card-S22-XB.json` and `docs/s22-xb/*.json`)
 
 | ID | Outcome | Evidence |
 |---|---|---|
@@ -134,3 +134,7 @@ Known when this was written: uncapped paired difference `C − A` (CELF) = **+0.
 | H22-5 `LIDAR-SCARP` | Not runnable here: 8 of 8 official data hosts unreachable. Remains the highest-gain hypothesis. | §3 above |
 
 Gates: G1 PASS, G2 PASS, G3 PASS, **G4 FAIL, G5 FAIL** → `OK TO DOWNLOAD: YES`, `OK TO SUBMIT: NO`, verdict `negative`.
+
+
+### Path and ID note (added at merge time, after all experiments)
+A parallel session ("S22-OMTJ") merged to `main` first and also uses `docs/s22/` and the IDs `IR-S22-nn`. To keep both lanes intact, **this lane's evidence lives in `docs/s22-xb/`** and its irregularity IDs are **`IR-S22XB-nn`**. The frozen text above is unchanged byte for byte: its `docs/s22/…` receipt paths now mean `docs/s22-xb/…`, and its `IR-S22-01` ("logged as") means `IR-S22XB-01` in `IRREGULARITIES.md`.

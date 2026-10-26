@@ -1,0 +1,12 @@
+{
+  "scope": "Recorded at post-run audit; does not claim a pre-run commit timestamp",
+  "implementation_sha256": {
+    "src/gems91/omtj22.py": "8d3b5d089b61651e17ff196671d311cf2592e7c755d94a0bec5d738f8f4e8f2b",
+    "scripts/run_s22_omtj.py": "e96a0b9508a1f129303f49ef23f0fe86e9ea867a7ee86d95928cfb6406eef22f",
+    "src/gems91/pdwc21.py": "2a067f86270ededc0de85a53aab290eb08d8186fba5a64b7753ce758ae06dbaf",
+    "src/gems91/novelty.py": "1a3f8b4fd2e51bcde7139901999f80cf7ed62db3b84f9b25295ba9c65199f729",
+    "vendor/gems57/evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "vendor/gems57/spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8",
+    "vendor/gems57/submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565"
+  }
+}

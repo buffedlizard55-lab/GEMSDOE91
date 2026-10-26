@@ -1,0 +1,11 @@
+{
+  "background_sigma_px": 12,
+  "moment_sigma_px": 3,
+  "skew_derivative_sigma_px": 1,
+  "gravity_derivative_sigma_px": 3,
+  "variance_floor": 1e-08,
+  "tmi_residual_scale": 2.01829445877272e+35,
+  "catalogue_features": false,
+  "surface_array_sha256": "d5536e1ec46a2a78b9bc0935ccf4ce172399d7da0a0b838184cbd126fa919180",
+  "preregistration_sha256": "16b10aa0cb73b6c2cfd6fc8a8c33854da7a943b0b086cbd5e6df014f8ec296f6"
+}

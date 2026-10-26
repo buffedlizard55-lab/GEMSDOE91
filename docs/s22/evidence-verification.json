@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "scope": "Evidence and technical download only; negative scientific verdict unchanged",
+  "raster_sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+  "ok_to_submit": false,
+  "holdout_dot_count": 37438,
+  "final_dot_count": 37654,
+  "reference_checks": "sample + catalogue",
+  "tests": "pooled arithmetic, canary coverage, first duplicate stop, source hashes, TIFF/ZIP identity and range"
+}

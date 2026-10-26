@@ -7,7 +7,7 @@ Stages (each resumable; every expensive artefact is cached under data/derived/s2
 
     fit       --arm A|B|C   4 folds x {full, pure-subsurface} specialists -> out-of-fold surfaces
     evaluate                canary + equalized-quadrant emission (NMS and CELF) + paired bootstrap
-                            -> docs/s22/holdout.json, docs/s22/canary.json
+                            -> docs/s22-xb/holdout.json, docs/s22-xb/canary.json
 
 Arms
     A  PDWC66 only                        (S21 feature set)
@@ -41,7 +41,7 @@ from gems57 import evaluate_holdout as eh  # noqa: E402
 from gems91 import xbreed22 as X  # noqa: E402
 from gems91.pdwc21 import fit_predict_pdwc_specialist  # noqa: E402
 
-EVIDENCE = ROOT / "docs/s22"
+EVIDENCE = ROOT / "docs/s22-xb"
 
 
 def cmd_fit(arm: str) -> int:

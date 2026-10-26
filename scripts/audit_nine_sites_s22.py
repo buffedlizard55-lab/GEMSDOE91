@@ -9,7 +9,7 @@ Every row is produced from bytes and API calls made by this script:
     against the official sample submission (CRS, shape, affine, dtype, band count, finite values in [0,1]);
   * pairwise relationships between the nine best files are computed exactly (pixel identity, subset, 3-px overlap).
 
-Output: ``docs/s22/nine-sites.json``.  Scores are USER-REPORTED, not organizer receipts.
+Output: ``docs/s22-xb/nine-sites.json``.  Scores are USER-REPORTED, not organizer receipts.
 """
 from __future__ import annotations
 
@@ -31,7 +31,7 @@ import sibling_sweep as SS  # noqa: E402  (shared authenticated GitHub API helpe
 
 OWNER = "buffedlizard55-lab"
 SITES = ["GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"]
-OUT = ROOT / "docs/s22/nine-sites.json"
+OUT = ROOT / "docs/s22-xb/nine-sites.json"
 SAMPLE = ROOT / "data/official/sample_submission.tif"
 EXISTING = ROOT / "data/official/existing_faults.tif"
 INDEX = ROOT / "data/sibling_sweep/index.tsv"

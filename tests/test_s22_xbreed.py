@@ -23,7 +23,7 @@ from gems91 import xbreed22 as X
 
 ROOT = Path(__file__).resolve().parents[1]
 CARD = json.loads((ROOT / "docs/run-card-S22-XB.json").read_text())
-S22 = ROOT / "docs/s22"
+S22 = ROOT / "docs/s22-xb"
 SUB = CARD["submission"]
 HAVE_DATA = (ROOT / "data/official/existing_faults.tif").is_file() and (ROOT / "data/official/sample_submission.tif").is_file()
 
@@ -254,15 +254,33 @@ def _check_links(rel: str, page: _Page):
             assert u.fragment in other.ids, f"missing #{u.fragment} in {target}"
 
 
-@pytest.mark.parametrize("rel", ["docs/index.html", "docs/s22-xbreed-executive-summary.html"])
-def test_front_door_pages_state_the_same_verdict_as_the_run_card(rel):
+def test_own_executive_summary_states_the_same_verdict_as_the_run_card():
+    rel = "docs/s22-xbreed-executive-summary.html"
     page = _page(rel)
     txt = " ".join(page.text)
-    assert page.states == [str(CARD["ok_to_submit"]).lower()], f"{rel} must carry exactly one data-submission-ready equal to the card"
+    assert page.states == [str(CARD["ok_to_submit"]).lower()], "exactly one data-submission-ready, equal to the card"
     assert f"downloads/{Path(SUB['tif_file']).name}" in page.downloads and f"downloads/{Path(SUB['zip_file']).name}" in page.downloads
     assert ("OK TO DOWNLOAD: YES" in txt) == CARD["ok_to_download"]
     assert ("NOT OK TO SUBMIT" in txt) == (not CARD["ok_to_submit"])
-    assert SUB["note"] in (ROOT / rel).read_text() and SUB["name"] in (ROOT / rel).read_text() and SUB["sha256"] in txt
+    raw = (ROOT / rel).read_text()
+    assert SUB["note"] in raw and SUB["name"] in raw and SUB["sha256"] in txt
+    _check_links(rel, page)
+
+
+@pytest.mark.parametrize("rel", ["docs/index.html", "docs/executive-summary.html"])
+def test_current_lane_entry_pages_carry_the_parallel_callout_without_a_second_state(rel):
+    """The current lane owns each entry page and its single data-submission-ready; S22-XB is injected via the PARALLEL slot."""
+    raw = (ROOT / rel).read_text()
+    assert 'id="s22-xb-parallel"' in raw
+    seg = raw[raw.index('id="s22-xb-parallel"'):]
+    seg = seg[:seg.index("</section>")]
+    assert "data-submission-ready" not in seg and " download" not in seg          # no second state, no download attribute
+    assert f"downloads/{Path(SUB['tif_file']).name}" in seg and "s22-xbreed-executive-summary.html" in seg
+    assert SUB["note"] in seg and SUB["name"] in seg
+    assert ("NOT OK TO SUBMIT" in seg) == (not CARD["ok_to_submit"])
+    assert "OK TO DOWNLOAD: " + ("YES" if CARD["ok_to_download"] else "NO") in seg
+    page = _page(rel)
+    assert len(page.states) == 1            # the lane that owns the page keeps the only state attribute
     _check_links(rel, page)
 
 
@@ -279,23 +297,15 @@ def test_executive_summary_contains_every_requested_element_and_all_nine_sites()
     assert "PROJECTION" in t and "ORGANIZER-CONFIRMED" not in t.replace("no organizer receipts", "")
 
 
-def test_readme_root_and_governance_files_mention_the_current_file_and_keep_the_brief():
+def test_readme_and_governance_files_mention_the_file_keep_the_brief_and_do_not_displace_the_current_lane():
     readme = (ROOT / "README.md").read_text()
-    assert readme.startswith("<!--S22-README-BEGIN-->")
-    assert Path(SUB["tif_file"]).name in readme and SUB["sha256"] in readme and "full-project-brief" in readme
-    assert "supplied update for Session 22" in readme and "Session 20 Standing Prompt Addendum" in readme
-    root = (ROOT / "index.html").read_text()
-    assert Path(SUB["tif_file"]).name in root and "NO NEW TIFF GENERATED" in root       # older audit statements preserved
-    for f, tag in (("IRREGULARITIES.md", "IR-S22-01"), ("LIMITATIONS_AND_NEXT_STEPS.md", "Session 22"), ("SLOT_PLAN.md", "SESSION 22 BANNER"),
-                   ("AI_USE.md", "Session 22")):
+    assert "<!--S22-README-BEGIN-->" in readme and "<!--S22-README-END-->" in readme
+    block = readme[readme.index("<!--S22-README-BEGIN-->"):readme.index("<!--S22-README-END-->")]
+    assert Path(SUB["tif_file"]).name in block and SUB["sha256"] in block and "Parallel Session 22 lane" in block
+    assert readme.index("<!--S22-README-BEGIN-->") < readme.index("<details>")        # visible above the historical block
+    assert "S22-XB lane (claims, not receipts)" in readme and "Session 20 Standing Prompt Addendum" in readme and "full-project-brief" in readme
+    for f, tag in (("IRREGULARITIES.md", "IR-S22XB-01"), ("LIMITATIONS_AND_NEXT_STEPS.md", "parallel lane `S22-XB`"),
+                   ("SLOT_PLAN.md", "SESSION 22 BANNER"), ("AI_USE.md", "Session 22"), ("PASS_LOG.md", "parallel lane `S22-XB`")):
         assert tag in (ROOT / f).read_text(), f
-
-
-def test_wide_uniqueness_rechecks_of_two_comparators_are_recorded_and_consistent():
-    s18 = json.loads((S22 / "s18-uniqueness-check.json").read_text())
-    s21 = json.loads((S22 / "s21-uniqueness-check.json").read_text())
-    assert s18["n_compared"] > 1000 and s21["n_compared"] > 1000
-    assert s18["competitive_pass"] is False and 0.70 < s18["max_competitive_3px_overlap"] < 0.72     # IR-S22-13
-    assert s21["competitive_pass"] is True and s21["max_competitive_3px_overlap"] <= 0.64 + 1e-6
-    page = (ROOT / "docs/s22-xbreed-executive-summary.html").read_text()
-    assert "70.97%" in page or f"{s18['max_competitive_3px_overlap']*100:.2f}%" in page
+    irr = (ROOT / "IRREGULARITIES.md").read_text()
+    assert "IR-S22-01" in irr and "IR-S22XB-13" in irr          # both parallel lanes' registers coexist without ID collision

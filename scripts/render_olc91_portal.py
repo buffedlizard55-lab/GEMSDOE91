@@ -3,10 +3,10 @@
 
 Historical module name (introduced by OLC91); it now serves whichever lane is configured in
 ``CURRENT`` below. Only that one dict changes when a new measured lane becomes the current file.
-Since session bacc7c26 the current lane is ISO91.
+The current lane is S22-OMTJ (negative; literal duplicate stop).
 
 Source of truth: ``CURRENT['index_src']`` and ``CURRENT['exec_src']``, rendered from the run card by
-scripts/render_iso91_pages.py. They are copied verbatim to the site entry points, so a fresh portal render
+scripts/render_s22_pages.py. They are copied verbatim to the site entry points, so a fresh portal render
 is byte-reproducible (tests/test_submission_portal.py). The download is validated fail-closed first,
 with the same registered-bytes / single-TIFF-ZIP / card-hash check as the XG91 front door
 (scripts/render_geo91_portal._registered_pair). The renderer never sets ok_to_submit true: a card
@@ -28,10 +28,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 CURRENT = {
-    "run_card": "run-card-S20-RHTW.json",
-    "index_src": "s20-rhtw-index-src.html",
-    "exec_src": "s20-rhtw-exec-src.html",
+    "run_card": "run-card-S22-OMTJ.json",
+    "index_src": "s22-index-src.html",
+    "exec_src": "s22-exec-src.html",
     "previous_run_cards": [
+        "run-card-S20-RHTW.json",
         "run-card-ISO91.json",
         "run-card-OLC91.json",
         "run-card-XG91.json",
@@ -165,11 +166,18 @@ def parallel_s19_svhf_callout(root=ROOT) -> str:
 
 
 def render() -> None:
-    from scripts.render_s20_pages import main as render_s20_src
-    render_s20_src()
+    from scripts.render_s22_pages import render_sources
+    render_sources()
     docs = ROOT / "docs"
     current = front_door(ROOT)  # fail before replacing any published page
-    parallel_card = parallel_s19_svhf_callout(ROOT) + parallel_s18_callout(ROOT)
+    # Current status must not be displaced by historical "NEW" banners.
+    # Previous runs remain accessible through explicit archive links.
+    parallel_card = ""
+    try:  # parallel lane callout (S22-XB) through the sanctioned <!--PARALLEL-CALLOUTS--> slot; empty if absent
+        from scripts.render_s22_xbreed_pages import parallel_callout_html
+        parallel_card = parallel_callout_html()
+    except ImportError:
+        pass
     for source_name, target_name in ((CURRENT["index_src"], "index.html"),
                                      (CURRENT["exec_src"], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
@@ -182,6 +190,16 @@ def render() -> None:
             raise ValueError(f"Missing insertion point in {source_name}")
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
+    (ROOT / 'index.html').write_text(
+        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<meta http-equiv="refresh" content="0;url=docs/index.html">'
+        '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
+        '<h1>GEMSDOE91 · S22 OMTJ</h1><p>OK TO DOWNLOAD: YES — research only. '
+        '<strong>OK TO SUBMIT: NO — NOT OK TO SUBMIT.</strong></p>'
+        '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
+        '<a href="docs/executive-summary.html">Nine-site executive summary and submission guide</a></p>'
+        '</main></body></html>\n', encoding='utf-8')
 
 if __name__ == "__main__":
     render()

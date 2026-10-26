@@ -2,7 +2,7 @@
 
 **Why this exists.** Every projection in this repository is a *model* of the hidden public truth. The score formula is exact, so a few carefully built rasters can turn that model into measurements. Two probe rasters that already exist in the repository (built by GEMSDOE32, SHA-pinned in the registry, **not** built this session) do exactly that for the whole R0 family. **This is a recommendation, not an action: the project never spends a slot.** The files are calibration instruments, not competitive entries; they are derivatives of the 0.2600 raster and are **not unique** under the 70% rule.
 
-## The three rasters (verified from bytes, `docs/s22/probe-predictions.json`)
+## The three rasters (verified from bytes, `docs/s22-xb/probe-predictions.json`)
 
 | Probe | Construction | Status |
 |---|---|---|
