@@ -37,6 +37,7 @@ def f(value, digits=5):
 EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292),
                  'transform': (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)}
 BOARD_ROWS = (
+    ('S20-RHTW E3 (NEW Session 20: Riesz-Harmonic Gravity/Mag Worm + GDR Geothermometer + Pluvial-Decontaminated Dual-Specialist OOF CELF, 37,654 dots; Primary I2 0.136798 HOLDOUT-DTI [+0.051538 vs E0, CI +0.0385..+0.0652], Isolated I1 0.113298 [+0.020193 vs E0], 103/103 canary PASS, 120/120 competitive uniqueness PASS [49.10% vs R0]; research only — human selector required)', 'docs/run-card-S20-RHTW.json', 'docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.tif', 'REVIEW-S20-RHTW-20261026.md'),
     ('S19-SVHF E3 (NEW Session 19: Semivariogram-Jump + Hurst + Piedmont-Flexure Stitched-OOF CELF, 37,654 dots; HOLDOUT-DTI 0.147791 v2, Blind SGMC >300m 0.102428 / >500m 0.093415 [69.2% >1 km], 90/90 competitive <=80k uniqueness PASS [max 53.20%]; negative — research only)', 'docs/run-card-S19-SVHF.json', 'docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.tif', 's19-svhf.html'),
     ('S17-EULR E3 (Session 17: Euler deconvolution source-geometry fusion, 44,000 dots; HOLDOUT-DTI 0.249626 v1.0, Blind SGMC 0.100737; Euler paired ablation +0.000331 CI includes 0 — null; negative — research only)', 'docs/run-card-S17-EULR.json', 'docs/downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif', 'REVIEW-S17-EULR.md'),
     ('S17-CDSC E1 (NEW Session 17 lane: prevalence-calibrated Faulds–Hinz en-echelon relay AC + 16 local S15 subsurface features + 72-col Pure-Subsurface specialist, 44,000 dots; HOLDOUT-DTI 0.259972 [+0.015371 vs S13-PTHA, +0.019339 vs S15-SCGF], Blind SGMC 0.093019; negative — research only)', 'docs/run-card-S17-CDSC.json', 'docs/downloads/gems91-s17-cdsc-e1-20261025T163000Z-500d26dd-zeros.tif', 's17-cdsc.html'),
@@ -632,17 +633,13 @@ def render():
     # committed front door matches a fresh render byte-for-byte.
     from scripts.render_geo91_portal import render as render_geo91
     render_geo91()
-    # OLC91 (2026-10-25, later session) supersedes GEO91 as the current entry point.
+    # S20-LFI parallel research executive summary (renders s20-lfi-executive-summary.html before S20-RHTW sets front door).
+    if (ROOT / 'docs/run-card-S20-LFI.json').is_file():
+        from scripts.render_s20_lfi_pages import render as render_s20_lfi
+        render_s20_lfi()
+    # OLC91 / S20-RHTW (2026-10-26, I2=0.1368 & I1=0.1133 HOLDOUT-DTI) runs last as the authoritative front door.
     from scripts.render_olc91_portal import render as render_olc91
     render_olc91()
-    # CWP91 (2026-10-25, completeness-weighted PU) merged as a namespaced parallel
-    # session (docs/cwp91.html); it does NOT replace the current front door above.
-    # Its pages are built by scripts/render_cwp91_portal.py, deliberately not called
-    # here so a fresh render reproduces the committed entry points byte-for-byte.
-    # S20-LFI (2026-10-26) banner + executive summary: injected last so a fresh render reproduces the front door.
-    if (ROOT / 'docs/run-card-S20-LFI.json').is_file():
-        from scripts.render_s20_lfi_pages import render as render_s20
-        render_s20()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 

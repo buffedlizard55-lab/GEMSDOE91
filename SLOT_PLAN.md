@@ -1,4 +1,11 @@
-# Slot selection — no automatic slot (`S19-SVHF E3` / `S18-HGBR E1` / `S17-CPAD E1` / `OLC91 E1` / `S14-HVDC E2` / `S14-PTAC E2` / `S15-SCGF E2` / `S17-EULR E3` are held for human selector; 0 slots spent)
+# Slot selection — no automatic slot (`S20-RHTW E3` / `S19-SVHF E3` / `S18-HGBR E1` / `S17-CPAD E1` are held for human selector; 0 slots spent)
+
+> **SESSION 20 BANNER (`S20-RHTW`, 2026-10-26, branch `arena/06420fd7-gemsdoe91`):**
+> - **Zero weekly DrivenData slots spent automatically (`slots_used = 0`). `OK TO DOWNLOAD: YES` (validated `[0, 1]` research/selector candidate) | `OK TO SUBMIT: NO` (`verdict: "negative"` / fail-closed pending separate human weekly-slot selector under Rule 6; [`docs/run-card-S20-RHTW.json`](docs/run-card-S20-RHTW.json)).**
+> - **`gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.tif`** (`37,654` binary `{0.0, 1.0}` dots, `min_dist_catalogue = 2.236 px`, SHA-256 `06e5f52d7f231c315d427849a9e02b6fd78dc2cf3993aabb0b76b676b1150f2b`, ZIP SHA-256 `f5319f617610f8503f82f9ef1b68dc008414f8db3432cdff07fce06be07cf472`):
+>   - **#1 on Primary `I2` Holdout (`0.136798 HOLDOUT-DTI` `[0.120020, 0.154533]`, `+60.45%` over `E0 = 0.085260`, `+24.40%` over external `GEMSDOE70 Phase 5 = 0.109968`) AND #1 on Isolated-Fault `I1` Holdout (`0.113298 HOLDOUT-DTI` `[0.097264, 0.128559]`, `+21.69%` over `E0 = 0.093105`).**
+>   - **Non-Blanket Uniqueness PASS Across All `120` Audited Rasters:** `49.10% <= 70%` 3-px dot overlap vs `GEMSDOE32 R0`, `41.15%` vs `S18-HGBR E1`, `36.93%` vs `S19-SVHF E3`, `max non-blanket = 62.15% <= 70%`, `surface |ρ| <= 0.1803 <= 0.90` (`99.78%` on `206,895`-dot synthetic 5-px lattice witness `calib_r13lattice_00904.tif`, `IR-S16-03`).
+>   - **9-Site Duplication Guard:** Forensic audit (`docs/s20_rhtw/nine_sites_forensic_matrix.json`) proves `GEMSDOE24/25/28/30/31/33/36` and `GEMSDOE27 H27` are `86.7%–100.0%` clonal trims of `19GEMSDOE H19-5` / `GEMSDOE32 R0` (`0.2778`) and **must never spend another weekly slot**. Only `GEMSDOE27 H29` (`0.2190`, `56.1%`), external `GEMSDOE70 Phase 5` (`0.2478`, `54.8%`), `S18-HGBR E1`, `S19-SVHF E3`, and `S20-RHTW E3` (`49.1%`) are non-duplicates of `R0`. Takes **no automatic slot**.
 
 > **SESSION 19 BANNER (`S19-SVHF`, 2026-10-25, branch `arena/bcc0fcb2-gemsdoe91`):**
 > - **Zero weekly DrivenData slots spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` (research/audit) | `OK TO SUBMIT: NO` (`verdict: "negative"`, `submission_ready: false`; [`docs/run-card-S19-SVHF.json`](docs/run-card-S19-SVHF.json)).**

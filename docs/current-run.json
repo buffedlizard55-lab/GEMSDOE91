@@ -1,16 +1,18 @@
 {
-  "run_card": "run-card-S21-DCBL.json",
+  "run_card": "run-card-S20-RHTW.json",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "scope": "Research artifact: format/canary/indexed-registry PASS; holdout negative vs comparable best; not selector-approved.",
-  "raster_sha256": "18529ab2e2d57007bf9d58d1f456a8414a50d67b17f9c81dfc26ec7055e7cb52",
-  "tif": "docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.tif",
-  "zip": "docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.zip",
-  "zip_sha256": "6d27cf7caa3957d3edc3e64af281ac12c8ae4e9963ed3572fff05e936de07da1",
+  "scope": "Historical published research artifact; format pass is not submission approval",
+  "raster_sha256": "06e5f52d7f231c315d427849a9e02b6fd78dc2cf3993aabb0b76b676b1150f2b",
+  "tif": "downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.tif",
+  "zip": "downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.zip",
+  "zip_sha256": "f5319f617610f8503f82f9ef1b68dc008414f8db3432cdff07fce06be07cf472",
   "verdict": "negative",
   "previous_run_cards": [
-    "run-card-ISO91.json"
+    "run-card-ISO91.json",
+    "run-card-OLC91.json",
+    "run-card-XG91.json",
+    "run-card-GEO91.json"
   ],
-  "note": "S21-DCBL deep-cover gravity lineament coherence, 37654 dots, depth-gated, eccf3ea6",
-  "submission_name": "gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros"
+  "note": "Renderer never sets ok_to_submit true."
 }

@@ -1,0 +1,24 @@
+{
+  "evidence_class": "BLIND-SGMC-CONTROL",
+  "gt_300m": {
+    "sgmc_positive_pixels": 62122,
+    "candidate_dti": 0.082153,
+    "gemsdoe32_r0_dti": 0.093694,
+    "delta_vs_r0": -0.011541,
+    "ratio_vs_r0": 0.8768
+  },
+  "gt_500m": {
+    "sgmc_positive_pixels": 56822,
+    "candidate_dti": 0.070307,
+    "gemsdoe32_r0_dti": 0.088789,
+    "delta_vs_r0": -0.018482,
+    "ratio_vs_r0": 0.7918
+  },
+  "gt_1km": {
+    "sgmc_positive_pixels": 48393,
+    "candidate_dti": 0.056323,
+    "gemsdoe32_r0_dti": 0.086176,
+    "delta_vs_r0": -0.029853,
+    "ratio_vs_r0": 0.6536
+  }
+}
