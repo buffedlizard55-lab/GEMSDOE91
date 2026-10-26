@@ -28,10 +28,15 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 CURRENT = {
-    "run_card": "run-card-ISO91.json",
-    "index_src": "iso91-index-src.html",
-    "exec_src": "iso91-exec-src.html",
-    "previous_run_cards": ["run-card-OLC91.json", "run-card-XG91.json", "run-card-GEO91.json"],
+    "run_card": "run-card-S20-RHTW.json",
+    "index_src": "s20-rhtw-index-src.html",
+    "exec_src": "s20-rhtw-exec-src.html",
+    "previous_run_cards": [
+        "run-card-ISO91.json",
+        "run-card-OLC91.json",
+        "run-card-XG91.json",
+        "run-card-GEO91.json",
+    ],
 }
 
 
@@ -160,6 +165,8 @@ def parallel_s19_svhf_callout(root=ROOT) -> str:
 
 
 def render() -> None:
+    from scripts.render_s20_pages import main as render_s20_src
+    render_s20_src()
     docs = ROOT / "docs"
     current = front_door(ROOT)  # fail before replacing any published page
     parallel_card = parallel_s19_svhf_callout(ROOT) + parallel_s18_callout(ROOT)

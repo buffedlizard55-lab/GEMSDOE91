@@ -446,6 +446,18 @@
       "reason": "S19-SVHF (svhf_e3) stitched-OOF CELF fresh computation; format PASS, HOLDOUT-DTI=0.147791; competitive <=80k max 3px overlap=0.5320; literal synthetic blanket max=0.9985 > 0.70; NOT OK TO SUBMIT."
     },
     {
+      "path": "docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.tif",
+      "sha256": "06e5f52d7f231c315d427849a9e02b6fd78dc2cf3993aabb0b76b676b1150f2b",
+      "status": "current_research_only",
+      "reason": "S20-RHTW E3 research GeoTIFF (37,654 binary {0,1} dots, all-finite zeros outside, nodata=None). Beats E0 on primary I2 (0.136798 vs 0.085260 HOLDOUT-DTI, 95% CI [+0.038464, +0.065166]) and secondary isolated I1 (0.113298 vs 0.093105, 95% CI [+0.005827, +0.034334]); 103/103 canary PASS (<=0.8597); 120/120 competitive uniqueness PASS (49.10% vs R0, max non-blanket 62.15%). Research only; NOT OK TO SUBMIT without separate human weekly-slot selector approval (docs/run-card-S20-RHTW.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.zip",
+      "sha256": "f5319f617610f8503f82f9ef1b68dc008414f8db3432cdff07fce06be07cf472",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP archive of S20-RHTW E3 research GeoTIFF; NOT OK TO SUBMIT without separate human weekly-slot selector approval (docs/run-card-S20-RHTW.json)."
+    },
+    {
       "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
       "sha256": "0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd",
       "status": "current_research_only",
