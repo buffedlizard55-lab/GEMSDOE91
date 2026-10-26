@@ -42,6 +42,25 @@ The raw cached stack and registry can be restored for research using the instruc
 <details>
 <summary>Historical sessions and preserved full project brief — not the current submission verdict</summary>
 
+### Concurrent historical no-run review (preserved; superseded by S22 status above)
+
+<!--ACTIVE-8F9CFF19-BEGIN-->
+# GEMSDOE91 — Active checkout review (`arena/8f9cff19-gemsdoe91`, 2026-10-26)
+
+> **CURRENT REVIEW: NEGATIVE / BLOCKED. No experiment, no new TIFF, no new score. `OK TO DOWNLOAD: NO NEW TIFF FROM THIS REVIEW`. `OK TO SUBMIT: NO`. Zero weekly slots used.**
+>
+> Start here each session: [active-branch three-pass review](docs/REVIEW-ACTIVE-8F9CFF19-20261026.md) · [no-run JSON card](docs/run-card-8f9cff19.json) · [nine-site forensic summary](docs/nine-site-audit-20261026.html) · [pinned nine-site evidence register](docs/research/nine-site-audit-20261026.json) · [current limitations / next steps](LIMITATIONS_AND_NEXT_STEPS.md) · [full standing user brief](#full-project-brief).
+>
+> The supplied nine-site maximum is GEMSDOE32 `h33-h33-2-b2` **0.2778 USER/OWNER-REPORTED, not organizer-confirmed**; the exact score-to-file receipt was not verified. The supplied leaderboard values `0.3195` and `0.4413` are stale/conflicting; the official public leaderboard fetched 2026-10-26 showed #1 at **0.4437** (public-board observation, not a receipt tied to a specific audited TIFF). No candidate beats 0.2778 on evidence from this review.
+>
+> **Why there is no new TIFF:** `scripts/preflight.py` found **0/2** required pinned inputs, every displayed build axis is blocked, and no single-method lane is assigned to this checkout. No experiment, holdout, leakage canary, novelty comparison, or candidate validation was run. Existing TIFFs belong to earlier sessions and have `OK TO SUBMIT: NO`; do not treat them as this review's output.
+>
+> **Repository irregularity:** `docs/index.html` advertises S21-PDWC first, but `docs/current-run.json` and the canonical front-door verifier identify S20-RHTW. Both artifacts are marked not approved to submit. The active review records this identity mismatch; do not assume either is the current selected candidate.
+>
+> Three evidence-qualified hypotheses and their official-source needs are ranked in the active review. The leading proposal remains untested and is not an assigned lane. The complete project prompt is preserved below and should be reread at each session start. **Maximize P(Win) · Own the Outcome.**
+
+<!--ACTIVE-8F9CFF19-END-->
+
 <!--S21-README-BEGIN-->
 # GEMSDOE91 — Session 21 (`S21-PDWC`, branch `arena/a31c96c3-gemsdoe91`): Dipping-Contact Cauchy–Hilbert Waveform, Log-Gabor Phase Congruency & Clay-Cap Baffle OOF + 300 m CELF
 

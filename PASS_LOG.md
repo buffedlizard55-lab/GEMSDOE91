@@ -1,3 +1,26 @@
+## S22 OMTJ — three passes (2026-10-26)
+
+1. **Implement/measure:** restored pinned data automatically; audited exact nine-site leaders; preregistered four hypotheses; ran one third-moment magnetic/gravity experiment using shared evaluator/writer. New numeric/grid-valid TIFF; literal duplicate stop; no further experiment or slot.
+2. **Review/fix:** consolidated conflicting current pointers; kept historical pages immutable; corrected historical-page test assumptions and archive browser routes; disclosed score/provenance/NaN wording and unmatched-budget limitations. All scientific failures remain negative.
+3. **Re-check:** 689 local tests passed, 8 skipped before integrating the concurrent no-run review; new TIFF/ZIP hashes verified through real Chromium, 27-page accessibility check clean, no mobile overflow. All-download inventory: 107 artifacts, 98 technical PASS, 9 historical FAIL. Current evidence and shared template hashes pass. Post-merge test/CI outcomes are reported with the PR.
+
+Evidence: `docs/s22/verification.json`, `docs/s22/browser-verification.json`, `docs/s22/evidence-verification.json`, `docs/s22/run-card.json`. Source research and limitations: `docs/s22/research-and-limitations.md`.
+
+---
+
+# GEMSDOE91 — Multi-Pass Verification Log (latest: active review `8F9CFF19`, 2026-10-26)
+
+## Active checkout review `8F9CFF19` (`arena/8f9cff19-gemsdoe91`, 2026-10-26)
+
+- **Pass 1 — inspect:** reviewed standing prompt, branch, source tree, current audit/run cards, registry/preflight, current front door, and submission documentation. Confirmed no assigned lane and two required local inputs missing; did not infer branch-local experiment authorization.
+- **Pass 2 — test and correct evidence:** ran `.venv/bin/python scripts/preflight.py`; it reported `BUILD BLOCKED: 0/2` and all six build axes blocked. This refreshed stale `registry/preflight.json` from an old `INPUTS AVAILABLE` state to the current blocked snapshot. Added active-branch three-pass review, fail-closed JSON card, and regression tests. No mirrors/data were restored.
+- **Pass 3 — recheck:** `.venv/bin/python -m pytest -o addopts='' -q` → **679 passed, 9 skipped, 89 warnings** in 36.21 s. `scripts/check_artifact_policy.py` → **PASS, 105 registered prediction artifacts**. Compileall, JSON parsing, and `git diff --check` pass. `scripts/verify_frontdoor.py` remains blocked by absent local sample raster; current S20 artifact format check passes but remains research-only.
+- **Outcome:** negative/blocked; zero experiments, no new TIFF/holdout/score/receipt, zero weekly slots. The supplied GEMSDOE32 0.2778 is owner/user-reported and unverified against an organizer receipt. Fetched the official public leaderboard on 2026-10-26: #1 public score 0.4437 (not a submission receipt or a score tied to the audited TIFFs). Identified the S21-PDWC vs S20-RHTW front-door identity mismatch; recorded it without silently changing canonical publication.
+- **Evidence:** `docs/REVIEW-ACTIVE-8F9CFF19-20261026.md`, `docs/run-card-8f9cff19.json`, `tests/test_active_review_8f9cff19.py`.
+- **Follow-up detail:** added a nine-row file/score/duplicate-relation/download-status matrix. Duplicate status is explicitly owner-recorded geometry/pixel equivalence where known; no bytewise registry sweep was represented as run. Re-ran the suite after this addition: 679 passed, 9 skipped, 89 warnings in 36.21 s.
+
+---
+
 # GEMSDOE91 — Multi-Pass Verification Log (latest: Session 21 `S21-PDWC`, `arena/a31c96c3-gemsdoe91`)
 
 ## Session 21 (`S21-PDWC`, branch `arena/a31c96c3-gemsdoe91`, 2026-10-26)

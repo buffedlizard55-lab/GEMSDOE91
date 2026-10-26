@@ -1,4 +1,28 @@
-# Submission guide — current automated decision
+# Current submission guide — S22 (2026-10-26)
+
+**OK TO DOWNLOAD: YES — new S22 research TIFF. OK TO SUBMIT: NO.**
+The input data were restored and one experiment ran in S22. Its local format checks pass, but literal registry overlap fails. There is no approved new competition submission. See the [current executive summary and exact steps](executive-summary.html#how-to-submit), [canonical run card](s22/run-card.json), and [verified file/status pointer](current-run.json). The earlier portal-pointer mismatch below has been fixed.
+
+<details><summary>Historical no-run review and older submission guidance — not current data availability</summary>
+
+# Submission guide — active checkout decision (2026-10-26)
+
+> **This checkout has no new TIFF that is approved to submit. `OK TO SUBMIT: NO`.** The nine-site maximum supplied in the prompt (GEMSDOE32 `h33-h33-2-b2`, 0.2778) is owner/user-reported and not confirmed by a receipt tied to the exact file. No new candidate beat it in a controlled test because no experiment ran: the method lane is unassigned and required local inputs are missing. See [active review](REVIEW-ACTIVE-8F9CFF19-20261026.md), [run card](run-card-8f9cff19.json), and [nine-site summary](nine-site-audit-20261026.html).
+>
+> **Important identity mismatch:** the published `docs/index.html` places S21-PDWC first, while the canonical `current-run.json` verifier follows S20-RHTW. Both are historical research artifacts with `OK TO SUBMIT: NO`; neither is nominated by this review. Do not infer that a download link means upload approval.
+
+## How to submit only after explicit approval
+
+1. Use only the exact `.tif` and unique submission name/note linked from a future run card whose verdict says the file passed all project gates and is approved for the separate selector step. A technical format pass alone is insufficient.
+2. Open the [DrivenData competition submission page](https://www.drivendata.org/competitions/306/competition-doe-gems/), choose **New submission**, and select the single-band GeoTIFF (`.tif`) or a `.zip` containing exactly one GeoTIFF.
+3. Copy the run card's submission name and optional note (maximum 140 characters) into the corresponding fields. Confirm the selected file SHA-256 matches the run card before uploading.
+4. Submit only within the competition's remaining weekly slot cap. Save the organizer-page receipt verbatim and record its bound filename/hash/score as `ORGANIZER-CONFIRMED`; never infer a score from a holdout, projection, local page, or filename.
+
+This is documentation of the competition workflow, **not** approval to submit any currently linked file.
+
+---
+
+# Historical submission guide — archived decision
 
 **OK to download the S16-PGRD research TIFF. NOT OK TO SUBMIT it.**
 
@@ -91,3 +115,5 @@ USGS DS-1052): R0 0.095386 -> -0.00382 / -0.01356 / -0.01036. Band leakage canar
 
 **Do not** upload a strain arm ahead of the revised queue, and do not upload more than one:
 they are one experiment whose control already answered against it.
+
+</details>
