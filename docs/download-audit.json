@@ -6,8 +6,8 @@
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
-  "files_checked": 101,
-  "format_pass": 92,
+  "files_checked": 105,
+  "format_pass": 96,
   "format_fail": 9,
   "ok_to_submit": false,
   "files": [
@@ -1670,6 +1670,92 @@
       "ok_to_submit": false,
       "sha256": "6d27cf7caa3957d3edc3e64af281ac12c8ae4e9963ed3572fff05e936de07da1",
       "zip_member": "gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "2603acc849274715780305e777e82b87bbd0838b6a024c23e699c84e02145fd3",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "2884db5330b6d28a9d6780f6db82da80edbaa37ff54f5ea364565aa084c9cee1",
+      "zip_member": "gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "5b367d1d94ce33d91112f57e9cad5456a5bbf738f683095fc8d70792030c1970",
+      "zip_member": "gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif",
       "status": "PASS",
       "checks": {
         "single_band": true,

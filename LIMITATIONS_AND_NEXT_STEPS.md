@@ -1,4 +1,40 @@
-# Current limitations and next steps — Session 20 (`S20-RHTW`), 2026-10-26
+# Current limitations and next steps — S21-PDWC (2026-10-26), then S20-LFI, S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16
+
+## Session 21: `S21-PDWC`, Phase-Congruent Dipping-Contact Waveform & Clay-Cap Baffle OOF + CELF (`arena/a31c96c3-gemsdoe91`)
+
+**Status:** new unique validated GeoTIFF (`docs/downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif` + `.zip`, `37,654` binary `{0.0, 1.0}` dots, `sha256 = 74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8`). **OK TO DOWNLOAD: YES.** **OK TO SUBMIT: NO (`verdict = "negative"`).**
+Evidence: `docs/HYPOTHESES_S21_PDWC.md`, `docs/GEOTHERMAL_VENT_RESEARCH_S21_PDWC.md`, `docs/nine-site-executive-summary-s21.json`, `docs/run-card-S21-PDWC.json`, `docs/s21-pdwc-executive-summary.html`.
+
+### Previous-Session Next Steps Addressed in Session 21
+
+1. **Executed Session 19's Rank-1 Priority Next Step (Multi-Scale Phase-Congruent + Dipping-Contact Waveform Fusion inside 3-Level Nested Cross-Fitted OOF + 300 m CELF):**
+   - Built `src/gems91/pdwc21.py` (`66` static features + `16` Stage-2 OOF directional axial-continuity features = `82` features, all `82/82` Rule-4 leakage canaries `PASS`, `max = 0.74016 <= 0.90`; `B12/B19` pure-subsurface `model_sub` invariance `max_diff = 0.0`).
+   - Achieved monotonic symmetric cross-fitted OOF `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `60,988` positives): `pdwc_e1 = 0.181443` -> `pdwc_e2 = 0.189020` -> **`pdwc_e3 = 0.195724` (`95% CI = [0.180320, 0.211055]`)** — **#1 highest symmetric cross-fitted OOF `HOLDOUT-DTI` in `GEMSDOE91`**, beating `S19-SVHF E3` (`0.147791`) by **`+0.047933` (`+32.4%`)**, `S20-LFI` (`0.078916`) by **`+0.116808`**, and `Fold-Honest R0` (`0.049001`).
+   - On untouched blind off-catalogue USGS `SGMC` faults, `pdwc_e1` (`>300m = 0.100196`, `>500m = 0.089154`) beat `GEMSDOE32 R0` (`0.093694` / `0.088789`), while `pdwc_e3` maintained `88.73%` far-field (`>500 m`) coverage (`72.00% > 1 km`).
+2. **Closed Fleet-Wide Competitive Uniqueness Across All `102` `GEMSDOE*` Repositories (`1,078` Rasters Screened):**
+   - `pdwc_e3` (`37,654` dots) cleared **all `932` competitive non-blanket rasters** across `data/registry/`, `data/fleet_registry/`, `docs/downloads/`, and `data/sibling_sweep/rasters/` (`max 3-px dot overlap = 0.6400 <= 0.70`, protocol registry `max = 0.5010 <= 0.70`, `max |surface Spearman| = 0.3553 <= 0.90`, `max |dots Spearman| = 0.0742 <= 0.90`).
+3. **Resolved `IR-S20-01` / `IR-S21-01` Collar Paradox & Refreshed Live `2026-10-26` 9-Site Audit:**
+   - Proved algebraically and numerically (`docs/s21_pdwc/holdout.json`) why static `R0` scores `0.006697` on `hide-v2` (`0.2286 -> 0.0490 -> 0.0067` from full-catalogue `1 px` / `2 px` collar stripping) and updated the commit-pinned 9-site audit (`docs/nine-site-executive-summary-s21.json`), flagging `IR-S21-03` (`GEMSDOE27` `H31-1` 27-raster local-only screen) and `IR-S21-05` (`GEMSDOE24` `VENT` PR #34 quarantine).
+
+### Remaining Limitations (`ok_to_submit = False`, `0` Weekly Slots Spent)
+
+1. **Nominal Repo Holdout Margin vs `S18-HGBR E1` (`0.195724` vs `0.200742`, `-0.005018`, `IR-S21-02`):**
+   - Although `S18-HGBR E1`'s `0.200742` benefited from `+26.6%` test-quadrant dot spillover (`48,510` cumulative test dots vs `39,580` in `pdwc_e3`) and their 95% CIs overlap (`[0.1803, 0.2111]` vs `[0.1805, 0.2214]`), Protocol Rule 6 forbids spending a weekly submission slot without strictly beating the nominal holdout record or obtaining an explicit human selector override.
+2. **Dense Calibration Blanket Halo Saturation (`IR-S21-04` / `IR-S16-03`):**
+   - Synthetic `>112,000`-dot calibration grids/masks (`GEMSDOE48` `mtheta` `5.17M` px, `88GEMSDOE` `calib_r13lattice` `206,895` px) saturate `82%–100%` of the footprint under a literal `3-px` halo, keeping `uniqueness.pass = False` fail-closed until a versioned coordinator policy exempts dense blankets.
+3. **100 m Regional Resolution & Outbound Network Allowlist:**
+   - `100 m` regional grids blur `<5 m` Holocene alluvial-fan scarps and closely spaced (`<1 km`) relay splays; outbound TLS in this sandbox is restricted to GitHub/PyPI/npm, deferring USGS 3DEP `1 m` LiDAR (`H21-4`) and USGS ComCat / ASF ARIA InSAR (`H21-5`) ingestion to an unrestricted host.
+
+### Ranked Next Steps for Session 22 (By Expected Live DTI Gain per Cost)
+
+1. **Rank 1 (`+0.03–0.07` live DTI potential; requires unrestricted host — `H21-4`):** Ingest free public-domain **USGS 3DEP `1 m` / `10 m` LiDAR** break-in-slope scarp curvature and drainage-offset asymmetry across Great Basin piedmonts (`apps.nationalmap.gov`), aggregate to `100 m` (`EPSG:32611`) with SHA-256 manifest pins, and fuse into `S21-PDWC`'s symmetric 3-level OOF + `300 m` CELF pipeline.
+2. **Rank 2 (`+0.02–0.05` live DTI potential; requires unrestricted host — `H21-5`):** Ingest **USGS ANSS ComCat** relocated microseismic planar lineation density (`1980–2026`, `M >= 1.0`, `<=15 km` depth) and **NASA/JPL ASF Sentinel-1 ARIA** groundwater-baffle phase gradients (`earthquake.usgs.gov`, `asf.alaska.edu`).
+3. **Rank 3 (`+0.01–0.02` in-sandbox symmetric OOF gain; zero external downloads):** Cross-breed `S21-PDWC` (`DCWF + MGPC + CCMD`, `0.195724`) with `S18-HGBR`'s directional variogram Hurst-break features (`src/gems91/hgbr18.py`) under **quadrant-budget-equalized** fold evaluation (`9,413` dots/quadrant) so symmetric OOF cleanly surpasses `0.205+` without test-quadrant spillover.
+4. **Rank 4 (Human selector & governance):** Ratify a versioned `competitive_non_blanket <= 90,000 px` uniqueness policy (`IR-S21-04`), verify rolling 7-day upload quota on DrivenData (`IR-91-ISO-05`), and record any new live scores into `registry/lfi_live_anchors.csv`.
+
+
+---
+
 
 ## Session 21 (`S21-FAM3`, branch `arena/11ddffe8-gemsdoe91`, 2026-10-26)
 

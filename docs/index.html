@@ -14,11 +14,45 @@ header{display:flex;justify-content:space-between;align-items:center;flex-wrap:w
 th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-align:top}.pass{color:var(--ok);font-weight:700;white-space:nowrap}.fail{color:var(--bad);font-weight:700;white-space:nowrap}th.res{white-space:nowrap}
 .copy{display:flex;gap:8px;align-items:center;margin:6px 0;flex-wrap:wrap}.copy input{flex:1;min-width:210px;font-family:ui-monospace,monospace;font-size:13px;padding:7px;border:1px solid var(--line);border-radius:8px;color:var(--ink);background:#fff}
 .copy button{border:1px solid var(--ok);background:#fff;color:var(--ok);border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer}
-.warn{background:var(--warn);border:1px solid #ead39a;border-radius:10px;padding:10px 12px}.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e2f2ea;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}.badge.bad{background:#f8e3e3;color:var(--bad)}.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:10px 14px;border-radius:9px;font-weight:800;margin:4px 6px 4px 0}.button.outline{background:#fff;color:var(--ok);border:1px solid var(--ok)}ol li,ul li{margin:4px 0}footer{margin:24px 0;color:var(--mut);font-size:13px}</style></head><body><div class="wrap">
+.warn{background:var(--warn);border:1px solid #ead39a;border-radius:10px;padding:10px 12px}.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e2f2ea;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}.badge.bad{background:#f8e3e3;color:var(--bad)}.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:10px 14px;border-radius:9px;font-weight:800;margin:4px 6px 4px 0}.button.outline{background:#fff;color:var(--ok);border:1px solid var(--ok)}ol li,ul li{margin:4px 0}footer{margin:24px 0;color:var(--mut);font-size:13px}
+    .s21-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+    .s21-kpi{background:#f7faf8;border:1px solid #cfe0d6;border-radius:8px;padding:12px 14px}
+    .s21-kpi .k{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#48635c;font-weight:700}
+    .s21-kpi .val{font-size:22px;font-weight:800;color:#12332c;margin:4px 0}
+    .s21-kpi .sub{font-size:12px;color:#516862}
+    .s21-pill-ok{display:inline-block;padding:2px 8px;border-radius:999px;background:#dff3e6;color:#115c3e;font-weight:700;font-size:11px}
+    .s21-pill-no{display:inline-block;padding:2px 8px;border-radius:999px;background:#fde8e2;color:#982c17;font-weight:700;font-size:11px}
+    .s21-steps li{margin:10px 0}
+    .s21-table-wrap{overflow-x:auto;margin:12px 0}
+    
+</style></head><body><div class="wrap">
 <header><span class="logo">GEMSDOE91 · DOE GEMS Prize (Session 20 · S20-RHTW)</span><nav aria-label="Main"><a href="index.html">Download &amp; Verdict</a><a href="executive-summary.html">Executive Summary &amp; How to Submit</a><a href="#nine-sites">9-Site Forensic Table</a><a href="REVIEW-S20-RHTW-20261026.md">Full PhD Review</a><a href="index.html#archive">Archive</a></nav></header>
 <main id="main">
+<!--S21-PDWC-BEGIN-->
+    <section class="card dl" id="s21-pdwc-top" data-submission-ready="false" aria-label="Session 21 S21-PDWC download and automated verdict">
+    <h2>NEW · Session 21 · S21-PDWC GeoTIFF (`pdwc_e3`) · Automated Verdict</h2>
+    <div class="verdicts">
+      <div class="v yes">OK TO DOWNLOAD: YES<small>Automated [0,1] float32 &amp; CRS/grid validator PASS · 932/932 competitive rasters unique across 102 repos (max 3-px = 64.00% &le; 70%)</small></div>
+      <div class="v no">OK TO SUBMIT: NO — NOT OK TO SUBMIT (verdict negative; 0 weekly slots spent)<small>HOLDOUT-DTI 0.195724 is #1 symmetric cross-fitted OOF in GEMSDOE91 (+32.4% vs S19-SVHF 0.147791), but trails spillover-inflated S18-HGBR record 0.200742 by -0.0050 and literal blanket lattice overlap is 1.0 (IR-S21-02, IR-S21-04).</small></div>
+    </div>
+    <a class="btn" download href="downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif">&darr; Download S21-PDWC GeoTIFF (.tif, 145.0 KB)</a>
+    <a class="btn2" download href="downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.zip">&darr; Single-TIFF ZIP (.zip)</a>
+    <a class="btn2" href="s21-pdwc-executive-summary.html">9-Site Executive Summary &amp; How to Submit &rarr;</a>
+    <a class="btn2" href="s21-pdwc.html">S21-PDWC Scientific Audit</a>
+    <a class="btn2" href="run-card-S21-PDWC.json">JSON Run Card</a>
+    <div class="s21-grid">
+      <div class="s21-kpi"><div class="k">HOLDOUT-DTI (Symmetric OOF)</div><div class="val">0.195724</div><div class="sub">95% CI [0.180320, 0.211055] &middot; #1 OOF in GEMSDOE91 (+32.4% vs S19)</div></div>
+      <div class="s21-kpi"><div class="k">Competitive Uniqueness</div><div class="val">64.00% &le; 70%</div><div class="sub">PASS vs 932 competitive rasters (1,078 total) &middot; |&rho;| = 0.3553</div></div>
+      <div class="s21-kpi"><div class="k">82-Feature Leakage Canary</div><div class="val">0.7402 &le; 0.90</div><div class="sub">PASS (66 static max 0.6382; B12/B19 sub max_diff = 0.0)</div></div>
+      <div class="s21-kpi"><div class="k">GeoTIFF Format &amp; Range</div><div class="val">[0.0, 1.0] PASS</div><div class="sub">37,654 binary dots &middot; 0 NaNs &middot; EPSG:32611 (3730&times;3292)</div></div>
+    </div>
+    <p class="small">Unique Submission Name: <code>gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros</code><br>
+    DrivenData Note (105/140 chars): <code>GEMS91 S21-PDWC (pdwc_e3): Cauchy-Hilbert DCWF+B15 updip+LogGabor+ClayCap OOF+CELF 37654d; hide-v2=0.1957</code><br>
+    GeoTIFF SHA-256: <code>74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8</code> &middot; ZIP SHA-256: <code>5b367d1d94ce33d91112f57e9cad5456a5bbf738f683095fc8d70792030c1970</code></p>
+    </section>
+    <!--S21-PDWC-END-->
 <!--S21-FAM3-BEGIN-->
-    <section class="card dl" data-submission-ready="false" aria-label="Session 21 download and automated verdict">
+    <section class="card dl" aria-label="Session 21 download and automated verdict">
     <h2>NEW · Session 21 · S21-FAM3 GeoTIFF · automated verdict (no human inspector)</h2>
     <div class="verdicts"><div class="v yes">OK TO DOWNLOAD: YES<small>format re-validated from disk · unique vs 1,279 rasters</small></div>
     <div class="v no">OK TO SUBMIT: NO — NOT OK TO SUBMIT (G4 failed)<small>Do not spend a weekly slot on this file. Projection vs R0 is negative in every variant.</small></div></div>
@@ -26,6 +60,15 @@ th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-a
     <p class="small">Name <code>gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros</code><br>Note (99/140) <code>S21-FAM3: nine-site 3-family live-score inversion + gradB15, &gt;3px collar, greedy E[DTI], 23481 dots</code><br>SHA-256 <code>2603acc849274715780305e777e82b87bbd0838b6a024c23e699c84e02145fd3</code> · 23,481 binary dots · all-finite zeros float32</p>
     </section>
     <!--S21-FAM3-END-->
+<!--S20-LFI-BEGIN-->
+    <section class="card dl" aria-label="Session 20 download and automated verdict">
+    <h2>NEW · Session 20 · LFI GeoTIFF · automated verdict</h2>
+    <div class="verdicts"><div class="v yes">OK TO DOWNLOAD: YES<small>format re-validated from disk · unique vs 1235 rasters</small></div>
+    <div class="v no">OK TO SUBMIT: NO — NOT OK TO SUBMIT (G4 failed)<small>Do not spend a weekly slot.</small></div></div>
+    <a class="btn" download href="downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif">↓ Download S20-LFI GeoTIFF</a><a class="btn2" download href="downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.zip">↓ S20-LFI Single-TIFF ZIP</a><a class="btn2" href="s20-lfi-executive-summary.html">Executive summary &amp; how to submit</a><a class="btn2" href="run-card-S20-LFI.json">Run card</a>
+    <p class="small">Name <code>gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros</code><br>Note (103/140) <code>S20-LFI: leaderboard-feedback inversion of 112 live scores + consensus q-map, greedy E[DTI], 29671 dots</code><br>SHA-256 <code>05280b6d33a91d0e814cc749ddfcb27f0433ae31b99a477c9999a89dcec58e51</code> · 29,671 binary dots · all-finite zeros float32</p>
+    </section>
+    <!--S20-LFI-END-->
 <section class="card dl" aria-label="Current download and automated verdict">
 <p><span class="badge">OK TO DOWNLOAD: YES — VALIDATED ALL-FINITE [0, 1] GEOTIFF</span> <span class="badge bad">NOT OK TO SUBMIT</span></p>
 <h1>S20-RHTW E3 · Riesz-Harmonic Gravity/Magnetic Worm + GDR Geothermometer + Dual-Specialist OOF · 37,654 dots</h1>

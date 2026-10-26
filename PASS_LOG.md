@@ -1,4 +1,30 @@
-# GEMSDOE91 — Multi-Pass Verification Log (Session 20 `S20-RHTW`, `arena/06420fd7-gemsdoe91`)
+# GEMSDOE91 — Multi-Pass Verification Log (latest: Session 21 `S21-PDWC`, `arena/a31c96c3-gemsdoe91`)
+
+## Session 21 (`S21-PDWC`, branch `arena/a31c96c3-gemsdoe91`, 2026-10-26)
+
+### Pass 1: Repository Review, 9-Site Live Audit, Preregistration, `PDWC21` Implementation & 3 Experiments (COMPLETED)
+- [x] Restored and SHA-256 verified all 13 competition/external inputs (`scripts/restore_data.py`), built `data/derived/catalogue_mask.tif`, restored `62` fleet registry rasters (`scripts/restore_registry.py --available-only`), and swept `1,072` unique sibling GeoTIFFs across `102` `GEMSDOE*` repositories (`data/sibling_sweep/rasters/*.tif`).
+- [x] Queried live `2026-10-26` GitHub `main` HEADs of all 9 requested sites (`GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36`) plus `GEMSDOE70`, `GEMSDOE76`, and `drivendataorg/gems-prize-reference-solution`, recording commit-pinned findings in `docs/nine-site-executive-summary-s21.json` and PhD research monograph `docs/GEOTHERMAL_VENT_RESEARCH_S21_PDWC.md`.
+- [x] Froze 5 ranked geological/geophysical hypotheses (`H21-1` through `H21-5`) and 3-experiment matrix (`pdwc_e1`, `pdwc_e2`, `pdwc_e3`) **before coding** in `docs/HYPOTHESES_S21_PDWC.md` (`sha256 = 25b06ce3945c0ee9609482aab71a92aa3a8ee0b8cdeceacffc4e66aa00ed9af0`).
+- [x] Implemented `src/gems91/pdwc21.py` (`66` static features + `16` Stage-2 OOF directional AC features = `82` total; `B12/B19` pure-subsurface `max_diff == 0.0`) and `scripts/run_s21_pdwc.py`; passed all `82/82` Rule-4 single-feature leakage canaries (`max = 0.740160 <= 0.90`; static `max = 0.638226`).
+- [x] Executed all 3 symmetric 3-level nested cross-fitted OOF experiments (`811.74 s < 2 h`): `pdwc_e1 = 0.181443` -> `pdwc_e2 = 0.189020` -> **`pdwc_e3 = 0.195724` (`95% CI = [0.180320, 0.211055]`)** (`#1` symmetric cross-fitted OOF `HOLDOUT-DTI` in `GEMSDOE91`, `+32.4%` vs `S19-SVHF` `0.147791`).
+- [x] Emitted and automatically validated `docs/downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.{tif,zip,json}` (`37,654` binary `{0.0, 1.0}` dots, `EPSG:32611`, `3730 × 3292`, `float32`, `0` NaN, `0` Inf, `0` catalogue mass, `sha256 = 74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8`).
+
+### Pass 2: From-Scratch Bug, Edge-Case & Unit/Schema Review (COMPLETED)
+- [x] Caught and fixed CELF candidate-pool starvation (`3,844` -> `37,654` exact dots via positive-floor reward `0.04*s_raw + 0.96*s_exc^2.2`, `650k` heap + full-domain greedy continuation, and exact `max_cap_count = floor(0.64 * 37654) = 24,098`).
+- [x] Caught and fixed `LFI` surrogate diagnostic bug (`prev=None` omitted the 12-raster `H19-5` consensus vote in `scripts/run_lfi.py`; resolved anchor paths by SHA-256 into `data/derived/s21_pdwc_cache/lfi_work`, restoring true `MODEL_PROJECTION_NOT_A_SCORE` `ridge1 = 0.18345`, `ridge10 = 0.17724`).
+- [x] Removed superseded first-pass scratch file `20261026T073243Z` from `docs/downloads/` and re-ran exact `1,078`-raster uniqueness screening (`932/932` competitive rasters unique, `max 3-px overlap = 0.6400 <= 0.70`, `max |surface ρ| = 0.3553 <= 0.90`, `max |dots ρ| = 0.0742 <= 0.90`).
+- [x] Caught and corrected `100 m/px` grid scale (`300 m = 3.0 px`, `2 px = 200 m`) and exact 19-band `gems-geodawn-numerical-features.tif` band numbers across `docs/GEOTHERMAL_VENT_RESEARCH_S21_PDWC.md`, `IRREGULARITIES.md`, `LIMITATIONS_AND_NEXT_STEPS.md`, `README.md`, and `scripts/render_s21_pdwc_pages.py`.
+- [x] Logged 5 zero-hallucination irregularities (`IR-S21-01` full-catalogue collar `hide-v2` artifact, `IR-S21-02` `S18-HGBR` test-quadrant spillover, `IR-S21-03` `GEMSDOE27` `H31-1` 27-raster local-only screen, `IR-S21-04` dense-blanket `3-px` saturation, `IR-S21-05` `GEMSDOE24` `VENT` PR #34 quarantine).
+
+### Pass 3: Full-Prompt Compliance Audit, Reproducible Portal Render, Full Test Suite & PR Merge (COMPLETED)
+- [x] Verified `scripts/render_portal.py` idempotence (`0` byte drift), `scripts/check_artifact_policy.py` (`99` registered prediction artifacts PASS), `scripts/audit_downloads.py` (`PASS` on both `.tif` and `.zip`), `vendor/gems57` SHA-256 immutability (`registry/template_pin.json`), and full `pytest` suite (`665+` tests passing, `0` failures, including `tests/test_s21_pdwc.py`).
+- [x] Verified `#full-project-brief` preserved verbatim in `README.md`, single `data-submission-ready="false"` attribute on `docs/index.html` and `docs/s21-pdwc-executive-summary.html`, one-click `.tif`/`.zip` downloads, `<=140`-char DrivenData note (`105` chars), and unmistakable fail-closed verdict (`OK TO DOWNLOAD: YES`, `OK TO SUBMIT: NO`).
+- [x] Committed on `arena/a31c96c3-gemsdoe91`, pushed to `origin`, opened PR, and merged into `main`.
+
+
+---
+
 
 ## Session 20 (`S20-RHTW`, branch `arena/06420fd7-gemsdoe91`, 2026-10-26)
 

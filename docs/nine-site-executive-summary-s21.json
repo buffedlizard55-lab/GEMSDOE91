@@ -1,0 +1,221 @@
+{
+  "schema_version": "gems-nine-site-executive-summary-v2-20261026",
+  "audit_date_utc": "2026-10-26",
+  "auditor_repo": "buffedlizard55-lab/GEMSDOE91",
+  "auditor_branch": "arena/a31c96c3-gemsdoe91",
+  "auditor_session": "S21-PDWC",
+  "competition_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+  "public_leaderboard_benchmarks": {
+    "rank_1_overall": {
+      "score": 0.4413,
+      "evidence_class": "PUBLIC-LEADERBOARD",
+      "as_of": "2026-10-25"
+    },
+    "rank_24_brief_target_dard_20261004": {
+      "score": 0.3195,
+      "evidence_class": "PUBLIC-LEADERBOARD",
+      "note": "Brief-cited 0.3195 benchmark (2026-10-04 #2 DARD; rank #24 on 2026-10-25 public leaderboard)"
+    },
+    "rank_50_cutoff": {
+      "score": 0.2818,
+      "evidence_class": "PUBLIC-LEADERBOARD",
+      "as_of": "2026-10-25"
+    }
+  },
+  "overall_best_across_nine_sites": {
+    "site": "GEMSDOE32",
+    "submission_name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+    "score": 0.2778,
+    "evidence_class": "USER-REPORTED",
+    "active_dots": 37654,
+    "lineage": "H19-5 (44,061 px, 0.2600) -> H27-4 (40,199 px, >1 px collar, 0.2710/0.2750) -> H33-2-B2 (37,654 px, >2 px collar pure prune, 0.2778)",
+    "best_non_h19_5_denovo_among_nine_sites": {
+      "site": "GEMSDOE27",
+      "submission_name": "H29-S",
+      "score": 0.219,
+      "evidence_class": "USER-REPORTED"
+    },
+    "best_non_h19_5_denovo_across_102_repo_fleet": {
+      "site": "GEMSDOE70",
+      "submission_name": "gems70-p8-oof38k-20261021",
+      "score": 0.2478,
+      "evidence_class": "USER-REPORTED",
+      "runner_up": {
+        "site": "GEMSDOE76",
+        "submission_name": "gems76-ptcf-tiltworm-submod39k",
+        "score": 0.2343,
+        "evidence_class": "USER-REPORTED"
+      }
+    }
+  },
+  "sites": [
+    {
+      "rank_by_best_live_score": 1,
+      "site": "GEMSDOE32",
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "main_head_sha_20261026": "e1270e3197a18089cb36fe7fe9907643fbee3e16",
+      "main_head_date_utc": "2026-10-26T07:08:17Z",
+      "best_submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "best_score": 0.2778,
+      "best_score_evidence_class": "USER-REPORTED",
+      "best_submission_dots": 37654,
+      "best_denovo_non_h19_5_live_score": null,
+      "current_20261026_head_candidate": "H36-1C / A8A-H1 gate-hardening audit",
+      "current_20261026_ok_to_submit": false,
+      "current_20261026_verdict": "DO_NOT_SUBMIT",
+      "key_finding": "Highest historical score across all 9 sites (0.2778) achieved by stripping 2,545 (1,2] px catalogue-collar dots from H27-4 (40,199 -> 37,654 px) without refilling FP-heavy far-field pixels; static hide-v2 = 0.006697 is an evaluation artifact of full-catalogue 2-px collar stripping (IR-S21-01)."
+    },
+    {
+      "rank_by_best_live_score": 2,
+      "site": "GEMSDOE36",
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "main_head_sha_20261026": "4aa901be69307ea69c2a6fa0872135d6697e1d7a",
+      "main_head_date_utc": "2026-10-26T05:10:40Z",
+      "best_submission": "h27-4-r1-solo-d2-8-20261004T193000Z-nan",
+      "best_score": 0.275,
+      "best_score_evidence_class": "USER-REPORTED",
+      "best_submission_dots": 40199,
+      "best_denovo_non_h19_5_live_score": null,
+      "current_20261026_head_candidate": "ATVR-36 EXP-2 / H36-CTRB / H36-GPS / Lane36",
+      "current_20261026_ok_to_submit": false,
+      "current_20261026_verdict": "DO_NOT_SUBMIT",
+      "key_finding": "Active 40,199-dot mask is pixel-identical inside footprint to GEMSDOE28 H27-4 (reported 0.2710 vs 0.2750 user-table discrepancy IR-91-26); 2026-10-26 ATVR-36 EXP-2 reached hide-v2 = 0.0882 and halted DO NOT SUBMIT."
+    },
+    {
+      "rank_by_best_live_score": 3,
+      "site": "GEMSDOE28",
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "main_head_sha_20261026": "348ff086e29b9c48bb7104daacb647af31a184bf",
+      "main_head_date_utc": "2026-10-26T01:54:14Z",
+      "best_submission": "h27-4-r1-solo-d2-8-20261004T193000Z-zeros",
+      "best_score": 0.271,
+      "best_score_evidence_class": "USER-REPORTED",
+      "best_submission_dots": 40199,
+      "best_denovo_non_h19_5_live_score": 0.1726,
+      "current_20261026_head_candidate": "S20-NCHC (gems28-s20-nchc-e3)",
+      "current_20261026_ok_to_submit": false,
+      "current_20261026_verdict": "DO_NOT_SUBMIT",
+      "key_finding": "Parent 1-px collar prune of H19-5 (44,061 -> 40,199 px); 2026-10-26 S20-NCHC reached hide-v2 = 0.2194 but failed local live-promotion selector against 0.2710."
+    },
+    {
+      "rank_by_best_live_score": 4,
+      "site": "GEMSDOE31",
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "main_head_sha_20261026": "e6e85b357914068b3ba57ace0f899dde13f110a6",
+      "main_head_date_utc": "2026-10-26T03:03:48Z",
+      "best_submission": "h28-h195-catbuf2-rebudget-20261004T183735Z",
+      "best_score": 0.2708,
+      "best_score_evidence_class": "USER-REPORTED",
+      "best_submission_dots": 40054,
+      "best_denovo_non_h19_5_live_score": null,
+      "current_20261026_head_candidate": "XFCOH31 (gemsdoe31-xfcoh31-c3-20261025-19ed952d)",
+      "current_20261026_ok_to_submit": false,
+      "current_20261026_verdict": "DO_NOT_SUBMIT",
+      "key_finding": "Natural controlled experiment vs GEMSDOE32: both pruned the 2-px catalogue collar, but H28 refilled ~2,400 weaker tail pixels (40,054 px -> 0.2708) whereas GEMSDOE32 kept pure pruning (37,654 px -> 0.2778, +0.0070 gain from NOT refilling low-precision tail)."
+    },
+    {
+      "rank_by_best_live_score": 5,
+      "site": "GEMSDOE33",
+      "repo": "buffedlizard55-lab/GEMSDOE33",
+      "main_head_sha_20261026": "565d663a9c6b5a68f405277d684a12be8dd8ae26",
+      "main_head_date_utc": "2026-10-26T05:15:02Z",
+      "best_submission": "h23-3-cat1-d28-zeros",
+      "best_score": 0.2632,
+      "best_score_evidence_class": "USER-REPORTED",
+      "best_submission_dots": 40199,
+      "best_denovo_non_h19_5_live_score": null,
+      "current_20261026_head_candidate": "A33-R2-CSHT",
+      "current_20261026_ok_to_submit": false,
+      "current_20261026_verdict": "DO_NOT_SUBMIT",
+      "key_finding": "1-px collar H19-5 family variant (0.2632); 2026-10-26 A33-R2-CSHT stopped cleanly on duplicate gate."
+    },
+    {
+      "rank_by_best_live_score": 6,
+      "site": "GEMSDOE25",
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "main_head_sha_20261026": "66b97bc9a986aaf8175d283536777c9015a3d364",
+      "main_head_date_utc": "2026-10-26T04:57:11Z",
+      "best_submission": "h19-5-powerlaw-budget-multiline-20261003T234740Z",
+      "best_score": 0.26,
+      "best_score_evidence_class": "USER-REPORTED",
+      "best_submission_dots": 44061,
+      "best_denovo_non_h19_5_live_score": 0.1594,
+      "current_20261026_head_candidate": "H71-HGPC",
+      "current_20261026_ok_to_submit": false,
+      "current_20261026_verdict": "DO_NOT_SUBMIT",
+      "key_finding": "Unpruned root H19-5 multiline submission (44,061 px, 0.2600); 2026-10-26 H71-HGPC reached hide-v2 = 0.1815 and held DO NOT SUBMIT."
+    },
+    {
+      "rank_by_best_live_score": 6,
+      "site": "GEMSDOE30",
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "main_head_sha_20261026": "73db382d3c990d0aa0b5126997a67213cc56dee4",
+      "main_head_date_utc": "2026-10-26T01:25:10Z",
+      "best_submission": "h19-5-powerlaw-budget-multiline",
+      "best_score": 0.26,
+      "best_score_evidence_class": "USER-REPORTED",
+      "best_submission_dots": 44061,
+      "best_denovo_non_h19_5_live_score": null,
+      "current_20261026_head_candidate": "FFL-1",
+      "current_20261026_ok_to_submit": false,
+      "current_20261026_verdict": "DO_NOT_SUBMIT",
+      "key_finding": "Duplicate of unpruned root H19-5 (0.2600); 2026-10-26 FFL-1 halted on duplicate gate."
+    },
+    {
+      "rank_by_best_live_score": 8,
+      "site": "GEMSDOE24",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "main_head_sha_20261026": "fb9e230bc09c55b96e142c69691f0cf403d69006",
+      "main_head_date_utc": "2026-10-26T07:53:25Z",
+      "best_submission": "h20-2-trim-weak-tail-20261004T024500Z",
+      "best_score": 0.2477,
+      "best_score_evidence_class": "USER-REPORTED",
+      "best_submission_dots": 36000,
+      "best_denovo_non_h19_5_live_score": null,
+      "current_20261026_head_candidate": "H24-DPRF1 (81849d67c8bf); concurrent VENT PR #34 QUARANTINED",
+      "current_20261026_ok_to_submit": false,
+      "current_20261026_verdict": "DO_NOT_SUBMIT",
+      "key_finding": "H24-DPRF1 reached hide-v2 = 0.1636 and held DO_NOT_SUBMIT under selector v2; concurrent PR #34 VENT lane was explicitly quarantined on 2026-10-26 after review found fabricated fallback C2ST and novelty values (IR-S21-05)."
+    },
+    {
+      "rank_by_best_live_score": 9,
+      "site": "GEMSDOE27",
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "main_head_sha_20261026": "426426b402f90f4e0786990b4edd261d9dd48085",
+      "main_head_date_utc": "2026-10-26T03:30:20Z",
+      "best_submission": "h20-3-powerlaw-d26",
+      "best_score": 0.2449,
+      "best_score_evidence_class": "USER-REPORTED",
+      "best_submission_dots": 41200,
+      "best_denovo_non_h19_5_live_score": 0.219,
+      "current_20261026_head_candidate": "H31-1 DRCG-WL (gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif)",
+      "current_20261026_ok_to_submit": true,
+      "current_20261026_verdict": "SELF_PROMOTED_LOCAL_27_RASTER_SCREEN_ONLY_UNVERIFIED_FLEETWIDE",
+      "key_finding": "Holds the #1 non-H19-5 de-novo live score among the 9 sites (H29-S = 0.2190 USER-REPORTED); 2026-10-26 H31-1 DRCG-WL self-promoted using a local 40-cell metric (0.04730 vs H29-S 0.04412) and a 27-raster local screen only \u2014 not yet screened against the 1,079-raster fleet inventory or gems57-pooled-hide-v2 (IR-S21-03)."
+    }
+  ],
+  "this_session_s21_pdwc_summary": {
+    "experiment_id": "S21-PDWC",
+    "selected_variant": "pdwc_e3",
+    "submission_name": "gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros",
+    "tif_sha256": "74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8",
+    "active_dots": 37654,
+    "holdout_dti": 0.195724,
+    "holdout_ci95": [
+      0.18032,
+      0.211055
+    ],
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 60988,
+    "delta_vs_s19_svhf_oof": 0.047933,
+    "delta_vs_s20_lfi": 0.116808,
+    "competitive_rasters_screened": 932,
+    "total_rasters_screened": 1078,
+    "max_surface_abs_spearman": 0.355273,
+    "max_competitive_3px_dot_overlap": 0.639985,
+    "competitive_unique_pass": true,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "verdict": "negative"
+  }
+}
