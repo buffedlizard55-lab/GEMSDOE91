@@ -68,9 +68,9 @@ def fmt_ci(x) -> str:
 
 def current_review_notice() -> str:
     return """<section class=\"card\" style=\"border:2px solid #a12c2c;background:#fff0e9\" aria-label=\"Current review status\">
-<p><strong>2026-10-26 CURRENT REVIEW: NO NEW TIFF GENERATED.</strong> OK TO DOWNLOAD: NO NEW TIFF FROM THIS REVIEW. OK TO SUBMIT: NO.</p>
-<p>The ISO91 TIFF linked farther down is a separate 2026-10-25 negative research artifact. It was not produced by this review and is <strong>NOT OK TO SUBMIT</strong>. Do not treat its download link or format check as approval.</p>
-<p><a href=\"nine-site-audit-20261026.html\">Nine-site executive audit</a> · <a href=\"REVIEW-SITE-AUDIT-20261026.md\">Three-pass review</a> · <a href=\"run-card-SITE-AUDIT-20261026.json\">No-run JSON card</a> · <a href=\"research/nine-site-audit-20261026.json\">Pinned claim register</a></p>
+<p><strong>2026-10-26 CURRENT REVIEW · arena/af73263f-gemsdoe91: NO NEW TIFF GENERATED.</strong> <strong>OK TO DOWNLOAD: NO — THIS REVIEW GENERATED NO NEW FILE. OK TO SUBMIT: NO.</strong></p>
+<p>The ISO91 TIFF linked farther down is a separate 2026-10-25 negative research artifact. It was not produced by this review and remains <strong>NOT OK TO SUBMIT</strong>. Its research-download link and format check are not approval for a new candidate.</p>
+<p><a href=\"nine-site-audit-20261026.html\">Current nine-site executive audit</a> · <a href=\"REVIEW-SITE-AUDIT-20261026.md\">Current three-pass review</a> · <a href=\"run-card-SITE-AUDIT-20261026.json\">Current no-run JSON card</a> · <a href=\"research/nine-site-audit-20261026.json\">Pinned claim register</a> · <a href=\"high-score-submissions-review.html\">Earlier nine-site comparison</a></p>
 </section>"""
 
 
@@ -79,7 +79,7 @@ def head(title: str, desc: str) -> str:
             f"content=\"width=device-width,initial-scale=1\"><title>{e(title)}</title><meta name=\"description\" "
             f"content=\"{e(desc)}\"><style>{CSS}</style></head><body><div class=\"wrap\">\n"
             "<header><span class=\"logo\">GEMSDOE91 · DOE GEMS Prize</span><nav aria-label=\"Main\">"
-            "<a href=\"nine-site-audit-20261026.html\">Current audit</a><a href=\"index.html\">Research archive</a><a href=\"executive-summary.html\">Submission guide</a>"
+            "<a href=\"nine-site-audit-20261026.html\">Current audit</a><a href=\"high-score-submissions-review.html\">Earlier nine-site comparison</a><a href=\"index.html\">Research archive</a><a href=\"executive-summary.html\">Submission guide</a>"
             "<a href=\"REVIEW-SITE-AUDIT-20261026.md\">Current three-pass review</a><a href=\"REVIEW-ISO91-BACC7C26-20261025.md\">ISO91 history</a></nav></header>\n")
 
 

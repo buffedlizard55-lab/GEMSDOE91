@@ -4,7 +4,7 @@
 >
 > **Start every project session by reading this current status, this operative update, the [full standing brief](#full-project-brief), the [three-pass review](docs/REVIEW-SITE-AUDIT-20261026.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md).**
 >
-> - [Nine-site executive summary](docs/nine-site-audit-20261026.html) · [Claim/source register](docs/research/nine-site-audit-20261026.json) · [No-run JSON card](docs/run-card-SITE-AUDIT-20261026.json) · [Current three-pass review](docs/REVIEW-SITE-AUDIT-20261026.md)
+> - [Nine-site executive summary](docs/nine-site-audit-20261026.html) · [Claim/source register](docs/research/nine-site-audit-20261026.json) · [No-run JSON card](docs/run-card-SITE-AUDIT-20261026.json) · [Current three-pass review](docs/REVIEW-SITE-AUDIT-20261026.md) · [Earlier prompt-value comparison](docs/high-score-submissions-review.html)
 > - The strongest score in the supplied nine-site list is GEMSDOE32 `h33-h33-2-b2` **0.2778 OWNER/USER-REPORTED, unverified**; no audited organizer receipt binds it to the exact TIFF. Its nested-pruning/metric explanation is plausible but not reproduced causality. The user-supplied `0.3195` and `0.4413` claims conflict; retain them separately. The last stored public-board observation (`0.4413`, 2026-10-25) was not refreshed today and is not a TIFF receipt.
 > - **File to submit from this review: none.** No current owner-site file is selector-approved by this checkout. The old ISO91 research download is from 2026-10-25, negative, and separate; its link is not an approval.
 > - Three geological alternatives are ranked in the review. H17-2 dipping-contact waveform matching is the qualitative top proposal, **not tested**: lane assignment is null and pinned local inputs are missing. No experiment can be authorized or honestly reported until those blockers are resolved.
@@ -18,6 +18,10 @@
 
 # Historical README content (retained; its dated status banners below do not describe this active checkout)
 
+
+> **ACTIVE CHECKOUT · 2026-10-26 · `arena/692ed040-gemsdoe91`:** Start with the [current three-pass repository review](docs/REVIEW-ARENA-692ED040-20261026.md), [site-by-site executive summary of GEMSDOE24/25/27/28/30/31/32/33/36](docs/high-score-submissions-review.html), and [machine-readable run card](docs/run-card-ARENA-692ED040-20261026.json). This checkout is **NEGATIVE / BLOCKED**: no assigned method paragraph or local pinned data; **no new TIFF generated; OK TO DOWNLOAD: NO; OK TO SUBMIT: NO; zero slots used**. The reported historical scores are user-supplied and unverified. No previous TIFF was copied or renamed. The full standing brief is already preserved below in the `Full project brief` section; read it at every session start. **Maximize P(Win) · Own the Outcome.**
+>
+> This new active-checkout status supersedes neither historical run cards nor prior-branch conclusions; it reports only what was inspected on this branch. Keep download, scientific validation, uniqueness, and selector/slot approval as separate gates.
 
 > **NEW · SESSION 19 (`S19-SVHF E3`, branch `arena/bcc0fcb2-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — 18/18 DUAL-DECODER CERTIFIED RESEARCH` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT (0 WEEKLY SLOTS SPENT)`.**
 > **[⬇ Download S19-SVHF GeoTIFF](docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.tif)** (`sha256: ed26789ab7bdbe6291abe743a25b65c63a5a14c99d3f50e421a1e77e025543d3`) · **[Single-TIFF ZIP](docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.zip)** (`sha256: 0bf25a65a483cad4f4ce856c2c14ce2c115fed20461663171b91ca27850d15f8`) · [S19-SVHF Audit](docs/s19-svhf.html) · [Step-by-Step DrivenData Guide](docs/s19-svhf-executive-summary.html) · [JSON Run Card](docs/run-card-S19-SVHF.json) · [Preregistration](docs/HYPOTHESES_S19_SVHF.md) · [Vent & Cross-Fleet Synthesis](docs/GEOTHERMAL_VENT_RESEARCH_S19.md) · [3-Pass Review](docs/REVIEW-S19-SVHF-20261025.md)
