@@ -185,3 +185,23 @@ def predicted_dti_after_pure_fp(T: float, dti_before: float, k_removed: int, alp
     """DTI after removing ``k_removed`` pure-FP dots (negative ``k`` adds them), given credit ``T``."""
     d_before = T / dti_before
     return T / (d_before - alpha * k_removed)
+
+
+# --------------------------------------------------------------------------------------------
+# Final-file emission helpers (global catalogue collar, per-quadrant equalized budgets)
+# --------------------------------------------------------------------------------------------
+
+def emit_quadrant_final(surface, catalogue, footprint, region, d_cat, q: int, method: str = "celf") -> np.ndarray:
+    """Per-quadrant equalized emission for the *shipped* file with the **global** catalogue collar.
+
+    The shared emitters truncate ``visible_faults`` to their ``footprint`` argument, so a catalogue pixel just
+    outside a quadrant border would be ignored.  Here the collar is applied first (``d_cat > COLLAR_PX`` from the
+    full catalogue) and the emitter then receives a quadrant-limited, already-collared footprint with no visible
+    faults, which makes the collar exact across quadrant borders.
+    """
+    from gems91.pdwc21 import emit_dots_celf_submodular, emit_dots_nms
+
+    allowed = np.asarray(region, dtype=bool) & np.asarray(footprint, dtype=bool) & (d_cat > COLLAR_PX) & ~np.asarray(catalogue, dtype=bool)
+    fn = {"nms": emit_dots_nms, "celf": emit_dots_celf_submodular}[method]
+    return fn(surface, np.zeros_like(allowed), allowed, budget=QUAD_BUDGETS[q],
+              collar_px=COLLAR_PX, min_spacing_px=COLLAR_PX)

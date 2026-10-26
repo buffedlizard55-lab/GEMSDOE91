@@ -111,3 +111,11 @@ Reading `scripts/run_s21_pdwc.py` showed three design details that §4 stated im
 ## Amendment A2 (written 2026-10-26, after a 14-anchor *smoke test of the script only*, before the full E2 run and before any E1 result)
 
 The E2(c) acceptance rule in §4 said the H22-2 effect interval must "exclude 1". H22-2 predicts **more** truth in orientation-mixing zones (hi > lo). A significant *negative* effect would therefore contradict the hypothesis, not support it. Rule corrected to: **accepted only if the LOSO RMSE change is ≤ +0.0005 *and* the site-jackknife 95% interval of the fitted hi-vs-lo log-effect lies strictly above 0**; an interval strictly below 0 is reported as "contradicts H22-2". The 14-anchor smoke run is not a result (14 of 112 anchors; its numbers are discarded).
+
+## Amendment A3 (written 2026-10-26 **after** the uncapped E1 result and the pass-1 uniqueness screen were known, **before any capped number existed**)
+
+Known when this was written: uncapped paired difference `C − A` (CELF) = **+0.004378**, 95% CI **[+0.000069, +0.008234]**; the pass-1 file (equalized per-quadrant CELF on arm C's stitched OOF surface, no caps) overlaps the S21-PDWC E3 raster by **71.88%** and a 90,000-dot sibling raster by 70.26% (> 70%), so it is **not unique** (`docs/s22/registry-screen-pass1.json`). The cross-breed shares its features with PDWC, so this was foreseeable.
+
+1. **Shipped recipe.** Equalized per-quadrant CELF **with hard per-reference 3-px caps of 0.64** (the value S21 used) on the *active* reference set = every non-blanket reference whose pass-1 overlap is ≥ 0.48 (at most 240, frozen from `registry-screen-pass1.json`). A cap applied inside each quadrant call bounds the global overlap by the same fraction, so the per-quadrant recipe is kept. This replaces the global-CELF fallback in the draft emit script, which would have broken the link between the evaluated and the shipped recipe.
+2. **Evaluation under the shipped recipe.** Arms A and C are re-evaluated on hide-v2 with the identical capped emitter and the identical reference set (`docs/s22/holdout-capped.json`).
+3. **G4 made stricter.** G4 now requires the paired `C − A` 95% interval to lie above 0 under **both** the uncapped recipe (already observed, above) **and** the capped recipe. Pinned S21/S18 comparisons stay context-only (A1).

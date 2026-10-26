@@ -1,0 +1,95 @@
+{
+ "retrieved_utc": "2026-10-26",
+ "tool": "Arena fetch_page / web_search (text pages only; binary data not retrievable)",
+ "facts": [
+  {
+   "id": "A1",
+   "claim": "metric = distance-weighted Tversky index, alpha=0.2, beta=0.8, triangular kernel R=300 m",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+  },
+  {
+   "id": "A3",
+   "claim": "submission: EPSG:32611, 100 m, same bounds, null/nan outside bounds, single float32 layer in [0,1]",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+  },
+  {
+   "id": "A4",
+   "claim": "known USGS/INGENIOUS fault pixels are masked/excluded from evaluation; re-evaluation also masks them",
+   "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+   "speaker": "DrivenData staff chrisk-dd",
+   "date": "2026-09-16"
+  },
+  {
+   "id": "A5",
+   "claim": "'new fault' = any fault pixel not already captured by USGS/INGENIOUS; can include newly mapped geometry of an existing fault system",
+   "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+   "speaker": "chrisk-dd",
+   "date": "2026-09-23"
+  },
+  {
+   "id": "A6",
+   "claim": "public score pools all public-subset pixels into one Tversky index; chunking undisclosed; final re-evaluation on entire GeoDAWN area",
+   "url": "https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550",
+   "speaker": "chrisk-dd",
+   "date": "2026-10-01"
+  },
+  {
+   "id": "A7",
+   "claim": "organizers will not share data sources, fault types or coverage behind test faults; Phase 2 test set updated by expert review of Phase 1 submissions",
+   "url": "https://community.drivendata.org/t/how-were-the-new-test-faults-identified-data-sources-and-fault-types/11527",
+   "speaker": "chrisk-dd",
+   "date": "2026-09-23"
+  },
+  {
+   "id": "A8",
+   "claim": "reviewers may look at all submissions; only the selected final submission is scored",
+   "url": "https://community.drivendata.org/t/phase-2-expert-review-and-phase-1-submissions/11579",
+   "speaker": "chrisk-dd",
+   "date": "2026-10-26"
+  },
+  {
+   "id": "A9",
+   "claim": "three submissions per week; website limit prevails",
+   "url": "https://community.drivendata.org/t/submission-amount-question/11553",
+   "speaker": "chrisk-dd",
+   "date": "2026-10-05"
+  },
+  {
+   "id": "A10",
+   "claim": "deq/ieq_n100a15 are INGENIOUS earthquake rate density layers clipped to GeoDAWN and re-gridded to 100 m",
+   "url": "https://community.drivendata.org/t/units-and-very-large-values-in-deq-n100a15-and-meaning-of-ieq-n100a15/11557",
+   "speaker": "chrisk-dd",
+   "date": "2026-10-07"
+  },
+  {
+   "id": "A11",
+   "claim": "leaderboard 2026-10-26: #1 0.4437, #2 0.3916, #3 0.3904, #4 0.3724, #5 0.3553, #10 0.3379, #24 0.3169, #50 0.2826",
+   "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+  },
+  {
+   "id": "B1-B4",
+   "claim": "Official Rules Sept 2026: single GeoTIFF, 100 m, whole area; one final submission across both rounds chosen blind to private scores; AI use must be disclosed; finalists deliver reproducible code",
+   "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+  },
+  {
+   "id": "C6",
+   "claim": "Faulds & Varga 1998 GSA SP 323 pp.1-45: accommodation zones and transfer zones",
+   "url": "https://doi.org/10.1130/SPE323"
+  },
+  {
+   "id": "C7",
+   "claim": "Faulds & Hinz 2015 WGC: 426 systems, ~39% blind, step-overs ~32%, terminations ~25%",
+   "url": "https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11100.pdf"
+  }
+ ],
+ "sandbox_reachability_curl_http_code": {
+  "https://apps.nationalmap.gov/downloader/": "000",
+  "https://prd-tnm.s3.amazonaws.com/": "000",
+  "https://usgs-lidar-public.s3.amazonaws.com/": "000",
+  "https://earthquake.usgs.gov/fdsnws/event/1/count?format=geojson": "000",
+  "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7": "000",
+  "https://gdr.openei.org/submissions/1391": "000",
+  "https://www.drivendata.org/": "000",
+  "https://community.drivendata.org/": "000"
+ }
+}

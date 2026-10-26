@@ -1,0 +1,1258 @@
+{
+ "evaluator_version": "gems57-pooled-hide-v2",
+ "split_sha256": "c79f1acaf337fd548d0873d576a8a3c286d373ae2cb19cfce4464597d448d18a",
+ "pdwc66": {
+  "n_features": 66,
+  "n_withheld_positives": 60988,
+  "n_sampled_negatives": 638299,
+  "max_symmetric_auc": 0.638226,
+  "max_feature": "topo_profile_curv_250m",
+  "flagged_gt_090": [],
+  "pass": true,
+  "features": [
+   {
+    "index": 0,
+    "feature": "dcwf_grav_r2_200m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.536251,
+    "pooled_symmetric_auc": 0.536251,
+    "quadrant_symmetric_aucs": [
+     0.532319,
+     0.589506,
+     0.537027,
+     0.53192
+    ],
+    "max_symmetric_auc": 0.589506,
+    "pass_le_090": true
+   },
+   {
+    "index": 1,
+    "feature": "dcwf_grav_r2_500m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.536509,
+    "pooled_symmetric_auc": 0.536509,
+    "quadrant_symmetric_aucs": [
+     0.530718,
+     0.59152,
+     0.539298,
+     0.537776
+    ],
+    "max_symmetric_auc": 0.59152,
+    "pass_le_090": true
+   },
+   {
+    "index": 2,
+    "feature": "dcwf_grav_r2_1200m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.537168,
+    "pooled_symmetric_auc": 0.537168,
+    "quadrant_symmetric_aucs": [
+     0.527647,
+     0.595707,
+     0.546938,
+     0.553172
+    ],
+    "max_symmetric_auc": 0.595707,
+    "pass_le_090": true
+   },
+   {
+    "index": 3,
+    "feature": "dcwf_grav_match_200m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.514071,
+    "pooled_symmetric_auc": 0.514071,
+    "quadrant_symmetric_aucs": [
+     0.511312,
+     0.552838,
+     0.504127,
+     0.511335
+    ],
+    "max_symmetric_auc": 0.552838,
+    "pass_le_090": true
+   },
+   {
+    "index": 4,
+    "feature": "dcwf_grav_match_500m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.517162,
+    "pooled_symmetric_auc": 0.517162,
+    "quadrant_symmetric_aucs": [
+     0.510944,
+     0.556808,
+     0.50158,
+     0.503073
+    ],
+    "max_symmetric_auc": 0.556808,
+    "pass_le_090": true
+   },
+   {
+    "index": 5,
+    "feature": "dcwf_grav_match_1200m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.520328,
+    "pooled_symmetric_auc": 0.520328,
+    "quadrant_symmetric_aucs": [
+     0.511812,
+     0.558423,
+     0.500696,
+     0.511887
+    ],
+    "max_symmetric_auc": 0.558423,
+    "pass_le_090": true
+   },
+   {
+    "index": 6,
+    "feature": "dcwf_grav_multidepth_persist",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.510784,
+    "pooled_symmetric_auc": 0.510784,
+    "quadrant_symmetric_aucs": [
+     0.51036,
+     0.535316,
+     0.502993,
+     0.506046
+    ],
+    "max_symmetric_auc": 0.535316,
+    "pass_le_090": true
+   },
+   {
+    "index": 7,
+    "feature": "dcwf_grav_cot_dip",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.492681,
+    "pooled_symmetric_auc": 0.507319,
+    "quadrant_symmetric_aucs": [
+     0.515201,
+     0.500627,
+     0.504122,
+     0.50527
+    ],
+    "max_symmetric_auc": 0.515201,
+    "pass_le_090": true
+   },
+   {
+    "index": 8,
+    "feature": "dcwf_rtp_r2_200m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.51895,
+    "pooled_symmetric_auc": 0.51895,
+    "quadrant_symmetric_aucs": [
+     0.513739,
+     0.507836,
+     0.507017,
+     0.520338
+    ],
+    "max_symmetric_auc": 0.520338,
+    "pass_le_090": true
+   },
+   {
+    "index": 9,
+    "feature": "dcwf_rtp_r2_500m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.527755,
+    "pooled_symmetric_auc": 0.527755,
+    "quadrant_symmetric_aucs": [
+     0.522128,
+     0.532409,
+     0.516724,
+     0.525108
+    ],
+    "max_symmetric_auc": 0.532409,
+    "pass_le_090": true
+   },
+   {
+    "index": 10,
+    "feature": "dcwf_rtp_match_200m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.523877,
+    "pooled_symmetric_auc": 0.523877,
+    "quadrant_symmetric_aucs": [
+     0.51765,
+     0.509864,
+     0.532341,
+     0.550753
+    ],
+    "max_symmetric_auc": 0.550753,
+    "pass_le_090": true
+   },
+   {
+    "index": 11,
+    "feature": "dcwf_rtp_match_500m",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.526817,
+    "pooled_symmetric_auc": 0.526817,
+    "quadrant_symmetric_aucs": [
+     0.519415,
+     0.516339,
+     0.546159,
+     0.539461
+    ],
+    "max_symmetric_auc": 0.546159,
+    "pass_le_090": true
+   },
+   {
+    "index": 12,
+    "feature": "dcwf_rtp_multidepth_persist",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.526193,
+    "pooled_symmetric_auc": 0.526193,
+    "quadrant_symmetric_aucs": [
+     0.522085,
+     0.505409,
+     0.542776,
+     0.542761
+    ],
+    "max_symmetric_auc": 0.542776,
+    "pass_le_090": true
+   },
+   {
+    "index": 13,
+    "feature": "dcwf_grav_rtp_dip_lock",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.498774,
+    "pooled_symmetric_auc": 0.501226,
+    "quadrant_symmetric_aucs": [
+     0.502138,
+     0.511649,
+     0.502755,
+     0.503515
+    ],
+    "max_symmetric_auc": 0.511649,
+    "pass_le_090": true
+   },
+   {
+    "index": 14,
+    "feature": "dcwf_updip_proj_grav",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.504803,
+    "pooled_symmetric_auc": 0.504803,
+    "quadrant_symmetric_aucs": [
+     0.505944,
+     0.531123,
+     0.517279,
+     0.513377
+    ],
+    "max_symmetric_auc": 0.531123,
+    "pass_le_090": true
+   },
+   {
+    "index": 15,
+    "feature": "dcwf_updip_proj_rtp",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.522512,
+    "pooled_symmetric_auc": 0.522512,
+    "quadrant_symmetric_aucs": [
+     0.519664,
+     0.505835,
+     0.540371,
+     0.526778
+    ],
+    "max_symmetric_auc": 0.540371,
+    "pass_le_090": true
+   },
+   {
+    "index": 16,
+    "feature": "dcwf_updip_joint_crest",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.511665,
+    "pooled_symmetric_auc": 0.511665,
+    "quadrant_symmetric_aucs": [
+     0.510773,
+     0.534422,
+     0.50179,
+     0.50516
+    ],
+    "max_symmetric_auc": 0.534422,
+    "pass_le_090": true
+   },
+   {
+    "index": 17,
+    "feature": "bico_grav_triad_800_400_267",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.537665,
+    "pooled_symmetric_auc": 0.537665,
+    "quadrant_symmetric_aucs": [
+     0.525285,
+     0.545228,
+     0.562955,
+     0.531176
+    ],
+    "max_symmetric_auc": 0.562955,
+    "pass_le_090": true
+   },
+   {
+    "index": 18,
+    "feature": "bico_rtp_triad_800_400_267",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.504826,
+    "pooled_symmetric_auc": 0.504826,
+    "quadrant_symmetric_aucs": [
+     0.504436,
+     0.501126,
+     0.531447,
+     0.507916
+    ],
+    "max_symmetric_auc": 0.531447,
+    "pass_le_090": true
+   },
+   {
+    "index": 19,
+    "feature": "bico_grav_rtp_sync",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.535495,
+    "pooled_symmetric_auc": 0.535495,
+    "quadrant_symmetric_aucs": [
+     0.522895,
+     0.54247,
+     0.558238,
+     0.529682
+    ],
+    "max_symmetric_auc": 0.558238,
+    "pass_le_090": true
+   },
+   {
+    "index": 20,
+    "feature": "mgpc_grav_even_ridge",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.4999,
+    "pooled_symmetric_auc": 0.5001,
+    "quadrant_symmetric_aucs": [
+     0.50151,
+     0.502395,
+     0.51518,
+     0.50685
+    ],
+    "max_symmetric_auc": 0.51518,
+    "pass_le_090": true
+   },
+   {
+    "index": 21,
+    "feature": "mgpc_grav_odd_step",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.521631,
+    "pooled_symmetric_auc": 0.521631,
+    "quadrant_symmetric_aucs": [
+     0.525172,
+     0.533288,
+     0.508599,
+     0.502239
+    ],
+    "max_symmetric_auc": 0.533288,
+    "pass_le_090": true
+   },
+   {
+    "index": 22,
+    "feature": "mgpc_rtp_even_ridge",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.494457,
+    "pooled_symmetric_auc": 0.505543,
+    "quadrant_symmetric_aucs": [
+     0.501986,
+     0.511885,
+     0.509202,
+     0.508834
+    ],
+    "max_symmetric_auc": 0.511885,
+    "pass_le_090": true
+   },
+   {
+    "index": 23,
+    "feature": "mgpc_rtp_odd_step",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.515595,
+    "pooled_symmetric_auc": 0.515595,
+    "quadrant_symmetric_aucs": [
+     0.508566,
+     0.517858,
+     0.52092,
+     0.51697
+    ],
+    "max_symmetric_auc": 0.52092,
+    "pass_le_090": true
+   },
+   {
+    "index": 24,
+    "feature": "mgpc_base_odd_step",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.524146,
+    "pooled_symmetric_auc": 0.524146,
+    "quadrant_symmetric_aucs": [
+     0.520155,
+     0.538471,
+     0.501013,
+     0.5386
+    ],
+    "max_symmetric_auc": 0.5386,
+    "pass_le_090": true
+   },
+   {
+    "index": 25,
+    "feature": "mgpc_rad_tc_odd_step",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.502248,
+    "pooled_symmetric_auc": 0.502248,
+    "quadrant_symmetric_aucs": [
+     0.503996,
+     0.500486,
+     0.501088,
+     0.506061
+    ],
+    "max_symmetric_auc": 0.506061,
+    "pass_le_090": true
+   },
+   {
+    "index": 26,
+    "feature": "mgpc_grav_rtp_phase_sync",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.524268,
+    "pooled_symmetric_auc": 0.524268,
+    "quadrant_symmetric_aucs": [
+     0.523067,
+     0.53293,
+     0.515304,
+     0.514524
+    ],
+    "max_symmetric_auc": 0.53293,
+    "pass_le_090": true
+   },
+   {
+    "index": 27,
+    "feature": "steger_grav_slope_crest",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.486745,
+    "pooled_symmetric_auc": 0.513255,
+    "quadrant_symmetric_aucs": [
+     0.509156,
+     0.505077,
+     0.521808,
+     0.513967
+    ],
+    "max_symmetric_auc": 0.521808,
+    "pass_le_090": true
+   },
+   {
+    "index": 28,
+    "feature": "steger_mag_hg_crest",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.512369,
+    "pooled_symmetric_auc": 0.512369,
+    "quadrant_symmetric_aucs": [
+     0.506134,
+     0.518669,
+     0.51964,
+     0.527679
+    ],
+    "max_symmetric_auc": 0.527679,
+    "pass_le_090": true
+   },
+   {
+    "index": 29,
+    "feature": "steger_mag_asig_crest",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.516799,
+    "pooled_symmetric_auc": 0.516799,
+    "quadrant_symmetric_aucs": [
+     0.508109,
+     0.51525,
+     0.529955,
+     0.540033
+    ],
+    "max_symmetric_auc": 0.540033,
+    "pass_le_090": true
+   },
+   {
+    "index": 30,
+    "feature": "steger_base_grad_crest",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.504199,
+    "pooled_symmetric_auc": 0.504199,
+    "quadrant_symmetric_aucs": [
+     0.503129,
+     0.507381,
+     0.509412,
+     0.501131
+    ],
+    "max_symmetric_auc": 0.509412,
+    "pass_le_090": true
+   },
+   {
+    "index": 31,
+    "feature": "dcwf_mgpc_grav_crest_gate",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.514125,
+    "pooled_symmetric_auc": 0.514125,
+    "quadrant_symmetric_aucs": [
+     0.515264,
+     0.548284,
+     0.505762,
+     0.514781
+    ],
+    "max_symmetric_auc": 0.548284,
+    "pass_le_090": true
+   },
+   {
+    "index": 32,
+    "feature": "dcwf_mgpc_rtp_crest_gate",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.525983,
+    "pooled_symmetric_auc": 0.525983,
+    "quadrant_symmetric_aucs": [
+     0.519688,
+     0.512088,
+     0.535086,
+     0.546731
+    ],
+    "max_symmetric_auc": 0.546731,
+    "pass_le_090": true
+   },
+   {
+    "index": 33,
+    "feature": "sub_flightline_seam_guard",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.484967,
+    "pooled_symmetric_auc": 0.515033,
+    "quadrant_symmetric_aucs": [
+     0.513205,
+     0.500521,
+     0.502055,
+     0.546891
+    ],
+    "max_symmetric_auc": 0.546891,
+    "pass_le_090": true
+   },
+   {
+    "index": 34,
+    "feature": "hcba_cond_b15_resid",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.514661,
+    "pooled_symmetric_auc": 0.514661,
+    "quadrant_symmetric_aucs": [
+     0.518711,
+     0.530526,
+     0.515692,
+     0.517993
+    ],
+    "max_symmetric_auc": 0.530526,
+    "pass_le_090": true
+   },
+   {
+    "index": 35,
+    "feature": "hcba_claycap_dip_normal_asym",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.497582,
+    "pooled_symmetric_auc": 0.502418,
+    "quadrant_symmetric_aucs": [
+     0.502112,
+     0.521754,
+     0.503817,
+     0.51536
+    ],
+    "max_symmetric_auc": 0.521754,
+    "pass_le_090": true
+   },
+   {
+    "index": 36,
+    "feature": "hcba_mag_destruct_claycap",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.508754,
+    "pooled_symmetric_auc": 0.508754,
+    "quadrant_symmetric_aucs": [
+     0.515365,
+     0.502985,
+     0.504807,
+     0.51695
+    ],
+    "max_symmetric_auc": 0.51695,
+    "pass_le_090": true
+   },
+   {
+    "index": 37,
+    "feature": "hcba_rad_tc_strike_grad",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.504333,
+    "pooled_symmetric_auc": 0.504333,
+    "quadrant_symmetric_aucs": [
+     0.501064,
+     0.503518,
+     0.509552,
+     0.510032
+    ],
+    "max_symmetric_auc": 0.510032,
+    "pass_le_090": true
+   },
+   {
+    "index": 38,
+    "feature": "hcba_rad_tc_local_anom",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.438072,
+    "pooled_symmetric_auc": 0.561928,
+    "quadrant_symmetric_aucs": [
+     0.538202,
+     0.605232,
+     0.577389,
+     0.561752
+    ],
+    "max_symmetric_auc": 0.605232,
+    "pass_le_090": true
+   },
+   {
+    "index": 39,
+    "feature": "hcba_strain_2ndinv_local",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.524096,
+    "pooled_symmetric_auc": 0.524096,
+    "quadrant_symmetric_aucs": [
+     0.508106,
+     0.502887,
+     0.552867,
+     0.549535
+    ],
+    "max_symmetric_auc": 0.552867,
+    "pass_le_090": true
+   },
+   {
+    "index": 40,
+    "feature": "hcba_shear_rate_local",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.519328,
+    "pooled_symmetric_auc": 0.519328,
+    "quadrant_symmetric_aucs": [
+     0.502105,
+     0.5002,
+     0.541085,
+     0.544301
+    ],
+    "max_symmetric_auc": 0.544301,
+    "pass_le_090": true
+   },
+   {
+    "index": 41,
+    "feature": "hcba_dilatation_local",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.506423,
+    "pooled_symmetric_auc": 0.506423,
+    "quadrant_symmetric_aucs": [
+     0.501346,
+     0.502313,
+     0.511726,
+     0.52469
+    ],
+    "max_symmetric_auc": 0.52469,
+    "pass_le_090": true
+   },
+   {
+    "index": 42,
+    "feature": "hcba_transtension_slip_tend",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.519859,
+    "pooled_symmetric_auc": 0.519859,
+    "quadrant_symmetric_aucs": [
+     0.502066,
+     0.509839,
+     0.545361,
+     0.543451
+    ],
+    "max_symmetric_auc": 0.545361,
+    "pass_le_090": true
+   },
+   {
+    "index": 43,
+    "feature": "hcba_seismic_conduit",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.459242,
+    "pooled_symmetric_auc": 0.540758,
+    "quadrant_symmetric_aucs": [
+     0.527703,
+     0.51021,
+     0.501223,
+     0.501812
+    ],
+    "max_symmetric_auc": 0.540758,
+    "pass_le_090": true
+   },
+   {
+    "index": 44,
+    "feature": "hcba_base_accomm_saddle",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.523071,
+    "pooled_symmetric_auc": 0.523071,
+    "quadrant_symmetric_aucs": [
+     0.51304,
+     0.541296,
+     0.514879,
+     0.555484
+    ],
+    "max_symmetric_auc": 0.555484,
+    "pass_le_090": true
+   },
+   {
+    "index": 45,
+    "feature": "hcba_gdr_temp_local",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.509887,
+    "pooled_symmetric_auc": 0.509887,
+    "quadrant_symmetric_aucs": [
+     0.519909,
+     0.517775,
+     0.531837,
+     0.506955
+    ],
+    "max_symmetric_auc": 0.531837,
+    "pass_le_090": true
+   },
+   {
+    "index": 46,
+    "feature": "hcba_gdr_diseq_local",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.510775,
+    "pooled_symmetric_auc": 0.510775,
+    "quadrant_symmetric_aucs": [
+     0.516313,
+     0.534006,
+     0.518668,
+     0.505444
+    ],
+    "max_symmetric_auc": 0.534006,
+    "pass_le_090": true
+   },
+   {
+    "index": 47,
+    "feature": "hcba_gdr_upflow_baffle_gate",
+    "group": "pure_subsurface",
+    "pooled_auc": 0.511376,
+    "pooled_symmetric_auc": 0.511376,
+    "quadrant_symmetric_aucs": [
+     0.524254,
+     0.527645,
+     0.539132,
+     0.507114
+    ],
+    "max_symmetric_auc": 0.539132,
+    "pass_le_090": true
+   },
+   {
+    "index": 48,
+    "feature": "topo_mgpc_elev_even_ridge",
+    "group": "topo_or_full",
+    "pooled_auc": 0.518586,
+    "pooled_symmetric_auc": 0.518586,
+    "quadrant_symmetric_aucs": [
+     0.518386,
+     0.513477,
+     0.54331,
+     0.500497
+    ],
+    "max_symmetric_auc": 0.54331,
+    "pass_le_090": true
+   },
+   {
+    "index": 49,
+    "feature": "topo_mgpc_elev_odd_step",
+    "group": "topo_or_full",
+    "pooled_auc": 0.534384,
+    "pooled_symmetric_auc": 0.534384,
+    "quadrant_symmetric_aucs": [
+     0.528345,
+     0.534511,
+     0.522922,
+     0.560588
+    ],
+    "max_symmetric_auc": 0.560588,
+    "pass_le_090": true
+   },
+   {
+    "index": 50,
+    "feature": "topo_mgpc_slope_even_ridge",
+    "group": "topo_or_full",
+    "pooled_auc": 0.498055,
+    "pooled_symmetric_auc": 0.501945,
+    "quadrant_symmetric_aucs": [
+     0.500212,
+     0.516514,
+     0.511594,
+     0.504559
+    ],
+    "max_symmetric_auc": 0.516514,
+    "pass_le_090": true
+   },
+   {
+    "index": 51,
+    "feature": "topo_mgpc_slope_odd_step",
+    "group": "topo_or_full",
+    "pooled_auc": 0.562489,
+    "pooled_symmetric_auc": 0.562489,
+    "quadrant_symmetric_aucs": [
+     0.545163,
+     0.584662,
+     0.569599,
+     0.577595
+    ],
+    "max_symmetric_auc": 0.584662,
+    "pass_le_090": true
+   },
+   {
+    "index": 52,
+    "feature": "topo_steger_slope_crest_120m",
+    "group": "topo_or_full",
+    "pooled_auc": 0.535186,
+    "pooled_symmetric_auc": 0.535186,
+    "quadrant_symmetric_aucs": [
+     0.511806,
+     0.577869,
+     0.53423,
+     0.55074
+    ],
+    "max_symmetric_auc": 0.577869,
+    "pass_le_090": true
+   },
+   {
+    "index": 53,
+    "feature": "topo_steger_slope_crest_250m",
+    "group": "topo_or_full",
+    "pooled_auc": 0.5391,
+    "pooled_symmetric_auc": 0.5391,
+    "quadrant_symmetric_aucs": [
+     0.517453,
+     0.575079,
+     0.53267,
+     0.566667
+    ],
+    "max_symmetric_auc": 0.575079,
+    "pass_le_090": true
+   },
+   {
+    "index": 54,
+    "feature": "topo_steger_slope_crest_500m",
+    "group": "topo_or_full",
+    "pooled_auc": 0.531748,
+    "pooled_symmetric_auc": 0.531748,
+    "quadrant_symmetric_aucs": [
+     0.514042,
+     0.544833,
+     0.541434,
+     0.55849
+    ],
+    "max_symmetric_auc": 0.55849,
+    "pass_le_090": true
+   },
+   {
+    "index": 55,
+    "feature": "topo_profile_curv_250m",
+    "group": "topo_or_full",
+    "pooled_auc": 0.403113,
+    "pooled_symmetric_auc": 0.596887,
+    "quadrant_symmetric_aucs": [
+     0.576442,
+     0.638226,
+     0.608262,
+     0.592166
+    ],
+    "max_symmetric_auc": 0.638226,
+    "pass_le_090": true
+   },
+   {
+    "index": 56,
+    "feature": "topo_profile_curv_600m",
+    "group": "topo_or_full",
+    "pooled_auc": 0.411007,
+    "pooled_symmetric_auc": 0.588993,
+    "quadrant_symmetric_aucs": [
+     0.563371,
+     0.635797,
+     0.596461,
+     0.594586
+    ],
+    "max_symmetric_auc": 0.635797,
+    "pass_le_090": true
+   },
+   {
+    "index": 57,
+    "feature": "topo_scarp_dipole_350m",
+    "group": "topo_or_full",
+    "pooled_auc": 0.506164,
+    "pooled_symmetric_auc": 0.506164,
+    "quadrant_symmetric_aucs": [
+     0.502369,
+     0.500727,
+     0.524739,
+     0.505697
+    ],
+    "max_symmetric_auc": 0.524739,
+    "pass_le_090": true
+   },
+   {
+    "index": 58,
+    "feature": "topo_hurst_deficit_short",
+    "group": "topo_or_full",
+    "pooled_auc": 0.481659,
+    "pooled_symmetric_auc": 0.518341,
+    "quadrant_symmetric_aucs": [
+     0.52837,
+     0.553126,
+     0.556378,
+     0.510457
+    ],
+    "max_symmetric_auc": 0.556378,
+    "pass_le_090": true
+   },
+   {
+    "index": 59,
+    "feature": "topo_hurst_scale_break",
+    "group": "topo_or_full",
+    "pooled_auc": 0.477722,
+    "pooled_symmetric_auc": 0.522278,
+    "quadrant_symmetric_aucs": [
+     0.524025,
+     0.529055,
+     0.505009,
+     0.528241
+    ],
+    "max_symmetric_auc": 0.529055,
+    "pass_le_090": true
+   },
+   {
+    "index": 60,
+    "feature": "topo_hurst_strike_aniso",
+    "group": "topo_or_full",
+    "pooled_auc": 0.535868,
+    "pooled_symmetric_auc": 0.535868,
+    "quadrant_symmetric_aucs": [
+     0.542343,
+     0.561955,
+     0.512681,
+     0.530999
+    ],
+    "max_symmetric_auc": 0.561955,
+    "pass_le_090": true
+   },
+   {
+    "index": 61,
+    "feature": "topo_ptcf_200m",
+    "group": "topo_or_full",
+    "pooled_auc": 0.564106,
+    "pooled_symmetric_auc": 0.564106,
+    "quadrant_symmetric_aucs": [
+     0.544462,
+     0.598556,
+     0.571769,
+     0.570595
+    ],
+    "max_symmetric_auc": 0.598556,
+    "pass_le_090": true
+   },
+   {
+    "index": 62,
+    "feature": "topo_ptcf_500m",
+    "group": "topo_or_full",
+    "pooled_auc": 0.558713,
+    "pooled_symmetric_auc": 0.558713,
+    "quadrant_symmetric_aucs": [
+     0.538198,
+     0.598124,
+     0.568282,
+     0.560667
+    ],
+    "max_symmetric_auc": 0.598124,
+    "pass_le_090": true
+   },
+   {
+    "index": 63,
+    "feature": "topo_ptcf_updip_dcwf_gate",
+    "group": "topo_or_full",
+    "pooled_auc": 0.527599,
+    "pooled_symmetric_auc": 0.527599,
+    "quadrant_symmetric_aucs": [
+     0.517199,
+     0.560202,
+     0.528492,
+     0.51696
+    ],
+    "max_symmetric_auc": 0.560202,
+    "pass_le_090": true
+   },
+   {
+    "index": 64,
+    "feature": "topo_slope_local_contrast",
+    "group": "topo_or_full",
+    "pooled_auc": 0.524361,
+    "pooled_symmetric_auc": 0.524361,
+    "quadrant_symmetric_aucs": [
+     0.507115,
+     0.539109,
+     0.535185,
+     0.545277
+    ],
+    "max_symmetric_auc": 0.545277,
+    "pass_le_090": true
+   },
+   {
+    "index": 65,
+    "feature": "topo_cover_ness_index",
+    "group": "topo_or_full",
+    "pooled_auc": 0.471713,
+    "pooled_symmetric_auc": 0.528287,
+    "quadrant_symmetric_aucs": [
+     0.521422,
+     0.525945,
+     0.573576,
+     0.51816
+    ],
+    "max_symmetric_auc": 0.573576,
+    "pass_le_090": true
+   }
+  ]
+ },
+ "hgbr16": {
+  "n_features": 16,
+  "n_withheld_positives": 60988,
+  "n_sampled_negatives": 638299,
+  "max_symmetric_auc": 0.602461,
+  "max_feature": "hgbr18_slope_variogram_step",
+  "flagged_gt_090": [],
+  "pass": true,
+  "features": [
+   {
+    "index": 0,
+    "feature": "hgbr18_grav_hurst_deficit",
+    "group": "topo_or_full",
+    "pooled_auc": 0.531354,
+    "pooled_symmetric_auc": 0.531354,
+    "quadrant_symmetric_aucs": [
+     0.528704,
+     0.572303,
+     0.531212,
+     0.551576
+    ],
+    "max_symmetric_auc": 0.572303,
+    "pass_le_090": true
+   },
+   {
+    "index": 1,
+    "feature": "hgbr18_rtp_hurst_deficit",
+    "group": "topo_or_full",
+    "pooled_auc": 0.523632,
+    "pooled_symmetric_auc": 0.523632,
+    "quadrant_symmetric_aucs": [
+     0.526507,
+     0.517513,
+     0.539255,
+     0.502052
+    ],
+    "max_symmetric_auc": 0.539255,
+    "pass_le_090": true
+   },
+   {
+    "index": 2,
+    "feature": "hgbr18_grav_hurst_anisotropy",
+    "group": "topo_or_full",
+    "pooled_auc": 0.532224,
+    "pooled_symmetric_auc": 0.532224,
+    "quadrant_symmetric_aucs": [
+     0.528387,
+     0.576285,
+     0.531983,
+     0.553897
+    ],
+    "max_symmetric_auc": 0.576285,
+    "pass_le_090": true
+   },
+   {
+    "index": 3,
+    "feature": "hgbr18_rtp_hurst_anisotropy",
+    "group": "topo_or_full",
+    "pooled_auc": 0.526844,
+    "pooled_symmetric_auc": 0.526844,
+    "quadrant_symmetric_aucs": [
+     0.529225,
+     0.517684,
+     0.546611,
+     0.501581
+    ],
+    "max_symmetric_auc": 0.546611,
+    "pass_le_090": true
+   },
+   {
+    "index": 4,
+    "feature": "hgbr18_grav_rtp_hurst_sync",
+    "group": "topo_or_full",
+    "pooled_auc": 0.520586,
+    "pooled_symmetric_auc": 0.520586,
+    "quadrant_symmetric_aucs": [
+     0.527721,
+     0.518091,
+     0.510328,
+     0.507078
+    ],
+    "max_symmetric_auc": 0.527721,
+    "pass_le_090": true
+   },
+   {
+    "index": 5,
+    "feature": "hgbr18_basement_hurst_step",
+    "group": "topo_or_full",
+    "pooled_auc": 0.526228,
+    "pooled_symmetric_auc": 0.526228,
+    "quadrant_symmetric_aucs": [
+     0.510931,
+     0.557306,
+     0.506805,
+     0.569016
+    ],
+    "max_symmetric_auc": 0.569016,
+    "pass_le_090": true
+   },
+   {
+    "index": 6,
+    "feature": "hgbr18_tensor_theta_hurst_crest",
+    "group": "topo_or_full",
+    "pooled_auc": 0.524372,
+    "pooled_symmetric_auc": 0.524372,
+    "quadrant_symmetric_aucs": [
+     0.526211,
+     0.552401,
+     0.538298,
+     0.54958
+    ],
+    "max_symmetric_auc": 0.552401,
+    "pass_le_090": true
+   },
+   {
+    "index": 7,
+    "feature": "hgbr18_cond_hurst_baffle",
+    "group": "topo_or_full",
+    "pooled_auc": 0.508849,
+    "pooled_symmetric_auc": 0.508849,
+    "quadrant_symmetric_aucs": [
+     0.501633,
+     0.516806,
+     0.52269,
+     0.505143
+    ],
+    "max_symmetric_auc": 0.52269,
+    "pass_le_090": true
+   },
+   {
+    "index": 8,
+    "feature": "hgbr18_radiometric_k_th_fault_leak",
+    "group": "topo_or_full",
+    "pooled_auc": 0.489299,
+    "pooled_symmetric_auc": 0.510701,
+    "quadrant_symmetric_aucs": [
+     0.501427,
+     0.518099,
+     0.503145,
+     0.504183
+    ],
+    "max_symmetric_auc": 0.518099,
+    "pass_le_090": true
+   },
+   {
+    "index": 9,
+    "feature": "hgbr18_strain_potency_partition",
+    "group": "topo_or_full",
+    "pooled_auc": 0.53684,
+    "pooled_symmetric_auc": 0.53684,
+    "quadrant_symmetric_aucs": [
+     0.542504,
+     0.507741,
+     0.537668,
+     0.55791
+    ],
+    "max_symmetric_auc": 0.55791,
+    "pass_le_090": true
+   },
+   {
+    "index": 10,
+    "feature": "hgbr18_transtensional_coulomb_focus",
+    "group": "topo_or_full",
+    "pooled_auc": 0.535812,
+    "pooled_symmetric_auc": 0.535812,
+    "quadrant_symmetric_aucs": [
+     0.537247,
+     0.503931,
+     0.542603,
+     0.57756
+    ],
+    "max_symmetric_auc": 0.57756,
+    "pass_le_090": true
+   },
+   {
+    "index": 11,
+    "feature": "hgbr18_updip_listric_trace_shift",
+    "group": "topo_or_full",
+    "pooled_auc": 0.518837,
+    "pooled_symmetric_auc": 0.518837,
+    "quadrant_symmetric_aucs": [
+     0.512493,
+     0.51956,
+     0.524327,
+     0.528376
+    ],
+    "max_symmetric_auc": 0.528376,
+    "pass_le_090": true
+   },
+   {
+    "index": 12,
+    "feature": "hgbr18_geotherm_hurst_conduit",
+    "group": "topo_or_full",
+    "pooled_auc": 0.511022,
+    "pooled_symmetric_auc": 0.511022,
+    "quadrant_symmetric_aucs": [
+     0.51861,
+     0.51161,
+     0.512378,
+     0.502437
+    ],
+    "max_symmetric_auc": 0.51861,
+    "pass_le_090": true
+   },
+   {
+    "index": 13,
+    "feature": "hgbr18_tri_modal_concealed_ridge",
+    "group": "topo_or_full",
+    "pooled_auc": 0.530253,
+    "pooled_symmetric_auc": 0.530253,
+    "quadrant_symmetric_aucs": [
+     0.53195,
+     0.557449,
+     0.52308,
+     0.543438
+    ],
+    "max_symmetric_auc": 0.557449,
+    "pass_le_090": true
+   },
+   {
+    "index": 14,
+    "feature": "hgbr18_elev_hurst_break",
+    "group": "topo_or_full",
+    "pooled_auc": 0.498541,
+    "pooled_symmetric_auc": 0.501459,
+    "quadrant_symmetric_aucs": [
+     0.502006,
+     0.518747,
+     0.519872,
+     0.506141
+    ],
+    "max_symmetric_auc": 0.519872,
+    "pass_le_090": true
+   },
+   {
+    "index": 15,
+    "feature": "hgbr18_slope_variogram_step",
+    "group": "topo_or_full",
+    "pooled_auc": 0.565114,
+    "pooled_symmetric_auc": 0.565114,
+    "quadrant_symmetric_aucs": [
+     0.549853,
+     0.575631,
+     0.602461,
+     0.558701
+    ],
+    "max_symmetric_auc": 0.602461,
+    "pass_le_090": true
+   }
+  ]
+ },
+ "overall_max_symmetric_auc": 0.638226,
+ "overall_pass_le_090": true
+}
