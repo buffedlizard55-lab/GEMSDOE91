@@ -300,10 +300,10 @@ def render():
     # evidence, not inputs whose CSS or banners should be rebuilt from that page.
     from scripts.render_olc91_portal import CURRENT, render as render_current
     if CURRENT['run_card'] == 'run-card-S22-OMTJ.json':
-        render_current()  # injects the S22-XB parallel-lane callout through the <!--PARALLEL-CALLOUTS--> slot
+        render_current()  # OMTJ alone owns the current entry points; XB remains archived.
         if (ROOT / 'docs/run-card-S22-XB.json').is_file():
             from scripts.render_s22_xbreed_pages import render as render_s22xb
-            render_s22xb()  # the parallel lane's own self-contained executive-summary page
+            render_s22xb()  # its dedicated page remains an explicitly historical artifact
         print('Rendered S22 current portal; historical pages preserved; no promotion.')
         return
     card = json.loads((ROOT / 'docs/run-card.json').read_text())

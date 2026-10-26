@@ -2,7 +2,7 @@
 
 **OK TO DOWNLOAD: YES — research only. OK TO SUBMIT: NO.**
 
-[**Download the new TIFF**](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif) · [Single-TIFF ZIP](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.zip) · [**Nine-site executive summary & submission guide**](docs/executive-summary.html) · [Run card](docs/s22/run-card.json) · [Three-pass review](docs/s22/review.md)
+[**Download the new TIFF**](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif) · [Single-TIFF ZIP](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.zip) · [**Nine-site executive summary & submission guide**](docs/executive-summary.html) · [Run card](docs/s22/run-card.json) · [Three-pass review](docs/s22/review.md) · [Portal consistency review](docs/PORTAL-REVIEW-20261026.md)
 
 - **New generated predictions, not a copied raster. Strict protocol uniqueness: FAIL.** The final dot mask overlaps a registered calibration lattice by **98.57%** within 3 pixels. The run stopped after **one** experiment; no dense-raster exemption and **zero** submission slots.
 - **HOLDOUT-DTI: 0.066223**, 95% CI **[0.048015, 0.086803]**; evaluator `gems57-pooled-hide-v2`, **60,988 withheld positive pixels**. This is not a leaderboard estimate and does not establish an improvement over a matched incumbent.
