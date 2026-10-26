@@ -594,6 +594,18 @@
       "sha256": "5e0a8eac7447b440bc0e40a94828516d740287fa12dcaa5944e42a52e41ac3f2",
       "status": "current_research_only",
       "reason": "S20-LFI leaderboard-feedback inversion; format PASS; unique vs registry+sibling sweep; hide-v2 HOLDOUT-DTI=0.001851 (instrument invalid, Spearman vs live 0.105); NOT OK TO SUBMIT (fail-closed; awaiting human sign-off)."
+    },
+    {
+      "path": "docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif",
+      "sha256": "2603acc849274715780305e777e82b87bbd0838b6a024c23e699c84e02145fd3",
+      "status": "current_research_only",
+      "reason": "S21-FAM3 nine-site 3-family live-score inversion; format PASS; unique vs 199 registry + 1078 sibling rasters; hide-v2 HOLDOUT-DTI=0.000000 by construction (>3px collar; instrument invalid, nine-site Spearman -1.000); NOT OK TO SUBMIT (G4 surrogate projection failed); docs/run-card-S21-FAM3.json."
+    },
+    {
+      "path": "docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.zip",
+      "sha256": "2884db5330b6d28a9d6780f6db82da80edbaa37ff54f5ea364565aa084c9cee1",
+      "status": "current_research_only",
+      "reason": "S21-FAM3 nine-site 3-family live-score inversion; format PASS; unique vs 199 registry + 1078 sibling rasters; hide-v2 HOLDOUT-DTI=0.000000 by construction (>3px collar; instrument invalid, nine-site Spearman -1.000); NOT OK TO SUBMIT (G4 surrogate projection failed); docs/run-card-S21-FAM3.json."
     }
   ]
 }

@@ -1,0 +1,62 @@
+{
+ "phase": "surface_preplacement",
+ "ridge": 10.0,
+ "f": 0.7623636915516754,
+ "K_model": 10698.88410640978,
+ "rule": "duplicate-stop if |Spearman(q-surface, reference)| > 0.90 (stride-5 footprint sample, as sibling_sweep.cmd_check)",
+ "n_compared": 199,
+ "max_surface_abs_spearman": 0.1406,
+ "verdict": "PASS",
+ "worst": [
+  {
+   "raster": "data/lfi_anchors/20GEMSDOE__gems20-h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan.tif",
+   "surface_abs_spearman": 0.1406,
+   "n_positive": 123829
+  },
+  {
+   "raster": "data/lfi_anchors/20GEMSDOE__gems20-h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan.tif",
+   "surface_abs_spearman": 0.13989,
+   "n_positive": 121258
+  },
+  {
+   "raster": "data/fleet_registry/19GEMSDOE__h19-4-multiline-corroborated.tif",
+   "surface_abs_spearman": 0.13905,
+   "n_positive": 123779
+  },
+  {
+   "raster": "data/fleet_registry/calib_h194_01894.tif",
+   "surface_abs_spearman": 0.13905,
+   "n_positive": 123779
+  },
+  {
+   "raster": "data/fleet_registry/calib_h161_01855.tif",
+   "surface_abs_spearman": 0.13846,
+   "n_positive": 123939
+  },
+  {
+   "raster": "data/fleet_registry/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+   "surface_abs_spearman": 0.13293,
+   "n_positive": 121131
+  },
+  {
+   "raster": "data/fleet_registry/calib_h195_01922.tif",
+   "surface_abs_spearman": 0.13293,
+   "n_positive": 121131
+  },
+  {
+   "raster": "data/lfi_anchors/GEMSDOE48__gemsdoe48-h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8.tif",
+   "surface_abs_spearman": 0.10583,
+   "n_positive": 37723
+  },
+  {
+   "raster": "data/lfi_anchors/GEMSDOE22__gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+   "surface_abs_spearman": 0.10459,
+   "n_positive": 335879
+  },
+  {
+   "raster": "docs/downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif",
+   "surface_abs_spearman": 0.09439,
+   "n_positive": 29671
+  }
+ ]
+}

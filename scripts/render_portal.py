@@ -643,6 +643,10 @@ def render():
     if (ROOT / 'docs/run-card-S20-LFI.json').is_file():
         from scripts.render_s20_lfi_pages import render as render_s20
         render_s20()
+    # S21-FAM3 (2026-10-26) banner + executive summary: injected last so a fresh render reproduces the front door.
+    if (ROOT / 'docs/run-card-S21-FAM3.json').is_file():
+        from scripts.render_s21_fam3_pages import render as render_s21
+        render_s21()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 

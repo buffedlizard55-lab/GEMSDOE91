@@ -1,4 +1,27 @@
-# Current limitations and next steps — S20-LFI (2026-10-26), then S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16
+# Current limitations and next steps — S21-FAM3 (2026-10-26), then S20-LFI, S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16
+
+## Session 21: S21-FAM3, nine-site 3-family complementarity inversion (`arena/11ddffe8-gemsdoe91`)
+
+**Status:** new unique GeoTIFF (`docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif`, sha256 `2603acc8...145fd3`). **OK TO DOWNLOAD: YES. OK TO SUBMIT: NO (G4 failed in all variants).** Verdict negative; 0 slots used. Evidence: `docs/run-card-S21-FAM3.json`, `docs/s21-fam3-executive-summary.html`, `docs/s21/`.
+
+### Limitations
+
+1. **The design component is a negative result.** Replacing S20's consensus covariate with distance-to-GEMSDOE33/GEMSDOE36 + |grad B15| degraded LOSO on identical anchors (RMSE 0.0270 vs 0.0198; Spearman 0.942 vs 0.957) and the sensor coefficients are ridge-unstable. Use the S20 design for any future inversion.
+2. **Uniqueness is the binding constraint on skill.** Pass 1 (registry-unique) projected 0.365-0.453 vs reported R0 but duplicated 7 sibling rasters. Enforcing <=65% overlap vs 312 references moved the projection to 0.160-0.224 (all PROJECTION). Any future lane that values the same zones will hit the same wall; genuinely new evidence (new live anchors, 1 m DEM) is required.
+3. **No ORGANIZER-CONFIRMED score exists for any file in this repo**, including the 0.2778 anchor for every comparison. The prompt's 0.3195/0.4413 ceiling figures conflict; S20 fetched 0.4413 as public #1 on 2026-10-26. One pasted receipt would anchor the whole model stack.
+4. **Public-to-private transfer untested** (as IR-S20-02); optimizer's curse applies to all PROJECTIONs (pass-1 numbers especially must not be quoted as expected scores).
+5. **hide-v2 remains invalid as a live proxy** and is exactly inverted among the nine leaders (IR-S21-01). S21's candidate scores 0.0 on it by construction; neither figure says anything about live skill.
+6. **Budget overrun** (IR-S21-06): >2x the 2 h protocol budget. The 27-min gate bootstrap and 21-min sibling sweep dominate; budget them explicitly next session, and cache the sweep bit-matrix (see next step 3).
+
+### Next steps (ranked by expected DTI gain per cost)
+
+1. **Submit-and-learn with the S20 design (selector/human decision).** Each new live score is one more exact-DTI equation; refit `scripts/run_lfi.py aggregate|fit`. S21 adds one lesson: do not add sibling-output distance factors.
+2. **1 m DEM scarp morphometry (H3 in the S21 preregistration)** on an unrestricted host: USGS 3DEP (free, public domain). It is the only identified information source that can place dots where no fleet method has looked, escaping the uniqueness wall legitimately.
+3. **Template fixes (cheap, high leverage):** port the ratio-aware fill into `src/gems91/lfi_emit.py`/`run_lfi_emit.py` (IR-S21-03); cache sibling-sweep halo bit-matrices; parallelise the gate bootstrap. Also replace `scripts/check_unique_registry.py` (IR-S20-08) with the S21/S20 parameterized checker in the template.
+4. **Decide the gating instrument** (carried over from S20 next step 1): LFI LOSO + blinded variant vs hide-v2. Without this decision every future candidate inherits today's ambiguity; with hide-v2 the fleet will keep selecting catalogue-recoverers.
+
+---
+
 
 ## Session 20: LFI, leaderboard-feedback inversion (`arena/670d23f5-gemsdoe91`)
 

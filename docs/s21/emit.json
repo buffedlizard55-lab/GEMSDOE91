@@ -1,0 +1,95 @@
+{
+ "method": "two-pool ranked_pool + cap-fill (S20 emit2 pattern, shared lfi_emit)",
+ "extra_thresh": 0.5,
+ "ridge": 10.0,
+ "cap": 0.65,
+ "collar_px": 3.01,
+ "f": 0.7623636915516754,
+ "K_model": 10698.88410640978,
+ "n_dots": 23481,
+ "model_dti_selected": 0.21826366304147338,
+ "size_scan": [
+  {
+   "n_target": 20000,
+   "n": 18024,
+   "model_dti": 0.20820549724893794
+  },
+  {
+   "n_target": 25000,
+   "n": 23481,
+   "model_dti": 0.21826366304147338
+  },
+  {
+   "n_target": 30000,
+   "n": 29761,
+   "model_dti": 0.213472443976123
+  },
+  {
+   "n_target": 35000,
+   "n": 35000,
+   "model_dti": 0.20556462927375627
+  },
+  {
+   "n_target": 37654,
+   "n": 37654,
+   "model_dti": 0.20170804184968089
+  }
+ ],
+ "n_binding_refs": 312,
+ "max_binding_frac": 0.6499723180443763,
+ "worst_refs": [
+  {
+   "raster": "data/sibling_sweep/rasters/GEMSDOE52__gems52-h87-boardcal-marginal-20261010-61427px.tif",
+   "frac": 0.6499723180443763
+  },
+  {
+   "raster": "data/sibling_sweep/rasters/GEMSDOE92__gemsdoe92-riedelvalve-riedel_n90k-90000-20261025-e57353de-zeros.tif",
+   "frac": 0.6498871427963034
+  },
+  {
+   "raster": "data/sibling_sweep/rasters/GEMSDOE92__gemsdoe92-riedelvent-tail85k-85000-20261025-1cc99d0f-zeros.tif",
+   "frac": 0.6480984625867723
+  },
+  {
+   "raster": "data/lfi_anchors/GEMSDOE48__gemsdoe48-h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8.tif",
+   "frac": 0.6316596397087006
+  },
+  {
+   "raster": "data/sibling_sweep/rasters/GEMSDOE48__GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07-nan-outside.tif",
+   "frac": 0.6191388782419829
+  },
+  {
+   "raster": "data/sibling_sweep/rasters/GEMSDOE48__GEMSDOE48-H57-ds-relief-augmented-20261007-e6b785718c07.tif",
+   "frac": 0.6191388782419829
+  },
+  {
+   "raster": "data/sibling_sweep/rasters/GEMSDOE40__gems40-euler-augmented-incumbent-20261005-ac1c1927-zeros.tif",
+   "frac": 0.6060218900387547
+  },
+  {
+   "raster": "data/sibling_sweep/rasters/GEMSDOE40__gems40-euler-augmented-incumbent-20261005-ac1c1927.tif",
+   "frac": 0.6060218900387547
+  },
+  {
+   "raster": "data/sibling_sweep/rasters/GEMSDOE52__gems52-h54-revealed-core-strike-continuation-50517px-r1.tif",
+   "frac": 0.5941825305566203
+  },
+  {
+   "raster": "data/lfi_anchors/20GEMSDOE__gems20-h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan.tif",
+   "frac": 0.5871981602146417
+  },
+  {
+   "raster": "data/fleet_registry/calib_h161_01855.tif",
+   "frac": 0.5860908819896938
+  },
+  {
+   "raster": "data/lfi_anchors/GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros.tif",
+   "frac": 0.5860908819896938
+  }
+ ],
+ "pool": {
+  "H": 90000,
+  "F": 42289,
+  "merged_capped": 132289
+ }
+}
