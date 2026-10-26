@@ -1,0 +1,77 @@
+{
+ "candidate": "docs/downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif",
+ "n_dots": 37654,
+ "n_compared": 1099,
+ "n_competitive": 953,
+ "max_competitive_3px_overlap": 0.639985,
+ "max_competitive_ref": "sibling:GEMSDOE92__gemsdoe92-riedelvalve-riedel_n90k-90000-20261025-e57353de-zeros",
+ "competitive_pass": true,
+ "top5": [
+  {
+   "id": "sibling:GEMSDOE92__gemsdoe92-riedelvalve-riedel_n90k-90000-20261025-e57353de-zeros",
+   "sha256": "75d61cb1e548c27c1fa8804a124287996241988f715cb50f3c65c468cb3bc1e0",
+   "path": "data/sibling_sweep/rasters/GEMSDOE92__gemsdoe92-riedelvalve-riedel_n90k-90000-20261025-e57353de-zeros.tif",
+   "scopes": [
+    "sibling_sweep"
+   ],
+   "n_ref_positive": 90000,
+   "is_synthetic_or_dense_blanket": false,
+   "surface_spearman": 0.01146,
+   "dots_spearman": 0.01146,
+   "dot_overlap_3px": 0.639985
+  },
+  {
+   "id": "gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros",
+   "sha256": "663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b",
+   "path": "docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif",
+   "scopes": [
+    "local_downloads"
+   ],
+   "n_ref_positive": 37654,
+   "is_synthetic_or_dense_blanket": false,
+   "surface_spearman": 0.139262,
+   "dots_spearman": 0.139262,
+   "dot_overlap_3px": 0.628884
+  },
+  {
+   "id": "sibling:GEMSDOE92__gemsdoe92-riedelvent-tail85k-85000-20261025-1cc99d0f-zeros",
+   "sha256": "709fc6cd643d92cd9fa7f77623007bb9da3763aa4ba0871f41f06e4b96541a40",
+   "path": "data/sibling_sweep/rasters/GEMSDOE92__gemsdoe92-riedelvent-tail85k-85000-20261025-1cc99d0f-zeros.tif",
+   "scopes": [
+    "sibling_sweep"
+   ],
+   "n_ref_positive": 85000,
+   "is_synthetic_or_dense_blanket": false,
+   "surface_spearman": 0.013957,
+   "dots_spearman": 0.013957,
+   "dot_overlap_3px": 0.627875
+  },
+  {
+   "id": "sibling:GEMSDOE40__gems40-euler-multiscale-augmented-incumbent-20261005-84488e0e",
+   "sha256": "33d893193f6eb009165b5c62bcef1c7c945531ed19ddb2c621150a52f0c16835",
+   "path": "data/sibling_sweep/rasters/GEMSDOE40__gems40-euler-multiscale-augmented-incumbent-20261005-84488e0e.tif",
+   "scopes": [
+    "sibling_sweep"
+   ],
+   "n_ref_positive": 97654,
+   "is_synthetic_or_dense_blanket": false,
+   "surface_spearman": 0.018049,
+   "dots_spearman": 0.018049,
+   "dot_overlap_3px": 0.619376
+  },
+  {
+   "id": "sibling:GEMSDOE40__gems40-euler-multiscale-augmented-incumbent-20261005-84488e0e-zeros",
+   "sha256": "831459fd86d636f8dc12986316d588a4c6b9ecc8ca0c9eb5bdae9a84427e9ca6",
+   "path": "data/sibling_sweep/rasters/GEMSDOE40__gems40-euler-multiscale-augmented-incumbent-20261005-84488e0e-zeros.tif",
+   "scopes": [
+    "sibling_sweep"
+   ],
+   "n_ref_positive": 97654,
+   "is_synthetic_or_dense_blanket": false,
+   "surface_spearman": 0.018049,
+   "dots_spearman": 0.018049,
+   "dot_overlap_3px": 0.619376
+  }
+ ],
+ "max_abs_surface_spearman_dots_as_surface": 0.139262
+}

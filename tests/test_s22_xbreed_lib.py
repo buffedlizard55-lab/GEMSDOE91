@@ -84,3 +84,39 @@ def test_arm_definitions_share_pdwc_columns_and_keep_the_pure_subsurface_submode
     assert full_a == [full_c[0]] and sub_a == [sub_c[0]]
     full_b, sub_b = X.arm_blocks("B")
     assert full_b == [("H", list(range(16)))] and sub_b == [("H", list(range(14)))]
+
+
+def test_probe_algebra_recovers_T_G_F_exactly_on_synthetic_truth():
+    """S1 (base), S2 (values x lam), S3 (base + pure-FP null dots): three scores identify (T, G, F) exactly."""
+    rng = np.random.default_rng(5)
+    h = w = 220
+    truth = np.zeros((h, w), bool)
+    for _ in range(14):
+        r, c, L = rng.integers(20, 200), rng.integers(20, 150), rng.integers(30, 60)
+        truth[r, c:c + L] = True
+    dots = np.zeros((h, w), bool)
+    ys, xs = np.nonzero(truth)
+    sel = rng.choice(len(ys), size=len(ys) // 5, replace=False)       # on-truth dots (credit)
+    dots[ys[sel], xs[sel]] = True
+    far = ndi.distance_transform_edt(~truth) > 7.0
+    fy, fx = np.nonzero(far & ~dots)
+    pk = rng.choice(len(fy), size=250, replace=False)                 # base false positives
+    dots[fy[pk], fx[pk]] = True
+    null = np.zeros_like(dots)
+    rem = far & ~dots
+    ny, nx = np.nonzero(rem)
+    pn = rng.choice(len(ny), size=180, replace=False)
+    null[ny[pn], nx[pn]] = True
+
+    lam, k = 0.5, int(null.sum())
+    s1 = M.dti_exact(dots.astype(float), truth)
+    s2 = M.dti_exact(lam * dots.astype(float), truth)
+    s3 = M.dti_exact((dots | null).astype(float), truth)
+    got = X.identify_from_probes(s1["dti"], s2["dti"], s3["dti"], lam=lam, k_null=k)
+    assert got["T"] == pytest.approx(s1["tp"], rel=1e-9)
+    assert got["G"] == pytest.approx(s1["n_truth"], rel=1e-9)
+    assert got["F"] == pytest.approx(s1["fp"], rel=1e-9)
+    fwd = X.predict_probe_scores(s1["tp"], s1["n_truth"], s1["fp"], lam=lam, k_null=k)
+    assert fwd["S1"] == pytest.approx(s1["dti"], rel=1e-9)
+    assert fwd["S2"] == pytest.approx(s2["dti"], rel=1e-9)
+    assert fwd["S3"] == pytest.approx(s3["dti"], rel=1e-9)

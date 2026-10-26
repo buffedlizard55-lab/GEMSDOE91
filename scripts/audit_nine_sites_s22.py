@@ -120,6 +120,16 @@ def main() -> int:
             cand = [r for r in cand if "/downloads/" in "/" + r[1]]
             repo_path = cand[0][1] if cand else None
         local = ROOT / m["local"] if m.get("local") else (ROOT / LOCAL_FALLBACK[site] if site in LOCAL_FALLBACK else None)
+        # A row's download link must be the file whose bytes were checked: resolve the repo path by git-blob identity.
+        exact_bytes_in_repo = None
+        if local is not None and local.is_file():
+            data = local.read_bytes()
+            blob = hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest()
+            hit = [r for r in index if r[0] == site and r[3] == blob and "/downloads/" in "/" + r[1]]
+            if hit:
+                repo_path, exact_bytes_in_repo = hit[0][1], True
+            else:
+                exact_bytes_in_repo = False
         repo_meta = gh_json(f"repos/{OWNER}/{site}") or {}
         branch = repo_meta.get("default_branch", "main")
         head = gh_json(f"repos/{OWNER}/{site}/commits/{branch}") or {}
@@ -130,6 +140,7 @@ def main() -> int:
             "repo": f"https://github.com/{OWNER}/{site}", "default_branch": branch,
             "head_commit": (head.get("sha") or "")[:12], "head_commit_date_utc": (head.get("commit", {}).get("committer", {}).get("date")),
             "file_path_in_repo": repo_path,
+            "checked_bytes_are_this_repo_file": exact_bytes_in_repo,
             "file_exists_on_default_branch": bool(on_main and on_main.get("sha")),
             "raw_download_url": f"https://github.com/{OWNER}/{site}/raw/{branch}/{repo_path}" if repo_path else None,
             "pages_url": f"https://{OWNER}.github.io/{site}/",

@@ -25,11 +25,45 @@ th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-a
     .s21-steps li{margin:10px 0}
     .s21-table-wrap{overflow-x:auto;margin:12px 0}
     
+
+    .s22-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin:14px 0}
+    .s22-kpi{background:#f7faf8;border:1px solid #cfe0d6;border-radius:8px;padding:12px 14px}
+    .s22-kpi .k{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#48635c;font-weight:700}
+    .s22-kpi .val{font-size:21px;font-weight:800;color:#12332c;margin:4px 0}
+    .s22-kpi .sub{font-size:12px;color:#516862}
+    .s22-ok{display:inline-block;padding:2px 8px;border-radius:999px;background:#dff3e6;color:#115c3e;font-weight:700;font-size:11px}
+    .s22-no{display:inline-block;padding:2px 8px;border-radius:999px;background:#fde8e2;color:#982c17;font-weight:700;font-size:11px}
+    .s22-wrap{overflow-x:auto;margin:12px 0}
+    .s22-steps li{margin:10px 0}
+    table.s22 td,table.s22 th{font-size:12.5px;vertical-align:top}
+    
 </style></head><body><div class="wrap">
 <header><span class="logo">GEMSDOE91 · DOE GEMS Prize (Session 20 · S20-RHTW)</span><nav aria-label="Main"><a href="index.html">Download &amp; Verdict</a><a href="executive-summary.html">Executive Summary &amp; How to Submit</a><a href="#nine-sites">9-Site Forensic Table</a><a href="REVIEW-S20-RHTW-20261026.md">Full PhD Review</a><a href="index.html#archive">Archive</a></nav></header>
 <main id="main">
+<!--S22-XB-BEGIN-->
+    <section class="card dl" id="s22-xb-top" data-submission-ready="false" aria-label="Session 22 S22-XB download and automated verdict">
+    <h2>NEW · Session 22 · S22-XB GeoTIFF · Automated Verdict</h2>
+    <div class="verdicts">
+      <div class="v yes">OK TO DOWNLOAD: YES<small>Automated [0,1] float32 &amp; CRS/grid/zip validator PASS · all 37,654 dots &gt; 3.16 px from the catalogue</small></div>
+      <div class="v no">OK TO SUBMIT: NO — NOT OK TO SUBMIT (G4, G5 failed; 0 weekly slots spent)<small>Failed gates: G4_holdout_paired; G5_live_anchored_projection. The file is still valid and unique to download for research.</small></div>
+    </div>
+    <a class="btn" download href="downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif">&darr; Download S22-XB GeoTIFF (.tif, 143.6 KB)</a>
+    <a class="btn2" download href="downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.zip">&darr; Single-TIFF ZIP (.zip)</a>
+    <a class="btn2" href="s22-xbreed-executive-summary.html">9-Site Executive Summary &amp; How to Submit &rarr;</a>
+    <a class="btn2" href="run-card-S22-XB.json">JSON Run Card</a>
+    <div class="s22-grid">
+      <div class="s22-kpi"><div class="k">Estimated score (PROJECTION, not a score)</div><div class="val">0.178 &plusmn; 0.020</div><div class="sub">live-anchored model (ridge 10), leave-one-site-out RMSE; your reported best R0 = 0.2778 (USER-REPORTED), model value for R0 = 0.273</div></div>
+      <div class="s22-kpi"><div class="k">HOLDOUT-DTI (hide-v2, shipped recipe)</div><div class="val">0.1735</div><div class="sub">95% CI [0.1550, 0.1921] &middot; 60,988 withheld positives &middot; gems57-pooled-hide-v2 &middot; catalogue recovery, <em>not</em> live skill</div></div>
+      <div class="s22-kpi"><div class="k">Uniqueness vs 953 competitive rasters</div><div class="val">62.9% &le; 70% PASS</div><div class="sub">max 3-px dot overlap (vs sibling:GEMSDOE92__gemsdoe92-riedelvalve-riede); surface |&rho;| max 0.363 &le; 0.90</div></div>
+      <div class="s22-kpi"><div class="k">Leakage canary</div><div class="val">0.638 &le; 0.90</div><div class="sub">82 single-feature AUCs, pooled and per quadrant</div></div>
+    </div>
+    <p class="small">Unique Submission Name: <code>gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros</code><br>
+    DrivenData Note (108/140 chars): <code>S22-XB arm C PDWC66+HGBR16 OOF+capped CELF 37654d; hide-v2 HOLDOUT-DTI=0.1735; LFI projection only; research</code><br>
+    GeoTIFF SHA-256: <code>663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b</code> &middot; ZIP SHA-256: <code>817df80a1abc7e4e59c529f087671ef9939394830b4df67a4bdc47a0a9c8c6ef</code></p>
+    </section>
+    <!--S22-XB-END-->
 <!--S21-PDWC-BEGIN-->
-    <section class="card dl" id="s21-pdwc-top" data-submission-ready="false" aria-label="Session 21 S21-PDWC download and automated verdict">
+    <section class="card dl" id="s21-pdwc-top" aria-label="Session 21 S21-PDWC download and automated verdict">
     <h2>NEW · Session 21 · S21-PDWC GeoTIFF (`pdwc_e3`) · Automated Verdict</h2>
     <div class="verdicts">
       <div class="v yes">OK TO DOWNLOAD: YES<small>Automated [0,1] float32 &amp; CRS/grid validator PASS · 932/932 competitive rasters unique across 102 repos (max 3-px = 64.00% &le; 70%)</small></div>

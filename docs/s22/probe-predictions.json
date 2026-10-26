@@ -1,0 +1,107 @@
+{
+ "preregistered": "yes - written before any live score of S2 or S3 exists",
+ "base": {
+  "raster": "gems25 D2.8 (== probe S1, already scored)",
+  "n_dots": 44090,
+  "user_reported": 0.26
+ },
+ "files_in_repo": {
+  "S2_scale_lambda_0.5": "data/fleet_registry/gems32-probe-S2-SCALE-lambda-0.5.tif (restore_registry.py, sha-pinned)",
+  "S3_null_add_2000px": "data/fleet_registry/gems32-probe-S3-NULLADD-2000px.tif (restore_registry.py, sha-pinned)"
+ },
+ "construction_verified_from_bytes": {
+  "S2": "same 44,090 pixels as D2.8, every value 0.5",
+  "S3": "D2.8 plus 2,000 dots, all inside the footprint, >= 49.2 px (median 64.2 px) from the catalogue and >= 47.4 px from the H19-5 network"
+ },
+ "predictions": {
+  "S2_range": [
+   0.1672,
+   0.1738
+  ],
+  "S3_range": [
+   0.2548,
+   0.2551
+  ],
+  "grid": [
+   {
+    "T": 5073.3,
+    "M_over_T": 0.0,
+    "G": 12100,
+    "recall": 0.419,
+    "S2_pred": 0.1738,
+    "S3_pred": 0.2548
+   },
+   {
+    "T": 5073.3,
+    "M_over_T": 0.25,
+    "G": 12417,
+    "recall": 0.409,
+    "S2_pred": 0.1723,
+    "S3_pred": 0.2548
+   },
+   {
+    "T": 5073.3,
+    "M_over_T": 0.5,
+    "G": 12734,
+    "recall": 0.398,
+    "S2_pred": 0.1708,
+    "S3_pred": 0.2548
+   },
+   {
+    "T": 5271.8,
+    "M_over_T": 0.0,
+    "G": 13005,
+    "recall": 0.405,
+    "S2_pred": 0.1718,
+    "S3_pred": 0.255
+   },
+   {
+    "T": 5271.8,
+    "M_over_T": 0.25,
+    "G": 13334,
+    "recall": 0.395,
+    "S2_pred": 0.1704,
+    "S3_pred": 0.255
+   },
+   {
+    "T": 5271.8,
+    "M_over_T": 0.5,
+    "G": 13663,
+    "recall": 0.386,
+    "S2_pred": 0.1689,
+    "S3_pred": 0.255
+   },
+   {
+    "T": 5470.2,
+    "M_over_T": 0.0,
+    "G": 13909,
+    "recall": 0.393,
+    "S2_pred": 0.1701,
+    "S3_pred": 0.2551
+   },
+   {
+    "T": 5470.2,
+    "M_over_T": 0.25,
+    "G": 14251,
+    "recall": 0.384,
+    "S2_pred": 0.1686,
+    "S3_pred": 0.2551
+   },
+   {
+    "T": 5470.2,
+    "M_over_T": 0.5,
+    "G": 14593,
+    "recall": 0.375,
+    "S2_pred": 0.1672,
+    "S3_pred": 0.2551
+   }
+  ]
+ },
+ "falsification_rules": {
+  "S3": "pure-FP nulls and T ~ 5.0e3 predict 0.2547-0.2552. A value > 0.2565 means the far-field null dots carry credit (the live-anchored model puts truth density x5.9 beyond 4 km, so this is a live possibility); < 0.2540 means T is lower than the nested steps imply.",
+  "S2": "predicted 0.168-0.174 (depends on |G|). Observed S2 identifies |G| = (lam*T/S2 - lam*(0.2T + 0.2F... )) exactly via gems91.xbreed22.identify_from_probes once S3 gives T."
+ },
+ "after_scores_arrive": "python3 -c \"from gems91.xbreed22 import identify_from_probes as f; print(f(0.2600, S2, S3, lam=0.5, k_null=2000))\"  # PYTHONPATH=src",
+ "slots_needed": 2,
+ "caveat": "probes are calibration instruments, not competitive entries; they are derivatives of D2.8 and are NOT unique under the 70% rule"
+}

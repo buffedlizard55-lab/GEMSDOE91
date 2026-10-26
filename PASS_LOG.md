@@ -1,4 +1,11 @@
-# GEMSDOE91 — Multi-Pass Verification Log (latest: Session 21 `S21-PDWC`, `arena/a31c96c3-gemsdoe91`)
+# GEMSDOE91 — Multi-Pass Verification Log (latest: Session 22 `S22-XB`, `arena/c722cd53-gemsdoe91`)
+
+## Session 22 (`S22-XB`, branch `arena/c722cd53-gemsdoe91`, 2026-10-26)
+
+1. **Pass 1 (build):** restored 15 inputs, 62 fleet references, 108 anchors and 1,093 sweep rasters; read the official pages; preregistered (commit `53ddff6`); decomposed R0 from bytes; ran E1 (24 fits), E2 (112 anchors), E3 (capped emission, 1,099-raster screen); wrote the run card, pages, README block and probe predictions.
+2. **Pass 2 (review/fix):** 15 findings in `docs/REVIEW-S22-XB-20261026.md` — among them a lost collar at quadrant borders, a pass-1 uniqueness failure (71.9%) answered by amendment A3, a wrong nine-site link (GEMSDOE30/33) fixed by blob identity, and prior-session contradictions (IR-S22-02/03).
+3. **Pass 3 (re-check):** every request item mapped to evidence; `OK TO DOWNLOAD: YES`, `OK TO SUBMIT: NO` (G4, G5 failed); full suite passes; `check_artifact_policy.py` PASS (107 artifacts).
+
 
 ## Session 21 (`S21-PDWC`, branch `arena/a31c96c3-gemsdoe91`, 2026-10-26)
 

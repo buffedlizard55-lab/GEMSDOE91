@@ -119,3 +119,18 @@ Known when this was written: uncapped paired difference `C − A` (CELF) = **+0.
 1. **Shipped recipe.** Equalized per-quadrant CELF **with hard per-reference 3-px caps of 0.64** (the value S21 used) on the *active* reference set = every non-blanket reference whose pass-1 overlap is ≥ 0.48 (at most 240, frozen from `registry-screen-pass1.json`). A cap applied inside each quadrant call bounds the global overlap by the same fraction, so the per-quadrant recipe is kept. This replaces the global-CELF fallback in the draft emit script, which would have broken the link between the evaluated and the shipped recipe.
 2. **Evaluation under the shipped recipe.** Arms A and C are re-evaluated on hide-v2 with the identical capped emitter and the identical reference set (`docs/s22/holdout-capped.json`).
 3. **G4 made stricter.** G4 now requires the paired `C − A` 95% interval to lie above 0 under **both** the uncapped recipe (already observed, above) **and** the capped recipe. Pinned S21/S18 comparisons stay context-only (A1).
+
+
+---
+
+## Outcomes (appended after all experiments; **not** part of the frozen text; numbers from `docs/run-card-S22-XB.json` and `docs/s22/*.json`)
+
+| ID | Outcome | Evidence |
+|---|---|---|
+| H22-1 `XB` | **Not supported as a shippable improvement.** Uncapped paired C−A (CELF) = +0.004378, 95% CI [+0.000069, +0.008234] (knife-edge); under the shipped uniqueness-capped recipe C−A = -0.010671, CI [-0.015114, -0.006260] (arm A 0.184213 vs arm C 0.173542); a post-hoc symmetric check gives identical values. S21's forecast (+0.01 – 0.02) was not met. | `holdout.json`, `holdout-capped.json`, `holdout-capped-symmetric-posthoc.json` |
+| H22-2 `STRIKE-DISC` | **Contradicted.** Orientation-mixing zones carry ×0.35 the truth density of unmixed zones (log-effect jackknife CI [-1.32, -0.78]); LOSO RMSE unchanged (-0.00012). | `instruments.json` |
+| H22-3 `DAMAGE-DECAY` | **Refuted** by its preregistered kill criterion: mean truth-density factor 0.511 at (1,5] px vs 1.046 at (5,20] px. | `instruments.json` |
+| H22-4 `SEIS-RESID` | Killed before implementation (earthquake bands are smoothed rate densities, forum 11557). | `official-sources.json` |
+| H22-5 `LIDAR-SCARP` | Not runnable here: 8 of 8 official data hosts unreachable. Remains the highest-gain hypothesis. | §3 above |
+
+Gates: G1 PASS, G2 PASS, G3 PASS, **G4 FAIL, G5 FAIL** → `OK TO DOWNLOAD: YES`, `OK TO SUBMIT: NO`, verdict `negative`.

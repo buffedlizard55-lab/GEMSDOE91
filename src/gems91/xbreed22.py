@@ -236,3 +236,36 @@ def active_reference_paths(path: Path | None = None) -> list[Path]:
     src = path or (ROOT / "docs/s22/active-references.json")
     rows = json.loads(Path(src).read_text())["references"]
     return [ROOT / r["path"] for r in rows]
+
+
+# --------------------------------------------------------------------------------------------
+# Probe algebra: three live scores of one base raster identify (T, G, F) exactly
+# --------------------------------------------------------------------------------------------
+
+def identify_from_probes(dti_base: float, dti_scaled: float, dti_nulladd: float, *, lam: float, k_null: int,
+                         alpha: float = 0.2, beta: float = 0.8) -> dict:
+    """Exact identification of the truth credit ``T``, truth size ``G`` and unmatched mass ``F`` of a binary dot raster.
+
+    Probes (same dots): ``S1`` = base; ``S2`` = base with every value scaled by ``lam``; ``S3`` = base plus ``k_null`` dots
+    that are *pure false positives* (zero credit, zero matched mass).  With ``DTI = T/(aT + aF + bG)``:
+
+        1/DTI_S2 - 1/DTI_S1 = b (G/T) (1/lam - 1)          ->  G/T
+        1/DTI_S3 - 1/DTI_S1 = a k / T                       ->  T
+        F = (T/DTI_S1 - aT - bG) / a
+
+    The only assumption is the pure-false-positive property of the null dots; it is checkable from a second ``k_null``.
+    """
+    g_over_t = (1.0 / dti_scaled - 1.0 / dti_base) / (beta * (1.0 / lam - 1.0))
+    T = alpha * k_null / (1.0 / dti_nulladd - 1.0 / dti_base)
+    G = g_over_t * T
+    F = (T / dti_base - alpha * T - beta * G) / alpha
+    return {"T": T, "G": G, "F": F, "recall_T_over_G": T / G, "matched_mass_M_given_n": None}
+
+
+def predict_probe_scores(T: float, G: float, F: float, *, lam: float, k_null: int,
+                         alpha: float = 0.2, beta: float = 0.8) -> dict:
+    """Forward model for the two probes given (T, G, F) of the base raster."""
+    s1 = T / (alpha * T + alpha * F + beta * G)
+    s2 = lam * T / (alpha * lam * T + alpha * lam * F + beta * G)
+    s3 = T / (alpha * T + alpha * (F + k_null) + beta * G)
+    return {"S1": s1, "S2": s2, "S3": s3}

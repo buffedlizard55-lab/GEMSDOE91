@@ -49,8 +49,6 @@ from gems91.release_gates import validate_release  # noqa: E402
 EVIDENCE = ROOT / "docs/s22"
 DOWNLOADS = ROOT / "docs/downloads"
 PINNED_HOLDOUT = {"S21 pdwc_e3": 0.195724, "S18 hgbr_e1": 0.200742}
-UNIQUENESS_CAP_FALLBACK = 0.55
-PASS1_MAX_COMPETITIVE_OVERLAP = 0.65  # margin below the 0.70 protocol limit
 
 COMPARATORS = {  # independent-model rasters only (LFI-optimized rasters are excluded: optimizer's-curse inflated)
     "S18 hgbr_e1": "docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif",
