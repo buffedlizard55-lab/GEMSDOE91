@@ -8,6 +8,197 @@ Evidence: `docs/s22/verification.json`, `docs/s22/browser-verification.json`, `d
 
 ---
 
+## Session 22 (parallel lane `S22-XB`, branch `arena/c722cd53-gemsdoe91`, 2026-10-26)
+
+1. **Pass 1 (build):** restored 15 inputs, 62 fleet references, 108 anchors and 1,093 sweep rasters; read the official pages; preregistered (commit `53ddff6`); decomposed R0 from bytes; ran E1 (24 fits), E2 (112 anchors), E3 (capped emission, 1,099-raster screen); wrote the run card, pages, README block and probe predictions.
+2. **Pass 2 (review/fix):** 15 findings in `docs/REVIEW-S22-XB-20261026.md` — among them a lost collar at quadrant borders, a pass-1 uniqueness failure (71.9%) answered by amendment A3, a wrong nine-site link (GEMSDOE30/33) fixed by blob identity, and prior-session contradictions (IR-S22XB-02/03).
+3. **Pass 3 (re-check):** every request item mapped to evidence; `OK TO DOWNLOAD: YES`, `OK TO SUBMIT: NO` (G4, G5 failed); full suite passes; `check_artifact_policy.py` PASS (107 artifacts).
+
+
+## Session 21 (`S21-PDWC`, branch `arena/a31c96c3-gemsdoe91`, 2026-10-26)
+
+### Pass 1: Repository Review, 9-Site Live Audit, Preregistration, `PDWC21` Implementation & 3 Experiments (COMPLETED)
+- [x] Restored and SHA-256 verified all 13 competition/external inputs (`scripts/restore_data.py`), built `data/derived/catalogue_mask.tif`, restored `62` fleet registry rasters (`scripts/restore_registry.py --available-only`), and swept `1,072` unique sibling GeoTIFFs across `102` `GEMSDOE*` repositories (`data/sibling_sweep/rasters/*.tif`).
+- [x] Queried live `2026-10-26` GitHub `main` HEADs of all 9 requested sites (`GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36`) plus `GEMSDOE70`, `GEMSDOE76`, and `drivendataorg/gems-prize-reference-solution`, recording commit-pinned findings in `docs/nine-site-executive-summary-s21.json` and PhD research monograph `docs/GEOTHERMAL_VENT_RESEARCH_S21_PDWC.md`.
+- [x] Froze 5 ranked geological/geophysical hypotheses (`H21-1` through `H21-5`) and 3-experiment matrix (`pdwc_e1`, `pdwc_e2`, `pdwc_e3`) **before coding** in `docs/HYPOTHESES_S21_PDWC.md` (`sha256 = 25b06ce3945c0ee9609482aab71a92aa3a8ee0b8cdeceacffc4e66aa00ed9af0`).
+- [x] Implemented `src/gems91/pdwc21.py` (`66` static features + `16` Stage-2 OOF directional AC features = `82` total; `B12/B19` pure-subsurface `max_diff == 0.0`) and `scripts/run_s21_pdwc.py`; passed all `82/82` Rule-4 single-feature leakage canaries (`max = 0.740160 <= 0.90`; static `max = 0.638226`).
+- [x] Executed all 3 symmetric 3-level nested cross-fitted OOF experiments (`811.74 s < 2 h`): `pdwc_e1 = 0.181443` -> `pdwc_e2 = 0.189020` -> **`pdwc_e3 = 0.195724` (`95% CI = [0.180320, 0.211055]`)** (`#1` symmetric cross-fitted OOF `HOLDOUT-DTI` in `GEMSDOE91`, `+32.4%` vs `S19-SVHF` `0.147791`).
+- [x] Emitted and automatically validated `docs/downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.{tif,zip,json}` (`37,654` binary `{0.0, 1.0}` dots, `EPSG:32611`, `3730 × 3292`, `float32`, `0` NaN, `0` Inf, `0` catalogue mass, `sha256 = 74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8`).
+
+### Pass 2: From-Scratch Bug, Edge-Case & Unit/Schema Review (COMPLETED)
+- [x] Caught and fixed CELF candidate-pool starvation (`3,844` -> `37,654` exact dots via positive-floor reward `0.04*s_raw + 0.96*s_exc^2.2`, `650k` heap + full-domain greedy continuation, and exact `max_cap_count = floor(0.64 * 37654) = 24,098`).
+- [x] Caught and fixed `LFI` surrogate diagnostic bug (`prev=None` omitted the 12-raster `H19-5` consensus vote in `scripts/run_lfi.py`; resolved anchor paths by SHA-256 into `data/derived/s21_pdwc_cache/lfi_work`, restoring true `MODEL_PROJECTION_NOT_A_SCORE` `ridge1 = 0.18345`, `ridge10 = 0.17724`).
+- [x] Removed superseded first-pass scratch file `20261026T073243Z` from `docs/downloads/` and re-ran exact `1,078`-raster uniqueness screening (`932/932` competitive rasters unique, `max 3-px overlap = 0.6400 <= 0.70`, `max |surface ρ| = 0.3553 <= 0.90`, `max |dots ρ| = 0.0742 <= 0.90`).
+- [x] Caught and corrected `100 m/px` grid scale (`300 m = 3.0 px`, `2 px = 200 m`) and exact 19-band `gems-geodawn-numerical-features.tif` band numbers across `docs/GEOTHERMAL_VENT_RESEARCH_S21_PDWC.md`, `IRREGULARITIES.md`, `LIMITATIONS_AND_NEXT_STEPS.md`, `README.md`, and `scripts/render_s21_pdwc_pages.py`.
+- [x] Logged 5 zero-hallucination irregularities (`IR-S21-01` full-catalogue collar `hide-v2` artifact, `IR-S21-02` `S18-HGBR` test-quadrant spillover, `IR-S21-03` `GEMSDOE27` `H31-1` 27-raster local-only screen, `IR-S21-04` dense-blanket `3-px` saturation, `IR-S21-05` `GEMSDOE24` `VENT` PR #34 quarantine).
+
+### Pass 3: Full-Prompt Compliance Audit, Reproducible Portal Render, Full Test Suite & PR Merge (COMPLETED)
+- [x] Verified `scripts/render_portal.py` idempotence (`0` byte drift), `scripts/check_artifact_policy.py` (`99` registered prediction artifacts PASS), `scripts/audit_downloads.py` (`PASS` on both `.tif` and `.zip`), `vendor/gems57` SHA-256 immutability (`registry/template_pin.json`), and full `pytest` suite (`665+` tests passing, `0` failures, including `tests/test_s21_pdwc.py`).
+- [x] Verified `#full-project-brief` preserved verbatim in `README.md`, single `data-submission-ready="false"` attribute on `docs/index.html` and `docs/s21-pdwc-executive-summary.html`, one-click `.tif`/`.zip` downloads, `<=140`-char DrivenData note (`105` chars), and unmistakable fail-closed verdict (`OK TO DOWNLOAD: YES`, `OK TO SUBMIT: NO`).
+- [x] Committed on `arena/a31c96c3-gemsdoe91`, pushed to `origin`, opened PR, and merged into `main`.
+
+
+---
+
+
+## Session 20 (`S20-RHTW`, branch `arena/06420fd7-gemsdoe91`, 2026-10-26)
+
+### Pass 1 — Forensic 9-Site Audit, Scientific Knowledge Base, Preregistration & 3-Experiment `S20-RHTW` Run (COMPLETED)
+- [x] Restored and SHA-256 verified all 13 licence-clean inputs in `registry/data_manifest.json` (`scripts/restore_data.py`), built `data/derived/catalogue_mask.tif` (`60,988` px), and restored `62` `git_blob` fleet rasters (`scripts/restore_registry.py --available-only`, `120` unique rasters across repo + registry).
+- [x] Executed pixel-exact forensic audit of all `31` `.tif` artifacts across the 9 specified sites (`GEMSDOE24`, `25`, `27`, `28`, `30`, `31`, `32`, `33`, `36`) plus wider fleet comparators (`GEMSDOE70`, `76`), persisted in `docs/s20_rhtw/nine_sites_forensic_matrix.json`, and solved the closed-form DW-Tversky decomposition of `GEMSDOE32` (`h33-h33-2-b2`, `0.2778` `USER-REPORTED`).
+- [x] Authored 14-source verified geothermal-vent & concealed-fault knowledge base (`docs/KNOWLEDGE_BASE_GEOTHERMAL_FAULTS_20261026.md`) from live-fetched official DrivenData, NLR `96647.pdf`, USGS GeoDAWN (`10.5066/P93LGLVQ`), GBCGE INGENIOUS, and OpenEI GDR `1391` (`10.15121/1881483`) sources, and froze preregistered hypotheses `H20-1..H20-5` + 3-experiment budget `E1..E3` in `docs/HYPOTHESES_S20_RHTW.md`.
+- [x] Implemented `src/gems91/rhtw20.py` (`88`-feature Riesz-Harmonic Vector-Gravity + Destriped Mag + Strike-Guided GDR `1391` Geothermometry + Pluvial-Decontaminated Openness cube; `63`-col bitwise `B12/B19`-free subsurface specialist; `15`-col fold-safe geophysically corroborated visible tip/relay bridge) and `scripts/run_s20_rhtw.py`.
+- [x] Executed `E1..E3` on `I2` (`E1 = 0.106800`, `E2 = 0.105247`, **`E3 = 0.136798 HOLDOUT-DTI` `[0.120020, 0.154533]`**, `+60.45%` over `E0 = 0.085260`, `+24.40%` over `GEMSDOE70 = 0.109968`) and `I1` (**`S20_OOF = 0.113298 HOLDOUT-DTI` `[0.097264, 0.128559]`**, `+21.69%` over `E0 = 0.093105`), cleared `103/103` AUROC canaries (`<= 0.8067`) and `120` unique rasters (`49.10%` vs `R0`, `max non-blanket = 62.15% <= 70%`), emitted `docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.{tif,zip}` (`chmod 644`), `docs/run-card-S20-RHTW.json`, `docs/REVIEW-S20-RHTW-20261026.md`, portal pages, `README.md`, `IRREGULARITIES.md` (`IR-91-S20-01`, `IR-91-S20-02`), `LIMITATIONS_AND_NEXT_STEPS.md`, and `SLOT_PLAN.md`.
+
+### Pass 2 — Bug, Edge-Case, Portal & Governance Review (COMPLETED)
+- [x] Caught and fixed broken local archive href in `scripts/render_s20_pages.py` (`downloads/gems91-s18-hgbr-e1-...` -> `downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif`).
+- [x] Caught and fixed Playwright strict-mode duplicate `a[download]` selector collision on `docs/index.html` via real headless Chromium (`node tools/browser/smoke.cjs`), ensuring the top hero CTA is the unique `a[download][href="${current.tif}"]` target.
+- [x] Caught and sanitized non-RFC-8259 bare `NaN` token in `docs/s20_rhtw/nine_sites_forensic_matrix.json`, re-serializing all `docs/s20_rhtw/*.json` and `docs/run-card-S20-RHTW.json` with `json.dumps(..., allow_nan=False)`.
+- [x] Fixed three minor copy/metric discrepancies (`ISO91 E1` `0.0862 -> 0.0813`, `S18-HGBR E1` vs `R0` `59.0% -> 48.8%`, `README.md` note char count `114/140 -> 110/140`).
+- [x] Built dual-decoder (`tifffile` + `rasterio`) independent verifier `scripts/verify_s20.py` and `tests/test_s20_rhtw.py` (testing analytic Riesz-harmonic vertical derivative reconstruction, bitwise `0.0` `B12/B19/dist_known_fault_px` subsurface invariance, `>2.5 px` visible-only collar enforcement, 9-site matrix coverage, and fail-closed `ok_to_submit=False`), added `executive-summary.html` to `smoke.cjs` `390px` mobile checks, and wired `verify_s20.py` + `test_s20_rhtw.py` into `.github/workflows/{ci,pages}.yml`.
+
+### Pass 3 — Line-by-Line Prompt Audit, `origin/main` Merge Remediation & End-to-End CI / Browser Re-Verification (COMPLETED)
+- [x] Merged `origin/main` (`#141..#144`), verified `S20-RHTW E3` passes 3-px dot overlap against both newly merged parallel rasters (`24.19% <= 70%` vs `S20-LFI`, `4.13% <= 70%` vs `S21-DCBL`), and remediated `S21-DCBL`'s missing `registry/artifact_policy.json` entries (`101` registered artifacts PASS).
+- [x] Re-checked every requirement of the standing prompt line by line against workspace deliverables and verified byte-for-byte deterministic portal re-render (`render_portal.py` `0` diff) and `101`-artifact download audit (`audit_downloads.py` `0` diff), passed `check_artifact_policy.py`, `generate_submission.py --with-data`, `verify_frontdoor.py`, `verify_front_door.py`, `verify_current_artifact.py --with-data`, `verify_evidence.py`, `verify_s16.py --with-data`, `verify_s17.py --with-data`, `verify_s19.py --with-data`, `verify_s20.py --with-data`, `make demo`, full `pytest`, and real headless Chromium + axe-core WCAG 2.1 AA + `390px` mobile + SHA-256 download verification (`node tools/browser/smoke.cjs`: `status = PASS`, `0` violations).
+
+---
+
+## Parallel Session 20 (`S20-LFI`, branch `arena/670d23f5-gemsdoe91`, 2026-10-26)
+
+### Pass 1: research, preregistration, implementation and the 3 experiments (COMPLETED)
+- [x] Restored 13 SHA-pinned inputs (`restore_data.py`) and 62 registry rasters (`restore_registry.py --available-only`).
+- [x] Swept the owner's GEMSDOE* repos: 102 repos, 1,039 unique TIFFs (`sibling_sweep.py list/fetch`).
+- [x] Fetched the DrivenData problem page (truth is new faults; public and private chunks) and the leaderboard (#1 0.4413).
+- [x] Matched 108 of 121 USER-REPORTED live scores to fetchable rasters (`registry/lfi_live_anchors.csv`, `scripts/lfi_match_anchors.py`).
+- [x] **E1:** LFI surrogate (`src/gems91/lfi.py`, `scripts/run_lfi.py`). Leave-one-site-out Spearman 0.957, RMSE 0.0198 (ridge 10). The blinded-consensus check was run as well.
+- [x] Wrote the preregistration `docs/HYPOTHESES_S20_LFI.md` (5 ranked hypotheses, gates G1–G5) before any holdout, uniqueness or TIFF result for the candidate existed.
+- [x] **E2:** instrument validity (`scripts/run_lfi_holdout.py`). hide-v2 against live across 112 rasters: Spearman 0.105. Canaries pass (max AUC 0.647).
+- [x] **E3:** emission (`src/gems91/lfi_emit.py`, `scripts/run_lfi_emit.py emit2`). 37,500 dots, model-DTI 0.378. Written with `vendor/gems57/submission_writer.py`; the validator passes.
+
+### Pass 2: review and fix (COMPLETED)
+- [x] The sibling-sweep check found **5 sparse duplicates (>70%)** in the pass-1 file, so G2 failed. Fix: 212 extra references as hard caps (238 in total).
+- [x] Found and fixed a fill bug (caps were measured against the target count, not the achieved count). Re-emitted 29,671 dots, model-DTI 0.362.
+- [x] Found `scripts/check_unique_registry.py` hard-coded to an old candidate. Added `scripts/check_lfi_registry.py` (same `cmd_check` rule).
+- [x] Reverted `evidence/s13_independent_tif_check.json`, which `independent_tif_check.py` had modified because it ignores its arguments.
+- [x] Policy conflict: the preregistered G5 versus the user's standing rule and the repo's fail-closed contract. The verdict stays fail-closed, and no safety test was weakened.
+- [x] Re-ran G1–G5 on the pass-2 file. **G4 FAILED** (blinded-consensus P(Δ>0) = 0.867 < 0.95), so the verdict is **negative**.
+
+### Pass 3: end-to-end re-check against the full brief (see the review doc for results)
+- [x] Run card and portal rebuilt from JSON (`build_lfi_card.py`, `render_portal.py` → `render_s20_lfi_pages.py`, `render_s20_readme.py`).
+- [x] `check_artifact_policy.py`, `generate_submission.py --with-data`, the independent tifffile re-read, the targeted test suites and the reproducible portal render.
+- [x] PR opened and merged into main.
+
+---
+
+## Session 19 (`S19-SVHF`, branch `arena/bcc0fcb2-gemsdoe91`, 2026-10-25)
+
+### Pass 1 — Deep Research, Preregistration, Streaming `<500 MB` Implementation & 3-Experiment Run (COMPLETED)
+- [x] Restored and SHA-256 verified all 13 licence-clean inputs in `registry/data_manifest.json` (`scripts/restore_data.py`), built `data/derived/catalogue_mask.tif`, added `--available-only` to `scripts/restore_registry.py` (`IR-91-S19-01`), and restored `62` `git_blob` fleet rasters (`100` unique comparison rasters in `registry/s19_comparison_inventory.json`).
+- [x] Authored `docs/GEOTHERMAL_VENT_RESEARCH_S19.md` (10 official sources, `GEMSDOE32` `0.2778` anatomy, cross-fleet audit, and 12-raster `HOLDOUT-DTI` vs `SGMC >300 m` / `>500 m` calibration proof) and froze preregistered hypotheses `H19-1..H19-4` + 3-experiment matrix `E1..E3` in `docs/HYPOTHESES_S19_SVHF.md` (`sha256: 17babf91835131b975d331a60d48f3db55fe84152c030fdbfd4c9e17bd059d96`).
+- [x] Implemented `src/gems91/svhf19.py` (band-by-band `<500 MB` streaming `58`-col `SVHF19` feature cube, `42`-col bitwise `B12/B19`-free subsurface specialist verified `max_b12_b19_diff == 0.0`, 3-level nested spatial cross-fitting `solo`/`pair`/`oof`, `14`-col `QDAC` Stage-2 fusion, and stitched 4-fold OOF `300 m` CELF submodular dot emission) and `scripts/run_s19_svhf.py`.
+- [x] Executed `E1..E3` (`72/72` canaries `PASS`, `max global AUC = 0.653453 <= 0.90`; `svhf_e1 = 0.135991`, `svhf_e2 = 0.146862`, `svhf_e3 = 0.147791 HOLDOUT-DTI`; Blind `SGMC >300 m = 0.102428`, `SGMC >500 m = 0.093415`, `69.16%` `>1 km` far-field; `90/90` competitive `<=80k`-dot 3-px overlap `PASS` at `max = 53.20% <= 70%`) and wrote `docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.{tif,zip}` + `docs/run-card-S19-SVHF.json`.
+
+### Pass 2 — Critical Bug, Edge-Case, Portal & Governance Review (COMPLETED)
+- [x] Built `scripts/verify_s19.py` (dual-decoder `tifffile` + `rasterio` verification of GeoTIFF + single-TIFF ZIP, `[0, 1]` bounds, `0` NaN/Inf, `EPSG:32611`, affine transform, `>3.0 px` dot spacing & catalogue collar, preregistration & `vendor/gems57/*` SHA-256 locks, and fail-closed readiness) and `scripts/render_s19_portal.py` (`docs/s19-svhf.html`, `docs/s19-svhf-executive-summary.html`, `docs/assets/s19-svhf-support.png` from derived predictions only).
+- [x] Caught and fixed `test_s16_integrity.py` single-`data-submission-ready="false"` invariant across `docs/index.html`, `docs/executive-summary.html`, `docs/s19-svhf.html`, and `docs/s19-svhf-executive-summary.html`; fixed `111/140` submission-note length label; merged `origin/main` (`ISO91`, `S18-HGBR`, `S18-UNIQUE`), verified `S19-SVHF E3` passes 3-px overlap against all 3 newly merged rasters too (`46.71%` vs `S18-HGBR`, `27.31%` vs `ISO91`, `13.84%` vs `S18-UNIQUE`), updated `registry/artifact_policy.json` (`95` registered artifacts) and regenerated `docs/download-audit.{json,html}`.
+- [x] Added `tests/test_s19_svhf.py` and extended `tools/browser/smoke.cjs`, `tests/test_submission_portal.py`, and `.github/workflows/{ci,pages}.yml`.
+
+### Pass 3 — End-to-End Re-Verification Against Full Standing Prompt (COMPLETED)
+- [x] Re-rendered portal (`scripts/render_portal.py`) and verified byte-for-byte reproducibility, `check_artifact_policy.py` (`95` artifacts PASS), `audit_downloads.py` (`0` diff), full `pytest`, `make demo`, `verify_frontdoor.py`, `verify_current_artifact.py --with-data`, `verify_evidence.py`, `verify_s16.py --with-data`, `verify_s17.py --with-data`, `verify_s19.py --with-data`, and real Chromium + axe-core WCAG 2.1 AA + 390px mobile + SHA-256 download smoke checks (`node tools/browser/smoke.cjs`).
+
+---
+
+## Session bacc7c26 (ISO91, 2026-10-25)
+
+### Pass 1 — Implement and verify (COMPLETED)
+
+**Data.** Restored 13 of 15 SHA-pinned inputs into gitignored `data/` (`scripts/restore_data.py`). The two licence-unchecked u8 stacks were deliberately not fetched.
+
+**Registry.** Restored 62 fleet registry rasters (`scripts/restore_registry.py`); it then aborts on a retracted row (IR-91-ISO-03).
+
+**Sources.** Fetched and verified the official sources: competition home, problem description, leaderboard, rules link, reference solution and USGS 3DEP.
+
+**Preregistration.** Wrote and committed `docs/HYPOTHESES_ISO91.md` (5 ranked hypotheses, instruments, gates) as commit e02f8a7, before any experiment.
+
+**Implementation**
+- `src/gems91/isolated_holdout.py`: the live-aligned split I1, kept outside the pinned template.
+- `scripts/run_iso91.py`: the lane runner. It reuses the OLC91 feature cache, HGB settings, emitter and registry check, plus the template evaluator and writer.
+- `scripts/sibling_sweep.py`: the 102-repository uniqueness sweep.
+- `scripts/build_iso91_card.py`: the automated run card and gates.
+- `scripts/render_iso91_pages.py`: the site, rendered from the card.
+
+**Experiment 1 (I1).** E1 0.081253 vs E0 0.093105 HOLDOUT-DTI (11,911 positives). G1 and G2 FAIL. The canary passes (max AUC 0.6144).
+
+**Experiment 2 (I2).** E0 reproduced OLC91's 0.085260 exactly. E1 0.068190; E1 − E0 = −0.017070 [−0.028221, −0.004979]. G4 FAIL.
+
+**Experiment 3 (final build).** Wrote a 37,654-dot all-finite TIFF and ZIP through the template writer. The template validator passed every check.
+- Surface |ρ| ≤ 0.154 (pre-placement).
+- Non-blanket overlap ≤ 57.7%.
+- Overlap with R0 31.0%.
+
+**Template pin.** Restored `vendor/gems57/holdout.py` to its pinned bytes and re-ran I1 and I2 with the relocated split. The numbers are identical (IR-91-ISO-02).
+
+**Tests.** `tests/test_iso91.py`: split geometry, per-fold hidden sets, matched controls, E0-fit identity with OLC91, the final positive set reproduced on the pinned catalogue (655 / 13,372), run-card verdict consistency, and an untouched template pin.
+
+
+### Pass 2 — Bug review (COMPLETED; every finding fixed or disclosed)
+
+1. **Split design flaw, caught before any run.** The first draft hid all isolated components in all folds at once,
+   which would have starved ISO91 of training positives. Rewritten with per-fold hidden sets.
+2. **Template pin.** The two new split functions were first appended to the pinned `vendor/gems57/holdout.py`.
+   They moved to `src/gems91/isolated_holdout.py`, the template was restored to `7a0a8417…`, and I1/I2 were re-run
+   with identical results (IR-91-ISO-02).
+3. **Fixture error.** A toy test fixture had a 6 px gap where 5 px was intended. The fixture was fixed; the code was correct.
+4. **Uniqueness tool.** The literal 3-px rule is degenerate for dense area rasters.
+   - Added the dense-reference rule, applied uniformly, with both readings published.
+   - One sparse-class marginal flag (70.1%) remains and is **reported as a G6b failure**, not explained away (IR-91-ISO-04).
+5. **Card builder** read summary fields from the v1 sweep schema. Fixed for v2.
+6. **Over-claims of "unique"** in the page title, H1, root redirect, README and review. All now state:
+   registry PASS plus 1 marginal sweep flag.
+7. **README reproduce command** would have restored the two licence-unchecked stacks. Now uses an explicit `--only` list.
+8. **Sweep provenance** (repo, path and git blob for all 979 files) existed only in gitignored `data/`.
+   It is now committed as `docs/iso91/sibling-sweep-sources.json`.
+9. **Full-suite failure** `test_h91…site_integrity`: the front door must link `archive-results.html`. Link added.
+10. **UI fixes from real-browser screenshots:** the Result column wrapped ("FAI L"), failed gates were mis-grouped,
+    and the arm tables lacked labels.
+11. **IR-91-ISO-04** text was inaccurate after the v2 sweep. Corrected.
+
+### Pass 3 — Recheck against the request (COMPLETED)
+
+| Requirement | Where | Status |
+|---|---|---|
+| PhD-level analysis of 0.2778; can we beat 0.2778 / 0.3195 / 0.4413 | `docs/REVIEW-ISO91-BACC7C26-20261025.md` §1–2, front-door paragraph | done (MODEL/USER-REPORTED labelled) |
+| Unique TIF, not a copy | `docs/downloads/gemsdoe91-iso91-…-beaca59b-zeros.tif` | new file; registry PASS; 1 marginal literal flag in the 977-file sweep (disclosed) |
+| Obvious OK TO DOWNLOAD / OK TO SUBMIT, automated | site front door, `docs/run-card-ISO91.json`, `generate_submission.py --with-data` | YES / NO, computed from gates |
+| 3–5 untried hypotheses, ranked, with layers, signatures and differences | `docs/HYPOTHESES_ISO91.md` (committed before any experiment) | done |
+| Validate top candidate on spatially blocked holdout before any slot | I1 + I2, `docs/iso91/holdout-I*.json` | negative, so 0 slots |
+| External data: free official source and obtainability | USGS 3DEP (free, public domain); sandbox TLS failure | done |
+| Unique name + note ≤ 140 characters | run card, site copy boxes | done (102 characters) |
+| "Predicted values must be in range [0, 1]" fix | all-finite zeros encoding, three independent re-reads | done |
+| Executive summary with exact submission steps | `docs/executive-summary.html` (form text quoted verbatim) | done |
+| Download at the very top, clean site, official links | `docs/index.html` (real-browser smoke: PASS, 0 axe violations) | done |
+| Full prompt kept in README | `README.md#full-project-brief` (unchanged) | done |
+| Knowledge from official sources | `docs/KNOWLEDGE-GEOTHERMAL-FAULTS-ISO91.md` | done |
+| Protocol: lane, reuse, labels, canary, run card, budget | run card plus this log | done (3 experiments, within 2 h of experiment time) |
+| PR + merge, limitations, access needed | `LIMITATIONS_AND_NEXT_STEPS.md`, review §9 | PR next |
+
+**Merge with `main` (338 parallel-session commits: S18-HGBR, S18-UNIQUE, e649e460 and others).**
+- Nine text conflicts resolved structurally: `main` content kept in full, ISO91 sections added, artifact policy is the union (93 entries).
+- Entry pages regenerated from the run card to satisfy `main`'s updated front-door test (e649e460 links, research-audit labels).
+- Uniqueness re-run against the new registry members (`docs/iso91/registry-recheck.json`, 102 rasters): S18-HGBR 23.2%, S18-UNIQUE 9.4%, still PASS.
+- Download audit regenerated (93 files; 84 PASS, 9 historical FAIL).
+
+**Final regression on the finished state.**
+- `PYTHONPATH=.:src python3 -m pytest tests`: **609 passed, 2 skipped, 0 failed**.
+- Artifact policy: 89 artifacts registered.
+- Every CI verifier passed: `verify_frontdoor`, `verify_current_artifact --with-data`, `verify_evidence`, `verify_s16 --with-data`, `verify_s17 --with-data`.
+- The download audit regenerates byte-identically (89 files; 80 PASS, 9 historical FAIL).
+- `make demo` and `validate_release` report CERTIFIED (synthetic).
+- Real-browser `tools/browser/smoke.cjs`: PASS. 0 console/HTTP errors, 0 axe WCAG 2.1 AA violations, no mobile overflow, and the downloaded TIFF/ZIP SHA-256 match.
+
+
+---
+
 # GEMSDOE91 — Multi-Pass Verification Log (latest: active review `8F9CFF19`, 2026-10-26)
 
 ## Active checkout review `8F9CFF19` (`arena/8f9cff19-gemsdoe91`, 2026-10-26)

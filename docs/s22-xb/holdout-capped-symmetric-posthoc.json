@@ -1,0 +1,40 @@
+{
+ "label": "POST-HOC sensitivity analysis (not preregistered; cannot change any verdict)",
+ "evaluator_version": "gems57-pooled-hide-v2",
+ "uniqueness_cap": 0.64,
+ "arm_A_own_active_references": 66,
+ "arm_C_active_references": 120,
+ "arm_A_pass1_max_competitive_overlap": 0.779413,
+ "arm_A_pass1_max_competitive_ref": "gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros",
+ "scores": {
+  "A_celf_cap_own": {
+   "dti": 0.184213,
+   "ci95": [
+    0.166045,
+    0.201883
+   ]
+  },
+  "C_celf_cap": {
+   "dti": 0.173542,
+   "ci95": [
+    0.155043,
+    0.192051
+   ]
+  }
+ },
+ "paired_C_minus_A_own": {
+  "delta": -0.010671,
+  "ci95": [
+   -0.015114,
+   -0.00626
+  ]
+ },
+ "reference_asymmetric_A3_value": {
+  "delta": -0.010671,
+  "ci95": [
+   -0.015114,
+   -0.00626
+  ]
+ },
+ "elapsed_s": 316.6
+}

@@ -37,6 +37,7 @@ def f(value, digits=5):
 EXPECTED_GRID = {'crs': 'EPSG:32611', 'shape': (3730, 3292),
                  'transform': (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)}
 BOARD_ROWS = (
+    ('S22-XB (NEW Session 22: PDWC66+HGBR16 cross-breed, equalized per-quadrant capped 300m CELF, 37,654 dots; HOLDOUT-DTI 0.173542 v2 [paired C-A -0.0107 under the shipped recipe, +0.0044 uncapped]; unique: max 62.9% 3-px overlap vs 953 competitive rasters; LFI projection 0.178 MODEL; negative - research only)', 'docs/run-card-S22-XB.json', 'docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif', 's22-xbreed-executive-summary.html'),
     ('S21-PDWC E3 (NEW Session 21: Cauchy-Hilbert Dipping-Contact Waveform + B15 Up-Dip Projection + Log-Gabor Phase Congruency + Clay-Cap Baffle Symmetric OOF + <=0.64 Uniqueness-Capped 300m CELF, 37,654 dots; HOLDOUT-DTI 0.195724 v2 [#1 symmetric OOF in GEMSDOE91, +32.4% vs S19-SVHF], 932/932 competitive rasters unique across 102 repos [max 64.00% <= 70%]; negative — research only)', 'docs/run-card-S21-PDWC.json', 'docs/downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif', 's21-pdwc.html'),
     ('S20-RHTW E3 (NEW Session 20: Riesz-Harmonic Gravity/Mag Worm + GDR Geothermometer + Pluvial-Decontaminated Dual-Specialist OOF CELF, 37,654 dots; Primary I2 0.136798 HOLDOUT-DTI [+0.051538 vs E0, CI +0.0385..+0.0652], Isolated I1 0.113298 [+0.020193 vs E0], 103/103 canary PASS, 120/120 competitive uniqueness PASS [49.10% vs R0]; research only — human selector required)', 'docs/run-card-S20-RHTW.json', 'docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.tif', 'REVIEW-S20-RHTW-20261026.md'),
     ('S19-SVHF E3 (NEW Session 19: Semivariogram-Jump + Hurst + Piedmont-Flexure Stitched-OOF CELF, 37,654 dots; HOLDOUT-DTI 0.147791 v2, Blind SGMC >300m 0.102428 / >500m 0.093415 [69.2% >1 km], 90/90 competitive <=80k uniqueness PASS [max 53.20%]; negative — research only)', 'docs/run-card-S19-SVHF.json', 'docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.tif', 's19-svhf.html'),
@@ -299,7 +300,10 @@ def render():
     # evidence, not inputs whose CSS or banners should be rebuilt from that page.
     from scripts.render_olc91_portal import CURRENT, render as render_current
     if CURRENT['run_card'] == 'run-card-S22-OMTJ.json':
-        render_current()
+        render_current()  # injects the S22-XB parallel-lane callout through the <!--PARALLEL-CALLOUTS--> slot
+        if (ROOT / 'docs/run-card-S22-XB.json').is_file():
+            from scripts.render_s22_xbreed_pages import render as render_s22xb
+            render_s22xb()  # the parallel lane's own self-contained executive-summary page
         print('Rendered S22 current portal; historical pages preserved; no promotion.')
         return
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
@@ -656,6 +660,11 @@ def render():
     if (ROOT / 'docs/run-card-S21-PDWC.json').is_file():
         from scripts.render_s21_pdwc_pages import render as render_s21_pdwc
         render_s21_pdwc()
+    # S22-XB (2026-10-26) parallel lane: writes only docs/s22-xbreed-executive-summary.html (the front door is owned
+    # by CURRENT in render_olc91_portal.py; this lane's callout is injected there).
+    if (ROOT / 'docs/run-card-S22-XB.json').is_file():
+        from scripts.render_s22_xbreed_pages import render as render_s22
+        render_s22()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 

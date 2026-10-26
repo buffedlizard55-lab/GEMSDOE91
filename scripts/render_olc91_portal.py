@@ -173,6 +173,11 @@ def render() -> None:
     # Current status must not be displaced by historical "NEW" banners.
     # Previous runs remain accessible through explicit archive links.
     parallel_card = ""
+    try:  # parallel lane callout (S22-XB) through the sanctioned <!--PARALLEL-CALLOUTS--> slot; empty if absent
+        from scripts.render_s22_xbreed_pages import parallel_callout_html
+        parallel_card = parallel_callout_html()
+    except ImportError:
+        pass
     for source_name, target_name in ((CURRENT["index_src"], "index.html"),
                                      (CURRENT["exec_src"], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")

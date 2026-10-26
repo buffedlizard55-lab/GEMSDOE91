@@ -10,6 +10,34 @@
 
 ---
 
+## Session 22 (parallel lane `S22-XB`): official-source re-baselining, byte-level decomposition of R0, PDWC×HGBR cross-breed (`arena/c722cd53-gemsdoe91`)
+
+**Status:** new unique validated GeoTIFF (`docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif` + `.zip`, `37,654` binary dots, `sha256 = 663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b`). **OK TO DOWNLOAD: YES.** **OK TO SUBMIT: NO** (`verdict = "negative"`; failed G4_holdout_paired, G5_live_anchored_projection; 0 slots spent). Evidence: `docs/HYPOTHESES_S22_XBREED.md` (+A1–A3), `docs/run-card-S22-XB.json`, `docs/s22-xb/*.json`, `docs/s22-xbreed-executive-summary.html`, `docs/R0_ANALYSIS_S22.md`, `docs/OFFICIAL_SOURCES_VERIFIED_S22.md`, `docs/PROBE_PLAN_S22.md`.
+
+### Previous-session next steps addressed
+1. **S21 rank 3 (cross-breed) executed and measured:** uncapped paired C−A `+0.004378` [`+0.000069`, `+0.008234`]; under the shipped uniqueness-capped recipe `-0.010671` [`-0.015114`, `-0.006260`]. Forecast `+0.01–0.02` not met. Ranks 1–2 (3DEP LiDAR, ComCat/ASF) remain blocked: all eight official hosts return no connection from the sandbox (tested).
+2. **Official sources fetched for the first time** (DrivenData problem page, rules PDF, five forum threads, live leaderboard): known faults are masked, "new fault" = any pixel not in the catalogue, public score pools a hidden subset, three submissions per week, organizers will not disclose test-fault provenance, leaderboard #1 0.4437 / #50 0.2826.
+3. **R0 explained from bytes** (nesting proof; one-parameter model reproduces the next two live scores within 0.001): `docs/R0_ANALYSIS_S22.md`.
+4. **Instrument validity measured on 112 anchors:** hide-v2 ρ = +0.105 (not a live proxy), blind SGMC >500 m ρ = +0.442, LFI LOSO ρ = +0.957 (S20 baseline reproduced exactly).
+
+### Remaining limitations
+1. **No organizer receipt exists for any number**; every estimate is a MODEL (LOSO RMSE ≈ 0.02), optimistic for any raster built with the model in view.
+2. **Public-subset overfitting risk** (OFFICIAL: Rules §3.6.2, forum 11550).
+3. **No in-sandbox route past the uniqueness wall** with the 100 m stack: every independent raster projects below R0; the cross-breed is a measured negative.
+4. **Data access:** 3DEP LiDAR, GDR/INGENIOUS, ScienceBase, ComCat and the DrivenData data page are all unreachable from the sandbox.
+5. **Proxy disagreement:** the cross-breed's SGMC >500 m (0.0960) is above S21-PDWC's (0.0840) and R0's (0.0888) while its LFI projection (0.178) is below S21-PDWC's (0.1896): instruments with ρ = 0.44 and ρ = 0.96 do not agree, and only a live score can arbitrate.
+
+### Ranked next steps for Session 23 (by expected live-DTI gain per cost)
+1. **(your decision, 2 slots, highest information value) Calibration probes.** `gems32-probe-S2-SCALE-lambda-0.5` and `gems32-probe-S3-NULLADD-2000px` (already in the registry) identify the exact truth credit T, |G| and recall of the whole R0 family; predictions are pre-registered in `docs/s22-xb/probe-predictions.json` (S3 ∈ [0.2548, 0.2551], S2 ∈ [0.1672, 0.1738]). Plan: `docs/PROBE_PLAN_S22.md`.
+2. **(needs an unrestricted machine) 1 m LiDAR scarp detector.** Get `1m_DEM_links.csv` (DrivenData login), fetch the 3DEP 1 m tiles for the scored footprint (≈ 5.17 × 10¹⁰ px ≈ 207 GB as float32; stream tile by tile), compute 20 m derivatives (slope, curvature, openness, detrended relief, drainage offset), train a small U-Net or matched filter on the catalogue with the spatially blocked folds, validate with **LFI projection + SGMC + hide-v2 (reported, not ranked)**, and push the derived 20 m / 100 m stack to a GitHub repo so the sandbox can restore it by SHA. Evidence that this is the differentiator: a rank-5 team's public pipeline description (forum 11531) and the 0.28 → 0.44 board spread.
+3. **Use the live-aligned instruments for model selection** (LFI LOSO and SGMC >500 m), not hide-v2; keep hide-v2 only as a catalogue-recovery diagnostic.
+4. **Do not re-emit R0-lineage variants or re-run the PDWC×HGBR cross-breed** (measured null/negative under the shipped recipe).
+5. **Template fixes:** make the front-page tests compare against `docs/current-run.json` instead of fixed verdict strings (IR-S22XB-07); record the anchor-set hash inside every LFI output (IR-S22XB-03); let `sibling_sweep fetch` keep an all-finite twin (IR-S22XB-09).
+6. **Governance:** confirm the account setup complies with three submissions per week for one entity (IR-S22XB-10); disclose AI use in any final narrative (Rules §3.2).
+
+
+---
+
 # Current limitations and next steps — S21-PDWC (2026-10-26), then S20-LFI, S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16
 
 ## Session 21: `S21-PDWC`, Phase-Congruent Dipping-Contact Waveform & Clay-Cap Baffle OOF + CELF (`arena/a31c96c3-gemsdoe91`)

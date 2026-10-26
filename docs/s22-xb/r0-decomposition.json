@@ -1,0 +1,186 @@
+{
+ "evidence_classes": {
+  "live scores": "USER-REPORTED (not organizer receipts)",
+  "T/G/recall/oracle": "MODEL (assumptions below)",
+  "dot counts, nesting, distances": "BYTES (SHA-256 pinned rasters)"
+ },
+ "official_metric_source": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ (retrieved 2026-10-26)",
+ "rasters": {
+  "H19-5 binary network": {
+   "file": "data/fleet_registry/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+   "sha256": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa",
+   "n_dots": 121131,
+   "min_distance_to_catalogue_px": 1.0,
+   "dots_by_distance_to_catalogue_px": {
+    "(0,1.01]": 9651,
+    "(1.01,2.01]": 7675,
+    "(2.01,3.01]": 6841,
+    "(3.01,5.01]": 9826,
+    "(5.01,10.01]": 15753,
+    "(10.01,999]": 71385
+   },
+   "share_gt_10px": 0.5893
+  },
+  "D1.5": {
+   "file": "data/fleet_registry/GEMSDOE24__h25-1-dotted-h19-5-d1-5.tif",
+   "sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce",
+   "n_dots": 60069,
+   "min_distance_to_catalogue_px": 1.0,
+   "dots_by_distance_to_catalogue_px": {
+    "(0,1.01]": 5355,
+    "(1.01,2.01]": 3414,
+    "(2.01,3.01]": 3169,
+    "(3.01,5.01]": 4668,
+    "(5.01,10.01]": 7835,
+    "(10.01,999]": 35628
+   },
+   "share_gt_10px": 0.5931
+  },
+  "D2.8": {
+   "file": "data/fleet_registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+   "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+   "n_dots": 44090,
+   "min_distance_to_catalogue_px": 1.0,
+   "dots_by_distance_to_catalogue_px": {
+    "(0,1.01]": 3891,
+    "(1.01,2.01]": 2545,
+    "(2.01,3.01]": 2171,
+    "(3.01,5.01]": 3466,
+    "(5.01,10.01]": 5723,
+    "(10.01,999]": 26294
+   },
+   "share_gt_10px": 0.5964
+  },
+  "H27-4 (solo D2.8, >1 px collar)": {
+   "file": "data/fleet_registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+   "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+   "n_dots": 40199,
+   "min_distance_to_catalogue_px": 1.414,
+   "dots_by_distance_to_catalogue_px": {
+    "(0,1.01]": 0,
+    "(1.01,2.01]": 2545,
+    "(2.01,3.01]": 2171,
+    "(3.01,5.01]": 3466,
+    "(5.01,10.01]": 5723,
+    "(10.01,999]": 26294
+   },
+   "share_gt_10px": 0.6541
+  },
+  "R0 (H33-2-B2, >2 px collar)": {
+   "file": "data/fleet_registry/GEMSDOE32__h33-2-b2-zeros.tif",
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "n_dots": 37654,
+   "min_distance_to_catalogue_px": 2.236,
+   "dots_by_distance_to_catalogue_px": {
+    "(0,1.01]": 0,
+    "(1.01,2.01]": 0,
+    "(2.01,3.01]": 2171,
+    "(3.01,5.01]": 3466,
+    "(5.01,10.01]": 5723,
+    "(10.01,999]": 26294
+   },
+   "share_gt_10px": 0.6983
+  },
+  "GEMSDOE36 anderson-pinn-38854": {
+   "file": "data/lfi_anchors/GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+   "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+   "n_dots": 38854,
+   "min_distance_to_catalogue_px": 2.236,
+   "dots_by_distance_to_catalogue_px": {
+    "(0,1.01]": 0,
+    "(1.01,2.01]": 0,
+    "(2.01,3.01]": 2281,
+    "(3.01,5.01]": 3543,
+    "(5.01,10.01]": 5959,
+    "(10.01,999]": 27071
+   },
+   "share_gt_10px": 0.6967
+  }
+ },
+ "nesting_exact": {
+  "R0 subset of H27-4": true,
+  "H27-4 subset of D2.8": true,
+  "D2.8 subset of H19-5 network": true,
+  "R0 subset of GEMSDOE36 file": true,
+  "D1.5 subset of H19-5 network": true,
+  "D2.8 subset of D1.5": false
+ },
+ "difference_sets": {
+  "D2.8 minus H27-4": {
+   "n": 3891,
+   "max_distance_to_catalogue_px": 1.0
+  },
+  "H27-4 minus R0": {
+   "n": 2545,
+   "min_distance_to_catalogue_px": 1.414,
+   "max_distance_to_catalogue_px": 2.0
+  },
+  "GEMSDOE36 minus R0": {
+   "n": 1200,
+   "median_distance_to_catalogue_px": 14.49,
+   "share_on_h19_5_network_within_0px": 0.0008
+  }
+ },
+ "live_scores_user_reported": {
+  "D2.8": 0.26,
+  "H27-4 (GEMSDOE28)": 0.2708,
+  "H27-4 (GEMSDOE31, same pixels)": 0.2708,
+  "R0": 0.2778,
+  "GEMSDOE36 (R0 + 1,200 dots)": 0.275
+ },
+ "replicate_check": {
+  "GEMSDOE31 raster pixel-identical to GEMSDOE28 H27-4": true,
+  "scores equal": true,
+  "note": "the same pixels scored 0.2708 on two separate submissions: the board is deterministic at 4 dp"
+ },
+ "pure_fp_model": {
+  "assumption": "the removed/added dot sets carry ~zero truth credit and are all false positives",
+  "T_from_step1_D2.8_to_H27-4": 5073.3,
+  "T_from_step2_H27-4_to_R0": 5470.2,
+  "rounding_band_on_T_from_step1_pct": 0.93,
+  "prediction_H27-4_to_R0": {
+   "predicted": 0.2784,
+   "user_reported": 0.2778,
+   "residual": 0.0006
+  },
+  "prediction_R0_to_GEMSDOE36": {
+   "predicted": 0.2742,
+   "user_reported": 0.275,
+   "residual": -0.0008,
+   "implied_credit_of_added_1200_dots_if_M_added_is_0": 15.7,
+   "implied_credit_per_added_dot": 0.0131
+  },
+  "interpretation": "One number (T ~ 5.0e3) predicts R0 from the first step to within 0.001 and the 1,200-dot GEMSDOE36 addition to within 0.001: both pruned and added sets are, to first order, pure false positives. Step 2 alone implies a larger T (see T_from_step2), i.e. the (1,2] px set carried a little credit; the residual quantifies it."
+ },
+ "R0_scale_model": {
+  "n_dots": 37654,
+  "T": 5073.3,
+  "credit_per_dot": 0.1347,
+  "scenarios": {
+   "M=0": {
+    "G_truth_pixels_in_scored_region": 12146,
+    "recall_T_over_G": 0.418
+   },
+   "M=5% of dots": {
+    "G_truth_pixels_in_scored_region": 12617,
+    "recall_T_over_G": 0.402
+   },
+   "M=10% of dots": {
+    "G_truth_pixels_in_scored_region": 13087,
+    "recall_T_over_G": 0.388
+   },
+   "M=T": {
+    "G_truth_pixels_in_scored_region": 13414,
+    "recall_T_over_G": 0.378
+   }
+  },
+  "caveat": "G is not observable here; it is bracketed by the unknown matched mass M"
+ },
+ "oracle_headroom_if_pure_fp_dots_were_identifiable": {
+  "remove_1000_pure_fp_dots": 0.2809,
+  "remove_5000_pure_fp_dots": 0.2939,
+  "remove_10000_pure_fp_dots": 0.312,
+  "remove_20000_pure_fp_dots": 0.3557
+ },
+ "ceiling_check": "an oracle that removes 10,000 dead dots would reach ~0.31; no method here can identify them without new information"
+}

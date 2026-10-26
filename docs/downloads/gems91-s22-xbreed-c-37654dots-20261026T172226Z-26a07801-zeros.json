@@ -1,0 +1,33 @@
+{
+ "name": "gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros",
+ "note": "S22-XB arm C PDWC66+HGBR16 OOF+capped CELF 37654d; hide-v2 HOLDOUT-DTI=0.1735; LFI projection only; research",
+ "sha256": "663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b",
+ "verdict": "negative",
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "failed_gates": [
+  "G4_holdout_paired",
+  "G5_live_anchored_projection"
+ ],
+ "validator": {
+  "automated_without_human_intervention": true,
+  "crs_shape_transform_match_sample": true,
+  "n_dots": 37654,
+  "min_catalogue_distance_px": 3.1623,
+  "min_inter_dot_distance_px": 2.0,
+  "positives_on_catalogue": 0,
+  "positives_outside_footprint": 0,
+  "nan_or_inf_pixels": 0,
+  "min_value": 0.0,
+  "max_value": 1.0,
+  "unique_values": [
+   0.0,
+   1.0
+  ],
+  "gems57_format_report_ok": true,
+  "gems91_release_gates_pass": true,
+  "zip_single_tif_member": true,
+  "zip_crc_ok": true,
+  "pass": true
+ }
+}

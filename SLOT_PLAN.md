@@ -1,3 +1,11 @@
+# Slot selection — no automatic slot (`S22-XB` and every earlier research file are held for a human decision; 0 slots spent)
+
+> **SESSION 22 BANNER (`S22-XB`, 2026-10-26, branch `arena/c722cd53-gemsdoe91`):**
+> - **Zero weekly DrivenData slots spent (`slots_used = 0`). `OK TO DOWNLOAD: YES` | `OK TO SUBMIT: NO` (`verdict: "negative"`; failed G4_holdout_paired, G5_live_anchored_projection; [`docs/run-card-S22-XB.json`](docs/run-card-S22-XB.json)).**
+> - **`gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif`** (`37,654` dots, SHA-256 `663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b`): unique (max 62.9% 3-px overlap vs 953 competitive rasters), LFI projection `0.178` MODEL (R0 model value 0.273; R0 USER-REPORTED 0.2778).
+> - **If you want to spend slots, the evidence-ranked options are:** (1) the two calibration probes `gems32-probe-S2-SCALE-lambda-0.5` and `gems32-probe-S3-NULLADD-2000px` (identify the exact T and |G|; pre-registered predictions in `docs/s22/probe-predictions.json`; not unique, not competitive; [`docs/PROBE_PLAN_S22.md`](docs/PROBE_PLAN_S22.md)); (2) as a *unique* learning probe, the best independent file that passes the 1,099-raster protocol screen is `gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif` (max overlap 64.0%, LFI projection 0.190, SGMC >500 m 0.084; still below R0); the stronger `gems91-s18-hgbr-hgbr-e1-…` (projection 0.210) fails that screen by 0.97 points (70.97% vs a 90,000-dot sibling). Do **not** resubmit any of the nine sites' best files: each has ≥ 97.7% of its dots within 3 px of another site's best file.
+
+
 # Slot selection — no automatic slot (`S20-RHTW E3` / `S19-SVHF E3` / `S18-HGBR E1` / `S17-CPAD E1` are held for human selector; 0 slots spent)
 
 > **SESSION 20 BANNER (`S20-RHTW`, 2026-10-26, branch `arena/06420fd7-gemsdoe91`):**

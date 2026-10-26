@@ -37,6 +37,24 @@ python -m pytest -ra
 
 The raw cached stack and registry can be restored for research using the instructions in [the review](docs/s22/review.md). No GPU was needed for this experiment. Authenticated score receipts, organizer-origin input authentication, full registry clearance, current remaining weekly quota and a genuinely improved candidate are still missing. Official page text can be researched with page-reading tools, while shell bulk downloads remain host-restricted.
 
+<!--S22-README-BEGIN-->
+# GEMSDOE91 — Parallel Session 22 lane (`S22-XB`, branch `arena/c722cd53-gemsdoe91`): official-source re-baselining, why 0.2778, and a unique PDWC×HGBR cross-breed
+
+> **AUTOMATED VERDICT: `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT` (failed gates: `G4_holdout_paired`, `G5_live_anchored_projection`)** (0 weekly slots spent by the project).
+> **[⬇ Download S22-XB GeoTIFF (.tif)](docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif)** (`sha256: 663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b`, `37,654` binary `{0.0, 1.0}` dots, all-finite zeros `float32`, EPSG:32611, 3730×3292) · **[⬇ single-TIFF ZIP](docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.zip)** · **[9-site executive summary & how to submit](docs/s22-xbreed-executive-summary.html)** · [run card](docs/run-card-S22-XB.json) · [preregistration + amendments](docs/HYPOTHESES_S22_XBREED.md) · [why 0.2778](docs/R0_ANALYSIS_S22.md) · [official sources](docs/OFFICIAL_SOURCES_VERIFIED_S22.md)
+>
+> - **Unique submission name:** `gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros` · **DrivenData note (`108/140` chars):** `S22-XB arm C PDWC66+HGBR16 OOF+capped CELF 37654d; hide-v2 HOLDOUT-DTI=0.1735; LFI projection only; research`
+> - **Estimated score = PROJECTION, not a score:** `0.178` ± `0.020` (live-anchored model, ridge 10, leave-one-site-out RMSE); the same model gives `0.273` for GEMSDOE32 R0 whose **USER-REPORTED** live score is `0.2778`. `HOLDOUT-DTI` (hide-v2, shipped recipe) `0.1735` `[0.1550, 0.1921]` on `60,988` withheld positives measures *catalogue recovery*, not live skill.
+> - **Unique:** max 3-px dot overlap `62.88%` ≤ 70% vs `953` competitive rasters (`1099` compared, 102 sibling repos), max |surface ρ| `0.363`; the literal all-raster figure `100%` is against dense synthetic blankets (IR-S16-03).
+> - **Nine sites (live-audited, USER-REPORTED scores):** best is **GEMSDOE32 `0.2778`**, but **none of the nine best files is unique** (≥ `97.7%` of every file's dots lie within 3 px of another site's best file). The table gives each site's file, the pixel-identical all-finite twin for NaN-encoded ones, format check and relationship.
+> - **Why 0.2778 (bytes + official rules):** R0 = the 0.2600 raster minus 6,436 dots within 2 px of the catalogue and nothing else; one number T ≈ `5,073` predicts R0 (`0.2784` vs 0.2778) and the +1,200-dot GEMSDOE36 file (`0.2742` vs 0.2750). Known-fault pixels are masked and a "new fault" is any pixel not in the catalogue (DrivenData staff, forum 11516/11536).
+> - **Instrument validity (112 anchors):** Spearman vs live score — hide-v2 `+0.105` `[-0.09, +0.29]` (not a live proxy), blind SGMC >500 m `+0.442` `[+0.26, +0.60]` (moderate), LFI LOSO `+0.957`.
+> - **Reproduce:** `python3 scripts/restore_data.py && python3 scripts/restore_registry.py --available-only && python3 scripts/restore_lfi_anchors.py && python3 scripts/sibling_sweep.py list && python3 scripts/sibling_sweep.py fetch` → `python3 scripts/run_s22_xbreed.py fit --arm A|B|C` → `evaluate` → `python3 scripts/run_s22_instruments.py` → `python3 scripts/emit_s22_xbreed.py capped` → `final` → `python3 scripts/render_portal.py && python3 scripts/render_s22_readme.py` (tests: `make test`).
+> - **Not claimed:** no ORGANIZER-CONFIRMED number exists. Official board on 2026-10-26: #1 0.4437, #24 0.3169, #50 0.2826.
+
+---
+<!--S22-README-END-->
+
 ---
 
 <details>
@@ -553,6 +571,33 @@ Concurrent main reviews were integrated, including the S15 holdout/final-selecto
 <a id="full-project-brief"></a>
 
 ## Original user project brief — preserved standing text and supplied updates
+
+**2026-10-26 supplied update for Session 22, S22-XB lane (claims, not receipts) — PARAPHRASED summary of the brief as received (IR-S22XB-11); the verbatim cumulative text remains in the Session 20 addendum below and in `prompt_to_add.txt`.**
+
+Standing goal: place at the top of the DrivenData DOE GEMS geothermal-fault competition (<https://www.drivendata.org/competitions/306/competition-doe-gems/>); submission = single-band float32 GeoTIFF in [0, 1], EPSG:32611, 3730×3292, sample-submission geotransform; metric = pooled distance-weighted Tversky index (α 0.2, β 0.8, 300 m triangular kernel). Core values: **Maximize P(Win)** and **Own the Outcome**.
+
+This session's request:
+1. **Review the repository and work the previous sessions' next steps first.**
+2. **Nine focus sites** (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36): an executive summary with a table per site — *which file to download, estimated score, and whether the submission is unique versus the other sites*. Both the verdict and the table must be obvious at the very top of the site, with the validation done by the project itself (no human inspection).
+3. **A new UNIQUE TIFF (highest urgency)**, with an obvious OK-TO-DOWNLOAD / OK-TO-SUBMIT verdict from automated gates; submission needs a unique name and a note of at most 140 characters; avoid "Predicted values must be in range [0, 1]".
+4. **Study GEMSDOE32's 0.2778** (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`): explain at PhD level why it is highest and whether it can be beaten (the prompt cites public leaderboard figures 0.4413 and 0.3195, which conflict).
+5. **Hypotheses:** 3–5 new geological hypotheses (layers, physical signature, why they catch faults missing from the catalogue, how they differ from the repo), ranked by expected DTI gain and cost; validate the top one on the spatially blocked holdout before touching a weekly slot; name the free official source for any external data and check it is obtainable.
+6. **Deliver:** a sub-page explaining exactly how to submit; README banner + standing prompt; update limitations/irregularities/run card; **create a PR and merge to main**; finish with suggestions and limitations; three passes (build, review/fix, re-check against the request).
+
+Standing constraints (unchanged): verify against official sources and give links; no hallucination; flag irregularities; parallel-run protocol (stay in lane, reuse the shared template, hide-and-recover holdout, label every number HOLDOUT-DTI / USER-REPORTED / PROJECTION, leakage canary AUC ≤ 0.90, uniqueness ≤ 70% 3-px overlap and |Spearman| ≤ 0.90, JSON run card, budget 3 experiments / 2 h, do not pick submissions).
+
+User-reported live scores for the nine sites (USER-REPORTED, not organizer receipts; copied from `registry/lfi_live_anchors.csv`):
+- `GEMSDOE24`: `h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan` = 0.2477; `gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros` = 0.0859
+- `GEMSDOE25`: `dotted-h19-5-d2-8-20261002-e56ea318af89-nan` = 0.2600; `gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros` = 0.0742
+- `GEMSDOE27`: `topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan` = 0.2449; `gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite` = 0.2190
+- `GEMSDOE28`: `h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan` = 0.2710; `h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan` = 0.2708; `h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan` = 0.2707; `h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan` = 0.2649; `gems28-s18-mxtp-20261025-3e95505c011a-allfinite` = 0.0217
+- `GEMSDOE30`: `d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca` = 0.2600; `gems30-MSDB1-edge44090-20261025-e7856ec3f14a` = 0.1462
+- `GEMSDOE31`: `h27-4-solo-d28-20261004-8acb75e1-nan` = 0.2708
+- `GEMSDOE32`: `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` = 0.2778
+- `GEMSDOE33`: `h33d-analog-tip-stepover-r30-20261004-cb490425926e` = 0.2632
+- `GEMSDOE36`: `anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros` = 0.2750
+
+Public leaderboard figures supplied in the brief: #1 0.4413, #24 0.3195 (the board read #1 0.4437, #24 0.3169, #50 0.2826 on 2026-10-26: `docs/OFFICIAL_SOURCES_VERIFIED_S22.md`).
 
 **2026-10-26 supplied update for Session 20 (claims, not receipts).**
 
