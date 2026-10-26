@@ -1,0 +1,68 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "ARENA-5CD5E4F7-20261026",
+  "review_date_utc": "2026-10-26",
+  "branch": "arena/5cd5e4f7-gemsdoe91",
+  "scope": "Review of the current checkout and the nine requested owner-site records; no experiment, candidate-generation, leaderboard refresh, or selector action.",
+  "hypothesis": "No hypothesis was experimentally tested because the assigned single-method lane is absent and the required sample/template input and registry witness are not present locally. The ranked proposals remain the ones in docs/REVIEW-SITE-AUDIT-20261026.md; proposal rank is not a score projection.",
+  "mechanism": "No mechanism was evaluated. The leading research proposal is a multi-field dipping-contact waveform matched-filter bank using competition bands B02, B13, B14, with B15 as depth/scale context; it tests fault-offset contacts rather than generic edge strength.",
+  "named_non_fault_process_that_could_mimic_it": "Unfaulted dipping stratigraphic contacts, dikes, pluton margins, and survey seams could produce similar multi-field waveform signatures.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": "NOT RUN",
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "Not run: no authorized lane or local input stack; no estimate is presented as a score."
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_surface_rank_correlation": null,
+    "preplacement_surface_overlap_within_3px": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "Not run: no candidate surface or final dots. No uniqueness gate passed."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT RUN: no new raster exists.",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "automated_format_validator": "NOT RUN"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_character_count": null,
+  "ok_to_download": false,
+  "download_status": "NO NEW CANDIDATE FROM THIS REVIEW; existing downloads are historical research artifacts.",
+  "ok_to_submit": false,
+  "submission_status": "NO: no candidate, no passed validation gates, no selector decision.",
+  "verdict": "negative",
+  "verdict_reason": "Blocked workflow, not a scientific negative result.",
+  "experiments_run": 0,
+  "experiments_cap": 3,
+  "weekly_submission_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "assigned_lane": null,
+  "preflight": {
+    "status": "BLOCKED",
+    "assignment_missing": true,
+    "data_directory_present": false,
+    "sample_submission_present": false,
+    "registry_witness_present": false,
+    "candidate_generated": false
+  },
+  "reported_best_among_supplied_nine": {
+    "site": "GEMSDOE32",
+    "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+    "score": 0.2778,
+    "evidence_class": "USER/OWNER-REPORTED, UNVERIFIED",
+    "organizer_receipt_verified": false
+  },
+  "verification": {
+    "dependency_install": "PASS: requirements.txt installed to ignored .venv",
+    "experiment_preflight": "BLOCKED as expected: missing assigned lane and data/official/sample_submission.tif",
+    "build_preflight": "BLOCKED as expected: 0/2 required inputs verified; axes blocked",
+    "pytest": "PASS: 679 passed, 9 skipped; 89 Rasterio Affine pending-deprecation warnings"
+  }
+}
