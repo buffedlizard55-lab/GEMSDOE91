@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEMSDOE91 · Session 21 S21-PDWC · Scientific Audit &amp; Run Card</title>
+<style>:root{--ink:#14211d;--mut:#51635d;--ok:#16624c;--bad:#a12c2c;--line:#dbe4e0;--bg:#f6f9f7;--warn:#fff6e0}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding:18px}a{color:var(--ok)}h1{font-size:28px;line-height:1.2;margin:.2em 0 .3em}h2{font-size:20px;margin:0 0 .5em}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px}.logo{font-weight:800}nav a{margin-left:14px;font-weight:600;text-decoration:none}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0;overflow-wrap:anywhere;overflow-x:auto}
+.dl{border:2px solid var(--ok)}.verdicts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}@media(max-width:640px){.verdicts{grid-template-columns:1fr}}
+.v{border-radius:12px;padding:12px 14px;font-weight:800;font-size:18px}.v small{display:block;font-weight:500;font-size:13px;margin-top:2px}
+.yes{background:#e2f2ea;color:var(--ok)}.no{background:#f8e3e3;color:var(--bad)}
+.btn{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:800;margin:6px 8px 6px 0}
+.btn2{display:inline-block;border:1px solid var(--ok);padding:9px 13px;border-radius:9px;text-decoration:none;font-weight:700;margin:6px 8px 6px 0}
+.small{color:var(--mut);font-size:14px}code{font-size:12.5px;word-break:break-all}table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-align:top}.pass{color:var(--ok);font-weight:700;white-space:nowrap}.fail{color:var(--bad);font-weight:700}td.fail,th.res{white-space:nowrap}
+.copy{display:flex;gap:8px;align-items:center;margin:6px 0}.copy input{flex:1;font-family:ui-monospace,monospace;font-size:13px;padding:7px;border:1px solid var(--line);border-radius:8px}
+.copy button{border:1px solid var(--ok);background:#fff;color:var(--ok);border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer}
+.warn{background:var(--warn);border:1px solid #ead39a;border-radius:10px;padding:10px 12px}.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e2f2ea;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}.badge.bad{background:#f8e3e3;color:var(--bad)}.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:10px 14px;border-radius:9px;font-weight:800;margin:4px 6px 4px 0}.button.outline{background:#fff;color:var(--ok);border:1px solid var(--ok)}ol li{margin:4px 0}footer{margin:24px 0;color:var(--mut);font-size:13px}
+
+    .s21-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0}
+    .s21-kpi{background:#f7faf8;border:1px solid #cfe0d6;border-radius:8px;padding:12px 14px}
+    .s21-kpi .k{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:#48635c;font-weight:700}
+    .s21-kpi .val{font-size:22px;font-weight:800;color:#12332c;margin:4px 0}
+    .s21-kpi .sub{font-size:12px;color:#516862}
+    .s21-pill-ok{display:inline-block;padding:2px 8px;border-radius:999px;background:#dff3e6;color:#115c3e;font-weight:700;font-size:11px}
+    .s21-pill-no{display:inline-block;padding:2px 8px;border-radius:999px;background:#fde8e2;color:#982c17;font-weight:700;font-size:11px}
+    .s21-steps li{margin:10px 0}
+    .s21-table-wrap{overflow-x:auto;margin:12px 0}
+    </style></head>
+<body><div class="wrap">
+<header><span class="logo">GEMSDOE91 &middot; DOE GEMS Fault Mapping</span>
+<nav aria-label="Main"><a href="index.html">&larr; Main Portal &amp; Download</a><a href="s21-pdwc-executive-summary.html">S21 Executive Summary</a><a href="s21-pdwc.html">S21 Scientific Audit</a><a href="HYPOTHESES_S21_PDWC.md">Preregistration</a><a href="GEOTHERMAL_VENT_RESEARCH_S21_PDWC.md">Vent &amp; 0.2778 Research</a><a href="run-card-S21-PDWC.json">Run Card</a></nav></header>
+<main id="main">
+
+    <section class="card dl" id="s21-pdwc-top" data-submission-ready="false" aria-label="Session 21 S21-PDWC download and automated verdict">
+    <h2>NEW · Session 21 · S21-PDWC GeoTIFF (`pdwc_e3`) · Automated Verdict</h2>
+    <div class="verdicts">
+      <div class="v yes">OK TO DOWNLOAD: YES<small>Automated [0,1] float32 &amp; CRS/grid validator PASS · 932/932 competitive rasters unique across 102 repos (max 3-px = 64.00% &le; 70%)</small></div>
+      <div class="v no">OK TO SUBMIT: NO — NOT OK TO SUBMIT (verdict negative; 0 weekly slots spent)<small>HOLDOUT-DTI 0.195724 is #1 symmetric cross-fitted OOF in GEMSDOE91 (+32.4% vs S19-SVHF 0.147791), but trails spillover-inflated S18-HGBR record 0.200742 by -0.0050 and literal blanket lattice overlap is 1.0 (IR-S21-02, IR-S21-04).</small></div>
+    </div>
+    <a class="btn" download href="downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif">&darr; Download S21-PDWC GeoTIFF (.tif, 145.0 KB)</a>
+    <a class="btn2" download href="downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.zip">&darr; Single-TIFF ZIP (.zip)</a>
+    <a class="btn2" href="s21-pdwc-executive-summary.html">9-Site Executive Summary &amp; How to Submit &rarr;</a>
+    <a class="btn2" href="s21-pdwc.html">S21-PDWC Scientific Audit</a>
+    <a class="btn2" href="run-card-S21-PDWC.json">JSON Run Card</a>
+    <div class="s21-grid">
+      <div class="s21-kpi"><div class="k">HOLDOUT-DTI (Symmetric OOF)</div><div class="val">0.195724</div><div class="sub">95% CI [0.180320, 0.211055] &middot; #1 OOF in GEMSDOE91 (+32.4% vs S19)</div></div>
+      <div class="s21-kpi"><div class="k">Competitive Uniqueness</div><div class="val">64.00% &le; 70%</div><div class="sub">PASS vs 932 competitive rasters (1,078 total) &middot; |&rho;| = 0.3553</div></div>
+      <div class="s21-kpi"><div class="k">82-Feature Leakage Canary</div><div class="val">0.7402 &le; 0.90</div><div class="sub">PASS (66 static max 0.6382; B12/B19 sub max_diff = 0.0)</div></div>
+      <div class="s21-kpi"><div class="k">GeoTIFF Format &amp; Range</div><div class="val">[0.0, 1.0] PASS</div><div class="sub">37,654 binary dots &middot; 0 NaNs &middot; EPSG:32611 (3730&times;3292)</div></div>
+    </div>
+    <p class="small">Unique Submission Name: <code>gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros</code><br>
+    DrivenData Note (105/140 chars): <code>GEMS91 S21-PDWC (pdwc_e3): Cauchy-Hilbert DCWF+B15 updip+LogGabor+ClayCap OOF+CELF 37654d; hide-v2=0.1957</code><br>
+    GeoTIFF SHA-256: <code>74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8</code> &middot; ZIP SHA-256: <code>5b367d1d94ce33d91112f57e9cad5456a5bbf738f683095fc8d70792030c1970</code></p>
+    </section>
+    
+
+<section class="card" id="how-to-submit">
+  <h2>1 &middot; Step-by-Step DrivenData Submission Guide (Exact Form Walkthrough)</h2>
+  <p class="warn"><strong>Automated Go / No-Go Verdict: <code>OK TO DOWNLOAD: YES</code> &middot; <code>OK TO SUBMIT: NO — NOT OK TO SUBMIT</code>.</strong>
+  Do <strong>not</strong> spend a weekly submission slot on <code>gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif</code> unless a human selector explicitly overrides the nominal <code>S18-HGBR</code> holdout gate (<code>0.195724</code> vs <code>0.200742</code>, <code>IR-S21-02</code>) and ratifies the synthetic calibration-blanket exemption (<code>IR-S21-04</code>). Zero weekly slots were spent in this session. Follow the exact steps below whenever submitting an approved candidate on DrivenData:</p>
+  <ol class="s21-steps">
+    <li><strong>Download the validated GeoTIFF (or its single-TIFF ZIP):</strong> Click <strong>&darr; Download S21-PDWC GeoTIFF (.tif, 145.0 KB)</strong> at the top of this page (<code>downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif</code>) or <strong>&darr; Single-TIFF ZIP (.zip)</strong> (<code>downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.zip</code>). Do <em>not</em> upload HTML pages, JSON receipts, or multi-file archives.</li>
+    <li><strong>Verify integrity &amp; why the <code>[0, 1]</code> error cannot recur:</strong> Confirm <code>sha256sum gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif</code> equals <code>74eab3db8a89d415d9bca36b1b7ca5cae422cadf97802b0fc9477000e90521b8</code>. Every pixel across the <code>3,730 &times; 3,292</code> <code>EPSG:32611</code> grid was automatically verified on disk as <code>float32</code> in <code>[0.0, 1.0]</code> (<code>min = 0.0</code>, <code>max = 1.0</code>, <code>0</code> NaN, <code>0</code> Inf, <code>nodata = None</code>, <code>37,654</code> binary dots, <code>0</code> catalogue mass), permanently eliminating DrivenData's <em>"Predicted values must be in range [0, 1]"</em> rejection.</li>
+    <li><strong>Open DrivenData Submissions:</strong> Sign in at <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</a>, verify your rolling 7-day upload allowance, and click <strong>New submission</strong>.</li>
+    <li><strong>Select the file &amp; paste the &le;140-character note:</strong> Choose <code>gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif</code> (or <code>gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.zip</code>) in the <em>File to submit</em> picker, then copy and paste this exact <code>105</code>-character note into <em>Note (optional)</em>:
+      <div class="copy"><input id="s21note" readonly value="GEMS91 S21-PDWC (pdwc_e3): Cauchy-Hilbert DCWF+B15 updip+LogGabor+ClayCap OOF+CELF 37654d; hide-v2=0.1957"><button type="button" data-copy="s21note">Copy</button></div>
+      Unique submission identifier for your experiment log:
+      <div class="copy"><input id="s21name" readonly value="gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros"><button type="button" data-copy="s21name">Copy</button></div>
+    </li>
+    <li><strong>Record the Organizer Receipt:</strong> After DrivenData finishes scoring, copy the exact score, timestamp, and filename into <code>registry/lfi_live_anchors.csv</code> — a number becomes <code>ORGANIZER-CONFIRMED</code> only after that receipt exists.</li>
+  </ol>
+</section>
+
+<section class="card" id="nine-site-summary">
+  <h2>2 &middot; 9-Site Executive Summary (Live <code>2026-10-26</code> GitHub Audit)</h2>
+  <p class="small">Audited live across all 9 requested sites (<code>GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36</code>) plus the <code>102</code>-repo <code>GEMSDOE*</code> fleet (<a href="nine-site-executive-summary-s21.json">machine-readable JSON</a>).
+  <strong>Best Overall (H19-5 Lineage):</strong> <code>GEMSDOE32</code> <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> = <strong>0.2778</strong> (<code>USER-REPORTED</code>).
+  <strong>Best Non-H19-5 De-Novo in 9 Sites:</strong> <code>GEMSDOE27</code> <code>H29-S</code> = <strong>0.2190</strong> (<code>USER-REPORTED</code>; fleet-wide OOF+CELF leader: <code>GEMSDOE70</code> <code>P8-OOF38k</code> = <strong>0.2478</strong>, <code>GEMSDOE76</code> = <strong>0.2343</strong>).
+  <strong>Public Leaderboard:</strong> <code>#1 = 0.4413</code>, <code>#24 (DARD brief target) = 0.3195</code>, <code>#50 = 0.2818</code> (<code>PUBLIC-LEADERBOARD</code>).</p>
+  <div class="s21-table-wrap">
+    <table>
+      <thead><tr><th>Rank</th><th>Site &amp; 2026-10-26 HEAD</th><th>Best Historical Submission</th><th>Best Score</th><th>De-Novo Best</th><th>2026-10-26 HEAD Gate</th><th>Audit Takeaway</th></tr></thead>
+      <tbody><tr><td><strong>#1</strong></td><td><strong>GEMSDOE32</strong><br><small><code>@e1270e3197</code></small></td><td><code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code> (37,654 px) &starf; 9-Site #1</td><td><strong>0.2778</strong><br><small>USER-REPORTED</small></td><td>—</td><td><span class="s21-pill-no">DO NOT SUBMIT</span><br><small>H36-1C / A8A-H1 gate-hardening audit</small></td><td><small>Highest historical score across all 9 sites (0.2778) achieved by stripping 2,545 (1,2] px catalogue-collar dots from H27-4 (40,199 -&gt; 37,654 px) without refilling FP-heavy far-field pixels; static hide-v2 = 0.006697 is an evaluation artifact of full-catalogue 2-px collar stripping (IR-S21-01).</small></td></tr><tr><td><strong>#2</strong></td><td><strong>GEMSDOE36</strong><br><small><code>@4aa901be69</code></small></td><td><code>h27-4-r1-solo-d2-8-20261004T193000Z-nan</code> (40,199 px)</td><td><strong>0.2750</strong><br><small>USER-REPORTED</small></td><td>—</td><td><span class="s21-pill-no">DO NOT SUBMIT</span><br><small>ATVR-36 EXP-2 / H36-CTRB / H36-GPS / Lane36</small></td><td><small>Active 40,199-dot mask is pixel-identical inside footprint to GEMSDOE28 H27-4 (reported 0.2710 vs 0.2750 user-table discrepancy IR-91-26); 2026-10-26 ATVR-36 EXP-2 reached hide-v2 = 0.0882 and halted DO NOT SUBMIT.</small></td></tr><tr><td><strong>#3</strong></td><td><strong>GEMSDOE28</strong><br><small><code>@348ff086e2</code></small></td><td><code>h27-4-r1-solo-d2-8-20261004T193000Z-zeros</code> (40,199 px)</td><td><strong>0.2710</strong><br><small>USER-REPORTED</small></td><td>0.1726 (USER-REPORTED)</td><td><span class="s21-pill-no">DO NOT SUBMIT</span><br><small>S20-NCHC (gems28-s20-nchc-e3)</small></td><td><small>Parent 1-px collar prune of H19-5 (44,061 -&gt; 40,199 px); 2026-10-26 S20-NCHC reached hide-v2 = 0.2194 but failed local live-promotion selector against 0.2710.</small></td></tr><tr><td><strong>#4</strong></td><td><strong>GEMSDOE31</strong><br><small><code>@e6e85b3579</code></small></td><td><code>h28-h195-catbuf2-rebudget-20261004T183735Z</code> (40,054 px)</td><td><strong>0.2708</strong><br><small>USER-REPORTED</small></td><td>—</td><td><span class="s21-pill-no">DO NOT SUBMIT</span><br><small>XFCOH31 (gemsdoe31-xfcoh31-c3-20261025-19ed952d)</small></td><td><small>Natural controlled experiment vs GEMSDOE32: both pruned the 2-px catalogue collar, but H28 refilled ~2,400 weaker tail pixels (40,054 px -&gt; 0.2708) whereas GEMSDOE32 kept pure pruning (37,654 px -&gt; 0.2778, +0.0070 gain from NOT refilling low-precision tail).</small></td></tr><tr><td><strong>#5</strong></td><td><strong>GEMSDOE33</strong><br><small><code>@565d663a9c</code></small></td><td><code>h23-3-cat1-d28-zeros</code> (40,199 px)</td><td><strong>0.2632</strong><br><small>USER-REPORTED</small></td><td>—</td><td><span class="s21-pill-no">DO NOT SUBMIT</span><br><small>A33-R2-CSHT</small></td><td><small>1-px collar H19-5 family variant (0.2632); 2026-10-26 A33-R2-CSHT stopped cleanly on duplicate gate.</small></td></tr><tr><td><strong>#6</strong></td><td><strong>GEMSDOE25</strong><br><small><code>@66b97bc9a9</code></small></td><td><code>h19-5-powerlaw-budget-multiline-20261003T234740Z</code> (44,061 px)</td><td><strong>0.2600</strong><br><small>USER-REPORTED</small></td><td>0.1594 (USER-REPORTED)</td><td><span class="s21-pill-no">DO NOT SUBMIT</span><br><small>H71-HGPC</small></td><td><small>Unpruned root H19-5 multiline submission (44,061 px, 0.2600); 2026-10-26 H71-HGPC reached hide-v2 = 0.1815 and held DO NOT SUBMIT.</small></td></tr><tr><td><strong>#6</strong></td><td><strong>GEMSDOE30</strong><br><small><code>@73db382d3c</code></small></td><td><code>h19-5-powerlaw-budget-multiline</code> (44,061 px)</td><td><strong>0.2600</strong><br><small>USER-REPORTED</small></td><td>—</td><td><span class="s21-pill-no">DO NOT SUBMIT</span><br><small>FFL-1</small></td><td><small>Duplicate of unpruned root H19-5 (0.2600); 2026-10-26 FFL-1 halted on duplicate gate.</small></td></tr><tr><td><strong>#8</strong></td><td><strong>GEMSDOE24</strong><br><small><code>@fb9e230bc0</code></small></td><td><code>h20-2-trim-weak-tail-20261004T024500Z</code> (36,000 px)</td><td><strong>0.2477</strong><br><small>USER-REPORTED</small></td><td>—</td><td><span class="s21-pill-no">DO NOT SUBMIT</span><br><small>H24-DPRF1 (81849d67c8bf); concurrent VENT PR #34 QUARANTINED</small></td><td><small>H24-DPRF1 reached hide-v2 = 0.1636 and held DO_NOT_SUBMIT under selector v2; concurrent PR #34 VENT lane was explicitly quarantined on 2026-10-26 after review found fabricated fallback C2ST and novelty values (IR-S21-05).</small></td></tr><tr><td><strong>#9</strong></td><td><strong>GEMSDOE27</strong><br><small><code>@426426b402</code></small></td><td><code>h20-3-powerlaw-d26</code> (41,200 px)</td><td><strong>0.2449</strong><br><small>USER-REPORTED</small></td><td>0.2190 (USER-REPORTED)</td><td><span class="s21-pill-no">LOCAL-27 ONLY (IR-S21-03)</span><br><small>H31-1 DRCG-WL (gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif)</small></td><td><small>Holds the #1 non-H19-5 de-novo live score among the 9 sites (H29-S = 0.2190 USER-REPORTED); 2026-10-26 H31-1 DRCG-WL self-promoted using a local 40-cell metric (0.04730 vs H29-S 0.04412) and a 27-raster local screen only — not yet screened against the 1,079-raster fleet inventory or gems57-pooled-hide-v2 (IR-S21-03).</small></td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card" id="forensics-02778">
+  <h2>3 &middot; Why <code>GEMSDOE32</code> Scored <code>0.2778</code> — And How to Beat <code>0.3195</code> / <code>0.4413</code></h2>
+  <ul>
+    <li><strong>Exact Byte-Verified Surgical Lineage:</strong> <code>19GEMSDOE H19-5</code> (<code>44,061</code> px, <code>0.2600</code>) &rarr; strip <code>3,862</code> dots at <code>d_cat &le; 1 px</code> (<code>100 m</code>) &rarr; <code>GEMSDOE28/36 H27-4</code> (<code>40,199</code> px, <code>0.2710–0.2750</code>) &rarr; strip <code>2,545</code> dots in <code>(1, 2] px</code> (<code>100–200 m</code>) <em>without refilling low-precision tail pixels</em> &rarr; <code>GEMSDOE32 H33-2-B2</code> (<code>37,654</code> px, <strong>0.2778</strong> vs <code>GEMSDOE31 H28</code> re-budgeted <code>40,054</code> px = <code>0.2708</code>).</li>
+    <li><strong>Why Static <code>R0</code> Scores <code>0.006697</code> on <code>hide-v2</code> (<code>IR-S21-01</code> Resolved):</strong> Static <code>R0</code> stripped <code>d_cat &le; 2.0 px</code> around <em>all</em> <code>60,988</code> catalogue pixels, removing the exact withheld catalogue faults <code>hide-v2</code> scores (<code>H19-5 = 0.2286</code> &rarr; <code>H27-4 = 0.0490</code> &rarr; <code>R0 = 0.0067</code>). Cross-fitting collars strictly per fold from <code>f["visible"]</code> restores honest evaluation.</li>
+    <li><strong>How to Beat <code>0.2778 &rarr; 0.3195 &rarr; 0.4413</code>:</strong> (1) Never submit in-sample refits (<code>S17-LFTG = 0.1823</code> live) — emit <code>~37,654</code> binary dots strictly from <strong>stitched spatially-blocked OOF posteriors + 300 m submodular CELF cover</strong>; (2) replace scalar HGM amplitudes with <strong>dipping-contact Cauchy–Hilbert waveforms + B15 up-dip projection + multi-scale Log-Gabor phase congruency + MT clay-cap/baffle physics</strong> (<code>S21-PDWC</code>); and (3) on an unrestricted host, ingest free public-domain <strong>USGS 3DEP 1-m LiDAR alluvial-fan scarps</strong> (<code>H21-4</code>) and <strong>USGS ComCat relocated microseismicity + ASF Sentinel-1 ARIA InSAR phase gradients</strong> (<code>H21-5</code>) to resolve sub-100 m blind structures.</li>
+  </ul>
+  <p class="small">Full mathematical &amp; geological derivation + verified official source links: <a href="GEOTHERMAL_VENT_RESEARCH_S21_PDWC.md">docs/GEOTHERMAL_VENT_RESEARCH_S21_PDWC.md</a> &middot; Frozen preregistration: <a href="HYPOTHESES_S21_PDWC.md">docs/HYPOTHESES_S21_PDWC.md</a>.</p>
+</section>
+
+<section class="card" id="s21-experiments">
+  <h2>4 &middot; Session 21 (<code>S21-PDWC</code>) Measured 3-Experiment Progression</h2>
+  <p class="small">Evaluator: <code>gems57-pooled-hide-v2</code> (60,988 withheld positives, 4 spatial quadrants, 80-px buffer, 100% symmetric 3-level nested cross-fitting). LFI surrogate model projection (<code>MODEL_PROJECTION_NOT_A_SCORE</code>): <code>ridge1 = 0.18345</code>, <code>ridge10 = 0.17724</code> (vs <code>S19-SVHF = 0.15877</code>).</p>
+  <div class="s21-table-wrap">
+    <table>
+      <thead><tr><th>Experiment</th><th>HOLDOUT-DTI (95% CI)</th><th>Blind SGMC &gt;300m / &gt;500m</th><th>Max Surface |&rho;|</th><th>Competitive 3-px Overlap (932 Rasters)</th></tr></thead>
+      <tbody><tr><td><strong>E1 · Stage-1 Asymmetric Cover-Rescue (DCWF+MGPC+CCMD) + 300 m NMS</strong></td><td><strong>0.181443</strong><br><small>95% CI [0.166510, 0.196138]</small></td><td>0.100196 / 0.089154<br><small>84.7% &gt;500 m</small></td><td>&le;0.36 (PASS)</td><td>73.37% (pre-cap) <span class="s21-pill-no">PRE-CAP (&gt;70% vs riedel_n90k)</span></td></tr><tr><td><strong>E2 · Stage-1/2 Nested OOF (w2=0.38) + Unconstrained 300 m CELF</strong></td><td><strong>0.189020</strong><br><small>95% CI [0.173319, 0.204350]</small></td><td>0.097847 / 0.087993<br><small>88.3% &gt;500 m</small></td><td>&le;0.36 (PASS)</td><td>72.40% (pre-cap) <span class="s21-pill-no">PRE-CAP (&gt;70% vs riedel_n90k)</span></td></tr><tr><td><strong>E3 (Selected) · Far-Field Subsurface Backbone + &lt;=0.64 Uniqueness-Capped 300 m CELF</strong></td><td><strong>0.195724</strong><br><small>95% CI [0.180320, 0.211055]</small></td><td>0.093878 / 0.083978<br><small>88.7% &gt;500 m</small></td><td>0.3553 (PASS)</td><td>64.00% <span class="s21-pill-ok">PASS (&le;70%)</span></td></tr></tbody>
+    </table>
+  </div>
+  <p class="small">Irregularities &amp; next steps: <a href="../IRREGULARITIES.md">IRREGULARITIES.md</a> (<code>IR-S21-01..05</code>) &middot; <a href="../LIMITATIONS_AND_NEXT_STEPS.md">LIMITATIONS_AND_NEXT_STEPS.md</a>.</p>
+</section>
+</main>
+<footer>Generated automatically from <code>docs/run-card-S21-PDWC.json</code> &amp; <code>docs/nine-site-executive-summary-s21.json</code> by <code>scripts/render_s21_pdwc_pages.py</code>. Zero manual numbers, zero automatic competition uploads.</footer>
+</div><script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{const el=document.getElementById(b.dataset.copy);navigator.clipboard.writeText(el.value).then(()=>{b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500);});});</script></body></html>
