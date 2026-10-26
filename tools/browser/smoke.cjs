@@ -9,6 +9,7 @@ const crypto = require('node:crypto');
 const root = path.resolve(__dirname, '../..');
 const output = path.join(root, 'work/browser-proof');
 const baseURL = process.env.PORTAL_BASE_URL || 'http://127.0.0.1:8000/';
+const expectedEntryURL = process.env.PORTAL_EXPECTED_ENTRY_URL || new URL('index.html', baseURL).href;
 
 async function main() {
   fs.mkdirSync(output, { recursive: true });
@@ -36,7 +37,7 @@ async function main() {
     });
     if (process.env.PORTAL_ENTRY_URL) {
       await page.goto(process.env.PORTAL_ENTRY_URL, { waitUntil: 'networkidle' });
-      await page.waitForURL(new URL('index.html', baseURL).href);
+      await page.waitForURL(expectedEntryURL);
     }
     await page.goto(baseURL, { waitUntil: 'networkidle' });
     const submissionStates = page.locator('[data-submission-ready]');
