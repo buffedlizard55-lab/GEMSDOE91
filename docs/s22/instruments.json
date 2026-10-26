@@ -1,11 +1,11 @@
 {
  "evidence_class": "MODEL fitted to USER-REPORTED scores; never a score",
- "n_anchors": 14,
+ "n_anchors": 112,
  "ridge": 10.0,
- "sites": 11,
+ "sites": 82,
  "baseline_refit": {
-  "loso_rmse": 0.03144,
-  "loso_spearman": 0.8901,
+  "loso_rmse": 0.01982,
+  "loso_spearman": 0.957,
   "stored_S20": {
    "loso_rmse": 0.019816,
    "loso_spearman": 0.957
@@ -14,79 +14,79 @@
  },
  "instrument_validity": {
   "hide_v2": {
-   "n": 14,
-   "spearman_vs_live": -0.1956,
+   "n": 112,
+   "spearman_vs_live": 0.1054,
    "ci95_bootstrap": [
-    -0.8377,
-    0.4676
+    -0.0935,
+    0.2944
    ],
    "sign_convention": "as is"
   },
   "sgmc_dti_gt300m": {
-   "n": 14,
-   "spearman_vs_live": 0.4286,
+   "n": 112,
+   "spearman_vs_live": 0.4272,
    "ci95_bootstrap": [
-    -0.2976,
-    0.8397
+    0.2654,
+    0.5923
    ],
    "sign_convention": "as is"
   },
   "sgmc_dti_gt500m": {
-   "n": 14,
-   "spearman_vs_live": 0.4637,
+   "n": 112,
+   "spearman_vs_live": 0.4416,
    "ci95_bootstrap": [
-    -0.2906,
-    0.8433
+    0.2643,
+    0.605
    ],
    "sign_convention": "as is"
   },
   "n_dots": {
-   "n": 14,
-   "spearman_vs_live": 0.1245,
+   "n": 112,
+   "spearman_vs_live": -0.172,
    "ci95_bootstrap": [
-    -0.4442,
-    0.7206
+    -0.3407,
+    -0.0005
    ],
    "sign_convention": "n_dots entered negated (fewer dots = higher expected score)"
   },
   "far_gt1km": {
-   "n": 14,
-   "spearman_vs_live": 0.5692,
+   "n": 112,
+   "spearman_vs_live": 0.1455,
    "ci95_bootstrap": [
-    -0.0248,
-    0.8929
+    -0.0643,
+    0.346
    ],
    "sign_convention": "as is"
   },
   "on_net15": {
-   "n": 14,
-   "spearman_vs_live": 0.3758,
+   "n": 112,
+   "spearman_vs_live": 0.7366,
    "ci95_bootstrap": [
-    -0.3543,
-    0.8211
+    0.6026,
+    0.8271
    ],
    "sign_convention": "as is"
   },
   "lfi_loso": {
-   "n": 14,
-   "spearman_vs_live": 0.8901,
+   "n": 112,
+   "spearman_vs_live": 0.957,
    "ci95_bootstrap": [
-    0.5216,
-    0.9955
+    0.9036,
+    0.9843
    ],
    "sign_convention": "as is"
   }
  },
  "H22_3_damage_decay": {
   "fresh_refit_factors": {
-   "dcat=1": 0.943,
-   "dcat=1-2": 0.857,
-   "dcat=2-3": 0.78,
-   "dcat=3-5": 0.698,
-   "dcat=5-10": 0.767,
-   "dcat=10-20": 1.393,
-   "dcat=20-40": 1.588,
-   "dcat=>40": 1.333
+   "dcat=1": 0.857,
+   "dcat=1-2": 0.606,
+   "dcat=2-3": 0.469,
+   "dcat=3-5": 0.457,
+   "dcat=5-10": 0.932,
+   "dcat=10-20": 1.16,
+   "dcat=20-40": 1.397,
+   "dcat=>40": 5.938
   },
   "stored_S20_factors": {
    "dcat=1": 0.857,
@@ -99,8 +99,8 @@
    "dcat=>40": 5.938
   },
   "kill_test_fresh": {
-   "mean_factor_(1,5]px": 0.778,
-   "mean_factor_(5,20]px": 1.08,
+   "mean_factor_(1,5]px": 0.511,
+   "mean_factor_(5,20]px": 1.046,
    "refuted": true
   },
   "kill_test_stored": {
@@ -114,21 +114,22 @@
    0.026322525615493447,
    0.09079338858524956
   ],
-  "fitted_log_effect_hi_vs_lo": -0.4451,
-  "factor_hi_vs_lo": 0.641,
-  "fitted_factor_mid_vs_lo": 1.263,
-  "site_jackknife_se": 0.1948,
+  "fitted_log_effect_hi_vs_lo": -1.0498,
+  "factor_hi_vs_lo": 0.35,
+  "fitted_factor_mid_vs_lo": 0.751,
+  "site_jackknife_se": 0.137,
   "ci95_log_effect": [
-   -0.8269,
-   -0.0634
+   -1.3182,
+   -0.7813
   ],
   "ci95_excludes_0": true,
-  "loso_rmse_baseline": 0.03144,
-  "loso_rmse_with_factor": 0.03158,
-  "loso_spearman_baseline": 0.8901,
-  "loso_spearman_with_factor": 0.8901,
-  "rmse_change": 0.00014,
-  "accepted": true
+  "loso_rmse_baseline": 0.01982,
+  "loso_rmse_with_factor": 0.01969,
+  "loso_spearman_baseline": 0.957,
+  "loso_spearman_with_factor": 0.958,
+  "rmse_change": -0.00012,
+  "direction": "contradicts H22-2 (hi < lo)",
+  "accepted": false
  },
- "elapsed_s": 160.4
+ "elapsed_s": 770.5
 }

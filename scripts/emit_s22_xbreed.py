@@ -131,85 +131,199 @@ def lfi_projections(paths: dict[str, Path], footprint, catalogue) -> dict[str, d
     return out
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--arm", default="auto", choices=["auto", "A", "B", "C"])
-    ap.add_argument("--skip-screen", action="store_true", help="debug only; never used for the shipped file")
-    args = ap.parse_args()
-    t0 = time.time()
-    EVIDENCE.mkdir(parents=True, exist_ok=True)
+def _common():
     s21 = load_s21()
     pins = s21.verify_template_pins()
-    prereg = ROOT / "docs/HYPOTHESES_S22_XBREED.md"
-
     hold = json.loads((EVIDENCE / "holdout.json").read_text())
     canary = json.loads((EVIDENCE / "canary.json").read_text())
     scores = hold["scores"]
-    if args.arm == "auto":
-        arm = max(("A", "B", "C"), key=lambda a: scores[f"{a}_celf"]["dti"] if f"{a}_celf" in scores else -1.0)
-    else:
-        arm = args.arm
-    print(f"[E3] selected arm {arm} by the preregistered rule (highest CELF pooled HOLDOUT-DTI): "
-          f"{ {a: scores.get(f'{a}_celf', {}).get('dti') for a in 'ABC'} }", flush=True)
-
+    arm = max(("A", "B", "C"), key=lambda a: scores[f"{a}_celf"]["dti"] if f"{a}_celf" in scores else -1.0)
     footprint, catalogue, folds = X.load_common()
     cubes = X.load_cubes(footprint)
     cover_fp, crest_fp = X.cover_and_crest(cubes)
-    surface = X.stitched_oof_surface(arm, folds, footprint, cover_fp, crest_fp)
     d_cat = ndi.distance_transform_edt(~catalogue).astype(np.float32)
+    return s21, pins, hold, canary, scores, arm, footprint, catalogue, folds, cover_fp, crest_fp, d_cat
 
-    for old in DOWNLOADS.glob("gems91-s22-*"):
-        old.unlink()
-    refs = s21.collect_all_reference_rasters()
-    print(f"[E3] {len(refs)} deduplicated reference rasters", flush=True)
 
-    # ---- pass 1: the evaluated recipe (equalized per-quadrant CELF, no caps) --------------------------------------
+def _quadrant_dots(surface, catalogue, footprint, folds, d_cat, caps=None):
     dots = np.zeros(footprint.shape, np.float32)
     for q, f in enumerate(folds):
-        dq = X.emit_quadrant_final(surface, catalogue, footprint, f["region"], d_cat, q, "celf")
+        dq = X.emit_quadrant_final(surface, catalogue, footprint, f["region"], d_cat, q, "celf", caps=caps)
         dots = np.maximum(dots, dq)
         print(f"  quadrant {q}: {int((dq > 0).sum())} dots (budget {X.QUAD_BUDGETS[q]})", flush=True)
         del dq
-    n1 = int((dots > 0).sum())
-    screen, active_paths = s21.screen_against_references(surface, dots, footprint, refs,
-                                                         active_cap_select_thresh=0.48, max_cap_refs=240)
-    comp = screen["dots_phase_competitive"]
-    print(f"[E3] pass-1 screen: {screen['n_compared_rasters']} rasters, max competitive overlap "
-          f"{comp['max_3px_overlap_all_competitive']:.4f} ({comp['max_3px_overlap_all_competitive_ref']}), "
-          f"max |surface rho| {screen['surface_phase']['max_abs_spearman_all_1100plus']:.4f}", flush=True)
-    (EVIDENCE / "registry-screen-pass1.json").write_text(json.dumps(screen, indent=1) + "\n")
-    recipe = "equalized per-quadrant CELF on the stitched 4-fold OOF surface (the evaluated recipe), global catalogue collar"
-    pass1_ok = (n1 == X.DOT_BUDGET and screen["surface_phase"]["pass_le_090"]
-                and comp["pass_competitive_uniqueness"]
-                and comp["max_3px_overlap_all_competitive"] <= PASS1_MAX_COMPETITIVE_OVERLAP)
-    fallback_used = False
-    if not pass1_ok:
-        print("[E3] pass-1 failed the margin rule -> hard-capped global CELF fallback", flush=True)
-        fallback_used = True
-        recipe = (f"global 300 m CELF on the stitched OOF surface with hard per-reference 3-px caps <= {UNIQUENESS_CAP_FALLBACK} "
-                  "(deviation from the evaluated recipe, disclosed)")
-        for rnd in range(3):
-            words, n_refs = s21.pack_reference_halos_uint64(active_paths, footprint)
-            dots = emit_dots_celf_submodular(surface, catalogue, footprint, budget=X.DOT_BUDGET, collar_px=X.COLLAR_PX,
-                                             min_spacing_px=X.COLLAR_PX, ref_halo_words=words, n_refs=n_refs,
-                                             uniqueness_cap=UNIQUENESS_CAP_FALLBACK)
-            del words
-            screen, more = s21.screen_against_references(surface, dots, footprint, refs,
-                                                         active_cap_select_thresh=0.50, max_cap_refs=240)
-            comp = screen["dots_phase_competitive"]
-            print(f"  round {rnd}: n={int((dots > 0).sum())} max competitive overlap {comp['max_3px_overlap_all_competitive']:.4f}", flush=True)
-            if comp["pass_competitive_uniqueness"] and int((dots > 0).sum()) >= X.DOT_BUDGET - 5:
-                break
-            active_paths = (active_paths + [p for p in more if p not in set(active_paths)])[:256]
-        (EVIDENCE / "registry-screen-final.json").write_text(json.dumps(screen, indent=1) + "\n")
-    else:
-        (EVIDENCE / "registry-screen-final.json").write_text(json.dumps(screen, indent=1) + "\n")
+    return dots
 
+
+def stage_capped() -> int:
+    """Persist the active reference set from the pass-1 (uncapped) dots and evaluate arms A and C under the shipped recipe."""
+    t0 = time.time()
+    s21, pins, hold, canary, scores, arm, footprint, catalogue, folds, cover_fp, crest_fp, d_cat = _common()
+    print(f"[capped] selected arm {arm}", flush=True)
+    surface = X.stitched_oof_surface(arm, folds, footprint, cover_fp, crest_fp)
+    pass1 = X.CACHE / f"pass1_dots_{arm}.npy"
+    if pass1.is_file():
+        dots = np.load(pass1)
+    else:
+        dots = _quadrant_dots(surface, catalogue, footprint, folds, d_cat)
+        np.save(pass1, dots)
+    for old in DOWNLOADS.glob("gems91-s22-*"):
+        old.unlink()
+    refs = s21.collect_all_reference_rasters()
+    screen, active_paths = s21.screen_against_references(surface, dots, footprint, refs,
+                                                         active_cap_select_thresh=X.ACTIVE_REF_MIN_OVERLAP,
+                                                         max_cap_refs=X.MAX_CAP_REFS)
+    comp = screen["dots_phase_competitive"]
+    print(f"[capped] pass-1 screen: max competitive overlap {comp['max_3px_overlap_all_competitive']:.4f} "
+          f"({comp['max_3px_overlap_all_competitive_ref']}); active refs {len(active_paths)}", flush=True)
+    (EVIDENCE / "registry-screen-pass1.json").write_text(json.dumps(screen, indent=1) + "\n")
+    ov = {r["path"]: r["dot_overlap_3px"] for r in comp.get("top_20_competitive_by_3px_overlap", [])}
+    (EVIDENCE / "active-references.json").write_text(json.dumps({
+        "rule": f"non-blanket references whose pass-1 3-px overlap >= {X.ACTIVE_REF_MIN_OVERLAP}, top {X.MAX_CAP_REFS}",
+        "n": len(active_paths), "uniqueness_cap": X.UNIQUENESS_CAP,
+        "references": [{"path": str(p.relative_to(ROOT)), "sha256": sha256_file(p),
+                        "pass1_overlap_if_top20": ov.get(str(p.relative_to(ROOT)))} for p in active_paths]}, indent=1) + "\n")
+
+    words, n_refs = s21.pack_reference_halos_uint64(active_paths, footprint)
+    caps = {"words": words, "n_refs": n_refs, "cap": X.UNIQUENESS_CAP}
+    terms, per_fold = {}, {}
+
+    def run_arm(name, pred_fn):
+        t_sum, pf = s21.evaluate_arm_terms(pred_fn, folds, footprint)
+        terms[name], per_fold[name] = t_sum, pf
+        print(f"[capped] {name:12s} HOLDOUT-DTI = {float(eh.from_terms(t_sum.sum(axis=0))):.6f}  ({time.time() - t0:.0f}s)", flush=True)
+
+    for a in ("A", "C"):
+        cache = {}
+
+        def surf(q, _a=a, _c=cache):
+            if q not in _c:
+                _c.clear()
+                _c[q] = X.quadrant_surface(_a, q, footprint, cover_fp, crest_fp)
+            return _c[q]
+
+        run_arm(f"{a}_celf_cap", lambda f, _s=surf, _c=caps: X.emit_quadrant(_s(int(f["fold"])), f, footprint, int(f["fold"]), "celf", caps=_c))
+        del cache
+        gc.collect()
+    pooled = {}
+    for cand in terms:
+        pooled[cand] = eh.pooled_summary(terms, draws=1000, seed=520810, candidate=cand)
+    sc = {n: {"dti": round(pooled["C_celf_cap"]["scores"][n]["dti"], 6),
+              "ci95": [round(x, 6) for x in pooled["C_celf_cap"]["scores"][n]["ci95"]]} for n in terms}
+    d = pooled["C_celf_cap"]["paired_differences"]["A_celf_cap"]
+    out = {"evaluator_version": eh.VERSION, "split_sha256": hold["split_sha256"],
+           "withheld_positive_pixels": hold["withheld_positive_pixels"],
+           "design": "equalized per-quadrant CELF with hard per-reference caps (amendment A3)",
+           "uniqueness_cap": X.UNIQUENESS_CAP, "n_active_references": len(active_paths),
+           "scores": sc, "per_fold": per_fold,
+           "paired_C_minus_A_celf_cap": {"delta": round(d["delta"], 6), "ci95": [round(x, 6) for x in d["ci95"]]},
+           "pooled": pooled, "elapsed_s": round(time.time() - t0, 1)}
+    (EVIDENCE / "holdout-capped.json").write_text(json.dumps(out, indent=1) + "\n")
+    print(json.dumps({"scores": sc, "paired": out["paired_C_minus_A_celf_cap"]}, indent=1), flush=True)
+    return 0
+
+
+def stage_posthoc() -> int:
+    """POST-HOC sensitivity (not preregistered, cannot change any verdict): cap each arm against ITS OWN active set.
+
+    Amendment A3 derived the active reference set from arm C's pass-1 dots and applied it to both arms, which binds C harder
+    than A.  Here arm A gets the set derived from its own pass-1 dots, so each arm is evaluated as the unique raster it
+    could actually ship.  Arm C's capped scores are re-used (its set is its own).
+    """
+    t0 = time.time()
+    s21, pins, hold, canary, scores, arm, footprint, catalogue, folds, cover_fp, crest_fp, d_cat = _common()
+    capped = json.loads((EVIDENCE / "holdout-capped.json").read_text())
+    surface_a = X.stitched_oof_surface("A", folds, footprint, cover_fp, crest_fp)
+    dots_a = _quadrant_dots(surface_a, catalogue, footprint, folds, d_cat)
+    refs = s21.collect_all_reference_rasters()
+    screen_a, active_a = s21.screen_against_references(surface_a, dots_a, footprint, refs,
+                                                       active_cap_select_thresh=X.ACTIVE_REF_MIN_OVERLAP, max_cap_refs=X.MAX_CAP_REFS)
+    comp_a = screen_a["dots_phase_competitive"]
+    print(f"[posthoc] arm A pass-1: max competitive overlap {comp_a['max_3px_overlap_all_competitive']:.4f} "
+          f"({comp_a['max_3px_overlap_all_competitive_ref']}); own active refs {len(active_a)}", flush=True)
+    words, n_refs = s21.pack_reference_halos_uint64(active_a, footprint)
+    caps = {"words": words, "n_refs": n_refs, "cap": X.UNIQUENESS_CAP}
+    cache = {}
+
+    def surf(q):
+        if q not in cache:
+            cache.clear()
+            cache[q] = X.quadrant_surface("A", q, footprint, cover_fp, crest_fp)
+        return cache[q]
+
+    t_a, pf_a = s21.evaluate_arm_terms(lambda f: X.emit_quadrant(surf(int(f["fold"])), f, footprint, int(f["fold"]), "celf", caps=caps),
+                                       folds, footprint)
+    dti_a = float(eh.from_terms(t_a.sum(axis=0)))
+    print(f"[posthoc] A_celf_cap_own HOLDOUT-DTI = {dti_a:.6f}", flush=True)
+    # C's capped terms: rebuild them from the stored pooled structure is not possible, so re-evaluate C with its own set
+    active_c = X.active_reference_paths()
+    words_c, n_c = s21.pack_reference_halos_uint64(active_c, footprint)
+    caps_c = {"words": words_c, "n_refs": n_c, "cap": X.UNIQUENESS_CAP}
+    cache_c = {}
+
+    def surf_c(q):
+        if q not in cache_c:
+            cache_c.clear()
+            cache_c[q] = X.quadrant_surface("C", q, footprint, cover_fp, crest_fp)
+        return cache_c[q]
+
+    t_c, pf_c = s21.evaluate_arm_terms(lambda f: X.emit_quadrant(surf_c(int(f["fold"])), f, footprint, int(f["fold"]), "celf", caps=caps_c),
+                                       folds, footprint)
+    terms = {"A_celf_cap_own": t_a, "C_celf_cap": t_c}
+    pooled = eh.pooled_summary(terms, draws=1000, seed=520810, candidate="C_celf_cap")
+    d = pooled["paired_differences"]["A_celf_cap_own"]
+    out = {"label": "POST-HOC sensitivity analysis (not preregistered; cannot change any verdict)",
+           "evaluator_version": eh.VERSION, "uniqueness_cap": X.UNIQUENESS_CAP,
+           "arm_A_own_active_references": len(active_a), "arm_C_active_references": len(active_c),
+           "arm_A_pass1_max_competitive_overlap": comp_a["max_3px_overlap_all_competitive"],
+           "arm_A_pass1_max_competitive_ref": comp_a["max_3px_overlap_all_competitive_ref"],
+           "scores": {n: {"dti": round(v["dti"], 6), "ci95": [round(x, 6) for x in v["ci95"]]} for n, v in pooled["scores"].items()},
+           "paired_C_minus_A_own": {"delta": round(d["delta"], 6), "ci95": [round(x, 6) for x in d["ci95"]]},
+           "reference_asymmetric_A3_value": capped["paired_C_minus_A_celf_cap"], "elapsed_s": round(time.time() - t0, 1)}
+    (EVIDENCE / "holdout-capped-symmetric-posthoc.json").write_text(json.dumps(out, indent=1) + "\n")
+    print(json.dumps(out, indent=1), flush=True)
+    return 0
+
+
+def stage_final() -> int:
+    t0 = time.time()
+    s21, pins, hold, canary, scores, arm, footprint, catalogue, folds, cover_fp, crest_fp, d_cat = _common()
+    capped = json.loads((EVIDENCE / "holdout-capped.json").read_text())
+    prereg = ROOT / "docs/HYPOTHESES_S22_XBREED.md"
+    print(f"[final] arm {arm}", flush=True)
+    surface = X.stitched_oof_surface(arm, folds, footprint, cover_fp, crest_fp)
+    for old in DOWNLOADS.glob("gems91-s22-*"):
+        old.unlink()
+    refs = s21.collect_all_reference_rasters()
+    active_paths = X.active_reference_paths()
+    recipe = (f"equalized per-quadrant 300 m CELF on the stitched 4-fold OOF surface with hard per-reference 3-px caps "
+              f"<= {X.UNIQUENESS_CAP} on {len(active_paths)} active references (amendment A3), global catalogue collar")
+    screen = None
+    for rnd in range(3):
+        words, n_refs = s21.pack_reference_halos_uint64(active_paths, footprint)
+        dots = _quadrant_dots(surface, catalogue, footprint, folds, d_cat,
+                              caps={"words": words, "n_refs": n_refs, "cap": X.UNIQUENESS_CAP})
+        del words
+        screen, more = s21.screen_against_references(surface, dots, footprint, refs,
+                                                     active_cap_select_thresh=X.ACTIVE_REF_MIN_OVERLAP, max_cap_refs=X.MAX_CAP_REFS)
+        comp = screen["dots_phase_competitive"]
+        print(f"[final] round {rnd}: n={int((dots > 0).sum())} max competitive overlap "
+              f"{comp['max_3px_overlap_all_competitive']:.4f} ({comp['max_3px_overlap_all_competitive_ref']})", flush=True)
+        if comp["pass_competitive_uniqueness"] and screen["surface_phase"]["pass_le_090"] and int((dots > 0).sum()) == X.DOT_BUDGET:
+            break
+        active_paths = (active_paths + [p for p in more if p not in set(active_paths)])[:256]
+    (EVIDENCE / "registry-screen-final.json").write_text(json.dumps(screen, indent=1) + "\n")
     comp = screen["dots_phase_competitive"]
     lit = screen["dots_phase_literal_including_synthetic_blankets"]
     n_dots = int((dots > 0).sum())
     quad_counts = [int(((dots > 0) & f["region"]).sum()) for f in folds]
+    # the rest of this stage is unchanged: write, validate, project, gate, card
+    return _write_and_gate(s21, pins, hold, capped, canary, scores, arm, footprint, catalogue, folds, d_cat, surface, dots,
+                           screen, comp, lit, n_dots, quad_counts, recipe, prereg, t0)
 
+
+def _write_and_gate(s21, pins, hold, capped, canary, scores, arm, footprint, catalogue, folds, d_cat, surface, dots,
+                    screen, comp, lit, n_dots, quad_counts, recipe, prereg, t0):
     # ---- write + validate ------------------------------------------------------------------------------------------
     git_sha8 = subprocess.run(["git", "rev-parse", "--short=8", "HEAD"], cwd=ROOT, check=True, capture_output=True,
                               text=True).stdout.strip()
@@ -218,7 +332,8 @@ def main() -> int:
     out_tif, out_zip = DOWNLOADS / f"{stem}.tif", DOWNLOADS / f"{stem}.zip"
     DOWNLOADS.mkdir(parents=True, exist_ok=True)
     h_c = scores[f"{arm}_celf"]
-    note = (f"S22-XB arm {arm} PDWC66+HGBR16 OOF+CELF {n_dots}d; hide-v2 HOLDOUT-DTI={h_c['dti']:.4f}; "
+    h_cap = capped["scores"][f"{arm}_celf_cap"]
+    note = (f"S22-XB arm {arm} PDWC66+HGBR16 OOF+capped CELF {n_dots}d; hide-v2 HOLDOUT-DTI={h_cap['dti']:.4f}; "
             f"LFI projection only; research")[:140]
     meta = write_submission(out_tif, dots, X.SAMPLE_TIF, footprint, note=note, name=stem, catalogue=catalogue)
     fmt = g57_gates.format_report(out_tif, X.SAMPLE_TIF, footprint=footprint)
@@ -253,7 +368,7 @@ def main() -> int:
                              and validator["zip_crc_ok"] and validator["nan_or_inf_pixels"] == 0
                              and validator["min_value"] >= 0.0 and validator["max_value"] <= 1.0
                              and validator["positives_on_catalogue"] == 0 and min_cat_dist > 3.0)
-    print(f"[E3] wrote {out_tif.name} ({out_tif.stat().st_size:,} B) validator pass={validator['pass']}", flush=True)
+    print(f"[final] wrote {out_tif.name} ({out_tif.stat().st_size:,} B) validator pass={validator['pass']}", flush=True)
 
     sgmc = s21.evaluate_blind_sgmc_suite(dots, catalogue, footprint)
     paths = {k: ROOT / v for k, v in {**COMPARATORS, **CONTEXT}.items() if (ROOT / v).is_file()}
@@ -264,24 +379,27 @@ def main() -> int:
     best_comp_name = max(comp_proj, key=comp_proj.get) if comp_proj else None
 
     # ---- gates (computed, not asserted) ----------------------------------------------------------------------------
-    pdiff = hold["paired_differences"]
-    c_minus_a = pdiff.get("C_minus_A_celf")
-    g4_stat = None if c_minus_a is None else c_minus_a
-    g4 = bool(arm == "C" and c_minus_a is not None and c_minus_a["ci95"][0] > 0.0)
+    d_unc = hold["paired_differences"].get("C_minus_A_celf")
+    d_cap = capped["paired_C_minus_A_celf_cap"]
+    g4 = bool(arm == "C" and d_unc is not None and d_unc["ci95"][0] > 0.0 and d_cap["ci95"][0] > 0.0)
     gates = {
         "G1_format": {"pass": bool(validator["pass"])},
         "G2_uniqueness_protocol": {"pass": bool(screen["surface_phase"]["pass_le_090"] and comp["pass_competitive_uniqueness"]),
                                    "max_competitive_3px_overlap": comp["max_3px_overlap_all_competitive"],
+                                   "max_competitive_ref": comp["max_3px_overlap_all_competitive_ref"],
                                    "max_abs_surface_spearman": screen["surface_phase"]["max_abs_spearman_all_1100plus"],
+                                   "n_compared_rasters": screen["n_compared_rasters"],
                                    "n_competitive_rasters": screen["n_competitive_non_blanket_rasters"],
                                    "literal_all_raster_max_overlap": lit["max_3px_overlap_literal"],
                                    "literal_ref": lit["max_3px_overlap_literal_ref"],
                                    "note": "literal figure includes dense synthetic blankets (IR-S16-03 / IR-S21-04); disclosed, not gating"},
         "G3_leakage_canary": {"pass": bool(canary["overall_pass_le_090"]), "max_symmetric_auc": canary["overall_max_symmetric_auc"]},
-        "G4_holdout_paired": {"pass": g4, "selected_arm": arm, "paired_C_minus_A_celf": g4_stat,
-                              "nominal_vs_pinned_references": {k: {"reference": v, "candidate": round(h_c["dti"], 6),
-                                                                   "exceeds": bool(h_c["dti"] > v)} for k, v in PINNED_HOLDOUT.items()},
-                              "note": "pinned references use S21/S18's global-budget design; context only (Amendment A1)"},
+        "G4_holdout_paired": {"pass": g4, "selected_arm": arm, "paired_C_minus_A_uncapped_celf": d_unc,
+                              "paired_C_minus_A_capped_celf": d_cap,
+                              "nominal_vs_pinned_references": {k: {"reference": v, "candidate_uncapped": round(h_c["dti"], 6),
+                                                                   "candidate_capped": round(h_cap["dti"], 6),
+                                                                   "exceeds_capped": bool(h_cap["dti"] > v)} for k, v in PINNED_HOLDOUT.items()},
+                              "note": "pinned references use S21/S18's global-budget design; context only (Amendments A1, A3)"},
         "G5_live_anchored_projection": {"pass": bool(best_comp_name is not None and cand_proj >= comp_proj[best_comp_name]),
                                         "candidate_ridge10": cand_proj, "best_independent_comparator": best_comp_name,
                                         "comparators_ridge10": comp_proj,
@@ -299,18 +417,23 @@ def main() -> int:
         "branch": "arena/c722cd53-gemsdoe91",
         "preregistration": {"path": "docs/HYPOTHESES_S22_XBREED.md", "sha256_final": sha256_file(prereg),
                             "sha256_before_experiments": "14d2af0020c81e3fb76e9f73725bb11639a466327a118f7d7a0671fdefbd8ebd",
-                            "amendments": ["A1 sha 8c5d61d5...", "A2 sha 5c404390..."],
-                            "experiments_run": 3, "budget_max_experiments": 3, "elapsed_seconds_this_stage": round(time.time() - t0, 1)},
+                            "amendments": {"A1": "8c5d61d53dfc3c7cd59a27a25946c161dc83435c38ae8196494ef8cd61c92b92",
+                                           "A2": "5c404390734b9b9fbd34be0d799080835f69ccd41ea2892a7f8674ad84ae23d5",
+                                           "A3": "c1f9914992ffca2b8842cd4622baefc431bd6aab2814027f34dc9dce1b865724"},
+                            "experiments_run": 3, "budget_max_experiments": 3, "elapsed_seconds_final_stage": round(time.time() - t0, 1)},
         "hypothesis": "H22-1: PDWC66 (dipping-contact waveform + phase congruency) jointly trained with HGBR16 (local Hurst/anisotropy regime breaks) improves out-of-fold fault ranking over either feature family alone under equalized quadrant budgets",
         "mechanism": "A fault edge in potential-field data should show a localized amplitude/phase signature (PDWC) AND a change of local roughness/anisotropy regime across the trace (HGBR); requiring both cues lets the model reject lithologic contacts that show only one.",
         "named_non_fault_mimic": "Unfaulted dipping pluton/caldera walls and tilted welded tuff (PDWC cue) and airborne flight-line seams (both families); the pure-subsurface sub-model and the seam guard are retained to limit them.",
-        "recipe": recipe, "fallback_used": fallback_used, "selected_arm": arm,
+        "recipe": recipe, "selected_arm": arm,
         "verdict": "promote" if ok_sub else "negative", "ok_to_download": ok_dl, "ok_to_submit": ok_sub,
         "failed_gates": failed, "slots_used": 0, "organizer_confirmed_score": None,
         "holdout": {"score_label": "HOLDOUT-DTI", "evaluator_version": hold["evaluator_version"], "split_sha256": hold["split_sha256"],
                     "n_withheld_positives": hold["withheld_positive_pixels"], "design": hold["design"],
-                    "selected_experiment": f"{arm}_celf", "holdout_dti": h_c["dti"], "ci95": h_c["ci95"],
-                    "all_scores": scores, "paired_differences": pdiff, "per_fold": hold["per_fold"]},
+                    "selected_experiment_uncapped": f"{arm}_celf", "holdout_dti_uncapped": h_c["dti"], "ci95_uncapped": h_c["ci95"],
+                    "selected_experiment_shipped_recipe": f"{arm}_celf_cap", "holdout_dti": h_cap["dti"], "ci95": h_cap["ci95"],
+                    "all_scores_uncapped": scores, "paired_differences_uncapped": hold["paired_differences"],
+                    "all_scores_capped": capped["scores"], "paired_C_minus_A_capped": d_cap, "per_fold": hold["per_fold"],
+                    "per_fold_capped": capped["per_fold"]},
         "blind_sgmc_control": {"label": "BLIND-SGMC-CONTROL (diagnostic; not the organizer test set)", "candidate": sgmc},
         "lfi_projection": {"label_class": "MODEL_PROJECTION_NOT_A_SCORE", "all": proj},
         "canary": {"n_features_tested": canary["pdwc66"]["n_features"] + canary["hgbr16"]["n_features"],
@@ -340,9 +463,16 @@ def main() -> int:
                                                        "ok_to_download": ok_dl, "ok_to_submit": ok_sub, "failed_gates": failed,
                                                        "validator": validator}, indent=1) + "\n")
     print(json.dumps({"verdict": card["verdict"], "ok_to_download": ok_dl, "ok_to_submit": ok_sub, "failed_gates": failed,
-                      "holdout_dti": h_c["dti"], "lfi_ridge10": cand_proj, "best_comparator": best_comp_name,
+                      "holdout_dti_capped": h_cap["dti"], "lfi_ridge10": cand_proj, "best_comparator": best_comp_name,
                       "max_competitive_overlap": comp["max_3px_overlap_all_competitive"], "file": out_tif.name}, indent=1))
     return 0
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("stage", choices=["capped", "final", "posthoc"])
+    args = ap.parse_args()
+    return {"capped": stage_capped, "final": stage_final, "posthoc": stage_posthoc}[args.stage]()
 
 
 if __name__ == "__main__":

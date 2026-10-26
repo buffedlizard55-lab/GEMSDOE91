@@ -144,11 +144,21 @@ def quadrant_surface(arm: str, q: int, footprint, cover_fp, crest_fp) -> np.ndar
     )
 
 
-def emit_quadrant(surface, fold: dict, footprint, q: int, method: str) -> np.ndarray:
-    """Equalized per-quadrant emission: dots only inside test quadrant ``q``, budget ``QUAD_BUDGETS[q]``."""
+def emit_quadrant(surface, fold: dict, footprint, q: int, method: str, caps: dict | None = None) -> np.ndarray:
+    """Equalized per-quadrant emission: dots only inside test quadrant ``q``, budget ``QUAD_BUDGETS[q]``.
+
+    ``caps`` (CELF only) = ``dict(words=..., n_refs=..., cap=...)``: hard per-reference 3-px overlap caps.  A cap applied
+    inside each quadrant call bounds the *global* overlap by the same fraction (amendment A3).
+    """
     from gems91.pdwc21 import emit_dots_celf_submodular, emit_dots_nms
 
     region = np.asarray(fold["region"], dtype=bool) & footprint
+    if caps is not None:
+        if method != "celf":
+            raise ValueError("caps are only supported by the CELF emitter")
+        return emit_dots_celf_submodular(surface, fold["visible"], region, budget=QUAD_BUDGETS[q],
+                                         collar_px=COLLAR_PX, min_spacing_px=COLLAR_PX,
+                                         ref_halo_words=caps["words"], n_refs=caps["n_refs"], uniqueness_cap=caps["cap"])
     fn = {"nms": emit_dots_nms, "celf": emit_dots_celf_submodular}[method]
     return fn(surface, fold["visible"], region, budget=QUAD_BUDGETS[q],
               collar_px=COLLAR_PX, min_spacing_px=COLLAR_PX)
@@ -191,7 +201,8 @@ def predicted_dti_after_pure_fp(T: float, dti_before: float, k_removed: int, alp
 # Final-file emission helpers (global catalogue collar, per-quadrant equalized budgets)
 # --------------------------------------------------------------------------------------------
 
-def emit_quadrant_final(surface, catalogue, footprint, region, d_cat, q: int, method: str = "celf") -> np.ndarray:
+def emit_quadrant_final(surface, catalogue, footprint, region, d_cat, q: int, method: str = "celf",
+                        caps: dict | None = None) -> np.ndarray:
     """Per-quadrant equalized emission for the *shipped* file with the **global** catalogue collar.
 
     The shared emitters truncate ``visible_faults`` to their ``footprint`` argument, so a catalogue pixel just
@@ -202,6 +213,26 @@ def emit_quadrant_final(surface, catalogue, footprint, region, d_cat, q: int, me
     from gems91.pdwc21 import emit_dots_celf_submodular, emit_dots_nms
 
     allowed = np.asarray(region, dtype=bool) & np.asarray(footprint, dtype=bool) & (d_cat > COLLAR_PX) & ~np.asarray(catalogue, dtype=bool)
+    if caps is not None:
+        if method != "celf":
+            raise ValueError("caps are only supported by the CELF emitter")
+        return emit_dots_celf_submodular(surface, np.zeros_like(allowed), allowed, budget=QUAD_BUDGETS[q],
+                                         collar_px=COLLAR_PX, min_spacing_px=COLLAR_PX,
+                                         ref_halo_words=caps["words"], n_refs=caps["n_refs"], uniqueness_cap=caps["cap"])
     fn = {"nms": emit_dots_nms, "celf": emit_dots_celf_submodular}[method]
     return fn(surface, np.zeros_like(allowed), allowed, budget=QUAD_BUDGETS[q],
               collar_px=COLLAR_PX, min_spacing_px=COLLAR_PX)
+
+
+UNIQUENESS_CAP = 0.64          # amendment A3 (same value as S21)
+ACTIVE_REF_MIN_OVERLAP = 0.48  # references whose pass-1 overlap is at least this get a hard cap
+MAX_CAP_REFS = 240
+
+
+def active_reference_paths(path: Path | None = None) -> list[Path]:
+    """Active-reference set persisted by ``emit_s22_xbreed.py capped`` (docs/s22/active-references.json)."""
+    import json
+
+    src = path or (ROOT / "docs/s22/active-references.json")
+    rows = json.loads(Path(src).read_text())["references"]
+    return [ROOT / r["path"] for r in rows]
