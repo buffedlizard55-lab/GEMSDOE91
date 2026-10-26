@@ -582,6 +582,18 @@
       "sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of the OLC91 E1 research-only file; same verdict (OK TO SUBMIT: NO)."
+    },
+    {
+      "path": "docs/downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif",
+      "sha256": "05280b6d33a91d0e814cc749ddfcb27f0433ae31b99a477c9999a89dcec58e51",
+      "status": "current_research_only",
+      "reason": "S20-LFI leaderboard-feedback inversion; format PASS; unique vs registry+sibling sweep; hide-v2 HOLDOUT-DTI=0.001851 (instrument invalid, Spearman vs live 0.105); NOT OK TO SUBMIT (fail-closed; awaiting human sign-off)."
+    },
+    {
+      "path": "docs/downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.zip",
+      "sha256": "5e0a8eac7447b440bc0e40a94828516d740287fa12dcaa5944e42a52e41ac3f2",
+      "status": "current_research_only",
+      "reason": "S20-LFI leaderboard-feedback inversion; format PASS; unique vs registry+sibling sweep; hide-v2 HOLDOUT-DTI=0.001851 (instrument invalid, Spearman vs live 0.105); NOT OK TO SUBMIT (fail-closed; awaiting human sign-off)."
     }
   ]
 }

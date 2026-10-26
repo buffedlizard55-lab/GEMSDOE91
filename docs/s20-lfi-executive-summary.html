@@ -1,0 +1,101 @@
+<!doctype html>
+    <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GEMSDOE91 · Session 20 LFI · executive summary &amp; how to submit</title><style>:root{--ink:#14211d;--mut:#51635d;--ok:#16624c;--bad:#a12c2c;--line:#dbe4e0;--bg:#f6f9f7;--warn:#fff6e0}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding:18px}a{color:var(--ok)}h1{font-size:28px;line-height:1.2;margin:.2em 0 .3em}h2{font-size:20px;margin:0 0 .5em}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px}.logo{font-weight:800}nav a{margin-left:14px;font-weight:600;text-decoration:none}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0;overflow-wrap:anywhere;overflow-x:auto}
+.dl{border:2px solid var(--ok)}.verdicts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}@media(max-width:640px){.verdicts{grid-template-columns:1fr}}
+.v{border-radius:12px;padding:12px 14px;font-weight:800;font-size:18px}.v small{display:block;font-weight:500;font-size:13px;margin-top:2px}
+.yes{background:#e2f2ea;color:var(--ok)}.no{background:#f8e3e3;color:var(--bad)}
+.btn{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:800;margin:6px 8px 6px 0}
+.btn2{display:inline-block;border:1px solid var(--ok);padding:9px 13px;border-radius:9px;text-decoration:none;font-weight:700;margin:6px 8px 6px 0}
+.small{color:var(--mut);font-size:14px}code{font-size:12.5px;word-break:break-all}table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left;vertical-align:top}.pass{color:var(--ok);font-weight:700;white-space:nowrap}.fail{color:var(--bad);font-weight:700}td.fail,th.res{white-space:nowrap}
+.copy{display:flex;gap:8px;align-items:center;margin:6px 0}.copy input{flex:1;font-family:ui-monospace,monospace;font-size:13px;padding:7px;border:1px solid var(--line);border-radius:8px}
+.copy button{border:1px solid var(--ok);background:#fff;color:var(--ok);border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer}
+.warn{background:var(--warn);border:1px solid #ead39a;border-radius:10px;padding:10px 12px}.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e2f2ea;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}.badge.bad{background:#f8e3e3;color:var(--bad)}.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:10px 14px;border-radius:9px;font-weight:800;margin:4px 6px 4px 0}.button.outline{background:#fff;color:var(--ok);border:1px solid var(--ok)}ol li{margin:4px 0}footer{margin:24px 0;color:var(--mut);font-size:13px}</style></head><body><div class="wrap">
+    <header><span class="logo">GEMSDOE91 · DOE GEMS Prize</span><nav aria-label="Main"><a href="index.html">Download</a><a href="s20-lfi-executive-summary.html">S20 summary</a><a href="HYPOTHESES_S20_LFI.md">Preregistration</a><a href="run-card-S20-LFI.json">Run card</a></nav></header>
+    <main id="main">
+    
+    <section class="card dl" data-submission-ready="false" aria-label="Session 20 download and automated verdict">
+    <h1>NEW · Session 20 · LFI GeoTIFF · automated verdict</h1>
+    <div class="verdicts"><div class="v yes">OK TO DOWNLOAD: YES<small>format re-validated from disk · unique vs 1235 rasters</small></div>
+    <div class="v no">OK TO SUBMIT: NO — NOT OK TO SUBMIT (G4 failed)<small>Do not spend a weekly slot.</small></div></div>
+    <a class="btn" download href="downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif">↓ Download GeoTIFF (.tif, 117 KB)</a><a class="btn2" download href="downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.zip">↓ ZIP with the one GeoTIFF</a><a class="btn2" href="s20-lfi-executive-summary.html">Executive summary &amp; how to submit</a><a class="btn2" href="run-card-S20-LFI.json">Run card</a>
+    <p class="small">Name <code>gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros</code><br>Note (103/140) <code>S20-LFI: leaderboard-feedback inversion of 112 live scores + consensus q-map, greedy E[DTI], 29671 dots</code><br>SHA-256 <code>05280b6d33a91d0e814cc749ddfcb27f0433ae31b99a477c9999a89dcec58e51</code> · 29,671 binary dots · all-finite zeros float32</p>
+    </section>
+    
+    
+    
+    <section class="card"><h2>1 · How to submit (DrivenData form: file + optional note)</h2>
+    <ol>
+    <li>Click <strong>↓ Download GeoTIFF</strong> above. The ZIP holding the one TIFF is equally valid.</li>
+    <li>Optional check: SHA-256 of the downloaded file must equal <code>05280b6d33a91d0e814cc749ddfcb27f0433ae31b99a477c9999a89dcec58e51</code> (<code>sha256sum gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif</code>).</li>
+    <li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org → DOE GEMS → Submissions</a> and sign in.</li>
+    <li>Choose the file in the upload box.</li>
+    <li>Paste the note (optional field):
+    <div class="copy"><input id="note" readonly value="S20-LFI: leaderboard-feedback inversion of 112 live scores + consensus q-map, greedy E[DTI], 29671 dots"><button type="button" data-copy="note">Copy</button></div>
+    Keep the name below for your own records. It is also the file stem:
+    <div class="copy"><input id="nm" readonly value="gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros"><button type="button" data-copy="nm">Copy</button></div></li>
+    <li>Submit. Then record the public score in <code>registry/lfi_live_anchors.csv</code>, because every new live score is one more data point for the LFI model.</li>
+    </ol>
+    <p class="warn"><strong>Do not submit this file.</strong> The automated verdict is NOT OK TO SUBMIT (G4 failed). These steps are documented for completeness and for any future file whose verdict is YES. 0 slots used; this run does not pick slots.</p>
+    </section>
+    
+    <section class="card"><h2>2 · Executive summary of the nine sites: best submission each</h2>
+    <p class="small">The <strong>Live</strong> column holds USER-REPORTED public-leaderboard scores from the session prompt. They are not organizer receipts.
+    The <strong>LFI held-out</strong> column is the surrogate's prediction for that file with its own site left out of the fit (MODEL).
+    The <strong>Hide-v2</strong> column is the HOLDOUT-DTI on the catalogue hide-and-recover evaluator: 112 anchors, 60,988 withheld px, evaluator <code>gems57-pooled-hide-v2</code>.</p>
+    <table><tr><th>Site</th><th>Best submission</th><th>Live (USER-REPORTED)</th><th>LFI held-out (MODEL)</th><th>Hide-v2 HOLDOUT-DTI</th></tr><tr><td><strong>GEMSDOE24</strong></td><td><code>h25-1-dotted-h19-5-d1-5</code></td><td><strong>0.2477</strong></td><td>0.2543</td><td>0.1717</td></tr><tr><td><strong>GEMSDOE25</strong></td><td><code>dotted-h19-5-d2-8</code></td><td><strong>0.2600</strong></td><td>0.2630</td><td>0.1615</td></tr><tr><td><strong>GEMSDOE27</strong></td><td><code>topo-gap-closure-t-v2-on-d1-5</code></td><td><strong>0.2449</strong></td><td>0.2522</td><td>0.1725</td></tr><tr><td><strong>GEMSDOE28</strong></td><td><code>h36-1-rung30-blind-r1</code></td><td><strong>0.2710</strong></td><td>0.2673</td><td>0.0461</td></tr><tr><td><strong>GEMSDOE30</strong></td><td><code>d28-poisson300m-offcat-44090</code></td><td><strong>0.2600</strong></td><td>0.2628</td><td>0.1615</td></tr><tr><td><strong>GEMSDOE31</strong></td><td><code>h27-4-solo-d28</code></td><td><strong>0.2708</strong></td><td>0.2696</td><td>0.0490</td></tr><tr><td><strong>GEMSDOE32</strong></td><td><code>h33-h33-2-b2 (zeros)</code> ★ fleet best</td><td><strong>0.2778</strong></td><td>0.2722</td><td>0.0067</td></tr><tr><td><strong>GEMSDOE33</strong></td><td><code>h33d-analog-tip-stepover-r30</code></td><td><strong>0.2632</strong></td><td>0.2676</td><td>0.0864</td></tr><tr><td><strong>GEMSDOE36</strong></td><td><code>anderson-geothermal-pinn-38854</code></td><td><strong>0.2750</strong></td><td>0.2698</td><td>0.0069</td></tr></table>
+    <p><strong>Why GEMSDOE32 h33-2-b2 scored 0.2778.</strong> It is the h19-5 catalogue-blind ridge network, dotted at 2.8 px spacing (44,090 dots → 0.2600).
+    Dots within √2–2 px of the mapped catalogue were then deleted (→ 37,654 dots, 0.2778).
+    The truth is <em>new</em> faults that are absent from the catalogue, so catalogue-adjacent dots earn almost nothing while still paying the false-positive cost.
+    LFI quantifies this from the live data. The fitted effect for &gt;4 km from the catalogue is +1.78 log-units versus -0.76 at 200–300 m.
+    For being on the ridge network it is +0.70, and for agreement of ≥3 independent high-scoring methods it is +2.97 (ridge 10.0).</p>
+    <p><strong>Can it be beaten?</strong> Not yet with a unique file. The surrogate projects 0.368–0.400 (PROJECTION) against R0's 0.2778. However, the most conservative variant (<code>ridge1_blindcons</code>, refitted without the consensus anchors' scores) has 95% CI [-0.026, +0.169] and P(Δ&gt;0) = 0.87, below the preregistered 0.95. The cause is the uniqueness rule: the fleet already occupies the zones the inversion values most. Pass 1 (37,500 dots, more of them in those zones) projected higher, but it duplicated 5 sibling rasters at more than 70%.</p>
+    <p>How this file's dots differ from R0's:</p>
+    <ul>
+    <li>71.7% sit in ≥3-method consensus zones (R0 67.6%; footprint 9.6%).</li>
+    <li>91.3% lie more than 1 km from the catalogue (R0 69.8%).</li>
+    <li>Only 46.6% lie within 100 m of the h19-5 ridge network that R0 was dotted from (R0 100%).</li>
+    </ul>
+    <p>Projections are not scores. Optimizer's curse, extrapolation and public-chunk fit are discussed in §4.</p>
+    </section>
+    
+    <section class="card"><h2>3 · Preregistered automated gates (<a href="HYPOTHESES_S20_LFI.md">written before results</a>)</h2>
+    <table><tr><th>Gate</th><th>Rule and measurement</th><th class="res">Result</th></tr><tr><td>G1</td><td>Format: single band float32, EPSG:32611, 3730×3292, exact transform, all finite, in [0,1], 0 dots on catalogue (shared writer + validator)</td><td class="pass">PASS</td></tr><tr><td>G2</td><td>Uniqueness: 198 registry/anchor/own rasters + 1037 sibling-sweep rasters; 0 duplicates under the documented rule</td><td class="pass">PASS</td></tr><tr><td>G3</td><td>Leakage canary: every model factor alone has AUC ≤ 0.90 vs withheld truth (max 0.647)</td><td class="pass">PASS</td></tr><tr><td>G4</td><td>Surrogate (leave-one-site-out-validated) paired Δ vs GEMSDOE32: 95% lower bound &gt; 0 in ≥2 of 3 variants and P(Δ&gt;0) ≥ 0.95 in all 3</td><td class="fail">FAIL</td></tr><tr><td>G5</td><td>Instrument rule: hide-v2 gates only if it tracks live scores (Spearman ≥ 0.5); measured 0.105 → not gating</td><td class="pass">PASS</td></tr></table>
+    <h3>Evidence</h3>
+    <p><strong>E1 · surrogate validity (MODEL).</strong> 112 USER-REPORTED live scores, ridge 10.0.
+    Leave-one-site-out: RMSE 0.0198, Spearman 0.957, Pearson 0.972.
+    Fitted public-chunk fraction f = 0.849; expected public truth ≈ 13,509 px.</p>
+    <p><strong>E2 · is the hide-and-recover holdout a valid live proxy? No.</strong> The same 112 published rasters were scored on <code>gems57-pooled-hide-v2</code>. Correlation with their live scores:
+    Spearman <strong>0.105</strong>, Pearson -0.021.
+    The LFI held-out predictions reach Spearman 0.957.
+    Example: GEMSDOE32 R0 (live 0.2778) scores 0.0067 on hide-v2.
+    The reason is that hide-v2 rewards recovering <em>catalogued</em> faults, and those are exactly the pixels the live truth excludes.</p>
+    <p><strong>HOLDOUT-DTI (reported regardless).</strong> gems57-pooled-hide-v2, 60,988 withheld positives, 1,000-draw paired 20 km block bootstrap:</p>
+    <ul>
+    <li>Candidate: 0.001851 [0.001337, 0.002424].</li>
+    <li>R0: 0.006697 [0.005988, 0.007431].</li>
+    <li>Paired Δ: -0.004846 [-0.005688, -0.003980].</li>
+    <li>For reference, the best GEMSDOE91 hide-v2 file ever is S18-HGBR at 0.200742, which scored poorly live.</li>
+    </ul>
+    <p><strong>G4 · surrogate projection (PROJECTION, paired vs R0, 60 site-bootstraps).</strong></p>
+    <table><tr><th>Variant</th><th>cand</th><th>R0</th><th>Δ</th><th>95% CI</th><th>P(Δ&gt;0)</th><th>projected vs reported 0.2778</th></tr><tr><td>ridge1</td><td>0.395</td><td>0.273</td><td>+0.122</td><td>[+0.004, +0.167]</td><td>0.97</td><td>0.400</td></tr><tr><td>ridge10</td><td>0.362</td><td>0.273</td><td>+0.090</td><td>[+0.031, +0.114]</td><td>0.98</td><td>0.368</td></tr><tr><td>ridge1_blindcons</td><td>0.366</td><td>0.276</td><td>+0.090</td><td>[-0.026, +0.169]</td><td>0.87</td><td>0.368</td></tr></table>
+    </section>
+    
+    <section class="card"><h2>4 · Limitations and irregularities (read before spending a slot)</h2>
+    <ul>
+    <li><strong>The standing rule "beat the holdout best" is not met on either instrument.</strong> The candidate is below R0 on hide-v2, which E2 shows is invalid as a live proxy. On the live-validated surrogate, the conservative variant failed G4. The surrogate is validated leave-one-<em>site</em>-out, which is not spatially blocked, because live truth has no spatial labels.</li>
+    <li><strong>Optimizer's curse:</strong> the candidate maximises the same model that projects it, so the projection is biased upward. The blinded-consensus variant (95% lower bound -0.026) is the most conservative reading.</li>
+    <li><strong>Public-chunk fit:</strong> the surrogate was fitted on public-leaderboard scores, while prizes are scored on the private chunks. No spatial or chunk factor was allowed, which limits but does not remove this risk.</li>
+    <li><strong>Consensus can encode shared bias:</strong> all fleet methods read the same 19 bands.</li>
+    <li><strong>Uniqueness:</strong> sparse-reference overlap is capped at 0.650 by construction (limit 0.70). The literal readings on dense rasters (&gt;3× our dots, e.g. the lattice witness) exceed 0.70. They are judged by rank correlation under the repo's documented dense-reference rule, with max dot |ρ| 0.100.</li>
+    <li><strong>Budget:</strong> 3 experiments were run as allowed, plus a pass-2 re-emission for uniqueness. Wall-clock time (~3.5 h) exceeded the 2 h budget.</li>
+    <li><strong>Leaderboard ceiling conflict:</strong> the prompt says 0.3195 is the "current high", but the public leaderboard read on 2026-10-26 shows #1 at 0.4413.</li>
+    </ul>
+    <p>Full list: <a href="../IRREGULARITIES.md">IRREGULARITIES.md</a> · <a href="../LIMITATIONS_AND_NEXT_STEPS.md">LIMITATIONS_AND_NEXT_STEPS.md</a></p>
+    </section>
+    </main><footer>Generated from <code>docs/run-card-S20-LFI.json</code> by <code>scripts/render_s20_lfi_pages.py</code>. No numbers are typed by hand. No automatic uploads, and no credentials are stored.</footer></div><script>document.querySelectorAll('button[data-copy]').forEach(b=>b.onclick=()=>{navigator.clipboard.writeText(document.getElementById(b.dataset.copy).value);b.textContent='Copied';});</script></body></html>
+    
