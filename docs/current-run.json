@@ -2,7 +2,7 @@
   "run_card": "run-card-S20-RHTW.json",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "scope": "Current research download; format pass is not submission approval",
+  "scope": "Historical published research artifact; format pass is not submission approval",
   "raster_sha256": "06e5f52d7f231c315d427849a9e02b6fd78dc2cf3993aabb0b76b676b1150f2b",
   "tif": "downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.tif",
   "zip": "downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.zip",

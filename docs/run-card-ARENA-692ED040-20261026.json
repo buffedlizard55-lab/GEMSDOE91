@@ -1,0 +1,52 @@
+{
+  "schema": "gemsdoe91.run-card.v1",
+  "session": "ARENA-692ED040-20261026",
+  "date_utc": "2026-10-26",
+  "branch": "arena/692ed040-gemsdoe91",
+  "hypothesis": "Candidate shortlist only; top proposed future test is third-order wavelet bicoherence on GeoDAWN B02 RTP magnetics and B13 isostatic gravity. No lane assignment was present, so it was not implemented or tested.",
+  "mechanism": "Phase-coupled, multi-scale magnetic/gravity texture may indicate a concealed fault damage zone even where individual-band gradients are weak; phase-randomized surrogates would preserve power spectra as a nuisance control.",
+  "named_non_fault_mimic": "Intrusive contacts, volcanic flow margins, and geophysical processing seams can produce multi-scale cross-band structure.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "score": null,
+    "ci_95": null,
+    "status": "NOT RUN: no assigned lane, local pinned data, dependencies, or holdout execution."
+  },
+  "registry_correlation_overlap": {
+    "surface_rank_correlation_max_abs": null,
+    "final_dot_fraction_within_3px_max": null,
+    "status": "NOT RUN: no candidate surface/dots and no complete local frozen registry; do not interpret missing values as passing."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": "NOT RUN; no new raster",
+    "values_in_0_1": "NOT RUN; no new raster",
+    "crs_match": "NOT RUN; no new raster",
+    "shape_match": "NOT RUN; no new raster",
+    "transform_match": "NOT RUN; no new raster"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "ok_to_download": false,
+  "ok_to_submit": false,
+  "weekly_slots_used": 0,
+  "verdict": "negative",
+  "reason": "Negative/blocked deliverable. No unique TIFF was generated because the assigned method paragraph, pinned data, dependencies, holdout validation, registry uniqueness checks, and validator evidence were unavailable. No prior raster was copied or renamed.",
+  "score_evidence": {
+    "organizer_confirmed": null,
+    "user_supplied_values_for_requested_sites": {
+      "GEMSDOE24": [0.2477],
+      "GEMSDOE25": [0.2600, 0.0742],
+      "GEMSDOE27": [0.2449, 0.2190],
+      "GEMSDOE28": [0.2708, 0.2649, 0.2710, 0.2707, 0.0217],
+      "GEMSDOE30": [0.2600, 0.1462],
+      "GEMSDOE31": [0.2708],
+      "GEMSDOE32": [0.2778],
+      "GEMSDOE33": [0.2632],
+      "GEMSDOE36": [0.2750]
+    },
+    "note": "Values are copied from the user prompt and are not verified site scores or organizer receipts."
+  }
+}

@@ -8,8 +8,8 @@
 > - **Optional DrivenData Form Note (`110/140` chars):** `S20-RHTW E3: Riesz-grav/mag worm+GDR geotherm+pluvial OOF CELF 37654d; I2 0.1368 HOLDOUT-DTI; SGMC>500m 0.0703`
 
 ### Arena AI Core Values Applied End-to-End
-- **Maximize P(Win):** Never waste a `3/week` submission slot on clonal `19GEMSDOE H19-5` duplicates (`86.7%–100.0%` overlap across all 9 audited sites) or leaky in-sample refits. Every candidate is preregistered, tested on spatially blocked out-of-fold (`OOF`) holdouts (`I2` + isolated `I1` + `LOQO` + `BLIND-SGMC-CONTROL`), and checked across `120` unique rasters before any human selector decision.
-- **Own the Outcome:** Reconstructed exact 3D harmonic vertical gravity derivatives from native horizontal vector channels `(B18 = +dG/dx, B11 = +dG/dy)`, fixed `B03` `200 m` magnetic gradient scaling + prior `B04/B05/B08/B09/B18` mislabelings (`IR-91-S20-01`), caught and fixed a nested pairwise OOF mask bug before final evaluation (`IR-91-S20-02`), and eliminated `"Predicted values must be in range [0, 1]"` via all-finite `{0.0, 1.0}` zeros encoding (`nodata=None`).
+- **Maximize P(Win):** Never waste a `3/week` submission slot on clonal `19GEMSDOE H19-5` duplicates (`86.7%–100.0%` overlap across all 9 audited sites) or leaky in-sample refits. Every candidate is preregistered, tested on spatially blocked out-of-fold (`OOF`) holdouts (`I2` + isolated `I1` + `LOQO` + `BLIND-SGMC-CONTROL`), and checked across `122` unique rasters (including newly merged `S20-LFI` at `24.19%` and `S21-DCBL` at `4.13%`) before any human selector decision.
+- **Own the Outcome:** Reconstructed exact 3D harmonic vertical gravity derivatives from native horizontal vector channels `(B18 = +dG/dx, B11 = +dG/dy)`, fixed `B03` `200 m` magnetic gradient scaling + prior `B04/B05/B08/B09/B18` mislabelings (`IR-91-S20-01`), caught and fixed a nested pairwise OOF mask bug before final evaluation (`IR-91-S20-02`), registered parallel `S21-DCBL` artifacts in `registry/artifact_policy.json` (`101` total), and eliminated `"Predicted values must be in range [0, 1]"` via all-finite `{0.0, 1.0}` zeros encoding (`nodata=None`).
 
 ### Session 20 (`S20-RHTW`) Measured Holdout, Canary & Uniqueness Summary
 - **Primary Holdout `I2` (`buffered_component_draw(seed=20)`, `11,321` withheld positives across `606` hidden fault components, `gems57-pooled-hide-v2`):**
@@ -17,10 +17,10 @@
   - `E0` (pinned `OLC91/ISO91` incumbent): `0.085260 HOLDOUT-DTI` `[0.068962, 0.102856]`
   - `E1` (`H20-1 + H20-3` Riesz-harmonic gravity/mag worms + pluvial-decontaminated openness Dual-Specialist OOF, **0 visible-fault coordinates**): **`0.106800 HOLDOUT-DTI`** `[0.089209, 0.124634]` (`+25.26%` over `E0`, `70.6%` `>1 km` far-field)
   - `E2` (`E1 + H20-2` strike-guided GDR `1391` silica/cation geothermometer conduits): **`0.105247 HOLDOUT-DTI`** `[0.087541, 0.123099]` (`+23.44%` over `E0`)
-  - **`E3` (`E2 + H20-4` geophysically-corroborated fold-safe visible tip/relay bridge + `300 m` submodular CELF, WINNER):** **`0.136798 HOLDOUT-DTI` `[0.120020, 0.154533]`** — wins **4/4 quadrants** (`NW 0.1341, NE 0.1621, SW 0.1120, SE 0.1448`), beats `E0` by **`+0.051538` (`+60.45%`, `95% CI [+0.038464, +0.065166]`)**, and beats external `GEMSDOE70 Phase 5` (`0.109968`) by **`+0.026830` (`+24.40%`)**!
+  - **`E3` (`E2 + H20-4` geophysically-corroborated fold-safe visible tip/relay bridge + `300 m` submodular CELF, WINNER):** **`0.136798 HOLDOUT-DTI` `[0.120020, 0.154533]`** — wins **4/4 quadrants** (`NW 0.1341, NE 0.1621, SW 0.1120, SE 0.1448`), beats `E0` by **`+0.051538` (`+60.45%`, `95% CI [+0.038464, +0.065166]`)**, beats parallel `S21-DCBL` (`0.022565`) by **`6.06x`**, and beats external `GEMSDOE70 Phase 5` (`0.109968`) by **`+0.026830` (`+24.40%`)**!
 - **Secondary Isolated-Fault Holdout `I1` (`isolated_component_draw(sep_px=5.0)`, `11,911` isolated `>500 m` positives):** **`S20_OOF = 0.113298 HOLDOUT-DTI` `[0.097264, 0.128559]`** vs `E0 = 0.093105` (`paired Δ = +0.020193`, **`95% CI [+0.005827, +0.034334]`** — first model in repo history to beat `E0` with strictly positive `95% CI` on both `I2` and `I1`).
 - **Auxiliary Diagnostics:** Read-only `LOQO-60,988` on `FINAL_E2 = 0.165240 HOLDOUT-DTI` `[0.150871, 0.180994]`; `BLIND-SGMC-CONTROL` `E3 = 0.082153` (`>300 m`) / `0.070307` (`>500 m`) vs `GEMSDOE32 R0 = 0.088789`.
-- **Format, Canary & Uniqueness:** `3/3` independent validators `PASS` (`EPSG:32611`, `3730×3292 float32`, `nodata=None`, `12,279,160` finite cells in `[0, 1]`, `37,654` dots, `0` on catalogue); **`103/103` single-feature AUROC canaries `PASS`** (`worst pooled = 0.8067 <= 0.90`, `max quadrant = 0.8597 <= 0.90`); **`120` unique rasters audited** (`surface |ρ| <= 0.1803 <= 0.90`, **`49.10% <= 70%` 3-px overlap vs `GEMSDOE32 R0`**, `max non-blanket = 62.15% <= 70%`).
+- **Format, Canary & Uniqueness:** `3/3` independent validators `PASS` (`EPSG:32611`, `3730×3292 float32`, `nodata=None`, `12,279,160` finite cells in `[0, 1]`, `37,654` dots, `0` on catalogue); **`103/103` single-feature AUROC canaries `PASS`** (`worst pooled = 0.8067 <= 0.90`, `max quadrant = 0.8597 <= 0.90`); **`120` preregistered + `2` newly merged (`122`) unique rasters audited** (`surface |ρ| <= 0.1803 <= 0.90`, **`49.10% <= 70%` 3-px overlap vs `GEMSDOE32 R0`**, `24.19%` vs `S20-LFI`, `4.13%` vs `S21-DCBL`, `max non-blanket = 62.15% <= 70%`).
 
 ### Executive Summary of All 9 Specified `GEMSDOE` Sites (`docs/s20_rhtw/nine_sites_forensic_matrix.json`)
 
@@ -48,8 +48,70 @@
 
 ---
 
-# GEMSDOE91 — Session 19 (`S19-SVHF`, branch `arena/bcc0fcb2-gemsdoe91`) & Parallel `ISO91` / `S18-HGBR`
+<!--S21-DCBL-BEGIN-->
+# GEMSDOE91 — Parallel Session 21 (`S21-DCBL`, branch `arena/6b5a64ab-gemsdoe91`): Deep-Cover Basin Lineament — unique TIF + nine-site executive summary
 
+> **AUTOMATED VERDICT: `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT (negative holdout + lattice disclosure, 0 slots)`.**
+> **[⬇ Download S21-DCBL GeoTIFF](docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.tif)** (`sha256 18529ab2e2d57007bf9d58d1f456a8414a50d67b17f9c81dfc26ec7055e7cb52`, 37,654 binary dots, all-finite zeros float32) · [Single-TIFF ZIP](docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.zip) · **[Nine-site executive summary (which is best?)](docs/nine-site-executive-summary.html)** · **[S21 submission guide & how to submit](docs/s21-dcbl-executive-summary.html)** · [Run card](docs/run-card-S21-DCBL.json) · [Preregistration with 5 hypotheses](docs/HYPOTHESES_S21_DCBL.md) · [Current portal](docs/index.html) · [Current submission guide](docs/executive-summary.html)
+>
+> - **Nine-site best reported:** GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` **0.2778 OWNER-REPORTED, UNVERIFIED** (no organizer receipt; manifest receipt=null). See [nine-site summary](docs/nine-site-executive-summary.html) and [full audit](docs/nine-site-audit-20261026.html). Public top 0.4413 (2026-10-25 stored, not refreshed) and 0.3195 snapshot (2026-10-03) conflict and are not receipts for these TIFFs.
+> - **Lane S21-DCBL (single paragraph, preregistered 2026-10-26T06:00Z):** Deep-Cover Basin Lineament — structure-tensor coherence of `iso_grav_anom` (B13) gradients gated by `depth_to_base_surf` (B15) sigmoid (350 m) + `cond_surf` (B17) and `rtp` (B02) edge coupling; greedy spaced 37,654 dots at 2.82 px, >3 px collar. No catalogue/R0 bytes read during feature construction.
+> - **Why 0.2778 leads the nine and can it be beaten?** PhD forensics: 100% of its ladder (0.2477→0.2778) is metric geometry — D2.8 optimal spacing + collar pruning + 69% far-field >1 km. Beating it needs ~62% more truth credit at same budget, i.e. a tighter localizer for concealed intrabasinal faults (Faulds & Hinz 2015: 35% of blind systems), not more pruning. S21-DCBL targets that gap.
+> - **Holdout (E1, buffered_component_draw seed20, 11,321 withheld, 1,000×20 km bootstrap):** 0.022565 HOLDOUT-DTI [0.01566,0.02964] vs comparable best S14-PTAC 0.267782 → **negative** (does not beat). Canary worst AUC 0.5416 ≤0.90 PASS. Surface |ρ| 0.0648 ≤0.90 PASS (100 rasters). Dots vs competitive fleet ≈44% ≤70% PASS (within indexed scope); vs 206k-dot lattice blanket 97.7% (expected capacity bound 82%+) disclosed. Format PASS (float32 EPSG:32611 3730×3292 correct transform, all-finite [0,1], no nodata, ZIP identical).
+> - **Uniqueness:** SHA-256 `18529ab2...055e7cb52` never seen in any GEMSDOE* registry — not an exact duplicate. Geometry is distinct within competitive scope (surface PASS, dots PASS vs R0/comparable), but like any spread 37k field inevitably hits the synthetic blanket at >70% (disclosed, not a promotion gate).
+> - **5 ranked hypotheses (all pinned 19-band stack, no external download):** 1) DCBL depth-gated gravity lineament (selected, tested here, negative); 2) DGSS dilatational strain on subsurface strike; 3) MSCE magnetite-destruction conductivity dipole; 4) IU-RHME intra-unit normalized magnetic edge; 5) DE-HA DEM Hurst anisotropy fine-scale. Full text in [HYPOTHESES_S21_DCBL.md](docs/HYPOTHESES_S21_DCBL.md) — H21-1 tested, others untested proposals.
+> - **Submission identity:** `gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros` · Note (82/140): `S21-DCBL deep-cover gravity lineament coherence, 37654 dots, depth-gated, eccf3ea6`
+> - 0 weekly slots used. Read the [full project brief](#full-project-brief) at every session start.
+
+---
+
+<!--S21-DCBL-END-->
+<!--S20-README-BEGIN-->
+# GEMSDOE91 — Session 20 (`S20-LFI`, branch `arena/670d23f5-gemsdoe91`): leaderboard-feedback inversion
+
+> **AUTOMATED VERDICT: `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT (G4 failed; verdict negative)`.**
+> **[⬇ Download S20-LFI GeoTIFF](docs/downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif)** (`sha256 05280b6d33a91d0e814cc749ddfcb27f0433ae31b99a477c9999a89dcec58e51`, 29,671 binary dots, all-finite zeros float32) · [Single-TIFF ZIP](docs/downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.zip) · **[Executive summary & how to submit](docs/s20-lfi-executive-summary.html)** · [Run card](docs/run-card-S20-LFI.json) · [Preregistration](docs/HYPOTHESES_S20_LFI.md) · [Research note](docs/GEOTHERMAL_VENT_RESEARCH_S20_LFI.md) · [Review / 3 passes](docs/REVIEW-S20-LFI-20261026.md)
+>
+> - **Name:** `gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros` · **Note (103/140):** `S20-LFI: leaderboard-feedback inversion of 112 live scores + consensus q-map, greedy E[DTI], 29671 dots`
+> - **Gates (preregistered):** G1 PASS · G2 PASS · G3 PASS · G4 FAIL · G5 PASS. Uniqueness was checked against 198 registry, anchor and own rasters plus 1037 sibling-sweep rasters, with 0 duplicates under the documented rule.
+> - **Main finding (E2):** the repo's spatially-blocked holdout `gems57-pooled-hide-v2` does **not** track live scores. Across 112 fleet rasters, Spearman is 0.105 and Pearson -0.021. GEMSDOE32 R0 (0.2778 USER-REPORTED) scores 0.0067 on it.
+> - **Method (E1):** a 25-parameter truth-density model fitted to 112 USER-REPORTED live scores with the exact Tversky algebra. Leave-one-site-out Spearman is 0.957 (RMSE 0.0198).
+> - **Candidate:** 71.7% of dots are in ≥3-method consensus zones and 91.3% are more than 1 km from the catalogue.
+>   - PROJECTION vs R0: ridge1 0.400, ridge10 0.368, ridge1_blindcons 0.368.
+>   - The most conservative 95% lower bound is Δ -0.026.
+>   - HOLDOUT-DTI (hide-v2, 60,988 withheld): 0.001851 vs R0 0.006697, paired Δ -0.004846 [-0.005688, -0.003980].
+> - **Decision for you:** Not about this file. Choose the gating instrument for future LFI files: hide-v2 is invalid as a live proxy (LIMITATIONS_AND_NEXT_STEPS.md, S20 next step 1).
+> - 0 weekly slots used. Read the [full project brief](#full-project-brief) at the start of every session.
+
+---
+
+<!--S20-README-END-->
+## Parallel merged review — 2026-10-26 nine-site audit (`arena/af73263f-gemsdoe91`; no new TIFF; S20 above is newer)
+
+> **ACTIVE REVIEW — 2026-10-26 · branch `arena/af73263f-gemsdoe91` · NO NEW TIFF.** `OK TO DOWNLOAD: NO NEW TIFF FROM THIS REVIEW` · `OK TO SUBMIT: NO` · experiments `0` · weekly slots `0` · `ORGANIZER-CONFIRMED: null`. This is a read-only nine-site evidence audit and blocked preflight, not an experiment, score refresh, file validation, or slot selection. Do not relabel, copy, or recommend an older TIFF as this review's output.
+>
+> **Start every project session by reading this current status, this operative update, the [full standing brief](#full-project-brief), the [three-pass review](docs/REVIEW-SITE-AUDIT-20261026.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md).**
+>
+> - [Nine-site executive summary](docs/nine-site-audit-20261026.html) · [Claim/source register](docs/research/nine-site-audit-20261026.json) · [No-run JSON card](docs/run-card-SITE-AUDIT-20261026.json) · [Current three-pass review](docs/REVIEW-SITE-AUDIT-20261026.md) · [Earlier prompt-value comparison](docs/high-score-submissions-review.html)
+> - The strongest score in the supplied nine-site list is GEMSDOE32 `h33-h33-2-b2` **0.2778 OWNER/USER-REPORTED, unverified**; no audited organizer receipt binds it to the exact TIFF. Its nested-pruning/metric explanation is plausible but not reproduced causality. The user-supplied `0.3195` and `0.4413` claims conflict; retain them separately. The last stored public-board observation (`0.4413`, 2026-10-25) was not refreshed today and is not a TIFF receipt.
+> - **File to submit from this review: none.** No current owner-site file is selector-approved by this checkout. The old ISO91 research download is from 2026-10-25, negative, and separate; its link is not an approval.
+> - Three geological alternatives are ranked in the review. H17-2 dipping-contact waveform matching is the qualitative top proposal, **not tested**: lane assignment is null and pinned local inputs are missing. No experiment can be authorized or honestly reported until those blockers are resolved.
+> - Keep protocol gates binding: use only the assigned single-method paragraph; check pre-placement novelty and final dots; stop and log a duplicate if absolute rank correlation exceeds `0.90` or more than `70%` of dots fall within `3 px` of one registry raster. Use the pinned template, `vendor/gems57/evaluate_holdout.py`, and shared writer; hide whole fault segments with buffer, derive catalogue features from visible faults only, mask visible faults pixel-exactly, and use pooled DTI α=`0.2`, β=`0.8`, 300 m triangular kernel. Fix shared-tool defects once, not in a private fork.
+> - Label measurements `HOLDOUT-DTI` with evaluator version, withheld-positive count and 95% CI, or `ORGANIZER-CONFIRMED` copied from a receipt. A projection is never a score. Run feature-alone leakage canaries (AUC `>0.90` is leakage until explained). End an experiment with one JSON card containing hypothesis, mechanism, non-fault mimic, holdout/CI, registry checks, TIFF SHA-256, validator result, submission identity/note ≤140 chars, and promote/negative verdict. Hard cap: 3 experiments or 2 hours. **Do not choose/promote a real slot**; selector decision and weekly cap are separate.
+> - No new experiment, holdout, leakage canary, novelty comparison, validator run on a candidate, or TIFF SHA-256 exists. Do not generate a synthetic/random placement. `data/` is absent and mirror authorization remains unresolved; do not restore mirrored data until that is resolved. Official competition/scientific pages were linked for manual review but not fetched in this audit.
+>
+> This update is the current operative scope; historical session summaries below are archive/context, not evidence from this branch. The longer, preserved user prompt remains at [`#full-project-brief`](#full-project-brief).
+
+---
+
+# Historical README content (retained; its dated status banners below do not describe this active checkout)
+
+
+> **ACTIVE CHECKOUT · 2026-10-26 · `arena/692ed040-gemsdoe91`:** Start with the [current three-pass repository review](docs/REVIEW-ARENA-692ED040-20261026.md), [site-by-site executive summary of GEMSDOE24/25/27/28/30/31/32/33/36](docs/high-score-submissions-review.html), and [machine-readable run card](docs/run-card-ARENA-692ED040-20261026.json). This checkout is **NEGATIVE / BLOCKED**: no assigned method paragraph or local pinned data; **no new TIFF generated; OK TO DOWNLOAD: NO; OK TO SUBMIT: NO; zero slots used**. The reported historical scores are user-supplied and unverified. No previous TIFF was copied or renamed. The full standing brief is already preserved below in the `Full project brief` section; read it at every session start. **Maximize P(Win) · Own the Outcome.**
+>
+> This new active-checkout status supersedes neither historical run cards nor prior-branch conclusions; it reports only what was inspected on this branch. Keep download, scientific validation, uniqueness, and selector/slot approval as separate gates.
+
+# GEMSDOE91 — Session 19 (`S19-SVHF`, branch `arena/bcc0fcb2-gemsdoe91`) & Parallel `ISO91` / `S18-HGBR`
 > **NEW · SESSION 19 (`S19-SVHF E3`, branch `arena/bcc0fcb2-gemsdoe91`): AUTOMATED VERDICT `OK TO DOWNLOAD: YES — 18/18 DUAL-DECODER CERTIFIED RESEARCH` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT (0 WEEKLY SLOTS SPENT)`.**
 > **[⬇ Download S19-SVHF GeoTIFF](docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.tif)** (`sha256: ed26789ab7bdbe6291abe743a25b65c63a5a14c99d3f50e421a1e77e025543d3`) · **[Single-TIFF ZIP](docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.zip)** (`sha256: 0bf25a65a483cad4f4ce856c2c14ce2c115fed20461663171b91ca27850d15f8`) · [S19-SVHF Audit](docs/s19-svhf.html) · [Step-by-Step DrivenData Guide](docs/s19-svhf-executive-summary.html) · [JSON Run Card](docs/run-card-S19-SVHF.json) · [Preregistration](docs/HYPOTHESES_S19_SVHF.md) · [Vent & Cross-Fleet Synthesis](docs/GEOTHERMAL_VENT_RESEARCH_S19.md) · [3-Pass Review](docs/REVIEW-S19-SVHF-20261025.md)
 >
@@ -369,6 +431,42 @@ Concurrent main reviews were integrated, including the S15 holdout/final-selecto
 <a id="full-project-brief"></a>
 
 ## Original user project brief — preserved standing text and supplied updates
+
+**2026-10-26 supplied update for Session 20 (claims, not receipts).**
+
+Site bests (USER-REPORTED):
+
+| Site | Best submission | Score |
+|---|---|---|
+| GEMSDOE24 | `h25-1-dotted-h19-5-d1-5` | 0.2477 |
+| GEMSDOE25 | `dotted-h19-5-d2-8` | 0.2600 |
+| GEMSDOE27 | `topo-gap-closure-t-v2-on-d1-5` | 0.2449 |
+| GEMSDOE28 | `h36-1-rung30-blind-r1` | 0.2710 (also h27-4-r1-solo 0.2708, h38-1 0.2707, h32-1 0.2649) |
+| GEMSDOE30 | `d28-poisson300m-offcat-44090` | 0.2600 |
+| GEMSDOE31 | `h27-4-solo-d28` | 0.2708 |
+| GEMSDOE32 | `h33-h33-2-b2-…-zeros` | 0.2778 |
+| GEMSDOE33 | `h33d-analog-tip-stepover-r30` | 0.2632 |
+| GEMSDOE36 | `anderson-geothermal-pinn-38854` | 0.2750 |
+
+The session asked for:
+* An executive summary per site that makes the best submission obvious.
+* An analysis of why GEMSDOE32 h33-2-b2 scored 0.2778 and whether it can be beaten. Targets: more than 0.3195 (user-stated "current high") and the public leaderboard top of 0.4413.
+* A UNIQUE new TIFF (never a copy), plainly marked OK to download and OK to submit by automated validation with no human inspector. It needs an easy download link at the top of the site, a unique name and a note of at most 140 characters, and a subpage explaining exactly how to submit (DrivenData form: file plus optional note).
+* 3–5 new untried ranked geological hypotheses. The top one must be validated on a spatially-blocked holdout before any slot, and any needed free official data source named and checked for obtainability.
+* The parallel-run protocol:
+  * one lane;
+  * duplicate if ρ > 0.90 or more than 70% of dots are within 3 px of a registry raster, checked pre-placement and final;
+  * reuse `evaluate_holdout.py` and `submission_writer.py`;
+  * label every number HOLDOUT-DTI (evaluator, n withheld, 95% CI) or ORGANIZER-CONFIRMED;
+  * a leakage canary per feature;
+  * a JSON run card;
+  * a budget of 3 experiments / 2 hours;
+  * do not pick slots.
+* Deep geothermal-vent research from official sources with links; flagged irregularities; no hallucinations.
+* 3 passes, then create a PR and merge to main, and list next steps and limitations.
+* Don't spend a slot on an idea that hasn't beaten the holdout best. Values must be in [0, 1] with no NaN.
+
+Core values: Maximize P(Win); Own the Outcome.
 
 **2026-10-25 supplied update for this session (claims, not receipts):** GEMSDOE91 `gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros: 0.1367`; `gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros: 0.1823`; GEMSDOE92 `gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros: 0.0255`. These are not ORGANIZER-CONFIRMED and must not be substituted for holdout results. The current request additionally requires 3–5 ranked, not-yet-tried geological hypotheses (layers, physical signature, missing-fault rationale, code difference, cost and mimics); test the top candidate on the exact spatially blocked holdout before any selector/weekly slot; perform automated format, leakage and both registry checks; use no human inspection as a substitute for machine-verifiable validation; preserve a three-pass review and one run-card JSON. The request reports 0.2778, 0.3195, and 0.4413 in different contexts; keep them distinct and unverified unless supported by an organizer receipt. This update plus the standing prompt below preserves the operative requirements; literal byte identity to the repeated long message is not claimed. Start every session by reading this brief and current review. Core values: Maximize P(Win); Own the Outcome.
 

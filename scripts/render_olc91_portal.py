@@ -54,7 +54,7 @@ def front_door(root=ROOT):
         "run_card": CURRENT["run_card"],
         "ok_to_download": True,
         "ok_to_submit": False,
-        "scope": "Current research download; format pass is not submission approval",
+        "scope": "Historical published research artifact; format pass is not submission approval",
         "raster_sha256": hashes[".tif"],
         "tif": tif.relative_to(docs.resolve()).as_posix(),
         "zip": zipped.relative_to(docs.resolve()).as_posix(),

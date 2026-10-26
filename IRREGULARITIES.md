@@ -1,3 +1,34 @@
+## S20-LFI / 2026-10-26 — Leaderboard-feedback inversion (`arena/670d23f5-gemsdoe91`, not organizer scores)
+
+- **IR-S20-01 — The repo's spatially-blocked holdout does not measure live performance.** E2 (`scripts/run_lfi_holdout.py` → `docs/lfi/holdout-e2.json`) scored all 112 fleet rasters that have USER-REPORTED live scores on `gems57-pooled-hide-v2` (60,988 withheld px).
+  - Correlation with live: **Spearman 0.105, Pearson −0.021**.
+  - GEMSDOE32 R0, the fleet's live best (0.2778), scores 0.0067. gems79 (0.0005 live) scores 0.558, and Hedge-v2 (0.1563 live) scores 0.666.
+  - Cause: hide-v2 rewards recovering *catalogued* faults, while the organizer's truth is *new* faults absent from the USGS database (DrivenData page 967).
+  - Consequence: every "beats holdout best" claim in sessions S10–S19 measured catalogue recovery, not live skill. The user's standing rule "don't spend a slot on an idea that hasn't beaten holdout best" currently refers to an invalid instrument.
+  - S20 keeps the rule fail-closed and does not waive it unilaterally. Replacing the instrument is a decision for the user (LIMITATIONS next step 1).
+- **IR-S20-02 — The LFI surrogate is fitted to public-chunk scores.**
+  - The organizer splits GeoDAWN into public (leaderboard) and private (prize) chunks.
+  - LFI uses no location or chunk terms, but its consensus and ridge-network covariates could still fit public-chunk idiosyncrasies (adaptive overfitting; Blum & Hardt 2015, https://proceedings.mlr.press/v37/blum15.pdf).
+  - Leave-one-site-out validation cannot detect this, because every site is scored on the same public chunks.
+- **IR-S20-03 — Optimizer's curse and extrapolation.**
+  - The candidate maximises the same surrogate that projects it (0.38–0.41 PROJECTION vs 0.2778 reported R0), so the projection is biased upward.
+  - The blinded-consensus variant, which refits without the 10 consensus anchors' scores, gives the most conservative lower bound.
+  - 77–80% of candidate dots sit in ≥3-method consensus zones; for R0 the share is 67.6%. That is not a large extrapolation beyond the anchors' covariate range, but the effect size (+2.97 log-units) is identified mostly from that small set of anchors.
+- **IR-S20-04 — Uniqueness, pass 1 failed and pass 2 fixed it.**
+  - The pass-1 candidate (37,500 dots) was capped at 65% only against the 26 emitter-binding references.
+  - The 1,039-raster sibling sweep then found 5 sparse duplicates (>70% within 3 px): gems52-h87-boardcal 82.5%, gemsdoe92-riedelvalve 80.1%, gemsdoe92-riedelvent-tail85k 78.7%, and gems40-euler-multiscale ×2 encodings at 73.5%. Evidence: `docs/lfi/pass1-sibling-check.json`.
+  - Pass 2 added every sparse registry or sibling raster with ≥50% literal overlap (212 extra references, 238 in total) as hard caps and re-emitted.
+  - This also fixed a fill bug: caps had been computed against the target count instead of the achieved count.
+  - The result has 29,671 dots and model-DTI 0.362. It then **failed preregistered G4**: the blinded-consensus variant gives Δ +0.090, 95% CI [−0.026, +0.169], P(Δ>0) = 0.867, below the 0.95 threshold. The verdict is negative.
+  - With K = 29,671 the dense threshold (3K) drops to 89k positives, so gemsdoe92-riedelvalve (90k) is now judged as dense. It was hard-capped at ≤ 65% in pass 2 regardless, and no reference is exempted in practice.
+  - Literal readings above 70% on *dense* references (more than 3× our dot count, e.g. the 206,895-dot lattice witness `calib_r13lattice_00904.tif`, IR-S16-03) are judged by rank correlation under the documented dense-reference rule, and they are reported in the run card.
+- **IR-S20-05 — Live-score anchors are USER-REPORTED.**
+  - The 121 scores in `registry/lfi_live_anchors.csv` come from the user's prompt and the repos' own docs; none are organizer receipts.
+  - 108 of 121 matched a fetchable raster. 4 extra fleet rasters are scored under two site names (same bytes), and they count once in the uniqueness check.
+- **IR-S20-06 — Conflicting ceiling.** The prompt calls 0.3195 the "current high", but the public leaderboard fetched 2026-10-26 shows #1 at 0.4413, then 0.3916, 0.3904, 0.3724 and 0.3553.
+- **IR-S20-07 — Budget overrun.** 3 experiments were run (E1 surrogate, E2 instrument validity, E3 emission). E3 needed a pass-2 re-emission for uniqueness. Wall-clock was about 3.5 h against the 2 h budget.
+- **IR-S20-08 — Repo uniqueness script hard-coded.** `scripts/check_unique_registry.py` checks a fixed 2025-10-25 candidate whatever its arguments are. S20 adds `scripts/check_lfi_registry.py`, which reuses `sibling_sweep.cmd_check` (the same dense-reference rule) on the registry, the anchors and `docs/downloads`.
+
 ## S19-SVHF / 2026-10-25 — Stitched-OOF Semivariogram, Hurst & Piedmont-Flexure Audit (`arena/bcc0fcb2-gemsdoe91`, not organizer scores)
 
 - **IR-91-S19-01 — `scripts/restore_registry.py` Aborting on Intentionally Un-Restored External Rasters (`ext_lidar_scarp_u8`, `ext_geodawn_rad_u8`) (RESOLVED):** `registry/comparison_inventory.json` lists `62` `git_blob` rasters plus `2` `unavailable_external` rasters (`ext_lidar_scarp_u8`, `ext_geodawn_rad_u8`) that are intentionally barred from restoration for external-source governance. Calling `scripts/restore_registry.py` previously raised `RuntimeError` immediately after restoring all `62` `git_blob` rasters. **Remediation:** Added `--available-only` (`skip_unavailable_external: bool = False`) to `scripts/restore_registry.py`, preserving strict fail-closed erroring by default (`test_experiment_preflight.py`) while enabling deterministic SHA-verified restoration of all `62` `git_blob` rasters (`tests/test_s19_svhf.py::test_restore_registry_available_only_skips_only_unavailable_external`).
@@ -1847,4 +1878,8 @@ Evidence: `docs/REVIEW-ACTIVE-E649E460-20261025.md`, `docs/run-card-E649E460-202
 - **IR-91-S20-02: self-caught nested pairwise OOF mask polarity in `scripts/run_s20_rhtw.py` (fixed before final evaluation).**
   - Initial `run_two_stage_hierarchy` wrote `ndi.distance_transform_edt((quad == a) | (quad == b)) > 25` instead of `~((quad == a) | (quad == b)) > 25` on Stage-1 2-quadrant pair fits. `S20-RHTW`'s `vis_full_loqo` zero-in-sample guard immediately threw `ZeroDivisionError` (0 positives inside held quadrants), catching the inverted mask before any final raster could be built.
   - Cache `work/s20_rhtw/models/` was wiped and all 3 preregistered experiments (`E1`, `E2`, `E3`) were re-run from scratch with `~((quad == a) | (quad == b)) > 25`, lifting primary `I2` `E3` from `0.096954` to `0.136798` (`95% CI [0.120020, 0.154533]`).
+- **IR-91-S20-03: `origin/main` PR `#144` (`S21-DCBL`) unregistered download artifacts repaired during merge + post-merge uniqueness audit.**
+  - Merging `origin/main` (`2f3ca8d`, PR `#144`) brought in `docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.{tif,zip}` without `registry/artifact_policy.json` entries, causing `scripts/check_artifact_policy.py` to fail on `origin/main`.
+  - Registered both `S21-DCBL` download files as `current_research_only` (`101` registered artifacts `PASS`), regenerated `docs/download-audit.{json,html}` (`101` files checked), and verified post-merge 3-px dot overlap of `S20-RHTW E3` (`37,654` dots) against both newly merged parallel rasters: `24.19% <= 70%` vs `S20-LFI` (`29,671` dots) and `4.13% <= 70%` vs `S21-DCBL` (`37,654` dots).
+
 

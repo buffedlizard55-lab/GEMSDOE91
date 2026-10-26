@@ -1,0 +1,219 @@
+{
+  "schema": "gems91.related-site-audit.v1",
+  "review_date_utc": "2026-10-26",
+  "scope": "Read-only audit of owner-maintained GitHub repository records at the pinned commits below. No DrivenData submission receipt or live leaderboard page was fetched in this review.",
+  "branch": "arena/af73263f-gemsdoe91",
+  "score_evidence_policy": "All supplied site scores are USER/OWNER-REPORTED claims unless an organizer receipt that binds the exact submission to the score is available. No such receipt was verified in this review. A local mirror, TIFF hash, model projection, HOLDOUT-DTI, or owner statement does not establish ORGANIZER-CONFIRMED evidence.",
+  "repositories": [
+    {
+      "site": "GEMSDOE24",
+      "commit": "fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1",
+      "snapshot_sources": [
+        {"path": "registry/live_scores.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/registry/live_scores.json"},
+        {"path": "registry/submissions.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/registry/submissions.json"},
+        {"path": "evidence/gvc1_run_card_20261025.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/evidence/gvc1_run_card_20261025.json"},
+        {"path": "evidence/rshg1_run_card_20261025.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/evidence/rshg1_run_card_20261025.json"}
+      ],
+      "strongest_supplied": {
+        "name": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+        "score": 0.2477,
+        "method": "Owner materials describe deterministic d=1.5 dot-thinning of the H19-5 multi-physics ridge surface; the sibling registry reports 60,069 positive pixels. This is an emission change, not an independently validated new geological detector.",
+        "evidence_status": "USER/OWNER-REPORTED, UNVERIFIED. GEMSDOE24 registry/submission metadata has live_dti and score_evidence null and describes the artifact as unscored; no organizer receipt was found in the pinned source set.",
+        "current_site_status": "The current page lists H24-GVC1 as 0.148763 HOLDOUT-DTI (evaluator gems-segment-pooled-v1; 60,988 withheld positives; 95% CI [0.134135, 0.163703]) and the newer H24-RSHG1 as 0.128994 HOLDOUT-DTI (same evaluator and withheld count; 95% CI [0.115783, 0.143050]). Both are internal holdout estimates, not leaderboard scores, and explicitly DO_NOT_SUBMIT; GVC1 exceeds the 70% 3-px overlap stop and RSHG1 also fails its stated promotion/overlap gates."
+      }
+    },
+    {
+      "site": "GEMSDOE25",
+      "commit": "0a45b3ca6403f7e8d4deac5d8b208797d5e8f477",
+      "snapshot_sources": [
+        {"path": "docs/data/live_scores.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/0a45b3ca6403f7e8d4deac5d8b208797d5e8f477/docs/data/live_scores.json"},
+        {"path": "docs/data/submissions.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/0a45b3ca6403f7e8d4deac5d8b208797d5e8f477/docs/data/submissions.json"},
+        {"path": "evidence/score_claim_audit.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/0a45b3ca6403f7e8d4deac5d8b208797d5e8f477/evidence/score_claim_audit.json"},
+        {"path": "evidence/top_scorer_forensics.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/0a45b3ca6403f7e8d4deac5d8b208797d5e8f477/evidence/top_scorer_forensics.json"}
+      ],
+      "strongest_supplied": {
+        "name": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+        "score": 0.26,
+        "method": "H19-5 ridge surface thinned to 44,090 dots at approximately 2.8-pixel spacing (D2.8). It is the same content ID/pixel pattern as the GEMSDOE24 D2.8 artifact, according to the pinned registries.",
+        "evidence_status": "USER/OWNER-REPORTED, UNVERIFIED. GEMSDOE25's current submissions registry marks this D2.8 artifact WITHDRAWN/DUPLICATE and says it is byte-identical to a listed file. The score audit says no official receipt or leaderboard page was accessed.",
+        "current_site_status": "The latest site features H66 research files. H66-1 passed a screen but failed fresh-draw confirmation; H66-2 passed a screen but remained unconfirmed at the experiment cap. The page and run materials say NOT OK TO SUBMIT; the strict literal lattice/registry rules also stop promotion."
+      }
+    },
+    {
+      "site": "GEMSDOE27",
+      "commit": "927322eadbde56be42ae129ccdfb9b37540d8e60",
+      "snapshot_sources": [
+        {"path": "registry/live_scores.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/927322eadbde56be42ae129ccdfb9b37540d8e60/registry/live_scores.json"},
+        {"path": "evidence/live_inversion.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/927322eadbde56be42ae129ccdfb9b37540d8e60/evidence/live_inversion.json"},
+        {"path": "evidence/live_truth_tomography.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/927322eadbde56be42ae129ccdfb9b37540d8e60/evidence/live_truth_tomography.json"}
+      ],
+      "strongest_supplied": {
+        "name": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+        "score": 0.2449,
+        "method": "T-v2 straight-line/topological gap-closure additions on the D1.5 H19-5 base: 61,328 dots in the owner registry, comprising 60,069 base dots plus 1,259 added dots.",
+        "evidence_status": "USER/OWNER-REPORTED, UNVERIFIED. GEMSDOE28's pinned cross-site registry calls the corroboration task_statement_only. Its owner-reported A/B note says the addition was about -0.0028 versus the 0.2477 D1.5 claim; that is not an independent organizer comparison.",
+        "current_site_status": "The current cross-site registry also lists an H27-8 all-increments raster as UNSCORED; its 0.2484 geometric and 0.2781 hybrid figures are modelled projections, not competition scores."
+      }
+    },
+    {
+      "site": "GEMSDOE28",
+      "commit": "10c26af3dc4d45292189734b0b696c7afb24ffb1",
+      "snapshot_sources": [
+        {"path": "registry/live_scores.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/10c26af3dc4d45292189734b0b696c7afb24ffb1/registry/live_scores.json"},
+        {"path": "registry/leaderboard_snapshot_2026-10-03.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/10c26af3dc4d45292189734b0b696c7afb24ffb1/registry/leaderboard_snapshot_2026-10-03.json"},
+        {"path": "docs/index.html", "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/10c26af3dc4d45292189734b0b696c7afb24ffb1/docs/index.html"},
+        {"path": "README.md", "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/10c26af3dc4d45292189734b0b696c7afb24ffb1/README.md"}
+      ],
+      "strongest_supplied": {
+        "name": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+        "score": 0.271,
+        "method": "H36-1 rung-3.0/r1 blind allocation, reported at 37,660 positive pixels. The site's older analysis reports its own spatial-CV and live-anchored model estimates; those estimates are not the supplied score and are not organizer evidence.",
+        "evidence_status": "USER/OWNER-REPORTED, UNVERIFIED. The score registry warns its public-leaderboard values are not DrivenData receipts. The 0.2708 H27-4 and 0.2707 H38-1 entries are distinct owner claims, not controlled score replications.",
+        "current_site_status": "The latest safety notice says NO FILE IS CURRENTLY APPROVED FOR SUBMISSION; it classifies H36-1/H38-1 as historical research artifacts. Owner model projections such as 0.2717-0.2727 are not scores."
+      }
+    },
+    {
+      "site": "GEMSDOE30",
+      "commit": "c6d5710324ee31b82fcf8489b9f65d070da9eaf8",
+      "snapshot_sources": [
+        {"path": "docs/current-run.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/c6d5710324ee31b82fcf8489b9f65d070da9eaf8/docs/current-run.json"},
+        {"path": "docs/score-ledger.csv", "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/c6d5710324ee31b82fcf8489b9f65d070da9eaf8/docs/score-ledger.csv"},
+        {"path": "docs/leaderboard-analysis.md", "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/c6d5710324ee31b82fcf8489b9f65d070da9eaf8/docs/leaderboard-analysis.md"}
+      ],
+      "strongest_supplied": {
+        "name": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+        "score": 0.26,
+        "method": "D2.8-style 300 m Poisson/sparse off-catalogue emission of 44,090 dots. GEMSDOE31's pinned user-score registry identifies the dot set as identical to GEMSDOE25 D2.8; it is not independent method evidence.",
+        "evidence_status": "USER/OWNER-REPORTED, UNVERIFIED. The score is recorded in historical ledgers, not an organizer receipt tied to the exact local bytes.",
+        "current_site_status": "GEMSDOE30's current-run pointer is MSDB-1v2, a repository research artifact whose own note requires a complete parallel registry before any slot decision. Its latest LSM attempt is explicitly stopped as a duplicate; neither a local holdout delta nor a model value is an organizer score."
+      }
+    },
+    {
+      "site": "GEMSDOE31",
+      "commit": "1aebc0b80570406b9eca6c56eed915b8d064e3b2",
+      "snapshot_sources": [
+        {"path": "registry/user_reported_scores.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/1aebc0b80570406b9eca6c56eed915b8d064e3b2/registry/user_reported_scores.json"},
+        {"path": "registry/score_claims.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/1aebc0b80570406b9eca6c56eed915b8d064e3b2/registry/score_claims.json"},
+        {"path": "registry/submissions.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/1aebc0b80570406b9eca6c56eed915b8d064e3b2/registry/submissions.json"},
+        {"path": "evidence/delivery_verification_20261025.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/1aebc0b80570406b9eca6c56eed915b8d064e3b2/evidence/delivery_verification_20261025.json"}
+      ],
+      "strongest_supplied": {
+        "name": "h27-4-solo-d28-20261004-8acb75e1-nan",
+        "score": 0.2708,
+        "method": "H27-4 solo D2.8: the 40,199-dot D2.8 set after pruning the 3,891 pixels within 1 px (100 m) of the mapped-fault catalogue.",
+        "evidence_status": "USER/OWNER-REPORTED, UNVERIFIED. GEMSDOE31's own registry calls this a historical reference-only re-emission, pixel-identical to GEMSDOE28 H27-4; no organizer acceptance or exact-score receipt is verified.",
+        "current_site_status": "The latest delivery report verifies local bytes/format and tests, not organizer acceptance. The copied H27-4 dot geometry is explicitly not a unique current candidate and has no slot approval."
+      }
+    },
+    {
+      "site": "GEMSDOE32",
+      "commit": "7a97c5a88936a3fdb99d0358c3b85d739a714631",
+      "snapshot_sources": [
+        {"path": "docs/leaderboard.html", "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/7a97c5a88936a3fdb99d0358c3b85d739a714631/docs/leaderboard.html"},
+        {"path": "docs/score-ledger.csv", "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/7a97c5a88936a3fdb99d0358c3b85d739a714631/docs/score-ledger.csv"},
+        {"path": "docs/downloads/submissions_manifest.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/7a97c5a88936a3fdb99d0358c3b85d739a714631/docs/downloads/submissions_manifest.json"},
+        {"path": "docs/index.html", "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/7a97c5a88936a3fdb99d0358c3b85d739a714631/docs/index.html"},
+        {"path": "README.md", "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/7a97c5a88936a3fdb99d0358c3b85d739a714631/README.md"}
+      ],
+      "strongest_supplied": {
+        "name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+        "score": 0.2778,
+        "method": "Sparse H19-5 multi-physics ridge emission followed by D2.8 thinning and the H27-4 solo catalogue-flank deletion, then deletion of 2,545 more dots within 2 px (200 m) of the mapped catalogue; 37,654 dots remain. This reconstruction comes from owner-maintained byte/geometry forensics, not a re-run here.",
+        "evidence_status": "OWNER-REPORTED, NOT ORGANIZER-CONFIRMED HERE. One current page calls it an organizer-confirmed owner report, but the score ledger says no organizer receipt links the row to the local TIFF and the submissions manifest has receipt=null. A receipt artifact was not present in the audited source set.",
+        "current_site_status": "The current page includes a separate GEO-CONDUIT research artifact, but its strict-review banner says DO NOT SUBMIT and reports 99.67% overlap with the synthetic lattice. An older 'OK TO DOWNLOAD AND SUBMIT' callout conflicts with that current strict notice; it is not selector approval. The fetched current page did not supply a complete shared-evaluator card for this candidate, so no numerical HOLDOUT-DTI claim is carried into this audit."
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "commit": "b542e5ce4186b54dbd07a6a6e8756be676a3f088",
+      "snapshot_sources": [
+        {"path": "registry/live_scores.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/b542e5ce4186b54dbd07a6a6e8756be676a3f088/registry/live_scores.json"},
+        {"path": "registry/score_ledger.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/b542e5ce4186b54dbd07a6a6e8756be676a3f088/registry/score_ledger.json"},
+        {"path": "registry/leaderboard_review.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/b542e5ce4186b54dbd07a6a6e8756be676a3f088/registry/leaderboard_review.json"},
+        {"path": "docs/research/current-run-card.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/b542e5ce4186b54dbd07a6a6e8756be676a3f088/docs/research/current-run-card.json"},
+        {"path": "docs/index.html", "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/b542e5ce4186b54dbd07a6a6e8756be676a3f088/docs/index.html"}
+      ],
+      "strongest_supplied": {
+        "name": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+        "score": 0.2632,
+        "method": "The owner ledger describes an analog tip/stepover addition: 41,865 pixels, with 33,670 shared with its r1 base and 8,195 tip/stepover additions.",
+        "evidence_status": "USER/OWNER-REPORTED, UNVERIFIED. GEMSDOE33's score feed explicitly says its values are reports, not verified file/score pairs, and that no DrivenData receipt or authenticated account session is available.",
+        "current_site_status": "The latest current-run card is a preflight-negative analog-transfer review: no new candidate or comparable HOLDOUT-DTI was run. The Pages index still exposes an older A33-L1 research TIFF and a local negative-result summary, but the current run card lacks an evaluator version/withheld-positive count/CI for that run; treat the older number as unusable for promotion. Research download only, not a competition score or submission approval."
+      }
+    },
+    {
+      "site": "GEMSDOE36",
+      "commit": "d519364018a2b9ce864565beb9080e32227e7a36",
+      "snapshot_sources": [
+        {"path": "docs/research/review-20261026.md", "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/d519364018a2b9ce864565beb9080e32227e7a36/docs/research/review-20261026.md"},
+        {"path": "docs/current-run.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/d519364018a2b9ce864565beb9080e32227e7a36/docs/current-run.json"},
+        {"path": "docs/downloads/submissions_manifest.json", "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/d519364018a2b9ce864565beb9080e32227e7a36/docs/downloads/submissions_manifest.json"},
+        {"path": "README.md", "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/d519364018a2b9ce864565beb9080e32227e7a36/README.md"}
+      ],
+      "strongest_supplied": {
+        "name": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+        "score": 0.275,
+        "method": "The supplied artifact is described as an Anderson-geothermal PINN emission with 38,854 dots. GEMSDOE32's pinned forensic page reports it as a strict superset of all 37,654 GEMSDOE32 B2 dots plus 1,200 extra dots; this is a geometry comparison, not proof that a distinct detector caused the score.",
+        "evidence_status": "USER-REPORTED, UNVERIFIED. The current GEMSDOE36 review explicitly says the nine-site scores are from the supplied prompt and not organizer receipts. Its current-run card has no new raster and no score.",
+        "current_site_status": "No new TIFF or candidate was generated by the 2026-10-26 review. Historical downloads are research-only; the current run card has no holdout, registry check, or submission approval."
+      }
+    }
+  ],
+  "leaderboard_claims": {
+    "user_supplied_values_conflict": [0.3195, 0.4413],
+    "last_recorded_official_public_snapshot_in_this_checkout": {
+      "score": 0.4413,
+      "as_of_utc": "2026-10-25",
+      "source": "docs/REVIEW-ACTIVE-E649E460-20261025.md",
+      "status": "Historical in-repository note of a public leaderboard read; not refreshed in this audit, not a private score, and not a receipt for any GEMSDOE TIFF."
+    },
+    "0_3195_context": "An owner-maintained 2026-10-03 leaderboard snapshot records 0.3195 as rank 1 at that earlier date. It is not evidence of today's leader. No live page was fetched on 2026-10-26."
+  },
+  "current_checkout": {
+    "lane_assigned": false,
+    "data_directory_present": false,
+    "fresh_experiment_run": false,
+    "new_tiff_generated": false,
+    "organizer_confirmed_score": null,
+    "submission_approved": false,
+    "reported_best_among_supplied_nine": {"site": "GEMSDOE32", "name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros", "score": 0.2778, "evidence": "owner-reported/unverified; not organizer-confirmed"},
+    "best_file_to_submit": null,
+    "existing_research_files": [
+      {
+        "label": "ISO91 E1 (2026-10-25 front-door research artifact)",
+        "file": "docs/downloads/gemsdoe91-iso91-isolationpu-37654-20261025T190251Z-beaca59b-zeros.tif",
+        "run_card": "docs/run-card-ISO91.json",
+        "holdout_dti": {"value": 0.081253, "evaluator_version": "gems57-pooled-hide-v2", "withheld_positives": 11911, "ci95": [0.063850, 0.099617]},
+        "status": "NEGATIVE / NOT OK TO SUBMIT; failed holdout gates and the extended sweep records a 70.109% literal 3-px overlap flag. Separate earlier research, not this review's output."
+      },
+      {
+        "label": "S19-SVHF E3 (prior parallel research artifact)",
+        "file": "docs/downloads/gems91-s19-svhf-e3-oof-20261025T194830Z-5cc11f080635-zeros.tif",
+        "run_card": "docs/run-card-S19-SVHF.json",
+        "holdout_dti": {"value": 0.147791, "evaluator_version": "gems57-pooled-hide-v2", "withheld_positives": 60988, "ci95": [0.132771, 0.162342]},
+        "status": "NEGATIVE / NOT OK TO SUBMIT; literal 3-px overlap is 99.8513% against the synthetic lattice witness; not a current slot decision."
+      },
+      {
+        "label": "S18-HGBR E1 (separate parallel research artifact)",
+        "file": "docs/downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif",
+        "run_card": "docs/run-card-S18-HGBR.json",
+        "holdout_dti": {"value": 0.200742, "evaluator_version": "gems57-pooled-hide-v2", "withheld_positives": 60988, "ci95": [0.180482, 0.221419]},
+        "status": "Separate parallel card has an internal promote verdict, but its literal 3-px overlap is 99.843% against the synthetic lattice and live_slot_decision says DO_NOT_SPEND_WEEKLY_SLOT_AUTOMATICALLY; not selected or approved here."
+      },
+      {
+        "label": "S18-UNIQUE (format-certified demo artifact)",
+        "file": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+        "run_card": "docs/run-card-S18-UNIQUE.json",
+        "holdout_dti": null,
+        "status": "NOT OK TO SUBMIT; holdout is NOT RUN, leakage-canary result is pending, and full-raster uniqueness is not established. Separate parallel demo, not selected here."
+      }
+    ],
+    "why_no_file": [
+      "The assigned single-method lane is null; the checkout cannot infer a lane from historical work.",
+      "Pinned sample, parent, catalogue, and feature inputs are absent under data/; the current build preflight is blocked.",
+      "No candidate surface exists for pre-placement novelty or feature-alone leakage checks.",
+      "No new final dots or TIFF exist for post-placement novelty or automated format validation.",
+      "Slot selection is separate and explicitly outside this review's authority."
+    ]
+  }
+}

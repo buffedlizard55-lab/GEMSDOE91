@@ -16,9 +16,36 @@
 - [x] Fixed three minor copy/metric discrepancies (`ISO91 E1` `0.0862 -> 0.0813`, `S18-HGBR E1` vs `R0` `59.0% -> 48.8%`, `README.md` note char count `114/140 -> 110/140`).
 - [x] Built dual-decoder (`tifffile` + `rasterio`) independent verifier `scripts/verify_s20.py` and `tests/test_s20_rhtw.py` (testing analytic Riesz-harmonic vertical derivative reconstruction, bitwise `0.0` `B12/B19/dist_known_fault_px` subsurface invariance, `>2.5 px` visible-only collar enforcement, 9-site matrix coverage, and fail-closed `ok_to_submit=False`), added `executive-summary.html` to `smoke.cjs` `390px` mobile checks, and wired `verify_s20.py` + `test_s20_rhtw.py` into `.github/workflows/{ci,pages}.yml`.
 
-### Pass 3 — Line-by-Line Prompt Audit & End-to-End CI / Browser Re-Verification (COMPLETED)
-- [x] Re-checked every requirement of the standing prompt line by line against workspace deliverables (9-site executive summary table, `GEMSDOE32` `0.2778` closed-form DW-Tversky decomposition, 14-source geothermal-vent knowledge base, frozen `H20-1..H20-5` preregistration, `S20-RHTW` `I2 = 0.136798` & `I1 = 0.113298` `HOLDOUT-DTI` validation, `[0, 1]` zeros GeoTIFF + single-TIFF ZIP, `103/103` AUROC canaries, `120`-raster uniqueness audit, top-of-site `OK TO DOWNLOAD: YES` / `OK TO SUBMIT: NO` banners, standing prompt in `README.md`, Arena AI Core Values, `IRREGULARITIES.md`, `LIMITATIONS_AND_NEXT_STEPS.md`, and `SLOT_PLAN.md`).
-- [x] Verified byte-for-byte deterministic portal re-render (`render_portal.py` `0` diff) and `97`-artifact download audit (`audit_downloads.py` `0` diff), passed `check_artifact_policy.py`, `generate_submission.py --with-data`, `verify_frontdoor.py`, `verify_front_door.py`, `verify_current_artifact.py --with-data`, `verify_evidence.py`, `verify_s16.py --with-data`, `verify_s17.py --with-data`, `verify_s19.py --with-data`, `verify_s20.py --with-data`, `make demo`, full `pytest` (`659 passed, 2 skipped, 0 failed`), and real headless Chromium + axe-core WCAG 2.1 AA + `390px` mobile + SHA-256 download verification (`node tools/browser/smoke.cjs`: `status = PASS`, `0` violations).
+### Pass 3 — Line-by-Line Prompt Audit, `origin/main` Merge Remediation & End-to-End CI / Browser Re-Verification (COMPLETED)
+- [x] Merged `origin/main` (`#141..#144`), verified `S20-RHTW E3` passes 3-px dot overlap against both newly merged parallel rasters (`24.19% <= 70%` vs `S20-LFI`, `4.13% <= 70%` vs `S21-DCBL`), and remediated `S21-DCBL`'s missing `registry/artifact_policy.json` entries (`101` registered artifacts PASS).
+- [x] Re-checked every requirement of the standing prompt line by line against workspace deliverables and verified byte-for-byte deterministic portal re-render (`render_portal.py` `0` diff) and `101`-artifact download audit (`audit_downloads.py` `0` diff), passed `check_artifact_policy.py`, `generate_submission.py --with-data`, `verify_frontdoor.py`, `verify_front_door.py`, `verify_current_artifact.py --with-data`, `verify_evidence.py`, `verify_s16.py --with-data`, `verify_s17.py --with-data`, `verify_s19.py --with-data`, `verify_s20.py --with-data`, `make demo`, full `pytest`, and real headless Chromium + axe-core WCAG 2.1 AA + `390px` mobile + SHA-256 download verification (`node tools/browser/smoke.cjs`: `status = PASS`, `0` violations).
+
+---
+
+## Parallel Session 20 (`S20-LFI`, branch `arena/670d23f5-gemsdoe91`, 2026-10-26)
+
+### Pass 1: research, preregistration, implementation and the 3 experiments (COMPLETED)
+- [x] Restored 13 SHA-pinned inputs (`restore_data.py`) and 62 registry rasters (`restore_registry.py --available-only`).
+- [x] Swept the owner's GEMSDOE* repos: 102 repos, 1,039 unique TIFFs (`sibling_sweep.py list/fetch`).
+- [x] Fetched the DrivenData problem page (truth is new faults; public and private chunks) and the leaderboard (#1 0.4413).
+- [x] Matched 108 of 121 USER-REPORTED live scores to fetchable rasters (`registry/lfi_live_anchors.csv`, `scripts/lfi_match_anchors.py`).
+- [x] **E1:** LFI surrogate (`src/gems91/lfi.py`, `scripts/run_lfi.py`). Leave-one-site-out Spearman 0.957, RMSE 0.0198 (ridge 10). The blinded-consensus check was run as well.
+- [x] Wrote the preregistration `docs/HYPOTHESES_S20_LFI.md` (5 ranked hypotheses, gates G1–G5) before any holdout, uniqueness or TIFF result for the candidate existed.
+- [x] **E2:** instrument validity (`scripts/run_lfi_holdout.py`). hide-v2 against live across 112 rasters: Spearman 0.105. Canaries pass (max AUC 0.647).
+- [x] **E3:** emission (`src/gems91/lfi_emit.py`, `scripts/run_lfi_emit.py emit2`). 37,500 dots, model-DTI 0.378. Written with `vendor/gems57/submission_writer.py`; the validator passes.
+
+### Pass 2: review and fix (COMPLETED)
+- [x] The sibling-sweep check found **5 sparse duplicates (>70%)** in the pass-1 file, so G2 failed. Fix: 212 extra references as hard caps (238 in total).
+- [x] Found and fixed a fill bug (caps were measured against the target count, not the achieved count). Re-emitted 29,671 dots, model-DTI 0.362.
+- [x] Found `scripts/check_unique_registry.py` hard-coded to an old candidate. Added `scripts/check_lfi_registry.py` (same `cmd_check` rule).
+- [x] Reverted `evidence/s13_independent_tif_check.json`, which `independent_tif_check.py` had modified because it ignores its arguments.
+- [x] Policy conflict: the preregistered G5 versus the user's standing rule and the repo's fail-closed contract. The verdict stays fail-closed, and no safety test was weakened.
+- [x] Re-ran G1–G5 on the pass-2 file. **G4 FAILED** (blinded-consensus P(Δ>0) = 0.867 < 0.95), so the verdict is **negative**.
+
+### Pass 3: end-to-end re-check against the full brief (see the review doc for results)
+- [x] Run card and portal rebuilt from JSON (`build_lfi_card.py`, `render_portal.py` → `render_s20_lfi_pages.py`, `render_s20_readme.py`).
+- [x] `check_artifact_policy.py`, `generate_submission.py --with-data`, the independent tifffile re-read, the targeted test suites and the reproducible portal render.
+- [x] PR opened and merged into main.
 
 ---
 

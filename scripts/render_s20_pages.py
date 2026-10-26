@@ -37,8 +37,12 @@ NINE_SITES_ROWS = [
 ]
 
 ARCHIVE = [
+    ("S20-LFI", "downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif", "run-card-S20-LFI.json",
+     "Parallel LFI consensus (29,671 dots, sha256 05280b6d33a91d0e814cc749ddfcb27f0433ae31b99a477c9999a89dcec58e51; G4 FAIL negative; S20-RHTW overlap 24.19% <= 70%)"),
+    ("S21-DCBL", "downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.tif", "run-card-S21-DCBL.json",
+     "Parallel deep-cover gravity lineament (0.0226 HOLDOUT-DTI negative; S20-RHTW overlap 4.13% <= 70%)"),
     ("ISO91 E1", "downloads/gemsdoe91-iso91-isolationpu-37654-20261025T190251Z-beaca59b-zeros.tif", "run-card-ISO91.json",
-     "0.0813 HOLDOUT-DTI (I1 isolated) / 0.0682 (I2); prior front door"),
+     "0.0813 HOLDOUT-DTI (I1 isolated) / 0.0682 (I2); 2026-10-25 prior front door"),
     ("S18-HGBR E1", "downloads/gems91-s18-hgbr-hgbr-e1-20261025T184458Z-d5b042a3-zeros.tif", "run-card-S18-HGBR.json",
      "0.2007 HOLDOUT-DTI (60,988-pos LOQO); Blind SGMC >500m 0.1050"),
     ("OLC91 E1", "downloads/gemsdoe91-olc91-e1-strikecoherent-37654-20261025-62d03e67.tif", "run-card-OLC91.json",
@@ -63,11 +67,14 @@ ARCHIVE = [
 ]
 
 LINK_NAMES = {
+    "S20-LFI": ("↓ Download S20-LFI GeoTIFF", ("↓ S20-LFI Single-TIFF ZIP", "downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.zip")),
     "S17-CGRD E2": ("↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)", None),
     "S17-LFTG E2": ("↓ Download S17-LFTG GeoTIFF", ("↓ S17-LFTG Single-TIFF ZIP", "downloads/gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.zip")),
     "S17-CPAD E1": ("↓ Download S17-CPAD E1 GeoTIFF", ("↓ S17-CPAD Single-TIFF ZIP", "downloads/gems91-s17-cpad-e1-20261025T152830Z-0230f7494eeb-zeros.zip")),
 }
 AUDIT_PAGES = {
+    "S20-LFI": ("S20-LFI executive summary", "s20-lfi-executive-summary.html"),
+    "S21-DCBL": ("S21-DCBL executive summary", "s21-dcbl-executive-summary.html"),
     "S17-LFTG E2": ("S17-LFTG research audit", "s17-lftg.html"),
     "S17-CPAD E1": ("S17-CPAD research audit", "s17-cpad.html"),
     "S17-CGRD E2": ("S17-CGRD research audit", "s17-cgrd.html"),
@@ -259,7 +266,7 @@ def archive_table() -> str:
             f"<tr><td>{e(n)}</td><td>{cell}</td><td>{card_cell}</td><td>{e(ev)}</td><td class=\"fail\">NOT OK TO SUBMIT</td></tr>"
         )
     return f"""<section class="card" id="archive"><h2>Archive: Prior Research Downloads &amp; Historical Audits</h2>
-<p class="small">Prior session research downloads kept for auditability; linking a prior file here is not an approval to upload that file, and every archived row remains NOT OK TO SUBMIT.
+<p class="small">Prior session research downloads kept for auditability; linking a prior file here is not an approval to upload that file, none is approved by the current review, and every archived row remains NOT OK TO SUBMIT. Do not upload the historical ISO91 research TIFF (2026-10-25). Parallel read-only audit (<code>arena/af73263f</code>: NO NEW TIFF GENERATED in that read-only review): <a href="nine-site-audit-20261026.html">nine-site-audit-20261026.html</a> · <a href="nine-site-executive-summary.html">nine-site-executive-summary.html</a>.
 Previous front pages &amp; historical audits: <a href="previous-sessions.html">previous-sessions.html</a> · <a href="archive-results.html">archive-results.html</a> · <a href="REVIEW-ISO91-BACC7C26-20261025.md">ISO91 review</a> · <a href="HYPOTHESES_ISO91.md">ISO91 hypotheses</a> · <a href="KNOWLEDGE-GEOTHERMAL-FAULTS-ISO91.md">ISO91 knowledge base</a> · 522615dd <a href="REVIEW-ACTIVE-522615DD-20261025.md">review</a> · <a href="run-card-522615dd.json">no-run card</a> · <a href="HYPOTHESES-ACTIVE-522615DD-20261025.md">hypotheses</a> · e649e460 <a href="REVIEW-ACTIVE-E649E460-20261025.md">review</a> · <a href="run-card-E649E460-20261025.json">run card</a>.</p>
 <div class="tscroll"><table><tr><th>Lane</th><th>Download</th><th>Run card</th><th>Recorded evidence</th><th>Verdict</th></tr>{''.join(rows)}</table></div>
 </section>"""
@@ -314,7 +321,7 @@ def render_exec(c: dict) -> str:
 <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Public Leaderboard</a> (#1 <code>0.4413</code> PUBLIC-LEADERBOARD on 2026-10-26) &amp; <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official NREL/DOE Rules PDF</a> ($300K prize pool, 3/week submission cap, AI disclosure).</li>
 <li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN (DOI: 10.5066/P93LGLVQ)</a> · <a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS</a> · <a href="https://gdr.openei.org/submissions/1391">OpenEI GDR 1391 (DOI: 10.15121/1881483)</a> · <a href="KNOWLEDGE_BASE_GEOTHERMAL_FAULTS_20261026.md">Full 14-Source Knowledge Base</a>.</li>
 </ul>
-<p class="small">Reproduce end-to-end via <code>.venv/bin/python scripts/run_s20_rhtw.py</code>, rerender via <code>.venv/bin/python scripts/render_portal.py</code>, and verify via <code>.venv/bin/python generate_submission.py --with-data</code>. Current research file: <a download href="{e(tif)}">{e(Path(tif).name)}</a>. Historical reviews: <a href="REVIEW-ACTIVE-522615DD-20261025.md">522615dd review</a> · <a href="run-card-522615dd.json">no-run card</a> · <a href="REVIEW-ACTIVE-E649E460-20261025.md">e649e460 review</a> · <a href="run-card-E649E460-20261025.json">e649e460 run card</a> · <a href="run-card-S17-EULR.json">S17-EULR card</a> (<a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif</a>) · <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif</a>. Linking a prior file here is not an approval to upload that file.</p>
+<p class="small">Reproduce end-to-end via <code>.venv/bin/python scripts/run_s20_rhtw.py</code>, rerender via <code>.venv/bin/python scripts/render_portal.py</code>, and verify via <code>.venv/bin/python generate_submission.py --with-data</code>. Current research file: <a download href="{e(tif)}">{e(Path(tif).name)}</a>. Parallel read-only audit (<code>arena/af73263f</code>: NO NEW TIFF GENERATED in that read-only review; none is approved by the current review; Do not upload the historical ISO91 research TIFF from 2026-10-25): <a href="nine-site-audit-20261026.html">nine-site-audit-20261026.html</a>. Historical reviews: <a href="REVIEW-ACTIVE-522615DD-20261025.md">522615dd review</a> · <a href="run-card-522615dd.json">no-run card</a> · <a href="REVIEW-ACTIVE-E649E460-20261025.md">e649e460 review</a> · <a href="run-card-E649E460-20261025.json">e649e460 run card</a> · <a href="run-card-S17-EULR.json">S17-EULR card</a> (<a download href="downloads/gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif">gems91-s17-eulr-e3-20261025T160000Z-76cc8d1a-zeros.tif</a>) · <a download href="downloads/gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif">gems91-s17-cgrd-e2-20261025T141828Z-7979e44f-zeros.tif</a>. Linking a prior file here is not an approval to upload that file.</p>
 </section>
 </main>
 """
@@ -326,7 +333,26 @@ def main() -> None:
     c = json.loads(CARD.read_text(encoding="utf-8"))
     (DOCS / "s20-rhtw-index-src.html").write_text(render_index(c), encoding="utf-8")
     (DOCS / "s20-rhtw-exec-src.html").write_text(render_exec(c), encoding="utf-8")
-    print("wrote docs/s20-rhtw-index-src.html, docs/s20-rhtw-exec-src.html")
+    root_html = (
+        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        '<meta http-equiv="refresh" content="0;url=docs/index.html">'
+        '<title>GEMSDOE91 — Session 20 S20-RHTW Unique GeoTIFF · Automated Verdict</title></head>'
+        '<body><main><h1>GEMSDOE91 — current status</h1>'
+        '<p><strong>Session 20 (S20-RHTW E3, 2026-10-26): new unique validated [0, 1] GeoTIFF.</strong> '
+        'OK TO DOWNLOAD: YES. OK TO SUBMIT: NO — NOT OK TO SUBMIT (human weekly-slot selector required; I2=0.1368, I1=0.1133 HOLDOUT-DTI). '
+        '<a href="docs/index.html">Download and automated verdict (top of portal)</a> · '
+        '<a href="docs/executive-summary.html">Executive summary, 9-site audit &amp; how to submit</a></p>'
+        '<p>Parallel 2026-10-26 nine-site audit (arena/af73263f, read-only review): <strong>NO NEW TIFF GENERATED.</strong> '
+        'OK TO DOWNLOAD: NO NEW TIFF FROM THIS REVIEW. OK TO SUBMIT: NO. '
+        '<a href="docs/nine-site-audit-20261026.html">Open the nine-site audit</a></p>'
+        '<p>The prior ISO91 GeoTIFF remains a separate negative research artifact, not an approved submission: '
+        '<a href="docs/index.html">historical research/download portal</a> · '
+        '<a href="docs/executive-summary.html">submission guide (none currently approved)</a>.</p>'
+        '</main></body></html>\n'
+    )
+    (ROOT / "index.html").write_text(root_html, encoding="utf-8")
+    print("wrote docs/s20-rhtw-index-src.html, docs/s20-rhtw-exec-src.html, index.html")
 
 
 if __name__ == "__main__":

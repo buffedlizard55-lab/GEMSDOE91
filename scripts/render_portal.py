@@ -23,8 +23,8 @@ def shell(title, body, updated):
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{escape(title)} · GEMSDOE91</title><meta name="description" content="Automated GEMS fault-mapping research, measured holdout evidence and a clearly labelled GeoTIFF download. Not approved for submission.">
 <link rel="stylesheet" href="assets/portal.css"><script defer src="assets/portal.js"></script></head>
-<body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Current candidate</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a><a href="archive-results.html">Historical archive</a></nav></header>
-<main id="main"><aside class="card" aria-label="Historical parallel review"><strong>Historical parallel audit · research downloads only.</strong> That review generated no candidate. Its full-grid and artifact-policy corrections are retained here. <a href="REVIEW-C6BFB72B-20261025.md">Dated audit and proposed tests</a> · <a href="index.html">Current S16 result</a></aside>{body}</main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated {escape(updated)} · UTC</div><div><a href="run-card.json">Machine-readable run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>\n'''
+<body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="top"><a class="brand" href="index.html">GEMSDOE<span>91 / FAULT MAPPING LAB</span></a><nav aria-label="Main"><a href="index.html">Research results</a><a href="high-score-submissions-review.html">High-score site review</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Evidence &amp; sources</a><a href="archive-results.html">Historical archive</a></nav></header>
+<main id="main"><aside class="card" aria-label="Current review 2026-10-26"><strong>Current review · 2026-10-26 · arena/af73263f-gemsdoe91:</strong> no new TIFF was generated. <strong>OK TO DOWNLOAD: NO — no new candidate · OK TO SUBMIT: NO</strong>; zero weekly slots used. The research files below are prior artifacts, not candidates from this review. <a href="nine-site-audit-20261026.html">Current pinned nine-site audit</a> · <a href="REVIEW-SITE-AUDIT-20261026.md">Current three-pass review</a> · <a href="run-card-SITE-AUDIT-20261026.json">No-run card</a> · <a href="high-score-submissions-review.html">Earlier nine-site comparison</a></aside><aside class="card" aria-label="Historical parallel review"><strong>Historical parallel audit · research downloads only.</strong> That review generated no candidate. Its full-grid and artifact-policy corrections are retained here. <a href="REVIEW-C6BFB72B-20261025.md">Dated audit and proposed tests</a> · <a href="index.html">Historical research results</a></aside>{body}</main><footer><div>Research, not a leaderboard prediction.<br>Evidence updated {escape(updated)} · UTC</div><div><a href="run-card.json">Machine-readable run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source on GitHub</a><br>No automatic competition uploads. No credentials stored.</div></footer></div></body></html>\n'''
 
 
 def f(value, digits=5):
@@ -633,13 +633,13 @@ def render():
     # committed front door matches a fresh render byte-for-byte.
     from scripts.render_geo91_portal import render as render_geo91
     render_geo91()
-    # OLC91 (2026-10-25, later session) supersedes GEO91 as the current entry point.
+    # S20-LFI parallel research executive summary (renders s20-lfi-executive-summary.html before S20-RHTW sets front door).
+    if (ROOT / 'docs/run-card-S20-LFI.json').is_file():
+        from scripts.render_s20_lfi_pages import render as render_s20_lfi
+        render_s20_lfi()
+    # OLC91 / S20-RHTW (2026-10-26, I2=0.1368 & I1=0.1133 HOLDOUT-DTI) runs last as the authoritative front door.
     from scripts.render_olc91_portal import render as render_olc91
     render_olc91()
-    # CWP91 (2026-10-25, completeness-weighted PU) merged as a namespaced parallel
-    # session (docs/cwp91.html); it does NOT replace the current front door above.
-    # Its pages are built by scripts/render_cwp91_portal.py, deliberately not called
-    # here so a fresh render reproduces the committed entry points byte-for-byte.
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 
