@@ -1,0 +1,169 @@
+{
+  "lane": "CBSC-E1",
+  "session": "arena/5a1daf57-gemsdoe91",
+  "date": "2026-10-26",
+  "preregistration": "docs/HYPOTHESES_5A1DAF57.md (before any experiment)",
+  "hypothesis": "Conductive-basement step concordance: blind faults under alluvium produce coincident conductivity (B17) and basement-depth (B15) gradient steps, gated by magnetic/gravity edge (B02/B13), missed by surface scarp catalogue.",
+  "mechanism": "Normalized Sobel gradient product C=\u2016\u2207cond\u2016\u00b7\u2016\u2207depth\u2016 gated by K=\u221a(\u2016\u2207rtp\u2016\u00b7\u2016\u2207grav\u2016)>0.3, 3\u00d73 median destripe, 1\u03c3 Gaussian, NMS, hysteresis linking, 2.8-px spacing, >3-px catalogue collar, 20k dots.",
+  "non_fault_process_mimic": "Paleochannel margins, evaporite playa edges, volcanic flow lobes; suppressed by requiring B15 co-location, playa mask (low B12+B19), and B02/B13 corroboration.",
+  "holdout": {
+    "instrument": "gems57-pooled-hide-v2 whole-segment hide-and-recover, DOMAIN_ERODE 12px, DETACH 4px, HIDE_FRAC 0.20, seeds 20/21, modes all/detached (16 cells)",
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 45260,
+    "dti": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "best_repo_incumbent": 0.200742,
+    "best_incumbent_ci": [
+      0.180482,
+      0.221419
+    ],
+    "delta_vs_incumbent": -0.200742,
+    "per_cell_dti": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bootstrap": "paired 20km block (cell) percentile, 1000 draws, seed 520810 (approx)"
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "max_symmetric_auc": 0.537886047,
+    "per_feature": [
+      {
+        "feature": "rtp",
+        "auc": 0.5374316809999999,
+        "sym": 0.5374316809999999
+      },
+      {
+        "feature": "iso_grav",
+        "auc": 0.537886047,
+        "sym": 0.537886047
+      },
+      {
+        "feature": "depth_to_base",
+        "auc": 0.53127691,
+        "sym": 0.53127691
+      },
+      {
+        "feature": "cond_surf",
+        "auc": 0.50908714,
+        "sym": 0.50908714
+      }
+    ],
+    "pass": true
+  },
+  "uniqueness": {
+    "pre_placement_surface_max_abs_spearman": 0.034117015748111774,
+    "pre_placement_closest": "data/fleet_registry/calib_hedgev2_01563_sample.tif",
+    "pre_placement_pass": true,
+    "final_surface_max_abs_spearman": 0.034117015748111774,
+    "final_dots_max_within_3px": 0.96145,
+    "final_dots_closest": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "final_overlap_pass": false,
+    "registry_scope": "62 fleet_registry + 8 data/registry + docs/downloads (per comparison_inventory.json, 62/64 restored)",
+    "capacity_bound": {
+      "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+      "footprint_pixels": 5167373,
+      "reference_dots": 206895,
+      "uncovered_pixels": 6649,
+      "candidate_budget": 20000,
+      "minimum_overlapping_dots": 13351,
+      "overlap_lower_bound": 0.66755,
+      "radius_px": 3,
+      "threshold": 0.7,
+      "feasible_by_capacity_only": true,
+      "largest_budget_by_capacity_only": 22163,
+      "status": "NOT_RULED_OUT",
+      "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance."
+    }
+  },
+  "raster": {
+    "path": "docs/downloads/gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros.tif",
+    "sha256": "352cd5cfa1077bde125794029f18d69e7ac49a9b353f88c50afca518b81eb302",
+    "bytes": 94899,
+    "n_dots": 20000,
+    "zip": "docs/downloads/gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros.zip",
+    "zip_sha256": "931055a04a0a9614902076db464c7ba2b41130ac6303047455c2c945c134c786",
+    "encoding": "zeros outside footprint, all-finite float32, no nodata"
+  },
+  "validator": {
+    "file": "/home/user/GEMSDOE91/docs/downloads/gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros.tif",
+    "bytes": 94899,
+    "sha256": "352cd5cfa1077bde125794029f18d69e7ac49a9b353f88c50afca518b81eb302",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0016287759644910693,
+    "emitted_positive_pixels": 20000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 20000,
+    "footprint_fraction": 0.0038704386155208846
+  },
+  "submission_name": "gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros",
+  "submission_note": "CBSC-E1: cond+depth step concordance, 20k dots, >3px collar; HOLDOUT-DTI report-only",
+  "submission_note_chars": 84,
+  "verdict": "negative",
+  "ok_to_download": "YES",
+  "ok_to_submit": "NO",
+  "why": "Format-valid research file; holdout vs 0.200742 incumbent decides scientific promotion, selector decides slot."
+}

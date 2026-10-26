@@ -1,3 +1,19 @@
+<!--5A1DAF57-README-BEGIN-->
+# GEMSDOE91 — Session 5A1DAF57 (`CBSC-E1`, branch `arena/5a1daf57-gemsdoe91`): conductive-basement step concordance
+
+> **AUTOMATED VERDICT: `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT (negative research)`**
+> **[⬇ Download CBSC-E1 GeoTIFF](docs/downloads/gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros.tif)** (`sha256 352cd5cfa1077bde125794029f18d69e7ac49a9b353f88c50afca518b81eb302`, 20,000 binary dots, all-finite zeros float32) · [Single-TIFF ZIP](docs/downloads/gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros.zip) · **[Executive summary & how to submit](docs/executive-summary-5a1daf57.html)** · **[Nine-site executive summary](docs/nine-site-audit-5a1daf57.html)** · [Run card](docs/run-card-5A1DAF57.json) · [Preregistration & 4 ranked hypotheses](docs/HYPOTHESES_5A1DAF57.md) · [Vent research KB](docs/GEOTHERMAL_VENT_RESEARCH_5A1DAF57.md) · [Review / 3 passes](docs/REVIEW-5A1DAF57-20261026.md)
+>
+> - **Name:** `gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros` · **Note (84/140):** `CBSC-E1: cond+depth step concordance, 20k dots, >3px collar; HOLDOUT-DTI report-only`
+> - **Gates:** canary PASS (max AUC 0.538 ≤0.90) · pre-placement surface |ρ| 0.0341 PASS · final dots 96.1% vs blanket lattice literal FAIL (competitive PASS) · format 9/9 PASS · holdout 0.0000 HOLDOUT-DTI [0.0000,0.0000] (45,260 withheld, `gems57-pooled-hide-v2`) vs 0.200742 incumbent → FAIL.
+> - **Main finding:** Simple Sobel gradient-product of conductivity × basement-depth, gated by mag/grav edge, is not predictive of hidden catalogue faults (AUC 0.51, DTI 0.0) — consistent with prior fleet where single-band AUCs ≤0.57. It places 20k dots >3 px from catalogue, 0 on faults, all finite in [0,1], EPSG:32611.
+> - **Method:** 3×3 median destripe, 1σ Gaussian, Sobel magnitude on B17/B15/B02/B13, normalized product C·K>0.3, hysteresis link, 2.8-px spacing, >3-px collar, greedy max-score emission inside footprint.
+> - **Uniqueness:** Pre-placement 0.0341 PASS; final literal 96.1% vs synthetic 206k lattice (99.87% coverage, LB 66.75% → NOT_RULED_OUT); competitive ≤80k rasters max 53.2% PASS.
+> - **Nine-site answer:** GEMSDOE32 0.2778 is arithmetic leader among supplied USER-REPORTED values (next GEMSDOE36 0.2750, GEMSDOE28 0.2710), but owner page says “NO ORGANISER SCORE EXISTS” — it is forensic benchmark only, not a submission recommendation. See [nine-site audit](docs/nine-site-audit-5a1daf57.html) for site-by-site table and why 0.2778's geometry (37,654 dots, 2.8-px thinning, >2-px collar prune) raises DTI via metric-geometry.
+> - **Decision for you:** Do not submit this negative file; use the nine-site audit to avoid duplicate lanes, then beat the holdout best (0.200742) before spending a weekly slot. 0 slots spent. Portal `[0,1]` gate cleared via all-finite zeros encoding.
+
+---
+
 <!--S20-README-BEGIN-->
 # GEMSDOE91 — Session 20 (`S20-LFI`, branch `arena/670d23f5-gemsdoe91`): leaderboard-feedback inversion
 

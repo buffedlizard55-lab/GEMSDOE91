@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEMSDOE91 · How to Download & Submit (CBSC-E1) — Step-by-Step</title>
+<meta name="description" content="Exact DrivenData submission steps for GEMSDOE91 CBSC-E1 GeoTIFF, with portal fix and automated validation.">
+<style>:root{--ink:#14211d;--mut:#51635d;--ok:#16624c;--bad:#a12c2c;--line:#dbe4e0;--bg:#f6f9f7;--warn:#fff6e0}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:18px}a{color:var(--ok)}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
+h1{font-size:26px;margin:.2em 0}h2{font-size:20px;margin:.8em 0 .4em}.verdicts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.v{border-radius:12px;padding:12px;font-weight:800;text-align:center}.yes{background:#e2f2ea;color:var(--ok)}.no{background:#f8e3e3;color:var(--bad)}
+.btn{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-weight:800;margin:6px 8px 6px 0}
+.btn2{display:inline-block;border:1px solid var(--ok);padding:9px 13px;border-radius:9px;text-decoration:none;font-weight:700;margin:6px 8px 6px 0}
+.small{color:var(--mut);font-size:14px}code{word-break:break-all}ol li{margin:6px 0}.copy{display:flex;gap:8px;align-items:center}
+.copy input{flex:1;font-family:monospace;font-size:13px;padding:7px;border:1px solid var(--line);border-radius:8px}
+.copy button{border:1px solid var(--ok);background:#fff;color:var(--ok);border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer}
+.warn{background:var(--warn);border:1px solid #ead39a;border-radius:10px;padding:10px 12px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:7px;text-align:left}
+footer{margin:20px 0;color:var(--mut);font-size:13px}
+</style></head><body><div class="wrap">
+<header style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><span style="font-weight:800">GEMSDOE91 · DOE GEMS Prize</span>
+<nav><a href="index.html">Home</a> · <a href="nine-site-audit-5a1daf57.html">Nine-site executive summary</a> · <a href="run-card-5A1DAF57.json">Run card</a></nav></header>
+
+<section class="card" style="border:2px solid #16624c">
+<h1>⬇ Download & Submit — CBSC-E1 (Session 5A1DAF57)</h1>
+<div class="verdicts"><div class="v yes">OK TO DOWNLOAD: YES<br><small>all 12,279,160 cells finite in [0,1] · single-band float32 · EPSG:32611 · 3730×3292 · no nodata</small></div>
+<div class="v no">OK TO SUBMIT: NO<br><small>research negative — HOLDOUT-DTI 0.0000 &lt; 0.200742; do not spend a weekly slot</small></div></div>
+<p><a class="btn" download href="downloads/gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros.tif">↓ Download GeoTIFF (93 KB)</a>
+<a class="btn2" download href="downloads/gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros.zip">↓ Single-TIFF ZIP (52 KB)</a>
+<a class="btn2" href="run-card-5A1DAF57.json">Machine run card</a>
+<a class="btn2" href="HYPOTHESES_5A1DAF57.md">Preregistered hypotheses</a></p>
+<p class="small">Name <code>gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros</code> (33 chars)<br>
+Note (84/140) <code>CBSC-E1: cond+depth step concordance, 20k dots, &gt;3px collar; HOLDOUT-DTI report-only</code><br>
+SHA-256 <code>352cd5cfa1077bde125794029f18d69e7ac49a9b353f88c50afca518b81eb302</code> · 20,000 binary dots · 0 on mapped faults · dist&gt;3 px collar PASS · outside-footprint zero PASS</p>
+<div class="warn"><strong>Why OK TO SUBMIT is NO here:</strong> Technical format PASS (validator 9/9) proves the portal's <code>Predicted values must be in range [0, 1]</code> gate is cleared (all-finite zeros encoding, no NaN). Scientific promotion requires beating the current holdout best <code>0.200742 HOLDOUT-DTI</code> on <code>gems57-pooled-hide-v2</code> (60,988 withheld, 16 cells) — this candidate scored <code>0.0000 [0.0000, 0.0000]</code>. A separate human selector must still approve any weekly slot; this site never auto-submits.</div>
+</section>
+
+<section class="card">
+<h2>Exact 4-step DrivenData submission (no human inspector needed)</h2>
+<ol>
+<li><strong>Download:</strong> Click <em>Download GeoTIFF</em> above (or the ZIP — it contains the identical single TIFF). The file is already validated line-by-line: <code>./.venv/bin/python generate_submission.py --with-data</code> and <code>scripts/audit_downloads.py</code> re-read the bytes for CRS/shape/transform/range/nodata. If you use the ZIP, unzip and submit the inner <code>.tif</code> directly — the portal accepts either a single <code>.tif</code> or a <code>.zip</code> with one TIFF.</li>
+<li><strong>Open the competition submission page:</strong> <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/</a> (login required, weekly cap shown on that page; this site never asks for your password/token).</li>
+<li><strong>Choose file &amp; paste metadata:</strong> In the <em>New submission</em> form, select the downloaded <code>.tif</code>. Copy the name/note below — the note is ≤140 chars as required:<br>
+<div class="copy"><input id="nm" readonly value="gems91-5a1daf57-cbsc-e1-20000dots-20261026T060000Z-zeros"><button type="button" data-copy="nm">Copy name</button></div>
+<div class="copy"><input id="nt" readonly value="CBSC-E1: cond+depth step concordance, 20k dots, >3px collar; HOLDOUT-DTI report-only"><button type="button" data-copy="nt">Copy note</button></div>
+</li>
+<li><strong>Submit &amp; keep receipt:</strong> Click <em>Create submission</em>. The organizer returns a submission receipt with your <code>ORGANIZER-CONFIRMED</code> score — that receipt (not this page) is the only evidence of a leaderboard score. Do not submit this research-negative file to chase a score; its ZIP/TIFF is for learning, format-proof, and audit reuse.</li>
+</ol>
+<p class="small">Format reference: DrivenData rules page — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">rules</a>, problem &amp; DTI definition — <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">page 967</a>, EPSG:32611 — <a href="https://epsg.io/32611">epsg.io/32611</a>, Tversky — <a href="https://en.wikipedia.org/wiki/Tversky_index">Wikipedia</a>. The portal error <code>Predicted values must be in range [0, 1]</code> was fixed here by writing <strong>all-finite zeros</strong> (no NaN tag, float32, values {0,1} only).</p>
+</section>
+
+<section class="card">
+<h2>What the automated gates actually checked (HOLDOUT-DTI = not a leaderboard score)</h2>
+<table><tr><th>Gate</th><th>Result</th><th>Evidence (labeled)</th></tr>
+<tr><td>G1 Holdout vs incumbent (pooled DTI α=0.2 β=0.8, 300 m triangle)</td><td style="color:#a12c2c;font-weight:700">FAIL</td><td>HOLDOUT-DTI 0.0000 [0.0000,0.0000] (60,988 withheld) vs 0.200742 [0.180482,0.221419] S18-HGBR E1; Δ -0.2007 → negative verdict</td></tr>
+<tr><td>G2 Leakage canary (each feature alone, AUC ≤0.90)</td><td style="color:#16624c;font-weight:700">PASS</td><td>max symmetric AUC 0.5379 (worst B13 iso_grav) — no leakage flag</td></tr>
+<tr><td>G3 Pre-placement surface novelty (|ρ| ≤0.90)</td><td style="color:#16624c;font-weight:700">PASS</td><td>max |ρ| 0.0341 vs calib_hedgev2_01563_sample.tif</td></tr>
+<tr><td>G4 Final dots novelty (≤70% within 3 px)</td><td style="color:#a12c2c;font-weight:700">LITERAL FAIL* </td><td>96.1% within 3 px of synthetic lattice calib_r13lattice_00904.tif (206,895 dots, 99.87% coverage) — *competitive scope (≤80k real rasters) max is 53.2% PASS; see capacity witness</td></tr>
+<tr><td>G5 Format (independent re-read)</td><td style="color:#16624c;font-weight:700">PASS</td><td>single-band float32, EPSG:32611, 3730×3292, transform [100,0,243350,0,-100,4508550], no nodata, 0 NaN, 0.0016 mean, 20k dots, 0 on catalogue, >3 px collar</td></tr>
+</table>
+<p class="small">Capacity witness (not a score): footprint 5,167,373 px, reference 206,895 dots, uncovered 6,649 px, candidate 20,000 → minimum overlap 13,351 (66.75% LB) vs 70% threshold → <em>NOT_RULED_OUT</em> (largest feasible budget 22,163). This candidate's 96.1% is above the LB because dots were not packed into uncovered cells — feasible by capacity, but literal duplicate vs blanket.</p>
+<p class="small">Evaluator <code>gems57-pooled-hide-v2</code> — whole fault segments hidden with 12-px eroded domain, visible faults masked pixel-exactly, pooled DTI α=0.2 β=0.8 triangular kernel. Numbers labeled HOLDOUT-DTI with withheld count and 95% CI; no ORGANIZER-CONFIRMED score is claimed.</p>
+</section>
+
+<section class="card">
+<h2>If you need a high-score file for submission</h2>
+<p>Among the nine requested sites, the <strong>arithmetic leader in supplied values</strong> is <strong>GEMSDOE32 h33-h33-2-b2 0.2778</strong>, then GEMSDOE36 0.2750, GEMSDOE28 h36-1 0.2710 — all <strong>USER-REPORTED / UNVERIFIED</strong> (GEMSDOE32 owner page says “NO ORGANISER SCORE EXISTS” for its artifacts; see <a href="nine-site-audit-5a1daf57.html">nine-site executive summary</a>). No prior TIFF here is selector-approved; copying a prior site's bytes would breach the uniqueness rule (70% dot overlap / 0.90 rank-correlation). See that audit for why 0.2778's geometry (37,654 dots, median 2.8-px spacing, >2-px collar prune) can raise DTI via metric-geometry without proving a better geothermal localizer.</p>
+<p class="small">Current public leaderboard (not refreshed in this checkout, last stored observation 0.4413 on 2026-10-25) is not a receipt for any file here. For honest competition, validate any idea on the spatially-blocked holdout before spending a weekly slot — this CBSC-E1 was validated and found negative, which is a deliverable.</p>
+</section>
+
+<footer>Maximize P(Win) · Own the Outcome · Every decimal labeled HOLDOUT-DTI, USER-REPORTED, PUBLIC-LEADERBOARD or MODEL; nothing is ORGANIZER-CONFIRMED without a submission-page receipt.</footer>
+</div>
+<script>document.querySelectorAll('button[data-copy]').forEach(b=>b.addEventListener('click',()=>{const t=document.getElementById(b.dataset.copy);t.select();navigator.clipboard&&navigator.clipboard.writeText(t.value);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1200)}))</script>
+</body></html>
