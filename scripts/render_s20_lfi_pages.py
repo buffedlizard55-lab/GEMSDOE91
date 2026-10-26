@@ -95,7 +95,7 @@ def render():
     
     banner = f"""<!--S20-LFI-BEGIN-->
     <section class="card dl" data-submission-ready="{str(oks).lower()}" aria-label="Session 20 download and automated verdict">
-    <h1>NEW · Session 20 · LFI GeoTIFF · automated verdict</h1>
+    <h2>NEW · Session 20 · LFI GeoTIFF · automated verdict</h2>
     <div class="verdicts"><div class="v {dl_class}">OK TO DOWNLOAD: {'YES' if okd else 'NO'}<small>format re-validated from disk · unique vs {reg['protocol_and_anchor_registry']['n_compared'] + reg['sibling_sweep']['n_compared']} rasters</small></div>
     <div class="v {sb_class}">{esc(sb_text)}<small>{esc(sb_small)}</small></div></div>
     <a class="btn" download href="downloads/{fname}">↓ Download S20-LFI GeoTIFF</a><a class="btn2" download href="downloads/{zname}">↓ S20-LFI Single-TIFF ZIP</a><a class="btn2" href="s20-lfi-executive-summary.html">Executive summary &amp; how to submit</a><a class="btn2" href="run-card-S20-LFI.json">Run card</a>

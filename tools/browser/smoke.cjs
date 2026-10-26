@@ -109,6 +109,8 @@ async function main() {
     if (s19ZipDigest !== s19Card.artifact.zip_sha256) {
       throw new Error('S19-SVHF single-TIFF ZIP download SHA256 mismatch');
     }
+    // Fresh navigation: Chromium throttles >10 downloads from one page load.
+    await page.goto(baseURL, { waitUntil: 'networkidle' });
     const s20Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S20-LFI.json')));
     const s20DlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S20-LFI GeoTIFF', exact: true }).first().click();
