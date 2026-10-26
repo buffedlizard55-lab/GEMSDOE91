@@ -109,6 +109,21 @@ async function main() {
     if (s19ZipDigest !== s19Card.artifact.zip_sha256) {
       throw new Error('S19-SVHF single-TIFF ZIP download SHA256 mismatch');
     }
+    // Fresh navigation: Chromium throttles >10 downloads from one page load.
+    await page.goto(baseURL, { waitUntil: 'networkidle' });
+    const s20Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S20-LFI.json')));
+    const s20DlEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ Download S20-LFI GeoTIFF', exact: true }).first().click();
+    const s20Download = await s20DlEvent;
+    const s20Digest = crypto.createHash('sha256').update(fs.readFileSync(await s20Download.path())).digest('hex');
+    if (s20Digest !== s20Card.submission.sha256 || s20Card.ok_to_submit !== false) {
+      throw new Error('S20-LFI one-click download SHA256 or fail-closed state mismatch');
+    }
+    const s20ZipEvent = page.waitForEvent('download');
+    await page.getByRole('link', { name: '↓ S20-LFI Single-TIFF ZIP', exact: true }).first().click();
+    const s20Zip = await s20ZipEvent;
+    const s20ZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await s20Zip.path())).digest('hex');
+    if (s20ZipDigest !== s20Card.submission.zip_sha256) throw new Error('S20-LFI single-TIFF ZIP download SHA256 mismatch');
     const lftgDlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S17-LFTG GeoTIFF', exact: true }).click();
     const lftgDownload = await lftgDlEvent;
@@ -252,6 +267,15 @@ async function main() {
   }
   fs.writeFileSync(path.join(output, 'browser-verification.json'), `${JSON.stringify(report, null, 2)}\n`);
   console.log(JSON.stringify(report, null, 2));
-  if (report.status !== 'PASS') process.exitCode = 1;
+  if (report.status !== 'PASS') {
+    const bad = { errors: report.console_or_http_errors, accessibility: (report.accessibility || []).filter(a => a.violations.length) };
+    console.log(`::error title=browser smoke report FAIL::${JSON.stringify(bad).slice(0, 900)}`);
+    process.exitCode = 1;
+  }
 }
-main().catch(error => { console.error(error); process.exitCode = 1; });
+main().catch(error => {
+  console.error(error);
+  // Surface the reason as a GitHub annotation so it is visible without raw log access.
+  console.log(`::error title=browser smoke::${String(error && error.message || error).replace(/\r?\n/g, ' ').slice(0, 900)}`);
+  process.exitCode = 1;
+});

@@ -1,4 +1,32 @@
-# GEMSDOE91 — Multi-Pass Verification Log (Session 19 `S19-SVHF`, `arena/bcc0fcb2-gemsdoe91`)
+# GEMSDOE91 — Multi-Pass Verification Log (latest: Session 20 `S20-LFI`, `arena/670d23f5-gemsdoe91`)
+
+## Session 20 (`S20-LFI`, branch `arena/670d23f5-gemsdoe91`, 2026-10-26)
+
+### Pass 1: research, preregistration, implementation and the 3 experiments (COMPLETED)
+- [x] Restored 13 SHA-pinned inputs (`restore_data.py`) and 62 registry rasters (`restore_registry.py --available-only`).
+- [x] Swept the owner's GEMSDOE* repos: 102 repos, 1,039 unique TIFFs (`sibling_sweep.py list/fetch`).
+- [x] Fetched the DrivenData problem page (truth is new faults; public and private chunks) and the leaderboard (#1 0.4413).
+- [x] Matched 108 of 121 USER-REPORTED live scores to fetchable rasters (`registry/lfi_live_anchors.csv`, `scripts/lfi_match_anchors.py`).
+- [x] **E1:** LFI surrogate (`src/gems91/lfi.py`, `scripts/run_lfi.py`). Leave-one-site-out Spearman 0.957, RMSE 0.0198 (ridge 10). The blinded-consensus check was run as well.
+- [x] Wrote the preregistration `docs/HYPOTHESES_S20_LFI.md` (5 ranked hypotheses, gates G1–G5) before any holdout, uniqueness or TIFF result for the candidate existed.
+- [x] **E2:** instrument validity (`scripts/run_lfi_holdout.py`). hide-v2 against live across 112 rasters: Spearman 0.105. Canaries pass (max AUC 0.647).
+- [x] **E3:** emission (`src/gems91/lfi_emit.py`, `scripts/run_lfi_emit.py emit2`). 37,500 dots, model-DTI 0.378. Written with `vendor/gems57/submission_writer.py`; the validator passes.
+
+### Pass 2: review and fix (COMPLETED)
+- [x] The sibling-sweep check found **5 sparse duplicates (>70%)** in the pass-1 file, so G2 failed. Fix: 212 extra references as hard caps (238 in total).
+- [x] Found and fixed a fill bug (caps were measured against the target count, not the achieved count). Re-emitted 29,671 dots, model-DTI 0.362.
+- [x] Found `scripts/check_unique_registry.py` hard-coded to an old candidate. Added `scripts/check_lfi_registry.py` (same `cmd_check` rule).
+- [x] Reverted `evidence/s13_independent_tif_check.json`, which `independent_tif_check.py` had modified because it ignores its arguments.
+- [x] Policy conflict: the preregistered G5 versus the user's standing rule and the repo's fail-closed contract. The verdict stays fail-closed, and no safety test was weakened.
+- [x] Re-ran G1–G5 on the pass-2 file. **G4 FAILED** (blinded-consensus P(Δ>0) = 0.867 < 0.95), so the verdict is **negative**.
+
+### Pass 3: end-to-end re-check against the full brief (see the review doc for results)
+- [x] Run card and portal rebuilt from JSON (`build_lfi_card.py`, `render_portal.py` → `render_s20_lfi_pages.py`, `render_s20_readme.py`).
+- [x] `check_artifact_policy.py`, `generate_submission.py --with-data`, the independent tifffile re-read, the targeted test suites and the reproducible portal render.
+- [x] PR opened and merged into main.
+
+---
+
 
 ## Session 19 (`S19-SVHF`, branch `arena/bcc0fcb2-gemsdoe91`, 2026-10-25)
 

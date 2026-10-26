@@ -1,4 +1,41 @@
-# Current limitations and next steps — S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16, 2026-10-25
+# Current limitations and next steps — S20-LFI (2026-10-26), then S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16
+
+## Session 20: LFI, leaderboard-feedback inversion (`arena/670d23f5-gemsdoe91`)
+
+**Status:** new unique GeoTIFF. **OK TO DOWNLOAD: YES.** **OK TO SUBMIT: NO.** Two things block it:
+* After the pass-2 uniqueness fix, preregistered gate G4 failed: the blinded-consensus variant gives P(Δ>0) = 0.867, below the 0.95 threshold.
+* It also does not beat the hide-v2 holdout, which E2 showed to be invalid as a live proxy (IR-S20-01).
+Evidence: `docs/run-card-S20-LFI.json`, `docs/s20-lfi-executive-summary.html`.
+
+### Limitations
+
+1. **The live-skill instrument is a model, not a holdout of truth pixels.** LFI is validated leave-one-*site*-out on USER-REPORTED live scores (Spearman 0.957). It is not spatially blocked, because live truth has no spatial labels.
+2. **Public-to-private transfer is untested.** No chunk factor was fitted, but adaptive overfitting to public chunks remains possible (IR-S20-02).
+3. **Optimizer's curse.** The projection (0.38–0.41) comes from the model the candidate maximises. Treat the conservative lower bound as the planning number.
+4. **Identifiability.** The 25 parameters are fitted on 112 aggregates. Parameters move with the ridge setting (dnet ≤ 1.5 flips sign between ridge 0.1 and 1) while out-of-site fit stays flat, so individual coefficients are not geological facts.
+5. **Uniqueness caps cost skill, and that decided this session.**
+   - Holding ≤ 65% of dots near each of 238 references (the fleet's ridge-network halo and 212 sibling-sweep rasters) forces dots out of the highest-q zones.
+   - Model-DTI fell from 0.378 (37,500 dots, 26 refs) to 0.362 (29,671 dots), and the share of dots with 0 consensus votes rose from 10% to 20%.
+   - The conservative variant then failed G4. The fleet has already occupied the zones the inversion values most, so a *unique* file can capture only part of the projected gain.
+6. **The hide-v2 holdout is invalid as a live proxy** (IR-S20-01). Past "holdout-best" rankings in this repo should not guide slot choices.
+
+### Next steps (ranked by expected DTI gain per cost)
+
+1. **Decide the gating instrument (human decision; needed before any LFI file can be promoted).**
+   - hide-v2 tracks live scores at Spearman 0.105, so "beat the holdout best" currently rewards catalogue recovery.
+   - Proposal: gate on LFI leave-one-site-out (Spearman 0.957) plus the blinded-consensus check, and keep hide-v2 as a diagnostic only.
+2. **Submit-and-learn loop.**
+   - Every live score is one more equation for LFI. Record any new score in `registry/lfi_live_anchors.csv` and refit (`python scripts/run_lfi.py aggregate && python scripts/run_lfi.py fit --ridge 10`).
+   - The pass-1 file (37,500 dots; all S20 gates except sibling uniqueness) is kept under `outputs/lfi/pass1/`, which is gitignored, as a research artifact. It is a duplicate under the protocol and must not be submitted.
+3. **Design probes for identifiability.**
+   - Use one slot for a deliberately informative file, e.g. dots only in cons ≥ 3 and > 4 km from the catalogue.
+   - A single score then pins the two largest coefficients. The aim is information gain, not a high score.
+4. **Replace the repo gate.**
+   - Adopt LFI leave-one-site-out (or its successor) as the gating instrument in `src/gems91/readiness.py`, with human approval.
+   - Keep hide-v2 only as a catalogue-recovery diagnostic.
+5. **Richer covariates.** Add B02/B13 potential-field terciles and USGS Qfault age classes (licence permitting), checked against leave-one-site-out RMSE with a preregistered stopping rule.
+6. **3DEP 1 m scarp morphometry** (carried over). It needs a host the sandbox can reach.
+
 
 ## Parallel merged session: ISO91 (`arena/bacc7c26-gemsdoe91`, 2026-10-25)
 

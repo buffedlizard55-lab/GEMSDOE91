@@ -639,6 +639,10 @@ def render():
     # session (docs/cwp91.html); it does NOT replace the current front door above.
     # Its pages are built by scripts/render_cwp91_portal.py, deliberately not called
     # here so a fresh render reproduces the committed entry points byte-for-byte.
+    # S20-LFI (2026-10-26) banner + executive summary: injected last so a fresh render reproduces the front door.
+    if (ROOT / 'docs/run-card-S20-LFI.json').is_file():
+        from scripts.render_s20_lfi_pages import render as render_s20
+        render_s20()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 
