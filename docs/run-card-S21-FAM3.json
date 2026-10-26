@@ -378,8 +378,8 @@
    ]
   },
   "protocol_and_anchor_registry": {
-   "n_compared": 199,
-   "n_skipped": 23,
+   "n_compared": 201,
+   "n_skipped": 24,
    "n_dense": 36,
    "verdict": "UNIQUE",
    "literal_verdict": "LITERAL-FLAGS",

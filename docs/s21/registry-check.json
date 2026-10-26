@@ -1,10 +1,10 @@
 {
  "scope": "every unique */downloads/*.tif (<20 MB, excluding -nan/allfinite twins) in buffedlizard55-lab's GEMSDOE* repositories at sweep time",
- "candidate": "outputs/s21/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif",
+ "candidate": "docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif",
  "candidate_sha256": "2603acc849274715780305e777e82b87bbd0838b6a024c23e699c84e02145fd3",
  "n_candidate_dots": 23481,
- "n_compared": 199,
- "n_skipped": 23,
+ "n_compared": 201,
+ "n_skipped": 24,
  "n_dense": 36,
  "n_blanket": 5,
  "rule": "duplicate if surface or dots |Spearman| > 0.90, or > 70% of candidate dots within 3 px of the reference's dots; reference dots = its positive pixels when sparse (<= 3x candidate dots), its top-K pixels (K = candidate dots) when dense and continuous; dense binary area masks are judged by rank correlation; literal readings always reported",
@@ -1589,6 +1589,22 @@
    "dense": false,
    "dots_abs_spearman": 0.01247,
    "surface_abs_spearman": 0.02591,
+   "literal_flag": false,
+   "duplicate": false,
+   "decision_basis": "sparse: literal 3-px dot overlap (chance-corrected if blanket) + rank correlation"
+  },
+  {
+   "raster": "docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.tif",
+   "repo": "GEMSDOE91-own",
+   "n_positive": 37654,
+   "within_3px_literal": 0.31468,
+   "chance": 0.14514,
+   "chance_corrected": 0.19833,
+   "coverage": 0.14547,
+   "blanket": false,
+   "dense": false,
+   "dots_abs_spearman": 0.00839,
+   "surface_abs_spearman": 0.03627,
    "literal_flag": false,
    "duplicate": false,
    "decision_basis": "sparse: literal 3-px dot overlap (chance-corrected if blanket) + rank correlation"
@@ -3210,6 +3226,22 @@
    "decision_basis": "dense binary area mask: rank correlation (3-px proximity degenerate)"
   },
   {
+   "raster": "docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.tif",
+   "repo": "GEMSDOE91-own",
+   "n_positive": 37654,
+   "within_3px_literal": 0.02308,
+   "chance": 0.0313,
+   "chance_corrected": -0.00849,
+   "coverage": 0.03016,
+   "blanket": false,
+   "dense": false,
+   "dots_abs_spearman": 0.003,
+   "surface_abs_spearman": 0.00637,
+   "literal_flag": false,
+   "duplicate": false,
+   "decision_basis": "sparse: literal 3-px dot overlap (chance-corrected if blanket) + rank correlation"
+  },
+  {
    "raster": "data/fleet_registry/57GEMSDOE__h57-anatomy-enechelon-zeros.tif",
    "repo": "protocol-registry",
    "n_positive": 35341,
@@ -3374,6 +3406,10 @@
   {
    "raster": "docs/downloads/gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.tif",
    "reason": "same bytes as data/lfi_anchors/GEMSDOE91__gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros.tif"
+  },
+  {
+   "raster": "docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif",
+   "reason": "byte-identical to candidate (self)"
   },
   {
    "raster": "docs/downloads/gems91-unique-offcatalogue-damagezone-20261025T144238Z-b9acc119-zeros.tif",

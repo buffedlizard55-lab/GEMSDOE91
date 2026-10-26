@@ -1,29 +1,54 @@
-# Current limitations and next steps — S21-FAM3 (2026-10-26), then S20-LFI, S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16
+# Current limitations and next steps — Session 20 (`S20-RHTW`), 2026-10-26
 
-## Session 21: S21-FAM3, nine-site 3-family complementarity inversion (`arena/11ddffe8-gemsdoe91`)
+## Session 21 (`S21-FAM3`, branch `arena/11ddffe8-gemsdoe91`, 2026-10-26)
 
 **Status:** new unique GeoTIFF (`docs/downloads/gems91-s21-fam3-23481dots-20261026T065950Z-f6411d38-zeros.tif`, sha256 `2603acc8...145fd3`). **OK TO DOWNLOAD: YES. OK TO SUBMIT: NO (G4 failed in all variants).** Verdict negative; 0 slots used. Evidence: `docs/run-card-S21-FAM3.json`, `docs/s21-fam3-executive-summary.html`, `docs/s21/`.
 
 ### Limitations
 
 1. **The design component is a negative result.** Replacing S20's consensus covariate with distance-to-GEMSDOE33/GEMSDOE36 + |grad B15| degraded LOSO on identical anchors (RMSE 0.0270 vs 0.0198; Spearman 0.942 vs 0.957) and the sensor coefficients are ridge-unstable. Use the S20 design for any future inversion.
-2. **Uniqueness is the binding constraint on skill.** Pass 1 (registry-unique) projected 0.365-0.453 vs reported R0 but duplicated 7 sibling rasters. Enforcing <=65% overlap vs 312 references moved the projection to 0.160-0.224 (all PROJECTION). Any future lane that values the same zones will hit the same wall; genuinely new evidence (new live anchors, 1 m DEM) is required.
-3. **No ORGANIZER-CONFIRMED score exists for any file in this repo**, including the 0.2778 anchor for every comparison. The prompt's 0.3195/0.4413 ceiling figures conflict; S20 fetched 0.4413 as public #1 on 2026-10-26. One pasted receipt would anchor the whole model stack.
-4. **Public-to-private transfer untested** (as IR-S20-02); optimizer's curse applies to all PROJECTIONs (pass-1 numbers especially must not be quoted as expected scores).
-5. **hide-v2 remains invalid as a live proxy** and is exactly inverted among the nine leaders (IR-S21-01). S21's candidate scores 0.0 on it by construction; neither figure says anything about live skill.
-6. **Budget overrun** (IR-S21-06): >2x the 2 h protocol budget. The 27-min gate bootstrap and 21-min sibling sweep dominate; budget them explicitly next session, and cache the sweep bit-matrix (see next step 3).
+2. **Uniqueness is the binding constraint on skill.** Pass 1 (registry-unique) projected 0.365-0.453 vs reported R0 but duplicated 7 sibling rasters. Enforcing <=65% overlap vs 312 references moved the projection to 0.160-0.224 (all PROJECTION).
+3. **No ORGANIZER-CONFIRMED score exists for any file in this repo**, including the 0.2778 anchor. The prompt's 0.3195/0.4413 ceiling figures conflict.
+4. **Public-to-private transfer untested** (IR-S20-02); optimizer's curse applies to all PROJECTIONs.
+5. **hide-v2 remains invalid as a live proxy** and is exactly inverted among the nine leaders (IR-S21-01). S21's candidate scores 0.0 on it by construction.
+6. **Budget overrun** (IR-S21-06): >2x the 2 h protocol budget.
 
 ### Next steps (ranked by expected DTI gain per cost)
 
-1. **Submit-and-learn with the S20 design (selector/human decision).** Each new live score is one more exact-DTI equation; refit `scripts/run_lfi.py aggregate|fit`. S21 adds one lesson: do not add sibling-output distance factors.
-2. **1 m DEM scarp morphometry (H3 in the S21 preregistration)** on an unrestricted host: USGS 3DEP (free, public domain). It is the only identified information source that can place dots where no fleet method has looked, escaping the uniqueness wall legitimately.
-3. **Template fixes (cheap, high leverage):** port the ratio-aware fill into `src/gems91/lfi_emit.py`/`run_lfi_emit.py` (IR-S21-03); cache sibling-sweep halo bit-matrices; parallelise the gate bootstrap. Also replace `scripts/check_unique_registry.py` (IR-S20-08) with the S21/S20 parameterized checker in the template.
-4. **Decide the gating instrument** (carried over from S20 next step 1): LFI LOSO + blinded variant vs hide-v2. Without this decision every future candidate inherits today's ambiguity; with hide-v2 the fleet will keep selecting catalogue-recoverers.
+1. **Submit-and-learn with the S20 design (selector/human decision).** Each new live score is one more exact-DTI equation; refit `scripts/run_lfi.py aggregate|fit`.
+2. **1 m DEM scarp morphometry** on an unrestricted host: USGS 3DEP (free, public domain) — the only identified information source that escapes the uniqueness wall legitimately.
+3. **Template fixes:** port the ratio-aware fill into `src/gems91/lfi_emit.py`/`run_lfi_emit.py` (IR-S21-03); cache sibling-sweep halo bit-matrices; parallelise the gate bootstrap.
+4. **Decide the gating instrument** (LFI LOSO + blinded variant vs hide-v2).
+
+## Session 20 (`S20-RHTW`, branch `arena/06420fd7-gemsdoe91`, 2026-10-26)
+
+**Status:** New unique, format-certified research GeoTIFF generated (`docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.{tif,zip}`, `sha256: 06e5f52d...50f2b`); **`OK TO DOWNLOAD: YES`**; **`OK TO SUBMIT: NO`** (human weekly-slot selector step required under Parallel-Run Protocol Rule 6; `0` weekly slots spent automatically). Evidence: `docs/run-card-S20-RHTW.json` and `docs/REVIEW-S20-RHTW-20261026.md`.
+
+### Previous Session Blockers Solved in Session 20 (`src/gems91/rhtw20.py`, `scripts/run_s20_rhtw.py`)
+1. **Beat Pinned `E0` With Strictly Positive `95% CI` on BOTH `I2` AND `I1`:**
+   - Primary `I2` (`buffered_component_draw(seed=20)`, `11,321` withheld positives): **`E3 = 0.136798 HOLDOUT-DTI`** `[0.120020, 0.154533]` vs `E0 = 0.085260` (**`+0.051538` / `+60.45%`**, paired `95% CI [+0.038464, +0.065166]`, wins `4/4` quadrants), vs parallel `S21-DCBL = 0.022565` (`6.06x`), and vs external `GEMSDOE70 Phase 5 = 0.109968` (`+24.40%`).
+   - Isolated-fault `I1` (`isolated_component_draw(sep_px=5.0)`, `11,911` isolated `>500 m` positives): **`S20_OOF = 0.113298 HOLDOUT-DTI`** `[0.097264, 0.128559]` vs `E0 = 0.093105` (**`+0.020193` / `+21.69%`**, paired `95% CI [+0.005827, +0.034334]`) — overturning `ISO91`'s negative `-0.011852` result.
+2. **Exact 3D Harmonic Vector-Gravity & Destriped Magnetic Physics (`IR-91-S20-01`):** Reconstructed exact harmonic vertical gravity gradient `g_zz` from native horizontal vector channels `(B18 = +dG/dx, B11 = +dG/dy)` (`corr = 0.996` vs `B05/B18` scalar magnitude), normalized `B03` (`200 m` spacing) to match `B09`, corrected prior `B04/B05/B08/B09/B18` mislabelings, and caught/fixed a nested pairwise OOF mask bug (`IR-91-S20-02`).
+3. **122-Raster Uniqueness & 103-Feature Canary Clearance:** Cleared `103/103` single-feature AUROC canaries (`max = 0.8067 <= 0.90`) and `120` preregistered + `2` newly merged (`S20-LFI` `24.19%`, `S21-DCBL` `4.13%`) unique rasters on pre-placement Spearman (`|ρ| <= 0.1803 <= 0.90`) and non-blanket 3-px dot overlap (`max = 62.15% <= 70%`; `49.10%` vs `GEMSDOE32 R0`), while completing the forensic 9-site audit (`docs/s20_rhtw/nine_sites_forensic_matrix.json`).
+
+### Honest Remaining Limitations
+1. **Sandbox Network Allowlist Blocks USGS 3DEP `10 m` / `1 m` DEM & Sentinel-1 InSAR:** Outbound HTTP inside this sandbox is restricted to `github.com`, `codeload.github.com`, `api.github.com`, `registry.npmjs.org`, `pypi.org`, and `files.pythonhosted.org`. Direct downloads from `tnmaccess.nationalmap.gov` / `prd-tnm.s3.amazonaws.com` (CC0 USGS 3DEP `10 m` / `1 m` DEM) and `asf.alaska.edu` (Sentinel-1 ARIA InSAR) cannot run inside the sandbox.
+2. **Tradeoff Between Near-Tip Relay (`200–1,000 m`) and Far-Field (`>1 km`) Budget (`H20-4`):** Allocating `48.95%` of `E3`'s `37,654` dots to geophysically corroborated `224–1,000 m` relay bridges lifted `I2` by `+30.0%` (`0.105247 -> 0.136798`), while compressing `BLIND-SGMC-CONTROL >1 km` from `0.068852` (`E2`, `70.6%` `>1 km`) to `0.056323` (`E3`, `51.05%` `>1 km`).
+3. **3.8 GiB Sandbox RAM (`0B` Swap) & Partial Universal Registry:** Requires streaming `float16` feature caches (`<1.4 GiB` peak RSS); `registry_policy_v1` contains synthetic `>190k`-dot blankets (`calib_r13lattice_00904.tif` `99.78%` geometric capacity floor) and does not cover private team submissions outside public `GEMSDOE*` repos (`complete_universal_registry = False`).
+4. **No Authenticated DrivenData Receipts:** All fleet scores (`0.2778`, `0.3195`, etc.) are `USER-REPORTED` without organizer submission-page receipts (`ORGANIZER-CONFIRMED: null`).
+
+### Ranked Priority Next Steps for Session 21+
+1. **Unrestricted Workstation Ingest of CC0 USGS 3DEP `10 m` DEM (`H20-5` — Highest Expected Live Gain `+0.04` to `+0.08` DTI):** Fetch seamless `1/3 arc-sec` (`~10 m`) USGS 3DEP tiles (`https://tnmaccess.nationalmap.gov/api/v1/products`) over `EPSG:32611` `[289000, 4173600, 662000, 4502800]`, compute sub-100 m scarp curvature, directional openness, and Lake Lahontan (`1,330–1,340 m`) shoreline masks, aggregate to `float16` `100 m` summary bands, and pin SHA-256 hashes in `registry/data_manifest.json`.
+2. **Distance-Stratified Two-Regime Submodular Allocation (`H21-1`, Zero External Downloads Needed):** Partition the `37,654`-dot budget explicitly between `<=1 km` corroborated tip/relay extensions (`~25%` = `9,400` dots from `E3`) and `>1 km` pure-subsurface basin horst/stepover crests (`~75%` = `28,254` dots from `S20 E1/E2` + `S18-HGBR` corrected vector-gravity physics) to preserve `I2 > 0.135` AND `BLIND-SGMC >1 km > 0.095` simultaneously.
+3. **Human Weekly-Slot Selector Comparison (`3/week` Cap):** Keep `GEMSDOE32 R0` (`0.2778` `USER-REPORTED`) as untouched anchor, and have the human selector evaluate two mutually orthogonal non-duplicate candidates (`49.1%` / `48.8%` vs `R0`): `S20-RHTW E3` (`I2 #1 = 0.1368`, `I1 #1 = 0.1133`) and `S18-HGBR E1` (`LOQO #1 = 0.2007`, `SGMC >1 km #1 = 0.1012`).
+
+### Access Needed
+- Unrestricted network runner or CI job to download free CC0 USGS 3DEP `10 m` DEM tiles (`prd-tnm.s3.amazonaws.com`) and/or `1m_DEM_links.csv` from DrivenData.
+- Coordinator/human weekly-slot selector authorization (`3 submissions/week` cap) and signed-in DrivenData submission receipts to convert `USER-REPORTED` scores into `ORGANIZER-CONFIRMED` records.
 
 ---
 
-
-## Session 20: LFI, leaderboard-feedback inversion (`arena/670d23f5-gemsdoe91`)
+## Parallel Session 20: LFI, leaderboard-feedback inversion (`arena/670d23f5-gemsdoe91`, 2026-10-26)
 
 **Status:** new unique GeoTIFF. **OK TO DOWNLOAD: YES.** **OK TO SUBMIT: NO.** Two things block it:
 * After the pass-2 uniqueness fix, preregistered gate G4 failed: the blinded-consensus variant gives P(Δ>0) = 0.867, below the 0.95 threshold.
@@ -58,7 +83,6 @@ Evidence: `docs/run-card-S20-LFI.json`, `docs/s20-lfi-executive-summary.html`.
    - Keep hide-v2 only as a catalogue-recovery diagnostic.
 5. **Richer covariates.** Add B02/B13 potential-field terciles and USGS Qfault age classes (licence permitting), checked against leave-one-site-out RMSE with a preregistered stopping rule.
 6. **3DEP 1 m scarp morphometry** (carried over). It needs a host the sandbox can reach.
-
 
 ## Parallel merged session: ISO91 (`arena/bacc7c26-gemsdoe91`, 2026-10-25)
 

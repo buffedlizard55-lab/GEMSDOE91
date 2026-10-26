@@ -1880,3 +1880,15 @@ Evidence: `docs/REVIEW-ACTIVE-E649E460-20261025.md`, `docs/run-card-E649E460-202
   - The brief calls 0.2778 the highest GEMSDOE score and also quotes 0.3195. The latter was #2 (DARD) on 2026-10-04.
   - On 2026-10-25 the public #1 is 0.4413 and 0.2778 sits below rank 50 (0.2818).
   - The owner page for 0.2778 says no organiser score exists. All three numbers stay USER-REPORTED or PUBLIC-LEADERBOARD.
+- **IR-91-S20-01: prior Band 4/5/8/9/18 mislabeling (`hgbr18.py` / `REVIEW-S18-HGBR`) and in-sample `run_olc91.py::run_final()` refit hazard.**
+  - Forensic audit of `data/bridge/gems-geodawn-numerical-features.tif` (`scripts/verify_band06_and_units.py`) confirmed `B04 = geod_2ndinv` (`r = 0.993` with `hypot(B07, B08)`), `B05 = iso_grav_anom_slope`, `B06 = GeoDAWN Radiometric Total Count` (`[2.95, 88.57]`), `B08 = geod_dilaterate`, `B09 = tmi_vg` (`nT/m`), `B11 = +dG/dy` (`mGal/km`), and `B18 = +dG/dx` (`mGal/km`, curl RMS `0.0438` vs div `0.1645`).
+  - `src/gems91/hgbr18.py:302-306` had misread `B04/B05/B09` as `th/k/gdr_vital_signs` and `docs/REVIEW-S18-HGBR-20261025.md` mislabeled `B08/B09/B18` as SAR/geotherm_temp (`src/gems91/hgbr18.py` is left untouched for reproducibility of `S18-HGBR`, while `src/gems91/rhtw20.py` uses verified physical identities).
+  - Separately, `scripts/run_olc91.py::run_final()` fitted HGB on `cat` across full `fp` and predicted in-sample on `fp` (causing `S17-LFTG`-style near-catalogue halo memorization); `scripts/run_s20_rhtw.py` replaces full-map refitting with a strictly stitched 4-quadrant OOF hierarchy (`>40 px` buffer).
+- **IR-91-S20-02: self-caught nested pairwise OOF mask polarity in `scripts/run_s20_rhtw.py` (fixed before final evaluation).**
+  - Initial `run_two_stage_hierarchy` wrote `ndi.distance_transform_edt((quad == a) | (quad == b)) > 25` instead of `~((quad == a) | (quad == b)) > 25` on Stage-1 2-quadrant pair fits. `S20-RHTW`'s `vis_full_loqo` zero-in-sample guard immediately threw `ZeroDivisionError` (0 positives inside held quadrants), catching the inverted mask before any final raster could be built.
+  - Cache `work/s20_rhtw/models/` was wiped and all 3 preregistered experiments (`E1`, `E2`, `E3`) were re-run from scratch with `~((quad == a) | (quad == b)) > 25`, lifting primary `I2` `E3` from `0.096954` to `0.136798` (`95% CI [0.120020, 0.154533]`).
+- **IR-91-S20-03: `origin/main` PR `#144` (`S21-DCBL`) unregistered download artifacts repaired during merge + post-merge uniqueness audit.**
+  - Merging `origin/main` (`2f3ca8d`, PR `#144`) brought in `docs/downloads/gems91-s21-dcbl-deepcover-37654dots-20261026T044111Z-eccf3ea6-zeros.{tif,zip}` without `registry/artifact_policy.json` entries, causing `scripts/check_artifact_policy.py` to fail on `origin/main`.
+  - Registered both `S21-DCBL` download files as `current_research_only` (`101` registered artifacts `PASS`), regenerated `docs/download-audit.{json,html}` (`101` files checked), and verified post-merge 3-px dot overlap of `S20-RHTW E3` (`37,654` dots) against both newly merged parallel rasters: `24.19% <= 70%` vs `S20-LFI` (`29,671` dots) and `4.13% <= 70%` vs `S21-DCBL` (`37,654` dots).
+
+

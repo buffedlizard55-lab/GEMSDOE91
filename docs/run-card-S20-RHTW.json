@@ -1,0 +1,335 @@
+{
+  "lane": "S20-RHTW",
+  "lane_meta": {
+    "id": "S20-RHTW",
+    "name": "Riesz-Harmonic Native Gravity-Magnetic Worm, Strike-Guided Hydrothermal Geothermometer Conduit & Pluvial-Decontaminated Dual-Specialist OOF Submodular Hierarchy",
+    "assigned": false,
+    "note": "No pasted method paragraph appeared below Rule 1 in the prompt; single cohesive S20-RHTW lane executed with 0 slots spent."
+  },
+  "session": "arena/06420fd7-gemsdoe91",
+  "date": "2026-10-26",
+  "preregistration": "docs/HYPOTHESES_S20_RHTW.md",
+  "preregistration_sha256": "06459f67b318b17a420eb851c434eca9094f5dd32d7d7736e7702ef55f5e2a9c",
+  "hypothesis": "H20-1..H20-4: Reconstructing exact 3D harmonic vertical gravity derivatives from native (Band 18=dG/dx, Band 11=dG/dy) with unit-calibrated Band 09/(Band 03/200) magnetic tilt worms, anisotropic strike-diffused GDR 1391 silica/cation geothermometer disequilibrium, pluvial Lake Lahontan shoreline decontamination in Dual-Specialist OOF HGB, and geophysically-gated fold-safe visible tip/relay bridges allocated via 300 m submodular expected-DTI CELF beats the pinned E0/OLC91/ISO91 holdout baseline while preserving far-field (>1 km) concealed-fault discovery.",
+  "mechanism": "Winning arm E3: Two-stage 4-quadrant spatially blocked Out-of-Fold (OOF, 4 km buffer) Dual-Specialist HistGradientBoosting (M_full + Band-12/19-blind M_sub with asymmetric positive-part cover rescue + 12-azimuth 900m/1.7km line-integral auto-context + strike-steered hydrothermal geothermometer conduits + fold-safe visible tip/relay bridges), emitted at exact N=37,654 binary {0,1} dots (>200 m collar) via 300 m triangular-kernel submodular CELF.",
+  "non_fault_mimic": "Pleistocene Lake Lahontan (~1,332 m) & Lake Bonneville (~1,552 m) zero-throw wave-cut paleoshoreline benches, unfaulted Mesozoic plutonic contact halos, E-W GeoDAWN flight-line corrugation, and lateral alluvial thermal outflow plumes.",
+  "experiments_run": 3,
+  "experiment_list": [
+    "E1: H20-1 (Riesz-Harmonic Gravity/Magnetic Worms) + H20-3 (Pluvial-Decontaminated Openness Dual-Specialist OOF + CELF)",
+    "E2: E1 + H20-2 (Strike-Guided GDR 1391 Geothermometer Disequilibrium & Transtensional Strain Conduits)",
+    "E3: E2 + H20-4 (Geophysically-Gated Fold-Safe Visible Tip Wing-Crack & En-Echelon Relay Bridge Prior)"
+  ],
+  "budget": {
+    "experiments_run": 3,
+    "max_experiments": 3,
+    "elapsed_seconds": 178.79,
+    "max_seconds": 7200.0,
+    "slots_used": 0
+  },
+  "slots_used": 0,
+  "holdout": {
+    "primary_i2": {
+      "instrument": "vendor/gems57 buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 11321,
+      "winning_arm": "E3",
+      "scores": {
+        "E0": {
+          "dti": 0.08526,
+          "ci95": [
+            0.068962,
+            0.102856
+          ]
+        },
+        "E1": {
+          "dti": 0.1068,
+          "ci95": [
+            0.089209,
+            0.124634
+          ]
+        },
+        "E2": {
+          "dti": 0.105247,
+          "ci95": [
+            0.087541,
+            0.123099
+          ]
+        },
+        "E3": {
+          "dti": 0.136798,
+          "ci95": [
+            0.12002,
+            0.154533
+          ]
+        },
+        "RND": {
+          "dti": 0.043165,
+          "ci95": [
+            0.037444,
+            0.048418
+          ]
+        }
+      },
+      "paired_winner_minus": {
+        "E0": {
+          "delta": 0.051538,
+          "ci95": [
+            0.038464,
+            0.065166
+          ]
+        },
+        "E1": {
+          "delta": 0.029997,
+          "ci95": [
+            0.021571,
+            0.03926
+          ]
+        },
+        "E2": {
+          "delta": 0.031551,
+          "ci95": [
+            0.0255,
+            0.038532
+          ]
+        },
+        "RND": {
+          "delta": 0.093633,
+          "ci95": [
+            0.07745,
+            0.110809
+          ]
+        }
+      },
+      "beats_incumbent_e0_95ci": true
+    },
+    "secondary_i1_isolated": {
+      "instrument": "gems91.isolated_holdout.isolated_component_draw(sep_px=5.0, buffer_px=3)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 11911,
+      "scores": {
+        "S20_OOF": {
+          "dti": 0.113298,
+          "ci95": [
+            0.097264,
+            0.128559
+          ]
+        },
+        "E0": {
+          "dti": 0.093105,
+          "ci95": [
+            0.075679,
+            0.11149
+          ]
+        },
+        "RND": {
+          "dti": 0.051483,
+          "ci95": [
+            0.046855,
+            0.05586
+          ]
+        }
+      },
+      "paired_s20_minus_e0": {
+        "delta": 0.020193,
+        "ci95": [
+          0.005827,
+          0.034334
+        ]
+      }
+    },
+    "blind_sgmc_off_catalogue": {
+      "evidence_class": "BLIND-SGMC-CONTROL",
+      "gt_300m": {
+        "sgmc_positive_pixels": 62122,
+        "candidate_dti": 0.082153,
+        "gemsdoe32_r0_dti": 0.093694,
+        "delta_vs_r0": -0.011541,
+        "ratio_vs_r0": 0.8768
+      },
+      "gt_500m": {
+        "sgmc_positive_pixels": 56822,
+        "candidate_dti": 0.070307,
+        "gemsdoe32_r0_dti": 0.088789,
+        "delta_vs_r0": -0.018482,
+        "ratio_vs_r0": 0.7918
+      },
+      "gt_1km": {
+        "sgmc_positive_pixels": 48393,
+        "candidate_dti": 0.056323,
+        "gemsdoe32_r0_dti": 0.086176,
+        "delta_vs_r0": -0.029853,
+        "ratio_vs_r0": 0.6536
+      }
+    },
+    "loqo_60988_e2_diagnostic": {
+      "instrument": "4-quadrant zero-visible-fault LOQO (60,988 positives, read-only diagnostic on FINAL_E2 OOF)",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 60988,
+      "dti": 0.16524,
+      "ci95": [
+        0.150871,
+        0.180994
+      ],
+      "e2_dot_geometry_gt_1km": 0.645,
+      "e2_sgmc_gt_500m_dti": 0.075121
+    }
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "n_features": 103,
+    "all_pass": true,
+    "stop": false,
+    "worst": {
+      "feature": "ftrs_tip_wing_lobe",
+      "auc": 0.806729,
+      "symmetric_auc": 0.806729,
+      "quadrant_symmetric_aucs": [
+        0.859664,
+        0.836816,
+        0.783379,
+        0.764948
+      ],
+      "max_quadrant_symmetric_auc": 0.859664,
+      "status": "PASS"
+    }
+  },
+  "uniqueness": {
+    "n_unique_rasters_checked": 120,
+    "surface_before_placement_max_abs_spearman": 0.18032,
+    "surface_closest": "data/registry/calib_h161_01855.tif",
+    "dots_max_abs_spearman": 0.05835,
+    "dots_max_within_3px_non_blanket": 0.6215,
+    "dots_closest_non_blanket": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+    "dots_within_3px_vs_gemsdoe32_r0": 0.49102,
+    "dots_max_within_3px_literal_including_blankets": 0.99809,
+    "blanket_references": [
+      "data/fleet_registry/calib_r13lattice_00904.tif",
+      "data/fleet_registry/r11_greedy_mp.tif",
+      "data/fleet_registry/r14_union_tips10_lat6.tif"
+    ],
+    "competitive_uniqueness_pass": true,
+    "literal_all_inventory_pass": false
+  },
+  "raster": {
+    "path": "docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.tif",
+    "sha256": "06e5f52d7f231c315d427849a9e02b6fd78dc2cf3993aabb0b76b676b1150f2b",
+    "bytes": 143333,
+    "zip": "docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.zip",
+    "zip_sha256": "f5319f617610f8503f82f9ef1b68dc008414f8db3432cdff07fce06be07cf472",
+    "zip_bytes": 110237,
+    "receipt": "docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.json",
+    "dot_geometry": {
+      "n": 37654,
+      "min_dist_px": 2.2361,
+      "median_dist_px": 10.296,
+      "share_le_5px": 0.2419,
+      "share_5_10px": 0.2476,
+      "share_gt_10px": 0.5105
+    },
+    "n_dots": 37654
+  },
+  "raster_sha256": "06e5f52d7f231c315d427849a9e02b6fd78dc2cf3993aabb0b76b676b1150f2b",
+  "validator_output": {
+    "status": "PASS",
+    "all_checks_passed": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "in_footprint_min": 0.0,
+    "in_footprint_max": 1.0,
+    "full_grid_finite_pixels": 12279160,
+    "n_nan": 0,
+    "emitted_positive_pixels": 37654,
+    "on_catalogue_positive_pixels": 0,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    }
+  },
+  "submission_name": "gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros",
+  "submission_note": "S20-RHTW E3: Riesz-grav/mag worm+GDR geotherm+pluvial OOF CELF 37654d; I2 0.1368 HOLDOUT-DTI; SGMC>500m 0.0703",
+  "submission_ready": false,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "result": "negative",
+  "scientific_holdout_verdict": "promote_candidate_for_human_selector",
+  "verdict": {
+    "promote": false,
+    "scientific_holdout_beats_incumbent_e0": true,
+    "OK_TO_DOWNLOAD": "YES \u2014 validated all-finite [0, 1] GeoTIFF",
+    "OK_TO_SUBMIT": "NO",
+    "passed_gates": [
+      "G1_format_epsg32611_3730x3292_finite_0_1_zero_nan",
+      "G2_canary_all_103_features_sym_auc_le_090",
+      "G3_competitive_uniqueness_110plus_real_rasters_le_070",
+      "G4_primary_holdout_i2_beats_e0_95ci_gt_0",
+      "G5_secondary_isolated_i1_beats_e0"
+    ],
+    "blocking_governance_gates": [
+      "G6_separate_human_weekly_slot_selector_step_required (Rule 6: 0/3 weekly slots spent automatically)",
+      "G7_unassigned_rule1_method_paragraph (lane.assigned = false)",
+      "G8_synthetic_blanket_calibration_lattices_and_2_of_64_unfetchable_external_refs"
+    ]
+  },
+  "inputs": {
+    "sample_submission": {
+      "path": "data/official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "path": "data/official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "path": "data/bridge/gems-geodawn-numerical-features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    },
+    "gdr_wellspring_in_footprint": {
+      "path": "data/external/gdr_wellspring_in_footprint.csv",
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "bytes": 2146771
+    },
+    "sgmc_faults_control": {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602
+    },
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    },
+    "preregistration": {
+      "path": "docs/HYPOTHESES_S20_RHTW.md",
+      "sha256": "06459f67b318b17a420eb851c434eca9094f5dd32d7d7736e7702ef55f5e2a9c",
+      "bytes": 17627
+    }
+  },
+  "raster_path": "docs/downloads/gems91-s20-rhtw-e3-20261026T043618Z-4d501134-zeros.tif",
+  "organizer_confirmed": null,
+  "organizer_confirmed_scores": null,
+  "submission_note_chars": 110
+}
