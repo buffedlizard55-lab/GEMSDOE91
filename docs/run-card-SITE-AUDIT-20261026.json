@@ -1,0 +1,85 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_id": "SITE-AUDIT-20261026",
+  "review_date_utc": "2026-10-26",
+  "branch": "arena/af73263f-gemsdoe91",
+  "scope": "Read-only audit of nine pinned owner-repository snapshots and current checkout readiness; no experiment or submission decision.",
+  "hypothesis": "No candidate tested: this checkout has no assigned single-method paragraph, and the pinned local feature/label/template inputs needed to run the proposed method are missing. The qualitative top proposal is the previously documented H17-2 dipping-contact waveform matched-filter bank; it is not the assigned lane and was not tested.",
+  "mechanism": "PROPOSAL ONLY: a fault-offset magnetic/density contact may preserve an asymmetric multi-field step waveform under cover. A forward-template bank over strike, dip and source depth could test contact displacement rather than generic edge strength. No mechanism was evaluated in this review.",
+  "named_non_fault_process_that_could_mimic_it": "An unfaulted dipping stratigraphic contact, dyke, pluton margin, or survey seam can produce an edge-like multi-field waveform; none was tested as a control here.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "evaluator_version": "NOT RUN",
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN: no assigned lane, no candidate, and required local data are missing."
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_surface_rank_correlation": null,
+    "preplacement_surface_overlap_within_3px": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "NOT RUN: no candidate surface or final dots exist. No registry gate is treated as passed."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT APPLICABLE: no new raster was generated.",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "automated_format_validator": "NOT RUN: no candidate bytes exist."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_character_count": null,
+  "ok_to_download": false,
+  "download_status": "NO NEW TIFF FROM THIS REVIEW; earlier ISO91 research downloads belong to a separate 2026-10-25 run.",
+  "ok_to_submit": false,
+  "submission_status": "NO: no candidate, no selector decision, no verified organizer receipt.",
+  "verdict": "negative",
+  "verdict_reason": "Blocked / no experiment. Negative is a workflow status, not a scientific finding about the untested hypothesis.",
+  "experiments_run": 0,
+  "experiments_cap": 3,
+  "weekly_submission_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "assigned_lane": null,
+  "preflight": {
+    "status": "BLOCKED",
+    "assignment_missing": true,
+    "data_directory_present": false,
+    "required_local_inputs_verified": "0/2",
+    "candidate_generated": false,
+    "capacity_witness_available": false,
+    "authorized_restore_performed": false
+  },
+  "reported_best_among_supplied_nine": {
+    "site": "GEMSDOE32",
+    "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+    "score": 0.2778,
+    "evidence_class": "OWNER-REPORTED / USER-REPORTED, UNVERIFIED",
+    "organizer_receipt_verified": false
+  },
+  "leaderboard_claims": {
+    "user_supplied_values_conflict": [0.3195, 0.4413],
+    "last_recorded_public_leaderboard_observation": {
+      "value": 0.4413,
+      "as_of_utc_date": "2026-10-25",
+      "source": "docs/REVIEW-ACTIVE-E649E460-20261025.md",
+      "refreshed_in_this_review": false
+    },
+    "owner_snapshot_0_3195_date": "2026-10-03",
+    "neither_value_is_receipt_for_audited_tiff": true
+  },
+  "source_register": "docs/research/nine-site-audit-20261026.json",
+  "review": "docs/REVIEW-SITE-AUDIT-20261026.md",
+  "user_page": "docs/nine-site-audit-20261026.html",
+  "verification": {
+    "pytest": "PASS: 652 passed, 9 skipped; 87 Rasterio Affine pending-deprecation warnings.",
+    "portal_and_local_links": "PASS: audit/root/current portal/submission guide paths and relevant HTML fragments checked by regression tests.",
+    "render_reproducibility": "PASS: audit, ISO91 source pages, and front-door renderers rerun; SHA-256 snapshots unchanged.",
+    "artifact_policy": "PASS: 95 explicitly registered prediction artifacts; no raw raster/archive tracked.",
+    "compileall_and_json": "PASS: src/scripts/tests compile; both new JSON files parse.",
+    "git_diff_check": "PASS"
+  }
+}

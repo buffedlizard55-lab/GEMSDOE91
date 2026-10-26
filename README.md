@@ -1,4 +1,23 @@
-# GEMSDOE91 — Session 19 (`S19-SVHF`, branch `arena/bcc0fcb2-gemsdoe91`) & Parallel `ISO91` / `S18-HGBR`
+# GEMSDOE91 — current checkout status first
+
+> **ACTIVE REVIEW — 2026-10-26 · branch `arena/af73263f-gemsdoe91` · NO NEW TIFF.** `OK TO DOWNLOAD: NO NEW TIFF FROM THIS REVIEW` · `OK TO SUBMIT: NO` · experiments `0` · weekly slots `0` · `ORGANIZER-CONFIRMED: null`. This is a read-only nine-site evidence audit and blocked preflight, not an experiment, score refresh, file validation, or slot selection. Do not relabel, copy, or recommend an older TIFF as this review's output.
+>
+> **Start every project session by reading this current status, this operative update, the [full standing brief](#full-project-brief), the [three-pass review](docs/REVIEW-SITE-AUDIT-20261026.md), and [current limitations](LIMITATIONS_AND_NEXT_STEPS.md).**
+>
+> - [Nine-site executive summary](docs/nine-site-audit-20261026.html) · [Claim/source register](docs/research/nine-site-audit-20261026.json) · [No-run JSON card](docs/run-card-SITE-AUDIT-20261026.json) · [Current three-pass review](docs/REVIEW-SITE-AUDIT-20261026.md) · [Earlier prompt-value comparison](docs/high-score-submissions-review.html)
+> - The strongest score in the supplied nine-site list is GEMSDOE32 `h33-h33-2-b2` **0.2778 OWNER/USER-REPORTED, unverified**; no audited organizer receipt binds it to the exact TIFF. Its nested-pruning/metric explanation is plausible but not reproduced causality. The user-supplied `0.3195` and `0.4413` claims conflict; retain them separately. The last stored public-board observation (`0.4413`, 2026-10-25) was not refreshed today and is not a TIFF receipt.
+> - **File to submit from this review: none.** No current owner-site file is selector-approved by this checkout. The old ISO91 research download is from 2026-10-25, negative, and separate; its link is not an approval.
+> - Three geological alternatives are ranked in the review. H17-2 dipping-contact waveform matching is the qualitative top proposal, **not tested**: lane assignment is null and pinned local inputs are missing. No experiment can be authorized or honestly reported until those blockers are resolved.
+> - Keep protocol gates binding: use only the assigned single-method paragraph; check pre-placement novelty and final dots; stop and log a duplicate if absolute rank correlation exceeds `0.90` or more than `70%` of dots fall within `3 px` of one registry raster. Use the pinned template, `vendor/gems57/evaluate_holdout.py`, and shared writer; hide whole fault segments with buffer, derive catalogue features from visible faults only, mask visible faults pixel-exactly, and use pooled DTI α=`0.2`, β=`0.8`, 300 m triangular kernel. Fix shared-tool defects once, not in a private fork.
+> - Label measurements `HOLDOUT-DTI` with evaluator version, withheld-positive count and 95% CI, or `ORGANIZER-CONFIRMED` copied from a receipt. A projection is never a score. Run feature-alone leakage canaries (AUC `>0.90` is leakage until explained). End an experiment with one JSON card containing hypothesis, mechanism, non-fault mimic, holdout/CI, registry checks, TIFF SHA-256, validator result, submission identity/note ≤140 chars, and promote/negative verdict. Hard cap: 3 experiments or 2 hours. **Do not choose/promote a real slot**; selector decision and weekly cap are separate.
+> - No new experiment, holdout, leakage canary, novelty comparison, validator run on a candidate, or TIFF SHA-256 exists. Do not generate a synthetic/random placement. `data/` is absent and mirror authorization remains unresolved; do not restore mirrored data until that is resolved. Official competition/scientific pages were linked for manual review but not fetched in this audit.
+>
+> This update is the current operative scope; historical session summaries below are archive/context, not evidence from this branch. The longer, preserved user prompt remains at [`#full-project-brief`](#full-project-brief).
+
+---
+
+# Historical README content (retained; its dated status banners below do not describe this active checkout)
+
 
 > **ACTIVE CHECKOUT · 2026-10-26 · `arena/692ed040-gemsdoe91`:** Start with the [current three-pass repository review](docs/REVIEW-ARENA-692ED040-20261026.md), [site-by-site executive summary of GEMSDOE24/25/27/28/30/31/32/33/36](docs/high-score-submissions-review.html), and [machine-readable run card](docs/run-card-ARENA-692ED040-20261026.json). This checkout is **NEGATIVE / BLOCKED**: no assigned method paragraph or local pinned data; **no new TIFF generated; OK TO DOWNLOAD: NO; OK TO SUBMIT: NO; zero slots used**. The reported historical scores are user-supplied and unverified. No previous TIFF was copied or renamed. The full standing brief is already preserved below in the `Full project brief` section; read it at every session start. **Maximize P(Win) · Own the Outcome.**
 >
