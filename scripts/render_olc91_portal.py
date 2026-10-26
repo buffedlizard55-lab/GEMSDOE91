@@ -60,6 +60,16 @@ def front_door(root=ROOT):
     }
 
 
+def active_review_callout() -> str:
+    """Identify the current no-artifact review without implying it replaced ISO91."""
+    return '''<section class="card" style="border:2px solid #9c3d25;background:#fff6f0" aria-label="Current priority-site review; no artifact generated">
+<p><span class="badge bad">CURRENT REVIEW · NO TIFF GENERATED · NO SUBMISSION APPROVED</span></p>
+<h2>Priority-site review · 2026-10-26</h2>
+<p>This review compares owner-reported claims from GEMSDOE24/25/27/28/30/31/32/33/36. Those values are unverified and are not a common benchmark. No new candidate was validated, and no experiment or weekly slot was authorized.</p>
+<p><a class="button outline" href="PRIORITY-SITES-EXECUTIVE-SUMMARY.md">Read the executive review ↗</a> <a class="button outline" href="priority-sites-executive-summary.html">Open the linked HTML review ↗</a> <a href="run-card-priority-sites-review.json">Negative review card</a></p>
+</section>'''
+
+
 def parallel_s18_callout(root=ROOT) -> str:
     """Render the separate S18 download only after rechecking bytes and fail-closed status."""
     docs = root / "docs"
@@ -167,12 +177,14 @@ def render() -> None:
                                      (CURRENT["exec_src"], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
         marker, fallback = "<!--PARALLEL-CALLOUTS-->", '<main id="main">'
-        if marker in source:
-            page = source.replace(marker, parallel_card, 1)
-        elif fallback in source:
-            page = source.replace(fallback, fallback + parallel_card, 1)
-        else:
-            raise ValueError(f"Missing insertion point in {source_name}")
+        if fallback not in source:
+            raise ValueError(f"Missing main insertion point in {source_name}")
+        notice = active_review_callout()
+        page = source.replace(fallback, fallback + notice, 1)
+        if marker in page:
+            page = page.replace(marker, parallel_card, 1)
+        elif parallel_card:
+            page = page.replace(fallback + notice, fallback + notice + parallel_card, 1)
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
 

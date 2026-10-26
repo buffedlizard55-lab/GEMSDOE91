@@ -1789,6 +1789,14 @@ The legacy input preflight printed BUILD ALLOWED once any historical axis had da
 
 Evidence: `docs/REVIEW-ACTIVE-E649E460-20261025.md`, `docs/run-card-E649E460-20261025.json`, and the e649 `python generate_submission.py --preflight` invocation.
 
+## Current review `arena/c20e745a-gemsdoe91` (2026-10-26)
+
+- **IR-91-20261026-01 — conflicting provenance label for the GEMSDOE32 0.2778 claim.** The current GEMSDOE28 scorecard source snapshot (`GEMSDOE28/index.html`, commit `10c26af3dc4d45292189734b0b696c7afb24ffb1`) labels the nine-site entries as “unverified owner report” and says no row is ORGANIZER-CONFIRMED. The current GEMSDOE32 source snapshot (`docs/index.html`, commit `7a97c5a88936a3fdb99d0358c3b85d739a714631`) calls the historical 0.2778 “organizer-confirmed” while also saying “owner-reported.” No DrivenData submission-page receipt is supplied in that content. We classify it OWNER-REPORTED (UNVERIFIED), not ORGANIZER-CONFIRMED.
+- **IR-91-20261026-02 — current GEMSDOE32 primary differs from the historical champion.** Its fetched source page labels a different 2026-10-25 primary artifact “OK TO DOWNLOAD AND SUBMIT” and shows its own internal holdout/control values, while identifying the 0.2778 raster as a historical already-submitted comparison artifact. This review did not fetch or evaluate that candidate. Its page's status must not be inherited by GEMSDOE91 or substituted for a current selector/receipt.
+- **IR-91-20261026-03 — public static-page source and owner-page evidence are not organizer evidence.** GitHub API source snapshots were fetched, but the GitHub Pages hosts and DrivenData submissions page were not fetched directly. The scorecard is useful for tracing owner reports; it cannot prove the official score, receipt, current leaderboard, or score conditions.
+
+Evidence and full context: `docs/PRIORITY-SITES-EXECUTIVE-SUMMARY.md` and `docs/run-card-priority-sites-review.json`.
+
 ## ISO91 session `arena/bacc7c26-gemsdoe91` (2026-10-25)
 
 - **IR-91-ISO-01: a live-aligned holdout split was added, outside the pinned template.**

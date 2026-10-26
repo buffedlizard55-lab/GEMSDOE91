@@ -1,0 +1,29 @@
+{
+  "hypothesis": "No experiment authorized or run: lane unassigned; top-ranked ISTF requires NASA/ASF source data unavailable in this sandbox and preregistration.",
+  "mechanism": "Proposed, untested: multi-temporal Sentinel-1 LOS deformation/coherence may identify persistent strain gradients or transient creep across concealed basin-margin faults; no result claimed.",
+  "named_non_fault_process_that_could_mimic_it": "Seasonal groundwater withdrawal/recharge deformation and tropospheric atmospheric delay can mimic fault-related InSAR strain; vegetation decorrelation is an additional measurement confounder.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "value": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "status": "NOT RUN"
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NOT RUN",
+    "preplacement_max_abs_spearman": null,
+    "final_dot_max_3px_overlap": null,
+    "reason": "No candidate surface or final dots were generated; complete comparison registry is not present locally and its declared indexed scope is incomplete."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NOT APPLICABLE — no TIFF generated",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative"
+}

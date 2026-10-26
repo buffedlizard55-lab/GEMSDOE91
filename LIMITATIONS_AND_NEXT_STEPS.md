@@ -1,6 +1,26 @@
-# Current limitations and next steps — S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16, 2026-10-25
+# Current limitations and next steps — review 2026-10-26
 
-## Parallel merged session: ISO91 (`arena/bacc7c26-gemsdoe91`, 2026-10-25)
+## Current branch review (`arena/c20e745a-gemsdoe91`)
+
+**Status: NEGATIVE / BLOCKED. No new TIFF generated; no TIFF cleared to submit; 0 slots used by this review.** The assigned single-method lane is unresolved (`docs/run-card.json` has `assigned: false`). The local `data/` directory and cached feature inputs are absent, and the Python environment lacks NumPy/Rasterio/SciPy/scikit-learn/pytest at review time. Therefore this session did not run a fresh holdout, canary, raster validator or registry comparison. Historical manifest `local_present` flags and prior-session score records do not establish current availability or a current leaderboard score.
+
+**Priority-site analysis:** [executive report](docs/PRIORITY-SITES-EXECUTIVE-SUMMARY.md) · [public summary](docs/priority-sites-executive-summary.html) · [JSON run card](docs/run-card-priority-sites-review.json). Among the nine values, GEMSDOE32 0.2778 is **OWNER-REPORTED (UNVERIFIED)**; the current owner-site pages use conflicting organizer-confirmed/owner-reported wording, with no DrivenData receipt supplied. Do not submit any copied or relabeled prior raster.
+
+### Recommended next steps, in order
+
+1. Resolve the method lane and the conflicting completeness/blanket-raster uniqueness policy explicitly; do not infer authorization or weaken thresholds.
+2. Restore only approved, SHA-pinned data and cached stack, verify each file from disk, install repository-pinned dependencies, and report provenance/licensing. Do not rely on manifest booleans alone.
+3. Run the proposed feature/cache novelty audit for PDSC before coding. If it is genuinely distinct, preregister one hypothesis and keep to the shared evaluator/writer.
+4. Test each feature individually for leakage, then run spatial whole-segment buffered holdout and paired comparison against the same-fold incumbent. Require positive evidence before making a candidate TIFF.
+5. Run pre-placement surface correlation and final-dot overlap checks against the full comparison registry. Stop on the first gate breach and preserve a negative run card.
+6. Re-read and validate any produced GeoTIFF for [0,1] range, no NaN inside footprint, and exact CRS/shape/transform. A separate selector must approve any real weekly slot; this review does not select one.
+7. Verify competition rules, source rights, current leaderboard context and score receipts through authorized official pages. Official external source leads and links are listed in the priority-site report; current coverage/access was not verified here.
+
+---
+
+## Historical limitations and next steps (prior parallel sessions, 2026-10-25)
+
+### Parallel merged session: ISO91 (`arena/bacc7c26-gemsdoe91`, 2026-10-25)
 
 **Status:** new unique research GeoTIFF; **OK TO DOWNLOAD: YES**; **OK TO SUBMIT: NO**.
 The preregistered gates G1, G2 and G4 failed. Evidence: `docs/run-card-ISO91.json` and `docs/REVIEW-ISO91-BACC7C26-20261025.md`.
