@@ -230,6 +230,9 @@ def test_portal_render_is_reproducible():
     current=(ROOT/'docs/index.html').read_text()
     guide=(ROOT/'docs/executive-summary.html').read_text()
     for page in (current, guide):
+        assert 'Priority-site review · 2026-10-26' in page
+        assert 'NO TIFF GENERATED · NO SUBMISSION APPROVED' in page
+        assert 'priority-sites-executive-summary.html' in page
         assert 'S18-UNIQUE · Basin-stripped Bouguer curvature' in page
         assert 'OK TO DOWNLOAD: YES — FORMAT-CHECKED RESEARCH' in page
         assert 'OK TO SUBMIT: NO — HOLDOUT / CANARY / FULL REGISTRY PENDING' in page
