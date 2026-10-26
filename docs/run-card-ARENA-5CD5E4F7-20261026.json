@@ -52,6 +52,14 @@
     "registry_witness_present": false,
     "candidate_generated": false
   },
+  "public_leaderboard_observation": {
+    "score": 0.4437,
+    "rank": 1,
+    "as_of_utc_date": "2026-10-26",
+    "source_record": "docs/REVIEW-ACTIVE-8F9CFF19-20261026.md",
+    "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "status": "OFFICIAL PUBLIC LEADERBOARD observation copied from the merged-main parallel review; not independently refreshed in this branch, not an organizer receipt, and not tied to any audited focus-site TIFF."
+  },
   "reported_best_among_supplied_nine": {
     "site": "GEMSDOE32",
     "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
@@ -63,6 +71,6 @@
     "dependency_install": "PASS: requirements.txt installed to ignored .venv",
     "experiment_preflight": "BLOCKED as expected: missing assigned lane and data/official/sample_submission.tif",
     "build_preflight": "BLOCKED as expected: 0/2 required inputs verified; axes blocked",
-    "pytest": "PASS: 679 passed, 9 skipped; 89 Rasterio Affine pending-deprecation warnings"
+    "pytest": "PASS after merging latest main review: 682 passed, 9 skipped; 89 Rasterio Affine pending-deprecation warnings"
   }
 }

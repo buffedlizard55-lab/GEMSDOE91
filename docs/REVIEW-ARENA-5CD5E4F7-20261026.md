@@ -12,7 +12,7 @@ This review follows the repository's standing brief and parallel-run protocol. I
 
 - Read the README standing brief and the existing nine-site audit, executive summary, current portal, shared holdout/evaluator/writer tooling, experiment plan, and data manifest.
 - The user-supplied order for the requested nine rows is retained as **USER/OWNER-REPORTED, UNVERIFIED**: GEMSDOE32 0.2778; GEMSDOE36 0.2750; GEMSDOE28 0.2710; GEMSDOE31 0.2708; GEMSDOE33 0.2632; GEMSDOE25 and GEMSDOE30 0.2600; GEMSDOE24 0.2477; GEMSDOE27 0.2449. It is arithmetic over the prompt, not a verified leaderboard.
-- The prior audit records source repositories at pinned commits and describes cross-site repeats/lineage. Those are owner-repository facts, not organizer receipts. The precise GEMSDOE32 0.2778 entry has no receipt binding the score to TIFF bytes in the audited manifest; therefore it is a forensic benchmark only.
+- The prior audit records source repositories at pinned commits and describes cross-site repeats/lineage. Those are owner-repository facts, not organizer receipts. The precise GEMSDOE32 0.2778 entry has no receipt binding the score to TIFF bytes in the audited manifest; therefore it is a forensic benchmark only. A newly merged parallel review on `main` records an official public-leaderboard observation of 0.4437 (rank 1, retrieved 2026-10-26). This branch did not independently refresh that page; the public-board value is not an organizer receipt for any focus-site TIFF. See [`REVIEW-ACTIVE-8F9CFF19-20261026.md`](REVIEW-ACTIVE-8F9CFF19-20261026.md) for the copied observation and provenance.
 
 ## Pass 2 — reproduce blockers and avoid unsafe output
 
@@ -24,7 +24,7 @@ This review follows the repository's standing brief and parallel-run protocol. I
 ## Pass 3 — user-facing clarity and regression testing
 
 - Updated the README top block and root landing page so the active branch says no new TIFF is cleared, identifies the 0.2778 value as unverified, and links the nine-site executive summary and run card.
-- Added a current-status panel at the top of `docs/index.html`. It explicitly distinguishes older download links (historical research) from current approval.
+- Added a current-status panel at the top of `docs/index.html`. It explicitly distinguishes older download links (historical research) from current approval. The pre-existing portal still contains an identity mismatch: its older S21-PDWC card appears first, while `docs/current-run.json` points at S20-RHTW. Both historical artifacts state `OK TO SUBMIT: NO`; this review does not choose between them, and the new banner overrides them as current approval status.
 - Preserved the earlier source-pinned audit and its hypothesis ranking rather than silently changing old evidence. Its ranked proposals are qualitative and not predicted scores. Hypothesis 1 (dipping-contact waveform matched-filter bank) is documented but remains untested and cannot be adopted as the lane without assignment. The free official source leads for external-data options are listed in that audit; coverage/access were not verified for this review, so they are not marked viable.
 - Added this branch-specific run card and review note. No submission name, note, score estimate, TIFF hash, or validator PASS is fabricated.
 
@@ -47,5 +47,5 @@ Official/manual-review links in the prior report include DrivenData's problem, r
 - Dependency install: **PASS** from `requirements.txt` into ignored `.venv/`.
 - Experiment preflight: **BLOCKED as expected**; missing assigned lane and `data/official/sample_submission.tif`.
 - Build preflight: **BLOCKED as expected**; 0/2 required inputs verified; six axes blocked.
-- Test suite: **PASS — 679 passed, 9 skipped; 89 Rasterio Affine pending-deprecation warnings** (`pytest -o addopts='' -q`).
+- Test suite after merging latest `main`: **PASS — 682 passed, 9 skipped; 89 Rasterio Affine pending-deprecation warnings** (`pytest -o addopts='' -q`).
 - Result is workflow-negative, not a scientific negative finding. See the single JSON run card for all required nulls and labels.

@@ -1,3 +1,15 @@
+# GEMSDOE91 — Multi-Pass Verification Log (latest: active review `8F9CFF19`, 2026-10-26)
+
+## Active checkout review `8F9CFF19` (`arena/8f9cff19-gemsdoe91`, 2026-10-26)
+
+- **Pass 1 — inspect:** reviewed standing prompt, branch, source tree, current audit/run cards, registry/preflight, current front door, and submission documentation. Confirmed no assigned lane and two required local inputs missing; did not infer branch-local experiment authorization.
+- **Pass 2 — test and correct evidence:** ran `.venv/bin/python scripts/preflight.py`; it reported `BUILD BLOCKED: 0/2` and all six build axes blocked. This refreshed stale `registry/preflight.json` from an old `INPUTS AVAILABLE` state to the current blocked snapshot. Added active-branch three-pass review, fail-closed JSON card, and regression tests. No mirrors/data were restored.
+- **Pass 3 — recheck:** `.venv/bin/python -m pytest -o addopts='' -q` → **679 passed, 9 skipped, 89 warnings** in 37.93 s. `scripts/check_artifact_policy.py` → **PASS, 105 registered prediction artifacts**. Compileall, JSON parsing, and `git diff --check` pass. `scripts/verify_frontdoor.py` remains blocked by absent local sample raster; current S20 artifact format check passes but remains research-only.
+- **Outcome:** negative/blocked; zero experiments, no new TIFF/holdout/score/receipt, zero weekly slots. The supplied GEMSDOE32 0.2778 is owner/user-reported and unverified against an organizer receipt. Fetched the official public leaderboard on 2026-10-26: #1 public score 0.4437 (not a submission receipt or a score tied to the audited TIFFs). Identified the S21-PDWC vs S20-RHTW front-door identity mismatch; recorded it without silently changing canonical publication.
+- **Evidence:** `docs/REVIEW-ACTIVE-8F9CFF19-20261026.md`, `docs/run-card-8f9cff19.json`, `tests/test_active_review_8f9cff19.py`.
+
+---
+
 # GEMSDOE91 — Multi-Pass Verification Log (latest: Session 21 `S21-PDWC`, `arena/a31c96c3-gemsdoe91`)
 
 ## Session 21 (`S21-PDWC`, branch `arena/a31c96c3-gemsdoe91`, 2026-10-26)
