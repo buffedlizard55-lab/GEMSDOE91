@@ -4,7 +4,7 @@
   "geological_experiments": 1,
   "submission_slots_used": 0,
   "python_tests": {
-    "passed": 689,
+    "passed": 692,
     "skipped": 8,
     "warnings": 89,
     "reason_for_skips": "Legacy integration inputs not restored; not counted as passed"
@@ -37,5 +37,6 @@
   "git_diff_check": "PASS",
   "scientific_verdict": "negative",
   "ok_to_submit": false,
-  "scope": "Local pre-merge verification. GitHub CI and merge tracked separately."
+  "scope": "Local pre-merge verification. GitHub CI and merge tracked separately.",
+  "concurrent_main_integration": "Included origin/main 8b3b485; preserved historical no-run evidence and current S22 pointer"
 }
