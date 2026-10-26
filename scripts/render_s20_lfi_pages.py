@@ -108,6 +108,15 @@ def render():
     idx = re.sub(r' data-submission-ready="(?:true|false)"', '', idx)   # exactly one current state: ours
     idx = idx.replace('<main id="main">', '<main id="main">\n' + banner, 1)
     (DOCS / "index.html").write_text(idx)
+
+    # Site root (served by Pages): land on the portal whose top card is this session's download + verdict.
+    # The parallel 2026-10-26 nine-site audit's own statement is kept verbatim but scoped to that review.
+    root = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=docs/index.html"><title>GEMSDOE91 — Session 20 LFI GeoTIFF · automated verdict</title></head><body><main><h1>GEMSDOE91 — current status</h1>
+<p><strong>Session 20 (S20-LFI, 2026-10-26): new research GeoTIFF.</strong> OK TO DOWNLOAD: {'YES' if okd else 'NO'}. {esc(sb_text)}. <a href="docs/index.html">Download and automated verdict (top of portal)</a> · <a href="docs/s20-lfi-executive-summary.html">S20 executive summary &amp; how to submit</a></p>
+<p>Parallel 2026-10-26 nine-site audit (arena/af73263f, read-only review): <strong>NO NEW TIFF GENERATED.</strong> OK TO DOWNLOAD: NO NEW TIFF FROM THIS REVIEW. OK TO SUBMIT: NO. <a href="docs/nine-site-audit-20261026.html">Open the nine-site audit</a></p>
+<p>The prior ISO91 GeoTIFF remains a separate negative research artifact, not an approved submission: <a href="docs/index.html">historical research/download portal</a> · <a href="docs/executive-summary.html">submission guide (none currently approved)</a>.</p></main></body></html>
+"""
+    (ROOT / "index.html").write_text(root)
     
     decision = "" if not card.get("human_signoff") else f"""<section class="card warn"><h2>One decision for you</h2>
     <p>{esc(card['human_signoff'])}</p>

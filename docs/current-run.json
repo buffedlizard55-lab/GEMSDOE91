@@ -2,7 +2,7 @@
   "run_card": "run-card-ISO91.json",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "scope": "Current research download; format pass is not submission approval",
+  "scope": "Historical published research artifact; format pass is not submission approval",
   "raster_sha256": "69bd28b812d333d4eb1912b6dcb82ad500f5d1074d68c8dd7b86f056543d66f2",
   "tif": "downloads/gemsdoe91-iso91-isolationpu-37654-20261025T190251Z-beaca59b-zeros.tif",
   "zip": "downloads/gemsdoe91-iso91-isolationpu-37654-20261025T190251Z-beaca59b-zeros.zip",
