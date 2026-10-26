@@ -73,6 +73,21 @@ def test_stopped_evidence_is_internally_consistent_without_rerun():
     assert result['final_dot_count'] == 37654
 
 
+def test_current_portal_render_keeps_archived_xbreed_out_of_current_status():
+    """The renderer must not reintroduce an obsolete parallel-lane recommendation."""
+    from scripts.render_olc91_portal import render
+    render()
+    docs = Path(__file__).resolve().parents[1] / 'docs'
+    pointer = json.loads((docs / 'current-run.json').read_text())
+    assert pointer['run_card'] == 'run-card-S22-OMTJ.json'
+    for filename in ('index.html', 'executive-summary.html'):
+        page = (docs / filename).read_text()
+        assert 'OMTJ' in page and 'OK TO SUBMIT: NO' in page
+        assert 's22-xb-parallel' not in page
+        assert 'gems91-s22-xbreed-c-37654dots' not in page
+    assert (docs / 's22-xbreed-executive-summary.html').is_file()
+
+
 @pytest.mark.parametrize('mutation', ['promote', 'projection', 'pooled_score', 'canary', 'continue_after_stop'])
 def test_s22_evidence_tampering_fails_closed(monkeypatch, mutation):
     import copy

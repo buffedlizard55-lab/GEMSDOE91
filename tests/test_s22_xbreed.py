@@ -268,19 +268,16 @@ def test_own_executive_summary_states_the_same_verdict_as_the_run_card():
 
 
 @pytest.mark.parametrize("rel", ["docs/index.html", "docs/executive-summary.html"])
-def test_current_lane_entry_pages_carry_the_parallel_callout_without_a_second_state(rel):
-    """The current lane owns each entry page and its single data-submission-ready; S22-XB is injected via the PARALLEL slot."""
+def test_current_lane_entry_pages_do_not_surface_archived_xbreed_as_current(rel):
+    """Only the current pointer may recommend a lane; XB remains reachable in its own archive page."""
     raw = (ROOT / rel).read_text()
-    assert 'id="s22-xb-parallel"' in raw
-    seg = raw[raw.index('id="s22-xb-parallel"'):]
-    seg = seg[:seg.index("</section>")]
-    assert "data-submission-ready" not in seg and " download" not in seg          # no second state, no download attribute
-    assert f"downloads/{Path(SUB['tif_file']).name}" in seg and "s22-xbreed-executive-summary.html" in seg
-    assert SUB["note"] in seg and SUB["name"] in seg
-    assert ("NOT OK TO SUBMIT" in seg) == (not CARD["ok_to_submit"])
-    assert "OK TO DOWNLOAD: " + ("YES" if CARD["ok_to_download"] else "NO") in seg
+    assert 'id="s22-xb-parallel"' not in raw
+    assert "S22-XB GeoTIFF" not in raw
+    assert "gems91-s22-xbreed-c-37654dots" not in raw
+    assert "s22-xbreed-executive-summary.html" not in raw
+    assert "OMTJ" in raw and "OK TO SUBMIT: NO" in raw
     page = _page(rel)
-    assert len(page.states) == 1            # the lane that owns the page keeps the only state attribute
+    assert len(page.states) == 1
     _check_links(rel, page)
 
 
