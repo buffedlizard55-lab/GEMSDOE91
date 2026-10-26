@@ -52,6 +52,19 @@ def test_active_review_lists_three_proposals_and_source_links_without_a_score_cl
         assert marker in review
     assert "MODEL" not in review
     assert "projection" in review.lower()
+    assert "Nine-site file / score / uniqueness matrix" in review
+    for site, filename in (
+        ("GEMSDOE24", "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan"),
+        ("GEMSDOE25", "dotted-h19-5-d2-8-20261002-e56ea318af89-nan"),
+        ("GEMSDOE27", "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan"),
+        ("GEMSDOE28", "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan"),
+        ("GEMSDOE30", "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca"),
+        ("GEMSDOE31", "h27-4-solo-d28-20261004-8acb75e1-nan"),
+        ("GEMSDOE32", "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros"),
+        ("GEMSDOE33", "h33d-analog-tip-stepover-r30-20261004-cb490425926e"),
+        ("GEMSDOE36", "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros"),
+    ):
+        assert site in review and filename in review
 
 
 def test_preflight_snapshot_matches_missing_required_inputs():

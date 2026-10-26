@@ -55,7 +55,7 @@
     "authorization_or_restore_performed": false
   },
   "verification": {
-    "pytest": "PASS: 679 passed, 9 skipped, 89 warnings in 37.93 seconds.",
+    "pytest": "PASS: 679 passed, 9 skipped, 89 warnings in 36.21 seconds.",
     "artifact_policy": "PASS: 105 registered prediction artifacts; no raw raster/archive tracked.",
     "current_canonical_artifact": "Technical format PASS, SHA-256 a29e79d400d0fb26ebcbc0be6b1dcf66b17dfedf9ded1ef8c9a53678c16553ee; no submission approval.",
     "frontdoor_with_data": "BLOCKED: local sample_submission.tif is missing.",
