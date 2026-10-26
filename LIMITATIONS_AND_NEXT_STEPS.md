@@ -1,3 +1,15 @@
+## S22 OMTJ — current next steps (2026-10-26)
+
+**Negative; not approved for submission.** A fresh TIFF passed local numeric/grid validation but failed the literal registered-lattice overlap gate. See [canonical run card](docs/s22/run-card.json), [three-pass review](docs/s22/review.md) and [official-source analysis](docs/s22/research-and-limitations.md). One experiment; zero slots. No more tuning in this stopped lane.
+
+1. Resolve dense-reference registry feasibility with a versioned coordinator policy; no unilateral exemption. Two frozen artifacts are missing, and the index is not universal.
+2. Obtain fold-specific incumbent predictions and replay with matched budgets and a paired bootstrap before another scientific promotion claim. S22 emitted 37,438 holdout dots versus a 37,654 final-map budget; historical scalar records alone are not comparable controls.
+3. Record authenticated receipts linked to exact TIFF SHA256s; no leaderboard estimate is currently defensible. The fresh public leaderboard observation is 0.4437, but it is not a receipt for this project.
+4. Verify availability/license/coverage of independent higher-resolution terrain or native survey-QC data before a new lane. Public metadata access through page tools is distinct from restricted shell bulk access.
+5. Maintain renderer-owned `docs/current-run.json` and update source inventories without relabeling page assertions as organizer-confirmed results. The legacy Pages publisher does not automatically deploy scheduled workflow artifacts; a scheduled report is not guaranteed live site content.
+
+---
+
 # Current limitations and next steps — S21-PDWC (2026-10-26), then S20-LFI, S19-SVHF, ISO91, S18-HGBR, S17-LFTG, S17-CPAD & S16
 
 ## Session 21: `S21-PDWC`, Phase-Congruent Dipping-Contact Waveform & Clay-Cap Baffle OOF + CELF (`arena/a31c96c3-gemsdoe91`)

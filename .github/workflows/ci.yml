@@ -57,6 +57,7 @@ jobs:
       - name: Re-read actual published TIFF and single-TIFF ZIP; never promote
         run: |
           python scripts/verify_frontdoor.py
+          python scripts/verify_s22.py --with-data
           python scripts/verify_current_artifact.py --with-data
           python scripts/verify_evidence.py
           python scripts/verify_s16.py --with-data
@@ -82,6 +83,9 @@ jobs:
             docs/s17/
             docs/run-card-S19-SVHF.json
             docs/s19_svhf/
+            docs/run-card-S22-OMTJ.json
+            docs/s22/
+            docs/downloads/gems91-s22-omtj-*
             docs/run-card-S20-RHTW.json
             docs/s20_rhtw/
             docs/downloads/gems91-ced-*

@@ -79,7 +79,7 @@ def test_negative_design_component_disclosed():
 
 
 def test_portal_banner_and_summary_match_card():
-    page = (ROOT / "docs/index.html").read_text()
+    page = (ROOT / "docs/s21-fam3-executive-summary.html").read_text()
     assert Path(SUB["file"]).name in page and SUB["sha256"] in page and SUB["name"] in page
     assert f'data-submission-ready="{str(CARD["ok_to_submit"]).lower()}"' in page
     assert "OK TO SUBMIT: NO" in page and "S21-FAM3" in page

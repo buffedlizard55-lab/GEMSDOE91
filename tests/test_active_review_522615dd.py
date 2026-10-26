@@ -161,7 +161,7 @@ def test_current_file_pointer_remains_prior_olc91_not_a_fabricated_new_result():
     # Session 522615dd produced no TIFF, so it could not move the pointer. A LATER session may move it
     # only to a measured lane card whose holdout evidence is committed (ISO91, session bacc7c26; S20-RHTW, session 06420fd7).
     current = _json("docs/current-run.json")
-    assert current["run_card"] in ("run-card-OLC91.json", "run-card-ISO91.json", "run-card-S20-RHTW.json")
+    assert current["run_card"] in ("run-card-OLC91.json", "run-card-ISO91.json", "run-card-S20-RHTW.json", "run-card-S22-OMTJ.json")
     if current["run_card"] == "run-card-ISO91.json":
         card = _json("docs/run-card-ISO91.json")
         assert card["session"] != "arena/522615dd-gemsdoe91"
@@ -176,6 +176,12 @@ def test_current_file_pointer_remains_prior_olc91_not_a_fabricated_new_result():
             assert (DOCS / "s20_rhtw" / name).is_file()
         assert card["holdout"]["primary_i2"]["evidence_class"] == "HOLDOUT-DTI"
         assert card["organizer_confirmed_scores"] is None
+    elif current["run_card"] == "run-card-S22-OMTJ.json":
+        card = _json("docs/s22/run-card.json")
+        assert card["holdout"]["evidence_class"] == "HOLDOUT-DTI"
+        assert card["organizer_confirmed_score"] is None
+        assert card["correlation_overlap_vs_registry"]["final_dot_checks"]["registry_clearance"] is False
+        assert card["raster_sha256"] == current["raster_sha256"]
     assert current["ok_to_download"] is True
     assert current["ok_to_submit"] is False
     review = (DOCS / "REVIEW-ACTIVE-522615DD-20261025.md").read_text(encoding="utf-8")

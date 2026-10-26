@@ -1,3 +1,18 @@
+## S22 audit irregularities (2026-10-26)
+
+- **IR-S22-01 — conflicting current pages:** root, pointer and stacked prior-session banners nominated different files. Fixed with one renderer-owned S22 front door and explicit historical links. Old scientific evidence is preserved, not retrospectively promoted.
+- **IR-S22-02 — literal duplicate stop:** OMTJ final dots overlap `calib_r13lattice_00904.tif` by 98.565889% within 3 px. Stop after comparison 27/112; no density exemption; no later experiments. New SHA256 does not mean protocol uniqueness.
+- **IR-S22-03 — source identities:** inherited S21 nine-site summary substituted a 40,199-dot predecessor for the named 38,854-dot GEMSDOE36 Anderson file, and other near-names for GEMSDOE28/33. Fresh exact-blob audit now names prompt-matching files and hashes.
+- **IR-S22-04 — non-identifiable hidden-score algebra:** do not infer private fault count or percentage causality of pruning from one score/dot count. Truth-side TP credit and dot-side matching credit are distinct; see scientific review.
+- **IR-S22-05 — stale leaderboard and no receipts:** page tool retrieved public rank 1 at 0.4437 on 2026-10-26. Neither it nor supplied 0.2778 is an authenticated receipt for this raster. All leaderboard estimates remain null.
+- **IR-S22-06 — format wording:** official page says outside bounds null/NaN; local writer uses all-finite zeros outside footprint. Range/grid PASS does not resolve organizer acceptance. No new external data uploaded or terms accepted.
+- **IR-S22-07 — asymmetric comparisons:** the nine-site overlap is directed, exact equality is separate, and final candidate checks stopped on the first failure. Never label the unfinished comparisons universal clearance.
+- **IR-S22-08 — holdout underfill:** planned 37,654 pooled dots; actual 37,438 because SW/SE support/spacing availability constrains the last quadrant (fold 3: 5,524 of 5,740). Evidence retains exact counts; no post-stop refill/retest. Final-map TIFF has 37,654 dots.
+- **IR-S22-09 — proposed B15 semantics:** the official page describes depth to conductive base surface, while older repo text calls it basement. S22's untested fourth proposal inherits that uncertain interpretation; do not implement it as lithologic basement without source-metadata confirmation. Tested E1 does not read B15.
+- **IR-S22-10 — missing lane paragraph:** a narrow research lane was self-preregistered, not coordinator-assigned. This does not authorize promotion. The user-requested winning unique submission remains unachieved.
+
+---
+
 ## S21-FAM3 / 2026-10-26 — Nine-site 3-family inversion (`arena/11ddffe8-gemsdoe91`, not organizer scores)
 
 - **IR-S21-01 — The spatially-blocked holdout ranking at the top of the fleet is exactly inverted.** Recomputed hide-v2 on the S20 split (split sha256 identical to S20): across the nine focus sites' best files (8 distinct families), Spearman vs USER-REPORTED live = **-1.0** (GEMSDOE33's file ranks first on hide-v2 at 0.0864 and is the lowest of the nine live). Strengthens IR-S20-01: for near-duplicate h19-5 file comparisons, hide-v2 actively selects the live-worst variant.

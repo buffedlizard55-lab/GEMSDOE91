@@ -99,12 +99,13 @@ def test_executive_audit_links_resolve_and_exposes_no_current_download_or_submis
 def test_current_root_and_legacy_download_portal_disambiguate_old_iso91_file():
     root = parse_page(ROOT / "index.html")
     root_text = " ".join(root.text)
-    assert "NO NEW TIFF GENERATED" in root_text
-    assert "OK TO DOWNLOAD: NO NEW TIFF" in root_text
+    assert "OK TO DOWNLOAD: YES" in root_text
     assert "OK TO SUBMIT: NO" in root_text
-    assert "historical research/download portal" in root_text
+    assert "docs/executive-summary.html" in root.links
 
-    for name in ("index.html", "executive-summary.html", "iso91-index-src.html", "iso91-exec-src.html"):
+    # The no-run audit is historical; do not force a later real run to claim
+    # that it generated no raster. Its immutable ISO91 pages retain that note.
+    for name in ("iso91-index-src.html", "iso91-exec-src.html"):
         page = parse_page(DOCS / name)
         text = " ".join(page.text)
         assert "NO NEW TIFF GENERATED" in text, name
@@ -112,5 +113,5 @@ def test_current_root_and_legacy_download_portal_disambiguate_old_iso91_file():
         assert "NOT OK TO SUBMIT" in text, name
         assert "nine-site-audit-20261026.html" in page.links, name
     guide = " ".join(parse_page(DOCS / "executive-summary.html").text)
-    assert "none is approved by the current review" in guide
-    assert "Do not upload the historical ISO91 research TIFF" in guide
+    assert "Do not upload the S22 file" in guide
+    assert "not an approval to upload that file" in guide

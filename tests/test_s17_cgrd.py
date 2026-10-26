@@ -203,8 +203,6 @@ def test_s17_cgrd_run_card_artifact_and_portal_integrity() -> None:
 
     # Portal pages expose S17-CGRD E2 and fail-closed status
     for page_name in (
-        "index.html",
-        "executive-summary.html",
         "s17-cgrd.html",
         "s17-cgrd-executive-summary.html",
     ):

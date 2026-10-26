@@ -1,0 +1,226 @@
+[
+  {
+    "feature": "tmi_input",
+    "fold": 0,
+    "auc": 0.49685828038129887,
+    "symmetric_auc": 0.5031417196187011,
+    "positives": 29319,
+    "negatives": 605001
+  },
+  {
+    "feature": "gravity_input",
+    "fold": 0,
+    "auc": 0.4572641093862963,
+    "symmetric_auc": 0.5427358906137036,
+    "positives": 29319,
+    "negatives": 605001
+  },
+  {
+    "feature": "skewness",
+    "fold": 0,
+    "auc": 0.5025579954781886,
+    "symmetric_auc": 0.5025579954781886,
+    "positives": 29319,
+    "negatives": 605001
+  },
+  {
+    "feature": "skewness_edge",
+    "fold": 0,
+    "auc": 0.5044644757542233,
+    "symmetric_auc": 0.5044644757542233,
+    "positives": 29319,
+    "negatives": 605001
+  },
+  {
+    "feature": "gravity_edge",
+    "fold": 0,
+    "auc": 0.5298517924813541,
+    "symmetric_auc": 0.5298517924813541,
+    "positives": 29319,
+    "negatives": 605001
+  },
+  {
+    "feature": "normal_alignment_squared",
+    "fold": 0,
+    "auc": 0.5029028820275574,
+    "symmetric_auc": 0.5029028820275574,
+    "positives": 29319,
+    "negatives": 605001
+  },
+  {
+    "feature": "surface",
+    "fold": 0,
+    "auc": 0.5028298088951335,
+    "symmetric_auc": 0.5028298088951335,
+    "positives": 29319,
+    "negatives": 605001
+  },
+  {
+    "feature": "tmi_input",
+    "fold": 1,
+    "auc": 0.5062849073712865,
+    "symmetric_auc": 0.5062849073712865,
+    "positives": 12596,
+    "negatives": 338499
+  },
+  {
+    "feature": "gravity_input",
+    "fold": 1,
+    "auc": 0.4816892423605198,
+    "symmetric_auc": 0.5183107576394802,
+    "positives": 12596,
+    "negatives": 338499
+  },
+  {
+    "feature": "skewness",
+    "fold": 1,
+    "auc": 0.5102211497227092,
+    "symmetric_auc": 0.5102211497227092,
+    "positives": 12596,
+    "negatives": 338499
+  },
+  {
+    "feature": "skewness_edge",
+    "fold": 1,
+    "auc": 0.5040786259018177,
+    "symmetric_auc": 0.5040786259018177,
+    "positives": 12596,
+    "negatives": 338499
+  },
+  {
+    "feature": "gravity_edge",
+    "fold": 1,
+    "auc": 0.5767144801298182,
+    "symmetric_auc": 0.5767144801298182,
+    "positives": 12596,
+    "negatives": 338499
+  },
+  {
+    "feature": "normal_alignment_squared",
+    "fold": 1,
+    "auc": 0.5050009194946374,
+    "symmetric_auc": 0.5050009194946374,
+    "positives": 12596,
+    "negatives": 338499
+  },
+  {
+    "feature": "surface",
+    "fold": 1,
+    "auc": 0.5054382540611585,
+    "symmetric_auc": 0.5054382540611585,
+    "positives": 12596,
+    "negatives": 338499
+  },
+  {
+    "feature": "tmi_input",
+    "fold": 2,
+    "auc": 0.4634168185327253,
+    "symmetric_auc": 0.5365831814672747,
+    "positives": 9473,
+    "negatives": 138658
+  },
+  {
+    "feature": "gravity_input",
+    "fold": 2,
+    "auc": 0.4453458533445732,
+    "symmetric_auc": 0.5546541466554268,
+    "positives": 9473,
+    "negatives": 138658
+  },
+  {
+    "feature": "skewness",
+    "fold": 2,
+    "auc": 0.5094326804446058,
+    "symmetric_auc": 0.5094326804446058,
+    "positives": 9473,
+    "negatives": 138658
+  },
+  {
+    "feature": "skewness_edge",
+    "fold": 2,
+    "auc": 0.5745285263499356,
+    "symmetric_auc": 0.5745285263499356,
+    "positives": 9473,
+    "negatives": 138658
+  },
+  {
+    "feature": "gravity_edge",
+    "fold": 2,
+    "auc": 0.5197993054981531,
+    "symmetric_auc": 0.5197993054981531,
+    "positives": 9473,
+    "negatives": 138658
+  },
+  {
+    "feature": "normal_alignment_squared",
+    "fold": 2,
+    "auc": 0.5743443427430716,
+    "symmetric_auc": 0.5743443427430716,
+    "positives": 9473,
+    "negatives": 138658
+  },
+  {
+    "feature": "surface",
+    "fold": 2,
+    "auc": 0.5774484105353622,
+    "symmetric_auc": 0.5774484105353622,
+    "positives": 9473,
+    "negatives": 138658
+  },
+  {
+    "feature": "tmi_input",
+    "fold": 3,
+    "auc": 0.4910586283323226,
+    "symmetric_auc": 0.5089413716676774,
+    "positives": 9600,
+    "negatives": 194584
+  },
+  {
+    "feature": "gravity_input",
+    "fold": 3,
+    "auc": 0.4834615116950349,
+    "symmetric_auc": 0.5165384883049651,
+    "positives": 9600,
+    "negatives": 194584
+  },
+  {
+    "feature": "skewness",
+    "fold": 3,
+    "auc": 0.4943225735200908,
+    "symmetric_auc": 0.5056774264799092,
+    "positives": 9600,
+    "negatives": 194584
+  },
+  {
+    "feature": "skewness_edge",
+    "fold": 3,
+    "auc": 0.5159120477317424,
+    "symmetric_auc": 0.5159120477317424,
+    "positives": 9600,
+    "negatives": 194584
+  },
+  {
+    "feature": "gravity_edge",
+    "fold": 3,
+    "auc": 0.5689940031790041,
+    "symmetric_auc": 0.5689940031790041,
+    "positives": 9600,
+    "negatives": 194584
+  },
+  {
+    "feature": "normal_alignment_squared",
+    "fold": 3,
+    "auc": 0.5182790447077696,
+    "symmetric_auc": 0.5182790447077696,
+    "positives": 9600,
+    "negatives": 194584
+  },
+  {
+    "feature": "surface",
+    "fold": 3,
+    "auc": 0.5185461963620681,
+    "symmetric_auc": 0.5185461963620681,
+    "positives": 9600,
+    "negatives": 194584
+  }
+]

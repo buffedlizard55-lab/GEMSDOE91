@@ -1,0 +1,41 @@
+{
+  "date_utc": "2026-10-26",
+  "passes_completed": 3,
+  "geological_experiments": 1,
+  "submission_slots_used": 0,
+  "python_tests": {
+    "passed": 689,
+    "skipped": 8,
+    "warnings": 89,
+    "reason_for_skips": "Legacy integration inputs not restored; not counted as passed"
+  },
+  "browser": {
+    "status": "PASS",
+    "accessibility_pages": 27,
+    "wcag_violations": 0,
+    "http_or_console_errors": 0,
+    "mobile_overflow": false,
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "evidence": "browser-verification.json"
+  },
+  "published_downloads_audit": {
+    "files": 107,
+    "technical_pass": 98,
+    "technical_fail": 9,
+    "note": "Historical failures retained and disclosed; current S22 TIFF/ZIP pass"
+  },
+  "current_byte_validator": "PASS",
+  "shared_template_integrity": "PASS",
+  "pooled_evidence_verifier": "PASS",
+  "git_diff_check": "PASS",
+  "scientific_verdict": "negative",
+  "ok_to_submit": false,
+  "scope": "Local pre-merge verification. GitHub CI and merge tracked separately."
+}

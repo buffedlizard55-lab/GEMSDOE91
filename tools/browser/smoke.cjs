@@ -48,7 +48,7 @@ async function main() {
     if (!allStatesFailClosed || stateCount === 0) {
       throw new Error('Missing fail-closed negative submission state');
     }
-    if (!(await page.getByText(/^NOT OK TO SUBMIT\.?$/).count())) {
+    if (!(await page.getByText(/NOT OK TO SUBMIT/).count())) {
       throw new Error('Submission warning is not visible');
     }
     // The historical DZ-EDGE file is still downloadable for research, but its
@@ -86,14 +86,16 @@ async function main() {
     const currentZip = await currentZipEvent;
     const currentZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await currentZip.path())).digest('hex');
     if (currentZipDigest !== current.zip_sha256) throw new Error('Current ZIP identity mismatch');
+    await page.goto(new URL('s17-cgrd.html', baseURL).href, { waitUntil: 'networkidle' });
     const cgrdDlEvent = page.waitForEvent('download');
-    await page.getByRole('link', { name: '↓ Download S17-CGRD E2 GeoTIFF (-zeros.tif)', exact: true }).click();
+    await page.getByRole('link', { name: '↓ Download S17-CGRD E2 TIFF (-zeros.tif)', exact: true }).click();
     const cgrdDownload = await cgrdDlEvent;
     const cgrdDigest = crypto.createHash('sha256').update(fs.readFileSync(await cgrdDownload.path())).digest('hex');
     const cgrdCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S17-CGRD.json')));
     if (cgrdDigest !== cgrdCard.raster_sha256 || cgrdCard.submission_ready !== false) {
       throw new Error('S17-CGRD one-click download SHA256 or fail-closed state mismatch');
     }
+    await page.goto(new URL('s19-svhf.html', baseURL).href, { waitUntil: 'networkidle' });
     const s19DlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S19-SVHF GeoTIFF', exact: true }).click();
     const s19Download = await s19DlEvent;
@@ -111,6 +113,7 @@ async function main() {
     }
     // Fresh navigation: Chromium throttles >10 downloads from one page load.
     await page.goto(baseURL, { waitUntil: 'networkidle' });
+    await page.goto(new URL('s20-lfi-executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
     const s20Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S20-LFI.json')));
     const s20DlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S20-LFI GeoTIFF', exact: true }).first().click();
@@ -124,6 +127,7 @@ async function main() {
     const s20Zip = await s20ZipEvent;
     const s20ZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await s20Zip.path())).digest('hex');
     if (s20ZipDigest !== s20Card.submission.zip_sha256) throw new Error('S20-LFI single-TIFF ZIP download SHA256 mismatch');
+    await page.goto(new URL('s17-lftg.html', baseURL).href, { waitUntil: 'networkidle' });
     const lftgDlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S17-LFTG GeoTIFF', exact: true }).click();
     const lftgDownload = await lftgDlEvent;
@@ -139,6 +143,7 @@ async function main() {
     if (lftgZipDigest !== lftgCard.artifact.zip_sha256) {
       throw new Error('S17-LFTG single-TIFF ZIP download SHA256 mismatch');
     }
+    await page.goto(new URL('s17-cpad.html', baseURL).href, { waitUntil: 'networkidle' });
     const s17DlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S17-CPAD E1 GeoTIFF', exact: true }).click();
     const s17Download = await s17DlEvent;
@@ -154,6 +159,7 @@ async function main() {
     if (s17ZipDigest !== s17Card.artifact.zip_sha256) {
       throw new Error('S17-CPAD single-TIFF ZIP download SHA256 mismatch');
     }
+    await page.goto(baseURL, { waitUntil: 'networkidle' });
     await page.locator('h1').click();
     await page.screenshot({ path: path.join(output, 'desktop.png'), fullPage: true });
     // Older candidate controls and downloads belong to the archive.

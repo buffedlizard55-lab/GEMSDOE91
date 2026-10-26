@@ -185,7 +185,7 @@ def test_s20_published_artifact_run_card_and_nine_sites_matrix():
     # Strict RFC 8259 JSON check (no bare NaN/Infinity tokens)
     json.dumps(matrix, allow_nan=False)
 
-    for html_rel in ("docs/index.html", "docs/executive-summary.html"):
+    for html_rel in ("docs/s20-rhtw-index-src.html", "docs/s20-rhtw-exec-src.html"):
         html = (ROOT / html_rel).read_text()
         assert "OK TO DOWNLOAD: YES" in html
         assert "OK TO SUBMIT: NO" in html

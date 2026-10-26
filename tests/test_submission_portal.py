@@ -230,10 +230,11 @@ def test_portal_render_is_reproducible():
     current=(ROOT/'docs/index.html').read_text()
     guide=(ROOT/'docs/executive-summary.html').read_text()
     for page in (current, guide):
-        assert 'S18-UNIQUE · Basin-stripped Bouguer curvature' in page
-        assert 'OK TO DOWNLOAD: YES — FORMAT-CHECKED RESEARCH' in page
-        assert 'OK TO SUBMIT: NO — HOLDOUT / CANARY / FULL REGISTRY PENDING' in page
-        assert 'downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif' in page
+        pointer = json.loads((ROOT / 'docs/current-run.json').read_text())
+        assert pointer['tif'] in page and pointer['zip'] in page
+        assert pointer['raster_sha256'] in page
+        assert 'OK TO DOWNLOAD: YES' in page and 'OK TO SUBMIT: NO' in page
+        assert 's22/run-card.json' in page
         assert 'data-submission-ready="true"' not in page
 
 
