@@ -14,11 +14,12 @@ def test_active_review_and_readme_fail_closed():
     card = json.loads((DOCS / "run-card-8f9cff19.json").read_text(encoding="utf-8"))
 
     assert "<!--ACTIVE-8F9CFF19-BEGIN-->" in readme
-    assert readme.startswith("# GEMSDOE91 — S22 OMTJ")  # Later measured run owns current status.
+    assert readme.startswith("# GEMSDOE91 — active review (2026-10-27 UTC)")
     assert "#full-project-brief" in readme
-    assert "NO NEW TIFF GENERATED" in readme
-    assert "0.2778 USER/OWNER-REPORTED" in readme
-    assert "REVIEW-ACTIVE-8F9CFF19-20261026.md" in readme
+    assert "No TIFF was generated in this review." in readme
+    assert "GEMSDOE32's 0.2778 is the highest value reported" in readme
+    assert "REVIEW-ARENA-35E82D42-20261027.md" in readme
+    assert "OK TO SUBMIT: NO" in readme[:2500]
     assert "0.4437" in readme
     assert "portal pointer mismatch" in review.lower()
     submission_guide = (DOCS / "SUBMIT.md").read_text(encoding="utf-8")

@@ -1,6 +1,8 @@
-## S22 OMTJ — current next steps (2026-10-26)
+## Current status and next steps — S22-OMTJ / review 2026-10-27 UTC
 
-**Negative; not approved for submission.** A fresh TIFF passed local numeric/grid validation but failed the literal registered-lattice overlap gate. See [canonical run card](docs/s22/run-card.json), [three-pass review](docs/s22/review.md) and [official-source analysis](docs/s22/research-and-limitations.md). One experiment; zero slots. No more tuning in this stopped lane.
+**Negative / blocked; not approved for submission.** No new TIFF was generated in this review. The prior OMTJ raster remains a research download only: local range/grid checks pass, but final dots failed the literal registry-overlap criterion. See the [current portal](docs/index.html), [nine-site summary and submission guide](docs/executive-summary.html), [2026-10-27 three-pass review](docs/REVIEW-ARENA-35E82D42-20261027.md), [review run card](docs/run-card-ARENA-35E82D42-20261027.json), and [canonical prior experiment card](docs/s22/run-card.json). Zero slots used in this review. Do not continue the stopped OMTJ lane.
+
+**New preflight blocker:** for the literal 37,654-dot budget, a pinned witness covers enough of the footprint that the necessary overlap lower bound is 82.34%, above the 70% rule. This is a capacity bound only—not a score or candidate-specific novelty result—and the overall registry is incomplete. The preflight also lacks an assigned method paragraph with an authenticated assignment source. Machine evidence: [capacity preflight](docs/s22/capacity-preflight.json).
 
 1. Resolve dense-reference registry feasibility with a versioned coordinator policy; no unilateral exemption. Two frozen artifacts are missing, and the index is not universal.
 2. Obtain fold-specific incumbent predictions and replay with matched budgets and a paired bootstrap before another scientific promotion claim. S22 emitted 37,438 holdout dots versus a 37,654 final-map budget; historical scalar records alone are not comparable controls.
