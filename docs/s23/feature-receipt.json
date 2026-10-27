@@ -1,0 +1,6 @@
+{
+  "tilt_sigma_px": 2,
+  "grav_sigma_px": 2,
+  "catalogue_features": false,
+  "bands": "B06 tc + B18 iso_grav_anom_hg"
+}
