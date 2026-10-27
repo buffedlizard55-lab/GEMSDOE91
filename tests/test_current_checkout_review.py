@@ -118,6 +118,19 @@ def test_current_review_has_all_nine_sites_and_no_score_forecast():
     assert "no verified receipt-to-raster binding" in review
 
 
+def test_prior_s18_files_are_registered_as_quarantined_research_artifacts():
+    policy = json.loads((ROOT / "registry/artifact_policy.json").read_text(encoding="utf-8"))
+    rows = {row["path"]: row for row in policy["files"]}
+    for suffix in (".tif", ".zip"):
+        path = "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405" + suffix
+        assert rows[path]["status"] == "parallel_quarantined"
+        assert "research artifact" in rows[path]["reason"]
+    audit = json.loads((DOCS / "download-audit.json").read_text(encoding="utf-8"))
+    assert audit["audit_completed"] is True
+    assert audit["ok_to_submit"] is False
+    assert audit["files_checked"] == len(rows)
+
+
 def test_latest_status_is_in_public_entry_points_and_render_source():
     root = (ROOT / "index.html").read_text(encoding="utf-8")
     site = (DOCS / "index.html").read_text(encoding="utf-8")
