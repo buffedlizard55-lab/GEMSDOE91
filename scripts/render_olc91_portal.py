@@ -174,7 +174,20 @@ def render() -> None:
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
-    parallel_card = ""
+    # The latest checkout review sits above the historical OMTJ artifact so a
+    # stale research download cannot be mistaken for approval in this session.
+    parallel_card = (
+        '<aside class="card" style="border:2px solid #9c3d25;background:#fff0e9" '
+        'aria-label="Latest checkout review 2026-10-27">'
+        '<strong>Latest checkout review · 2026-10-27 · arena/52711765-gemsdoe91:</strong> '
+        'no experiment ran and no new TIFF was generated. '
+        '<strong>OK TO DOWNLOAD: NO — no new candidate · OK TO SUBMIT: NO</strong>; '
+        'zero weekly slots used. The method lane is unassigned and 15 pinned inputs are missing. '
+        'Existing raster links below are prior-session research artifacts only. '
+        '<a href="REVIEW-ARENA-52711765-20261027.md">Read the current review and nine-site table</a> · '
+        '<a href="run-card-ARENA-52711765-20261027.json">Current run card</a>'
+        '</aside>'
+    )
     for source_name, target_name in ((CURRENT["index_src"], "index.html"),
                                      (CURRENT["exec_src"], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
@@ -191,11 +204,15 @@ def render() -> None:
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta http-equiv="refresh" content="0;url=docs/index.html">'
-        '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
-        '<h1>GEMSDOE91 · S22 OMTJ</h1><p>OK TO DOWNLOAD: YES — research only. '
-        '<strong>OK TO SUBMIT: NO — NOT OK TO SUBMIT.</strong></p>'
-        '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
-        '<a href="docs/executive-summary.html">Nine-site executive summary and submission guide</a></p>'
+        '<title>GEMSDOE91 — current review; no approved download</title></head><body><main>'
+        '<h1>GEMSDOE91 · current checkout review · 2026-10-27</h1>'
+        '<p><strong>OK TO DOWNLOAD: NO new candidate. OK TO SUBMIT: NO.</strong> '
+        'No experiment ran: the lane is unassigned and 15 pinned inputs are missing. '
+        'Earlier raster links are historical research files only.</p>'
+        '<p><a href="docs/REVIEW-ARENA-52711765-20261027.md">Read the current review and nine-site table</a> · '
+        '<a href="docs/run-card-ARENA-52711765-20261027.json">Machine-readable run card</a> · '
+        '<a href="docs/index.html">Open the research portal</a> · '
+        '<a href="docs/executive-summary.html">Submission format and instructions</a></p>'
         '</main></body></html>\n', encoding='utf-8')
 
 if __name__ == "__main__":

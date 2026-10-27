@@ -5,6 +5,7 @@
 - [Download existing S22-OMTJ research GeoTIFF](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif) · [single-TIFF ZIP](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.zip)
 - [Current portal and automated status](docs/index.html) · [nine-site executive summary / submission guide](docs/executive-summary.html) · [site-by-site audit](docs/s22-xb/nine-sites.json)
 - [2026-10-27 three-pass review](docs/REVIEW-ARENA-35E82D42-20261027.md) · [machine run card](docs/run-card-ARENA-35E82D42-20261027.json) · [previous S22 experiment evidence](docs/s22/run-card.json) · [official source ledger](docs/OFFICIAL_SOURCES_VERIFIED_S22.md)
+- [Companion checkout review with expanded nine-site hypotheses and input-restoration audit](docs/REVIEW-ARENA-52711765-20261027.md) · [companion run card](docs/run-card-ARENA-52711765-20261027.json)
 
 **Evidence summary:** the existing TIFF is a new research raster, not a prior file copied/relabelled. It passes the automated technical checks (one float32 band; EPSG:32611; 3730×3292; exact sample transform; all finite in [0,1]), so it avoids the reported predicted-value range error. It fails protocol uniqueness: the previous final-dot check found 98.5659% of its dots within 3 px of a frozen registry reference. The matching prior **HOLDOUT-DTI** is 0.066223 (evaluator `gems57-pooled-hide-v2`; 60,988 withheld positives; 95% CI [0.048015, 0.086803]); this is not a leaderboard estimate. The experiment stopped at the duplicate gate.
 

@@ -163,7 +163,7 @@
     },
     {
       "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
-      "policy_status": "legacy_quarantined",
+      "policy_status": "parallel_quarantined",
       "ok_to_submit": false,
       "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
       "status": "PASS",
@@ -184,7 +184,7 @@
     },
     {
       "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip",
-      "policy_status": "legacy_quarantined",
+      "policy_status": "parallel_quarantined",
       "ok_to_submit": false,
       "sha256": "245449b61d7fc38f8b1e94bdff6d9181b6f7cac03673e67f630638fca3ebddc9",
       "zip_member": "gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",

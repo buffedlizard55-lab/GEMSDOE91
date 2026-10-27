@@ -46,14 +46,14 @@
     {
       "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
       "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
-      "status": "legacy_quarantined",
-      "reason": "Historical S18 research artifact; current review supersedes its portal banner. Its prior card records a negative HOLDOUT-DTI; NOT OK TO SUBMIT. Retained for audit only."
+      "status": "parallel_quarantined",
+      "reason": "S18-UNIQUE historical research artifact. Prior run records negative HOLDOUT-DTI and no submit approval; retained for audit only."
     },
     {
       "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip",
       "sha256": "245449b61d7fc38f8b1e94bdff6d9181b6f7cac03673e67f630638fca3ebddc9",
-      "status": "legacy_quarantined",
-      "reason": "Historical S18 research artifact; current review supersedes its portal banner. Its prior card records a negative HOLDOUT-DTI; NOT OK TO SUBMIT. Retained for audit only."
+      "status": "parallel_quarantined",
+      "reason": "Single-TIFF ZIP of the S18-UNIQUE negative research artifact; retained for audit only and not approved for submission."
     },
     {
       "path": "docs/downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif",
