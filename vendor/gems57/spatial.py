@@ -25,13 +25,15 @@ def component_folds(catalogue, eligible):
     return comp, assigned, quadrant
 
 
-def legacy_component_tail_folds(catalogue, eligible, buffer_px=80):
+def legacy_component_tail_folds(catalogue, eligible, buffer_px=80, *, allow_legacy_reproduction=False):
     """REPRODUCTION ONLY: rejected CTD5-v1 geometry-informed evaluation domains.
 
     The tail halo depends on withheld labels and can leak location to a regional
     placement rule. Retained only to reproduce the negative historical receipt;
     NEVER use this split as strict promotion evidence. Use folds() below.
     """
+    if allow_legacy_reproduction is not True:
+        raise RuntimeError('Legacy truth-shaped and unbuffered folds are blocked; use spatial.folds')
     comp, assigned, quadrant = component_folds(catalogue, eligible)
     for f in range(4):
         held_all = catalogue & (assigned == f)
@@ -59,14 +61,26 @@ def legacy_component_tail_folds(catalogue, eligible, buffer_px=80):
 
 
 def folds(catalogue, eligible, buffer_px=80):
-    """Fixed, label-blind evaluation quadrants; entire intersecting segments hidden.
+    """Label-blind quadrants with whole-component *and feature-context* buffers.
 
-    A component crossing several quadrants is excluded from training in EACH of
-    those folds, while its pixels are scored only in their fixed spatial quadrant.
-    Evaluation/placement geometry depends on grid and eligible footprint only,
-    never on the hidden trace. The buffer covers both the quadrant and all held
-    component tails. Boundary clipping is conservative, not a truth-shaped halo.
+    All components intersecting a test quadrant are withheld in their entirety,
+    including their tails in other quadrants. Both the training domain and the
+    catalogue supplied to feature constructors are buffered from those held
+    components. ``visible`` is the only permitted catalogue feature input.
+    ``masked_known`` is separately kept for pixel-exact scoring: non-held
+    catalogue pixels removed from feature context are still known, not negatives.
+
+    Version 3 changes the fold instrument, not the DTI formula. Results produced
+    by version 2 are historical and must not be compared as matched holdouts.
     """
+    catalogue, eligible = np.asarray(catalogue), np.asarray(eligible)
+    if (catalogue.ndim != 2 or catalogue.shape != eligible.shape
+            or catalogue.dtype != np.bool_ or eligible.dtype != np.bool_):
+        raise ValueError('catalogue and eligible must be matching 2-D boolean masks')
+    if (isinstance(buffer_px, (bool, np.bool_)) or not np.isscalar(buffer_px)
+            or not isinstance(buffer_px, (int, float, np.integer, np.floating))
+            or not np.isfinite(buffer_px) or buffer_px < 0):
+        raise ValueError('buffer_px must be a finite non-negative number')
     comp, _, quadrant = component_folds(catalogue, eligible)
     for f in range(4):
         region = eligible & (quadrant == f)
@@ -75,21 +89,38 @@ def folds(catalogue, eligible, buffer_px=80):
         held_all = (np.isin(comp, ids) & catalogue) if len(ids) else np.zeros_like(catalogue, bool)
         truth = held_all & region
         exclusion = region | held_all
-        train = eligible & (ndi.distance_transform_edt(~exclusion) > buffer_px)
-        visible = catalogue & ~held_all
+        # SciPy's EDT on an empty foreground has implicit exterior distances;
+        # with no exclusion or no held components the true distance is infinite.
+        dist_exclusion = (ndi.distance_transform_edt(~exclusion) if exclusion.any()
+                          else np.full(catalogue.shape, np.inf))
+        train = eligible & (dist_exclusion > buffer_px)
+        dist_held = (ndi.distance_transform_edt(~held_all) if held_all.any()
+                     else np.full(catalogue.shape, np.inf))
+        masked_known = catalogue & ~held_all
+        visible = masked_known & (dist_held > buffer_px)
         training_components = np.unique(comp[train & catalogue])
         if np.intersect1d(training_components[training_components > 0], ids).size:
             raise AssertionError('a whole held component reached training')
         if (train & region).any() or (train & held_all).any():
             raise AssertionError('train/evaluation overlap')
-        minimum = float(ndi.distance_transform_edt(~region)[train].min()) if train.any() else None
+        if (visible & held_all).any() or np.any(visible & (dist_held <= buffer_px)):
+            raise AssertionError('feature-context buffer violated')
+        minimum = float(dist_exclusion[train].min()) if train.any() else None
+        visible_min = float(dist_held[visible].min()) if visible.any() and held_all.any() else None
         yield dict(fold=f, region=region, quadrant=quadrant == f, train=train,
-            truth=truth, visible=visible, held_all=held_all, components=comp,
-            receipt=dict(fold=f, split_version='label-blind-quadrants-v2',
+            truth=truth, visible=visible, masked_known=masked_known,
+            held_all=held_all, components=comp,
+            receipt=dict(fold=f, split_version='label-blind-quadrants-v3-feature-buffered',
                 evaluation_region_label_blind=True, truth_px=int(truth.sum()),
                 evaluation_px=int(region.sum()), training_domain_px=int(train.sum()),
-                held_components=len(ids), shared_train_truth_components=0, buffer_px=buffer_px,
-                nearest_training_to_region_px=minimum,
+                held_components=len(ids), shared_train_truth_components=0, buffer_px=float(buffer_px),
+                feature_context_buffer_px=float(buffer_px),
+                known_scoring_mask_pixel_exact=True,
+                feature_context_catalogue_pixels_removed=int((masked_known & ~visible).sum()),
+                nearest_visible_to_held_px=visible_min,
+                nearest_training_to_region_or_held_px=minimum,
+                nearest_training_to_region_px=(float(ndi.distance_transform_edt(~region)[train].min())
+                                               if train.any() and region.any() else None),
                 held_pixels_without_feature_support=int((held_all & ~eligible).sum()),
                 held_positive_pixels_outside_this_evaluation_region=int((held_all & eligible & ~region).sum())))
 

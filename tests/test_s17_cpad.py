@@ -193,6 +193,7 @@ def test_s17_verifier_provenance_and_portal_contract():
         "canary": True,
         "novelty": False,
         "assigned_lane": False,
+        "buffered_context": False,
         "beats_comparable_best": False,
         "separate_selector": False,
     }

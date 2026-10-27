@@ -19,7 +19,12 @@ def good():
         'lane': {'assigned': True},
         'holdout_dti': {'status': 'COMPLETED', 'label': 'HOLDOUT-DTI', 'value': .2,
             'ci95': [.1, .3], 'withheld_positives': 100, 'split_sha256': 'synthetic',
-            'evaluator_version': 'synthetic-v1', 'paired_best': {'delta': .02, 'ci95': [.01, .03]}},
+            'evaluator_version': 'synthetic-v1', 'paired_best': {'delta': .02, 'ci95': [.01, .03]},
+            'fold_receipts': [{'fold': i, 'split_version': 'label-blind-quadrants-v3-feature-buffered',
+                'evaluation_region_label_blind': True, 'known_scoring_mask_pixel_exact': True,
+                'truth_px': 25, 'held_components': 1, 'shared_train_truth_components': 0,
+                'feature_context_buffer_px': 80, 'nearest_visible_to_held_px': 80.1}
+                for i in range(4)]},
         'comparable_prior_holdout_best': {'split_sha256': 'synthetic', 'evaluator_version': 'synthetic-v1',
             'value': .18, 'ci95': [.1, .25], 'withheld_positives': 100},
         'selector_approval': True, 'selector_receipt': {'weekly_cap_verified': True, 'slot_available': True}}
@@ -52,6 +57,40 @@ def test_invalid_sections_do_not_crash(good, value):
         card = copy.deepcopy(good)
         card[section] = value
         assert not submission_ready(card)
+
+
+@pytest.mark.parametrize('mutation', [
+    lambda h: h.pop('fold_receipts'),
+    lambda h: h.update(fold_receipts=[]),
+    lambda h: h['fold_receipts'][0].update(split_version='label-blind-quadrants-v2'),
+    lambda h: h['fold_receipts'][0].update(feature_context_buffer_px=0),
+    lambda h: h['fold_receipts'][0].update(feature_context_buffer_px=float('nan')),
+    lambda h: h['fold_receipts'][0].update(feature_context_buffer_px=10**1000),
+    lambda h: h['fold_receipts'][0].update(feature_context_buffer_px=79),
+    lambda h: h['fold_receipts'][0].update(nearest_visible_to_held_px=80),
+    lambda h: h['fold_receipts'][0].update(nearest_visible_to_held_px=None),
+    lambda h: h['fold_receipts'][0].update(nearest_visible_to_held_px=10**1000),
+    lambda h: h['fold_receipts'][0].update(known_scoring_mask_pixel_exact=False),
+    lambda h: h['fold_receipts'][0].update(shared_train_truth_components=1),
+    lambda h: h['fold_receipts'][0].update(fold=1),
+    lambda h: h['fold_receipts'][0].update(truth_px=24),
+])
+def test_buffered_context_receipt_is_required(good, mutation):
+    mutation(good['holdout_dti'])
+    assert not gates(good)['buffered_context']
+    assert not submission_ready(good)
+
+
+@pytest.mark.parametrize('value', [.900001, None, float('nan'), 10**1000])
+def test_recorded_quadrant_canary_cannot_be_hidden_by_pooled_pass(good, value):
+    good['canaries']['max_quadrant_symmetric_auc'] = value
+    assert not gates(good)['canary']
+    assert not submission_ready(good)
+
+
+def test_recorded_quadrant_canary_boundary_is_inclusive(good):
+    good['canaries']['max_quadrant_symmetric_auc'] = .90
+    assert gates(good)['canary']
 
 
 def test_status_cannot_override_duplicate_or_canary(good):

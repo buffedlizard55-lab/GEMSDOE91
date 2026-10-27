@@ -147,6 +147,13 @@ def test_s19_run_card_cannot_flip_ready_unless_every_gate_passes():
     promoted["holdout_dti"]["ci95"] = [best_val + 0.010, best_val + 0.040]
     promoted["holdout_dti"]["paired_best"]["delta"] = 0.025
     promoted["holdout_dti"]["paired_best"]["ci95"] = [0.010, 0.040]
+    n = promoted["holdout_dti"]["withheld_positives"]
+    promoted["holdout_dti"]["fold_receipts"] = [dict(
+        fold=i, split_version="label-blind-quadrants-v3-feature-buffered",
+        evaluation_region_label_blind=True, known_scoring_mask_pixel_exact=True,
+        truth_px=n//4 if i < 3 else n-3*(n//4), held_components=1,
+        shared_train_truth_components=0, feature_context_buffer_px=80,
+        nearest_visible_to_held_px=80.1) for i in range(4)]
     promoted["selector_approval"] = True
     promoted["selector_receipt"] = {"weekly_cap_verified": True, "slot_available": True}
     assert readiness.submission_ready(promoted) is True

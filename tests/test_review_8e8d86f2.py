@@ -132,11 +132,18 @@ def test_parallel_s23_runner_blocks_even_if_receipt_is_missing(tmp_path, monkeyp
 def test_parallel_archived_sources_and_corrected_files_match_receipts():
     import hashlib
     correction = read('source-correction.json')
-    for key in ('concurrent_s23_runner', 'concurrent_start_here_renderer', 'concurrent_nine_site_checker'):
+    sha = lambda name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+    for key in ('concurrent_s23_runner', 'concurrent_start_here_renderer'):
         x = correction[key]
-        sha = lambda name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
         assert sha(x['historical_source_archive']) == x['historical_sha256']
         assert sha(x['corrected_source']) == x['current_sha256']
+    # The checker has a second explicitly archived correction. Verify the
+    # complete old -> previous -> current chain, not a rewritten old receipt.
+    x = correction['concurrent_nine_site_checker']
+    later = json.loads((ROOT / 'docs/review-ad43b4e5/source-corrections.json').read_text())['files'][x['corrected_source']]
+    assert sha(x['historical_source_archive']) == x['historical_sha256']
+    assert sha(later['historical_source_archive']) == later['historical_sha256'] == x['current_sha256']
+    assert sha(x['corrected_source']) == later['current_sha256']
     x = correction['concurrent_s23_page']
     assert hashlib.sha256((ROOT / x['historical_archive']).read_bytes()).hexdigest() == x['historical_sha256']
     assert hashlib.sha256((ROOT / x['current_path']).read_bytes()).hexdigest() == x['current_sha256']

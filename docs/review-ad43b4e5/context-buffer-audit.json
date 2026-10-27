@@ -1,0 +1,66 @@
+{
+  "schema": "gems91.feature-context-buffer-audit.v1",
+  "status": "HISTORICAL_FEATURE_CONTEXT_UNBUFFERED_CORRECTED_IN_SHARED_TEMPLATE",
+  "evidence_class": "MASK_GEOMETRY_DIAGNOSTIC_NOT_A_SCORE",
+  "geological_experiments_run": 0,
+  "competition_slots_used": 0,
+  "buffer_px": 80,
+  "input_sha256": {
+    "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+  },
+  "input_provenance": "hash-pinned community mirrors; not independently authenticated organizer downloads",
+  "historical_spatial_sha256": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8",
+  "corrected_spatial_sha256": "dd3c4e5dd770f96341e6beb681c1af89e42b6766257df50c455999bfd68704ed",
+  "historical_split_version": "label-blind-quadrants-v2",
+  "corrected_split_version": "label-blind-quadrants-v3-feature-buffered",
+  "rows": [
+    {
+      "fold": 0,
+      "withheld_positive_pixels_in_quadrant": 29319,
+      "historical_nearest_visible_to_truth_px": 2.0,
+      "historical_withheld_pixels_with_visible_within_3px": 5,
+      "historical_withheld_pixels_with_visible_within_buffer": 2240,
+      "known_catalogue_pixels_removed_from_feature_context": 1436,
+      "corrected_nearest_visible_to_any_held_component_px": 80.00624975587844,
+      "corrected_known_pixel_mask_preserved": true,
+      "evaluation_geometry_unchanged": true
+    },
+    {
+      "fold": 1,
+      "withheld_positive_pixels_in_quadrant": 12596,
+      "historical_nearest_visible_to_truth_px": 2.0,
+      "historical_withheld_pixels_with_visible_within_3px": 4,
+      "historical_withheld_pixels_with_visible_within_buffer": 911,
+      "known_catalogue_pixels_removed_from_feature_context": 1733,
+      "corrected_nearest_visible_to_any_held_component_px": 80.00624975587844,
+      "corrected_known_pixel_mask_preserved": true,
+      "evaluation_geometry_unchanged": true
+    },
+    {
+      "fold": 2,
+      "withheld_positive_pixels_in_quadrant": 9473,
+      "historical_nearest_visible_to_truth_px": 3.1622776601683795,
+      "historical_withheld_pixels_with_visible_within_3px": 0,
+      "historical_withheld_pixels_with_visible_within_buffer": 1908,
+      "known_catalogue_pixels_removed_from_feature_context": 2857,
+      "corrected_nearest_visible_to_any_held_component_px": 80.00624975587844,
+      "corrected_known_pixel_mask_preserved": true,
+      "evaluation_geometry_unchanged": true
+    },
+    {
+      "fold": 3,
+      "withheld_positive_pixels_in_quadrant": 9600,
+      "historical_nearest_visible_to_truth_px": 3.1622776601683795,
+      "historical_withheld_pixels_with_visible_within_3px": 0,
+      "historical_withheld_pixels_with_visible_within_buffer": 1516,
+      "known_catalogue_pixels_removed_from_feature_context": 1925,
+      "corrected_nearest_visible_to_any_held_component_px": 80.00624975587844,
+      "corrected_known_pixel_mask_preserved": true,
+      "evaluation_geometry_unchanged": true
+    }
+  ],
+  "interpretation": "Training buffer existed, but visible catalogue context was not buffered. Proximity alone is not proof of leakage or a measured change in DTI. Context-dependent historical results are not matched to the corrected split.",
+  "candidate_generated": false,
+  "ok_to_submit": false
+}

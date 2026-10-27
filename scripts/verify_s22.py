@@ -43,8 +43,11 @@ def verify(with_data=False):
     provenance = load('docs/s22/source-integrity.json')
     for name, digest in provenance['implementation_sha256'].items():
         verify_historical_source(ROOT, name, digest)
-    if h['implementation_sha256'] != EH.implementation_hashes():
-        raise ValueError('Shared evaluator implementation drift')
+    # The holdout was computed with the historical template. Verify its archived
+    # source, not the corrected template's current hash; arithmetic is replayed
+    # below without pretending the original experiment was rerun.
+    for name, digest in h['implementation_sha256'].items():
+        verify_historical_source(ROOT, 'vendor/gems57/' + name, digest)
     rows = h['per_fold']
     values = np.array([[r['tpw'], r['fpw'], r['fnw'], r['n_truth']] for r in rows])
     pooled = h['scores']['omtj_e1']

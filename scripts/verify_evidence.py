@@ -5,8 +5,11 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.source_integrity import verify_historical_source  # noqa: E402
 
 
 def load(name):
@@ -69,8 +72,8 @@ def verify():
         raise ValueError('Run-card confidence interval drift')
     if summary['paired_differences']['magnetic_control'] != card['holdout_dti']['paired_control']:
         raise ValueError('Run-card paired comparison drift')
-    if summary['implementation_sha256'] != {name:template['sha256'][name] for name in summary['implementation_sha256']}:
-        raise ValueError('Evaluator implementation provenance drift')
+    for name, digest in summary['implementation_sha256'].items():
+        verify_historical_source(ROOT, 'vendor/gems57/' + name, digest)
     canary = load('docs/ced-canaries.json')
     if set(canary['features']) != set(feature['files']):
         raise ValueError('A raw/transformed feature is missing its single-feature canary')

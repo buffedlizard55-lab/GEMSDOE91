@@ -13,14 +13,53 @@ def _mapping(value):
 
 
 def _number(value, low, high):
-    return (type(value) in (int, float) and low <= value <= high
-            and math.isfinite(value))
+    if type(value) not in (int, float):
+        return False
+    try:
+        return low <= value <= high and math.isfinite(value)
+    except OverflowError:  # enormous integers are not finite receipt measurements
+        return False
 
 
 def _interval(value, low, high):
     return (isinstance(value, (list, tuple)) and len(value) == 2
             and all(_number(v, low, high) for v in value)
             and value[0] <= value[1])
+
+
+# This gate is intentionally specific to the current reviewed shared split.
+# A different sound instrument needs an explicit reviewed policy revision;
+# a legacy result or an unrecognised split must not silently become promotion evidence.
+BUFFERED_SPLIT_VERSION = 'label-blind-quadrants-v3-feature-buffered'
+
+
+def _buffered_folds(value):
+    """Check structure of all four shared split receipts, not their provenance."""
+    if not isinstance(value, list) or len(value) != 4:
+        return False
+    if any(not isinstance(row, dict) for row in value):
+        return False
+    if any(type(row.get('fold')) is not int for row in value):
+        return False
+    if {row['fold'] for row in value} != {0, 1, 2, 3}:
+        return False
+    buffers = [row.get('feature_context_buffer_px') for row in value]
+    if any(not _number(b, 0, float('inf')) or b <= 0 for b in buffers):
+        return False
+    if len(set(buffers)) != 1:
+        return False
+    return all(
+        row.get('split_version') == BUFFERED_SPLIT_VERSION
+        and row.get('evaluation_region_label_blind') is True
+        and row.get('known_scoring_mask_pixel_exact') is True
+        and type(row.get('truth_px')) is int and row['truth_px'] > 0
+        and type(row.get('held_components')) is int and row['held_components'] > 0
+        and type(row.get('shared_train_truth_components')) is int
+        and row['shared_train_truth_components'] == 0
+        and _number(row.get('nearest_visible_to_held_px'), 0, float('inf'))
+        and row['nearest_visible_to_held_px'] > row['feature_context_buffer_px']
+        for row in value
+    )
 
 
 def gates(card):
@@ -62,7 +101,11 @@ def gates(card):
         'format': v.get('status') == 'PASS' and bool(checks) and all(x is True for x in checks.values())
                   and all(v.get(k) is True for k in ('no_nan_inside_footprint','values_in_0_1','crs_shape_transform_match')),
         'canary': canary.get('status') == 'PASS'
-                  and _number(canary.get('max_symmetric_auc'), .5, .90),
+                  and _number(canary.get('max_symmetric_auc'), .5, .90)
+                  # If a separate per-quadrant maximum was recorded it cannot
+                  # be hidden behind a lower pooled maximum.
+                  and ('max_quadrant_symmetric_auc' not in canary
+                       or _number(canary['max_quadrant_symmetric_auc'], .5, .90)),
         'novelty': registry.get('complete_universal_registry') is True
                    and all(p.get('status') == 'PASS_WITHIN_INDEXED_SCOPE'
                            and type(p.get('checked')) is int and p['checked'] > 0
@@ -73,6 +116,9 @@ def gates(card):
                    and _number(registry.get('max_measured_final_dot_rank_correlation'), -.90, .90)
                    and _number(registry.get('max_measured_final_dot_overlap_within_3px'), 0, .70),
         'assigned_lane': _mapping(card.get('lane')).get('assigned') is True,
+        'buffered_context': (_buffered_folds(holdout.get('fold_receipts'))
+                             and type(count) is int
+                             and sum(r['truth_px'] for r in holdout['fold_receipts']) == count),
         'beats_comparable_best': bool(comparable and measured_improvement
                                      and holdout.get('status') == 'COMPLETED'
                                      and holdout.get('label') == 'HOLDOUT-DTI'

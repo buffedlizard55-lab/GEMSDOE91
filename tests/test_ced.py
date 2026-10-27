@@ -15,9 +15,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_shared_template_is_unmodified():
+    """Active corrections and their exact upstream originals are both pinned."""
     manifest = json.loads((ROOT / 'registry/template_pin.json').read_text())
     for name, digest in manifest['sha256'].items():
         assert hashlib.sha256((ROOT / 'vendor/gems57' / name).read_bytes()).hexdigest() == digest
+    for name, archive in manifest['historical_archives'].items():
+        assert hashlib.sha256((ROOT / archive).read_bytes()).hexdigest() == manifest['upstream_sha256'][name]
 
 
 def test_exact_rank_percentiles_and_constant():
@@ -110,7 +113,7 @@ def test_canonical_evaluator_matches_literal_oracle_and_masks_exact_pixels():
     p = np.zeros((15, 20)); t = np.zeros_like(p, bool); t[5, 5] = True; t[10, 10] = True
     p[5, 5] = .7; p[8, 10] = 1; p[1, 1] = 1
     known = np.zeros_like(t); known[1, 1] = True
-    f = dict(region=np.ones_like(t), visible=known, truth=t)
+    f = dict(region=np.ones_like(t), visible=known, masked_known=known, truth=t)
     got, terms = ev.evaluate(p, f, np.ones_like(t), block_side=5)
     p[known] = 0
     expected = metric.dti_bruteforce(p, t)

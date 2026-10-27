@@ -170,6 +170,10 @@ def _gate_table(card: dict) -> str:
             "Coordinator lane assignment",
             "Self-declared preregistered S17-LFTG lane (`lane.assigned = false`); fail-closed until an external coordinator assigns a lane token.",
         ),
+        "buffered_context": (
+            "Buffered feature-context receipts",
+            "This historical result predates the corrected v3 context buffer; it is not a matched promotion holdout.",
+        ),
         "beats_comparable_best": (
             "Beats comparable label-blind holdout best",
             f"Winner {h['winner_arm']} = {h['value']:.6f} HOLDOUT-DTI vs best comparable control {h['best_comparable_control']} = {h['best_comparable_control_value']:.6f} (paired Δ = {h['paired_delta_vs_best_control']:+.6f}, 95% CI [{h['paired_delta_ci95'][0]:+.6f}, {h['paired_delta_ci95'][1]:+.6f}]).",
@@ -329,7 +333,7 @@ def render() -> None:
 <p><code>S17-LFTG</code> scrubs every band via Euclidean-distance nearest-valid fill prior to FFT/gradient operators and emits via <code>vendor/gems57/submission_writer.py</code> with <code>dtype=float32</code>, <code>nodata=None</code>, exact <code>0.0</code> outside footprint and on known catalogue faults, and binary <code>{{0.0, 1.0}}</code> impulses inside footprint—re-opened and verified automatically on disk.</p></section>
 
 <section class="s16-section"><h2>Step-by-Step DrivenData Submission Procedure (For Any Future Gate-Cleared Candidate)</h2>
-<div class="s16-step"><h3>Step 1 · Check the Automated Gate Banner Above</h3><p>Confirm both <code>OK TO DOWNLOAD: YES</code> <em>and</em> <code>OK TO SUBMIT: YES</code> (all 6 gates in <code>src/gems91/readiness.py</code> green). For this S17-LFTG research artifact, <code>OK TO SUBMIT</code> is <strong>NO</strong> (<code>submission_ready = false</code>), so stop at research download and spend <strong>0 weekly slots</strong>.</p></div>
+<div class="s16-step"><h3>Step 1 · Check the Automated Gate Banner Above</h3><p>Confirm both <code>OK TO DOWNLOAD: YES</code> <em>and</em> <code>OK TO SUBMIT: YES</code> (all seven gates in <code>src/gems91/readiness.py</code> green). For this S17-LFTG research artifact, <code>OK TO SUBMIT</code> is <strong>NO</strong> (<code>submission_ready = false</code>), so stop at research download and spend <strong>0 weekly slots</strong>.</p></div>
 <div class="s16-step"><h3>Step 2 · Download the All-Finite <code>-zeros.tif</code> or Single-TIFF <code>.zip</code></h3><p>Always use the <code>-zeros.tif</code> file (or its companion <code>-zeros.zip</code> containing solely that single GeoTIFF at the archive root). Never upload a raw NaN-masked GeoTIFF, JSON run card, PNG preview, or multi-file archive.</p></div>
 <div class="s16-step"><h3>Step 3 · Run Automated Local Verification (Zero Human Inspection)</h3><p>Optional reproducible CLI check: run <code>.venv/bin/python scripts/audit_downloads.py</code> and <code>.venv/bin/pytest</code>. Verify SHA-256 matches <code>{esc(card["raster_sha256"])}</code>.</p></div>
 <div class="s16-step"><h3>Step 4 · Upload on DrivenData &amp; Paste the &le;140-Character Note</h3><p>For a selector-cleared candidate, navigate to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Competition #306 → Submissions</a>, verify weekly slot allowance, attach the <code>-zeros.tif</code> (or <code>-zeros.zip</code>), and paste the &le;140-character note below.</p></div>

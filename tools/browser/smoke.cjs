@@ -35,6 +35,16 @@ async function main() {
     page.on('response', response => {
       if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
     });
+    // Intercept before navigation: the public head feed refreshes automatically.
+    // Keep the route installed across later page loads so the smoke test is
+    // deterministic and never makes real external requests.
+    const githubHeads = 'https://api.github.com/repos/buffedlizard55-lab/**/commits/main';
+    await page.route(githubHeads, async route => {
+      const request = route.request();
+      if (request.headers()['authorization'] || request.headers()['cookie']) throw new Error('Feed sent credentials');
+      const sha = request.url().includes('GEMSDOE24/') ? 'not-a-sha' : 'a'.repeat(40);
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({sha}) });
+    });
     if (process.env.PORTAL_ENTRY_URL) {
       await page.goto(process.env.PORTAL_ENTRY_URL, { waitUntil: 'networkidle' });
       await page.waitForURL(expectedEntryURL);
@@ -57,14 +67,8 @@ async function main() {
     // Mock public-head requests: eight succeed, one returns an invalid identity.
     // Verify partial failure keeps its previous snapshot, with no credentials
     // or claim that the page/raster/organizer score was refreshed.
-    const githubHeads = 'https://api.github.com/repos/buffedlizard55-lab/**/commits/main';
+    await page.waitForFunction(() => document.querySelector('#focus-status').textContent.includes('8 of 9'));
     const firstSnapshot = await page.locator('[data-focus-site="24"] [data-focus-link]').getAttribute('href');
-    await page.route(githubHeads, async route => {
-      const request = route.request();
-      if (request.headers()['authorization'] || request.headers()['cookie']) throw new Error('Feed sent credentials');
-      const sha = request.url().includes('GEMSDOE24/') ? 'not-a-sha' : 'a'.repeat(40);
-      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({sha}) });
-    });
     await page.getByRole('button', { name: 'Check live GitHub heads' }).click();
     await page.waitForFunction(() => document.querySelector('#focus-status').textContent.includes('8 of 9'));
     if (await page.locator('[data-focus-site="24"] [data-focus-link]').getAttribute('href') !== firstSnapshot) {
@@ -73,7 +77,12 @@ async function main() {
     if (!(await page.locator('[data-focus-site="25"] [data-focus-detail]').textContent()).includes('not re-audited')) {
       throw new Error('Live head status overclaims a page or raster audit');
     }
-    await page.unroute(githubHeads);
+    await page.getByRole('link', { name: 'Submission guide', exact: true }).first().click();
+    if (!(await page.getByText('Not ready to upload.').count()) ||
+        !(await page.getByText('No new TIFF was generated or approved in this review.').count()) ||
+        await page.locator('[data-submission-ready="false"]').count() !== 1) {
+      throw new Error('Future submission guide is missing the current no-file stop');
+    }
     // The historical DZ-EDGE file is still downloadable for research, but its
     // page must conspicuously prohibit submission and the downloaded bytes
     // must match the run card. This is a delivery check, not a scientific pass.
@@ -241,7 +250,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'archive-desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const target of ['index.html', 'submission-guide.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -269,7 +278,7 @@ async function main() {
 
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 'executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const mTarget of ['index.html', 'submission-guide.html', 'executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
