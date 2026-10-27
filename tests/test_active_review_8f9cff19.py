@@ -14,7 +14,7 @@ def test_active_review_and_readme_fail_closed():
     card = json.loads((DOCS / "run-card-8f9cff19.json").read_text(encoding="utf-8"))
 
     assert "<!--ACTIVE-8F9CFF19-BEGIN-->" in readme
-    assert readme.startswith("# GEMSDOE91 — S22 OMTJ")  # Later measured run owns current status.
+    assert readme.startswith("# GEMSDOE91 — START HERE")  # 2026-10-27 front door supersedes the S22 OMTJ pointer (see README).
     assert "#full-project-brief" in readme
     assert "NO NEW TIFF GENERATED" in readme
     assert "0.2778 USER/OWNER-REPORTED" in readme

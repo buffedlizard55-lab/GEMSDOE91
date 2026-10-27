@@ -1,3 +1,23 @@
+# GEMSDOE91 — START HERE (evidence checked 2026-10-27)
+
+**Decision: download the unique file, do not submit it yet.** Front door: [index.html](index.html) (GitHub Pages root).
+
+| File to download | Estimated leaderboard score | Unique vs the other GEMSDOE sites? | OK to submit? |
+|---|---|---|---|
+| [`gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif`](docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif) (S22-XB, sha256 `663532862e9d…`) | **No score.** MODEL PROJECTION 0.178 ± 0.020 (not a score); HOLDOUT-DTI 0.1735 [0.1550, 0.1921], 60,988 withheld positives | **YES** — max 3-px overlap 55.9% vs the nine leaders, 62.9% vs 953 competitive rasters (limit 70%) | **NO** — fails G4 (holdout paired) and G5 (live projection) |
+| [`gems91-S18-UNIQUE-…-29db2405.tif`](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif) | None. HOLDOUT-DTI 0.000624 | YES — 33.3% vs the nine | NO — holdout far below the best |
+| [`gems91-s20-lfi-consensus-…-a8cc1b6e-zeros.tif`](docs/downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif) | None. Highest projection (0.362–0.395, model only); HOLDOUT-DTI 0.001851 | **NO** — 77.0% vs a leader (its own card says UNIQUE; this check does not) | NO — G4 failed |
+| Nine GEMSDOE leaders (24, 25, 27, 28, 30, 31, 32, 33, 36) | Not estimable. User claims only (best 0.2778 = GEMSDOE32) | **NO** — every leader has ≥ 98.2% of dots within 3 px of another leader | NO — one duplicate family |
+
+- Estimates are never scores. Holdout values measure recovery of known catalogue faults, and the repo's own check finds hide-v2 Spearman +0.105 against live scores ("valid as live proxy: false").
+- **Leaderboard (fetched 2026-10-27):** #1 = **0.4544**, #22 = 0.3261 ([DrivenData](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/); machine copy `evidence/public-leaderboard-2026-10-27.json`). The prompt's 0.4413 and 0.3195 and the repo's earlier 0.4437 are stale or conflicting. A 0.2778 claim would sit below #22.
+- **Reproduce the checks:** `.venv/bin/python scripts/verify_nine_site_leaders.py --candidate <tif> …` (downloads exact leader bytes from GitHub, hashes them, computes 3-px overlap) → `evidence/nine-site-leader-check.json`; then `.venv/bin/python scripts/render_start_here.py` → `index.html`.
+- **Single owner of the root `index.html`:** `scripts/render_start_here.py`. `scripts/render_olc91_portal.py` no longer writes it.
+- **Known blocker (flagged, not fully fixed):** `pytest` runs two renderers that overwrite tracked `docs/` pages: `render_olc91_portal` (via `tests/test_s22_omtj.py`) rewrites `docs/index.html` and `docs/executive-summary.html`, and `render_portal` (via `tests/test_submission_portal.py`) rewrites `docs/` pages too. Two tests still fail on this branch: `test_s16_integrity::test_root_and_docs_expose_one_current_negative…` and `test_s19_svhf::test_s19_portal_pages_have_single_fail_closed_marker…`. Both assert that `docs/current-run.json` (the superseded S22-OMTJ run) is the current pointer. Fix next session by choosing one owner for the front door and updating those pointers. After any `pytest` run, restore the tracked pages: `git checkout -- docs/index.html`, then `python3 scripts/patch_executive_summary_s23.py`, then `python3 scripts/render_start_here.py`.
+- No weekly submission slot was spent by this session. No experiment was run; the checks were verification only.
+
+---
+
 # GEMSDOE91 — S18-UNIQUE unique candidate · current status (2026-10-26)
 
 **OK TO DOWNLOAD: YES — research only. OK TO SUBMIT: NO — holdout-DTI 0.000624 did not beat incumbent 0.066223; per budget rule, no weekly slot spent.**
