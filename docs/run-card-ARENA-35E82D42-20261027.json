@@ -1,0 +1,83 @@
+{
+  "schema_version": "gems-review-run-card-v1",
+  "review_date_utc": "2026-10-27",
+  "branch": "arena/35e82d42-gemsdoe91",
+  "hypothesis": "S22-OMTJ: concealed fault-related juxtaposition may create a local signed magnetic-skewness boundary aligned with an isostatic-gravity gradient.",
+  "mechanism": "B14 total magnetic intensity local third central moment / variance^(3/2) boundary, aligned with smoothed B13 isostatic-gravity gradient.",
+  "named_non_fault_process_that_could_mimic_it": "Unfaulted volcanic-flow margin or intrusive lithologic contact; airborne magnetic flight-line leveling seam is an additional survey artifact mimic.",
+  "experiment_performed_this_review": false,
+  "experiments_run_this_review": 0,
+  "submission_slots_used_this_review": 0,
+  "verdict": "negative",
+  "ok_to_download": true,
+  "download_scope": "Existing S22-OMTJ research artifact only; not approved for competition submission.",
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "estimated_leaderboard_score": null,
+  "score_estimate_reason": "No receipt-linked, independently calibrated leaderboard model is available; do not infer a leaderboard estimate from holdout DTI.",
+  "prior_experiment_evidence": {
+    "source": "docs/s22/run-card.json; no new holdout was run in this review",
+    "holdout": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.06622318062610064,
+      "withheld_positive_pixels": 60988,
+      "ci95": [0.0480153209879553, 0.0868031263517965]
+    },
+    "leakage_canary": {
+      "max_symmetric_auc": 0.5774484105353622,
+      "threshold": 0.9,
+      "passed": true,
+      "features_tested": 7,
+      "source": "docs/s22/canaries.json"
+    },
+    "registry_check": {
+      "surface_max_rank_correlation": 0.05011820660983286,
+      "surface_count_checked": 112,
+      "final_dot_duplicate_stop": true,
+      "duplicate_reference": "data/fleet_registry/calib_r13lattice_00904.tif",
+      "final_dot_rank_correlation": -0.00005359578953898351,
+      "candidate_dots": 37654,
+      "candidate_dots_within_3px_of_reference_fraction": 0.9856588941413926,
+      "registry_complete": false
+    },
+    "capacity_preflight_this_review": {
+      "evidence_class": "GEOMETRIC CAPACITY BOUND, NOT A SCORE",
+      "status": "IMPOSSIBLE_AT_BUDGET",
+      "candidate_dot_budget": 37654,
+      "reference_dots": 206895,
+      "footprint_pixels": 5167373,
+      "uncovered_pixels": 6649,
+      "minimum_overlap_dots": 31005,
+      "minimum_overlap_fraction": 0.8234184947150369,
+      "uniqueness_threshold_fraction": 0.7,
+      "complete_registry_check": false
+    }
+  },
+  "raster": {
+    "path": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+    "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+    "positive_pixels": 37654
+  },
+  "validator_output": {
+    "verification_scope": "Published TIFF re-read against hash-pinned sample and catalogue; technical checks only",
+    "single_band": true,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "no_nan_inside_footprint": true,
+    "all_cells_finite": true,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "values_in_range_0_1": true,
+    "zero_outside_footprint": true,
+    "zero_positive_pixels_on_known_fault_mask": true,
+    "all_technical_checks_passed": true,
+    "scientific_uniqueness_and_submission_clearance": false
+  },
+  "submission_name": "gems91-s22-omtj-e1-20261026-a99b8923f0-zeros",
+  "submission_note": "S22 OMTJ research artifact; registry duplicate stop; not approved for competition submission.",
+  "submission_note_character_count": 93,
+  "status_explanation": "Negative result is the deliverable. The artifact is not protocol-unique and must not be submitted. This review did not generate a new TIFF or select a submission slot."
+}
