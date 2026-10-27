@@ -200,20 +200,11 @@ def render() -> None:
             raise ValueError(f"Missing insertion point in {source_name}")
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
-    (ROOT / 'index.html').write_text(
-        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta http-equiv="refresh" content="0;url=docs/index.html">'
-        '<title>GEMSDOE91 — current review; no approved download</title></head><body><main>'
-        '<h1>GEMSDOE91 · current checkout review · 2026-10-27</h1>'
-        '<p><strong>OK TO DOWNLOAD: NO new candidate. OK TO SUBMIT: NO.</strong> '
-        'No experiment ran: the lane is unassigned and 15 pinned inputs are missing. '
-        'Earlier raster links are historical research files only.</p>'
-        '<p><a href="docs/REVIEW-ARENA-52711765-20261027.md">Read the current review and nine-site table</a> · '
-        '<a href="docs/run-card-ARENA-52711765-20261027.json">Machine-readable run card</a> · '
-        '<a href="docs/index.html">Open the research portal</a> · '
-        '<a href="docs/executive-summary.html">Submission format and instructions</a></p>'
-        '</main></body></html>\n', encoding='utf-8')
+    # Single owner of the root index.html: scripts/render_start_here.py (START HERE page).
+    # It is re-rendered here so that test runs do not leave a stale front door.
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import render_start_here
+    render_start_here.main()
 
 if __name__ == "__main__":
     render()
