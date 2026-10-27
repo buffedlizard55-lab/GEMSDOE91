@@ -136,6 +136,10 @@ def gate_table(card: dict) -> str:
             "Explicit human lane assignment",
             "Session 17 executed one preregistered provisional lane (S17-CPAD) because the standing prompt leaves the lane paragraph blank (`[PASTE ONE METHOD]`). Provisional lanes remain fail-closed until explicitly assigned.",
         ),
+        "buffered_context": (
+            "Buffered feature-context receipts",
+            "This historical result predates the corrected v3 context buffer; it is not a matched promotion holdout.",
+        ),
         "beats_comparable_best": (
             "Paired holdout improvement (95% CI > 0)",
             f"Point estimate 0.198183 HOLDOUT-DTI beats all comparable label-blind baselines on gems57-pooled-hide-v2 (INCUMBENT-PTAC-LB 0.194221, S16-PGRD 0.069397, CED91 0.070886), but paired 20-km block-bootstrap 95% CI vs INCUMBENT-PTAC-LB is [{pb['ci95'][0]:+.6f}, {pb['ci95'][1]:+.6f}] (lower bound slightly < 0).",

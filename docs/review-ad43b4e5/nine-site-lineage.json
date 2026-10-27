@@ -1,0 +1,56 @@
+{
+  "schema": "gems91.nine-site-lineage-audit.v1",
+  "evidence_class": "HISTORICAL_SUPPORT_GEOMETRY_NOT_A_SCORE",
+  "input_provenance": "hash-pinned community mirror; organizer origin not independently verified",
+  "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "files": {
+    "GEMSDOE25": {
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "positive_pixels": 44090
+    },
+    "GEMSDOE30": {
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "positive_pixels": 44090
+    },
+    "GEMSDOE31": {
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "positive_pixels": 40199
+    },
+    "GEMSDOE32": {
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "positive_pixels": 37654
+    },
+    "GEMSDOE36": {
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "positive_pixels": 38854
+    }
+  },
+  "25_and_30_identical_support": true,
+  "31_subset_of_25": true,
+  "32_subset_of_31": true,
+  "32_subset_of_36": true,
+  "25_minus_31": {
+    "pixels": 3891,
+    "min_distance_to_catalogue_px": 1.0,
+    "max_distance_to_catalogue_px": 1.0,
+    "median_distance_to_catalogue_px": 1.0
+  },
+  "31_minus_32": {
+    "pixels": 2545,
+    "min_distance_to_catalogue_px": 1.4142135623730951,
+    "max_distance_to_catalogue_px": 2.0,
+    "median_distance_to_catalogue_px": 2.0
+  },
+  "36_minus_32": {
+    "pixels": 1200,
+    "min_distance_to_catalogue_px": 2.23606797749979,
+    "max_distance_to_catalogue_px": 91.0494371207203,
+    "median_distance_to_catalogue_px": 14.491212440208496
+  },
+  "scope": "Support relationships only; user-reported scores have no authenticated receipts and causal improvement is not established.",
+  "geological_experiments_run": 0,
+  "candidate_generated": false,
+  "competition_slots_used": 0,
+  "ok_to_submit": false
+}

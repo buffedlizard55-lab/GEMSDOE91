@@ -136,11 +136,13 @@ def test_s21_run_card_protocol_fields_and_fail_closed_verdict() -> None:
     assert lfi["label_class"] == "MODEL_PROJECTION_NOT_A_SCORE"
     assert 0.10 < lfi["ridge1"]["projected_value_model_only"] < 0.30
 
+    from scripts.source_integrity import verify_historical_source
     pins = json.loads((ROOT / "registry/template_pin.json").read_text())["sha256"]
     for fname, expected_sha in pins.items():
         rel_path = f"vendor/gems57/{fname}"
         actual_sha = hashlib.sha256((ROOT / rel_path).read_bytes()).hexdigest()
-        assert actual_sha == expected_sha == CARD["template_pins_verified"][rel_path]
+        assert actual_sha == expected_sha
+        verify_historical_source(ROOT, rel_path, CARD["template_pins_verified"][rel_path])
 
 
 def test_nine_site_executive_summary_covers_all_requested_sites() -> None:

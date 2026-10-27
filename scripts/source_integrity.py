@@ -23,6 +23,35 @@ def verify_historical_source(root: Path, name: str, historical_sha256: str) -> N
     path = (root / name).resolve()
     if not path.is_relative_to(root):
         raise ValueError('Historical source path escapes repository: ' + name)
+
+    # The shared vendored template is corrected in place. Check both its active
+    # pin and the archived bytes that actually produced historical run cards.
+    # Never compare a new source hash to an old measurement and call it a replay.
+    prefix = 'vendor/gems57/'
+    if name.startswith(prefix):
+        pin = json.loads((root / 'registry/template_pin.json').read_text())
+        filename = name[len(prefix):]
+        archive_name = pin.get('historical_archives', {}).get(filename)
+        if archive_name:
+            archive = (root / archive_name).resolve()
+            if (not archive.is_relative_to(root)
+                    or pin['upstream_sha256'].get(filename) != historical_sha256
+                    or digest(archive) != historical_sha256
+                    or digest(path) != pin['sha256'].get(filename)):
+                raise ValueError('Historical template or corrected source drift: ' + name)
+            return
+
+    if name in ('scripts/run_s22_omtj.py', 'src/gems91/readiness.py'):
+        manifest = json.loads((root / 'docs/review-ad43b4e5/source-corrections.json').read_text())
+        entry = manifest['files'][name]
+        archive = (root / entry['historical_source_archive']).resolve()
+        if (not archive.is_relative_to(root)
+                or entry['historical_sha256'] != historical_sha256
+                or digest(archive) != historical_sha256
+                or digest(path) != entry['current_sha256']):
+            raise ValueError('Historical runner or corrected source drift: ' + name)
+        return
+
     if name not in CORRECTIONS:
         if digest(path) != historical_sha256:
             raise ValueError('Measured implementation drift: ' + name)

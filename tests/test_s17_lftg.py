@@ -208,7 +208,10 @@ def test_s17_preregistration_and_runcard_invariants():
         assert arm["ci95"][0] <= arm["dti"] <= arm["ci95"][1]
 
     g = RD.gates(card)
-    assert g == card["shared_readiness_gates"]
+    # Preserve the recorded six historical gates while enforcing the new
+    # independent buffered-context gate on this pre-correction receipt.
+    assert {k: v for k, v in g.items() if k != "buffered_context"} == card["shared_readiness_gates"]
+    assert g["buffered_context"] is False
     assert g["format"] is True
     assert g["canary"] is True
     assert RD.submission_ready(card) is False

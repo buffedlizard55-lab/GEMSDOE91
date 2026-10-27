@@ -163,6 +163,29 @@ supervised/DEM surface with its own preregistration.
 - INGENIOUS: <https://gbcge.org/current-projects/ingenious/> · GDR 1391: <https://gdr.openei.org/submissions/1391>
 - Rules PDF: <https://docs.nlr.gov/docs/fy26osti/96647.pdf> · EPSG:32611: <https://epsg.io/32611> · Tversky index: <https://en.wikipedia.org/wiki/Tversky_index>
 
+## Post-merge addendum (shared holdout corrected upstream)
+
+While this branch was in flight, PR #162 merged a correction to the shared
+holdout: the old split buffered training samples but not feature-visible
+catalogue context; a buffered v3 split now exists
+(`docs/review-ad43b4e5/`, geometry audit therein). Our E1/E2 numbers were
+computed *before* that merge with the v2 instrument
+(`gems57-pooled-hide-v2`); the exact evaluator code is pinned by the
+`implementation_sha256` fields inside `holdout.json` and archived under
+`evidence/shared-template-20261027/`. They must not be compared with future
+v3 numbers as if matched. Two S24-specific points stand regardless: the
+v2 folds we used withhold *whole* 8-connected catalogue components in
+label-blind quadrants, and CCKM uses **no catalogue-derived features**
+(the catalogue enters only as the >3.05 px per-fold emission collar
+against visible faults and as the evaluator's pixel-exact mask), which is
+the leakage channel the context-buffer correction primarily closes; and
+the verdict is negative on multiple independent gates (paired control,
+SGMC diagnostic, literal registry). The correction therefore cannot turn
+this into a positive claim. Per the parallel-run protocol the shared
+template correction is upstream's to own — no private fork was kept —
+and no S24 rerun on v3 was spent (that would be experiment 3 for an
+already-negative surface).
+
 ## Run cards
 
 Machine-readable cards (protocol fields: hypothesis; mechanism; named mimic;

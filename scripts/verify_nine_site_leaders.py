@@ -24,6 +24,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 import hashlib
 import json
 import subprocess
@@ -86,7 +87,10 @@ def dots_of(path: Path):
             "transform": list(ds.transform)[:6],
             "dtype": ds.dtypes[0],
             "count": ds.count,
-            "nodata": ds.nodata,
+            # NaN is valid TIFF metadata but not valid JSON; preserve its
+            # meaning as a string rather than emitting a JavaScript NaN token.
+            "nodata": ("nan" if ds.nodata is not None and np.isnan(ds.nodata)
+                       else float(ds.nodata) if ds.nodata is not None else None),
         }
     if meta["count"] != 1 or meta["dtype"] != "float32" or meta["crs"] is None:
         raise ValueError(f"{path}: georeferenced single-band float32 required")
@@ -118,9 +122,21 @@ def within3(a: np.ndarray, b: np.ndarray) -> float:
     return float((d <= 3).mean())
 
 
+def maximum_peer_overlaps(overlap: dict[str, float]) -> dict[str, float]:
+    """Nine leaders against the other eight only, never optional candidates.
+
+    Missing comparisons are an error. Preserve full precision because rounding
+    at the strict 70% boundary could otherwise change a duplicate verdict.
+    """
+    return {
+        site: max(overlap[f"{site} -> {peer}"] for peer in LEADERS if peer != site)
+        for site in LEADERS
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--cache", default="/tmp/nine")
+    ap.add_argument("--cache", default="data/nine_site_leaders")
     ap.add_argument("--candidate", action="append", default=[])
     ap.add_argument("--out", default="work/nine-site-leader-check-euclidean.json")
     args = ap.parse_args()
@@ -150,21 +166,21 @@ def main() -> int:
     for a in names:
         for b in names:
             if a != b:
-                overlap[f"{a} -> {b}"] = round(within3(files[a]["dots_xy"], files[b]["dots_xy"]), 4)
+                overlap[f"{a} -> {b}"] = within3(files[a]["dots_xy"], files[b]["dots_xy"])
 
     out = {
-        "schema": "nine-site-leader-check-v1",
+        "schema": "nine-site-leader-check-v2",
+        "checked_utc": datetime.now(timezone.utc).isoformat(),
         "method": "Git-tree-verified blob bytes; binary dots = value>0; directed A-to-B overlap uses Euclidean distance <=3 px. No independent sample-footprint or organizer receipt check.",
+        "score_evidence": "User-reported claims only; no organizer receipt or score estimate.",
         "files": {k: {kk: vv for kk, vv in v.items() if kk != "dots_xy"} | {"dots": int(len(v["dots_xy"]))}
                   for k, v in files.items()},
-        "max_overlap_into_any_other_leader": {
-            s: round(max(v for k, v in overlap.items() if k.startswith(s + " -> ")), 4)
-            for s in LEADERS},
+        "max_overlap_into_any_other_leader": maximum_peer_overlaps(overlap),
         "overlap_pairs": overlap,
     }
     out_path = root / args.out
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(out, indent=1, sort_keys=True) + "\n")
+    out_path.write_text(json.dumps(out, indent=1, sort_keys=True, allow_nan=False) + "\n")
     print(json.dumps({"out": args.out, "max_overlap_into_any_other_leader": out["max_overlap_into_any_other_leader"]}, indent=1))
     return 0
 

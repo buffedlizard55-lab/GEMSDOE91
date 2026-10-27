@@ -1,4 +1,12 @@
-## Current review — three passes (2026-10-27, arena/8e8d86f2)
+## Current review — three passes (2026-10-27, arena/ad43b4e5)
+
+1. **Independent evidence and inputs:** reproduced the conditional 82.341849% capacity bound, S22 duplicate, nine-site peer comparisons and pixel lineage; reviewed official sources. No geological experiment or slot was used.
+2. **Shared corrections:** buffered catalogue features in the shared v3 spatial instrument; separated pixel-exact scoring mask; blocked legacy unbuffered holdouts and stopped S22 runner; corrected marginal metric and nine-site checker; archived and pinned original sources. Historical context-dependent scores are not matched to v3.
+3. **Review, delivery and tests:** full suite, pinned-byte verifiers, synthetic legacy demo, reproducible portal and real Chromium desktop/mobile, accessibility and mocked auto-feed checks. See [pass record](docs/review-ad43b4e5/PASS_REVIEW.md) and [run card](docs/review-ad43b4e5/run-card.json) for exact counts and limitations. No new TIFF or submission.
+
+---
+
+## Previous review — three passes (2026-10-27, arena/8e8d86f2)
 
 1. **Inputs, capacity and source provenance:** restored pinned community-mirror rasters and 62/64 frozen references; measured finite NoData in S22 bands 13/14, reproduced S18's 99.605% lattice duplicate, confirmed the 82.341849% lower bound, corrected the outside-footprint witness edge case and archived original code.
 2. **Scientific and source claims:** reviewed official metric, mask, data, leaderboard, rules and staff quota clarification; kept claims separate from authenticated receipts; ranked four untested hypotheses and corrected the absolute-Spearman duplicate gate. No geological experiment was run.

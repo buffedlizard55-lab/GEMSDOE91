@@ -1,0 +1,24 @@
+{
+  "schema": "gems91.source-corrections.v1",
+  "scope": "Source history only; no new geological experiment or submission.",
+  "files": {
+    "scripts/run_s22_omtj.py": {
+      "historical_source_archive": "evidence/s22/run_s22_omtj-original.py.txt",
+      "historical_sha256": "e96a0b9508a1f129303f49ef23f0fe86e9ea867a7ee86d95928cfb6406eef22f",
+      "current_sha256": "478a9d82bc20e08e20c8ffcc21dae13460fbc8912eaf6c3b98bd483acec420f9",
+      "reason": "Historical run was duplicate-stopped and contaminated; disable implicit reruns, including after a deleted receipt. Its old final-rank branch did not stop on rho below -0.90."
+    },
+    "scripts/verify_nine_site_leaders.py": {
+      "historical_source_archive": "evidence/nine-site-checker/verify_nine_site_leaders-previous.py.txt",
+      "historical_sha256": "4a736825de0bebc67062729aa2911772088f0474aade8c117f6d2ae61a2c2a79",
+      "current_sha256": "8ac0c0139c3ff00b97122d87ceee739ea13fc5ee6a7dbf548984410c24792a6f",
+      "reason": "Exclude optional candidates from the eight-peer maximum, retain full overlap precision, and emit strict JSON without NaN metadata tokens."
+    },
+    "src/gems91/readiness.py": {
+      "historical_source_archive": "evidence/readiness-gate/readiness-previous.py.txt",
+      "historical_sha256": "439b12af8f25950e1c8632c511c66204a30970c1aecffda3197bc30632614017",
+      "current_sha256": "7f83e633b0943f5c73fa611709e8a45891064de36d3202bab28285d4890020ca",
+      "reason": "Require v3 whole-component buffered split receipts, reject unsafe recorded quadrant canaries and malformed huge numeric values; historical v2 scores cannot be promoted as matched corrected evidence."
+    }
+  }
+}

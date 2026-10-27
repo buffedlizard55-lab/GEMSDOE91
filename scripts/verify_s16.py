@@ -91,7 +91,16 @@ def verify(with_data=False):
              for name in ('pgrd', 'gravity_control', 'ced_benchmark')}
     # Replaying fixed arithmetic/bootstrap terms is validation, not another experiment.
     repeated = ev.pooled_summary(terms, draws=1000, seed=160025, candidate='pgrd')
-    require(repeated == holdout['summary'], 'pooled terms/bootstrap or evaluator provenance drift')
+    # Recompute arithmetic under the current shared scorer, then separately
+    # authenticate the historical implementation. The active spatial/metric
+    # hashes intentionally differ after the shared safety correction.
+    old_summary = dict(holdout['summary'])
+    old_hashes = old_summary.pop('implementation_sha256')
+    for name, digest in old_hashes.items():
+        verify_historical_source(ROOT, 'vendor/gems57/' + name, digest)
+    current_summary = dict(repeated)
+    current_summary.pop('implementation_sha256')
+    require(current_summary == old_summary, 'pooled terms/bootstrap arithmetic drift')
     h = card['holdout_dti']; result = repeated['scores']['pgrd']
     require(h['label'] == 'HOLDOUT-DTI' and h['evaluator_version'] == ev.VERSION, 'metric label/version drift')
     require(h['value'] == result['dti'] and h['ci95'] == result['ci95'], 'headline metric/CI drift')
@@ -122,7 +131,10 @@ def verify(with_data=False):
     require(final['status'] == 'DUPLICATE' and final['stopped_on'] == final['comparisons'][-1], 'missing literal duplicate stop')
     require(not any(r['status'] == 'DUPLICATE' for r in final['comparisons'][:-1]), 'scientific run continued past duplicate')
     require(final['stopped_on']['dots']['overlap_within_3px'] > .70, 'duplicate threshold not exceeded')
-    require(card['automated_gates'] == gates(card), 'shared-gate state drift')
+    current_gates = gates(card)
+    require({k: v for k, v in current_gates.items() if k != 'buffered_context'} == card['automated_gates'],
+            'historical shared-gate state drift')
+    require(current_gates['buffered_context'] is False, 'historical v2 context cannot satisfy corrected gate')
     require(card['submission_ready'] == card['ok_to_submit'] == submission_ready(card) is False, 'negative candidate promoted')
     require(card['verdict'] == 'negative' and card['slots_used'] == 0 and card['organizer_confirmed'] is None, 'unverified slot/score claim')
     require(card['experiments_run'] == 1 and card['elapsed_seconds'] < 7200, 'budget exceeded')

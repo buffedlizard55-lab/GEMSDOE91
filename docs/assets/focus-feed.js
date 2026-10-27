@@ -20,7 +20,7 @@
       clearTimeout(timeout);
     }
   };
-  button.addEventListener('click', async () => {
+  const refresh = async () => {
     button.disabled = true;
     status.textContent = 'Checking public GitHub main commit heads…';
     try {
@@ -52,5 +52,7 @@
     } finally {
       button.disabled = false;
     }
-  });
+  };
+  button.addEventListener('click', refresh);
+  refresh(); // update public heads on page load; failures retain the dated snapshot
 })();

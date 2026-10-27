@@ -135,6 +135,10 @@ def _gate_table(card: dict) -> str:
             "Coordinator lane assignment",
             "Self-declared preregistered S19-SVHF lane (`lane.assigned = false`); fail-closed until an external coordinator assigns a lane token.",
         ),
+        "buffered_context": (
+            "Buffered feature-context receipts",
+            "This historical result predates the corrected v3 context buffer; it is not a matched promotion holdout.",
+        ),
         "beats_comparable_best": (
             "Beats comparable label-blind holdout best",
             f"Best S19 arm {h['winning_arm']} = {h['value']:.6f} HOLDOUT-DTI [95% CI {h['ci95'][0]:.6f}, {h['ci95'][1]:.6f}] beats CED91 (+0.085638), S16-PGRD (+0.078394), gravity_control (+0.073768), and S17-CWPC (+0.025324), while trailing repo holdout leaders S17-CPAD E1 (0.198183) and incumbent_ptac_v2 (0.192208, paired Δ {h['paired_best']['delta']:+.6f}).",
