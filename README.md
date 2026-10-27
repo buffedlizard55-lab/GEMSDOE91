@@ -1,3 +1,20 @@
+# GEMSDOE91 — Current review: blocked, research only — S24 update below (research TIF generated; OK TO SUBMIT: NO)
+
+> **2026-10-27 S24 verdict (later same-day session; supersedes the blocked-review status beneath this banner): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
+> Download for research: [`gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif`](docs/downloads/gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif) (SHA-256 `aba3fb405cfa…`, 37,654 dots, single-TIFF ZIP beside it) — [**executive summary, nine-site table & submission guide**](docs/s24/executive-summary.html) · [full review](docs/s24/REVIEW.md) · [E2 run card](docs/s24/e2/run-card.json) · [E1 run card](docs/s24/run-card.json) · [preregistration](docs/s24/preregistration.md).
+>
+> | File to download (research) | Estimated leaderboard score | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
+> |---|---|---|---|
+> | S24-CCKM **E2** TIF above | **Unavailable** (no receipt/calibration). HOLDOUT-DTI **0.075896 [0.065569, 0.086758]** (`gems57-pooled-hide-v2`, 60,988 withheld) — not a leaderboard score; SGMC off-catalogue diagnostic 0.054493 vs GEMSDOE32-R0 0.095386 | **YES vs the nine** (max 18.76% of dots within 3 px; surface \|ρ\|max 0.104). **NO vs the literal full registry** (100% vs the 206,895-dot calibration lattice) | **NO** — does not beat its gravity-gradient control (paired CI includes 0) |
+> | S24-CCKM E1 TIF (`…e1-20000dots…fcbfbe32…`) | Unavailable. HOLDOUT-DTI 0.045952 [0.037996, 0.054356], same evaluator | YES vs nine (max 19.24%); NO literal | NO |
+> | Best historical claim = GEMSDOE32 `h33-h33-2-b2` | 0.2778 **USER-REPORTED, not organizer-confirmed**; leaderboard fetched 2026-10-27: #1 = 0.4544 | **NO** — all nine leaders are one ≥93–100% duplicate family | NO as a new unique attempt |
+>
+> Method: cross-contact kurtosis of B14 (TMI) texture across the B13 gravity gradient, NoData-excluded masked statistics (repairs the S22 sentinel failure); 2 of 3 experiments used, 0 weekly slots used, no human inspection anywhere — every gate is automated. **Maximize P(Win):** don't spend a slot that paired evidence says won't clear 0.2778. **Own the Outcome:** negative result + receipts preserved in `docs/s24/`. Everything below this banner is the preserved historical record (including earlier NO-NEW-TIFF reviews), superseded by this status where inconsistent.
+
+---
+
+## Historical status before S24 (superseded where inconsistent)
+
 # GEMSDOE91 — Current review: blocked, research only
 
 > **2026-10-27 verdict: NO NEW TIFF · NOT OK TO SUBMIT.** No geological experiment, candidate, or competition upload was made in this review. The assigned single-method paragraph is missing. At the frozen 37,654-dot budget, a pinned lattice forces at least **82.341849%** directed overlap, above the user's 70% duplicate threshold. This bound is conditional on the frozen plan, footprint and witness; it does not prove all smaller budgets fail. Do not shrink the plan or exempt a dense reference merely to pass. [Current review](docs/review-ad43b4e5/REVIEW.md) · [preflight](docs/review-ad43b4e5/experiment-preflight.json) · [negative run card](docs/review-ad43b4e5/run-card.json) · [ranked proposals](docs/review-8e8d86f2/HYPOTHESES.md) · [submission guide](docs/submission-guide.html).

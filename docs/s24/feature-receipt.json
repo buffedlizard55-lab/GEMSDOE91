@@ -1,0 +1,27 @@
+{
+  "bands": "B14 tmi + B13 iso_grav_anom",
+  "catalogue_features": false,
+  "residual_sigma_px": 4.0,
+  "gravity_sigma_px": 3.0,
+  "kurtosis_window_px": 15,
+  "kurtosis_min_valid_frac": 0.8,
+  "kurtosis_clip": [
+    -2.0,
+    30.0
+  ],
+  "offset_px": 9.0,
+  "footprint_pixels": 5167373,
+  "tmi_valid_pixels": 5164312,
+  "gravity_valid_pixels": 5164312,
+  "tmi_invalid_inside_footprint": 3061,
+  "gravity_invalid_inside_footprint": 3061,
+  "kurtosis_support_pixels": 5098408,
+  "surface_support_pixels": 5005261,
+  "kurtosis_raw_percentiles_on_support": {
+    "p05": -1.1130123287416716,
+    "p50": -0.12730284375017975,
+    "p95": 3.8732920518803464,
+    "p99": 8.86680081577318
+  },
+  "nodata_policy": "exclude non-finite or |value| >= 1e30 cells from every statistic via masked normalised convolution; no filling"
+}

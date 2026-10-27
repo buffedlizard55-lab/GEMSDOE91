@@ -1,0 +1,243 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane": "S24-CCKM (self-assigned; no supplied method paragraph)",
+  "preregistration": {
+    "path": "docs/s24/preregistration.md",
+    "sha256": "324da5e2190954460ca61456cbeb99ae65c80bab1f2f5139ce1adbd4f731bd19"
+  },
+  "hypothesis": "Buried faults juxtapose magnetically different basement across a gravity contact, so the kurtosis of high-pass B14 texture changes across the B13 gradient normal at contacts with strong |grad B13|.",
+  "mechanism": "Masked 15px-window excess kurtosis of B14 residual (sigma 4px background), sampled +/-9px along the B13 gradient normal; surface = sqrt(rank|K+ - K-| * rank|grad B13|); 20,000 dots, 3.05px spacing/collar.",
+  "named_non_fault_mimic": "Unfaulted intrusive/volcanic contacts, lava-flow margins, and GeoDAWN survey seams.",
+  "holdout": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.04595216362196115,
+    "ci95": [
+      0.03799619478262099,
+      0.054355947230095486
+    ],
+    "n_withheld_positives": 60988,
+    "best_matched_control": "control_gravgrad",
+    "best_matched_control_dti": 0.042861597623862206,
+    "paired_difference_vs_best_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0030905659980989472,
+      "ci95": [
+        -0.004244312723220773,
+        0.010388123519262922
+      ],
+      "withheld_positive_pixels": 60988
+    },
+    "beats_best_matched_control_ci95": false,
+    "r0_reference_nonmatched_budget_dti": 0.006697041784474405
+  },
+  "leakage_canary": {
+    "max_symmetric_auc": 0.5815827766904649,
+    "worst": "gravity_grad_raw fold1",
+    "pass": true
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_rho": 0.05221661134299194,
+    "surface_closest": "docs/downloads/gems91-s16-pgrd-20261025T040447Z-24d090ad9f42-zeros.tif",
+    "surface_pass_le_0.90": true,
+    "final_dot_max_overlap_all": 1.0,
+    "final_dot_closest_all": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "final_dot_max_overlap_nine_leaders": 0.19235,
+    "final_dot_pass_nine_le_0.70": true,
+    "final_dot_pass_all_incl_lattice_le_0.70": false,
+    "lattice_capacity_bound_at_budget": {
+      "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+      "footprint_pixels": 5167373,
+      "reference_dots": 206895,
+      "uncovered_pixels": 6649,
+      "candidate_budget": 20000,
+      "minimum_overlapping_dots": 13351,
+      "overlap_lower_bound": 0.66755,
+      "radius_px": 3,
+      "threshold": 0.7,
+      "feasible_by_capacity_only": true,
+      "largest_budget_by_capacity_only": 22163,
+      "status": "NOT_RULED_OUT",
+      "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance."
+    },
+    "references_unique_bytes": 115,
+    "references_missing": [
+      {
+        "path": "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
+        "tag": "frozen_registry"
+      },
+      {
+        "path": "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif",
+        "tag": "frozen_registry"
+      }
+    ],
+    "organizer_complete_registry": false
+  },
+  "band_identity": {
+    "descriptions": {
+      "3": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+      "5": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+      "13": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+      "14": "tmi - Total magnetic intensity - total strength of magnetic field",
+      "18": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change"
+    },
+    "nodata_tag": "-3.4028234663852886e+38",
+    "B13": {
+      "valid_pixels": 5164312,
+      "invalid_inside_footprint": 3061,
+      "min": -45.75756072998047,
+      "median": -7.26103401184082,
+      "max": 24.232954025268555
+    },
+    "B14": {
+      "valid_pixels": 5164312,
+      "invalid_inside_footprint": 3061,
+      "min": -2178.27783203125,
+      "median": -124.8157730102539,
+      "max": 4506.14111328125
+    },
+    "corr_B03_vs_abs_grad_B14": {
+      "r": 0.9999999968834623,
+      "n": 5135228
+    },
+    "corr_B05_vs_abs_grad_B13": {
+      "r": 0.9619178844768389,
+      "n": 5135228
+    },
+    "corr_B18_vs_dx_B13": {
+      "r": 0.9481554832348723,
+      "n": 5135228
+    },
+    "interpretation": "Internal derivative consistency supports, but does not externally authenticate, the embedded B13/B14 identities. Gradients were scored only on pixels eroded 2px from any invalid cell; no filling was used in features."
+  },
+  "validator_output": {
+    "local": {
+      "file": "/home/user/GEMSDOE91/docs/downloads/gems91-s24-cckm-e1-20000dots-20261027T185803Z-fcbfbe32-zeros.tif",
+      "bytes": 105641,
+      "sha256": "24c452417f1bdc4ccd7bf870bbd3e7f595595cfe086944b823a1bbdd11f03578",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0016287759644910693,
+      "emitted_positive_pixels": 20000,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 20000,
+      "footprint_fraction": 0.0038704386155208846
+    },
+    "independent_reread": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "count": 1,
+      "dtype": "float32",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "nodata_is_none": true,
+      "all_finite": true,
+      "min": 0.0,
+      "max": 1.0,
+      "n_dots": 20000,
+      "on_catalogue": 0,
+      "outside_footprint_positive": 0
+    },
+    "pass": true,
+    "scope": "local [0,1]/CRS/shape/transform preflight; not organizer acceptance"
+  },
+  "raster_sha256": "24c452417f1bdc4ccd7bf870bbd3e7f595595cfe086944b823a1bbdd11f03578",
+  "submission_name": "gems91-s24-cckm-e1-20000dots-20261027T185803Z-fcbfbe32-zeros",
+  "submission_note": "S24 CCKM cross-contact kurtosis B14/B13 20k dots; research only, not slot-approved",
+  "submission_note_chars": 82,
+  "artifact": {
+    "tif": "docs/downloads/gems91-s24-cckm-e1-20000dots-20261027T185803Z-fcbfbe32-zeros.tif",
+    "zip": "docs/downloads/gems91-s24-cckm-e1-20000dots-20261027T185803Z-fcbfbe32-zeros.zip",
+    "zip_sha256": "48fe33b7fd3c55693b8d4c9e13effe6ecfde931fa83df7698a98d467094d15a1",
+    "n_dots": 20000
+  },
+  "organizer_confirmed_score": null,
+  "estimated_leaderboard_score": null,
+  "estimated_leaderboard_score_reason": "No authenticated receipt and no validated holdout-to-leaderboard calibration; HOLDOUT-DTI is not a leaderboard score.",
+  "experiments_run": 1,
+  "max_experiments": 3,
+  "elapsed_seconds": 119.98281620399996,
+  "submission_slots_used": 0,
+  "ok_to_download": true,
+  "ok_to_download_scope": "research only",
+  "ok_to_submit": false,
+  "selector_review_required": true,
+  "verdict": "negative",
+  "inputs_verified": {
+    "sample_submission": {
+      "path": "data/official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "path": "data/official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "path": "data/bridge/gems-geodawn-numerical-features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    },
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    }
+  }
+}
