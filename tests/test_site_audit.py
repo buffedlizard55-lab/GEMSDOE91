@@ -99,8 +99,10 @@ def test_executive_audit_links_resolve_and_exposes_no_current_download_or_submis
 def test_current_root_and_legacy_download_portal_disambiguate_old_iso91_file():
     root = parse_page(ROOT / "index.html")
     root_text = " ".join(root.text)
-    assert "OK TO DOWNLOAD: YES" in root_text
+    assert "OK TO DOWNLOAD: NO new candidate" in root_text
     assert "OK TO SUBMIT: NO" in root_text
+    assert "docs/REVIEW-ARENA-52711765-20261027.md" in root.links
+    assert "docs/run-card-ARENA-52711765-20261027.json" in root.links
     assert "docs/executive-summary.html" in root.links
 
     # The no-run audit is historical; do not force a later real run to claim

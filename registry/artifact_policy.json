@@ -668,6 +668,18 @@
       "sha256": "817df80a1abc7e4e59c529f087671ef9939394830b4df67a4bdc47a0a9c8c6ef",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif; S22-XB PDWC66+HGBR16 cross-breed, equalized per-quadrant capped 300 m CELF, 37,654-dot GeoTIFF; format PASS [0,1] all-finite; canary max 0.638; unique vs 953 competitive rasters (max 0.6288); hide-v2 HOLDOUT-DTI 0.173542 (paired C-A capped -0.010671); LFI projection MODEL 0.178; verdict=negative - NOT OK TO SUBMIT, failed G4_holdout_paired, G5_live_anchored_projection (docs/run-card-S22-XB.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
+      "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+      "status": "parallel_quarantined",
+      "reason": "S18-UNIQUE historical research artifact. Prior run records negative HOLDOUT-DTI and no submit approval; retained for audit only."
+    },
+    {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip",
+      "sha256": "245449b61d7fc38f8b1e94bdff6d9181b6f7cac03673e67f630638fca3ebddc9",
+      "status": "parallel_quarantined",
+      "reason": "Single-TIFF ZIP of the S18-UNIQUE negative research artifact; retained for audit only and not approved for submission."
     }
   ]
 }
