@@ -52,12 +52,42 @@ class SurfaceProbe:
             rho = float(np.dot(self.centered, ry) / (self.norm * np.linalg.norm(ry)))
         # Roundoff may put an otherwise exact identity a few ulps outside [-1,1].
         rho = float(np.clip(rho, -1.0, 1.0))
-        return {'status': 'DUPLICATE' if rho > .90 else 'PASS', 'rank_correlation': rho}
+        # Readiness and experiment reports require |rho| <= 0.90.  Checking
+        # only positive rho incorrectly cleared a perfectly inverted surface.
+        return {'status': 'DUPLICATE' if abs(rho) > .90 else 'PASS', 'rank_correlation': rho}
+
+
+def combine_final_checks(rank_result, dot_result):
+    """Combine both required final-dot checks without overwriting a failure.
+
+    Missing, malformed, or unverified results are never a pass. A duplicate
+    witness wins over an unverified second instrument so callers stop at once.
+    """
+    rank_status = rank_result.get('status') if isinstance(rank_result, dict) else None
+    dot_status = dot_result.get('status') if isinstance(dot_result, dict) else None
+    if 'DUPLICATE' in (rank_status, dot_status):
+        return 'DUPLICATE'
+    if rank_status == 'PASS' and dot_status == 'PASS':
+        return 'PASS'
+    return 'UNVERIFIED'
 
 
 def surface_check(candidate, reference, footprint):
     a, b, mask = _arrays(candidate, reference, footprint)
     return SurfaceProbe(a, mask).compare(b)
+
+
+def check_final_pair(probe, candidate, reference, footprint):
+    """Run both final instruments independently; an error cannot mask a stop."""
+    try:
+        rank = probe.compare(reference)
+    except ValueError as exc:
+        rank = {'status': 'UNVERIFIED', 'reason': str(exc)}
+    try:
+        dots = dot_check(candidate, reference, footprint)
+    except ValueError as exc:
+        dots = {'status': 'UNVERIFIED', 'reason': str(exc)}
+    return rank, dots, combine_final_checks(rank, dots)
 
 
 def dot_check(candidate, reference, footprint):

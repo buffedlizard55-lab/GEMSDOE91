@@ -1,0 +1,143 @@
+{
+  "schema": "gems91.integrity-review-card.v1",
+  "review_date_utc": "2026-10-27",
+  "branch": "arena/39b43d24-gemsdoe91",
+  "verdict": "negative_preflight_blocked",
+  "promote": false,
+  "ok_to_download": false,
+  "ok_to_submit": false,
+  "download_scope": "No new candidate exists. Previously published S18 and OMTJ files remain downloadable only as quarantined research.",
+  "lane": {
+    "assigned_method": null,
+    "assignment_authenticated": false,
+    "reason": "The referenced single-method assignment paragraph was not supplied."
+  },
+  "hypothesis": {
+    "proposed_not_assigned": "Conditional rank-dependence break between cached B02 and B13",
+    "mechanism": "A concealed fault might juxtapose rocks with different magnetic and density relationships.",
+    "named_nonfault_mimic": "Unfaulted lithologic contact or airborne survey-leveling seam",
+    "status": "PROPOSAL_NOT_TESTED",
+    "details": "docs/review-20261027/hypotheses.md"
+  },
+  "experiments": {
+    "geological_experiments_this_review": 0,
+    "new_candidate_files": 0,
+    "live_slots_used_this_review": 0,
+    "max_experiments": 3,
+    "max_elapsed_minutes": 120,
+    "scope": "Existing TIFF audits and software validation are not new geological experiments."
+  },
+  "holdout": {
+    "evidence_class": "NOT_RUN",
+    "dti": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "required_instrument": "gems57-pooled-hide-v2",
+    "required": "Whole buffered fault segments, visible-only features and mask; pooled alpha 0.2 beta 0.8 300m triangular kernel; paired same-fold incumbent."
+  },
+  "leakage_canaries": {
+    "status": "NOT_RUN",
+    "per_feature_fold_results": null,
+    "symmetric_auc_stop_threshold": 0.9
+  },
+  "registry": {
+    "pre_placement_surface_status": "NOT_RUN \u2014 no candidate surface",
+    "final_candidate_status": "NOT_RUN \u2014 no candidate exists",
+    "interpretation": "Literal dot overlap >0.70 or conservative absolute rank correlation >0.90 against any registered reference is a duplicate; no density exceptions.",
+    "capacity": {
+      "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+      "footprint_pixels": 5167373,
+      "reference_dots": 206895,
+      "uncovered_pixels": 6649,
+      "candidate_budget": 37654,
+      "minimum_overlapping_dots": 31005,
+      "overlap_lower_bound": 0.8234184947150369,
+      "radius_px": 3,
+      "threshold": 0.7,
+      "feasible_by_capacity_only": false,
+      "largest_budget_by_capacity_only": 22163,
+      "status": "IMPOSSIBLE_AT_BUDGET",
+      "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance.",
+      "reference_path": "data/fleet_registry/calib_r13lattice_00904.tif",
+      "reference_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "reference_source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/calib_r13lattice_00904.tif",
+      "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "inventory_sha256": "8d47a76882009139cb89c3c489b2a3ae30a4386396ef0d5d7c30eccab9b62943",
+      "complete_registry_check": false
+    },
+    "existing_witnesses": {
+      "s18_current": {
+        "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+        "overlap_within_3px": 0.99605,
+        "verdict": "DUPLICATE"
+      },
+      "omtj": {
+        "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+        "overlap_within_3px": 0.9856588941413926,
+        "verdict": "DUPLICATE"
+      },
+      "gems36_kpl": {
+        "sha256": "86fc8243ad573bcdbfac8b432daf0ec5b6800b991b2c3278706358be7eb9922d",
+        "overlap_within_3px": 0.9916874701226961,
+        "verdict": "DUPLICATE"
+      }
+    },
+    "audit": "docs/review-20261027/witness-audit.json",
+    "complete_registry_clearance": false
+  },
+  "candidate": {
+    "name": null,
+    "submission_note": null,
+    "submission_note_chars": null,
+    "raster_sha256": null,
+    "validator": {
+      "status": "NOT_RUN \u2014 no candidate",
+      "no_nan": null,
+      "finite_range_0_to_1": null,
+      "crs": null,
+      "shape": null,
+      "transform": null
+    },
+    "organizer_acceptance": null,
+    "organizer_confirmed_score": null,
+    "leaderboard_score_estimate": null
+  },
+  "historical_reference": {
+    "site": "GEMSDOE32",
+    "value": 0.2778,
+    "label": "USER_REPORTED_UNVERIFIED_NOT_A_RECEIPT",
+    "data": "docs/review-20261027/nine-site-audit.json",
+    "nine_site_observed_at_utc": "2026-10-27T17:28:58.774195+00:00"
+  },
+  "public_board_snapshot": {
+    "value": 0.4544,
+    "rank": 1,
+    "observed_date_utc": "2026-10-27",
+    "evidence_class": "OFFICIAL_PUBLIC_BOARD_OBSERVATION_NOT_A_PROJECT_RECEIPT",
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+  },
+  "limitations": [
+    "No assigned method lane or authenticated coordinator instruction was found.",
+    "The 37,654-dot budget is impossible under a pinned literal witness; smaller budgets are not automatically unique or better.",
+    "The owner-mirrored sample has positive support equal to the catalogue, inconsistent with the official all-absence description; origin and rights are unverified.",
+    "Full registry completeness, organizer-accepted outside encoding, receipt-linked scores, current weekly quota, and a comparable independently reproduced incumbent remain unverified."
+  ],
+  "review": "docs/review-20261027/review.md",
+  "hypotheses": "docs/review-20261027/hypotheses.md",
+  "verification": {
+    "pytest": {
+      "passed": 747,
+      "skipped": 9,
+      "warnings": 99,
+      "scope": "Software and published evidence; skipped historical integrations require unrestored inputs or Git history."
+    },
+    "browser_delivery": "PASS \u2014 desktop/mobile, downloaded-byte hashes, accessibility, mocked GitHub API success/cache expiry and 429 fallback.",
+    "actual_sandbox_public_feed": "UNAVAILABLE \u2014 sandbox certificate error / GitHub 403; fallback confirmed. Real user browser not independently tested.",
+    "artifact_policy_registered_files": 111,
+    "download_audit_reproducible": true,
+    "historical_evidence_verifiers": "PASS",
+    "synthetic_legacy_demo": "PASS \u2014 synthetic software fixture only; not a geological experiment.",
+    "submission_ready": false
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "schema": "gems91.registry-witness-audit.v1",
+  "generated_utc": "2026-10-27T17:47:59.914525+00:00",
+  "scope": "Existing artifacts only; one witness is enough to disprove uniqueness, never to prove it.",
+  "references": {
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "witness_path": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "witness_source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/calib_r13lattice_00904.tif",
+    "inventory_sha256": "8d47a76882009139cb89c3c489b2a3ae30a4386396ef0d5d7c30eccab9b62943",
+    "organizer_complete_registry": false
+  },
+  "sample_provenance_irregularity": {
+    "sample_positive_pixels": 60988,
+    "catalogue_positive_pixels": 60988,
+    "sample_positive_support_equals_catalogue": true,
+    "reason": "Pinned mirror has positive sample values although official page describes total fault absence; organizer origin unverified."
+  },
+  "capacity_37654": {
+    "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+    "footprint_pixels": 5167373,
+    "reference_dots": 206895,
+    "uncovered_pixels": 6649,
+    "candidate_budget": 37654,
+    "minimum_overlapping_dots": 31005,
+    "overlap_lower_bound": 0.8234184947150369,
+    "radius_px": 3,
+    "threshold": 0.7,
+    "feasible_by_capacity_only": false,
+    "largest_budget_by_capacity_only": 22163,
+    "status": "IMPOSSIBLE_AT_BUDGET",
+    "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance."
+  },
+  "capacity_20000": {
+    "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+    "footprint_pixels": 5167373,
+    "reference_dots": 206895,
+    "uncovered_pixels": 6649,
+    "candidate_budget": 20000,
+    "minimum_overlapping_dots": 13351,
+    "overlap_lower_bound": 0.66755,
+    "radius_px": 3,
+    "threshold": 0.7,
+    "feasible_by_capacity_only": true,
+    "largest_budget_by_capacity_only": 22163,
+    "status": "NOT_RULED_OUT",
+    "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance."
+  },
+  "existing_candidates": {
+    "s18_current": {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
+      "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+      "validator": {
+        "status": "PASS",
+        "checks": {
+          "single_band": true,
+          "float32": true,
+          "crs_shape_transform_match": true,
+          "no_nodata_tag": true,
+          "all_cells_finite": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_outside_footprint": true,
+          "visible_catalogue_masked": true
+        },
+        "nonfinite_cells": 0,
+        "out_of_range_finite_cells": 0,
+        "ok_to_submit": false,
+        "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+      },
+      "final_rank": {
+        "status": "PASS",
+        "rank_correlation": 0.00014666280176035986
+      },
+      "final_dots": {
+        "status": "DUPLICATE",
+        "overlap_within_3px": 0.99605,
+        "candidate_dots": 20000,
+        "registry_dots": 206895
+      },
+      "final_verdict": "DUPLICATE",
+      "zip": {
+        "sha256": "245449b61d7fc38f8b1e94bdff6d9181b6f7cac03673e67f630638fca3ebddc9",
+        "single_tiff_identical": true
+      },
+      "ok_to_submit": false
+    },
+    "omtj": {
+      "path": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+      "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+      "validator": {
+        "status": "PASS",
+        "checks": {
+          "single_band": true,
+          "float32": true,
+          "crs_shape_transform_match": true,
+          "no_nodata_tag": true,
+          "all_cells_finite": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_outside_footprint": true,
+          "visible_catalogue_masked": true
+        },
+        "nonfinite_cells": 0,
+        "out_of_range_finite_cells": 0,
+        "ok_to_submit": false,
+        "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+      },
+      "final_rank": {
+        "status": "PASS",
+        "rank_correlation": -5.359578953898351e-05
+      },
+      "final_dots": {
+        "status": "DUPLICATE",
+        "overlap_within_3px": 0.9856588941413926,
+        "candidate_dots": 37654,
+        "registry_dots": 206895
+      },
+      "final_verdict": "DUPLICATE",
+      "zip": {
+        "sha256": "8862229cb572b53b41951de6f7d287ba16b4c0412898658b07cf591e5e63efb2",
+        "single_tiff_identical": true
+      },
+      "ok_to_submit": false
+    },
+    "gems36_kpl": {
+      "path": "data/KPL36_20261026.tif",
+      "sha256": "86fc8243ad573bcdbfac8b432daf0ec5b6800b991b2c3278706358be7eb9922d",
+      "validator": {
+        "status": "PASS",
+        "checks": {
+          "single_band": true,
+          "float32": true,
+          "crs_shape_transform_match": true,
+          "no_nodata_tag": true,
+          "all_cells_finite": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_outside_footprint": true,
+          "visible_catalogue_masked": true
+        },
+        "nonfinite_cells": 0,
+        "out_of_range_finite_cells": 0,
+        "ok_to_submit": false,
+        "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+      },
+      "final_rank": {
+        "status": "PASS",
+        "rank_correlation": -0.00043659214651850086
+      },
+      "final_dots": {
+        "status": "DUPLICATE",
+        "overlap_within_3px": 0.9916874701226961,
+        "candidate_dots": 37654,
+        "registry_dots": 206895
+      },
+      "final_verdict": "DUPLICATE",
+      "zip": null,
+      "ok_to_submit": false,
+      "source": {
+        "original_filename": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros.tif",
+        "git_blob": "933a7a65eab0193e806f86d24c07f7af96bfbe03",
+        "owner_page": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/"
+      }
+    }
+  },
+  "s18_alias": {
+    "previous_path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
+    "current_path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
+    "previous_sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+    "byte_identical": true,
+    "conclusion": "Different names do not make new prediction bytes."
+  },
+  "r0_lineage": {
+    "d28_dots": 44090,
+    "h27_dots": 40199,
+    "r0_dots": 37654,
+    "h27_is_d28_subset": true,
+    "r0_is_h27_subset": true,
+    "d28_minus_h27": 3891,
+    "d28_minus_h27_within_1px": 3891,
+    "h27_minus_r0": 2545,
+    "h27_minus_r0_between_1_and_2px": 2545,
+    "interpretation": "Exact mask nesting only; the hidden truth and the cause of a reported score remain unknown."
+  },
+  "new_experiments": 0,
+  "new_tiff_created": false,
+  "weekly_slots_used": 0,
+  "leaderboard_estimate": null,
+  "organizer_confirmed_score": null,
+  "ok_to_submit": false
+}

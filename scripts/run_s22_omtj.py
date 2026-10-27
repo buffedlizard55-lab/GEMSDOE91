@@ -21,10 +21,11 @@ import numpy as np
 import rasterio
 from sklearn.metrics import roc_auc_score
 from gems91.omtj22 import features
-from gems91.novelty import SurfaceProbe, dot_check
+from gems91.novelty import SurfaceProbe, check_final_pair
 from gems91.pdwc21 import emit_dots_nms
 from vendor.gems57 import grid, spatial, evaluate_holdout as EH
 from vendor.gems57.submission_writer import write_submission
+from scripts.experiment_preflight import evaluate as evaluate_preflight
 
 OUT = ROOT / 'docs/s22'
 WORK = ROOT / 'work/s22'
@@ -81,9 +82,15 @@ def reference_array(row, g):
 
 def run():
     start = time.monotonic()
-    OUT.mkdir(exist_ok=True); WORK.mkdir(parents=True, exist_ok=True)
     if (OUT / 'run-card.json').exists():
         raise RuntimeError('Recorded experiment already exists; no implicit rerun or tuning')
+    plan = json.loads((ROOT / 'registry/experiment_plan.json').read_text())
+    if plan.get('dot_budget') != BUDGET:
+        raise RuntimeError('The frozen runner budget differs from its preflight; do not tune around a registry witness')
+    preflight = evaluate_preflight(ROOT, plan)
+    if preflight['status'] != 'NOT_RULED_OUT' or not preflight['assignment_authenticated']:
+        raise RuntimeError('Experiment preflight blocked or method assignment not authenticated; no experiment launched')
+    OUT.mkdir(parents=True, exist_ok=True); WORK.mkdir(parents=True, exist_ok=True)
     prereg_hash = sha(OUT / 'preregistration.md')
     manifest = json.loads((ROOT / 'registry/data_manifest.json').read_text())
     for row in manifest['files']:
@@ -92,6 +99,8 @@ def run():
             if sha(p) != row['sha256'] or p.stat().st_size != row['bytes']:
                 raise ValueError('Input identity mismatch: ' + row['id'])
     refs = freeze_references()
+    if refs['missing']:
+        raise RuntimeError('Frozen registry references missing; refuse to place or evaluate any candidate')
     g = grid.load_grid(ROOT / 'data/official')
     with rasterio.open(ROOT / 'data/bridge/gems-geodawn-numerical-features.tif') as ds:
         if ds.shape != g.shape or ds.crs != g.crs or ds.transform != g.transform:
@@ -161,9 +170,13 @@ def run():
             card['correlation_overlap_vs_registry'] = dict(surface_duplicate=surface_rows[-1])
             return finish('SURFACE_DUPLICATE_STOP')
     dump(OUT / 'surface-checks.json', dict(rows=surface_rows, errors=errors))
+    if not surface_rows or errors or len(surface_rows) != len(refs['files']) or any(r['status'] != 'PASS' for r in surface_rows):
+        card['correlation_overlap_vs_registry'] = dict(
+            surface_checked=len(surface_rows), surface_unverified=errors, final_dot_checks=None)
+        return finish('SURFACE_UNVERIFIED_STOP — no placement or holdout evaluation')
     card['correlation_overlap_vs_registry'] = dict(
-        surface_max_rank_correlation=max(r['rank_correlation'] for r in surface_rows if r['rank_correlation'] is not None),
-        surface_checked=len(surface_rows), surface_unverified=errors,
+        surface_max_rank_correlation=max(abs(r['rank_correlation']) for r in surface_rows),
+        surface_checked=len(surface_rows), surface_unverified=[],
         final_dot_checks=None)
     del probe
     for f in folds:
@@ -215,13 +228,12 @@ def run():
     for r in refs['files']:
         try:
             a = reference_array(r, g)
-            rank_result = probe.compare(a)
-            result = {**rank_result, **dot_check(pred, a, g.footprint),
-                      'rank_status': rank_result['status']}
-            # Keep both verdicts: overlap status must not overwrite a rank failure.
-            rho = result['rank_correlation']
-            duplicate = result['overlap_within_3px'] is not None and result['overlap_within_3px'] > .70
-            duplicate |= rho is not None and rho > .90
+            rank_result, dots_result, verdict = check_final_pair(probe, pred, a, g.footprint)
+            result = {**rank_result, **dots_result,
+                      'rank_status': rank_result['status'], 'dot_status': dots_result['status'],
+                      'rank_reason': rank_result.get('reason'), 'dot_reason': dots_result.get('reason'),
+                      'status': verdict}
+            duplicate = result['status'] == 'DUPLICATE'
         except ValueError as exc:
             final_rows.append(dict(path=r['path'], status='UNVERIFIED', reason=str(exc))); continue
         final_rows.append(dict(path=r['path'], **result))

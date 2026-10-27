@@ -73,8 +73,9 @@ def parallel_s18_callout(root=ROOT) -> str:
     if not card_path.is_file():
         return ""
     card = json.loads(card_path.read_text(encoding="utf-8"))
-    if card.get("ok_to_submit") is not False or card.get("submission_ready") is not False:
-        raise ValueError("S18-UNIQUE must remain explicitly not approved for submission")
+    if (card.get("ok_to_submit") is not False or card.get("submission_ready") is not False
+            or card.get("registry_uniqueness", {}).get("is_duplicate") is not True):
+        raise ValueError("S18-UNIQUE must remain explicitly duplicate and not approved for submission")
     raster = card.get("raster", {})
     paths = {}
     for key in ("path", "zip"):
@@ -118,11 +119,11 @@ def parallel_s18_callout(root=ROOT) -> str:
     tif_href = tif.relative_to(docs.resolve()).as_posix()
     zip_href = archive_path.relative_to(docs.resolve()).as_posix()
     return f'''<section class="card" style="border:2px solid #17644e;background:#f0faf5" aria-label="S18 parallel research artifact; not approved for submission">
-<p><span class="badge">OK TO DOWNLOAD: YES — FORMAT-CHECKED RESEARCH</span> <span class="badge bad">OK TO SUBMIT: NO — HOLDOUT / CANARY / FULL REGISTRY PENDING</span></p>
-<h2>S18-UNIQUE · Basin-stripped Bouguer curvature × RTP gradient · 20,000 dots</h2>
-<p>This GeoTIFF was generated on a separate parallel branch, not by the current session. The front-door renderer rechecked its SHA-256, TIFF metadata, finite binary [0,1] values, dot count, and single-TIFF ZIP byte identity. These engineering checks do not establish a full-registry uniqueness pass or scientific improvement.</p>
+<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO — DUPLICATE STOP</span></p>
+<h2>S18-UNIQUE · historical 20,000-dot raster</h2>
+<p>The 26 October TIFF is byte-identical to its 25 October predecessor and 99.605% of its dots lie within 3 pixels of the registered lattice. Its earlier uniqueness pass is withdrawn. Engineering checks do not establish uniqueness or scientific improvement.</p>
 <p><a class="button" download href="{esc(tif_href, quote=True)}">↓ Download research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s18-unique-executive-summary.html">Submission-format guide</a> · <a href="run-card-S18-UNIQUE.json">Run card</a></p>
-<p class="small">SHA-256 <code>{esc(raster["sha256"])}</code> · name <code>{esc(name)}</code> · note ({len(note)}/140): <code>{esc(note)}</code><br>Its run card records HOLDOUT-DTI NOT RUN, canary pending, and full-registry novelty pending. Research download only; not cleared for a weekly slot.</p>
+<p class="small">SHA-256 <code>{esc(raster["sha256"])}</code> · name <code>{esc(name)}</code> · note ({len(note)}/140): <code>{esc(note)}</code><br>S18-specific fold-honest holdout and canary claims remain unverified; the literal registry test failed. Research download only; not cleared for a weekly slot.</p>
 </section>'''
 
 

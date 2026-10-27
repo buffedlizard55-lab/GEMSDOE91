@@ -1,52 +1,60 @@
-# GEMSDOE91 — S18-UNIQUE unique candidate · current status (2026-10-26)
+# GEMSDOE91 — integrity review and submission status (2026-10-27 UTC)
 
-**OK TO DOWNLOAD: YES — research only. OK TO SUBMIT: NO — holdout-DTI 0.000624 did not beat incumbent 0.066223; per budget rule, no weekly slot spent.**
+**NO NEW TIFF GENERATED · OK TO SUBMIT: NO · 0 geological experiments / 0 weekly slots used in this review.** The earlier S18 TIFF is a duplicate, not a new prediction. Its holdout and canary claims are unverified. Format validation alone never authorizes an upload.
 
-[**Download the new TIFF**](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif) · [Single-TIFF ZIP](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip) · [**Nine-site executive summary & submission guide**](docs/executive-summary.html) · [Run card](docs/run-card-S18-UNIQUE.json)
+[**Nine-site executive summary and future-submission guide**](docs/executive-summary.html) · [Current review](docs/review-20261027/review.md) · [Current JSON card](docs/review-20261027/run-card.json) · [Evidence & reproducible checks](docs/review-20261027/witness-audit.json) · [Live official leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
 
-- **New generated predictions, not a copied raster. Strict protocol uniqueness: PASS.** Final dots overlap 21.44% within 3 px of registry rasters (≤70% required); surface |Spearman| ρ=0.0098 (≤0.90 required). Not a duplicate of any GEMSDOE24/25/27/28/30/31/32/33/36 leader.
-- **Holdout-DTI: 0.000624**, 95% CI **[0.000536, 0.000716]**, evaluator `gems91-hide-recover-v1.1-nohalo`, **60,988 withheld positive pixels**. Near-zero by design: dots are deliberately off-catalogue to hunt new faults, not recover known ones. Did not beat incumbent 0.066223 → no slot spent.
-- **Leakage canary: PASS.** Seven features × four folds; max symmetric AUC 0.5615 ≤ 0.90 (worst: det_elev_slope).
-- Local TIFF/ZIP validation: one float32 band, all finite [0,1], no NaN/Inf, matching CRS/shape/transform. Zero mass on catalogue pixels. SHA-256 new in ledger. **Local format PASS is not organizer acceptance or permission to upload.**
-- Exact historical leader files from **GEMSDOE24/25/27/28/30/31/32/33/36** re-hashed and compared. **GEMSDOE32 leads the supplied claims (0.2778, unverified); none of those nine leaders meets the peer-overlap uniqueness rule.** No receipt-linked score or calibrated leaderboard estimate is available.
-- Unique file name: `gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405`. Note (96/140): `S18-UNIQUE basin-stripped Bouguer curvature x RTP grad 20000 dots playa-gated 2.25px collar`.
-- TIFF SHA256: `af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6`.
+| Gate or evidence | Current finding |
+|---|---|
+| S18 TIFF | The 2026-10-25 and 2026-10-26 files have identical SHA-256 `af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6`. **99.605%** of the 20,000 dots lie within 3 pixels of one pinned registry lattice: **DUPLICATE STOP**. The earlier 21.44% covered two references, not the full rule. [Research download only](docs/s18-unique-executive-summary.html). |
+| Prior S22 OMTJ / GEMSDOE36 KPL | Their exact TIFFs overlap that same witness **98.565889% / 99.168747%**, respectively. Both are **DUPLICATE STOP**; KPL's scientific holdout was not independently replayed. |
+| 37,654-dot capacity | Only 6,649 footprint pixels are more than 3 pixels from the witness. At least **82.341849%** of 37,654 dots must overlap it, so the strict 70% gate is mathematically impossible at that budget. This is a bound, not a geological score or permission to game the budget. |
+| Nine historical reference files | GEMSDOE32's **0.2778 is USER-REPORTED, UNVERIFIED**, not an organizer-confirmed receipt. Every one of the nine inherited reference files fails >70% directed overlap against another of the eight. Some user labels differ from inherited filenames; their score-to-file aliases are unverified. No calibrated live-score estimate exists for a project file. |
+| Official board | Public rank 1 observed **0.4544 on 2026-10-27**; this is a dated leaderboard observation, not a receipt for our TIFF. The linked board, not this number, is live. |
 
 ## Start every session here
 
-Read this status, the [preserved standing user prompt](#full-project-brief), [four preregistered hypotheses](docs/s22/preregistration.md), [official-source scientific review](docs/s22/research-and-limitations.md), and [next steps](LIMITATIONS_AND_NEXT_STEPS.md). The standing brief below retains the original requirements and supplied score claims; this header is the active outcome. Earlier session banners below are **historical**, not competing current recommendations.
+Read this current status, the [standing prompt](#full-project-brief), [conditional research hypotheses](docs/review-20261027/hypotheses.md), and [review/limitations](docs/review-20261027/review.md) before making changes. The material under “Historical sessions” is an archive: superseded assertions, projected values, dense-raster exemptions, and past `PASS` claims are **not** current verdicts. In particular the literal rule has no blanket-raster exception.
 
-**Maximize P(Win):** reject unsupported score forecasts and do not spend a slot on a negative or duplicate candidate. **Own the Outcome:** restore data, inspect bytes automatically, report failures and keep the portal consistent with its machine-readable evidence.
+**Maximize P(Win):** do not spend a scarce slot on an unverified, underperforming, or duplicate candidate. **Own the Outcome:** use hash-pinned evidence, preserve negative results, fix shared infrastructure once, and report blockers rather than fabricate success.
 
-### Operative request preserved for this session
+### Standing request and latest supplied updates
 
-The current user request reiterates the nine-site focus, unique TIFF mandate, high-scoring automated gates, no copying, no human visual inspection, three-to-five new geological hypotheses before implementation, whole-segment buffered hide-and-recover, pooled DTI (alpha .2/beta .8/300 m), per-feature leakage canaries, pre-placement and final registry checks (rho > .90 or >70% overlap within 3 px means stop), three experiments/two hours maximum, one JSON run card, three review passes, official-source research, clear download/name/note/estimated-score table, and a PR merged to main. **A projection is never a score; selecting a real submission slot is separate.** This supplements the preserved long prompt rather than claiming literal byte identity to all its repeated paragraphs.
+The user asks for the nine-site forensic review, a genuinely new unique competition-ready TIFF and ≤140-character note, automatic format and novelty validation, 3–5 ranked official-source geological hypotheses, buffered whole-fault-segment hide-and-recover with visible-only features, pooled DTI α=.2/β=.8/300 m, independent per-feature leakage canaries, and the strict surface (`rho > .90`) and final-dot (`>70%` within 3 pixels) registry gates with **no exceptions**. The assigned single-method lane must be honored; re-use the cached feature stack, shared evaluator, and writer. Label numerical results as HOLDOUT-DTI (evaluator, positives, CI), ORGANIZER-CONFIRMED receipts, or explicit unverified claims/projections. Stop duplicates, run at most three experiments or two hours, use one JSON card, review implementation three times, and let a separate selector decide any live slot. The requested PR and merge are separate from scientific approval. The full preserved prompt and earlier context remain below.
 
-Current-session supplied updates remain claims, not receipts: GEMSDOE24 GVC1 0.0859; GEMSDOE25 H66 0.0742; GEMSDOE27 H29 0.2190; GEMSDOE28 S18-MXTP 0.0217; GEMSDOE30 MSDB1 0.1462; GEMSDOE91 CWPC 0.1367 / LFTG 0.1823; S18-UNIQUE has no supplied result; GEMSDOE92 listricdip 0.0255. Their historical leader claims are preserved in the nine-site table and standing brief.
+Additional user-supplied values in the latest request are claims, not receipts: GEMSDOE36 **0.2250**, GEMSDOE91 **0.1647**, GEMSDOE32 historical **0.2778**, and a historical public-rank-1 snapshot **0.4413**. Other reported updates include GEMSDOE24 GVC1 0.0859; GEMSDOE25 H66 0.0742; GEMSDOE27 H29 0.2190; GEMSDOE28 S18-MXTP 0.0217; GEMSDOE30 MSDB1 0.1462; GEMSDOE91 CWPC 0.1367 / LFTG 0.1823; S18-UNIQUE had no supplied result; GEMSDOE92 listricdip 0.0255. None is treated as an authenticated organizer receipt without a matching submission ID and file hash.
 
-### Verify without rerunning the stopped experiment
+### Reproduce the audit without fitting a model
 
 ```bash
-python -m pip install -r requirements.txt
-python scripts/restore_data.py --only sample_submission,existing_faults
-python generate_submission.py --with-data
-python scripts/verify_s22.py --with-data
-python scripts/check_artifact_policy.py
-python scripts/render_portal.py
-python -m pytest -ra
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+.venv/bin/python scripts/restore_data.py --only sample_submission,existing_faults,parent_r0_zeros,anc_d2_8,anc_solo_d2_8
+.venv/bin/python scripts/restore_registry.py --available-only
+.venv/bin/python scripts/audit_registry_witness.py --output work/witness-audit.json
+.venv/bin/python scripts/check_artifact_policy.py
+.venv/bin/python scripts/verify_s22.py --with-data
+.venv/bin/python scripts/render_portal.py
+.venv/bin/python -m pytest -ra
 ```
 
-The raw cached stack and registry can be restored for research using the instructions in [the review](docs/s22/review.md). No GPU was needed for this experiment. Authenticated score receipts, organizer-origin input authentication, full registry clearance, current remaining weekly quota and a genuinely improved candidate are still missing. Official page text can be researched with page-reading tools, while shell bulk downloads remain host-restricted.
+These steps need network access to the hash-pinned owner mirrors, not credentials in chat. The optional KPL audit additionally needs the separately pinned GEMSDOE36 blob; see the review. Byte identity to a mirror is not proof of organizer-origin provenance or data rights. The restored sample mirror's positive support equals the catalogue even though the official page describes an all-absence sample. Exact official bytes, complete registry, authenticated receipts, current quota, a valid single-method assignment, a comparable incumbent rerun and an independently improved unique candidate remain unavailable or unverified.
+
+<details>
+<summary>Historical sessions and preserved full project brief — not the current submission verdict</summary>
+
+> Historical assertions below are preserved for context. The strict all-registry gate has no dense-reference exception; use the 2026-10-27 correction above for current status.
 
 <!--S22-README-BEGIN-->
-# GEMSDOE91 — Parallel Session 22 lane (`S22-XB`, branch `arena/c722cd53-gemsdoe91`): official-source re-baselining, why 0.2778, and a unique PDWC×HGBR cross-breed
+# GEMSDOE91 — Historical Parallel Session 22 lane (`S22-XB`, branch `arena/c722cd53-gemsdoe91`)
 
+> **HISTORICAL, RESEARCH ONLY — NOT PROTOCOL-UNIQUE:** the earlier analysis excluded dense lattice references when claiming uniqueness. The literal all-registry gate has no such exception; do not submit. The numbers below are historical assertions, not validated current leaderboard estimates.
+>
 > **AUTOMATED VERDICT: `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: NO — NOT OK TO SUBMIT` (failed gates: `G4_holdout_paired`, `G5_live_anchored_projection`)** (0 weekly slots spent by the project).
 > **[⬇ Download S22-XB GeoTIFF (.tif)](docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif)** (`sha256: 663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b`, `37,654` binary `{0.0, 1.0}` dots, all-finite zeros `float32`, EPSG:32611, 3730×3292) · **[⬇ single-TIFF ZIP](docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.zip)** · **[9-site executive summary & how to submit](docs/s22-xbreed-executive-summary.html)** · [run card](docs/run-card-S22-XB.json) · [preregistration + amendments](docs/HYPOTHESES_S22_XBREED.md) · [why 0.2778](docs/R0_ANALYSIS_S22.md) · [official sources](docs/OFFICIAL_SOURCES_VERIFIED_S22.md)
 >
 > - **Unique submission name:** `gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros` · **DrivenData note (`108/140` chars):** `S22-XB arm C PDWC66+HGBR16 OOF+capped CELF 37654d; hide-v2 HOLDOUT-DTI=0.1735; LFI projection only; research`
 > - **Estimated score = PROJECTION, not a score:** `0.178` ± `0.020` (live-anchored model, ridge 10, leave-one-site-out RMSE); the same model gives `0.273` for GEMSDOE32 R0 whose **USER-REPORTED** live score is `0.2778`. `HOLDOUT-DTI` (hide-v2, shipped recipe) `0.1735` `[0.1550, 0.1921]` on `60,988` withheld positives measures *catalogue recovery*, not live skill.
-> - **Unique:** max 3-px dot overlap `62.88%` ≤ 70% vs `953` competitive rasters (`1099` compared, 102 sibling repos), max |surface ρ| `0.363`; the literal all-raster figure `100%` is against dense synthetic blankets (IR-S16-03).
+> - **Partial competitive-subset check only (not the literal uniqueness gate):** max 3-px dot overlap `62.88%` ≤ 70% vs `953` competitive rasters (`1099` compared, 102 sibling repos), max |surface ρ| `0.363`; the literal all-raster figure `100%` is against dense synthetic blankets (IR-S16-03).
 > - **Nine sites (live-audited, USER-REPORTED scores):** best is **GEMSDOE32 `0.2778`**, but **none of the nine best files is unique** (≥ `97.7%` of every file's dots lie within 3 px of another site's best file). The table gives each site's file, the pixel-identical all-finite twin for NaN-encoded ones, format check and relationship.
 > - **Why 0.2778 (bytes + official rules):** R0 = the 0.2600 raster minus 6,436 dots within 2 px of the catalogue and nothing else; one number T ≈ `5,073` predicts R0 (`0.2784` vs 0.2778) and the +1,200-dot GEMSDOE36 file (`0.2742` vs 0.2750). Known-fault pixels are masked and a "new fault" is any pixel not in the catalogue (DrivenData staff, forum 11516/11536).
 > - **Instrument validity (112 anchors):** Spearman vs live score — hide-v2 `+0.105` `[-0.09, +0.29]` (not a live proxy), blind SGMC >500 m `+0.442` `[+0.26, +0.60]` (moderate), LFI LOSO `+0.957`.
@@ -57,9 +65,6 @@ The raw cached stack and registry can be restored for research using the instruc
 <!--S22-README-END-->
 
 ---
-
-<details>
-<summary>Historical sessions and preserved full project brief — not the current submission verdict</summary>
 
 ### Concurrent historical 5cd5e4f7 review (not the active S22 outcome)
 

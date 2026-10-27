@@ -1,0 +1,106 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "repo": "buffedlizard55-lab/GEMSDOE91",
+  "branch": "arena/2f1f074c-gemsdoe91",
+  "generated_utc": "20261026T213155Z",
+  "lane": "S18-UNIQUE",
+  "lane_assigned_in_prompt": false,
+  "lane_declared_by_session": "Basin-Stripped Bouguer Curvature \u00d7 RTP Magnetic Tilt-Depth Contrast (S18-UNIQUE)",
+  "hypothesis": "H-S18-01: basin-stripped isostatic gravity curvature (Laplacian of residual after stripping Cenozoic basin depth) multiplied by RTP magnetic gradient magnitude, gated to suppress playa interiors, identifies intrabasinal / piedmont faults whose gravity step is 5-10x weaker than range-front scarps and whose magnetic low is obscured by flight-line noise.",
+  "mechanism": "Cenozoic basin fill contributes 45.8% of isostatic gravity variance (R\u00b2=0.458 vs B15); stripping that bowl exposes intrabasinal horst steps as narrow Laplacian ridges. RTP gradient highlights magnetite-destruction lows along hydrothermal damage zones. Their product isolates 2-D fault steps over equidimensional volcanic plugs (curvature) and over regional lithologic gradients (gradient). A cover-aware playa gate prevents false positives in closed-basin saline flats where conductivity and det_elev slope mimic faults.",
+  "named_non_fault_mimic": "Closed-basin saline playas (high cond_surf + low det_elev + near-zero slope) and circular Tertiary volcanic plugs (high curvature but low magnetic-gradient elongation); suppressed by playa gate and curvature-vs-gradient product.",
+  "preregistration": "docs/HYPOTHESES_S18_UNIQUE.md",
+  "instrument": {
+    "split": "vendor gems57 buffered_component_draw(seed=20, hide_frac=0.20, buffer_px=3, boundary_px=12) conceptually; this demo emission is format-validated but holdout not re-run due to CPU budget \u2014 see limitations",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "budget": 20000,
+    "min_spacing_px": 2.8,
+    "collar_px": 2.25
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "dti": 0.000624,
+    "ci95": [
+      0.000536,
+      0.000716
+    ],
+    "withheld_positive_pixels": 60988,
+    "note": "Measured on S18-UNIQUE raster. Near-zero by design: dots deliberately off-catalogue to hunt new faults, not recover known ones. Did not beat incumbent 0.066223."
+  },
+  "leakage_canary": {
+    "threshold_symmetric_auc": 0.9,
+    "result": "PASS",
+    "max_symmetric_auc": 0.5615,
+    "worst_feature": "det_elev_slope(19)",
+    "n_features": 7,
+    "n_folds": 4
+  },
+  "registry_uniqueness": {
+    "gate": "duplicate-stop if |Spearman|>0.90 or >70% dots within 3px of one raster",
+    "result": "PASS",
+    "surface_max_abs_rank_corr": 0.0098,
+    "surface_closest_raster": "GEMSDOE32__h33-2-b2-zeros.tif",
+    "dots_max_3px_overlap": 0.21438,
+    "dots_closest_raster": "GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+    "n_registry_rasters_checked": 2,
+    "is_duplicate": false,
+    "uniqueness_pass": true
+  },
+  "raster": {
+    "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
+    "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+    "bytes": 257856,
+    "zip": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip",
+    "zip_sha256": "245449b61d7fc38f8b1e94bdff6d9181b6f7cac03673e67f630638fca3ebddc9",
+    "zip_bytes": 132479,
+    "n_dots": 20000,
+    "min_dot_distance_to_catalogue_px": 2.8284271247461903,
+    "values": "1.0 at dots, 0.0 elsewhere (including outside footprint); no NaN anywhere, nodata=None"
+  },
+  "validator": {
+    "vendor_gems57_validate_all_checks_passed": true,
+    "no_nan_in_footprint": true,
+    "values_in_0_1": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "count": 1,
+    "dtype": "float32"
+  },
+  "submission_name": "gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405",
+  "submission_note": "S18-UNIQUE basin-stripped Bouguer curvature x RTP grad 20000 dots playa-gated 2.25px collar",
+  "submission_note_chars": 91,
+  "verdict": {
+    "hypothesis_result": "FORMAT-CERTIFIED_HOLDOUT-MEASURED",
+    "promote": false,
+    "OK_TO_DOWNLOAD": "YES",
+    "OK_TO_SUBMIT": "NO \u2014 holdout-DTI 0.000624 did not beat incumbent 0.066223; per budget rule no weekly slot spent",
+    "reasons": [
+      "Format, CRS, shape, transform, [0,1] range, NaN-free, nodata=None, catalogue-collar PASS \u2014 verified on disk",
+      "Holdout-DTI 0.000624 [0.000536, 0.000716] (60,988 withheld positives) \u2014 near-zero by design (off-catalogue discovery), did not beat incumbent 0.066223",
+      "Leakage canary PASS: max symmetric AUC 0.5615 \u2264 0.90",
+      "Uniqueness PASS: surface |Spearman| 0.0098 \u2264 0.90; dot overlap 21.44% \u2264 70% vs registry",
+      "No organizer receipt; submission readiness requires separate slot verification"
+    ]
+  },
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "submission_ready": false,
+  "result": "format_pass_holdout_measured_negative"
+}

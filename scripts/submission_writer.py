@@ -6,15 +6,13 @@ the repository's shared `src/gems91/io.py`, `src/gems91/gates.py`,
 `src/gems91/release_gates.py`, and `scripts/validate_raster.py` — no private
 fork of the format rules.
 
-Prevents the DrivenData portal error `"Predicted values must be in range [0, 1]"`
-against BOTH measured failure mechanisms:
-  1. Sentinel bleed (`-3.4028234663852886e+38` inside footprint from
-     `training_features.tif`): scrubbed before emission and asserted absent.
-  2. Non-finite / nodata tag rejection: writes an all-finite `-zeros.tif` twin
-     (`nodata=None`, 0 NaNs across all 12,279,160 cells, values strictly in
-     `[0.0, 1.0]`) alongside the `NaN`-outside `.tif` twin, plus a single-member
-     `.zip` archive and a WebCrypto SHA-256 verified `.b64.js` bundle for
-     one-click GitHub Pages download without tracking raw `.tif` files in git.
+Rejects non-finite or out-of-range predictions inside the template footprint,
+including extreme nodata sentinel values, before writing. Produces a NaN-outside
+TIFF and an all-finite zero-outside twin, plus a single-member ZIP and browser
+bundle, and re-reads the outputs against local validators. These checks address
+common causes of `[0, 1]` errors but do not establish organizer acceptance:
+the official outside-bounds convention and the exact cause of a past rejection
+remain unverified, and neither encoding is permission to spend a submission slot.
 """
 
 from __future__ import annotations
@@ -75,24 +73,42 @@ def write_validated_submission_bundle(
     releases_p.mkdir(parents=True, exist_ok=True)
 
     with rasterio.open(template_p) as tpl:
+        if tpl.count != 1 or tpl.crs is None:
+            raise ValueError('template must be a single band with a declared CRS')
+        template_grid = (tpl.shape, tpl.crs, tpl.transform)
         tpl_arr = tpl.read(1)
-        footprint = np.isfinite(tpl_arr)
+        valid_mask = tpl.read_masks(1) > 0
+        # Several shared validators infer the footprint from finiteness. Refuse
+        # a finite nodata sentinel rather than letting their masks disagree.
+        if np.any(np.isfinite(tpl_arr) & ~valid_mask):
+            raise ValueError('template has finite nodata cells; footprint is ambiguous')
+        footprint = np.isfinite(tpl_arr) & valid_mask
     with rasterio.open(catalogue_p) as cat_src:
-        cat_mask = (cat_src.read(1) > 0) & footprint
+        if cat_src.count != 1 or (cat_src.shape, cat_src.crs, cat_src.transform) != template_grid:
+            raise ValueError('catalogue CRS, shape, transform, or band count differs from template')
+        cat = cat_src.read(1)
+        if not np.isin(cat[footprint], [0, 1]).all():
+            raise ValueError('catalogue must be a finite binary mask inside the footprint')
+        cat_mask = (cat > 0) & footprint
 
     arr = np.asarray(dot_or_prob_grid, dtype=np.float32)
     if arr.shape != footprint.shape:
         raise ValueError(f"grid shape {arr.shape} != template {footprint.shape}")
 
-    # Scrub non-finite / out-of-range values inside footprint fail-closed
-    inside_clean = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
-    if float(inside_clean[footprint].min()) < 0.0 or float(inside_clean[footprint].max()) > 1.0:
+    # Invalid model output inside the footprint must never be silently repaired:
+    # that would hide a model/data failure behind an apparently valid TIFF.
+    # Outside-footprint values may be NaN and are deliberately set to zero.
+    if not footprint.any():
+        raise ValueError("template has an empty finite footprint")
+    if not np.isfinite(arr[footprint]).all():
+        raise ValueError("non-finite prediction inside footprint; refusing silent repair")
+    if float(arr[footprint].min()) < 0.0 or float(arr[footprint].max()) > 1.0:
         raise ValueError(
-            f"pre-write range violation: [{inside_clean[footprint].min()}, {inside_clean[footprint].max()}]"
+            f"pre-write range violation: [{arr[footprint].min()}, {arr[footprint].max()}]"
         )
+    inside_clean = np.where(footprint, arr, np.float32(0.0)).astype(np.float32)
 
     # Zero outside footprint and zero known catalogue pixels pixel-exactly
-    inside_clean[~footprint] = np.float32(0.0)
     inside_clean[cat_mask] = np.float32(0.0)
 
     nan_grid = np.where(footprint, inside_clean, np.float32(np.nan)).astype(np.float32)

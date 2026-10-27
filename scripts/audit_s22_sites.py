@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Re-hash nine exact historical leaders; user score claims are not receipts."""
+"""Re-hash nine inherited reference files; score-to-file mappings are unverified."""
 from concurrent.futures import ThreadPoolExecutor
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -23,10 +24,12 @@ def api(path, raw=False):
     return b if raw else json.loads(b)
 
 
-def run():
-    out = ROOT / 'docs/s22'; out.mkdir(exist_ok=True)
+def run(output=None):
+    out = Path(output) if output is not None else ROOT / 'docs/s22/nine-site-audit.json'
+    out.parent.mkdir(parents=True, exist_ok=True)
     prior = json.loads((ROOT / 'docs/s20_rhtw/nine_sites_forensic_matrix.json').read_text())['forensic_rasters']
-    # IDs from the inherited blob audit; all name the prompt's actual leaders.
+    # IDs and score/file associations come from the inherited forensic matrix.
+    # User labels differ from some filenames; no organizer receipt proves aliases.
     selected = [prior[i] for i in [0, 3, 6, 9, 18, 21, 23, 25, 27]]
     def fetch(r):
         repo = 'buffedlizard55-lab/' + r['repo']
@@ -43,7 +46,7 @@ def run():
             blob_api_url=f'https://api.github.com/repos/{repo}/git/blobs/{r["git_blob"]}',
             artifact_git_blob=r['git_blob'], sha256=digest, bytes=len(data),
             current_main_head=head['sha'], latest_commit_utc=head['commit']['committer']['date'],
-            claimed_historical_value=r['user_reported_score'], claim_source='user prompt; NOT ORGANIZER-CONFIRMED',
+            claimed_historical_value=r['user_reported_score'], claim_source='Inherited forensic matrix and user claims; score-to-file mapping is NOT ORGANIZER-CONFIRMED',
             organizer_confirmed_score=None, estimated_leaderboard_score=None,
             ok_to_submit=False)
     with ThreadPoolExecutor(max_workers=3) as pool:
@@ -80,13 +83,16 @@ def run():
         r['source_url'] = f'https://github.com/buffedlizard55-lab/{r["site"]}/blob/{r["current_main_head"]}/{r["original_path"]}'
         r['source_link_note'] = 'Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256.'
     result = dict(as_of_utc=datetime.now(timezone.utc).isoformat(), sites=rows,
-        scope='Exact nine prompt-named historical leaders only; new candidates/private uploads not exhaustively audited',
+        scope='Nine exact inherited historical reference files only; score-to-file mappings and latest candidates are not independently verified',
+        identity_mapping_caveat='Several user labels differ from inherited filenames. No organizer receipt proves that a stated score belongs to the measured bytes.',
         estimated_leaderboard_score=None, organizer_confirmed_scores=0,
         claim_ranking_best_site=max(rows, key=lambda r: r['claimed_historical_value'])['site'],
         ranking_note='Ranking user claims only, not verified organizer results')
-    (out / 'nine-site-audit.json').write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
-    print('Nine immutable blobs hashed; pairwise supports audited; no score receipts available.')
+    out.write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
+    print(f'Nine immutable blobs hashed; pairwise supports audited; no score receipts available. Output: {out}')
 
 
 if __name__ == '__main__':
-    run()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=Path, help='Write a new audit snapshot without replacing the historical one')
+    run(parser.parse_args().output)

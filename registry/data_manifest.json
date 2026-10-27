@@ -10,14 +10,15 @@
       "bytes": 1599597,
       "public_mirror": null,
       "role": "format gate reference: CRS, shape, transform, dtype, band count, footprint",
-      "provenance": "competition-provided",
+      "provenance": "Owner-mirror bytes match recorded SHA256 and length; organizer origin and rights not independently authenticated.",
       "verified_here": true,
       "local_present": true,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
         "path": "data/official/sample_submission.tif"
-      }
+      },
+      "verified_here_scope": "Pinned-byte identity only, not verified organizer-origin provenance."
     },
     {
       "id": "existing_faults",
@@ -26,14 +27,15 @@
       "bytes": 425830,
       "public_mirror": null,
       "role": "catalogue mask: zero-mass and >=3 px collar gates",
-      "provenance": "competition-provided",
+      "provenance": "Owner-mirror bytes match recorded SHA256 and length; organizer origin and rights not independently authenticated.",
       "verified_here": true,
       "local_present": true,
       "mirror": {
         "repo": "buffedlizard55-lab/60GEMSDOE",
         "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
         "path": "data/official/existing_faults.tif"
-      }
+      },
+      "verified_here_scope": "Pinned-byte identity only, not verified organizer-origin provenance."
     },
     {
       "id": "training_features",
@@ -42,7 +44,7 @@
       "bytes": 418912844,
       "public_mirror": "buffedlizard55-lab/GEMSDOE:data/bridge/gems-geodawn-numerical-features.tif.part-000..004",
       "role": "bands 3/5/6/12/18/19 etc: detrended-elevation terciles for RELIEF, block priors, edge fields for SNAP",
-      "provenance": "competition-provided (upstream 5-blob split mirror; see IR-91-17)",
+      "provenance": "Owner-mirror bytes match recorded SHA256 and length; organizer origin and rights not independently authenticated.",
       "verified_here": true,
       "local_present": true,
       "mirror": {
@@ -55,7 +57,8 @@
           "976977b4ac84c4c9b6fec72495c4e512341de872",
           "41a7bb7b7603c1e7669d8cc8405cfeb5efb5cf0c"
         ]
-      }
+      },
+      "verified_here_scope": "Pinned-byte identity only, not verified organizer-origin provenance."
     },
     {
       "id": "parent_r0_zeros",
@@ -304,5 +307,6 @@
       "training_features"
     ]
   },
-  "mass_ranking_note": "The parent's own MASS ranking is not recoverable: every pinned ancestor is binary ({0,1}) and training_features.tif (the only continuous-score input) is absent. MASS is therefore ranked by cross-field support over the three pinned lineage fields anc_h19_5, anc_h19_4, anc_h16_1 - the parent lineage's own data, not an external prior. See IR-91-17 and src/gems91/consensus.py."
+  "mass_ranking_note": "The parent's own MASS ranking is not recoverable: every pinned ancestor is binary ({0,1}) and training_features.tif (the only continuous-score input) is absent. MASS is therefore ranked by cross-field support over the three pinned lineage fields anc_h19_5, anc_h19_4, anc_h16_1 - the parent lineage's own data, not an external prior. See IR-91-17 and src/gems91/consensus.py.",
+  "provenance_correction_20261027": "Mirror SHA256 and byte-length checks establish identity to listed pins only, not organizer-origin authentication, access authorization or data rights. The pinned sample positive support equals the catalogue, inconsistent with the official all-absence sample description; treat the mirror as a provisional grid reference until independently verified."
 }

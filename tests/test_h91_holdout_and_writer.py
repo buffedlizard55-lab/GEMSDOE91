@@ -279,6 +279,70 @@ def test_submission_writer_enforces_range_0_1_collar_and_zip_sha(tmp_path: Path)
         )
 
 
+@pytest.mark.parametrize("bad", [np.nan, np.inf, -np.inf])
+def test_shared_writer_rejects_nonfinite_inside_footprint(tmp_path: Path, bad: float) -> None:
+    tpl_path, cat_path, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float32)
+    prediction[tuple(np.argwhere(footprint)[0])] = bad
+    output = tmp_path / "invalid-output"
+    with pytest.raises(ValueError, match="non-finite prediction inside footprint"):
+        SW.write_validated_submission_bundle(
+            prediction, stem_prefix="invalid", date_tag="20261027T000000Z",
+            template_path=tpl_path, catalogue_path=cat_path,
+            releases_dir=output, downloads_dir=None,
+        )
+    assert not list(output.glob("*.tif"))
+
+
+@pytest.mark.parametrize('problem', ['transform', 'crs', 'shape', 'bands', 'nonbinary'])
+def test_shared_writer_rejects_bad_catalogue_grid_before_writing(tmp_path: Path, problem: str) -> None:
+    tpl_path, cat_path, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    with rasterio.open(cat_path) as ds:
+        values = ds.read(1)
+        profile = ds.profile.copy()
+    if problem == 'transform':
+        profile['transform'] = profile['transform'] * rasterio.Affine.translation(1, 0)
+    elif problem == 'crs':
+        profile['crs'] = 'EPSG:4326'
+    elif problem == 'shape':
+        profile['width'] -= 1
+        values = values[:, :-1]
+    elif problem == 'bands':
+        profile['count'] = 2
+    elif problem == 'nonbinary':
+        values[tuple(np.argwhere(footprint)[0])] = 2
+    bad_catalogue = tmp_path / 'bad-catalogue.tif'
+    with rasterio.open(bad_catalogue, 'w', **profile) as ds:
+        ds.write(values, 1)
+        if problem == 'bands':
+            ds.write(values, 2)
+    output = tmp_path / 'invalid-grid-output'
+    with pytest.raises(ValueError, match='catalogue'):
+        SW.write_validated_submission_bundle(
+            np.zeros(footprint.shape, dtype=np.float32), stem_prefix='bad-grid',
+            date_tag='20261027', template_path=tpl_path, catalogue_path=bad_catalogue,
+            releases_dir=output, downloads_dir=None,
+        )
+    assert not list(output.glob('*.tif'))
+
+
+def test_shared_writer_rejects_ambiguous_finite_template_nodata(tmp_path: Path) -> None:
+    tpl_path, cat_path, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    with rasterio.open(tpl_path) as ds:
+        values, profile = ds.read(1), ds.profile.copy()
+    profile['nodata'] = -9999.0
+    values[0, 0] = -9999.0
+    bad_template = tmp_path / 'finite-nodata.tif'
+    with rasterio.open(bad_template, 'w', **profile) as ds:
+        ds.write(values, 1)
+    with pytest.raises(ValueError, match='finite nodata'):
+        SW.write_validated_submission_bundle(
+            np.zeros(footprint.shape, dtype=np.float32), stem_prefix='bad-template',
+            date_tag='20261027', template_path=bad_template, catalogue_path=cat_path,
+            releases_dir=tmp_path / 'invalid-template-output', downloads_dir=None,
+        )
+
+
 def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
     import base64
     import hashlib

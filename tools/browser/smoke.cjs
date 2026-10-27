@@ -31,9 +31,24 @@ async function main() {
       viewport: { width: 1440, height: 1000 },
     });
     const page = await context.newPage();
+    // Deterministic API fixtures: exercise success and rate-limit fallback
+    // without depending on public GitHub rate limits or showing fake scores.
+    let sourceFeedAvailable = true;
+    let sourceFeedRequests = 0;
+    await context.route('https://api.github.com/repos/buffedlizard55-lab/GEMSDOE*/commits/main', route => {
+      sourceFeedRequests += 1;
+      const headers = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
+      if (!sourceFeedAvailable) return route.fulfill({ status: 429, headers, body: '{}' });
+      return route.fulfill({ status: 200, headers, body: JSON.stringify({
+        sha: 'a'.repeat(40), commit: { committer: { date: '2026-10-27T00:00:00Z' } }
+      }) });
+    });
     page.on('pageerror', error => errors.push(String(error)));
     page.on('response', response => {
-      if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
+      // A rate-limited optional public activity feed must degrade safely.
+      if (response.status() >= 400 && !response.url().startsWith('https://api.github.com/repos/buffedlizard55-lab/')) {
+        errors.push(`${response.status()} ${response.url()}`);
+      }
     });
     if (process.env.PORTAL_ENTRY_URL) {
       await page.goto(process.env.PORTAL_ENTRY_URL, { waitUntil: 'networkidle' });
@@ -51,6 +66,36 @@ async function main() {
     if (!(await page.getByText(/NOT OK TO SUBMIT/).count())) {
       throw new Error('Submission warning is not visible');
     }
+    await page.waitForFunction(() => document.querySelector('#live-source-status')?.textContent.includes('Public repository activity refreshed'));
+    if (await page.locator('#live-source-feed [data-repository]').count() !== 9 ||
+        await page.locator('#live-source-feed .commit-status a').count() !== 9) {
+      throw new Error('Public source-activity success fixture was not rendered');
+    }
+    const beforeCachedReload = sourceFeedRequests;
+    const firstFetchTime = await page.evaluate(() => JSON.parse(sessionStorage.getItem('gems91-source-commits-v1')).rows.GEMSDOE24.fetchedAt);
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForFunction(() => document.querySelector('#live-source-status')?.textContent.includes('Public repository activity refreshed'));
+    const stillOriginalTime = await page.evaluate(() => JSON.parse(sessionStorage.getItem('gems91-source-commits-v1')).rows.GEMSDOE24.fetchedAt);
+    if (sourceFeedRequests !== beforeCachedReload || stillOriginalTime !== firstFetchTime) {
+      throw new Error('Source-feed navigation extended the freshness time or bypassed its cache');
+    }
+    await page.evaluate(() => {
+      const data = JSON.parse(sessionStorage.getItem('gems91-source-commits-v1'));
+      for (const row of Object.values(data.rows)) row.fetchedAt = Date.now() - 11 * 60 * 1000;
+      sessionStorage.setItem('gems91-source-commits-v1', JSON.stringify(data));
+    });
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForFunction(() => document.querySelector('#live-source-status')?.textContent.includes('Public repository activity refreshed'));
+    if (sourceFeedRequests !== beforeCachedReload + 9) throw new Error('Expired source feed was not refreshed');
+    sourceFeedAvailable = false;
+    await page.evaluate(() => sessionStorage.removeItem('gems91-source-commits-v1'));
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForFunction(() => document.querySelector('#live-source-status')?.textContent.includes('0 of 9'));
+    if (!(await page.getByText('Unavailable — open repository').count())) {
+      throw new Error('Rate-limited source feed did not disclose the unavailable fallback');
+    }
+    sourceFeedAvailable = true;
+    await page.evaluate(() => sessionStorage.removeItem('gems91-source-commits-v1'));
     // The historical DZ-EDGE file is still downloadable for research, but its
     // page must conspicuously prohibit submission and the downloaded bytes
     // must match the run card. This is a delivery check, not a scientific pass.
@@ -86,6 +131,18 @@ async function main() {
     const currentZip = await currentZipEvent;
     const currentZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await currentZip.path())).digest('hex');
     if (currentZipDigest !== current.zip_sha256) throw new Error('Current ZIP identity mismatch');
+    await page.goto(new URL('s18-unique-executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
+    if (!(await page.getByText(/99\.605%/).count()) || !(await page.getByText(/DUPLICATE STOP/).count())) {
+      throw new Error('S18 page does not disclose the literal duplicate stop');
+    }
+    const s18Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-S18-UNIQUE.json')));
+    if (s18Card.ok_to_submit !== false || s18Card.registry_uniqueness.is_duplicate !== true) {
+      throw new Error('S18 corrected card is not fail-closed');
+    }
+    const s18Event = page.waitForEvent('download');
+    await page.getByRole('link', { name: 'Download historical GeoTIFF ↓', exact: true }).click();
+    const s18Digest = crypto.createHash('sha256').update(fs.readFileSync(await (await s18Event).path())).digest('hex');
+    if (s18Digest !== s18Card.raster_sha256) throw new Error('S18 research download bytes do not match card');
     await page.goto(new URL('s17-cgrd.html', baseURL).href, { waitUntil: 'networkidle' });
     const cgrdDlEvent = page.waitForEvent('download');
     await page.getByRole('link', { name: '↓ Download S17-CGRD E2 TIFF (-zeros.tif)', exact: true }).click();

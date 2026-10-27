@@ -13,6 +13,7 @@ import numpy as np
 import rasterio
 from vendor.gems57 import evaluate_holdout as EH
 from vendor.gems57.validate import validate, assert_submittable
+from src.gems91.provenance import verify_recorded_source
 
 
 def load(path):
@@ -41,8 +42,7 @@ def verify(with_data=False):
         raise ValueError('Preregistration changed after measurement')
     provenance = load('docs/s22/source-integrity.json')
     for name, digest in provenance['implementation_sha256'].items():
-        if sha(ROOT / name) != digest:
-            raise ValueError('Measured implementation drift: ' + name)
+        verify_recorded_source(ROOT, name, digest)
     if h['implementation_sha256'] != EH.implementation_hashes():
         raise ValueError('Shared evaluator implementation drift')
     rows = h['per_fold']

@@ -34,14 +34,14 @@
     {
       "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif",
       "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
-      "status": "current_research_only",
-      "reason": "S18-UNIQUE demo: basin-stripped Bouguer curvature x RTP gradient, playa-gated, 20k dots, 2.8px spacing, 2.25px collar (actual 2.83px), format PASS, real-raster uniqueness PASS (22.6% vs R0 <70%), capacity-feasible 66.75% <70% vs synthetic lattice literal 99.6% (blanket), holdout pending GPU training, NOT OK TO SUBMIT pending selector."
+      "status": "parallel_quarantined",
+      "reason": "Historical S18 research only; byte-identical to 2026-10-26 TIFF and 99.605% overlap with the registered lattice. DO NOT SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip",
       "sha256": "386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S18-UNIQUE demo; format PASS, NOT OK TO SUBMIT pending holdout."
+      "status": "parallel_quarantined",
+      "reason": "Historical S18 research only; byte-identical to 2026-10-26 TIFF and 99.605% overlap with the registered lattice. DO NOT SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif",
@@ -668,6 +668,18 @@
       "sha256": "817df80a1abc7e4e59c529f087671ef9939394830b4df67a4bdc47a0a9c8c6ef",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif; S22-XB PDWC66+HGBR16 cross-breed, equalized per-quadrant capped 300 m CELF, 37,654-dot GeoTIFF; format PASS [0,1] all-finite; canary max 0.638; unique vs 953 competitive rasters (max 0.6288); hide-v2 HOLDOUT-DTI 0.173542 (paired C-A capped -0.010671); LFI projection MODEL 0.178; verdict=negative - NOT OK TO SUBMIT, failed G4_holdout_paired, G5_live_anchored_projection (docs/run-card-S22-XB.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
+      "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+      "status": "parallel_quarantined",
+      "reason": "Same S18 TIFF bytes as the 2026-10-25 artifact; literal lattice overlap 99.605%; research only; DO NOT SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip",
+      "sha256": "245449b61d7fc38f8b1e94bdff6d9181b6f7cac03673e67f630638fca3ebddc9",
+      "status": "parallel_quarantined",
+      "reason": "Same S18 TIFF bytes as the 2026-10-25 artifact; literal lattice overlap 99.605%; research only; DO NOT SUBMIT."
     }
   ]
 }

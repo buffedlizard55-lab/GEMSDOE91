@@ -141,8 +141,9 @@ def test_recorded_registry_feasibility_bound_and_score_evidence_are_honest():
 
 def test_scientific_provenance_remains_frozen_after_duplicate_stop():
     p = json.loads((ROOT / 'docs/s16/provenance.json').read_text())
+    from src.gems91.provenance import verify_recorded_source
     for name, digest in p['code_sha256'].items():
-        assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == digest
+        assert verify_recorded_source(ROOT, name, digest) in ('UNCHANGED', 'ARCHIVED_ORIGINAL_AND_PINNED_CORRECTION')
     card = json.loads((ROOT / 'docs/run-card-S16.json').read_text())
     assert card['verdict'] == 'negative' and card['experiments_run'] == 1
     assert card['registry_comparison']['final']['not_checked_after_stop'] > 0

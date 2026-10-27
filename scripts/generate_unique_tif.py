@@ -83,6 +83,19 @@ def laplacian_curvature(field, sigma=1.5):
     return np.abs(lap)
 
 def main():
+    # Retired unsafe legacy builder. The published 2026-10-26 output is byte
+    # identical to the previous day's TIFF and fails the literal lattice gate.
+    # It also uses the entire catalogue in eligibility and bypasses the shared
+    # fail-closed writer. Preserve the code for audit, but do not silently rerun
+    # it, overwrite the historical card, or create another mislabeled artifact.
+    raise RuntimeError(
+        "S18-UNIQUE builder quarantined: exact duplicate and registry STOP; "
+        "see docs/review-20261027/review.md"
+    )
+
+
+def _historical_builder_never_run():
+    """Historical implementation retained solely to audit the retired method."""
     print("Loading references...")
     with rasterio.open(SAMPLE) as ds:
         sample = ds.read(1)

@@ -200,8 +200,9 @@ def test_s17_verifier_provenance_and_portal_contract():
 
     prov = json.loads((ROOT / "docs/s17/provenance.json").read_text())
     assert hashlib.sha256((ROOT / prov["preregistration"]["path"]).read_bytes()).hexdigest() == prov["preregistration"]["sha256"]
+    from src.gems91.provenance import verify_recorded_source
     for rel, digest in prov["code_sha256"].items():
-        assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == digest, rel
+        assert verify_recorded_source(ROOT, rel, digest) in ('UNCHANGED', 'ARCHIVED_ORIGINAL_AND_PINNED_CORRECTION'), rel
 
     tif_rel = card["artifact"]["file"]
     zip_rel = card["artifact"]["zip"]
