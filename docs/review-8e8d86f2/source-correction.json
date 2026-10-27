@@ -1,0 +1,68 @@
+{
+  "schema": "gems91.source-correction.v1",
+  "corrected_source": "src/gems91/omtj22.py",
+  "current_sha256": "f1474b7566e13753e76c541a846c6872f0c208c60f0e95a41a696284dbaee638",
+  "historical_source_archive": "evidence/s22/omtj22-source-20261026.py.txt",
+  "historical_sha256": "8d3b5d089b61651e17ff196671d311cf2592e7c755d94a0bec5d738f8f4e8f2b",
+  "reason": "The 2026-10-26 implementation accepted finite float32 NoData sentinels inside the footprint; the current implementation rejects masked or extreme values before filtering. The historical experiment was not rerun.",
+  "historical_result_interpretation": "INVALID_AS_GEOLOGICAL_FEATURE_VALIDATION",
+  "geological_experiments_rerun": 0,
+  "legacy_s18_generator": {
+    "historical_source_archive": "evidence/s18/generate_unique_tif-original.py.txt",
+    "historical_sha256": "1241a3b5d7f44916e24e380c529dbd5998c93a90655921d7436833cacbc5af29",
+    "corrected_source": "scripts/generate_unique_tif.py",
+    "current_sha256": "8b8addaab567166999564756f5feab713cff9683bc53e8b9c24f7dc8d75551e4",
+    "reason": "Blocked unsafe legacy generator; its previously emitted raster is a literal duplicate, and its code does not enforce full novelty, holdout, or promotion gates."
+  },
+  "legacy_s18_page": {
+    "historical_archive": "evidence/s18/s18-unique-page-original.html.txt",
+    "historical_sha256": "358fce1a6d3b06289d7cdc434f34e4b4e29419c375aa86b7145044ff2255d7ae",
+    "reason": "Replaced outdated page with a duplicate-stop research notice.",
+    "current_path": "docs/s18-unique-executive-summary.html",
+    "current_sha256": "d59683d44eff3029df543010e85fdeccc044bb99db6e82cb9ea6a7a3868a2ea3"
+  },
+  "novelty_gate": {
+    "corrected_source": "src/gems91/novelty.py",
+    "current_sha256": "37ac43aae80f0d0ea29d92a8baebb031eabd831d85be00432f93135c430dc938",
+    "historical_source_archive": "evidence/s22/novelty-source-20261026.py.txt",
+    "historical_sha256": "1a3f8b4fd2e51bcde7139901999f80cf7ed62db3b84f9b25295ba9c65199f729",
+    "reason": "The historical gate accepted rho below -0.90 although the standing brief specifies absolute Spearman. The corrected shared comparator rejects |rho|>0.90. Frozen S22 receipts remain unchanged."
+  },
+  "concurrent_s23_runner": {
+    "historical_source_archive": "evidence/s23/run_s23_tilta-original.py.txt",
+    "historical_sha256": "e09b0c2f4c897ded9b275cd57e0d36ace3a5cd0358fbebf13f2c1e47a77fdbed",
+    "corrected_source": "scripts/run_s23_tilta.py",
+    "current_sha256": "e34030d59d352f0f6e6173e88292665b1e073b29643779c1552fb51751e10364",
+    "reason": "Blocked implicit reruns after a literal duplicate stop and a conflict in band semantics; old outputs are unchanged."
+  },
+  "concurrent_s23_feature_source": {
+    "historical_source_archive": "evidence/s23/tilta23-original.py.txt",
+    "historical_sha256": "04883d4cf710105ca7f0ba364f7a392ac3edb33fabd87c2fd2200c5b0c7a3b56",
+    "current_source": "src/gems91/tilta23.py",
+    "current_sha256": "04883d4cf710105ca7f0ba364f7a392ac3edb33fabd87c2fd2200c5b0c7a3b56",
+    "reason": "Unmodified historical feature implementation; interpretation is disputed."
+  },
+  "concurrent_s23_page": {
+    "historical_archive": "evidence/s23/executive-summary-original.html.txt",
+    "historical_sha256": "394b5bc261f943a23401b30cefc4bd3f435dbfecc1517fcb753ebd8d7b37f33b",
+    "current_path": "docs/s23/executive-summary.html",
+    "current_sha256": "6f0a89428a58f24ce4984940b2a5592436d65f699b5a142aabf2554d039423b0",
+    "reason": "Corrected historical claims; TIFF and frozen receipts not changed."
+  },
+  "concurrent_start_here_renderer": {
+    "historical_source_archive": "evidence/parallel-start-here/render_start_here-original.py.txt",
+    "historical_sha256": "1b70151ca813c65df5a46b26daceec8903a3d0a36a6a7183d6c90e634475552f",
+    "corrected_source": "scripts/render_start_here.py",
+    "current_sha256": "27e29deecee080f50bfa0e48e6f2524bd76fe8ab36004b3e6a16be795021ff7a",
+    "historical_page_archive": "evidence/parallel-start-here/index-original.html.txt",
+    "historical_page_sha256": "ef244f534328837a9ebc54374194e5c021178fab6fdd778f378d16730d49bcd5",
+    "reason": "Compatibility command delegates to the current fail-closed front door; original page and source archived."
+  },
+  "concurrent_nine_site_checker": {
+    "historical_source_archive": "evidence/parallel-start-here/verify_nine_site_leaders-original.py.txt",
+    "historical_sha256": "b7e43ee46e8a6426d04c6ec19a5269f8fab864e328d561ed2a295105e5c2e712",
+    "corrected_source": "scripts/verify_nine_site_leaders.py",
+    "current_sha256": "4a736825de0bebc67062729aa2911772088f0474aade8c117f6d2ae61a2c2a79",
+    "reason": "Use the shared gate's Euclidean 3-px distance; reject empty/nonbinary inputs and truncated trees, verify the Git blob, and never overwrite the frozen Chebyshev receipt by default."
+  }
+}

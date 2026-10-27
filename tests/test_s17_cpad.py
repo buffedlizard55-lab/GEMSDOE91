@@ -201,7 +201,8 @@ def test_s17_verifier_provenance_and_portal_contract():
     prov = json.loads((ROOT / "docs/s17/provenance.json").read_text())
     assert hashlib.sha256((ROOT / prov["preregistration"]["path"]).read_bytes()).hexdigest() == prov["preregistration"]["sha256"]
     for rel, digest in prov["code_sha256"].items():
-        assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == digest, rel
+        from scripts.source_integrity import verify_historical_source
+        verify_historical_source(ROOT, rel, digest)
 
     tif_rel = card["artifact"]["file"]
     zip_rel = card["artifact"]["zip"]

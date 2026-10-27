@@ -1,3 +1,11 @@
+## Current review — three passes (2026-10-27, arena/8e8d86f2)
+
+1. **Inputs, capacity and source provenance:** restored pinned community-mirror rasters and 62/64 frozen references; measured finite NoData in S22 bands 13/14, reproduced S18's 99.605% lattice duplicate, confirmed the 82.341849% lower bound, corrected the outside-footprint witness edge case and archived original code.
+2. **Scientific and source claims:** reviewed official metric, mask, data, leaderboard, rules and staff quota clarification; kept claims separate from authenticated receipts; ranked four untested hypotheses and corrected the absolute-Spearman duplicate gate. No geological experiment was run.
+3. **Implementation and delivery:** inspected changed files, updated the fail-closed generator, verifiers, source correction manifest, registry policy, current pages and documentation; ran the full Python suite, all byte/evidence verifiers and real-browser desktop/mobile/download/accessibility and partial-feed-failure checks. See the [pass record](docs/review-8e8d86f2/PASS_REVIEW.md) and run card for exact outcomes. No slot used.
+
+---
+
 ## S22 OMTJ — three passes (2026-10-26)
 
 1. **Implement/measure:** restored pinned data automatically; audited exact nine-site leaders; preregistered four hypotheses; ran one third-moment magnetic/gravity experiment using shared evaluator/writer. New numeric/grid-valid TIFF; literal duplicate stop; no further experiment or slot.

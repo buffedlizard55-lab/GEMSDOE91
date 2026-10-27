@@ -13,18 +13,18 @@ def test_active_review_and_readme_fail_closed():
     review = (DOCS / "REVIEW-ACTIVE-8F9CFF19-20261026.md").read_text(encoding="utf-8")
     card = json.loads((DOCS / "run-card-8f9cff19.json").read_text(encoding="utf-8"))
 
-    # The fixed session branch's current dated review supersedes older banners;
-    # older review evidence remains in the archive, not as current status.
-    assert readme.startswith("# GEMSDOE91 — current checkout status (2026-10-27)")
+    assert "<!--ACTIVE-8F9CFF19-BEGIN-->" in readme
+    assert readme.startswith("# GEMSDOE91 — Current review: blocked, research only")
+    assert "NO NEW TIFF" in readme and "NOT OK TO SUBMIT" in readme
     assert "#full-project-brief" in readme
     assert "NO NEW TIFF GENERATED" in readme
-    assert "REVIEW-ARENA-52711765-20261027.md" in readme
-    assert "0.2778 USER/OWNER-REPORTED, UNVERIFIED" in readme
+    assert "0.2778 USER/OWNER-REPORTED" in readme
+    assert "REVIEW-ACTIVE-8F9CFF19-20261026.md" in readme
+    assert "0.4437" in readme
     assert "portal pointer mismatch" in review.lower()
     submission_guide = (DOCS / "SUBMIT.md").read_text(encoding="utf-8")
     assert "This checkout has no new TIFF that is approved to submit" in submission_guide
     assert "How to submit only after explicit approval" in submission_guide
-    # The old branch card remains immutable historical evidence.
     assert card["branch"] == "arena/8f9cff19-gemsdoe91"
     assert card["verdict"] == "negative"
     assert card["experiments_run"] == 0
@@ -35,6 +35,10 @@ def test_active_review_and_readme_fail_closed():
     assert card["submission_name"] is None
     assert card["ok_to_download"] is False
     assert card["ok_to_submit"] is False
+    public_board = card["official_public_leaderboard_observation"]
+    assert public_board["score"] == 0.4437
+    assert public_board["rank"] == 1
+    assert "not an organizer submission receipt" in public_board["evidence_class"]
 
 
 def test_active_review_lists_three_proposals_and_source_links_without_a_score_claim():

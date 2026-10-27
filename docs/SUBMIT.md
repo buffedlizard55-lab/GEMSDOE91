@@ -1,3 +1,9 @@
+# Submission guidance — current review (2026-10-27)
+
+**NO NEW TIFF · OK TO SUBMIT: NO.** No model experiment or competition upload was performed. The historical S22 download is for research only and is scientifically compromised by input NoData; the historical S18 file is a measured duplicate. An all-finite local format pass is not organizer acceptance, and the official outside-bounds null/NaN wording remains unresolved. [Current review and future-only instructions](review-8e8d86f2/REVIEW.md) · [current portal](index.html).
+
+<details><summary>Earlier guides and receipts — historical, superseded where inconsistent</summary>
+
 # Current submission guide — S22 (2026-10-26)
 
 **OK TO DOWNLOAD: YES — new S22 research TIFF. OK TO SUBMIT: NO.**
@@ -115,5 +121,7 @@ USGS DS-1052): R0 0.095386 -> -0.00382 / -0.01356 / -0.01036. Band leakage canar
 
 **Do not** upload a strain arm ahead of the revised queue, and do not upload more than one:
 they are one experiment whose control already answered against it.
+
+</details>
 
 </details>

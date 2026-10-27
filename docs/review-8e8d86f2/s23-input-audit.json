@@ -1,0 +1,36 @@
+{
+  "schema": "gems91.feature-nodata-audit.v1",
+  "status": "FAIL_CLOSED",
+  "is_geological_experiment": false,
+  "features_path": "data/bridge/gems-geodawn-numerical-features.tif",
+  "features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "sample_path": "data/official/sample_submission.tif",
+  "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "nodata_tag_repr": "-3.4028234663852886e+38",
+  "grid_matches_sample": true,
+  "bands": [
+    {
+      "band": 6,
+      "description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+      "footprint_pixels": 5167373,
+      "masked_or_nonfinite_inside": 3073,
+      "finite_extreme_inside": 3073,
+      "usable_pixels": 5164300,
+      "usable_min": 2.9534237384796143,
+      "usable_max": 88.56654357910156,
+      "status": "FAIL_CLOSED"
+    },
+    {
+      "band": 18,
+      "description": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+      "footprint_pixels": 5167373,
+      "masked_or_nonfinite_inside": 3061,
+      "finite_extreme_inside": 3061,
+      "usable_pixels": 5164312,
+      "usable_min": -15.441243171691895,
+      "usable_max": 12.856057167053223,
+      "status": "FAIL_CLOSED"
+    }
+  ],
+  "limitation": "Metadata masks and extreme-value checks cannot detect every undocumented missing-value code or authenticate a mirror."
+}

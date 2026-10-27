@@ -52,7 +52,9 @@ class SurfaceProbe:
             rho = float(np.dot(self.centered, ry) / (self.norm * np.linalg.norm(ry)))
         # Roundoff may put an otherwise exact identity a few ulps outside [-1,1].
         rho = float(np.clip(rho, -1.0, 1.0))
-        return {'status': 'DUPLICATE' if rho > .90 else 'PASS', 'rank_correlation': rho}
+        # The standing brief specifies absolute Spearman, including a strongly
+        # anticorrelated surface. Keep the signed rho in the receipt.
+        return {'status': 'DUPLICATE' if abs(rho) > .90 else 'PASS', 'rank_correlation': rho}
 
 
 def surface_check(candidate, reference, footprint):

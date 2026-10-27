@@ -1,3 +1,20 @@
+> **Correction — 27 October 2026, later independent review:** this is a
+> concurrent historical run, not the new outcome of the current review. The
+> checked Band 06 embedded tilt description conflicts with a label-blind
+> comparison to a pinned radiometric mirror (`r = 0.996990` on every tenth
+> jointly valid pixel); Band 18 also behaves like a signed derivative. Source
+> provenance is not independently authenticated. The saved HOLDOUT-DTI cannot
+> establish the advertised magnetic-tilt mechanism, and the incumbent
+> comparison is not matched or paired; S22's input is contaminated. The S23
+> raster is a 99.895% lattice duplicate. Its interior NoData was filled, not
+> left as S22's sentinel contamination; the scientific validity of that fill
+> remains unproved. **NOT OK TO SUBMIT.** See the
+> [current review](../review-8e8d86f2/REVIEW.md),
+> [coverage](../review-8e8d86f2/s23-input-audit.json),
+> [semantics](../review-8e8d86f2/s23-band-semantics.json), and
+> [duplicate witness](../review-8e8d86f2/s23-witness.json). Frozen receipts
+> and preregistration below are historical, not revised evidence.
+
 # Three-pass review — S23 TILTA
 
 Branch: `arena/40c331a5-gemsdoe91`. Date: 2026-10-27.

@@ -47,13 +47,13 @@
       "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
       "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
       "status": "parallel_quarantined",
-      "reason": "S18-UNIQUE historical research artifact. Prior run records negative HOLDOUT-DTI and no submit approval; retained for audit only."
+      "reason": "S18-UNIQUE historical research artifact; 99.605% directed overlap with the pinned lattice is a duplicate-stop. NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip",
       "sha256": "245449b61d7fc38f8b1e94bdff6d9181b6f7cac03673e67f630638fca3ebddc9",
       "status": "parallel_quarantined",
-      "reason": "Single-TIFF ZIP of the S18-UNIQUE negative research artifact; retained for audit only and not approved for submission."
+      "reason": "S18-UNIQUE historical research artifact; 99.605% directed overlap with the pinned lattice is a duplicate-stop. NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif",
@@ -546,14 +546,14 @@
     {
       "path": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.tif",
       "sha256": "507fd12f1c533ff0a4cb0c92bfceb7eaf5bf1cfc29d832f06c0d5023dd852bee",
-      "status": "current_research_only",
-      "reason": "S23-TILTA tilt-angle x grav-HG concordance, 20k dots 3.05px collar/spacing, HOLDOUT-DTI 0.014803 [0.01113,0.01889] negative, competitive-unique ~19% PASS, literal 99.9% vs dense lattice FAIL disclosed, canary 0.613 PASS, format PASS, NOT OK TO SUBMIT."
+      "status": "parallel_quarantined",
+      "reason": "S23-TILTA historical research artifact; literal lattice duplicate-stop and disputed input semantics. NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.zip",
       "sha256": "94b4ddca76df670a7bf256952f2645218d08cb9b280871643de08fa933ab2db2",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S23-TILTA research artifact; HOLDOUT-DTI 0.014803 negative, NOT OK TO SUBMIT."
+      "status": "parallel_quarantined",
+      "reason": "S23-TILTA historical research artifact; literal lattice duplicate-stop and disputed input semantics. NOT OK TO SUBMIT."
     },
     {
       "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",

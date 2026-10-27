@@ -133,6 +133,8 @@
   "generated_utc": "2026-10-26T16:12:33.206462+00:00",
   "result": "negative",
   "submission_ready": false,
+  "scientific_validity": "COMPROMISED: finite NoData values in historical feature inputs",
+  "correction_evidence": "review-8e8d86f2/feature-audit.json",
   "canonical_evidence": "s22/run-card.json",
   "raster_path": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
   "raster": {

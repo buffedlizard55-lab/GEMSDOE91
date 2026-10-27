@@ -135,11 +135,14 @@ def test_latest_status_is_in_public_entry_points_and_render_source():
     root = (ROOT / "index.html").read_text(encoding="utf-8")
     site = (DOCS / "index.html").read_text(encoding="utf-8")
     renderer = (ROOT / "scripts/render_olc91_portal.py").read_text(encoding="utf-8")
-    for text in (root, site, renderer):
-        assert "2026-10-27" in text
-        assert "no new TIFF" in text or "NO new candidate" in text
-        assert "OK TO SUBMIT: NO" in text
-        assert "REVIEW-ARENA-52711765-20261027.md" in text
+    # Root redirects to the newer review, while the concurrent prior review
+    # remains linked as historical evidence rather than current status.
+    assert 'url=docs/index.html' in root
+    assert 'NO NEW TIFF' in root and 'OK TO SUBMIT: NO' in root
+    assert 'NO NEW TIFF' in site and 'OK TO SUBMIT: NO' in site
+    assert 'review-8e8d86f2/REVIEW.md' in site
+    assert 'REVIEW-ARENA-52711765-20261027.md' in site
+    assert 'render_review_8e8d86f2' in renderer
 
 
 def test_untried_candidate_rankings_include_confounds_and_data_access_limits():

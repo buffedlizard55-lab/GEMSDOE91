@@ -1,0 +1,47 @@
+{
+  "schema": "gems91.s23-band-semantics-audit.v1",
+  "generated_utc": "2026-10-27T17:50:55Z",
+  "is_geological_experiment": false,
+  "label_blind": true,
+  "input_sha256": {
+    "sample_submission_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "ext_geodawn_rad_u8_sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682"
+  },
+  "sample_grid_match": true,
+  "source_method": "scripts/verify_band06_and_units.py (OUT_JSON redirected for this audit; SHA256 and grid verified first)",
+  "band_06": {
+    "embedded_description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+    "embedded_tags": {
+      "band_name": "tc",
+      "data_category": "magnetic_data",
+      "data_type": "numeric",
+      "description": "Tilt angle or total curvature - magnetic field derivative for edge detection"
+    },
+    "valid_footprint_pixels": 5164300,
+    "min_value": 2.953424,
+    "median_value": 18.481701,
+    "max_value": 88.566544,
+    "radiometric_mirror_band_descriptions": [
+      "K",
+      "Th",
+      "U",
+      "TC"
+    ],
+    "paired_positive_pixels": 5164300,
+    "systematic_sample_stride": 10,
+    "sampled_pairs": 516430,
+    "pearson_r_vs_mirror_bands": {
+      "band_1_K": 0.881612,
+      "band_2_Th": 0.915248,
+      "band_3_U": 0.714774,
+      "band_4_TC": 0.99699
+    },
+    "interpretation": "Embedded magnetic-tilt metadata conflicts with r=0.996990 against the mirror band labelled TC. This strongly suggests a total-count radiometric channel, not proof of magnetic tilt; independent organizer-origin verification is still needed."
+  },
+  "band_18": {
+    "pearson_r_vs_x_gradient_band_13": 0.947178,
+    "interpretation": "The band has positive and negative values and correlates with a signed gravity x-derivative; treating it as an unsigned gradient magnitude is not established."
+  },
+  "limitations": "The diagnostic radiometric image is a hash-pinned community mirror, not independently authenticated organizer data; its redistribution licence was not checked and it is not shipped. Correlation, including spatially dependent samples, does not by itself prove physical identity or source provenance."
+}

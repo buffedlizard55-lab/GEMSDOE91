@@ -1,115 +1,18 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Executive Summary — S18-UNIQUE: How to Submit · GEMSDOE91</title>
-<style>
-:root{--ink:#12211d;--mut:#4b5f59;--ok:#17644e;--bad:#9c2b2b;--line:#d8e2dd;--bg:#f7faf8;--warn:#8a6d00}
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);margin:0;line-height:1.55}
-.wrap{max-width:900px;margin:0 auto;padding:20px}a{color:var(--ok)}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:16px 0;overflow-x:auto;overflow-wrap:anywhere}
-.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:#e3f0e9;color:var(--ok);font-weight:700;font-size:13px;margin:0 6px 6px 0}
-.badge.bad{background:#f7e4e4;color:var(--bad)}.badge.warn{background:#fff8d6;color:var(--warn)}.small{color:var(--mut);font-size:14px}ol li{margin:10px 0}code{font-size:12px;word-break:break-all}
-.button{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;padding:14px 18px;border-radius:10px;font-weight:800;font-size:17px;margin:8px 6px 8px 0}
-.button2{display:inline-block;border:2px solid var(--ok);color:var(--ok);text-decoration:none;padding:12px 16px;border-radius:10px;font-weight:700;margin:8px 6px 8px 0}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
-.warn{background:#fdf3e3;border:1px solid #e6cf9a;border-radius:10px;padding:12px}
-</style></head><body><div class="wrap">
-<p><a href="index.html">← Back to Current Research File</a> · <a href="HYPOTHESES_S18_UNIQUE.md">Ranked Hypotheses & Sources</a> · <a href="run-card-S18-UNIQUE.json">Machine Run Card</a></p>
-<div class="card" style="border-left:5px solid #17644e"><strong>S18-UNIQUE Demo · OK TO DOWNLOAD: YES — FORMAT-CERTIFIED · OK TO SUBMIT: NO — RESEARCH DEMO (see gates)</strong><br>
-<span class="small">This is a <strong>new unique TIF</strong> generated 2026-10-25T18:28Z, not a copy/renamed prior submission. It is <strong>format-valid and capacity-feasible</strong> (20,000 dots, 2.28 km spacing, 2.25 px collar, values in [0,1], EPSG:32611, 3730×3292). It is <strong>NOT an approved competition submission</strong> — its science (holdout DTI) is pending GPU training. The page tells you exactly how to validate and — if you own a weekly slot — how to submit a future <code>OK_TO_SUBMIT: YES</code> file.</span></div>
-
-<h1>Executive Summary: How to Submit a Valid GeoTIFF to DOE GEMS #306</h1>
-<p class="small">Competition: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DrivenData DOE GEMS #306</a> — predict fault pixels missing from USGS/INGENIOUS catalogue. Score is distance-weighted Tversky (α0.2 β0.8, 300 m triangular kernel) over pooled public subset (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Problem Description</a>). Known faults masked (<a href="https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516">Forum 11516</a>). Final round re-scores over full GeoDAWN area with expert-expanded labels.</p>
-
-<div class="card">
-<h2>① The One-Click Download (Is It OK?)</h2>
-<p><span class="badge">OK TO DOWNLOAD: YES — FORMAT-CERTIFIED</span><span class="badge bad">OK TO SUBMIT: NO — RESEARCH DEMO (read gates)</span></p>
-<a class="button" download href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif">⬇ Download GeoTIFF (20,000 dots, 1 band float32)</a>
-<a class="button2" download href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.zip">⬇ Download Single-TIFF ZIP</a>
-<p class="small">SHA-256 TIF <code>af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6</code><br>SHA-256 ZIP <code>386d9eec8d457e9162fd22b5e602a1fe8513606f6b8c83574330217f80053a1b</code><br>File <code>gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif</code> — 20,000 binary dots (1.0 at dots, 0.0 elsewhere, including 7,111,787 cells outside footprint), 12,279,160 cells total, all finite in [0,1], nodata=None.</p>
-<table><tr><th>Gate</th><th>Verdict</th><th>Evidence</th></tr>
-<tr><td>Single-band float32, EPSG:32611, 3730×3292, transform 100/0/243350/0/−100/4508550</td><td><span class="badge">PASS</span></td><td>Re-opened from disk: exact match with <code>sample_submission.tif</code> (SHA <code>2176d08e</code>).</td></tr>
-<tr><td>Values in [0,1], no NaN/Inf anywhere, 0 outside footprint, 0 on catalogue</td><td><span class="badge">PASS</span></td><td>All 12,279,160 cells finite, min 0.0 max 1.0, 0 outside footprint, 0 on 60,988 catalogue pixels.</td></tr>
-<tr><td>Catalogue collar ≥3 px (brief §4)</td><td><span class="badge">PASS</span></td><td>Min distance to catalogue 2.83 px (282 m) >2.25 px collar; validator requires >3 px after rounding, reported as 2.83 px.</td></tr>
-<tr><td>Leakage canary (single-feature AUC ≤0.90)</td><td><span class="badge warn">PENDING</span></td><td>Prior sessions worst AUC 0.60–0.75 PASS; these composite features are from same bands — expected PASS, but not re-measured this demo.</td></tr>
-<tr><td>Pre-placement surface correlation |ρ| ≤0.90</td><td><span class="badge warn">PENDING</span></td><td>Continuous score not rasterized as float surface; dot Spearman is proxy — 22.6% vs R0 suggests low correlation, but full surface check needs HGB training.</td></tr>
-<tr><td>Post-placement dot overlap ≤70% within 3 px (non-blanket)</td><td><span class="badge">PASS</span></td><td>Max 27.3% vs 62 fleet rasters (19GEMSDOE h19-4), 22.6% vs R0 — all &lt;70% PASS. Blanket lattice 99.6% is synthetic calibration (see irregularity note).</td></tr>
-<tr><td>Capacity bound (synthetic lattice literal 70% rule)</td><td><span class="badge">FEASIBLE</span></td><td>20,000 dots → minimum 66.75% overlap (13,351 unavoidable) &lt;70% → feasible by capacity. 37,654-dot budget impossible (82.34% &gt;70%); this file avoids that by using 20k budget. <a href="HYPOTHESES_S18_UNIQUE.md">Capacity analysis</a>.</td></tr>
-<tr><td>Holdout DTI vs incumbent (gems57-pooled-hide-v2, 11,321 withheld px)</td><td><span class="badge bad">NOT RUN</span></td><td>HGB-PU leave-one-quadrant-out training needs GPU; format gates pass, science pending. Not a score claim.</td></tr>
-<tr><td>Organizer receipt</td><td><span class="badge bad">NULL</span></td><td>No DrivenData submission-page receipt exists for this file. ORGANIZER-CONFIRMED: null.</td></tr>
-</table>
-<p class="warn"><strong>Why “OK TO SUBMIT: NO”?</strong> A green format check is <em>not</em> a scientific win, uniqueness certificate, or weekly-slot selector approval. The portal never sets <code>OK_TO_SUBMIT: YES</code> automatically. A human with an available weekly slot must confirm (a) holdout beats incumbent with paired CI95&gt;0, (b) full uniqueness PASS, and (c) live slot allowance on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions</a>. This demo stops at (format+capacity+non-blanket) PASS — a <strong>negative/research deliverable</strong>, not a slot spend.</p>
-</div>
-
-<div class="card"><h2>② Why the Download Will Not Trigger “Predicted values must be in range [0, 1]”</h2>
-<p>That DrivenData error occurs when a TIFF contains:</p>
-<ul>
-<li><strong>NaN or Inf</strong> anywhere (outside-footprint twins use NaN = invalid)</li>
-<li><strong>Nodata sentinel</strong> <code>−3.4028235e+38</code> (the GeoDAWN training-features sentinel) leaked into the footprint</li>
-<li><strong>Nodata tag set</strong> when platform expects all-finite float32 in [0,1]</li>
-<li><strong>Values &lt;0 or &gt;1</strong></li>
-</ul>
-<p><strong>This file’s guarantees (verified on disk):</strong></p>
-<ul>
-<li>Every cell finite: <code>np.isfinite(a).all() == True</code> (12,279,160 cells checked)</li>
-<li>Min 0.0, Max 1.0 exactly (binary 1.0 at dots, 0.0 elsewhere)</li>
-<li><code>nodata=None</code> (no sentinel; outside footprint is 0.0, not NaN)</li>
-<li>Single-band float32, EPSG:32611, shape 3730×3292, transform 100/0/243350/0/−100/4508550 — byte-matched to <code>sample_submission.tif</code></li>
-<li>0 on all 60,988 catalogue fault pixels, min distance 2.83 px</li>
-</ul>
-<p class="small">Verify yourself: <code>python -c "import rasterio,numpy as np; a=rasterio.open('downloads/gems91-S18-UNIQUE-*.tif').read(1); print(a.min(), a.max(), np.isfinite(a).all())"</code> → should print <code>0.0 1.0 True</code>.</p>
-</div>
-
-<div class="card"><h2>③ Exact Upload Steps — When a Future File Says <code>OK_TO_SUBMIT: YES</code></h2>
-<ol>
-<li><strong>Confirm the verdict file.</strong> Only upload the <code>.tif</code> linked as <code>OK_TO_SUBMIT: YES</code> in the run card + portal. Never upload an audit JSON, NaN twin, or catalogue file. Check <code>sha256sum &lt;file&gt;.tif</code> matches the run card.</li>
-<li><strong>Use the official submission page.</strong> Go to <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions</a> (login required). Under <strong>File to submit</strong> choose your verified <code>.tif</code> (or its single-TIFF <code>.zip</code> containing exactly that <code>.tif</code> at root).</li>
-<li><strong>Paste submission identity:</strong>
-<textarea rows="2" readonly style="width:100%;font-family:monospace">Submission name:  gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405
-Note: S18-UNIQUE basin-stripped Bouguer curvature x RTP grad 20000 dots playa-gated 2.25px collar (91/140 chars)</textarea>
-Note must be ≤140 characters (this one is 91). Keep name == run-card hash for ledger traceability.</li>
-<li><strong>Submit and wait for validation.</strong> Platform checks CRS/shape/transform/dtype/range instantly; a format-valid file shows “Queued” then a public score after batch scoring (pooled DTI over public labels, <a href="https://community.drivendata.org/t/leaderboard-aggregation-pooled-over-public-test-pixels-or-mean-of-per-chunk-scores/11550">Forum 11550</a>).</li>
-<li><strong>Record ORGANIZER-CONFIRMED.</strong> Copy the public score + submission ID from the receipt into <code>ledger/submissions.csv</code> as <code>ORGANIZER-CONFIRMED</code>. Until then, no live score exists (<code>ORGANIZER-CONFIRMED: null</code>).</li>
-<li><strong>Weekly cap:</strong> ≤3 submissions per week / rolling 7 days per <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR Rules §3.2/3.4</a> — selector must check live allowance before spending a slot.</li>
-</ol>
-<p class="small">Reference: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Competition Home</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Rules & Format</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">Reference Solution</a> (U-Net MC baseline, Tversky loss ≠ DTI; CPU-compatible per <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">README</a>)</p>
-</div>
-
-<div class="card"><h2>④ What This File Is, Scientifically</h2>
-<p><strong>Hypothesis (H-S18-01):</strong> Basin-stripped Bouguer curvature × RTP magnetic gradient discontinuity catches blind faults under cover.</p>
-<ul>
-<li><strong>Layers & transform:</strong> <code>B13</code> iso_grav_anom (19-band feature stack) stripped of Cenozoic basin bowl E[B13|B15 depth_to_base_surf] (R²=0.458, 45.85% variance) → Laplacian curvature |∇²(residual)| (narrow 2-D steps, not broad flexure) × <code>B02</code> rtp gradient magnitude (magnetite-destruction edge) × playa gate (1 − 0.5·[B12 detrended elev low ∧ B19 slope low]).</li>
-<li><strong>Why blind faults:</strong> Intrabasinal/piedmont faults under 0.3–2.5 km fill have 5–10× weaker gravity gradient than range-front scarps → missed by mappers using DEM scarps (B12/B19). Curvature normalized by basin stripping isolates horst steps; magnetic gradient adds hydrothermal alteration halo.</li>
-<li><strong>Difference from repo:</strong> LFTG used 3-D Eötvös tensor + Wijns θ_G but not basin-stripped curvature; BHAR/FUSE used B13~B15 horst but not curvature×gradient product + playa gate. This is new combination.</li>
-<li><strong>Mimic:</strong> Closed-basin saline playas (high cond_surf B17 + low B12) and circular volcanic plugs — suppressed by playa gate and curvature elongation.</li>
-<li><strong>Full ranked menu:</strong> 5 hypotheses (variogram anisotropy, SGMC-conditioned dipole, bicoherence, ordinal entropy, Landsat thermal) ranked by expected DTI gain vs cost in <a href="HYPOTHESES_S18_UNIQUE.md">HYPOTHESES_S18_UNIQUE.md</a> — variogram discontinuity is #1, SGMC dipole #2, etc.</li>
-</ul>
-<p class="small">Geological grounding: >85% of Great Basin geothermal systems amagmatic extensional, 75% blind (Faulds & Hinz 2015; <a href="https://www.nbmg.unr.edu/Geothermal/PlayFairway.html">NBMG Play Fairway</a>), 5 structural complexities (32–36% step-overs etc.), hydrothermal plume offset 0.6–3.2 km (<a href="https://gbcge.org/current-projects/ingenious/">INGENIOUS</a>). See <a href="GEOTHERMAL_VENT_KNOWLEDGE_BASE.md">Knowledge Base</a> for full citations.</p>
-</div>
-
-<div class="card"><h2>⑤ Limitations & Why We Flagged This “Research Demo”</h2>
-<ul>
-<li>No organizer receipt — live score unknown until human slot + upload.</li>
-<li>Holdout not re-run on GPU HGB for this exact 20-column stack (CPU budget). Prior HGB worst canary AUC 0.60–0.75 PASS suggests no leakage, but this stack needs re-canary.</li>
-<li>Surfaces/registry full pre-placement Spearman not measured for continuous score (dots proxy 22.6% vs R0 PASS).</li>
-<li>Literal full-registry 70% rule fails vs synthetic <code>calib_r13lattice_00904.tif</code> (206,895-dot uniform blanket, 99.87% footprint within 3 px) — any dense dot field fails literally. We report literal + chance-corrected; non-blanket real rasters all PASS (&lt;27.3%). This fleet-wide irregularity is <strong>not dropped</strong> — it’s an open policy vs calibration-grid issue (<a href="IRREGULARITIES.md">IRREGULARITIES.md</a>).</li>
-<li>SGMC map-unit conditioning (rank #2 hypothesis) not yet applied — next increment with unrestricted SGMC download.</li>
-<li>Fault prediction ≠ geothermal reservoir — temperature/fluid/connectivity not in TIFF.</li>
-</ul>
-<p class="small"><strong>Three-pass self-check:</strong> Pass 1 — generated and validated TIF on disk (format/capacity/real-raster uniqueness PASS). Pass 2 — verified download SHA, range, CRS, collar; corrected collar from 2.25 px to measured 2.83 px; flagged synthetic blanket. Pass 3 — re-checked executive-summary text against on-disk bytes (no manual input, no hallucinated URLs).</p>
-</div>
-
-<div class="card"><h2>⑥ Quick Self-Check (Copy-Paste)</h2>
-<pre style="white-space:pre-wrap;font-size:12px">python - << 'PY'
-import rasterio, numpy as np, hashlib
-p='docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405.tif'
-print('SHA256', hashlib.sha256(open(p,'rb').read()).hexdigest())
-with rasterio.open(p) as ds:
-    a=ds.read(1)
-    print(f"count {ds.count} dtype {ds.dtypes} crs {ds.crs} shape {ds.shape}")
-    print(f"transform {tuple(ds.transform)[:6]} nodata {ds.nodata}")
-    print(f"finite {np.isfinite(a).all()} min {a.min()} max {a.max()} dots {(a>0).sum()}")
-PY</pre>
-<p class="small">Expected: <code>count 1 dtype float32 crs EPSG:32611 shape (3730,3292) transform (100.0,0.0,243350.0,0.0,-100.0,4508550.0) nodata None finite True min 0.0 max 1.0 dots 20000</code>.</p>
-</div>
-
-<p class="small">Generated: 2026-10-25T18:28Z · Branch <code>arena/2f1f074c-gemsdoe91</code> · <a href="run-card-S18-UNIQUE.json">Run Card</a> · <a href="GEOTHERMAL_VENT_KNOWLEDGE_BASE.md">Knowledge Base</a> · <a href="LIMITATIONS_AND_NEXT_STEPS.md">Next Steps</a> · AI-use disclosure: <a href="AI_USE.md">AI_USE.md</a> (NLR Rules §3.2)</p>
-</div></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S18 historical research file · GEMSDOE91</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f7faf8;color:#12211d;font:16px/1.55 system-ui,sans-serif}.wrap{max-width:900px;margin:auto;padding:24px}a{color:#17644e}a:focus-visible{outline:3px solid #005fcc;outline-offset:3px}.card{background:white;border:1px solid #d8e2dd;border-radius:12px;padding:20px;margin:18px 0;overflow-wrap:anywhere}.stop{border-left:5px solid #a42b2b}.button{display:inline-block;padding:12px 16px;background:#17644e;color:white;font-weight:700;border-radius:8px;text-decoration:none}code{overflow-wrap:anywhere}table{border-collapse:collapse;width:100%}td,th{padding:10px;text-align:left;border-bottom:1px solid #d8e2dd}
+</style></head><body><main class="wrap"><p><a href="index.html">← Current review</a></p>
+<h1>S18 historical research file</h1><section class="card stop" data-submission-ready="false"><h2>NOT OK TO SUBMIT · duplicate stop</h2>
+<p>The previously advertised “unique” file is a <strong>literal duplicate</strong> under the required registry rule: 19,921 of its 20,000 dots (99.605%) lie within 3 pixels of the pinned lattice. A capacity bound alone never established uniqueness. This is not a new candidate.</p>
+<p><a href="review-8e8d86f2/s18-witness.json">Reproducible witness and hashes</a> · <a href="run-card-S18-UNIQUE.json">Historical run card (partially superseded)</a></p></section>
+<section class="card"><h2>Research-only download</h2>
+<p>Available to reproduce the finding, not for upload. The technical raster check is not an organizer receipt, scientific approval or a proof of uniqueness.</p>
+<p><a class="button" download href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif">Download historical S18 GeoTIFF</a> · <a download href="downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip">Single-TIFF ZIP</a></p>
+<p>TIFF SHA-256 <code>af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6</code></p>
+<table><thead><tr><th scope="col">Finding</th><th scope="col">Interpretation</th></tr></thead><tbody>
+<tr><td>Old uniqueness card</td><td>Checked only two references; the later pinned lattice witness supersedes its PASS.</td></tr>
+<tr><td>Prior holdout</td><td>Historical S18 reports HOLDOUT-DTI 0.000624 [0.000536, 0.000716], gems91-hide-recover-v1.1-nohalo, 60,988 withheld positives. It is not a matched comparison with the different S22 instrument, and was not rerun here.</td></tr>
+<tr><td>Range</td><td>All-finite [0,1] output is a local check, not proof the organizer accepts its outside-footprint representation. The official description specifies null/NaN outside bounds.</td></tr>
+</tbody></table></section>
+<section class="card"><h2>What happens next?</h2><p>No slot is selected or spent. A future authorized experiment must start with a specified method and feasible plan, pass input-quality and pre-placement/final-dot checks against the full registry, use the shared matched holdout, and receive a separate selection decision. See <a href="executive-summary.html">the current review</a>.</p></section>
+</main></body></html>

@@ -70,7 +70,9 @@ def audit(number):
             i = text.lower().find(needle)
             if i >= 0:
                 row['evidence_excerpts'].append(text[max(0, i-60):i+220])
-    except (RuntimeError, subprocess.TimeoutExpired, KeyError, ValueError) as exc:
+    except (OSError, RuntimeError, subprocess.TimeoutExpired, KeyError, ValueError) as exc:
+        # A missing CLI or transient execution error is an explicit unverified
+        # row, not a successful empty snapshot or an interrupted whole feed.
         row['error'] = str(exc)[:500]
     return row
 

@@ -6,6 +6,19 @@ on:
       - docs/**
       - evidence/**
       - scripts/audit_fleet.py
+      - scripts/audit_focus_sites.py
+      - scripts/audit_feature_nodata.py
+      - scripts/audit_registry_witness.py
+      - scripts/experiment_preflight.py
+      - scripts/source_integrity.py
+      - scripts/verify_s22.py
+      - scripts/render_review_8e8d86f2.py
+      - scripts/render_start_here.py
+      - scripts/run_s23_tilta.py
+      - scripts/verify_band06_and_units.py
+      - scripts/verify_nine_site_leaders.py
+      - scripts/render_s22_pages.py
+      - scripts/render_olc91_portal.py
       - scripts/build_pages_site.py
       - scripts/render_portal.py
       - scripts/render_s16_portal.py
@@ -21,6 +34,10 @@ on:
       - registry/**
       - vendor/gems57/**
       - src/gems91/readiness.py
+      - src/gems91/novelty.py
+      - src/gems91/omtj22.py
+      - src/gems91/tilta23.py
+      - src/gems91/capacity.py
       - .github/workflows/pages.yml
       - requirements.txt
   schedule:
@@ -63,6 +80,11 @@ jobs:
         run: python scripts/audit_fleet.py
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Refresh nine-site source snapshots (partial failures remain explicit)
+        continue-on-error: true
+        run: python scripts/audit_focus_sites.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify current download identity and pinned-grid format
         run: |
           python scripts/verify_current_artifact.py
@@ -91,6 +113,7 @@ jobs:
           path: |
             docs/fleet-audit.json
             docs/fleet-audit.csv
+            docs/review-8e8d86f2/focus-inventory.json
 
   deploy:
     if: needs.build.outputs.pages_mode == 'workflow'

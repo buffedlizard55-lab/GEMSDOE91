@@ -76,6 +76,16 @@ def reference_array(row, g):
     return np.where(g.footprint, a, 0).astype(np.float32)
 
 def run():
+    # This historical experiment's advertised magnetic-tilt interpretation is
+    # contradicted by a label-blind band audit, and its saved dots are a literal
+    # registry duplicate. The archived source and receipts remain intact; do not
+    # allow a deleted receipt or a budget change to trigger an implicit rerun.
+    raise RuntimeError(
+        'S23-TILTA is a frozen, duplicate-stopped historical experiment; '
+        'band identity requires independent verification and a future run '
+        'requires a newly assigned lane and full preflight. See '
+        'docs/review-8e8d86f2/REVIEW.md.'
+    )
     start = time.monotonic()
     OUT.mkdir(exist_ok=True); WORK.mkdir(parents=True, exist_ok=True)
     if (OUT / 'run-card.json').exists():

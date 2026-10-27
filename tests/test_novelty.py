@@ -6,7 +6,18 @@ from src.gems91.novelty import surface_check, dot_check
 def test_monotonic_duplicate():
     x = np.arange(100.).reshape(10, 10)
     assert surface_check(x, x ** 2, np.ones_like(x, bool))['status'] == 'DUPLICATE'
-    assert surface_check(x, -x, np.ones_like(x, bool))['status'] == 'PASS'
+    result = surface_check(x, -x, np.ones_like(x, bool))
+    assert result['rank_correlation'] == pytest.approx(-1.0)
+    assert result['status'] == 'DUPLICATE'
+
+
+def test_exact_absolute_correlation_threshold_is_not_over_threshold():
+    x = np.arange(5.).reshape(1, 5)
+    mask = np.ones_like(x, bool)
+    for y in (np.array([[1., 0, 2, 3, 4]]), np.array([[3., 4, 2, 1, 0]])):
+        result = surface_check(x, y, mask)
+        assert abs(result['rank_correlation']) == pytest.approx(.9)
+        assert result['status'] == 'PASS'
 
 
 def test_constant_not_pass():
