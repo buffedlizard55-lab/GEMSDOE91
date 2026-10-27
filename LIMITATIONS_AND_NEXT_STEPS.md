@@ -1,6 +1,16 @@
-## Current limitations and next steps — 27 October 2026
+## Current limitations and next steps — 27 October 2026 (`arena/ad43b4e5`)
 
-**NO NEW TIFF; NOT OK TO SUBMIT.** Current [review](docs/review-8e8d86f2/REVIEW.md) and [run card](docs/review-8e8d86f2/run-card.json) supersede earlier status statements below. The S22 OMTJ holdout/canaries are scientifically compromised by finite NoData inputs; its arithmetic is retained, not accepted as a test. S18 is a 99.605% lattice duplicate. Zero experiments and zero slots used in this review.
+**NO NEW TIFF; NOT OK TO SUBMIT.** The assigned method is absent and the frozen 37,654-dot plan fails the literal lattice witness. The 82.341849% bound is conditional on that plan and footprint, not a universal budget claim. No geological experiments or slots were used. [Current review](docs/review-ad43b4e5/REVIEW.md) · [negative run card](docs/review-ad43b4e5/run-card.json) · [submission guide](docs/submission-guide.html).
+
+* Historical feature context was unbuffered despite the training buffer. Shared v3 corrects that and preserves a separate pixel-exact scoring mask; no corrected matched candidate/incumbent scores exist. Proximity alone is not proof of leakage.
+* Resolve the assignment and plan conflict with the coordinator, not by silently evading a duplicate witness. Verify missing-data policy, source rights and full registry coverage before any run. Recompute the incumbent and candidate on identical corrected folds and budgets; require canaries, both novelty phases, writer validation and a separate selector/quota decision.
+* The nine-site feed automatically refreshes public GitHub main heads in the browser but does not audit scores or rasters; failures retain the dated snapshot. Scheduled Actions snapshots deploy automatically only under workflow Pages mode. No authenticated organizer receipt is available.
+
+---
+
+## Previous limitations and next steps — 27 October 2026
+
+**NO NEW TIFF; NOT OK TO SUBMIT.** Previous [review](docs/review-8e8d86f2/REVIEW.md) and [run card](docs/review-8e8d86f2/run-card.json) supersede earlier status statements below. The S22 OMTJ holdout/canaries are scientifically compromised by finite NoData inputs; its arithmetic is retained, not accepted as a test. S18 is a 99.605% lattice duplicate. Zero experiments and zero slots used in this review.
 
 1. Obtain the explicitly assigned single-method paragraph and a versioned resolution to the fixed-budget/literal-registry conflict; do not self-assign or evade it.
 2. Establish a defensible missing-data policy, source rights and independent input availability; rerun canaries after correction and obtain same-fold same-budget incumbent predictions.

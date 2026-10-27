@@ -11,6 +11,8 @@ from pathlib import Path
 import numpy as np
 from . import metric
 
+# The pooled arithmetic version remains v2; split_version and implementation
+# hashes distinguish the stricter exact-known interface and v3 fold geometry.
 VERSION = 'gems57-pooled-hide-v2'
 
 
@@ -36,7 +38,9 @@ def evaluate(prediction, fold, valid, block_side=200, *, origin=(0, 0),
         raise ValueError('predictions must be finite in [0,1] before masking')
     valid = np.asarray(valid, bool)
     region = np.asarray(fold['region'], bool)
-    known = np.asarray(fold.get('masked_known', fold['visible']), bool)
+    if 'masked_known' not in fold:
+        raise ValueError('pixel-exact masked_known is required; visible is feature context, not a scoring mask')
+    known = np.asarray(fold['masked_known'], bool)
     truth_all = np.asarray(fold['truth'], bool)
     if p.ndim != 2 or any(a.shape != p.shape for a in (valid, region, known, truth_all)):
         raise ValueError('fold/prediction grid shape mismatch')

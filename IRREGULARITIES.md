@@ -1,4 +1,16 @@
-## Current review irregularities — 2026-10-27 (arena/8e8d86f2)
+## Current review irregularities — 2026-10-27 (arena/ad43b4e5)
+
+- **IR-AD43-01 — unbuffered feature context:** the old label-blind whole-component fold buffered training but left visible catalogue context within 2–3.162 px of held truth in all four folds. Corrected in shared v3; the separate known-pixel mask remains exact. [Geometry audit](docs/review-ad43b4e5/context-buffer-audit.json). Proximity does not itself prove model leakage; historic scores are unmatched to v3.
+- **IR-AD43-02 — legacy and scoring fallback:** chunked/unbuffered `build_holdout` and truth-shaped folds are blocked by default; the shared scorers now require explicit `masked_known` instead of assuming feature `visible` is the scoring mask. Prior sources are archived/pinned. Old independent runners must be audited before reuse.
+- **IR-AD43-03 — readiness could accept old holdouts or hide a bad quadrant canary:** added a fail-closed structural gate requiring four buffered-v3 receipts and consistent withheld counts; a recorded per-quadrant AUC above 0.90 also blocks even if the pooled maximum passes. Structural checks do not authenticate receipts. Historical gate values remain unchanged and verifiers distinguish old and current gates.
+- **IR-AD43-04 — incorrect marginal explanation/generalization:** one dot can gain credit for multiple truths; `dT <= k_self` is false. The shared marginal function incorrectly assumed α+β=1 for other weights. Corrected and compared to direct metric recomputation; the default weights' arithmetic did not change.
+- **IR-AD43-05 — historical S22 runner rank stop:** final signed-rank logic could miss rho < -0.90, and deleting a receipt could allow an unsafe rerun. Its saved TIFF already failed the overlap rule. Replaced the runner with a fail-closed stub; original archived.
+- **IR-AD43-06 — checker candidate contamination and rounding:** an optional candidate entered nine-site peer maxima, and rounded results could misclassify the strict 70% threshold; NaN metadata was not strict JSON. Corrected and independently reran the checker; old receipts remain frozen.
+- **IR-AD43-07 — automatic feed scope:** browser auto-refresh now checks public main commit heads only, not source pages, rasters or scores. GitHub rate limits, stale snapshots and branch-based Pages deployment remain explicit.
+
+---
+
+## Previous review irregularities — 2026-10-27 (arena/8e8d86f2)
 
 - **IR-8E8-01 — no authorized lane / fixed-budget impossibility:** the supplied method paragraph is missing. At the checked-in 37,654-dot budget at least 82.341849% of dots must fall within 3 px of a pinned lattice; no exemption or budget change was authorized. `docs/review-8e8d86f2/experiment-preflight.json`.
 - **IR-8E8-02 — S22 finite NoData contamination:** 3,061 declared finite sentinel cells inside the footprint in each of bands 13 and 14 were accepted by the historical OMTJ feature calculation. Its holdout/canary values are preserved for bookkeeping but are scientifically compromised; no corrected rerun. See `feature-audit.json` and `source-correction.json`.

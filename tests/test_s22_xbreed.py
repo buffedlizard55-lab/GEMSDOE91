@@ -136,9 +136,12 @@ def test_holdout_split_and_evaluator_are_the_pinned_ones():
     assert hold["evaluator_version"] == "gems57-pooled-hide-v2"
     assert hold["split_sha256"] == X.EXPECTED_SPLIT_SHA256 == CARD["holdout"]["split_sha256"]
     assert hold["withheld_positive_pixels"] == 60988
+    from scripts.source_integrity import verify_historical_source
     pin = json.loads((ROOT / "registry/template_pin.json").read_text())
     for fname, sha in pin["sha256"].items():
-        assert CARD["template_pins_verified"][pin.get("source_path", "vendor/gems57/") + fname] == sha
+        rel = pin.get("source_path", "vendor/gems57/") + fname
+        assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == sha
+        verify_historical_source(ROOT, rel, CARD["template_pins_verified"][rel])
 
 
 @pytest.mark.skipif(subprocess.run(["git", "cat-file", "-e", "53ddff6"], cwd=ROOT, capture_output=True).returncode != 0,

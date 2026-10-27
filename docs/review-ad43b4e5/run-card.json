@@ -1,0 +1,127 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_date_utc": "2026-10-27",
+  "branch": "arena/ad43b4e5-gemsdoe91",
+  "hypothesis": "PROPOSAL ONLY, UNASSIGNED AND UNTESTED: cross-gravity-contact kurtosis contrast in magnetic texture.",
+  "mechanism": "A concealed contact may juxtapose different magnetic textures beneath cover; this is not measured evidence of a fault or of geothermal productivity.",
+  "named_non_fault_mimic": "Unfaulted volcanic or intrusive contacts and airborne survey seams.",
+  "hypotheses": "docs/review-8e8d86f2/HYPOTHESES.md",
+  "assignment_authenticated": false,
+  "experiments_run": 0,
+  "budget": {
+    "max_experiments": 3,
+    "max_seconds": 7200
+  },
+  "candidate_generated": false,
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "withheld_positive_pixels": null,
+  "evaluator_version": null,
+  "split_version": null,
+  "comparable_prior_holdout_best": null,
+  "leaderboard_score_estimate": null,
+  "organizer_confirmed_score": null,
+  "correlation_overlap_vs_registry": {
+    "new_candidate_preplacement_surface_rank_correlation": null,
+    "new_candidate_final_dot_rank_correlation": null,
+    "new_candidate_final_dot_overlap_within_3px": null,
+    "complete_registry_clearance": false,
+    "preflight_capacity_lower_bound": 0.8234184947150369,
+    "preflight_budget": 37654,
+    "preflight_witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "historical_s22_final_dot_rank_correlation_vs_witness": -5.359578953898351e-05,
+    "historical_s22_final_dot_overlap_within_3px": 0.9856588941413926
+  },
+  "raster_sha256": null,
+  "validator_output": null,
+  "submission_name": null,
+  "submission_note": null,
+  "ok_to_download_new_candidate": false,
+  "ok_to_submit": false,
+  "selector_approval": false,
+  "slots_used_this_review": 0,
+  "verdict": "negative",
+  "blockers": [
+    "No assigned single-method paragraph and assignment source",
+    "Literal registry overlap is mathematically impossible at this dot budget",
+    "No corrected matched candidate/incumbent holdout or 95% paired interval",
+    "Frozen registry coverage incomplete",
+    "No authenticated organizer receipt, format acceptance, quota or separate selector decision"
+  ],
+  "historical_s22_research_artifact": {
+    "not_created_in_this_review": true,
+    "tif": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+    "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+    "validation": {
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "ok_to_submit": false,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    "duplicate_stop_witness": "DUPLICATE_STOP",
+    "scientific_validity": "INVALID_AS_GEOLOGICAL_FEATURE_TEST: finite NoData contamination; feature-context instrument was unbuffered",
+    "historic_holdout": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.06622318062610064,
+      "ci95": [
+        0.0480153209879553,
+        0.0868031263517965
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 3752.3183555308933,
+      "fpw": 35604.20896488495,
+      "fnw": 57235.681644469114
+    },
+    "historical_holdout_status": "arithmetic/provenance only; not matched to corrected v3 split and not a leaderboard estimate",
+    "ok_to_submit": false
+  },
+  "evidence": {
+    "review": "docs/review-ad43b4e5/REVIEW.md",
+    "preflight": "docs/review-ad43b4e5/experiment-preflight.json",
+    "context_buffer_audit": "docs/review-ad43b4e5/context-buffer-audit.json",
+    "s22_witness": "docs/review-ad43b4e5/s22-witness.json",
+    "historical_s22_validator": "docs/review-ad43b4e5/historical-s22-validator.json",
+    "nine_site_recheck": "docs/review-ad43b4e5/nine-site-recheck.json",
+    "source_corrections": "docs/review-ad43b4e5/source-corrections.json",
+    "feature_audit": "docs/review-8e8d86f2/feature-audit.json",
+    "hypotheses": "docs/review-8e8d86f2/HYPOTHESES.md",
+    "nine_site_lineage": "docs/review-ad43b4e5/nine-site-lineage.json",
+    "passes": "docs/review-ad43b4e5/PASS_REVIEW.md"
+  },
+  "tests": {
+    "status": "PASS_WITH_SKIPS",
+    "python_suite": {
+      "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m pytest -ra",
+      "passed": 803,
+      "skipped": 9,
+      "warnings": 104,
+      "skip_reason": "missing optional full integration inputs or unavailable preregistration git history"
+    },
+    "browser": {
+      "status": "PASS",
+      "browser": "Chromium 153.0.8010.0",
+      "pages_axe_checked": 29,
+      "axe_violations": 0,
+      "mobile_horizontal_overflow": false,
+      "auto_feed_mock": "8 successes and 1 invalid response; previous snapshot retained; no credentials",
+      "evidence": "docs/review-ad43b4e5/browser-verification.json"
+    },
+    "artifact_policy_registered_files": 113,
+    "audit_replay": "PASS: corrected context geometry and existing download inventory reproduced byte-for-byte",
+    "synthetic_fixture": "PASS: make demo + legacy release validator, not a competition raster or geological experiment",
+    "evidence_verifiers": "PASS: frontdoor, historical S22, S16, S17, S19, S20 and shared evidence; bookkeeping only, not scientific or submission approval"
+  }
+}

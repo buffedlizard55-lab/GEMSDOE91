@@ -206,6 +206,13 @@ def test_readiness_requires_all_independent_gates_not_just_format():
         'value':good['holdout_dti']['value']-.01, 'ci95':[0,.1],
         'withheld_positives':good['holdout_dti']['withheld_positives']}
     good['holdout_dti'].update(split_sha256='fixture',paired_best={'delta':.01,'ci95':[.001,.02]})
+    n = good['holdout_dti']['withheld_positives']
+    good['holdout_dti']['fold_receipts']=[{'fold':i,
+        'split_version':'label-blind-quadrants-v3-feature-buffered',
+        'evaluation_region_label_blind':True, 'known_scoring_mask_pixel_exact':True,
+        'truth_px':n//4 if i<3 else n-3*(n//4), 'held_components':1,
+        'shared_train_truth_components':0, 'feature_context_buffer_px':80,
+        'nearest_visible_to_held_px':80.1} for i in range(4)]
     good['selector_approval']=True
     good['selector_receipt']={'weekly_cap_verified':True,'slot_available':True}
     assert submission_ready(good)
@@ -223,7 +230,7 @@ def test_readiness_requires_all_independent_gates_not_just_format():
 
 
 def test_portal_render_is_reproducible():
-    names=['index.html','archive-results.html','archive-guide.html','archive-research.html','review-0a96aa96-home.html','assets/s16.css','assets/s16-support.png','assets/s17-support.png','assets/s17-lftg-support.png','assets/s19-svhf-support.png','s19-svhf.html','s19-svhf-executive-summary.html','s17-lftg.html','s17-lftg-executive-summary.html','s17-cpad.html','s17-cpad-executive-summary.html','s17-cdsc.html','s17-cdsc-executive-summary.html','s15-scgf.html','s15-scgf-executive-summary.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
+    names=['index.html','submission-guide.html','archive-results.html','archive-guide.html','archive-research.html','review-0a96aa96-home.html','assets/s16.css','assets/s16-support.png','assets/s17-support.png','assets/s17-lftg-support.png','assets/s19-svhf-support.png','s19-svhf.html','s19-svhf-executive-summary.html','s17-lftg.html','s17-lftg-executive-summary.html','s17-cpad.html','s17-cpad-executive-summary.html','s17-cdsc.html','s17-cdsc-executive-summary.html','s15-scgf.html','s15-scgf-executive-summary.html','s15-hcpa.html','s15-executive-summary.html','s14-hvdc.html','s14-hvdc-executive-summary.html','s14-lsrg.html','s14-executive-summary.html','s14-ptac.html','s14-ptac-executive-summary.html','s13-ptha.html','s13-ptha-executive-summary.html','ccr91-executive-summary.html','executive-summary.html','research.html','submit.html','assets/portal.css','assets/portal.js']
     before={n:(ROOT/'docs'/n).read_bytes() for n in names}
     subprocess.run([sys.executable,'scripts/render_portal.py'],cwd=ROOT,check=True,capture_output=True)
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'

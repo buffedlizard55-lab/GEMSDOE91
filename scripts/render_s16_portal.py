@@ -60,6 +60,7 @@ def gate_table(card):
         'canary': ('Feature-alone canaries', f"{card['canaries']['features_tested']} features/control fields × four held-out quadrants; maximum symmetric AUC {card['canaries']['max_symmetric_auc']:.6f}. Passing is not proof of no leakage."),
         'novelty': ('Literal registry uniqueness', 'All final dots fall within 3 px of a frozen registry lattice. The 70% rule fails. Two preplacement registry records were unavailable; no missing file was counted as a pass.'),
         'assigned_lane': ('Assigned method lane', 'The prompt omitted its promised single-method paragraph. This documented provisional lane cannot authorize a slot.'),
+        'buffered_context': ('Buffered feature-context receipts', 'This historical result predates the corrected v3 context buffer; it is not a matched promotion holdout.'),
         'beats_comparable_best': ('Scientific improvement', 'No improvement established over the matched gravity-only control; no certified common-instrument current-best receipt. No score forecast.'),
         'separate_selector': ('Separate slot selection', 'No selector approval or live weekly-cap receipt. No upload attempted; format validation cannot bypass other gates.'),
     }

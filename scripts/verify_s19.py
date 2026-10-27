@@ -28,6 +28,7 @@ from scipy.spatial import cKDTree
 from gems91.readiness import gates, submission_ready
 from scripts.verify_current_artifact import published_path
 from vendor.gems57 import evaluate_holdout as ev
+from scripts.source_integrity import verify_historical_source
 
 
 def read_json(relative: str):
@@ -119,7 +120,7 @@ def verify(with_data: bool = False) -> dict:
     holdout = read_json("docs/s19_svhf/holdout.json")
     summary_all = holdout["summary_all_arms"]
     for fname, expected_sha in summary_all["implementation_sha256"].items():
-        require(sha(ROOT / "vendor/gems57" / fname) == expected_sha, f"vendor/gems57/{fname} SHA-256 drift")
+        verify_historical_source(ROOT, f"vendor/gems57/{fname}", expected_sha)
 
     h = card["holdout_dti"]
     win_res = summary_all["scores"][h["winning_arm"]]
@@ -187,7 +188,9 @@ def verify(with_data: bool = False) -> dict:
         require(policy[rel]["status"] == "current_research_only", f"Unexpected artifact_policy status: {rel}")
 
     computed_gates = gates(card)
-    require(computed_gates == card["automated_gates"], "automated_gates drift vs readiness.gates(card)")
+    require({k: v for k, v in computed_gates.items() if k != "buffered_context"} == card["automated_gates"],
+            "historical automated_gates drift vs readiness.gates(card)")
+    require(computed_gates["buffered_context"] is False, "Historical v2 context cannot satisfy corrected gate")
     require(computed_gates["format"] is True and computed_gates["canary"] is True, "Format or canary gate False")
     require(card["ok_to_download"] is True, "ok_to_download must be True for format-valid research artifact")
     require(submission_ready(card) is False and card["ok_to_submit"] is False and card["submission_ready"] is False, "Must remain fail-closed False")

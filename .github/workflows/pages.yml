@@ -8,6 +8,8 @@ on:
       - scripts/audit_fleet.py
       - scripts/audit_focus_sites.py
       - scripts/audit_feature_nodata.py
+      - scripts/audit_context_buffer.py
+      - scripts/audit_nine_site_lineage.py
       - scripts/audit_registry_witness.py
       - scripts/experiment_preflight.py
       - scripts/source_integrity.py

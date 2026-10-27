@@ -116,7 +116,7 @@ def verify(with_data: bool = False) -> dict:
     summary_all = holdout["summary_all_arms"]
     summary_prior = holdout["summary_vs_prior_baselines"]
     for fname, expected_sha in summary_all["implementation_sha256"].items():
-        require(sha(ROOT / "vendor/gems57" / fname) == expected_sha, f"vendor/gems57/{fname} SHA-256 drift")
+        verify_historical_source(ROOT, f"vendor/gems57/{fname}", expected_sha)
 
     h = card["holdout_dti"]
     win_res = summary_all["scores"][h["winning_arm"]]
@@ -182,7 +182,10 @@ def verify(with_data: bool = False) -> dict:
     require(final["stopped_on"]["dots"]["overlap_within_3px"] > 0.70, "Duplicate stop threshold not exceeded")
 
     # Fail-closed readiness gates & budget checks
-    require(card["automated_gates"] == gates(card), "Shared readiness.gates(card) drift")
+    current_gates = gates(card)
+    require({k: v for k, v in current_gates.items() if k != "buffered_context"} == card["automated_gates"],
+            "Historical readiness.gates(card) drift")
+    require(current_gates["buffered_context"] is False, "Historical v2 context cannot satisfy corrected gate")
     require(card["submission_ready"] is False and card["ok_to_submit"] is False and submission_ready(card) is False, "Negative candidate promoted")
     require(card["ok_to_download"] is True, "Research download flag mismatch")
     require(card["verdict"] == "negative" and card["slots_used"] == 0 and card["organizer_confirmed"] is None, "Invalid slot/score claim")

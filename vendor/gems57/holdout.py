@@ -1,21 +1,13 @@
-"""Hide-and-recover spatially-blocked holdout.
+"""Hide-and-recover helpers, including a blocked historical instrument.
 
-Design (parallel-run protocol rule 2)
--------------------------------------
-* The mapped catalogue is split into **whole segments** (branches between
-  intersections, cut into <= 12 px chunks -- see :func:`gems57.network.segments`).
-* The footprint is split into four spatial quadrants (NW, NE, SW, SE) at the
-  median footprint row/col.  Fold *k* withholds segments inside quadrant *k*,
-  and ``DOMAIN_ERODE`` (12 px = 1.2 km) keeps the scored domain away from the
-  fold boundary, which is what provides the spatial separation between the
-  withheld strands and the catalogue context used to build the features.
-* Only segments lying wholly inside the scored domain are eligible for
-  withholding, so truth is never clipped by the domain edge.
-* Every catalogue-derived feature is computed from the **visible** mask only.
-* Visible fault pixels are masked out of scoring pixel-exactly (``known``),
-  matching the organiser's statement that a dot near a known trace but far from
-  any new-fault pixel is fully penalised (forum thread 11516).
-* Score: pooled DTI, alpha = 0.2, beta = 0.8, 300 m (3 px) triangular kernel.
+``build_holdout`` cuts branches into short chunks and does not buffer visible
+catalogue context around withheld pieces. Domain erosion is NOT such a buffer.
+It is available only for explicit legacy reproduction, not new experiments or
+promotion evidence. Use the reviewed whole-component, context-buffered
+``spatial.folds`` or another separately reviewed buffered instrument.
+
+Feature context and the pixel-exact known-fault scoring mask are distinct;
+score with pooled DTI (alpha=.2, beta=.8, 300 m triangular kernel).
 """
 
 from __future__ import annotations
@@ -100,14 +92,17 @@ def _pick_segments(rng, sizes: np.ndarray, ids: np.ndarray, target_px: float) ->
 def build_holdout(grid: Grid, hide_frac: float = HIDE_FRAC,
                   seeds: tuple[int, ...] = (20, 21),
                   modes: tuple[str, ...] = ("all", "detached"),
-                  detach_px: int = DETACH_PX) -> HoldoutContext:
-    """Build the fold cells once; re-usable for any number of candidates.
+                  detach_px: int = DETACH_PX, *,
+                  allow_legacy_reproduction: bool = False) -> HoldoutContext:
+    """LEGACY REPRODUCTION ONLY; not safe for new experiments or promotion.
+
+    Build the old fold cells once; re-usable for any number of candidates.
 
     ``mode="all"``      -- every segment lying wholly inside the fold domain is
                            eligible for withholding.  Visible context is the
                            whole remaining catalogue, including traces that are
-                           continuous with a withheld one.  This is the primary
-                           instrument.
+                           continuous with a withheld one. This was the
+                           historical primary instrument and is not promotion-safe.
     ``mode="detached"`` -- only segments that lie at least ``detach_px`` from
                            every other segment are eligible.  These are the
                            withheld strands whose recovery does *not* benefit
@@ -115,6 +110,8 @@ def build_holdout(grid: Grid, hide_frac: float = HIDE_FRAC,
                            conservative reading and the closer analogue to a
                            genuinely unmapped splay.
     """
+    if allow_legacy_reproduction is not True:
+        raise RuntimeError('Legacy unbuffered/chunked holdout is blocked; use reviewed whole-component buffered folds')
     cat = grid.catalogue
     quad = quadrant_ids(grid.footprint)
     seg, n_seg = segments(cat, max_len_px=MAX_SEG_PX)[:2]
@@ -255,7 +252,9 @@ def score(prediction, fold, valid, restrict_to_region=True, extra=False):
     """
     from .metric import dti_exact
     region = fold['region'] if restrict_to_region else np.ones_like(valid, bool)
-    known = fold.get('masked_known', fold['visible'])
+    if 'masked_known' not in fold:
+        raise ValueError('pixel-exact masked_known is required; visible is feature context, not a scoring mask')
+    known = fold['masked_known']
     r = dti_exact(prediction, fold['truth'], valid=np.asarray(valid, bool) & region, known=known)
     return {**r, 'tpw': r['tp'], 'fpw': r['fp'], 'fnw': r['fn']}
 
