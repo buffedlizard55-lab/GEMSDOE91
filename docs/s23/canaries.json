@@ -1,0 +1,150 @@
+{
+  "max_sym_auc": 0.6134487064368142,
+  "worst": "tilt_input fold3 auc=0.3866",
+  "canaries": [
+    {
+      "feature": "tilt_input",
+      "fold": 0,
+      "auc": 0.46210855152258135,
+      "sym_auc": 0.5378914484774187
+    },
+    {
+      "feature": "tilt_input",
+      "fold": 1,
+      "auc": 0.42821562188810147,
+      "sym_auc": 0.5717843781118985
+    },
+    {
+      "feature": "tilt_input",
+      "fold": 2,
+      "auc": 0.42520267607479073,
+      "sym_auc": 0.5747973239252093
+    },
+    {
+      "feature": "tilt_input",
+      "fold": 3,
+      "auc": 0.3865512935631859,
+      "sym_auc": 0.6134487064368142
+    },
+    {
+      "feature": "grav_hg_input",
+      "fold": 0,
+      "auc": 0.4683457936752932,
+      "sym_auc": 0.5316542063247067
+    },
+    {
+      "feature": "grav_hg_input",
+      "fold": 1,
+      "auc": 0.5702931742241971,
+      "sym_auc": 0.5702931742241971
+    },
+    {
+      "feature": "grav_hg_input",
+      "fold": 2,
+      "auc": 0.4866047213926452,
+      "sym_auc": 0.5133952786073548
+    },
+    {
+      "feature": "grav_hg_input",
+      "fold": 3,
+      "auc": 0.5087687204974,
+      "sym_auc": 0.5087687204974
+    },
+    {
+      "feature": "tilt_edge",
+      "fold": 0,
+      "auc": 0.5072416932118109,
+      "sym_auc": 0.5072416932118109
+    },
+    {
+      "feature": "tilt_edge",
+      "fold": 1,
+      "auc": 0.5081354890651157,
+      "sym_auc": 0.5081354890651157
+    },
+    {
+      "feature": "tilt_edge",
+      "fold": 2,
+      "auc": 0.47798866451240923,
+      "sym_auc": 0.5220113354875908
+    },
+    {
+      "feature": "tilt_edge",
+      "fold": 3,
+      "auc": 0.4972557602354211,
+      "sym_auc": 0.5027442397645789
+    },
+    {
+      "feature": "grav_hg_strength",
+      "fold": 0,
+      "auc": 0.5272934003248224,
+      "sym_auc": 0.5272934003248224
+    },
+    {
+      "feature": "grav_hg_strength",
+      "fold": 1,
+      "auc": 0.579568405455916,
+      "sym_auc": 0.579568405455916
+    },
+    {
+      "feature": "grav_hg_strength",
+      "fold": 2,
+      "auc": 0.46640487362025257,
+      "sym_auc": 0.5335951263797474
+    },
+    {
+      "feature": "grav_hg_strength",
+      "fold": 3,
+      "auc": 0.543806343273193,
+      "sym_auc": 0.543806343273193
+    },
+    {
+      "feature": "normal_alignment_squared",
+      "fold": 0,
+      "auc": 0.49948939917606244,
+      "sym_auc": 0.5005106008239375
+    },
+    {
+      "feature": "normal_alignment_squared",
+      "fold": 1,
+      "auc": 0.504958409154999,
+      "sym_auc": 0.504958409154999
+    },
+    {
+      "feature": "normal_alignment_squared",
+      "fold": 2,
+      "auc": 0.49346419116085133,
+      "sym_auc": 0.5065358088391487
+    },
+    {
+      "feature": "normal_alignment_squared",
+      "fold": 3,
+      "auc": 0.5019504680258209,
+      "sym_auc": 0.5019504680258209
+    },
+    {
+      "feature": "surface",
+      "fold": 0,
+      "auc": 0.5163821576063404,
+      "sym_auc": 0.5163821576063404
+    },
+    {
+      "feature": "surface",
+      "fold": 1,
+      "auc": 0.545162968029183,
+      "sym_auc": 0.545162968029183
+    },
+    {
+      "feature": "surface",
+      "fold": 2,
+      "auc": 0.4717329746265036,
+      "sym_auc": 0.5282670253734965
+    },
+    {
+      "feature": "surface",
+      "fold": 3,
+      "auc": 0.5187529467796653,
+      "sym_auc": 0.5187529467796653
+    }
+  ]
+}

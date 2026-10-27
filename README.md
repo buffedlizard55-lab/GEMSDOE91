@@ -1,4 +1,6 @@
-# GEMSDOE91 — START HERE (evidence checked 2026-10-27)
+# GEMSDOE91 — current checkout status (2026-10-27)
+
+## START HERE — front door (evidence checked 2026-10-27)
 
 **Decision: download the unique file, do not submit it yet.** Front door: [index.html](index.html) (GitHub Pages root).
 
@@ -12,51 +14,35 @@
 - Estimates are never scores. Holdout values measure recovery of known catalogue faults, and the repo's own check finds hide-v2 Spearman +0.105 against live scores ("valid as live proxy: false").
 - **Leaderboard (fetched 2026-10-27):** #1 = **0.4544**, #22 = 0.3261 ([DrivenData](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/); machine copy `evidence/public-leaderboard-2026-10-27.json`). The prompt's 0.4413 and 0.3195 and the repo's earlier 0.4437 are stale or conflicting. A 0.2778 claim would sit below #22.
 - **Reproduce the checks:** `.venv/bin/python scripts/verify_nine_site_leaders.py --candidate <tif> …` (downloads exact leader bytes from GitHub, hashes them, computes 3-px overlap) → `evidence/nine-site-leader-check.json`; then `.venv/bin/python scripts/render_start_here.py` → `index.html`.
-- **Single owner of the root `index.html`:** `scripts/render_start_here.py`. `scripts/render_olc91_portal.py` no longer writes it.
-- **Known blocker (flagged, not fully fixed):** `pytest` runs two renderers that overwrite tracked `docs/` pages: `render_olc91_portal` (via `tests/test_s22_omtj.py`) rewrites `docs/index.html` and `docs/executive-summary.html`, and `render_portal` (via `tests/test_submission_portal.py`) rewrites `docs/` pages too. Two tests still fail on this branch: `test_s16_integrity::test_root_and_docs_expose_one_current_negative…` and `test_s19_svhf::test_s19_portal_pages_have_single_fail_closed_marker…`. Both assert that `docs/current-run.json` (the superseded S22-OMTJ run) is the current pointer. Fix next session by choosing one owner for the front door and updating those pointers. After any `pytest` run, restore the tracked pages: `git checkout -- docs/index.html`, then `python3 scripts/patch_executive_summary_s23.py`, then `python3 scripts/render_start_here.py`.
+- **Single owner of the root `index.html`:** `scripts/render_start_here.py`. `scripts/render_olc91_portal.py` calls it instead of writing its own root page.
+- **Known issues (flagged):** (1) `pytest` has one failing test, `tests/test_current_checkout_review.py::test_prior_s18_files_are_registered_as_quarantined_research_artifacts` (`download-audit.json` lists 111 files, the artifact policy lists 113). It fails identically on `origin/main`, so it predates this branch. (2) `tests/test_s22_omtj.py` and `tests/test_submission_portal.py` re-render tracked `docs/` pages. The root `index.html` is re-rendered through `render_start_here.py` at the end of the OLC91 renderer, so it stays the START HERE page. (3) `scripts/check_artifact_policy.py` fails on the pre-existing tracked raster `docs/downloads/gems91-S18-UNIQUE-curvtilt-...-29db2405.tif`.
 - No weekly submission slot was spent by this session. No experiment was run; the checks were verification only.
+
 
 ---
 
-# GEMSDOE91 — S18-UNIQUE unique candidate · current status (2026-10-26)
 
-**OK TO DOWNLOAD: YES — research only. OK TO SUBMIT: NO — holdout-DTI 0.000624 did not beat incumbent 0.066223; per budget rule, no weekly slot spent.**
+> **NO NEW TIFF GENERATED. OK TO DOWNLOAD: NO new candidate. OK TO SUBMIT: NO.** This review ran zero experiments and used zero weekly slots. No assigned single-method paragraph is present, the `data/` inputs are absent, and the preflight blocks every build axis. Do not treat any earlier research-download link in this README or site as current approval.
 
-[**Download the new TIFF**](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif) · [Single-TIFF ZIP](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip) · [**Nine-site executive summary & submission guide**](docs/executive-summary.html) · [Run card](docs/run-card-S18-UNIQUE.json)
+- [**Current review, nine-site table, hypothesis ranking, three-pass record**](docs/REVIEW-ARENA-52711765-20261027.md)
+- [Machine-readable run card](docs/run-card-ARENA-52711765-20261027.json)
+- [Nine-site executive summary and submission guide](docs/high-score-submissions-review.html) · [Pinned site audit](docs/s22/nine-site-audit.json)
+- [Existing website front door](docs/index.html) · [How submission format works](docs/executive-summary.html)
 
-- **New generated predictions, not a copied raster. Strict protocol uniqueness: PASS.** Final dots overlap 21.44% within 3 px of registry rasters (≤70% required); surface |Spearman| ρ=0.0098 (≤0.90 required). Not a duplicate of any GEMSDOE24/25/27/28/30/31/32/33/36 leader.
-- **Holdout-DTI: 0.000624**, 95% CI **[0.000536, 0.000716]**, evaluator `gems91-hide-recover-v1.1-nohalo`, **60,988 withheld positive pixels**. Near-zero by design: dots are deliberately off-catalogue to hunt new faults, not recover known ones. Did not beat incumbent 0.066223 → no slot spent.
-- **Leakage canary: PASS.** Seven features × four folds; max symmetric AUC 0.5615 ≤ 0.90 (worst: det_elev_slope).
-- Local TIFF/ZIP validation: one float32 band, all finite [0,1], no NaN/Inf, matching CRS/shape/transform. Zero mass on catalogue pixels. SHA-256 new in ledger. **Local format PASS is not organizer acceptance or permission to upload.**
-- Exact historical leader files from **GEMSDOE24/25/27/28/30/31/32/33/36** re-hashed and compared. **GEMSDOE32 leads the supplied claims (0.2778, unverified); none of those nine leaders meets the peer-overlap uniqueness rule.** No receipt-linked score or calibrated leaderboard estimate is available.
-- Unique file name: `gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405`. Note (96/140): `S18-UNIQUE basin-stripped Bouguer curvature x RTP grad 20000 dots playa-gated 2.25px collar`.
-- TIFF SHA256: `af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6`.
+**Highest supplied historical claim:** GEMSDOE32 `h33-h33-2-b2` = 0.2778 **USER/OWNER-REPORTED, UNVERIFIED**, with no receipt binding the score to the TIFF. The nine byte-audited historical leaders all fail the requested peer uniqueness rule. There is no calibrated leaderboard-score estimate and no newly generated file cleared to submit. The prior S22-OMTJ TIFF is a negative, duplicate-stopped research artifact; it is not this review's output.
 
 ## Start every session here
 
-Read this status, the [preserved standing user prompt](#full-project-brief), [four preregistered hypotheses](docs/s22/preregistration.md), [official-source scientific review](docs/s22/research-and-limitations.md), and [next steps](LIMITATIONS_AND_NEXT_STEPS.md). The standing brief below retains the original requirements and supplied score claims; this header is the active outcome. Earlier session banners below are **historical**, not competing current recommendations.
+Read this active status, the [full preserved project brief](#full-project-brief), the [current review](docs/REVIEW-ARENA-52711765-20261027.md), the [official-source evidence log](docs/OFFICIAL_SOURCES_VERIFIED_S22.md), and [limitations / next steps](LIMITATIONS_AND_NEXT_STEPS.md). Historical session banners below are evidence and archive only; they are not current submission recommendations.
 
-**Maximize P(Win):** reject unsupported score forecasts and do not spend a slot on a negative or duplicate candidate. **Own the Outcome:** restore data, inspect bytes automatically, report failures and keep the portal consistent with its machine-readable evidence.
+**Maximize P(Win):** reject unsupported score forecasts and don't spend a slot on negative or duplicate candidates. **Own the Outcome:** restore only authorized, hash-pinned inputs; automate all checks; report blockers and irregularities honestly.
 
-### Operative request preserved for this session
+### Active request preserved
 
-The current user request reiterates the nine-site focus, unique TIFF mandate, high-scoring automated gates, no copying, no human visual inspection, three-to-five new geological hypotheses before implementation, whole-segment buffered hide-and-recover, pooled DTI (alpha .2/beta .8/300 m), per-feature leakage canaries, pre-placement and final registry checks (rho > .90 or >70% overlap within 3 px means stop), three experiments/two hours maximum, one JSON run card, three review passes, official-source research, clear download/name/note/estimated-score table, and a PR merged to main. **A projection is never a score; selecting a real submission slot is separate.** This supplements the preserved long prompt rather than claiming literal byte identity to all its repeated paragraphs.
+The standing brief below retains the long-form user requirements and supplied site-score claims. For this checkout, follow the parallel-run controls: one assigned method lane only; reuse the shared evaluator/writer; whole-segment buffered hide-and-recover; per-feature leakage canaries; report every metric as HOLDOUT-DTI with evaluator version, withheld-positive count and 95% CI or as ORGANIZER-CONFIRMED with receipt; stop on surface |rho| > 0.90 or >70% of dots within 3 px of a registry raster; no more than three experiments or two hours; no slot selection by the experiment runner. A projection is never a score.
 
-Current-session supplied updates remain claims, not receipts: GEMSDOE24 GVC1 0.0859; GEMSDOE25 H66 0.0742; GEMSDOE27 H29 0.2190; GEMSDOE28 S18-MXTP 0.0217; GEMSDOE30 MSDB1 0.1462; GEMSDOE91 CWPC 0.1367 / LFTG 0.1823; S18-UNIQUE has no supplied result; GEMSDOE92 listricdip 0.0255. Their historical leader claims are preserved in the nine-site table and standing brief.
+The required method paragraph/assignment is absent in the current prompt and `registry/experiment_plan.json` has `lane: null`. `scripts/restore_data.py --check` found 15/15 pinned inputs absent. The automated preflight says 0/2 required inputs verified and all six build axes blocked. Therefore no scientifically valid new TIFF can be generated in this checkout without inventing a lane or bypassing the shared gates; this review deliberately does neither.
 
-### Verify without rerunning the stopped experiment
-
-```bash
-python -m pip install -r requirements.txt
-python scripts/restore_data.py --only sample_submission,existing_faults
-python generate_submission.py --with-data
-python scripts/verify_s22.py --with-data
-python scripts/check_artifact_policy.py
-python scripts/render_portal.py
-python -m pytest -ra
-```
-
-The raw cached stack and registry can be restored for research using the instructions in [the review](docs/s22/review.md). No GPU was needed for this experiment. Authenticated score receipts, organizer-origin input authentication, full registry clearance, current remaining weekly quota and a genuinely improved candidate are still missing. Official page text can be researched with page-reading tools, while shell bulk downloads remain host-restricted.
 
 <!--S22-README-BEGIN-->
 # GEMSDOE91 — Parallel Session 22 lane (`S22-XB`, branch `arena/c722cd53-gemsdoe91`): official-source re-baselining, why 0.2778, and a unique PDWC×HGBR cross-breed

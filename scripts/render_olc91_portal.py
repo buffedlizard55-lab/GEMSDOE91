@@ -174,7 +174,20 @@ def render() -> None:
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
-    parallel_card = ""
+    # The latest checkout review sits above the historical OMTJ artifact so a
+    # stale research download cannot be mistaken for approval in this session.
+    parallel_card = (
+        '<aside class="card" style="border:2px solid #9c3d25;background:#fff0e9" '
+        'aria-label="Latest checkout review 2026-10-27">'
+        '<strong>Latest checkout review · 2026-10-27 · arena/52711765-gemsdoe91:</strong> '
+        'no experiment ran and no new TIFF was generated. '
+        '<strong>OK TO DOWNLOAD: NO — no new candidate · OK TO SUBMIT: NO</strong>; '
+        'zero weekly slots used. The method lane is unassigned and 15 pinned inputs are missing. '
+        'Existing raster links below are prior-session research artifacts only. '
+        '<a href="REVIEW-ARENA-52711765-20261027.md">Read the current review and nine-site table</a> · '
+        '<a href="run-card-ARENA-52711765-20261027.json">Current run card</a>'
+        '</aside>'
+    )
     for source_name, target_name in ((CURRENT["index_src"], "index.html"),
                                      (CURRENT["exec_src"], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
@@ -187,8 +200,11 @@ def render() -> None:
             raise ValueError(f"Missing insertion point in {source_name}")
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
-    # The root index.html is owned by scripts/render_start_here.py (the START HERE page).
-    # This renderer must not overwrite it; see README 'START HERE' for the single-owner rule.
+    # Single owner of the root index.html: scripts/render_start_here.py (START HERE page).
+    # It is re-rendered here so that test runs do not leave a stale front door.
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    import render_start_here
+    render_start_here.main()
 
 if __name__ == "__main__":
     render()
