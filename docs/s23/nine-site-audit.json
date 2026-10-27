@@ -1,0 +1,946 @@
+{
+  "as_of_utc": "2026-10-27T17:26:58.332574+00:00",
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "filename": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "original_path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "local_path": "data/s22-nine-sites/GEMSDOE24.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/2521cb676e172c141a4417e4925b73b6a896c1eb/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "blob_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE24/git/blobs/cc1752f2ea48b23bd41232c1fdcdceb5f439e401",
+      "artifact_git_blob": "cc1752f2ea48b23bd41232c1fdcdceb5f439e401",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "bytes": 1632732,
+      "current_main_head": "2521cb676e172c141a4417e4925b73b6a896c1eb",
+      "latest_commit_utc": "2026-10-27T17:13:13Z",
+      "claimed_historical_value": 0.2477,
+      "claim_source": "user prompt; NOT ORGANIZER-CONFIRMED",
+      "organizer_confirmed_score": null,
+      "estimated_leaderboard_score": null,
+      "ok_to_submit": false,
+      "validator": {
+        "grid_match": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": false,
+        "finite_values_in_range": true,
+        "nodata": "nan",
+        "dtype": "float32"
+      },
+      "positive_pixels": 60069,
+      "support_sha256": "3565bd6430c46cdb13cfd9340d70a7e0f87e36be8c301db62c8d23b90ca1a990",
+      "peer_comparisons": [
+        {
+          "reference_site": "GEMSDOE25",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 60069,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE27",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 60069,
+          "registry_dots": 61328,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE28",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9347916562619654,
+          "candidate_dots": 60069,
+          "registry_dots": 37660,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE30",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 60069,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE31",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9407847641878506,
+          "candidate_dots": 60069,
+          "registry_dots": 40199,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE32",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.88476585260284,
+          "candidate_dots": 60069,
+          "registry_dots": 37654,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE33",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9623932477650702,
+          "candidate_dots": 60069,
+          "registry_dots": 41865,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE36",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.8856148762256738,
+          "candidate_dots": 60069,
+          "registry_dots": 38854,
+          "exact_support_equal": false
+        }
+      ],
+      "max_overlap_vs_other_eight": {
+        "reference_site": "GEMSDOE25",
+        "status": "DUPLICATE",
+        "overlap_within_3px": 1.0,
+        "candidate_dots": 60069,
+        "registry_dots": 44090,
+        "exact_support_equal": false
+      },
+      "protocol_unique_among_nine": false,
+      "source_link_note": "Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256."
+    },
+    {
+      "site": "GEMSDOE25",
+      "filename": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "original_path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "local_path": "data/s22-nine-sites/GEMSDOE25.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/5a60fb475b7171af93cfce795abe6d96c4021ea2/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "blob_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE25/git/blobs/c8d3a46481152bbdfd61b113484be979fde9d4c6",
+      "artifact_git_blob": "c8d3a46481152bbdfd61b113484be979fde9d4c6",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424,
+      "current_main_head": "5a60fb475b7171af93cfce795abe6d96c4021ea2",
+      "latest_commit_utc": "2026-10-27T12:23:09Z",
+      "claimed_historical_value": 0.26,
+      "claim_source": "user prompt; NOT ORGANIZER-CONFIRMED",
+      "organizer_confirmed_score": null,
+      "estimated_leaderboard_score": null,
+      "ok_to_submit": false,
+      "validator": {
+        "grid_match": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": false,
+        "finite_values_in_range": true,
+        "nodata": "nan",
+        "dtype": "float32"
+      },
+      "positive_pixels": 44090,
+      "support_sha256": "426073b6b4abda02101b49f5f9fd601d60e6ab001d28d19489787a44666745c3",
+      "peer_comparisons": [
+        {
+          "reference_site": "GEMSDOE24",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 44090,
+          "registry_dots": 60069,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE27",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 44090,
+          "registry_dots": 61328,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE28",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9318212746654571,
+          "candidate_dots": 44090,
+          "registry_dots": 37660,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE30",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 44090,
+          "registry_dots": 44090,
+          "exact_support_equal": true
+        },
+        {
+          "reference_site": "GEMSDOE31",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.937151281469721,
+          "candidate_dots": 44090,
+          "registry_dots": 40199,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE32",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.8817192107053754,
+          "candidate_dots": 44090,
+          "registry_dots": 37654,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE33",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9605806305284645,
+          "candidate_dots": 44090,
+          "registry_dots": 41865,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE36",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.8826491267861193,
+          "candidate_dots": 44090,
+          "registry_dots": 38854,
+          "exact_support_equal": false
+        }
+      ],
+      "max_overlap_vs_other_eight": {
+        "reference_site": "GEMSDOE24",
+        "status": "DUPLICATE",
+        "overlap_within_3px": 1.0,
+        "candidate_dots": 44090,
+        "registry_dots": 60069,
+        "exact_support_equal": false
+      },
+      "protocol_unique_among_nine": false,
+      "source_link_note": "Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256."
+    },
+    {
+      "site": "GEMSDOE27",
+      "filename": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "original_path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "local_path": "data/s22-nine-sites/GEMSDOE27.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/5ee301149eb525ed0fde740fe18261bf6ec9efab/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "blob_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE27/git/blobs/c64e48b8bece14391fb59c1969c42c7efd718d39",
+      "artifact_git_blob": "c64e48b8bece14391fb59c1969c42c7efd718d39",
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "bytes": 1635084,
+      "current_main_head": "5ee301149eb525ed0fde740fe18261bf6ec9efab",
+      "latest_commit_utc": "2026-10-27T17:21:03Z",
+      "claimed_historical_value": 0.2449,
+      "claim_source": "user prompt; NOT ORGANIZER-CONFIRMED",
+      "organizer_confirmed_score": null,
+      "estimated_leaderboard_score": null,
+      "ok_to_submit": false,
+      "validator": {
+        "grid_match": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": false,
+        "finite_values_in_range": true,
+        "nodata": "nan",
+        "dtype": "float32"
+      },
+      "positive_pixels": 61328,
+      "support_sha256": "fd6397c1ea10ca12fab2e136ed92691eaa52c8e82b3b9c7e9c6d98d61fe2b9fb",
+      "peer_comparisons": [
+        {
+          "reference_site": "GEMSDOE24",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9801884946517089,
+          "candidate_dots": 61328,
+          "registry_dots": 60069,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE25",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9801558831202714,
+          "candidate_dots": 61328,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE28",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9161557526741456,
+          "candidate_dots": 61328,
+          "registry_dots": 37660,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE30",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9801558831202714,
+          "candidate_dots": 61328,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE31",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9220910513957735,
+          "candidate_dots": 61328,
+          "registry_dots": 40199,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE32",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.8671895382207149,
+          "candidate_dots": 61328,
+          "registry_dots": 37654,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE33",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9432885468301592,
+          "candidate_dots": 61328,
+          "registry_dots": 41865,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE36",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.8680374380380903,
+          "candidate_dots": 61328,
+          "registry_dots": 38854,
+          "exact_support_equal": false
+        }
+      ],
+      "max_overlap_vs_other_eight": {
+        "reference_site": "GEMSDOE24",
+        "status": "DUPLICATE",
+        "overlap_within_3px": 0.9801884946517089,
+        "candidate_dots": 61328,
+        "registry_dots": 60069,
+        "exact_support_equal": false
+      },
+      "protocol_unique_among_nine": false,
+      "source_link_note": "Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256."
+    },
+    {
+      "site": "GEMSDOE28",
+      "filename": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "original_path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "local_path": "data/s22-nine-sites/GEMSDOE28.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/67dbdf4da84fc92a98dd9644ab816ed18ae36bcc/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "blob_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE28/git/blobs/d0fc9ebbda0b15c31208022dbd124d4b9b112108",
+      "artifact_git_blob": "d0fc9ebbda0b15c31208022dbd124d4b9b112108",
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "bytes": 1590848,
+      "current_main_head": "67dbdf4da84fc92a98dd9644ab816ed18ae36bcc",
+      "latest_commit_utc": "2026-10-27T12:11:48Z",
+      "claimed_historical_value": 0.271,
+      "claim_source": "user prompt; NOT ORGANIZER-CONFIRMED",
+      "organizer_confirmed_score": null,
+      "estimated_leaderboard_score": null,
+      "ok_to_submit": false,
+      "validator": {
+        "grid_match": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": false,
+        "finite_values_in_range": true,
+        "nodata": "nan",
+        "dtype": "float32"
+      },
+      "positive_pixels": 37660,
+      "support_sha256": "3cd18e66517deaace77989424d4380cda87419396dffa04b38c6d493f97206ba",
+      "peer_comparisons": [
+        {
+          "reference_site": "GEMSDOE24",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37660,
+          "registry_dots": 60069,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE25",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37660,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE27",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37660,
+          "registry_dots": 61328,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE30",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37660,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE31",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9975570897503983,
+          "candidate_dots": 37660,
+          "registry_dots": 40199,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE32",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9547265002655337,
+          "candidate_dots": 37660,
+          "registry_dots": 37654,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE33",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9984067976633032,
+          "candidate_dots": 37660,
+          "registry_dots": 41865,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE36",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9552044609665428,
+          "candidate_dots": 37660,
+          "registry_dots": 38854,
+          "exact_support_equal": false
+        }
+      ],
+      "max_overlap_vs_other_eight": {
+        "reference_site": "GEMSDOE24",
+        "status": "DUPLICATE",
+        "overlap_within_3px": 1.0,
+        "candidate_dots": 37660,
+        "registry_dots": 60069,
+        "exact_support_equal": false
+      },
+      "protocol_unique_among_nine": false,
+      "source_link_note": "Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256."
+    },
+    {
+      "site": "GEMSDOE30",
+      "filename": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "original_path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "local_path": "data/s22-nine-sites/GEMSDOE30.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/3c3d7255fdbb3a94375eff086522463a8eaca449/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "blob_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE30/git/blobs/a59665a7fad659dcc6a45e5e7e71059586c3247a",
+      "artifact_git_blob": "a59665a7fad659dcc6a45e5e7e71059586c3247a",
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "bytes": 806758,
+      "current_main_head": "3c3d7255fdbb3a94375eff086522463a8eaca449",
+      "latest_commit_utc": "2026-10-26T23:27:10Z",
+      "claimed_historical_value": 0.26,
+      "claim_source": "user prompt; NOT ORGANIZER-CONFIRMED",
+      "organizer_confirmed_score": null,
+      "estimated_leaderboard_score": null,
+      "ok_to_submit": false,
+      "validator": {
+        "grid_match": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": true,
+        "finite_values_in_range": true,
+        "nodata": "None",
+        "dtype": "float32"
+      },
+      "positive_pixels": 44090,
+      "support_sha256": "426073b6b4abda02101b49f5f9fd601d60e6ab001d28d19489787a44666745c3",
+      "peer_comparisons": [
+        {
+          "reference_site": "GEMSDOE24",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 44090,
+          "registry_dots": 60069,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE25",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 44090,
+          "registry_dots": 44090,
+          "exact_support_equal": true
+        },
+        {
+          "reference_site": "GEMSDOE27",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 44090,
+          "registry_dots": 61328,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE28",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9318212746654571,
+          "candidate_dots": 44090,
+          "registry_dots": 37660,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE31",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.937151281469721,
+          "candidate_dots": 44090,
+          "registry_dots": 40199,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE32",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.8817192107053754,
+          "candidate_dots": 44090,
+          "registry_dots": 37654,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE33",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9605806305284645,
+          "candidate_dots": 44090,
+          "registry_dots": 41865,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE36",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.8826491267861193,
+          "candidate_dots": 44090,
+          "registry_dots": 38854,
+          "exact_support_equal": false
+        }
+      ],
+      "max_overlap_vs_other_eight": {
+        "reference_site": "GEMSDOE24",
+        "status": "DUPLICATE",
+        "overlap_within_3px": 1.0,
+        "candidate_dots": 44090,
+        "registry_dots": 60069,
+        "exact_support_equal": false
+      },
+      "protocol_unique_among_nine": false,
+      "source_link_note": "Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256."
+    },
+    {
+      "site": "GEMSDOE31",
+      "filename": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "original_path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "local_path": "data/s22-nine-sites/GEMSDOE31.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/abd9a45cc7adf046d7d3829eb6e8c980943f462d/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "blob_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/git/blobs/36c2aa32e0bba3d976d1ba76f3fb14903199262d",
+      "artifact_git_blob": "36c2aa32e0bba3d976d1ba76f3fb14903199262d",
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "bytes": 199214,
+      "current_main_head": "abd9a45cc7adf046d7d3829eb6e8c980943f462d",
+      "latest_commit_utc": "2026-10-26T22:24:56Z",
+      "claimed_historical_value": 0.2708,
+      "claim_source": "user prompt; NOT ORGANIZER-CONFIRMED",
+      "organizer_confirmed_score": null,
+      "estimated_leaderboard_score": null,
+      "ok_to_submit": false,
+      "validator": {
+        "grid_match": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": false,
+        "finite_values_in_range": true,
+        "nodata": "nan",
+        "dtype": "float32"
+      },
+      "positive_pixels": 40199,
+      "support_sha256": "dbb809101d86489da1c71d8c0e5d90a76939f7ca4cc87fa80e48db21b0e20a2f",
+      "peer_comparisons": [
+        {
+          "reference_site": "GEMSDOE24",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 40199,
+          "registry_dots": 60069,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE25",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 40199,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE27",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 40199,
+          "registry_dots": 61328,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE28",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9956217816363591,
+          "candidate_dots": 40199,
+          "registry_dots": 37660,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE30",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 40199,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE32",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9539043259782581,
+          "candidate_dots": 40199,
+          "registry_dots": 37654,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE33",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9990547028533048,
+          "candidate_dots": 40199,
+          "registry_dots": 41865,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE36",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9544018507923082,
+          "candidate_dots": 40199,
+          "registry_dots": 38854,
+          "exact_support_equal": false
+        }
+      ],
+      "max_overlap_vs_other_eight": {
+        "reference_site": "GEMSDOE24",
+        "status": "DUPLICATE",
+        "overlap_within_3px": 1.0,
+        "candidate_dots": 40199,
+        "registry_dots": 60069,
+        "exact_support_equal": false
+      },
+      "protocol_unique_among_nine": false,
+      "source_link_note": "Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256."
+    },
+    {
+      "site": "GEMSDOE32",
+      "filename": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "original_path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "local_path": "data/s22-nine-sites/GEMSDOE32.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/1398109a23f04a2ace71c1bd2f527cfba87860b5/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "blob_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/git/blobs/17a76895f68174cc93f3cb1597d25686f6d6bc67",
+      "artifact_git_blob": "17a76895f68174cc93f3cb1597d25686f6d6bc67",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065,
+      "current_main_head": "1398109a23f04a2ace71c1bd2f527cfba87860b5",
+      "latest_commit_utc": "2026-10-27T10:43:49Z",
+      "claimed_historical_value": 0.2778,
+      "claim_source": "user prompt; NOT ORGANIZER-CONFIRMED",
+      "organizer_confirmed_score": null,
+      "estimated_leaderboard_score": null,
+      "ok_to_submit": false,
+      "validator": {
+        "grid_match": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": true,
+        "finite_values_in_range": true,
+        "nodata": "None",
+        "dtype": "float32"
+      },
+      "positive_pixels": 37654,
+      "support_sha256": "e5eb6e7e40d5ed944797d479b8327531cbe6d69fe75dc19aaa2db0cc42875d1d",
+      "peer_comparisons": [
+        {
+          "reference_site": "GEMSDOE24",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37654,
+          "registry_dots": 60069,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE25",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37654,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE27",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37654,
+          "registry_dots": 61328,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE28",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9987517926382323,
+          "candidate_dots": 37654,
+          "registry_dots": 37660,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE30",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37654,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE31",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37654,
+          "registry_dots": 40199,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE33",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9998406543793488,
+          "candidate_dots": 37654,
+          "registry_dots": 41865,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE36",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 1.0,
+          "candidate_dots": 37654,
+          "registry_dots": 38854,
+          "exact_support_equal": false
+        }
+      ],
+      "max_overlap_vs_other_eight": {
+        "reference_site": "GEMSDOE24",
+        "status": "DUPLICATE",
+        "overlap_within_3px": 1.0,
+        "candidate_dots": 37654,
+        "registry_dots": 60069,
+        "exact_support_equal": false
+      },
+      "protocol_unique_among_nine": false,
+      "source_link_note": "Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256."
+    },
+    {
+      "site": "GEMSDOE33",
+      "filename": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "original_path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "local_path": "data/s22-nine-sites/GEMSDOE33.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/122e2240a835c9c84831943ee3489dbb48fd6e85/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "blob_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/git/blobs/901d9db3f008f0f5c3be9c314524ccc8e95fb43e",
+      "artifact_git_blob": "901d9db3f008f0f5c3be9c314524ccc8e95fb43e",
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "bytes": 917544,
+      "current_main_head": "122e2240a835c9c84831943ee3489dbb48fd6e85",
+      "latest_commit_utc": "2026-10-26T22:55:57Z",
+      "claimed_historical_value": 0.2632,
+      "claim_source": "user prompt; NOT ORGANIZER-CONFIRMED",
+      "organizer_confirmed_score": null,
+      "estimated_leaderboard_score": null,
+      "ok_to_submit": false,
+      "validator": {
+        "grid_match": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": true,
+        "finite_values_in_range": true,
+        "nodata": "None",
+        "dtype": "float32"
+      },
+      "positive_pixels": 41865,
+      "support_sha256": "cb490425926e5d81ba5db382a8b5dc1bfecc4f46a65ba9327a078229a55252fb",
+      "peer_comparisons": [
+        {
+          "reference_site": "GEMSDOE24",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9970619849516302,
+          "candidate_dots": 41865,
+          "registry_dots": 60069,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE25",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.997038098650424,
+          "candidate_dots": 41865,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE27",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9970858712528365,
+          "candidate_dots": 41865,
+          "registry_dots": 61328,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE28",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9705004180102711,
+          "candidate_dots": 41865,
+          "registry_dots": 37660,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE30",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.997038098650424,
+          "candidate_dots": 41865,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE31",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9747999522273976,
+          "candidate_dots": 41865,
+          "registry_dots": 40199,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE32",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9264301922847247,
+          "candidate_dots": 41865,
+          "registry_dots": 37654,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE36",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9271228950197062,
+          "candidate_dots": 41865,
+          "registry_dots": 38854,
+          "exact_support_equal": false
+        }
+      ],
+      "max_overlap_vs_other_eight": {
+        "reference_site": "GEMSDOE27",
+        "status": "DUPLICATE",
+        "overlap_within_3px": 0.9970858712528365,
+        "candidate_dots": 41865,
+        "registry_dots": 61328,
+        "exact_support_equal": false
+      },
+      "protocol_unique_among_nine": false,
+      "source_link_note": "Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256."
+    },
+    {
+      "site": "GEMSDOE36",
+      "filename": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "original_path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "local_path": "data/s22-nine-sites/GEMSDOE36.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/7576942352382c557f074bae3f2c6eb72750fa44/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "blob_api_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE36/git/blobs/e79b7bdb633369c724628e30efba6de60c1d25d9",
+      "artifact_git_blob": "e79b7bdb633369c724628e30efba6de60c1d25d9",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "bytes": 318190,
+      "current_main_head": "7576942352382c557f074bae3f2c6eb72750fa44",
+      "latest_commit_utc": "2026-10-27T17:25:48Z",
+      "claimed_historical_value": 0.275,
+      "claim_source": "user prompt; NOT ORGANIZER-CONFIRMED",
+      "organizer_confirmed_score": null,
+      "estimated_leaderboard_score": null,
+      "ok_to_submit": false,
+      "validator": {
+        "grid_match": true,
+        "no_nan_inside_footprint": true,
+        "all_cells_finite": true,
+        "finite_values_in_range": true,
+        "nodata": "None",
+        "dtype": "float32"
+      },
+      "positive_pixels": 38854,
+      "support_sha256": "9b9ea4e6ace85c83ad4b80954b4f11cbb177b0d18f0b5a80b486851cbe690ecd",
+      "peer_comparisons": [
+        {
+          "reference_site": "GEMSDOE24",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9756781798527822,
+          "candidate_dots": 38854,
+          "registry_dots": 60069,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE25",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9749832707057189,
+          "candidate_dots": 38854,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE27",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9757811293560509,
+          "candidate_dots": 38854,
+          "registry_dots": 61328,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE28",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9731301796468832,
+          "candidate_dots": 38854,
+          "registry_dots": 37660,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE30",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9749832707057189,
+          "candidate_dots": 38854,
+          "registry_dots": 44090,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE31",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9745714726926442,
+          "candidate_dots": 38854,
+          "registry_dots": 40199,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE32",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9740309878004839,
+          "candidate_dots": 38854,
+          "registry_dots": 37654,
+          "exact_support_equal": false
+        },
+        {
+          "reference_site": "GEMSDOE33",
+          "status": "DUPLICATE",
+          "overlap_within_3px": 0.9750347454573531,
+          "candidate_dots": 38854,
+          "registry_dots": 41865,
+          "exact_support_equal": false
+        }
+      ],
+      "max_overlap_vs_other_eight": {
+        "reference_site": "GEMSDOE27",
+        "status": "DUPLICATE",
+        "overlap_within_3px": 0.9757811293560509,
+        "candidate_dots": 38854,
+        "registry_dots": 61328,
+        "exact_support_equal": false
+      },
+      "protocol_unique_among_nine": false,
+      "source_link_note": "Current tree link is for navigation; pinned artifact identity is the blob API URL + SHA256."
+    }
+  ],
+  "scope": "Exact nine prompt-named historical leaders only; new candidates/private uploads not exhaustively audited",
+  "estimated_leaderboard_score": null,
+  "organizer_confirmed_scores": 0,
+  "claim_ranking_best_site": "GEMSDOE32",
+  "ranking_note": "Ranking user claims only, not verified organizer results"
+}

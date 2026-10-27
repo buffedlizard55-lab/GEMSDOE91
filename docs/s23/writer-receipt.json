@@ -1,0 +1,21 @@
+{
+  "file": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.tif",
+  "sha256": "507fd12f1c533ff0a4cb0c92bfceb7eaf5bf1cfc29d832f06c0d5023dd852bee",
+  "bytes": 107594,
+  "zip": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.zip",
+  "zip_sha256": "94b4ddca76df670a7bf256952f2645218d08cb9b280871643de08fa933ab2db2",
+  "n_dots": 20000,
+  "validation": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "n_finite": 12279160,
+    "min": 0.0,
+    "max": 1.0,
+    "on_catalogue": 0
+  }
+}

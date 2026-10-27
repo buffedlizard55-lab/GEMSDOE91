@@ -1,0 +1,215 @@
+{
+  "schema_version": "gems-s23-run-card-v1",
+  "lane": "S23-TILTA",
+  "hypothesis": "Faults juxtapose magnetic basement blocks: tilt-angle derivative edge (B06) aligned with gravity HG ridge (B18) marks concealed magnetic-density contacts.",
+  "mechanism": "Tilt-angle gradient magnitude (\u03c3=2 px) \u00d7 gravity HG magnitude (\u03c3=2 px) \u00d7 squared cosine alignment between their normals, normalized per-footprint 95th percentile; cbrt product. No catalogue features; 20,000 spaced dots, 3.05 px collar.",
+  "named_non_fault_mimic": "Unfaulted intrusive contacts, lava-flow margins, survey seam edges, and topographic flexure \u2014 all produce isolated magnetic or gravity edges but rarely co-located aligned pair.",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "leaderboard_score_estimate": null,
+  "submission_slots_used": 0,
+  "preregistration_sha256": "df6d0eace4f60f751fde74a74c2c67ba3aeddc954b46df34bbd4a724776c439e",
+  "experiments_run": 1,
+  "budget_max_experiments": 3,
+  "registry_scope": {
+    "available_unique_bytes": 114,
+    "missing": 2,
+    "organizer_complete": false,
+    "dense_exemptions": false
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.014802986895880605,
+    "ci95": [
+      0.011131429411267565,
+      0.01889331706688201
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 742.9078400407537,
+    "fpw": 6236.828189358441,
+    "fnw": 60245.09215995926
+  },
+  "leakage_canary": {
+    "max_symmetric_auc": 0.6134487064368142,
+    "worst": "tilt_input fold3 auc=0.3866",
+    "canaries": [
+      {
+        "feature": "tilt_input",
+        "fold": 0,
+        "auc": 0.46210855152258135,
+        "sym_auc": 0.5378914484774187
+      },
+      {
+        "feature": "tilt_input",
+        "fold": 1,
+        "auc": 0.42821562188810147,
+        "sym_auc": 0.5717843781118985
+      },
+      {
+        "feature": "tilt_input",
+        "fold": 2,
+        "auc": 0.42520267607479073,
+        "sym_auc": 0.5747973239252093
+      },
+      {
+        "feature": "tilt_input",
+        "fold": 3,
+        "auc": 0.3865512935631859,
+        "sym_auc": 0.6134487064368142
+      },
+      {
+        "feature": "grav_hg_input",
+        "fold": 0,
+        "auc": 0.4683457936752932,
+        "sym_auc": 0.5316542063247067
+      },
+      {
+        "feature": "grav_hg_input",
+        "fold": 1,
+        "auc": 0.5702931742241971,
+        "sym_auc": 0.5702931742241971
+      },
+      {
+        "feature": "grav_hg_input",
+        "fold": 2,
+        "auc": 0.4866047213926452,
+        "sym_auc": 0.5133952786073548
+      },
+      {
+        "feature": "grav_hg_input",
+        "fold": 3,
+        "auc": 0.5087687204974,
+        "sym_auc": 0.5087687204974
+      },
+      {
+        "feature": "tilt_edge",
+        "fold": 0,
+        "auc": 0.5072416932118109,
+        "sym_auc": 0.5072416932118109
+      },
+      {
+        "feature": "tilt_edge",
+        "fold": 1,
+        "auc": 0.5081354890651157,
+        "sym_auc": 0.5081354890651157
+      },
+      {
+        "feature": "tilt_edge",
+        "fold": 2,
+        "auc": 0.47798866451240923,
+        "sym_auc": 0.5220113354875908
+      },
+      {
+        "feature": "tilt_edge",
+        "fold": 3,
+        "auc": 0.4972557602354211,
+        "sym_auc": 0.5027442397645789
+      },
+      {
+        "feature": "grav_hg_strength",
+        "fold": 0,
+        "auc": 0.5272934003248224,
+        "sym_auc": 0.5272934003248224
+      },
+      {
+        "feature": "grav_hg_strength",
+        "fold": 1,
+        "auc": 0.579568405455916,
+        "sym_auc": 0.579568405455916
+      },
+      {
+        "feature": "grav_hg_strength",
+        "fold": 2,
+        "auc": 0.46640487362025257,
+        "sym_auc": 0.5335951263797474
+      },
+      {
+        "feature": "grav_hg_strength",
+        "fold": 3,
+        "auc": 0.543806343273193,
+        "sym_auc": 0.543806343273193
+      },
+      {
+        "feature": "normal_alignment_squared",
+        "fold": 0,
+        "auc": 0.49948939917606244,
+        "sym_auc": 0.5005106008239375
+      },
+      {
+        "feature": "normal_alignment_squared",
+        "fold": 1,
+        "auc": 0.504958409154999,
+        "sym_auc": 0.504958409154999
+      },
+      {
+        "feature": "normal_alignment_squared",
+        "fold": 2,
+        "auc": 0.49346419116085133,
+        "sym_auc": 0.5065358088391487
+      },
+      {
+        "feature": "normal_alignment_squared",
+        "fold": 3,
+        "auc": 0.5019504680258209,
+        "sym_auc": 0.5019504680258209
+      },
+      {
+        "feature": "surface",
+        "fold": 0,
+        "auc": 0.5163821576063404,
+        "sym_auc": 0.5163821576063404
+      },
+      {
+        "feature": "surface",
+        "fold": 1,
+        "auc": 0.545162968029183,
+        "sym_auc": 0.545162968029183
+      },
+      {
+        "feature": "surface",
+        "fold": 2,
+        "auc": 0.4717329746265036,
+        "sym_auc": 0.5282670253734965
+      },
+      {
+        "feature": "surface",
+        "fold": 3,
+        "auc": 0.5187529467796653,
+        "sym_auc": 0.5187529467796653
+      }
+    ]
+  },
+  "surface_checks": {
+    "max_abs_rho": 0.04099180688652124,
+    "closest": "data/fleet_registry/h52_coincidence8_80k.tif"
+  },
+  "final_dot_checks": {
+    "max_3px_overlap": 0.99895,
+    "closest": "data/fleet_registry/calib_r13lattice_00904.tif"
+  },
+  "raster_sha256": "507fd12f1c533ff0a4cb0c92bfceb7eaf5bf1cfc29d832f06c0d5023dd852bee",
+  "validator_output": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "n_finite": 12279160,
+    "min": 0.0,
+    "max": 1.0,
+    "on_catalogue": 0
+  },
+  "submission_name": "gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros",
+  "submission_note": "S23 TILTA tilt x grav-HG concordance 20k dots 3.05px collar; research only",
+  "artifact": {
+    "tif": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.tif",
+    "zip": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.zip",
+    "zip_sha256": "94b4ddca76df670a7bf256952f2645218d08cb9b280871643de08fa933ab2db2",
+    "support_sha256": "796ea645"
+  },
+  "elapsed_seconds": 171.66975355800002
+}
