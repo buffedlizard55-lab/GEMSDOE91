@@ -44,6 +44,18 @@
       "reason": "Single-TIFF ZIP of S18-UNIQUE demo; format PASS, NOT OK TO SUBMIT pending holdout."
     },
     {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
+      "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
+      "status": "parallel_quarantined",
+      "reason": "S18-UNIQUE historical research artifact. Prior run records negative HOLDOUT-DTI and no submit approval; retained for audit only."
+    },
+    {
+      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip",
+      "sha256": "245449b61d7fc38f8b1e94bdff6d9181b6f7cac03673e67f630638fca3ebddc9",
+      "status": "parallel_quarantined",
+      "reason": "Single-TIFF ZIP of the S18-UNIQUE negative research artifact; retained for audit only and not approved for submission."
+    },
+    {
       "path": "docs/downloads/gems91-asc91-e3-37654dots-s2p8-20261024-dc8e4d47-zeros.tif",
       "sha256": "9c66d3a7978c9016c81107439eb00806e0d003b01e976155176fc9f0a90debec",
       "status": "current_research_only",
@@ -508,6 +520,42 @@
       "reason": "Single-TIFF ZIP of docs/downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif; S21-PDWC E3 Cauchy-Hilbert DCWF + B15 up-dip projection + Log-Gabor MGPC + Clay-Cap Baffle symmetric OOF + uniqueness-capped CELF 37,654-dot GeoTIFF; format PASS [0,1] all-finite; 82/82 canaries PASS (max=0.7402); 932/932 competitive rasters unique across 102 sibling repos (max=0.6400); gems57-pooled-hide-v2 HOLDOUT-DTI=0.195724 (95% CI [0.18032, 0.211055], +32.4% vs S19-SVHF 0.147791, -0.0050 vs S18-HGBR 0.200742); verdict=negative \u2014 NOT OK TO SUBMIT (docs/run-card-S21-PDWC.json)."
     },
     {
+      "path": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+      "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+      "status": "current_research_only",
+      "reason": "S22 OMTJ negative experiment; no submission authorization."
+    },
+    {
+      "path": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.zip",
+      "sha256": "8862229cb572b53b41951de6f7d287ba16b4c0412898658b07cf591e5e63efb2",
+      "status": "current_research_only",
+      "reason": "S22 OMTJ negative experiment; no submission authorization."
+    },
+    {
+      "path": "docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif",
+      "sha256": "663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b",
+      "status": "current_research_only",
+      "reason": "S22-XB PDWC66+HGBR16 cross-breed, equalized per-quadrant capped 300 m CELF, 37,654-dot GeoTIFF; format PASS [0,1] all-finite; canary max 0.638; unique vs 953 competitive rasters (max 0.6288); hide-v2 HOLDOUT-DTI 0.173542 (paired C-A capped -0.010671); LFI projection MODEL 0.178; verdict=negative - NOT OK TO SUBMIT, failed G4_holdout_paired, G5_live_anchored_projection (docs/run-card-S22-XB.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.zip",
+      "sha256": "817df80a1abc7e4e59c529f087671ef9939394830b4df67a4bdc47a0a9c8c6ef",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif; S22-XB PDWC66+HGBR16 cross-breed, equalized per-quadrant capped 300 m CELF, 37,654-dot GeoTIFF; format PASS [0,1] all-finite; canary max 0.638; unique vs 953 competitive rasters (max 0.6288); hide-v2 HOLDOUT-DTI 0.173542 (paired C-A capped -0.010671); LFI projection MODEL 0.178; verdict=negative - NOT OK TO SUBMIT, failed G4_holdout_paired, G5_live_anchored_projection (docs/run-card-S22-XB.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.tif",
+      "sha256": "507fd12f1c533ff0a4cb0c92bfceb7eaf5bf1cfc29d832f06c0d5023dd852bee",
+      "status": "current_research_only",
+      "reason": "S23-TILTA tilt-angle x grav-HG concordance, 20k dots 3.05px collar/spacing, HOLDOUT-DTI 0.014803 [0.01113,0.01889] negative, competitive-unique ~19% PASS, literal 99.9% vs dense lattice FAIL disclosed, canary 0.613 PASS, format PASS, NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.zip",
+      "sha256": "94b4ddca76df670a7bf256952f2645218d08cb9b280871643de08fa933ab2db2",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S23-TILTA research artifact; HOLDOUT-DTI 0.014803 negative, NOT OK TO SUBMIT."
+    },
+    {
       "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
       "sha256": "0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd",
       "status": "current_research_only",
@@ -644,54 +692,6 @@
       "sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of the OLC91 E1 research-only file; same verdict (OK TO SUBMIT: NO)."
-    },
-    {
-      "path": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
-      "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
-      "status": "current_research_only",
-      "reason": "S22 OMTJ negative experiment; no submission authorization."
-    },
-    {
-      "path": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.zip",
-      "sha256": "8862229cb572b53b41951de6f7d287ba16b4c0412898658b07cf591e5e63efb2",
-      "status": "current_research_only",
-      "reason": "S22 OMTJ negative experiment; no submission authorization."
-    },
-    {
-      "path": "docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif",
-      "sha256": "663532862e9d18492c219a147a8640844d0d1508160c7a59da60bf1dce5e031b",
-      "status": "current_research_only",
-      "reason": "S22-XB PDWC66+HGBR16 cross-breed, equalized per-quadrant capped 300 m CELF, 37,654-dot GeoTIFF; format PASS [0,1] all-finite; canary max 0.638; unique vs 953 competitive rasters (max 0.6288); hide-v2 HOLDOUT-DTI 0.173542 (paired C-A capped -0.010671); LFI projection MODEL 0.178; verdict=negative - NOT OK TO SUBMIT, failed G4_holdout_paired, G5_live_anchored_projection (docs/run-card-S22-XB.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.zip",
-      "sha256": "817df80a1abc7e4e59c529f087671ef9939394830b4df67a4bdc47a0a9c8c6ef",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif; S22-XB PDWC66+HGBR16 cross-breed, equalized per-quadrant capped 300 m CELF, 37,654-dot GeoTIFF; format PASS [0,1] all-finite; canary max 0.638; unique vs 953 competitive rasters (max 0.6288); hide-v2 HOLDOUT-DTI 0.173542 (paired C-A capped -0.010671); LFI projection MODEL 0.178; verdict=negative - NOT OK TO SUBMIT, failed G4_holdout_paired, G5_live_anchored_projection (docs/run-card-S22-XB.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.tif",
-      "sha256": "507fd12f1c533ff0a4cb0c92bfceb7eaf5bf1cfc29d832f06c0d5023dd852bee",
-      "status": "current_research_only",
-      "reason": "S23-TILTA tilt-angle x grav-HG concordance, 20k dots 3.05px collar/spacing, HOLDOUT-DTI 0.014803 [0.01113,0.01889] negative, competitive-unique ~19% PASS, literal 99.9% vs dense lattice FAIL disclosed, canary 0.613 PASS, format PASS, NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.zip",
-      "sha256": "94b4ddca76df670a7bf256952f2645218d08cb9b280871643de08fa933ab2db2",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S23-TILTA research artifact; HOLDOUT-DTI 0.014803 negative, NOT OK TO SUBMIT."
-    },
-    {
-      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.zip",
-      "sha256": "245449b61d7fc38f8b1e94bdff6d9181b6f7cac03673e67f630638fca3ebddc9",
-      "status": "current_research_only",
-      "reason": "S18-UNIQUE 20261026T213155Z re-hash of same 20k-dot payload as 20261025 variant; format PASS, unique 22.6% vs R0, NOT OK TO SUBMIT pending selector (docs/run-card-S18-UNIQUE.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif",
-      "sha256": "af01bc7190ce736d2ea7eb28a6e0b9ccd238dd616f41644ba4d8bc5a4f892bb6",
-      "status": "current_research_only",
-      "reason": "S18-UNIQUE 20261026T213155Z re-hash of same 20k-dot payload as 20261025 variant; format PASS, unique 22.6% vs R0, NOT OK TO SUBMIT pending selector (docs/run-card-S18-UNIQUE.json)."
     }
   ]
 }
