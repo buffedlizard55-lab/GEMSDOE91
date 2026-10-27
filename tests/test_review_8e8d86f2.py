@@ -48,7 +48,7 @@ def test_feature_receipt_is_inside_footprint_and_scientifically_invalidates_s22(
     assert 'INVALID_AS_GEOLOGICAL_FEATURE_TEST' in read('run-card.json')['historical_s22_research_artifact']['scientific_validity']
 
 
-@pytest.mark.parametrize('mutation', ['promote', 'invent_raster', 'pass_input', 'drop_band', 'accept_receipt', 'mismatch_witness'])
+@pytest.mark.parametrize('mutation', ['promote', 'invent_raster', 'pass_input', 'drop_band', 'accept_receipt', 'mismatch_witness', 's23_witness', 's23_semantics'])
 def test_renderer_refuses_contradictory_evidence(monkeypatch, mutation):
     original = renderer.load
     def changed(name):
@@ -63,6 +63,10 @@ def test_renderer_refuses_contradictory_evidence(monkeypatch, mutation):
             x['sites'][0]['organizer_confirmed_score'] = .9
         if name == 'review-8e8d86f2/s18-witness.json' and mutation == 'mismatch_witness':
             x['witness_sha256'] = 'b' * 64
+        if name == 'review-8e8d86f2/s23-witness.json' and mutation == 's23_witness':
+            x['candidate_sha256'] = 'b' * 64
+        if name == 'review-8e8d86f2/s23-band-semantics.json' and mutation == 's23_semantics':
+            x['band_06']['pearson_r_vs_mirror_bands']['band_4_TC'] = 0.3
         return x
     monkeypatch.setattr(renderer, 'load', changed)
     with pytest.raises(ValueError, match='inconsistent'):
@@ -97,3 +101,52 @@ def test_missing_github_executable_is_unverified_not_a_success(monkeypatch):
     result = audit_fleet.audit(24)
     assert result['status'] == 'UNVERIFIED' and 'gh unavailable' in result['error']
     assert result['organizer_confirmed_scores'] == []
+
+
+def test_parallel_s23_evidence_is_separate_and_duplicate_stopped():
+    s23 = read('s23-witness.json')
+    coverage = read('s23-input-audit.json')
+    semantics = read('s23-band-semantics.json')
+    card = read('run-card.json')
+    prior = json.loads((ROOT / 'docs/s23/run-card.json').read_text())
+    assert s23['candidate_sha256'] == prior['raster_sha256']
+    assert s23['status'] == 'DUPLICATE_STOP'
+    assert s23['directed_dot_overlap']['candidate_dots'] == 20000
+    assert s23['directed_dot_overlap']['overlap_within_3px'] == pytest.approx(19979 / 20000)
+    assert [b['masked_or_nonfinite_inside'] for b in coverage['bands']] == [3073, 3061]
+    assert semantics['band_06']['sampled_pairs'] == 516430
+    assert semantics['band_06']['pearson_r_vs_mirror_bands']['band_4_TC'] == pytest.approx(.99699)
+    assert card['concurrent_s23_historical_result']['not_generated_in_this_review'] is True
+    assert card['candidate_generated'] is False and card['ok_to_submit'] is False
+
+
+def test_parallel_s23_runner_blocks_even_if_receipt_is_missing(tmp_path, monkeypatch):
+    from scripts import run_s23_tilta
+    monkeypatch.setattr(run_s23_tilta, 'OUT', tmp_path / 'missing-receipt')
+    monkeypatch.setattr(run_s23_tilta, 'WORK', tmp_path / 'work')
+    with pytest.raises(RuntimeError, match='frozen, duplicate-stopped'):
+        run_s23_tilta.run()
+    assert not list(tmp_path.iterdir())
+
+
+def test_parallel_archived_sources_and_corrected_files_match_receipts():
+    import hashlib
+    correction = read('source-correction.json')
+    for key in ('concurrent_s23_runner', 'concurrent_start_here_renderer', 'concurrent_nine_site_checker'):
+        x = correction[key]
+        sha = lambda name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+        assert sha(x['historical_source_archive']) == x['historical_sha256']
+        assert sha(x['corrected_source']) == x['current_sha256']
+    x = correction['concurrent_s23_page']
+    assert hashlib.sha256((ROOT / x['historical_archive']).read_bytes()).hexdigest() == x['historical_sha256']
+    assert hashlib.sha256((ROOT / x['current_path']).read_bytes()).hexdigest() == x['current_sha256']
+
+
+def test_legacy_start_here_command_cannot_replace_current_front_door():
+    from scripts import render_start_here
+    render_start_here.main()
+    root = (ROOT / 'index.html').read_text()
+    site = (ROOT / 'docs/index.html').read_text()
+    assert 'url=docs/index.html' in root and 'OK TO SUBMIT: NO' in root
+    assert 'NO NEW TIFF' in site and 's23/executive-summary.html' in site
+    assert '99.895%' in site

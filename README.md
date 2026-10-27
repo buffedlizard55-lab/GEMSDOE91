@@ -3,6 +3,7 @@
 > **2026-10-27 verdict: NO NEW TIFF · NOT OK TO SUBMIT.** No geological experiment, candidate, or competition upload was made in this review. The assigned single-method paragraph is missing. At the frozen 37,654-dot budget, a pinned lattice forces at least **82.341849%** directed overlap, above the user's 70% duplicate threshold. Do not shrink the plan or exempt a dense reference merely to pass. [Current review and nine-site table](docs/review-8e8d86f2/REVIEW.md) · [preflight](docs/review-8e8d86f2/experiment-preflight.json) · [run card](docs/review-8e8d86f2/run-card.json) · [ranked proposals](docs/review-8e8d86f2/HYPOTHESES.md).
 >
 > Historical S22 OMTJ is **scientifically compromised**: 3,061 finite NoData cells inside each of its two feature bands. The old HOLDOUT-DTI and canaries cannot validate the intended geology. The historical S18 “unique” raster is a **99.605% lattice duplicate**. Both are research-only, **not** new or approved submissions. [Feature audit](docs/review-8e8d86f2/feature-audit.json) · [S18 witness](docs/review-8e8d86f2/s18-witness.json) · [source correction and archived originals](docs/review-8e8d86f2/source-correction.json).
+> A separate S23 research result merged while this review was underway: its 99.895% lattice overlap is a duplicate, and its claimed magnetic-tilt input conflicts with a radiometric cross-check. It is not this review’s candidate and is **not OK to submit**. [S23 correction](docs/s23/executive-summary.html).
 >
 > [Historical S22 TIFF, for research only](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif) · [current Pages portal](docs/index.html). Its all-finite [0,1] local validation is not organizer acceptance; official outside-bounds null/NaN wording remains unresolved. No calibrated score estimate or authenticated submission receipt is available.
 
@@ -10,6 +11,60 @@
 
 <details>
 <summary>Earlier README content and preserved full project brief (historical; not current status)</summary>
+
+<details>
+<summary>Concurrent 2026-10-27 START HERE review (historical, superseded)</summary>
+
+> Historical record: the uniqueness call excluded a dense lattice and is superseded by the current literal duplicate rule. Earlier missing-data and front-door statements describe that checkout, not this one.
+
+# GEMSDOE91 — current checkout status (2026-10-27)
+
+## START HERE — front door (evidence checked 2026-10-27)
+
+**Decision: download the unique file, do not submit it yet.** Front door: [index.html](index.html) (GitHub Pages root).
+
+| File to download | Estimated leaderboard score | Unique vs the other GEMSDOE sites? | OK to submit? |
+|---|---|---|---|
+| [`gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif`](docs/downloads/gems91-s22-xbreed-c-37654dots-20261026T172226Z-26a07801-zeros.tif) (S22-XB, sha256 `663532862e9d…`) | **No score.** MODEL PROJECTION 0.178 ± 0.020 (not a score); HOLDOUT-DTI 0.1735 [0.1550, 0.1921], 60,988 withheld positives | **YES** — max 3-px overlap 55.9% vs the nine leaders, 62.9% vs 953 competitive rasters (limit 70%) | **NO** — fails G4 (holdout paired) and G5 (live projection) |
+| [`gems91-S18-UNIQUE-…-29db2405.tif`](docs/downloads/gems91-S18-UNIQUE-curvtilt-20000dots-20261026T213155Z-29db2405.tif) | None. HOLDOUT-DTI 0.000624 | YES — 33.3% vs the nine | NO — holdout far below the best |
+| [`gems91-s20-lfi-consensus-…-a8cc1b6e-zeros.tif`](docs/downloads/gems91-s20-lfi-consensus-29671dots-20261026T014752Z-a8cc1b6e-zeros.tif) | None. Highest projection (0.362–0.395, model only); HOLDOUT-DTI 0.001851 | **NO** — 77.0% vs a leader (its own card says UNIQUE; this check does not) | NO — G4 failed |
+| Nine GEMSDOE leaders (24, 25, 27, 28, 30, 31, 32, 33, 36) | Not estimable. User claims only (best 0.2778 = GEMSDOE32) | **NO** — every leader has ≥ 98.2% of dots within 3 px of another leader | NO — one duplicate family |
+
+- Estimates are never scores. Holdout values measure recovery of known catalogue faults, and the repo's own check finds hide-v2 Spearman +0.105 against live scores ("valid as live proxy: false").
+- **Leaderboard (fetched 2026-10-27):** #1 = **0.4544**, #22 = 0.3261 ([DrivenData](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/); machine copy `evidence/public-leaderboard-2026-10-27.json`). The prompt's 0.4413 and 0.3195 and the repo's earlier 0.4437 are stale or conflicting. A 0.2778 claim would sit below #22.
+- **Reproduce the checks:** `.venv/bin/python scripts/verify_nine_site_leaders.py --candidate <tif> …` (downloads exact leader bytes from GitHub, hashes them, computes 3-px overlap) → `evidence/nine-site-leader-check.json`; then `.venv/bin/python scripts/render_start_here.py` → `index.html`.
+- **Single owner of the root `index.html`:** `scripts/render_start_here.py`. `scripts/render_olc91_portal.py` calls it instead of writing its own root page.
+- **Known issues (flagged):** (1) `pytest` has one failing test, `tests/test_current_checkout_review.py::test_prior_s18_files_are_registered_as_quarantined_research_artifacts` (`download-audit.json` lists 111 files, the artifact policy lists 113). It fails identically on `origin/main`, so it predates this branch. (2) `tests/test_s22_omtj.py` and `tests/test_submission_portal.py` re-render tracked `docs/` pages. The root `index.html` is re-rendered through `render_start_here.py` at the end of the OLC91 renderer, so it stays the START HERE page. (3) `scripts/check_artifact_policy.py` fails on the pre-existing tracked raster `docs/downloads/gems91-S18-UNIQUE-curvtilt-...-29db2405.tif`.
+- No weekly submission slot was spent by this session. No experiment was run; the checks were verification only.
+
+
+---
+
+
+> **NO NEW TIFF GENERATED. OK TO DOWNLOAD: NO new candidate. OK TO SUBMIT: NO.** This review ran zero experiments and used zero weekly slots. No assigned single-method paragraph is present, the `data/` inputs are absent, and the preflight blocks every build axis. Do not treat any earlier research-download link in this README or site as current approval.
+
+- [**Current review, nine-site table, hypothesis ranking, three-pass record**](docs/REVIEW-ARENA-52711765-20261027.md)
+- [Machine-readable run card](docs/run-card-ARENA-52711765-20261027.json)
+- [Nine-site executive summary and submission guide](docs/high-score-submissions-review.html) · [Pinned site audit](docs/s22/nine-site-audit.json)
+- [Existing website front door](docs/index.html) · [How submission format works](docs/executive-summary.html)
+
+**Highest supplied historical claim:** GEMSDOE32 `h33-h33-2-b2` = 0.2778 **USER/OWNER-REPORTED, UNVERIFIED**, with no receipt binding the score to the TIFF. The nine byte-audited historical leaders all fail the requested peer uniqueness rule. There is no calibrated leaderboard-score estimate and no newly generated file cleared to submit. The prior S22-OMTJ TIFF is a negative, duplicate-stopped research artifact; it is not this review's output.
+
+## Start every session here
+
+Read this active status, the [full preserved project brief](#full-project-brief), the [current review](docs/REVIEW-ARENA-52711765-20261027.md), the [official-source evidence log](docs/OFFICIAL_SOURCES_VERIFIED_S22.md), and [limitations / next steps](LIMITATIONS_AND_NEXT_STEPS.md). Historical session banners below are evidence and archive only; they are not current submission recommendations.
+
+**Maximize P(Win):** reject unsupported score forecasts and don't spend a slot on negative or duplicate candidates. **Own the Outcome:** restore only authorized, hash-pinned inputs; automate all checks; report blockers and irregularities honestly.
+
+### Active request preserved
+
+The standing brief below retains the long-form user requirements and supplied site-score claims. For this checkout, follow the parallel-run controls: one assigned method lane only; reuse the shared evaluator/writer; whole-segment buffered hide-and-recover; per-feature leakage canaries; report every metric as HOLDOUT-DTI with evaluator version, withheld-positive count and 95% CI or as ORGANIZER-CONFIRMED with receipt; stop on surface |rho| > 0.90 or >70% of dots within 3 px of a registry raster; no more than three experiments or two hours; no slot selection by the experiment runner. A projection is never a score.
+
+The required method paragraph/assignment is absent in the current prompt and `registry/experiment_plan.json` has `lane: null`. `scripts/restore_data.py --check` found 15/15 pinned inputs absent. The automated preflight says 0/2 required inputs verified and all six build axes blocked. Therefore no scientifically valid new TIFF can be generated in this checkout without inventing a lane or bypassing the shared gates; this review deliberately does neither.
+
+
+
+</details>
 
 # GEMSDOE91 — S18-UNIQUE unique candidate · current status (2026-10-26)
 

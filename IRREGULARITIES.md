@@ -9,6 +9,11 @@
 - **IR-8E8-07 — official format / quota:** the official description's outside null/NaN wording is unresolved against the all-finite local writer and user-reported range error; a local PASS is not a receipt. Rules mention three/week but staff say the website limit prevails; current authenticated allowance is unknown.
 - **IR-8E8-08 — source scope:** inputs came from hash-pinned community mirrors, not authenticated organizer downloads; 62/64 frozen registry references restored. Public 0.4544 rank-one observation dated 2026-10-27 is not a receipt for any file.
 
+
+- **IR-8E8-09 — concurrent S23 input semantics:** main advanced during review. Its S23 study's B06 embedded tilt tag conflicts with r=0.996990 versus a hash-pinned community radiometric TC mirror; B18 has signed-derivative evidence. B06/B18 have 3,073/3,061 interior NoData cells which S23 nearest-filled (not the S22 raw-sentinel issue). The result is not a valid test of the advertised tilt mechanism without independent provenance and imputation validation. Its fixed TIFF is a literal 99.895% lattice duplicate. Old receipts remain frozen, runner blocked, original source archived.
+- **IR-8E8-10 — concurrent front-door writer:** a merged START HERE renderer could overwrite the newer evidence-based verdict and call a narrower competitive scope unique. Original code/page archived; the compatibility command now delegates to the current fail-closed renderer.
+- **IR-8E8-11 — concurrent nine-site distance metric:** the separately merged `evidence/nine-site-leader-check.json` uses a 3-px Chebyshev square rather than the shared comparator's 3-px Euclidean radius. Both report every named file as a duplicate, but the percentages differ (GEMSDOE36 98.26% versus 97.58%). Archived the original checker and corrected its default output and metric; frozen receipts remain unchanged.
+
 ---
 
 ## S22 audit irregularities (2026-10-26)

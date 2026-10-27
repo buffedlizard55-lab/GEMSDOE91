@@ -1,0 +1,69 @@
+{
+  "schema": "gems91.run-card.review.v1",
+  "review_date_utc": "2026-10-27",
+  "branch": "arena/52711765-gemsdoe91",
+  "hypothesis": "No assigned lane is present. Proposal ranking is documented in docs/REVIEW-ARENA-52711765-20261027.md; no candidate was executed.",
+  "mechanism": "NOT RUN. No candidate raster or feature surface was built in this review.",
+  "named_non_fault_process_that_could_mimic_it": "Intrusive lithologic contact or volcanic-flow margin (proposal-stage confounds only; no candidate test was run).",
+  "experiment_status": "NOT RUN: registry/experiment_plan.json lane is null; all 15 manifest inputs are absent under data/. Pinned Python dependencies were installed into ignored .venv/ for verification.",
+  "budget": {
+    "max_experiments": 3,
+    "experiments_used_this_review": 0,
+    "max_elapsed_minutes": 120,
+    "elapsed_minutes": 0,
+    "weekly_slots_used": 0
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "status": "NOT RUN for this review. No candidate holdout result or projection is claimed."
+  },
+  "historical_reference_only": {
+    "artifact": "S22-OMTJ prior-session negative research candidate",
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 60988,
+    "dti": 0.06622318062610064,
+    "ci95": [0.0480153209879553, 0.0868031263517965],
+    "status": "Prior-session result only; final dots failed registry overlap (98.57%) and it is not approved to submit."
+  },
+  "registry_correlation_overlap": {
+    "preplacement_surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "status": "NOT RUN in this review. Missing assignment, inputs, and feature surface."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "No candidate TIFF generated; all validator fields are null, not pass."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "estimated_leaderboard_score": null,
+  "organizer_confirmed_score": null,
+  "ok_to_download": false,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "blockers": [
+    "The prompt refers to a single assigned method paragraph but does not supply an assignment; registry/experiment_plan.json lane is null.",
+    "scripts/restore_data.py --check reports 15 of 15 pinned inputs missing.",
+    "scripts/preflight.py --json reports 0 of 2 required inputs and all six build axes blocked.",
+    "The pinned sample_submission.tif is missing, so experiment_preflight cannot verify its capacity witness even with pinned dependencies installed in ignored .venv/.",
+    "No complete registry or authorized competition-data ingest was performed in this review."
+  ],
+  "official_review_sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://www.usgs.gov/data/geologic-map-schema-gems-version-state-geologic-map-compilation-sgmc-geodatabase-conterminous",
+    "https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature"
+  ]
+}

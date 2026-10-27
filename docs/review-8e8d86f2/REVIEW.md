@@ -32,6 +32,35 @@ capacity bound is a full uniqueness certificate. Frozen S22 receipts are not
 rewritten; the corrected code and archived original hashes are recorded in
 [source-correction.json](source-correction.json).
 
+## Concurrent S23 result merged during this review
+
+Main advanced while this work was underway; the separately run S23-TILTA study
+and its TIFF were retained, but **they were not produced by this review**. Its
+[recorded HOLDOUT-DTI](../s23/holdout.json) was **0.014803 [0.011131,
+0.018893]**, `gems57-pooled-hide-v2`, 60,988 withheld positives. That is not a
+leaderboard score. The recorded comparison with S22 is not a matched paired
+comparison: the budgets differ and S22's inputs are contaminated. Independent
+[byte-level checking](s23-witness.json) finds **19,979 / 20,000 = 99.895%**
+overlap with the same pinned lattice, a literal **DUPLICATE STOP**. A
+competitive-only uniqueness pass does not override this rule.
+
+S23 described band 06 (`tc`) as magnetic tilt based on embedded metadata. A
+label-blind diagnostic against a hash-pinned, grid-matched community mirror of
+a radiometric image instead found **r = 0.996990** with its `TC` band, sampled
+every tenth of 5,164,300 jointly valid pixels. That strongly suggests a
+total-count radiometric channel rather than validating magnetic tilt; it does
+not independently authenticate the mirror's organizer provenance or licence.
+Band 18 contains signed values and correlates **r = 0.947178** with a gravity
+x-derivative; its description as an unsigned horizontal-gradient magnitude is
+not established. [Method and hashes](s23-band-semantics.json).
+[Coverage inspection](s23-input-audit.json) finds 3,073 and 3,061 in-footprint
+NoData cells in bands 06 and 18 respectively. Unlike S22, S23 converted them
+to missing and nearest-neighbor filled them; the scientific validity of that
+imputation has not been demonstrated. The reported holdout therefore does not
+validate the advertised tilt mechanism. The S23 runner now blocks implicit
+reruns; the original source and immutable receipts remain archived.
+[Corrected S23 research page](../s23/executive-summary.html).
+
 ## Nine historical leaders — claims, files and geometric evidence
 
 These are the exact historical files associated with the user's stated claims,
@@ -41,7 +70,12 @@ Estimated organizer score and receipt-linked score are **unavailable** for all
 nine. [Frozen audit and all 72 directed comparisons](../s22/nine-site-audit.json)
 used immutable Git blob snapshots on 26 October; [refreshed source
 inventory](focus-inventory.json) was obtained on 27 October. Current GitHub
-main may have moved since the raster audit. Each row's witness is the greatest
+main may have moved since the raster audit. The separately merged
+`evidence/nine-site-leader-check.json` used a Chebyshev square rather than the
+shared Euclidean 3-px gate (for example, GEMSDOE36's peer maximum was 98.26%
+there versus 97.58% here). Both still exceed 70%; their exact percentages are
+not interchangeable. The diagnostic source was corrected and archived without
+rewriting that receipt. Each row's witness is the greatest
 measured directed overlap against one of the other eight, not universal registry
 coverage. All nine fail the literal >70% duplicate stop among those peers.
 
@@ -101,7 +135,7 @@ permeability, temperature or a productive reservoir.
 - [USGS Landsat surface temperature](https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature) is freely available; surface heat can reflect weather, water, season or land cover rather than geothermal upflow.
 - [USGS SGMC](https://www.usgs.gov/data/geologic-map-schema-gems-version-state-geologic-map-compilation-sgmc-geodatabase-conterminous) is CC0 but has mixed map scales and unreconciled boundaries. Mapped fault layers risk label leakage.
 - [Southern Gabbs Valley USGS case study](https://www.usgs.gov/publications/discovery-a-blind-geothermal-system-southern-gabbs-valley-western-nevada-through) illustrates blind geothermal discovery from multiple data types, not validation of our proposed transforms.
-- The [official data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) required login in this review. Inputs were restored from SHA-pinned **community mirrors**, not authenticated organizer downloads; integrity is not origin authentication. No new external dataset was ingested.
+- The [official data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) required login in this review. Inputs were restored from SHA-pinned **community mirrors**, not authenticated organizer downloads; integrity is not origin authentication. No external dataset was used in a model; a radiometric community mirror was read locally for the band diagnostic only, with origin and licence unverified and no redistribution.
 
 ## Range error and future submission process
 

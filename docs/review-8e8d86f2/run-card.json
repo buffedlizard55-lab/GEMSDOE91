@@ -65,28 +65,31 @@
     "feature_audit": "docs/review-8e8d86f2/feature-audit.json",
     "s18_witness": "docs/review-8e8d86f2/s18-witness.json",
     "source_correction": "docs/review-8e8d86f2/source-correction.json",
-    "focus_inventory": "docs/review-8e8d86f2/focus-inventory.json"
+    "focus_inventory": "docs/review-8e8d86f2/focus-inventory.json",
+    "s23_witness": "docs/review-8e8d86f2/s23-witness.json",
+    "s23_band_semantics": "docs/review-8e8d86f2/s23-band-semantics.json",
+    "s23_input_audit": "docs/review-8e8d86f2/s23-input-audit.json"
   },
   "tests": {
     "status": "PASS",
     "python_suite": {
-      "passed": 741,
+      "passed": 757,
       "skipped": 9,
       "command": "PYTHONPATH=.:src python -m pytest -q"
     },
     "browser": {
       "status": "PASS",
       "browser": "Chromium 153.0.8010.0",
-      "pages_axe_checked": 27,
+      "pages_axe_checked": 28,
       "axe_violations": 0,
       "mobile_horizontal_overflow": false,
       "public_head_mock": "8 successes, 1 failed refresh retains prior link; no credentials",
       "evidence": "docs/review-8e8d86f2/browser-verification.json"
     },
-    "artifact_policy_registered_files": 111,
+    "artifact_policy_registered_files": 113,
     "technical_download_audit": {
-      "files_checked": 111,
-      "format_pass": 102,
+      "files_checked": 113,
+      "format_pass": 104,
       "format_fail": 9,
       "scope": "local technical checks; not organizer acceptance"
     },
@@ -96,5 +99,15 @@
     },
     "s22_local_validator": "docs/review-8e8d86f2/historical-s22-validator.json",
     "evidence_verifiers": "PASS: S16, S17, S19, S20, S22, shared evidence and frontdoor; does not imply scientific validity or submission permission"
+  },
+  "concurrent_s23_historical_result": {
+    "not_generated_in_this_review": true,
+    "tif": "docs/downloads/gems91-s23-tilta-e1-20261027t173010z-796ea645-zeros.tif",
+    "sha256": "507fd12f1c533ff0a4cb0c92bfceb7eaf5bf1cfc29d832f06c0d5023dd852bee",
+    "literal_dot_overlap_within_3px": 0.99895,
+    "status": "DUPLICATE_STOP",
+    "band_06_semantics": "embedded tilt metadata conflicts with r=0.996990 against community-mirrored radiometric TC; organizer provenance unconfirmed",
+    "holdout": "docs/s23/holdout.json (not a valid test of the advertised tilt mechanism)",
+    "ok_to_submit": false
   }
 }

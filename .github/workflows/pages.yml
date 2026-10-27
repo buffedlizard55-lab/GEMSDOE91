@@ -13,6 +13,10 @@ on:
       - scripts/source_integrity.py
       - scripts/verify_s22.py
       - scripts/render_review_8e8d86f2.py
+      - scripts/render_start_here.py
+      - scripts/run_s23_tilta.py
+      - scripts/verify_band06_and_units.py
+      - scripts/verify_nine_site_leaders.py
       - scripts/render_s22_pages.py
       - scripts/render_olc91_portal.py
       - scripts/build_pages_site.py
@@ -32,6 +36,7 @@ on:
       - src/gems91/readiness.py
       - src/gems91/novelty.py
       - src/gems91/omtj22.py
+      - src/gems91/tilta23.py
       - src/gems91/capacity.py
       - .github/workflows/pages.yml
       - requirements.txt

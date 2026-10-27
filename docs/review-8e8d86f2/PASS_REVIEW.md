@@ -8,6 +8,8 @@ archive or every outside site has been independently audited.
 
 - Restored four SHA-pinned input files from community mirrors and 62/64 frozen
   references; source identity is not an authenticated organizer provenance.
+  A separate radiometric mirror was later restored solely for a label-blind
+  diagnostic; its provenance and redistribution licence remain unverified.
 - Inspected GDAL masks, finding 3,061 finite NoData pixels inside the sample
   footprint in each of S22's two feature bands. Rejected masked/extreme data in
   the active feature helper, archived the prior implementation, and retained
@@ -37,8 +39,9 @@ archive or every outside site has been independently audited.
 
 - Registered the two already-tracked S18 2026-10-26 research artifacts in the
   artifact policy, regenerated the technical audit, and checked historical
-  TIFF/ZIP hashes. No old prediction bytes were replaced and no new prediction
-  competition TIFF was generated; `make demo` produced only small synthetic test rasters under ignored `tests/_tmp`.
+  TIFF/ZIP hashes. No old prediction bytes were replaced and no new competition prediction
+  TIFF was generated; `make demo` produced only small synthetic test rasters
+  under ignored `tests/_tmp`.
 - Made the current portal derive from persisted receipts, clearly separate
   historical research downloads from upload permission, show all nine named
   files and their unverified claims, and provide a public GitHub-head refresh
@@ -57,3 +60,13 @@ No supplied method paragraph, no viable frozen dot budget under the literal
 registry rule, two unavailable reference files, no authenticated organizer
 receipt/quota, no matched incumbent rerun, unknown official acceptance of the
 outside-footprint encoding, and no authenticated organizer-origin data.
+
+### Concurrent-main reconciliation
+
+- Preserved the separately merged S23 research artifact and frozen receipts,
+  independently reproduced its 99.895% duplicate-stop, and flagged the B06/B18
+  semantic conflict and interior missing-data imputation. No S23 rerun occurred
+  in this review. The original S23 and START HERE source/page bytes are
+  archived; unsafe historical entry commands now fail closed or route to the
+  current review. The concurrent nine-site diagnostic used Chebyshev distance;
+  its source is archived and corrected to match the shared Euclidean gate.

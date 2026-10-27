@@ -24,6 +24,10 @@ def render_sources():
     pre = load('review-8e8d86f2/experiment-preflight.json')
     feature = load('review-8e8d86f2/feature-audit.json')
     s18 = load('review-8e8d86f2/s18-witness.json')
+    s23 = load('review-8e8d86f2/s23-witness.json')
+    s23_inputs = load('review-8e8d86f2/s23-input-audit.json')
+    s23_semantics = load('review-8e8d86f2/s23-band-semantics.json')
+    s23_prior = load('s23/run-card.json')
     prior = load('s22/run-card.json')
     audit = load('s22/nine-site-audit.json')
     focus = load('review-8e8d86f2/focus-inventory.json')
@@ -38,6 +42,17 @@ def render_sources():
             or any(b['status'] != 'FAIL_CLOSED' for b in feature['bands'])
             or s18['status'] != 'DUPLICATE_STOP' or s18['complete_registry_clearance'] is not False
             or s18['witness_sha256'] != pre['capacity']['reference_sha256']
+            or s23['status'] != 'DUPLICATE_STOP' or s23['complete_registry_clearance'] is not False
+            or s23['witness_sha256'] != pre['capacity']['reference_sha256']
+            or s23['candidate_sha256'] != s23_prior['raster_sha256']
+            or s23['candidate_sha256'] != card['concurrent_s23_historical_result']['sha256']
+            or s23['directed_dot_overlap']['overlap_within_3px'] <= 0.70
+            or s23_prior['ok_to_submit'] is not False
+            or s23_inputs['status'] != 'FAIL_CLOSED'
+            or [b['band'] for b in s23_inputs['bands']] != [6, 18]
+            or s23_inputs['features_sha256'] != feature['features_sha256']
+            or s23_semantics['input_sha256']['training_features_sha256'] != feature['features_sha256']
+            or s23_semantics['band_06']['pearson_r_vs_mirror_bands']['band_4_TC'] < 0.99
             or prior['ok_to_submit'] is not False
             or len(audit['sites']) != 9
             or {r['site'] for r in audit['sites']} != {f'GEMSDOE{i}' for i in focus_sites}
@@ -82,6 +97,7 @@ def render_sources():
 <div class="statline"><span>New geological experiments</span><strong>0</strong></div><div class="statline"><span>New candidate generated</span><strong>NO</strong></div><div class="statline"><span>Weekly slots used in this review</span><strong>0</strong></div>
 <p>The method paragraph is missing, and the frozen dot budget cannot pass the literal overlap rule. A separate selector would be required even for a future validated file.</p></aside></section>
 <div class="note"><strong>Historical S22 OMTJ is scientifically compromised.</strong> Finite NoData cells entered both of its input bands. Its local format check is not scientific validation or organizer acceptance. <a href="review-8e8d86f2/feature-audit.json">See the input audit</a>.</div>
+<div class="note"><strong>Concurrent S23 research is also duplicate-stopped.</strong> Its saved dots overlap the pinned lattice by {s23['directed_dot_overlap']['overlap_within_3px']:.3%}; a band-identity conflict prevents validating the stated magnetic-tilt mechanism. This separate historical run is not a new candidate from this review. <a href="s23/executive-summary.html">S23 correction and evidence</a>.</div>
 <section class="section" id="evidence"><div class="section-title"><h2>Three reasons to stop</h2><p>Each number is tied to reproducible evidence.</p></div><div class="cards">
 <article class="card"><span class="eyebrow">FIXED PLAN / NECESSARY BOUND</span><div class="metric">{bound:.2%}</div><h3>Unavoidable overlap</h3><p>At 37,654 dots, at least this share lies within 3 px of the pinned lattice; the protocol stops above 70%. This is not a score or a uniqueness pass.</p><a href="review-8e8d86f2/experiment-preflight.json">Preflight receipt ↗</a></article>
 <article class="card"><span class="eyebrow">S18 / DIRECT COMPARISON</span><div class="metric">{overlap:.3%}</div><h3>Overlap with the lattice</h3><p>{s18['directed_dot_overlap']['candidate_dots']:,} historical S18 dots were checked; the prior two-reference uniqueness claim is superseded.</p><a href="review-8e8d86f2/s18-witness.json">Duplicate witness ↗</a></article>
@@ -103,7 +119,7 @@ def render_sources():
 <section class="section" id="feed"><span class="eyebrow">AUDITABLE SOURCE FEED / NO ORGANIZER SCORES</span><h2>Track the nine source repositories</h2><p>Frozen page inventory checked <strong>{esc(focus['checked_utc'])}</strong>. Refresh checks public GitHub main commit heads in your browser; it does not fetch rasters, scores or private receipts. Rate limits or network failures leave the dated snapshot visible.</p>
 <button type="button" class="refresh" id="refresh-focus">Check live GitHub heads</button><p id="focus-status" class="feed-status" role="status" aria-live="polite">Showing saved GitHub page snapshots.</p><ul class="feed-list">{''.join(feed_rows)}</ul>
 <p class="subtle"><a href="review-8e8d86f2/focus-inventory.json">Full saved inventory</a> · <a href="fleet-audit.json">Broader scheduled fleet inventory</a> · <a href="review-8e8d86f2/REVIEW.md">Official source and limitations ledger</a>. Daily Actions refreshes are automatically published only when Pages uses workflow deployment; branch-based Pages may show an older saved snapshot. No credentials are requested.</p><noscript><p>Live head checks require JavaScript; the dated inventory remains available above.</p></noscript></section>
-<section class="section" id="archive"><span class="eyebrow">HISTORICAL EVIDENCE</span><h2>Earlier research, clearly archived</h2><p><a href="archive-results.html">Historical experiment archive</a> · <a href="s17-lftg.html">S17-LFTG research audit</a> · <a href="s17-cpad.html">S17-CPAD research audit</a> · <a href="REVIEW-ACTIVE-E649E460-20261025.md">Earlier safety review</a> · <a href="run-card-E649E460-20261025.json">Earlier review card</a></p></section>'''
+<section class="section" id="archive"><span class="eyebrow">HISTORICAL EVIDENCE</span><h2>Earlier research, clearly archived</h2><p><a href="archive-results.html">Historical experiment archive</a> · <a href="s23/executive-summary.html">S23 parallel research correction</a> · <a href="REVIEW-ARENA-52711765-20261027.md">Concurrent no-run review</a> · <a href="s17-lftg.html">S17-LFTG research audit</a> · <a href="s17-cpad.html">S17-CPAD research audit</a> · <a href="REVIEW-ACTIVE-E649E460-20261025.md">Earlier safety review</a> · <a href="run-card-E649E460-20261025.json">Earlier review card</a></p></section>'''
     def shell(title):
         return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} · GEMSDOE91</title><meta name="description" content="A fail-closed GEMS fault-mapping audit, nine-site evidence and research-only GeoTIFF download."><style>{STYLE}</style><script defer src="assets/focus-feed.js"></script></head><body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="nav"><a class="brand" href="index.html">GEMSDOE91<small>FAULT MAPPING / RESEARCH OPERATIONS</small></a><nav aria-label="Main navigation"><a href="#evidence">Evidence</a><a href="#nine-sites">Nine sites</a><a href="#how-to-submit">Submission guide</a><a href="#feed">Source feed</a></nav></header><main id="main">{body}</main><footer><span>Maximize P(Win) · Own the Outcome<br>Research, not a leaderboard prediction.</span><span><a href="review-8e8d86f2/run-card.json">Current run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source repository</a><br>No automatic competition uploads or stored credentials.</span></footer></div></body></html>\n'''
     (DOCS / 'review-8e8d86f2-index-src.html').write_text(shell('Current research verdict'), encoding='utf-8')
