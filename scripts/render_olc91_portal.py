@@ -154,6 +154,53 @@ def parallel_s19_svhf_callout(root=ROOT) -> str:
 </section>'''
 
 
+def s24_callout(root=ROOT) -> str:
+    """Latest-session (S24-CCKM) research download, re-verified fail-closed.
+
+    Reads only the committed E2 run card and the bytes on disk; raises rather
+    than publishing a stale or submit-positive callout. Returns a banner that
+    links the generated executive summary with the obvious download decision.
+    """
+    docs = root / "docs"
+    card_path = docs / "s24/e2/run-card.json"
+    if not card_path.is_file():
+        return ""
+    card = json.loads(card_path.read_text(encoding="utf-8"))
+    if card.get("ok_to_submit") is not False or card.get("verdict") != "negative":
+        raise ValueError("S24-CCKM must remain explicitly not approved for submission")
+    if card.get("organizer_confirmed_score") is not None or card.get("estimated_leaderboard_score") is not None:
+        raise ValueError("S24-CCKM must not claim an organizer score or leaderboard estimate")
+    art = card.get("artifact", {})
+    tif = (root / art["tif"]).resolve()
+    archive_path = (root / art["zip"]).resolve()
+    downloads = (docs / "downloads").resolve()
+    if not tif.is_relative_to(downloads) or not archive_path.is_relative_to(downloads):
+        raise ValueError("S24-CCKM artifact path escapes docs/downloads")
+    tif_bytes = tif.read_bytes()
+    if hashlib.sha256(tif_bytes).hexdigest() != card.get("raster_sha256"):
+        raise ValueError("S24-CCKM TIFF hash mismatch")
+    if hashlib.sha256(archive_path.read_bytes()).hexdigest() != art.get("zip_sha256"):
+        raise ValueError("S24-CCKM ZIP hash mismatch")
+    with zipfile.ZipFile(archive_path) as archive:
+        members = [n for n in archive.namelist() if not n.endswith("/")]
+        if members != [tif.name] or archive.read(members[0]) != tif_bytes:
+            raise ValueError("S24-CCKM ZIP must contain exactly its TIFF bytes")
+    note = card.get("submission_note", "")
+    if not isinstance(note, str) or not 0 < len(note) <= 140:
+        raise ValueError("S24-CCKM note must contain 1-140 characters")
+    h = card["holdout"]
+    nine_max = card["correlation_overlap_vs_registry"]["final_dot_max_overlap_nine_leaders"]
+    tif_href = tif.relative_to(docs.resolve()).as_posix()
+    zip_href = archive_path.relative_to(docs.resolve()).as_posix()
+    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S24-CCKM latest research artifact; not approved for submission">
+<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<h2>S24-CCKM E2 · Cross-contact kurtosis (B14&thinsp;&times;&thinsp;B13) · 37,654 dots · latest session 2026-10-27</h2>
+<p>A new TIF was generated this session: unique vs the nine focus leaders (max {100*nine_max:.2f}% of dots within 3 px), HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, {h["n_withheld_positives"]:,} withheld — not a leaderboard score). Verdict negative: it does not beat its gravity-gradient control and fails the literal dense-lattice registry rule, so it must not be submitted. Full evidence, the nine-site table, and the future-submission guide: <a href="s24/executive-summary.html">S24 executive summary</a>.</p>
+<p><a class="button" download href="{esc(tif_href, quote=True)}">Download S24 research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s24/REVIEW.md">Session review</a> · <a href="s24/e2/run-card.json">Run card</a></p>
+<p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
+</section>'''
+
+
 def render() -> None:
     from scripts.render_s22_pages import render_sources as render_s22_sources
     from scripts.render_review_8e8d86f2 import render_sources as render_review_sources
@@ -165,7 +212,7 @@ def render() -> None:
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
-    parallel_card = ""
+    parallel_card = s24_callout(ROOT)
     for source_name, target_name in ((CURRENT['index_src'], "index.html"),
                                      (CURRENT['exec_src'], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
@@ -183,10 +230,12 @@ def render() -> None:
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta http-equiv="refresh" content="0;url=docs/index.html">'
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
-        '<h1>GEMSDOE91 · Current review</h1><p>NO NEW TIFF. Historical S22 OMTJ: OK TO DOWNLOAD: YES — research only. '
+        '<h1>GEMSDOE91 · Current review</h1><p>Historical review: NO NEW TIFF; S22 OMTJ research only. '
+        'Latest S24-CCKM: new research TIF generated (unique vs the nine focus sites), OK TO DOWNLOAD: YES — research only. '
         '<strong>OK TO SUBMIT: NO — NOT OK TO SUBMIT.</strong></p>'
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
-        '<a href="docs/executive-summary.html">Nine-site executive summary and submission guide</a></p>'
+        '<a href="docs/s24/executive-summary.html">S24 executive summary, nine-site table and submission guide</a> · '
+        '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
         '</main></body></html>\n', encoding='utf-8')
 
 if __name__ == "__main__":

@@ -1,0 +1,334 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+    "cckm_e1": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.04595216362196115,
+      "ci95": [
+        0.03799619478262099,
+        0.054355947230095486
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 2438.8662177742754,
+      "fpw": 18979.251916196146,
+      "fnw": 58549.133782225756
+    },
+    "control_gravgrad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.042861597623862206,
+      "ci95": [
+        0.031082975092480394,
+        0.05538189357026396
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 2272.5869707315424,
+      "fpw": 18883.003123662314,
+      "fnw": 58715.41302926848
+    },
+    "control_kurtcontrast": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.03573940242876835,
+      "ci95": [
+        0.032267928088326805,
+        0.03943578464056368
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 1894.7884156908988,
+      "fpw": 19237.164718020886,
+      "fnw": 59093.21158430909
+    },
+    "r0_reference_nonmatched_budget": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.006697041784474405,
+      "ci95": [
+        0.005969120964122151,
+        0.007449522541025754
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 377.3190358808101,
+      "fpw": 37376.43107272676,
+      "fnw": 60610.68096411921
+    }
+  },
+  "best_comparable_control": "control_gravgrad",
+  "paired_differences": {
+    "control_gravgrad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0030905659980989472,
+      "ci95": [
+        -0.004244312723220773,
+        0.010388123519262922
+      ],
+      "withheld_positive_pixels": 60988
+    },
+    "control_kurtcontrast": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.010212761193192803,
+      "ci95": [
+        0.00224096222607792,
+        0.018401324724279865
+      ],
+      "withheld_positive_pixels": 60988
+    },
+    "r0_reference_nonmatched_budget": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.03925512183748675,
+      "ci95": [
+        0.031167157740631682,
+        0.04776897857719885
+      ],
+      "withheld_positive_pixels": 60988
+    }
+  },
+  "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 161,
+    "draws": 1000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+    "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+  },
+  "per_fold": [
+    {
+      "arm": "cckm_e1",
+      "fold": 0,
+      "budget": 9479,
+      "n_truth": 29319,
+      "n_emitted": 9479,
+      "tpw": 1138.1518913738082,
+      "fpw": 8997.196770530934,
+      "fnw": 28180.848108626193
+    },
+    {
+      "arm": "cckm_e1",
+      "fold": 1,
+      "budget": 5289,
+      "n_truth": 12596,
+      "n_emitted": 5289,
+      "tpw": 557.6199946255022,
+      "fpw": 5048.130522478486,
+      "fnw": 12038.380005374498
+    },
+    {
+      "arm": "cckm_e1",
+      "fold": 2,
+      "budget": 2183,
+      "n_truth": 9473,
+      "n_emitted": 2183,
+      "tpw": 328.6997884705842,
+      "fpw": 2042.4442582658228,
+      "fnw": 9144.300211529417
+    },
+    {
+      "arm": "cckm_e1",
+      "fold": 3,
+      "budget": 3049,
+      "n_truth": 9600,
+      "n_emitted": 3049,
+      "tpw": 414.3945433043809,
+      "fpw": 2891.4803649208943,
+      "fnw": 9185.605456695619
+    },
+    {
+      "arm": "control_gravgrad",
+      "fold": 0,
+      "budget": 9479,
+      "n_truth": 29319,
+      "n_emitted": 9479,
+      "tpw": 890.5674163479653,
+      "fpw": 9034.887350543853,
+      "fnw": 28428.432583652037
+    },
+    {
+      "arm": "control_gravgrad",
+      "fold": 1,
+      "budget": 5289,
+      "n_truth": 12596,
+      "n_emitted": 5289,
+      "tpw": 665.8542720731882,
+      "fpw": 4961.905415815857,
+      "fnw": 11930.145727926812
+    },
+    {
+      "arm": "control_gravgrad",
+      "fold": 2,
+      "budget": 2183,
+      "n_truth": 9473,
+      "n_emitted": 2183,
+      "tpw": 356.663157366839,
+      "fpw": 2006.772257682324,
+      "fnw": 9116.336842633162
+    },
+    {
+      "arm": "control_gravgrad",
+      "fold": 3,
+      "budget": 3049,
+      "n_truth": 9600,
+      "n_emitted": 3049,
+      "tpw": 359.5021249435489,
+      "fpw": 2879.4380996202717,
+      "fnw": 9240.497875056451
+    },
+    {
+      "arm": "control_kurtcontrast",
+      "fold": 0,
+      "budget": 9479,
+      "n_truth": 29319,
+      "n_emitted": 9479,
+      "tpw": 929.6695118474704,
+      "fpw": 9101.621655326393,
+      "fnw": 28389.33048815253
+    },
+    {
+      "arm": "control_kurtcontrast",
+      "fold": 1,
+      "budget": 5289,
+      "n_truth": 12596,
+      "n_emitted": 5289,
+      "tpw": 359.2259928598903,
+      "fpw": 5142.8249735398185,
+      "fnw": 12236.77400714011
+    },
+    {
+      "arm": "control_kurtcontrast",
+      "fold": 2,
+      "budget": 2183,
+      "n_truth": 9473,
+      "n_emitted": 2183,
+      "tpw": 314.0326076465006,
+      "fpw": 2056.524093089933,
+      "fnw": 9158.9673923535
+    },
+    {
+      "arm": "control_kurtcontrast",
+      "fold": 3,
+      "budget": 3049,
+      "n_truth": 9600,
+      "n_emitted": 3049,
+      "tpw": 291.8603033370382,
+      "fpw": 2936.1939960647355,
+      "fnw": 9308.139696662962
+    },
+    {
+      "arm": "r0_reference_nonmatched_budget",
+      "fold": 0,
+      "budget": null,
+      "n_truth": 29319,
+      "n_emitted": 18028,
+      "tpw": 165.99429195293152,
+      "fpw": 17905.64885720326,
+      "fnw": 29153.00570804707
+    },
+    {
+      "arm": "r0_reference_nonmatched_budget",
+      "fold": 1,
+      "budget": null,
+      "n_truth": 12596,
+      "n_emitted": 9588,
+      "tpw": 102.5214938763005,
+      "fpw": 9510.4428681094,
+      "fnw": 12493.4785061237
+    },
+    {
+      "arm": "r0_reference_nonmatched_budget",
+      "fold": 2,
+      "budget": null,
+      "n_truth": 9473,
+      "n_emitted": 4795,
+      "tpw": 64.33066245290009,
+      "fpw": 4749.384866112941,
+      "fnw": 9408.6693375471
+    },
+    {
+      "arm": "r0_reference_nonmatched_budget",
+      "fold": 3,
+      "budget": null,
+      "n_truth": 9600,
+      "n_emitted": 5243,
+      "tpw": 44.472587598677784,
+      "fpw": 5210.954481301147,
+      "fnw": 9555.527412401323
+    }
+  ],
+  "fold_receipts": [
+    {
+      "fold": 0,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 29319,
+      "evaluation_px": 2449030,
+      "training_domain_px": 2508386,
+      "held_components": 1830,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 244
+    },
+    {
+      "fold": 1,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 12596,
+      "evaluation_px": 1366431,
+      "training_domain_px": 3636842,
+      "held_components": 687,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 82
+    },
+    {
+      "fold": 2,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9473,
+      "evaluation_px": 564135,
+      "training_domain_px": 4383314,
+      "held_components": 382,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 483
+    },
+    {
+      "fold": 3,
+      "split_version": "label-blind-quadrants-v2",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9600,
+      "evaluation_px": 787777,
+      "training_domain_px": 4263431,
+      "held_components": 329,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 368
+    }
+  ],
+  "matched_controls": [
+    "control_gravgrad",
+    "control_kurtcontrast"
+  ],
+  "nonmatched_reference_note": "r0_reference_nonmatched_budget carries 37,654 dots vs 20,000 in matched arms; no paired superiority claim is made against it."
+}

@@ -1,0 +1,37 @@
+{
+  "descriptions": {
+    "3": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+    "5": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+    "13": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+    "14": "tmi - Total magnetic intensity - total strength of magnetic field",
+    "18": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change"
+  },
+  "nodata_tag": "-3.4028234663852886e+38",
+  "B13": {
+    "valid_pixels": 5164312,
+    "invalid_inside_footprint": 3061,
+    "min": -45.75756072998047,
+    "median": -7.26103401184082,
+    "max": 24.232954025268555
+  },
+  "B14": {
+    "valid_pixels": 5164312,
+    "invalid_inside_footprint": 3061,
+    "min": -2178.27783203125,
+    "median": -124.8157730102539,
+    "max": 4506.14111328125
+  },
+  "corr_B03_vs_abs_grad_B14": {
+    "r": 0.9999999968834623,
+    "n": 5135228
+  },
+  "corr_B05_vs_abs_grad_B13": {
+    "r": 0.9619178844768389,
+    "n": 5135228
+  },
+  "corr_B18_vs_dx_B13": {
+    "r": 0.9481554832348723,
+    "n": 5135228
+  },
+  "interpretation": "Internal derivative consistency supports, but does not externally authenticate, the embedded B13/B14 identities. Gradients were scored only on pixels eroded 2px from any invalid cell; no filling was used in features."
+}
