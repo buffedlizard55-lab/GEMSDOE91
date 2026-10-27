@@ -136,3 +136,36 @@ def test_repository_plan_does_not_invent_assignment():
     p = json.loads((ROOT / 'registry/experiment_plan.json').read_text())
     assert p['lane'] is None
     assert p['dot_budget'] == 37654
+
+
+def test_reference_dots_outside_footprint_do_not_tighten_bound(tmp_path):
+    import hashlib
+    import rasterio
+    from rasterio.transform import from_origin
+
+    root = tmp_path
+    sample_path = root / 'data/official/sample_submission.tif'
+    ref_path = root / 'data/fleet_registry/calib_r13lattice_00904.tif'
+    sample_path.parent.mkdir(parents=True)
+    ref_path.parent.mkdir(parents=True)
+    (root / 'registry').mkdir()
+    sample = np.full((6, 6), np.nan, np.float32)
+    sample[1:5, 1:5] = 0
+    reference = np.zeros((6, 6), np.float32)
+    reference[0, 0] = reference[0, -1] = 1  # outside footprint
+    for path, arr in [(sample_path, sample), (ref_path, reference)]:
+        with rasterio.open(path, 'w', driver='GTiff', height=6, width=6,
+                           count=1, dtype='float32', crs='EPSG:32611',
+                           transform=from_origin(0, 600, 100, 100)) as dst:
+            dst.write(arr, 1)
+    def pin(path):
+        return {'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+                'bytes': path.stat().st_size}
+    (root / 'registry/data_manifest.json').write_text(json.dumps({'files': [
+        {'id': 'sample_submission', 'local_subpath': 'official/sample_submission.tif', **pin(sample_path)}]}))
+    (root / 'registry/comparison_inventory.json').write_text(json.dumps({'files': [
+        {'path': 'data/fleet_registry/calib_r13lattice_00904.tif', **pin(ref_path)}]}))
+    got = preflight.inspect_witness(root, 'data/fleet_registry/calib_r13lattice_00904.tif', 10)
+    assert got['reference_dots'] == 0
+    assert got['overlap_lower_bound'] == 0.0
+    assert got['status'] == 'NOT_RULED_OUT'

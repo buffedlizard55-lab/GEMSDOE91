@@ -1,3 +1,5 @@
+> **2026-10-27 correction — historical text below is superseded where it interprets S22 as a valid geological test.** The original implementation accepted 3,061 finite NoData cells inside the footprint in each of its two input bands. The historical HOLDOUT-DTI and canary arithmetic is retained for provenance only; it cannot validate or reject the intended mechanism. No corrected S22 experiment has been run. The literal 98.565889% duplicate stop remains in force. See the [current review](../review-8e8d86f2/REVIEW.md), [feature audit](../review-8e8d86f2/feature-audit.json), and [source-correction manifest](../review-8e8d86f2/source-correction.json).
+
 # Three-pass review — S22 OMTJ
 
 Branch: `arena/a3f85c97-gemsdoe91`. Date: 2026-10-26.

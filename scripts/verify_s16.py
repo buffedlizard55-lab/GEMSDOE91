@@ -21,6 +21,7 @@ from scipy.spatial import cKDTree
 from gems91.readiness import gates, submission_ready
 from vendor.gems57 import evaluate_holdout as ev
 from scripts.verify_current_artifact import published_path
+from scripts.source_integrity import verify_historical_source
 
 
 def read(relative):
@@ -76,6 +77,8 @@ def verify(with_data=False):
             require((s.count, s.shape, s.crs, s.transform) == actual_meta, 'catalogue/grid mismatch')
             cat = (s.read(1) > 0) & fp
         require((arr[~fp] == 0).all() and (arr[cat] == 0).all(), 'footprint/catalogue masking drift')
+    for name, digest in read('docs/s16/provenance.json')['code_sha256'].items():
+        verify_historical_source(ROOT, name, digest)
     prereg = card['preregistration']
     require(sha(ROOT / prereg['path']) == prereg['sha256'], 'preregistration modified after experiment')
     feature = read('docs/s16/features.json')

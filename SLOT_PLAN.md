@@ -1,3 +1,9 @@
+## Current review decision — 2026-10-27
+
+**No slot selected or spent. No new TIFF is eligible.** Prior S22 inputs are scientifically compromised and S18 is a literal duplicate. Any future file needs all scientific and registry gates, then a separate selector decision and an authenticated check of the website's current limit. Earlier plans below are historical, not an active upload queue. See [current review](docs/review-8e8d86f2/REVIEW.md).
+
+---
+
 # Slot selection — no automatic slot (`S22-XB` and every earlier research file are held for a human decision; 0 slots spent)
 
 > **SESSION 22 BANNER (`S22-XB`, 2026-10-26, branch `arena/c722cd53-gemsdoe91`):**

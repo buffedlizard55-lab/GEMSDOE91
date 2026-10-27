@@ -1,3 +1,16 @@
+# GEMSDOE91 — Current review: blocked, research only
+
+> **2026-10-27 verdict: NO NEW TIFF · NOT OK TO SUBMIT.** No geological experiment, candidate, or competition upload was made in this review. The assigned single-method paragraph is missing. At the frozen 37,654-dot budget, a pinned lattice forces at least **82.341849%** directed overlap, above the user's 70% duplicate threshold. Do not shrink the plan or exempt a dense reference merely to pass. [Current review and nine-site table](docs/review-8e8d86f2/REVIEW.md) · [preflight](docs/review-8e8d86f2/experiment-preflight.json) · [run card](docs/review-8e8d86f2/run-card.json) · [ranked proposals](docs/review-8e8d86f2/HYPOTHESES.md).
+>
+> Historical S22 OMTJ is **scientifically compromised**: 3,061 finite NoData cells inside each of its two feature bands. The old HOLDOUT-DTI and canaries cannot validate the intended geology. The historical S18 “unique” raster is a **99.605% lattice duplicate**. Both are research-only, **not** new or approved submissions. [Feature audit](docs/review-8e8d86f2/feature-audit.json) · [S18 witness](docs/review-8e8d86f2/s18-witness.json) · [source correction and archived originals](docs/review-8e8d86f2/source-correction.json).
+>
+> [Historical S22 TIFF, for research only](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif) · [current Pages portal](docs/index.html). Its all-finite [0,1] local validation is not organizer acceptance; official outside-bounds null/NaN wording remains unresolved. No calibrated score estimate or authenticated submission receipt is available.
+
+**Maximize P(Win):** do not waste a slot on an unsupported or duplicate result. **Own the Outcome:** preserve evidence, make failures reproducible, and report what remains unknown. The original standing prompt is retained below under [Full Project Brief](#full-project-brief); all earlier session outcomes are historical and superseded by this status where inconsistent.
+
+<details>
+<summary>Earlier README content and preserved full project brief (historical; not current status)</summary>
+
 # GEMSDOE91 — S18-UNIQUE unique candidate · current status (2026-10-26)
 
 **OK TO DOWNLOAD: YES — research only. OK TO SUBMIT: NO — holdout-DTI 0.000624 did not beat incumbent 0.066223; per budget rule, no weekly slot spent.**
@@ -1484,6 +1497,8 @@ Key standing requirements preserved verbatim:
 - Clear, obvious executive summary on every one of the 9 sites above identifying the best submission without duplication.
 - PhD-level analysis of why and how `GEMSDOE32` (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros: 0.2778`) obtained the highest reported score among the 9 sites, and how to surpass `0.2778` / `0.3195` toward leaderboard top `0.4413`.
 - PARALLEL-RUN PROTOCOL (`LANE`, `REUSE, DON'T REBUILD`, `LABEL EVERY NUMBER`, `LEAKAGE CANARY`, `RUN CARD`, `BUDGET` 3 experiments / 2 hours), Arena AI Core Values (`Maximize P(Win)` and `Own the Outcome`), `[0, 1]` range validation (`"Predicted values must be in range [0, 1]"` fix), 3-pass execution (`Pass 1`, `Pass 2`, `Pass 3`), and PR creation + merge onto `main`.
+
+</details>
 
 </details>
 

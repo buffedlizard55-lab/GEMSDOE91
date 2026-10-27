@@ -1,0 +1,54 @@
+{
+  "generated_utc": "2026-10-27T17:50:55Z",
+  "label_blind": true,
+  "inputs": {
+    "sample_submission_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "ext_geodawn_rad_u8_sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682"
+  },
+  "ir_91_s12_04_band06_resolution": {
+    "embedded_geotiff_description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+    "embedded_geotiff_tags": {
+      "band_name": "tc",
+      "data_category": "magnetic_data",
+      "data_type": "numeric",
+      "description": "Tilt angle or total curvature - magnetic field derivative for edge detection"
+    },
+    "reference_solution_behavior": "drivendataorg/gems-prize-reference-solution unet-mc-cv-reference-solution.ipynb Cell 5 prints src.tags(i)['description'] directly from numeric_features.tif",
+    "valid_footprint_pixels": 5164300,
+    "min_value": 2.953424,
+    "median_value": 18.481701,
+    "max_value": 88.566544,
+    "strictly_positive": true,
+    "pearson_r_vs_geodawn_radiometric_bands": {
+      "band_1_K": 0.881612,
+      "band_2_Th": 0.915248,
+      "band_3_U": 0.714774,
+      "band_4_TC": 0.99699
+    },
+    "geodawn_radiometric_band_descriptions": [
+      "K",
+      "Th",
+      "U",
+      "TC"
+    ],
+    "conclusion": "Band 06 values are strictly positive [2.953, 88.57] (ruling out signed magnetic tilt angle in [-pi/2, +pi/2] or [-90, +90] deg) and match USGS GeoDAWN Airborne Radiometric Band 4 'TC' (Total Count exposure rate) with Pearson r = 0.99699 across 5,164,300 pixels. The embedded GeoTIFF metadata tag expanded the GeoDAWN column abbreviation 'tc' as 'Tilt angle or total curvature - magnetic field derivative'."
+  },
+  "ir_91_s13_01_dimensional_units_audit": {
+    "magnetic_tmi_derivatives": {
+      "pearson_r_b03_vs_grad_b14": 0.999991,
+      "median_ratio_b03_over_grad_b14_per_100m_px": 2.0,
+      "p95_b03_raw_nT_per_200m": 94.3055,
+      "p95_b03_converted_nT_per_m": 0.47153,
+      "p95_abs_b09_tmi_vg_nT_per_m": 0.46808,
+      "conclusion": "Band 03 (tmi_hg) equals 2 * ||grad_px(Band 14)|| (central difference over 200 m, r = 0.999954), whereas Band 09 (tmi_vg) is in nT/m (p95 |B09| = 0.46976 nT/m vs p95 B03/200 = 0.47076 nT/m, 0.21% match). Dividing B09 by B03 or grad_px(RTP) without the 200 m / 100 m pixel factor compresses Verduzco magnetic tilt by 100x-200x."
+    },
+    "gravity_derivatives": {
+      "pearson_r_b11_vs_dy_b13": 0.924488,
+      "pearson_r_b18_vs_dx_b13": 0.947178,
+      "pearson_r_hypot_b11_b18_vs_b05": 0.946833,
+      "median_ratio_hypot_b11_b18_over_b05": 17.83323,
+      "conclusion": "(Band 11, Band 18) is the signed 2-D horizontal gravity gradient vector (dG/dy, dG/dx), whose Euclidean norm correlates with Band 05 (iso_grav_anom_slope) at r = 0.94684 with median scale ratio 17.8316."
+    }
+  }
+}

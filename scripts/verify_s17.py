@@ -25,6 +25,7 @@ from scipy.spatial import cKDTree
 
 from gems91.readiness import gates, submission_ready
 from scripts.verify_current_artifact import published_path
+from scripts.source_integrity import verify_historical_source
 from vendor.gems57 import evaluate_holdout as ev
 
 
@@ -99,6 +100,8 @@ def verify(with_data: bool = False) -> dict:
         require(d_cat > 3.0 and round(d_cat, 5) == card["validator_output"]["min_catalogue_distance_px"], "Catalogue collar <= 3 px")
 
     # Preregistration & feature provenance checks
+    for name, digest in read_json("docs/s17/provenance.json")["code_sha256"].items():
+        verify_historical_source(ROOT, name, digest)
     prereg = card["preregistration"]
     require(sha(ROOT / prereg["path"]) == prereg["sha256"], "Preregistration modified after experiment")
     feat = read_json("docs/s17/features.json")

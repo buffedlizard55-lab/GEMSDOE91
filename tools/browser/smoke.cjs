@@ -51,6 +51,29 @@ async function main() {
     if (!(await page.getByText(/NOT OK TO SUBMIT/).count())) {
       throw new Error('Submission warning is not visible');
     }
+    if (!(await page.getByText(/NO NEW TIFF/).count()) || !(await page.getByText(/scientifically compromised/i).count())) {
+      throw new Error('Current no-candidate and compromised-input warnings are missing');
+    }
+    // Mock public-head requests: eight succeed, one returns an invalid identity.
+    // Verify partial failure keeps its previous snapshot, with no credentials
+    // or claim that the page/raster/organizer score was refreshed.
+    const githubHeads = 'https://api.github.com/repos/buffedlizard55-lab/**/commits/main';
+    const firstSnapshot = await page.locator('[data-focus-site="24"] [data-focus-link]').getAttribute('href');
+    await page.route(githubHeads, async route => {
+      const request = route.request();
+      if (request.headers()['authorization'] || request.headers()['cookie']) throw new Error('Feed sent credentials');
+      const sha = request.url().includes('GEMSDOE24/') ? 'not-a-sha' : 'a'.repeat(40);
+      await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({sha}) });
+    });
+    await page.getByRole('button', { name: 'Check live GitHub heads' }).click();
+    await page.waitForFunction(() => document.querySelector('#focus-status').textContent.includes('8 of 9'));
+    if (await page.locator('[data-focus-site="24"] [data-focus-link]').getAttribute('href') !== firstSnapshot) {
+      throw new Error('Failed source refresh did not retain prior snapshot');
+    }
+    if (!(await page.locator('[data-focus-site="25"] [data-focus-detail]').textContent()).includes('not re-audited')) {
+      throw new Error('Live head status overclaims a page or raster audit');
+    }
+    await page.unroute(githubHeads);
     // The historical DZ-EDGE file is still downloadable for research, but its
     // page must conspicuously prohibit submission and the downloaded bytes
     // must match the run card. This is a delivery check, not a scientific pass.
@@ -247,6 +270,7 @@ async function main() {
       checked_utc: new Date().toISOString(),
       browser: browser.version(),
       pages_root_redirect_tested: Boolean(process.env.PORTAL_ENTRY_URL),
+      focus_feed_mock: { successful_heads: 8, failed_heads: 1, failed_snapshot_retained: true, credentials_sent: false },
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
       dzedge_download_sha256: dzDigest,

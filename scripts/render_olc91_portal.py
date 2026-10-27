@@ -1,21 +1,10 @@
 #!/usr/bin/env python3
-"""Current-entry-point injector (called last by scripts/render_portal.py).
+"""Render the fail-closed current review and its historical S22 download.
 
-Historical module name (introduced by OLC91); it now serves whichever lane is configured in
-``CURRENT`` below. Only that one dict changes when a new measured lane becomes the current file.
-The current lane is S22-OMTJ (negative; literal duplicate stop).
-
-Source of truth: ``CURRENT['index_src']`` and ``CURRENT['exec_src']``, rendered from the run card by
-scripts/render_s22_pages.py. They are copied verbatim to the site entry points, so a fresh portal render
-is byte-reproducible (tests/test_submission_portal.py). The download is validated fail-closed first,
-with the same registered-bytes / single-TIFF-ZIP / card-hash check as the XG91 front door
-(scripts/render_geo91_portal._registered_pair). The renderer never sets ok_to_submit true: a card
-that is not an explicitly negative research card is refused.
-
-Parallel-branch callouts (currently S18-UNIQUE, added on main) are re-verified fail-closed by
-``parallel_s18_callout`` and inserted at the ``<!--PARALLEL-CALLOUTS-->`` marker of the current sources,
-i.e. after the current file's download and verdict, so they never displace the current download from
-the top of the page. Sources without the marker fall back to insertion right after ``<main id="main">``.
+The review is generated from current audit receipts; S22 remains the historical
+research-file pointer for compatibility. ``front_door`` checks that its TIFF,
+ZIP, card, and registered hashes agree before any entry page is published.
+The renderer never grants permission to submit.
 """
 import hashlib
 from html import escape as esc
@@ -29,8 +18,8 @@ sys.path.insert(0, str(ROOT))
 
 CURRENT = {
     "run_card": "run-card-S22-OMTJ.json",
-    "index_src": "s22-index-src.html",
-    "exec_src": "s22-exec-src.html",
+    "index_src": "review-8e8d86f2-index-src.html",
+    "exec_src": "review-8e8d86f2-exec-src.html",
     "previous_run_cards": [
         "run-card-S20-RHTW.json",
         "run-card-ISO91.json",
@@ -118,11 +107,11 @@ def parallel_s18_callout(root=ROOT) -> str:
     tif_href = tif.relative_to(docs.resolve()).as_posix()
     zip_href = archive_path.relative_to(docs.resolve()).as_posix()
     return f'''<section class="card" style="border:2px solid #17644e;background:#f0faf5" aria-label="S18 parallel research artifact; not approved for submission">
-<p><span class="badge">OK TO DOWNLOAD: YES — FORMAT-CHECKED RESEARCH</span> <span class="badge bad">OK TO SUBMIT: NO — HOLDOUT / CANARY / FULL REGISTRY PENDING</span></p>
+<p><span class="badge">OK TO DOWNLOAD: YES — HISTORICAL RESEARCH</span> <span class="badge bad">OK TO SUBMIT: NO — DUPLICATE STOP</span></p>
 <h2>S18-UNIQUE · Basin-stripped Bouguer curvature × RTP gradient · 20,000 dots</h2>
-<p>This GeoTIFF was generated on a separate parallel branch, not by the current session. The front-door renderer rechecked its SHA-256, TIFF metadata, finite binary [0,1] values, dot count, and single-TIFF ZIP byte identity. These engineering checks do not establish a full-registry uniqueness pass or scientific improvement.</p>
+<p>This historical GeoTIFF was generated on a separate branch, not by the current session. Its format and bytes were checked, but 99.605% of its dots overlap a pinned lattice within 3 px: it is a duplicate. These engineering checks do not establish uniqueness or scientific improvement.</p>
 <p><a class="button" download href="{esc(tif_href, quote=True)}">↓ Download research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s18-unique-executive-summary.html">Submission-format guide</a> · <a href="run-card-S18-UNIQUE.json">Run card</a></p>
-<p class="small">SHA-256 <code>{esc(raster["sha256"])}</code> · name <code>{esc(name)}</code> · note ({len(note)}/140): <code>{esc(note)}</code><br>Its run card records HOLDOUT-DTI NOT RUN, canary pending, and full-registry novelty pending. Research download only; not cleared for a weekly slot.</p>
+<p class="small">SHA-256 <code>{esc(raster["sha256"])}</code> · name <code>{esc(name)}</code> · note ({len(note)}/140): <code>{esc(note)}</code><br>Its historical run card checked only two registry references; the later <a href="review-8e8d86f2/s18-witness.json">99.605% lattice witness</a> supersedes its uniqueness PASS. Research download only; not cleared for a weekly slot.</p>
 </section>'''
 
 
@@ -166,8 +155,10 @@ def parallel_s19_svhf_callout(root=ROOT) -> str:
 
 
 def render() -> None:
-    from scripts.render_s22_pages import render_sources
-    render_sources()
+    from scripts.render_s22_pages import render_sources as render_s22_sources
+    from scripts.render_review_8e8d86f2 import render_sources as render_review_sources
+    render_s22_sources()
+    render_review_sources()
     docs = ROOT / "docs"
     current = front_door(ROOT)  # fail before replacing any published page
     # The S22-XB artifact is a historical research run, not the current lane.
@@ -175,8 +166,8 @@ def render() -> None:
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
     parallel_card = ""
-    for source_name, target_name in ((CURRENT["index_src"], "index.html"),
-                                     (CURRENT["exec_src"], "executive-summary.html")):
+    for source_name, target_name in ((CURRENT['index_src'], "index.html"),
+                                     (CURRENT['exec_src'], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
         marker, fallback = "<!--PARALLEL-CALLOUTS-->", '<main id="main">'
         if marker in source:
@@ -192,7 +183,7 @@ def render() -> None:
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta http-equiv="refresh" content="0;url=docs/index.html">'
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
-        '<h1>GEMSDOE91 · S22 OMTJ</h1><p>OK TO DOWNLOAD: YES — research only. '
+        '<h1>GEMSDOE91 · Current review</h1><p>NO NEW TIFF. Historical S22 OMTJ: OK TO DOWNLOAD: YES — research only. '
         '<strong>OK TO SUBMIT: NO — NOT OK TO SUBMIT.</strong></p>'
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
         '<a href="docs/executive-summary.html">Nine-site executive summary and submission guide</a></p>'

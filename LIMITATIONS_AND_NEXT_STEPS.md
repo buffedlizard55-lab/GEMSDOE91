@@ -1,3 +1,15 @@
+## Current limitations and next steps — 27 October 2026
+
+**NO NEW TIFF; NOT OK TO SUBMIT.** Current [review](docs/review-8e8d86f2/REVIEW.md) and [run card](docs/review-8e8d86f2/run-card.json) supersede earlier status statements below. The S22 OMTJ holdout/canaries are scientifically compromised by finite NoData inputs; its arithmetic is retained, not accepted as a test. S18 is a 99.605% lattice duplicate. Zero experiments and zero slots used in this review.
+
+1. Obtain the explicitly assigned single-method paragraph and a versioned resolution to the fixed-budget/literal-registry conflict; do not self-assign or evade it.
+2. Establish a defensible missing-data policy, source rights and independent input availability; rerun canaries after correction and obtain same-fold same-budget incumbent predictions.
+3. Re-run both surface and dot checks against the complete available registry; two frozen references remain unavailable and no organizer-complete registry is known.
+4. Only after valid matched evidence and an independent selector, verify the current website quota and record a receipt bound to uploaded SHA256. No calibrated leaderboard estimate is available.
+5. Preserve dated GitHub snapshots and use the public head-refresh button; scheduled Actions data is only automatically deployed in workflow Pages mode.
+
+---
+
 ## S22 OMTJ — current next steps (2026-10-26)
 
 **Negative; not approved for submission.** A fresh TIFF passed local numeric/grid validation but failed the literal registered-lattice overlap gate. See [canonical run card](docs/s22/run-card.json), [three-pass review](docs/s22/review.md) and [official-source analysis](docs/s22/research-and-limitations.md). One experiment; zero slots. No more tuning in this stopped lane.

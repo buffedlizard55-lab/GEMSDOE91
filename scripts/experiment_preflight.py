@@ -55,9 +55,11 @@ def inspect_witness(root: Path, witness_path: str, budget: int) -> dict:
         a = src.read(1)
         if not np.isfinite(a[fp]).all() or not np.isin(a[fp], [0, 1]).all():
             raise ValueError('Witness must be a finite binary-dot raster inside footprint')
-        # All positive reference cells count, even outside the footprint. Never
-        # top-K a dense witness or silently drop dots to relax the literal rule.
-        support = np.isfinite(a) & (a > 0)
+        # Match gems91.novelty.dot_check exactly: only reference dots inside
+        # the sample footprint participate. Including an outside-only dot here
+        # would overstate the unavoidable overlap and could falsely block a run.
+        # Never top-K or otherwise thin a dense in-footprint reference.
+        support = np.isfinite(a) & (a > 0) & fp
     result = capacity_bound(fp, support, budget)
     result.update(reference_path=ref['path'], reference_sha256=ref['sha256'],
                   reference_source_url=ref.get('source_url'), sample_sha256=row['sha256'],

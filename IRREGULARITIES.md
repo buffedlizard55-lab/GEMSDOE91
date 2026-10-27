@@ -1,3 +1,16 @@
+## Current review irregularities — 2026-10-27 (arena/8e8d86f2)
+
+- **IR-8E8-01 — no authorized lane / fixed-budget impossibility:** the supplied method paragraph is missing. At the checked-in 37,654-dot budget at least 82.341849% of dots must fall within 3 px of a pinned lattice; no exemption or budget change was authorized. `docs/review-8e8d86f2/experiment-preflight.json`.
+- **IR-8E8-02 — S22 finite NoData contamination:** 3,061 declared finite sentinel cells inside the footprint in each of bands 13 and 14 were accepted by the historical OMTJ feature calculation. Its holdout/canary values are preserved for bookkeeping but are scientifically compromised; no corrected rerun. See `feature-audit.json` and `source-correction.json`.
+- **IR-8E8-03 — S18 uniqueness retracted:** 99.605% of its 20,000 dots overlap the lattice within 3 px, a literal duplicate; the card's two-reference PASS was incomplete. Legacy generator disabled fail-closed; original source/page archived. `s18-witness.json`.
+- **IR-8E8-04 — rank-correlation gate:** shared `novelty.py` previously allowed rho < -0.90, contrary to the standing |Spearman| rule. Corrected and regression-tested, with original source hash archived. Frozen results unchanged.
+- **IR-8E8-05 — preflight outside-footprint reference cells:** capacity preflight used to count those cells although the dot comparator ignored them. Fixed and tested. The pinned lattice has zero outside-footprint dots, so the actual bound is unchanged.
+- **IR-8E8-06 — tracked files omitted from policy:** the 2026-10-26 S18 TIFF and ZIP were already tracked but unregistered, causing the policy checker to fail. Registered as research-only with duplicate warning; bytes not changed.
+- **IR-8E8-07 — official format / quota:** the official description's outside null/NaN wording is unresolved against the all-finite local writer and user-reported range error; a local PASS is not a receipt. Rules mention three/week but staff say the website limit prevails; current authenticated allowance is unknown.
+- **IR-8E8-08 — source scope:** inputs came from hash-pinned community mirrors, not authenticated organizer downloads; 62/64 frozen registry references restored. Public 0.4544 rank-one observation dated 2026-10-27 is not a receipt for any file.
+
+---
+
 ## S22 audit irregularities (2026-10-26)
 
 - **IR-S22-01 — conflicting current pages:** root, pointer and stacked prior-session banners nominated different files. Fixed with one renderer-owned S22 front door and explicit historical links. Old scientific evidence is preserved, not retrospectively promoted.

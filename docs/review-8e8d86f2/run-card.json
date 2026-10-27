@@ -1,0 +1,100 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_date_utc": "2026-10-27",
+  "branch": "arena/8e8d86f2-gemsdoe91",
+  "hypothesis": "PROPOSAL ONLY, NOT ASSIGNED OR TESTED: cross-contact kurtosis contrast in magnetic texture aligned with a gravity-normal contact.",
+  "mechanism": "Concealed displacement may juxtapose magnetic rocks with different texture beneath cover; this is not a measured result.",
+  "named_non_fault_mimic": "Unfaulted volcanic or intrusive contact, or an acquisition/flight-line seam.",
+  "hypotheses": "docs/review-8e8d86f2/HYPOTHESES.md",
+  "assignment_authenticated": false,
+  "experiments_run": 0,
+  "candidate_generated": false,
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "withheld_positive_pixels": null,
+  "evaluator_version": null,
+  "correlation_overlap_vs_registry": {
+    "new_candidate_surface_rank_correlation": null,
+    "new_candidate_dot_overlap_within_3px": null,
+    "complete_registry_clearance": false,
+    "preflight_capacity_lower_bound": 0.8234184947150369,
+    "preflight_budget": 37654,
+    "preflight_witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "historical_s18_dot_overlap_within_3px": 0.99605,
+    "historical_s18_preplacement_surface_compared": false
+  },
+  "raster_sha256": null,
+  "validator_output": null,
+  "submission_name": null,
+  "submission_note": null,
+  "organizer_confirmed_score": null,
+  "leaderboard_score_estimate": null,
+  "slots_used_this_review": 0,
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "blockers": [
+    "No assigned single-method paragraph and assignment source",
+    "Literal registry overlap is mathematically impossible at this dot budget",
+    "Finite NoData inside S22 feature inputs; historical S22 holdout scientifically compromised",
+    "Two frozen reference files unavailable; registry is not organizer-complete",
+    "No authenticated organizer receipt, live quota, or matched incumbent rerun"
+  ],
+  "historical_s22_research_artifact": {
+    "tif": "docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif",
+    "sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+    "technical_validator": "PASS (local range/grid/catalogue only; not organizer acceptance)",
+    "scientific_validity": "INVALID_AS_GEOLOGICAL_FEATURE_TEST: finite NoData contamination",
+    "historic_holdout": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.06622318062610064,
+      "ci95": [
+        0.0480153209879553,
+        0.0868031263517965
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 3752.3183555308933,
+      "fpw": 35604.20896488495,
+      "fnw": 57235.681644469114
+    },
+    "literal_dot_overlap_within_3px": 0.9856588941413926,
+    "ok_to_submit": false
+  },
+  "evidence": {
+    "review": "docs/review-8e8d86f2/REVIEW.md",
+    "feature_audit": "docs/review-8e8d86f2/feature-audit.json",
+    "s18_witness": "docs/review-8e8d86f2/s18-witness.json",
+    "source_correction": "docs/review-8e8d86f2/source-correction.json",
+    "focus_inventory": "docs/review-8e8d86f2/focus-inventory.json"
+  },
+  "tests": {
+    "status": "PASS",
+    "python_suite": {
+      "passed": 741,
+      "skipped": 9,
+      "command": "PYTHONPATH=.:src python -m pytest -q"
+    },
+    "browser": {
+      "status": "PASS",
+      "browser": "Chromium 153.0.8010.0",
+      "pages_axe_checked": 27,
+      "axe_violations": 0,
+      "mobile_horizontal_overflow": false,
+      "public_head_mock": "8 successes, 1 failed refresh retains prior link; no credentials",
+      "evidence": "docs/review-8e8d86f2/browser-verification.json"
+    },
+    "artifact_policy_registered_files": 111,
+    "technical_download_audit": {
+      "files_checked": 111,
+      "format_pass": 102,
+      "format_fail": 9,
+      "scope": "local technical checks; not organizer acceptance"
+    },
+    "synthetic_fixture": {
+      "status": "PASS",
+      "description": "make demo created small synthetic test rasters under ignored tests/_tmp; not a competition TIFF or geological experiment"
+    },
+    "s22_local_validator": "docs/review-8e8d86f2/historical-s22-validator.json",
+    "evidence_verifiers": "PASS: S16, S17, S19, S20, S22, shared evidence and frontdoor; does not imply scientific validity or submission permission"
+  }
+}

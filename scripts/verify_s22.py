@@ -13,6 +13,7 @@ import numpy as np
 import rasterio
 from vendor.gems57 import evaluate_holdout as EH
 from vendor.gems57.validate import validate, assert_submittable
+from scripts.source_integrity import verify_historical_source
 
 
 def load(path):
@@ -41,8 +42,7 @@ def verify(with_data=False):
         raise ValueError('Preregistration changed after measurement')
     provenance = load('docs/s22/source-integrity.json')
     for name, digest in provenance['implementation_sha256'].items():
-        if sha(ROOT / name) != digest:
-            raise ValueError('Measured implementation drift: ' + name)
+        verify_historical_source(ROOT, name, digest)
     if h['implementation_sha256'] != EH.implementation_hashes():
         raise ValueError('Shared evaluator implementation drift')
     rows = h['per_fold']
@@ -62,8 +62,10 @@ def verify(with_data=False):
         raise ValueError('Canary should have stopped before placement')
     if len(surface['rows']) != len(refs['files']) or surface['errors']:
         raise ValueError('Surface registry coverage mismatch')
-    if any(r['status'] != 'PASS' for r in surface['rows']):
+    if any(r['status'] != 'PASS' or abs(r['rank_correlation']) > .90 for r in surface['rows']):
         raise ValueError('Surface should have stopped before placement')
+    if any(abs(r['rank_correlation']) > .90 for r in final[:-1]):
+        raise ValueError('Final rank correlation should have caused an earlier stop')
     if any(r['status'] == 'DUPLICATE' for r in final[:-1]) or final[-1]['status'] != 'DUPLICATE':
         raise ValueError('Experiment did not stop on first duplicate')
     if final[-1]['overlap_within_3px'] <= .70:
@@ -101,11 +103,13 @@ def verify(with_data=False):
     audit = load('docs/s22/nine-site-audit.json')
     if len(audit['sites']) != 9 or any(r['protocol_unique_among_nine'] or r['organizer_confirmed_score'] is not None for r in audit['sites']):
         raise ValueError('Nine-site historical evidence changed')
-    return dict(status='PASS', scope='Evidence and technical download only; negative scientific verdict unchanged',
+    return dict(status='PASS', scope='Historical bookkeeping and technical download only; not scientific approval',
+        scientific_validity='INVALID: historical feature input included finite NoData sentinels',
+        correction='docs/review-8e8d86f2/source-correction.json',
         raster_sha256=c['raster_sha256'], ok_to_submit=False,
         holdout_dot_count=int(sum(r['n_emitted'] for r in rows)), final_dot_count=validation['emitted_positive_pixels'],
         reference_checks='sample + catalogue' if with_data else 'pinned constants; source inputs not checked',
-        tests='pooled arithmetic, canary coverage, first duplicate stop, source hashes, TIFF/ZIP identity and range')
+        tests='pooled arithmetic, recorded canary coverage, first duplicate stop, historical and corrected source hashes, TIFF/ZIP identity and range')
 
 
 if __name__ == '__main__':

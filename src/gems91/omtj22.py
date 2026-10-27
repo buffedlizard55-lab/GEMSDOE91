@@ -17,12 +17,25 @@ def normalized_positive(a, footprint):
 
 
 def fill_band(a, footprint):
+    """Extend valid data beyond the footprint; reject missing data within it.
+
+    ``isfinite`` alone is insufficient: the cached GeoTIFF uses the finite
+    float32 minimum as NoData.  Reject masked samples and extreme sentinels
+    before filtering, including when callers use an ordinary ``read()`` array.
+    This function does not invent an interpolation policy for missing interior
+    observations; a future experiment must explicitly define and audit one.
+    """
+    mask = np.ma.getmaskarray(a) if np.ma.isMaskedArray(a) else None
     a = np.asarray(a, np.float32)
     fp = np.asarray(footprint, bool)
     if a.ndim != 2 or a.shape != fp.shape or not fp.any():
         raise ValueError('nonempty matching 2D footprint required')
+    if mask is not None and np.any(mask & fp):
+        raise ValueError('masked geophysical input inside footprint')
     if not np.isfinite(a[fp]).all():
         raise ValueError('nonfinite geophysical input inside footprint')
+    if np.any(np.abs(a[fp]) >= 1e30):
+        raise ValueError('finite NoData sentinel or invalid extreme inside footprint')
     # Nearest footprint extension avoids artificial zero-valued boundary edges.
     # No catalogue or target values are involved.
     if fp.all():
