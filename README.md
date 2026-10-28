@@ -1,3 +1,11 @@
+# GEMSDOE91 — Current review: blocked, research only — 2026-10-28 · NO NEW CANDIDATE · OK TO SUBMIT: NO
+
+Start here: [current review and next steps](docs/review-20261028.md) · [current run card](docs/run-card-20261028.json) · [nine-site executive summary](docs/s24/executive-summary.html). No geological experiment or submission slot was used this review. The previous S24 file is a **historical research-only** download and fails the full-registry uniqueness rule; its v2 holdout is not matched to the corrected v3 instrument. No current leaderboard score estimate is defensible. The lane assignment is missing and the cached inputs and registry witness are absent. Read the full project brief below before beginning each session. **Maximize P(Win); Own the Outcome.**
+
+The following S24 banner is historical, not this session's output.
+
+---
+
 # GEMSDOE91 — Current review: blocked, research only — S24 update below (research TIF generated; OK TO SUBMIT: NO)
 
 > **2026-10-27 S24 verdict (later same-day session; supersedes the blocked-review status beneath this banner): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
