@@ -1,5 +1,4 @@
 """Regression tests for the S25-TLF duplicate-stop release correction."""
-import ast
 import json
 from pathlib import Path
 
@@ -22,7 +21,7 @@ def test_public_entry_points_are_fail_closed():
     index = (ROOT / 'docs/index.html').read_text()
     summary = (ROOT / 'docs/s25-tlf/executive-summary.html').read_text()
     assert 'DO NOT SUBMIT S25-TLF' in index
-    assert 'No submission is approved' in summary
+    assert 'No file cleared for competition submission' in summary
     assert '99.6017%' in summary and '0.36 projection' in summary
     assert 'OK TO SUBMIT: NO' in summary
     assert 'cleared to submit' not in index.lower()
@@ -31,8 +30,9 @@ def test_public_entry_points_are_fail_closed():
     assert 'id="s25tlf-verdict"' not in index
 
 
-def test_historical_entry_points_block_before_writes():
-    for path in ['scripts/run_s25_tlf.py', 'scripts/render_s25tlf_portal.py']:
-        tree = ast.parse((ROOT / path).read_text())
-        main = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'main')
-        assert isinstance(main.body[0], ast.Raise), path
+def test_exhausted_runner_blocks_before_writes(monkeypatch):
+    from scripts import run_s25_tlf as runner
+    def forbidden(*args, **kwargs):
+        raise AssertionError('runner must stop before input reads')
+    monkeypatch.setattr(runner, 'verify_pins', forbidden)
+    assert runner.main() == 1

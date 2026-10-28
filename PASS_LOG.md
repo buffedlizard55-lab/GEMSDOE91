@@ -610,3 +610,7 @@ Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 revi
 1. **Measure:** restored the pinned sample mirror and frozen lattice witness to ignored `data/`, verified hashes, audited the existing TIFF and ZIP. The final-dot overlap is 99.6017% against the witness: DUPLICATE_STOP. No geological experiment or slot.
 2. **Adversarial review:** discovered the prior release omitted that witness; canaries were evaluated against SGMC rather than withheld positives; the projection was an uncalibrated heuristic and the block analysis reused fitted SGMC labels. Revoked approval and estimate, retained the historical evidence with prominent supersession warnings, blocked the old runner and renderer.
 3. **Consistency:** corrected Pages, policy, ledger, README and run card; fixed the primary portal renderer so regeneration preserves the audit warning. Local format check passed against the pinned mirror, but organizer acceptance and input rights remain unverified. `pytest` 80 focused tests passed, artifact policy passed, and `git diff --check` passed. See `docs/s25-tlf/AUDIT-20261028.md`.
+
+## Parallel audit merged
+
+The independent `de9d7d75` audit also found that double-argsort mishandled rank ties; its original receipts, tests, corrected historical code, and documentation are preserved in `docs/review-de9d7d75/`. No corrected candidate surface correlation was computed here.

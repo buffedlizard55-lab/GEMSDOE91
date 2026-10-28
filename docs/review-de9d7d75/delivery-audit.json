@@ -1,0 +1,45 @@
+{
+  "schema": "gems91.tlf-release-review.v1",
+  "format_ok": true,
+  "checks": {
+    "tif_sha256": true,
+    "single_band": true,
+    "float32": true,
+    "crs": true,
+    "shape": true,
+    "transform": true,
+    "no_nan_or_inf": true,
+    "range_0_1": true,
+    "dots": true,
+    "zip_sha256": true,
+    "zip_single_exact_tif": true,
+    "shared_reference_validator": true
+  },
+  "errors": [],
+  "reference_comparison": {
+    "status": "PASS",
+    "checks": {
+      "single_band": true,
+      "float32": true,
+      "crs_shape_transform_match": true,
+      "no_nodata_tag": true,
+      "all_cells_finite": true,
+      "values_in_0_1": true,
+      "no_nan_inside_footprint": true,
+      "zero_outside_footprint": true,
+      "visible_catalogue_masked": true
+    },
+    "nonfinite_cells": 0,
+    "out_of_range_finite_cells": 0,
+    "ok_to_submit": false,
+    "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+  },
+  "full_registry_uniqueness": "UNVERIFIED: only nine leaders and local downloads were checked historically",
+  "surface_rank_method": "INVALID FOR TIES: historical double argsort ranks ties by pixel order; not Spearman midranks",
+  "holdout_best_gate": "NOT PASSED: review explicitly reports 0.120456 below historical best 0.2678; matched rerun required",
+  "estimated_leaderboard_score": null,
+  "organizer_confirmed_score": null,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "reason": "Format integrity is not full-registry uniqueness, holdout-best improvement, or selector approval."
+}
