@@ -2,7 +2,7 @@
 
 **2026-10-28 independent re-audit: DO NOT SUBMIT S25-TLF.** The previous approval was wrong: the existing TIFF has **99.6017%** of its dots within 3 pixels of the pinned registry lattice (>70% duplicate threshold). Its estimated 0.36 and 0.28–0.44 range were an unsupported extrapolation and are withdrawn. The prior card did not check all registry rasters and did not beat a matched holdout best. A separate selector has not approved it. No new candidate or weekly slot was used in this review.
 
-[Executive summary, nine-site table and submission guide](docs/s25-tlf/executive-summary.html) · [witness audit](docs/s25-tlf/witness-audit-20261028.json) · [review and next steps](docs/s25-tlf/AUDIT-20261028.md) · [current run card](docs/s25-tlf/audit-run-card-20261028.json) · [parallel audit and tie correction](docs/review-de9d7d75/REVIEW.md) · [full project brief](#full-project-brief).
+[Executive summary, nine-site table and submission guide](docs/s25-tlf/executive-summary.html) · [witness audit](docs/s25-tlf/witness-audit-20261028.json) · [review and next steps](docs/s25-tlf/AUDIT-20261028.md) · [current run card](docs/s25-tlf/audit-run-card-20261028.json) · [parallel audit and tie correction](docs/review-de9d7d75/REVIEW.md) · [branch-specific ranked hypotheses and nine-site review](docs/review-93888f32-20261028.md) · [full project brief](#full-project-brief).
 
 The existing [S25-TLF TIFF](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) is available **for research only**, not a competition submission. Its file format passes local checks against the hash-pinned mirror, not organizer acceptance. No defensible leaderboard score estimate exists.
 
