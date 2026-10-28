@@ -18,8 +18,8 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     card = json.loads((ROOT / "docs/run-card-93888f32-20261028.json").read_text())
 
     assert readme.startswith("# GEMSDOE91 — Current review: blocked, research only")
-    assert "OK to submit: NO" in readme
-    assert "no new candidate" in page.lower()
+    assert "DO NOT SUBMIT S25-TLF" in readme
+    assert "2026-10-28 AUDIT: DO NOT SUBMIT S25-TLF" in page
     assert "ok to submit: no" in page.lower()
     assert "0.36 projection" in review and "withdrawn" in review
     assert card["experiments_run"] == 0
@@ -27,7 +27,9 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     assert card["ok_to_submit"] is False
     assert card["estimated_leaderboard_score"] is None
     assert card["holdout_dti"]["dti"] is None
-    assert card["validator_output"]["crs_shape_transform_match_to_official_sample"] is None
+    assert card["correlation_overlap_vs_registry"]["status"] == "DUPLICATE_STOP"
+    assert card["correlation_overlap_vs_registry"]["directed_dot_overlap_fraction_within_3px"] > 0.70
+    assert card["validator_output"]["sample_grid_match"] is True
 
 
 def test_historical_tif_local_integrity_and_range_are_verified():
@@ -54,6 +56,7 @@ def test_historical_tif_local_integrity_and_range_are_verified():
 def test_tlf_page_generator_cannot_reapprove_the_historical_artifact():
     source = (ROOT / "scripts/render_s25tlf_portal.py").read_text()
     assert "OK TO SUBMIT: NO" in source
-    assert "HISTORICAL RESEARCH FILE" in source
-    assert "do not submit" in source.lower()
+    assert "RESEARCH ONLY" in source
+    assert "99.6017%" in source
+    assert "no file cleared for competition submission" in source.lower()
     assert "cleared to download and submit" not in source.lower()

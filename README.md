@@ -1,14 +1,25 @@
-# GEMSDOE91 — Current review: blocked, research only — no experiment authorized; do not submit
+# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED
 
-> **2026-10-28 · Current branch review: NEGATIVE / NO PROMOTION.** No new TIF was generated in this review, no holdout was run, and no weekly slot was used. The experiment plan has no coordinator-assigned lane, and the local data/registry inputs are absent. Do not infer a leaderboard score from historical holdout or proxy metrics.
+**2026-10-28 independent re-audit: DO NOT SUBMIT S25-TLF.** The previous approval was wrong: the existing TIFF has **99.6017%** of its dots within 3 pixels of the pinned registry lattice (>70% duplicate threshold). Its estimated 0.36 and 0.28–0.44 range were an unsupported extrapolation and are withdrawn. The prior card did not check all registry rasters and did not beat a matched holdout best. A separate selector has not approved it. No new candidate or weekly slot was used in this review.
+
+[Executive summary, nine-site table and submission guide](docs/s25-tlf/executive-summary.html) · [witness audit](docs/s25-tlf/witness-audit-20261028.json) · [review and next steps](docs/s25-tlf/AUDIT-20261028.md) · [current run card](docs/s25-tlf/audit-run-card-20261028.json) · [parallel audit and tie correction](docs/review-de9d7d75/REVIEW.md) · [branch-specific ranked hypotheses and nine-site review](docs/review-93888f32-20261028.md) · [full project brief](#full-project-brief).
+
+The existing [S25-TLF TIFF](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) is available **for research only**, not a competition submission. Its file format passes local checks against the hash-pinned mirror, not organizer acceptance. No defensible leaderboard score estimate exists.
+
+Start every session with this decision, the full project brief, `LIMITATIONS_AND_NEXT_STEPS.md`, and `IRREGULARITIES.md`. **Maximize P(Win); Own the Outcome.** Remaining historical banners are retained for context, not current approvals.
+
+---
+
+> **2026-10-28 S25 verdict (latest session; supersedes the S24 banner beneath): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
+> Download for research: [`gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif`](docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif) (SHA-256 `0046fca5…`, 37,654 dots, single-TIFF ZIP beside it) — [**executive summary, nine-site table, estimated-score table & submission guide**](docs/s25/executive-summary.html) · [full review](docs/s25/REVIEW.md) · [run card](docs/s25/run-card.json) · [preregistration](docs/s25/preregistration.md) · [diagnostics (SGMC + LFI model)](docs/s25/diagnostics.json).
 >
-> | File | Score estimate | Nine-site distinctness | Download / submit status |
+> | File to download (research) | Estimated leaderboard score | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
 > |---|---|---|---|
-> | Existing S25-TLF research artifact: [`gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif`](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) · [single-TIFF ZIP](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip) · SHA-256 `21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f` | **Unavailable** — prior 0.36 estimate withdrawn; it was an uncalibrated projection, not a score | Historical peer-only audit says distinct vs the nine; complete registry not checked | **OK to download: YES, research only. OK to submit: NO.** No selector approval or organizer receipt. |
+> | S25-FABRIC **E2** TIF above | ORGANIZER-CONFIRMED: none. LFI **MODEL projection 0.07917** (not a score; LOSO RMSE 0.0196). HOLDOUT-DTI **0.147741 [0.129760, 0.167562]** (`gems57-pooled-hide-v2`, v3 folds, 60,988 withheld) — beats best matched control paired (+0.022997 [+0.014272, +0.031866]); SGMC diagnostic 0.079042 vs R0 0.095386 | **YES vs the nine** (max 40.19% within 3 px; surface \|ρ\|max 0.214). **NO literal** (74.89% vs closest competitive reference; 98.75% vs lattice) | **NO** — protocol dot-overlap breach + low live-aligned projection (dots hug catalogue, median 5.8 px) + selector step pending |
+> | S21-PDWC E3 (historical) | LFI MODEL projection 0.19765 (today's refit; not a score) — highest projected unsubmitted candidate in repo | Competitive PASS per its S21 card (≤64%); literal blanket fail | NO (its own verdict: negative) |
+> | Best historical claim = GEMSDOE32 `h33-h33-2-b2` | 0.2778 **USER-REPORTED, not organizer-confirmed**; leaderboard fetched 2026-10-28: #1 = 0.4544 | **NO** — all nine leaders recomputed today at 98–100% peer overlap (one duplicate family) | NO as a new unique attempt |
 >
-> The highest supplied site value, GEMSDOE32 **0.2778 USER-REPORTED**, is not bound to an organizer receipt here. Its likely advantage over earlier members of the same dotted-ridge family is consistent with reducing redundant prediction mass, but the score causality is not established. All nine focus values and the candidate hypotheses are reviewed in [this session's report](docs/review-93888f32-20261028.md). See the [run card](docs/run-card-93888f32-20261028.json), [S25-TLF historical review](docs/s25-tlf/REVIEW.md), and [submission guide](docs/submission-guide.html).
->
-> Read the full project brief below at the beginning of every session. **Maximize P(Win):** do not spend a slot without matched holdout and complete uniqueness evidence. **Own the Outcome:** this no-promotion result and the missing-input blockers are recorded rather than replaced by a projection.
+> Method: oriented-granulometry (B12/B19) + gravity–magnetic phase-lag (B13/B14) fabric features — Session 24's reserved ranks 2–3, never previously implemented — inside spatial OOF on the corrected v3 folds (no earlier HOLDOUT-DTI is matched to this instrument). 3 of 3 experiments used, 0 weekly slots, every gate automated (no human inspection). **Maximize P(Win):** the detector improved, the emission geography didn't — don't spend a slot until the preregistered emission-geometry lane fixes catalogue-hugging. **Own the Outcome:** negative result + full receipts in `docs/s25/`. Start every session by reading this status, [`LIMITATIONS_AND_NEXT_STEPS.md`](LIMITATIONS_AND_NEXT_STEPS.md), [`IRREGULARITIES.md`](IRREGULARITIES.md), and the [full project brief](#full-project-brief) below. Everything below this banner is the preserved historical record, superseded where inconsistent.
 
 ---
 

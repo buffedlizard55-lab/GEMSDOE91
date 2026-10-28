@@ -1,0 +1,23 @@
+{
+  "schema": "gems91.registry-witness-audit.v1",
+  "candidate_path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
+  "candidate_sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f",
+  "witness_path": "data/fleet_registry/calib_r13lattice_00904.tif",
+  "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+  "witness_source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/calib_r13lattice_00904.tif",
+  "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "surface_correlation": {
+    "status": "PASS",
+    "rank_correlation": 0.0006051606399642248
+  },
+  "directed_dot_overlap": {
+    "status": "DUPLICATE",
+    "overlap_within_3px": 0.9960166666666667,
+    "candidate_dots": 60000,
+    "registry_dots": 206895
+  },
+  "status": "DUPLICATE_STOP",
+  "complete_registry_clearance": false,
+  "geological_experiments_run": 0,
+  "scope": "One pinned witness only. Does not compare a pre-placement surface or establish complete registry uniqueness."
+}

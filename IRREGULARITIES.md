@@ -1,3 +1,7 @@
+## 2026-10-28 S25-TLF duplicate stop and withdrawn projection
+
+A fresh audit of the pinned sample and frozen `calib_r13lattice_00904.tif` measured 99.6017% of the existing S25-TLF candidate dots within 3 px (threshold >70%). Previous approval excluded this registry entry and is revoked; byte-validity does not imply protocol uniqueness. The asserted 0.36 projection and 0.28–0.44 range were heuristic extrapolations, not calibrated estimates or confidence bounds, and are withdrawn. The single-feature canaries were evaluated against the SGMC proxy rather than the required withheld-fault holdout, so those canaries cannot pass the required gate. Its surface weights were chosen on the same SGMC map subsequently scored; its block analysis was not independent validation. No organizer receipt, selector approval, or current quota information is available. [Audit](docs/s25-tlf/AUDIT-20261028.md).
+
 ## Current review irregularities — 2026-10-27 (arena/ad43b4e5)
 
 - **IR-AD43-01 — unbuffered feature context:** the old label-blind whole-component fold buffered training but left visible catalogue context within 2–3.162 px of held truth in all four folds. Corrected in shared v3; the separate known-pixel mask remains exact. [Geometry audit](docs/review-ad43b4e5/context-buffer-audit.json). Proximity does not itself prove model leakage; historic scores are unmatched to v3.
@@ -1985,3 +1989,16 @@ Evidence: `docs/REVIEW-ACTIVE-E649E460-20261025.md`, `docs/run-card-E649E460-202
 - **IR-S26TLF-04: the repository's own holdout is anti-correlated with the live task.** The raster that scores 0.2778 live scores 0.0217 on `gems57-pooled-hide-v2` (measured here), while S25-TLF scores 0.1205 there. Hide-and-recover rewards rediscovering *mapped* traces; the live labels are faults *absent* from the catalogue. A "do not spend a slot unless you beat the holdout best" rule therefore blocks the only lane that has ever scored well. Recommendation: rank with the SGMC off-catalogue control **and** a receipt; keep hide-and-recover as a leakage/canary instrument.
 - **IR-S26TLF-05: all nine named leaders are one raster family (97.6–100% mutual 3-px overlap).** Their nine claims (0.2449–0.2778) are not nine independent observations; Spearman(claim, dot count) = −0.967. Statistics treating them as n=9 are invalid.
 - **IR-S26TLF-06: leaderboard numbers conflict and cannot be refreshed from this sandbox.** The prompt states 0.4413 for 2026-10-28; this repository's 2026-10-27 fetch recorded 0.4544 and #22 = 0.3261. `drivendata.org` is outside the network allowlist, so neither value is re-verified here and neither is written as a score.
+
+## IR-DE9D7D75-01 — 2026-10-28 S25-TLF clearance withdrawn
+
+The previous runner wrote promotion unconditionally; its review admits no
+holdout-best win, a self-assigned lane and a narrowed registry policy. Its
+0.36 projection was an uncalibrated midpoint. The runner's double-argsort ranks
+were not tie-correct Spearman. Original receipts/source archived under
+`evidence/review-de9d7d75/originals/`; current card negative, estimate null and
+nine-site correlation clearance unknown. Corrected renderers cannot interpret a
+mutable card boolean as slot approval. Historical budget exhausted; command now
+blocks before input reads. Fresh delivery and shared reference checks PASS,
+which does not repair the scientific gates. No current organizer receipt or
+leaderboard verified. Full review: `docs/review-de9d7d75/REVIEW.md`.
