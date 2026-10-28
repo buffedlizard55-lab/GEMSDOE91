@@ -1,4 +1,4 @@
-# GEMSDOE91 — current decision: NO SUBMISSION APPROVED
+# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED
 
 **2026-10-28 independent re-audit: DO NOT SUBMIT S25-TLF.** The previous approval was wrong: the existing TIFF has **99.6017%** of its dots within 3 pixels of the pinned registry lattice (>70% duplicate threshold). Its estimated 0.36 and 0.28–0.44 range were an unsupported extrapolation and are withdrawn. The prior card did not check all registry rasters and did not beat a matched holdout best. A separate selector has not approved it. No new candidate or weekly slot was used in this review.
 

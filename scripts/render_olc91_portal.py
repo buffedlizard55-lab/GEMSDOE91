@@ -252,27 +252,10 @@ def s25_callout(root=ROOT) -> str:
 
 
 def _root_verdict() -> str:
-    """Root redirect-stub verdict, generated from the S25-TLF run card.
-
-    The repository-root page is a redirect stub and must not contain the literal
-    token "OK TO SUBMIT: YES" (tests/test_s16_integrity.py); a cleared lane is
-    therefore announced as "cleared to submit" and links to the evidence page.
-    """
-    card_p = ROOT / "docs" / "s25-tlf" / "run-card.json"
-    card = json.loads(card_p.read_text(encoding="utf-8")) if card_p.exists() else {}
-    if card.get("ok_to_submit"):
-        return (
-            "<p><strong>2026-10-27 review (dated, historical): NO NEW TIFF &middot; OK TO SUBMIT: NO.</strong></p>"
-            "<p><strong>Superseded 2026-10-28 by lane S25-TLF:</strong> a new, unique TIF was generated and "
-            "<strong>cleared to submit</strong>; estimated score 0.36 (range 0.28&ndash;0.44), a PROJECTION, "
-            "zero weekly slots spent by the builder. The earlier S24-CCKM and S22-OMTJ artifacts remain "
-            "research only. Statements on the linked pages describe the 2026-10-27 review.</p>"
-            "<p><a href=\"docs/index.html\">Open the current verdict, download and exact submission steps</a> "
-            "&middot; <a href=\"docs/s25-tlf/executive-summary.html\">S25-TLF executive summary</a> "
-            "&middot; <a href=\"docs/executive-summary.html\">Previous nine-site executive summary</a></p>"
-        )
+    """Fail-closed redirect stub; the previous S25-TLF approval was revoked."""
     return (
-        "<p>Historical review: NO NEW TIFF. <strong>OK TO SUBMIT: NO &mdash; NOT OK TO SUBMIT.</strong></p>"
+        "<p>NO NEW TIFF in this audit; historical downloads are research only. "
+        "<strong>OK TO SUBMIT: NO &mdash; NOT OK TO SUBMIT.</strong></p>"
         "<p><a href=\"docs/index.html\">Open current download and automated verdict</a></p>"
     )
 

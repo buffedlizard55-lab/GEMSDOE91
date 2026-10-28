@@ -2075,7 +2075,7 @@
     },
     {
       "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
-      "policy_status": "selector_approved",
+      "policy_status": "current_research_only",
       "ok_to_submit": false,
       "sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f",
       "status": "PASS",
@@ -2096,7 +2096,7 @@
     },
     {
       "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip",
-      "policy_status": "selector_approved",
+      "policy_status": "current_research_only",
       "ok_to_submit": false,
       "sha256": "041972c262a36fd87fca88c85a6ecaf2e29a7aebdbc558cc065468d723078428",
       "zip_member": "gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
