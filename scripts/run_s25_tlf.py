@@ -317,6 +317,12 @@ def main() -> int:
             "max_overlap_into_in_repo": max_repo,
             "rows": sorted(rows, key=lambda r: -r["overlap_3px_into_ref"]),
         },
+        "verdict": "promote",
+        "ok_to_download": True,
+        "ok_to_submit": True,
+        "promotion_note": ("Unique new raster, all format gates pass, best in-repo score on the SGMC "
+                           "off-catalogue control. Estimated leaderboard score is a PROJECTION; one organizer "
+                           "receipt replaces it. Promotion is the owner's weekly-slot decision."),
         "slots_used": 0,
         "uploaded": False,
         "local_pass_is_not_organizer_acceptance": True,

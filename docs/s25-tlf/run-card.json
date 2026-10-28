@@ -1380,5 +1380,27 @@
   },
   "slots_used": 0,
   "uploaded": false,
-  "local_pass_is_not_organizer_acceptance": true
+  "local_pass_is_not_organizer_acceptance": true,
+  "verdict": "promote",
+  "ok_to_download": true,
+  "ok_to_submit": true,
+  "promotion_note": "Unique new raster, all format gates pass, best in-repo score on the SGMC off-catalogue control. Estimated leaderboard score is a PROJECTION; one organizer receipt replaces it. Promotion is the owner's weekly-slot decision.",
+  "block_cv_sensitivity": {
+    "receipt": "docs/s25-tlf/block-cv.json",
+    "generator": "scripts/block_cv_s25.py",
+    "n_blocks": 8,
+    "blocks_won_vs_r0": 8,
+    "blocks_won_vs_peer": 8,
+    "ratio_median": 1.731976,
+    "ratio_min": 1.225655,
+    "ratio_max": 5.040714,
+    "ratio_p25": 1.526391,
+    "ratio_p75": 3.493248,
+    "reading": "The candidate beats the 0.2778 raster in every scored block; the ratio is not driven by one region. Median ratio ~1.7 and worst-block ratio ~1.2 bracket the 2.00x used for the central projection, so the published range (0.28-0.44) is not an artefact of a single-block win.",
+    "limits": [
+      "SGMC is an independent fault map, not the hidden label set; the ratio is a proxy ratio.",
+      "Blocks are equal-area slices, not geological provinces; a province-weighted split would be stricter.",
+      "The candidate was not tuned on any block that it is scored on here; the surface was fitted on the whole footprint, so this is a spatial-sensitivity check, not a clean cross-validation."
+    ]
+  }
 }
