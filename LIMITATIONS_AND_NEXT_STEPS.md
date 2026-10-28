@@ -394,3 +394,35 @@ are not reclassified as ORGANIZER-CONFIRMED without a submission-page receipt.
 ## Review 19912231 — next-session handoff (2026-10-25)
 
 Run `python generate_submission.py --preflight` before restoring the large training stack or launching a model. Current plan is blocked: no assigned method paragraph, and a pinned witness proves the usual budget impossible under the literal overlap rule. No experiment run; no new TIFF or score. This is a necessary precheck, not a full-registry uniqueness pass, authenticated lane assignment, runtime budget manager or selector. Resolve lane and registry policy explicitly; never drop dense references or place anti-registry noise. Freeze a comparable, untouched holdout incumbent; only then test the authorized top hypothesis using shared cache/evaluator/writer and canaries. CWP91 with hole-shuffled control is already complete and negative. The current portal download remains OLC91 research-only. Fresh official-account/receipt/data-rights access is still absent. See `docs/REVIEW-19912231-20261025.md`.
+
+## 2026-10-28 — S25-TLF state, remaining work, and what is still unknown
+
+**What exists now.** `docs/s25-tlf/` holds the lane receipts: `run-card.json` (verdict `promote`, `ok_to_download: true`,
+`ok_to_submit: true`), `uniqueness.json`, `sgmc-diagnostic.json`, `holdout.json`, `canaries.json`, `block-cv.json`,
+`nine-site-table.json`, `executive-summary.html`, `REVIEW.md`, `preregistration.md`. The artifact is
+`docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif` (sha256
+`21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f`) plus a single-TIFF ZIP. It is registered in
+`ledger/submissions.csv` and `registry/artifact_policy.json` and passes `scripts/check_artifact_policy.py`.
+
+**Remaining work, in priority order.**
+
+1. **Spend one weekly slot and paste the receipt.** Everything about the 0.36 estimate is a projection; one
+   organizer score converts it into a number or kills the lane. No code change is needed for this step.
+2. Re-check the leaderboard state before submitting (the sandbox cannot reach `drivendata.org`; the 0.4413 ceiling
+   in this repository is USER-REPORTED and the 2026-10-27 fetch recorded 0.4544).
+3. If the receipt is below 0.2778, retire the "diffuse lineament field" family and run H1 (relay/step-over) from
+   `docs/s25-tlf/REVIEW.md` §8 under its pre-registered promotion rule.
+4. Replace the SGMC proxy with a *held-out* expert map if one can be licensed/fetched outside the sandbox: the
+   current instrument is a different vintages/scale compilation, so its ratio is a proxy ratio, not a live ratio.
+
+**Limitations that are not going away.**
+
+- The hidden label set is unavailable; every number except an organizer receipt is a proxy or a projection.
+- SGMC-off-catalogue truth is dense relative to the live task; the block check (§3 of the review) and the density
+  sweep bound the risk but do not remove it.
+- The candidate's regional |ρ| against the nine leaders is 0.894, six thousandths inside the protocol's 0.90
+  lane-drift limit (IR-S26TLF-03). A future lane should not tune this away; it is a property of any topographic lane.
+- The `docs/s25/` (S25-FABRIC) and `docs/s25-tlf/` lanes are separate and must not be merged or cross-cited as one
+  result (IR-S26TLF-01).
+- The synthetic 5-px calibration lattice is not restored in this checkout, so the historical 99.8–100% lattice
+  overlap cannot be re-measured here (IR-S26TLF-02).

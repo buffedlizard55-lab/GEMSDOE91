@@ -31,6 +31,8 @@ Machine receipts: [`run-card.json`](run-card.json) · [`holdout.json`](holdout.j
 [`canaries.json`](canaries.json) · [`sgmc-diagnostic.json`](sgmc-diagnostic.json) ·
 [`uniqueness.json`](uniqueness.json) · [`nine-site-table.json`](nine-site-table.json).
 
+*Untried hypotheses, ranked by expected gain: §8.*
+
 ## 2. The question that was asked: why did 0.2778 win on GEMSDOE32?
 
 **What is established (measured here, from bytes):**
@@ -186,3 +188,38 @@ page footer; `pytest` re-run.
 3. If the receipt is <0.2778: retire this lane, record the negative, and re-rank the
    in-repo fleet by the *receipt-calibrated* instrument rather than by SGMC.
 4. Either way: stop treating the nine-site "dotted ridge" family as nine data points.
+
+## 8. Five hypotheses that have not been tested here, ranked by expected DTI gain per unit cost
+
+The order is the order in which I would spend the next three experiment slots, not a claim that any of them
+beats §1. Every row is testable with bytes already in this checkout except where the "external data" column says
+otherwise, and every row must clear the same gates that S25-TLF cleared: format validator, 3-px/ρ uniqueness
+screen against the nine named leaders, leakage canary per feature, **8-block spatial check (§3) plus the 10/23/40/100%
+truth-density sweep**, and a pre-registered pass rule written before the run. A hypothesis that fails is a
+deliverable, not a setback.
+
+| # | Hypothesis (named layer → transform) | Physical signature | Why it catches a fault the USGS/INGENIOUS catalogue misses | How it differs from what this repository already did | External data | Cost | Expected gain |
+|---|---|---|---|---|---|---|---|
+| **H1** | **Relay/step-over from magnetic lineament tips** — B02 `rtp`, B06 `tc`, structure tensor orientation, then emit only inside rhomb relays between two sub-parallel lineaments 5–15 km apart | Two parallel gradients of *opposite* polarity, offset along strike; a dilational jog has no through-going trace, so a mapper walking a single scarp sees two short faults, not the connector | Connectors are the classic unmapped fault class: they are covered, they do not offset the surface that the lidar DEM resolves, and they sit *between* mapped traces rather than on them | The nine leaders and S25-TLF both emit *on* or *near* a single lineament; none conditions on a *pair* of lineaments with relay geometry, which is a relational, not a spectral, feature | none | 1–2 h (band 2 + 6 + tensor math already cached) | **highest** — the only untested mechanism that predicts locations the current raster cannot reach (relay interiors) |
+| **H2** | **Gravity vertical-derivative zero-crossing corridors** — B13 `iso_grav_anom` (and B11 `iso_grav_anom_vg`), FFT vertical derivative, then the zero-crossing locus | A step in density produces a derivative anomaly whose *zero crossing* is the fault plane; zero crossings are sharper than gradient maxima and survive smoothing by young basin fill | Potential-field gradients persist under cover that extinguishes topographic scarps — exactly the setting where a fault is missing from a surface-mapped catalogue but present in gravity | The repository used |∇| magnitudes (B03, B18, B05) and tilt; zero-crossing *topology* of the vertical derivative was never used, and B03 is 0.9999999969 correlated with |∇B14| (band-identity receipt), so it is not new information | none (bands 11/13 in the stack) | 2–3 h (FFT + crossing tracing) | medium-high; the sign convention makes it a genuinely different observable |
+| **H3** | **Aspect-opposed lidar scarp tensor** — lidar scarp `ext_lidar_scarp_u8` × B19 `det_elev_slope` direction | A fault scarp faces *against* the regional slope; a fluvial terrace faces with it. The product of scarp presence and the cosine between local scarp normal and regional slope separates the two | The repository's lidar lanes emitted on scarp *presence* (ridge-top 2%, cross-scarp), which also fires on terraces and playa margins — the dominant false-positive class in the mimic column of the run card | Uses the *orientation* of the scarp relative to regional slope as a filter; the earlier lidar lanes used magnitude only | none (`data/external/lidar_scarp_features_u8.tif`, on disk, sha256 in `run-card.json`) | 1–2 h | medium: it attacks the known mimic directly, so it should raise precision even if recall falls |
+| **H4** | **Drainage-deflection / knickpoint alignment** — B19 slope + B06 curvature, valley-axis tracing, alignment test along an azimuth | Faults offset channels; a chain of knickpoints and deflections along one azimuth is a fault trace even where the scarp is bulldozed or buried | Channels are continuous recorders that cross the fault; a fault with no surface scarp still bends every channel it crosses | The repository used curvature as a lineament detector, never as a *deflection* test against a traced channel centreline | none for the DEM-derived fields; a hydrography vector layer would need an external fetch | 3–4 h (channel tracing is the expensive part; the naive version is noisy) | medium but high variance; the naive version will drown in false positives |
+| **H5** | **Fluid-convergence**: structural lineaments that pass within 5 km of a GDR well or spring — B02/B19 lineament surface ∩ distance-to-`gdr_wellspring_in_footprint.csv` | Faults that host geothermal fluids have surface expression (sinter, travertine, vegetation anomaly) and are the ones the catalogue is *most* likely to have missed at 1:500k scale | The catalogue is a structural compilation, not a geothermal inventory; a fault that leaks is exactly the one a geothermal prospector maps late | Earlier sessions used wells as a *mask* or a sanity check, never as a weighted convergence term with distance decay along the structure | none (`data/external/gdr_wellspring_in_footprint.csv`, NREL GDR / OpenEI, free, on disk) | <1 h | low-medium: it is a re-weighting of the current surface, so it can only reorder dots, not reach new ground |
+
+**Availability of the named external sources** (all free and official; status is what this checkout can verify):
+
+- *On disk and hash-pinned in `run-card.json`*: GEODAWN airborne magnetics/radiometrics numerical features
+  (USGS/GEODAWN, `data/bridge/gems-geodawn-numerical-features.tif`), lidar scarp features
+  (`data/external/lidar_scarp_features_u8.tif`), GDR wells/springs (`data/external/gdr_wellspring_in_footprint.csv`,
+  NREL Geothermal Data Repository, <https://gdr.openei.org/>), SGMC-derived faults
+  (`data/external/derived_sgmc_faults_100m_u8.tif`, USGS State Geologic Map Compilation, <https://ngmdb.usgs.gov/>).
+- *Not obtainable from this sandbox*: 1 m lidar DEM tiles (<https://www.usgs.gov/3d-elevation-program>) and the
+  USGS Quaternary Faults database (<https://www.usgs.gov/programs/earthquake-hazards/faults>) — both are free and
+  official, but the sandbox network allowlist covers only GitHub and package registries, so a future lane must
+  fetch them outside the sandbox and pin the sha256 in the run card before using them.
+
+**Pre-registered promotion rule for H1–H5** (written before the run, so a pass cannot be moved afterwards): a
+candidate is promoted only if it (a) beats the S25-TLF raster in **≥7 of 8** spatial blocks on the SGMC
+off-catalogue control, (b) has a median block ratio **≥1.10**, (c) keeps the 10%-density DTI above 0.0711
+(the current candidate's sparsest-regime value), and (d) passes the uniqueness screen (≤70% of dots within 3 px,
+|ρ| ≤ 0.90 versus the nine named leaders). Anything less is recorded as a negative result and does not spend a slot.
