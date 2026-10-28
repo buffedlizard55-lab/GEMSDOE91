@@ -1381,10 +1381,10 @@
   "slots_used": 0,
   "uploaded": false,
   "local_pass_is_not_organizer_acceptance": true,
-  "verdict": "promote",
+  "verdict": "negative",
   "ok_to_download": true,
-  "ok_to_submit": true,
-  "promotion_note": "Unique new raster, all format gates pass, best in-repo score on the SGMC off-catalogue control. Estimated leaderboard score is a PROJECTION; one organizer receipt replaces it. Promotion is the owner's weekly-slot decision.",
+  "ok_to_submit": false,
+  "promotion_note": "RETRACTED 2026-10-28: full registered dot comparison fails; no calibrated leaderboard estimate; no selector authorization.",
   "block_cv_sensitivity": {
     "receipt": "docs/s25-tlf/block-cv.json",
     "generator": "scripts/block_cv_s25.py",
@@ -1402,5 +1402,7 @@
       "Blocks are equal-area slices, not geological provinces; a province-weighted split would be stricter.",
       "The candidate was not tuned on any block that it is scored on here; the surface was fitted on the whole footprint, so this is a spatial-sensitivity check, not a clean cross-validation."
     ]
-  }
+  },
+  "leaderboard_estimate": null,
+  "correction": "s26/tlf-protocol-audit.json"
 }

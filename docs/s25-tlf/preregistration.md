@@ -1,3 +1,5 @@
+> **CORRECTION 2026-10-28: APPROVAL RETRACTED. NOT OK TO SUBMIT.** The historical recommendation below is superseded by [S26 audit](../s26/REVIEW.md): 99.601667% overlap with the registered lattice. The 0.36 projection is withdrawn. TIFF bytes are unchanged, research only; no new experiment or slot.
+
 # S25 — preregistration and design record (TLF lane)
 
 **Status of this document.** Written in the same session as the build, *after* the

@@ -1,3 +1,9 @@
+## S26 current correction — 2026-10-28
+
+**TLF approval retracted; NOT OK TO SUBMIT.** Exact frozen-registry audit: 99.601667% directed 3-px overlap with lattice, 93.826667% with r11, 76.061667% with r14. Earlier 0.36 projection withdrawn; SGMC was fitted, not blind. Original pre-placement surface unavailable; holdout feature canaries not established. No new TIFF or geological experiment/slot. Data pins restored (15/15); 62/64 frozen references available. Need assigned method, versioned registry scope resolution, source rights, matched holdout evidence and separate authenticated quota/selector check. Do not exempt witnesses. [Review and next steps](docs/s26/REVIEW.md) · [run card](docs/s26/run-card.json). Earlier statuses below are historical.
+
+---
+
 ## Current review irregularities — 2026-10-27 (arena/ad43b4e5)
 
 - **IR-AD43-01 — unbuffered feature context:** the old label-blind whole-component fold buffered training but left visible catalogue context within 2–3.162 px of held truth in all four folds. Corrected in shared v3; the separate known-pixel mask remains exact. [Geometry audit](docs/review-ad43b4e5/context-buffer-audit.json). Proximity does not itself prove model leakage; historic scores are unmatched to v3.

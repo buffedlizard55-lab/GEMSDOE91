@@ -332,5 +332,8 @@ def render() -> None:
         '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
         '</main></body></html>\n', encoding='utf-8')
 
+    from scripts.render_s25tlf_portal import render as render_correction
+    render_correction()
+
 if __name__ == "__main__":
     render()

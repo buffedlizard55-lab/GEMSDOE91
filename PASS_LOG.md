@@ -1,3 +1,7 @@
+## S26 — 2026-10-28: corrective three-pass review
+
+Pass 1: restored 15 inputs / 62 registry files; measured TLF duplicate witnesses and traced main CI snapshot failure. Pass 2: retracted unsafe promotion and ceiling-midpoint projection, preserved original source/card and unchanged raster, blocked reruns. Pass 3: corrected renderers/front doors and added regression tests; full local pytest, policy, frontdoor and snapshot parity checks passed. No geological experiments, new TIFF or weekly slots; constraints and deferred hypotheses in docs/s26/REVIEW.md.
+
 ## Current review — three passes (2026-10-27, arena/ad43b4e5)
 
 1. **Independent evidence and inputs:** reproduced the conditional 82.341849% capacity bound, S22 duplicate, nine-site peer comparisons and pixel lineage; reviewed official sources. No geological experiment or slot was used.

@@ -1,23 +1,12 @@
 # GEMSDOE91 — Current review: blocked, research only — S25 update below (new unique research TIF generated; OK TO SUBMIT: NO)
 
-> **2026-10-28 · S25-TLF lane (a different parallel run from S25-FABRIC — read both verdicts).** A second,
-> independent candidate was built in this repository today and **it is cleared to download and to submit**.
->
-> | File to download | Estimated leaderboard score | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
-> |---|---|---|---|
-> | [`gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif`](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) — SHA-256 `21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f`, 60,000 dots · [single-TIFF ZIP](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip) | **0.36 (range 0.28–0.44) — PROJECTION, not a score** (HOLDOUT-DTI 0.120456 [0.105729, 0.134593] vs 0.102659 random-dot control; SGMC off-catalogue 0.190618 vs 0.095386 for the 0.2778 raster) | **YES** — max 32.9% of dots within 3 px (limit 70%), max \|ρ\| 0.894 (limit 0.90) | **YES** |
->
-> **Why the nine leaders scored 0.2449–0.2778.** They are one raster family (97.6–100% mutual 3-px overlap) whose
-> claims *fall* as dot count rises (Spearman −0.967): DTI = T/(0.2(T+FP)+0.8|G|) gives no extra numerator for a
-> stacked dot but charges full false-positive weight. S25-TLF keeps that emission economics (2.8 px Poisson disc,
-> 3.05 px catalogue collar) and replaces the unranked ridge fill with a ranked coherence-weighted topographic–lidar
-> lineament surface, which measures 2.0× the best leader on the only independent fault map available.
->
-> **[Executive summary · download · submission steps](docs/s25-tlf/executive-summary.html)** ·
-> [full review](docs/s25-tlf/REVIEW.md) · [run card](docs/s25-tlf/run-card.json) ·
-> [nine-site table](docs/s25-tlf/nine-site-table.json) · [preregistration](docs/s25-tlf/preregistration.md).
-> Reproduce: `python scripts/run_s25_tlf.py && python scripts/render_s25tlf_portal.py`.
-> Zero weekly slots spent by the builder; **promotion is the owner's action** and one receipt replaces the projection.
+## Current review — 28 October 2026: TLF approval RETRACTED
+
+**OK TO DOWNLOAD: YES, historical research only. OK TO SUBMIT: NO.** No new TIFF was generated this review; no experiment or weekly slot used. The TLF file was incorrectly promoted after excluding registered rasters. Exact verification finds **99.601667%** dot overlap with the registered lattice (limit 70%). Its earlier **0.36 projection is withdrawn**, not a calibrated forecast. Original receipts and source preserved under `evidence/s26/`.
+
+[Corrected executive summary, nine-site table, research download and submission instructions](docs/s25-tlf/executive-summary.html) · [review](docs/s26/REVIEW.md) · [exact audit](docs/s26/tlf-protocol-audit.json) · [run card](docs/s26/run-card.json) · [four deferred hypotheses](docs/s26/preregistration.md).
+
+Read the full preserved project brief below every session. Maximize P(Win); Own the Outcome. The requested highest-scoring unique submission has **not** been achieved. The missing lane assignment, literal registry conflict, source rights and unknown authenticated quota are not waived.
 
 
 > **2026-10-28 S25 verdict (latest session; supersedes the S24 banner beneath): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
