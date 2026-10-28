@@ -12,6 +12,8 @@
 
 ---
 
+**Current checkout review (2026-10-28):** [nine-site executive summary, ranked hypotheses, limitations, and three-pass audit](docs/review-20261028/CURRENT_REVIEW.md) · [current focus-site GitHub snapshot receipt](docs/review-20261028/focus-inventory.json) · [run card](docs/review-20261028/checkout-run-card.json). This review generated no TIFF, ran no experiment, and used no submission slot: required pinned inputs and the assigned single-method lane are missing. Existing artifacts remain historical/research-only unless a current, separate selector approves them.
+
 
 **2026-10-28 independent re-audit: DO NOT SUBMIT S25-TLF.** The previous approval was wrong: the existing TIFF has **99.6017%** of its dots within 3 pixels of the pinned registry lattice (>70% duplicate threshold). Its estimated 0.36 and 0.28–0.44 range were an unsupported extrapolation and are withdrawn. The prior card did not check all registry rasters and did not beat a matched holdout best. A separate selector has not approved it. No new candidate or weekly slot was used in this review.
 
