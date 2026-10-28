@@ -1,3 +1,5 @@
+> **2026-10-28 current review: NO NEW TIFF, NOT OK TO SUBMIT.** The assigned method is missing and this checkout has no `data/` directory. S24 below is a previous research artifact, not a submission recommendation. [Current review](docs/review-20261028/REVIEW.md) · [run card](docs/review-20261028/run-card.json).
+
 # GEMSDOE91 — Current review: blocked, research only — S24 update below (research TIF generated; OK TO SUBMIT: NO)
 
 > **2026-10-27 S24 verdict (later same-day session; supersedes the blocked-review status beneath this banner): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
