@@ -665,6 +665,8 @@ def render():
     if (ROOT / 'docs/run-card-S22-XB.json').is_file():
         from scripts.render_s22_xbreed_pages import render as render_s22
         render_s22()
+    from scripts.render_s25tlf_portal import render as render_tlf_correction
+    render_tlf_correction()
     print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
 
 

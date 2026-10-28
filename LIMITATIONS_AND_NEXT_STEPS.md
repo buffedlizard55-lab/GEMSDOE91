@@ -1,3 +1,9 @@
+## S26 current correction — 2026-10-28
+
+**TLF approval retracted; NOT OK TO SUBMIT.** Exact frozen-registry audit: 99.601667% directed 3-px overlap with lattice, 93.826667% with r11, 76.061667% with r14. Earlier 0.36 projection withdrawn; SGMC was fitted, not blind. Original pre-placement surface unavailable; holdout feature canaries not established. No new TIFF or geological experiment/slot. Data pins restored (15/15); 62/64 frozen references available. Need assigned method, versioned registry scope resolution, source rights, matched holdout evidence and separate authenticated quota/selector check. Do not exempt witnesses. [Review and next steps](docs/s26/REVIEW.md) · [run card](docs/s26/run-card.json). Earlier statuses below are historical.
+
+---
+
 ## Current limitations and next steps — 28 October 2026 (`arena/6c45b779`, S25-FABRIC)
 
 **NEW UNIQUE RESEARCH TIFF; NOT OK TO SUBMIT.** S25-FABRIC E2 (`gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros`, SHA-256 `0046fca5…`) beats its best matched control in paired HOLDOUT-DTI on the corrected v3 instrument (+0.022997 [+0.014272, +0.031866]; candidate 0.147741 [0.129760, 0.167562], 60,988 withheld) and is unique vs all nine focus leaders (max 40.19% within 3 px), but (1) final dots breach the protocol 70% rule vs four competitive references (max 74.89% vs `gems91-bhar-e3`) and the dense lattice (98.75%; ≥82.34% capacity-forced at 37,654 dots), (2) the refitted LFI MODEL projection is 0.07917 (not a score) because emitted dots hug the catalogue (median 5.831 px; 45.9% at 3–5 px), and (3) no selector/quota decision was made. 3/3 experiments used; 0 slots. [Executive summary](docs/s25/executive-summary.html) · [review](docs/s25/REVIEW.md) · [run card](docs/s25/run-card.json) · [preregistration](docs/s25/preregistration.md).

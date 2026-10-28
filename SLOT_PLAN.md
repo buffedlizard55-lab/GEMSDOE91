@@ -1,3 +1,9 @@
+## S26 current correction — 2026-10-28
+
+**TLF approval retracted; NOT OK TO SUBMIT.** Exact frozen-registry audit: 99.601667% directed 3-px overlap with lattice, 93.826667% with r11, 76.061667% with r14. Earlier 0.36 projection withdrawn; SGMC was fitted, not blind. Original pre-placement surface unavailable; holdout feature canaries not established. No new TIFF or geological experiment/slot. Data pins restored (15/15); 62/64 frozen references available. Need assigned method, versioned registry scope resolution, source rights, matched holdout evidence and separate authenticated quota/selector check. Do not exempt witnesses. [Review and next steps](docs/s26/REVIEW.md) · [run card](docs/s26/run-card.json). Earlier statuses below are historical.
+
+---
+
 ## Current review decision — 2026-10-27
 
 **No slot selected or spent. No new TIFF is eligible.** Prior S22 inputs are scientifically compromised and S18 is a literal duplicate. Any future file needs all scientific and registry gates, then a separate selector decision and an authenticated check of the website's current limit. Earlier plans below are historical, not an active upload queue. See [current review](docs/review-8e8d86f2/REVIEW.md).
