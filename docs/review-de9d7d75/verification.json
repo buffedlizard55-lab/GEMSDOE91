@@ -1,0 +1,18 @@
+{
+  "date_utc": "2026-10-28",
+  "passes_completed": 3,
+  "pytest": {
+    "command": ".venv/bin/python -m pytest -ra",
+    "passed": 830,
+    "skipped": 9,
+    "warnings": 104,
+    "skip_reason_summary": "Unavailable full pinned experiment inputs, optional integrations, and unavailable preregistration history; see test output."
+  },
+  "artifact_policy": "PASS: 121 registered artifacts; no raw raster/archive tracked",
+  "git_diff_check": "PASS",
+  "tlf_delivery_audit": "PASS including shared reference checks; NOT submission approval",
+  "preflight": "BLOCKED: no assigned method and missing full registry witness",
+  "organizer_uploads": 0,
+  "new_geological_experiments": 0,
+  "new_tiff_generated": false
+}

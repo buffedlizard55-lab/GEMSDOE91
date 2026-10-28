@@ -426,3 +426,16 @@ Run `python generate_submission.py --preflight` before restoring the large train
   result (IR-S26TLF-01).
 - The synthetic 5-px calibration lattice is not restored in this checkout, so the historical 99.8–100% lattice
   overlap cannot be re-measured here (IR-S26TLF-02).
+
+## 2026-10-28 review de9d7d75 — supersedes S25-TLF upload advice above
+
+Do **not** spend a slot on S25-TLF. The prior approval and 0.36 midpoint projection
+are withdrawn. Full-registry/pre-placement checks are incomplete, rank ties were
+handled incorrectly, no matched holdout-best win is established, the lane was
+self-assigned, and its three experiments were already exhausted. Fresh byte and
+shared template/footprint/catalogue validation PASS after restoring the two small
+SHA-pinned references; this is not scientific or selector clearance. No new TIFF,
+experiment or slot in this review. See `docs/review-de9d7d75/REVIEW.md`, shortlist,
+negative run card and corrected `docs/s25-tlf/executive-summary.html`. Next: explicit
+lane, complete unchanged registry and pinned feature cache, frozen comparable
+incumbent, then both uniqueness phases and paired holdout—not a live upload test.

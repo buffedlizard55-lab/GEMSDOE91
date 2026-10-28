@@ -94,6 +94,15 @@ def verify_pins(ids: list[str]) -> dict:
 
 
 def main() -> int:
+    # This historical lane consumed all three experiments. Never silently rerun
+    # it or treat a fresh process as a fresh experiment allowance.
+    print(json.dumps({"status": "BLOCKED", "ok_to_submit": False,
+                      "reason": "S25-TLF exhausted 3/3 experiments; no assigned new lane, full-registry check or holdout-best win."}))
+    return 1
+
+
+def _historical_build() -> int:
+    """Archived build procedure, not an authorized command or fresh budget."""
     t0 = time.time()
     EVID.mkdir(parents=True, exist_ok=True)
     pins = verify_pins(["sample_submission", "existing_faults", "training_features",
@@ -239,8 +248,9 @@ def main() -> int:
     def spearman(a, b, stride=4):
         x = ndi.gaussian_filter(a.astype(np.float32), 5)[::stride, ::stride].ravel()
         y = ndi.gaussian_filter(b.astype(np.float32), 5)[::stride, ::stride].ravel()
-        rx = np.argsort(np.argsort(x)).astype(np.float64)
-        ry = np.argsort(np.argsort(y)).astype(np.float64)
+        from scipy.stats import rankdata
+        rx = rankdata(x, method="average")
+        ry = rankdata(y, method="average")
         return float(np.corrcoef(rx, ry)[0, 1])
 
     refs = []
@@ -317,9 +327,9 @@ def main() -> int:
             "max_overlap_into_in_repo": max_repo,
             "rows": sorted(rows, key=lambda r: -r["overlap_3px_into_ref"]),
         },
-        "verdict": "promote",
+        "verdict": "negative",
         "ok_to_download": True,
-        "ok_to_submit": True,
+        "ok_to_submit": False,
         "promotion_note": ("Unique new raster, all format gates pass, best in-repo score on the SGMC "
                            "off-catalogue control. Estimated leaderboard score is a PROJECTION; one organizer "
                            "receipt replaces it. Promotion is the owner's weekly-slot decision."),

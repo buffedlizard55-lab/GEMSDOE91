@@ -1,3 +1,9 @@
+# Superseded S25-TLF review — not submission clearance
+
+**2026-10-28 correction: OK TO SUBMIT: NO.** The approval and projection below are withdrawn. Full-registry checks and pre-placement surface comparison were not established; double-argsort does not compute tie-correct Spearman; the candidate did not beat the holdout best. Read the [current review](../review-de9d7d75/REVIEW.md) and [corrected executive summary](executive-summary.html). Original text follows solely as an audit record.
+
+---
+
 # S25 session review — 2026-10-28
 
 Branch `arena/f3ef46d1-gemsdoe91`. Experiments: **3 of 3 used** (E1 layer screen and
