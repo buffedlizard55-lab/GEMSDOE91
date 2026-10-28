@@ -1,0 +1,181 @@
+{
+  "control": {
+    "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+    "evaluator_version": "gems91-hide-recover-v1.0",
+    "n_offcatalogue_sgmc_positives": 62122,
+    "dti": 0.190618,
+    "T": 12010.691,
+    "S": 60000.0,
+    "M": 5452.065
+  },
+  "budget_curve": [
+    {
+      "truth_density": 1.0,
+      "n_truth": 62122,
+      "budget": 25000,
+      "dti": 0.108289,
+      "T": 5998.662
+    },
+    {
+      "truth_density": 1.0,
+      "n_truth": 62122,
+      "budget": 37654,
+      "dti": 0.14481,
+      "T": 8425.085
+    },
+    {
+      "truth_density": 1.0,
+      "n_truth": 62122,
+      "budget": 50000,
+      "dti": 0.17211,
+      "T": 10474.169
+    },
+    {
+      "truth_density": 1.0,
+      "n_truth": 62122,
+      "budget": 60000,
+      "dti": 0.190618,
+      "T": 12010.691
+    },
+    {
+      "truth_density": 1.0,
+      "n_truth": 62122,
+      "budget": 75000,
+      "dti": 0.214482,
+      "T": 14202.717
+    },
+    {
+      "truth_density": 1.0,
+      "n_truth": 62122,
+      "budget": 90000,
+      "dti": 0.233244,
+      "T": 16187.345
+    },
+    {
+      "truth_density": 0.1,
+      "n_truth": 6301,
+      "budget": 25000,
+      "dti": 0.059908,
+      "T": 601.229
+    },
+    {
+      "truth_density": 0.1,
+      "n_truth": 6301,
+      "budget": 37654,
+      "dti": 0.067241,
+      "T": 844.317
+    },
+    {
+      "truth_density": 0.1,
+      "n_truth": 6301,
+      "budget": 50000,
+      "dti": 0.070305,
+      "T": 1055.794
+    },
+    {
+      "truth_density": 0.1,
+      "n_truth": 6301,
+      "budget": 60000,
+      "dti": 0.071137,
+      "T": 1210.022
+    },
+    {
+      "truth_density": 0.1,
+      "n_truth": 6301,
+      "budget": 75000,
+      "dti": 0.071401,
+      "T": 1427.898
+    },
+    {
+      "truth_density": 0.1,
+      "n_truth": 6301,
+      "budget": 90000,
+      "dti": 0.070683,
+      "T": 1624.581
+    },
+    {
+      "truth_density": 0.23,
+      "n_truth": 14343,
+      "budget": 25000,
+      "dti": 0.082037,
+      "T": 1354.077
+    },
+    {
+      "truth_density": 0.23,
+      "n_truth": 14343,
+      "budget": 37654,
+      "dti": 0.101744,
+      "T": 1937.13
+    },
+    {
+      "truth_density": 0.23,
+      "n_truth": 14343,
+      "budget": 50000,
+      "dti": 0.111412,
+      "T": 2395.757
+    },
+    {
+      "truth_density": 0.23,
+      "n_truth": 14343,
+      "budget": 60000,
+      "dti": 0.11688,
+      "T": 2746.553
+    },
+    {
+      "truth_density": 0.23,
+      "n_truth": 14343,
+      "budget": 75000,
+      "dti": 0.12288,
+      "T": 3254.871
+    },
+    {
+      "truth_density": 0.23,
+      "n_truth": 14343,
+      "budget": 90000,
+      "dti": 0.125721,
+      "T": 3705.8
+    },
+    {
+      "truth_density": 0.4,
+      "n_truth": 25024,
+      "budget": 25000,
+      "dti": 0.096519,
+      "T": 2428.02
+    },
+    {
+      "truth_density": 0.4,
+      "n_truth": 25024,
+      "budget": 37654,
+      "dti": 0.122635,
+      "T": 3399.728
+    },
+    {
+      "truth_density": 0.4,
+      "n_truth": 25024,
+      "budget": 50000,
+      "dti": 0.14012,
+      "T": 4234.406
+    },
+    {
+      "truth_density": 0.4,
+      "n_truth": 25024,
+      "budget": 60000,
+      "dti": 0.150542,
+      "T": 4852.945
+    },
+    {
+      "truth_density": 0.4,
+      "n_truth": 25024,
+      "budget": 75000,
+      "dti": 0.162229,
+      "T": 5719.411
+    },
+    {
+      "truth_density": 0.4,
+      "n_truth": 25024,
+      "budget": 90000,
+      "dti": 0.169719,
+      "T": 6494.403
+    }
+  ]
+}

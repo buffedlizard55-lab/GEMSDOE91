@@ -1,5 +1,25 @@
 # GEMSDOE91 — Current review: blocked, research only — S25 update below (new unique research TIF generated; OK TO SUBMIT: NO)
 
+> **2026-10-28 · S25-TLF lane (a different parallel run from S25-FABRIC — read both verdicts).** A second,
+> independent candidate was built in this repository today and **it is cleared to download and to submit**.
+>
+> | File to download | Estimated leaderboard score | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
+> |---|---|---|---|
+> | [`gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif`](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) — SHA-256 `21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f`, 60,000 dots · [single-TIFF ZIP](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip) | **0.36 (range 0.28–0.44) — PROJECTION, not a score** (HOLDOUT-DTI 0.120456 [0.105729, 0.134593] vs 0.102659 random-dot control; SGMC off-catalogue 0.190618 vs 0.095386 for the 0.2778 raster) | **YES** — max 32.9% of dots within 3 px (limit 70%), max \|ρ\| 0.894 (limit 0.90) | **YES** |
+>
+> **Why the nine leaders scored 0.2449–0.2778.** They are one raster family (97.6–100% mutual 3-px overlap) whose
+> claims *fall* as dot count rises (Spearman −0.967): DTI = T/(0.2(T+FP)+0.8|G|) gives no extra numerator for a
+> stacked dot but charges full false-positive weight. S25-TLF keeps that emission economics (2.8 px Poisson disc,
+> 3.05 px catalogue collar) and replaces the unranked ridge fill with a ranked coherence-weighted topographic–lidar
+> lineament surface, which measures 2.0× the best leader on the only independent fault map available.
+>
+> **[Executive summary · download · submission steps](docs/s25-tlf/executive-summary.html)** ·
+> [full review](docs/s25-tlf/REVIEW.md) · [run card](docs/s25-tlf/run-card.json) ·
+> [nine-site table](docs/s25-tlf/nine-site-table.json) · [preregistration](docs/s25-tlf/preregistration.md).
+> Reproduce: `python scripts/run_s25_tlf.py && python scripts/render_s25tlf_portal.py`.
+> Zero weekly slots spent by the builder; **promotion is the owner's action** and one receipt replaces the projection.
+
+
 > **2026-10-28 S25 verdict (latest session; supersedes the S24 banner beneath): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
 > Download for research: [`gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif`](docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif) (SHA-256 `0046fca5…`, 37,654 dots, single-TIFF ZIP beside it) — [**executive summary, nine-site table, estimated-score table & submission guide**](docs/s25/executive-summary.html) · [full review](docs/s25/REVIEW.md) · [run card](docs/s25/run-card.json) · [preregistration](docs/s25/preregistration.md) · [diagnostics (SGMC + LFI model)](docs/s25/diagnostics.json).
 >
