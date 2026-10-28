@@ -15,7 +15,19 @@
 
 ## Historical status before S25 (superseded where inconsistent)
 
+# GEMSDOE91 — Current review: blocked, research only — 2026-10-28 · NO NEW CANDIDATE · OK TO SUBMIT: NO
+
+Start here: [current review and next steps](docs/review-68881914-20261028.md) · [current run card](docs/run-card-20261028.json) · [nine-site executive summary](docs/s24/executive-summary.html). No geological experiment or submission slot was used this review. The previous S24 file is a **historical research-only** download and fails the full-registry uniqueness rule; its v2 holdout is not matched to the corrected v3 instrument. No current leaderboard score estimate is defensible. The lane assignment is missing and the cached inputs and registry witness are absent. Read the full project brief below before beginning each session. **Maximize P(Win); Own the Outcome.**
+
+The following S24 banner is historical, not this session's output.
+
+---
+
 # GEMSDOE91 — Current review: blocked, research only — S24 update below (research TIF generated; OK TO SUBMIT: NO)
+
+> **2026-10-28 current review: NO NEW TIFF, NOT OK TO SUBMIT.** The assigned method is missing and this checkout has no `data/` directory. S24 below is a previous research artifact, not a submission recommendation. [Current review](docs/review-20261028/REVIEW.md) · [run card](docs/review-20261028/run-card.json).
+
+> **2026-10-28 review: NO NEW TIFF; OK TO SUBMIT: NO.** The S24 file below is a prior research-only artifact and fails the literal full-registry duplicate gate. This review found no assigned method lane and the pinned inputs absent; no experiment or slot was used. [Review and next steps](docs/review-68881914-20261028.md) · [run card](docs/run-card-review-20261028.json) · [nine-site table and research download](docs/s24/executive-summary.html). Read the [full project brief](#full-project-brief) at the start of each session.
 
 > **2026-10-27 S24 verdict (later same-day session; supersedes the blocked-review status beneath this banner): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
 > Download for research: [`gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif`](docs/downloads/gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif) (SHA-256 `aba3fb405cfa…`, 37,654 dots, single-TIFF ZIP beside it) — [**executive summary, nine-site table & submission guide**](docs/s24/executive-summary.html) · [full review](docs/s24/REVIEW.md) · [E2 run card](docs/s24/e2/run-card.json) · [E1 run card](docs/s24/run-card.json) · [preregistration](docs/s24/preregistration.md).

@@ -193,9 +193,10 @@ def s24_callout(root=ROOT) -> str:
     tif_href = tif.relative_to(docs.resolve()).as_posix()
     zip_href = archive_path.relative_to(docs.resolve()).as_posix()
     return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S24-CCKM latest research artifact; not approved for submission">
+<p><strong>2026-10-28 current review: no new candidate; OK TO SUBMIT: NO.</strong> <a href="review-68881914-20261028.md">Current review and next steps</a> · <a href="run-card-20261028.json">Current run card</a></p>
 <p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
-<h2>S24-CCKM E2 · Cross-contact kurtosis (B14&thinsp;&times;&thinsp;B13) · 37,654 dots · latest session 2026-10-27</h2>
-<p>A new TIF was generated this session: unique vs the nine focus leaders (max {100*nine_max:.2f}% of dots within 3 px), HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, {h["n_withheld_positives"]:,} withheld — not a leaderboard score). Verdict negative: it does not beat its gravity-gradient control and fails the literal dense-lattice registry rule, so it must not be submitted. Full evidence, the nine-site table, and the future-submission guide: <a href="s24/executive-summary.html">S24 executive summary</a>.</p>
+<h2>S24-CCKM E2 · Cross-contact kurtosis (B14&thinsp;&times;&thinsp;B13) · 37,654 dots · prior session 2026-10-27</h2>
+<p>A research TIF was generated in the prior S24 session: unique vs the nine focus leaders (max {100*nine_max:.2f}% of dots within 3 px), HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, {h["n_withheld_positives"]:,} withheld — not a leaderboard score). The historical v2 holdout is not matched to the corrected v3 context-buffer instrument. Verdict negative: its paired improvement over the gravity-gradient control is not established and fails the literal dense-lattice registry rule, so it must not be submitted. Full evidence, the nine-site table, and the future-submission guide: <a href="s24/executive-summary.html">S24 executive summary</a>.</p>
 <p><a class="button" download href="{esc(tif_href, quote=True)}">Download S24 research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s24/REVIEW.md">Session review</a> · <a href="s24/e2/run-card.json">Run card</a></p>
 <p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
 </section>'''
@@ -271,6 +272,11 @@ def render() -> None:
             page = source.replace(fallback, fallback + parallel_card, 1)
         else:
             raise ValueError(f"Missing insertion point in {source_name}")
+        if target_name == "index.html":
+            notice = ('<div class="note" role="status"><strong>2026-10-28 current review: NO NEW TIFF · NOT OK TO SUBMIT.</strong> '
+                      'The assigned method is missing and the current checkout has no data directory. S24 below is a previous research-only artifact, not a submission recommendation. '
+                      '<a href="review-20261028/REVIEW.md">Current review and next steps</a> · <a href="review-20261028/run-card.json">Run card</a>.</div>')
+            page = page.replace('<main id="main">', '<main id="main">' + notice, 1)
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     (ROOT / 'index.html').write_text(
@@ -279,7 +285,7 @@ def render() -> None:
         '<meta http-equiv="refresh" content="0;url=docs/index.html">'
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
         '<h1>GEMSDOE91 · Current review</h1><p>Historical review: NO NEW TIFF; S22 OMTJ research only. '
-        'Latest S24-CCKM: new research TIF generated (unique vs the nine focus sites), OK TO DOWNLOAD: YES — research only. '
+        'Prior S24-CCKM: research TIF generated (unique vs the nine focus sites), OK TO DOWNLOAD: YES — research only. '
         '<strong>OK TO SUBMIT: NO — NOT OK TO SUBMIT.</strong></p>'
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
         '<a href="docs/s24/executive-summary.html">S24 executive summary, nine-site table and submission guide</a> · '

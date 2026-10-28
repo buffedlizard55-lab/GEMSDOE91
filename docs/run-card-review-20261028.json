@@ -1,0 +1,14 @@
+{
+  "hypothesis": null,
+  "mechanism": "No experiment: the required assigned method lane is absent.",
+  "named_non_fault_mimic": null,
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "correlation_overlap_vs_registry": null,
+  "raster_sha256": null,
+  "validator_output": "Not run: no candidate; pinned sample and catalogue absent.",
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "details": "No experiment or candidate generated; earlier S24 results are documented separately."
+}
