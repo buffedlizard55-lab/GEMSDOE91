@@ -1,0 +1,23 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "review_date": "2026-10-28",
+  "hypothesis": "No experiment authorized: the required single-method lane paragraph is absent. Candidate hypothesis proposals are ranked in CURRENT_REVIEW.md.",
+  "mechanism": "Not tested. Proposed mechanisms are explicitly hypotheses only.",
+  "named_non_fault_process": "Not applicable to an unrun candidate; proposed mimics are listed per hypothesis.",
+  "holdout_dti": null,
+  "holdout_evaluator_version": null,
+  "withheld_positives": null,
+  "ci95": null,
+  "correlation_overlap_vs_registry": null,
+  "raster_sha256": null,
+  "validator_output": "Not run: no candidate or local sample grid. No format validation is claimed.",
+  "submission_name": null,
+  "submission_note": null,
+  "organizer_confirmed_score": null,
+  "estimated_leaderboard_score": null,
+  "download_decision": "NO NEW FILE",
+  "submit_decision": "NO",
+  "experiments_run": 0,
+  "competition_slots_used": 0,
+  "verdict": "negative"
+}
