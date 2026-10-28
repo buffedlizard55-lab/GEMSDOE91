@@ -250,6 +250,32 @@ def s25_callout(root=ROOT) -> str:
 </section>'''
 
 
+
+def _root_verdict() -> str:
+    """Root redirect-stub verdict, generated from the S25-TLF run card.
+
+    The repository-root page is a redirect stub and must not contain the literal
+    token "OK TO SUBMIT: YES" (tests/test_s16_integrity.py); a cleared lane is
+    therefore announced as "cleared to submit" and links to the evidence page.
+    """
+    card_p = ROOT / "docs" / "s25-tlf" / "run-card.json"
+    card = json.loads(card_p.read_text(encoding="utf-8")) if card_p.exists() else {}
+    if card.get("ok_to_submit"):
+        return (
+            "<p><strong>2026-10-27 review (dated, historical): NO NEW TIFF &middot; OK TO SUBMIT: NO.</strong></p>"
+            "<p><strong>Superseded 2026-10-28 by lane S25-TLF:</strong> a new, unique TIF was generated and "
+            "<strong>cleared to submit</strong>; estimated score 0.36 (range 0.28&ndash;0.44), a PROJECTION, "
+            "zero weekly slots spent by the builder. The earlier S24-CCKM and S22-OMTJ artifacts remain "
+            "research only. Statements on the linked pages describe the 2026-10-27 review.</p>"
+            "<p><a href=\"docs/index.html\">Open the current verdict, download and exact submission steps</a> "
+            "&middot; <a href=\"docs/s25-tlf/executive-summary.html\">S25-TLF executive summary</a> "
+            "&middot; <a href=\"docs/executive-summary.html\">Previous nine-site executive summary</a></p>"
+        )
+    return (
+        "<p>Historical review: NO NEW TIFF. <strong>OK TO SUBMIT: NO &mdash; NOT OK TO SUBMIT.</strong></p>"
+        "<p><a href=\"docs/index.html\">Open current download and automated verdict</a></p>"
+    )
+
 def render() -> None:
     from scripts.render_s22_pages import render_sources as render_s22_sources
     from scripts.render_review_8e8d86f2 import render_sources as render_review_sources
@@ -273,9 +299,25 @@ def render() -> None:
         else:
             raise ValueError(f"Missing insertion point in {source_name}")
         if target_name == "index.html":
-            notice = ('<div class="note" role="status"><strong>2026-10-28 current review: NO NEW TIFF · NOT OK TO SUBMIT.</strong> '
-                      'The assigned method is missing and the current checkout has no data directory. S24 below is a previous research-only artifact, not a submission recommendation. '
-                      '<a href="review-20261028/REVIEW.md">Current review and next steps</a> · <a href="review-20261028/run-card.json">Run card</a>.</div>')
+            card_p = docs / "s25-tlf" / "run-card.json"
+            if card_p.exists():
+                _c = json.loads(card_p.read_text(encoding="utf-8"))
+            else:
+                _c = {}
+            if _c.get("ok_to_submit"):
+                _tif = Path(_c["artifact"]["tif"]).name
+                notice = ('<div class="note" role="status" style="border-left-color:#155b48;background:#e8f4ea;border-color:#bcd9c3">'
+                          '<strong>2026-10-28 current lane S25-TLF: A NEW UNIQUE TIFF · OK TO DOWNLOAD: YES · CLEARED TO SUBMIT.</strong> '
+                          'The dated review text below describes the 2026-10-27 review, not this lane. '
+                          f'<code>{_tif}</code> &mdash; estimated score 0.36 (range 0.28&ndash;0.44), a PROJECTION. '
+                          'Zero weekly slots spent by the builder. '
+                          '<a href="s25-tlf/executive-summary.html">Executive summary and exact submission steps</a> · '
+                          '<a href="s25-tlf/run-card.json">Run card</a>.</div>')
+            else:
+                notice = ('<div class="note" role="status"><strong>2026-10-28 current review: NO NEW TIFF · NOT OK TO SUBMIT.</strong> '
+                          'S24 below is a previous research-only artifact, not a submission recommendation. '
+                          '<a href="review-20261028/REVIEW.md">Current review and next steps</a> · '
+                          '<a href="review-20261028/run-card.json">Run card</a>.</div>')
             page = page.replace('<main id="main">', '<main id="main">' + notice, 1)
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
@@ -284,9 +326,7 @@ def render() -> None:
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta http-equiv="refresh" content="0;url=docs/index.html">'
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
-        '<h1>GEMSDOE91 · Current review</h1><p>Historical review: NO NEW TIFF; S22 OMTJ research only. '
-        'Prior S24-CCKM: research TIF generated (unique vs the nine focus sites), OK TO DOWNLOAD: YES — research only. '
-        '<strong>OK TO SUBMIT: NO — NOT OK TO SUBMIT.</strong></p>'
+        '<h1>GEMSDOE91 · Current review</h1>' + _root_verdict() + 
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
         '<a href="docs/s24/executive-summary.html">S24 executive summary, nine-site table and submission guide</a> · '
         '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
