@@ -67,23 +67,18 @@ def inject_front_door(art, proxy, uni, central, lo, hi) -> None:
         return
     text = idx.read_text()
     head, sep, rest = text.partition('<main id="main">')
-    if sep and BANNER_MARK not in head + rest:
+    if sep and BANNER_MARK not in head + rest and "run-card-93888f32-20261028.json" not in text:
         banner = (
             '<section ' + BANNER_MARK + ' class="card" '
             'style="border:3px solid #155b48;background:#eefaf0;margin-top:18px" '
-            'aria-label="S25 unique submission, cleared to download and submit">'
-            '<p><span class="badge">OK TO DOWNLOAD: YES</span> '
-            '<span class="badge">OK TO SUBMIT: YES</span></p>'
+            'aria-label="Historical S25 research artifact, not approved for submission">'
+            '<p><span class="badge">OK TO DOWNLOAD: RESEARCH ONLY</span> '
+            '<span class="badge">OK TO SUBMIT: NO</span></p>'
             '<h2>S25-TLF lane (separate parallel run from S25-FABRIC) &middot; topographic + lidar lineament fusion &middot; 60,000 dots &middot; 2026-10-28</h2>'
-            f'<p>New TIF, not a duplicate of any of the nine named leaders: max '
-            f'{100.0*uni["max_overlap_into_nine"]["overlap_3px_into_ref"]:.1f}% of dots within 3 px '
-            f'(limit 70%), max |&rho;| {abs(uni["max_abs_spearman_vs_nine"]["surface_spearman"]):.3f} '
-            f'(limit 0.90). Format re-validated from the bytes: single band float32, EPSG:32611, '
-            f'3730&times;3292, all finite in [0,1]. SGMC off-catalogue control '
-            f'{proxy["dti"]:.4f} vs 0.0954 for the 0.2778 raster. Estimated leaderboard score '
-            f'<strong>{central:.2f} (range {lo:.2f}&ndash;{hi:.2f})</strong> &mdash; a PROJECTION, not a score.</p>'
+            f'<p>Historical file only; nine-site peer audit is not a complete-registry clearance. No current score estimate is defensible. '
+            'The prior 0.36 projection is withdrawn; it was not calibrated to organizer scores. The current checkout lacks the assigned lane, complete registry and official sample grid.</p>'
             f'<p><a class="button" download href="downloads/{html.escape(Path(art["tif"]).name)}">'
-            'Download the S25 submission GeoTIFF</a> '
+            'Download historical S25 research GeoTIFF</a> '
             f'<a class="button" download href="downloads/{html.escape(Path(art["zip"]).name)}">Single-TIFF ZIP</a> '
             '<a href="s25-tlf/executive-summary.html">S25 executive summary</a> &middot; '
             '<a href="s25-tlf/REVIEW.md">Session review</a> &middot; '
@@ -212,7 +207,7 @@ ul{{margin:.3em 0 .8em 1.1em;padding:0}} li{{margin:.2em 0}}
 .flag{{border-left:4px solid var(--warn);background:#fff9ec;padding:10px 14px;margin:1em 0}}
 </style></head><body><main>
 
-<h1>Executive summary — one file to download, one estimated score, one decision</h1>
+<h1>Archived S25-TLF research artifact — current decision: do not submit</h1>
 <p><small>Generated {html.escape(card['generated_utc'])} from receipts in <code>docs/s25-tlf/</code>. Branch
 <code>arena/f3ef46d1-gemsdoe91</code>. Companion pages:
 <a href="REVIEW.md">full review</a> ·
@@ -220,17 +215,16 @@ ul{{margin:.3em 0 .8em 1.1em;padding:0}} li{{margin:.2em 0}}
 <a href="nine-site-table.json">nine-site table (JSON)</a> ·
 <a href="../index.html">repository front door</a>.</small></p>
 
-<div class="box">
-<p><strong>THE SUBMISSION: download this one file and upload it to DrivenData.</strong></p>
-<p><a class="dl" href="../downloads/{html.escape(Path(art['tif']).name)}">⬇ Download the submission GeoTIFF</a>
+<div class="box no">
+<p><strong>HISTORICAL RESEARCH FILE: download for research only. Do not submit.</strong></p>
+<p><a class="dl" href="../downloads/{html.escape(Path(art['tif']).name)}">⬇ Download historical research GeoTIFF</a>
 <a class="dl" style="background:#333" href="../downloads/{html.escape(Path(art['zip']).name)}">⬇ Single-TIFF ZIP (same bytes)</a></p>
 <table class="kv">
 <tr><td>File</td><td><code>{html.escape(art['tif'])}</code></td></tr>
 <tr><td>SHA-256</td><td><code>{art['sha256']}</code></td></tr>
 <tr><td>Submission name (≤140)</td><td><code>{html.escape(art['submission_name'])}</code></td></tr>
 <tr><td>Note (≤140, {art['note_chars']} chars)</td><td><code>{html.escape(art['note'])}</code></td></tr>
-<tr><td>Estimated leaderboard score</td><td><strong>{central:.2f} (range {anchor_live:.2f}–{min(linear, ceiling):.2f})</strong> — PROJECTION, not a score.
-See <a href="#estimate">how it is computed</a>.</td></tr>
+<tr><td>Current estimated leaderboard score</td><td><strong>Unavailable.</strong> The prior projection is withdrawn as uncalibrated.</td></tr>
 <tr><td>Unique vs GEMSDOE24/25/27/28/30/31/32/33/36?</td>
 <td class="{'ok' if uni['pass_vs_nine'] else 'bad'}">{'YES' if uni['pass_vs_nine'] else 'NO'} —
 max {pct(uni['max_overlap_into_nine']['overlap_3px_into_ref'])} of dots within 3 px of any single leader
@@ -239,34 +233,25 @@ max {pct(uni['max_overlap_into_nine']['overlap_3px_into_ref'])} of dots within 3
 <tr><td>Format validated automatically?</td><td class="ok">YES — single band, float32, EPSG:32611,
 3730×3292, transform 100 m, all values finite in [0,1], zero mass on the mapped catalogue, no NaN/Inf/sentinels
 (the exact error class that rejected an earlier download: “Predicted values must be in range [0,1]”).</td></tr>
-<tr><td><strong>OK to submit?</strong></td><td class="ok">YES — submit it. It is a new, non-duplicate raster
-that beats every raster in this repository on the SGMC off-catalogue instrument
-({proxy['dti']:.4f} vs {max(r['sgmc_offcatalogue_dti'] for r in rows):.4f} for the best leader and 0.1104 for the
-best in-repo raster). It scores <em>below</em> the repository's best on the known-fault recovery instrument
-({hol['tlf25']['dti']:.4f} vs 0.2678) — that instrument rewards rediscovering mapped traces, which is the opposite
-of the live task, and it is why this decision rests on the discovery instrument. No receipt exists yet, so treat
-the estimate as a projection that one submission will replace.</td></tr>
+<tr><td><strong>OK to submit?</strong></td><td class="bad">NO — historical research artifact only. The coordinator-assigned lane, complete-registry screen, current sample-grid validation and separate selector approval are missing.</td></tr>
 </table>
 </div>
 
-<div class="flag"><strong>What would change the verdict.</strong> If you prefer to spend the slot on a duplicate
-instead, note that all nine named leaders are one raster family (97.6–100% mutual 3-px overlap): re-uploading any
-of them is not a new attempt. If a receipt comes back below 0.2778, the projection below was wrong in the direction
-predicted by the “live truth is denser than SGMC” argument — say so and stop reusing this lane.</div>
+<div class="flag"><strong>Current decision overrides this historical page.</strong> Do not use the previous projection as a score or submit the file. The current review is fail-closed because the lane was self-assigned and complete-registry and sample-grid evidence are unavailable. See <a href="../review-93888f32-20261028.md">current review</a>.</div>
 
-<h2 id="score">Which file to submit, per site — and why none of the nine is a new attempt</h2>
+<h2 id="score">Historical focus-site files — prior claims and peer duplication</h2>
 <p>The table answers the request literally: for each named site, the highest-scoring submission, the file that
 carries it, the measured proxy, whether it is unique among the nine, and whether it should be submitted again.</p>
 <table>
 <tr><th>Site</th><th>Highest-scoring file (bytes re-hashed here)</th><th>Claimed score</th>
-<th>SGMC-offcat control (measured)</th><th>3-px overlap with a peer leader</th><th>Unique among the nine?</th><th>Submit again?</th></tr>
+<th>SGMC-offcat control (measured)</th><th>3-px overlap with a peer leader</th><th>Unique among the nine?</th><th>Current upload approval</th></tr>
 {site_rows}
-<tr style="background:#eefaf0"><td><strong>THIS SESSION (GEMSDOE91)</strong></td>
+<tr style="background:#eefaf0"><td><strong>HISTORICAL S25-TLF RUN</strong></td>
 <td><code>{html.escape(Path(art['tif']).name)}</code><br><small>sha256 {art['sha256'][:16]}… · {card['emission']['dots']:,} dots</small></td>
 <td class="n">— (no receipt yet)</td>
 <td class="n"><strong>{proxy['dti']:.4f}</strong></td>
 <td class="n"><strong>{pct(uni['max_overlap_into_nine']['overlap_3px_into_ref'])}</strong></td>
-<td class="ok">YES</td><td class="ok">YES</td></tr>
+<td class="ok">YES vs nine only</td><td class="bad">NO — current review</td></tr>
 </table>
 <p><small>Claims are the session prompt’s own numbers, marked USER-REPORTED; there is no organizer receipt binding
 any score to any TIFF in this repository. The SGMC-offcat column is a <em>different</em> instrument (USGS state-map
@@ -286,21 +271,8 @@ scores, and the two largest (60,069; 61,328) claim the two lowest. Spearman(clai
 cannot be isolated from here, and three of the nine share identical support, so effective n≈3, not 9.</li>
 </ul>
 
-<h2 id="estimate">How the score estimate is computed (and why it is a range)</h2>
-<p>Two anchored quantities are used, both from this repository’s own bytes:</p>
-<ul>
-<li><strong>Anchor (USER-REPORTED):</strong> GEMSDOE32 <code>h33-h33-2-b2</code> = <strong>0.2778</strong>, the best
-of the nine, measured here at <strong>{anchor_proxy:.6f}</strong> on the SGMC off-catalogue control.</li>
-<li><strong>This candidate:</strong> <strong>{proxy['dti']:.6f}</strong> on the same control at the same-budget scale
-({card['emission']['budget']:,} dots) — a factor <strong>{ratio:.2f}×</strong>.</li>
-</ul>
-<p>Scaling the anchor linearly would give <strong>{linear:.3f}</strong>, which is above the highest score observed
-on the public leaderboard ({ceiling}, USER-REPORTED for 2026-10-28; the repository’s own 2026-10-27 fetch recorded
-0.4544). A linear extrapolation past the ceiling is not credible, so it is truncated at the ceiling and the
-reported figure is the midpoint of “no transfer at all” ({anchor_live:.2f}) and “transfer, capped”
-({min(linear, ceiling):.2f}) = <strong>{central:.2f}</strong>. The proxy is a map-vs-map comparison; the competition
-truth is expert-mapped faults absent from the public catalogue, so the transfer factor is unknown and may be 1.0.</p>
-{block_html}
+<h2 id="estimate">Score estimate status</h2>
+<p><strong>No defensible leaderboard estimate is available.</strong> The previous S25-TLF projection (0.36, range 0.28–0.44) is withdrawn as uncalibrated. SGMC controls and hide-and-recover values are separate diagnostic instruments, not organizer scores. No receipt ties a file hash to a competition result.</p>
 
 <h3>Why the proxy is not the whole story — and why the usual holdout is not either</h3>
 <p>On the shared hide-and-recover instrument (<code>gems57-pooled-hide-v2</code>, 60,988 withheld positives):
@@ -322,18 +294,8 @@ of the control being denser than the real label set?”. The chosen 60,000 is at
 regime tested, including the sparsest (10%, |G| ≈ 6.3k), where it is the interior optimum. Full curve in
 <code>run-card.json → budget_curve</code>.</small></p>
 
-<h2>How to submit (exact steps)</h2>
-<ol>
-<li>Download the GeoTIFF above (or the ZIP — it contains exactly the one TIFF and nothing else).</li>
-<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org/competitions/306/competition-doe-gems/submissions/</a>
-(log in), then <strong>New submission</strong> &rarr; <em>Choose file</em> &rarr; pick the TIFF you just downloaded.</li>
-<li>Name: <code>{html.escape(art['submission_name'])}</code> · Note: <code>{html.escape(art['note'])}</code></li>
-<li>Submit, then copy the score from the submission page into <code>ledger/submissions.csv</code> as an
-<strong>ORGANIZER-CONFIRMED</strong> row. That receipt is the only thing that turns any number on this page into a score.</li>
-</ol>
-<p class="callout"><strong>Slot budget:</strong> the competition limits submissions per week. This build spent
-<strong>zero</strong> slots. One submission replaces every estimate on this page with a receipt; keep the remaining
-slots for the next lane rather than re-uploading any of the nine leaders, which are 97.6&ndash;100% the same raster.</p>
+<h2>Current submission decision</h2>
+<p class="callout"><strong>Do not submit this historical file.</strong> A future candidate must first clear an assigned lane, complete-registry duplicate checks, official sample-grid validation, leakage canaries and the shared buffered holdout. A separate selector must then approve any weekly slot. This report is not an upload authorization.</p>
 
 <h2>Method in one paragraph</h2>
 <p>Hypothesis: catalogued-absent faults in the Great Basin retain a topographic expression (scarps, composite

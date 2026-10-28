@@ -9,6 +9,8 @@ duplicate, (b) validated automatically, and (c) better than every control we can
 measure. **Own the Outcome:** the projection, its assumptions and its falsifier are
 written down where a receipt can overwrite them.
 
+> **Current review override (2026-10-28, branch `arena/93888f32-gemsdoe91`): research-only; do not submit.** This artifact was generated in an earlier S25-TLF run whose preregistration explicitly self-assigned a lane because no assignment was provided. The current experiment plan still has `lane: null`; the current checkout lacks all 15 pinned inputs and the full registry witness; a separate selector has not approved a slot. The prior `0.36` score projection is withdrawn as uncalibrated. This section below is preserved as a historical account of the earlier run, not current authorization. Current review: [`../review-93888f32-20261028.md`](../review-93888f32-20261028.md) · [current run card](../run-card-93888f32-20261028.json).
+
 ## 1. Executive verdict
 
 **A new TIF was generated, it is not a duplicate of any of the nine named sites, it

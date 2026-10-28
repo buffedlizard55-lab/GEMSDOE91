@@ -1,35 +1,14 @@
-# GEMSDOE91 — Current review: blocked, research only — S25 update below (new unique research TIF generated; OK TO SUBMIT: NO)
+# GEMSDOE91 — Current review: blocked, research only — no experiment authorized; do not submit
 
-> **2026-10-28 · S25-TLF lane (a different parallel run from S25-FABRIC — read both verdicts).** A second,
-> independent candidate was built in this repository today and **it is cleared to download and to submit**.
+> **2026-10-28 · Current branch review: NEGATIVE / NO PROMOTION.** No new TIF was generated in this review, no holdout was run, and no weekly slot was used. The experiment plan has no coordinator-assigned lane, and the local data/registry inputs are absent. Do not infer a leaderboard score from historical holdout or proxy metrics.
 >
-> | File to download | Estimated leaderboard score | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
+> | File | Score estimate | Nine-site distinctness | Download / submit status |
 > |---|---|---|---|
-> | [`gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif`](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) — SHA-256 `21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f`, 60,000 dots · [single-TIFF ZIP](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip) | **0.36 (range 0.28–0.44) — PROJECTION, not a score** (HOLDOUT-DTI 0.120456 [0.105729, 0.134593] vs 0.102659 random-dot control; SGMC off-catalogue 0.190618 vs 0.095386 for the 0.2778 raster) | **YES** — max 32.9% of dots within 3 px (limit 70%), max \|ρ\| 0.894 (limit 0.90) | **YES** |
+> | Existing S25-TLF research artifact: [`gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif`](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) · [single-TIFF ZIP](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip) · SHA-256 `21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f` | **Unavailable** — prior 0.36 estimate withdrawn; it was an uncalibrated projection, not a score | Historical peer-only audit says distinct vs the nine; complete registry not checked | **OK to download: YES, research only. OK to submit: NO.** No selector approval or organizer receipt. |
 >
-> **Why the nine leaders scored 0.2449–0.2778.** They are one raster family (97.6–100% mutual 3-px overlap) whose
-> claims *fall* as dot count rises (Spearman −0.967): DTI = T/(0.2(T+FP)+0.8|G|) gives no extra numerator for a
-> stacked dot but charges full false-positive weight. S25-TLF keeps that emission economics (2.8 px Poisson disc,
-> 3.05 px catalogue collar) and replaces the unranked ridge fill with a ranked coherence-weighted topographic–lidar
-> lineament surface, which measures 2.0× the best leader on the only independent fault map available.
+> The highest supplied site value, GEMSDOE32 **0.2778 USER-REPORTED**, is not bound to an organizer receipt here. Its likely advantage over earlier members of the same dotted-ridge family is consistent with reducing redundant prediction mass, but the score causality is not established. All nine focus values and the candidate hypotheses are reviewed in [this session's report](docs/review-93888f32-20261028.md). See the [run card](docs/run-card-93888f32-20261028.json), [S25-TLF historical review](docs/s25-tlf/REVIEW.md), and [submission guide](docs/submission-guide.html).
 >
-> **[Executive summary · download · submission steps](docs/s25-tlf/executive-summary.html)** ·
-> [full review](docs/s25-tlf/REVIEW.md) · [run card](docs/s25-tlf/run-card.json) ·
-> [nine-site table](docs/s25-tlf/nine-site-table.json) · [preregistration](docs/s25-tlf/preregistration.md).
-> Reproduce: `python scripts/run_s25_tlf.py && python scripts/render_s25tlf_portal.py`.
-> Zero weekly slots spent by the builder; **promotion is the owner's action** and one receipt replaces the projection.
-
-
-> **2026-10-28 S25 verdict (latest session; supersedes the S24 banner beneath): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
-> Download for research: [`gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif`](docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif) (SHA-256 `0046fca5…`, 37,654 dots, single-TIFF ZIP beside it) — [**executive summary, nine-site table, estimated-score table & submission guide**](docs/s25/executive-summary.html) · [full review](docs/s25/REVIEW.md) · [run card](docs/s25/run-card.json) · [preregistration](docs/s25/preregistration.md) · [diagnostics (SGMC + LFI model)](docs/s25/diagnostics.json).
->
-> | File to download (research) | Estimated leaderboard score | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
-> |---|---|---|---|
-> | S25-FABRIC **E2** TIF above | ORGANIZER-CONFIRMED: none. LFI **MODEL projection 0.07917** (not a score; LOSO RMSE 0.0196). HOLDOUT-DTI **0.147741 [0.129760, 0.167562]** (`gems57-pooled-hide-v2`, v3 folds, 60,988 withheld) — beats best matched control paired (+0.022997 [+0.014272, +0.031866]); SGMC diagnostic 0.079042 vs R0 0.095386 | **YES vs the nine** (max 40.19% within 3 px; surface \|ρ\|max 0.214). **NO literal** (74.89% vs closest competitive reference; 98.75% vs lattice) | **NO** — protocol dot-overlap breach + low live-aligned projection (dots hug catalogue, median 5.8 px) + selector step pending |
-> | S21-PDWC E3 (historical) | LFI MODEL projection 0.19765 (today's refit; not a score) — highest projected unsubmitted candidate in repo | Competitive PASS per its S21 card (≤64%); literal blanket fail | NO (its own verdict: negative) |
-> | Best historical claim = GEMSDOE32 `h33-h33-2-b2` | 0.2778 **USER-REPORTED, not organizer-confirmed**; leaderboard fetched 2026-10-28: #1 = 0.4544 | **NO** — all nine leaders recomputed today at 98–100% peer overlap (one duplicate family) | NO as a new unique attempt |
->
-> Method: oriented-granulometry (B12/B19) + gravity–magnetic phase-lag (B13/B14) fabric features — Session 24's reserved ranks 2–3, never previously implemented — inside spatial OOF on the corrected v3 folds (no earlier HOLDOUT-DTI is matched to this instrument). 3 of 3 experiments used, 0 weekly slots, every gate automated (no human inspection). **Maximize P(Win):** the detector improved, the emission geography didn't — don't spend a slot until the preregistered emission-geometry lane fixes catalogue-hugging. **Own the Outcome:** negative result + full receipts in `docs/s25/`. Start every session by reading this status, [`LIMITATIONS_AND_NEXT_STEPS.md`](LIMITATIONS_AND_NEXT_STEPS.md), [`IRREGULARITIES.md`](IRREGULARITIES.md), and the [full project brief](#full-project-brief) below. Everything below this banner is the preserved historical record, superseded where inconsistent.
+> Read the full project brief below at the beginning of every session. **Maximize P(Win):** do not spend a slot without matched holdout and complete uniqueness evidence. **Own the Outcome:** this no-promotion result and the missing-input blockers are recorded rather than replaced by a projection.
 
 ---
 
