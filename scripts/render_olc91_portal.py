@@ -223,6 +223,11 @@ def render() -> None:
             page = source.replace(fallback, fallback + parallel_card, 1)
         else:
             raise ValueError(f"Missing insertion point in {source_name}")
+        if target_name == "index.html":
+            notice = ('<div class="note" role="status"><strong>2026-10-28 current review: NO NEW TIFF · NOT OK TO SUBMIT.</strong> '
+                      'The assigned method is missing and the current checkout has no data directory. S24 below is a previous research-only artifact, not a submission recommendation. '
+                      '<a href="review-20261028/REVIEW.md">Current review and next steps</a> · <a href="review-20261028/run-card.json">Run card</a>.</div>')
+            page = page.replace('<main id="main">', '<main id="main">' + notice, 1)
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     (ROOT / 'index.html').write_text(

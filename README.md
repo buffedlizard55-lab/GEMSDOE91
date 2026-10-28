@@ -1,5 +1,7 @@
 # GEMSDOE91 — Current review: blocked, research only — S24 update below (research TIF generated; OK TO SUBMIT: NO)
 
+> **2026-10-28 current review: NO NEW TIFF, NOT OK TO SUBMIT.** The assigned method is missing and this checkout has no `data/` directory. S24 below is a previous research artifact, not a submission recommendation. [Current review](docs/review-20261028/REVIEW.md) · [run card](docs/review-20261028/run-card.json).
+
 > **2026-10-28 review: NO NEW TIFF; OK TO SUBMIT: NO.** The S24 file below is a prior research-only artifact and fails the literal full-registry duplicate gate. This review found no assigned method lane and the pinned inputs absent; no experiment or slot was used. [Review and next steps](docs/review-20261028.md) · [run card](docs/run-card-review-20261028.json) · [nine-site table and research download](docs/s24/executive-summary.html). Read the [full project brief](#full-project-brief) at the start of each session.
 
 > **2026-10-27 S24 verdict (later same-day session; supersedes the blocked-review status beneath this banner): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
