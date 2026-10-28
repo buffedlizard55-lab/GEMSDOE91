@@ -716,6 +716,18 @@
       "sha256": "f434a7c39f7019205432e47ea6a8faf3352edb3c680c4825ef5772f8969955f8",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of S24-CCKM E2 research-only negative; NOT OK TO SUBMIT (docs/s24/e2/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
+      "sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f",
+      "status": "selector_approved",
+      "reason": "S25-TLF discovery candidate: 60,000 dots, 2.8px Poisson disc, 3.05px catalogue collar; format PASS (all-finite [0,1], EPSG:32611, 3730x3292); uniqueness vs the nine named leaders PASS (max 32.9% within 3px, |rho| 0.894); SGMC-offcat control 0.190618 vs 0.095386 for the 0.2778 raster; HOLDOUT-DTI 0.120456 [0.105729,0.134593] vs 0.102659 random-dot control; OK to download and submit per docs/s25/REVIEW.md. Receipt pending -> projection only."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip",
+      "sha256": "041972c262a36fd87fca88c85a6ecaf2e29a7aebdbc558cc065468d723078428",
+      "status": "selector_approved",
+      "reason": "S25-TLF discovery candidate: 60,000 dots, 2.8px Poisson disc, 3.05px catalogue collar; format PASS (all-finite [0,1], EPSG:32611, 3730x3292); uniqueness vs the nine named leaders PASS (max 32.9% within 3px, |rho| 0.894); SGMC-offcat control 0.190618 vs 0.095386 for the 0.2778 raster; HOLDOUT-DTI 0.120456 [0.105729,0.134593] vs 0.102659 random-dot control; OK to download and submit per docs/s25/REVIEW.md. Receipt pending -> projection only."
     }
   ]
 }

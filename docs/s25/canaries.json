@@ -1,0 +1,11 @@
+{
+  "rtp": 0.48769,
+  "tc": 0.553351,
+  "dele": 0.688521,
+  "lidar8": 0.666968,
+  "seed25_random_control": 0.499892,
+  "core_fusion": 0.687519,
+  "tlf_fusion": 0.716081,
+  "max_single_feature_auc": 0.688521,
+  "pass_le_0_90": true
+}

@@ -109,10 +109,10 @@ def render_sources():
     overlap = s18['directed_dot_overlap']['overlap_within_3px']
     hci = hold['ci95']
     body = f'''<section class="hero" data-submission-ready="false"><div>
-<p class="eyebrow">GEMSDOE91 / REVIEW · 27 OCTOBER 2026</p><h1>A clear stop,<br>backed by evidence.</h1>
+<p class="eyebrow">HISTORICAL REVIEW · 27 OCTOBER 2026 — superseded 2026-10-28 by the S25 block above</p><h1>A clear stop,<br>backed by evidence.</h1>
 <p class="lead">No new candidate can be responsibly generated under the supplied plan. We audited the historical files, repaired safety checks, and left the evidence open for review.</p>
-<p><span class="verdict">NOT OK TO SUBMIT · NO NEW TIFF</span></p><p><a href="review-ad43b4e5/REVIEW.md">Read the current review ↗</a> · <a href="review-ad43b4e5/run-card.json" download>Download the JSON run card ↓</a> · <a href="submission-guide.html">Submission guide ↗</a></p></div>
-<aside class="dark" aria-label="Current verdict"><p class="eyebrow" style="color:#b9ddc6">DECISION / FAIL CLOSED</p><h2>Research available.<br>Submission blocked.</h2>
+<p><span class="verdict">HISTORICAL: NOT OK TO SUBMIT · NO NEW TIFF IN THAT REVIEW — SUPERSEDED BY S25</span></p><p><a href="review-ad43b4e5/REVIEW.md">Read the current review ↗</a> · <a href="review-ad43b4e5/run-card.json" download>Download the JSON run card ↓</a> · <a href="submission-guide.html">Submission guide ↗</a></p></div>
+<aside class="dark" aria-label="Current verdict"><p class="eyebrow" style="color:#b9ddc6">DECISION / FAIL CLOSED</p><h2>Historical verdict.<br>Superseded by S25.</h2>
 <div class="statline"><span>New geological experiments</span><strong>0</strong></div><div class="statline"><span>New candidate generated</span><strong>NO</strong></div><div class="statline"><span>Weekly slots used in this review</span><strong>0</strong></div>
 <p>The method paragraph is missing, and the frozen dot budget cannot pass the literal overlap rule. A separate selector would be required even for a future validated file.</p></aside></section>
 <div class="note"><strong>Historical S22 OMTJ is scientifically compromised.</strong> Finite NoData cells entered both of its input bands. Its local format check is not scientific validation or organizer acceptance. <a href="review-8e8d86f2/feature-audit.json">See the input audit</a>.</div>

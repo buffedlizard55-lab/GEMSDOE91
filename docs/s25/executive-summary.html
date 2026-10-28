@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEMSDOE91 · S25 executive summary — unique TIF, estimated score, submit decision</title>
+<style>
+:root{--ink:#111;--mut:#555;--line:#d8d8d8;--ok:#0a7d32;--bad:#a11;--warn:#8a5a00;--bg:#fafafa}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 70px}
+h1{font-size:26px;margin:.2em 0 .3em}
+h2{font-size:19px;margin:1.8em 0 .5em;border-bottom:1px solid var(--line);padding-bottom:.25em}
+h3{font-size:15px;margin:1.2em 0 .3em}
+table{border-collapse:collapse;width:100%;margin:.6em 0 1em;background:#fff;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left}
+th{background:#f1f1f1}
+td.n{text-align:right;white-space:nowrap}
+.ok{color:var(--ok);font-weight:700} .bad{color:var(--bad);font-weight:700} .warn{color:var(--warn);font-weight:700}
+.box{border:2px solid var(--ok);background:#fff;border-radius:8px;padding:16px 18px;margin:14px 0}
+.box.no{border-color:var(--bad)}
+.dl{display:inline-block;background:var(--ok);color:#fff;text-decoration:none;font-weight:700;padding:13px 20px;border-radius:6px;font-size:16px;margin:.4em .4em .4em 0}
+code{font-size:12.5px;word-break:break-all}
+small{color:var(--mut)}
+ul{margin:.3em 0 .8em 1.1em;padding:0} li{margin:.2em 0}
+.kv td:first-child{width:230px;color:var(--mut)}
+.flag{border-left:4px solid var(--warn);background:#fff9ec;padding:10px 14px;margin:1em 0}
+</style></head><body><main>
+
+<h1>Executive summary — one file to download, one estimated score, one decision</h1>
+<p><small>Generated 2026-10-28T12:02:18+00:00 from receipts in <code>docs/s25/</code>. Branch
+<code>arena/f3ef46d1-gemsdoe91</code>. Companion pages:
+<a href="REVIEW.md">full review</a> ·
+<a href="run-card.json">run card (JSON)</a> ·
+<a href="nine-site-table.json">nine-site table (JSON)</a> ·
+<a href="../index.html">repository front door</a>.</small></p>
+
+<div class="box">
+<p><strong>THE SUBMISSION: download this one file and upload it to DrivenData.</strong></p>
+<p><a class="dl" href="../downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif">⬇ Download the submission GeoTIFF</a>
+<a class="dl" style="background:#333" href="../downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip">⬇ Single-TIFF ZIP (same bytes)</a></p>
+<table class="kv">
+<tr><td>File</td><td><code>docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif</code></td></tr>
+<tr><td>SHA-256</td><td><code>21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f</code></td></tr>
+<tr><td>Submission name (≤140)</td><td><code>gems91-s25-tlf-60000dots-20261028T120039Z</code></td></tr>
+<tr><td>Note (≤140, 95 chars)</td><td><code>S25 TLF: topo-slope+lidar cross-scarp lineaments, coherence-weighted, 3.05px collar, 2.8px disc</code></td></tr>
+<tr><td>Estimated leaderboard score</td><td><strong>0.36 (range 0.28–0.44)</strong> — PROJECTION, not a score.
+See <a href="#estimate">how it is computed</a>.</td></tr>
+<tr><td>Unique vs GEMSDOE24/25/27/28/30/31/32/33/36?</td>
+<td class="ok">YES —
+max 32.9% of dots within 3 px of any single leader
+(GEMSDOE27; limit 70%), max |surface ρ| = 0.894
+(GEMSDOE31; limit 0.90)</td></tr>
+<tr><td>Format validated automatically?</td><td class="ok">YES — single band, float32, EPSG:32611,
+3730×3292, transform 100 m, all values finite in [0,1], zero mass on the mapped catalogue, no NaN/Inf/sentinels
+(the exact error class that rejected an earlier download: “Predicted values must be in range [0,1]”).</td></tr>
+<tr><td><strong>OK to submit?</strong></td><td class="ok">YES — submit it. It is a new, non-duplicate raster
+that beats every raster in this repository on the SGMC off-catalogue instrument
+(0.1906 vs 0.1012 for the best leader and 0.1104 for the
+best in-repo raster). It scores <em>below</em> the repository's best on the known-fault recovery instrument
+(0.1205 vs 0.2678) — that instrument rewards rediscovering mapped traces, which is the opposite
+of the live task, and it is why this decision rests on the discovery instrument. No receipt exists yet, so treat
+the estimate as a projection that one submission will replace.</td></tr>
+</table>
+</div>
+
+<div class="flag"><strong>What would change the verdict.</strong> If you prefer to spend the slot on a duplicate
+instead, note that all nine named leaders are one raster family (97.6–100% mutual 3-px overlap): re-uploading any
+of them is not a new attempt. If a receipt comes back below 0.2778, the projection below was wrong in the direction
+predicted by the “live truth is denser than SGMC” argument — say so and stop reusing this lane.</div>
+
+<h2 id="score">Which file to submit, per site — and why none of the nine is a new attempt</h2>
+<p>The table answers the request literally: for each named site, the highest-scoring submission, the file that
+carries it, the measured proxy, whether it is unique among the nine, and whether it should be submitted again.</p>
+<table>
+<tr><th>Site</th><th>Highest-scoring file (bytes re-hashed here)</th><th>Claimed score</th>
+<th>SGMC-offcat control (measured)</th><th>3-px overlap with a peer leader</th><th>Unique among the nine?</th><th>Submit again?</th></tr>
+<tr><td><a href='https://buffedlizard55-lab.github.io/GEMSDOE32/'>GEMSDOE32</a></td><td><code>GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code><br><small>sha256 c55bafc470054e82… · 37,654 dots</small></td><td class='n'>0.2778<br><small>USER-REPORTED</small></td><td class='n'>0.0954</td><td class='n'>100.0%</td><td class='bad'>NO — duplicate of a peer leader</td><td class='bad'>NO</td></tr>
+<tr><td><a href='https://buffedlizard55-lab.github.io/GEMSDOE36/'>GEMSDOE36</a></td><td><code>GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</code><br><small>sha256 e15891020b9c5705… · 38,854 dots</small></td><td class='n'>0.2750<br><small>USER-REPORTED</small></td><td class='n'>0.0968</td><td class='n'>97.6%</td><td class='bad'>NO — duplicate of a peer leader</td><td class='bad'>NO</td></tr>
+<tr><td><a href='https://buffedlizard55-lab.github.io/GEMSDOE28/'>GEMSDOE28</a></td><td><code>GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</code><br><small>sha256 5556aa1438fd6737… · 37,660 dots</small></td><td class='n'>0.2710<br><small>USER-REPORTED</small></td><td class='n'>0.0934</td><td class='n'>100.0%</td><td class='bad'>NO — duplicate of a peer leader</td><td class='bad'>NO</td></tr>
+<tr><td><a href='https://buffedlizard55-lab.github.io/GEMSDOE31/'>GEMSDOE31</a></td><td><code>GEMSDOE31__gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</code><br><small>sha256 07b6db440535404b… · 40,199 dots</small></td><td class='n'>0.2708<br><small>USER-REPORTED</small></td><td class='n'>0.0953</td><td class='n'>100.0%</td><td class='bad'>NO — duplicate of a peer leader</td><td class='bad'>NO</td></tr>
+<tr><td><a href='https://buffedlizard55-lab.github.io/GEMSDOE33/'>GEMSDOE33</a></td><td><code>GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</code><br><small>sha256 87f857d505e23247… · 41,865 dots</small></td><td class='n'>0.2632<br><small>USER-REPORTED</small></td><td class='n'>0.0957</td><td class='n'>99.7%</td><td class='bad'>NO — duplicate of a peer leader</td><td class='bad'>NO</td></tr>
+<tr><td><a href='https://buffedlizard55-lab.github.io/GEMSDOE25/'>GEMSDOE25</a></td><td><code>GEMSDOE25__gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code><br><small>sha256 91eae1ca42ec845e… · 44,090 dots</small></td><td class='n'>0.2600<br><small>USER-REPORTED</small></td><td class='n'>0.0942</td><td class='n'>100.0%</td><td class='bad'>NO — duplicate of a peer leader</td><td class='bad'>NO</td></tr>
+<tr><td><a href='https://buffedlizard55-lab.github.io/GEMSDOE30/'>GEMSDOE30</a></td><td><code>GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</code><br><small>sha256 8cf893ead5667df2… · 44,090 dots</small></td><td class='n'>0.2600<br><small>USER-REPORTED</small></td><td class='n'>0.0942</td><td class='n'>100.0%</td><td class='bad'>NO — duplicate of a peer leader</td><td class='bad'>NO</td></tr>
+<tr><td><a href='https://buffedlizard55-lab.github.io/GEMSDOE24/'>GEMSDOE24</a></td><td><code>GEMSDOE24__gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</code><br><small>sha256 68d0e2e4fcc594f9… · 60,069 dots</small></td><td class='n'>0.2477<br><small>USER-REPORTED</small></td><td class='n'>0.0999</td><td class='n'>100.0%</td><td class='bad'>NO — duplicate of a peer leader</td><td class='bad'>NO</td></tr>
+<tr><td><a href='https://buffedlizard55-lab.github.io/GEMSDOE27/'>GEMSDOE27</a></td><td><code>GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</code><br><small>sha256 33003374335d84bf… · 61,328 dots</small></td><td class='n'>0.2449<br><small>USER-REPORTED</small></td><td class='n'>0.1012</td><td class='n'>98.0%</td><td class='bad'>NO — duplicate of a peer leader</td><td class='bad'>NO</td></tr>
+<tr style="background:#eefaf0"><td><strong>THIS SESSION (GEMSDOE91)</strong></td>
+<td><code>gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif</code><br><small>sha256 21c11e819d287778… · 60,000 dots</small></td>
+<td class="n">— (no receipt yet)</td>
+<td class="n"><strong>0.1906</strong></td>
+<td class="n"><strong>32.9%</strong></td>
+<td class="ok">YES</td><td class="ok">YES</td></tr>
+</table>
+<p><small>Claims are the session prompt’s own numbers, marked USER-REPORTED; there is no organizer receipt binding
+any score to any TIFF in this repository. The SGMC-offcat column is a <em>different</em> instrument (USGS state-map
+faults &gt;3 px from the competition catalogue) and is not comparable to a leaderboard score.</small></p>
+
+<h3>Why the nine spread from 0.2449 to 0.2778 (and what that means)</h3>
+<ul>
+<li><strong>They are one raster, edited.</strong> Every leader has ≥97.6%
+of its dots within 3 px of another leader. Nine submissions, one hypothesis: the “dotted ridge” family.</li>
+<li><strong>The metric explains the ordering.</strong> DTI = T / (0.2·(T+FP) + 0.8·|G|). Stacked dots do not add
+truth credit — the numerator takes the <em>maximum</em> kernel weight per truth pixel — but each wasted dot adds
+full false-positive mass. So once a ribbon is covered, extra dots can only hurt. That is exactly the observed
+pattern exactly: the four smallest rasters (37,654; 37,660; 38,854; 40,199 dots) claim the four highest
+scores, and the two largest (60,069; 61,328) claim the two lowest. Spearman(claimed score, dot count) over the nine = <strong>-0.967</strong>
+(computed in <code>nine-site-table.json</code>; n=9, unverified claims — a consistent sign, not proof of causality).</li>
+<li><strong>What it does not tell us.</strong> No receipt decomposes T, FP and |G|, so the cause of the 0.03 spread
+cannot be isolated from here, and three of the nine share identical support, so effective n≈3, not 9.</li>
+</ul>
+
+<h2 id="estimate">How the score estimate is computed (and why it is a range)</h2>
+<p>Two anchored quantities are used, both from this repository’s own bytes:</p>
+<ul>
+<li><strong>Anchor (USER-REPORTED):</strong> GEMSDOE32 <code>h33-h33-2-b2</code> = <strong>0.2778</strong>, the best
+of the nine, measured here at <strong>0.095386</strong> on the SGMC off-catalogue control.</li>
+<li><strong>This candidate:</strong> <strong>0.190618</strong> on the same control at the same-budget scale
+(60,000 dots) — a factor <strong>2.00×</strong>.</li>
+</ul>
+<p>Scaling the anchor linearly would give <strong>0.555</strong>, which is above the highest score observed
+on the public leaderboard (0.4413, USER-REPORTED for 2026-10-28; the repository’s own 2026-10-27 fetch recorded
+0.4544). A linear extrapolation past the ceiling is not credible, so it is truncated at the ceiling and the
+reported figure is the midpoint of “no transfer at all” (0.28) and “transfer, capped”
+(0.44) = <strong>0.36</strong>. The proxy is a map-vs-map comparison; the competition
+truth is expert-mapped faults absent from the public catalogue, so the transfer factor is unknown and may be 1.0.</p>
+
+<h3>Why the proxy is not the whole story — and why the usual holdout is not either</h3>
+<p>On the shared hide-and-recover instrument (<code>gems57-pooled-hide-v2</code>, 60,988 withheld positives):
+this candidate <strong>0.120456</strong> [0.105729, 0.134593]
+vs 0.102659 for a matched random-dot control
+(paired Δ +0.017797 [+0.002956,
++0.032548]) and 0.021664 for the best-scoring
+leader <em>on that same instrument</em>. Read that last number carefully: the raster that scores 0.2778 live scores
+0.0217 when asked to rediscover <em>known</em> faults, because its emission
+collar was built from the full catalogue. Hide-and-recover measures rediscovery of mapped traces; the live task is
+the opposite — find faults the catalogue does not contain. Neither instrument is a leaderboard estimator, and a
+projection built on both is stated as a range for that reason.</p>
+
+<h3>Budget sensitivity (SGMC off-catalogue control)</h3>
+<table><tr><th>Truth density</th><th>25,000</th><th>37,654</th><th>50,000</th><th>60,000 (chosen)</th><th>75,000</th><th>90,000</th></tr>
+<tr><td>1.0</td><td class='n'>0.1083</td><td class='n'>0.1448</td><td class='n'>0.1721</td><td class='n'>0.1906</td><td class='n'>0.2145</td><td class='n'>0.2332</td></tr>
+<tr><td>0.4</td><td class='n'>0.0965</td><td class='n'>0.1226</td><td class='n'>0.1401</td><td class='n'>0.1505</td><td class='n'>0.1622</td><td class='n'>0.1697</td></tr>
+<tr><td>0.23</td><td class='n'>0.0820</td><td class='n'>0.1017</td><td class='n'>0.1114</td><td class='n'>0.1169</td><td class='n'>0.1229</td><td class='n'>0.1257</td></tr>
+<tr><td>0.1</td><td class='n'>0.0599</td><td class='n'>0.0672</td><td class='n'>0.0703</td><td class='n'>0.0711</td><td class='n'>0.0714</td><td class='n'>0.0707</td></tr></table>
+<p><small>Rows below 1.0 are random spatial thinnings of the control, used to ask “is the chosen budget an artefact
+of the control being denser than the real label set?”. The chosen 60,000 is at or near the maximum in every density
+regime tested, including the sparsest (10%, |G| ≈ 6.3k), where it is the interior optimum. Full curve in
+<code>run-card.json → budget_curve</code>.</small></p>
+
+<h2>How to submit (exact steps)</h2>
+<ol>
+<li>Download the GeoTIFF above (or the ZIP — it contains exactly the one TIFF and nothing else).</li>
+<li>DrivenData → <em>DOE GEMS</em> → <strong>New submission</strong> → choose the file.</li>
+<li>Name: <code>gems91-s25-tlf-60000dots-20261028T120039Z</code> · Note: <code>S25 TLF: topo-slope+lidar cross-scarp lineaments, coherence-weighted, 3.05px collar, 2.8px disc</code></li>
+<li>Submit, then copy the score from the submission page into <code>ledger/submissions.csv</code> as an
+<strong>ORGANIZER-CONFIRMED</strong> row. That receipt is the only thing that turns any number on this page into a score.</li>
+</ol>
+
+<h2>Method in one paragraph</h2>
+<p>Hypothesis: catalogued-absent faults in the Great Basin retain a topographic expression (scarps, composite
+ridges, faceted spurs) after their potential-field signature has healed. Layers used: band 19
+(<code>det_elev_slope</code>), band 6 (<code>tc</code>, tilt/total-curvature), band 2 (<code>rtp</code>, reduced-to-pole
+magnetic), and band 8 of the independent USGS/GeoDAWN <em>lidar scarp features</em> stack
+(<code>cross_max</code>). Each layer is converted to a structure-tensor <em>lineament</em> response
+(gradient magnitude weighted by coherence, so isotropic relief is suppressed), rank-normalised inside the
+scored footprint, and fused (magnetic/tilt/slope weighted by their measured excess AUC, 50/50 with the lidar layer).
+Dots are placed greedily best-first with a 2.8-px Poisson-disc separation — because the metric takes the maximum
+kernel weight per truth pixel, so stacked mass buys nothing and costs false-positive weight — and no dot is placed
+within 3.05 px of a mapped trace. Mimic process guarded against: playa margins, terrace risers and shorelines;
+the leakage canary is in the run card (max single-feature AUC 0.689, floor from a
+seeded random field 0.500).</p>
+
+<h2>Automated gates (nothing here needs a human inspector)</h2>
+<table>
+<tr><th>Gate</th><th>Rule</th><th>Result</th></tr>
+<tr><td>Inputs</td><td>every byte sha256-pinned in <code>registry/data_manifest.json</code></td><td class="ok">PASS — 5/5 re-hashed this run</td></tr>
+<tr><td>Format</td><td>1 band, float32, EPSG:32611, 3730×3292, transform (100,0,243350,0,-100,4508550), values in [0,1], finite</td><td class="ok">PASS — re-read from the bytes on disk</td></tr>
+<tr><td>Range error class</td><td>no NaN/Inf/sentinel; zeros outside footprint; zero mass on mapped catalogue</td><td class="ok">PASS</td></tr>
+<tr><td>Leakage canary</td><td>no single feature AUC &gt; 0.90</td><td class="ok">PASS — max 0.689</td></tr>
+<tr><td>Lane drift</td><td>&gt;70% of dots within 3 px, or |ρ| &gt; 0.90, vs a registry raster ⇒ duplicate</td>
+<td class="ok">PASS vs the nine — 32.9% dots, ρ 0.894</td></tr>
+<tr><td>Same check, in-repo rasters</td><td>diagnostic: do not silently re-ship one of our own artifacts</td>
+<td class="ok">PASS — max 31.0% (gems91-s14-hvdc-e2-20261024T223000)</td></tr>
+<tr><td>Determinism</td><td>re-running the builder reproduces the same sha256</td><td class="ok">PASS — two runs, identical 21c11e819d287778…</td></tr>
+<tr><td>Weekly slots</td><td>this build uses none; promotion is a separate selector step</td><td class="ok">0 slots used</td></tr>
+</table>
+
+<h2>Limitations and irregularities (flag, do not hide)</h2>
+<ul>
+<li><strong>No receipt.</strong> Every score on this page except the measured controls is USER-REPORTED. The
+projection is a projection.</li>
+<li><strong>Regional similarity is close to the drift limit.</strong> |surface ρ| vs the nine reaches
+0.894 (limit 0.90) while dot overlap is only
+32.9%: this lane concentrates in the same regional lineament
+belts as the “dotted ridge” family, even though it selects different pixels inside them. Anyone who reads the
+0.90 rule as a regional-prior test rather than a dot test should treat this candidate as marginal.</li>
+<li><strong>Competition data are community mirrors.</strong> The pinned hashes come from earlier sessions’ mirror
+copies, not an authenticated DrivenData download; verified byte-for-byte, provenance not authenticated.</li>
+<li><strong>Leaderboard values conflict.</strong> The prompt says 0.4413 today; the repository’s 2026-10-27 fetch
+recorded 0.4544 and #22 = 0.3261. Both are quoted, neither is re-fetched here (drivendata.org is outside this
+session’s network allowlist).</li>
+<li><strong>The lane paragraph is still missing</strong> from the prompt; this lane is self-assigned and
+preregistered in <code>docs/s25/preregistration.md</code>.</li>
+</ul>
+
+<p><small>Evidence: <a href="run-card.json">run-card.json</a> ·
+<a href="holdout.json">holdout.json</a> · <a href="canaries.json">canaries.json</a> ·
+<a href="sgmc-diagnostic.json">sgmc-diagnostic.json</a> · <a href="uniqueness.json">uniqueness.json</a> ·
+<a href="nine-site-table.json">nine-site-table.json</a>. Reproduce: <code>python scripts/run_s25_tlf.py</code>
+then <code>python scripts/render_s25_portal.py</code>.</small></p>
+</main></body></html>
