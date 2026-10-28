@@ -1628,3 +1628,58 @@ Key standing requirements preserved verbatim:
 </details>
 
 </details>
+
+---
+
+## Appendix Z — the standing prompt for this repository (verbatim as received 2026-10-28; read this first each session)
+
+> Review the repo. **THE FOLLOWING IS THE HIGHEST URGENCY AND MUST BE FOLLOWED!** MUST GENERATE A UNIQUE TIF
+> SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE
+> MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF
+> SUBMISSION.
+>
+> There should be an easy to download submission tif file as described by the prompt. A lot of sites mention inspection
+> only and a human inspector, but the inspection needs to be done through the project and needs to be validated for
+> submission without human intervention.
+>
+> PARALLEL-RUN PROTOCOL — read first. This session is one of several running from this same prompt. You are assigned
+> exactly one method paragraph (below) and must not touch another session's method. Check rank-correlation between your
+> generated raster and every raster in the registry before placing a dot and again on the final dots: **stop if
+> |rank correlation| > 0.90 against any registry raster, or if > 70% of your dots fall within 3 px of a single registry
+> raster.** A file that fails has to be documented as a negative result, not shipped.
+>
+> Stay inside your single method paragraph; do not widen it. Reuse, don't rebuild: the cached feature stack,
+> `scripts/evaluate_holdout.py`, `submission_writer.py` and the gates already in the repository. No private forks of
+> shared tools — fix a shared tool once, in the template. The holdout is hide-and-recover of whole segments with a
+> buffer; DTI is pooled with alpha 0.2, beta 0.8 and a 300 m triangular kernel. Label every number either
+> **HOLDOUT-DTI** (with evaluator version, withheld positives and a 95% CI) or **ORGANIZER-CONFIRMED** (with a
+> submission receipt). Never write a projection as a score. Leakage canary: run each feature alone on the holdout;
+> AUC > 0.90 means leakage until proven otherwise. End with one RUN CARD JSON: hypothesis, mechanism, mimic, holdout
+> DTI + CI, correlation and overlap versus the registry, sha256, validator output, submission name + a note of at most
+> 140 characters, and a verdict. Negative results are deliverables.
+>
+> Budget: stop after 3 experiments or 2 hours. Do not pick the submission — promotion is a separate selector step
+> inside the weekly cap. Build to Arena Core Values: **Maximize P(Win)** and **Own the Outcome**; every value must pass
+> the high-scoring validation gates before any file is called unique and submittable.
+>
+> No hallucinations. Verify line by line. Cite official, verified, trusted sources with links so a human can check
+> them. Flag irregularities. Work autonomously — no manual input; validation must live inside the project and be
+> submission-ready without human intervention. Raster gates: no NaN inside the footprint, all values in [0, 1],
+> CRS/shape/transform matching the sample submission (an earlier download was rejected with "Predicted values must be
+> in range [0, 1]"). Produce an executive summary per site for GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36 that makes
+> the single best submission per site obvious: the file to download, the estimated score, and uniqueness versus every
+> other listed site. Explain at PhD level why and how GEMSDOE32's
+> `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` scored 0.2778 and whether it can be exceeded (leaderboard best
+> GEMSDOE 0.4413; an older target was 0.3195). Give 3–5 untried geological hypotheses — named layer(s), physical
+> signature and transform, why each would catch a fault the USGS/INGENIOUS catalogue misses, and how it differs from
+> what this repository already did — ranked by expected DTI gain against cost, with the top candidate validated on a
+> spatially blocked holdout before any weekly slot is spent; any new external data must be a named, free, official
+> source confirmed obtainable. Put this prompt into the README and read it as the starting point each session. The site
+> must remove manual checking and provide an up-to-date feed. Refresh the GitHub Pages site: clean, user-friendly,
+> every claim backed by official verified links. Execute in multiple passes (Pass 1 implement and verify, Pass 2
+> review bugs and edge cases, Pass 3 re-check the whole request), then open a PR, merge to main, and list the remaining
+> work and its limitations.
+
+**Note (IR-S26TLF-01):** the paragraph "you are assigned exactly one method paragraph (below)" has never contained an
+actual paragraph in eight consecutive sessions. S25-TLF therefore declared its own single paragraph in
+`docs/s25-tlf/preregistration.md` and stayed inside it.
