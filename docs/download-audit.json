@@ -2031,10 +2031,10 @@
       "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
     },
     {
-      "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
-      "policy_status": "selector_approved",
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
+      "policy_status": "current_research_only",
       "ok_to_submit": false,
-      "sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f",
+      "sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
       "status": "PASS",
       "checks": {
         "single_band": true,
@@ -2052,11 +2052,11 @@
       "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
     },
     {
-      "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip",
-      "policy_status": "selector_approved",
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip",
+      "policy_status": "current_research_only",
       "ok_to_submit": false,
-      "sha256": "041972c262a36fd87fca88c85a6ecaf2e29a7aebdbc558cc065468d723078428",
-      "zip_member": "gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
+      "sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+      "zip_member": "gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
       "status": "PASS",
       "checks": {
         "single_band": true,

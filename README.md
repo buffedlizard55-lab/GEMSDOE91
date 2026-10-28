@@ -1,19 +1,53 @@
-# GEMSDOE91 — S25: unique submission generated and cleared to download **and submit**
+# GEMSDOE91 — Current review: blocked, research only — S25 update below (new unique research TIF generated; OK TO SUBMIT: NO)
 
-> **2026-10-28 S25 verdict (supersedes every banner below).** A new TIF was generated,
-> checked against the nine named sites, validated from the bytes on disk, and cleared to submit.
+> **2026-10-28 · S25-TLF lane (a different parallel run from S25-FABRIC — read both verdicts).** A second,
+> independent candidate was built in this repository today and **it is cleared to download and to submit**.
 >
 > | File to download | Estimated leaderboard score | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
 > |---|---|---|---|
 > | [`gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif`](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) — SHA-256 `21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f`, 60,000 dots · [single-TIFF ZIP](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip) | **0.36 (range 0.28–0.44) — PROJECTION, not a score** (HOLDOUT-DTI 0.120456 [0.105729, 0.134593] vs 0.102659 random-dot control; SGMC off-catalogue 0.190618 vs 0.095386 for the 0.2778 raster) | **YES** — max 32.9% of dots within 3 px (limit 70%), max \|ρ\| 0.894 (limit 0.90) | **YES** |
 >
-> **Why 0.2778 won and what changed.** The nine leaders are one raster family (97.6–100% mutual 3-px overlap) whose claimed scores *fall* as dot count rises (Spearman −0.967): DTI = T/(0.2(T+FP)+0.8|G|) gives no extra numerator for stacked dots but charges full false-positive weight, so coverage with fewer, better-placed dots wins. S25 keeps that emission economics (2.8 px Poisson disc, 3.05 px catalogue collar) but replaces the unranked ridge fill with a coherence-weighted topographic–lidar lineament surface, which scores 2.0× the best leader on the only independent fault map available.
+> **Why the nine leaders scored 0.2449–0.2778.** They are one raster family (97.6–100% mutual 3-px overlap) whose
+> claims *fall* as dot count rises (Spearman −0.967): DTI = T/(0.2(T+FP)+0.8|G|) gives no extra numerator for a
+> stacked dot but charges full false-positive weight. S25-TLF keeps that emission economics (2.8 px Poisson disc,
+> 3.05 px catalogue collar) and replaces the unranked ridge fill with a ranked coherence-weighted topographic–lidar
+> lineament surface, which measures 2.0× the best leader on the only independent fault map available.
 >
-> **Decision, method, receipts, hypotheses and limitations:** [**executive summary + download + submission steps**](docs/s25/executive-summary.html) · [full review](docs/s25/REVIEW.md) · [run card](docs/s25/run-card.json) · [nine-site table](docs/s25/nine-site-table.json) · [preregistration](docs/s25/preregistration.md). Reproduce: `python scripts/run_s25_tlf.py && python scripts/render_s25_portal.py`. Zero weekly slots spent by the builder; **promotion to a slot is the owner's action** and one receipt replaces the projection.
+> **[Executive summary · download · submission steps](docs/s25-tlf/executive-summary.html)** ·
+> [full review](docs/s25-tlf/REVIEW.md) · [run card](docs/s25-tlf/run-card.json) ·
+> [nine-site table](docs/s25-tlf/nine-site-table.json) · [preregistration](docs/s25-tlf/preregistration.md).
+> Reproduce: `python scripts/run_s25_tlf.py && python scripts/render_s25tlf_portal.py`.
+> Zero weekly slots spent by the builder; **promotion is the owner's action** and one receipt replaces the projection.
+
+
+> **2026-10-28 S25 verdict (latest session; supersedes the S24 banner beneath): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
+> Download for research: [`gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif`](docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif) (SHA-256 `0046fca5…`, 37,654 dots, single-TIFF ZIP beside it) — [**executive summary, nine-site table, estimated-score table & submission guide**](docs/s25/executive-summary.html) · [full review](docs/s25/REVIEW.md) · [run card](docs/s25/run-card.json) · [preregistration](docs/s25/preregistration.md) · [diagnostics (SGMC + LFI model)](docs/s25/diagnostics.json).
+>
+> | File to download (research) | Estimated leaderboard score | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
+> |---|---|---|---|
+> | S25-FABRIC **E2** TIF above | ORGANIZER-CONFIRMED: none. LFI **MODEL projection 0.07917** (not a score; LOSO RMSE 0.0196). HOLDOUT-DTI **0.147741 [0.129760, 0.167562]** (`gems57-pooled-hide-v2`, v3 folds, 60,988 withheld) — beats best matched control paired (+0.022997 [+0.014272, +0.031866]); SGMC diagnostic 0.079042 vs R0 0.095386 | **YES vs the nine** (max 40.19% within 3 px; surface \|ρ\|max 0.214). **NO literal** (74.89% vs closest competitive reference; 98.75% vs lattice) | **NO** — protocol dot-overlap breach + low live-aligned projection (dots hug catalogue, median 5.8 px) + selector step pending |
+> | S21-PDWC E3 (historical) | LFI MODEL projection 0.19765 (today's refit; not a score) — highest projected unsubmitted candidate in repo | Competitive PASS per its S21 card (≤64%); literal blanket fail | NO (its own verdict: negative) |
+> | Best historical claim = GEMSDOE32 `h33-h33-2-b2` | 0.2778 **USER-REPORTED, not organizer-confirmed**; leaderboard fetched 2026-10-28: #1 = 0.4544 | **NO** — all nine leaders recomputed today at 98–100% peer overlap (one duplicate family) | NO as a new unique attempt |
+>
+> Method: oriented-granulometry (B12/B19) + gravity–magnetic phase-lag (B13/B14) fabric features — Session 24's reserved ranks 2–3, never previously implemented — inside spatial OOF on the corrected v3 folds (no earlier HOLDOUT-DTI is matched to this instrument). 3 of 3 experiments used, 0 weekly slots, every gate automated (no human inspection). **Maximize P(Win):** the detector improved, the emission geography didn't — don't spend a slot until the preregistered emission-geometry lane fixes catalogue-hugging. **Own the Outcome:** negative result + full receipts in `docs/s25/`. Start every session by reading this status, [`LIMITATIONS_AND_NEXT_STEPS.md`](LIMITATIONS_AND_NEXT_STEPS.md), [`IRREGULARITIES.md`](IRREGULARITIES.md), and the [full project brief](#full-project-brief) below. Everything below this banner is the preserved historical record, superseded where inconsistent.
+
+---
+
+## Historical status before S25 (superseded where inconsistent)
+
+# GEMSDOE91 — Current review: blocked, research only — 2026-10-28 · NO NEW CANDIDATE · OK TO SUBMIT: NO
+
+Start here: [current review and next steps](docs/review-68881914-20261028.md) · [current run card](docs/run-card-20261028.json) · [nine-site executive summary](docs/s24/executive-summary.html). No geological experiment or submission slot was used this review. The previous S24 file is a **historical research-only** download and fails the full-registry uniqueness rule; its v2 holdout is not matched to the corrected v3 instrument. No current leaderboard score estimate is defensible. The lane assignment is missing and the cached inputs and registry witness are absent. Read the full project brief below before beginning each session. **Maximize P(Win); Own the Outcome.**
+
+The following S24 banner is historical, not this session's output.
 
 ---
 
 # GEMSDOE91 — Current review: blocked, research only — S24 update below (research TIF generated; OK TO SUBMIT: NO)
+
+> **2026-10-28 current review: NO NEW TIFF, NOT OK TO SUBMIT.** The assigned method is missing and this checkout has no `data/` directory. S24 below is a previous research artifact, not a submission recommendation. [Current review](docs/review-20261028/REVIEW.md) · [run card](docs/review-20261028/run-card.json).
+
+> **2026-10-28 review: NO NEW TIFF; OK TO SUBMIT: NO.** The S24 file below is a prior research-only artifact and fails the literal full-registry duplicate gate. This review found no assigned method lane and the pinned inputs absent; no experiment or slot was used. [Review and next steps](docs/review-68881914-20261028.md) · [run card](docs/run-card-review-20261028.json) · [nine-site table and research download](docs/s24/executive-summary.html). Read the [full project brief](#full-project-brief) at the start of each session.
 
 > **2026-10-27 S24 verdict (later same-day session; supersedes the blocked-review status beneath this banner): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
 > Download for research: [`gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif`](docs/downloads/gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif) (SHA-256 `aba3fb405cfa…`, 37,654 dots, single-TIFF ZIP beside it) — [**executive summary, nine-site table & submission guide**](docs/s24/executive-summary.html) · [full review](docs/s24/REVIEW.md) · [E2 run card](docs/s24/e2/run-card.json) · [E1 run card](docs/s24/run-card.json) · [preregistration](docs/s24/preregistration.md).

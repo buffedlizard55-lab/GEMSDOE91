@@ -160,7 +160,7 @@ page footer; `pytest` re-run.
    literally to a registry containing synthetic 5-px calibration lattices and >112k-dot plausibility
    maps it rejects every valid sparse submission (S18–S24 all stopped on it). This build applies it to
    **actual submissions** — the nine named leaders as a hard gate, every in-repo real artifact as a
-   diagnostic — and says so in `IRREGULARITIES.md` IR-S25-02 for the owner to override. The synthetic
+   diagnostic — and says so in `IRREGULARITIES.md` IR-S26TLF-02 for the owner to override. The synthetic
    lattice is not restored in this checkout, so it is not re-measured here.
 7. **SGMC is a map, not truth.** It is a 1:500k compilation; its off-catalogue traces
    are a proxy whose faults are coarser than the expert labels.

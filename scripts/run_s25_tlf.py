@@ -23,7 +23,7 @@ What this script does, in order, and what it refuses to do:
 6. Re-validates the bytes on disk, then runs the uniqueness screen: 3-px dot
    overlap and surface rank correlation against the nine named leader rasters
    and every real raster in ``docs/downloads``.
-7. Writes machine-readable receipts to ``docs/s25/``.  It never uploads and
+7. Writes machine-readable receipts to ``docs/s25-tlf/``.  It never uploads and
    never selects a weekly slot.
 
 A local PASS here is local evidence, not organizer acceptance.
@@ -62,7 +62,7 @@ SAMPLE = ROOT / "data/official/sample_submission.tif"
 FAULTS = ROOT / "data/official/existing_faults.tif"
 NINE_CACHE = ROOT / "work/nine"
 OUT = ROOT / "docs/downloads"
-EVID = ROOT / "docs/s25"
+EVID = ROOT / "docs/s25-tlf"
 
 SPACING_PX = 2.8
 BUDGET = 60_000

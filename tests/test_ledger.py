@@ -45,7 +45,7 @@ def test_no_repeated_parent_axis_value(rows):
 def test_axes_are_from_the_brief(rows):
     # GEOD (main, 2026-10-24 strain-prior lane) and DENOVO (2026-10-24 de novo
     # surface lane, no parent dots; see IR-91-36) extend the brief's axis list.
-    allowed = {"MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF", "SPACING", "TRACKB", "GEOD", "DENOVO", "BASEMENT", "ASC91", "FUSE91", "SPAC", "S14LSRG", "S16PC91", "S17EULR", "TLF25"}  # TLF25: session 25 topographic-lidar lineament lane row (docs/s25/preregistration.md); S17EULR: session 17 Euler-deconvolution fusion lane row (docs/HYPOTHESES_S17.md); S16PC91: session 16 phase-congruency lane row (docs/HYPOTHESES_S16.md); BASEMENT: session 10 row (IR-91-S10-02); ASC91: antisymmetric step lane row (docs/HYPOTHESES_ASC91.md); FUSE91: step x context fusion lane row (docs/HYPOTHESES_F91.md); SPAC: session 12 3D Analytic Signal/SPI + Swarm + Radon Auto-Context lane (docs/HYPOTHESES_S12.md); S14LSRG: session 14 LiDAR-scarp + radiometric-ratio lane (docs/HYPOTHESES_S14.md)
+    allowed = {"MASS", "CONCENTRATION", "SNAP", "PRUNE", "RELIEF", "SPACING", "TRACKB", "GEOD", "DENOVO", "BASEMENT", "ASC91", "FUSE91", "SPAC", "S14LSRG", "S16PC91", "S17EULR", "TLF25"}  # S17EULR: session 17 Euler-deconvolution fusion lane row (docs/HYPOTHESES_S17.md); S16PC91: session 16 phase-congruency lane row (docs/HYPOTHESES_S16.md); BASEMENT: session 10 row (IR-91-S10-02); ASC91: antisymmetric step lane row (docs/HYPOTHESES_ASC91.md); FUSE91: step x context fusion lane row (docs/HYPOTHESES_F91.md); SPAC: session 12 3D Analytic Signal/SPI + Swarm + Radon Auto-Context lane (docs/HYPOTHESES_S12.md); S14LSRG: session 14 LiDAR-scarp + radiometric-ratio lane (docs/HYPOTHESES_S14.md)
     assert {r["axis"] for r in rows} <= allowed
 
 

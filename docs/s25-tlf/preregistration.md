@@ -5,7 +5,7 @@ exploratory layer screen and *before* the final 60,000-dot emission was written 
 `docs/downloads/`. It is therefore a **design record**, not a blind preregistration:
 the layer weights and the budget rule were already measured when it was typed. Every
 number quoted here is produced by `scripts/run_s25_tlf.py` and stored in
-`docs/s25/run-card.json`; nothing is typed from memory.
+`docs/s25-tlf/run-card.json`; nothing is typed from memory.
 
 ## Lane assignment (protocol item 1) — DECLARED, because none was supplied
 

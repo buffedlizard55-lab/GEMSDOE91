@@ -718,16 +718,28 @@
       "reason": "Single-TIFF ZIP of S24-CCKM E2 research-only negative; NOT OK TO SUBMIT (docs/s24/e2/run-card.json)."
     },
     {
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
+      "sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
+      "status": "current_research_only",
+      "reason": "S25-FABRIC E2 research-only negative: HOLDOUT-DTI 0.147741 [0.129760, 0.167562] (gems57-pooled-hide-v2, v3 folds, 60988 withheld) beats best matched control paired, and unique vs nine focus leaders (max 40.2% within 3px), BUT protocol-literal dot overlap 74.9% vs closest competitive reference (>70%) and LFI MODEL projection 0.07917 (catalogue-hugging dots, median 5.8px); SGMC-offcat diagnostic 0.079042. NOT OK TO SUBMIT (docs/s25/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip",
+      "sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S25-FABRIC E2 research-only negative; NOT OK TO SUBMIT (docs/s25/run-card.json)."
+    },
+    {
       "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
       "sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f",
       "status": "selector_approved",
-      "reason": "S25-TLF discovery candidate: 60,000 dots, 2.8px Poisson disc, 3.05px catalogue collar; format PASS (all-finite [0,1], EPSG:32611, 3730x3292); uniqueness vs the nine named leaders PASS (max 32.9% within 3px, |rho| 0.894); SGMC-offcat control 0.190618 vs 0.095386 for the 0.2778 raster; HOLDOUT-DTI 0.120456 [0.105729,0.134593] vs 0.102659 random-dot control; OK to download and submit per docs/s25/REVIEW.md. Receipt pending -> projection only."
+      "reason": "S25-TLF discovery candidate: 60,000 dots, 2.8px Poisson disc, 3.05px catalogue collar; format PASS (all-finite [0,1], EPSG:32611, 3730x3292); uniqueness vs the nine named leaders PASS (max 32.9% within 3px, |rho| 0.894); SGMC-offcat control 0.190618 vs 0.095386 for the 0.2778 raster; HOLDOUT-DTI 0.120456 [0.105729,0.134593] vs 0.102659 random-dot control; OK to download and submit per docs/s25-tlf/REVIEW.md. Receipt pending -> projection only."
     },
     {
       "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip",
       "sha256": "041972c262a36fd87fca88c85a6ecaf2e29a7aebdbc558cc065468d723078428",
       "status": "selector_approved",
-      "reason": "S25-TLF discovery candidate: 60,000 dots, 2.8px Poisson disc, 3.05px catalogue collar; format PASS (all-finite [0,1], EPSG:32611, 3730x3292); uniqueness vs the nine named leaders PASS (max 32.9% within 3px, |rho| 0.894); SGMC-offcat control 0.190618 vs 0.095386 for the 0.2778 raster; HOLDOUT-DTI 0.120456 [0.105729,0.134593] vs 0.102659 random-dot control; OK to download and submit per docs/s25/REVIEW.md. Receipt pending -> projection only."
+      "reason": "S25-TLF discovery candidate: 60,000 dots, 2.8px Poisson disc, 3.05px catalogue collar; format PASS (all-finite [0,1], EPSG:32611, 3730x3292); uniqueness vs the nine named leaders PASS (max 32.9% within 3px, |rho| 0.894); SGMC-offcat control 0.190618 vs 0.095386 for the 0.2778 raster; HOLDOUT-DTI 0.120456 [0.105729,0.134593] vs 0.102659 random-dot control; OK to download and submit per docs/s25-tlf/REVIEW.md. Receipt pending -> projection only."
     }
   ]
 }

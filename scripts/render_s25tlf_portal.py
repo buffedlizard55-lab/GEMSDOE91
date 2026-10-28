@@ -2,12 +2,12 @@
 """Render the S25 executive summary and the nine-site table from receipts.
 
 No number in the HTML is typed by hand: every value is read from
-``docs/s25/run-card.json``, recomputed from the pinned bytes on disk, or taken
+``docs/s25-tlf/run-card.json``, recomputed from the pinned bytes on disk, or taken
 from the provenance-tagged claim table below (which is the session prompt's own
 text, marked USER-REPORTED).
 
 Usage:  python scripts/render_s25_portal.py
-Output: docs/s25/executive-summary.html, docs/s25/nine-site-table.json
+Output: docs/s25-tlf/executive-summary.html, docs/s25-tlf/nine-site-table.json
 """
 from __future__ import annotations
 
@@ -26,7 +26,7 @@ import rasterio
 import evaluate_holdout as eh
 
 OUT = ROOT / "docs/downloads"
-EVID = ROOT / "docs/s25"
+EVID = ROOT / "docs/s25-tlf"
 NINE = ROOT / "work/nine"
 
 # The user's own prompt, transcribed verbatim (site -> (best file token, claimed score)).
@@ -52,7 +52,7 @@ def sha256(p: Path) -> str:
     return h.hexdigest()
 
 
-BANNER_MARK = 'id="s25-verdict"'
+BANNER_MARK = 'id="s25tlf-verdict"'
 
 
 def inject_front_door(art, proxy, uni, central, lo, hi) -> None:
@@ -74,7 +74,7 @@ def inject_front_door(art, proxy, uni, central, lo, hi) -> None:
             'aria-label="S25 unique submission, cleared to download and submit">'
             '<p><span class="badge">OK TO DOWNLOAD: YES</span> '
             '<span class="badge">OK TO SUBMIT: YES</span></p>'
-            '<h2>S25-TLF &middot; topographic + lidar lineament fusion &middot; 60,000 dots &middot; 2026-10-28</h2>'
+            '<h2>S25-TLF lane (separate parallel run from S25-FABRIC) &middot; topographic + lidar lineament fusion &middot; 60,000 dots &middot; 2026-10-28</h2>'
             f'<p>New TIF, not a duplicate of any of the nine named leaders: max '
             f'{100.0*uni["max_overlap_into_nine"]["overlap_3px_into_ref"]:.1f}% of dots within 3 px '
             f'(limit 70%), max |&rho;| {abs(uni["max_abs_spearman_vs_nine"]["surface_spearman"]):.3f} '
@@ -85,9 +85,9 @@ def inject_front_door(art, proxy, uni, central, lo, hi) -> None:
             f'<p><a class="button" download href="downloads/{html.escape(Path(art["tif"]).name)}">'
             'Download the S25 submission GeoTIFF</a> '
             f'<a class="button" download href="downloads/{html.escape(Path(art["zip"]).name)}">Single-TIFF ZIP</a> '
-            '<a href="s25/executive-summary.html">S25 executive summary</a> &middot; '
-            '<a href="s25/REVIEW.md">Session review</a> &middot; '
-            '<a href="s25/run-card.json">Run card</a></p>'
+            '<a href="s25-tlf/executive-summary.html">S25 executive summary</a> &middot; '
+            '<a href="s25-tlf/REVIEW.md">Session review</a> &middot; '
+            '<a href="s25-tlf/run-card.json">Run card</a></p>'
             f'<p class="small">SHA-256 <code>{art["sha256"]}</code> &middot; name '
             f'<code>{html.escape(art["submission_name"])}</code> &middot; note ({art["note_chars"]}/140): '
             f'<code>{html.escape(art["note"])}</code></p></section>'
@@ -194,7 +194,7 @@ ul{{margin:.3em 0 .8em 1.1em;padding:0}} li{{margin:.2em 0}}
 </style></head><body><main>
 
 <h1>Executive summary — one file to download, one estimated score, one decision</h1>
-<p><small>Generated {html.escape(card['generated_utc'])} from receipts in <code>docs/s25/</code>. Branch
+<p><small>Generated {html.escape(card['generated_utc'])} from receipts in <code>docs/s25-tlf/</code>. Branch
 <code>arena/f3ef46d1-gemsdoe91</code>. Companion pages:
 <a href="REVIEW.md">full review</a> ·
 <a href="run-card.json">run card (JSON)</a> ·
@@ -355,7 +355,7 @@ copies, not an authenticated DrivenData download; verified byte-for-byte, proven
 recorded 0.4544 and #22 = 0.3261. Both are quoted, neither is re-fetched here (drivendata.org is outside this
 session’s network allowlist).</li>
 <li><strong>The lane paragraph is still missing</strong> from the prompt; this lane is self-assigned and
-preregistered in <code>docs/s25/preregistration.md</code>.</li>
+preregistered in <code>docs/s25-tlf/preregistration.md</code>.</li>
 </ul>
 
 <p><small>Evidence: <a href="run-card.json">run-card.json</a> ·
