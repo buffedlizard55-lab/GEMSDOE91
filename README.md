@@ -1,13 +1,16 @@
-# GEMSDOE91 — Current review: blocked, research only — S25 update below (new unique research TIF generated; OK TO SUBMIT: NO)
+# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED
 
-## Current review — 28 October 2026: TLF approval RETRACTED
+**Current checkout review (2026-10-28):** [nine-site executive summary, ranked hypotheses, limitations, and three-pass audit](docs/review-20261028/CURRENT_REVIEW.md) · [current focus-site GitHub snapshot receipt](docs/review-20261028/focus-inventory.json) · [run card](docs/review-20261028/checkout-run-card.json). This review generated no TIFF, ran no experiment, and used no submission slot: required pinned inputs and the assigned single-method lane are missing. Existing artifacts remain historical/research-only unless a current, separate selector approves them.
 
-**OK TO DOWNLOAD: YES, historical research only. OK TO SUBMIT: NO.** No new TIFF was generated this review; no experiment or weekly slot used. The TLF file was incorrectly promoted after excluding registered rasters. Exact verification finds **99.601667%** dot overlap with the registered lattice (limit 70%). Its earlier **0.36 projection is withdrawn**, not a calibrated forecast. Original receipts and source preserved under `evidence/s26/`.
+**2026-10-28 independent re-audit: DO NOT SUBMIT S25-TLF.** The previous approval was wrong: the existing TIFF has **99.6017%** of its dots within 3 pixels of the pinned registry lattice (>70% duplicate threshold). Its estimated 0.36 and 0.28–0.44 range were an unsupported extrapolation and are withdrawn. The prior card did not check all registry rasters and did not beat a matched holdout best. A separate selector has not approved it. No new candidate or weekly slot was used in this review.
 
-[Corrected executive summary, nine-site table, research download and submission instructions](docs/s25-tlf/executive-summary.html) · [review](docs/s26/REVIEW.md) · [exact audit](docs/s26/tlf-protocol-audit.json) · [run card](docs/s26/run-card.json) · [four deferred hypotheses](docs/s26/preregistration.md).
+[Executive summary, nine-site table and submission guide](docs/s25-tlf/executive-summary.html) · [witness audit](docs/s25-tlf/witness-audit-20261028.json) · [review and next steps](docs/s25-tlf/AUDIT-20261028.md) · [current run card](docs/s25-tlf/audit-run-card-20261028.json) · [parallel audit and tie correction](docs/review-de9d7d75/REVIEW.md) · [branch-specific ranked hypotheses and nine-site review](docs/review-93888f32-20261028.md) · [full project brief](#full-project-brief).
 
-Read the full preserved project brief below every session. Maximize P(Win); Own the Outcome. The requested highest-scoring unique submission has **not** been achieved. The missing lane assignment, literal registry conflict, source rights and unknown authenticated quota are not waived.
+The existing [S25-TLF TIFF](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) is available **for research only**, not a competition submission. Its file format passes local checks against the hash-pinned mirror, not organizer acceptance. No defensible leaderboard score estimate exists.
 
+Start every session with this decision, the full project brief, `LIMITATIONS_AND_NEXT_STEPS.md`, and `IRREGULARITIES.md`. **Maximize P(Win); Own the Outcome.** Remaining historical banners are retained for context, not current approvals.
+
+---
 
 > **2026-10-28 S25 verdict (latest session; supersedes the S24 banner beneath): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
 > Download for research: [`gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif`](docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif) (SHA-256 `0046fca5…`, 37,654 dots, single-TIFF ZIP beside it) — [**executive summary, nine-site table, estimated-score table & submission guide**](docs/s25/executive-summary.html) · [full review](docs/s25/REVIEW.md) · [run card](docs/s25/run-card.json) · [preregistration](docs/s25/preregistration.md) · [diagnostics (SGMC + LFI model)](docs/s25/diagnostics.json).

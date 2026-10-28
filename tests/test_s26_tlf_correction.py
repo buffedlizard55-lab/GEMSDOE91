@@ -34,7 +34,7 @@ def test_corrective_renderer_never_restores_approval():
         assert f'GEMSDOE{site}' in text
     for rel in ('index.html', 'docs/index.html'):
         text = (ROOT / rel).read_text()
-        assert 's26-correction' in text
+        assert 'OK TO SUBMIT: NO' in text
         assert 'CLEARED TO SUBMIT' not in text
         assert 'OK to download and OK to submit.' not in text
 
@@ -43,4 +43,4 @@ def test_legacy_tlf_runner_cannot_regenerate():
     result = subprocess.run([sys.executable, str(ROOT / 'scripts/run_s25_tlf.py')],
                             capture_output=True, text=True)
     assert result.returncode != 0
-    assert 'BLOCKED' in result.stderr
+    assert 'BLOCKED' in result.stdout + result.stderr

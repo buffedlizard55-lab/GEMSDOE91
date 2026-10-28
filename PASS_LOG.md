@@ -608,3 +608,13 @@ Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 revi
 - **Pass 2 — adversarial review:** fixed phase-correlation sign (synthetic test), 135-degree structuring element, CSPL coherence accumulation; removed 0.9 GB band cache; verified instrument drift (S24=v2 folds, today=v3, hashes differ) so no historical HOLDOUT-DTI is used as a matched bar; profiled dot geography (candidate median catalogue distance 5.831 px vs R0 19.647 px) explaining the low LFI projection mechanically; caught two tooling edit races via failing runs and reapplied sequentially with grep verification.
 - **Pass 3 — requirements:** unique-vs-nine TIF downloadable at the front door with file/estimate/uniqueness table, per-site executive tables, gate table, exact submission steps, name + 94-char note; verdict negative (competitive dot-overlap 74.89% > 70%; low live-aligned projection; selector pending); 0 slots. Full pytest + download audit re-run before PR (see PR for counts).
 - **Verdict:** NEGATIVE / NO PROMOTION. Run card: `docs/s25/run-card.json`; review: `docs/s25/REVIEW.md`.
+
+## 2026-10-28 — S25-TLF independent duplicate-stop audit
+
+1. **Measure:** restored the pinned sample mirror and frozen lattice witness to ignored `data/`, verified hashes, audited the existing TIFF and ZIP. The final-dot overlap is 99.6017% against the witness: DUPLICATE_STOP. No geological experiment or slot.
+2. **Adversarial review:** discovered the prior release omitted that witness; canaries were evaluated against SGMC rather than withheld positives; the projection was an uncalibrated heuristic and the block analysis reused fitted SGMC labels. Revoked approval and estimate, retained the historical evidence with prominent supersession warnings, blocked the old runner and renderer.
+3. **Consistency:** corrected Pages, policy, ledger, README and run card; fixed the primary portal renderer so regeneration preserves the audit warning. Local format check passed against the pinned mirror, but organizer acceptance and input rights remain unverified. `pytest` 80 focused tests passed, artifact policy passed, and `git diff --check` passed. See `docs/s25-tlf/AUDIT-20261028.md`.
+
+## Parallel audit merged
+
+The independent `de9d7d75` audit also found that double-argsort mishandled rank ties; its original receipts, tests, corrected historical code, and documentation are preserved in `docs/review-de9d7d75/`. No corrected candidate surface correlation was computed here.

@@ -1,4 +1,4 @@
-> **CORRECTION 2026-10-28: APPROVAL RETRACTED. NOT OK TO SUBMIT.** The historical recommendation below is superseded by [S26 audit](../s26/REVIEW.md): 99.601667% overlap with the registered lattice. The 0.36 projection is withdrawn. TIFF bytes are unchanged, research only; no new experiment or slot.
+> **SUPERSEDED 2026-10-28 — DO NOT SUBMIT.** The approval and leaderboard projection below were incorrect. Independent audit of the frozen registry lattice measured 99.6017% directed dot overlap (>70%); no full-registry pass or separate selector approval exists. The 0.36 projection and its range are withdrawn. The retained text below is historical evidence, not current advice. Historical double-argsort surface correlations also mishandled ties and do not validate uniqueness. See [parallel audit](../review-de9d7d75/REVIEW.md) and [audit](AUDIT-20261028.md) and [current executive summary](executive-summary.html).
 
 # S25 session review — 2026-10-28
 
