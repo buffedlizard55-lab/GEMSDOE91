@@ -1,0 +1,44 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "branch": "arena/3a4cca78-gemsdoe91",
+  "review_date_utc": "2026-10-28",
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "reason": "Negative no-run: no authenticated single-method lane, required data are missing, and the frozen 37,654-dot plan has a saved conditional registry-capacity lower bound above the 70% overlap threshold. Hypotheses are proposals only; none was run.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "dti": null,
+    "ci95": null,
+    "n_withheld_positives": null,
+    "reason": "No candidate or holdout run in this review. Historical values from older instruments are not re-labelled as current results."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dot_overlap": null,
+    "reason": "No candidate generated. Prior S25-TLF witness audit is a separate saved artifact and reported a duplicate stop; it is not a complete-registry audit for a new candidate."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No candidate TIFF generated."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "estimated_leaderboard_score": null,
+  "organizer_confirmed_score": null,
+  "user_reported_benchmark": {
+    "value": 0.2778,
+    "label": "USER-REPORTED",
+    "site": "GEMSDOE32",
+    "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros"
+  },
+  "experiments_run": 0,
+  "weekly_submission_slots_used": 0,
+  "ok_to_download_new_candidate": false,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

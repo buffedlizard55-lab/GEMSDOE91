@@ -159,7 +159,10 @@ def render_sources():
     overlap = s18['directed_dot_overlap']['overlap_within_3px']
     hci = hold['ci95']
     _banner = _s25tlf_banner()
-    body = _banner + f'''<section class="hero" data-submission-ready="false"><div>
+    active_checkout = '''<!-- ACTIVE-CHECKOUT-3A4CCA78-BEGIN -->
+<div class="note" role="status"><strong>ACTIVE CHECKOUT · 2026-10-28: NO NEW TIFF · OK TO DOWNLOAD: NO NEW CANDIDATE · OK TO SUBMIT: NO.</strong> No method lane is assigned and the pinned competition inputs are missing. The frozen plan also conflicts with the literal 70% registry-overlap gate; do not evade it or submit a historical file. <a href="review-3a4cca78-20261028.md">Current review, nine-site table, ranked hypotheses and next steps</a> · <a href="run-card-3a4cca78-20261028.json">Run card</a>.</div>
+<!-- ACTIVE-CHECKOUT-3A4CCA78-END -->'''
+    body = active_checkout + _banner + f'''<section class="hero" data-submission-ready="false"><div>
 <p class="eyebrow">GEMSDOE91 / HISTORICAL REVIEW · 27 OCTOBER 2026</p><h1>A clear stop,<br>backed by evidence.</h1>
 <p class="lead">This earlier review generated no new candidate. The later S24 research artifact is shown above; neither review authorizes a submission.</p>
 <p><span class="verdict">NOT OK TO SUBMIT · NO NEW TIFF IN THIS EARLIER REVIEW</span></p><p><a href="review-ad43b4e5/REVIEW.md">Read the earlier review ↗</a> · <a href="review-ad43b4e5/run-card.json" download>Download the JSON run card ↓</a> · <a href="submission-guide.html">Submission guide ↗</a></p></div>
