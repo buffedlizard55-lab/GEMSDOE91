@@ -1,0 +1,11 @@
+{
+  "schema": "s25-run-card-correction-v1",
+  "run_card": "docs/s25/run-card.json",
+  "field": "experiments_run",
+  "recorded_value": 2,
+  "corrected_interpretation": "The runner recorded the PACKAGED experiment index (e2 -> 2). Total preregistered experiments actually run this session = 3 (e1, e2, e3), each with its own receipt under docs/s25/e{1,2,3}/holdout.json and summarised inside the card at holdout.experiments_summary. No other field is affected; the packaged raster, verdict and all scores are unchanged.",
+  "experiments_run_total": 3,
+  "max_experiments": 3,
+  "runner_fix": "scripts/run_s25_fabric.py cmd_package now counts recorded experiment receipts instead of parsing the packaged exp id.",
+  "receipts_immutable": "The recorded run card bytes are preserved; this file is the correction record (repo source-correction convention)."
+}

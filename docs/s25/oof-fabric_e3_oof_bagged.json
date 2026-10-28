@@ -1,0 +1,130 @@
+{
+  "arm": "fabric_e3_oof_bagged",
+  "features": [
+    "band01",
+    "band02",
+    "band03",
+    "band04",
+    "band05",
+    "band06",
+    "band07",
+    "band08",
+    "band09",
+    "band10",
+    "band11",
+    "band12",
+    "band13",
+    "band14",
+    "band15",
+    "band16",
+    "band17",
+    "band18",
+    "band19",
+    "gradmag02",
+    "gradmag12",
+    "gradmag13",
+    "gradmag14",
+    "ogc_emax_l5",
+    "ogc_aniso_l5",
+    "ogc_emax_l11",
+    "ogc_aniso_l11",
+    "ogc_scale_ratio",
+    "ogc_slope_emax_l11",
+    "ogc_contrast_energy",
+    "ogc_contrast_aniso",
+    "cspl_lag_dy",
+    "cspl_lag_dx",
+    "cspl_lag_mag",
+    "cspl_coherence_log",
+    "cspl_lag_x_coh",
+    "cspl_contrast_prod"
+  ],
+  "seeds": [
+    520810,
+    520811,
+    520812
+  ],
+  "hgb_params": {
+    "max_iter": 300,
+    "learning_rate": 0.06,
+    "max_leaf_nodes": 63,
+    "min_samples_leaf": 40,
+    "l2_regularization": 1.0,
+    "early_stopping": false
+  },
+  "neg_per_pos": 4,
+  "folds": [
+    {
+      "fold": 0,
+      "n_positive": 29746,
+      "n_negative": 118984,
+      "seed": 520810
+    },
+    {
+      "fold": 0,
+      "n_positive": 29746,
+      "n_negative": 118984,
+      "seed": 520811
+    },
+    {
+      "fold": 0,
+      "n_positive": 29746,
+      "n_negative": 118984,
+      "seed": 520812
+    },
+    {
+      "fold": 1,
+      "n_positive": 45956,
+      "n_negative": 183824,
+      "seed": 520810
+    },
+    {
+      "fold": 1,
+      "n_positive": 45956,
+      "n_negative": 183824,
+      "seed": 520811
+    },
+    {
+      "fold": 1,
+      "n_positive": 45956,
+      "n_negative": 183824,
+      "seed": 520812
+    },
+    {
+      "fold": 2,
+      "n_positive": 47909,
+      "n_negative": 191636,
+      "seed": 520810
+    },
+    {
+      "fold": 2,
+      "n_positive": 47909,
+      "n_negative": 191636,
+      "seed": 520811
+    },
+    {
+      "fold": 2,
+      "n_positive": 47909,
+      "n_negative": 191636,
+      "seed": 520812
+    },
+    {
+      "fold": 3,
+      "n_positive": 48857,
+      "n_negative": 195428,
+      "seed": 520810
+    },
+    {
+      "fold": 3,
+      "n_positive": 48857,
+      "n_negative": 195428,
+      "seed": 520811
+    },
+    {
+      "fold": 3,
+      "n_positive": 48857,
+      "n_negative": 195428,
+      "seed": 520812
+    }
+  ]
+}

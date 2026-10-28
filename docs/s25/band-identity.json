@@ -1,0 +1,69 @@
+{
+  "descriptions": {
+    "1": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+    "2": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+    "3": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+    "4": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+    "5": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+    "6": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+    "7": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+    "8": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+    "9": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+    "10": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+    "11": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+    "12": "det_elev - Detrended elevation - topography with regional trends removed",
+    "13": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+    "14": "tmi - Total magnetic intensity - total strength of magnetic field",
+    "15": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+    "16": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+    "17": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+    "18": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+    "19": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+  },
+  "nodata_tag": "-3.4028234663852886e+38",
+  "corr_B03_vs_abs_grad_B14": {
+    "r": 0.9999999968834623,
+    "n": 5135228
+  },
+  "corr_B05_vs_abs_grad_B13": {
+    "r": 0.9619178844768389,
+    "n": 5135228
+  },
+  "corr_B18_vs_dx_B13": {
+    "r": 0.9481554832348723,
+    "n": 5135228
+  },
+  "corr_B19_vs_abs_grad_B12": {
+    "r": 0.9506098356778613,
+    "n": 5135228
+  },
+  "B12": {
+    "valid_pixels": 5164312,
+    "invalid_inside_footprint": 3061,
+    "min": -589.9837036132812,
+    "median": -75.57621002197266,
+    "max": 1469.9127197265625
+  },
+  "B13": {
+    "valid_pixels": 5164312,
+    "invalid_inside_footprint": 3061,
+    "min": -45.75756072998047,
+    "median": -7.26103401184082,
+    "max": 24.232954025268555
+  },
+  "B14": {
+    "valid_pixels": 5164312,
+    "invalid_inside_footprint": 3061,
+    "min": -2178.27783203125,
+    "median": -124.8157730102539,
+    "max": 4506.14111328125
+  },
+  "B19": {
+    "valid_pixels": 5164312,
+    "invalid_inside_footprint": 3061,
+    "min": 0.001103136339224875,
+    "median": 3.7492629289627075,
+    "max": 62.64591598510742
+  },
+  "interpretation": "Internal derivative consistency supports, but does not externally authenticate, the embedded band identities. Gradients scored only on pixels eroded 2 px from any invalid cell; no filling was used in features."
+}

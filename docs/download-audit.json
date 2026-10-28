@@ -6,8 +6,8 @@
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
-  "files_checked": 117,
-  "format_pass": 108,
+  "files_checked": 119,
+  "format_pass": 110,
   "format_fail": 9,
   "ok_to_submit": false,
   "files": [
@@ -2014,6 +2014,49 @@
       "ok_to_submit": false,
       "sha256": "f434a7c39f7019205432e47ea6a8faf3352edb3c680c4825ef5772f8969955f8",
       "zip_member": "gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+      "zip_member": "gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
       "status": "PASS",
       "checks": {
         "single_band": true,

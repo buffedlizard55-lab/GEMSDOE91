@@ -1,0 +1,375 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane": "S25-FABRIC (self-assigned; no supplied method paragraph)",
+  "preregistration": {
+    "path": "docs/s25/preregistration.md",
+    "sha256": "41b970c0ec38cde019aa96ae49d88ab855f55a7c3d9fa59c70953697d96bc258"
+  },
+  "hypothesis": "Catalogue-missing buried faults separate different surface fabrics and offset the gravity boundary from the magnetic boundary: oriented granulometry spectra of detrended elevation change across the trace and B13/B14 show a coherent local cross-spectral phase lag.",
+  "mechanism": "23 base band/gradient features + 8 oriented-granulometry features (B12/B19) + 6 phase-lag features (B13/B14) -> spatially cross-fitted HGB (fabric_e2_oof_full); 37,654 dots, 3.05 px spacing/collar (shared NMS emitter).",
+  "named_non_fault_mimic": "Unfaulted dipping lithologic contacts, remanent-magnetization offsets, fan-lobe/shoreline fabrics, and GeoDAWN flight-line seams.",
+  "holdout": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_version": "label-blind-quadrants-v3-feature-buffered",
+    "implementation_sha256": {
+      "evaluate_holdout.py": "4687a28bc83959a3d815c0a37abb43fe72286c523db867877bd1f626c4d094b6",
+      "holdout.py": "41ecfbca6f4a2b615a09c50653e272bd134ce14ab19b84b56a275f97fd75fe78",
+      "metric.py": "d536dc94ecf355aa8068499787cacd425dcb6c8c1a5d6684d5785c4f072bd083",
+      "spatial.py": "dd3c4e5dd770f96341e6beb681c1af89e42b6766257df50c455999bfd68704ed"
+    },
+    "dti": 0.14774078722698647,
+    "ci95": [
+      0.12976024530077718,
+      0.16756210930801038
+    ],
+    "n_withheld_positives": 60988,
+    "best_matched_control": "control_oof_base",
+    "best_matched_control_dti": 0.12474398628998315,
+    "paired_difference_vs_best_control": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.02299680093700332,
+      "ci95": [
+        0.014271922250789501,
+        0.031865734735416235
+      ],
+      "withheld_positive_pixels": 60988
+    },
+    "beats_best_matched_control_ci95": true,
+    "all_arm_scores": {
+      "fabric_e2_oof_full": 0.14774078722698647,
+      "control_oof_base": 0.12474398628998315,
+      "control_new_surface": 0.0687612466021748,
+      "control_gravgrad": 0.07378394221743531
+    },
+    "experiments_summary": {
+      "e1": {
+        "candidate_arm": "fabric_e1_oof_new",
+        "holdout_dti": 0.11603068205113072,
+        "ci95": [
+          0.1048614944264351,
+          0.1265085746236227
+        ]
+      },
+      "e2": {
+        "candidate_arm": "fabric_e2_oof_full",
+        "holdout_dti": 0.14774078722698647,
+        "ci95": [
+          0.12976024530077718,
+          0.16756210930801038
+        ]
+      },
+      "e3": {
+        "candidate_arm": "fabric_e3_oof_bagged",
+        "holdout_dti": 0.1473863314818393,
+        "ci95": [
+          0.12879265173302776,
+          0.16619503966521662
+        ]
+      }
+    },
+    "cross_instrument_note": "No earlier repo HOLDOUT-DTI is matched to the current v3 fold instrument (see preregistration); historical values are context only."
+  },
+  "leakage_canary": {
+    "max_symmetric_auc": 0.6130299267873166,
+    "worst": "band06 fold3",
+    "pass": true
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_rho": 0.2138148635145935,
+    "surface_closest": "data/fleet_registry/calib_h25ctx_01280.tif",
+    "surface_pass_le_0.90": true,
+    "final_dot_max_overlap_all": 0.9874648111754395,
+    "final_dot_closest_all": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "final_dot_max_overlap_nine_leaders": 0.40192277048919106,
+    "final_dot_max_overlap_competitive_le_90000px": 0.7488713018537207,
+    "final_dot_closest_competitive": "docs/downloads/gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
+    "final_dot_pass_nine_le_0.70": true,
+    "final_dot_pass_competitive_le_0.70": false,
+    "final_dot_pass_all_incl_blankets_le_0.70": false,
+    "dense_blankets": [
+      {
+        "path": "data/fleet_registry/19GEMSDOE__h19-4-multiline-corroborated.tif",
+        "reference_positive_pixels": 123779,
+        "overlap_within_3px": 0.4252403463111489
+      },
+      {
+        "path": "data/fleet_registry/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+        "reference_positive_pixels": 121131,
+        "overlap_within_3px": 0.4150156689860307
+      },
+      {
+        "path": "data/fleet_registry/calib_h161_01855.tif",
+        "reference_positive_pixels": 123939,
+        "overlap_within_3px": 0.43283582089552236
+      },
+      {
+        "path": "data/fleet_registry/calib_h194_01894.tif",
+        "reference_positive_pixels": 123779,
+        "overlap_within_3px": 0.4252403463111489
+      },
+      {
+        "path": "data/fleet_registry/calib_h195_01922.tif",
+        "reference_positive_pixels": 121131,
+        "overlap_within_3px": 0.4150156689860307
+      },
+      {
+        "path": "data/fleet_registry/calib_h25ctx_01280.tif",
+        "reference_positive_pixels": 174232,
+        "overlap_within_3px": 0.7430286290965104
+      },
+      {
+        "path": "data/fleet_registry/calib_hedgev2_01563_sample.tif",
+        "reference_positive_pixels": 227507,
+        "overlap_within_3px": 0.5182716311680035
+      },
+      {
+        "path": "data/fleet_registry/calib_r13lattice_00904.tif",
+        "reference_positive_pixels": 206895,
+        "overlap_within_3px": 0.9874648111754395
+      },
+      {
+        "path": "data/fleet_registry/r11_greedy_mp.tif",
+        "reference_positive_pixels": 272853,
+        "overlap_within_3px": 0.8137515270621979
+      },
+      {
+        "path": "data/fleet_registry/r14_union_tips10_lat6.tif",
+        "reference_positive_pixels": 192231,
+        "overlap_within_3px": 0.7982684442555904
+      }
+    ],
+    "lattice_capacity_bound_at_budget": {
+      "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+      "footprint_pixels": 5167373,
+      "reference_dots": 206895,
+      "uncovered_pixels": 6649,
+      "candidate_budget": 37654,
+      "minimum_overlapping_dots": 31005,
+      "overlap_lower_bound": 0.8234184947150369,
+      "radius_px": 3,
+      "threshold": 0.7,
+      "feasible_by_capacity_only": false,
+      "largest_budget_by_capacity_only": 22163,
+      "status": "IMPOSSIBLE_AT_BUDGET",
+      "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance."
+    },
+    "references_unique_bytes": 117,
+    "references_missing": [
+      {
+        "path": "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif",
+        "tag": "frozen_registry"
+      },
+      {
+        "path": "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif",
+        "tag": "frozen_registry"
+      }
+    ],
+    "organizer_complete_registry": false
+  },
+  "band_identity": {
+    "descriptions": {
+      "1": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+      "2": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+      "3": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+      "4": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+      "5": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+      "6": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+      "7": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+      "8": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+      "9": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+      "10": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+      "11": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+      "12": "det_elev - Detrended elevation - topography with regional trends removed",
+      "13": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+      "14": "tmi - Total magnetic intensity - total strength of magnetic field",
+      "15": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+      "16": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+      "17": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+      "18": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+      "19": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+    },
+    "nodata_tag": "-3.4028234663852886e+38",
+    "corr_B03_vs_abs_grad_B14": {
+      "r": 0.9999999968834623,
+      "n": 5135228
+    },
+    "corr_B05_vs_abs_grad_B13": {
+      "r": 0.9619178844768389,
+      "n": 5135228
+    },
+    "corr_B18_vs_dx_B13": {
+      "r": 0.9481554832348723,
+      "n": 5135228
+    },
+    "corr_B19_vs_abs_grad_B12": {
+      "r": 0.9506098356778613,
+      "n": 5135228
+    },
+    "B12": {
+      "valid_pixels": 5164312,
+      "invalid_inside_footprint": 3061,
+      "min": -589.9837036132812,
+      "median": -75.57621002197266,
+      "max": 1469.9127197265625
+    },
+    "B13": {
+      "valid_pixels": 5164312,
+      "invalid_inside_footprint": 3061,
+      "min": -45.75756072998047,
+      "median": -7.26103401184082,
+      "max": 24.232954025268555
+    },
+    "B14": {
+      "valid_pixels": 5164312,
+      "invalid_inside_footprint": 3061,
+      "min": -2178.27783203125,
+      "median": -124.8157730102539,
+      "max": 4506.14111328125
+    },
+    "B19": {
+      "valid_pixels": 5164312,
+      "invalid_inside_footprint": 3061,
+      "min": 0.001103136339224875,
+      "median": 3.7492629289627075,
+      "max": 62.64591598510742
+    },
+    "interpretation": "Internal derivative consistency supports, but does not externally authenticate, the embedded band identities. Gradients scored only on pixels eroded 2 px from any invalid cell; no filling was used in features."
+  },
+  "validator_output": {
+    "local": {
+      "file": "/home/user/GEMSDOE91/docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
+      "bytes": 141774,
+      "sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "independent_reread": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "count": 1,
+      "dtype": "float32",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "nodata_is_none": true,
+      "all_finite": true,
+      "min": 0.0,
+      "max": 1.0,
+      "n_dots": 37654,
+      "on_catalogue": 0,
+      "outside_footprint_positive": 0
+    },
+    "pass": true,
+    "scope": "local [0,1]/CRS/shape/transform preflight; not organizer acceptance"
+  },
+  "raster_sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
+  "submission_name": "gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros",
+  "submission_note": "S25 FABRIC granulometry+phase-lag spatial OOF 37654 dots; see run-card verdict before slot use",
+  "submission_note_chars": 94,
+  "artifact": {
+    "tif": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
+    "zip": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip",
+    "zip_sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+    "n_dots": 37654
+  },
+  "organizer_confirmed_score": null,
+  "estimated_leaderboard_score": null,
+  "estimated_leaderboard_score_reason": "No authenticated receipt exists. The labelled LFI MODEL projection (not a score) is computed post-hoc in docs/s25/diagnostics.json.",
+  "post_hoc_diagnostics_file": "docs/s25/diagnostics.json",
+  "experiments_run": 2,
+  "max_experiments": 3,
+  "elapsed_seconds_package": 89.56724821600005,
+  "submission_slots_used": 0,
+  "ok_to_download": true,
+  "ok_to_download_scope": "research only",
+  "ok_to_submit": false,
+  "selector_review_required": true,
+  "verdict": "negative",
+  "inputs_verified": {
+    "sample_submission": {
+      "path": "data/official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "path": "data/official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "path": "data/bridge/gems-geodawn-numerical-features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    },
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    },
+    "sgmc_faults_control": {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602
+    }
+  }
+}

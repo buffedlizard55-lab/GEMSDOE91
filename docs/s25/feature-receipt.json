@@ -1,0 +1,134 @@
+{
+  "constants": {
+    "grad_sigma": 2.0,
+    "grad_erode_px": 3,
+    "ogc_lengths": [
+      5,
+      11
+    ],
+    "ogc_orientations_deg": [
+      0,
+      45,
+      90,
+      135
+    ],
+    "ogc_energy_window": 15,
+    "ogc_offset_px": 7.0,
+    "ogc_erode_px": 20,
+    "cspl_bg_sigma": 6.0,
+    "cspl_tile": 64,
+    "cspl_stride": 32,
+    "cspl_max_lag": 8,
+    "cspl_min_valid_frac": 0.8,
+    "cspl_smooth_sigma": 8.0,
+    "cspl_offset_px": 7.0,
+    "cspl_erode_px": 10
+  },
+  "band_valid_pixels": {
+    "B01": 5164312,
+    "B02": 5164312,
+    "B03": 5164312,
+    "B04": 5164312,
+    "B05": 5164312,
+    "B06": 5164300,
+    "B07": 5164312,
+    "B08": 5164312,
+    "B09": 5164312,
+    "B10": 5164312,
+    "B11": 5164312,
+    "B12": 5164312,
+    "B13": 5164312,
+    "B14": 5164312,
+    "B15": 5164312,
+    "B16": 5164312,
+    "B17": 5164312,
+    "B18": 5164312,
+    "B19": 5164312
+  },
+  "cspl": {
+    "tiles_total": 12051,
+    "tiles_used": 4867
+  },
+  "ogc_support_pixels": 4903699,
+  "cspl_support_pixels": 4988121,
+  "footprint_pixels": 5167373,
+  "groups": {
+    "base": [
+      "band01",
+      "band02",
+      "band03",
+      "band04",
+      "band05",
+      "band06",
+      "band07",
+      "band08",
+      "band09",
+      "band10",
+      "band11",
+      "band12",
+      "band13",
+      "band14",
+      "band15",
+      "band16",
+      "band17",
+      "band18",
+      "band19",
+      "gradmag02",
+      "gradmag12",
+      "gradmag13",
+      "gradmag14"
+    ],
+    "new": [
+      "ogc_emax_l5",
+      "ogc_aniso_l5",
+      "ogc_emax_l11",
+      "ogc_aniso_l11",
+      "ogc_scale_ratio",
+      "ogc_slope_emax_l11",
+      "ogc_contrast_energy",
+      "ogc_contrast_aniso",
+      "cspl_lag_dy",
+      "cspl_lag_dx",
+      "cspl_lag_mag",
+      "cspl_coherence_log",
+      "cspl_lag_x_coh",
+      "cspl_contrast_prod"
+    ],
+    "surfaces": [
+      "surface_new_standalone",
+      "surface_gravgrad"
+    ]
+  },
+  "nodata_policy": "exclude non-finite or |value| >= 1e30 cells via masked normalised convolution; supports eroded beyond each feature's influence radius; features NaN outside support",
+  "inputs_verified": {
+    "sample_submission": {
+      "path": "data/official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "path": "data/official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "path": "data/bridge/gems-geodawn-numerical-features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    },
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    },
+    "sgmc_faults_control": {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602
+    }
+  },
+  "preregistration": {
+    "path": "docs/s25/preregistration.md",
+    "sha256": "41b970c0ec38cde019aa96ae49d88ab855f55a7c3d9fa59c70953697d96bc258"
+  }
+}
