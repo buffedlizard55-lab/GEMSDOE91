@@ -1385,7 +1385,7 @@
   "verdict": "negative",
   "ok_to_download": true,
   "ok_to_submit": false,
-  "promotion_note": "NOT APPROVED: full registry and pre-placement checks incomplete; no demonstrated win over holdout best; selector not run. Historical projection withdrawn.",
+  "promotion_note": "DUPLICATE_STOP: 99.6017% within 3 px of frozen registry lattice; no selector approval. Historical projection withdrawn; research only.",
   "block_cv_sensitivity": {
     "receipt": "docs/s25-tlf/block-cv.json",
     "generator": "scripts/block_cv_s25.py",
@@ -1397,7 +1397,7 @@
     "ratio_max": 5.040714,
     "ratio_p25": 1.526391,
     "ratio_p75": 3.493248,
-    "reading": "The candidate beats the 0.2778 raster in every scored block; the ratio is not driven by one region. Median ratio ~1.7 and worst-block ratio ~1.2 bracket the 2.00x used for the central projection, so the published range (0.28-0.44) is not an artefact of a single-block win.",
+    "reading": "Historical exploratory SGMC sensitivity only; neither independent cross-validation nor a leaderboard prediction.",
     "limits": [
       "SGMC is an independent fault map, not the hidden label set; the ratio is a proxy ratio.",
       "Blocks are equal-area slices, not geological provinces; a province-weighted split would be stricter.",
@@ -1406,5 +1406,6 @@
   },
   "estimated_leaderboard_score": null,
   "organizer_confirmed_score": null,
-  "review_correction": "../../docs/review-de9d7d75/REVIEW.md"
+  "review_correction": "../../docs/review-de9d7d75/REVIEW.md",
+  "witness_audit": "docs/s25-tlf/witness-audit-20261028.json"
 }

@@ -252,11 +252,11 @@ def s25_callout(root=ROOT) -> str:
 
 
 def _root_verdict() -> str:
-    """A mutable lane flag is not selector approval; always fail closed."""
+    """Fail-closed redirect stub; the previous S25-TLF approval was revoked."""
     return (
-        "<p>Current review: NO NEW TIFF. <strong>OK TO SUBMIT: NO &mdash; NOT OK TO SUBMIT.</strong> Existing files are research only.</p>"
-        "<p>S25-TLF approval and uncalibrated projection withdrawn. "
-        '<a href="docs/s25-tlf/executive-summary.html">Corrected executive summary and research download</a></p>'
+        "<p>NO NEW TIFF in this audit; historical downloads are research only. "
+        "<strong>OK TO SUBMIT: NO &mdash; NOT OK TO SUBMIT.</strong></p>"
+        "<p><a href=\"docs/index.html\">Open current download and automated verdict</a></p>"
     )
 
 def render() -> None:
@@ -281,13 +281,20 @@ def render() -> None:
             page = source.replace(fallback, fallback + parallel_card, 1)
         else:
             raise ValueError(f"Missing insertion point in {source_name}")
-        if target_name == "index.html":
-            notice = ('<div class="note" role="status"><strong>2026-10-28 current review: NO NEW TIFF · OK TO SUBMIT: NO.</strong> '
-                      'Existing TIFFs are research only. S25-TLF approval and uncalibrated 0.36 projection are withdrawn: '
-                      'full-registry and pre-placement checks incomplete, rank ties mishandled, no holdout-best win, selector pending. '
-                      '<a href="s25-tlf/executive-summary.html">Corrected executive summary, research download and nine-site comparison</a> · '
-                      '<a href="review-de9d7d75/REVIEW.md">Current three-pass review</a>.</div>')
-            page = page.replace('<main id="main">', '<main id="main">' + notice, 1)
+        # Release audit is a hard stop, not an optional positive banner.
+        audit_path = docs / "s25-tlf/witness-audit-20261028.json"
+        card_path = docs / "s25-tlf/run-card.json"
+        audit = json.loads(audit_path.read_text(encoding="utf-8"))
+        tlf = json.loads(card_path.read_text(encoding="utf-8"))
+        if audit.get("status") != "DUPLICATE_STOP" or tlf.get("ok_to_submit") is not False:
+            raise ValueError("S25-TLF release state inconsistent with duplicate audit")
+        notice = ('<div class="note" role="status"><strong>2026-10-28 AUDIT: DO NOT SUBMIT S25-TLF.</strong> '
+                  'The previous approval was incorrect. The file is a duplicate under the required registry rule '
+                  '(99.6017% of dots within 3 pixels of the pinned lattice). The previous 0.36 projection is withdrawn; '
+                  'no leaderboard estimate or new candidate is available. '
+                  '<a href="s25-tlf/executive-summary.html">Executive summary, research download and submission guide</a> · '
+                  '<a href="s25-tlf/witness-audit-20261028.json">Measured audit</a>.</div>')
+        page = page.replace('<main id="main">', '<main id="main">' + notice, 1)
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     (ROOT / 'index.html').write_text(
@@ -297,7 +304,7 @@ def render() -> None:
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
         '<h1>GEMSDOE91 · Current review</h1>' + _root_verdict() + 
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
-        '<a href="docs/s24/executive-summary.html">S24 executive summary, nine-site table and submission guide</a> · '
+        '<a href="docs/s25-tlf/executive-summary.html">Current executive summary, nine-site table and submission guide</a> · '
         '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
         '</main></body></html>\n', encoding='utf-8')
 

@@ -1,17 +1,12 @@
-# GEMSDOE91 — Current review: blocked, research only — 2026-10-28 evidence correction · OK TO SUBMIT: NO
+# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED
 
-**Start every session here and read the [full standing prompt](#full-project-brief).**
-**Maximize P(Win):** protect slots from unsupported promotion. **Own the Outcome:** preserve negative results and correct unsafe guidance.
+**2026-10-28 independent re-audit: DO NOT SUBMIT S25-TLF.** The previous approval was wrong: the existing TIFF has **99.6017%** of its dots within 3 pixels of the pinned registry lattice (>70% duplicate threshold). Its estimated 0.36 and 0.28–0.44 range were an unsupported extrapolation and are withdrawn. The prior card did not check all registry rasters and did not beat a matched holdout best. A separate selector has not approved it. No new candidate or weekly slot was used in this review.
 
-[**Executive summary: research download, nine-site comparison and submission instructions**](docs/s25-tlf/executive-summary.html) · [three-pass review](docs/review-de9d7d75/REVIEW.md) · [ranked hypotheses](docs/review-de9d7d75/HYPOTHESES.md) · [run card](docs/review-de9d7d75/run-card.json).
+[Executive summary, nine-site table and submission guide](docs/s25-tlf/executive-summary.html) · [witness audit](docs/s25-tlf/witness-audit-20261028.json) · [review and next steps](docs/s25-tlf/AUDIT-20261028.md) · [current run card](docs/s25-tlf/audit-run-card-20261028.json) · [parallel audit and tie correction](docs/review-de9d7d75/REVIEW.md) · [full project brief](#full-project-brief).
 
-| File to download | Estimated leaderboard score | Unique vs full registry? | OK to submit? |
-|---|---|---|---|
-| [Existing S25-TLF research TIFF](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) ([ZIP](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip)) | **Unavailable. Previous 0.36 projection withdrawn**: uncalibrated midpoint, not a score | **UNVERIFIED**: subset-only comparison; historical double-argsort is not tie-correct Spearman | **NO** |
+The existing [S25-TLF TIFF](docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif) is available **for research only**, not a competition submission. Its file format passes local checks against the hash-pinned mirror, not organizer acceptance. No defensible leaderboard score estimate exists.
 
-No new TIFF, geological experiment or submission slot used in this review. Existing TIFF/ZIP bytes rechecked locally: single-band float32, finite [0,1], expected fixed grid and matching archived SHA-256. Pinned sample/catalogue restored from the existing GitHub mirror and verified by hash; shared footprint/catalogue validation PASS. Feature cache and complete registry remain absent, so scientific validation cannot be repeated. The assigned method paragraph is absent. S25-TLF exhausted 3/3 experiments and its review admits it did not beat the holdout best. A separate selector has not approved a slot. Historical source and receipts are archived under `evidence/review-de9d7d75/originals/`.
-
-Everything below is historical, superseded where inconsistent; it is not current upload permission.
+Start every session with this decision, the full project brief, `LIMITATIONS_AND_NEXT_STEPS.md`, and `IRREGULARITIES.md`. **Maximize P(Win); Own the Outcome.** Remaining historical banners are retained for context, not current approvals.
 
 ---
 

@@ -1,0 +1,21 @@
+{
+  "hypothesis": null,
+  "mechanism": "No assigned lane; independent audit only, no new geological experiment.",
+  "named_non_fault_process": null,
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "correlation_overlap_vs_registry": {
+    "status": "DUPLICATE_STOP",
+    "scope": "historical S25-TLF TIFF versus one frozen witness, not pre-placement surface or complete registry",
+    "directed_overlap_3px": 0.9960166666666667,
+    "final_raster_rank_correlation": 0.0006051606399642248
+  },
+  "raster_sha256": null,
+  "validator_output": "No new raster. Historical TIFF: format-audit-20261028.json; no NaN inside footprint, values [0,1], CRS/shape/transform match pinned sample mirror; organizer acceptance unknown.",
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "experiments": 0,
+  "weekly_slots_used": 0,
+  "historical_candidate_sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f"
+}

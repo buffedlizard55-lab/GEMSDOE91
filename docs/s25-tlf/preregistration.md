@@ -1,3 +1,5 @@
+> **Historical design only — DO NOT SUBMIT.** The frozen lattice duplicate stop and current audit supersede the previous lane and acceptance criteria. See [audit](AUDIT-20261028.md).
+
 # S25 — preregistration and design record (TLF lane)
 
 **Status of this document.** Written in the same session as the build, *after* the
