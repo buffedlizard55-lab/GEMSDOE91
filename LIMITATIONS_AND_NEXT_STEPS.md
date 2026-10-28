@@ -1,3 +1,14 @@
+## Current limitations and next steps — 28 October 2026 (`arena/6c45b779`, S25-FABRIC)
+
+**NEW UNIQUE RESEARCH TIFF; NOT OK TO SUBMIT.** S25-FABRIC E2 (`gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros`, SHA-256 `0046fca5…`) beats its best matched control in paired HOLDOUT-DTI on the corrected v3 instrument (+0.022997 [+0.014272, +0.031866]; candidate 0.147741 [0.129760, 0.167562], 60,988 withheld) and is unique vs all nine focus leaders (max 40.19% within 3 px), but (1) final dots breach the protocol 70% rule vs four competitive references (max 74.89% vs `gems91-bhar-e3`) and the dense lattice (98.75%; ≥82.34% capacity-forced at 37,654 dots), (2) the refitted LFI MODEL projection is 0.07917 (not a score) because emitted dots hug the catalogue (median 5.831 px; 45.9% at 3–5 px), and (3) no selector/quota decision was made. 3/3 experiments used; 0 slots. [Executive summary](docs/s25/executive-summary.html) · [review](docs/s25/REVIEW.md) · [run card](docs/s25/run-card.json) · [preregistration](docs/s25/preregistration.md).
+
+* **Next lane (preregister before any run):** reuse the validated FABRIC surface; change only emission geometry — collar ≥~10 px and/or distance-stratified quotas plus ≤65% caps vs the bhar/spac/h28ridge/cover91 families; arbitrate with SGMC >500 m + paired holdout; keep LFI strictly post-hoc so its projection stays honest.
+* **Coordinator policy still required** on duplicate-rule scope (dense blankets make the literal rule impossible at competitive budgets; competitive references now bind too). Do not silently exempt or evade witnesses.
+* **No historical HOLDOUT-DTI is matched to today's v3 folds** (S24 measured v2; hashes verified). Quote cross-instrument numbers as context only.
+* Previous next steps stand: calibration probes (selector decision, S22 plan), 1 m LiDAR lane on an unrestricted machine (USGS 3DEP; in-repo `lidar_scarp_features_u8` licence unresolved), first organizer receipt recorded against exact uploaded SHA-256.
+
+---
+
 ## Current limitations and next steps — 27 October 2026 (`arena/ad43b4e5`)
 
 **NO NEW TIFF; NOT OK TO SUBMIT.** The assigned method is absent and the frozen 37,654-dot plan fails the literal lattice witness. The 82.341849% bound is conditional on that plan and footprint, not a universal budget claim. No geological experiments or slots were used. [Current review](docs/review-ad43b4e5/REVIEW.md) · [negative run card](docs/review-ad43b4e5/run-card.json) · [submission guide](docs/submission-guide.html).

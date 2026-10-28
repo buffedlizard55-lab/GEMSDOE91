@@ -141,7 +141,7 @@ table{{border-collapse:collapse;width:100%}}th,td{{border:1px solid #d1d5db;padd
 <a href="REVIEW.md">Full session review</a></p>
 <h1>S24-CCKM — executive summary (2026-10-27)</h1>
 <div class="decision">
-<p style="font-size:1.25rem;margin:.2rem 0"><strong>New unique TIF generated: YES</strong> (vs the nine focus sites).<br>
+<p style="font-size:1.25rem;margin:.2rem 0"><strong>Historical research TIF generated 2026-10-27: YES</strong> (vs the nine focus sites).<br>
 <strong>OK TO DOWNLOAD: YES — RESEARCH ONLY.</strong><br>
 <strong>OK TO SUBMIT: NO.</strong> Do not upload it as a high-score attempt.</p>
 <p><strong>File to download:</strong> <a href="../{escape(e2rel)}">{escape(Path(e2rel).name)}</a>
@@ -164,7 +164,7 @@ session prompt with no authenticated receipt; none is ORGANIZER-CONFIRMED. The f
 2026-10-27 stood at #1 = 0.4544 (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData</a>);
 the prompt's 0.4413 / 0.3195 values are stale.</p>
 <div class="table-scroll"><table>
-<caption>New S24 files generated in this session</caption>
+<caption>Historical S24 research files (not new this session)</caption>
 <thead><tr><th scope="col">File to download</th><th scope="col">Estimated leaderboard score</th>
 <th scope="col">Unique vs the other GEMSDOE sites?</th><th scope="col">OK to submit?</th></tr></thead>
 <tbody>{rows_s24}</tbody></table></div>
@@ -191,13 +191,11 @@ them spends a slot re-measuring the same rasters.</p>
 &alpha;=0.2, &beta;=0.8, 300 m triangular kernel): within one shared support, pruning/redundantly spaced
 dots removes false-positive weight while neighbours within 300 m keep covering the same truth pixels.
 <strong>Causality is not proven</strong> — the claims have no receipts, the files overlap by
-&ge;93&ndash;100%, and one score cannot separate TP/FP/FN. The same pruning effect appears in our paired
-data in reverse: raising the CCKM budget from 20,000 to 37,654 gained
+&ge;93&ndash;100%, and one score cannot separate TP/FP/FN. In a separate paired holdout, raising the CCKM budget from 20,000 to 37,654 gained
 +{e2["holdout"]["paired_difference_vs_extra_budget_arm"]["delta"]:.6f} HOLDOUT-DTI
 (95% CI [{e2["holdout"]["paired_difference_vs_extra_budget_arm"]["ci95"][0]:.6f},
-{e2["holdout"]["paired_difference_vs_extra_budget_arm"]["ci95"][1]:.6f}]) because coverage, not novelty,
-was the binding term at 20k.</p>
-<p><strong>Can this lane beat 0.2778?</strong> On current evidence, no: at the identical 37,654-dot budget
+{e2["holdout"]["paired_difference_vs_extra_budget_arm"]["ci95"][1]:.6f}]). More coverage may have contributed; the comparison does not identify the cause.</p>
+<p><strong>Can this lane beat 0.2778?</strong> This has not been established: at the identical 37,654-dot budget
 the CCKM surface reaches {100*ratio_e2:.1f}% of the GEMSDOE32 raster on the SGMC off-catalogue diagnostic
 and adds nothing significant over a plain gravity-gradient ranking in paired holdout. Beating 0.2778 likely
 requires a materially better <em>surface</em> (supervised multi-band mapping, the official 1 m DEM links,
@@ -212,9 +210,9 @@ and check the remaining weekly quota on the authenticated
 (the website limit prevails over the rules PDF).</li>
 <li>Download the approved <code>-zeros.tif</code> (or its one-TIFF ZIP) and verify its SHA-256 locally
 (<code>sha256sum file.tif</code> on Linux, <code>Get-FileHash file.tif</code> in PowerShell) against the
-run card before uploading. All-finite values in [0,1] are what prevent the portal error
+run card before uploading. All-finite values in [0,1] address one possible cause of the portal error
 &ldquo;Predicted values must be in range [0, 1]&rdquo;: the writer rejects sentinels such as
--3.4028235e+38 instead of copying them.</li>
+-3.4028235e+38 instead of copying them. This does not establish organizer acceptance or explain a specific past rejection.</li>
 <li>Upload the single-band GeoTIFF (EPSG:32611, float32, same shape/transform as the sample), set the
 submission name and an optional note of at most 140 characters (E2&rsquo;s recorded note, for provenance
 only: &ldquo;{escape(e2["submission_note"])}&rdquo;), and create the submission.</li>
@@ -236,15 +234,13 @@ corroborated label-blind (B03 vs |&nabla;B14|: r&nbsp;=&nbsp;1.000000 on
 5,135,228 eroded-valid pixels; <a href="band-identity.json">receipt</a>). A fault map is not evidence of a
 geothermal vent or reservoir.</p>
 
-<h2>Reproduce</h2>
-<pre>python -m pip install -r requirements.txt
-python scripts/restore_data.py --only sample_submission,existing_faults,training_features,parent_r0_zeros,sgmc_faults_control
-python scripts/restore_registry.py --available-only
-python scripts/run_s24_cckm.py            # E1 (refuses if already recorded)
-python scripts/run_s24_cckm.py --exp-id e2 --budget 37654 --out-dir docs/s24/e2 --work-dir work/s24-e2 --extra-budget-arm 20000 --experiments-run 2
-python scripts/score_s24_sgmc.py
-python scripts/audit_downloads.py --output docs/download-audit.json --html docs/download-audit.html
-python scripts/render_s24_portal.py</pre>
+<h2>Historical reproduction — do not rerun without preflight</h2>
+<p>The E1 and E2 run cards document an earlier self-assigned research run. The lane was not coordinator-assigned,
+and the dense-registry duplicate gate failed. The historical v2 holdout is not a matched evaluation under the
+corrected v3 context-buffer split. Do not repeat the archived commands or use these results for promotion.
+First establish an assigned lane, authorized pinned inputs, a complete registry and a passing preflight;
+then recompute both candidate and incumbent using the corrected evaluator. See
+<a href="../review-68881914-20261028.md">current review</a>.</p>
 <p>Maximize P(Win) · Own the Outcome. Negative results are deliverables; 2 of 3 budgeted experiments used,
 0 weekly slots used.</p>
 </main></div></body></html>

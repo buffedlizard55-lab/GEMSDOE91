@@ -1,0 +1,236 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+    "fabric_e3_oof_bagged": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.1473863314818393,
+      "ci95": [
+        0.12879265173302776,
+        0.16619503966521662
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 8438.230442602156,
+      "fpw": 33872.082953870995,
+      "fnw": 52549.76955739788
+    },
+    "control_oof_base": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.12474398628998315,
+      "ci95": [
+        0.108803401853859,
+        0.14110238591296762
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 7124.776335477745,
+      "fpw": 34499.1679395153,
+      "fnw": 53863.22366452225
+    },
+    "control_new_surface": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0687612466021748,
+      "ci95": [
+        0.059471096928756635,
+        0.07789524144492617
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 3900.361631011053,
+      "fpw": 35763.90652487271,
+      "fnw": 57087.63836898896
+    },
+    "control_gravgrad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.07378394221743531,
+      "ci95": [
+        0.05891624355706712,
+        0.09002497658904314
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 4186.400142353707,
+      "fpw": 35554.773232465646,
+      "fnw": 56801.599857646324
+    }
+  },
+  "best_comparable_control": "control_oof_base",
+  "paired_differences": {
+    "control_oof_base": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.02264234519185615,
+      "ci95": [
+        0.013627126508037598,
+        0.031489427526488284
+      ],
+      "withheld_positive_pixels": 60988
+    },
+    "control_new_surface": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0786250848796645,
+      "ci95": [
+        0.05925664729755029,
+        0.09703115190648191
+      ],
+      "withheld_positive_pixels": 60988
+    },
+    "control_gravgrad": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.07360238926440399,
+      "ci95": [
+        0.05050575521173058,
+        0.09510345870628047
+      ],
+      "withheld_positive_pixels": 60988
+    }
+  },
+  "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 159,
+    "draws": 1000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+    "evaluate_holdout.py": "4687a28bc83959a3d815c0a37abb43fe72286c523db867877bd1f626c4d094b6",
+    "holdout.py": "41ecfbca6f4a2b615a09c50653e272bd134ce14ab19b84b56a275f97fd75fe78",
+    "metric.py": "d536dc94ecf355aa8068499787cacd425dcb6c8c1a5d6684d5785c4f072bd083",
+    "spatial.py": "dd3c4e5dd770f96341e6beb681c1af89e42b6766257df50c455999bfd68704ed"
+  },
+  "per_fold": [
+    {
+      "arm": "fabric_e3_oof_bagged",
+      "fold": 0,
+      "budget": 17846,
+      "n_truth": 29319,
+      "n_emitted": 17846,
+      "tpw": 3444.1794393111963,
+      "fpw": 16280.8731642573,
+      "fnw": 25874.820560688804
+    },
+    {
+      "arm": "fabric_e3_oof_bagged",
+      "fold": 1,
+      "budget": 9957,
+      "n_truth": 12596,
+      "n_emitted": 9957,
+      "tpw": 2523.863330476248,
+      "fpw": 8777.102169256697,
+      "fnw": 10072.136669523752
+    },
+    {
+      "arm": "fabric_e3_oof_bagged",
+      "fold": 2,
+      "budget": 4111,
+      "n_truth": 9473,
+      "n_emitted": 4111,
+      "tpw": 1160.676167560343,
+      "fpw": 3627.2880012235005,
+      "fnw": 8312.323832439657
+    },
+    {
+      "arm": "fabric_e3_oof_bagged",
+      "fold": 3,
+      "budget": 5740,
+      "n_truth": 9600,
+      "n_emitted": 5740,
+      "tpw": 1309.5115052543626,
+      "fpw": 5186.819619133472,
+      "fnw": 8290.488494745638
+    }
+  ],
+  "fold_receipts": [
+    {
+      "fold": 0,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 29319,
+      "evaluation_px": 2449030,
+      "training_domain_px": 2508386,
+      "held_components": 1830,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1436,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 244
+    },
+    {
+      "fold": 1,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 12596,
+      "evaluation_px": 1366431,
+      "training_domain_px": 3636842,
+      "held_components": 687,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1733,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 82
+    },
+    {
+      "fold": 2,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9473,
+      "evaluation_px": 564135,
+      "training_domain_px": 4383314,
+      "held_components": 382,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 2857,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 483
+    },
+    {
+      "fold": 3,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9600,
+      "evaluation_px": 787777,
+      "training_domain_px": 4263431,
+      "held_components": 329,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1925,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 368
+    }
+  ],
+  "matched_controls": [
+    "control_oof_base",
+    "control_new_surface",
+    "control_gravgrad"
+  ],
+  "budget_total": 37654,
+  "elapsed_seconds": 199.81259600900012
+}

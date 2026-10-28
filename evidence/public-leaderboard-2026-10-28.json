@@ -1,0 +1,44 @@
+{
+  "schema": "public-leaderboard-observation-v1",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "retrieved_utc": "2026-10-28",
+  "method": "fetch_page of the public leaderboard in the S25 session; values copied verbatim. Public 'Best public DW-Tversky' column.",
+  "label": "OFFICIAL PUBLIC LEADERBOARD OBSERVATION - not an ORGANIZER-CONFIRMED receipt for any TIFF in this repository",
+  "rows": [
+    {
+      "rank": 1,
+      "participant": "xiaofanhu",
+      "best_public_dw_tversky": 0.4544
+    },
+    {
+      "rank": 2,
+      "participant": "cfld__",
+      "best_public_dw_tversky": 0.3916
+    },
+    {
+      "rank": 3,
+      "participant": "Batik Shirt Brothers",
+      "best_public_dw_tversky": 0.3911
+    },
+    {
+      "rank": 10,
+      "participant": "Azazel",
+      "best_public_dw_tversky": 0.3379
+    },
+    {
+      "rank": 20,
+      "participant": "shixing",
+      "best_public_dw_tversky": 0.3273
+    },
+    {
+      "rank": 22,
+      "participant": "kinghorton42",
+      "best_public_dw_tversky": 0.3261
+    }
+  ],
+  "notes": [
+    "Identical top values to the 2026-10-27 snapshot (evidence/public-leaderboard-2026-10-27.json).",
+    "The session prompt's 0.4413 (#1) and 0.3195 figures are stale against this page.",
+    "A nine-site USER-REPORTED claim of 0.2778 is below #22 (0.3261) here; gap to #1 is 0.1766."
+  ]
+}
