@@ -1,6 +1,19 @@
 # GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED
 
+**Nine-site summary (2026-10-28, NO FILE CLEARED TO SUBMIT):** [nine-site executive summary & download table](docs/nine-site-20261028/executive-summary.html) · [verified JSON](docs/nine-site-20261028/nine-site-leaders-20261028.json) · [irregularities IR-S26-01…06](IRREGULARITIES.md).
+
+- **Download for research only:** [`gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif`](docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif). **OK to submit: NO.** It is unique against the nine (max 40.19% overlap) but overlaps 74.89% with a repo research TIFF, above the 70% duplicate gate.
+- **Highest claimed score among the nine:** GEMSDOE32 0.2778 (USER-REPORTED). That file is already a previous submission, not a new one.
+- **Live leaderboard #1 is 0.4544** (fetched 2026-10-28), not 0.4413 or 0.3195. See IR-S26-01.
+- **Why no new TIFF:** the official inputs (footprint, catalogue, training features) are not in this checkout and cannot be fetched by the sandbox. A human with a DrivenData login must place them in `data/`.
+- **Reproduce:** `python -m venv .venv && .venv/bin/pip install -r requirements.txt && .venv/bin/python scripts/nine_site_leaders_20261028.py --out docs/nine-site-20261028 && .venv/bin/python scripts/render_nine_site_20261028.py`
+
+**Maximize P(Win); Own the Outcome.** Every number above comes from a file in this repo or a cited official page. Nothing is a projection presented as a score.
+
+---
+
 **Current checkout review (2026-10-28):** [nine-site executive summary, ranked hypotheses, limitations, and three-pass audit](docs/review-20261028/CURRENT_REVIEW.md) · [current focus-site GitHub snapshot receipt](docs/review-20261028/focus-inventory.json) · [run card](docs/review-20261028/checkout-run-card.json). This review generated no TIFF, ran no experiment, and used no submission slot: required pinned inputs and the assigned single-method lane are missing. Existing artifacts remain historical/research-only unless a current, separate selector approves them.
+
 
 **2026-10-28 independent re-audit: DO NOT SUBMIT S25-TLF.** The previous approval was wrong: the existing TIFF has **99.6017%** of its dots within 3 pixels of the pinned registry lattice (>70% duplicate threshold). Its estimated 0.36 and 0.28–0.44 range were an unsupported extrapolation and are withdrawn. The prior card did not check all registry rasters and did not beat a matched holdout best. A separate selector has not approved it. No new candidate or weekly slot was used in this review.
 
