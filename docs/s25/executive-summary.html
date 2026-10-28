@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S25-FABRIC executive summary · GEMSDOE91</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<style>.no{color:#9b1c1c;font-weight:700}.yes{color:#14532d;font-weight:700}
+.decision{border:3px solid #9b1c1c;padding:1rem 1.2rem;border-radius:8px;background:#fff7ed}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid #d1d5db;padding:.5rem;vertical-align:top;text-align:left}
+.table-scroll{overflow-x:auto}code{word-break:break-all}</style></head>
+<body><div class="wrap"><main id="main">
+<p><a href="../index.html">&larr; Current portal</a> · <a href="preregistration.md">Preregistration</a> ·
+<a href="run-card.json">Run card (JSON)</a> · <a href="diagnostics.json">Diagnostics (SGMC + LFI model)</a> ·
+<a href="nine-site-audit.json">Nine-site audit (JSON)</a> · <a href="REVIEW.md">Full session review</a> ·
+<a href="../submission-guide.html">Submission guide</a></p>
+<h1>S25-FABRIC — executive summary (2026-10-28)</h1>
+<div class="decision">
+<p style="font-size:1.25rem;margin:.2rem 0"><strong>New unique TIF generated: YES</strong> (unique vs the nine focus sites; new feature physics, not a copy of any previous submission).<br>
+<strong>OK TO DOWNLOAD: YES — RESEARCH ONLY.</strong><br>
+<strong>OK TO SUBMIT: NO.</strong> Do not spend a weekly slot on it yet — three named blockers below.</p>
+<p><strong>File to download:</strong> <a href="../downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif">gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif</a>
+(<a href="../downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip">single-TIFF ZIP</a>)<br>
+SHA-256 <code>0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5</code> · 37,654 dots ·
+HOLDOUT-DTI 0.147741 [0.129760, 0.167562] (gems57-pooled-hide-v2, label-blind-quadrants-v3-feature-buffered, 60,988 withheld).</p>
+<p><strong>Estimated leaderboard score (labelled):</strong> ORGANIZER-CONFIRMED score: <strong>none exists</strong>.
+The repo's live-anchored LFI model projects <strong>0.0792</strong> (ridge10 0.0807;
+leave-one-site-out RMSE 0.0196 on 112 USER-REPORTED anchors) —
+a <em>model projection, never a score</em>. The same model projects the GEMSDOE32 reference raster at
+0.2734 (its user-reported live claim is 0.2778). Public leaderboard fetched 2026-10-28:
+#1 = 0.4544 (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData</a>); the prompt's 0.4413 / 0.3195 are stale.</p>
+<p><strong>Why OK TO SUBMIT is NO (all checks automated; no human inspection involved):</strong>
+(1) <em>Protocol duplicate rule:</em> final dots reach 74.89%
+within 3 px of one competitive registry raster (limit 70%) — even though the file is unique vs all nine focus
+leaders (max 40.19%).
+(2) <em>Live-aligned estimate is low:</em> 45.90% of its dots sit 3–5 px from the mapped catalogue
+(median 5.8 px vs R0's 19.6 px) — exactly the zone the
+anchor-fitted model penalises most, because scored new faults concentrate away from mapped ones.
+(3) <em>Selector step:</em> promotion to a real slot is a separate decision with a live weekly-cap check
+(protocol rule 6); 0 slots were used. What DID pass: leakage canaries, surface uniqueness, nine-site dot
+uniqueness, paired holdout vs the strongest control, and the [0,1]/grid format validator — see the gate table.</p>
+</div>
+
+<h2>The table the project asked for — file / estimated score / uniqueness / submit?</h2>
+<p>Labels: <strong>HOLDOUT-DTI</strong> = recovery of withheld catalogue faults on the shared evaluator
+(never a leaderboard score). <strong>LFI MODEL projection</strong> = leaderboard-feedback inversion refitted
+this session on USER-REPORTED anchors (never a score). <strong>USER-REPORTED</strong> = claim copied from a
+site/prompt with no organizer receipt. Nothing on this page is ORGANIZER-CONFIRMED.</p>
+<div class="table-scroll"><table>
+<caption>Downloadable research candidates generated in this repository (best first by session recency)</caption>
+<thead><tr><th scope="col">File to download</th><th scope="col">Estimated leaderboard score</th>
+<th scope="col">Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 and the registry?</th>
+<th scope="col">OK to submit?</th></tr></thead>
+<tbody><tr><th scope="row">S25-FABRIC E2 — this session; download this one for research<br><a href="../downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif">gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif</a><br><small>SHA-256 0046fca5d12c915b… · 37,654 dots</small></th><td><strong>ORGANIZER-CONFIRMED: none.</strong> Estimated leaderboard score (LFI MODEL projection, not a score): <strong>0.0792</strong> (ridge10 0.0807; fit LOSO RMSE 0.0196). HOLDOUT-DTI 0.147741 [0.129760, 0.167562] (gems57-pooled-hide-v2, label-blind-quadrants-v3-feature-buffered, 60,988 withheld); SGMC off-catalogue diagnostic 0.079042 (report-only).</td><td><strong>YES vs the nine focus sites</strong> — max 40.19% of dots within 3 px of any one leader (limit 70%); surface |&rho;| max 0.214 (limit 0.90). <strong>NO under the literal registry rule</strong> — 74.89% vs the closest competitive reference and 98.75% vs the dense calibration lattice.</td><td class="no">NO</td></tr><tr><th scope="row">S21-PDWC E3 — earlier session; highest LFI-projected unsubmitted candidate in this repo<br><a href="../downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif">gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif</a><br><small>SHA-256 74eab3db8a89d415… · 37,654 dots</small></th><td><strong>ORGANIZER-CONFIRMED: none.</strong> LFI MODEL projection (this session's refit, not a score): <strong>0.1976</strong> (ridge10 0.1896). Historical HOLDOUT-DTI 0.195724 was measured on the superseded v2 fold instrument and is not matched to today's v3 numbers. SGMC diagnostic 0.093878.</td><td>Per its own S21 run card: PASS vs 932 competitive rasters (max 64.00% within 3 px) with uniqueness-capped emission; literal all-raster overlap 100% vs dense calibration blankets. Verdict at the time: negative (below a spillover-inflated comparator; selector never approved a slot).</td><td class="no">NO</td></tr></tbody></table></div>
+
+<div class="table-scroll"><table>
+<caption>Best historical file per focus site — re-audited from bytes on 2026-10-28 (all nine repos have new commits since the 2026-10-26 audit; leaders re-hashed)</caption>
+<thead><tr><th scope="col">Site</th><th scope="col">Best claimed file</th><th scope="col">Score evidence</th>
+<th scope="col">Unique among the nine?</th><th scope="col">OK to submit?</th></tr></thead>
+<tbody><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/">GEMSDOE32</a><br><small>main HEAD 2026-10-28</small></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/47c946df19ba7c539d0240499c3080bc9c027d96/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</a><br><small>SHA-256 c55bafc470054e82… · 37,654 dots</small></td><td><strong>0.2778</strong> <small>USER-REPORTED (prompt), NOT ORGANIZER-CONFIRMED</small><br><small>LFI MODEL projection 0.2734 (in-anchor-set, optimistic) · SGMC diagnostic 0.095386</small></td><td class="no">NO — 100.00% vs GEMSDOE24</td><td class="no">NO as a new unique submission</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE36/">GEMSDOE36</a><br><small>main HEAD 2026-10-28</small></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/966fafb03d9555e08330007e39ec734cae5c11e0/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a><br><small>SHA-256 e15891020b9c5705… · 38,854 dots</small></td><td><strong>0.2750</strong> <small>USER-REPORTED (prompt), NOT ORGANIZER-CONFIRMED</small><br><small>LFI MODEL projection 0.2708 (in-anchor-set, optimistic) · SGMC diagnostic 0.096770</small></td><td class="no">NO — 97.58% vs GEMSDOE27</td><td class="no">NO as a new unique submission</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">GEMSDOE28</a><br><small>main HEAD 2026-10-28</small></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/aced524e5c9d72a9ac6bfdbb5606c17002f458dd/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</a><br><small>SHA-256 5556aa1438fd6737… · 37,660 dots</small></td><td><strong>0.2710</strong> <small>USER-REPORTED (prompt), NOT ORGANIZER-CONFIRMED</small><br><small>LFI MODEL projection 0.2671 (in-anchor-set, optimistic) · SGMC diagnostic 0.093356</small></td><td class="no">NO — 100.00% vs GEMSDOE24</td><td class="no">NO as a new unique submission</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE31/">GEMSDOE31</a><br><small>main HEAD 2026-10-28</small></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/blob/914f08eab4a51692fee30b34f827d399d29a860f/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</a><br><small>SHA-256 07b6db440535404b… · 40,199 dots</small></td><td><strong>0.2708</strong> <small>USER-REPORTED (prompt), NOT ORGANIZER-CONFIRMED</small><br><small>LFI MODEL projection 0.2684 (in-anchor-set, optimistic) · SGMC diagnostic 0.095295</small></td><td class="no">NO — 100.00% vs GEMSDOE24</td><td class="no">NO as a new unique submission</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE33/">GEMSDOE33</a><br><small>main HEAD 2026-10-28</small></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/deeb6a8aa702289347607e543b8f01eef99dec68/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a><br><small>SHA-256 87f857d505e23247… · 41,865 dots</small></td><td><strong>0.2632</strong> <small>USER-REPORTED (prompt), NOT ORGANIZER-CONFIRMED</small><br><small>LFI MODEL projection 0.2655 (in-anchor-set, optimistic) · SGMC diagnostic 0.095683</small></td><td class="no">NO — 99.71% vs GEMSDOE27</td><td class="no">NO as a new unique submission</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE25/">GEMSDOE25</a><br><small>main HEAD 2026-10-28</small></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/blob/fa8c09a948915ba3be6754f091de18f0d8887126/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</a><br><small>SHA-256 91eae1ca42ec845e… · 44,090 dots</small></td><td><strong>0.2600</strong> <small>USER-REPORTED (prompt), NOT ORGANIZER-CONFIRMED</small><br><small>LFI MODEL projection 0.2599 (in-anchor-set, optimistic) · SGMC diagnostic 0.094174</small></td><td class="no">NO — 100.00% vs GEMSDOE24</td><td class="no">NO as a new unique submission</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE30/">GEMSDOE30</a><br><small>main HEAD 2026-10-28</small></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/84506bdbaa36cc4ffb04b687745172debbf4d705/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</a><br><small>SHA-256 8cf893ead5667df2… · 44,090 dots</small></td><td><strong>0.2600</strong> <small>USER-REPORTED (prompt), NOT ORGANIZER-CONFIRMED</small><br><small>LFI MODEL projection 0.2599 (in-anchor-set, optimistic) · SGMC diagnostic 0.094174</small></td><td class="no">NO — 100.00% vs GEMSDOE24</td><td class="no">NO as a new unique submission</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">GEMSDOE24</a><br><small>main HEAD 2026-10-28</small></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/blob/3bbcfbbc1d09e33eee95d03b5635d45b75cb74c8/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</a><br><small>SHA-256 68d0e2e4fcc594f9… · 60,069 dots</small></td><td><strong>0.2477</strong> <small>USER-REPORTED (prompt), NOT ORGANIZER-CONFIRMED</small><br><small>LFI MODEL projection 0.2500 (in-anchor-set, optimistic) · SGMC diagnostic 0.099911</small></td><td class="no">NO — 100.00% vs GEMSDOE25</td><td class="no">NO as a new unique submission</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE27/">GEMSDOE27</a><br><small>main HEAD 2026-10-28</small></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/blob/b8707c58dbcc0758d23b608ca1675afa6825933e/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</a><br><small>SHA-256 33003374335d84bf… · 61,328 dots</small></td><td><strong>0.2449</strong> <small>USER-REPORTED (prompt), NOT ORGANIZER-CONFIRMED</small><br><small>LFI MODEL projection 0.2478 (in-anchor-set, optimistic) · SGMC diagnostic 0.101163</small></td><td class="no">NO — 98.02% vs GEMSDOE24</td><td class="no">NO as a new unique submission</td></tr></tbody></table></div>
+<p><strong>Clear answer per site:</strong> the best file on every focus site is the one named above, and the
+highest claim overall is GEMSDOE32's <code>h33-h33-2-b2…-zeros</code> at 0.2778 (user-reported). But
+<strong>none of the nine is unique</strong>: every leader has 98–100% of its dots within 3 px of a peer
+(recomputed today) — they are pruning edits of one H19-5-descended raster family, so re-downloading and
+resubmitting any of them is a duplicate, not a new attempt. The only new, nine-unique file this session is
+the S25 download above, and it is research-only for the three reasons in the decision box.</p>
+
+<h2>Experiments (3 of 3 preregistered; paired arms, identical v3 folds/budgets/emission)</h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">Arm</th>
+<th scope="col">HOLDOUT-DTI (gems57-pooled-hide-v2, label-blind-quadrants-v3-feature-buffered, 60,988 withheld) [95% CI]</th></tr></thead>
+<tbody><tr><th scope="row">E1 · fabric_e1_oof_new (new features only)</th><td>0.116031 [0.104861, 0.126509]</td></tr><tr><th scope="row">E2 · fabric_e2_oof_full (base + new) — packaged</th><td>0.147741 [0.129760, 0.167562]</td></tr><tr><th scope="row">E3 · fabric_e3_oof_bagged (3-seed mean)</th><td>0.147386 [0.128793, 0.166195]</td></tr><tr><td>control · control_oof_base</td><td>0.124744 [0.108803, 0.141102]</td></tr><tr><td>control · control_new_surface</td><td>0.068761 [0.059471, 0.077895]</td></tr><tr><td>control · control_gravgrad</td><td>0.073784 [0.058916, 0.090025]</td></tr></tbody></table></div>
+<p>The 14 new fabric features alone (E1) reach 0.116031 vs the 23-feature
+base model's 0.124744; fused (E2) they add
+&Delta; +0.022997 [+0.014272, +0.031866] over the base model —
+the new physics carries independent, significant signal on this instrument. Bagging (E3) changed nothing
+material. <strong>Instrument warning:</strong> today's folds are v3 (feature-context buffered); all earlier
+repo HOLDOUT-DTI values (S21-PDWC 0.195724, S24-CCKM 0.075896) were measured on v2 folds and are context
+only, not matched comparisons — and hide-and-recover itself correlates only weakly with live scores across
+112 anchors (&rho; &asymp; +0.105, S22), which is why the LFI/SGMC diagnostics above govern live expectations.</p>
+
+<h2>Validation gates — automated, no human inspection</h2>
+<div class="table-scroll"><table><thead><tr><th scope="col">Gate</th><th scope="col">Result</th>
+<th scope="col">Measured detail</th></tr></thead><tbody><tr><td>Leakage canary — every feature alone, symmetric AUC &le; 0.90 (protocol rule 4)</td><td class="yes">PASS</td><td>max 0.6130 (band06 fold3) over 156 feature-fold tests</td></tr><tr><td>Surface uniqueness |&rho;| &le; 0.90 vs frozen registry, before placement (rule 1a)</td><td class="yes">PASS</td><td>max 0.2138 vs calib_h25ctx_01280.tif</td></tr><tr><td>Final dots &le; 70% within 3 px — nine focus leaders (rule 1b, user scope)</td><td class="yes">PASS</td><td>max 40.19%</td></tr><tr><td>Final dots &le; 70% within 3 px — competitive references &le; 90,000 px (rule 1b)</td><td class="no">FAIL</td><td>max 74.89% vs gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif</td></tr><tr><td>Final dots &le; 70% within 3 px — literal all references incl. dense blankets (rule 1b)</td><td class="no">FAIL</td><td>max 98.75% (lattice 98.75%; capacity bound forces &ge; 82.3% at 37,654 dots)</td></tr><tr><td>Paired HOLDOUT-DTI beats best matched control, 95% CI excludes 0</td><td class="yes">PASS</td><td>&Delta; +0.022997 [+0.014272, +0.031866] vs control_oof_base (0.124744)</td></tr><tr><td>Format: single-band float32, all-finite in [0,1], EPSG:32611, 3730&times;3292, pinned transform; independent download audit PASS</td><td class="yes">PASS</td><td>shared writer + independent re-read + audit_downloads PASS (TIF and ZIP)</td></tr><tr><td>Live-aligned diagnostics support beating 0.2778 (LFI MODEL projection &ge; R0's projection)</td><td class="no">FAIL</td><td>candidate 0.0792 vs R0 0.2734 (both MODEL projections, not scores); SGMC 0.079042 vs R0 0.095386</td></tr><tr><td>Separate selector decision + live weekly-cap check (protocol rule 6)</td><td class="no">FAIL</td><td>not performed here; 0 slots used this session</td></tr></tbody></table></div>
+
+<h2>Why 0.2778 (GEMSDOE32) is the family's highest — and can a unique file beat it?</h2>
+<p><strong>What the bytes prove</strong> (S22 lineage analysis, re-verified): R0 is not a better detector; it is
+the best-<em>pruned</em> member of one family. H19-5's 121,131-px ridge network (0.1922) was dotted at 2.8 px
+spacing (44,090 dots, 0.2600), then dots within &le;1 px of the catalogue were deleted (40,199, 0.2708 — the
+identical pixels on GEMSDOE28 and GEMSDOE31), then dots at (1,2] px (37,654, <strong>0.2778</strong>).
+A one-parameter model that treats the deleted dots as pure false positives predicts the next two family scores
+within 0.001, implying R0 recovers &asymp;38–42% of scored truth at &asymp;0.135 mean credit per dot.
+Mechanism: mapped-fault pixels are masked out of scoring (official forum), so dots hugging mapped traces are
+almost pure false-positive weight under DTI = T/(0.2T + 0.2FP + 0.8|G|); claims across the nine rise as dot
+count falls (Spearman &rho;(dots, claim) = -0.983 over nine non-independent files, recomputed
+today). Full derivation: <a href="../R0_ANALYSIS_S22.md">R0_ANALYSIS_S22.md</a>.</p>
+<p><strong>Can we generate a unique file above 0.2778?</strong> Not yet, on labelled evidence. This session's
+candidate is the first in several sessions to beat a strong matched control in paired holdout, and its SGMC
+diagnostic (0.079042) reaches 83% of R0's (0.095386); but its dots hug the
+catalogue (median 5.8 px; 45.90% at 3–5 px vs R0's 9.20%), so the
+live-anchored model projects only 0.0792. The measured fix for the next preregistered lane is
+emission geometry, not more features: keep the validated FABRIC surface, emit with a wider catalogue collar /
+distance-stratified quotas and &le;70% competitive-overlap caps, and arbitrate with SGMC-&gt;500 m plus LFI
+(built <em>without</em> fitting to LFI, to keep the projection honest). The only identified route materially
+past &asymp;0.28–0.32 remains new information — 1 m LiDAR derivatives (USGS 3DEP, free) on an unrestricted
+machine; this sandbox cannot reach those hosts. That is expert judgement from labelled diagnostics, not a
+promised score.</p>
+
+<h2>Exactly how a future, selector-approved submission is made</h2>
+<ol>
+<li>Start from a run card whose gates all PASS (this file's do not). Obtain the separate selector decision and
+check the remaining weekly quota (3/week, counted Mon–Sun) on the authenticated
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">submission page</a>.</li>
+<li>Download the approved <code>-zeros.tif</code> (or its single-TIFF ZIP) from this page and verify SHA-256
+locally (<code>sha256sum file.tif</code> / <code>Get-FileHash file.tif</code>) against the run card before uploading.</li>
+<li>On <em>New submission</em>, choose the file — single-band GeoTIFF, EPSG:32611, float32, 3730&times;3292,
+same geotransform as the sample. The portal error &ldquo;Predicted values must be in range [0, 1]&rdquo; is
+prevented by construction here: the shared writer emits all-finite values in [0,1] with
+<code>nodata=None</code> and rejects the -3.4028235e+38 sentinel instead of copying it (independently
+re-read and audited PASS for this file).</li>
+<li>Set the submission identity exactly as recorded. For this session's file (provenance only — not approved):
+name <code>gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros</code>; note (94/140):
+&ldquo;S25 FABRIC granulometry+phase-lag spatial OOF 37654 dots; see run-card verdict before slot use&rdquo;.</li>
+<li>After scoring, save submission ID + timestamp + uploaded-file SHA-256 + displayed score together.
+Only that receipt may ever be labelled ORGANIZER-CONFIRMED in this repo.</li>
+</ol>
+
+<h2>Method in one paragraph</h2>
+<p>FABRIC uses only the SHA-pinned 19-band GeoDAWN stack. Two new feature families target faults the
+USGS/INGENIOUS catalogue missed because they are buried or scarp-free: (i) <strong>oriented granulometry
+contrast</strong> — grey-opening pattern spectra (lengths 5/11 px, 4 orientations) of detrended elevation
+(B12/B19), compared &plusmn;7 px across local slope breaks, so a change of fan/bedrock fabric across a trace
+scores highly; (ii) <strong>cross-spectral phase lag</strong> — tile-wise phase-correlation lag between the
+isostatic-gravity (B13) and magnetic (B14) boundaries, which a fault offsetting density vs magnetization
+contacts produces and a vertical unfaulted contact does not. Together with the 19 bands + 4 gradient
+magnitudes they feed a spatially cross-fitted gradient-boosted model (v3 whole-component buffered folds);
+dots are emitted by the shared NMS emitter at 3.05 px spacing/collar. Named mimics: unfaulted dipping
+contacts, remanent-magnetization offsets, fan-lobe/shoreline fabrics, survey seams. NoData sentinels are
+excluded from every statistic (masked convolution; supports eroded beyond each feature's influence radius).
+A fault-likelihood map is not evidence of a geothermal vent, temperature, or permeability.</p>
+
+<h2>Official sources (for manual review)</h2>
+<ul>
+<li>Competition + metric + leaderboard: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard (fetched 2026-10-28)</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF (NLR/DOE)</a></li>
+<li>Reference solution: <a href="https://github.com/drivendataorg/gems-prize-reference-solution">drivendataorg/gems-prize-reference-solution</a></li>
+<li>GeoDAWN surveys: <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS</a> · INGENIOUS compilation: <a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> · <a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS</a></li>
+<li>Grid CRS: <a href="https://epsg.io/32611">EPSG:32611</a> · Metric family: <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a> · Future 1 m DEM source: <a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP</a> (free; unreachable from this sandbox — needs an unrestricted machine)</li>
+</ul>
+
+<h2>Reproduce</h2>
+<pre>python -m pip install -r requirements.txt
+python scripts/restore_data.py
+python scripts/restore_registry.py --available-only
+python scripts/restore_lfi_anchors.py
+python scripts/run_s25_fabric.py features
+python scripts/run_s25_fabric.py experiment --exp e1   # then e2, e3 (each refuses if recorded)
+python scripts/run_s25_fabric.py package --exp e2 --arm fabric_e2_oof_full
+python scripts/audit_s25_nine_sites.py
+python scripts/score_s25_diagnostics.py
+python scripts/profile_s25_dots.py
+python scripts/audit_downloads.py --output docs/download-audit.json --html docs/download-audit.html
+python scripts/render_s25_portal.py</pre>
+<p>Maximize P(Win) · Own the Outcome. 3 of 3 budgeted experiments used; 0 weekly slots used.
+Negative results are deliverables.</p>
+</main></div></body></html>

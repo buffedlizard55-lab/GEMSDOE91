@@ -202,6 +202,54 @@ def s24_callout(root=ROOT) -> str:
 </section>'''
 
 
+def s25_callout(root=ROOT) -> str:
+    """Latest-session (S25-FABRIC) research download, re-verified fail-closed.
+
+    Reads only the committed S25 run card and the bytes on disk; raises rather
+    than publishing a stale or submit-positive callout.
+    """
+    docs = root / "docs"
+    card_path = docs / "s25/run-card.json"
+    if not card_path.is_file():
+        return ""
+    card = json.loads(card_path.read_text(encoding="utf-8"))
+    if card.get("ok_to_submit") is not False or card.get("verdict") != "negative":
+        raise ValueError("S25-FABRIC must remain explicitly not approved for submission")
+    if card.get("organizer_confirmed_score") is not None or card.get("estimated_leaderboard_score") is not None:
+        raise ValueError("S25-FABRIC must not claim an organizer score or leaderboard estimate")
+    art = card.get("artifact", {})
+    tif = (root / art["tif"]).resolve()
+    archive_path = (root / art["zip"]).resolve()
+    downloads = (docs / "downloads").resolve()
+    if not tif.is_relative_to(downloads) or not archive_path.is_relative_to(downloads):
+        raise ValueError("S25-FABRIC artifact path escapes docs/downloads")
+    tif_bytes = tif.read_bytes()
+    if hashlib.sha256(tif_bytes).hexdigest() != card.get("raster_sha256"):
+        raise ValueError("S25-FABRIC TIFF hash mismatch")
+    if hashlib.sha256(archive_path.read_bytes()).hexdigest() != art.get("zip_sha256"):
+        raise ValueError("S25-FABRIC ZIP hash mismatch")
+    with zipfile.ZipFile(archive_path) as archive:
+        members = [n for n in archive.namelist() if not n.endswith("/")]
+        if members != [tif.name] or archive.read(members[0]) != tif_bytes:
+            raise ValueError("S25-FABRIC ZIP must contain exactly its TIFF bytes")
+    note = card.get("submission_note", "")
+    if not isinstance(note, str) or not 0 < len(note) <= 140:
+        raise ValueError("S25-FABRIC note must contain 1-140 characters")
+    h = card["holdout"]
+    corr = card["correlation_overlap_vs_registry"]
+    nine_max = corr["final_dot_max_overlap_nine_leaders"]
+    comp_max = corr["final_dot_max_overlap_competitive_le_90000px"]
+    tif_href = tif.relative_to(docs.resolve()).as_posix()
+    zip_href = archive_path.relative_to(docs.resolve()).as_posix()
+    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S25-FABRIC latest research artifact; not approved for submission">
+<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<h2>S25-FABRIC E2 · Granulometry + gravity–magnetic phase-lag spatial OOF · 37,654 dots · latest session 2026-10-28</h2>
+<p>A new TIF was generated this session: unique vs the nine focus leaders (max {100*nine_max:.2f}% of dots within 3 px), HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, v3 folds, {h["n_withheld_positives"]:,} withheld — not a leaderboard score), beating its best matched control in paired holdout. Verdict negative: final dots reach {100*comp_max:.2f}% within 3 px of one competitive registry raster (limit 70%), and the labelled LFI model projection is low because its dots hug the mapped catalogue (median 5.8 px), so it must not be submitted. Full evidence, the nine-site table, estimated-score table and submission guide: <a href="s25/executive-summary.html">S25 executive summary</a>.</p>
+<p><a class="button" download href="{esc(tif_href, quote=True)}">Download S25 research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s25/REVIEW.md">Session review</a> · <a href="s25/run-card.json">Run card</a></p>
+<p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
+</section>'''
+
+
 def render() -> None:
     from scripts.render_s22_pages import render_sources as render_s22_sources
     from scripts.render_review_8e8d86f2 import render_sources as render_review_sources
@@ -213,7 +261,7 @@ def render() -> None:
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
-    parallel_card = s24_callout(ROOT)
+    parallel_card = s25_callout(ROOT) + s24_callout(ROOT)
     for source_name, target_name in ((CURRENT['index_src'], "index.html"),
                                      (CURRENT['exec_src'], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")

@@ -716,6 +716,18 @@
       "sha256": "f434a7c39f7019205432e47ea6a8faf3352edb3c680c4825ef5772f8969955f8",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of S24-CCKM E2 research-only negative; NOT OK TO SUBMIT (docs/s24/e2/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
+      "sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
+      "status": "current_research_only",
+      "reason": "S25-FABRIC E2 research-only negative: HOLDOUT-DTI 0.147741 [0.129760, 0.167562] (gems57-pooled-hide-v2, v3 folds, 60988 withheld) beats best matched control paired, and unique vs nine focus leaders (max 40.2% within 3px), BUT protocol-literal dot overlap 74.9% vs closest competitive reference (>70%) and LFI MODEL projection 0.07917 (catalogue-hugging dots, median 5.8px); SGMC-offcat diagnostic 0.079042. NOT OK TO SUBMIT (docs/s25/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip",
+      "sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S25-FABRIC E2 research-only negative; NOT OK TO SUBMIT (docs/s25/run-card.json)."
     }
   ]
 }
