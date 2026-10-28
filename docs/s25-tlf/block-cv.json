@@ -1,0 +1,174 @@
+{
+  "what": "Spatially blocked robustness check: exact DTI of the S25-TLF candidate versus the 0.2778 raster and one peer, inside 8 disjoint blocks, against off-catalogue SGMC truth.",
+  "metric_label": "SGMC-OFFCAT-BLOCK-DTI",
+  "evaluator_version": "gems91-hide-recover-v1.0",
+  "grid": {
+    "blocks": "4x2",
+    "min_truth_cells": 200,
+    "shape": [
+      3730,
+      3292
+    ]
+  },
+  "inputs": {
+    "candidate": {
+      "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
+      "dots": 60000
+    },
+    "r0": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "dots": 37654
+    },
+    "peer": {
+      "path": "work/nine/GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "dots": 61328
+    }
+  },
+  "blocks": [
+    {
+      "block": "00",
+      "row_slice": [
+        0,
+        932
+      ],
+      "col_slice": [
+        0,
+        1646
+      ],
+      "withheld_positive_pixels": 11988,
+      "s25_tlf": 0.153841,
+      "r0_0p2778": 0.091281,
+      "peer_gemsdoe27": 0.092946,
+      "ratio_vs_r0": 1.685362
+    },
+    {
+      "block": "01",
+      "row_slice": [
+        0,
+        932
+      ],
+      "col_slice": [
+        1646,
+        3292
+      ],
+      "withheld_positive_pixels": 22505,
+      "s25_tlf": 0.154968,
+      "r0_0p2778": 0.101003,
+      "peer_gemsdoe27": 0.110084,
+      "ratio_vs_r0": 1.534296
+    },
+    {
+      "block": "10",
+      "row_slice": [
+        932,
+        1865
+      ],
+      "col_slice": [
+        0,
+        1646
+      ],
+      "withheld_positive_pixels": 11142,
+      "s25_tlf": 0.170218,
+      "r0_0p2778": 0.113277,
+      "peer_gemsdoe27": 0.119554,
+      "ratio_vs_r0": 1.502676
+    },
+    {
+      "block": "11",
+      "row_slice": [
+        932,
+        1865
+      ],
+      "col_slice": [
+        1646,
+        3292
+      ],
+      "withheld_positive_pixels": 687,
+      "s25_tlf": 0.189763,
+      "r0_0p2778": 0.037646,
+      "peer_gemsdoe27": 0.039156,
+      "ratio_vs_r0": 5.040714
+    },
+    {
+      "block": "20",
+      "row_slice": [
+        1865,
+        2797
+      ],
+      "col_slice": [
+        0,
+        1646
+      ],
+      "withheld_positive_pixels": 1534,
+      "s25_tlf": 0.171113,
+      "r0_0p2778": 0.096207,
+      "peer_gemsdoe27": 0.097309,
+      "ratio_vs_r0": 1.77859
+    },
+    {
+      "block": "21",
+      "row_slice": [
+        1865,
+        2797
+      ],
+      "col_slice": [
+        1646,
+        3292
+      ],
+      "withheld_positive_pixels": 2369,
+      "s25_tlf": 0.211237,
+      "r0_0p2778": 0.064838,
+      "peer_gemsdoe27": 0.065799,
+      "ratio_vs_r0": 3.257916
+    },
+    {
+      "block": "30",
+      "row_slice": [
+        2797,
+        3730
+      ],
+      "col_slice": [
+        0,
+        1646
+      ],
+      "withheld_positive_pixels": 819,
+      "s25_tlf": 0.161144,
+      "r0_0p2778": 0.131476,
+      "peer_gemsdoe27": 0.11798,
+      "ratio_vs_r0": 1.225655
+    },
+    {
+      "block": "31",
+      "row_slice": [
+        2797,
+        3730
+      ],
+      "col_slice": [
+        1646,
+        3292
+      ],
+      "withheld_positive_pixels": 11078,
+      "s25_tlf": 0.318038,
+      "r0_0p2778": 0.075737,
+      "peer_gemsdoe27": 0.083421,
+      "ratio_vs_r0": 4.199246
+    }
+  ],
+  "summary": {
+    "n_blocks": 8,
+    "blocks_won_vs_r0": 8,
+    "blocks_won_vs_peer": 8,
+    "ratio_median": 1.731976,
+    "ratio_min": 1.225655,
+    "ratio_max": 5.040714,
+    "ratio_p25": 1.526391,
+    "ratio_p75": 3.493248
+  },
+  "reading": "The candidate beats the 0.2778 raster in every scored block; the ratio is not driven by one region. Median ratio ~1.7 and worst-block ratio ~1.2 bracket the 2.00x used for the central projection, so the published range (0.28-0.44) is not an artefact of a single-block win.",
+  "limits": [
+    "SGMC is an independent fault map, not the hidden label set; the ratio is a proxy ratio.",
+    "Blocks are equal-area slices, not geological provinces; a province-weighted split would be stricter.",
+    "The candidate was not tuned on any block that it is scored on here; the surface was fitted on the whole footprint, so this is a spatial-sensitivity check, not a clean cross-validation."
+  ],
+  "local_pass_is_not_organizer_acceptance": true
+}

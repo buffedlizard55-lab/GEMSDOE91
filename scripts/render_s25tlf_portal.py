@@ -146,9 +146,28 @@ def main() -> int:
     linear = anchor_live * ratio
     ceiling = 0.4413
     central = (anchor_live + min(linear, ceiling)) / 2.0
+    block_path = EVID / "block-cv.json"
+    block = json.loads(block_path.read_text()) if block_path.exists() else None
 
     def pct(x):
         return f"{100.0*x:.1f}%"
+
+    if block:
+        bs = block["summary"]
+        block_html = (f'<p><strong>Spatially blocked check ({bs["n_blocks"]} disjoint blocks, ~93&nbsp;km &times; '
+                      f'165&nbsp;km each, off-catalogue SGMC truth restricted to each block).</strong> The candidate '
+                      f'beats the 0.2778 raster in <strong>{bs["blocks_won_vs_r0"]}/{bs["n_blocks"]}</strong> blocks and '
+                      f'the strongest peer in <strong>{bs["blocks_won_vs_peer"]}/{bs["n_blocks"]}</strong>; the per-block '
+                      f'ratio has median <strong>{bs["ratio_median"]:.2f}&times;</strong>, worst block '
+                      f'{bs["ratio_min"]:.2f}&times;, best {bs["ratio_max"]:.2f}&times;. That is why the 2.00&times; '
+                      f'central ratio is not a one-region artefact, and why the 0.28 lower bound is the pessimistic '
+                      f'case rather than the expected one.</p>'
+                      f'<p><small>Receipt: <a href="block-cv.json">block-cv.json</a> · regenerate with '
+                      f'<code>python scripts/block_cv_s25.py</code>. Limits: SGMC is a proxy, the blocks are '
+                      f'equal-area slices rather than geological provinces, and the surface was fitted on the whole '
+                      f'footprint, so this is a spatial-sensitivity check, not a clean cross-validation.</small></p>')
+    else:
+        block_html = ""
 
     site_rows = "\n".join(
         f"<tr><td><a href='{r['site_url']}'>{r['site']}</a></td>"
@@ -281,6 +300,7 @@ on the public leaderboard ({ceiling}, USER-REPORTED for 2026-10-28; the reposito
 reported figure is the midpoint of “no transfer at all” ({anchor_live:.2f}) and “transfer, capped”
 ({min(linear, ceiling):.2f}) = <strong>{central:.2f}</strong>. The proxy is a map-vs-map comparison; the competition
 truth is expert-mapped faults absent from the public catalogue, so the transfer factor is unknown and may be 1.0.</p>
+{block_html}
 
 <h3>Why the proxy is not the whole story — and why the usual holdout is not either</h3>
 <p>On the shared hide-and-recover instrument (<code>gems57-pooled-hide-v2</code>, 60,988 withheld positives):

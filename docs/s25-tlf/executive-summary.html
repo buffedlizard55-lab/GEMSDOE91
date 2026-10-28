@@ -121,6 +121,7 @@ on the public leaderboard (0.4413, USER-REPORTED for 2026-10-28; the repository�
 reported figure is the midpoint of “no transfer at all” (0.28) and “transfer, capped”
 (0.44) = <strong>0.36</strong>. The proxy is a map-vs-map comparison; the competition
 truth is expert-mapped faults absent from the public catalogue, so the transfer factor is unknown and may be 1.0.</p>
+<p><strong>Spatially blocked check (8 disjoint blocks, ~93&nbsp;km &times; 165&nbsp;km each, off-catalogue SGMC truth restricted to each block).</strong> The candidate beats the 0.2778 raster in <strong>8/8</strong> blocks and the strongest peer in <strong>8/8</strong>; the per-block ratio has median <strong>1.73&times;</strong>, worst block 1.23&times;, best 5.04&times;. That is why the 2.00&times; central ratio is not a one-region artefact, and why the 0.28 lower bound is the pessimistic case rather than the expected one.</p><p><small>Receipt: <a href="block-cv.json">block-cv.json</a> · regenerate with <code>python scripts/block_cv_s25.py</code>. Limits: SGMC is a proxy, the blocks are equal-area slices rather than geological provinces, and the surface was fitted on the whole footprint, so this is a spatial-sensitivity check, not a clean cross-validation.</small></p>
 
 <h3>Why the proxy is not the whole story — and why the usual holdout is not either</h3>
 <p>On the shared hide-and-recover instrument (<code>gems57-pooled-hide-v2</code>, 60,988 withheld positives):

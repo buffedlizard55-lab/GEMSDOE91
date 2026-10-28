@@ -20,7 +20,7 @@ passes every automated format gate, and it is cleared to download and submit.**
 | Single-TIFF ZIP | [`…-zeros.zip`](../downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip) |
 | SHA-256 | `21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f` |
 | Dots | 60,000 binary `{0,1}`, 2.8 px Poisson disc, ≥3.05 px off the mapped catalogue |
-| Estimated leaderboard score | **0.36, range 0.28–0.44** — PROJECTION, not a score (§4) |
+| Estimated leaderboard score | **0.36, range 0.28–0.44** — PROJECTION, not a score (§4); proxy advantage holds in 8/8 spatial blocks (§3) |
 | Unique vs the nine | **YES** — max 32.9% of dots within 3 px (limit 70%), max \|ρ\| 0.894 (limit 0.90) |
 | Format | PASS — 1 band float32, EPSG:32611, 3730×3292, transform (100, 0, 243350, 0, −100, 4508550), all finite in [0,1], zeros outside footprint, zero mass on catalogue |
 | OK to download | **YES** |
@@ -73,6 +73,15 @@ today's prompt; 0.4544 in this repo's 2026-10-27 fetch), and a projection that e
 the observed ceiling is not credible. Reported figure = midpoint of "no transfer at
 all" (0.2778) and "transfer, truncated at the ceiling" (0.4413) = **0.36**; the range
 0.28–0.44 brackets both assumptions. **A projection is never written as a score.**
+
+**Spatially blocked check (new, `block-cv.json`, `scripts/block_cv_s25.py`).** The 2.00× ratio is not one region.
+Scoring the candidate, the 0.2778 raster and GEMSDOE27 inside eight disjoint ~93 km × 165 km blocks against
+off-catalogue SGMC truth restricted to each block: the candidate wins **8/8 blocks versus the 0.2778 raster and
+8/8 versus GEMSDOE27**, per-block ratio median **1.73×**, worst **1.23×**, best **5.04×**. Random truth
+subsampling gives the same ordering (1.55× at 10% density, 1.76× at 23%, 1.91× at 40%, 2.00× at 100%), so the
+advantage survives both sparsification and geography. Limits: SGMC is a proxy, blocks are equal-area slices rather
+than geological provinces, and the surface was fitted on the whole footprint, so this is a spatial-sensitivity
+check, not a clean cross-validation.
 
 A second, independent reason to distrust any single number: a pure density-scaling
 model of the SGMC control against the live labels is *algebraically inconsistent*
