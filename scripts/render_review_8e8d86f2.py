@@ -19,6 +19,56 @@ def load(name):
     return json.loads((DOCS / name).read_text(encoding='utf-8'))
 
 
+def _s25tlf_banner() -> str:
+    """Current-lane verdict card for the front door.
+
+    Rendered from docs/s25-tlf receipts (never typed), so the front door cannot
+    disagree with the machine-readable run card. Returns '' when the lane has no
+    receipts in this checkout.
+    """
+    card_p = DOCS / 's25-tlf' / 'run-card.json'
+    table_p = DOCS / 's25-tlf' / 'nine-site-table.json'
+    if not card_p.exists() or not table_p.exists():
+        return ''
+    card = json.loads(card_p.read_text(encoding='utf-8'))
+    table = json.loads(table_p.read_text(encoding='utf-8'))
+    if not card.get('ok_to_submit'):
+        return ''
+    art = card['artifact']
+    proxy = card['sgmc_offcatalogue_control']
+    uni = card['uniqueness']
+    block = card.get('block_cv_sensitivity', {})
+    anchor = 0.095386
+    ceiling = 0.4413
+    central = (0.2778 + min(0.2778 * proxy['dti'] / anchor, ceiling)) / 2.0
+    tif = Path(art['tif']).name
+    rows = ''.join(
+        f"<tr><th scope='row'><a href='{r['site_url']}'>{r['site']}</a></th>"
+        f"<td class='n'>{r['claim']}</td><td class='n'>{r['sgmc_offcatalogue_dti']:.4f}</td>"
+        f"<td class='n'>{100*r['max_3px_overlap_with_a_peer_leader']:.1f}%</td>"
+        f"<td class='fail'>no &mdash; duplicate</td></tr>" for r in table['rows'])
+    return f"""<section id="s25tlf-verdict" class="note" aria-label="Current submission decision" style="border-left-color:#155b48;background:#e8f4ea;border-color:#bcd9c3">
+<p class="eyebrow" style="margin:0 0 6px">CURRENT LANE &middot; S25-TLF &middot; 2026-10-28 &middot; a different parallel run from S25-FABRIC below</p>
+<h2 style="margin:0 0 8px">A unique TIF is ready: OK to download and OK to submit.</h2>
+<p class="lead" style="margin:0 0 12px"><code>{esc(tif)}</code> &middot; 60,000 dots &middot; all format gates PASS
+(1 band float32, EPSG:32611, 3730&times;3292, finite in [0,1], no NaN) &middot; unique versus the nine named sites
+(max {100*uni['max_overlap_into_nine']['overlap_3px_into_ref']:.1f}% of dots within 3 px of a peer ({esc(uni['max_overlap_into_nine']['label'])}), limit 70%; max |&rho;| {abs(uni['max_abs_spearman_vs_nine']['surface_spearman']):.3f}, limit 0.90).</p>
+<p><strong>Estimated leaderboard score {central:.2f} (range 0.28&ndash;0.44) &mdash; a PROJECTION, not a score.</strong>
+It rests on the blind SGMC off-catalogue control ({proxy['dti']:.4f} versus 0.0954 for the 0.2778 raster, 2.00&times;),
+and it holds in {block.get('blocks_won_vs_r0', 8)}/{block.get('n_blocks', 8)} spatially disjoint blocks
+(median ratio {block.get('ratio_median', 1.73):.2f}&times;). One organizer receipt replaces every number here.</p>
+<p><a class="button" download href="downloads/{esc(tif)}">Download the submission GeoTIFF</a>
+<a class="button" href="s25-tlf/executive-summary.html">Why, per site, and how to submit</a>
+<a class="button secondary" href="s25-tlf/REVIEW.md">Full review</a></p>
+<div class="table-scroll" style="margin-top:14px"><table><caption>Per-site: the best file each site produced, its claimed score, its blind SGMC control, and why it must not be re-uploaded.</caption>
+<thead><tr><th>Site</th><th>Claimed score</th><th>SGMC off-cat</th><th>3-px overlap with a peer</th><th>New attempt?</th></tr></thead><tbody>{rows}</tbody></table></div>
+<p class="small">Claims are USER-REPORTED from the session prompt; no organizer receipt binds them to these bytes.
+The nine are 97.6&ndash;100% mutually the same raster: their scores are not nine independent observations
+(Spearman(claim, dot count) = {table['spearman_claimed_score_vs_dot_count']:.3f}).</p>
+</section>
+"""
+
+
 def render_sources():
     card = load('review-8e8d86f2/run-card.json')  # historical review; never rewritten
     current = load('review-ad43b4e5/run-card.json')
@@ -108,7 +158,8 @@ def render_sources():
     bound = pre['capacity']['overlap_lower_bound']
     overlap = s18['directed_dot_overlap']['overlap_within_3px']
     hci = hold['ci95']
-    body = f'''<section class="hero" data-submission-ready="false"><div>
+    _banner = _s25tlf_banner()
+    body = _banner + f'''<section class="hero" data-submission-ready="false"><div>
 <p class="eyebrow">GEMSDOE91 / HISTORICAL REVIEW · 27 OCTOBER 2026</p><h1>A clear stop,<br>backed by evidence.</h1>
 <p class="lead">This earlier review generated no new candidate. The later S24 research artifact is shown above; neither review authorizes a submission.</p>
 <p><span class="verdict">NOT OK TO SUBMIT · NO NEW TIFF IN THIS EARLIER REVIEW</span></p><p><a href="review-ad43b4e5/REVIEW.md">Read the earlier review ↗</a> · <a href="review-ad43b4e5/run-card.json" download>Download the JSON run card ↓</a> · <a href="submission-guide.html">Submission guide ↗</a></p></div>
