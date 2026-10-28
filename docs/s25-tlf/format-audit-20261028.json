@@ -1,0 +1,32 @@
+{
+  "candidate_sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f",
+  "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "band_count": 1,
+  "dtype": "float32",
+  "shape": [
+    3730,
+    3292
+  ],
+  "crs": "EPSG:32611",
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "crs_shape_transform_match_sample": true,
+  "footprint_no_nan_or_inf": true,
+  "footprint_min": 0.0,
+  "footprint_max": 1.0,
+  "all_values_finite": true,
+  "all_values_in_0_1": true,
+  "dots": 60000,
+  "organizer_acceptance_verified": false,
+  "zip_members": [
+    "gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif"
+  ],
+  "zip_tiff_sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f",
+  "zip_is_one_matching_tiff": true
+}

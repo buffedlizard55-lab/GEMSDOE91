@@ -397,6 +397,8 @@ Run `python generate_submission.py --preflight` before restoring the large train
 
 ## 2026-10-28 — S25-TLF state, remaining work, and what is still unknown
 
+> **SUPERSEDED:** Do not spend a slot on S25-TLF. It fails the frozen lattice duplicate gate (99.6017% overlap), and the 0.36 projection is withdrawn. [Current audit](docs/s25-tlf/AUDIT-20261028.md). The recommendations below are historical.
+
 **What exists now.** `docs/s25-tlf/` holds the lane receipts: `run-card.json` (verdict `promote`, `ok_to_download: true`,
 `ok_to_submit: true`), `uniqueness.json`, `sgmc-diagnostic.json`, `holdout.json`, `canaries.json`, `block-cv.json`,
 `nine-site-table.json`, `executive-summary.html`, `REVIEW.md`, `preregistration.md`. The artifact is

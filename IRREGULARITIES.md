@@ -1,3 +1,7 @@
+## 2026-10-28 S25-TLF duplicate stop and withdrawn projection
+
+A fresh audit of the pinned sample and frozen `calib_r13lattice_00904.tif` measured 99.6017% of the existing S25-TLF candidate dots within 3 px (threshold >70%). Previous approval excluded this registry entry and is revoked; byte-validity does not imply protocol uniqueness. The asserted 0.36 projection and 0.28–0.44 range were heuristic extrapolations, not calibrated estimates or confidence bounds, and are withdrawn. The single-feature canaries were evaluated against the SGMC proxy rather than the required withheld-fault holdout, so those canaries cannot pass the required gate. Its surface weights were chosen on the same SGMC map subsequently scored; its block analysis was not independent validation. No organizer receipt, selector approval, or current quota information is available. [Audit](docs/s25-tlf/AUDIT-20261028.md).
+
 ## Current review irregularities — 2026-10-27 (arena/ad43b4e5)
 
 - **IR-AD43-01 — unbuffered feature context:** the old label-blind whole-component fold buffered training but left visible catalogue context within 2–3.162 px of held truth in all four folds. Corrected in shared v3; the separate known-pixel mask remains exact. [Geometry audit](docs/review-ad43b4e5/context-buffer-audit.json). Proximity does not itself prove model leakage; historic scores are unmatched to v3.

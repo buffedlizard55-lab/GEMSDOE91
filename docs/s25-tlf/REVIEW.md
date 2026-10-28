@@ -1,3 +1,5 @@
+> **SUPERSEDED 2026-10-28 — DO NOT SUBMIT.** The approval and leaderboard projection below were incorrect. Independent audit of the frozen registry lattice measured 99.6017% directed dot overlap (>70%); no full-registry pass or separate selector approval exists. The 0.36 projection and its range are withdrawn. The retained text below is historical evidence, not current advice. See [audit](AUDIT-20261028.md) and [current executive summary](executive-summary.html).
+
 # S25 session review — 2026-10-28
 
 Branch `arena/f3ef46d1-gemsdoe91`. Experiments: **3 of 3 used** (E1 layer screen and

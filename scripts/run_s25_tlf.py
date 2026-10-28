@@ -94,6 +94,7 @@ def verify_pins(ids: list[str]) -> dict:
 
 
 def main() -> int:
+    raise SystemExit("BLOCKED: S25-TLF failed the frozen-registry duplicate gate; historical runner/renderer cannot authorize or regenerate this release. See docs/s25-tlf/witness-audit-20261028.json")
     t0 = time.time()
     EVID.mkdir(parents=True, exist_ok=True)
     pins = verify_pins(["sample_submission", "existing_faults", "training_features",

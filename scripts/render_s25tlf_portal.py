@@ -62,6 +62,7 @@ def inject_front_door(art, proxy, uni, central, lo, hi) -> None:
     renderer erases this banner, and re-running *this* script puts it back.  The
     banner carries no number that is not also in ``run-card.json``.
     """
+    raise RuntimeError("BLOCKED: historical S25-TLF verdict is invalid; do not render an approval")
     idx = ROOT / "docs/index.html"
     if not idx.is_file():
         return
@@ -97,6 +98,7 @@ def inject_front_door(art, proxy, uni, central, lo, hi) -> None:
 
 
 def main() -> int:
+    raise SystemExit("BLOCKED: S25-TLF failed the frozen-registry duplicate gate; historical runner/renderer cannot authorize or regenerate this release. See docs/s25-tlf/witness-audit-20261028.json")
     card = json.loads((EVID / "run-card.json").read_text())
     with rasterio.open(ROOT / "data/official/sample_submission.tif") as s:
         footprint = np.isfinite(s.read(1))
