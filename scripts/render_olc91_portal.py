@@ -270,6 +270,54 @@ def s25_callout(root=ROOT) -> str:
 
 
 
+def s27_osdr_callout(root=ROOT) -> str:
+    """Latest de novo session (S27-OSDR) research download, re-verified fail-closed."""
+    docs = root / "docs"
+    card_path = docs / "s27-osdr/run-card.json"
+    if not card_path.is_file():
+        return ""
+    card = json.loads(card_path.read_text(encoding="utf-8"))
+    if card.get("ok_to_submit") is not False or card.get("verdict") != "negative":
+        raise ValueError("S27-OSDR must remain explicitly not approved for submission")
+    if card.get("organizer_confirmed", {}).get("score") is not None:
+        raise ValueError("S27-OSDR must not claim an organizer score")
+    diag = json.loads((docs / "s27-osdr/diagnostics.json").read_text(encoding="utf-8"))
+    if diag.get("candidate", {}).get("sha256") != card.get("raster_sha256"):
+        raise ValueError("S27-OSDR diagnostics do not describe the run-card raster")
+    tif = (root / card["raster_file"]).resolve()
+    archive_path = (root / card["zip_file"]).resolve()
+    downloads = (docs / "downloads").resolve()
+    if not tif.is_relative_to(downloads) or not archive_path.is_relative_to(downloads):
+        raise ValueError("S27-OSDR artifact path escapes docs/downloads")
+    tif_bytes = tif.read_bytes()
+    if hashlib.sha256(tif_bytes).hexdigest() != card.get("raster_sha256"):
+        raise ValueError("S27-OSDR TIFF hash mismatch")
+    if hashlib.sha256(archive_path.read_bytes()).hexdigest() != card.get("zip_sha256"):
+        raise ValueError("S27-OSDR ZIP hash mismatch")
+    with zipfile.ZipFile(archive_path) as archive:
+        members = [n for n in archive.namelist() if not n.endswith("/")]
+        if members != [tif.name] or archive.read(members[0]) != tif_bytes:
+            raise ValueError("S27-OSDR ZIP must contain exactly its TIFF bytes")
+    note = card.get("submission_note", "")
+    if not isinstance(note, str) or not 0 < len(note) <= 140:
+        raise ValueError("S27-OSDR note must contain 1-140 characters")
+    h = card["holdout"]
+    u = card["uniqueness"]
+    d = h["paired_vs_incumbent_s25_fabric_e2"]
+    sgmc = next(r for r in diag["sgmc"]["rows"] if r["name"] == "s27_cvdc_e2_candidate")
+    lfi = next(r for r in diag["lfi"]["rows"] if r["name"] == "s27_cvdc_e2_candidate")
+    tif_href = tif.relative_to(docs.resolve()).as_posix()
+    zip_href = archive_path.relative_to(docs.resolve()).as_posix()
+    sub_name = tif.stem
+    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S27-OSDR latest de novo research artifact; not approved for submission">
+<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<h2>S27-OSDR · Contour–Potential V-Discordance + Sign-Locked Odd-Symmetric Dip-Reversal Stitched OOF · 37,654 dots · 2026-10-29</h2>
+<p><strong>#1 blind off-catalogue USGS SGMC recall (<code>{sgmc["dti"]:.6f}</code>, &gt;500 m <code>{sgmc["dti_gt500m"]:.6f}</code>)</strong> and highest current S27 post-hoc LFI <code>MODEL_PROJECTION_NOT_A_SCORE</code> (<code>{lfi["ridge1"]:.5f}</code>, ridge=10 <code>{lfi["ridge10"]:.5f}</code>), with <code>HOLDOUT-DTI</code> <strong>{h["dti"]:.6f}</strong> [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, {h["n_withheld_positives"]:,} withheld; paired <code>&Delta;DTI = {d["delta"]:+.6f}</code> [{d["ci95"][0]:+.6f}, {d["ci95"][1]:+.6f}] vs S25-FABRIC E2). Unique vs all 9 focus leaders (max {100*u["dot_3px_max_nine_focus_leaders"]:.2f}% within 3 px), vs <code>GEMSDOE92 lbmc1</code> ({100*u["dot_3px_gemsdoe92_lbmc1"]:.2f}%), vs all 181 competitive sparse rasters &le;90k px (max {100*u["dot_3px_max_competitive_le_90000px"]:.2f}% &le; 70%), and vs all 5 concurrent S26/S27 candidates (max {100*u["concurrent_main_max_dot_3px"]:.2f}% &le; 70%). Fails literal synthetic 5-px lattice (<code>calib_r13lattice_00904.tif</code>, {100*u["dot_3px_max_frozen_64_all"]:.2f}%) &rarr; verdict <strong>negative</strong>; must not be uploaded to DrivenData. Full evidence, nine-site + GEMSDOE92 table, 5 hypotheses &amp; submission guide: <a href="s27-osdr/executive-summary.html">S27-OSDR executive summary</a>.</p>
+<p><a class="button" download href="{esc(tif_href, quote=True)}">Download S27-OSDR research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s27-osdr/REVIEW.md">Session review</a> · <a href="s27-osdr/run-card.json">Run card</a></p>
+<p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(sub_name)}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
+</section>'''
+
+
 def s27_cvdc_callout(root=ROOT) -> str:
     """Latest de novo session (S27-CVDC) research download, re-verified fail-closed."""
     docs = root / "docs"
@@ -387,7 +435,7 @@ def render() -> None:
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
-    parallel_card = (s27_cvdc_callout(ROOT) + s27_callout(ROOT)
+    parallel_card = (s27_osdr_callout(ROOT) + s27_cvdc_callout(ROOT) + s27_callout(ROOT)
                      + concurrent_s26_callout(ROOT) + s25_callout(ROOT)
                      + s24_callout(ROOT))
     for source_name, target_name in ((CURRENT['index_src'], "index.html"),
@@ -440,6 +488,7 @@ def render() -> None:
         '<h1>GEMSDOE91 · Current review</h1>' + _root_verdict() + 
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
         '<a href="docs/review-4239f6e5/executive-summary.html">Current executive summary, nine-site table and submission guide</a> · '
+        '<a href="docs/s27-osdr/executive-summary.html">S27-OSDR research candidate (#1 blind SGMC) &amp; nine-site forensics</a> · '
         '<a href="docs/s27-cvdc/executive-summary.html">S27-CVDC research candidate &amp; nine-site forensics</a> · '
         '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
         '</main></body></html>\n', encoding='utf-8')

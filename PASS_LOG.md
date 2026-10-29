@@ -1,3 +1,9 @@
+## 2026-10-29 · `S27-OSDR` (`arena/7de7860e-gemsdoe91`) — three-pass review & build
+
+1. **Pass 1 (Discovery, Preregistration, `CVDC+OSDR+MVSD` Physics & 3 Experiments):** Restored all 15 pinned inputs, 62/64 frozen registry rasters, 108 `LFI` anchors, all 9 focus leaders, and `GEMSDOE92 lbmc1` (`sha256: e928d3c3...3a1c`, `0.2784` `USER-REPORTED` vs `0.3322` own `MODEL`); froze `docs/s27-osdr/preregistration.md` (`sha256: df5f5e820fbd3d52...`); passed all Rule-4 leakage canaries (`max_symmetric_auc = 0.7276 <= 0.90`); executed `E1=0.157054`, **`E2=0.159482 [0.139292, 0.179660]` (`+0.013470` vs `S25-FABRIC E2`, `#1` blind `SGMC = 0.112925`, `LFI = 0.18967`)**, `E3=0.157275`; packaged `gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.{tif,zip,json}`.
+2. **Pass 2 (Concurrent `origin/main` Integration, Edge Cases & Real-Browser Verification):** Merged `origin/main` (`178e121`), namespaced cleanly under `docs/s27-osdr/` with zero overwrites, verified `21.44%–42.43% <= 70%` 3-px overlap across all 5 concurrent `S26/S27` rasters (`docs/s27-osdr/concurrent-main-overlap.json`), added `tests/test_s27_osdr.py` + `tests/test_s27_osdr_runner.py`, and extended `tools/browser/smoke.cjs` (`axe-core` WCAG2AA, `390x844` mobile overflow, and real Chromium `.tif`/`.zip` SHA-256 download checks).
+3. **Pass 3 (Line-by-Line Prompt & Receipt Parity Audit):** Verified exact SHA-256 digests, `91/140`-char note, evidence labels (`ORGANIZER-CONFIRMED: None`, `HOLDOUT-DTI`, `MODEL_PROJECTION_NOT_A_SCORE`), relative links, 5 ranked hypotheses (`H27-1..H27-5`), and fail-closed `OK TO SUBMIT: NO` verdict across all pages and tests (`0` weekly slots spent).
+
 ## S26 — 2026-10-28: corrective three-pass review
 
 ## 2026-10-29 · active review `arena/4239f6e5-gemsdoe91`

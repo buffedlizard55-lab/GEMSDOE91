@@ -1,0 +1,110 @@
+{
+  "schema": "s27-cvdc-features-v1",
+  "catalogue_features_used": false,
+  "footprint_pixels": 5167373,
+  "total_static_features": 38,
+  "pure_subsurface_feature_count": 26,
+  "topo_discordance_feature_count": 12,
+  "pure_subsurface_names": [
+    "raw_B01_tile",
+    "raw_B02_rtp",
+    "raw_B03_thd",
+    "raw_B04_maxshear",
+    "raw_B05_si",
+    "raw_B06_rad_tc",
+    "raw_B07_ss_maxshear",
+    "raw_B08_dilatation",
+    "raw_B09_mag_density",
+    "raw_B10_eq_w",
+    "raw_B11_grav_vg",
+    "raw_B13_grav_iso",
+    "raw_B14_tmi",
+    "raw_B15_cond_base_depth",
+    "raw_B16_eq_uw",
+    "raw_B17_cond_surf",
+    "raw_B18_grav_hg",
+    "sub_grad_rtp_b02",
+    "sub_grad_grav_b13",
+    "sub_grad_tmi_b14",
+    "osdr_grav_step_w5",
+    "osdr_rtp_step_w5",
+    "osdr_grav_rtp_sign_lock",
+    "osdr_b15_hangingwall_align",
+    "osdr_cond_b15_resid_step",
+    "osdr_transtension_conduit"
+  ],
+  "topo_discordance_names": [
+    "raw_B12_det_elev",
+    "raw_B19_det_slope",
+    "topo_grad_elev_b12",
+    "cvdc_sin2_elev_grav_s1p5",
+    "cvdc_sin2_elev_grav_s3p5",
+    "cvdc_sin2_elev_rtp_s3p5",
+    "cvdc_multiscale_persist",
+    "cvdc_transverse_slope_jump",
+    "mvsd_strike_persist_l9",
+    "mvsd_strike_persist_l17",
+    "mvsd_valley_bridge_product",
+    "mvsd_cover_index"
+  ],
+  "band_06_semantics": "airborne gamma-ray radiometric Total Count exposure (IR-91-S12-04; NOT magnetic tilt)",
+  "band_15_semantics": "DrivenData depth to conductive base (NOT drill-confirmed crystalline basement)",
+  "nodata_policy": "exclude non-finite and |value| >= 1e+30 via masked normalised convolution + morphological support erosion",
+  "invalid_pixels_inside_footprint": {
+    "B01": 3061,
+    "B02": 3061,
+    "B03": 3061,
+    "B04": 3061,
+    "B05": 3061,
+    "B06": 3073,
+    "B07": 3061,
+    "B08": 3061,
+    "B09": 3061,
+    "B10": 3061,
+    "B11": 3061,
+    "B13": 3061,
+    "B14": 3061,
+    "B15": 3061,
+    "B16": 3061,
+    "B17": 3061,
+    "B18": 3061,
+    "B12": 3061,
+    "B19": 3061
+  },
+  "control_cvdc_support_pixels": 4866177,
+  "inputs_verified": {
+    "sample_submission": {
+      "path": "data/official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "path": "data/official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "path": "data/bridge/gems-geodawn-numerical-features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    },
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    },
+    "sgmc_faults_control": {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602
+    }
+  },
+  "preregistration": {
+    "path": "docs/s27/preregistration.md",
+    "sha256": "df5f5e820fbd3d5265ebcbc888bddf20a17617b859900924cbc39c03f2f3b389"
+  },
+  "frozen_registry": {
+    "path": "docs/s27/frozen-registry.json",
+    "sha256": "18ea52af8a2aa3c92004e18acf3f482e84de9c0fad11c8405e72324a59edeb77"
+  }
+}

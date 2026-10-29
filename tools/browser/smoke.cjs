@@ -294,7 +294,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'archive-desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 'submission-guide.html', 's27-cvdc/executive-summary.html', 's27/executive-summary.html', 'review-4239f6e5/executive-summary.html', 's26/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const target of ['index.html', 'submission-guide.html', 's27-osdr/executive-summary.html', 's27-cvdc/executive-summary.html', 's27/executive-summary.html', 'review-4239f6e5/executive-summary.html', 's26/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -302,6 +302,25 @@ async function main() {
         return audit.violations.map(item => ({ id: item.id, impact: item.impact, description: item.description }));
       });
       accessibility.push({ page: target, violations: result });
+    }
+    await page.goto(new URL('s27-osdr/executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
+    if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
+      throw new Error('Missing S27-OSDR fail-closed negative submission state');
+    }
+    const s27OsdrCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/s27-osdr/run-card.json')));
+    const s27OsdrDlEvent = page.waitForEvent('download');
+    await page.locator(`a[download][href="../downloads/${path.basename(s27OsdrCard.raster_file)}"]`).click();
+    const s27OsdrDownload = await s27OsdrDlEvent;
+    const s27OsdrDigest = crypto.createHash('sha256').update(fs.readFileSync(await s27OsdrDownload.path())).digest('hex');
+    if (s27OsdrDigest !== s27OsdrCard.raster_sha256 || s27OsdrCard.ok_to_submit !== false) {
+      throw new Error('S27-OSDR research download SHA256 or negative verdict mismatch');
+    }
+    const s27OsdrZipEvent = page.waitForEvent('download');
+    await page.locator(`a[download][href="../downloads/${path.basename(s27OsdrCard.zip_file)}"]`).click();
+    const s27OsdrZip = await s27OsdrZipEvent;
+    const s27OsdrZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await s27OsdrZip.path())).digest('hex');
+    if (s27OsdrZipDigest !== s27OsdrCard.zip_sha256) {
+      throw new Error('S27-OSDR single-TIFF ZIP download SHA256 mismatch');
     }
     await page.goto(new URL('s27-cvdc/executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
     if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
@@ -334,7 +353,7 @@ async function main() {
 
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 'submission-guide.html', 'executive-summary.html', 's27-cvdc/executive-summary.html', 's27/executive-summary.html', 'review-4239f6e5/executive-summary.html', 's26/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const mTarget of ['index.html', 'submission-guide.html', 'executive-summary.html', 's27-osdr/executive-summary.html', 's27-cvdc/executive-summary.html', 's27/executive-summary.html', 'review-4239f6e5/executive-summary.html', 's26/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
@@ -350,6 +369,8 @@ async function main() {
       focus_feed_mock: { successful_heads: 8, failed_heads: 1, failed_snapshot_retained: true, credentials_sent: false },
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
+      s27_osdr_download_sha256: s27OsdrDigest,
+      s27_osdr_zip_download_sha256: s27OsdrZipDigest,
       s27_cvdc_download_sha256: s27CvdcDigest,
       dzedge_download_sha256: dzDigest,
       s19_svhf_download_sha256: s19Digest,
