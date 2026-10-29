@@ -6,8 +6,8 @@
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
-  "files_checked": 121,
-  "format_pass": 112,
+  "files_checked": 123,
+  "format_pass": 114,
   "format_fail": 9,
   "ok_to_submit": false,
   "files": [
@@ -446,6 +446,49 @@
       "ok_to_submit": false,
       "sha256": "bb8979945d08b1434f0fdda3fd8ff0e704dbb3b274150845c2ba1a781abb5acc",
       "zip_member": "gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "b9ec1edf27ab7734073bae6ad9617900c540341ea062ff979ed0828ebf45e054",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.zip",
+      "policy_status": "current_research_only",
+      "ok_to_submit": false,
+      "sha256": "6d903c076965f928fb33b23d37af9f02577ece37edaa2b6ceb5cb8b008e5f78d",
+      "zip_member": "gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif",
       "status": "PASS",
       "checks": {
         "single_band": true,

@@ -1,0 +1,123 @@
+{
+  "file": "gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif",
+  "sha256": "b9ec1edf27ab7734073bae6ad9617900c540341ea062ff979ed0828ebf45e054",
+  "bytes": 107025,
+  "submission_name": "gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros",
+  "note": "DEF4A160 heuristic scaling-break+basement 20k dots; research only see card",
+  "note_chars": 74,
+  "validator": {
+    "file": "/home/user/GEMSDOE91/docs/downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif",
+    "bytes": 107025,
+    "sha256": "b9ec1edf27ab7734073bae6ad9617900c540341ea062ff979ed0828ebf45e054",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0016287759644910693,
+    "emitted_positive_pixels": 20000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 20000,
+    "footprint_fraction": 0.0038704386155208846
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE91/docs/downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif",
+    "bytes": 107025,
+    "sha256": "b9ec1edf27ab7734073bae6ad9617900c540341ea062ff979ed0828ebf45e054",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0016287759644910693,
+    "n_nonzero": 20000,
+    "mass": 20000.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.zip",
+  "zip_sha256": "6d903c076965f928fb33b23d37af9f02577ece37edaa2b6ceb5cb8b008e5f78d",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "DEF4A160-heuristic",
+    "budget": 20000
+  }
+}

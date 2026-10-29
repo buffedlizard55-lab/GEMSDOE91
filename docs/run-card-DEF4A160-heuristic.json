@@ -1,0 +1,156 @@
+{
+  "schema": "gems91.run-card-def4a160-heuristic.v1",
+  "lane": "DEF4A160 heuristic (self-assigned)",
+  "preregistration": "docs/HYPOTHESES_DEF4A160.md",
+  "hypothesis": "Heuristic scaling-break + basement-step catches buried faults despite no ML.",
+  "mechanism": "4 rank features geom mean -> heuristic surface -> NMS 20000 dots spacing 3.5 collar 5.0",
+  "named_non_fault_mimic": "Lith contacts, fan margins, shorelines, roads",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "heuristic": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.059890988001664855,
+        "ci95": [
+          0.05434471252667036,
+          0.06605692686372718
+        ],
+        "withheld_positive_pixels": 60988,
+        "tpw": 27084.542838698642,
+        "fpw": 1990116.9079898084,
+        "fnw": 33903.45716130136
+      },
+      "base_mag12": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.06459691733884139,
+        "ci95": [
+          0.05842748163408946,
+          0.0715071533434183
+        ],
+        "withheld_positive_pixels": 60988,
+        "tpw": 35178.58305222477,
+        "fpw": 2443799.8988852073,
+        "fnw": 25809.416947775226
+      }
+    },
+    "best_comparable_control": "base_mag12",
+    "paired_differences": {
+      "base_mag12": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.004705929337176534,
+        "ci95": [
+          -0.007228389651292069,
+          -0.002301945346407512
+        ],
+        "withheld_positive_pixels": 60988
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 161,
+      "draws": 1000,
+      "seed": 20261029,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "4687a28bc83959a3d815c0a37abb43fe72286c523db867877bd1f626c4d094b6",
+      "holdout.py": "41ecfbca6f4a2b615a09c50653e272bd134ce14ab19b84b56a275f97fd75fe78",
+      "metric.py": "d536dc94ecf355aa8068499787cacd425dcb6c8c1a5d6684d5785c4f072bd083",
+      "spatial.py": "dd3c4e5dd770f96341e6beb681c1af89e42b6766257df50c455999bfd68704ed"
+    }
+  },
+  "leakage_canary": {
+    "max_symmetric_auc": 0.596028656341292,
+    "worst": "heuristic",
+    "pass": true
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_rho": 0.0778495917414113,
+    "surface_worst": "/home/user/GEMSDOE91/data/fleet_registry/calib_h161_01855.tif",
+    "surface_pass_le_0.90": true,
+    "final_dot_max_overlap_all": 1.0,
+    "final_dot_worst": "/home/user/GEMSDOE91/data/fleet_registry/calib_r13lattice_00904.tif",
+    "final_dot_max_overlap_competitive_le_90000px": 0.3972,
+    "final_dot_max_overlap_nine": 0.34955,
+    "final_dot_pass_nine_le_0.70": true,
+    "final_dot_pass_competitive_le_0.70": true
+  },
+  "budget": 20000,
+  "raster": {
+    "path": "docs/downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif",
+    "sha256": "b9ec1edf27ab7734073bae6ad9617900c540341ea062ff979ed0828ebf45e054",
+    "bytes": 107025,
+    "n_dots": 20000,
+    "validation": {
+      "file": "/home/user/GEMSDOE91/docs/downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif",
+      "bytes": 107025,
+      "sha256": "b9ec1edf27ab7734073bae6ad9617900c540341ea062ff979ed0828ebf45e054",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0016287759644910693,
+      "emitted_positive_pixels": 20000,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 20000,
+      "footprint_fraction": 0.0038704386155208846
+    }
+  },
+  "submission_name": "gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros",
+  "submission_note": "DEF4A160 heuristic scaling-break+basement 20k dots; research only see card",
+  "OK_TO_DOWNLOAD": "YES",
+  "OK_TO_SUBMIT": "NO",
+  "verdict": "negative",
+  "experiments_run": 1
+}

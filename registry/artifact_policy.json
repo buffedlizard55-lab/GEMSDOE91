@@ -740,6 +740,18 @@
       "sha256": "041972c262a36fd87fca88c85a6ecaf2e29a7aebdbc558cc065468d723078428",
       "status": "current_research_only",
       "reason": "DUPLICATE_STOP: 99.6017% of candidate dots within 3px of frozen registry lattice; no selector approval. Research only; NOT OK TO SUBMIT. See docs/s25-tlf/witness-audit-20261028.json."
+    },
+    {
+      "path": "docs/downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif",
+      "sha256": "b9ec1edf27ab7734073bae6ad9617900c540341ea062ff979ed0828ebf45e054",
+      "status": "current_research_only",
+      "reason": "DEF4A160 heuristic scaling-break+basement 20k dots heuristic OOF lite; surface PASS, nine PASS 34.95% competitive PASS 39.72% lattice literal 100% (blanket), holdout 0.059891 < base 0.064597 delta -0.00471, canary PASS 0.596, format PASS, research only NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.zip",
+      "sha256": "6d903c076965f928fb33b23d37af9f02577ece37edaa2b6ceb5cb8b008e5f78d",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of DEF4A160 heuristic 20k dots research artifact; format PASS, NOT OK TO SUBMIT."
     }
   ]
 }

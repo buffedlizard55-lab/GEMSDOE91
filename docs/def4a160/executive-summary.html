@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DEF4A160 — executive summary · GEMSDOE91</title>
+<link rel="stylesheet" href="../assets/portal.css">
+<style>.no{color:#9b1c1c;font-weight:700}.yes{color:#14532d;font-weight:700}
+.decision{border:3px solid #9b1c1c;padding:1rem 1.2rem;border-radius:8px;background:#fff7ed}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid #d1d5db;padding:.5rem;vertical-align:top;text-align:left}
+.table-scroll{overflow-x:auto}code{word-break:break-all}</style></head>
+<body><div class="wrap"><main id="main">
+<p><a href="../index.html">&larr; Current portal</a> · <a href="../HYPOTHESES_DEF4A160.md">Preregistration & hypotheses</a> ·
+<a href="../run-card-DEF4A160-heuristic.json">Run card (JSON)</a> · <a href="review.md">Full review</a> ·
+<a href="../submission-guide.html">Submission guide</a></p>
+<h1>DEF4A160 — executive summary (2026-10-29)</h1>
+<div class="decision">
+<p style="font-size:1.25rem;margin:.2rem 0"><strong>New unique TIF generated: YES</strong> (20,000 dots, new scaling-break + basement-step heuristic, not a copy).<br>
+<strong>OK TO DOWNLOAD: YES — RESEARCH ONLY.</strong><br>
+<strong>OK TO SUBMIT: NO.</strong> Do not spend a weekly slot — holdout does not beat control and lattice literal fails (see gates).</p>
+<p><strong>File to download (research):</strong> <a href="../downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif">gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif</a>
+(<a href="../downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.zip">single-TIFF ZIP</a>)<br>
+SHA-256 <code>b9ec1edf27ab7734073bae6ad9617900c540341ea062ff979ed0828ebf45e054</code> · 20,000 dots · all-finite [0,1] · EPSG:32611 · 3730×3292 · 100 m · 0 dots on catalogue</p>
+<p><strong>Estimated leaderboard score (labelled):</strong> ORGANIZER-CONFIRMED: <strong>none</strong>. No LFI refit in this lite session. <strong>HOLDOUT-DTI 0.059891 [0.054345,0.066057]</strong> <code>gems57-pooled-hide-v2</code> v3, 60,988 withheld — *not a leaderboard score* (it measures recovery of withheld catalogue faults, not hidden new faults). Base single-feature control 0.064597, paired delta <strong>-0.00471 [-0.00723,-0.00230]</strong>. Public leaderboard fetched 2026-10-28: #1 = 0.4544, #2 = 0.3916 (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData</a>); prompt's 0.4413 / 0.3195 are stale/conflicting.</p>
+<p><strong>Why OK TO SUBMIT is NO (all automated, no human inspection):</strong>
+(1) *Holdout gate:* delta vs best matched control is negative (CI entirely below 0). (2) *Literal registry gate:* 100% of dots within 3 px of the 206,895-dot lattice <code>calib_r13lattice_00904</code> (99.87% footprint coverage — geometrically forced for any spread raster; competitive ≤90k and nine-site scopes **do pass**). (3) *Selector:* promotion is a separate human decision with live weekly-cap check (protocol rule 6); 0 slots used. What DID pass: canary, surface |rho| ≤0.90, nine-site and competitive dot uniqueness, format validator.</p>
+</div>
+
+<h2>The table the project asked for — file / estimated score / uniqueness / submit?</h2>
+<p>Labels: <strong>HOLDOUT-DTI</strong> = recovery of withheld catalogue faults on shared evaluator (never a leaderboard score). <strong>USER-REPORTED</strong> = claim copied from site/prompt with no organizer receipt. <strong>ORGANIZER-CONFIRMED</strong> = copied from submission-page receipt (none in this repo). Nothing here is ORGANIZER-CONFIRMED.</p>
+<div class="table-scroll"><table>
+<caption>New research candidates generated in this repository (best by recency)</caption>
+<thead><tr><th>File to download</th><th>Estimated leaderboard score</th><th>Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 and registry?</th><th>OK to submit?</th></tr></thead>
+<tbody>
+<tr><th scope="row">DEF4A160 heuristic — <strong>this session, download this one for research</strong><br><a href="../downloads/gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif">gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros.tif</a><br><small>SHA256 b9ec1edf27ab7734… · 20,000 dots</small></th>
+<td><strong>ORGANIZER-CONFIRMED: none.</strong> HOLDOUT-DTI 0.059891 [0.054345,0.066057] (v3, 60,988 withheld; not a leaderboard score). No LFI projection in lite session.</td>
+<td><strong>YES vs nine</strong> 34.95% max within 3 px ≤70%; <strong>YES vs competitive ≤90k</strong> 39.72% ≤70%; <strong>NO vs literal all</strong> 100% vs lattice <code>calib_r13lattice_00904</code> (geometrically forced — 99.87% footprint coverage). Surface |ρ| 0.078 ≤0.90 PASS.</td>
+<td class="no">NO — research only</td></tr>
+<tr><th scope="row">S25-FABRIC E2 — prior session (best v3 holdout in repo)<br><a href="../downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif">gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif</a><br><small>SHA256 0046fca5d12c915b… · 37,654 dots</small></th>
+<td><strong>ORGANIZER-CONFIRMED: none.</strong> HOLDOUT-DTI 0.147741 [0.12976,0.16756] beats base control +0.022997 [+0.01427,+0.03187]; LFI MODEL projection 0.0792 (not a score)</td>
+<td>YES vs nine 40.19%; <strong>NO vs competitive</strong> 74.89% vs BHAR >70%; literal 98.75% vs lattice</td>
+<td class="no">NO</td></tr>
+</tbody></table></div>
+
+<div class="table-scroll"><table>
+<caption>Best historical file per focus site — re-audited from bytes 2026-10-28 (hashes in nine-site-leaders-20261028.json)</caption>
+<thead><tr><th>Site</th><th>Best claimed file</th><th>Score evidence</th><th>Unique among the nine?</th><th>OK to submit?</th></tr></thead>
+<tbody>
+<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">GEMSDOE24</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/blob/3bbcfbbc1d09e33eee95d03b5635d45b75cb74c8/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif">gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</a><br><small>SHA256 68d0e2e4fcc594f9… · 60,069 dots · NaN outside</small></td><td><strong>0.2477</strong> <small>USER-REPORTED</small><br><small>no receipt</small></td><td class="no">NO — 88.48–100% vs peers</td><td class="no">NO — duplicate, already submitted</td></tr>
+<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE25/">GEMSDOE25</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/blob/fa8c09a948915ba3be6754f091de18f0d8887126/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif">gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</a><br><small>SHA256 91eae1ca42ec845e… · 44,090 dots</small></td><td><strong>0.2600</strong> <small>USER-REPORTED</small></td><td class="no">NO — 88.17–100%</td><td class="no">NO</td></tr>
+<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE27/">GEMSDOE27</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/blob/b8707c58dbcc0758d23b608ca1675afa6825933e/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif">gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</a><br><small>SHA256 33003374335d84bf… · 61,328 dots</small></td><td><strong>0.2449</strong> <small>USER-REPORTED</small></td><td class="no">NO — 86.72–98.02%</td><td class="no">NO</td></tr>
+<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">GEMSDOE28</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/aced524e5c9d72a9ac6bfdbb5606c17002f458dd/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif">gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</a><br><small>SHA256 5556aa1438fd6737… · 37,660 dots</small></td><td><strong>0.2710</strong> <small>USER-REPORTED</small></td><td class="no">NO — 95.47–100%</td><td class="no">NO</td></tr>
+<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE30/">GEMSDOE30</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/84506bdbaa36cc4ffb04b687745172debbf4d705/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif">gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</a><br><small>SHA256 8cf893ead5667df2… · 44,090 dots</small></td><td><strong>0.2600</strong> <small>USER-REPORTED</small></td><td class="no">NO — 88.17–100%</td><td class="no">NO</td></tr>
+<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE31/">GEMSDOE31</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/blob/914f08eab4a51692fee30b34f827d399d29a860f/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif">gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</a><br><small>SHA256 07b6db440535404b… · 40,199 dots</small></td><td><strong>0.2708</strong> <small>USER-REPORTED</small></td><td class="no">NO — 95.39–100%</td><td class="no">NO</td></tr>
+<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/">GEMSDOE32</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/47c946df19ba7c539d0240499c3080bc9c027d96/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif">gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</a><br><small>SHA256 c55bafc470054e82… · 37,654 dots · zeros outside</small></td><td><strong>0.2778</strong> <small>USER-REPORTED — <strong>highest among nine</strong></small></td><td class="no">NO — 99.88–100% vs peers</td><td class="no">NO — already submitted, not new unique</td></tr>
+<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE33/">GEMSDOE33</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/deeb6a8aa702289347607e543b8f01eef99dec68/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif">GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</a><br><small>SHA256 87f857d505e23247… · 41,865 dots</small></td><td><strong>0.2632</strong> <small>USER-REPORTED</small></td><td class="no">NO — 92.64–99.71%</td><td class="no">NO</td></tr>
+<tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE36/">GEMSDOE36</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/966fafb03d9555e08330007e39ec734cae5c11e0/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif">gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</a><br><small>SHA256 e15891020b9c5705… · 38,854 dots</small></td><td><strong>0.2750</strong> <small>USER-REPORTED</small></td><td class="no">NO — 97.31–97.58%</td><td class="no">NO</td></tr>
+</tbody></table></div>
+
+<h2>Why 0.2778 is the family's high and how to beat 0.3195 → 0.4544</h2>
+<p><strong>Bytes prove one family.</strong> S22 lineage re-verified: H19-5's 121,131-px worm network (0.1922) was NMS-sampled at 2.828 px (44,090 dots, 0.2600, GEMSDOE25/30), then dots ≤1 px from catalogue removed (40,199, 0.2708 — pixel-identical GEMSDOE28 H27-4 / GEMSDOE31 solo), then (1,2] px removed (37,654, <strong>0.2778</strong> GEMSDOE32). Under DTI = T/(0.2T+0.2FP+0.8|G|) with max-per-truth-pixel 300 m triangular kernel, mapped-fault pixels are masked in scoring, so near-catalogue dots pay 0.2·FP with ~0 T. A second dot near an already-covered truth adds no T. Pruning redundancy lifts DTI without a better detector; the ladder's next two scores are predicted within 0.001. Implied weighted recall ≈38–42% at ≈0.135 mean credit. Public #1 0.4544 (fetched 2026-10-28) needs ≈1.6× that credit or +35% recall — <em>new information</em>, not re-pruning. The repo's ranked #1 path remains 1 m lidar scarp morphometry (USGS 3DEP, CC0, free) plus drainage offset on an unrestricted host; this sandbox cannot fetch <code>tnmaccess.nationalmap.gov</code> or <code>1m_DEM_links.csv</code> (tested, blocked). This session's heuristic validates a new geometry that clears the 20k lattice capacity bound and the competitive/nine uniqueness gates, but its holdout is below its single-feature control, so no beating of 0.2778 is claimed.</p>
+
+<h2>Validation gates — automated, no human inspection</h2>
+<div class="table-scroll"><table><thead><tr><th>Gate</th><th>Result</th><th>Detail</th></tr></thead><tbody>
+<tr><td>Leakage canary symmetric AUC ≤0.90 (rule 4)</td><td class="yes">PASS</td><td>0.5960 heuristic max over 161 clusters</td></tr>
+<tr><td>Surface |ρ| ≤0.90 before placement (rule 1a)</td><td class="yes">PASS</td><td>0.0778 vs calib_h161_01855</td></tr>
+<tr><td>Final dots ≤70% within 3 px — nine leaders</td><td class="yes">PASS</td><td>34.95% max</td></tr>
+<tr><td>Final dots ≤70% — competitive ≤90k</td><td class="yes">PASS</td><td>39.72% max</td></tr>
+<tr><td>Final dots ≤70% — literal all incl. dense lattice</td><td class="no">FAIL</td><td>100% vs lattice 206,895 dots (99.87% footprint coverage; geometrically forced; capacity lower bound 66.76% at 20k)</td></tr>
+<tr><td>Paired HOLDOUT beats best matched control</td><td class="no">FAIL</td><td>heuristic 0.059891 vs base 0.064597 delta -0.00471 [-0.00723,-0.00230]</td></tr>
+<tr><td>Format all-finite [0,1] EPSG:32611 3730×3292 `nodata=None` zeros outside, 0 on catalogue, ZIP roundtrip</td><td class="yes">PASS</td><td>15/15 checks PASS, writer + re-read PASS</td></tr>
+<tr><td>Selector + weekly cap (rule 6)</td><td class="no">FAIL</td><td>0 slots used, decision pending</td></tr>
+</tbody></table></div>
+
+<h2>Exactly how a future selector-approved submission is made</h2>
+<ol>
+<li>Wait for a run card where all gates PASS (this one's do not). Get the separate selector decision and check the weekly quota (3/week Mon–Sun) on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData</a>.</li>
+<li>Download the approved <code>-zeros.tif</code> (or its single-TIFF ZIP) and verify SHA-256 locally (<code>sha256sum file.tif</code>).</li>
+<li>On <em>New submission</em> choose the file — single-band float32 GeoTIFF, EPSG:32611, 3730×3292, same geotransform as sample. The “Predicted values must be in range [0, 1]” error is already prevented here: the shared writer emits all-finite [0,1] with <code>nodata=None</code> and rejects the -3.4e38 sentinel (locally re-read PASS).</li>
+<li>Set the submission identity exactly as recorded. For this research file (provenance only — not approved): name <code>gems91-def4a160-heuristic-20000dots-20261029T143925Z-a52e392d-zeros</code>; note (64/140): “DEF4A160 heuristic scaling-break+basement 20k dots; research only see card”.</li>
+<li>After scoring, save submission ID + timestamp + SHA-256 + displayed score. Only that receipt may be labelled ORGANIZER-CONFIRMED.</li>
+</ol>
+
+<h2>Method in one paragraph</h2>
+<p>DEF4A160-heuristic uses only the SHA-pinned 19-band GeoDAWN stack (no external raster). Four rank features feed one geometric-mean surface (no ML in this lite variant): (1) gradient magnitude of detrended elevation B12, (2) gradient magnitude of basement depth B15, (3) scaling-break ratio var(15)/var(7) of B12 (masked local variance) as log1p rank, and (4) basement-step / strain coincidence sqrt(mag15·mag04)·azimuth-agreement rank where B15's depth gradient aligns within 22.5° of B04's geodetic second-invariant gradient. The fusion targets faults missing from the catalogue because they are buried under bajada/Lahontan fill: the hanging-wall/footwall texture differs at 50–300 m scale even without a sharp scarp, and the basement step still coincides with a strain concentration. Cross-field azimuth agreement and the pairwise scale-contrast (sampled ±7 px across the local gradient normal) suppress unfaulted contacts. Training labels (catalogue) enter only as holdout truth and as the emission collar; no catalogue-distance feature is used. Named mimics: lithologic contacts, fan-lobe margins, Lake Lahontan shorelines, roads/vegetation steps (scale break) and volcanic/compaction steps (basement). 20,000 dots are emitted by shared NMS at 3.5 px spacing / 5.0 px collar. A fault map is not evidence of a vent.</p>
+
+<h2>Official sources (for manual review)</h2>
+<ul>
+<li>Competition + metric + leaderboard: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">rules PDF (DOE/NLR)</a></li>
+<li>Reference solution: <a href="https://github.com/drivendataorg/gems-prize-reference-solution">drivendataorg/gems-prize-reference-solution</a></li>
+<li>GeoDAWN: <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS</a> · INGENIOUS: <a href="https://gdr.openei.org/submissions/1391">GDR 1391</a> · <a href="https://gbcge.org/current-projects/ingenious/">GBCGE</a></li>
+<li>Grid CRS: <a href="https://epsg.io/32611">EPSG:32611</a> · Metric family: <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a> · Future 1 m DEM: <a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP</a> (free; unreachable from sandbox)</li>
+</ul>
+
+<h2>Reproduce</h2>
+<pre>python -m pip install -r requirements.txt
+python scripts/restore_data.py
+python scripts/restore_registry.py --available-only
+python scripts/experiment_preflight.py  # NOT_RULED_OUT at 20k
+PYTHONPATH=src:. python -u scripts/generate_heuristic_def4a160.py
+python scripts/audit_downloads.py --output docs/download-audit.json --html docs/download-audit.html
+</pre>
+<p>Maximize P(Win) · Own the Outcome. 1 of 3 experiments used, 0 slots used. Negative results are deliverables.</p>
+</main></div></body></html>
