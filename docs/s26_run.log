@@ -1,0 +1,74 @@
+/home/user/GEMSDOE91/scripts/run_s26_lidarrad.py:47: RuntimeWarning: overflow encountered in divide
+  arr[15+i] = np.clip((np.nan_to_num(b, nan=med)-med)/scale, -6, 6)
+fold 0: pos=29746 neg=118984 done 132s
+fold 1: pos=45956 neg=183824 done 170s
+fold 2: pos=47909 neg=191636 done 194s
+fold 3: pos=48857 neg=195428 done 223s
+{'fold': 0, 'dti': 0.06424595430354708, 'n_dots': 9413}
+{'fold': 1, 'dti': 0.16112564908799082, 'n_dots': 9413}
+{'fold': 2, 'dti': 0.2205603992197444, 'n_dots': 9413}
+{'fold': 3, 'dti': 0.1921068341664516, 'n_dots': 9413}
+{
+ "holdout": {
+  "S26_candidate": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.13324234713726493,
+   "ci95": [
+    0.11105390802409608,
+    0.1552889994186191
+   ],
+   "withheld_positive_pixels": 60988,
+   "tpw": 7612.919950780993,
+   "fpw": 34114.524848335255,
+   "fnw": 53375.080049219
+  },
+  "R0_static_GEMSDOE32": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.006697041784474405,
+   "ci95": [
+    0.005969120964122151,
+    0.007449522541025754
+   ],
+   "withheld_positive_pixels": 60988,
+   "tpw": 377.3190358808101,
+   "fpw": 37376.43107272676,
+   "fnw": 60610.68096411921
+  },
+  "random_equal_budget": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.07285303391698386,
+   "ci95": [
+    0.06559261410462786,
+    0.07978382018263265
+   ],
+   "withheld_positive_pixels": 60988,
+   "tpw": 4139.450707985821,
+   "fpw": 36004.52206253259,
+   "fnw": 56848.5492920142
+  }
+ },
+ "canary_max": 0.5869246106109598,
+ "surf_rho_vs_R0": 0.0628296845934367
+}
+{
+ "file": "gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
+ "dots": 37654,
+ "sha256_file": "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+ "array_sha256": "e9ffee0b609d4839f0a20977d91da3534c1231d829ea2cd998b743c346a517cf",
+ "overlap3px_vs_registry": {
+  "GEMSDOE28__h27-4-r1-solo-d2-8.tif": 0.3419291443140171,
+  "GEMSDOE32__h33-2-b2-zeros.tif": 0.3244542412492697,
+  "calib_d15_02477.tif": 0.3673182132044404,
+  "calib_h161_01855.tif": 0.40821692250491315,
+  "calib_h194_01894.tif": 0.4005948903170978,
+  "calib_h195_01922.tif": 0.39209645721570086,
+  "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": 0.3530302225527168,
+  "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif": 0.3244542412492697
+ },
+ "max_overlap3px": 0.40821692250491315,
+ "surface_spearman_vs_R0_full": 0.04727640875296271
+}
+EXIT:0

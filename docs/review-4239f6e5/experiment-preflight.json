@@ -1,0 +1,42 @@
+{
+  "schema": "gems91.experiment-preflight.v1",
+  "status": "BLOCKED",
+  "assignment_metadata_present": false,
+  "assignment_authenticated": false,
+  "reasons": [
+    "No assigned single-method paragraph and assignment source",
+    "Literal registry overlap is mathematically impossible at this dot budget",
+    "Sample semantics conflict with organizer description or are unverified"
+  ],
+  "capacity": {
+    "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+    "footprint_pixels": 5167373,
+    "reference_dots": 206895,
+    "uncovered_pixels": 6649,
+    "candidate_budget": 37654,
+    "minimum_overlapping_dots": 31005,
+    "overlap_lower_bound": 0.8234184947150369,
+    "radius_px": 3,
+    "threshold": 0.7,
+    "feasible_by_capacity_only": false,
+    "largest_budget_by_capacity_only": 22163,
+    "status": "IMPOSSIBLE_AT_BUDGET",
+    "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance.",
+    "reference_path": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "reference_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "reference_source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/calib_r13lattice_00904.tif",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "sample_semantics": {
+      "nonzero_inside_footprint": 60988,
+      "status": "CONFLICT_WITH_ORGANIZER_DESCRIPTION",
+      "sample_authenticity_verified": false,
+      "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+    },
+    "inventory_sha256": "8d47a76882009139cb89c3c489b2a3ae30a4386396ef0d5d7c30eccab9b62943",
+    "complete_registry_check": false
+  },
+  "experiments_run_by_this_command": 0,
+  "candidate_generated": false,
+  "ok_to_submit": false,
+  "scope": "Necessary pre-experiment checks only; feature canaries, both registry phases, matched holdout and separate selector still required."
+}

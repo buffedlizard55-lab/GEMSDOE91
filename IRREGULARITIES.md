@@ -1,3 +1,17 @@
+## Irregularities — active and historical reviews
+
+## IR-4239-01 — Sample mirror contradicts public sample description (2026-10-29)
+
+The SHA-pinned mirror called `sample_submission.tif` has 60,988 positive in-footprint cells, exactly matching the mirrored fault catalogue support. The [official problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) says its sample predicts total fault absence. The mismatch does not establish the true file’s origin or the cause of a prior upload error. The geometric capacity bound and format checks remain conditional on this mirror. Preflight blocks on the mismatch; obtain and independently authenticate the real sample and rights. [Evidence](docs/review-4239f6e5/experiment-preflight.json) · [support comparison](docs/review-4239f6e5/historical-s25-audit.json).
+
+## IR-4239-03 — Concurrent S26 claims and runners require correction (2026-10-29)
+
+Three concurrent S26 research artifacts fail the literal pinned-lattice dot rule at 99.2325%, 98.1365% and 98.8235%. Earlier LiDAR/radiometric uniqueness omitted the lattice. The emitter explicitly self-assigned and changed budget, wrote before surface checks, and continued after a duplicate; it used a proxy, so the original S25 holdout cannot be transferred. The LiDAR/radiometric script averages feature canary AUC across folds rather than checking each individual fold; input validity masks need verification. Both runner entry points are disabled, their original bytes and historical cards archived. These are scope and protocol problems, not proof of scientific leakage or the organizer's rejection cause. [Recheck](docs/review-4239f6e5/concurrent-s26-audit.json) · [corrected review](docs/review-4239f6e5/REVIEW.md).
+
+## IR-4239-02 — Shared legacy writer repaired invalid outputs and could publish failed artifacts
+
+The prior writer converted model values to float32 and replaced in-footprint NaN/Inf before validation, then exposed files before all gates completed. The shared writer and low-level encoder now reject invalid original values rather than repairing in-footprint NaNs. The bundle writer also rejects mismatched or masked catalogue data, stages validated files, rereads the ZIP and uses no-overwrite publication with exception rollback. The pinned `vendor/gems57/submission_writer.py` check-then-replace race was also fixed in place; its earlier bytes are archived and the shared template pin records both versions. This is not proof of organizer acceptance or a fully crash-atomic bundle. [Review](docs/review-4239f6e5/REVIEW.md).
+
 ## 2026-10-29 S27-FABRIC-FAR — irregularities flagged for human review
 
 Scope: S27 lane on branch `arena/4b95209e-gemsdoe91`. Evidence: `docs/s27/` (preregistration, holdout, diagnostics, run card, REVIEW.md).
@@ -2024,3 +2038,9 @@ mutable card boolean as slot approval. Historical budget exhausted; command now
 blocks before input reads. Fresh delivery and shared reference checks PASS,
 which does not repair the scientific gates. No current organizer receipt or
 leaderboard verified. Full review: `docs/review-de9d7d75/REVIEW.md`.
+
+## S26 (2026-10-29, arena/18fec2a7-gemsdoe91)
+- IR-S26-07: Repo holdout-best comparisons cross split versions: S21's 0.1957 used split v2-era labelling while vendor spatial.folds now yields split v3 (evaluator_version string still says gems57-pooled-hide-v2). Cross-version DTI comparisons are indicative only; flagged, not silently equated.
+- IR-S26-08: R0-static scores HOLDOUT-DTI 0.0067 under the buffered whole-component holdout despite USER-REPORTED live 0.2778. The holdout instrument removes exactly the visible-catalogue continuation signal R0 exploits; holdout-live calibration via R0 is therefore invalid and no leaderboard projection was issued for S26.
+- IR-S26-09: Pre-existing tests/test_release_integration.py failed in a fresh venv only because `imagecodecs` was absent; after installing it the file passes (6 passed, 1 skipped). Environment dependency, not a code defect; requirements.txt should pin imagecodecs (not changed this session to avoid unrelated churn — flagged for owner).
+- IR-S26-10: Leaderboard values in the standing prompt (0.4413 / 0.3195) are stale: official DrivenData leaderboard fetched 2026-10-29 shows #1 = 0.4544. (Updates IR-S26-01.)

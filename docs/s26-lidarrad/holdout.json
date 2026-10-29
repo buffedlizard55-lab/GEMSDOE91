@@ -1,0 +1,255 @@
+{
+ "lane": "S26 lidar-scarp x radiometric x GeoDawn-raw HGB, dotted 2.8px, 3.05px collar",
+ "evaluator_version": "gems57-pooled-hide-v2",
+ "n_withheld_positives": 60988,
+ "canary_max_symmetric_auc": 0.5869246106109598,
+ "canary_pass_le_0.90": true,
+ "canary": [
+  {
+   "feature": "lidar_ex_max",
+   "max_symmetric_auc": 0.5688875197678591
+  },
+  {
+   "feature": "lidar_ex_mean",
+   "max_symmetric_auc": 0.5574343408305976
+  },
+  {
+   "feature": "lidar_step_max",
+   "max_symmetric_auc": 0.567100719853511
+  },
+  {
+   "feature": "lidar_lapneg_max",
+   "max_symmetric_auc": 0.5695030475748624
+  },
+  {
+   "feature": "lidar_lappos_max",
+   "max_symmetric_auc": 0.5742988508905374
+  },
+  {
+   "feature": "lidar_downface_max",
+   "max_symmetric_auc": 0.5794096245501648
+  },
+  {
+   "feature": "lidar_upface_max",
+   "max_symmetric_auc": 0.581270733206957
+  },
+  {
+   "feature": "lidar_cross_max",
+   "max_symmetric_auc": 0.5735431882737067
+  },
+  {
+   "feature": "lidar_relief",
+   "max_symmetric_auc": 0.563848248439994
+  },
+  {
+   "feature": "lidar_coh100",
+   "max_symmetric_auc": 0.5209043455375792
+  },
+  {
+   "feature": "lidar_strike",
+   "max_symmetric_auc": 0.5212076993295156
+  },
+  {
+   "feature": "rad_K",
+   "max_symmetric_auc": 0.5869246106109598
+  },
+  {
+   "feature": "rad_Th",
+   "max_symmetric_auc": 0.5639340081824229
+  },
+  {
+   "feature": "rad_U",
+   "max_symmetric_auc": 0.5347108997082304
+  },
+  {
+   "feature": "rad_TC",
+   "max_symmetric_auc": 0.5741223653765178
+  },
+  {
+   "feature": "geodawn_b1",
+   "max_symmetric_auc": 0.5167489681656909
+  },
+  {
+   "feature": "geodawn_b2",
+   "max_symmetric_auc": 0.513404544196088
+  },
+  {
+   "feature": "geodawn_b3",
+   "max_symmetric_auc": 0.5178263586162091
+  },
+  {
+   "feature": "geodawn_b4",
+   "max_symmetric_auc": 0.5490618541430557
+  },
+  {
+   "feature": "geodawn_b5",
+   "max_symmetric_auc": 0.5516397714439298
+  },
+  {
+   "feature": "geodawn_b6",
+   "max_symmetric_auc": 0.5745724318808052
+  },
+  {
+   "feature": "geodawn_b7",
+   "max_symmetric_auc": 0.5413950685108975
+  },
+  {
+   "feature": "geodawn_b8",
+   "max_symmetric_auc": 0.5380764573274636
+  },
+  {
+   "feature": "geodawn_b9",
+   "max_symmetric_auc": 0.5169523568920165
+  },
+  {
+   "feature": "geodawn_b10",
+   "max_symmetric_auc": 0.5317182386861355
+  },
+  {
+   "feature": "geodawn_b11",
+   "max_symmetric_auc": 0.5334400877486155
+  },
+  {
+   "feature": "geodawn_b12",
+   "max_symmetric_auc": 0.5250854556611254
+  },
+  {
+   "feature": "geodawn_b13",
+   "max_symmetric_auc": 0.5338617493229867
+  },
+  {
+   "feature": "geodawn_b14",
+   "max_symmetric_auc": 0.5135121221524974
+  },
+  {
+   "feature": "geodawn_b15",
+   "max_symmetric_auc": 0.5228342473646115
+  },
+  {
+   "feature": "geodawn_b16",
+   "max_symmetric_auc": 0.5421365839224985
+  },
+  {
+   "feature": "geodawn_b17",
+   "max_symmetric_auc": 0.5309001070435198
+  },
+  {
+   "feature": "geodawn_b18",
+   "max_symmetric_auc": 0.5313099704837654
+  },
+  {
+   "feature": "geodawn_b19",
+   "max_symmetric_auc": 0.566030183556228
+  }
+ ],
+ "per_fold": [
+  {
+   "fold": 0,
+   "dti": 0.06424595430354708,
+   "n_dots": 9413
+  },
+  {
+   "fold": 1,
+   "dti": 0.16112564908799082,
+   "n_dots": 9413
+  },
+  {
+   "fold": 2,
+   "dti": 0.2205603992197444,
+   "n_dots": 9413
+  },
+  {
+   "fold": 3,
+   "dti": 0.1921068341664516,
+   "n_dots": 9413
+  }
+ ],
+ "pooled": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+   "S26_candidate": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.13324234713726493,
+    "ci95": [
+     0.11105390802409608,
+     0.1552889994186191
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 7612.919950780993,
+    "fpw": 34114.524848335255,
+    "fnw": 53375.080049219
+   },
+   "R0_static_GEMSDOE32": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.006697041784474405,
+    "ci95": [
+     0.005969120964122151,
+     0.007449522541025754
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 377.3190358808101,
+    "fpw": 37376.43107272676,
+    "fnw": 60610.68096411921
+   },
+   "random_equal_budget": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.07285303391698386,
+    "ci95": [
+     0.06559261410462786,
+     0.07978382018263265
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 4139.450707985821,
+    "fpw": 36004.52206253259,
+    "fnw": 56848.5492920142
+   }
+  },
+  "best_comparable_control": "random_equal_budget",
+  "paired_differences": {
+   "R0_static_GEMSDOE32": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.12654530535279052,
+    "ci95": [
+     0.10456684222716228,
+     0.14861342363042115
+    ],
+    "withheld_positive_pixels": 60988
+   },
+   "random_equal_budget": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.06038931322028107,
+    "ci95": [
+     0.0419771269493714,
+     0.07950730933085604
+    ],
+    "withheld_positive_pixels": 60988
+   }
+  },
+  "bootstrap": {
+   "method": "paired physical spatial-cluster percentile",
+   "clusters": 161,
+   "draws": 1000,
+   "seed": 520810,
+   "confidence": 0.95,
+   "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+   "evaluate_holdout.py": "4687a28bc83959a3d815c0a37abb43fe72286c523db867877bd1f626c4d094b6",
+   "holdout.py": "41ecfbca6f4a2b615a09c50653e272bd134ce14ab19b84b56a275f97fd75fe78",
+   "metric.py": "d536dc94ecf355aa8068499787cacd425dcb6c8c1a5d6684d5785c4f072bd083",
+   "spatial.py": "dd3c4e5dd770f96341e6beb681c1af89e42b6766257df50c455999bfd68704ed"
+  }
+ },
+ "surface_spearman_vs_R0": 0.0628296845934367,
+ "elapsed_s": 257.08625888824463
+}

@@ -556,6 +556,78 @@
       "reason": "S23-TILTA historical research artifact; literal lattice duplicate-stop and disputed input semantics. NOT OK TO SUBMIT."
     },
     {
+      "path": "docs/downloads/gems91-s24-cckm-e1-20000dots-20261027T185803Z-fcbfbe32-zeros.tif",
+      "sha256": "24c452417f1bdc4ccd7bf870bbd3e7f595595cfe086944b823a1bbdd11f03578",
+      "status": "current_research_only",
+      "reason": "S24-CCKM E1 research-only negative: HOLDOUT-DTI 0.045952 [0.037996, 0.054356] (gems57-pooled-hide-v2, 60,988 withheld); paired vs best matched control CI includes 0; 100% literal lattice overlap; SGMC-offcat diagnostic 0.027904. NOT OK TO SUBMIT (docs/s24/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s24-cckm-e1-20000dots-20261027T185803Z-fcbfbe32-zeros.zip",
+      "sha256": "48fe33b7fd3c55693b8d4c9e13effe6ecfde931fa83df7698a98d467094d15a1",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S24-CCKM E1 research-only negative; NOT OK TO SUBMIT (docs/s24/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif",
+      "sha256": "aba3fb405cfa3a22ffb8d7f9dbfed5b0ed71993564403517842994690f6c8b1c",
+      "status": "current_research_only",
+      "reason": "S24-CCKM E2 research-only negative: HOLDOUT-DTI 0.075896 [0.065569, 0.086758] (gems57-pooled-hide-v2, 60,988 withheld); +0.029944 over E1 at 20k paired, but not significant vs gravity-gradient control; 100% literal lattice overlap (capacity-impossible at 37,654); SGMC-offcat 0.054493 vs R0 0.095386. Unique vs nine leaders (max 18.8% within 3px). NOT OK TO SUBMIT (docs/s24/e2/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.zip",
+      "sha256": "f434a7c39f7019205432e47ea6a8faf3352edb3c680c4825ef5772f8969955f8",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S24-CCKM E2 research-only negative; NOT OK TO SUBMIT (docs/s24/e2/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
+      "sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
+      "status": "current_research_only",
+      "reason": "S25-FABRIC E2 research-only negative: HOLDOUT-DTI 0.147741 [0.129760, 0.167562] (gems57-pooled-hide-v2, v3 folds, 60988 withheld) beats best matched control paired, and unique vs nine focus leaders (max 40.2% within 3px), BUT protocol-literal dot overlap 74.9% vs closest competitive reference (>70%) and LFI MODEL projection 0.07917 (catalogue-hugging dots, median 5.8px); SGMC-offcat diagnostic 0.079042. NOT OK TO SUBMIT (docs/s25/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip",
+      "sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S25-FABRIC E2 research-only negative; NOT OK TO SUBMIT (docs/s25/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
+      "sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f",
+      "status": "current_research_only",
+      "reason": "DUPLICATE_STOP: 99.6017% of candidate dots within 3px of frozen registry lattice; no selector approval. Research only; NOT OK TO SUBMIT. See docs/s25-tlf/witness-audit-20261028.json."
+    },
+    {
+      "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip",
+      "sha256": "041972c262a36fd87fca88c85a6ecaf2e29a7aebdbc558cc065468d723078428",
+      "status": "current_research_only",
+      "reason": "DUPLICATE_STOP: 99.6017% of candidate dots within 3px of frozen registry lattice; no selector approval. Research only; NOT OK TO SUBMIT. See docs/s25-tlf/witness-audit-20261028.json."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
+      "sha256": "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 98.1365% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.zip",
+      "sha256": "00d5028e1cd2365b9859079ddea2f61d743005e3edc2a1fb2925281d57f4b6bf",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 98.1365% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif",
+      "sha256": "8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 98.8235% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.zip",
+      "sha256": "71599867c6e64ebf1252846571f03f48a342943b489c61e834b92a69b986ff4c",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 98.8235% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
+    },
+    {
       "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
       "sha256": "0265259717c4dde6bca1215b83d0be93c38f13d08ab12bd88343746f57dd91dd",
       "status": "current_research_only",
@@ -694,64 +766,28 @@
       "reason": "Single-TIFF ZIP of the OLC91 E1 research-only file; same verdict (OK TO SUBMIT: NO)."
     },
     {
-      "path": "docs/downloads/gems91-s24-cckm-e1-20000dots-20261027T185803Z-fcbfbe32-zeros.tif",
-      "sha256": "24c452417f1bdc4ccd7bf870bbd3e7f595595cfe086944b823a1bbdd11f03578",
-      "status": "current_research_only",
-      "reason": "S24-CCKM E1 research-only negative: HOLDOUT-DTI 0.045952 [0.037996, 0.054356] (gems57-pooled-hide-v2, 60,988 withheld); paired vs best matched control CI includes 0; 100% literal lattice overlap; SGMC-offcat diagnostic 0.027904. NOT OK TO SUBMIT (docs/s24/run-card.json)."
+      "path": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
+      "sha256": "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 99.2325% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
     },
     {
-      "path": "docs/downloads/gems91-s24-cckm-e1-20000dots-20261027T185803Z-fcbfbe32-zeros.zip",
-      "sha256": "48fe33b7fd3c55693b8d4c9e13effe6ecfde931fa83df7698a98d467094d15a1",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S24-CCKM E1 research-only negative; NOT OK TO SUBMIT (docs/s24/run-card.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif",
-      "sha256": "aba3fb405cfa3a22ffb8d7f9dbfed5b0ed71993564403517842994690f6c8b1c",
-      "status": "current_research_only",
-      "reason": "S24-CCKM E2 research-only negative: HOLDOUT-DTI 0.075896 [0.065569, 0.086758] (gems57-pooled-hide-v2, 60,988 withheld); +0.029944 over E1 at 20k paired, but not significant vs gravity-gradient control; 100% literal lattice overlap (capacity-impossible at 37,654); SGMC-offcat 0.054493 vs R0 0.095386. Unique vs nine leaders (max 18.8% within 3px). NOT OK TO SUBMIT (docs/s24/e2/run-card.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.zip",
-      "sha256": "f434a7c39f7019205432e47ea6a8faf3352edb3c680c4825ef5772f8969955f8",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S24-CCKM E2 research-only negative; NOT OK TO SUBMIT (docs/s24/e2/run-card.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
-      "sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
-      "status": "current_research_only",
-      "reason": "S25-FABRIC E2 research-only negative: HOLDOUT-DTI 0.147741 [0.129760, 0.167562] (gems57-pooled-hide-v2, v3 folds, 60988 withheld) beats best matched control paired, and unique vs nine focus leaders (max 40.2% within 3px), BUT protocol-literal dot overlap 74.9% vs closest competitive reference (>70%) and LFI MODEL projection 0.07917 (catalogue-hugging dots, median 5.8px); SGMC-offcat diagnostic 0.079042. NOT OK TO SUBMIT (docs/s25/run-card.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip",
-      "sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
-      "status": "current_research_only",
-      "reason": "Single-TIFF ZIP of S25-FABRIC E2 research-only negative; NOT OK TO SUBMIT (docs/s25/run-card.json)."
-    },
-    {
-      "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
-      "sha256": "21c11e819d2877787b698deef34d16a014bbbdf7de3551bfdf4f4e1de81f8b5f",
-      "status": "current_research_only",
-      "reason": "DUPLICATE_STOP: 99.6017% of candidate dots within 3px of frozen registry lattice; no selector approval. Research only; NOT OK TO SUBMIT. See docs/s25-tlf/witness-audit-20261028.json."
-    },
-    {
-      "path": "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.zip",
-      "sha256": "041972c262a36fd87fca88c85a6ecaf2e29a7aebdbc558cc065468d723078428",
-      "status": "current_research_only",
-      "reason": "DUPLICATE_STOP: 99.6017% of candidate dots within 3px of frozen registry lattice; no selector approval. Research only; NOT OK TO SUBMIT. See docs/s25-tlf/witness-audit-20261028.json."
+      "path": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.zip",
+      "sha256": "975c3eb1692ef7b88595e1f54ac1cd0bc6adefd6015ddda13d0588ea9ff22753",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 99.2325% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
     },
     {
       "path": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
       "sha256": "fa894fff21e4e3053ec5ceccba1930e7d9b9c6eb19bf29dad3caa1b49b354517",
       "status": "current_research_only",
-      "reason": "S27-FABRIC-FAR TIFF: S25 fabric surface with preregistered distance-stratified (5/15/25/25/30%) uniqueness-capped emission, 37654 dots. HOLDOUT-DTI delta vs matched incumbent exactly 0 by v3-fold construction (G4 FAIL); SGMC>500m below R0 (G5 FAIL); LFI MODEL projection 0.18731 (not a score). Unique vs nine leaders (max 42.12%) and competitive registry (max 61.90%); literal lattice-blanket scope capacity-blocked. Verdict negative. NOT OK TO SUBMIT."
+      "reason": "S27-FABRIC-FAR research-only negative: stratified+capped emission on S25 fabric surface; unique vs nine (max 42.1%) and competitive registry (max 61.9%) at freeze time, but G4 holdout instrument-degenerate FAIL and G5 SGMC>500m 0.076559 < R0 0.088516 FAIL; LFI MODEL projection 0.18731 (not a score). NOT OK TO SUBMIT (docs/s27/run-card.json)."
     },
     {
       "path": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.zip",
       "sha256": "27f8fd4d0ee8eaaa815718e0bde0f430e9634db38a265e18b863b2b34da6707b",
       "status": "current_research_only",
-      "reason": "S27-FABRIC-FAR ZIP: S25 fabric surface with preregistered distance-stratified (5/15/25/25/30%) uniqueness-capped emission, 37654 dots. HOLDOUT-DTI delta vs matched incumbent exactly 0 by v3-fold construction (G4 FAIL); SGMC>500m below R0 (G5 FAIL); LFI MODEL projection 0.18731 (not a score). Unique vs nine leaders (max 42.12%) and competitive registry (max 61.90%); literal lattice-blanket scope capacity-blocked. Verdict negative. NOT OK TO SUBMIT."
+      "reason": "Single-TIFF ZIP of S27-FABRIC-FAR research-only negative; NOT OK TO SUBMIT (docs/s27/run-card.json)."
     }
   ]
 }

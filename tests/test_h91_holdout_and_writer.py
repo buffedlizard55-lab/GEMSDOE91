@@ -60,7 +60,9 @@ def _make_mini_template_and_cat(tmp_path: Path, h: int = 80, w: int = 80) -> tup
         dtype="uint8",
         crs="EPSG:32611",
         transform=transform,
-        nodata=0,
+        # Background is observed zero, not NoData; a zero NoData tag would
+        # make the valid background indistinguishable from missing catalogue.
+        nodata=None,
     ) as dst:
         dst.write(cat, 1)
 
@@ -392,3 +394,255 @@ def test_certified_run_card_bundle_and_pages_site_integrity() -> None:
     assert "archive-results.html" in main_idx and "h91-ddvtc.html" in archive
 
 
+
+
+@pytest.mark.parametrize('value', [np.nan, np.inf, -np.inf, -9999.0, 1.000000000001, -1e-100])
+def test_legacy_writer_rejects_original_invalid_values_without_leaving_files(tmp_path, value):
+    """Invalid model output must never be repaired into a plausible TIFF."""
+    tpl, cat, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float64)
+    prediction[10, 10] = value
+    releases = tmp_path / 'release'
+    downloads = tmp_path / 'downloads'
+    with pytest.raises(ValueError):
+        SW.write_validated_submission_bundle(
+            prediction, stem_prefix='safety', date_tag='test',
+            template_path=tpl, catalogue_path=cat, ledger_path=None,
+            releases_dir=releases, downloads_dir=downloads)
+    assert not list(releases.iterdir())
+    assert not list(downloads.iterdir())
+
+
+@pytest.mark.parametrize('position', ['outside', 'catalogue'])
+def test_legacy_writer_rejects_silently_masked_positive_mass(tmp_path, position):
+    tpl, cat, footprint, catalogue = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float32)
+    location = np.argwhere(~footprint if position == 'outside' else catalogue)[0]
+    prediction[tuple(location)] = 1
+    releases = tmp_path / 'release'
+    with pytest.raises(ValueError, match='positive prediction'):
+        SW.write_validated_submission_bundle(
+            prediction, stem_prefix='safety', date_tag='test',
+            template_path=tpl, catalogue_path=cat, ledger_path=None,
+            releases_dir=releases, downloads_dir=None)
+    assert not list(releases.iterdir())
+
+
+def test_legacy_writer_rejects_shifted_catalogue_before_writing(tmp_path):
+    tpl, cat, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    with rasterio.open(cat) as src:
+        profile, arr = src.profile.copy(), src.read(1)
+    profile['transform'] = from_origin(300001, 4500000, 100, 100)
+    with rasterio.open(cat, 'w', **profile) as dst:
+        dst.write(arr, 1)
+    releases = tmp_path / 'release'
+    with pytest.raises(ValueError, match='catalogue CRS, shape, transform'):
+        SW.write_validated_submission_bundle(
+            np.zeros_like(footprint, dtype=np.float32), stem_prefix='safety', date_tag='test',
+            template_path=tpl, catalogue_path=cat, ledger_path=None,
+            releases_dir=releases, downloads_dir=None)
+    assert not list(releases.iterdir())
+
+
+def test_legacy_writer_collar_failure_has_no_partial_outputs(tmp_path):
+    tpl, cat, footprint, catalogue = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float32)
+    prediction[35, 20] = 1  # away enough for a permitted dot
+    prediction[31, 20] = 1  # <=3 px from the mapped segment
+    releases, downloads = tmp_path / 'release', tmp_path / 'downloads'
+    with pytest.raises(RuntimeError):
+        SW.write_validated_submission_bundle(
+            prediction, stem_prefix='safety', date_tag='test',
+            template_path=tpl, catalogue_path=cat, ledger_path=None,
+            releases_dir=releases, downloads_dir=downloads)
+    assert not list(releases.iterdir())
+    assert not list(downloads.iterdir())
+
+
+def test_legacy_writer_rolls_back_publication_failure(tmp_path, monkeypatch):
+    tpl, cat, footprint, catalogue = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float32)
+    for r, c in np.argwhere(footprint & (ndi.distance_transform_edt(~catalogue) > 4.5))[:25:3]:
+        prediction[r, c] = 1
+    releases, downloads = tmp_path / 'release', tmp_path / 'downloads'
+    original_link = SW.os.link
+    count = 0
+    def fail_second_link(src, dst):
+        nonlocal count
+        count += 1
+        if count == 2:
+            raise OSError('synthetic publication failure')
+        original_link(src, dst)
+    monkeypatch.setattr(SW.os, 'link', fail_second_link)
+    with pytest.raises(OSError, match='synthetic publication failure'):
+        SW.write_validated_submission_bundle(
+            prediction, stem_prefix='safety', date_tag='test',
+            template_path=tpl, catalogue_path=cat, ledger_path=ROOT / "ledger" / "submissions.csv",
+            releases_dir=releases, downloads_dir=downloads)
+    assert count == 2
+    assert not list(releases.iterdir())
+    assert not list(downloads.iterdir())
+
+
+@pytest.mark.parametrize('parameter,value', [('stem_prefix', '../bad'), ('date_tag', '../../bad'),
+                                             ('bundle_js_filename', '../bad.js')])
+def test_legacy_writer_names_cannot_escape_output_directory(tmp_path, parameter, value):
+    tpl, cat, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    args = dict(stem_prefix='safety', date_tag='test', bundle_js_filename='ok.js',
+                template_path=tpl, catalogue_path=cat, ledger_path=None,
+                releases_dir=tmp_path / 'release', downloads_dir=tmp_path / 'downloads')
+    args[parameter] = value
+    with pytest.raises(ValueError, match='plain filename component'):
+        SW.write_validated_submission_bundle(np.zeros_like(footprint, dtype=np.float32), **args)
+    assert not (tmp_path / 'release').exists()
+    assert not (tmp_path / 'downloads').exists()
+
+
+def test_legacy_writer_rejects_float32_support_underflow(tmp_path):
+    tpl, cat, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float64)
+    prediction[10, 10] = 1e-100
+    releases = tmp_path / 'release'
+    with pytest.raises(ValueError, match='underflows'):
+        SW.write_validated_submission_bundle(
+            prediction, stem_prefix='safety', date_tag='test',
+            template_path=tpl, catalogue_path=cat, ledger_path=None,
+            releases_dir=releases, downloads_dir=None)
+    assert not list(releases.iterdir())
+
+
+def test_legacy_writer_never_overwrites_a_prior_bundle(tmp_path):
+    tpl, cat, footprint, catalogue = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float32)
+    for r, c in np.argwhere(footprint & (ndi.distance_transform_edt(~catalogue) > 4.5))[:25:3]:
+        prediction[r, c] = 1
+    releases, downloads = tmp_path / 'release', tmp_path / 'downloads'
+    kwargs = dict(stem_prefix='safety', date_tag='test', template_path=tpl,
+                  catalogue_path=cat, releases_dir=releases, downloads_dir=downloads)
+    receipt = SW.write_validated_submission_bundle(prediction, **kwargs)
+    assert receipt['ok_to_submit'] is False
+    assert receipt['organizer_acceptance_verified'] is False
+    before = {p: p.read_bytes() for d in (releases, downloads) for p in d.iterdir()}
+    with pytest.raises(FileExistsError):
+        SW.write_validated_submission_bundle(prediction, **kwargs)
+    assert before == {p: p.read_bytes() for d in (releases, downloads) for p in d.iterdir()}
+
+
+def test_legacy_writer_rejects_missing_catalogue_cell(tmp_path):
+    tpl, cat, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    with rasterio.open(cat) as src:
+        profile, arr = src.profile.copy(), src.read(1)
+    profile['dtype'] = 'int16'
+    profile['nodata'] = -1
+    arr = arr.astype('int16')
+    arr[10, 10] = -1
+    with rasterio.open(cat, 'w', **profile) as dst:
+        dst.write(arr, 1)
+    releases = tmp_path / 'release'
+    with pytest.raises(ValueError, match='masked values inside'):
+        SW.write_validated_submission_bundle(
+            np.zeros_like(footprint, dtype=np.float32), stem_prefix='safety', date_tag='test',
+            template_path=tpl, catalogue_path=cat, ledger_path=None,
+            releases_dir=releases, downloads_dir=None)
+    assert not list(releases.iterdir())
+
+
+def test_legacy_writer_accepts_nan_only_outside_footprint(tmp_path):
+    tpl, cat, footprint, catalogue = _make_mini_template_and_cat(tmp_path)
+    prediction = np.where(footprint, 0., np.nan).astype(np.float32)
+    for r, c in np.argwhere(footprint & (ndi.distance_transform_edt(~catalogue) > 4.5))[:25:3]:
+        prediction[r, c] = 1
+    receipt = SW.write_validated_submission_bundle(
+        prediction, stem_prefix='safety', date_tag='test', template_path=tpl, catalogue_path=cat,
+        releases_dir=tmp_path / 'release', downloads_dir=tmp_path / 'downloads')
+    assert receipt['ok_to_submit'] is False
+    with rasterio.open(receipt['companion_nan_tif']['path']) as src:
+        a = src.read(1)
+    assert np.isfinite(a[footprint]).all() and np.isnan(a[~footprint]).all()
+
+
+def test_legacy_writer_does_not_clobber_a_colliding_auxiliary_file(tmp_path):
+    tpl, cat, footprint, catalogue = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float32)
+    for r, c in np.argwhere(footprint & (ndi.distance_transform_edt(~catalogue) > 4.5))[:25:3]:
+        prediction[r, c] = 1
+    releases, downloads = tmp_path / 'release', tmp_path / 'downloads'
+    downloads.mkdir(); existing = downloads / 'h91_submission_bundle.js'
+    existing.write_bytes(b'preserve original bytes')
+    with pytest.raises(FileExistsError):
+        SW.write_validated_submission_bundle(
+            prediction, stem_prefix='safety', date_tag='test', template_path=tpl, catalogue_path=cat,
+            releases_dir=releases, downloads_dir=downloads)
+    assert existing.read_bytes() == b'preserve original bytes'
+    assert list(downloads.iterdir()) == [existing]
+    assert not list(releases.iterdir())
+
+
+def test_legacy_writer_failed_zip_roundtrip_never_publishes(tmp_path, monkeypatch):
+    tpl, cat, footprint, catalogue = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float32)
+    for r, c in np.argwhere(footprint & (ndi.distance_transform_edt(~catalogue) > 4.5))[:25:3]:
+        prediction[r, c] = 1
+    releases, downloads = tmp_path / 'release', tmp_path / 'downloads'
+    real_read = SW.zipfile.ZipFile.read
+    monkeypatch.setattr(SW.zipfile.ZipFile, 'read', lambda self, *a, **kw: real_read(self, *a, **kw) + b'corrupt')
+    with pytest.raises(ValueError, match='roundtrip'):
+        SW.write_validated_submission_bundle(
+            prediction, stem_prefix='safety', date_tag='test', template_path=tpl, catalogue_path=cat,
+            releases_dir=releases, downloads_dir=downloads)
+    assert not list(releases.iterdir()) and not list(downloads.iterdir())
+
+
+def test_legacy_rollback_preserves_competing_replacement(tmp_path, monkeypatch):
+    tpl, cat, footprint, catalogue = _make_mini_template_and_cat(tmp_path)
+    prediction = np.zeros(footprint.shape, dtype=np.float32)
+    for r, c in np.argwhere(footprint & (ndi.distance_transform_edt(~catalogue) > 4.5))[:25:3]:
+        prediction[r, c] = 1
+    releases, downloads = tmp_path / 'release', tmp_path / 'downloads'
+    real_link = SW.os.link
+    first = None
+    def competing_replace(source, destination):
+        nonlocal first
+        if first is None:
+            first = Path(destination)
+            real_link(source, destination)
+        else:
+            first.unlink()
+            first.write_bytes(b'other writer replacement')
+            raise OSError('concurrent failure')
+    monkeypatch.setattr(SW.os, 'link', competing_replace)
+    with pytest.raises(OSError, match='concurrent failure'):
+        SW.write_validated_submission_bundle(
+            prediction, stem_prefix='safety', date_tag='test', template_path=tpl, catalogue_path=cat,
+            releases_dir=releases, downloads_dir=downloads)
+    assert first.read_bytes() == b'other writer replacement'
+    assert list(downloads.iterdir()) == [first] and not list(releases.iterdir())
+
+
+def test_legacy_writer_rejects_masked_prediction(tmp_path):
+    tpl, cat, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    prediction = np.ma.array(np.zeros(footprint.shape, dtype=np.float32), mask=np.eye(len(footprint), dtype=bool))
+    releases = tmp_path / 'release'
+    with pytest.raises(ValueError, match='masked predictions'):
+        SW.write_validated_submission_bundle(prediction, stem_prefix='safety', date_tag='test',
+                                             template_path=tpl, catalogue_path=cat,
+                                             releases_dir=releases, downloads_dir=None)
+    assert not list(releases.iterdir())
+
+
+@pytest.mark.parametrize('value', [-1, .5, 2])
+def test_legacy_writer_rejects_nonbinary_catalogue_without_nodata_tag(tmp_path, value):
+    tpl, cat, footprint, _ = _make_mini_template_and_cat(tmp_path)
+    with rasterio.open(cat) as src:
+        profile, arr = src.profile.copy(), src.read(1).astype('float32')
+    profile.update(dtype='float32', nodata=None)
+    arr[10, 10] = value
+    with rasterio.open(cat, 'w', **profile) as dst:
+        dst.write(arr, 1)
+    releases = tmp_path / 'release'
+    with pytest.raises(ValueError, match='catalogue must be binary'):
+        SW.write_validated_submission_bundle(np.zeros_like(footprint, dtype=np.float32),
+                                             stem_prefix='safety', date_tag='test',
+                                             template_path=tpl, catalogue_path=cat,
+                                             releases_dir=releases, downloads_dir=None)
+    assert not list(releases.iterdir())

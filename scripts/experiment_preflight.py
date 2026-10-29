@@ -48,7 +48,18 @@ def inspect_witness(root: Path, witness_path: str, budget: int) -> dict:
     reference = pinned_path(root, ref['path'], ref['sha256'], ref['bytes'])
     with rasterio.open(sample) as src:
         grid = (src.count, src.shape, src.crs, src.transform)
-        fp = np.isfinite(src.read(1)) & (src.read_masks(1) > 0)
+        sample_values = src.read(1)
+        fp = np.isfinite(sample_values) & (src.read_masks(1) > 0)
+        nonzero_sample = int(np.count_nonzero(sample_values[fp]))
+        # The organizer describes its sample as predicting total fault absence.
+        # A mirror containing predictions cannot be silently treated as that
+        # official sample. Zero values are necessary but do not prove origin.
+        sample_semantics = {
+            'nonzero_inside_footprint': nonzero_sample,
+            'status': 'CONFLICT_WITH_ORGANIZER_DESCRIPTION' if nonzero_sample else 'CONSISTENT_NOT_AUTHENTICATED',
+            'sample_authenticity_verified': False,
+            'source_url': 'https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/',
+        }
     with rasterio.open(reference) as src:
         if src.count != 1 or (src.count, src.shape, src.crs, src.transform) != grid:
             raise ValueError('Witness grid differs from pinned sample')
@@ -63,6 +74,7 @@ def inspect_witness(root: Path, witness_path: str, budget: int) -> dict:
     result = capacity_bound(fp, support, budget)
     result.update(reference_path=ref['path'], reference_sha256=ref['sha256'],
                   reference_source_url=ref.get('source_url'), sample_sha256=row['sha256'],
+                  sample_semantics=sample_semantics,
                   inventory_sha256=hashlib.sha256(inventory.read_bytes()).hexdigest(),
                   complete_registry_check=False)
     return result
@@ -92,6 +104,9 @@ def evaluate(root: Path, plan: dict) -> dict:
     else:
         if not capacity['feasible_by_capacity_only']:
             reasons.append('Literal registry overlap is mathematically impossible at this dot budget')
+        semantics = capacity.get('sample_semantics', {})
+        if semantics.get('status') != 'CONSISTENT_NOT_AUTHENTICATED':
+            reasons.append('Sample semantics conflict with organizer description or are unverified')
     return {
         'schema': 'gems91.experiment-preflight.v1',
         'status': 'BLOCKED' if reasons else 'NOT_RULED_OUT',

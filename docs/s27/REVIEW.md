@@ -228,3 +228,18 @@ tiles; (ii) DrivenData signed-in access for quota + receipts (no credentials
 are requested or stored here); (iii) a coordinator ruling on lane assignment
 and blanket-scope. Everything else used here is pinned, public, and
 reproducible from this repository.
+
+## Post-merge addendum — concurrent S26 lanes (2026-10-29, during PR #187)
+
+While S27 ran, two concurrent lanes merged to `main` (PR #183 S26-FABRIC-EMIT,
+a 10 px-collar variant of this same reserved lane; PR #184 S26 lidar-radiometric),
+followed by a correction review (PR #186, IR-4239-*) that disabled their runners.
+The frozen S27 candidate was measured post-hoc against all three concurrent
+rasters (`concurrent-s26-overlap-addendum.json`, shared EDT ≤3 px operator):
+S27 dots within 3 px of them = **42.98% / 50.05% / 36.42%** — competitive-scope
+uniqueness survives; the frozen-registry maximum (61.90%) still binds. The
+concurrent 22,163-dot raster is 77.97% within 3 px of S27 in reverse (their
+lane is separately a lattice duplicate per IR-4239-03). Same-lane concurrency
+is now a measured recurrence (cf. S25/S25-TLF): the coordinator lane-assignment
+gap (IR-S27-01) is the fix. S27's verdict is unchanged: **negative, OK TO
+DOWNLOAD research-only, OK TO SUBMIT: NO**, and its run card was not mutated.

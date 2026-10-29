@@ -1,0 +1,175 @@
+{
+  "status": "PASS",
+  "scope": "Delivery/UI engineering checks, not a competition score or scientific experiment",
+  "checked_utc": "2026-10-29T15:03:46.057Z",
+  "browser": "153.0.8010.0",
+  "pages_root_redirect_tested": true,
+  "focus_feed_mock": {
+    "successful_heads": 8,
+    "failed_heads": 1,
+    "failed_snapshot_retained": true,
+    "credentials_sent": false
+  },
+  "desktop": {
+    "width": 1440,
+    "height": 1000
+  },
+  "mobile": {
+    "width": 390,
+    "height": 844
+  },
+  "dzedge_download_sha256": "a388cd32860fbf7fad6b013f6aada9d59596d63ab82877d8cfdebba66a1a7b9f",
+  "s19_svhf_download_sha256": "ed26789ab7bdbe6291abe743a25b65c63a5a14c99d3f50e421a1e77e025543d3",
+  "s19_svhf_zip_download_sha256": "0bf25a65a483cad4f4ce856c2c14ce2c115fed20461663171b91ca27850d15f8",
+  "s17_lftg_download_sha256": "64d589ac8d5365693d8845a5673a42ec593794ac46be2aa14a1f950e948fe2b3",
+  "s17_lftg_zip_download_sha256": "337010f6e14bd951819fd5b4d648e9de68dd0a43e610e7a0c710226831cbbfb7",
+  "s17_cpad_download_sha256": "690c10998798d3abd54f6a1ec1c12e56c4243d1967ede7b63a533b9ddd628cdd",
+  "s17_cpad_zip_download_sha256": "58562d2df087e3a6ddb64f550039a5ea040758993247771cb1107ca703d0ab5f",
+  "s17_cpad_submission_ready": false,
+  "s25_research_download_sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
+  "s25_research_zip_sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+  "concurrent_s26_research_tif_and_zip_sha256": [
+    "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+    "975c3eb1692ef7b88595e1f54ac1cd0bc6adefd6015ddda13d0588ea9ff22753",
+    "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
+    "00d5028e1cd2365b9859079ddea2f61d743005e3edc2a1fb2925281d57f4b6bf",
+    "8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae",
+    "71599867c6e64ebf1252846571f03f48a342943b489c61e834b92a69b986ff4c"
+  ],
+  "current_download_sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
+  "current_submission_ready": false,
+  "current_zip_download_sha256": "8862229cb572b53b41951de6f7d287ba16b4c0412898658b07cf591e5e63efb2",
+  "s23_research_download_sha256": "507fd12f1c533ff0a4cb0c92bfceb7eaf5bf1cfc29d832f06c0d5023dd852bee",
+  "s14_download_sha256": "678b75968dd023bff2f77dc7df4464b49fb02aa042ca59d34dd4941e85357720",
+  "s13_download_sha256": "421c589072e3b959fc0f8e71a7e879822ce8f9a81172a7f0fd24e7932eadd452",
+  "download_sha256": "ab500a3caa50f00ec0855dc88006a2d3e31f5e5f4cde726ef391e30f6eb4cd6b",
+  "copy_status": "Clipboard unavailable. The text is selected; copy it with your keyboard.",
+  "console_or_http_errors": [],
+  "mobile_overflow": false,
+  "accessibility": [
+    {
+      "page": "index.html",
+      "violations": []
+    },
+    {
+      "page": "submission-guide.html",
+      "violations": []
+    },
+    {
+      "page": "review-4239f6e5/executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s26/executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s23/executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s19-svhf.html",
+      "violations": []
+    },
+    {
+      "page": "s19-svhf-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s17-lftg.html",
+      "violations": []
+    },
+    {
+      "page": "s17-lftg-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s17-cpad.html",
+      "violations": []
+    },
+    {
+      "page": "s17-cpad-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s17-cgrd.html",
+      "violations": []
+    },
+    {
+      "page": "s17-cgrd-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s15-scgf.html",
+      "violations": []
+    },
+    {
+      "page": "s15-scgf-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "dzedge-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "research.html",
+      "violations": []
+    },
+    {
+      "page": "archive-results.html",
+      "violations": []
+    },
+    {
+      "page": "review-0a96aa96-home.html",
+      "violations": []
+    },
+    {
+      "page": "active-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s14-hvdc.html",
+      "violations": []
+    },
+    {
+      "page": "s14-hvdc-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s13-ptha.html",
+      "violations": []
+    },
+    {
+      "page": "s13-ptha-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s11-mhtr.html",
+      "violations": []
+    },
+    {
+      "page": "s11-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s12-spac.html",
+      "violations": []
+    },
+    {
+      "page": "s12-executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s12-spid.html",
+      "violations": []
+    },
+    {
+      "page": "spid91-executive-summary.html",
+      "violations": []
+    }
+  ]
+}
