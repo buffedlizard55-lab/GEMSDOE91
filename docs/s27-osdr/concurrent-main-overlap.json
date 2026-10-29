@@ -1,0 +1,65 @@
+{
+  "schema": "s27-osdr-concurrent-main-overlap-v1",
+  "candidate_file": "docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.tif",
+  "candidate_sha256": "28c610187313bf0493d50c4b56f6387fde5229688c7bed8498ea99a6c41515a0",
+  "max_surface_abs_rho": 0.07062056656725664,
+  "max_dot_overlap_3px": 0.4243108301906836,
+  "all_pass_protocol_rule1": true,
+  "concurrent_main_candidates": [
+    {
+      "name": "s26_fabric_emit_22163",
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
+      "sha256": "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
+      "surface_rank_correlation": 0.05027733415200115,
+      "surface_abs_rho": 0.05027733415200115,
+      "surface_status": "PASS",
+      "dot_overlap_3px": 0.21437297498273755,
+      "dot_status": "PASS",
+      "reference_dots": 22163
+    },
+    {
+      "name": "s26_fabric_emit_37654",
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif",
+      "sha256": "8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae",
+      "surface_rank_correlation": 0.05612403835218878,
+      "surface_abs_rho": 0.05612403835218878,
+      "surface_status": "PASS",
+      "dot_overlap_3px": 0.29468316779093856,
+      "dot_status": "PASS",
+      "reference_dots": 37654
+    },
+    {
+      "name": "s26_lidarrad_37654",
+      "path": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
+      "sha256": "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+      "surface_rank_correlation": 0.05366108230542126,
+      "surface_abs_rho": 0.05366108230542126,
+      "surface_status": "PASS",
+      "dot_overlap_3px": 0.2574228501620014,
+      "dot_status": "PASS",
+      "reference_dots": 37654
+    },
+    {
+      "name": "s27_fabricfar_37654",
+      "path": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
+      "sha256": "fa894fff21e4e3053ec5ceccba1930e7d9b9c6eb19bf29dad3caa1b49b354517",
+      "surface_rank_correlation": 0.07062056656725664,
+      "surface_abs_rho": 0.07062056656725664,
+      "surface_status": "PASS",
+      "dot_overlap_3px": 0.40189621288574917,
+      "dot_status": "PASS",
+      "reference_dots": 37654
+    },
+    {
+      "name": "s27_cvdc_vctk_37654",
+      "path": "docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif",
+      "sha256": "fc77890797ae076d5e9be023bd1405541b4d4c0b2fc3754e07da5c45d11554a0",
+      "surface_rank_correlation": 0.06939697279865338,
+      "surface_abs_rho": 0.06939697279865338,
+      "surface_status": "PASS",
+      "dot_overlap_3px": 0.4243108301906836,
+      "dot_status": "PASS",
+      "reference_dots": 37654
+    }
+  ]
+}
