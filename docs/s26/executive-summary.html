@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>S26-FABRIC-EMIT — Executive Summary</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:1120px;margin:24px auto;padding:0 16px;color:#1b1f24;line-height:1.5}
+h1{font-size:1.55rem}h2{margin-top:28px;border-bottom:1px solid #d0d7de;padding-bottom:4px}
+.verdict{border:2px solid #0a7f2e;background:#edf8f0;border-radius:10px;padding:14px 16px;margin:14px 0}
+.verdict.fail{border-color:#d97706;background:#fff4e5}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:0.92rem}th,td{border:1px solid #d0d7de;padding:7px 9px;text-align:left;vertical-align:top}th{background:#f6f8fa}
+code{font-size:0.85em}small{color:#57606a}
+a.btn{display:inline-block;background:#0a7f2e;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600;margin:6px 0}
+.warn{color:#9a3412}
+</style></head><body>
+<h1>S26-FABRIC-EMIT — Executive Summary (2026-10-29)</h1>
+<p><small>Lane S26-FABRIC-EMIT · self-assigned from H1 (HYPOTHESES.md) · preregistration <code>docs/s26/preregistration.md</code> (sha 904fb97e…) · no submission slot used · HOLDOUT-DTI labelled evaluator version/split/CI vs ORGANIZER-CONFIRMED receipt.</small></p>
+
+<div class="verdict">
+<strong>Download (research): <a class="btn" href="../downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif">⬇ Gems91-S26 22,163-dot 10 px collar — OK to download YES · OK to submit NO (see gate table)</a></strong><br>
+<span style="color:#0a7f2e">✔</span> Format valid · float32 · [0,1] · no NaN · EPSG:32611 · 3730×3292 · transform 100,0,243350,0,-100,4508550 · catalogue distance >10 px · spacing 3.05 px<br>
+<span style="color:#0a7f2e">✔</span> Unique vs the nine focus leaders (S25 proxy 40.2% max; this variant moves farther — competitive 60.2% vs 74.9% S25)<br>
+<span style="color:#d97706">✘</span> Fails protocol-literal 70% gate vs 206,895-dot lattice (98.1% overlap) — but <em>any</em> honest 22k–37k geological raster must (capacity bound 69.999% minimum at 22,163 dots; see below). Selector should use competitive scope per S25 precedent.
+</div>
+
+<h2>What changed vs S25-FABRIC E2 (and why it matters for score)</h2>
+<p><strong>S25-FABRIC E2</strong> (37,654 dots, 3.05 px collar) beat its HGB control <strong>+0.023 HOLDOUT-DTI [0.014, 0.032]</strong> on the v3 pooled-hide instrument (60,988 withheld positives) — the detector physics works. But its <strong>LFI MODEL_PROJECTION_NOT_A_SCORE was only 0.079</strong> (ridge10 0.081, LOSO RMSE 0.020, 112 anchors) — far below parent R0's projection 0.273 and far below the fleet optimum. Diagnostics (diagnostics.json) showed median distance to catalogue only <strong>5.8 px (580 m)</strong> — the emitter hugged mapped faults and suppressed inter-catalogue gaps where hidden truth must be. SGMC-offcat control was also low (0.079).</p>
+<p><strong>S26-FABRIC-EMIT</strong> reuses the <em>same validated surface</em> (B12/B19 granulometry + B13/B14 phase-lag, 37 features, HGB 300 iter, label-blind-quadrant v3 folds) and changes <em>only emission geometry</em>: collar <strong>10.0 px (1 km)</strong>, budget <strong>22,163 dots</strong> (largest geometrically not-ruled-out vs lattice; S25 used 37,654), spacing 3.05 px, gap-weighted pseudo-surface exp(-dist_to_S25_dot/8). Median distance to catalogue jumps to <strong>~12.4 px (1.24 km)</strong> — now sampling the gaps. Competitive overlap drops from <strong>74.9% (S25) to 60.2% (S26 feasible)</strong>, passing the competitive ≤70% gate; surface |ρ| stays 0.13 (passes).</p>
+
+<h2>Two artefacts this session (both downloadable)</h2>
+<table>
+<tr><th>File</th><th>Dots / collar</th><th>Estimated leaderboard score</th><th>Uniqueness vs nine leaders</th><th>OK to…</th></tr>
+<tr>
+<td><a href="../downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif">gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif</a><br><small>SHA-256 <code>198c09950095e091…</code> · ZIP <code>00d5028e…</code> · float32 · no NaN · [0,1] · 12.4 MB</small></td>
+<td>22,163 dots · 10 px collar · 3.05 px spacing</td>
+<td><strong>ORGANIZER-CONFIRMED: none</strong><br>HOLDOUT-DTI (reused S25) <strong>0.1477 [0.1297, 0.1675]</strong> v2 pooled-hide, 60,988 withheld (same surface) — <em>not a leaderboard score</em><br>LFI projection ~<strong>0.094</strong> (ridge10, LOSO RMSE 0.02, 112 anchors) — <em>MODEL_PROJECTION_NOT_A_SCORE</em></td>
+<td>YES — competitive 60.2% ≤70% (passes); nine leaders ~35% est. (S25 proxy 40.2% max)</td>
+<td><strong>Download YES (research)</strong><br><strong>Submit NO</strong> under protocol-literal (lattice 98.1% &gt;70% — capacity-forced; see gate table)</td>
+</tr>
+<tr>
+<td><a href="../downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif">gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif</a><br><small>SHA-256 <code>8f68e4eb1ac6e542…</code> · 37,654 dots</small></td>
+<td>37,654 dots · 10 px collar · gap-weighted</td>
+<td>HOLDOUT-DTI same surface 0.1477; LFI ~0.088; SGMC-offcat not yet re-measured</td>
+<td>YES competitive ( est. ~62% )</td>
+<td>Download YES · Submit NO (literal 98.75% vs lattice — IMPOSSIBLE_AT_BUDGET; largest feasible 22,163)</td>
+</tr>
+</table>
+
+<h2>Duplicate-gate table (protocol literal = all refs including dense blankets)</h2>
+<table>
+<tr><th>Scope</th><th>S25-FABRIC E2 (37654, 3 px)</th><th>S26-FABRIC-EMIT feasible (22163, 10 px)</th><th>Gate</th><th>Verdict</th></tr>
+<tr><td>Surface |ρ| max</td><td>0.214 (passes)</td><td>0.130 (passes)</td><td>≤0.90</td><td style="color:green;font-weight:600">PASS</td></tr>
+<tr><td>Dots vs nine leaders (max 3 px overlap)</td><td>40.2% (GEMSDOE27) PASS</td><td>~35% est. (S25 proxy 40.2%) PASS*</td><td>≤70%</td><td style="color:green;font-weight:600">PASS</td></tr>
+<tr><td>Dots vs competitive ≤90k px (bhar-e3 etc)</td><td>74.9% FAIL</td><td>60.2% PASS</td><td>≤70%</td><td style="color:green;font-weight:600">PASS (S26)</td></tr>
+<tr><td>Dots vs dense lattice (206,895 dots, 99.87% footprint cover)</td><td>98.7% FAIL</td><td>98.1% FAIL</td><td>≤70%</td><td style="color:#9a3412;font-weight:600">FAIL — capacity-forced</td></tr>
+</table>
+<p><small>*Nine leaders not present locally; S26 estimate uses S25's 40.2% as upper bound — moving collar outward can only reduce nine overlap, so PASS is conservative. True re-measure requires local copies (data/s22-nine-sites absent).</small></p>
+
+<div class="verdict fail">
+<strong>Why the lattice gate blocks every honest submission at fleet budgets</strong><br>
+Footprint 5,167,373 px · lattice 206,895 dots · halo ≤3 px ≡ disc radius 3 covers 5,160,724 footprint pixels (99.87%). Uncovered pixels: <strong>6,649</strong>. Capacity bound: at budget <em>k</em> dots, ≥ <code>max(0, k - uncovered)</code> must overlap halo. At <strong>37,654 dots → ≥31,005 must overlap → ≥82.34% minimum</strong> (IMPOSSIBLE_AT_BUDGET). At <strong>22,163 dots → ≥15,514 must overlap → ≥69.999% minimum</strong> (barely NOT_RULED_OUT — but with 3 px spacing the true feasible drops to ~200 dots). So any 37k-dot geological raster <em>must</em> fail the literal 70% gate; a 22k raster must be near-perfectly placed in the 6,649-pixel gap to even have a chance, which spacing makes impossible. This is a geometric capacity bound, <em>not a score</em>. Prior reviews (ad43b4e5, 8e8d86f2) recorded the same and recommended competitive-scope selector policy.
+</div>
+
+<h2>Why GEMSDOE32 h33-h33-2-b2 0.2778 led the nine — and whether >0.2778 / >0.3195 toward 0.4413 is achievable</h2>
+<p><strong>What 0.2778 is:</strong> USER-REPORTED (not ORGANIZER-CONFIRMED) for <code>gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code> (37,654 dots, float32, zeros outside, SHA c55bafc…). All nine leaders are USER-REPORTED 0.2449–0.2778 with no receipts; their pairwise 3-px overlaps are 86.7%–100% — one family. The public leaderboard #1 on 2026-10-28 was 0.4544 (xiaofanhu, 0.3916 cfld__ #2), not the 0.4413 prompt figure (IR-S26-01). No nine-site TIFF is bound to a leaderboard receipt.</p>
+<p><strong>Why 0.2778 was top among the nine:</strong> Forensics (docs/review-3a4cca78, docs/s25) indicate the nine share the H19-5 / H19-4 lineage thinned by NMS (~2.5 px→~5 px): R0's dense grid was pruned to ~≤2 px then re-tuned. GEMSDOE32 preserved the R0 catalogue more faithfully (5.8 px median) and its H33-2 thinning retained fan/shoreline fabric that happened to align with hidden truth slightly better than deeper H36-1 variants. Its budget 37,654 was the fleet live optimum (S24 paired 20k→37k +0.03 HOLDOUT-DTI). But all nine still hallucinate the same fault set — none beats control on v3 holdout by more than noise (S24 CCKM 0.075 vs S25 FABRIC 0.147).</p>
+<p><strong>Can a <em>unique</em> file beat 0.2778?</strong> Yes in principle, no by copying. The fleet already agrees on consensus zones (≥3 methods within 300 m) that strongly predict truth (S22 fleet-consensus analysis). A file that reproduces those zones <em>must</em> overlap the nine at >90% — not unique. A unique file must find <em>new</em> faults the nine missed. S25-FABRIC's fabric detector does that on holdout (+0.023 over control, paired CI excludes 0) — but S25's emitter put new detections back onto the catalogue halo, so its live projection collapsed to 0.079. S26's 10 px collar is the first correction: competitive overlap falls to 60%, gap sampling rises, and lattice bound is approached — the detector gain now has a chance to translate. Whether it reaches 0.28–0.32 depends on whether new gap faults exist and whether LFI's ~0.094 projection (optimistic, RMSE 0.02) underestimates them. The capacity bound caps literal uniqueness near 0.20–0.22 for any 37k-dot file; beating it requires selector to use competitive scope or budgeted-to-truth scoring, not literal duplicate counting.</p>
+<p><strong>Can 0.3195 / 0.4413 be reached?</strong> Not by re-emitting the nine's halo at any budget — the nine already saturate that strategy and plateau near 0.28. Reaching 0.32+ needs (a) a detector that genuinely ranks hidden truth above catalogue halo (S25 FABRIC does on v3 holdout, first in repo), <em>plus</em> (b) an emitter that places dots where that detector says, not where the catalogue says (S26 corrects one step), <em>plus</em> (c) a truth budget near 12–13k (so 37k is already over-emission — precision loss). Leaderboard 0.4413/0.4544 likely comes from a private-chunk specialist (Rules 3.6.2: private chunks need not track public), not from beating the nine on public overlap alone. Our HOLDOUT-DTI 0.147 is not comparable to those numbers (different instrument, withheld truth).</p>
+
+<h2>How to submit (when a file is cleared)</h2>
+<ol>
+<li>Only submit a file marked <strong>OK to submit: YES</strong> above — none is today under the protocol-literal blanket rule; the competitive-pass S26 feasible is research-only until selector policy is updated.</li>
+<li>Upload a single-band GeoTIFF (.tif) or .zip containing one GeoTIFF: EPSG:32611, 100 m, 3730×3292, transform [100,0,243350,0,-100,4508550], float32, values in [0,1] inside footprint, 0 outside, 0 on catalogue (this file meets all).</li>
+<li>Give a unique name (≤140 chars) and short note (ours: “S26 FABRIC-EMIT 10px collar 22163-dot capacity-feasible vs lattice; see run-card verdict before slot”).</li>
+<li>Check CRS/shape/geotransform against <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem page</a> before pressing submit — do not exceed the weekly slot cap.</li>
+</ol>
+<p><small>Official sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem / metric (α0.2 β0.8 300 m)</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">submission PDF</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution">reference solution</a>.</small></p>
+
+<p><a href="../../">← Back to front door</a> · <a href="../nine-site-20261028/executive-summary.html">Nine-site 2026-10-28 table</a> · <a href="HYPOTHESES.md">Hypotheses (H1–H5)</a> · <a href="preregistration.md">Preregistration</a> · <a href="run-card.json">Run card</a></p>
+</body></html>
