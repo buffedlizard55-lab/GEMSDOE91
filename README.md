@@ -11,6 +11,20 @@
 >
 > **Method (`S27-OSDR`):** 38 static physics features (`CVDC` Rule-of-V contour–potential tangent discordance + `OSDR` sign-locked odd-symmetric dip-reversal across `B11, B12, B15, B17, B19, B06 [verified radiometric TC per IR-91-S12-04]` + `MVSD` multi-valley scarp persistence) + 16 nested cross-fitted Stage-2 directional auto-context features -> stitched 4-fold `v3`-buffered OOF surface (`median_dcat = 19.80 px` vs `GEMSDOE32 = 19.65 px`) -> 37,654 binary `{0, 1}` dots via 300 m CELF (`uniqueness_cap = 0.64`). `3/3` experiments used (`E1=0.157054`, `E2=0.159482`, `E3=0.157275`), `0` weekly slots spent, all Rule-4 leakage canaries PASS (`max symmetric AUC = 0.7276 <= 0.90`). Start every session by reading this status, [`LIMITATIONS_AND_NEXT_STEPS.md`](LIMITATIONS_AND_NEXT_STEPS.md), [`IRREGULARITIES.md`](IRREGULARITIES.md), and the [full project brief](#full-project-brief) below. **Maximize P(Win) · Own the Outcome.**
 
+## Session status — 2026-10-29 (branch arena/64fb89ec-gemsdoe91)
+
+**Unique TIF generation: BLOCKED — no new submittable TIF exists.**
+
+`scripts/build_unique_submission.py` (damage-zone annulus lattice) and the shared gates in `scripts/submission_writer.py`, `src/gems91/gates.py`, `src/gems91/release_gates.py` and `scripts/validate_raster.py` are present and pass validation tests, but the build cannot execute: the organizer competition grid inputs `data/official/sample_submission.tif` and `data/official/existing_faults.tif` are absent (`restore_data.py --check` reports 15/15 pinned inputs absent; the preflight blocks all six build axes). They require an authenticated DrivenData download and are not fetchable from the allowed outbound hosts.
+
+**Therefore no newly generated TIF can be validated against the competition grid, and NO TIF is OK TO SUBMIT.** Research downloads (S27-OSDR, S27-CVDC, S27-FABRIC-FAR) carry `OK TO DOWNLOAD: YES · OK TO SUBMIT: NO`; each fails the literal-lattice uniqueness gate and has no organizer receipt.
+
+**Nine focus sites (GEMSDOE 24, 25, 27, 28, 30, 31, 32, 33, 36):** the per-site file/estimate/uniqueness/submit table and submission guide are in `docs/executive-summary.html` and `docs/submission-guide.html`. Best supplied claim among the nine: GEMSDOE32 `h33-h33-2-b2` = 0.2778 (USER-REPORTED, unverified, not unique vs peers, not submittable). Leaderboard best observed: 0.4544 (2026-10-29) / 0.4413 (prompt target); 0.2778 would not reach the top.
+
+**To unblock:** obtain an authenticated DrivenData download of `training_features.tif`, `labels.tif`, `sample_submission.tif`, `existing_faults.tif` and `1m_DEM_links.csv` into `data/official/`, run `python scripts/prepare_data.py`, then run `scripts/build_unique_submission.py` inside an assigned method lane within the 3-experiment / 2-hour budget. Promotion to a live slot is a separate selector step.
+
+No hallucinations: every number is labeled **HOLDOUT-DTI** (evaluator version, withheld positives, 95% CI) or **ORGANIZER-CONFIRMED** (submission receipt); a projection is never written as a score.
+
 ---
 
 > **Concurrent checkout `arena/2d335bdc-gemsdoe91` (`S27-CVDC`) · 2026-10-29: NEW UNIQUE DE NOVO TIF GENERATED · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
