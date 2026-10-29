@@ -1,4 +1,4 @@
-# GEMSDOE91 — Active-branch review (2026-10-29): BLOCKED — NO SUBMISSION APPROVED
+# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED
 
 > **Current branch `arena/e064d914-gemsdoe91`. NO NEW TIFF · OK TO DOWNLOAD: NO CANDIDATE · OK TO SUBMIT: NO.** This review generated no raster, ran no experiment, and used no submission slot. The supplied highest site score (GEMSDOE32 0.2778) is USER-REPORTED, not organizer-confirmed; no honest new-candidate leaderboard estimate is available. The active experiment plan has `lane: null`; 15 pinned inputs are absent, and the local Python environment lacks `rasterio` and `pytest`. [Current branch review and four deferred hypotheses](docs/review-e064d914-20261029.md) · [run card](docs/run-card-e064d914-20261029.json) · [nine-site executive table](docs/nine-site-20261028/executive-summary.html). No historical TIFF is authorized for re-submission.
 
