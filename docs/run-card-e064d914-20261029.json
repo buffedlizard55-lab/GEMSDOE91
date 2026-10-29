@@ -1,0 +1,40 @@
+{
+  "schema": "gems91.run-card.v1",
+  "review_branch": "arena/e064d914-gemsdoe91",
+  "review_date": "2026-10-29",
+  "hypothesis": "No candidate hypothesis tested: four proposals deferred pending an assigned lane and verified input stack.",
+  "mechanism": "Review only; no feature surface or predictions generated.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable to an untested candidate; proposed mimics are enumerated per hypothesis in review-e064d914-20261029.md.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT RUN",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci95": null,
+    "reason": "15 pinned inputs are absent in this checkout; no assigned method lane."
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NOT MEASURED IN THIS REVIEW",
+    "preplacement_surface_rank_correlation": null,
+    "final_dot_max_overlap_within_3px": null,
+    "references_checked": 0,
+    "reason": "No candidate raster or feature surface generated. Prior audit evidence is not a fresh measurement."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "BLOCKED_NOT_RUN",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "reason": "No candidate TIFF and no local sample raster; rasterio unavailable in system Python."
+  },
+  "submission_name": null,
+  "submission_note": "No new candidate generated; no submission approved.",
+  "verdict": "negative",
+  "ok_to_download": false,
+  "ok_to_submit": false,
+  "experiments_used": 0,
+  "submission_slots_used": 0,
+  "leaderboard_estimate": null,
+  "evidence_scope": "This review only. User-provided site scores remain USER-REPORTED; no ORGANIZER-CONFIRMED receipt reviewed."
+}

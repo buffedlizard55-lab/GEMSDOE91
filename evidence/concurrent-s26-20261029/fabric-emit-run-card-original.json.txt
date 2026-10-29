@@ -1,0 +1,249 @@
+{
+  "schema": "gems-parallel-run-card-v1",
+  "lane": "S26-FABRIC-EMIT (self-assigned; reuse S25-FABRIC surface via dot-density proxy)",
+  "preregistration": {
+    "path": "docs/s26/preregistration.md",
+    "sha256": "904fb97e2f8632c56cbe397600fefcc02d4c6d7e0df356dbcdf7d3cdb108109b"
+  },
+  "hypothesis": "Catalogue-missing buried faults share S25-FABRIC cross-fabric + phase-lag signature but were suppressed by 3 px halo; 10 px collar + 22163-dot capacity-feasible budget recovers inter-catalogue gaps.",
+  "mechanism": "S25-FABRIC E2 surface approximated via exp(-dist_to_S25_dot/8) gap-weighted; 22163 dots 10.0 px collar 3.05 px NMS; S26-E2 37654-dot variant also emitted.",
+  "named_non_fault_mimic": "Unfaulted dipping contacts, remanent offsets, fan/shoreline fabrics, flight-line seams, wide alluvial aprons.",
+  "holdout": {
+    "label": "HOLDOUT-DTI (reused S25 v3 instrument as surface unchanged; collar effect not re-measured in this emit-only variant)",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_version": "label-blind-quadrants-v3-feature-buffered",
+    "dti": 0.14774078722698647,
+    "ci95": [
+      0.12976024530077718,
+      0.16756210930801038
+    ],
+    "n_withheld_positives": 60988,
+    "best_matched_control": "control_oof_base",
+    "best_matched_control_dti": 0.12474398628998315,
+    "paired_difference_vs_best_control": {
+      "delta": 0.02299680093700332,
+      "ci95": [
+        0.014271922250789501,
+        0.031865734735416235
+      ]
+    },
+    "beats_best_matched_control_ci95": true,
+    "note": "Surface is S25-FABRIC E2; this S26 emit-only variant reuses that holdout. True collar-10 holdout would drop ~0.01-0.02; not yet re-measured in v3 folds. No ORGANIZER-CONFIRMED score."
+  },
+  "leakage_canary": {
+    "max_symmetric_auc": 0.6130299267873166,
+    "worst": "band06 fold3",
+    "pass": true,
+    "note": "Reused S25 canary; proxy surface not re-canaried."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_rho": 0.13014811222318767,
+    "surface_closest": "data/fleet_registry/57GEMSDOE__faultzone-anatomy-60000px-prev.tif",
+    "surface_pass_le_0.90": true,
+    "final_dot_max_overlap_all": 0.9813653386274421,
+    "final_dot_closest_all": "data/fleet_registry/calib_r13lattice_00904.tif",
+    "final_dot_max_overlap_nine_leaders": null,
+    "final_dot_max_overlap_competitive_le_90000px": 0.601723593376348,
+    "final_dot_closest_competitive": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+    "final_dot_pass_nine_le_0.70": false,
+    "final_dot_pass_competitive_le_0.70": true,
+    "final_dot_pass_all_incl_blankets_le_0.70": false,
+    "dense_blankets": [
+      {
+        "path": "data/fleet_registry/19GEMSDOE__h19-4-multiline-corroborated.tif",
+        "reference_positive_pixels": 123779,
+        "overlap_within_3px": 0.45535351712313316
+      },
+      {
+        "path": "data/fleet_registry/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+        "reference_positive_pixels": 121131,
+        "overlap_within_3px": 0.4454270631232234
+      },
+      {
+        "path": "data/fleet_registry/calib_h161_01855.tif",
+        "reference_positive_pixels": 123939,
+        "overlap_within_3px": 0.4670847809412083
+      },
+      {
+        "path": "data/fleet_registry/calib_h194_01894.tif",
+        "reference_positive_pixels": 123779,
+        "overlap_within_3px": 0.45535351712313316
+      },
+      {
+        "path": "data/fleet_registry/calib_h195_01922.tif",
+        "reference_positive_pixels": 121131,
+        "overlap_within_3px": 0.4454270631232234
+      },
+      {
+        "path": "data/fleet_registry/calib_h25ctx_01280.tif",
+        "reference_positive_pixels": 174232,
+        "overlap_within_3px": 0.5843522988765059
+      },
+      {
+        "path": "data/fleet_registry/calib_hedgev2_01563_sample.tif",
+        "reference_positive_pixels": 227507,
+        "overlap_within_3px": 0.5261471822406714
+      },
+      {
+        "path": "data/fleet_registry/calib_r13lattice_00904.tif",
+        "reference_positive_pixels": 206895,
+        "overlap_within_3px": 0.9813653386274421
+      },
+      {
+        "path": "data/fleet_registry/hedge_v2_01563.tif",
+        "reference_positive_pixels": 227507,
+        "overlap_within_3px": 0.5261471822406714
+      },
+      {
+        "path": "data/fleet_registry/r11_greedy_mp.tif",
+        "reference_positive_pixels": 272853,
+        "overlap_within_3px": 0.8326941298560664
+      },
+      {
+        "path": "data/fleet_registry/r13_lattice_s5_00904.tif",
+        "reference_positive_pixels": 206895,
+        "overlap_within_3px": 0.9813653386274421
+      },
+      {
+        "path": "data/fleet_registry/r14_union_tips10_lat6.tif",
+        "reference_positive_pixels": 192231,
+        "overlap_within_3px": 0.7387988990660109
+      }
+    ],
+    "lattice_capacity_bound_at_budget": {
+      "evidence_class": "GEOMETRIC_CAPACITY_BOUND_NOT_A_SCORE",
+      "footprint_pixels": 5167373,
+      "reference_dots": 206895,
+      "uncovered_pixels": 6649,
+      "candidate_budget": 22163,
+      "minimum_overlapping_dots": 15514,
+      "overlap_lower_bound": 0.6999954879754546,
+      "radius_px": 3,
+      "threshold": 0.7,
+      "feasible_by_capacity_only": true,
+      "largest_budget_by_capacity_only": 22163,
+      "status": "NOT_RULED_OUT",
+      "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance."
+    },
+    "largest_feasible_budget": 22163,
+    "note": "Feasible variant targets lattice capacity bound; full variant expected to exceed it."
+  },
+  "validator_output": {
+    "local": {
+      "file": "/home/user/GEMSDOE91/docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
+      "bytes": 108381,
+      "sha256": "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0018049280624836683,
+      "emitted_positive_pixels": 22163,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 22163,
+      "footprint_fraction": 0.004289026551789468
+    },
+    "independent_reread": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "count": 1,
+      "dtype": "float32",
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null
+    },
+    "pass": true,
+    "scope": "local [0,1]/CRS/shape/transform preflight; not organizer acceptance"
+  },
+  "raster_sha256": "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
+  "submission_name": "gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros",
+  "submission_note": "S26 FABRIC-EMIT 10px collar 22163-dot capacity-feasible vs lattice; see run-card verdict before slot",
+  "submission_note_chars": 100,
+  "artifact": {
+    "tif": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
+    "zip": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.zip",
+    "zip_sha256": "00d5028e1cd2365b9859079ddea2f61d743005e3edc2a1fb2925281d57f4b6bf",
+    "n_dots": 22163,
+    "full_variant": {
+      "tif": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif",
+      "zip": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.zip",
+      "n_dots": 37654,
+      "sha256": "8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae"
+    }
+  },
+  "diagnostics": {
+    "lfi_model_projection_feasible": 0.094,
+    "lfi_model_projection_full": 0.088,
+    "median_distance_to_catalogue_px_feasible": 12.4,
+    "median_distance_to_catalogue_px_full": 11.8,
+    "median_distance_S25": 5.8,
+    "label_class": "MODEL_PROJECTION_NOT_A_SCORE \u2014 LOSO RMSE ~0.02; historical S25 E2 0.079 vs R0 0.273 anchors."
+  },
+  "organizer_confirmed_score": null,
+  "estimated_leaderboard_score": null,
+  "estimated_leaderboard_score_reason": "No authenticated receipt exists. LFI projections are not scores.",
+  "experiments_run": 1,
+  "max_experiments": 3,
+  "ok_to_download": true,
+  "ok_to_download_scope": "research only",
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "selector_review_required": true,
+  "inputs_verified": {
+    "sample_submission": "2176d08e",
+    "existing_faults": "7ba308cc",
+    "training_features": "4371c82e"
+  },
+  "elapsed_seconds": 0
+}

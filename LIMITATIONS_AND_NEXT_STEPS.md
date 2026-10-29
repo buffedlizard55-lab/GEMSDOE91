@@ -1,6 +1,8 @@
-## S26 current correction — 2026-10-28
+## Historical S26 correction — 2026-10-28
 
 ## Current review — 2026-10-29
+
+- Concurrent S26 artifacts are research-only duplicates against the pinned lattice; previous narrower uniqueness claims are superseded. The original experiment runners are disabled until assignment, canaries, masks and pre-placement novelty checks are fixed. See [the current review](docs/review-4239f6e5/REVIEW.md).
 
 - **No approved submission.** The lane is unassigned and the fixed budget necessarily violates the literal 70% lattice rule on the mirrored footprint. Do not change the budget or exempt dense references without coordination.
 - The mirror called `sample_submission` contains 60,988 positive cells, although the organizer describes an all-zero sample; authenticity and data rights are unverified. Confirm the actual organizer template and its outside-bounds encoding. Thirteen of fifteen manifest inputs are absent.

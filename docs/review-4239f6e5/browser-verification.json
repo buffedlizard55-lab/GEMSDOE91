@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "scope": "Delivery/UI engineering checks, not a competition score or scientific experiment",
-  "checked_utc": "2026-10-29T14:50:57.474Z",
+  "checked_utc": "2026-10-29T15:03:46.057Z",
   "browser": "153.0.8010.0",
   "pages_root_redirect_tested": true,
   "focus_feed_mock": {
@@ -28,6 +28,14 @@
   "s17_cpad_submission_ready": false,
   "s25_research_download_sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
   "s25_research_zip_sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+  "concurrent_s26_research_tif_and_zip_sha256": [
+    "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+    "975c3eb1692ef7b88595e1f54ac1cd0bc6adefd6015ddda13d0588ea9ff22753",
+    "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
+    "00d5028e1cd2365b9859079ddea2f61d743005e3edc2a1fb2925281d57f4b6bf",
+    "8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae",
+    "71599867c6e64ebf1252846571f03f48a342943b489c61e834b92a69b986ff4c"
+  ],
   "current_download_sha256": "f12f03a27585b1a9c89108970775d7b44e532c3238a8f387552f1103d7317042",
   "current_submission_ready": false,
   "current_zip_download_sha256": "8862229cb572b53b41951de6f7d287ba16b4c0412898658b07cf591e5e63efb2",
@@ -49,6 +57,10 @@
     },
     {
       "page": "review-4239f6e5/executive-summary.html",
+      "violations": []
+    },
+    {
+      "page": "s26/executive-summary.html",
       "violations": []
     },
     {

@@ -99,5 +99,33 @@
     "nine_site": "docs/review-4239f6e5/nine-site-leaders.json",
     "historical_s25": "docs/review-4239f6e5/historical-s25-audit.json",
     "focus_inventory": "docs/review-4239f6e5/focus-inventory.json"
+  },
+  "concurrent_research_only": {
+    "source_main_commit": "740ca18cf426e5098814f2c1d9aaa7d0dc7c5b7f",
+    "audit": "docs/review-4239f6e5/concurrent-s26-audit.json",
+    "this_review_generated_these": false,
+    "results": [
+      {
+        "raster_path": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
+        "sha256": "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+        "overlap_vs_lattice": 0.9923248526053009,
+        "verdict": "negative",
+        "ok_to_submit": false
+      },
+      {
+        "raster_path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
+        "sha256": "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
+        "overlap_vs_lattice": 0.9813653386274421,
+        "verdict": "negative",
+        "ok_to_submit": false
+      },
+      {
+        "raster_path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif",
+        "sha256": "8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae",
+        "overlap_vs_lattice": 0.9882349816752536,
+        "verdict": "negative",
+        "ok_to_submit": false
+      }
+    ]
   }
 }

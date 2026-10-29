@@ -45,6 +45,8 @@ def test_fresh_reports_bind_sample_duplicate_and_nine_peer_values():
     assert all(nine['files'][site]['footprint_checked'] for site in nine['max_overlap_into_any_other_leader'])
     assert all(v > .70 for v in nine['max_overlap_into_any_other_leader'].values())
     assert s25['stopped_at'] == 'frozen lattice'
+    assert s25['implementation_sha256'] == hashlib.sha256((ROOT / 'scripts/audit_priority_snapshot.py').read_bytes()).hexdigest()
+    assert s25['validator_implementation_sha256'] == hashlib.sha256((ROOT / 'scripts/audit_downloads.py').read_bytes()).hexdigest()
     assert s25['comparisons']['frozen lattice']['dot_status'] == 'DUPLICATE'
     assert s25['comparisons']['frozen lattice']['directed_overlap_within_3px'] == pytest.approx(
         card['correlation_overlap_vs_registry']['historical_s25_final_dot_overlap_vs_lattice'])

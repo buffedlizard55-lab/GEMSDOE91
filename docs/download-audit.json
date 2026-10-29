@@ -1,13 +1,13 @@
 {
   "schema_version": "gems91.download-audit.v1",
   "audit_completed": true,
-  "scope": "Pinned-reference technical checks only; historical artifacts are not new experiments.",
+  "scope": "Technical checks against hash-pinned mirrors only; their official origin is unverified. Historical artifacts are not new experiments or organizer acceptance.",
   "references": {
     "sample_submission": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
     "existing_faults": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
   },
-  "files_checked": 121,
-  "format_pass": 112,
+  "files_checked": 127,
+  "format_pass": 118,
   "format_fail": 9,
   "ok_to_submit": false,
   "files": [
@@ -2100,6 +2100,135 @@
       "ok_to_submit": false,
       "sha256": "041972c262a36fd87fca88c85a6ecaf2e29a7aebdbc558cc065468d723078428",
       "zip_member": "gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
+      "policy_status": "parallel_quarantined",
+      "ok_to_submit": false,
+      "sha256": "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.zip",
+      "policy_status": "parallel_quarantined",
+      "ok_to_submit": false,
+      "sha256": "00d5028e1cd2365b9859079ddea2f61d743005e3edc2a1fb2925281d57f4b6bf",
+      "zip_member": "gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif",
+      "policy_status": "parallel_quarantined",
+      "ok_to_submit": false,
+      "sha256": "8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.zip",
+      "policy_status": "parallel_quarantined",
+      "ok_to_submit": false,
+      "sha256": "71599867c6e64ebf1252846571f03f48a342943b489c61e834b92a69b986ff4c",
+      "zip_member": "gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
+      "policy_status": "parallel_quarantined",
+      "ok_to_submit": false,
+      "sha256": "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.zip",
+      "policy_status": "parallel_quarantined",
+      "ok_to_submit": false,
+      "sha256": "975c3eb1692ef7b88595e1f54ac1cd0bc6adefd6015ddda13d0588ea9ff22753",
+      "zip_member": "gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
       "status": "PASS",
       "checks": {
         "single_band": true,

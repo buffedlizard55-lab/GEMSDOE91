@@ -1,6 +1,6 @@
 # Prospective geological hypotheses — 29 October 2026
 
-These are **unassigned, untested proposals**, not experiments, predictions, new submissions or estimates of leaderboard score. Rank is a qualitative judgment of expected information relative to cost, not a measured DTI. The exact proposed operators have not been found in a targeted search of this repository; adjacent methods already exist, and this is **not** a claim of global scientific novelty. None may be substituted for the missing assigned method paragraph.
+These are **unassigned, untested proposals**, not experiments, predictions, new submissions or estimates of leaderboard score. Rank is a qualitative judgment of expected information relative to cost, not a measured DTI. A concurrent S26 branch independently proposed a closely related cross-strike Hurst scale-break (its H2); adjacent methods already exist and this is **not** a claim of global scientific novelty. None may be substituted for the missing assigned method paragraph.
 
 | Priority | Hypothesis and intended layers | Mechanism and non-fault mimic | Potential / cost / feasibility |
 |---|---|---|---|

@@ -88,7 +88,7 @@ async function main() {
     const latest = JSON.parse(fs.readFileSync(path.join(root, 'docs/review-4239f6e5/run-card.json')));
     if (latest.ok_to_submit !== false || latest.candidate_generated !== false ||
         await page.locator('[data-submission-ready="false"]').count() !== 1 ||
-        await page.locator('#table tbody tr').count() !== 10 ||
+        await page.locator('#table tbody tr').count() !== 13 ||
         !(await page.getByText(/60,988 nonzero cells/).count())) {
       throw new Error('Latest executive table is missing its fail-closed or sample-provenance warning');
     }
@@ -105,6 +105,26 @@ async function main() {
     const s25ZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await s25ZipDownload.path())).digest('hex');
     if (s25Digest !== s25.raster_sha256 || s25ZipDigest !== s25.zip_sha256 || s25.ok_to_submit !== false) {
       throw new Error('S25 research-only download identity or negative verdict mismatch');
+    }
+    const concurrent = JSON.parse(fs.readFileSync(path.join(root, 'docs/review-4239f6e5/concurrent-s26-audit.json')));
+    const s26Digests = [];
+    for (const result of concurrent.results) {
+      for (const [field, expected] of [['tif', result.tif_sha256], ['zip', result.zip_sha256]]) {
+        const event = page.waitForEvent('download');
+        await page.locator(`a[download][href="../downloads/${path.basename(result[field])}"]`).click();
+        const download = await event;
+        const digest = crypto.createHash('sha256').update(fs.readFileSync(await download.path())).digest('hex');
+        if (digest !== expected || result.submission_ready !== false || result.final_dot_comparison.dot_status !== 'DUPLICATE') {
+          throw new Error('Concurrent S26 research download identity or duplicate stop mismatch');
+        }
+        s26Digests.push(digest);
+      }
+    }
+    await page.goto(new URL('s26/executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
+    if (await page.locator('tbody tr').count() !== 3 ||
+        await page.locator('[data-submission-ready="false"]').count() !== 1 ||
+        !(await page.getByText(/narrower uniqueness claim is superseded/i).count())) {
+      throw new Error('S26 research page is missing its corrected duplicate stop');
     }
 
     // The historical DZ-EDGE file is still downloadable for research, but its
@@ -274,7 +294,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'archive-desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 'submission-guide.html', 'review-4239f6e5/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const target of ['index.html', 'submission-guide.html', 'review-4239f6e5/executive-summary.html', 's26/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -302,7 +322,7 @@ async function main() {
 
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 'submission-guide.html', 'executive-summary.html', 'review-4239f6e5/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const mTarget of ['index.html', 'submission-guide.html', 'executive-summary.html', 'review-4239f6e5/executive-summary.html', 's26/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
@@ -328,6 +348,7 @@ async function main() {
       s17_cpad_submission_ready: s17Card.ok_to_submit,
       s25_research_download_sha256: s25Digest,
       s25_research_zip_sha256: s25ZipDigest,
+      concurrent_s26_research_tif_and_zip_sha256: s26Digests,
       current_download_sha256: currentDigest,
       current_submission_ready: current.ok_to_submit,
       current_zip_download_sha256: currentZipDigest,

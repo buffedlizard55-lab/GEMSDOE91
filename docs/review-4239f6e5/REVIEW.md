@@ -1,6 +1,6 @@
 # Current review — 29 October 2026 — `arena/4239f6e5-gemsdoe91`
 
-**NEGATIVE / BLOCKED. NO NEW TIFF. OK TO SUBMIT: NO.** Zero geological experiments, zero candidate placements and zero weekly submission slots were used in this review. [Executive file table](executive-summary.html) · [one JSON run card](run-card.json) · [ranked hypotheses](HYPOTHESES.md) · [future submission guide](../submission-guide.html). The linked historical TIFFs are research references, not newly eligible submissions. A static website cannot autonomously make a candidate valid merely by providing a link.
+**NEGATIVE / BLOCKED. NO NEW TIFF IN THIS REVIEW. OK TO SUBMIT: NO.** Zero geological experiments, zero candidate placements and zero weekly submission slots were used in this review. Concurrent branches generated separate research-only S26 artifacts, which are rechecked below. [Executive file table](executive-summary.html) · [one JSON run card](run-card.json) · [ranked hypotheses](HYPOTHESES.md) · [future submission guide](../submission-guide.html). The linked historical TIFFs are research references, not newly eligible submissions. A static website cannot autonomously make a candidate valid merely by providing a link.
 
 ## What changed the decision
 
@@ -23,6 +23,22 @@ Historical S25 **HOLDOUT-DTI 0.147741**, 95% CI **[0.129760, 0.167562]**, `gems5
 The user’s **0.2778** is the highest **USER-REPORTED** number in the nine named-site list; it is not **ORGANIZER-CONFIRMED**. A prior [lineage audit](../review-ad43b4e5/nine-site-lineage.json) shows that GEMSDOE32 retains GEMSDOE31 support after removing 2,545 dots, and that GEMSDOE36 adds 1,200 dots relative to GEMSDOE32. The organizer’s [distance-weighted Tversky metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) uses the maximum kernel-weighted prediction at each truth pixel. Thinning redundant nearby predictions can therefore reduce false-positive mass while retaining coverage; however it can also discard genuine coverage. [Organizer staff](https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516) say mapped-fault pixels are excluded, not that every nearby prediction is a false positive. Hidden labels and a file-linked receipt are unavailable, so geometry does not prove why 0.2778 occurred or whether a better submission has been achieved.
 
 The official public leaderboard was observed on **29 October 2026** at **0.4544** for rank one and **0.3916** for rank two: a [dated public-board observation](public-observation.json), not a submission-page receipt or score for these files. The board is live and may change. Earlier 0.3195/0.4413 claims are not treated as current values. User-reported GEMSDOE92 0.2784 is outside the requested nine and likewise unconfirmed.
+
+## Concurrent S26 results merged during this review
+
+Main advanced while this branch was being reviewed. We retained the concurrent work, SHA-checked its three TIFFs, reread each one-TIFF ZIP and locally validated each against the mirrored sample and catalogue. Then we compared exact final dots against the pinned lattice and stopped each audit at its first duplicate ([machine-readable receipt](concurrent-s26-audit.json)):
+
+| Concurrent research file | SHA-256 | Final dots within 3 px of lattice | Decision |
+|---|---|---:|---|
+| [S26 LiDAR/radiometrics](../downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif) | `957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d` | **99.2325%** | Duplicate; no |
+| [S26 FABRIC emitter 22,163](../downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif) | `198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8` | **98.1365%** | Duplicate; no |
+| [S26 FABRIC emitter 37,654](../downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif) | `8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae` | **98.8235%** | Duplicate; no |
+
+Earlier LiDAR/radiometric uniqueness was measured only against eight restored references; it did not include this lattice. Its authors reported **HOLDOUT-DTI 0.133242 [0.111054, 0.155289]** (`gems57-pooled-hide-v2`, label-blind-quadrants-v3, 60,988 withheld). That is historical holdout evidence, not an organizer score, and it is not independently validated here. The runner averages a feature’s fold AUCs before taking a maximum, which can conceal an individual fold above 0.90; its source feature reads also need a mask/finite-NoData audit. Neither issue establishes leakage, but neither canary nor input validity is cleared.
+
+The concurrent emitter explicitly self-assigned a lane and used a reduced 22,163 budget without evidence of coordinator authorization. It created and wrote two candidates before surface checks, and continued after the lattice duplicate. Its pseudo-surface was computed from distance to S25 dots, so S25’s prior 0.147741 fold-local holdout and canary **cannot be transferred** to the new surface or collar. A capacity-only bound is not proof a 22,163-dot placement is unique; both actual artifacts fail. Moving dots farther from the catalogue is not evidence that their overlap with another raster can only decrease. There is no authorized exemption for a dense registry raster.
+
+Original runner and run-card bytes were archived in `evidence/concurrent-s26-20261029/`; both runner entry points are disabled to prevent reruns before assigned-lane, provenance, canary and pre-placement/complete-registry checks are implemented. Their historical results are not erased. The current review generated none of those files, changed no budget and used no slot.
 
 ## Shared-tool fixes and validation boundary
 
@@ -48,6 +64,8 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
   --candidate docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif \
   --out work/nine.json
 .venv/bin/python scripts/audit_priority_snapshot.py --nine-report work/nine.json --out work/s25-audit.json
+.venv/bin/python scripts/audit_concurrent_s26.py --out work/s26-audit.json
+.venv/bin/python scripts/render_portal.py
 .venv/bin/python -m pytest -q
 ```
 

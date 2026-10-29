@@ -21,6 +21,8 @@ on:
       - scripts/verify_nine_site_leaders.py
       - scripts/verify_priority_nine.py
       - scripts/audit_priority_snapshot.py
+      - scripts/audit_concurrent_s26.py
+      - scripts/audit_downloads.py
       - scripts/render_priority_review.py
       - scripts/render_nine_site_20261028.py
       - scripts/submission_writer.py

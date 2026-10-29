@@ -1,7 +1,8 @@
 {
   "schema": "gems91.priority-snapshot-recheck.v1",
-  "checked_utc": "2026-10-29T14:52:35.691291+00:00",
-  "implementation_sha256": "e90550af81df556344f9a7d002487cb117518c1254e1a02e5cd7a194ce468046",
+  "checked_utc": "2026-10-29T15:04:49.279131+00:00",
+  "implementation_sha256": "ed52c687e119a33c498980cb23f6b4b1e119e3c545c2bc5cfbe90031859c59fb",
+  "validator_implementation_sha256": "68e85252117a3ed6a6f663fdf4a9555de2a0c5db37c313dff49a56220d02e485",
   "scope": "Existing S25 research TIFF vs nine leader TIFFs and one selected witness only; no experiment or slot.",
   "reference_provenance": "SHA-pinned owner GitHub mirrors; not authenticated organizer files or proof of redistribution rights.",
   "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",

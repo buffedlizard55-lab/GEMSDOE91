@@ -202,6 +202,19 @@ def s24_callout(root=ROOT) -> str:
 </section>'''
 
 
+def concurrent_s26_callout(root=ROOT) -> str:
+    """Link concurrent research without implying it was generated here."""
+    report = json.loads((root / 'docs/review-4239f6e5/concurrent-s26-audit.json').read_text())
+    rows = report.get('results', [])
+    if (len(rows) != 3 or any(row.get('submission_ready') is not False
+            or row.get('final_dot_comparison', {}).get('dot_status') != 'DUPLICATE' for row in rows)):
+        raise ValueError('S26 callout requires three research-only duplicate stops')
+    return '''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="Concurrent S26 research artifacts; not approved for submission">
+<p><span class="badge">DOWNLOADS: RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<h2>Concurrent S26 research · independently rechecked</h2><p>Three existing S26 TIFFs landed from other branches. Each exceeds the literal 70% duplicate threshold against the pinned lattice (98.14%–99.23%); the earlier narrower uniqueness claim is superseded. No new leaderboard estimate is defensible. Format checks depend on an unauthenticated sample mirror.</p>
+<p><a href="s26/executive-summary.html">S26 downloads and gate table</a> · <a href="review-4239f6e5/concurrent-s26-audit.json">Byte and lattice recheck</a> · <a href="review-4239f6e5/executive-summary.html">Full comparison</a></p></section>'''
+
+
 def s25_callout(root=ROOT) -> str:
     """Latest-session (S25-FABRIC) research download, re-verified fail-closed.
 
@@ -278,7 +291,7 @@ def render() -> None:
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
-    parallel_card = s25_callout(ROOT) + s24_callout(ROOT)
+    parallel_card = concurrent_s26_callout(ROOT) + s25_callout(ROOT) + s24_callout(ROOT)
     for source_name, target_name in ((CURRENT['index_src'], "index.html"),
                                      (CURRENT['exec_src'], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
@@ -311,7 +324,7 @@ def render() -> None:
                 or latest_pre.get("status") != "BLOCKED" or latest_pre.get("ok_to_submit") is not False
                 or capacity["sample_semantics"]["status"] != "CONFLICT_WITH_ORGANIZER_DESCRIPTION"):
             raise ValueError("Latest review evidence inconsistent; refusing to render")
-        current_notice = (f'<div class="note" role="status"><strong>CURRENT REVIEW · 2026-10-29: NO NEW TIFF · OK TO SUBMIT: NO.</strong> '
+        current_notice = (f'<div class="note" role="status"><strong>CURRENT REVIEW · 2026-10-29: NO NEW TIFF IN THIS REVIEW · OK TO SUBMIT: NO.</strong> '
             f'The method lane is unassigned. At the frozen budget, the measured mirrored-footprint capacity forces at least '
             f'{capacity["overlap_lower_bound"]:.2%} overlap with the lattice, above 70%. '
             f'The sample mirror has {capacity["sample_semantics"]["nonzero_inside_footprint"]:,} nonzero cells despite the organizer describing an all-zero sample; authenticity is unverified. '

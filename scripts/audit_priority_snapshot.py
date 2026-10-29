@@ -150,6 +150,7 @@ def audit(nine_report: Path, cache: Path):
         'schema': 'gems91.priority-snapshot-recheck.v1',
         'checked_utc': datetime.now(timezone.utc).isoformat(),
         'implementation_sha256': digest(Path(__file__)),
+        'validator_implementation_sha256': digest(ROOT / 'scripts/audit_downloads.py'),
         'scope': 'Existing S25 research TIFF vs nine leader TIFFs and one selected witness only; no experiment or slot.',
         'reference_provenance': 'SHA-pinned owner GitHub mirrors; not authenticated organizer files or proof of redistribution rights.',
         'sample_sha256': inputs['sample_submission']['sha256'],
