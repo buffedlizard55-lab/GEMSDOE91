@@ -1,3 +1,11 @@
+# GEMSDOE91 — Active-branch review (2026-10-29): BLOCKED — NO SUBMISSION APPROVED
+
+> **Current branch `arena/e064d914-gemsdoe91`. NO NEW TIFF · OK TO DOWNLOAD: NO CANDIDATE · OK TO SUBMIT: NO.** This review generated no raster, ran no experiment, and used no submission slot. The supplied highest site score (GEMSDOE32 0.2778) is USER-REPORTED, not organizer-confirmed; no honest new-candidate leaderboard estimate is available. The active experiment plan has `lane: null`; 15 pinned inputs are absent, and the local Python environment lacks `rasterio` and `pytest`. [Current branch review and four deferred hypotheses](docs/review-e064d914-20261029.md) · [run card](docs/run-card-e064d914-20261029.json) · [nine-site executive table](docs/nine-site-20261028/executive-summary.html). No historical TIFF is authorized for re-submission.
+
+**Maximize P(Win) · Own the Outcome.** Read the current review, `LIMITATIONS_AND_NEXT_STEPS.md`, `IRREGULARITIES.md`, and the [full project brief](#full-project-brief) at each session start. Historical banners below are preserved evidence, not current approvals.
+
+---
+
 # GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED
 
 > **Active checkout `arena/3a4cca78-gemsdoe91` · 2026-10-28: NO NEW TIFF · OK TO DOWNLOAD: NO NEW CANDIDATE · OK TO SUBMIT: NO.** No lane is assigned (`registry/experiment_plan.json` has `lane: null`); the competition stack and 15 pinned inputs are absent. The frozen 37,654-dot plan also has a saved 82.3418% conditional overlap lower bound against a pinned lattice (protocol limit 70%), so do not manufacture a raster or work around the rule. [This checkout's three-pass review, nine-site table, hypotheses and limitations](docs/review-3a4cca78-20261028.md) · [updated nine-site file/hash audit and executive table](docs/nine-site-20261028/executive-summary.html) · [run card](docs/run-card-3a4cca78-20261028.json) · [source inventory snapshot](docs/review-20261028/focus-inventory.json). Start each session with this current verdict, the [full standing project brief](#full-project-brief), `LIMITATIONS_AND_NEXT_STEPS.md`, and `IRREGULARITIES.md`. **Maximize P(Win) · Own the Outcome.**
