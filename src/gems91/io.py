@@ -46,22 +46,41 @@ def dot_digest(dot: np.ndarray) -> str:
 
 def write_float32(path: str | Path, arr: np.ndarray, *, encoding: str,
                   template: str | Path) -> None:
-    """Write one band on the template grid.
+    """Low-level encoder; it does not approve or publish a submission.
 
-    encoding="nan"   -> NaN outside the footprint, {0,1} inside (spec-compliant primary)
-    encoding="zeros" -> 0 outside the footprint, {0,1} inside (fallback twin)
-
-    CRS and transform are copied from the template; writing them is a gate, not
-    a convenience (tifffile alone silently drops both).
+    The input is validated *before* float32 conversion. Only NaNs outside the
+    template footprint may be encoded as zeros in the local-range twin; no
+    nonfinite in-footprint values, infinities, out-of-range finite values or
+    positive mass outside the footprint are ever silently repaired. Use the
+    shared submission writer for staged validation and publication.
     """
     if encoding not in ("nan", "zeros"):
         raise ValueError(encoding)
-    arr = np.asarray(arr, dtype="float32")
-    if encoding == "zeros":
-        arr = np.where(np.isfinite(arr), arr, np.float32(0.0))
-    path = Path(path)
-    path.parent.mkdir(parents=True, exist_ok=True)
+    if np.ma.isMaskedArray(arr) and np.ma.getmaskarray(arr).any():
+        raise ValueError("masked predictions must be resolved before encoding")
+    values = np.asarray(arr)
+    if values.ndim != 2 or values.dtype.kind not in 'buif':
+        raise ValueError("prediction must be a real numeric 2-D array")
     with rasterio.open(str(template)) as tpl:
+        if tpl.count != 1 or tpl.crs is None or values.shape != tpl.shape:
+            raise ValueError("prediction must match a single-band georeferenced template")
+        template_values = tpl.read(1)
+        footprint = np.isfinite(template_values) & (tpl.read_masks(1) > 0)
+        if not footprint.any():
+            raise ValueError("empty template footprint")
+        finite = np.isfinite(values)
+        if not finite[footprint].all() or np.isinf(values).any():
+            raise ValueError("non-finite prediction inside footprint or infinity anywhere")
+        if np.any((values[finite] < 0) | (values[finite] > 1)):
+            raise ValueError("prediction values must already be in [0,1]")
+        if np.any((values > 0) & ~footprint):
+            raise ValueError("positive prediction outside footprint")
+        arr32 = np.zeros(values.shape, dtype=np.float32)
+        arr32[footprint] = values[footprint].astype(np.float32, copy=False)
+        if np.any((values[footprint] > 0) & (arr32[footprint] == 0)):
+            raise ValueError("positive prediction support underflows during float32 conversion")
+        if encoding == "nan":
+            arr32[~footprint] = np.nan
         profile = {
             "driver": "GTiff", "height": tpl.height, "width": tpl.width, "count": 1,
             "dtype": "float32", "crs": tpl.crs, "transform": tpl.transform,
@@ -70,8 +89,10 @@ def write_float32(path: str | Path, arr: np.ndarray, *, encoding: str,
         }
         if encoding == "nan":
             profile["nodata"] = float("nan")
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
     with rasterio.open(str(path), "w", **profile) as dst:
-        dst.write(arr, 1)
+        dst.write(arr32, 1)
 
 
 def profile_of(template: str | Path) -> dict:

@@ -6,13 +6,17 @@ For each of the nine focus sites (GEMSDOE24/25/27/28/30/31/32/33/36) this script
 1. fetches the site's best-claimed GeoTIFF from the user's OWN public GitHub repo at the
    pinned commit recorded in docs/s25/nine-site-audit.json (GitHub contents API, raw);
 2. verifies the sha256 against the recorded hash (refuses to continue on mismatch);
-3. checks format: single band, float32, EPSG:32611, 100 m, shared grid, finite values in
-   [0, 1] (NaN allowed only outside the footprint), positive-pixel count;
+3. checks single band, float32, EPSG:32611, 100 m, shared grid, finite values in
+   [0, 1] and positive-pixel count. The sample footprint is NOT available to this
+   diagnostic: it cannot establish whether any NaNs occur inside it;
 4. computes pairwise 3-px overlap: fraction of candidate's positive pixels within
    Euclidean 3 px of any positive pixel of the reference (the protocol's dot-overlap);
 5. computes Spearman rank correlation on a fixed random sample of cells where both
    rasters are finite (protocol surface-correlation check, sampled not exhaustive);
 6. optionally checks a local candidate (e.g. an S25 research TIFF) against all nine.
+
+Sampled Spearman and the unmasked overlaps are diagnostics only, NOT the
+protocol's exact full-footprint surface or final-dot clearance checks.
 
 No competition data is fetched. Only the user's own submission rasters are read.
 
@@ -70,7 +74,8 @@ def load(data: bytes):
             "res": [float(ds.res[0]), float(ds.res[1])],
             "shape": [int(ds.height), int(ds.width)],
             "transform": list(ds.transform)[:6],
-            "nodata": ds.nodata,
+            "nodata": ("nan" if ds.nodata is not None and np.isnan(ds.nodata)
+                       else float(ds.nodata) if ds.nodata is not None else None),
         }
     return arr, info
 
@@ -85,7 +90,7 @@ def overlap_within(cand: np.ndarray, ref: np.ndarray, radius: float = 3.0) -> fl
     rm = positive_mask(ref)
     n = int(cm.sum())
     if n == 0 or not rm.any():
-        return 0.0
+        raise ValueError("empty dot support is unverified, not a uniqueness pass")
     dist = ndimage.distance_transform_edt(~rm)
     return float((dist[cm] <= radius).sum() / n)
 
@@ -96,23 +101,36 @@ def spearman_sample(a: np.ndarray, b: np.ndarray) -> float:
     rng = np.random.default_rng(SEED)
     if idx.size > SAMPLE_N:
         idx = rng.choice(idx, size=SAMPLE_N, replace=False)
-    rho, _ = stats.spearmanr(a.ravel()[idx], b.ravel()[idx])
-    return float(rho)
+    if idx.size < 2:
+        return None
+    x, y = a.ravel()[idx], b.ravel()[idx]
+    if np.ptp(x) == 0 or np.ptp(y) == 0:
+        return None  # undefined correlation is not a uniqueness pass
+    rho, _ = stats.spearmanr(x, y)
+    return float(rho) if np.isfinite(rho) else None
 
 
 def format_checks(arr: np.ndarray, info: dict) -> dict:
     finite = np.isfinite(arr)
     vals = arr[finite]
-    in_range = bool(vals.size == 0 or (vals.min() >= 0.0 and vals.max() <= 1.0))
+    in_range = bool(vals.size and not np.isinf(arr).any()
+                    and vals.min() >= 0.0 and vals.max() <= 1.0)
     return {
         "single_band": info["count"] == 1,
         "dtype_float32": info["dtype"] == "float32",
         "crs_is_32611": info["crs"] == "EPSG:32611",
         "res_is_100m": info["res"] == [100.0, 100.0],
         "finite_in_0_1": in_range,
-        "nan_count": int((~finite).sum()),
+        "nan_count": int(np.isnan(arr).sum()),
+        "infinity_count": int(np.isinf(arr).sum()),
+        "footprint_verified": False,
         "positive_pixels": int(positive_mask(arr).sum()),
     }
+
+
+def same_grid(a: dict, b: dict) -> bool:
+    """Shape alone cannot establish geographic alignment."""
+    return all(a[k] == b[k] for k in ("count", "crs", "shape", "transform"))
 
 
 def main() -> int:
@@ -151,16 +169,20 @@ def main() -> int:
             "bytes": len(data),
             "claimed_user_reported_score": site["claimed_value_user_reported"],
             "organizer_confirmed_score": None,
-            "grid_matches_first_site": info["shape"] == grid_ref["shape"] and info["transform"] == grid_ref["transform"],
+            "grid_matches_first_site": same_grid(info, grid_ref),
             "shape": info["shape"],
             "format": fc,
         })
         print(f"{name}: sha OK, positives={fc['positive_pixels']}, grid_ok={rows[-1]['grid_matches_first_site']}", flush=True)
+        if not rows[-1]['grid_matches_first_site'] or not fc['single_band'] or not fc['dtype_float32'] or not fc['finite_in_0_1']:
+            raise ValueError(f"{name}: grid or finite-value check failed")
 
     # local research candidate
     cand_arr, cand_info = load(Path(args.local_candidate).read_bytes())
     cand_name = Path(args.local_candidate).name
     cand_fmt = format_checks(cand_arr, cand_info)
+    if not same_grid(cand_info, grid_ref) or not cand_fmt['dtype_float32'] or not cand_fmt['finite_in_0_1']:
+        raise ValueError("candidate grid or finite-value check failed")
 
     names = [r["site"] for r in rows]
     pair = {}
@@ -173,27 +195,37 @@ def main() -> int:
     cand_vs = {}
     for n in names:
         cand_vs[n] = {
-            "overlap_within_3px": round(overlap_within(cand_arr, arrays[n]), 6),
-            "spearman_sampled": round(spearman_sample(cand_arr, arrays[n]), 6),
+            "overlap_within_3px": overlap_within(cand_arr, arrays[n]),
+            "spearman_sampled": spearman_sample(cand_arr, arrays[n]),
         }
     # repo-tracked research TIFFs (same grid) — the protocol's registry proxy available locally
     repo_rows = []
+    skipped = []
     for tif in sorted((ROOT / "docs" / "downloads").glob("*.tif")):
         if tif.name == Path(args.local_candidate).name:
             continue
         with rasterio.open(tif) as ds:
-            if ds.shape != cand_arr.shape:
+            candidate_grid = (cand_info["count"], cand_info["shape"], cand_info["crs"], cand_info["transform"])
+            actual_grid = (ds.count, list(ds.shape), ds.crs.to_string() if ds.crs else None, list(ds.transform)[:6])
+            if actual_grid != candidate_grid:
+                skipped.append({"file": f"docs/downloads/{tif.name}", "reason": "grid mismatch"})
                 continue
             ref = ds.read(1).astype(np.float64)
+        ref_finite = ref[np.isfinite(ref)]
+        if (np.isinf(ref).any() or not ref_finite.size or ref_finite.min() < 0 or ref_finite.max() > 1
+                or not positive_mask(ref).any()):
+            skipped.append({"file": f"docs/downloads/{tif.name}", "reason": "empty or invalid support"})
+            continue
         repo_rows.append({
             "file": f"docs/downloads/{tif.name}",
-            "overlap_within_3px": round(overlap_within(cand_arr, ref), 6),
+            "overlap_within_3px": overlap_within(cand_arr, ref),
             "positive_pixels": int(positive_mask(ref).sum()),
         })
     repo_rows.sort(key=lambda r: r["overlap_within_3px"], reverse=True)
 
     worst = max(cand_vs.items(), key=lambda kv: kv[1]["overlap_within_3px"])
-    worst_rho = max(cand_vs.items(), key=lambda kv: abs(kv[1]["spearman_sampled"]))
+    defined_rho = [(name, row) for name, row in cand_vs.items() if row['spearman_sampled'] is not None]
+    worst_rho = max(defined_rho, key=lambda kv: abs(kv[1]["spearman_sampled"])) if defined_rho else None
 
     result = {
         "schema": "nine-site-leaders-20261028-v1",
@@ -208,18 +240,19 @@ def main() -> int:
             "format": cand_fmt,
             "vs_nine": cand_vs,
             "max_overlap_site": {"site": worst[0], "overlap": worst[1]["overlap_within_3px"]},
-            "max_abs_spearman_site": {"site": worst_rho[0], "rho": worst_rho[1]["spearman_sampled"]},
-            "repo_tif_comparisons": {"count": len(repo_rows), "top": repo_rows[:8]},
+            "max_abs_spearman_site": ({"site": worst_rho[0], "rho": worst_rho[1]["spearman_sampled"]}
+                                      if worst_rho else None),
+            "repo_tif_comparisons": {"count": len(repo_rows), "top": repo_rows[:8], "skipped": skipped},
         },
         "rules": {
             "overlap_duplicate_threshold": 0.70,
             "spearman_stop_threshold": 0.90,
-            "note": "Overlap is literal 3-px match (Euclidean). Spearman is on a fixed sample.",
+            "note": "Euclidean overlap is unmasked; Spearman is sampled. Neither is a full-footprint protocol clearance.",
         },
     }
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    (out / "nine-site-leaders-20261028.json").write_text(json.dumps(result, indent=1) + "\n")
+    (out / "nine-site-leaders-20261028.json").write_text(json.dumps(result, indent=1, allow_nan=False) + "\n")
     print(json.dumps({k: result["local_candidate"][k] for k in ("file", "max_overlap_site", "max_abs_spearman_site")}, indent=1))
     return 0
 

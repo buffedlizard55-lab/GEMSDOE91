@@ -1,5 +1,14 @@
 ## S26 current correction — 2026-10-28
 
+## Current review — 2026-10-29
+
+- **No approved submission.** The lane is unassigned and the fixed budget necessarily violates the literal 70% lattice rule on the mirrored footprint. Do not change the budget or exempt dense references without coordination.
+- The mirror called `sample_submission` contains 60,988 positive cells, although the organizer describes an all-zero sample; authenticity and data rights are unverified. Confirm the actual organizer template and its outside-bounds encoding. Thirteen of fifteen manifest inputs are absent.
+- Obtain a complete frozen registry, authorized stack, exact lane, and a matched corrected holdout baseline; use feature canaries, both novelty phases, the shared writer and a separate selector with live quota. No weekly slot was used.
+- The shared legacy writer rejects invalid originals and stages publication, but a hard process crash during multiple-file publication is not atomic. Its local all-finite twin is not organizer acceptance; the cause of the user’s range error remains unknown.
+- [Detailed review](docs/review-4239f6e5/REVIEW.md) · [hypotheses](docs/review-4239f6e5/HYPOTHESES.md) · [run card](docs/review-4239f6e5/run-card.json).
+
+
 **TLF approval retracted; NOT OK TO SUBMIT.** Exact frozen-registry audit: 99.601667% directed 3-px overlap with lattice, 93.826667% with r11, 76.061667% with r14. Earlier 0.36 projection withdrawn; SGMC was fitted, not blind. Original pre-placement surface unavailable; holdout feature canaries not established. No new TIFF or geological experiment/slot. Data pins restored (15/15); 62/64 frozen references available. Need assigned method, versioned registry scope resolution, source rights, matched holdout evidence and separate authenticated quota/selector check. Do not exempt witnesses. [Review and next steps](docs/s26/REVIEW.md) · [run card](docs/s26/run-card.json). Earlier statuses below are historical.
 
 ---

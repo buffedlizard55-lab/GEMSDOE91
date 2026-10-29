@@ -193,7 +193,7 @@ def s24_callout(root=ROOT) -> str:
     tif_href = tif.relative_to(docs.resolve()).as_posix()
     zip_href = archive_path.relative_to(docs.resolve()).as_posix()
     return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S24-CCKM latest research artifact; not approved for submission">
-<p><strong>2026-10-28 current review: no new candidate; OK TO SUBMIT: NO.</strong> <a href="review-68881914-20261028.md">Current review and next steps</a> · <a href="run-card-20261028.json">Current run card</a></p>
+<p><strong>Historical banner (superseded): 2026-10-28 current review: no new candidate; OK TO SUBMIT: NO.</strong> <a href="review-68881914-20261028.md">Current review and next steps</a> · <a href="run-card-20261028.json">Current run card</a></p>
 <p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
 <h2>S24-CCKM E2 · Cross-contact kurtosis (B14&thinsp;&times;&thinsp;B13) · 37,654 dots · prior session 2026-10-27</h2>
 <p>A research TIF was generated in the prior S24 session: unique vs the nine focus leaders (max {100*nine_max:.2f}% of dots within 3 px), HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, {h["n_withheld_positives"]:,} withheld — not a leaderboard score). The historical v2 holdout is not matched to the corrected v3 context-buffer instrument. Verdict negative: its paired improvement over the gravity-gradient control is not established and fails the literal dense-lattice registry rule, so it must not be submitted. Full evidence, the nine-site table, and the future-submission guide: <a href="s24/executive-summary.html">S24 executive summary</a>.</p>
@@ -239,12 +239,18 @@ def s25_callout(root=ROOT) -> str:
     corr = card["correlation_overlap_vs_registry"]
     nine_max = corr["final_dot_max_overlap_nine_leaders"]
     comp_max = corr["final_dot_max_overlap_competitive_le_90000px"]
+    fresh = json.loads((docs / "review-4239f6e5/historical-s25-audit.json").read_text())
+    witness = fresh["comparisons"]["frozen lattice"]
+    if (fresh["raster"]["sha256"] != card["raster_sha256"] or fresh["ok_to_submit"] is not False
+            or witness["dot_status"] != "DUPLICATE"):
+        raise ValueError("S25 recheck contradicts the historical research artifact")
+    lattice_overlap = witness["directed_overlap_within_3px"]
     tif_href = tif.relative_to(docs.resolve()).as_posix()
     zip_href = archive_path.relative_to(docs.resolve()).as_posix()
-    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S25-FABRIC latest research artifact; not approved for submission">
+    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S25-FABRIC historical research artifact; not approved for submission">
 <p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
-<h2>S25-FABRIC E2 · Granulometry + gravity–magnetic phase-lag spatial OOF · 37,654 dots · latest session 2026-10-28</h2>
-<p>A new TIF was generated this session: unique vs the nine focus leaders (max {100*nine_max:.2f}% of dots within 3 px), HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, v3 folds, {h["n_withheld_positives"]:,} withheld — not a leaderboard score), beating its best matched control in paired holdout. Verdict negative: final dots reach {100*comp_max:.2f}% within 3 px of one competitive registry raster (limit 70%), and the labelled LFI model projection is low because its dots hug the mapped catalogue (median 5.8 px), so it must not be submitted. Full evidence, the nine-site table, estimated-score table and submission guide: <a href="s25/executive-summary.html">S25 executive summary</a>.</p>
+<h2>S25-FABRIC E2 · historical research artifact · 2026-10-28</h2>
+<p>This is not a new TIFF from the current review. Its final dots overlap at most {100*nine_max:.2f}% within 3 px of the nine listed leaders, but a fresh recheck found {100*lattice_overlap:.2f}% overlap with the frozen lattice. Its earlier fold-local HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, v3 folds, {h["n_withheld_positives"]:,} withheld) exceeded one matched control; it is not a measurement of the final static TIFF or a leaderboard score. No improvement over GEMSDOE32 is demonstrated. Verdict negative: do not submit. <a href="review-4239f6e5/historical-s25-audit.json">Recheck receipt</a> · <a href="review-4239f6e5/executive-summary.html">Current comparison</a>.</p>
 <p><a class="button" download href="{esc(tif_href, quote=True)}">Download S25 research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s25/REVIEW.md">Session review</a> · <a href="s25/run-card.json">Run card</a></p>
 <p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
 </section>'''
@@ -264,6 +270,8 @@ def render() -> None:
     from scripts.render_review_8e8d86f2 import render_sources as render_review_sources
     render_s22_sources()
     render_review_sources()
+    from scripts.render_priority_review import render as render_priority_review
+    render_priority_review()
     docs = ROOT / "docs"
     current = front_door(ROOT)  # fail before replacing any published page
     # The S22-XB artifact is a historical research run, not the current lane.
@@ -295,6 +303,22 @@ def render() -> None:
                   '<a href="s25-tlf/executive-summary.html">Executive summary, research download and submission guide</a> · '
                   '<a href="s25-tlf/witness-audit-20261028.json">Measured audit</a>.</div>')
         page = page.replace('<main id="main">', '<main id="main">' + notice, 1)
+        latest_card = json.loads((docs / "review-4239f6e5/run-card.json").read_text())
+        latest_pre = json.loads((docs / "review-4239f6e5/experiment-preflight.json").read_text())
+        capacity = latest_pre["capacity"]
+        if (latest_card.get("verdict") != "negative" or latest_card.get("ok_to_submit") is not False
+                or latest_card.get("candidate_generated") is not False or latest_card.get("raster_sha256") is not None
+                or latest_pre.get("status") != "BLOCKED" or latest_pre.get("ok_to_submit") is not False
+                or capacity["sample_semantics"]["status"] != "CONFLICT_WITH_ORGANIZER_DESCRIPTION"):
+            raise ValueError("Latest review evidence inconsistent; refusing to render")
+        current_notice = (f'<div class="note" role="status"><strong>CURRENT REVIEW · 2026-10-29: NO NEW TIFF · OK TO SUBMIT: NO.</strong> '
+            f'The method lane is unassigned. At the frozen budget, the measured mirrored-footprint capacity forces at least '
+            f'{capacity["overlap_lower_bound"]:.2%} overlap with the lattice, above 70%. '
+            f'The sample mirror has {capacity["sample_semantics"]["nonzero_inside_footprint"]:,} nonzero cells despite the organizer describing an all-zero sample; authenticity is unverified. '
+            '<a href="review-4239f6e5/executive-summary.html">Executive table and research downloads</a> · '
+            '<a href="review-4239f6e5/REVIEW.md">Full review</a> · '
+            '<a href="review-4239f6e5/run-card.json">Negative run card</a>.</div>')
+        page = page.replace('<main id="main">', '<main id="main">' + current_notice, 1)
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     (ROOT / 'index.html').write_text(
@@ -304,7 +328,7 @@ def render() -> None:
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
         '<h1>GEMSDOE91 · Current review</h1>' + _root_verdict() + 
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
-        '<a href="docs/s25-tlf/executive-summary.html">Current executive summary, nine-site table and submission guide</a> · '
+        '<a href="docs/review-4239f6e5/executive-summary.html">Current executive summary, nine-site table and submission guide</a> · '
         '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
         '</main></body></html>\n', encoding='utf-8')
 

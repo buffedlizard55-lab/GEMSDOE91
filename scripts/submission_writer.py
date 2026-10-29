@@ -6,22 +6,24 @@ the repository's shared `src/gems91/io.py`, `src/gems91/gates.py`,
 `src/gems91/release_gates.py`, and `scripts/validate_raster.py` — no private
 fork of the format rules.
 
-Prevents the DrivenData portal error `"Predicted values must be in range [0, 1]"`
-against BOTH measured failure mechanisms:
-  1. Sentinel bleed (`-3.4028234663852886e+38` inside footprint from
-     `training_features.tif`): scrubbed before emission and asserted absent.
-  2. Non-finite / nodata tag rejection: writes an all-finite `-zeros.tif` twin
-     (`nodata=None`, 0 NaNs across all 12,279,160 cells, values strictly in
-     `[0.0, 1.0]`) alongside the `NaN`-outside `.tif` twin, plus a single-member
-     `.zip` archive and a WebCrypto SHA-256 verified `.b64.js` bundle for
-     one-click GitHub Pages download without tracking raw `.tif` files in git.
+This legacy interface checks original, pre-conversion predictions without
+silently fixing invalid values. It stages and re-reads both encodings and the
+single-TIFF ZIP before publishing, and refuses to overwrite existing outputs.
+It performs technical checks only: it cannot identify the cause of a past
+organizer error, establish organizer acceptance, or authorize a weekly slot.
+The organizer description specifies null/NaN outside the bounds; the extra
+all-finite ``-zeros`` twin is only a local range precaution, not proof that
+its outside-footprint representation is accepted.
 """
 
 from __future__ import annotations
 
 import base64
 import json
+import os
+import re
 import sys
+import tempfile
 import zipfile
 from pathlib import Path
 
@@ -48,7 +50,92 @@ def _rel_or_str(path: Path) -> str:
         return str(path)
 
 
+def _plain_name(value: str, label: str) -> None:
+    """Keep caller-supplied names inside their output directories."""
+    if not isinstance(value, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", value):
+        raise ValueError(f"{label} must be a nonempty plain filename component")
+
+
 def write_validated_submission_bundle(
+    dot_or_prob_grid: np.ndarray, *, stem_prefix: str, date_tag: str,
+    template_path: str | Path, catalogue_path: str | Path,
+    ledger_path: str | Path | None = ROOT / "ledger" / "submissions.csv",
+    parent_compare_path: str | Path | None = None,
+    releases_dir: str | Path = ROOT / "releases",
+    downloads_dir: str | Path | None = ROOT / "docs" / "downloads",
+    floor_px: float = 3.0, bundle_js_filename: str = "h91_submission_bundle.js",
+) -> dict:
+    """Stage, validate and publish the legacy bundle without clobbering files.
+
+    Validation failures leave no new artifacts. Atomic hard links provide
+    no-overwrite publication on each target filesystem; on a publication
+    exception the links already created by this call are rolled back. A hard
+    process crash during multi-file publication is not an atomic transaction.
+    This never promotes a candidate or spends a competition slot.
+    """
+    _plain_name(stem_prefix, "stem_prefix")
+    _plain_name(date_tag, "date_tag")
+    _plain_name(bundle_js_filename, "bundle_js_filename")
+    releases = Path(releases_dir)
+    releases.mkdir(parents=True, exist_ok=True)
+    downloads = Path(downloads_dir) if downloads_dir is not None else None
+    if downloads is not None:
+        downloads.mkdir(parents=True, exist_ok=True)
+
+    from contextlib import ExitStack
+    with ExitStack() as stack:
+        stage_release = Path(stack.enter_context(tempfile.TemporaryDirectory(prefix=".gems-stage-", dir=releases)))
+        stage_download = (Path(stack.enter_context(tempfile.TemporaryDirectory(prefix=".gems-stage-", dir=downloads)))
+                          if downloads is not None else None)
+        audit = _write_staged_submission_bundle(
+            dot_or_prob_grid, stem_prefix=stem_prefix, date_tag=date_tag,
+            template_path=template_path, catalogue_path=catalogue_path,
+            ledger_path=ledger_path, parent_compare_path=parent_compare_path,
+            releases_dir=stage_release, downloads_dir=stage_download,
+            floor_px=floor_px, bundle_js_filename=bundle_js_filename)
+
+        moves = []
+        for key in ("companion_nan_tif", "primary_zeros_tif"):
+            row = audit[key]
+            dest = releases / row["filename"]
+            moves.append((stage_release / row["filename"], dest))
+            row["path"] = _rel_or_str(dest)
+        if downloads is not None:
+            zip_row = audit["zip_bundle"]
+            zip_dest = downloads / zip_row["filename"]
+            js_dest = downloads / bundle_js_filename
+            audit_dest = downloads / f"{audit['candidate_id']}-audit.json"
+            zip_row["path"] = _rel_or_str(zip_dest)
+            audit["browser_tif_bundle"]["path"] = _rel_or_str(js_dest)
+            audit_source = stage_download / audit_dest.name
+            audit_source.write_text(json.dumps(audit, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+            # Publishing TIFFs last keeps them out of sight until other files exist.
+            moves = [(stage_download / zip_row["filename"], zip_dest),
+                     (stage_download / bundle_js_filename, js_dest),
+                     (audit_source, audit_dest)] + moves
+        destinations = [destination for _, destination in moves]
+        if len({path.resolve() for path in destinations}) != len(destinations):
+            raise ValueError("output paths collide")
+        committed = []
+        try:
+            for source, destination in moves:
+                # link() fails if a destination exists, including dangling symlinks;
+                # unlike an exists()+replace() check it cannot clobber in a race.
+                os.link(source, destination)
+                committed.append((source, destination))
+        except Exception:
+            for source, destination in reversed(committed):
+                try:
+                    # Do not knowingly remove a file replaced by another writer.
+                    if os.path.samefile(source, destination):
+                        destination.unlink()
+                except FileNotFoundError:
+                    pass
+            raise
+        return audit
+
+
+def _write_staged_submission_bundle(
     dot_or_prob_grid: np.ndarray,
     *,
     stem_prefix: str,
@@ -75,25 +162,49 @@ def write_validated_submission_bundle(
     releases_p.mkdir(parents=True, exist_ok=True)
 
     with rasterio.open(template_p) as tpl:
+        if tpl.count != 1 or tpl.crs is None:
+            raise ValueError("template must be a single-band georeferenced raster")
+        template_grid = (tpl.shape, tpl.crs, tpl.transform)
         tpl_arr = tpl.read(1)
-        footprint = np.isfinite(tpl_arr)
+        footprint = np.isfinite(tpl_arr) & (tpl.read_masks(1) > 0)
+    if not footprint.any():
+        raise ValueError("template footprint must not be empty")
     with rasterio.open(catalogue_p) as cat_src:
-        cat_mask = (cat_src.read(1) > 0) & footprint
+        if cat_src.count != 1 or (cat_src.shape, cat_src.crs, cat_src.transform) != template_grid:
+            raise ValueError("catalogue CRS, shape, transform and band count must match the template")
+        catalogue_values = cat_src.read(1)
+        if (not np.isfinite(catalogue_values[footprint]).all()
+                or np.any(cat_src.read_masks(1)[footprint] == 0)):
+            raise ValueError("catalogue contains non-finite or masked values inside the footprint")
+        if not np.isin(catalogue_values[footprint], [0, 1]).all():
+            raise ValueError("catalogue must be binary inside the footprint")
+        cat_mask = (catalogue_values > 0) & footprint
 
-    arr = np.asarray(dot_or_prob_grid, dtype=np.float32)
+    # Validate the original values before narrowing to float32: for example,
+    # 1 + 1e-9 must not silently round down to an apparently valid 1.0.
+    if np.ma.isMaskedArray(dot_or_prob_grid) and np.ma.getmaskarray(dot_or_prob_grid).any():
+        raise ValueError("masked predictions must be resolved before encoding")
+    arr = np.asarray(dot_or_prob_grid)
     if arr.shape != footprint.shape:
         raise ValueError(f"grid shape {arr.shape} != template {footprint.shape}")
+    if arr.dtype.kind not in 'buif':
+        raise ValueError("prediction must be a real numeric array")
+    finite = np.isfinite(arr)
+    if not finite[footprint].all() or np.isinf(arr).any():
+        raise ValueError("non-finite prediction inside footprint or infinity anywhere")
+    if np.any((arr[finite] < 0) | (arr[finite] > 1)):
+        raise ValueError("pre-write range violation: finite predictions must be in [0,1]")
+    if np.any((arr > 0) & ~footprint):
+        raise ValueError("positive prediction outside footprint")
+    if np.any((arr > 0) & cat_mask):
+        raise ValueError("positive prediction on mapped catalogue")
 
-    # Scrub non-finite / out-of-range values inside footprint fail-closed
-    inside_clean = np.nan_to_num(arr, nan=0.0, posinf=0.0, neginf=0.0).astype(np.float32)
-    if float(inside_clean[footprint].min()) < 0.0 or float(inside_clean[footprint].max()) > 1.0:
-        raise ValueError(
-            f"pre-write range violation: [{inside_clean[footprint].min()}, {inside_clean[footprint].max()}]"
-        )
-
-    # Zero outside footprint and zero known catalogue pixels pixel-exactly
-    inside_clean[~footprint] = np.float32(0.0)
-    inside_clean[cat_mask] = np.float32(0.0)
+    # Outside-footprint NaN is allowed as input and explicitly encoded in the
+    # NaN twin; only that outside region is set to zero in the local-range twin.
+    inside_clean = np.zeros(arr.shape, dtype=np.float32)
+    inside_clean[footprint] = arr[footprint].astype(np.float32, copy=False)
+    if np.any((arr[footprint] > 0) & (inside_clean[footprint] == 0)):
+        raise ValueError("positive prediction support underflows during float32 conversion")
 
     nan_grid = np.where(footprint, inside_clean, np.float32(np.nan)).astype(np.float32)
     zeros_grid = inside_clean.copy()
@@ -218,12 +329,15 @@ def write_validated_submission_bundle(
     if downloads_dir is not None:
         dl_dir = Path(downloads_dir)
         dl_dir.mkdir(parents=True, exist_ok=True)
-        # Single-member ZIP containing `<cand_id>-zeros.tif` (directly accepted by DrivenData)
+        # Single-member ZIP containing `<cand_id>-zeros.tif`; acceptance is unverified.
         zip_path = dl_dir / f"{cand_id}-zeros.zip"
         with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
             zi = zipfile.ZipInfo(filename=final_zeros.name, date_time=(2026, 10, 24, 0, 0, 0))
             zi.compress_type = zipfile.ZIP_DEFLATED
             zf.writestr(zi, final_zeros.read_bytes())
+        with zipfile.ZipFile(zip_path, "r") as zf:
+            if zf.namelist() != [final_zeros.name] or zf.read(final_zeros.name) != final_zeros.read_bytes():
+                raise ValueError("single-TIFF ZIP failed byte-for-byte roundtrip")
         sha_zip = IO.sha256_file(zip_path)
         zip_info = {
             "path": _rel_or_str(zip_path),
@@ -305,6 +419,9 @@ def write_validated_submission_bundle(
             "min_catalogue_distance_px": round(float(rg_zeros["min_catalogue_distance_px"]), 4),
             "dots_le_3px": int(g_nan.notes.get("dots_le_3px", 0)),
         },
+        "ok_to_submit": False,
+        "organizer_acceptance_verified": False,
+        "scope": "Local technical checks only; no scientific, registry or selector approval.",
         "validators": {
             "gems91_gates_verdict": g_nan.verdict,
             "release_gates_nan_pass": bool(rg_nan["PASS"]),

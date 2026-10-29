@@ -1,0 +1,103 @@
+{
+  "schema": "gems91.review-run-card.v1",
+  "review_date_utc": "2026-10-29",
+  "branch": "arena/4239f6e5-gemsdoe91",
+  "hypothesis": "PROPOSAL ONLY, UNASSIGNED AND UNTESTED: two-sided topographic scaling-break contrast from detrended elevation and its slope.",
+  "mechanism": "A subdued fault might juxtapose geomorphic textures with different spatial scale breaks across a cross-strike edge; this does not establish a fault or geothermal productivity.",
+  "named_non_fault_mimic": "Alluvial fan margin, paleoshoreline, road, or unfaulted lithologic boundary.",
+  "hypotheses": "docs/review-4239f6e5/HYPOTHESES.md",
+  "lane_assigned": false,
+  "assignment_authenticated": false,
+  "experiments_this_review": 0,
+  "maximum_experiments": 3,
+  "maximum_elapsed_seconds": 7200,
+  "weekly_slots_used_this_review": 0,
+  "live_quota_verified": false,
+  "candidate_generated": false,
+  "holdout_dti": null,
+  "holdout_ci95": null,
+  "withheld_positive_pixels": null,
+  "evaluator_version": null,
+  "leaderboard_score_estimate": null,
+  "organizer_confirmed_score": null,
+  "correlation_overlap_vs_registry": {
+    "new_preplacement_surface_rank_correlation": null,
+    "new_final_dot_rank_correlation": null,
+    "new_final_dot_overlap_within_3px": null,
+    "complete_registry_clearance": false,
+    "capacity_lower_bound": 0.8234184947150369,
+    "capacity_candidate_budget": 37654,
+    "capacity_witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+    "historical_s25_final_dot_max_overlap_nine_leaders": 0.40192277048919106,
+    "historical_s25_final_dot_max_abs_rho_nine_leaders": 0.018765103370230875,
+    "historical_s25_final_dot_overlap_vs_lattice": 0.9874648111754395,
+    "historical_s25_final_dot_rho_vs_lattice": 0.000201735115114028,
+    "historical_s25_preplacement_rechecked": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "finite_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform": null,
+    "reason": "No new raster exists to validate."
+  },
+  "unique_submission_name": null,
+  "submission_note": null,
+  "ok_to_download_new_candidate": false,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "sample_provenance": {
+    "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "authenticity_verified": false,
+    "nonzero_inside_footprint": 60988,
+    "support_mismatch_vs_local_catalogue_pixels": 0,
+    "status": "CONFLICT_WITH_ORGANIZER_DESCRIPTION"
+  },
+  "historical_research_only": {
+    "raster_path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
+    "raster_sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
+    "zip_path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip",
+    "zip_sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+    "historical_name": "gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros",
+    "historical_note": "S25 FABRIC granulometry+phase-lag spatial OOF 37654 dots; see run-card verdict before slot use",
+    "validator_output": {
+      "status": "PASS",
+      "checks": {
+        "single_band": true,
+        "float32": true,
+        "crs_shape_transform_match": true,
+        "no_nodata_tag": true,
+        "all_cells_finite": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "zero_outside_footprint": true,
+        "visible_catalogue_masked": true
+      },
+      "nonfinite_cells": 0,
+      "out_of_range_finite_cells": 0,
+      "ok_to_submit": false,
+      "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+    },
+    "holdout_evidence": {
+      "label": "HOLDOUT-DTI",
+      "value": 0.14774078722698647,
+      "ci95": [
+        0.12976024530077718,
+        0.16756210930801038
+      ],
+      "withheld_positive_pixels": 60988,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "scope": "Prior fold-local OOF experiment; not the final static TIFF or an organizer score."
+    },
+    "verdict": "negative",
+    "ok_to_submit": false
+  },
+  "reason": "Missing authorized method, capacity conflict, disputed sample semantics, missing features and complete registry; no new scientific evidence or selector receipt.",
+  "evidence": {
+    "preflight": "docs/review-4239f6e5/experiment-preflight.json",
+    "nine_site": "docs/review-4239f6e5/nine-site-leaders.json",
+    "historical_s25": "docs/review-4239f6e5/historical-s25-audit.json",
+    "focus_inventory": "docs/review-4239f6e5/focus-inventory.json"
+  }
+}

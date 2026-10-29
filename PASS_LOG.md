@@ -1,5 +1,10 @@
 ## S26 — 2026-10-28: corrective three-pass review
 
+## 2026-10-29 · active review `arena/4239f6e5-gemsdoe91`
+
+Three sequential passes are recorded in [the current review](docs/review-4239f6e5/PASS_REVIEW.md). Full local tests and browser delivery checks passed, with nine test skips; no geological experiment, new competition candidate or weekly slot. Fixed both shared writer paths, preserved the historical writer source pin, and added a fail-closed sample-semantic preflight. The fixed-budget lattice conflict and authentic-sample discrepancy block submission. [Executive table](docs/review-4239f6e5/executive-summary.html) · [negative run card](docs/review-4239f6e5/run-card.json).
+
+
 Pass 1: restored 15 inputs / 62 registry files; measured TLF duplicate witnesses and traced main CI snapshot failure. Pass 2: retracted unsafe promotion and ceiling-midpoint projection, preserved original source/card and unchanged raster, blocked reruns. Pass 3: corrected renderers/front doors and added regression tests; full local pytest, policy, frontdoor and snapshot parity checks passed. No geological experiments, new TIFF or weekly slots; constraints and deferred hypotheses in docs/s26/REVIEW.md.
 
 ## Current review — three passes (2026-10-27, arena/ad43b4e5)

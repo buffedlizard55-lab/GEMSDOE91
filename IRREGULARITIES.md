@@ -1,5 +1,14 @@
 ## 2026-10-28 S26 nine-site review — irregularities flagged for human review
 
+## IR-4239-01 — Sample mirror contradicts public sample description (2026-10-29)
+
+The SHA-pinned mirror called `sample_submission.tif` has 60,988 positive in-footprint cells, exactly matching the mirrored fault catalogue support. The [official problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) says its sample predicts total fault absence. The mismatch does not establish the true file’s origin or the cause of a prior upload error. The geometric capacity bound and format checks remain conditional on this mirror. Preflight blocks on the mismatch; obtain and independently authenticate the real sample and rights. [Evidence](docs/review-4239f6e5/experiment-preflight.json) · [support comparison](docs/review-4239f6e5/historical-s25-audit.json).
+
+## IR-4239-02 — Shared legacy writer repaired invalid outputs and could publish failed artifacts
+
+The prior writer converted model values to float32 and replaced in-footprint NaN/Inf before validation, then exposed files before all gates completed. The shared writer and low-level encoder now reject invalid original values rather than repairing in-footprint NaNs. The bundle writer also rejects mismatched or masked catalogue data, stages validated files, rereads the ZIP and uses no-overwrite publication with exception rollback. The pinned `vendor/gems57/submission_writer.py` check-then-replace race was also fixed in place; its earlier bytes are archived and the shared template pin records both versions. This is not proof of organizer acceptance or a fully crash-atomic bundle. [Review](docs/review-4239f6e5/REVIEW.md).
+
+
 Scope: GEMSDOE24/25/27/28/30/31/32/33/36 best-claimed files. Evidence: `docs/nine-site-20261028/` (re-derived from bytes by `scripts/nine_site_leaders_20261028.py`; rendered by `scripts/render_nine_site_20261028.py`).
 
 - **IR-S26-01 — leaderboard figures conflict.** The session prompt gives the top score as 0.4413 in one place and 0.3195 as "the highest score right now". The live leaderboard fetched 2026-10-28 shows #1 = 0.4544 (xiaofanhu) and #2 = 0.3916 (cfld__): https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ . No figure in this repo is organizer-confirmed. Treat the leaderboard page as the source of truth and confirm on a submission receipt.

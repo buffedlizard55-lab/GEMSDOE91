@@ -62,17 +62,17 @@ def main() -> int:
     for r in rows:
         trs.append(f"""<tr>
 <td><strong>{esc(r['site'])}</strong></td>
-<td><a href="{esc(r['source'])}">{esc(r['file'])}</a><br><small>SHA-256 <code>{esc(r['sha'][:16])}…</code> · {r['positives']:,} dots · NaN outside footprint: {r['nan']:,}</small></td>
+<td><a href="{esc(r['source'])}">{esc(r['file'])}</a><br><small>SHA-256 <code>{esc(r['sha'][:16])}…</code> · {r['positives']:,} dots · NaN cells: {r['nan']:,} (locations unverified by this historical audit)</small></td>
 <td>USER-REPORTED <strong>{r['claimed']:.4f}</strong><br><small>organizer-confirmed: none</small></td>
 <td>Not unique: <strong>{pct(r['ov_min'])}–{pct(r['ov_max'])}</strong> of its dots lie within 3 px of each other leader</td>
-<td><strong>NO</strong> — already submitted; resubmitting is a copy</td>
+<td><strong>NO</strong> — historical peer-overlap duplicate; do not re-upload</td>
 </tr>""")
 
     cand_row = f"""<tr class="cand">
-<td><strong>S25-FABRIC E2</strong><br><small>new this session (research)</small></td>
+<td><strong>S25-FABRIC E2</strong><br><small>2026-10-28 research artifact, not new in the current review</small></td>
 <td><a href="../downloads/{esc(S25_FILE)}">{esc(S25_FILE)}</a><br><small>SHA-256 <code>{esc(S25_SHA[:16])}…</code> · 37,654 dots · zeros outside footprint · float32 · EPSG:32611 · 100 m</small></td>
-<td><strong>No estimate.</strong> Organizer-confirmed: none.<br><small>HOLDOUT-DTI {H['dti']:.6f} [{H['ci95'][0]:.6f}, {H['ci95'][1]:.6f}], evaluator {esc(H['evaluator_version'])}, {H['n_withheld_positives']:,} withheld positives. Not a leaderboard score. LFI model projection 0.07917 is a projection only.</small></td>
-<td>Unique vs the nine: <strong>YES</strong> (max {pct(worst_site['overlap'])} within 3 px, {esc(worst_site['site'])})<br>Protocol 70% gate: <strong>FAILS</strong> — {pct(bhar_ov)} vs <code>{esc(bhar)}</code> (repo research TIFF)</td>
+<td><strong>No estimate.</strong> Organizer-confirmed: none.<br><small>HOLDOUT-DTI {H['dti']:.6f} [{H['ci95'][0]:.6f}, {H['ci95'][1]:.6f}], evaluator {esc(H['evaluator_version'])}, {H['n_withheld_positives']:,} withheld positives. Prior fold-local OOF experiment, not the final static TIFF’s score or a leaderboard score.</small></td>
+<td>Final-dot overlap vs the nine: <strong>BELOW 70%</strong> (max {pct(worst_site['overlap'])} within 3 px, {esc(worst_site['site'])})<br>Protocol 70% gate: <strong>FAILS</strong> — {pct(bhar_ov)} vs <code>{esc(bhar)}</code> (repo research TIFF)</td>
 <td><strong>Download for research: YES. Submit: NO.</strong></td>
 </tr>"""
 
@@ -92,13 +92,14 @@ code{{font-size:0.85em}} small{{color:#57606a}}
 .warn{{color:#9a3412}}
 </style></head><body>
 <h1>GEMSDOE91 — Nine-site executive summary</h1>
+<div class="verdict"><strong>HISTORICAL SNAPSHOT — superseded by the 2026-10-29 review.</strong> No new candidate is approved. <a href="../review-4239f6e5/executive-summary.html">Open the current executive table and run card</a>. The pinned sample mirror is not authenticated and conflicts with the organizer’s all-zero sample description.</div>
 <p><small>Generated 2026-10-28 from <code>docs/nine-site-20261028/nine-site-leaders-20261028.json</code> by <code>scripts/render_nine_site_20261028.py</code>. Every leader file was re-fetched from its owner's GitHub repo at the pinned commit and its SHA-256 matched the recorded value.</small></p>
 
 <div class="verdict">
 <strong>Bottom line: no file is cleared for competition submission today.</strong><br>
-1. <strong>Highest claimed score among the nine:</strong> GEMSDOE32 <code>{esc(best['file'])}</code> at <strong>{best['claimed']:.4f}</strong> (USER-REPORTED, not organizer-confirmed). Its file is already a previous submission and is not a new unique submission.<br>
-2. <strong>New unique file:</strong> the S25-FABRIC E2 TIFF below is unique against the nine (max {pct(worst_site['overlap'])} overlap), but it fails the 70% duplicate gate against a repo research TIFF ({pct(bhar_ov)}). Under the protocol it is a drift/duplicate, so <strong>OK to submit: NO</strong>.<br>
-3. <strong>Why no new TIFF was generated here:</strong> the pinned competition inputs (sample footprint, existing-faults catalogue, training features) are not in this checkout, and this sandbox cannot log in to DrivenData. See "What is blocking" below.
+1. <strong>Highest user-reported claim among the nine:</strong> GEMSDOE32 <code>{esc(best['file'])}</code> at <strong>{best['claimed']:.4f}</strong>, not organizer-confirmed or demonstrated by a file-linked receipt.<br>
+2. <strong>Historical S25 research file:</strong> final-dot overlap versus the nine is at most {pct(worst_site['overlap'])}, but it fails the 70% duplicate gate against a repo research TIFF ({pct(bhar_ov)}). A later lattice recheck also fails. <strong>OK to submit: NO</strong>.<br>
+3. <strong>Why no new TIFF was generated:</strong> the method lane is unassigned, the fixed budget conflicts with the literal lattice gate, and authenticated inputs and full registry coverage are unavailable. See the current review above.
 </div>
 
 <h2>Estimated score table (what to download, estimate, uniqueness, OK to submit)</h2>
@@ -112,28 +113,28 @@ code{{font-size:0.85em}} small{{color:#57606a}}
 <p><strong>Leaderboard context (fetched 2026-10-28):</strong> #1 is <strong>0.4544</strong> (xiaofanhu), #2 is <strong>0.3916</strong> (cfld__). Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData leaderboard</a>. The 0.4413 and 0.3195 figures in the session prompt do not match this page and are flagged in IRREGULARITIES.md (IR-S26-01).</p>
 
 <h2>Why the nine leaders are not unique</h2>
-<p>Each leader's positive pixels lie within 3 px of another leader's positive pixels for <strong>{pct(min(r['ov_min'] for r in rows))}–{pct(max(r['ov_max'] for r in rows))}</strong> of cells. The matrix is in the JSON (<code>pairwise_overlap_within_3px</code>). A new "unique" file must stay under 70% against every reference.</p>
+<p>Each leader's positive pixels lie within 3 px of another leader's positive pixels for <strong>{pct(min(r['ov_min'] for r in rows))}–{pct(max(r['ov_max'] for r in rows))}</strong> of cells. The matrix is in the JSON (<code>pairwise_overlap_within_3px</code>). The literal rule stops above 70% against any reference; equality is not a stop.</p>
 
 <h2>Rules checked (protocol and official format)</h2>
 <ul>
-<li><strong>Official format</strong> (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem page, Submission format</a>): one float32 layer, EPSG:32611, 100 m, same bounds as training data, values in [0, 1], NaN or null allowed outside bounds. The S25 file passes all of these locally: 3,292 × 3,730, finite values in [0, 1], no NaN. Format passes are not organizer acceptance.</li>
-<li><strong>Duplicate gate</strong>: stop if more than 70% of dots are within 3 px of one registry raster, or surface Spearman |ρ| &gt; 0.90. S25 file: sampled |ρ| max {loc['max_abs_spearman_site']['rho']:.4f} (passes); overlap 70% gate fails on the repo TIFF above.</li>
+<li><strong>Official format</strong> (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem page, Submission format</a>): one float32 layer, EPSG:32611, 100 m, same bounds as training data, values in [0, 1], NaN or null allowed outside bounds. The S25 file has 3,292 × 3,730 all-finite cells in [0,1] locally, with zeros outside the mirrored footprint. Whether that encoding meets the organizer's outside-bounds requirement is unverified; local checks are not organizer acceptance.</li>
+<li><strong>Duplicate gate</strong>: stop if more than 70% of dots are within 3 px of one registry raster, or surface Spearman |ρ| &gt; 0.90. S25 file: sampled final-raster |ρ| max {loc['max_abs_spearman_site']['rho']:.4f} is diagnostic only, not the required exact pre-placement surface check; the dot gate fails on the repo TIFF above.</li>
 <li><strong>Scoring metric</strong> (same page): distance-weighted Tversky index, α = 0.2, β = 0.8, 300 m triangular kernel.</li>
 </ul>
 
 <h2>Format note for the "Predicted values must be in range [0,1]" error</h2>
-<p>All nine leader files and the S25 file have finite values inside [0, 1] (NaN is outside the footprint in the "-nan" files; the "zeros" files are fully finite). The error text was not reproducible here because the organizer validator is not available. Check the exact uploaded file for values above 1, below 0, or a nodata sentinel such as -9999. (IR-S26-02.)</p>
+<p>In this historical diagnostic all finite values in the nine leader files and S25 file lie within [0, 1]; it did not independently verify the location of every NaN against a footprint. The error text was not reproducible here because the organizer validator is not available. Check the exact uploaded file for values above 1, below 0, or a nodata sentinel such as -9999. (IR-S26-02.)</p>
 
 <h2>What is blocking a new unique TIFF</h2>
 <ol>
-<li>The official inputs must be obtained by a human with a DrivenData login: <code>sample_submission.tif</code>, <code>existing_faults.tif</code>, and <code>training_features.tif</code> (the data page redirects to login).</li>
+<li>Obtain authenticated official <code>sample_submission.tif</code>, <code>existing_faults.tif</code>, and <code>training_features.tif</code> through an authorized channel (the data page redirected to login). Automation can perform all subsequent validation.</li>
 <li>Public GitHub repos in this owner's account already host copies of competition rasters. The repo flags this for review (IR-91-09). This session did not use them to build a submission.</li>
 <li>The registry-wide duplicate gate needs the full registry (<code>data/fleet_registry</code>), which is absent here. This session checked the 63 TIFFs tracked in <code>docs/downloads/</code>.</li>
 </ol>
 
 <h2>How to submit (when a file is cleared)</h2>
 <ol>
-<li>Only submit a file marked <strong>OK to submit: YES</strong> in the table above.</li>
+<li>Only submit a future file after all gates and a separate selector have explicitly approved it; none in this table is approved.</li>
 <li>Upload a single-band GeoTIFF (.tif) or a .zip containing one GeoTIFF, with a unique name and a short note.</li>
 <li>Check the upload form's CRS, shape and geotransform against the submission page before pressing submit.</li>
 </ol>

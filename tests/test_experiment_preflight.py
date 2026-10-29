@@ -78,7 +78,7 @@ def plan():
 
 
 def test_no_candidate_or_approval_even_when_not_ruled_out(monkeypatch):
-    monkeypatch.setattr(preflight, 'inspect_witness', lambda *_: {'feasible_by_capacity_only': True})
+    monkeypatch.setattr(preflight, 'inspect_witness', lambda *_: {'feasible_by_capacity_only': True, 'sample_semantics': {'status': 'CONSISTENT_NOT_AUTHENTICATED'}})
     r = preflight.evaluate(ROOT, plan())
     assert r['status'] == 'NOT_RULED_OUT'
     assert r['assignment_authenticated'] is False
@@ -90,7 +90,7 @@ def test_no_candidate_or_approval_even_when_not_ruled_out(monkeypatch):
     ('experiments_used', True), ('elapsed_minutes', 120), ('elapsed_minutes', float('nan')),
     ('elapsed_minutes', float('inf')), ('elapsed_minutes', -1), ('elapsed_minutes', True)])
 def test_plan_blocks_invalid_or_exhausted_budget(monkeypatch, key, value):
-    monkeypatch.setattr(preflight, 'inspect_witness', lambda *_: {'feasible_by_capacity_only': True})
+    monkeypatch.setattr(preflight, 'inspect_witness', lambda *_: {'feasible_by_capacity_only': True, 'sample_semantics': {'status': 'CONSISTENT_NOT_AUTHENTICATED'}})
     p = plan(); p[key] = value
     assert preflight.evaluate(ROOT, p)['status'] == 'BLOCKED'
 
@@ -169,3 +169,15 @@ def test_reference_dots_outside_footprint_do_not_tighten_bound(tmp_path):
     assert got['reference_dots'] == 0
     assert got['overlap_lower_bound'] == 0.0
     assert got['status'] == 'NOT_RULED_OUT'
+
+
+def test_sample_conflict_or_absent_semantics_blocks_preflight(monkeypatch):
+    for semantics in ({'status': 'CONFLICT_WITH_ORGANIZER_DESCRIPTION', 'nonzero_inside_footprint': 1}, None):
+        witness = {'feasible_by_capacity_only': True}
+        if semantics is not None:
+            witness['sample_semantics'] = semantics
+        monkeypatch.setattr(preflight, 'inspect_witness', lambda *_, w=witness: w)
+        result = preflight.evaluate(ROOT, plan())
+        assert result['status'] == 'BLOCKED'
+        assert any('Sample semantics' in reason for reason in result['reasons'])
+        assert not result['ok_to_submit']
