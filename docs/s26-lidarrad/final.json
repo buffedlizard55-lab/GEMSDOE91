@@ -1,0 +1,18 @@
+{
+ "file": "gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
+ "dots": 37654,
+ "sha256_file": "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+ "array_sha256": "e9ffee0b609d4839f0a20977d91da3534c1231d829ea2cd998b743c346a517cf",
+ "overlap3px_vs_registry": {
+  "GEMSDOE28__h27-4-r1-solo-d2-8.tif": 0.3419291443140171,
+  "GEMSDOE32__h33-2-b2-zeros.tif": 0.3244542412492697,
+  "calib_d15_02477.tif": 0.3673182132044404,
+  "calib_h161_01855.tif": 0.40821692250491315,
+  "calib_h194_01894.tif": 0.4005948903170978,
+  "calib_h195_01922.tif": 0.39209645721570086,
+  "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": 0.3530302225527168,
+  "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif": 0.3244542412492697
+ },
+ "max_overlap3px": 0.40821692250491315,
+ "surface_spearman_vs_R0_full": 0.04727640875296271
+}

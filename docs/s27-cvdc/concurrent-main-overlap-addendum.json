@@ -1,0 +1,41 @@
+{
+  "candidate_tif": "docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif",
+  "candidate_sha256": "fc77890797ae076d5e9be023bd1405541b4d4c0b2fc3754e07da5c45d11554a0",
+  "concurrent_main_rasters_checked": 4,
+  "all_pass_competitive_uniqueness": true,
+  "max_overlap_within_3px": 0.3757900887023955,
+  "rows": [
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
+      "reference_positive_pixels": 22163,
+      "overlap_within_3px": 0.19341902586710574,
+      "surface_rank_correlation": 0.03841267820648306,
+      "dot_rank_correlation": 0.010393155399077814,
+      "passes_le_0.70_and_rho_le_0.90": true
+    },
+    {
+      "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif",
+      "reference_positive_pixels": 37654,
+      "overlap_within_3px": 0.26573538003930525,
+      "surface_rank_correlation": 0.041203152497751576,
+      "dot_rank_correlation": 0.01045007993131495,
+      "passes_le_0.70_and_rho_le_0.90": true
+    },
+    {
+      "path": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
+      "reference_positive_pixels": 37654,
+      "overlap_within_3px": 0.22725341265204227,
+      "surface_rank_correlation": 0.044005451902511795,
+      "dot_rank_correlation": 0.008015598254971954,
+      "passes_le_0.70_and_rho_le_0.90": true
+    },
+    {
+      "path": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
+      "reference_positive_pixels": 37654,
+      "overlap_within_3px": 0.3757900887023955,
+      "surface_rank_correlation": 0.05646166180591596,
+      "dot_rank_correlation": 0.01649615530333162,
+      "passes_le_0.70_and_rho_le_0.90": true
+    }
+  ]
+}

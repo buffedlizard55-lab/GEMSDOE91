@@ -118,3 +118,23 @@ def test_non_float32_is_not_format_certified(dtype):
     assert report['status'] == 'FAIL'
     assert report['checks']['float32'] is False
     assert report['ok_to_submit'] is False
+
+
+def test_inventory_rejects_masked_or_nonbinary_catalogue(tmp_path):
+    import hashlib
+    import json
+    audit, _ = repository(tmp_path)
+    catalogue = tmp_path / 'data/existing_faults.tif'
+    invalid = np.zeros((3, 4), dtype='float32'); invalid[1, 1] = 2
+    catalogue.write_bytes(encoded(invalid))
+    manifest_path = tmp_path / 'registry/data_manifest.json'
+    manifest = json.loads(manifest_path.read_text())
+    next(row for row in manifest['files'] if row['id'] == 'existing_faults')['sha256'] = hashlib.sha256(catalogue.read_bytes()).hexdigest()
+    manifest_path.write_text(json.dumps(manifest))
+    with pytest.raises(ValueError, match='nonfinite, nonbinary or masked'):
+        audit(tmp_path)
+    catalogue.write_bytes(encoded(np.zeros((3, 4), dtype='float32'), nodata=0))
+    next(row for row in manifest['files'] if row['id'] == 'existing_faults')['sha256'] = hashlib.sha256(catalogue.read_bytes()).hexdigest()
+    manifest_path.write_text(json.dumps(manifest))
+    with pytest.raises(ValueError, match='nonfinite, nonbinary or masked'):
+        audit(tmp_path)

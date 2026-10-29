@@ -193,7 +193,7 @@ def s24_callout(root=ROOT) -> str:
     tif_href = tif.relative_to(docs.resolve()).as_posix()
     zip_href = archive_path.relative_to(docs.resolve()).as_posix()
     return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S24-CCKM latest research artifact; not approved for submission">
-<p><strong>2026-10-28 current review: no new candidate; OK TO SUBMIT: NO.</strong> <a href="review-68881914-20261028.md">Current review and next steps</a> · <a href="run-card-20261028.json">Current run card</a></p>
+<p><strong>Historical banner (superseded): 2026-10-28 current review: no new candidate; OK TO SUBMIT: NO.</strong> <a href="review-68881914-20261028.md">Current review and next steps</a> · <a href="run-card-20261028.json">Current run card</a></p>
 <p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
 <h2>S24-CCKM E2 · Cross-contact kurtosis (B14&thinsp;&times;&thinsp;B13) · 37,654 dots · prior session 2026-10-27</h2>
 <p>A research TIF was generated in the prior S24 session: unique vs the nine focus leaders (max {100*nine_max:.2f}% of dots within 3 px), HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, {h["n_withheld_positives"]:,} withheld — not a leaderboard score). The historical v2 holdout is not matched to the corrected v3 context-buffer instrument. Verdict negative: its paired improvement over the gravity-gradient control is not established and fails the literal dense-lattice registry rule, so it must not be submitted. Full evidence, the nine-site table, and the future-submission guide: <a href="s24/executive-summary.html">S24 executive summary</a>.</p>
@@ -202,53 +202,17 @@ def s24_callout(root=ROOT) -> str:
 </section>'''
 
 
-def s27_callout(root=ROOT) -> str:
-    """Latest-session (S27-CVDC) research download, re-verified fail-closed.
-
-    Reads only the committed S27 run card and the bytes on disk; raises rather
-    than publishing a stale or submit-positive callout.
-    """
-    docs = root / "docs"
-    card_path = docs / "s27/run-card.json"
-    if not card_path.is_file():
-        return ""
-    card = json.loads(card_path.read_text(encoding="utf-8"))
-    if card.get("ok_to_submit") is not False or card.get("verdict") != "negative":
-        raise ValueError("S27-CVDC must remain explicitly not approved for submission")
-    if card.get("organizer_confirmed_score") is not None or card.get("estimated_leaderboard_score") is not None:
-        raise ValueError("S27-CVDC must not claim an organizer score or leaderboard estimate")
-    art = card.get("artifact", {})
-    tif = (root / art["tif"]).resolve()
-    archive_path = (root / art["zip"]).resolve()
-    downloads = (docs / "downloads").resolve()
-    if not tif.is_relative_to(downloads) or not archive_path.is_relative_to(downloads):
-        raise ValueError("S27-CVDC artifact path escapes docs/downloads")
-    tif_bytes = tif.read_bytes()
-    if hashlib.sha256(tif_bytes).hexdigest() != card.get("raster_sha256"):
-        raise ValueError("S27-CVDC TIFF hash mismatch")
-    if hashlib.sha256(archive_path.read_bytes()).hexdigest() != art.get("zip_sha256"):
-        raise ValueError("S27-CVDC ZIP hash mismatch")
-    with zipfile.ZipFile(archive_path) as archive:
-        members = [n for n in archive.namelist() if not n.endswith("/")]
-        if members != [tif.name] or archive.read(members[0]) != tif_bytes:
-            raise ValueError("S27-CVDC ZIP must contain exactly its TIFF bytes")
-    note = card.get("submission_note", "")
-    if not isinstance(note, str) or not 0 < len(note) <= 140:
-        raise ValueError("S27-CVDC note must contain 1-140 characters")
-    h = card["holdout"]
-    corr = card["correlation_overlap_vs_registry"]
-    nine_max = corr["final_dot_max_overlap_nine_leaders"]
-    comp_max = corr["final_dot_max_overlap_competitive_le_90000px"]
-    paired_s25 = h["paired_differences_all_controls"]["control_s25_fabric_e2"]
-    tif_href = tif.relative_to(docs.resolve()).as_posix()
-    zip_href = archive_path.relative_to(docs.resolve()).as_posix()
-    return f'''<section class="card" style="border:3px solid #1e3a8a;background:#eff6ff" aria-label="S27-CVDC latest research artifact; not approved for submission">
-<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
-<h2>S27-CVDC E2 · Contour-potential strike discordance + valley knickzone stitched OOF · 37,654 dots · latest session 2026-10-29</h2>
-<p>A new unique research GeoTIFF was generated in Session 27: unique vs all nine focus leaders (max {100*nine_max:.2f}% within 3 px) <em>and</em> unique vs all 180 competitive non-blanket fleet rasters (max {100*comp_max:.2f}% within 3 px, limit 70%; surface |&rho;| max {corr["surface_max_abs_rho"]:.3f}, limit 0.90). It achieves repo-best v3 HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, {esc(h["split_version"])}, {h["n_withheld_positives"]:,} withheld — not a leaderboard score), beating S25-FABRIC E2 by +{paired_s25["delta"]:.6f} [{paired_s25["ci95"][0]:+.6f}, {paired_s25["ci95"][1]:+.6f}] and curing S25's 3–5 px catalogue hugging (9.8% vs 45.9%; blind SGMC off-catalogue DTI 0.095190 vs S25's 0.079042). Verdict negative / NOT OK TO SUBMIT: literal all-registry check includes the 206,895-dot synthetic calibration lattice ({100*corr["final_dot_max_overlap_all"]:.2f}% &gt; 70%) and weekly slots require separate coordinator approval. Full executive summary, 9-site uniqueness table, PhD forensic analysis of GEMSDOE32 (0.2778), and submission guide: <a href="s27/executive-summary.html"><strong>S27 Executive Summary &amp; Download Table</strong></a>.</p>
-<p><a class="button" download href="{esc(tif_href, quote=True)}">Download S27 research GeoTIFF (.tif)</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP (.zip)</a> <a href="s27/executive-summary.html">S27 Executive Summary</a> · <a href="s27/REVIEW.md">3-Pass Review</a> · <a href="s27/run-card.json">Run card</a></p>
-<p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
-</section>'''
+def concurrent_s26_callout(root=ROOT) -> str:
+    """Link concurrent research without implying it was generated here."""
+    report = json.loads((root / 'docs/review-4239f6e5/concurrent-s26-audit.json').read_text())
+    rows = report.get('results', [])
+    if (len(rows) != 3 or any(row.get('submission_ready') is not False
+            or row.get('final_dot_comparison', {}).get('dot_status') != 'DUPLICATE' for row in rows)):
+        raise ValueError('S26 callout requires three research-only duplicate stops')
+    return '''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="Concurrent S26 research artifacts; not approved for submission">
+<p><span class="badge">DOWNLOADS: RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<h2>Concurrent S26 research · independently rechecked</h2><p>Three existing S26 TIFFs landed from other branches. Each exceeds the literal 70% duplicate threshold against the pinned lattice (98.14%–99.23%); the earlier narrower uniqueness claim is superseded. No new leaderboard estimate is defensible. Format checks depend on an unauthenticated sample mirror.</p>
+<p><a href="s26/executive-summary.html">S26 downloads and gate table</a> · <a href="review-4239f6e5/concurrent-s26-audit.json">Byte and lattice recheck</a> · <a href="review-4239f6e5/executive-summary.html">Full comparison</a></p></section>'''
 
 
 def s25_callout(root=ROOT) -> str:
@@ -288,16 +252,118 @@ def s25_callout(root=ROOT) -> str:
     corr = card["correlation_overlap_vs_registry"]
     nine_max = corr["final_dot_max_overlap_nine_leaders"]
     comp_max = corr["final_dot_max_overlap_competitive_le_90000px"]
+    fresh = json.loads((docs / "review-4239f6e5/historical-s25-audit.json").read_text())
+    witness = fresh["comparisons"]["frozen lattice"]
+    if (fresh["raster"]["sha256"] != card["raster_sha256"] or fresh["ok_to_submit"] is not False
+            or witness["dot_status"] != "DUPLICATE"):
+        raise ValueError("S25 recheck contradicts the historical research artifact")
+    lattice_overlap = witness["directed_overlap_within_3px"]
     tif_href = tif.relative_to(docs.resolve()).as_posix()
     zip_href = archive_path.relative_to(docs.resolve()).as_posix()
-    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S25-FABRIC latest research artifact; not approved for submission">
+    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S25-FABRIC historical research artifact; not approved for submission">
 <p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
-<h2>S25-FABRIC E2 · Granulometry + gravity–magnetic phase-lag spatial OOF · 37,654 dots · latest session 2026-10-28</h2>
-<p>A new TIF was generated this session: unique vs the nine focus leaders (max {100*nine_max:.2f}% of dots within 3 px), HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, v3 folds, {h["n_withheld_positives"]:,} withheld — not a leaderboard score), beating its best matched control in paired holdout. Verdict negative: final dots reach {100*comp_max:.2f}% within 3 px of one competitive registry raster (limit 70%), and the labelled LFI model projection is low because its dots hug the mapped catalogue (median 5.8 px), so it must not be submitted. Full evidence, the nine-site table, estimated-score table and submission guide: <a href="s25/executive-summary.html">S25 executive summary</a>.</p>
+<h2>S25-FABRIC E2 · historical research artifact · 2026-10-28</h2>
+<p>This is not a new TIFF from the current review. Its final dots overlap at most {100*nine_max:.2f}% within 3 px of the nine listed leaders, but a fresh recheck found {100*lattice_overlap:.2f}% overlap with the frozen lattice. Its earlier fold-local HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, v3 folds, {h["n_withheld_positives"]:,} withheld) exceeded one matched control; it is not a measurement of the final static TIFF or a leaderboard score. No improvement over GEMSDOE32 is demonstrated. Verdict negative: do not submit. <a href="review-4239f6e5/historical-s25-audit.json">Recheck receipt</a> · <a href="review-4239f6e5/executive-summary.html">Current comparison</a>.</p>
 <p><a class="button" download href="{esc(tif_href, quote=True)}">Download S25 research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s25/REVIEW.md">Session review</a> · <a href="s25/run-card.json">Run card</a></p>
 <p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
 </section>'''
 
+
+
+def s27_cvdc_callout(root=ROOT) -> str:
+    """Latest de novo session (S27-CVDC) research download, re-verified fail-closed."""
+    docs = root / "docs"
+    card_path = docs / "s27-cvdc/run-card.json"
+    if not card_path.is_file():
+        return ""
+    card = json.loads(card_path.read_text(encoding="utf-8"))
+    if card.get("ok_to_submit") is not False or card.get("verdict") != "negative":
+        raise ValueError("S27-CVDC must remain explicitly not approved for submission")
+    if card.get("organizer_confirmed_score") is not None or card.get("estimated_leaderboard_score") is not None:
+        raise ValueError("S27-CVDC must not claim an organizer score or leaderboard estimate")
+    diag = json.loads((docs / "s27-cvdc/diagnostics.json").read_text(encoding="utf-8"))
+    if diag.get("candidate", {}).get("sha256") != card.get("raster_sha256"):
+        raise ValueError("S27-CVDC diagnostics do not describe the run-card raster")
+    art = card.get("artifact", {})
+    tif = (root / art["tif"]).resolve()
+    archive_path = (root / art["zip"]).resolve()
+    downloads = (docs / "downloads").resolve()
+    if not tif.is_relative_to(downloads) or not archive_path.is_relative_to(downloads):
+        raise ValueError("S27-CVDC artifact path escapes docs/downloads")
+    tif_bytes = tif.read_bytes()
+    if hashlib.sha256(tif_bytes).hexdigest() != card.get("raster_sha256"):
+        raise ValueError("S27-CVDC TIFF hash mismatch")
+    if hashlib.sha256(archive_path.read_bytes()).hexdigest() != art.get("zip_sha256"):
+        raise ValueError("S27-CVDC ZIP hash mismatch")
+    with zipfile.ZipFile(archive_path) as archive:
+        members = [n for n in archive.namelist() if not n.endswith("/")]
+        if members != [tif.name] or archive.read(members[0]) != tif_bytes:
+            raise ValueError("S27-CVDC ZIP must contain exactly its TIFF bytes")
+    note = card.get("submission_note", "")
+    if not isinstance(note, str) or not 0 < len(note) <= 140:
+        raise ValueError("S27-CVDC note must contain 1-140 characters")
+    h = card["holdout"]
+    corr = card["correlation_overlap_vs_registry"]
+    d = h["paired_differences_all_controls"]["control_s25_fabric_e2"]
+    tif_href = tif.relative_to(docs.resolve()).as_posix()
+    zip_href = archive_path.relative_to(docs.resolve()).as_posix()
+    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S27-CVDC latest de novo research artifact; not approved for submission">
+<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<h2>S27-CVDC · Contour-Potential Discordance + Valley-Floor Knickzone Stitched OOF Submodular Surface · 37,654 dots · 2026-10-29</h2>
+<p>Highest de novo <code>HOLDOUT-DTI</code> in GEMSDOE91: <strong>{h["dti"]:.6f}</strong> [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, {h["n_withheld_positives"]:,} withheld; paired <code>&Delta;DTI = {d["delta"]:+.6f}</code> [{d["ci95"][0]:+.6f}, {d["ci95"][1]:+.6f}] vs S25-FABRIC control, and <code>+0.024184</code> above S27-FABRIC-FAR). Unique vs all 9 focus leaders (max {100*corr["final_dot_max_overlap_nine_leaders"]:.2f}% within 3 px) and vs every competitive registry raster &le;90,000 px (max {100*corr["final_dot_max_overlap_competitive_le_90000px"]:.2f}% &le; 70%, plus 19.34%&ndash;37.58% vs concurrent S26/S27 candidates). Fails literal blanket lattice raster (<code>calib_r13lattice_00904.tif</code>, 206,895 px, {100*corr["final_dot_max_overlap_all"]:.2f}%) &rarr; verdict <strong>negative</strong>; must not be uploaded to DrivenData. Full evidence, nine-site forensics, and submission guide: <a href="s27-cvdc/executive-summary.html">S27-CVDC executive summary</a>.</p>
+<p><a class="button" download href="{esc(tif_href, quote=True)}">Download S27-CVDC research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s27-cvdc/REVIEW.md">Session review</a> · <a href="s27-cvdc/run-card.json">Run card</a></p>
+<p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
+</section>'''
+
+
+def s27_callout(root=ROOT) -> str:
+    """Latest-session (S27-FABRIC-FAR) research download, re-verified fail-closed.
+
+    Reads only the committed S27 run card + diagnostics and the bytes on disk;
+    raises rather than publishing a stale or submit-positive callout.
+    """
+    docs = root / "docs"
+    card_path = docs / "s27/run-card.json"
+    if not card_path.is_file():
+        return ""
+    card = json.loads(card_path.read_text(encoding="utf-8"))
+    if card.get("ok_to_submit") is not False or card.get("verdict") != "negative":
+        raise ValueError("S27-FABRIC-FAR must remain explicitly not approved for submission")
+    if card.get("organizer_confirmed_score") is not None or card.get("estimated_leaderboard_score") is not None:
+        raise ValueError("S27-FABRIC-FAR must not claim an organizer score or leaderboard estimate")
+    diag = json.loads((docs / "s27/diagnostics.json").read_text(encoding="utf-8"))
+    if diag.get("candidate", {}).get("sha256") != card.get("raster_sha256"):
+        raise ValueError("S27 diagnostics do not describe the run-card raster")
+    art = card.get("artifact", {})
+    tif = (root / art["tif"]).resolve()
+    archive_path = (root / art["zip"]).resolve()
+    downloads = (docs / "downloads").resolve()
+    if not tif.is_relative_to(downloads) or not archive_path.is_relative_to(downloads):
+        raise ValueError("S27-FABRIC-FAR artifact path escapes docs/downloads")
+    tif_bytes = tif.read_bytes()
+    if hashlib.sha256(tif_bytes).hexdigest() != card.get("raster_sha256"):
+        raise ValueError("S27-FABRIC-FAR TIFF hash mismatch")
+    if hashlib.sha256(archive_path.read_bytes()).hexdigest() != art.get("zip_sha256"):
+        raise ValueError("S27-FABRIC-FAR ZIP hash mismatch")
+    with zipfile.ZipFile(archive_path) as archive:
+        members = [n for n in archive.namelist() if not n.endswith("/")]
+        if members != [tif.name] or archive.read(members[0]) != tif_bytes:
+            raise ValueError("S27-FABRIC-FAR ZIP must contain exactly its TIFF bytes")
+    note = card.get("submission_note", "")
+    if not isinstance(note, str) or not 0 < len(note) <= 140:
+        raise ValueError("S27-FABRIC-FAR note must contain 1-140 characters")
+    h = card["holdout"]
+    corr = card["correlation_overlap_vs_registry"]
+    lfi = card.get("lfi_model_projection_not_a_score", {})
+    tif_href = tif.relative_to(docs.resolve()).as_posix()
+    zip_href = archive_path.relative_to(docs.resolve()).as_posix()
+    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S27-FABRIC-FAR latest research artifact; not approved for submission">
+<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<h2>S27-FABRIC-FAR · Distance-stratified uniqueness-capped emission on the S25 fabric surface · 37,654 dots · latest session 2026-10-29</h2>
+<p>A new TIF was generated this session: unique vs the nine focus leaders (max {100*corr["final_dot_max_overlap_nine_leaders"]:.2f}% of dots within 3 px) and vs every competitive registry raster (max {100*corr["final_dot_max_overlap_competitive_le_90000px"]:.2f}%, the gate S25 failed at 74.89%). Distance quotas moved the median dot from 5.8 px to 21.5 px from the catalogue; the labelled LFI model projection (not a score) rose from S25's 0.07917 to {lfi.get("ridge1", 0):.4f}, still below R0's projection (0.27342). HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, v3 folds, {h["n_withheld_positives"]:,} withheld — not a leaderboard score); paired delta vs the matched incumbent is exactly 0 by fold construction (zero visible catalogue pixels inside every test quadrant). Verdict negative (gates G4/G5 fail), so it must not be submitted. Full evidence, file/estimate/uniqueness table, nine-site table and submission guide: <a href="s27/executive-summary.html">S27 executive summary</a>.</p>
+<p><a class="button" download href="{esc(tif_href, quote=True)}">Download S27 research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s27/REVIEW.md">Session review</a> · <a href="s27/run-card.json">Run card</a></p>
+<p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
+</section>'''
 
 
 def _root_verdict() -> str:
@@ -313,13 +379,17 @@ def render() -> None:
     from scripts.render_review_8e8d86f2 import render_sources as render_review_sources
     render_s22_sources()
     render_review_sources()
+    from scripts.render_priority_review import render as render_priority_review
+    render_priority_review()
     docs = ROOT / "docs"
     current = front_door(ROOT)  # fail before replacing any published page
     # The S22-XB artifact is a historical research run, not the current lane.
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
-    parallel_card = s27_callout(ROOT) + s25_callout(ROOT) + s24_callout(ROOT)
+    parallel_card = (s27_cvdc_callout(ROOT) + s27_callout(ROOT)
+                     + concurrent_s26_callout(ROOT) + s25_callout(ROOT)
+                     + s24_callout(ROOT))
     for source_name, target_name in ((CURRENT['index_src'], "index.html"),
                                      (CURRENT['exec_src'], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
@@ -344,6 +414,22 @@ def render() -> None:
                   '<a href="s25-tlf/executive-summary.html">Executive summary, research download and submission guide</a> · '
                   '<a href="s25-tlf/witness-audit-20261028.json">Measured audit</a>.</div>')
         page = page.replace('<main id="main">', '<main id="main">' + notice, 1)
+        latest_card = json.loads((docs / "review-4239f6e5/run-card.json").read_text())
+        latest_pre = json.loads((docs / "review-4239f6e5/experiment-preflight.json").read_text())
+        capacity = latest_pre["capacity"]
+        if (latest_card.get("verdict") != "negative" or latest_card.get("ok_to_submit") is not False
+                or latest_card.get("candidate_generated") is not False or latest_card.get("raster_sha256") is not None
+                or latest_pre.get("status") != "BLOCKED" or latest_pre.get("ok_to_submit") is not False
+                or capacity["sample_semantics"]["status"] != "CONFLICT_WITH_ORGANIZER_DESCRIPTION"):
+            raise ValueError("Latest review evidence inconsistent; refusing to render")
+        current_notice = (f'<div class="note" role="status"><strong>CURRENT REVIEW · 2026-10-29: NO NEW TIFF IN THIS REVIEW · OK TO SUBMIT: NO.</strong> '
+            f'The method lane is unassigned. At the frozen budget, the measured mirrored-footprint capacity forces at least '
+            f'{capacity["overlap_lower_bound"]:.2%} overlap with the lattice, above 70%. '
+            f'The sample mirror has {capacity["sample_semantics"]["nonzero_inside_footprint"]:,} nonzero cells despite the organizer describing an all-zero sample; authenticity is unverified. '
+            '<a href="review-4239f6e5/executive-summary.html">Executive table and research downloads</a> · '
+            '<a href="review-4239f6e5/REVIEW.md">Full review</a> · '
+            '<a href="review-4239f6e5/run-card.json">Negative run card</a>.</div>')
+        page = page.replace('<main id="main">', '<main id="main">' + current_notice, 1)
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     (ROOT / 'index.html').write_text(
@@ -353,8 +439,8 @@ def render() -> None:
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
         '<h1>GEMSDOE91 · Current review</h1>' + _root_verdict() + 
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
-        '<a href="docs/s27/executive-summary.html">S27-CVDC executive summary, nine-site table and submission guide</a> · '
-        '<a href="docs/s25-tlf/executive-summary.html">Current executive summary, nine-site table and submission guide</a> · '
+        '<a href="docs/review-4239f6e5/executive-summary.html">Current executive summary, nine-site table and submission guide</a> · '
+        '<a href="docs/s27-cvdc/executive-summary.html">S27-CVDC research candidate &amp; nine-site forensics</a> · '
         '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
         '</main></body></html>\n', encoding='utf-8')
 

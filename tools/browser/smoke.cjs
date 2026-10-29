@@ -83,6 +83,50 @@ async function main() {
         await page.locator('[data-submission-ready="false"]').count() !== 1) {
       throw new Error('Future submission guide is missing the current no-file stop');
     }
+    // The latest nine-site table exposes research-only bytes, not a new submission.
+    await page.goto(new URL('review-4239f6e5/executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
+    const latest = JSON.parse(fs.readFileSync(path.join(root, 'docs/review-4239f6e5/run-card.json')));
+    if (latest.ok_to_submit !== false || latest.candidate_generated !== false ||
+        await page.locator('[data-submission-ready="false"]').count() !== 1 ||
+        await page.locator('#table tbody tr').count() !== 13 ||
+        !(await page.getByText(/60,988 nonzero cells/).count())) {
+      throw new Error('Latest executive table is missing its fail-closed or sample-provenance warning');
+    }
+    const s25 = latest.historical_research_only;
+    const s25Tif = '../downloads/' + path.basename(s25.raster_path);
+    const s25Zip = '../downloads/' + path.basename(s25.zip_path);
+    const s25DownloadEvent = page.waitForEvent('download');
+    await page.locator(`a[download][href="${s25Tif}"]`).click();
+    const s25Download = await s25DownloadEvent;
+    const s25Digest = crypto.createHash('sha256').update(fs.readFileSync(await s25Download.path())).digest('hex');
+    const s25ZipEvent = page.waitForEvent('download');
+    await page.locator(`a[download][href="${s25Zip}"]`).click();
+    const s25ZipDownload = await s25ZipEvent;
+    const s25ZipDigest = crypto.createHash('sha256').update(fs.readFileSync(await s25ZipDownload.path())).digest('hex');
+    if (s25Digest !== s25.raster_sha256 || s25ZipDigest !== s25.zip_sha256 || s25.ok_to_submit !== false) {
+      throw new Error('S25 research-only download identity or negative verdict mismatch');
+    }
+    const concurrent = JSON.parse(fs.readFileSync(path.join(root, 'docs/review-4239f6e5/concurrent-s26-audit.json')));
+    const s26Digests = [];
+    for (const result of concurrent.results) {
+      for (const [field, expected] of [['tif', result.tif_sha256], ['zip', result.zip_sha256]]) {
+        const event = page.waitForEvent('download');
+        await page.locator(`a[download][href="../downloads/${path.basename(result[field])}"]`).click();
+        const download = await event;
+        const digest = crypto.createHash('sha256').update(fs.readFileSync(await download.path())).digest('hex');
+        if (digest !== expected || result.submission_ready !== false || result.final_dot_comparison.dot_status !== 'DUPLICATE') {
+          throw new Error('Concurrent S26 research download identity or duplicate stop mismatch');
+        }
+        s26Digests.push(digest);
+      }
+    }
+    await page.goto(new URL('s26/executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
+    if (await page.locator('tbody tr').count() !== 3 ||
+        await page.locator('[data-submission-ready="false"]').count() !== 1 ||
+        !(await page.getByText(/narrower uniqueness claim is superseded/i).count())) {
+      throw new Error('S26 research page is missing its corrected duplicate stop');
+    }
+
     // The historical DZ-EDGE file is still downloadable for research, but its
     // page must conspicuously prohibit submission and the downloaded bytes
     // must match the run card. This is a delivery check, not a scientific pass.
@@ -250,7 +294,7 @@ async function main() {
     const copyStatus = await page.locator('#copy-status').textContent();
     await page.screenshot({ path: path.join(output, 'archive-desktop.png'), fullPage: true });
 
-    for (const target of ['index.html', 'submission-guide.html', 's27/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const target of ['index.html', 'submission-guide.html', 's27-cvdc/executive-summary.html', 's27/executive-summary.html', 'review-4239f6e5/executive-summary.html', 's26/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 'executive-summary.html', 'research.html', 'archive-results.html', 'review-0a96aa96-home.html', 'active-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's11-mhtr.html', 's11-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(target, baseURL).href, { waitUntil: 'networkidle' });
       await page.addScriptTag({ path: require.resolve('axe-core/axe.min.js') });
       const result = await page.evaluate(async () => {
@@ -258,6 +302,18 @@ async function main() {
         return audit.violations.map(item => ({ id: item.id, impact: item.impact, description: item.description }));
       });
       accessibility.push({ page: target, violations: result });
+    }
+    await page.goto(new URL('s27-cvdc/executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
+    if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
+      throw new Error('Missing S27-CVDC fail-closed negative submission state');
+    }
+    const s27CvdcCard = JSON.parse(fs.readFileSync(path.join(root, 'docs/s27-cvdc/run-card.json')));
+    const s27CvdcDlEvent = page.waitForEvent('download');
+    await page.locator(`a[download][href="../downloads/${path.basename(s27CvdcCard.artifact.tif)}"]`).click();
+    const s27CvdcDownload = await s27CvdcDlEvent;
+    const s27CvdcDigest = crypto.createHash('sha256').update(fs.readFileSync(await s27CvdcDownload.path())).digest('hex');
+    if (s27CvdcDigest !== s27CvdcCard.raster_sha256 || s27CvdcCard.ok_to_submit !== false) {
+      throw new Error('S27-CVDC research download SHA256 or negative verdict mismatch');
     }
     await page.goto(new URL('s19-svhf.html', baseURL).href, { waitUntil: 'networkidle' });
     if (await page.locator('[data-submission-ready="false"]').count() !== 1) {
@@ -276,24 +332,9 @@ async function main() {
     const s12Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/run-card-SPID91.json')));
     if (s12Digest !== s12Card.raster_sha256) throw new Error('SPID91 downloaded bytes do not match advertised SHA256');
 
-    await page.goto(new URL('s27/executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
-    if (!(await page.getByText('OK TO DOWNLOAD: YES — RESEARCH ONLY').count())) {
-      throw new Error('S27 executive summary missing research-only download badge');
-    }
-    if (!(await page.getByText(/OK TO SUBMIT: NO/).count())) {
-      throw new Error('S27 executive summary missing OK TO SUBMIT: NO badge');
-    }
-    const s27DlEvent = page.waitForEvent('download');
-    await page.locator('a[download][href*="-s27-cvdc-"][href$="-zeros.tif"]').first().click();
-    const s27Download = await s27DlEvent;
-    const s27Bytes = fs.readFileSync(await s27Download.path());
-    const s27Digest = crypto.createHash('sha256').update(s27Bytes).digest('hex');
-    const s27Card = JSON.parse(fs.readFileSync(path.join(root, 'docs/s27/run-card.json')));
-    if (s27Digest !== s27Card.raster_sha256) throw new Error('S27 downloaded bytes do not match recorded SHA256');
-
     let overflow = false;
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const mTarget of ['index.html', 'submission-guide.html', 'executive-summary.html', 's27/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
+    for (const mTarget of ['index.html', 'submission-guide.html', 'executive-summary.html', 's27-cvdc/executive-summary.html', 's27/executive-summary.html', 'review-4239f6e5/executive-summary.html', 's26/executive-summary.html', 's23/executive-summary.html', 's19-svhf.html', 's19-svhf-executive-summary.html', 's17-lftg.html', 's17-lftg-executive-summary.html', 's17-cpad.html', 's17-cpad-executive-summary.html', 's17-cgrd.html', 's17-cgrd-executive-summary.html', 's15-scgf.html', 's15-scgf-executive-summary.html', 'dzedge-executive-summary.html', 's14-hvdc.html', 's14-hvdc-executive-summary.html', 's13-ptha.html', 's13-ptha-executive-summary.html', 's12-spac.html', 's12-executive-summary.html', 's12-spid.html', 'spid91-executive-summary.html']) {
       await page.goto(new URL(mTarget, baseURL).href, { waitUntil: 'networkidle' });
       overflow = overflow || await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
       if (overflow) throw new Error(`Mobile horizontal document overflow on ${mTarget}`);
@@ -309,6 +350,7 @@ async function main() {
       focus_feed_mock: { successful_heads: 8, failed_heads: 1, failed_snapshot_retained: true, credentials_sent: false },
       desktop: { width: 1440, height: 1000 },
       mobile: { width: 390, height: 844 },
+      s27_cvdc_download_sha256: s27CvdcDigest,
       dzedge_download_sha256: dzDigest,
       s19_svhf_download_sha256: s19Digest,
       s19_svhf_zip_download_sha256: s19ZipDigest,
@@ -317,11 +359,13 @@ async function main() {
       s17_cpad_download_sha256: s17Digest,
       s17_cpad_zip_download_sha256: s17ZipDigest,
       s17_cpad_submission_ready: s17Card.ok_to_submit,
+      s25_research_download_sha256: s25Digest,
+      s25_research_zip_sha256: s25ZipDigest,
+      concurrent_s26_research_tif_and_zip_sha256: s26Digests,
       current_download_sha256: currentDigest,
       current_submission_ready: current.ok_to_submit,
       current_zip_download_sha256: currentZipDigest,
       s23_research_download_sha256: s23Digest,
-      s27_download_sha256: s27Digest,
       s14_download_sha256: s14Digest,
       s13_download_sha256: s13Digest,
       download_sha256: digest,

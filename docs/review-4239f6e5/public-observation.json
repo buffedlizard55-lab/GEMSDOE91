@@ -1,0 +1,11 @@
+{
+  "schema": "gems91.public-source-observation.v1",
+  "observed_date_utc": "2026-10-29",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "method": "Public page retrieved in Arena; a dated public-board observation, not an authenticated submission-page receipt.",
+  "public_rank_1_score": 0.4544,
+  "public_rank_2_score": 0.3916,
+  "is_submission_receipt": false,
+  "artifact_score": null,
+  "staleness_warning": "Live leaderboard can change; no file identity inferred."
+}

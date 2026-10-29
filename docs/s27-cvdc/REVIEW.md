@@ -61,4 +61,5 @@
 | Automated validation without human inspector; obvious top-of-site download & status + submission guide | Automated gates in `run_s27_cvdc.py`, `audit_downloads.py`, `check_artifact_policy.py`, `verify_frontdoor.py`, `smoke.cjs`; prominent top callout on `docs/index.html`, `docs/executive-summary.html`, and `docs/s27-cvdc/executive-summary.html`. |
 | Parallel-Run Protocol (Rule 1 duplicate gate, Rule 2 shared tools, Rule 3 strict score labels, Rule 4 canaries `<=0.90`, Rule 5 JSON Run Card, Rule 6 `<=3` exps / 0 slots) | Verified end-to-end (`docs/s27-cvdc/run-card.json`, `docs/s27-cvdc/canaries.json`, `vendor/gems57` unmodified). |
 | Put prompt into `README.md` for future sessions | Preserved under `#full-project-brief` with `2026-10-29` Session 27 delta appended. |
-| 3 passes, PR + merge to `main`, document remaining limitations & next steps | Documented in `docs/s27-cvdc/REVIEW.md` and `LIMITATIONS_AND_NEXT_STEPS.md`. |
+| 3 passes, PR + merge to `main`, document remaining limitations & next steps | Documented in `docs/s27-cvdc/REVIEW.md` and `LIMITATIONS_AND_NEXT_STEPS.md`; post-merge overlap verified against all 4 concurrent `origin/main` S26/S27 candidates (`19.34%–37.58%` within 3 px, `docs/s27-cvdc/concurrent-main-overlap-addendum.json`). |
+

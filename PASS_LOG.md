@@ -1,5 +1,10 @@
 ## S26 — 2026-10-28: corrective three-pass review
 
+## 2026-10-29 · active review `arena/4239f6e5-gemsdoe91`
+
+Three sequential passes are recorded in [the current review](docs/review-4239f6e5/PASS_REVIEW.md). Full local tests passed (915 passed, 9 skipped), as did browser delivery checks; no geological experiment, new competition candidate or weekly slot was used in this review. Concurrent S26 artifacts were retained and independently rechecked as duplicates. Fixed both shared writer paths, preserved the historical writer source pin, and added a fail-closed sample-semantic preflight. The fixed-budget lattice conflict and authentic-sample discrepancy block submission. [Executive table](docs/review-4239f6e5/executive-summary.html) · [negative run card](docs/review-4239f6e5/run-card.json).
+
+
 Pass 1: restored 15 inputs / 62 registry files; measured TLF duplicate witnesses and traced main CI snapshot failure. Pass 2: retracted unsafe promotion and ceiling-midpoint projection, preserved original source/card and unchanged raster, blocked reruns. Pass 3: corrected renderers/front doors and added regression tests; full local pytest, policy, frontdoor and snapshot parity checks passed. No geological experiments, new TIFF or weekly slots; constraints and deferred hypotheses in docs/s26/REVIEW.md.
 
 ## Current review — three passes (2026-10-27, arena/ad43b4e5)
@@ -618,3 +623,10 @@ Integration follow-up for 6cbfe8ac: merged main PR #120, preserved ee76e309 revi
 ## Parallel audit merged
 
 The independent `de9d7d75` audit also found that double-argsort mishandled rank ties; its original receipts, tests, corrected historical code, and documentation are preserved in `docs/review-de9d7d75/`. No corrected candidate surface correlation was computed here.
+
+## S27-FABRIC-FAR (`arena/4b95209e-gemsdoe91`, 2026-10-29)
+
+- **Pass 1 — implement:** restored 15/15 pinned inputs, 62/64 frozen registry rasters, 108 LFI anchors and 9 leaders by pinned blob (SHA-verified); re-verified official problem/metric/format + live leaderboard (2026-10-29: #1 0.4544, #10 0.3405; prompt 0.4413/0.3195 stale). Preregistered 5 ranked hypotheses; executed rank 1 = S25's reserved emission-geometry lane (`src/gems91/far27.py`: distance quotas 5/15/25/25/30% + <=65% uniqueness caps on the rebuilt-unchanged S25 fabric surface, canary exact 0.6130). Quotas hit exactly (0 redistributed; median dcat 5.831 -> 21.471 px). Surface novelty |rho| max 0.2135 PASS; final dots: nine leaders max 42.12%, competitive max 61.90% PASS (S25 failed at 74.89%), literal lattice 98.82% (capacity-forced >=82.34%). Paired HOLDOUT-DTI delta 0.000000 exactly (all arms 0.145207 [0.128814, 0.165761]); SGMC>500 m 0.076559 vs R0 0.088516; LFI refit (112 anchors, LOSO RMSE 0.0196) projects 0.18731 (MODEL, not a score) vs R0 0.27342, S25 0.07917, PDWC 0.19765.
+- **Pass 2 — adversarial review:** identical arm scores investigated to proof: every v3 test quadrant contains zero visible catalogue pixels (median dist-to-visible 234-808 px in-region vs 23.1 px full map), so collar/quota emission rules are inert in-fold — new instrument finding (IR-S27-03), preregistered G4 FAIL kept, no post-hoc gate repair. Fixed `sgmc` name-shadowing crash in diagnostics (no numbers from buggy run); fixed undersized synthetic test grid; caught & reverted `independent_tif_check.py --help` overwriting S13 evidence (IR-S27-06), replaced with scoped tifffile checker (all checks pass, EPSG 32611 from geokeys). GitHub REST quota exhausted -> switched sibling HEAD verification to `git ls-remote`. Deliberately did not spend the 3rd experiment tuning quotas against now-visible diagnostics (optimizer's curse).
+- **Pass 3 — requirements:** unique TIF downloadable at the front door + S27 executive summary with file/estimate/uniqueness table, per-site nine-site table (bytes re-hashed today; peer maxima 98.02-100.00%; S27 39.53-42.12% vs each), gate table, submission guide, name + 96-char note; prompt runner-up score lines checked (all <= pinned leaders; GEMSDOE92 lbmc1 0.2784 flagged outside scope, IR-S27-04); verdict negative (G4/G5 fail; both live-anchored diagnostics still trail R0); 2/3 experiments; 0 slots.
+- **Verdict:** NEGATIVE / NO PROMOTION. Run card: `docs/s27/run-card.json`; review: `docs/s27/REVIEW.md`.

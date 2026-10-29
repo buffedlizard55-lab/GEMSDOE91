@@ -1,0 +1,29 @@
+{
+  "file": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
+  "sha256": "fa894fff21e4e3053ec5ceccba1930e7d9b9c6eb19bf29dad3caa1b49b354517",
+  "bytes": 143514,
+  "min": 0.0,
+  "max": 1.0,
+  "n_positive": 37654,
+  "epsg_from_geokeys": 32611,
+  "checks": {
+    "sha256_matches_run_card": true,
+    "single_page": true,
+    "shape_3730x3292": true,
+    "dtype_float32": true,
+    "all_finite": true,
+    "no_nan": true,
+    "values_in_0_1": true,
+    "binary_0_1_only": true,
+    "dot_count_matches": true,
+    "no_gdal_nodata_tag": true,
+    "pixel_scale_100m": true,
+    "tiepoint_origin": true,
+    "geokeys_present": true,
+    "epsg_32611_if_readable": true,
+    "zip_single_tiff_byte_identical": true,
+    "zip_sha256_matches_run_card": true
+  },
+  "all_pass": true,
+  "scope": "independent bytes-on-disk preflight (tifffile only); not organizer acceptance"
+}

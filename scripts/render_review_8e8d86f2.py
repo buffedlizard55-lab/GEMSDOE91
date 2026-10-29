@@ -20,53 +20,14 @@ def load(name):
 
 
 def _s25tlf_banner() -> str:
-    """Current-lane verdict card for the front door.
-
-    Rendered from docs/s25-tlf receipts (never typed), so the front door cannot
-    disagree with the machine-readable run card. Returns '' when the lane has no
-    receipts in this checkout.
-    """
-    card_p = DOCS / 's25-tlf' / 'run-card.json'
-    table_p = DOCS / 's25-tlf' / 'nine-site-table.json'
-    if not card_p.exists() or not table_p.exists():
+    """The historical TLF projection was withdrawn; never render a promotion."""
+    path = DOCS / 's25-tlf' / 'run-card.json'
+    if not path.is_file():
         return ''
-    card = json.loads(card_p.read_text(encoding='utf-8'))
-    table = json.loads(table_p.read_text(encoding='utf-8'))
-    if not card.get('ok_to_submit'):
-        return ''
-    art = card['artifact']
-    proxy = card['sgmc_offcatalogue_control']
-    uni = card['uniqueness']
-    block = card.get('block_cv_sensitivity', {})
-    anchor = 0.095386
-    ceiling = 0.4413
-    central = (0.2778 + min(0.2778 * proxy['dti'] / anchor, ceiling)) / 2.0
-    tif = Path(art['tif']).name
-    rows = ''.join(
-        f"<tr><th scope='row'><a href='{r['site_url']}'>{r['site']}</a></th>"
-        f"<td class='n'>{r['claim']}</td><td class='n'>{r['sgmc_offcatalogue_dti']:.4f}</td>"
-        f"<td class='n'>{100*r['max_3px_overlap_with_a_peer_leader']:.1f}%</td>"
-        f"<td class='fail'>no &mdash; duplicate</td></tr>" for r in table['rows'])
-    return f"""<section id="s25tlf-verdict" class="note" aria-label="Current submission decision" style="border-left-color:#155b48;background:#e8f4ea;border-color:#bcd9c3">
-<p class="eyebrow" style="margin:0 0 6px">CURRENT LANE &middot; S25-TLF &middot; 2026-10-28 &middot; a different parallel run from S25-FABRIC below</p>
-<h2 style="margin:0 0 8px">A unique TIF is ready: OK to download and OK to submit.</h2>
-<p class="lead" style="margin:0 0 12px"><code>{esc(tif)}</code> &middot; 60,000 dots &middot; all format gates PASS
-(1 band float32, EPSG:32611, 3730&times;3292, finite in [0,1], no NaN) &middot; unique versus the nine named sites
-(max {100*uni['max_overlap_into_nine']['overlap_3px_into_ref']:.1f}% of dots within 3 px of a peer ({esc(uni['max_overlap_into_nine']['label'])}), limit 70%; max |&rho;| {abs(uni['max_abs_spearman_vs_nine']['surface_spearman']):.3f}, limit 0.90).</p>
-<p><strong>Estimated leaderboard score {central:.2f} (range 0.28&ndash;0.44) &mdash; a PROJECTION, not a score.</strong>
-It rests on the blind SGMC off-catalogue control ({proxy['dti']:.4f} versus 0.0954 for the 0.2778 raster, 2.00&times;),
-and it holds in {block.get('blocks_won_vs_r0', 8)}/{block.get('n_blocks', 8)} spatially disjoint blocks
-(median ratio {block.get('ratio_median', 1.73):.2f}&times;). One organizer receipt replaces every number here.</p>
-<p><a class="button" download href="downloads/{esc(tif)}">Download the submission GeoTIFF</a>
-<a class="button" href="s25-tlf/executive-summary.html">Why, per site, and how to submit</a>
-<a class="button secondary" href="s25-tlf/REVIEW.md">Full review</a></p>
-<div class="table-scroll" style="margin-top:14px"><table><caption>Per-site: the best file each site produced, its claimed score, its blind SGMC control, and why it must not be re-uploaded.</caption>
-<thead><tr><th>Site</th><th>Claimed score</th><th>SGMC off-cat</th><th>3-px overlap with a peer</th><th>New attempt?</th></tr></thead><tbody>{rows}</tbody></table></div>
-<p class="small">Claims are USER-REPORTED from the session prompt; no organizer receipt binds them to these bytes.
-The nine are 97.6&ndash;100% mutually the same raster: their scores are not nine independent observations
-(Spearman(claim, dot count) = {table['spearman_claimed_score_vs_dot_count']:.3f}).</p>
-</section>
-"""
+    card = json.loads(path.read_text(encoding='utf-8'))
+    if card.get('ok_to_submit') is not False or card.get('verdict') != 'negative':
+        raise ValueError('S25-TLF correction inconsistent; refusing to render')
+    return ''
 
 
 def render_sources():
@@ -85,7 +46,9 @@ def render_sources():
     prior = load('s22/run-card.json')
     audit = load('s22/nine-site-audit.json')
     focus = load('review-8e8d86f2/focus-inventory.json')
-    official = load('review-8e8d86f2/official-observation.json')
+    official = load('review-4239f6e5/public-observation.json')
+    fresh = load('review-4239f6e5/nine-site-leaders.json')
+    fresh_pre = load('review-4239f6e5/experiment-preflight.json')
     focus_sites = {24, 25, 27, 28, 30, 31, 32, 33, 36}
     if (current['verdict'] != 'negative' or current['ok_to_submit'] is not False
             or current['candidate_generated'] is not False or current['raster_sha256'] is not None
@@ -123,7 +86,9 @@ def render_sources():
             or {r['site'] for r in audit['sites']} != {f'GEMSDOE{i}' for i in focus_sites}
             or any(r['protocol_unique_among_nine'] or r['organizer_confirmed_score'] is not None
                    or r['estimated_leaderboard_score'] is not None for r in audit['sites'])
-            or official['is_submission_receipt'] is not False):
+            or official['is_submission_receipt'] is not False
+            or fresh_pre['status'] != 'BLOCKED' or fresh_pre['ok_to_submit'] is not False
+            or fresh['sample_sha256'] != fresh_pre['capacity']['sample_sha256']):
         raise ValueError('Current review evidence inconsistent; refusing to render')
     art, hold = prior['artifact'], prior['holdout']
     tif, zipped = art['tif'].removeprefix('docs/'), art['zip'].removeprefix('docs/')
@@ -131,10 +96,15 @@ def render_sources():
     for r in sorted(audit['sites'], key=lambda row: -row['claimed_historical_value']):
         witness = r['max_overlap_vs_other_eight']
         if (recheck['files'][r['site']]['sha256'] != r['sha256']
+                or fresh['files'][r['site']]['sha256'] != r['sha256']
+                or fresh['files'][r['site']]['footprint_checked'] is not True
+                or abs(fresh['max_overlap_into_any_other_leader'][r['site']]
+                       - witness['overlap_within_3px']) > 1e-12
                 or abs(recheck['max_overlap_into_any_other_leader'][r['site']]
                        - witness['overlap_within_3px']) > 1e-12):
             raise ValueError('Corrected peer-only recheck differs from frozen evidence')
-        rows.append(f'''<tr><th scope="row">{esc(r['site'])}</th><td class="file"><a href="{esc(r['source_url'],quote=True)}">{esc(r['filename'])}</a><small class="block">SHA-256 {esc(r['sha256'][:16])}…</small></td><td>{r['claimed_historical_value']:.4f}<small class="block">user-reported</small></td><td>Unavailable<small class="block">no receipt / calibration</small></td><td class="fail">NO<small class="block">{witness['overlap_within_3px']:.2%} vs {esc(witness['reference_site'])}</small></td></tr>''')
+        raw_url = r['source_url'].replace('/blob/', '/raw/', 1)
+        rows.append(f'''<tr><th scope="row">{esc(r['site'])}</th><td class="file"><a href="{esc(raw_url,quote=True)}">{esc(r['filename'])}</a><small class="block">SHA-256 {esc(r['sha256'][:16])}… · <a href="{esc(r['source_url'],quote=True)}">pinned source</a></small></td><td>{r['claimed_historical_value']:.4f}<small class="block">USER-REPORTED</small></td><td>Unavailable<small class="block">no receipt / calibration</small></td><td class="fail">NO<small class="block">{witness['overlap_within_3px']:.2%} vs {esc(witness['reference_site'])}</small></td><td class="fail">NO<small class="block">historical reference</small></td></tr>''')
     feed_rows = []
     seen_focus = set()
     for r in focus['rows']:
@@ -160,11 +130,11 @@ def render_sources():
     hci = hold['ci95']
     _banner = _s25tlf_banner()
     active_checkout = '''<!-- ACTIVE-CHECKOUT-3A4CCA78-BEGIN -->
-<div class="note" role="status"><strong>ACTIVE CHECKOUT · 2026-10-28: NO NEW TIFF · OK TO DOWNLOAD: NO NEW CANDIDATE · OK TO SUBMIT: NO.</strong> No method lane is assigned and the pinned competition inputs are missing. The frozen plan also conflicts with the literal 70% registry-overlap gate; do not evade it or submit a historical file. <a href="review-3a4cca78-20261028.md">Current review, nine-site table, ranked hypotheses and next steps</a> · <a href="run-card-3a4cca78-20261028.json">Run card</a>.</div>
+<div class="note" role="status"><strong>PREVIOUS REVIEW · 2026-10-28: NO NEW TIFF · OK TO SUBMIT: NO.</strong> The earlier checkout reported no assigned lane, missing inputs and the frozen-plan conflict. <a href="review-3a4cca78-20261028.md">Historical review</a> · <a href="run-card-3a4cca78-20261028.json">Historical run card</a>.</div>
 <!-- ACTIVE-CHECKOUT-3A4CCA78-END -->'''
     body = active_checkout + _banner + f'''<section class="hero" data-submission-ready="false"><div>
 <p class="eyebrow">GEMSDOE91 / HISTORICAL REVIEW · 27 OCTOBER 2026</p><h1>A clear stop,<br>backed by evidence.</h1>
-<p class="lead">This earlier review generated no new candidate. The later S24 research artifact is shown above; neither review authorizes a submission.</p>
+<p class="lead">This earlier review generated no new candidate. The S24 and S25 research artifacts shown above are historical; none authorizes a submission.</p>
 <p><span class="verdict">NOT OK TO SUBMIT · NO NEW TIFF IN THIS EARLIER REVIEW</span></p><p><a href="review-ad43b4e5/REVIEW.md">Read the earlier review ↗</a> · <a href="review-ad43b4e5/run-card.json" download>Download the JSON run card ↓</a> · <a href="submission-guide.html">Submission guide ↗</a></p></div>
 <aside class="dark" aria-label="Current verdict"><p class="eyebrow" style="color:#b9ddc6">DECISION / FAIL CLOSED</p><h2>Research available.<br>Submission blocked.</h2>
 <div class="statline"><span>Experiments in this earlier review</span><strong>0</strong></div><div class="statline"><span>Candidate from this earlier review</span><strong>NO</strong></div><div class="statline"><span>Weekly slots used in this review</span><strong>0</strong></div>
@@ -184,8 +154,8 @@ def render_sources():
 <a class="button" download href="{esc(tif,quote=True)}">Download historical TIFF ↓</a><a class="button secondary" download href="{esc(zipped,quote=True)}">Single-TIFF ZIP ↓</a>
 <details><summary>Historical file identity</summary><p>Name: <code>{esc(prior['submission_name'])}</code><br>SHA-256: <code>{esc(prior['raster_sha256'])}</code></p><p>Historical note ({len(prior['submission_note'])}/140): <code>{esc(prior['submission_note'])}</code></p></details></div></div></section>
 <section class="section" id="nine-sites"><div class="section-title"><h2>Nine historical leaders</h2><p>Claims, not organizer-confirmed results.</p></div><p>The user-reported GEMSDOE32 claim is highest among the nine supplied values; none of the nine files is unique against all eight peers. No defensible leaderboard estimate or file-linked receipt is available. Overlap is directional within 3 px.</p>
-<div class="table-scroll"><table><caption>Exact historical files · 26 October raster audit · do not upload these references</caption><thead><tr><th scope="col">Site</th><th scope="col">Historical TIFF / source</th><th scope="col">Reported claim</th><th scope="col">Estimated score</th><th scope="col">Unique among peers?</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
-<p class="subtle">Full SHA-256s and 72 directed comparisons: <a href="s22/nine-site-audit.json">original nine-site audit</a> and <a href="review-ad43b4e5/nine-site-recheck.json">corrected peer-only recheck</a>. GEMSDOE25 and GEMSDOE30 have identical positive support despite different bytes.</p></section>
+<div class="table-scroll"><table><caption>Exact historical files · rechecked 29 October against the supplied mirror footprint · do not upload these references</caption><thead><tr><th scope="col">Site</th><th scope="col">Historical TIFF / source</th><th scope="col">Reported claim</th><th scope="col">Defensible estimate</th><th scope="col">Unique among peers?</th><th scope="col">Submit?</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+<p class="subtle">Full SHA-256s and 72 directed comparisons: <a href="review-4239f6e5/nine-site-leaders.json">29 October recheck</a>, <a href="s22/nine-site-audit.json">original audit</a> and <a href="review-ad43b4e5/nine-site-recheck.json">earlier peer-only recheck</a>. The supplied footprint's organizer authenticity is unverified. GEMSDOE25 and GEMSDOE30 have identical positive support despite different bytes.</p></section>
 <section class="section" id="research"><div class="grid2"><article class="card"><span class="eyebrow">WHAT 0.2778 MAY MEAN</span><h2>Coverage is plausible. Causality is not proven.</h2><p>GEMSDOE32 retains the GEMSDOE31 support after removing {lineage['31_minus_32']['pixels']:,} near-catalogue dots; GEMSDOE36 adds {lineage['36_minus_32']['pixels']:,} to it. Reducing redundant predictions may improve the coverage–false-positive trade-off, but new faults may also be nearby. The 0.2778 claim lacks a receipt, and file geometry cannot prove a score or causality. <a href="review-ad43b4e5/nine-site-lineage.json">Lineage audit ↗</a></p><p>The public rank-one observation was {official['public_rank_1_score']:.4f} on {esc(official['observed_date_utc'])} UTC; it can change and is not a file receipt.</p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Current official leaderboard ↗</a></article>
 <article class="card"><span class="eyebrow">GEOLOGY / NEXT RESEARCH</span><h2>Four proposals from an earlier review.</h2><p>Ranked proposals considered cross-contact magnetic kurtosis, oriented terrain granulometry, cross-spectral lag, and conditional 3DEP terrain. S24 subsequently tested the first proposal; its result is negative. Volcanic contacts, survey seams, roads and fan margins can mimic faults.</p><p>A fault prediction is not proof of heat, permeability, a vent or a productive reservoir.</p><a href="review-8e8d86f2/HYPOTHESES.md">Layers, sources and falsification ↗</a></article></div></section>
 <section class="section" id="how-to-submit"><span class="eyebrow">FUTURE APPROVED FILES ONLY</span><h2>What would have to happen before an upload?</h2><ol><li>Resolve the assigned method and frozen-plan conflict. Audit input masks and source rights; do not silently relax the registry rule.</li><li>Pass feature canaries, buffered whole-segment holdout and both registry phases, using the shared evaluator and writer. Compare against a matched incumbent with uncertainty.</li><li>Obtain a separate selector decision and check the authenticated competition page for current quota. The <a href="https://community.drivendata.org/t/submission-amount-question/11553/2">website limit prevails</a> over the rules’ parenthetical.</li><li>Only for an approved future file, verify its hash and upload the TIFF or one-TIFF ZIP on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData</a>. Record its receipt, timestamp, ID, score and hash; only a receipt supports ORGANIZER-CONFIRMED.</li></ol>
@@ -195,12 +165,12 @@ def render_sources():
 <p class="subtle"><a href="review-8e8d86f2/focus-inventory.json">Full saved inventory</a> · <a href="fleet-audit.json">Broader scheduled fleet inventory</a> · <a href="review-ad43b4e5/REVIEW.md">Official source and limitations ledger</a>. Daily Actions refreshes are automatically published only when Pages uses workflow deployment; branch-based Pages may show an older saved snapshot. No credentials are requested.</p><noscript><p>Live head checks require JavaScript; the dated inventory remains available above.</p></noscript></section>
 <section class="section" id="archive"><span class="eyebrow">HISTORICAL EVIDENCE</span><h2>Earlier research, clearly archived</h2><p><a href="review-8e8d86f2/REVIEW.md">Previous review and full nine-site table</a> · <a href="archive-results.html">Historical experiment archive</a> · <a href="s23/executive-summary.html">S23 parallel research correction</a> · <a href="REVIEW-ARENA-52711765-20261027.md">Concurrent no-run review</a> · <a href="s17-lftg.html">S17-LFTG research audit</a> · <a href="s17-cpad.html">S17-CPAD research audit</a> · <a href="REVIEW-ACTIVE-E649E460-20261025.md">Earlier safety review</a> · <a href="run-card-E649E460-20261025.json">Earlier review card</a></p></section>'''
     guide = '''<section class="hero" data-submission-ready="false"><div><p class="eyebrow">SUBMISSION GUIDE / FUTURE APPROVED FILES ONLY</p><h1>Not ready to upload.</h1><p class="lead">No new TIFF was generated or approved in this review. Historical research downloads are not competition submissions.</p><p><a href="index.html">← Back to the executive review</a></p></div><aside class="dark"><h2>Current decision</h2><div class="statline"><span>New file</span><strong>NONE</strong></div><div class="statline"><span>Submission approval</span><strong>NO</strong></div><div class="statline"><span>Weekly slots used</span><strong>0</strong></div><p>No score estimate or file-specific organizer receipt is available.</p></aside></section>
-<section class="section"><h2>Before a future candidate is eligible</h2><ol><li>Obtain an assigned method and a coordinated resolution of the frozen plan’s duplicate conflict. Do not evade the registry gate by silently changing the budget or omitting dense references.</li><li>Verify rights, masks and alignment of each input. Build all catalogue-derived features from buffered visible faults only; preserve the separate pixel-exact known-fault scoring mask.</li><li>Run feature-alone leakage canaries, stop on a suspicious AUC above 0.90, and compare both pre-placement surface and final dots against the full available frozen registry. A duplicate stop or missing coverage is not a pass.</li><li>Recompute both candidate and current best on the corrected matched whole-component holdout with the shared pooled DTI evaluator; report the version, positive count, 95% interval and paired comparison. A projection is not a score.</li><li>Reopen the written file using the shared validator: one float32 GeoTIFF, exact sample dimensions, transform and EPSG:32611, no NaN inside the footprint, values in [0,1]. Confirm the organizer’s current outside-bounds encoding before upload.</li><li>A separate selector must confirm approval and the live authenticated weekly allowance. Only then upload an approved future file via the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submissions page</a>, preserving its byte hash and organizer receipt.</li></ol>
-<p class="note">The <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official description</a> says outside-bounds values are null/NaN; the historical all-finite file passed local checks only. We do not know whether that encoding is accepted by the organizer or what caused the prior range error.</p>
-<p><a href="review-ad43b4e5/run-card.json" download>Download the negative JSON run card ↓</a> · <a href="review-ad43b4e5/REVIEW.md">Review and sources ↗</a></p></section>'''
+<section class="section"><h2>Before a future candidate is eligible</h2><ol><li>Obtain an assigned method and a coordinated resolution of the frozen plan’s duplicate conflict. Do not evade the registry gate by silently changing the budget or omitting dense references.</li><li>Verify rights, masks and alignment of each input. Build all catalogue-derived features from buffered visible faults only; preserve the separate pixel-exact known-fault scoring mask.</li><li>Run feature-alone leakage canaries, stop on a suspicious AUC above 0.90, and compare both pre-placement surface and final dots against the full available frozen registry. A duplicate stop or missing coverage is not a pass.</li><li>Recompute both candidate and current best on the corrected matched whole-component holdout with the shared pooled DTI evaluator; report the version, positive count, 95% interval and paired comparison. A projection is not a score.</li><li>Reopen the written file using the shared validator: one float32 GeoTIFF, exact sample dimensions, transform and EPSG:32611, no NaN inside the footprint, values in [0,1]. Confirm the organizer’s current outside-bounds encoding before upload.</li><li>A separate selector must confirm approval and the live authenticated weekly allowance. Only then open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submissions page</a>, choose the approved TIFF or one-TIFF ZIP, give it the approved unique name and note of at most 140 characters, and preserve the exact byte hash and organizer receipt. No such file is currently approved.</li></ol>
+<p class="note">The <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official description</a> says outside-bounds values are null/NaN; the historical all-finite file passed local checks only. We do not know whether that encoding is accepted by the organizer or what caused the prior range error. The pinned sample mirror also contains 60,988 positive cells, unlike the organizer’s described all-zero sample. Verify an authentic organizer template before using it as an authority.</p>
+<p><a href="review-4239f6e5/run-card.json" download>Download the current negative JSON run card ↓</a> · <a href="review-4239f6e5/REVIEW.md">Current review and sources ↗</a> · <a href="review-ad43b4e5/run-card.json">Earlier run card</a></p></section>'''
 
     def shell(title, page_body=body):
-        return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} · GEMSDOE91</title><meta name="description" content="A fail-closed GEMS fault-mapping audit, nine-site evidence and research-only GeoTIFF download."><style>{STYLE}</style><script defer src="assets/focus-feed.js"></script></head><body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="nav"><a class="brand" href="index.html">GEMSDOE91<small>FAULT MAPPING / RESEARCH OPERATIONS</small></a><nav aria-label="Main navigation"><a href="index.html#evidence">Evidence</a><a href="index.html#nine-sites">Nine sites</a><a href="submission-guide.html">Submission guide</a><a href="index.html#feed">Source feed</a></nav></header><main id="main">{page_body}</main><footer><span>Maximize P(Win) · Own the Outcome<br>Research, not a leaderboard prediction.</span><span><a href="review-ad43b4e5/run-card.json">Current run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source repository</a><br>No automatic competition uploads or stored credentials.</span></footer></div></body></html>\n'''
+        return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} · GEMSDOE91</title><meta name="description" content="A fail-closed GEMS fault-mapping audit, nine-site evidence and research-only GeoTIFF download."><style>{STYLE}</style><script defer src="assets/focus-feed.js"></script></head><body><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="nav"><a class="brand" href="index.html">GEMSDOE91<small>FAULT MAPPING / RESEARCH OPERATIONS</small></a><nav aria-label="Main navigation"><a href="index.html#evidence">Evidence</a><a href="index.html#nine-sites">Nine sites</a><a href="submission-guide.html">Submission guide</a><a href="index.html#feed">Source feed</a></nav></header><main id="main">{page_body}</main><footer><span>Maximize P(Win) · Own the Outcome<br>Research, not a leaderboard prediction.</span><span><a href="review-4239f6e5/run-card.json">Current run card</a> · <a href="review-ad43b4e5/run-card.json">Earlier run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE91">Source repository</a><br>No automatic competition uploads or stored credentials.</span></footer></div></body></html>\n'''
     (DOCS / 'review-8e8d86f2-index-src.html').write_text(shell('Current research verdict'), encoding='utf-8')
     (DOCS / 'review-8e8d86f2-exec-src.html').write_text(shell('Executive review and submission guidance'), encoding='utf-8')
     (DOCS / 'submission-guide.html').write_text(shell('Future submission guide', guide), encoding='utf-8')

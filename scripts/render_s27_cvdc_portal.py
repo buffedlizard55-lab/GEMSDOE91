@@ -49,6 +49,8 @@ def main() -> int:
     s25_card = load("docs/s25/run-card.json")
     s24_card = load("docs/s24/e2/run-card.json")
     s21_card = load("docs/run-card-S21-PDWC.json")
+    s27_far_card = load("docs/s27/run-card.json")
+    concurrent_addendum = load("docs/s27-cvdc/concurrent-main-overlap-addendum.json")
 
     # Fail-closed receipt assertions
     assert card["verdict"] == "negative" and card["ok_to_submit"] is False
@@ -111,10 +113,27 @@ def main() -> int:
         f"within 3 px (limit 70%).<br>"
         f"<strong>PASS vs all {corr['competitive_references_checked']} competitive non-blanket fleet rasters (&le;90k px):</strong> "
         f"max <strong>{pct(corr['final_dot_max_overlap_competitive_le_90000px'])}</strong> within 3 px "
-        f"(closest: <code>{escape(Path(corr['final_dot_closest_competitive']).name[:34])}…</code>); "
+        f"(closest: <code>{escape(Path(corr['final_dot_closest_competitive']).name[:34])}…</code>) "
+        f"and max <strong>{pct(concurrent_addendum['max_overlap_within_3px'])}</strong> vs all {concurrent_addendum['concurrent_main_rasters_checked']} concurrent S26/S27 candidates; "
         f"surface |&rho;| max <strong>{corr['surface_max_abs_rho']:.3f}</strong> (limit 0.90).<br>"
         f"<strong>FAIL literal dense-lattice gate:</strong> {pct(corr['final_dot_max_overlap_all'])} vs "
         f"206,895-dot synthetic <code>calib_r13lattice_00904.tif</code> (pigeonhole floor &ge;82.34%)."
+    )
+
+    s27_far_tif_rel = s27_far_card["artifact"]["tif"].removeprefix("docs/")
+    s27_far_ov_vs_cvdc = next(
+        r["overlap_within_3px"] for r in concurrent_addendum["rows"] if r["path"] == s27_far_card["artifact"]["tif"]
+    )
+    score_s27_far = (
+        f"<strong>ORGANIZER-CONFIRMED: none.</strong><br>"
+        f"HOLDOUT-DTI: {f6(s27_far_card['holdout']['dti'])} [{f6(s27_far_card['holdout']['ci95'][0])}, {f6(s27_far_card['holdout']['ci95'][1])}] "
+        f"(v3 folds, 60,988 withheld; S27-CVDC E2 scores <strong>+{f6(h['dti'] - s27_far_card['holdout']['dti'])}</strong> higher).<br>"
+        f"Post-hoc LFI MODEL projection: {s27_far_card['lfi_model_projection_not_a_score']['ridge1']:.4f}."
+    )
+    uniq_s27_far = (
+        f"PASS vs 9 focus sites (max {pct(s27_far_card['correlation_overlap_vs_registry']['final_dot_max_overlap_nine_leaders'])}) "
+        f"and competitive rasters (max {pct(s27_far_card['correlation_overlap_vs_registry']['final_dot_max_overlap_competitive_le_90000px'])}); "
+        f"FAIL dense lattice. (S27-CVDC E2 overlaps S27-FABRIC-FAR by only {pct(s27_far_ov_vs_cvdc)}.)"
     )
 
     s25_tif_rel = s25_card["artifact"]["tif"].removeprefix("docs/")
@@ -160,6 +179,7 @@ def main() -> int:
 
     rows_candidates = (
         cand_row("S27-CVDC E2 — THIS SESSION (primary research deliverable)", tif_rel, card["raster_sha256"], 37_654, score_s27, uniq_s27)
+        + cand_row("S27-FABRIC-FAR — concurrent distance-stratified S25 emitter arm", s27_far_tif_rel, s27_far_card["raster_sha256"], 37_654, score_s27_far, uniq_s27_far)
         + cand_row("S25-FABRIC E2 — prior v3-fold incumbent (remediated in S27)", s25_tif_rel, s25_card["raster_sha256"], 37_654, score_s25, uniq_s25)
         + cand_row("S21-PDWC E3 — earlier v2-fold candidate", s21_tif_rel, lfi["s21_pdwc_e3"]["sha256"], 37_654, score_s21, uniq_s21)
         + cand_row("S24-CCKM E2 — earlier cross-kurtosis candidate", s24_tif_rel, s24_card["raster_sha256"], 37_654, score_s24, uniq_s24)
@@ -296,7 +316,7 @@ pre{{background:#0f172a;color:#f8fafc;padding:14px;border-radius:7px;overflow-x:
 </header>
 
 <main id="main">
-<section class="hero" aria-label="Primary download and automated submission readiness gate">
+<section class="hero" data-submission-ready="false" aria-label="Primary download and automated submission readiness gate">
   <div class="badges">
     <span class="badge dl">OK TO DOWNLOAD: YES — RESEARCH ONLY</span>
     <span class="badge nosub">OK TO SUBMIT: NO — DENSE LATTICE &amp; SELECTOR GATE</span>
@@ -327,7 +347,7 @@ pre{{background:#0f172a;color:#f8fafc;padding:14px;border-radius:7px;overflow-x:
   </div>
   <div class="card">
     <h3>Live Competition Context (Fetched 2026-10-29)</h3>
-    <p class="small">Per <a href="{escape(lb["source_url"])}">official DrivenData leaderboard</a> (fetched <code>{escape(lb["fetched_utc"])}</code>): <strong>#1 = {lb1:.4f}</strong> (<code>xiaofanhu</code>), <strong>#2 = {lb["rows"][1]["best_public_dw_tversky"]:.4f}</strong> (<code>cfld__</code>), <strong>#5 = {lb["rows"][4]["best_public_dw_tversky"]:.4f}</strong> (<code>op01</code> — Phase 1 top-5 $10k cutoff), <strong>#10 = {lb10:.4f}</strong> (<code>zeaal</code>). Prompt references to <code>0.3195</code> and <code>0.4413</code> reflect earlier snapshots. Under Official Rules &sect;3.6 (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR/DOE 96647.pdf</a>), teams must select <strong>one single submission</strong> for both Phase 1 ($50k hidden test set) and Phase 2 ($250k expert-revised full fault set).</p>
+    <p class="small">Per <a href="{escape(lb["source_url"])}">official DrivenData leaderboard</a> (fetched <code>{escape(lb.get("fetched_utc") or lb.get("retrieved_utc"))}</code>): <strong>#1 = {lb1:.4f}</strong> (<code>xiaofanhu</code>), <strong>#2 = {lb["rows"][1]["best_public_dw_tversky"]:.4f}</strong> (<code>cfld__</code>), <strong>#5 = {lb["rows"][4]["best_public_dw_tversky"]:.4f}</strong> (<code>op01</code> — Phase 1 top-5 $10k cutoff), <strong>#10 = {lb10:.4f}</strong> (<code>zeaal</code>). Prompt references to <code>0.3195</code> and <code>0.4413</code> reflect earlier snapshots. Under Official Rules &sect;3.6 (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR/DOE 96647.pdf</a>), teams must select <strong>one single submission</strong> for both Phase 1 ($50k hidden test set) and Phase 2 ($250k expert-revised full fault set).</p>
   </div>
 </div>
 
