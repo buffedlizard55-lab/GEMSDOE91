@@ -1,0 +1,20 @@
+{
+  "schema": "public-leaderboard-observation-v1",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "retrieved_utc": "2026-10-29",
+  "method": "fetch_page of the public leaderboard in the S27 session; top-10 rows copied verbatim from the tool output. Public 'Best public DW-Tversky' column.",
+  "label": "OFFICIAL PUBLIC LEADERBOARD OBSERVATION - not an ORGANIZER-CONFIRMED receipt for any TIFF in this repository",
+  "rows": [
+    {"rank": 1, "participant": "xiaofanhu", "best_public_dw_tversky": 0.4544},
+    {"rank": 2, "participant": "cfld__", "best_public_dw_tversky": 0.3916},
+    {"rank": 3, "participant": "Batik Shirt Brothers", "best_public_dw_tversky": 0.3911},
+    {"rank": 4, "participant": "BrandenKMurray", "best_public_dw_tversky": 0.3841},
+    {"rank": 5, "participant": "op01", "best_public_dw_tversky": 0.3642},
+    {"rank": 6, "participant": "No Fault of Our Own", "best_public_dw_tversky": 0.3570},
+    {"rank": 7, "participant": "joeyfezster", "best_public_dw_tversky": 0.3447},
+    {"rank": 8, "participant": "JerryDataWorks", "best_public_dw_tversky": 0.3418},
+    {"rank": 9, "participant": "alexoktaba", "best_public_dw_tversky": 0.3416},
+    {"rank": 10, "participant": "zeaal", "best_public_dw_tversky": 0.3405}
+  ],
+  "note": "Rank 1 unchanged from the 2026-10-28 snapshot (evidence/public-leaderboard-2026-10-28.json); ranks 4-10 moved. The user prompt's 0.4413 and 0.3195 figures remain stale."
+}

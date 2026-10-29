@@ -740,6 +740,18 @@
       "sha256": "041972c262a36fd87fca88c85a6ecaf2e29a7aebdbc558cc065468d723078428",
       "status": "current_research_only",
       "reason": "DUPLICATE_STOP: 99.6017% of candidate dots within 3px of frozen registry lattice; no selector approval. Research only; NOT OK TO SUBMIT. See docs/s25-tlf/witness-audit-20261028.json."
+    },
+    {
+      "path": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
+      "sha256": "fa894fff21e4e3053ec5ceccba1930e7d9b9c6eb19bf29dad3caa1b49b354517",
+      "status": "current_research_only",
+      "reason": "S27-FABRIC-FAR TIFF: S25 fabric surface with preregistered distance-stratified (5/15/25/25/30%) uniqueness-capped emission, 37654 dots. HOLDOUT-DTI delta vs matched incumbent exactly 0 by v3-fold construction (G4 FAIL); SGMC>500m below R0 (G5 FAIL); LFI MODEL projection 0.18731 (not a score). Unique vs nine leaders (max 42.12%) and competitive registry (max 61.90%); literal lattice-blanket scope capacity-blocked. Verdict negative. NOT OK TO SUBMIT."
+    },
+    {
+      "path": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.zip",
+      "sha256": "27f8fd4d0ee8eaaa815718e0bde0f430e9634db38a265e18b863b2b34da6707b",
+      "status": "current_research_only",
+      "reason": "S27-FABRIC-FAR ZIP: S25 fabric surface with preregistered distance-stratified (5/15/25/25/30%) uniqueness-capped emission, 37654 dots. HOLDOUT-DTI delta vs matched incumbent exactly 0 by v3-fold construction (G4 FAIL); SGMC>500m below R0 (G5 FAIL); LFI MODEL projection 0.18731 (not a score). Unique vs nine leaders (max 42.12%) and competitive registry (max 61.90%); literal lattice-blanket scope capacity-blocked. Verdict negative. NOT OK TO SUBMIT."
     }
   ]
 }
