@@ -1,38 +1,32 @@
-# S26 review: proposed hypotheses, not an authorized experiment
+# S26-FABRIC-EMIT — Preregistration (single lane, 3-experiment budget)
+**Lane:** S26-FABRIC-EMIT (self-assigned; no supplied method paragraph; reuses S25-FABRIC validated surface). **Source:** `docs/s26/HYPOTHESES.md` H1.
 
-2026-10-28 · branch `arena/cdf0327e-gemsdoe91`.
-Read README's preserved Full Project Brief at every session start. Maximize P(Win): no slot on unsupported evidence. Own the Outcome: fix misleading approvals and retain negative evidence.
+## Hypothesis (single paragraph)
+Catalogue-missing buried faults have the same cross-fabric granulometry + gravity/magnetic phase-lag signature as S25-FABRIC, but S25's 3.05 px collar collapsed predictions onto the catalogue halo (median 5.8 px from catalogue, live projection 0.079). Widening the collar to ≥10 px and enforcing distance-stratified quotas plus ≤64% 3-px overlap caps against the four densest competitive families (bhar-e3, spac-e3, h28ridge, cover91) recovers inter-catalogue gaps without re-training the detector. Non-fault mimics: same lithologic contacts, remanent-magnetization offsets, fan/shoreline fabrics, flight-line seams — plus wide alluvial aprons where 10 px still overlaps fan lobes (expected false-positive control).
 
-## Execution decision
+## Inputs (SHA-pinned)
+- `data/official/sample_submission.tif` 2176d08e…
+- `data/official/existing_faults.tif` 7ba308cc…
+- `data/bridge/gems-geodawn-numerical-features.tif` 4371c82e… (19 bands, B12/B19 for granulometry, B13/B14 for CSPL already validated)
+- `data/registry/GEMSDOE32__h33-2-b2-zeros.tif` c55bafc…
+- Frozen registry before candidate: `registry/comparison_inventory.json` → `docs/s26/frozen-registry.json`
 
-The promised single-method assignment is absent (`registry/experiment_plan.json`: lane=null). Restored and hash-verified all 15 input pins, 62/64 frozen references, 108 anchor files and the nine historical leaders. This solves data placement for pinned-mirror research; it does not authenticate organizer origin or grant external-data rights. No GPU is required for these verification checks.
+## Frozen learner, folds, emission
+- Learner: **reuse S25-FABRIC E2 full-footprint HGB** (max_iter 300, lr 0.06, max_leaf 63, min_samples_leaf 40, L2 1.0, seed 520810) — no re-tuning.
+- Folds: **vendor/gems57/spatial.folds** v3 buffer_px=80 (same instrument as S25; no historical HOLDOUT-DTI is quoted as matched).
+- Emission: **new** `gems91.pdwc21.emit_dots_nms` with **collar 10.0 px** (was 3.05), **spacing 3.05 px**, **budget 22 163 dots** (largest geometrically feasible vs lattice; S25 used 37 654) plus distance-quota variant at 37 654 as E2; **competitive cap ≤64%** applied in CELF emitter (S21 precedent). Per-fold budgets proportional to footprint area (S24 protocol).
 
-Shared preflight blocks the frozen 37,654-dot plan: 6,649 footprint cells lie outside the registered lattice's 3-px halo, forcing at least 82.341849% overlap. Do not modify budget or remove witnesses just to evade the rule. No geological experiment, feature extraction or new TIFF was completed in this review. The briefly drafted CVDC implementation was discarded unexecuted; its proposed experiments were never registered as an assigned lane. Budget: zero experiments, zero uploads.
+## Scoring
+- `vendor/gems57/evaluate_holdout.py` gems57-pooled-hide-v2 α0.2 β0.8 300 m kernel, 1000 paired block-bootstrap draws, seed 520810. Labels: HOLDOUT-DTI (evaluator, n withheld, 95% CI) vs ORGANIZER-CONFIRMED (receipt).
 
-## Four candidate hypotheses, ranked qualitatively (no numerical score forecasts)
+## Experiments (≤3)
+- **E1:** 22 163-dot 10 px collar NMS on S25 E2 full surface (capacity-feasible; passes literal 70% gate if surface is unique).
+- **E2:** 37 654-dot 10 px collar NMS on same surface (tests live projection gain at cost of literal blanket; compare to S25 0.079).
+- **E3:** 37 654-dot 10 px collar + ≤64% CELF cap vs 4 competitive refs (S21 caps) — only if E2 competitive overlap >70%.
 
-These are deferred proposals, not claims of new discoveries or verified novelty across other repositories. Repository code review found extensive prior tensor/phase/relay/granulometry implementations; each proposed mechanism needs an explicit assignment and literature/data validation before use.
+## Duplicate gates
+- Pre-approval: surface |ρ| ≤0.90 vs every frozen reference.
+- Phase-2: final dots ≤70% within 3 px vs **all** refs including dense blankets (lattice capacity bound recorded). Scopes reported separately: nine leaders, competitive ≤90k px, dense blankets.
 
-| Rank | Specific layers and proposed signature | Why catalogue-missing faults might appear | Difference and non-fault mimic | Cost / availability |
-|---|---|---|---|---|
-| 1 | B12 detrended elevation + B02 magnetics + B13 gravity: edge-tangent versus contour-tangent discordance, with transverse slope jumps | A steep structure may cross relief where a subdued trace was not mapped; test rather than assume this | Rule-of-V-inspired contour-discordance interaction, not just existing edge/coherence magnitude. Dikes and dipping contacts mimic it | Medium CPU; pinned bands available. Detrended elevation is NOT hydraulic head or absolute elevation |
-| 2 | B12/B19 slope discontinuities conditioned on valley concavity, requiring aligned responses across adjacent valleys | Repeated channel steepening could retain displaced drainage evidence after a scarp erodes | Multi-valley consistency rather than the repo's single ridge response. Lithologic boundaries and fan lobes mimic it | Medium/high; coarse 100 m test only. Reliable drainage routing requires an actual DEM |
-| 3 | B13/B14 cross-field texture-break persistence conditioned on B15/B19 cover regimes, using within-training-fold propensity weighting | Catalogue completeness may differ under cover; reweighting may reduce exposed-range bias | Explicit completeness sensitivity analysis rather than a new edge operator; overlaps prior CWP concepts and must not be called wholly new. Survey coverage and lithology mimic it | Medium; existing inputs. B15 is conductive-base depth per official description, not proven sediment thickness |
-| 4 | USGS 3DEP absolute DEM: channel-steepness jumps and cross-valley alignment at metre/10 m scale | Detect subdued scarps unresolved by 100 m bands | High-resolution routing rather than existing cached scarp magnitude. Shorelines/roads mimic it | High. Official source https://www.usgs.gov/3d-elevation-program/about-3dep-products-services ; bulk hosts outside shell allowlist. NOT currently executable; do not claim obtainable tiles until independently pinned |
-
-Expected DTI improvements are unknown. Rank reflects testability and distinct observable, not evidence of higher hidden scores. The top proposal was NOT validated because preflight blocks the experiment. Previous-session emission-geometry follow-up is likewise deferred; it cannot override the registry rule.
-
-## Source-backed constraints
-
-- Official task, inputs, metric and format: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ (both chunks read 2026-10-28).
-- Official geological background and references: https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/ . These motivate tests, not causal validation of a particular transform.
-- Staff says known masks are pixel-exact and NEW labels may occur within 300 m: https://community.drivendata.org/t/11516/4 . A wider collar is not guaranteed beneficial.
-- Source license must permit challenge use and sponsor sharing; unresolved community questions are not permission: https://community.drivendata.org/t/11584 . No official reply granting rights was visible when read.
-- Same selected submission across both rounds; proposed change not adopted in staff reply dated 2026-10-28T16:07:34Z: https://community.drivendata.org/t/11587/3 .
-- Public board observed rank one 0.4544 on 2026-10-28: https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ . This is a public observation, not a submission-page receipt for our artifact.
-
-## Three review passes
-
-1. Restored actual pins, read runners, inspected CI job failure via GitHub API, ran baseline unit tests and exact registry comparisons.
-2. Found TLF's narrow registry scope, unsaved pre-placement surface, SGMC-fitted weights (so SGMC is not blind), in-sample spatial-block diagnostic, uncalibrated ceiling-midpoint projection, unsupported band-6 identity and unresolved lidar provenance. Retracted approval without changing raster bytes.
-3. Added reproducible audit, blocked unsafe legacy reruns, regenerated all-download audit, checked corrective renderer and regression tests. Final test/PR results recorded in REVIEW.md. Requirements not achieved are explicitly recorded, never replaced by fabricated measurements.
+## Verdict
+`promote` iff canary pass + surface pass + dot pass all scopes + HOLDOUT-DTI beats best matched control (paired CI>0) + validator pass. Else `negative`. `ok_to_submit` mirrors `promote` only; no slot used here.
