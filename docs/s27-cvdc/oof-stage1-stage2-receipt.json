@@ -1,0 +1,382 @@
+{
+  "outer_seeds": [
+    20261029,
+    20261030,
+    20261031
+  ],
+  "hgb_params": {
+    "max_iter": 220,
+    "learning_rate": 0.055,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 80,
+    "l2_regularization": 2.0,
+    "early_stopping": false
+  },
+  "neg_per_pos": 6,
+  "stage2_blend": {
+    "full": 0.78,
+    "pure_subsurface": 0.22
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "stage": "outer_s1",
+      "seed": 20261029,
+      "full": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261029
+      },
+      "sub": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261029
+      }
+    },
+    {
+      "fold": 0,
+      "stage": "outer_s1",
+      "seed": 20261030,
+      "full": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261030
+      },
+      "sub": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261030
+      }
+    },
+    {
+      "fold": 0,
+      "stage": "outer_s1",
+      "seed": 20261031,
+      "full": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261031
+      },
+      "sub": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261031
+      }
+    },
+    {
+      "fold": 0,
+      "stage": "outer_s2",
+      "seed": 20261029,
+      "full": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261129
+      },
+      "sub": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261229
+      }
+    },
+    {
+      "fold": 0,
+      "stage": "outer_s2",
+      "seed": 20261030,
+      "full": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261130
+      },
+      "sub": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261230
+      }
+    },
+    {
+      "fold": 0,
+      "stage": "outer_s2",
+      "seed": 20261031,
+      "full": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261131
+      },
+      "sub": {
+        "n_positive": 29746,
+        "n_negative": 178476,
+        "seed": 20261231
+      }
+    },
+    {
+      "fold": 1,
+      "stage": "outer_s1",
+      "seed": 20261029,
+      "full": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261029
+      },
+      "sub": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261029
+      }
+    },
+    {
+      "fold": 1,
+      "stage": "outer_s1",
+      "seed": 20261030,
+      "full": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261030
+      },
+      "sub": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261030
+      }
+    },
+    {
+      "fold": 1,
+      "stage": "outer_s1",
+      "seed": 20261031,
+      "full": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261031
+      },
+      "sub": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261031
+      }
+    },
+    {
+      "fold": 1,
+      "stage": "outer_s2",
+      "seed": 20261029,
+      "full": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261129
+      },
+      "sub": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261229
+      }
+    },
+    {
+      "fold": 1,
+      "stage": "outer_s2",
+      "seed": 20261030,
+      "full": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261130
+      },
+      "sub": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261230
+      }
+    },
+    {
+      "fold": 1,
+      "stage": "outer_s2",
+      "seed": 20261031,
+      "full": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261131
+      },
+      "sub": {
+        "n_positive": 45956,
+        "n_negative": 275736,
+        "seed": 20261231
+      }
+    },
+    {
+      "fold": 2,
+      "stage": "outer_s1",
+      "seed": 20261029,
+      "full": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261029
+      },
+      "sub": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261029
+      }
+    },
+    {
+      "fold": 2,
+      "stage": "outer_s1",
+      "seed": 20261030,
+      "full": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261030
+      },
+      "sub": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261030
+      }
+    },
+    {
+      "fold": 2,
+      "stage": "outer_s1",
+      "seed": 20261031,
+      "full": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261031
+      },
+      "sub": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261031
+      }
+    },
+    {
+      "fold": 2,
+      "stage": "outer_s2",
+      "seed": 20261029,
+      "full": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261129
+      },
+      "sub": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261229
+      }
+    },
+    {
+      "fold": 2,
+      "stage": "outer_s2",
+      "seed": 20261030,
+      "full": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261130
+      },
+      "sub": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261230
+      }
+    },
+    {
+      "fold": 2,
+      "stage": "outer_s2",
+      "seed": 20261031,
+      "full": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261131
+      },
+      "sub": {
+        "n_positive": 47909,
+        "n_negative": 287454,
+        "seed": 20261231
+      }
+    },
+    {
+      "fold": 3,
+      "stage": "outer_s1",
+      "seed": 20261029,
+      "full": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261029
+      },
+      "sub": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261029
+      }
+    },
+    {
+      "fold": 3,
+      "stage": "outer_s1",
+      "seed": 20261030,
+      "full": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261030
+      },
+      "sub": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261030
+      }
+    },
+    {
+      "fold": 3,
+      "stage": "outer_s1",
+      "seed": 20261031,
+      "full": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261031
+      },
+      "sub": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261031
+      }
+    },
+    {
+      "fold": 3,
+      "stage": "outer_s2",
+      "seed": 20261029,
+      "full": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261129
+      },
+      "sub": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261229
+      }
+    },
+    {
+      "fold": 3,
+      "stage": "outer_s2",
+      "seed": 20261030,
+      "full": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261130
+      },
+      "sub": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261230
+      }
+    },
+    {
+      "fold": 3,
+      "stage": "outer_s2",
+      "seed": 20261031,
+      "full": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261131
+      },
+      "sub": {
+        "n_positive": 48857,
+        "n_negative": 293142,
+        "seed": 20261231
+      }
+    }
+  ]
+}

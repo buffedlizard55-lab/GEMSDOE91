@@ -1,0 +1,2127 @@
+{
+  "max_symmetric_auc": 0.74029236500669,
+  "worst": "s2_full_prob fold1",
+  "all_pass": true,
+  "n_features_tested": 47,
+  "n_fold_checks": 235,
+  "threshold": 0.9,
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "split_version": "label-blind-quadrants-v3-feature-buffered",
+  "canaries": [
+    {
+      "feature": "base_grad_b02",
+      "fold": 0,
+      "n_positive_finite": 29159,
+      "n_negative_finite": 602083,
+      "auc": 0.5286126054524815,
+      "symmetric_auc": 0.5286126054524815,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b02",
+      "fold": 1,
+      "n_positive_finite": 12488,
+      "n_negative_finite": 335403,
+      "auc": 0.49659788446565384,
+      "symmetric_auc": 0.5034021155343462,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b02",
+      "fold": 2,
+      "n_positive_finite": 9183,
+      "n_negative_finite": 136643,
+      "auc": 0.5534136930792031,
+      "symmetric_auc": 0.5534136930792031,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b02",
+      "fold": 3,
+      "n_positive_finite": 9525,
+      "n_negative_finite": 192561,
+      "auc": 0.5091268541811633,
+      "symmetric_auc": 0.5091268541811633,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b02",
+      "fold": "pooled",
+      "n_positive_finite": 60355,
+      "n_negative_finite": 1266690,
+      "auc": 0.5324536988279457,
+      "symmetric_auc": 0.5324536988279457,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b12",
+      "fold": 0,
+      "n_positive_finite": 29159,
+      "n_negative_finite": 602083,
+      "auc": 0.5708442591157395,
+      "symmetric_auc": 0.5708442591157395,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b12",
+      "fold": 1,
+      "n_positive_finite": 12488,
+      "n_negative_finite": 335403,
+      "auc": 0.5951648213758391,
+      "symmetric_auc": 0.5951648213758391,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b12",
+      "fold": 2,
+      "n_positive_finite": 9183,
+      "n_negative_finite": 136643,
+      "auc": 0.5972990566619256,
+      "symmetric_auc": 0.5972990566619256,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b12",
+      "fold": 3,
+      "n_positive_finite": 9525,
+      "n_negative_finite": 192561,
+      "auc": 0.5891965442017413,
+      "symmetric_auc": 0.5891965442017413,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b12",
+      "fold": "pooled",
+      "n_positive_finite": 60355,
+      "n_negative_finite": 1266690,
+      "auc": 0.5810907900909771,
+      "symmetric_auc": 0.5810907900909771,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b13",
+      "fold": 0,
+      "n_positive_finite": 29159,
+      "n_negative_finite": 602083,
+      "auc": 0.5300537659011002,
+      "symmetric_auc": 0.5300537659011002,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b13",
+      "fold": 1,
+      "n_positive_finite": 12488,
+      "n_negative_finite": 335403,
+      "auc": 0.5818353019309387,
+      "symmetric_auc": 0.5818353019309387,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b13",
+      "fold": 2,
+      "n_positive_finite": 9183,
+      "n_negative_finite": 136643,
+      "auc": 0.46612821938633753,
+      "symmetric_auc": 0.5338717806136625,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b13",
+      "fold": 3,
+      "n_positive_finite": 9525,
+      "n_negative_finite": 192561,
+      "auc": 0.5604900281726862,
+      "symmetric_auc": 0.5604900281726862,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b13",
+      "fold": "pooled",
+      "n_positive_finite": 60355,
+      "n_negative_finite": 1266690,
+      "auc": 0.5359206401583763,
+      "symmetric_auc": 0.5359206401583763,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b14",
+      "fold": 0,
+      "n_positive_finite": 29159,
+      "n_negative_finite": 602083,
+      "auc": 0.5297443719478827,
+      "symmetric_auc": 0.5297443719478827,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b14",
+      "fold": 1,
+      "n_positive_finite": 12488,
+      "n_negative_finite": 335403,
+      "auc": 0.4906472295436278,
+      "symmetric_auc": 0.5093527704563722,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b14",
+      "fold": 2,
+      "n_positive_finite": 9183,
+      "n_negative_finite": 136643,
+      "auc": 0.5360178690205593,
+      "symmetric_auc": 0.5360178690205593,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b14",
+      "fold": 3,
+      "n_positive_finite": 9525,
+      "n_negative_finite": 192561,
+      "auc": 0.4983189538016116,
+      "symmetric_auc": 0.5016810461983884,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_grad_b14",
+      "fold": "pooled",
+      "n_positive_finite": 60355,
+      "n_negative_finite": 1266690,
+      "auc": 0.5284248401598178,
+      "symmetric_auc": 0.5284248401598178,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b05",
+      "fold": 0,
+      "n_positive_finite": 29159,
+      "n_negative_finite": 602083,
+      "auc": 0.528874533357605,
+      "symmetric_auc": 0.528874533357605,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b05",
+      "fold": 1,
+      "n_positive_finite": 12488,
+      "n_negative_finite": 335403,
+      "auc": 0.578173255225951,
+      "symmetric_auc": 0.578173255225951,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b05",
+      "fold": 2,
+      "n_positive_finite": 9183,
+      "n_negative_finite": 136643,
+      "auc": 0.4621062712791479,
+      "symmetric_auc": 0.5378937287208521,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b05",
+      "fold": 3,
+      "n_positive_finite": 9525,
+      "n_negative_finite": 192561,
+      "auc": 0.563057270831627,
+      "symmetric_auc": 0.563057270831627,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b05",
+      "fold": "pooled",
+      "n_positive_finite": 60355,
+      "n_negative_finite": 1266690,
+      "auc": 0.5342558872286988,
+      "symmetric_auc": 0.5342558872286988,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b19",
+      "fold": 0,
+      "n_positive_finite": 29159,
+      "n_negative_finite": 602083,
+      "auc": 0.5477768320736579,
+      "symmetric_auc": 0.5477768320736579,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b19",
+      "fold": 1,
+      "n_positive_finite": 12488,
+      "n_negative_finite": 335403,
+      "auc": 0.5541533549485288,
+      "symmetric_auc": 0.5541533549485288,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b19",
+      "fold": 2,
+      "n_positive_finite": 9183,
+      "n_negative_finite": 136643,
+      "auc": 0.5907438653516711,
+      "symmetric_auc": 0.5907438653516711,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b19",
+      "fold": 3,
+      "n_positive_finite": 9525,
+      "n_negative_finite": 192561,
+      "auc": 0.5696432175339168,
+      "symmetric_auc": 0.5696432175339168,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "base_slope_b19",
+      "fold": "pooled",
+      "n_positive_finite": 60355,
+      "n_negative_finite": 1266690,
+      "auc": 0.5571638485051805,
+      "symmetric_auc": 0.5571638485051805,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s2",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.519137545676379,
+      "symmetric_auc": 0.519137545676379,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s2",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5097749060628103,
+      "symmetric_auc": 0.5097749060628103,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s2",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5138148524982191,
+      "symmetric_auc": 0.5138148524982191,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s2",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5493092386163742,
+      "symmetric_auc": 0.5493092386163742,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s2",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5221338870197711,
+      "symmetric_auc": 0.5221338870197711,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s5",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5181804194912953,
+      "symmetric_auc": 0.5181804194912953,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s5",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5104537370190302,
+      "symmetric_auc": 0.5104537370190302,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s5",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5129060896703543,
+      "symmetric_auc": 0.5129060896703543,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s5",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5485292097987933,
+      "symmetric_auc": 0.5485292097987933,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_grav_elev_s5",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5218783028278261,
+      "symmetric_auc": 0.5218783028278261,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s2",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.48951398003249114,
+      "symmetric_auc": 0.5104860199675089,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s2",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.49438270029227877,
+      "symmetric_auc": 0.5056172997077213,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s2",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5022217130031035,
+      "symmetric_auc": 0.5022217130031035,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s2",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5285516571536517,
+      "symmetric_auc": 0.5285516571536517,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s2",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5010603250052489,
+      "symmetric_auc": 0.5010603250052489,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s5",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.4979764800772304,
+      "symmetric_auc": 0.5020235199227696,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s5",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5121034277826678,
+      "symmetric_auc": 0.5121034277826678,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s5",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5041177864761365,
+      "symmetric_auc": 0.5041177864761365,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s5",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5453323303351066,
+      "symmetric_auc": 0.5453323303351066,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_sin2_rtp_elev_s5",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5114804542184088,
+      "symmetric_auc": 0.5114804542184088,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_pot_align_discord",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.4951779853663206,
+      "symmetric_auc": 0.5048220146336794,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_pot_align_discord",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.47479879875022185,
+      "symmetric_auc": 0.5252012012497782,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_pot_align_discord",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5154885894250256,
+      "symmetric_auc": 0.5154885894250256,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_pot_align_discord",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5056359923136484,
+      "symmetric_auc": 0.5056359923136484,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_pot_align_discord",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5006313046095645,
+      "symmetric_auc": 0.5006313046095645,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s2",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5169361634207136,
+      "symmetric_auc": 0.5169361634207136,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s2",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5380690688341158,
+      "symmetric_auc": 0.5380690688341158,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s2",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.47969164765111927,
+      "symmetric_auc": 0.5203083523488807,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s2",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5038888116110203,
+      "symmetric_auc": 0.5038888116110203,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s2",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5156005938662571,
+      "symmetric_auc": 0.5156005938662571,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s5",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5196359753993086,
+      "symmetric_auc": 0.5196359753993086,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s5",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5421352374975288,
+      "symmetric_auc": 0.5421352374975288,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s5",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.46195512693124163,
+      "symmetric_auc": 0.5380448730687584,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s5",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.504706938831003,
+      "symmetric_auc": 0.504706938831003,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_lap_abs_s5",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5156101093706935,
+      "symmetric_auc": 0.5156101093706935,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s2",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5269008388267303,
+      "symmetric_auc": 0.5269008388267303,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s2",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5538426833624582,
+      "symmetric_auc": 0.5538426833624582,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s2",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.4839358660873265,
+      "symmetric_auc": 0.5160641339126735,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s2",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5278274267424599,
+      "symmetric_auc": 0.5278274267424599,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s2",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5283157821432819,
+      "symmetric_auc": 0.5283157821432819,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s4",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5267074297072626,
+      "symmetric_auc": 0.5267074297072626,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s4",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5553301568787136,
+      "symmetric_auc": 0.5553301568787136,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s4",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.486301347002531,
+      "symmetric_auc": 0.513698652997469,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s4",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5314221922315316,
+      "symmetric_auc": 0.5314221922315316,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_grav_crest_s4",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5293209175633123,
+      "symmetric_auc": 0.5293209175633123,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_abs",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.4960796480744819,
+      "symmetric_auc": 0.5039203519255181,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_abs",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.4997844009648076,
+      "symmetric_auc": 0.5002155990351924,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_abs",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.521520831619353,
+      "symmetric_auc": 0.521520831619353,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_abs",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5035767236124854,
+      "symmetric_auc": 0.5035767236124854,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_abs",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.49999866141903615,
+      "symmetric_auc": 0.5000013385809638,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_grad",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.514848319640965,
+      "symmetric_auc": 0.514848319640965,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_grad",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5118790306491235,
+      "symmetric_auc": 0.5118790306491235,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_grad",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5216553776792805,
+      "symmetric_auc": 0.5216553776792805,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_grad",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.4929313017927991,
+      "symmetric_auc": 0.5070686982072009,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_tilt_grad",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5144354028304461,
+      "symmetric_auc": 0.5144354028304461,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_crest_s2",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5151818937878296,
+      "symmetric_auc": 0.5151818937878296,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_crest_s2",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5063439114070182,
+      "symmetric_auc": 0.5063439114070182,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_crest_s2",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5184794151095523,
+      "symmetric_auc": 0.5184794151095523,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_crest_s2",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5103083651258857,
+      "symmetric_auc": 0.5103083651258857,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "cvdc_mag_crest_s2",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5155783426050811,
+      "symmetric_auc": 0.5155783426050811,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_mag_trough_15px",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.48852685737226254,
+      "symmetric_auc": 0.5114731426277375,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_mag_trough_15px",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.4841528222991972,
+      "symmetric_auc": 0.5158471777008028,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_mag_trough_15px",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.49073995143623755,
+      "symmetric_auc": 0.5092600485637624,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_mag_trough_15px",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.4791295837858249,
+      "symmetric_auc": 0.5208704162141751,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_mag_trough_15px",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.4864186636352879,
+      "symmetric_auc": 0.5135813363647121,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_baffle_grav_trough",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.49088751996197927,
+      "symmetric_auc": 0.5091124800380207,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_baffle_grav_trough",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.4909289141297435,
+      "symmetric_auc": 0.5090710858702565,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_baffle_grav_trough",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.48675406777926544,
+      "symmetric_auc": 0.5132459322207346,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_baffle_grav_trough",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.4866448065929544,
+      "symmetric_auc": 0.5133551934070456,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_baffle_grav_trough",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.48959096630193855,
+      "symmetric_auc": 0.5104090336980615,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_cond_b15_resid",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5065244672851363,
+      "symmetric_auc": 0.5065244672851363,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_cond_b15_resid",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.47817132936036666,
+      "symmetric_auc": 0.5218286706396333,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_cond_b15_resid",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.4767820387978676,
+      "symmetric_auc": 0.5232179612021324,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_cond_b15_resid",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5408109443567198,
+      "symmetric_auc": 0.5408109443567198,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_cond_b15_resid",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.49126466282138187,
+      "symmetric_auc": 0.5087353371786181,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_claycap_step_gate",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.49942253705138717,
+      "symmetric_auc": 0.5005774629486128,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_claycap_step_gate",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5016583493090978,
+      "symmetric_auc": 0.5016583493090978,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_claycap_step_gate",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.46655578834214645,
+      "symmetric_auc": 0.5334442116578535,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_claycap_step_gate",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5498828933404993,
+      "symmetric_auc": 0.5498828933404993,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_claycap_step_gate",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.495452848750434,
+      "symmetric_auc": 0.5045471512495661,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_transtension_index",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.4815577798148913,
+      "symmetric_auc": 0.5184422201851087,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_transtension_index",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.4933865338929803,
+      "symmetric_auc": 0.5066134661070196,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_transtension_index",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.4245741508906256,
+      "symmetric_auc": 0.5754258491093744,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_transtension_index",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5644071308962287,
+      "symmetric_auc": 0.5644071308962287,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_transtension_index",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5257602021057042,
+      "symmetric_auc": 0.5257602021057042,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_ns_ew_seam_guard",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5216392591560385,
+      "symmetric_auc": 0.5216392591560385,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_ns_ew_seam_guard",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.506476379084861,
+      "symmetric_auc": 0.506476379084861,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_ns_ew_seam_guard",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.47890470684851594,
+      "symmetric_auc": 0.5210952931514841,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_ns_ew_seam_guard",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5155715321751058,
+      "symmetric_auc": 0.5155715321751058,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "pmdb_ns_ew_seam_guard",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5082924558502486,
+      "symmetric_auc": 0.5082924558502486,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s2",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5533834335091016,
+      "symmetric_auc": 0.5533834335091016,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s2",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5972006759867926,
+      "symmetric_auc": 0.5972006759867926,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s2",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.585247916678469,
+      "symmetric_auc": 0.585247916678469,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s2",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5694727549610273,
+      "symmetric_auc": 0.5694727549610273,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s2",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5688022026183416,
+      "symmetric_auc": 0.5688022026183416,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s4",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5521450262189952,
+      "symmetric_auc": 0.5521450262189952,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s4",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.6135649173859726,
+      "symmetric_auc": 0.6135649173859726,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s4",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.574633306599082,
+      "symmetric_auc": 0.574633306599082,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s4",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5800862809668801,
+      "symmetric_auc": 0.5800862809668801,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_valley_concav_s4",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.571314461829038,
+      "symmetric_auc": 0.571314461829038,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_trans_slope_jump",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.6024378047956583,
+      "symmetric_auc": 0.6024378047956583,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_trans_slope_jump",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.6639230625592414,
+      "symmetric_auc": 0.6639230625592414,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_trans_slope_jump",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.6080607503067643,
+      "symmetric_auc": 0.6080607503067643,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_trans_slope_jump",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.6211634088287195,
+      "symmetric_auc": 0.6211634088287195,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_trans_slope_jump",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.6185940510943219,
+      "symmetric_auc": 0.6185940510943219,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_thalweg_knick",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5659189067072108,
+      "symmetric_auc": 0.5659189067072108,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_thalweg_knick",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.6244519436800392,
+      "symmetric_auc": 0.6244519436800392,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_thalweg_knick",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5942625403621451,
+      "symmetric_auc": 0.5942625403621451,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_thalweg_knick",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5855759928927926,
+      "symmetric_auc": 0.5855759928927926,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_thalweg_knick",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5842211248788411,
+      "symmetric_auc": 0.5842211248788411,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_700m",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5706432838716603,
+      "symmetric_auc": 0.5706432838716603,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_700m",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.6045418998500189,
+      "symmetric_auc": 0.6045418998500189,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_700m",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5950057955767356,
+      "symmetric_auc": 0.5950057955767356,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_700m",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.593680685930304,
+      "symmetric_auc": 0.593680685930304,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_700m",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5828295794992734,
+      "symmetric_auc": 0.5828295794992734,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_1300m",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5580954585890072,
+      "symmetric_auc": 0.5580954585890072,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_1300m",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5787939237126329,
+      "symmetric_auc": 0.5787939237126329,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_1300m",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5789921142061611,
+      "symmetric_auc": 0.5789921142061611,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_1300m",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.568300193723008,
+      "symmetric_auc": 0.568300193723008,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_bilat_align_1300m",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5650093679750121,
+      "symmetric_auc": 0.5650093679750121,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s15",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5386662671741816,
+      "symmetric_auc": 0.5386662671741816,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s15",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5861881791107147,
+      "symmetric_auc": 0.5861881791107147,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s15",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5628808584429187,
+      "symmetric_auc": 0.5628808584429187,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s15",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5736161689929277,
+      "symmetric_auc": 0.5736161689929277,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s15",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5573264606993114,
+      "symmetric_auc": 0.5573264606993114,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s35",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5353729049855156,
+      "symmetric_auc": 0.5353729049855156,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s35",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5765450124136957,
+      "symmetric_auc": 0.5765450124136957,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s35",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.5599852860754002,
+      "symmetric_auc": 0.5599852860754002,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s35",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5793965937829473,
+      "symmetric_auc": 0.5793965937829473,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_slope_crest_s35",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5545344983479997,
+      "symmetric_auc": 0.5545344983479997,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_scarp_prominence",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5439395670668712,
+      "symmetric_auc": 0.5439395670668712,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_scarp_prominence",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5829319390087745,
+      "symmetric_auc": 0.5829319390087745,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_scarp_prominence",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.565159668519468,
+      "symmetric_auc": 0.565159668519468,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_scarp_prominence",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5955970830734102,
+      "symmetric_auc": 0.5955970830734102,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_scarp_prominence",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5615708302063847,
+      "symmetric_auc": 0.5615708302063847,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_cover_regime_b15",
+      "fold": 0,
+      "n_positive_finite": 28508,
+      "n_negative_finite": 589764,
+      "auc": 0.5182161898643494,
+      "symmetric_auc": 0.5182161898643494,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_cover_regime_b15",
+      "fold": 1,
+      "n_positive_finite": 11844,
+      "n_negative_finite": 323378,
+      "auc": 0.5209433440919553,
+      "symmetric_auc": 0.5209433440919553,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_cover_regime_b15",
+      "fold": 2,
+      "n_positive_finite": 7857,
+      "n_negative_finite": 128395,
+      "auc": 0.47706414787481344,
+      "symmetric_auc": 0.5229358521251866,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_cover_regime_b15",
+      "fold": 3,
+      "n_positive_finite": 9080,
+      "n_negative_finite": 183622,
+      "auc": 0.5312147961189375,
+      "symmetric_auc": 0.5312147961189375,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "vctk_cover_regime_b15",
+      "fold": "pooled",
+      "n_positive_finite": 57289,
+      "n_negative_finite": 1225159,
+      "auc": 0.5170266844511682,
+      "symmetric_auc": 0.5170266844511682,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "surface_gravgrad",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.5293722757523722,
+      "symmetric_auc": 0.5293722757523722,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "surface_gravgrad",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.5806285685159036,
+      "symmetric_auc": 0.5806285685159036,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "surface_gravgrad",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.4596320203798494,
+      "symmetric_auc": 0.5403679796201506,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "surface_gravgrad",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.5605982085871306,
+      "symmetric_auc": 0.5605982085871306,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "surface_gravgrad",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.5339631889339492,
+      "symmetric_auc": 0.5339631889339492,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prob",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.6478021177444739,
+      "symmetric_auc": 0.6478021177444739,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prob",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.74029236500669,
+      "symmetric_auc": 0.74029236500669,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prob",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.6623998286189781,
+      "symmetric_auc": 0.6623998286189781,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prob",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.7022374704973999,
+      "symmetric_auc": 0.7022374704973999,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prob",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.6709530945585589,
+      "symmetric_auc": 0.6709530945585589,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_axial_600m",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.6503324838045491,
+      "symmetric_auc": 0.6503324838045491,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_axial_600m",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.7390897398787133,
+      "symmetric_auc": 0.7390897398787133,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_axial_600m",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.6671111867251621,
+      "symmetric_auc": 0.6671111867251621,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_axial_600m",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.713503950724768,
+      "symmetric_auc": 0.713503950724768,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_axial_600m",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.675186293990419,
+      "symmetric_auc": 0.675186293990419,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_aniso_600m",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.6290134532268913,
+      "symmetric_auc": 0.6290134532268913,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_aniso_600m",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.7075012194909802,
+      "symmetric_auc": 0.7075012194909802,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_aniso_600m",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.629874042342408,
+      "symmetric_auc": 0.629874042342408,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_aniso_600m",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.6615033668302963,
+      "symmetric_auc": 0.6615033668302963,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_aniso_600m",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.6517140802774691,
+      "symmetric_auc": 0.6517140802774691,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_relay_900m",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.6423843651629488,
+      "symmetric_auc": 0.6423843651629488,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_relay_900m",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.721380727763221,
+      "symmetric_auc": 0.721380727763221,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_relay_900m",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.6607050678238899,
+      "symmetric_auc": 0.6607050678238899,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_relay_900m",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.7043174996466114,
+      "symmetric_auc": 0.7043174996466114,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_relay_900m",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.6642349866427228,
+      "symmetric_auc": 0.6642349866427228,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_crest",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.6123154684540058,
+      "symmetric_auc": 0.6123154684540058,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_crest",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.717839504197058,
+      "symmetric_auc": 0.717839504197058,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_crest",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.6132704842108426,
+      "symmetric_auc": 0.6132704842108426,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_crest",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.6495202063361519,
+      "symmetric_auc": 0.6495202063361519,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_crest",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.6400048826870354,
+      "symmetric_auc": 0.6400048826870354,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prom",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.6022345088199998,
+      "symmetric_auc": 0.6022345088199998,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prom",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.7163312605279165,
+      "symmetric_auc": 0.7163312605279165,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prom",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.5918553196460401,
+      "symmetric_auc": 0.5918553196460401,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prom",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.6288124850077532,
+      "symmetric_auc": 0.6288124850077532,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_full_prom",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.6277609869053395,
+      "symmetric_auc": 0.6277609869053395,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prob",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.5214084251912637,
+      "symmetric_auc": 0.5214084251912637,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prob",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.5137501258423907,
+      "symmetric_auc": 0.5137501258423907,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prob",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.5133505950972944,
+      "symmetric_auc": 0.5133505950972944,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prob",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.5649952105125635,
+      "symmetric_auc": 0.5649952105125635,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prob",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.5227085841200128,
+      "symmetric_auc": 0.5227085841200128,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_axial_600m",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.5240259549640249,
+      "symmetric_auc": 0.5240259549640249,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_axial_600m",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.5163321356391306,
+      "symmetric_auc": 0.5163321356391306,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_axial_600m",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.5106562119090976,
+      "symmetric_auc": 0.5106562119090976,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_axial_600m",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.5724010784779872,
+      "symmetric_auc": 0.5724010784779872,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_axial_600m",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.5256559510733682,
+      "symmetric_auc": 0.5256559510733682,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_aniso_600m",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.5268759597006819,
+      "symmetric_auc": 0.5268759597006819,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_aniso_600m",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.5330770387526802,
+      "symmetric_auc": 0.5330770387526802,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_aniso_600m",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.5164583339642412,
+      "symmetric_auc": 0.5164583339642412,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_aniso_600m",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.5469795859141415,
+      "symmetric_auc": 0.5469795859141415,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_aniso_600m",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.5363605976349518,
+      "symmetric_auc": 0.5363605976349518,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_relay_900m",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.5222904767693961,
+      "symmetric_auc": 0.5222904767693961,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_relay_900m",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.5082783267872835,
+      "symmetric_auc": 0.5082783267872835,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_relay_900m",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.5038429409720033,
+      "symmetric_auc": 0.5038429409720033,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_relay_900m",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.5703854268399771,
+      "symmetric_auc": 0.5703854268399771,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_relay_900m",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.5211770385010729,
+      "symmetric_auc": 0.5211770385010729,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_crest",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.5123817242830291,
+      "symmetric_auc": 0.5123817242830291,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_crest",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.5157038607691546,
+      "symmetric_auc": 0.5157038607691546,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_crest",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.5104472152212309,
+      "symmetric_auc": 0.5104472152212309,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_crest",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.5222616663775305,
+      "symmetric_auc": 0.5222616663775305,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_crest",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.517160780622888,
+      "symmetric_auc": 0.517160780622888,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prom",
+      "fold": 0,
+      "n_positive_finite": 29319,
+      "n_negative_finite": 604928,
+      "auc": 0.49792635256107654,
+      "symmetric_auc": 0.5020736474389235,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prom",
+      "fold": 1,
+      "n_positive_finite": 12596,
+      "n_negative_finite": 338459,
+      "auc": 0.5117383425519892,
+      "symmetric_auc": 0.5117383425519892,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prom",
+      "fold": 2,
+      "n_positive_finite": 9473,
+      "n_negative_finite": 138666,
+      "auc": 0.5063430319102984,
+      "symmetric_auc": 0.5063430319102984,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prom",
+      "fold": 3,
+      "n_positive_finite": 9600,
+      "n_negative_finite": 194545,
+      "auc": 0.5129306793308317,
+      "symmetric_auc": 0.5129306793308317,
+      "status": "MEASURED"
+    },
+    {
+      "feature": "s2_sub_prom",
+      "fold": "pooled",
+      "n_positive_finite": 60988,
+      "n_negative_finite": 1276598,
+      "auc": 0.5031999889703553,
+      "symmetric_auc": 0.5031999889703553,
+      "status": "MEASURED"
+    }
+  ]
+}

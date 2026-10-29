@@ -1,0 +1,43 @@
+{
+  "descriptions": {
+    "1": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+    "2": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+    "3": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+    "4": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+    "5": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+    "6": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+    "7": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+    "8": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+    "9": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+    "10": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+    "11": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+    "12": "det_elev - Detrended elevation - topography with regional trends removed",
+    "13": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+    "14": "tmi - Total magnetic intensity - total strength of magnetic field",
+    "15": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+    "16": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+    "17": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+    "18": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+    "19": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+  },
+  "nodata_tag": "-3.4028234663852886e+38",
+  "corr_B03_vs_hypot_grad_B14": 0.9999999968879792,
+  "corr_B09_vs_neg_laplace_B14": 0.8076476761706856,
+  "corr_B18_vs_dx_B13": 0.9481217187355654,
+  "corr_B18_vs_dy_B13": 0.04998993489860705,
+  "corr_B11_vs_dx_B13": 0.048224566226902355,
+  "corr_B11_vs_dy_B13": 0.9380223511093583,
+  "corr_hypot_B18_B11_vs_B05": 0.946897469813415,
+  "corr_B19_vs_hypot_grad_B12": 0.9506056332236118,
+  "B06_summary": {
+    "valid_in_footprint": 5164300,
+    "invalid_in_footprint": 3073,
+    "min": 2.9534237384796143,
+    "median": 18.48169994354248,
+    "max": 88.56654357910156,
+    "excluded_from_s27_features": true,
+    "reason": "Strictly positive [2.95, 88.57]; verified r=0.99699 with radiometric Total Count (IR-8E8-09), not magnetic tilt angle."
+  },
+  "B18_B11_forensic_note": "(B18, B11) correlate r=0.9481 and r=0.9380 with (dx B13, dy B13) despite header tags naming B11 'iso_grav_anom_vg'; S27 uses masked Laplacian of B13 for vertical gravity curvature.",
+  "eroded_comparison_pixels": 5120695
+}
