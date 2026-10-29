@@ -14,7 +14,7 @@ import pytest
 import rasterio
 
 from gems91.readiness import submission_ready
-from scripts import render_s27_portal, run_s27_cvdc
+from scripts import render_s27_cvdc_portal, run_s27_cvdc
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -43,7 +43,7 @@ def test_allocate_exact_budget():
 
 
 def test_s27_run_card_fail_closed_and_matches_artifact_bytes():
-    card = _load("docs/s27/run-card.json")
+    card = _load("docs/s27-cvdc/run-card.json")
     alias = _load("docs/run-card-S27-CVDC.json")
     assert card == alias
     assert card["verdict"] == "negative"
@@ -56,7 +56,7 @@ def test_s27_run_card_fail_closed_and_matches_artifact_bytes():
     assert card["experiments_run"] == 3 and card["max_experiments"] == 3
     assert 0 < len(card["submission_note"]) <= 140
 
-    prereg_sha = hashlib.sha256((ROOT / "docs/s27/preregistration.md").read_bytes()).hexdigest()
+    prereg_sha = hashlib.sha256((ROOT / "docs/s27-cvdc/preregistration.md").read_bytes()).hexdigest()
     assert card["preregistration"]["sha256"] == prereg_sha
 
     h = card["holdout"]
@@ -103,17 +103,17 @@ def test_s27_run_card_fail_closed_and_matches_artifact_bytes():
 
 
 def test_s27_canaries_and_diagnostics_integrity():
-    can = _load("docs/s27/canaries.json")
+    can = _load("docs/s27-cvdc/canaries.json")
     assert can["all_pass"] is True
     assert can["max_symmetric_auc"] <= 0.90
     assert can["n_features_tested"] == 47
     assert can["n_fold_checks"] == 47 * 5
     assert all(r["status"] == "MEASURED" and r["symmetric_auc"] <= 0.90 for r in can["canaries"])
 
-    diag = _load("docs/s27/diagnostics.json")
+    diag = _load("docs/s27-cvdc/diagnostics.json")
     assert diag["lfi"]["label_class"] == "MODEL_PROJECTION_NOT_A_SCORE"
     assert diag["candidate"]["organizer_confirmed_score"] is None
-    assert diag["candidate"]["sha256"] == _load("docs/s27/run-card.json")["raster_sha256"]
+    assert diag["candidate"]["sha256"] == _load("docs/s27-cvdc/run-card.json")["raster_sha256"]
 
 
 def test_s27_runner_refuses_implicit_overwrite():
@@ -126,15 +126,15 @@ def test_s27_runner_refuses_implicit_overwrite():
 
 
 def test_s27_portal_idempotent_and_links_resolve():
-    exec_path = ROOT / "docs/s27/executive-summary.html"
+    exec_path = ROOT / "docs/s27-cvdc/executive-summary.html"
     idx_path = ROOT / "docs/index.html"
     before_exec = exec_path.read_bytes()
     before_idx = idx_path.read_bytes()
-    assert render_s27_portal.main() == 0
+    assert render_s27_cvdc_portal.main() == 0
     assert exec_path.read_bytes() == before_exec
     assert idx_path.read_bytes() == before_idx
 
-    for rel in ("docs/s27/executive-summary.html", "docs/index.html", "docs/executive-summary.html", "index.html"):
+    for rel in ("docs/s27-cvdc/executive-summary.html", "docs/index.html", "docs/executive-summary.html", "index.html"):
         page_path = ROOT / rel
         text = page_path.read_text(encoding="utf-8")
         assert "OK TO SUBMIT: NO" in text
@@ -155,7 +155,7 @@ def test_s27_portal_idempotent_and_links_resolve():
     for site_num in ("24", "25", "27", "28", "30", "31", "32", "33", "36", "91", "92"):
         assert f"GEMSDOE{site_num}" in exec_text
 
-    for md_rel in ("docs/s27/GEOTHERMAL_AND_FAULT_RESEARCH.md", "docs/s27/preregistration.md", "docs/s27/REVIEW.md"):
+    for md_rel in ("docs/s27-cvdc/GEOTHERMAL_AND_FAULT_RESEARCH.md", "docs/s27-cvdc/preregistration.md", "docs/s27-cvdc/REVIEW.md"):
         md_path = ROOT / md_rel
         md_text = md_path.read_text(encoding="utf-8")
         for m in re.finditer(r"\[[^\]]+\]\(([^)]+)\)", md_text):

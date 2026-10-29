@@ -1,10 +1,10 @@
 {
   "schema": "gems-parallel-run-card-v1",
-  "lane": "S27-CVDC (preregistered in docs/s27/preregistration.md)",
+  "lane": "S27-CVDC (preregistered in docs/s27-cvdc/preregistration.md)",
   "branch": "arena/2d335bdc-gemsdoe91",
   "preregistration": {
-    "path": "docs/s27/preregistration.md",
-    "sha256": "775fb1aac818c02b047a293e62cf06a4966b7ff7ac59f8d9aaf70370c6fab859"
+    "path": "docs/s27-cvdc/preregistration.md",
+    "sha256": "0bbd3c9e5b7701443cda77a4fa716e48044e45cb9d25c1f7c8259d42a7734ec6"
   },
   "hypothesis": "Catalogue-missing blind and subdued Basin-and-Range faults exhibit (1) Rule-of-V strike discordance where subsurface gravity/RTP-magnetic boundaries cut obliquely across detrended topographic contours, (2) localized hydrothermal magnetite-destruction troughs co-located with gravity steps, B15-deconfounded MT conductivity residuals, and transtensional strain, and (3) multi-valley aligned knickzones across adjacent incised piedmont washes.",
   "mechanism": "34 NoData-masked static physics features (6 base + 18 CVDC-PMDB + 10 VCTK; B06 excluded) + 12 nested cross-fitted Stage-2 directional axial-bridge features (0.78 Full + 0.22 Pure-Subsurface B12/B19-free HGB blend) -> stitched 4-fold spatially-blocked OOF surface (zero in-sample catalogue refitting) -> 37,654 binary [0,1] dots via 300 m CELF submodular emitter (cvdc_e2_stage2_submod).",
@@ -466,8 +466,8 @@
   },
   "organizer_confirmed_score": null,
   "estimated_leaderboard_score": null,
-  "estimated_leaderboard_score_reason": "No authenticated organizer receipt exists. Post-hoc LFI MODEL projection (MODEL_PROJECTION_NOT_A_SCORE) and blind USGS SGMC diagnostic are recorded separately in docs/s27/diagnostics.json.",
-  "post_hoc_diagnostics_file": "docs/s27/diagnostics.json",
+  "estimated_leaderboard_score_reason": "No authenticated organizer receipt exists. Post-hoc LFI MODEL projection (MODEL_PROJECTION_NOT_A_SCORE) and blind USGS SGMC diagnostic are recorded separately in docs/s27-cvdc/diagnostics.json.",
+  "post_hoc_diagnostics_file": "docs/s27-cvdc/diagnostics.json",
   "experiments_run": 3,
   "max_experiments": 3,
   "elapsed_seconds_package": 103.63522230900026,

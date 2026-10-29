@@ -278,7 +278,7 @@
     }
   },
   "preregistration": {
-    "path": "docs/s27/preregistration.md",
-    "sha256": "775fb1aac818c02b047a293e62cf06a4966b7ff7ac59f8d9aaf70370c6fab859"
+    "path": "docs/s27-cvdc/preregistration.md",
+    "sha256": "0bbd3c9e5b7701443cda77a4fa716e48044e45cb9d25c1f7c8259d42a7734ec6"
   }
 }

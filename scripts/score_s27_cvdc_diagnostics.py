@@ -9,7 +9,7 @@
    (scripts/run_lfi.py aggregate x2 + fit, ridge 1 and 10). Every output is
    strictly labeled MODEL_PROJECTION_NOT_A_SCORE fitted to USER-REPORTED anchors.
 
-Output: docs/s27/diagnostics.json. Uses zero submission slots.
+Output: docs/s27-cvdc/diagnostics.json. Uses zero submission slots.
 """
 from __future__ import annotations
 
@@ -44,7 +44,7 @@ def run(cmd):
 
 
 def main() -> int:
-    rc = json.loads((ROOT / "docs/s27/run-card.json").read_text())
+    rc = json.loads((ROOT / "docs/s27-cvdc/run-card.json").read_text())
     cand_rel = rc["artifact"]["tif"]
     man = {r["id"]: r for r in json.loads((ROOT / "registry/data_manifest.json").read_text())["files"]}
     for rid in ("sample_submission", "existing_faults", "sgmc_faults_control", "parent_r0_zeros"):
@@ -225,7 +225,7 @@ def main() -> int:
             "rows": sorted(lfi_rows, key=lambda r: -r["ridge1"]),
         },
     }
-    p = ROOT / "docs/s27/diagnostics.json"
+    p = ROOT / "docs/s27-cvdc/diagnostics.json"
     p.write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
     print("wrote", p)
     return 0

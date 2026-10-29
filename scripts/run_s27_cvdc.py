@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Session 27 (`S27-CVDC`) lane runner (preregistered in docs/s27/preregistration.md).
+"""Session 27 (`S27-CVDC`) lane runner (preregistered in docs/s27-cvdc/preregistration.md).
 
 Subcommands:
   features    verify SHA-256 inputs, freeze 210+ reference rasters, verify 19-band
@@ -46,7 +46,7 @@ from vendor.gems57 import grid, spatial
 from vendor.gems57.submission_writer import write_submission
 from vendor.gems57.validate import assert_submittable, validate
 
-OUT = ROOT / "docs/s27"
+OUT = ROOT / "docs/s27-cvdc"
 WORK = ROOT / "work/s27"
 FEAT = WORK / "features"
 S25_FEAT = WORK / "s25_features"
@@ -588,8 +588,8 @@ def cmd_features(_args) -> int:
 
     meta["inputs_verified"] = inputs
     meta["preregistration"] = {
-        "path": "docs/s27/preregistration.md",
-        "sha256": sha(ROOT / "docs/s27/preregistration.md"),
+        "path": "docs/s27-cvdc/preregistration.md",
+        "sha256": sha(ROOT / "docs/s27-cvdc/preregistration.md"),
     }
     dump(OUT / "feature-receipt.json", meta)
     log(f"static features built in {time.monotonic()-start:.1f}s; building Stage-1 & Stage-2 OOF surfaces")
@@ -1161,11 +1161,11 @@ def cmd_package(_args) -> int:
 
     run_card = {
         "schema": "gems-parallel-run-card-v1",
-        "lane": "S27-CVDC (preregistered in docs/s27/preregistration.md)",
+        "lane": "S27-CVDC (preregistered in docs/s27-cvdc/preregistration.md)",
         "branch": "arena/2d335bdc-gemsdoe91",
         "preregistration": {
-            "path": "docs/s27/preregistration.md",
-            "sha256": sha(ROOT / "docs/s27/preregistration.md"),
+            "path": "docs/s27-cvdc/preregistration.md",
+            "sha256": sha(ROOT / "docs/s27-cvdc/preregistration.md"),
         },
         "hypothesis": (
             "Catalogue-missing blind and subdued Basin-and-Range faults exhibit (1) Rule-of-V "
@@ -1266,9 +1266,9 @@ def cmd_package(_args) -> int:
         "estimated_leaderboard_score_reason": (
             "No authenticated organizer receipt exists. Post-hoc LFI MODEL projection "
             "(MODEL_PROJECTION_NOT_A_SCORE) and blind USGS SGMC diagnostic are recorded "
-            "separately in docs/s27/diagnostics.json."
+            "separately in docs/s27-cvdc/diagnostics.json."
         ),
-        "post_hoc_diagnostics_file": "docs/s27/diagnostics.json",
+        "post_hoc_diagnostics_file": "docs/s27-cvdc/diagnostics.json",
         "experiments_run": len(exp_records),
         "max_experiments": 3,
         "elapsed_seconds_package": float(time.monotonic() - start),

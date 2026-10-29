@@ -15,7 +15,7 @@
    - `data/bridge/gems-geodawn-numerical-features.tif` (`19` float32 bands; candidate features use only `B02, B03, B04, B05, B07, B08, B09, B11, B12, B13, B14, B15, B17, B18, B19`)
 2. **Explicit exclusions (provenance & leakage safety):**
    - **`B06` (`tc`) excluded:** Label-blind audit (`IR-8E8-09`) established `r = 0.99699` with gamma-ray radiometric Total Count rather than magnetic tilt angle. True magnetic tilt is computed analytically from `B02/B03/B09`.
-   - **`(B18, B11)` treated strictly as signed $(\partial_x B_{13}, \partial_y B_{13})$:** Label-blind gradient check (`docs/s27/GEOTHERMAL_AND_FAULT_RESEARCH.md` §4) proved `corr(B18, dx B13) = 0.9481` and `corr(B11, dy B13) = 0.9380`. Vertical gravity curvature uses masked Laplacian $-\nabla_h^2 B_{13}$.
+   - **`(B18, B11)` treated strictly as signed $(\partial_x B_{13}, \partial_y B_{13})$:** Label-blind gradient check (`docs/s27-cvdc/GEOTHERMAL_AND_FAULT_RESEARCH.md` §4) proved `corr(B18, dx B13) = 0.9481` and `corr(B11, dy B13) = 0.9380`. Vertical gravity curvature uses masked Laplacian $-\nabla_h^2 B_{13}$.
    - **`ext_lidar_scarp_u8` and `ext_geodawn_rad_u8` excluded:** Unresolved third-party rights (`IR-91-S19-01`).
    - **Zero fault coordinates in features:** Neither `existing_faults.tif` nor `fold["visible"]` enters any static or Stage-2 feature.
    - **Blind diagnostics (`derived_sgmc_faults_100m_u8.tif`, `registry/lfi_anchor_matches.json`) kept 100% post-hoc:** Never read during feature extraction, model fitting, experiment selection, or dot placement.

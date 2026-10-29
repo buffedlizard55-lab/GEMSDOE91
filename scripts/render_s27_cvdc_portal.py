@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render the Session 27 (`S27-CVDC`) executive summary from JSON receipts only.
 
-Outputs docs/s27/executive-summary.html and re-renders docs/index.html,
+Outputs docs/s27-cvdc/executive-summary.html and re-renders docs/index.html,
 docs/executive-summary.html, and index.html via scripts/render_olc91_portal.render.
 Fails closed if any receipt claims submit-approval or an organizer score.
 """
@@ -33,18 +33,18 @@ def pct(x) -> str:
 
 
 def main() -> int:
-    card = load("docs/s27/run-card.json")
-    diag = load("docs/s27/diagnostics.json")
+    card = load("docs/s27-cvdc/run-card.json")
+    diag = load("docs/s27-cvdc/diagnostics.json")
     nine = load("docs/s22/nine-site-audit.json")["sites"]
     nine_s25 = {s["site"]: s for s in load("docs/s25/nine-site-audit.json")["sites"]}
-    dot_checks = load("docs/s27/final-dot-checks.json")
-    surf_checks = load("docs/s27/surface-checks.json")
+    dot_checks = load("docs/s27-cvdc/final-dot-checks.json")
+    surf_checks = load("docs/s27-cvdc/surface-checks.json")
     lb = load("evidence/public-leaderboard-2026-10-29.json")
     audit = {r["path"]: r for r in load("docs/download-audit.json")["files"]}
-    e1 = load("docs/s27/e1/holdout.json")
-    e2 = load("docs/s27/e2/holdout.json")
-    e3 = load("docs/s27/e3/holdout.json")
-    can = load("docs/s27/canaries.json")
+    e1 = load("docs/s27-cvdc/e1/holdout.json")
+    e2 = load("docs/s27-cvdc/e2/holdout.json")
+    e3 = load("docs/s27-cvdc/e3/holdout.json")
+    can = load("docs/s27-cvdc/canaries.json")
 
     s25_card = load("docs/s25/run-card.json")
     s24_card = load("docs/s24/e2/run-card.json")
@@ -369,11 +369,11 @@ pre{{background:#0f172a;color:#f8fafc;padding:14px;border-radius:7px;overflow-x:
 <ol>
   <li><strong>Exact Mathematical Genealogy of <code>GEMSDOE32 = 0.2778</code>:</strong> All nine focus leaders (<code>0.2449</code>–<code>0.2778</code>) descend from one continuous 19-band monogenic/topographic-corroborated ridge posterior (<code>H19-5</code>, 121,131 px, <code>0.1922</code>). Because Distance-Weighted Tversky (<code>&alpha;=0.2, &beta;=0.8, R=300 m</code>) evaluates <code>TP_w</code> via a <strong>max</strong> over predicted pixels per ground-truth pixel while penalizing <code>FP_w</code> via a <strong>linear sum</strong> over predicted pixels, continuous 1-px ridges triple-pay false positives inside every 300 m disk. Thinning <code>H19-5</code> onto a <code>d=2.8 px</code> Poisson disk (44,090 dots, <code>GEMSDOE25/30 = 0.2600</code>) eliminated ~63% of <code>FP_w</code> at near-zero <code>TP_w</code> loss (+0.0678 DTI). <code>GEMSDOE31/28</code> (<code>h27-4</code>, 40,199 dots, <code>0.2708</code>) pruned dots within 1.0 px of mapped faults (+0.0108 DTI). Finally, <strong><code>GEMSDOE32</code> (<code>h33-h33-2-b2-...-zeros</code>, 37,654 dots, <code>0.2778</code>)</strong> pruned the remaining <strong>2,545 dots within 2.0 px of <code>existing_faults.tif</code></strong>—pure dead-weight false positives because organizer scoring masks visible faults and nearby pixels are already covered from &gt;2 px. Substituting <code>&Delta;FP_w = &minus;2,545</code> into <code>DTI = TP_w / (TP_w + 0.2&middot;FP_w + 0.8&middot;FN_w)</code> yields <code>TP_w &approx; 5,073</code> and predicts <code>0.2778</code> to within <code>0.0006</code>.</li>
   <li><strong>Why <code>H19-5</code> Pruning Asymptotes at ~<code>0.278</code> (and Disqualifies Derivatives):</strong> Every <code>H19-5</code> derivative shares 97.58%–100% 3-px overlap with the nine leaders (immediate Rule-1 duplicate stop) and leaves <code>TP_w &approx; 5,073</code> frozen because <code>H19-5</code> relies heavily on scarp openness (<code>B12/B19</code>), missing blind intrabasin faults and hydrothermal magnetite-destruction troughs where <code>|\nabla TMI|</code> vanishes along the leached core.</li>
-  <li><strong>How to Beat <code>0.2778</code> and Target <code>&gt;0.3195</code>:</strong> Raising DTI from <code>0.278</code> to <code>0.320+</code> at 37,654 dots requires lifting hidden-fault recall by ~20–25% without adding false-positive mass: (a) <strong>de novo physics for blind/subdued faults</strong> (implemented here via <code>CVDC + PMDB + VCTK</code> + Stage-2 8-azimuth relay bridging, lifting v3 <code>HOLDOUT-DTI</code> from <code>0.1203 &rarr; 0.1694</code> and matching <code>GEMSDOE32</code> on blind USGS SGMC faults at <code>0.0952</code> with only 41.74% dot overlap), and (b) <strong>external 1-m USGS 3DEP LiDAR bare-earth scarps + unclipped GeoDAWN K/eU/eTh</strong> on an unrestricted workstation to resolve 0.3–1.5 m Holocene scarps invisible in the 100 m DEM (Hypothesis <code>H27-4</code> in <a href="GEOTHERMAL_AND_FAULT_RESEARCH.md"><code>docs/s27/GEOTHERMAL_AND_FAULT_RESEARCH.md</code></a>).</li>
+  <li><strong>How to Beat <code>0.2778</code> and Target <code>&gt;0.3195</code>:</strong> Raising DTI from <code>0.278</code> to <code>0.320+</code> at 37,654 dots requires lifting hidden-fault recall by ~20–25% without adding false-positive mass: (a) <strong>de novo physics for blind/subdued faults</strong> (implemented here via <code>CVDC + PMDB + VCTK</code> + Stage-2 8-azimuth relay bridging, lifting v3 <code>HOLDOUT-DTI</code> from <code>0.1203 &rarr; 0.1694</code> and matching <code>GEMSDOE32</code> on blind USGS SGMC faults at <code>0.0952</code> with only 41.74% dot overlap), and (b) <strong>external 1-m USGS 3DEP LiDAR bare-earth scarps + unclipped GeoDAWN K/eU/eTh</strong> on an unrestricted workstation to resolve 0.3–1.5 m Holocene scarps invisible in the 100 m DEM (Hypothesis <code>H27-4</code> in <a href="GEOTHERMAL_AND_FAULT_RESEARCH.md"><code>docs/s27-cvdc/GEOTHERMAL_AND_FAULT_RESEARCH.md</code></a>).</li>
 </ol>
 
 <h2 id="hypotheses">4. Preregistered Novel Geological Hypotheses &amp; 3-Experiment v3-Fold Ablation</h2>
-<p class="small">Full mathematical derivations, band-by-band forensic verification (including proof that <code>B06</code> is radiometric Total Count and <code>(B18, B11)</code> are horizontal gravity derivatives <code>(&part;x B13, &part;y B13)</code>), and verified public literature links are archived in <a href="GEOTHERMAL_AND_FAULT_RESEARCH.md"><code>docs/s27/GEOTHERMAL_AND_FAULT_RESEARCH.md</code></a> and <a href="preregistration.md"><code>docs/s27/preregistration.md</code></a>.</p>
+<p class="small">Full mathematical derivations, band-by-band forensic verification (including proof that <code>B06</code> is radiometric Total Count and <code>(B18, B11)</code> are horizontal gravity derivatives <code>(&part;x B13, &part;y B13)</code>), and verified public literature links are archived in <a href="GEOTHERMAL_AND_FAULT_RESEARCH.md"><code>docs/s27-cvdc/GEOTHERMAL_AND_FAULT_RESEARCH.md</code></a> and <a href="preregistration.md"><code>docs/s27-cvdc/preregistration.md</code></a>.</p>
 <ul>
   <li><strong>H27-1 · Contour-Potential Strike Discordance (<code>CVDC</code>, Rank 1 — Implemented):</strong> Subsurface density/magnetic contacts (<code>B13, B18, B11, B02, B09</code>) cutting obliquely across smoothed detrended topographic contours (<code>B12, B19</code>) via Rule-of-V sin<sup>2</sup>(&Delta;&theta;) axial discordance, catching range-oblique transfer zones and concealed piedmont step-faults while rejecting range-parallel unfaulted strata.</li>
   <li><strong>H27-2 · Paired-Flank Magnetite-Destruction Conduit Bridge (<code>PMDB</code>, Rank 2 — Implemented):</strong> Upwelling geothermal fluids alter host-rock magnetite to pyrite/hematite/clay, creating an axial <code>RTP</code> magnetic trough flanked by twin <code>B03</code> gradients co-located with a gravity step, <code>B15</code>-deconfounded shallow MT conductivity excess (<code>B17</code>), and transtensional strain (<code>B04, B07, B08</code>). Built cleanly inside a 17-feature <code>B12/B19</code>-free Pure-Subsurface specialist branch.</li>
@@ -420,15 +420,15 @@ pre{{background:#0f172a;color:#f8fafc;padding:14px;border-radius:7px;overflow-x:
 .venv/bin/python scripts/run_s27_cvdc.py features
 .venv/bin/python scripts/run_s27_cvdc.py experiment --exp e1   # then e2, e3
 .venv/bin/python scripts/run_s27_cvdc.py package
-.venv/bin/python scripts/score_s27_diagnostics.py
+.venv/bin/python scripts/score_s27_cvdc_diagnostics.py
 .venv/bin/python scripts/audit_downloads.py --output docs/download-audit.json --html docs/download-audit.html
-.venv/bin/python scripts/render_s27_portal.py</pre>
+.venv/bin/python scripts/render_s27_cvdc_portal.py</pre>
 </main>
 </div>
 </body>
 </html>
 """
-    out = DOCS / "s27/executive-summary.html"
+    out = DOCS / "s27-cvdc/executive-summary.html"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
 
@@ -436,8 +436,8 @@ pre{{background:#0f172a;color:#f8fafc;padding:14px;border-radius:7px;overflow-x:
     from scripts.render_olc91_portal import render as render_front_door
 
     render_front_door()
-    assert "s27/executive-summary.html" in (DOCS / "index.html").read_text(encoding="utf-8")
-    assert "s27/executive-summary.html" in (DOCS / "executive-summary.html").read_text(encoding="utf-8")
+    assert "s27-cvdc/executive-summary.html" in (DOCS / "index.html").read_text(encoding="utf-8")
+    assert "s27-cvdc/executive-summary.html" in (DOCS / "executive-summary.html").read_text(encoding="utf-8")
     print(f"wrote {out.relative_to(ROOT)}; front door re-rendered with S27 callout")
     return 0
 
