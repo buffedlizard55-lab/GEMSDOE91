@@ -9,7 +9,7 @@
   "mechanism": "S25-FABRIC E2 surface approximated via exp(-dist_to_S25_dot/8) gap-weighted; 22163 dots 10.0 px collar 3.05 px NMS; S26-E2 37654-dot variant also emitted.",
   "named_non_fault_mimic": "Unfaulted dipping contacts, remanent offsets, fan/shoreline fabrics, flight-line seams, wide alluvial aprons.",
   "holdout": {
-    "label": "HOLDOUT-DTI (reused S25 v3 instrument as surface unchanged; collar effect not re-measured in this emit-only variant)",
+    "label": "Historical S25 HOLDOUT-DTI; not measured for the S26 proxy or changed collar",
     "evaluator_version": "gems57-pooled-hide-v2",
     "split_version": "label-blind-quadrants-v3-feature-buffered",
     "dti": 0.14774078722698647,
@@ -28,24 +28,24 @@
       ]
     },
     "beats_best_matched_control_ci95": true,
-    "note": "Surface is S25-FABRIC E2; this S26 emit-only variant reuses that holdout. True collar-10 holdout would drop ~0.01-0.02; not yet re-measured in v3 folds. No ORGANIZER-CONFIRMED score."
+    "note": "The S26 pseudo-surface is a distance-to-S25-dots proxy, not the original S25 model surface. S25 fold-local holdout and its canary do not validate this S26 emission; the effect is not measured."
   },
   "leakage_canary": {
     "max_symmetric_auc": 0.6130299267873166,
     "worst": "band06 fold3",
-    "pass": true,
-    "note": "Reused S25 canary; proxy surface not re-canaried."
+    "pass": null,
+    "note": "Historical S25 canary; not a canary clearance for the S26 proxy."
   },
   "correlation_overlap_vs_registry": {
     "surface_max_abs_rho": 0.13014811222318767,
     "surface_closest": "data/fleet_registry/57GEMSDOE__faultzone-anatomy-60000px-prev.tif",
-    "surface_pass_le_0.90": true,
+    "surface_pass_le_0.90": null,
     "final_dot_max_overlap_all": 0.9813653386274421,
     "final_dot_closest_all": "data/fleet_registry/calib_r13lattice_00904.tif",
     "final_dot_max_overlap_nine_leaders": null,
     "final_dot_max_overlap_competitive_le_90000px": 0.601723593376348,
     "final_dot_closest_competitive": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
-    "final_dot_pass_nine_le_0.70": false,
+    "final_dot_pass_nine_le_0.70": null,
     "final_dot_pass_competitive_le_0.70": true,
     "final_dot_pass_all_incl_blankets_le_0.70": false,
     "dense_blankets": [
@@ -125,8 +125,8 @@
       "status": "NOT_RULED_OUT",
       "note": "Necessary bound only. Not a candidate comparison, score, uniqueness pass or placement guidance."
     },
-    "largest_feasible_budget": 22163,
-    "note": "Feasible variant targets lattice capacity bound; full variant expected to exceed it."
+    "largest_feasible_budget": null,
+    "note": "The 22,163 bound is only a capacity-based upper bound, not a demonstrated feasible placement or authorized budget. Surface comparisons occurred after placement. The literal lattice reference cannot be exempted."
   },
   "validator_output": {
     "local": {
@@ -245,5 +245,18 @@
     "existing_faults": "7ba308cc",
     "training_features": "4371c82e"
   },
-  "elapsed_seconds": 0
+  "elapsed_seconds": 0,
+  "review_correction": {
+    "source": "docs/review-4239f6e5/concurrent-s26-audit.json",
+    "reason": "Independent byte/ZIP and lattice checks; historical narrower uniqueness claim withdrawn.",
+    "final_dot_overlap_vs_lattice": 0.9813653386274421,
+    "full_variant_overlap_vs_lattice": 0.9882349816752536,
+    "capacity_only_upper_bound_not_authorization": 22163,
+    "preplacement_surface_rechecked": false,
+    "original_run_card": "evidence/concurrent-s26-20261029/fabric-emit-run-card-original.json.txt",
+    "original_runner": "evidence/concurrent-s26-20261029/run_s26_emit-original.py.txt",
+    "runner_disabled": true,
+    "sample_authenticity": "UNVERIFIED; mirror conflicts with public sample description",
+    "verdict": "negative"
+  }
 }

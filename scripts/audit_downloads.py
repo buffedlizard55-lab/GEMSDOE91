@@ -61,11 +61,18 @@ def audit(root=ROOT):
         paths[key] = path
     with rasterio.open(paths['sample_submission']) as src:
         reference = (src.count, src.shape, src.crs, src.transform)
-        footprint = np.isfinite(src.read(1))
+        footprint = np.isfinite(src.read(1)) & (src.read_masks(1) > 0)
+    if not footprint.any():
+        raise ValueError('Empty sample footprint')
     with rasterio.open(paths['existing_faults']) as src:
         if (src.count, src.shape, src.crs, src.transform) != reference:
             raise ValueError('Catalogue reference grid mismatch')
-        catalogue = (src.read(1) > 0) & footprint
+        raw_catalogue = src.read(1)
+        if (not np.isfinite(raw_catalogue[footprint]).all()
+                or not np.isin(raw_catalogue[footprint], [0, 1]).all()
+                or np.any(src.read_masks(1)[footprint] == 0)):
+            raise ValueError('Catalogue inside footprint is nonfinite, nonbinary or masked')
+        catalogue = (raw_catalogue > 0) & footprint
     policy = json.loads((root / 'registry/artifact_policy.json').read_text())['files']
     indexed = {r['path']: r for r in policy}
     if len(indexed) != len(policy):
@@ -102,7 +109,7 @@ def audit(root=ROOT):
             result.update(status='FAIL', error=str(exc))
         results.append(result)
     return {'schema_version': 'gems91.download-audit.v1', 'audit_completed': True,
-            'scope': 'Pinned-reference technical checks only; historical artifacts are not new experiments.',
+            'scope': 'Technical checks against hash-pinned mirrors only; their official origin is unverified. Historical artifacts are not new experiments or organizer acceptance.',
             'references': {k: rows[k]['sha256'] for k in paths},
             'files_checked': len(results), 'format_pass': sum(r['status'] == 'PASS' for r in results),
             'format_fail': sum(r['status'] == 'FAIL' for r in results),
@@ -126,7 +133,7 @@ def render_html(report):
 FAIL means at least one strict range-safe delivery or masking check failed. Historical files are preserved, not repaired into a new submission.</p>
 <p>Any file failing finite-range checks must not be used as a range-safe upload.
 Synthetic fixtures are never scientific submissions, even if their technical format passes.</p>
-<p>Inspected against hash-verified sample and catalogue references. ZIPs must contain exactly one registered, byte-identical TIFF.
+<p>Inspected against hash-pinned sample and catalogue mirrors, not authenticated organizer references. The sample mirror conflicts with the public blank-sample description. The local zero-outside check does not establish compliance with the official null/NaN instruction. ZIPs must contain exactly one registered, byte-identical TIFF.
 This is a committed snapshot, not a live organizer acceptance receipt.</p><p><a href="download-audit.json">Machine-readable evidence and reference hashes</a></p>
 <div class="table-scroll"><table><caption>''' + str(report['files_checked']) + ' downloads: ' + str(report['format_pass']) + ' technical PASS; ' + str(report['format_fail']) + ''' FAIL</caption>
 <thead><tr><th scope="col">Download (research only)</th><th scope="col">Technical status</th><th scope="col">Details</th><th scope="col">Submit?</th></tr></thead><tbody>''' + ''.join(rows) + '</tbody></table></div></main></div></body></html>\n'

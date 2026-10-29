@@ -606,26 +606,26 @@
     {
       "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
       "sha256": "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
-      "status": "current_research_only",
-      "reason": "S26-FABRIC-EMIT 10px collar gap-weighted; HOLDOUT-DTI reused S25 0.1477 vs control 0.1247; competitive 60.2% vs lattice 98.1% capacity-forced; NOT OK TO SUBMIT under protocol-literal."
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 98.1365% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
     },
     {
       "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.zip",
       "sha256": "00d5028e1cd2365b9859079ddea2f61d743005e3edc2a1fb2925281d57f4b6bf",
-      "status": "current_research_only",
-      "reason": "S26-FABRIC-EMIT 10px collar gap-weighted; HOLDOUT-DTI reused S25 0.1477 vs control 0.1247; competitive 60.2% vs lattice 98.1% capacity-forced; NOT OK TO SUBMIT under protocol-literal."
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 98.1365% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
     },
     {
       "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif",
       "sha256": "8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae",
-      "status": "current_research_only",
-      "reason": "S26-FABRIC-EMIT 10px collar gap-weighted; HOLDOUT-DTI reused S25 0.1477 vs control 0.1247; competitive 60.2% vs lattice 98.1% capacity-forced; NOT OK TO SUBMIT under protocol-literal."
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 98.8235% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
     },
     {
       "path": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.zip",
       "sha256": "71599867c6e64ebf1252846571f03f48a342943b489c61e834b92a69b986ff4c",
-      "status": "current_research_only",
-      "reason": "S26-FABRIC-EMIT 10px collar gap-weighted; HOLDOUT-DTI reused S25 0.1477 vs control 0.1247; competitive 60.2% vs lattice 98.1% capacity-forced; NOT OK TO SUBMIT under protocol-literal."
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 98.8235% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
     },
     {
       "path": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
@@ -764,6 +764,18 @@
       "sha256": "17fb04eb87afacb1321b496ec8b2dbfa7bea9df0776f4433135380f933a4024b",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of the OLC91 E1 research-only file; same verdict (OK TO SUBMIT: NO)."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
+      "sha256": "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 99.2325% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.zip",
+      "sha256": "975c3eb1692ef7b88595e1f54ac1cd0bc6adefd6015ddda13d0588ea9ff22753",
+      "status": "parallel_quarantined",
+      "reason": "Concurrent S26 research only; independent final-dot overlap 99.2325% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
     }
   ]
 }

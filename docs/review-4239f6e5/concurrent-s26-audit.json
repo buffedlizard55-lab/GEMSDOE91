@@ -1,0 +1,131 @@
+{
+  "schema": "gems91.concurrent-s26-lattice-recheck.v1",
+  "checked_utc": "2026-10-29T15:04:52.567238+00:00",
+  "source_main_commit": "740ca18cf426e5098814f2c1d9aaa7d0dc7c5b7f",
+  "implementation_sha256": "4b5d79d26ea1b7915ff7a24bcf8b09b746416adf9b401293e9e133f58b731468",
+  "shared_audit_sha256": "ed52c687e119a33c498980cb23f6b4b1e119e3c545c2bc5cfbe90031859c59fb",
+  "validator_implementation_sha256": "68e85252117a3ed6a6f663fdf4a9555de2a0c5db37c313dff49a56220d02e485",
+  "scope": "Three already-existing research artifacts from concurrent merges; no new experiment or slot.",
+  "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "qualification": "Mirrored sample is not authenticated and conflicts with the public sample description; local checks do not establish server acceptance. Outside is zero, not organizer-specified null/NaN.",
+  "results": [
+    {
+      "name": "gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros",
+      "tif": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif",
+      "tif_sha256": "957a1865781cfd537ecb197fce4d6a931564558ac0c97d8c5a0bf9dad932f35d",
+      "zip": "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.zip",
+      "zip_sha256": "975c3eb1692ef7b88595e1f54ac1cd0bc6adefd6015ddda13d0588ea9ff22753",
+      "candidate_dots": 37654,
+      "validator_output": {
+        "status": "PASS",
+        "checks": {
+          "single_band": true,
+          "float32": true,
+          "crs_shape_transform_match": true,
+          "no_nodata_tag": true,
+          "all_cells_finite": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_outside_footprint": true,
+          "visible_catalogue_masked": true
+        },
+        "nonfinite_cells": 0,
+        "out_of_range_finite_cells": 0,
+        "ok_to_submit": false,
+        "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+      },
+      "witness": "data/fleet_registry/calib_r13lattice_00904.tif",
+      "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "final_dot_comparison": {
+        "rank_correlation": 0.0005615195716705443,
+        "rank_status": "PASS",
+        "directed_overlap_within_3px": 0.9923248526053009,
+        "dot_status": "DUPLICATE",
+        "reference_dots_in_footprint": 206895,
+        "reference_positive_outside_footprint": 0
+      },
+      "surface_before_placement": "NOT_RECHECKED",
+      "other_references_after_witness": "NOT_CHECKED (stop at first duplicate)",
+      "submission_ready": false
+    },
+    {
+      "name": "gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros",
+      "tif": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif",
+      "tif_sha256": "198c09950095e091686db4de4016752976b7e47a0326e3a975b4bee0856950c8",
+      "zip": "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.zip",
+      "zip_sha256": "00d5028e1cd2365b9859079ddea2f61d743005e3edc2a1fb2925281d57f4b6bf",
+      "candidate_dots": 22163,
+      "validator_output": {
+        "status": "PASS",
+        "checks": {
+          "single_band": true,
+          "float32": true,
+          "crs_shape_transform_match": true,
+          "no_nodata_tag": true,
+          "all_cells_finite": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_outside_footprint": true,
+          "visible_catalogue_masked": true
+        },
+        "nonfinite_cells": 0,
+        "out_of_range_finite_cells": 0,
+        "ok_to_submit": false,
+        "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+      },
+      "witness": "data/fleet_registry/calib_r13lattice_00904.tif",
+      "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "final_dot_comparison": {
+        "rank_correlation": 0.000507853968933938,
+        "rank_status": "PASS",
+        "directed_overlap_within_3px": 0.9813653386274421,
+        "dot_status": "DUPLICATE",
+        "reference_dots_in_footprint": 206895,
+        "reference_positive_outside_footprint": 0
+      },
+      "surface_before_placement": "NOT_RECHECKED",
+      "other_references_after_witness": "NOT_CHECKED (stop at first duplicate)",
+      "submission_ready": false
+    },
+    {
+      "name": "gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros",
+      "tif": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif",
+      "tif_sha256": "8f68e4eb1ac6e5421ef5d6297d9db261b9e23aacd0b43674a22a13434615d1ae",
+      "zip": "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.zip",
+      "zip_sha256": "71599867c6e64ebf1252846571f03f48a342943b489c61e834b92a69b986ff4c",
+      "candidate_dots": 37654,
+      "validator_output": {
+        "status": "PASS",
+        "checks": {
+          "single_band": true,
+          "float32": true,
+          "crs_shape_transform_match": true,
+          "no_nodata_tag": true,
+          "all_cells_finite": true,
+          "values_in_0_1": true,
+          "no_nan_inside_footprint": true,
+          "zero_outside_footprint": true,
+          "visible_catalogue_masked": true
+        },
+        "nonfinite_cells": 0,
+        "out_of_range_finite_cells": 0,
+        "ok_to_submit": false,
+        "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+      },
+      "witness": "data/fleet_registry/calib_r13lattice_00904.tif",
+      "witness_sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+      "final_dot_comparison": {
+        "rank_correlation": 0.00025976486617153066,
+        "rank_status": "PASS",
+        "directed_overlap_within_3px": 0.9882349816752536,
+        "dot_status": "DUPLICATE",
+        "reference_dots_in_footprint": 206895,
+        "reference_positive_outside_footprint": 0
+      },
+      "surface_before_placement": "NOT_RECHECKED",
+      "other_references_after_witness": "NOT_CHECKED (stop at first duplicate)",
+      "submission_ready": false
+    }
+  ]
+}

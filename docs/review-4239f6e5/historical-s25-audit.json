@@ -1,0 +1,147 @@
+{
+  "schema": "gems91.priority-snapshot-recheck.v1",
+  "checked_utc": "2026-10-29T15:04:49.279131+00:00",
+  "implementation_sha256": "ed52c687e119a33c498980cb23f6b4b1e119e3c545c2bc5cfbe90031859c59fb",
+  "validator_implementation_sha256": "68e85252117a3ed6a6f663fdf4a9555de2a0c5db37c313dff49a56220d02e485",
+  "scope": "Existing S25 research TIFF vs nine leader TIFFs and one selected witness only; no experiment or slot.",
+  "reference_provenance": "SHA-pinned owner GitHub mirrors; not authenticated organizer files or proof of redistribution rights.",
+  "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "catalogue_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+  "sample_semantics": {
+    "positive_inside_footprint": 60988,
+    "catalogue_positive_inside_footprint": 60988,
+    "positive_support_mismatch_pixels": 0,
+    "note": "The public description says its sample predicts total fault absence. A positive mirrored sample is not authenticated as that template."
+  },
+  "nine_site_report_sha256": "64e1c2006aab652a0240a8ad0f0f9b6009348667767f35668906966a2058b447",
+  "raster": {
+    "path": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif",
+    "sha256": "0046fca5d12c915b376031116afef691547eee997c7a7eb1e53d3e8e6f4aa6a5",
+    "zip": "docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.zip",
+    "zip_sha256": "a9ca100212750c23da9959aa3abe59b1e0d8e521818fdd0d5e879e44f78201ea",
+    "submission_name": "gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros",
+    "note": "S25 FABRIC granulometry+phase-lag spatial OOF 37654 dots; see run-card verdict before slot use",
+    "candidate_dots_in_footprint": 37654,
+    "positive_outside_footprint": 0,
+    "outside_sample_footprint_values": "all zeros; not a demonstration of organizer acceptance"
+  },
+  "validator_output": {
+    "status": "PASS",
+    "checks": {
+      "single_band": true,
+      "float32": true,
+      "crs_shape_transform_match": true,
+      "no_nodata_tag": true,
+      "all_cells_finite": true,
+      "values_in_0_1": true,
+      "no_nan_inside_footprint": true,
+      "zero_outside_footprint": true,
+      "visible_catalogue_masked": true
+    },
+    "nonfinite_cells": 0,
+    "out_of_range_finite_cells": 0,
+    "ok_to_submit": false,
+    "reason": "Technical inspection only; no scientific, uniqueness or selector approval."
+  },
+  "comparisons": {
+    "GEMSDOE24": {
+      "rank_correlation": 0.018601229343886718,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.38840495033728156,
+      "dot_status": "PASS",
+      "reference_dots_in_footprint": 60069,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310"
+    },
+    "GEMSDOE25": {
+      "rank_correlation": 0.015702058184669774,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.37297498273755775,
+      "dot_status": "PASS",
+      "reference_dots_in_footprint": 44090,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8"
+    },
+    "GEMSDOE27": {
+      "rank_correlation": 0.018765103370230875,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.40192277048919106,
+      "dot_status": "PASS",
+      "reference_dots_in_footprint": 61328,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d"
+    },
+    "GEMSDOE28": {
+      "rank_correlation": 0.016145925655302026,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.3522334944494609,
+      "dot_status": "PASS",
+      "reference_dots_in_footprint": 37660,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641"
+    },
+    "GEMSDOE30": {
+      "rank_correlation": 0.015702058184669774,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.37297498273755775,
+      "dot_status": "PASS",
+      "reference_dots_in_footprint": 44090,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd"
+    },
+    "GEMSDOE31": {
+      "rank_correlation": 0.01717249559981656,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.3563764805863919,
+      "dot_status": "PASS",
+      "reference_dots_in_footprint": 40199,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40"
+    },
+    "GEMSDOE32": {
+      "rank_correlation": 0.018235070786433757,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.33592712593615554,
+      "dot_status": "PASS",
+      "reference_dots_in_footprint": 37654,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    "GEMSDOE33": {
+      "rank_correlation": 0.016471177555832245,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.3647421256705795,
+      "dot_status": "PASS",
+      "reference_dots_in_footprint": 41865,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757"
+    },
+    "GEMSDOE36": {
+      "rank_correlation": 0.018144479740042744,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.34052159133159826,
+      "dot_status": "PASS",
+      "reference_dots_in_footprint": 38854,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+    },
+    "frozen lattice": {
+      "rank_correlation": 0.000201735115114028,
+      "rank_status": "PASS",
+      "directed_overlap_within_3px": 0.9874648111754395,
+      "dot_status": "DUPLICATE",
+      "reference_dots_in_footprint": 206895,
+      "reference_positive_outside_footprint": 0,
+      "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2"
+    }
+  },
+  "stopped_at": "frozen lattice",
+  "not_checked_after_stop": [],
+  "preplacement_surface_rechecked": false,
+  "preplacement_note": "Final-dot ranks cannot reconstruct or validate the original pre-placement surface.",
+  "complete_registry_check": false,
+  "geological_experiments": 0,
+  "weekly_submission_slots_used": 0,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

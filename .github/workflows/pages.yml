@@ -19,6 +19,13 @@ on:
       - scripts/run_s23_tilta.py
       - scripts/verify_band06_and_units.py
       - scripts/verify_nine_site_leaders.py
+      - scripts/verify_priority_nine.py
+      - scripts/audit_priority_snapshot.py
+      - scripts/audit_concurrent_s26.py
+      - scripts/audit_downloads.py
+      - scripts/render_priority_review.py
+      - scripts/render_nine_site_20261028.py
+      - scripts/submission_writer.py
       - scripts/render_s22_pages.py
       - scripts/render_olc91_portal.py
       - scripts/build_pages_site.py
@@ -36,6 +43,7 @@ on:
       - registry/**
       - vendor/gems57/**
       - src/gems91/readiness.py
+      - src/gems91/io.py
       - src/gems91/novelty.py
       - src/gems91/omtj22.py
       - src/gems91/tilta23.py

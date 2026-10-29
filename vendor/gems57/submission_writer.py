@@ -2,8 +2,9 @@
 
 The writer never clips, fills, or otherwise repairs model output.  It validates
 in memory, writes to private temporary paths, validates the on-disk TIFF and ZIP,
-and only then atomically replaces the requested outputs.  Local format validity
-is not a uniqueness clearance or organizer acceptance.
+and only then publishes them with no-clobber links, rolling back on ordinary
+exceptions. A hard crash is not an atomic multi-file transaction. Local format
+validity is not a uniqueness clearance or organizer acceptance.
 """
 from __future__ import annotations
 
@@ -40,21 +41,32 @@ def write_submission(path, prediction, sample, footprint, *, note, name,
     if not isinstance(note, str) or not note.strip() or len(note) > 140:
         raise ValueError('note must contain 1..140 non-whitespace characters')
 
+    for label, value in (('prediction', prediction), ('footprint', footprint), ('catalogue', catalogue)):
+        if value is not None and np.ma.isMaskedArray(value) and np.ma.getmaskarray(value).any():
+            raise ValueError(f'{label} has masked values; resolve them explicitly')
     p = np.asarray(prediction)
-    fp = np.asarray(footprint, dtype=bool)
-    if p.ndim != 2 or p.shape != fp.shape:
+    raw_fp = np.asarray(footprint)
+    if p.ndim != 2 or p.shape != raw_fp.shape:
         raise ValueError('prediction and footprint must be matching 2-D arrays')
-    if not np.issubdtype(p.dtype, np.number):
-        raise ValueError('prediction must be numeric')
+    if (raw_fp.dtype.kind not in 'buif' or not np.isfinite(raw_fp).all()
+            or not np.isin(raw_fp, [0, 1]).all() or not raw_fp.any()):
+        raise ValueError('footprint must be a nonempty finite binary mask')
+    fp = raw_fp.astype(bool, copy=False)
+    if p.dtype.kind not in 'buif':
+        raise ValueError('prediction must be real and numeric')
     if not np.isfinite(p).all() or (p < 0).any() or (p > 1).any():
         raise ValueError('prediction must already be normalized, finite and in [0,1]; no silent repair')
     if np.any((p > 0) & ~fp):
         raise ValueError('positive prediction mass outside the valid footprint')
     cat = None
     if catalogue is not None:
-        cat = np.asarray(catalogue, dtype=bool)
-        if cat.shape != p.shape:
+        raw_cat = np.asarray(catalogue)
+        if raw_cat.shape != p.shape:
             raise ValueError('catalogue shape must match the prediction grid')
+        if (raw_cat.dtype.kind not in 'buif' or not np.isfinite(raw_cat[fp]).all()
+                or not np.isin(raw_cat[fp], [0, 1]).all()):
+            raise ValueError('catalogue must be a finite binary mask inside the footprint')
+        cat = (raw_cat > 0) & fp
         if np.any((p > 0) & cat):
             raise ValueError('positive prediction mass on the mapped catalogue')
 
@@ -122,14 +134,18 @@ def write_submission(path, prediction, sample, footprint, *, note, name,
 
         # Stage auxiliary files first and commit the TIFF last as the primary artifact.
         for source, destination in ((tmp_zip, zip_path), (tmp_receipt, receipt_path), (tmp_tif, path)):
-            os.replace(source, destination)
-            committed.append(destination)
+            # An exists() check alone races with concurrent writers. Hard-link
+            # each file on the same filesystem so an existing destination can
+            # never be replaced; rollback removes only links created here.
+            os.link(source, destination)
+            committed.append((source, destination))
         return receipt
     except Exception:
-        # A failed validation or serialization must never leave a new partial deliverable.
-        for destination in committed:
+        # Do not knowingly delete a destination replaced by a competing writer.
+        for source, destination in reversed(committed):
             try:
-                destination.unlink()
+                if os.path.samefile(source, destination):
+                    destination.unlink()
             except FileNotFoundError:
                 pass
         raise

@@ -1,3 +1,5 @@
+> **Historical proposal record, not authorization or an estimate.** The self-assigned H1 and changed budget were not authorized by the active protocol; both emitted files fail the literal lattice rule. The numbers described below as expected gains or live projections are speculative and withdrawn as score evidence. A 22,163-dot capacity-only upper bound is not demonstrated feasibility. H2 resembles the current review’s proposed topographic scaling-break idea; it remains untested and is not proof of global novelty. GPU hardware is not categorically required. See the [corrected review](REVIEW.md) and [current hypotheses](../review-4239f6e5/HYPOTHESES.md).
+
 # S26 Hypotheses — Emission-geometry lane + 4 novel feature candidates
 *Prior lane: S25-FABRIC holdout beats control +0.023 [0.014,0.032] but live projection collapsed to 0.079 vs R0 0.273 — detector improved, emitter still catalogue-hugging at 3.05 px collar.*
 

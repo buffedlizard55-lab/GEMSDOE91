@@ -21,7 +21,7 @@ from gems57 import evaluate_holdout as eh
 from gems57 import spatial as g57
 from gems57.submission_writer import write_submission
 
-DATA = ROOT/"data"; OUT = ROOT/"docs/s26-lidarrad"; OUT.mkdir(parents=True, exist_ok=True)
+DATA = ROOT/"data"; OUT = ROOT/"docs/s26-lidarrad"
 BUDGET = 37654; SPACING = 2.8; COLLAR = 3.05
 FEAT_NAMES = ([f"lidar_{n}" for n in ["ex_max","ex_mean","step_max","lapneg_max","lappos_max","downface_max","upface_max","cross_max","relief","coh100","strike"]]
               + [f"rad_{n}" for n in ["K","Th","U","TC"]]
@@ -74,6 +74,7 @@ def dotted_select(surface, allowed, budget, spacing=SPACING, seed=0):
     return out
 
 def main():
+    raise RuntimeError("Historical S26 LiDAR-radiometric runner is disabled: it wrote before full uniqueness gates and its feature/canary checks require review; see docs/review-4239f6e5/REVIEW.md")
     t0=time.time()
     with rasterio.open(DATA/"official/sample_submission.tif") as d:
         footprint = np.isfinite(d.read(1)); profile = d.profile.copy()

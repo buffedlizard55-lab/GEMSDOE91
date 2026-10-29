@@ -108,6 +108,7 @@ def emit_with_collar(base_dots, g, budget, collar_px):
     return out, score
 
 def write_candidate(budget, collar, note, suffix):
+    raise RuntimeError("Historical S26 emitter is disabled: it wrote before surface/duplicate gates; see docs/review-4239f6e5/REVIEW.md")
     g = GRID.load_grid(ROOT / "data/official")
     base = load_s25_dots()
     dots, pseudo = emit_with_collar(base, g, budget, collar)
@@ -214,6 +215,7 @@ def audit_dots(dots, g):
     return checks, max_ov, max_path, nine_max, nine_path, comp_max, comp_path, dense
 
 def main():
+    raise RuntimeError("Historical S26 emitter is disabled: no assigned lane, no authenticated sample, and duplicate outputs; see docs/review-4239f6e5/REVIEW.md")
     OUT.mkdir(parents=True, exist_ok=True)
     # Freeze refs
     g = GRID.load_grid(ROOT / "data/official")
