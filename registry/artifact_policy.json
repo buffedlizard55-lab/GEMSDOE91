@@ -776,6 +776,18 @@
       "sha256": "975c3eb1692ef7b88595e1f54ac1cd0bc6adefd6015ddda13d0588ea9ff22753",
       "status": "parallel_quarantined",
       "reason": "Concurrent S26 research only; independent final-dot overlap 99.2325% vs pinned lattice; literal duplicate. No organizer acceptance or submission approval."
+    },
+    {
+      "path": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
+      "sha256": "fa894fff21e4e3053ec5ceccba1930e7d9b9c6eb19bf29dad3caa1b49b354517",
+      "status": "current_research_only",
+      "reason": "S27-FABRIC-FAR research-only negative: stratified+capped emission on S25 fabric surface; unique vs nine (max 42.1%) and competitive registry (max 61.9%) at freeze time, but G4 holdout instrument-degenerate FAIL and G5 SGMC>500m 0.076559 < R0 0.088516 FAIL; LFI MODEL projection 0.18731 (not a score). NOT OK TO SUBMIT (docs/s27/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.zip",
+      "sha256": "27f8fd4d0ee8eaaa815718e0bde0f430e9634db38a265e18b863b2b34da6707b",
+      "status": "current_research_only",
+      "reason": "Single-TIFF ZIP of S27-FABRIC-FAR research-only negative; NOT OK TO SUBMIT (docs/s27/run-card.json)."
     }
   ]
 }

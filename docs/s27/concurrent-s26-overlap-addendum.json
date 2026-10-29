@@ -1,0 +1,25 @@
+{
+  "addendum_date": "2026-10-29",
+  "purpose": "Three S26 research rasters (PRs #183/#184) merged to main DURING the S27 session, after the S27 registry freeze. This addendum measures the frozen S27 candidate against them post-hoc; it does not alter the finalized (fail-closed) run card or gates.",
+  "method": "Euclidean EDT, fraction of dots with distance <= 3.0 px to the other raster's positive pixels (same operator as src/gems91/novelty.py); computed both directions.",
+  "candidate": "docs/downloads/gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
+  "comparisons": {
+    "docs/downloads/gems91-s26-fabric-emit-10pxcap-22163dots-20261029T143240Z-e7724d8c-zeros.tif": {
+      "other_dots": 22163,
+      "s27_dots_within_3px_of_other": 0.4298,
+      "other_dots_within_3px_of_s27": 0.7797
+    },
+    "docs/downloads/gems91-s26-fabric-emit-10pxcap-37654dots-20261029T143324Z-28228279-zeros.tif": {
+      "other_dots": 37654,
+      "s27_dots_within_3px_of_other": 0.5005,
+      "other_dots_within_3px_of_s27": 0.6173
+    },
+    "docs/downloads/gems91-s26-lidarrad-37654dots-20261029-e9ffee0b60-zeros.tif": {
+      "other_dots": 37654,
+      "s27_dots_within_3px_of_other": 0.3642,
+      "other_dots_within_3px_of_s27": 0.4696
+    }
+  },
+  "interpretation": "Protocol direction (S27 dots within 3 px of each concurrent raster): 42.98%, 50.05%, 36.42% \u2014 all <= 70%, so S27's competitive-scope uniqueness survives the concurrent arrivals; frozen-registry max 61.90% remains the binding maximum. Reverse direction shows the concurrent 22,163-dot S26 raster is 77.97% within 3 px of S27 (and, per the concurrent review IR-4239-03, those S26 lanes are separately lattice-duplicates with disabled runners). S25's reserved emission lane was thus executed concurrently by two lanes again (S26 collar variant + S27 stratified variant) \u2014 the path-prefix/lane-assignment governance gap (IR-S27-01) is now measured, not hypothetical. Both are negative; 0 slots used by either.",
+  "verdict_change": "none (already negative; OK TO SUBMIT: NO)"
+}

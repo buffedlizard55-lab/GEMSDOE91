@@ -270,6 +270,56 @@ def s25_callout(root=ROOT) -> str:
 
 
 
+def s27_callout(root=ROOT) -> str:
+    """Latest-session (S27-FABRIC-FAR) research download, re-verified fail-closed.
+
+    Reads only the committed S27 run card + diagnostics and the bytes on disk;
+    raises rather than publishing a stale or submit-positive callout.
+    """
+    docs = root / "docs"
+    card_path = docs / "s27/run-card.json"
+    if not card_path.is_file():
+        return ""
+    card = json.loads(card_path.read_text(encoding="utf-8"))
+    if card.get("ok_to_submit") is not False or card.get("verdict") != "negative":
+        raise ValueError("S27-FABRIC-FAR must remain explicitly not approved for submission")
+    if card.get("organizer_confirmed_score") is not None or card.get("estimated_leaderboard_score") is not None:
+        raise ValueError("S27-FABRIC-FAR must not claim an organizer score or leaderboard estimate")
+    diag = json.loads((docs / "s27/diagnostics.json").read_text(encoding="utf-8"))
+    if diag.get("candidate", {}).get("sha256") != card.get("raster_sha256"):
+        raise ValueError("S27 diagnostics do not describe the run-card raster")
+    art = card.get("artifact", {})
+    tif = (root / art["tif"]).resolve()
+    archive_path = (root / art["zip"]).resolve()
+    downloads = (docs / "downloads").resolve()
+    if not tif.is_relative_to(downloads) or not archive_path.is_relative_to(downloads):
+        raise ValueError("S27-FABRIC-FAR artifact path escapes docs/downloads")
+    tif_bytes = tif.read_bytes()
+    if hashlib.sha256(tif_bytes).hexdigest() != card.get("raster_sha256"):
+        raise ValueError("S27-FABRIC-FAR TIFF hash mismatch")
+    if hashlib.sha256(archive_path.read_bytes()).hexdigest() != art.get("zip_sha256"):
+        raise ValueError("S27-FABRIC-FAR ZIP hash mismatch")
+    with zipfile.ZipFile(archive_path) as archive:
+        members = [n for n in archive.namelist() if not n.endswith("/")]
+        if members != [tif.name] or archive.read(members[0]) != tif_bytes:
+            raise ValueError("S27-FABRIC-FAR ZIP must contain exactly its TIFF bytes")
+    note = card.get("submission_note", "")
+    if not isinstance(note, str) or not 0 < len(note) <= 140:
+        raise ValueError("S27-FABRIC-FAR note must contain 1-140 characters")
+    h = card["holdout"]
+    corr = card["correlation_overlap_vs_registry"]
+    lfi = card.get("lfi_model_projection_not_a_score", {})
+    tif_href = tif.relative_to(docs.resolve()).as_posix()
+    zip_href = archive_path.relative_to(docs.resolve()).as_posix()
+    return f'''<section class="card" style="border:3px solid #9b1c1c;background:#fff7ed" aria-label="S27-FABRIC-FAR latest research artifact; not approved for submission">
+<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<h2>S27-FABRIC-FAR · Distance-stratified uniqueness-capped emission on the S25 fabric surface · 37,654 dots · latest session 2026-10-29</h2>
+<p>A new TIF was generated this session: unique vs the nine focus leaders (max {100*corr["final_dot_max_overlap_nine_leaders"]:.2f}% of dots within 3 px) and vs every competitive registry raster (max {100*corr["final_dot_max_overlap_competitive_le_90000px"]:.2f}%, the gate S25 failed at 74.89%). Distance quotas moved the median dot from 5.8 px to 21.5 px from the catalogue; the labelled LFI model projection (not a score) rose from S25's 0.07917 to {lfi.get("ridge1", 0):.4f}, still below R0's projection (0.27342). HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, v3 folds, {h["n_withheld_positives"]:,} withheld — not a leaderboard score); paired delta vs the matched incumbent is exactly 0 by fold construction (zero visible catalogue pixels inside every test quadrant). Verdict negative (gates G4/G5 fail), so it must not be submitted. Full evidence, file/estimate/uniqueness table, nine-site table and submission guide: <a href="s27/executive-summary.html">S27 executive summary</a>.</p>
+<p><a class="button" download href="{esc(tif_href, quote=True)}">Download S27 research GeoTIFF</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP</a> <a href="s27/REVIEW.md">Session review</a> · <a href="s27/run-card.json">Run card</a></p>
+<p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
+</section>'''
+
+
 def _root_verdict() -> str:
     """Fail-closed redirect stub; the previous S25-TLF approval was revoked."""
     return (
@@ -291,7 +341,8 @@ def render() -> None:
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
-    parallel_card = concurrent_s26_callout(ROOT) + s25_callout(ROOT) + s24_callout(ROOT)
+    parallel_card = (s27_callout(ROOT) + concurrent_s26_callout(ROOT)
+                     + s25_callout(ROOT) + s24_callout(ROOT))
     for source_name, target_name in ((CURRENT['index_src'], "index.html"),
                                      (CURRENT['exec_src'], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
