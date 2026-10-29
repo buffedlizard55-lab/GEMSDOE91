@@ -202,6 +202,55 @@ def s24_callout(root=ROOT) -> str:
 </section>'''
 
 
+def s27_callout(root=ROOT) -> str:
+    """Latest-session (S27-CVDC) research download, re-verified fail-closed.
+
+    Reads only the committed S27 run card and the bytes on disk; raises rather
+    than publishing a stale or submit-positive callout.
+    """
+    docs = root / "docs"
+    card_path = docs / "s27/run-card.json"
+    if not card_path.is_file():
+        return ""
+    card = json.loads(card_path.read_text(encoding="utf-8"))
+    if card.get("ok_to_submit") is not False or card.get("verdict") != "negative":
+        raise ValueError("S27-CVDC must remain explicitly not approved for submission")
+    if card.get("organizer_confirmed_score") is not None or card.get("estimated_leaderboard_score") is not None:
+        raise ValueError("S27-CVDC must not claim an organizer score or leaderboard estimate")
+    art = card.get("artifact", {})
+    tif = (root / art["tif"]).resolve()
+    archive_path = (root / art["zip"]).resolve()
+    downloads = (docs / "downloads").resolve()
+    if not tif.is_relative_to(downloads) or not archive_path.is_relative_to(downloads):
+        raise ValueError("S27-CVDC artifact path escapes docs/downloads")
+    tif_bytes = tif.read_bytes()
+    if hashlib.sha256(tif_bytes).hexdigest() != card.get("raster_sha256"):
+        raise ValueError("S27-CVDC TIFF hash mismatch")
+    if hashlib.sha256(archive_path.read_bytes()).hexdigest() != art.get("zip_sha256"):
+        raise ValueError("S27-CVDC ZIP hash mismatch")
+    with zipfile.ZipFile(archive_path) as archive:
+        members = [n for n in archive.namelist() if not n.endswith("/")]
+        if members != [tif.name] or archive.read(members[0]) != tif_bytes:
+            raise ValueError("S27-CVDC ZIP must contain exactly its TIFF bytes")
+    note = card.get("submission_note", "")
+    if not isinstance(note, str) or not 0 < len(note) <= 140:
+        raise ValueError("S27-CVDC note must contain 1-140 characters")
+    h = card["holdout"]
+    corr = card["correlation_overlap_vs_registry"]
+    nine_max = corr["final_dot_max_overlap_nine_leaders"]
+    comp_max = corr["final_dot_max_overlap_competitive_le_90000px"]
+    paired_s25 = h["paired_differences_all_controls"]["control_s25_fabric_e2"]
+    tif_href = tif.relative_to(docs.resolve()).as_posix()
+    zip_href = archive_path.relative_to(docs.resolve()).as_posix()
+    return f'''<section class="card" style="border:3px solid #1e3a8a;background:#eff6ff" aria-label="S27-CVDC latest research artifact; not approved for submission">
+<p><span class="badge">OK TO DOWNLOAD: YES — RESEARCH ONLY</span> <span class="badge bad">OK TO SUBMIT: NO</span></p>
+<h2>S27-CVDC E2 · Contour-potential strike discordance + valley knickzone stitched OOF · 37,654 dots · latest session 2026-10-29</h2>
+<p>A new unique research GeoTIFF was generated in Session 27: unique vs all nine focus leaders (max {100*nine_max:.2f}% within 3 px) <em>and</em> unique vs all 180 competitive non-blanket fleet rasters (max {100*comp_max:.2f}% within 3 px, limit 70%; surface |&rho;| max {corr["surface_max_abs_rho"]:.3f}, limit 0.90). It achieves repo-best v3 HOLDOUT-DTI {h["dti"]:.6f} [{h["ci95"][0]:.6f}, {h["ci95"][1]:.6f}] ({esc(h["evaluator_version"])}, {esc(h["split_version"])}, {h["n_withheld_positives"]:,} withheld — not a leaderboard score), beating S25-FABRIC E2 by +{paired_s25["delta"]:.6f} [{paired_s25["ci95"][0]:+.6f}, {paired_s25["ci95"][1]:+.6f}] and curing S25's 3–5 px catalogue hugging (9.8% vs 45.9%; blind SGMC off-catalogue DTI 0.095190 vs S25's 0.079042). Verdict negative / NOT OK TO SUBMIT: literal all-registry check includes the 206,895-dot synthetic calibration lattice ({100*corr["final_dot_max_overlap_all"]:.2f}% &gt; 70%) and weekly slots require separate coordinator approval. Full executive summary, 9-site uniqueness table, PhD forensic analysis of GEMSDOE32 (0.2778), and submission guide: <a href="s27/executive-summary.html"><strong>S27 Executive Summary &amp; Download Table</strong></a>.</p>
+<p><a class="button" download href="{esc(tif_href, quote=True)}">Download S27 research GeoTIFF (.tif)</a> <a class="button outline" download href="{esc(zip_href, quote=True)}">Single-TIFF ZIP (.zip)</a> <a href="s27/executive-summary.html">S27 Executive Summary</a> · <a href="s27/REVIEW.md">3-Pass Review</a> · <a href="s27/run-card.json">Run card</a></p>
+<p class="small">SHA-256 <code>{esc(card["raster_sha256"])}</code> · name <code>{esc(card["submission_name"])}</code> · note ({len(note)}/140): <code>{esc(note)}</code></p>
+</section>'''
+
+
 def s25_callout(root=ROOT) -> str:
     """Latest-session (S25-FABRIC) research download, re-verified fail-closed.
 
@@ -270,7 +319,7 @@ def render() -> None:
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
     # incompatible run cards from appearing to be the current recommendation.
-    parallel_card = s25_callout(ROOT) + s24_callout(ROOT)
+    parallel_card = s27_callout(ROOT) + s25_callout(ROOT) + s24_callout(ROOT)
     for source_name, target_name in ((CURRENT['index_src'], "index.html"),
                                      (CURRENT['exec_src'], "executive-summary.html")):
         source = (docs / source_name).read_text(encoding="utf-8")
@@ -304,6 +353,7 @@ def render() -> None:
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
         '<h1>GEMSDOE91 · Current review</h1>' + _root_verdict() + 
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
+        '<a href="docs/s27/executive-summary.html">S27-CVDC executive summary, nine-site table and submission guide</a> · '
         '<a href="docs/s25-tlf/executive-summary.html">Current executive summary, nine-site table and submission guide</a> · '
         '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
         '</main></body></html>\n', encoding='utf-8')

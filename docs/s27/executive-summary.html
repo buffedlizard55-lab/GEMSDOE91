@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GEMSDOE91 · Session 27 (S27-CVDC) Executive Summary, Download &amp; Submission Guide</title>
+<style>
+:root{--ink:#0f172a;--muted:#475569;--bg:#f8fafc;--card:#ffffff;--line:#cbd5e1;--blue:#1e3a8a;--blue-bg:#eff6ff;--red:#991b1b;--red-bg:#fef2f2;--green:#065f46;--green-bg:#ecfdf5;--amber:#92400e;--amber-bg:#fffbeb}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:1120px;margin:0 auto;padding:20px 18px 64px}
+header.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding-bottom:14px;border-bottom:2px solid var(--line);margin-bottom:20px}
+header.top nav{display:flex;flex-wrap:wrap;gap:14px;font-size:14px}
+a{color:var(--blue)}
+.hero{border:3px solid var(--blue);background:var(--blue-bg);border-radius:10px;padding:20px 22px;margin-bottom:22px}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+.badge{display:inline-block;padding:5px 11px;border-radius:999px;font-weight:700;font-size:13px;letter-spacing:.02em}
+.badge.dl{background:var(--green-bg);color:var(--green);border:1.5px solid var(--green)}
+.badge.nosub{background:var(--red-bg);color:var(--red);border:1.5px solid var(--red)}
+.badge.info{background:var(--amber-bg);color:var(--amber);border:1.5px solid var(--amber)}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 12px}
+.btn{display:inline-block;padding:11px 18px;border-radius:7px;font-weight:700;text-decoration:none;font-size:15px}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.secondary{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin:18px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+h1{font-size:25px;margin:6px 0 10px;line-height:1.25}
+h2{font-size:20px;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:16px;margin:14px 0 6px}
+.table-wrap{width:100%;overflow-x:auto;margin:12px 0 20px}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:14px}
+caption{text-align:left;font-weight:700;padding:8px 0;color:var(--ink)}
+th,td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left;overflow-wrap:anywhere}
+thead th{background:#e2e8f0;font-weight:700}
+td.no{background:var(--red-bg);color:var(--red);font-weight:700}
+td.ok{background:var(--green-bg);color:var(--green)}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
+code{overflow-wrap:anywhere}
+pre{background:#0f172a;color:#f8fafc;padding:14px;border-radius:7px;overflow-x:auto}
+.small{font-size:13px;color:var(--muted)}
+.skip{position:absolute;left:-9999px}
+.skip:focus{position:static;display:inline-block;padding:8px;background:#fff}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+<header class="top">
+  <div><strong>GEMSDOE91 · Session 27 (<code>S27-CVDC</code>)</strong><br><span class="small">DrivenData DOE GEMS Prize · GeoDAWN Hidden Fault &amp; Geothermal Conduit Discovery</span></div>
+  <nav aria-label="Page navigation">
+    <a href="../index.html"><strong>Portal Home</strong></a>
+    <a href="#download-table">Download &amp; Score Table</a>
+    <a href="#nine-sites">9 Focus Sites &amp; Uniqueness</a>
+    <a href="#forensics">Why GEMSDOE32 Scored 0.2778</a>
+    <a href="#hypotheses">Novel Hypotheses &amp; Ablation</a>
+    <a href="#how-to-submit">How to Submit</a>
+    <a href="../download-audit.html">All-Download Audit</a>
+  </nav>
+</header>
+
+<main id="main">
+<section class="hero" aria-label="Primary download and automated submission readiness gate">
+  <div class="badges">
+    <span class="badge dl">OK TO DOWNLOAD: YES — RESEARCH ONLY</span>
+    <span class="badge nosub">OK TO SUBMIT: NO — DENSE LATTICE &amp; SELECTOR GATE</span>
+    <span class="badge info">REPO-BEST v3 HOLDOUT-DTI: 0.169391 (+0.023379 vs S25-FABRIC)</span>
+  </div>
+  <h1>S27-CVDC E2 · Contour-Potential Strike Discordance + Valley Knickzone Stitched OOF (37,654 Dots)</h1>
+  <p><strong>Immediate Automated Verdict:</strong> A brand-new, geologically novel single-band GeoTIFF was generated and verified in Session 27. It passes <strong>100% of format/range checks</strong> (<code>EPSG:32611</code>, <code>3730&times;3292</code>, <code>float32</code>, <code>nodata=None</code>, values strictly in <code>[0.0, 1.0]</code>, zero NaN anywhere), passes <strong>uniqueness against all 9 focus leaders</strong> (max <strong>44.37%</strong> within 3 px, limit &le;70%) and <strong>all 180 competitive non-blanket fleet rasters</strong> across <code>GEMSDOE</code>–<code>GEMSDOE92</code> (max <strong>56.81%</strong>, curing S25-FABRIC's 74.89% breach), and achieves the repository's highest spatially-buffered v3 <code>HOLDOUT-DTI</code> (<strong>0.169391</strong>, 95% CI <code>[0.150545, 0.188903]</code>) plus blind USGS SGMC off-catalogue DTI <strong>0.095190</strong> (matching <code>GEMSDOE32</code>'s 0.095386). It remains marked <strong>OK TO SUBMIT: NO</strong> fail-closed because (1) literal all-registry overlap includes the 206,895-dot synthetic calibration blanket <code>calib_r13lattice_00904.tif</code> (99.93% &gt; 70%; mathematical floor &ge;82.34% at 37,654 dots) and (2) live weekly submission slots require separate human coordinator approval.</p>
+
+  <div class="btns">
+    <a class="btn primary" download href="../downloads/gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif">&#8595; Download Unique GeoTIFF (.tif) — 37,654 dots</a>
+    <a class="btn secondary" download href="../downloads/gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.zip">&#8595; Download Single-TIFF Archive (.zip)</a>
+    <a class="btn secondary" href="run-card.json">Machine-Readable Run Card (.json)</a>
+    <a class="btn secondary" href="diagnostics.json">Post-Hoc SGMC &amp; LFI Diagnostics (.json)</a>
+  </div>
+
+  <p class="small">
+    <strong>File:</strong> <code>gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif</code> · <strong>SHA-256:</strong> <code>fc77890797ae076d5e9be023bd1405541b4d4c0b2fc3754e07da5c45d11554a0</code><br>
+    <strong>Unique Submission Name:</strong> <code>gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros</code><br>
+    <strong>Short Submission Note (110/140 chars):</strong> <code>S27 CVDC contour-potential discordance+valley knickzone stitched OOF 37654 dots; research only, check run-card</code><br>
+    <strong>Leakage Canaries:</strong> 47 features &times; 5 (4 v3 folds + pooled) = 235 checks; max symmetric AUC = <strong>0.7403</strong> (&le;0.90 PASS).
+  </p>
+</section>
+
+<div class="grid2">
+  <div class="card">
+    <h3>How S27-CVDC Cured S25-FABRIC's Failure Mode</h3>
+    <p class="small"><code>LIMITATIONS_AND_NEXT_STEPS.md</code> identified why S25-FABRIC E2 failed promotion despite beating its base control: <code>run_s25_fabric.py</code> refit HGB <em>in-sample</em> on all <code>60,988</code> catalogue pixels before emission, causing <strong>45.9%</strong> of dots to hug the 3–5 px collar (median distance 5.83 px), breaching 70% overlap vs <code>bhar-e3</code> (74.89%), and depressing blind SGMC (0.079042) and LFI (0.0792). S27-CVDC emits strictly from the <strong>stitched 4-fold spatially-buffered OOF surface</strong> via a 300 m triangular-kernel CELF submodular optimizer: 3–5 px hugging dropped <strong>45.9% &rarr; 9.8%</strong> (median distance <strong>21.63 px</strong> vs R0's 19.65 px), blind SGMC rose <strong>+20.4%</strong> (0.079042 &rarr; <strong>0.095190</strong>), LFI rose <strong>+124.2%</strong> (0.0792 &rarr; <strong>0.1775</strong>), and max competitive overlap dropped <strong>74.89% &rarr; 56.81%</strong>.</p>
+  </div>
+  <div class="card">
+    <h3>Live Competition Context (Fetched 2026-10-29)</h3>
+    <p class="small">Per <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official DrivenData leaderboard</a> (fetched <code>2026-10-29T13:55:00Z</code>): <strong>#1 = 0.4544</strong> (<code>xiaofanhu</code>), <strong>#2 = 0.3916</strong> (<code>cfld__</code>), <strong>#5 = 0.3642</strong> (<code>op01</code> — Phase 1 top-5 $10k cutoff), <strong>#10 = 0.3405</strong> (<code>zeaal</code>). Prompt references to <code>0.3195</code> and <code>0.4413</code> reflect earlier snapshots. Under Official Rules &sect;3.6 (<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR/DOE 96647.pdf</a>), teams must select <strong>one single submission</strong> for both Phase 1 ($50k hidden test set) and Phase 2 ($250k expert-revised full fault set).</p>
+  </div>
+</div>
+
+<h2 id="download-table">1. Downloadable Candidates: File, Labeled Score Evidence &amp; Uniqueness</h2>
+<p class="small">Every number is strictly labeled per Parallel-Run Protocol Rule 3 as <code>HOLDOUT-DTI</code> (with evaluator version, withheld positives, and 95% CI), <code>ORGANIZER-CONFIRMED</code> (none exist in this repo), or post-hoc <code>MODEL_PROJECTION_NOT_A_SCORE</code> / <code>SGMC-OFFCAT-CONTROL-DTI</code>.</p>
+<div class="table-wrap"><table>
+  <caption>Repository Research GeoTIFF Downloads &amp; Automated Gate Summary</caption>
+  <thead>
+    <tr>
+      <th scope="col">Candidate &amp; One-Click Download</th>
+      <th scope="col">Strictly Labeled Score &amp; Diagnostic Evidence</th>
+      <th scope="col">Uniqueness vs Focus Leaders &amp; Fleet Registry</th>
+      <th scope="col">OK to Submit?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">S27-CVDC E2 — THIS SESSION (primary research deliverable)<br><a href="../downloads/gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif"><strong>gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif</strong></a><br><small>SHA-256 <code>fc77890797ae076d…</code> · 37,654 dots</small></th><td><strong>ORGANIZER-CONFIRMED: none.</strong><br><strong>Primary HOLDOUT-DTI: 0.169391 [0.150545, 0.188903]</strong> (gems57-pooled-hide-v2, label-blind-quadrants-v3-feature-buffered, 60,988 withheld positives; <strong>+0.023379</strong> vs S25-FABRIC E2, 95% CI [+0.007929, +0.039110]).<br>Post-hoc LFI MODEL projection (<code>MODEL_PROJECTION_NOT_A_SCORE</code>): <strong>0.1775</strong> (ridge10 0.1661; LOSO RMSE 0.0196).<br>Blind USGS SGMC off-catalogue diagnostic: <strong>0.095190</strong> (99.8% of R0).</td><td><strong>PASS vs all 9 focus sites:</strong> max <strong>44.37%</strong> within 3 px (limit 70%).<br><strong>PASS vs all 180 competitive non-blanket fleet rasters (&le;90k px):</strong> max <strong>56.81%</strong> within 3 px (closest: <code>GEMSDOE63__gemsdoe63-cvarlw-thin-s…</code>); surface |&rho;| max <strong>0.203</strong> (limit 0.90).<br><strong>FAIL literal dense-lattice gate:</strong> 99.93% vs 206,895-dot synthetic <code>calib_r13lattice_00904.tif</code> (pigeonhole floor &ge;82.34%).</td><td class="no">NO<br><small>Research only</small></td></tr><tr><th scope="row">S25-FABRIC E2 — prior v3-fold incumbent (remediated in S27)<br><a href="../downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif"><strong>gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif</strong></a><br><small>SHA-256 <code>0046fca5d12c915b…</code> · 37,654 dots</small></th><td><strong>ORGANIZER-CONFIRMED: none.</strong><br>HOLDOUT-DTI: 0.147741 [0.129760, 0.167562] (v3 folds, 60,988 withheld).<br>Post-hoc LFI MODEL projection: 0.0792 (ridge10 0.0807; depressed by in-sample refit placing 45.9% of dots at 3–5 px).<br>Blind SGMC diagnostic: 0.079042.</td><td>PASS vs 9 focus sites (max 40.19%). <strong>FAIL competitive registry:</strong> 74.89% within 3 px of <code>bhar-e3</code> (&gt;70%). (S27-CVDC E2 overlaps S25-FABRIC E2 by only 27.65%.)</td><td class="no">NO<br><small>Research only</small></td></tr><tr><th scope="row">S21-PDWC E3 — earlier v2-fold candidate<br><a href="../downloads/gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif"><strong>gems91-s21-pdwc-e3-20261026T074827Z-f23566d0-zeros.tif</strong></a><br><small>SHA-256 <code>74eab3db8a89d415…</code> · 37,654 dots</small></th><td><strong>ORGANIZER-CONFIRMED: none.</strong><br>Historical HOLDOUT-DTI 0.195724 (superseded v2 instrument — not comparable to v3).<br>Post-hoc LFI MODEL projection: 0.1976 (ridge10 0.1896).<br>Blind SGMC diagnostic: 0.093878.</td><td>PASS vs competitive rasters (max 64.00% capped); FAIL literal dense calibration blankets (100%). (S27-CVDC E2 overlaps S21-PDWC E3 by 43.26%.)</td><td class="no">NO<br><small>Research only</small></td></tr><tr><th scope="row">S24-CCKM E2 — earlier cross-kurtosis candidate<br><a href="../downloads/gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif"><strong>gems91-s24-cckm-e2-37654dots-20261027T190354Z-d69650bd-zeros.tif</strong></a><br><small>SHA-256 <code>aba3fb405cfa3a22…</code> · 37,654 dots</small></th><td><strong>ORGANIZER-CONFIRMED: none.</strong><br>Historical HOLDOUT-DTI 0.075896 (superseded v2 split).<br>Post-hoc LFI MODEL projection: 0.0531 · Blind SGMC diagnostic: 0.054493.</td><td>PASS vs 9 focus sites (max 16.45%) and competitive rasters (max 36.32%); FAIL dense lattice (99.97%). (S27-CVDC E2 overlaps S24-CCKM E2 by 20.78%.)</td><td class="no">NO<br><small>Research only</small></td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="nine-sites">2. Focus Sites &amp; Broader Fleet Uniqueness Table (GEMSDOE24–36, GEMSDOE91, GEMSDOE92)</h2>
+<div class="table-wrap"><table>
+  <caption>All Nine Focus Sites + Fleet Comparators vs Session 27 Candidate (<code>S27-CVDC E2</code>)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Site</th>
+      <th scope="col">Highest-Scoring Reference File &amp; Dot Budget</th>
+      <th scope="col">Reported Value &amp; Post-Hoc Diagnostics</th>
+      <th scope="col">S27-CVDC E2 Uniqueness vs This Site (&le;70% Gate)</th>
+      <th scope="col">Sibling Mutual Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE32/">GEMSDOE32</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/47c946df19ba7c539d0240499c3080bc9c027d96/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"><code>gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code></a><br><small>SHA-256 <code>c55bafc470054e82…</code> · 37,654 dots</small></td><td><strong>0.2778</strong> <small>(USER-REPORTED prompt claim; ORGANIZER-CONFIRMED: none)</small><br><small>LFI in-anchor fit: 0.2734 · SGMC diagnostic: 0.095386</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>41.74%</strong> within 3 px<br><small>surface &rho; = +0.066 · dot &rho; = +0.021</small></td><td class="no">Peer duplicate (100.00% vs GEMSDOE24) — do not copy</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE36/">GEMSDOE36</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE36/blob/966fafb03d9555e08330007e39ec734cae5c11e0/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif"><code>gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</code></a><br><small>SHA-256 <code>e15891020b9c5705…</code> · 38,854 dots</small></td><td><strong>0.2750</strong> <small>(USER-REPORTED prompt claim; ORGANIZER-CONFIRMED: none)</small><br><small>LFI in-anchor fit: 0.2708 · SGMC diagnostic: 0.096770</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>42.17%</strong> within 3 px<br><small>surface &rho; = +0.065 · dot &rho; = +0.021</small></td><td class="no">Peer duplicate (97.58% vs GEMSDOE27) — do not copy</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">GEMSDOE28</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/blob/aced524e5c9d72a9ac6bfdbb5606c17002f458dd/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif"><code>gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif</code></a><br><small>SHA-256 <code>5556aa1438fd6737…</code> · 37,660 dots</small></td><td><strong>0.2710</strong> <small>(USER-REPORTED prompt claim; ORGANIZER-CONFIRMED: none)</small><br><small>LFI in-anchor fit: 0.2671 · SGMC diagnostic: 0.093356</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>41.62%</strong> within 3 px<br><small>surface &rho; = +0.067 · dot &rho; = +0.020</small></td><td class="no">Peer duplicate (100.00% vs GEMSDOE24) — do not copy</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE31/">GEMSDOE31</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE31/blob/914f08eab4a51692fee30b34f827d399d29a860f/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif"><code>gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif</code></a><br><small>SHA-256 <code>07b6db440535404b…</code> · 40,199 dots</small></td><td><strong>0.2708</strong> <small>(USER-REPORTED prompt claim; ORGANIZER-CONFIRMED: none)</small><br><small>LFI in-anchor fit: 0.2684 · SGMC diagnostic: 0.095295</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>42.10%</strong> within 3 px<br><small>surface &rho; = +0.070 · dot &rho; = +0.020</small></td><td class="no">Peer duplicate (100.00% vs GEMSDOE24) — do not copy</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE33/">GEMSDOE33</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/deeb6a8aa702289347607e543b8f01eef99dec68/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif"><code>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</code></a><br><small>SHA-256 <code>87f857d505e23247…</code> · 41,865 dots</small></td><td><strong>0.2632</strong> <small>(USER-REPORTED prompt claim; ORGANIZER-CONFIRMED: none)</small><br><small>LFI in-anchor fit: 0.2655 · SGMC diagnostic: 0.095683</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>42.38%</strong> within 3 px<br><small>surface &rho; = +0.072 · dot &rho; = +0.020</small></td><td class="no">Peer duplicate (99.71% vs GEMSDOE27) — do not copy</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE25/">GEMSDOE25</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE25/blob/fa8c09a948915ba3be6754f091de18f0d8887126/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"><code>gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif</code></a><br><small>SHA-256 <code>91eae1ca42ec845e…</code> · 44,090 dots</small></td><td><strong>0.2600</strong> <small>(USER-REPORTED prompt claim; ORGANIZER-CONFIRMED: none)</small><br><small>LFI in-anchor fit: 0.2599 · SGMC diagnostic: 0.094174</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>42.19%</strong> within 3 px<br><small>surface &rho; = +0.076 · dot &rho; = +0.019</small></td><td class="no">Peer duplicate (100.00% vs GEMSDOE24) — do not copy</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE30/">GEMSDOE30</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE30/blob/84506bdbaa36cc4ffb04b687745172debbf4d705/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif"><code>gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif</code></a><br><small>SHA-256 <code>8cf893ead5667df2…</code> · 44,090 dots</small></td><td><strong>0.2600</strong> <small>(USER-REPORTED prompt claim; ORGANIZER-CONFIRMED: none)</small><br><small>LFI in-anchor fit: 0.2599 · SGMC diagnostic: 0.094174</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>42.19%</strong> within 3 px<br><small>surface &rho; = +0.076 · dot &rho; = +0.019</small></td><td class="no">Peer duplicate (100.00% vs GEMSDOE24) — do not copy</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE24/">GEMSDOE24</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/blob/3bbcfbbc1d09e33eee95d03b5635d45b75cb74c8/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif"><code>gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif</code></a><br><small>SHA-256 <code>68d0e2e4fcc594f9…</code> · 60,069 dots</small></td><td><strong>0.2477</strong> <small>(USER-REPORTED prompt claim; ORGANIZER-CONFIRMED: none)</small><br><small>LFI in-anchor fit: 0.2500 · SGMC diagnostic: 0.099911</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>44.04%</strong> within 3 px<br><small>surface &rho; = +0.091 · dot &rho; = +0.024</small></td><td class="no">Peer duplicate (100.00% vs GEMSDOE25) — do not copy</td></tr><tr><th scope="row"><a href="https://buffedlizard55-lab.github.io/GEMSDOE27/">GEMSDOE27</a></th><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE27/blob/b8707c58dbcc0758d23b608ca1675afa6825933e/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif"><code>gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif</code></a><br><small>SHA-256 <code>33003374335d84bf…</code> · 61,328 dots</small></td><td><strong>0.2449</strong> <small>(USER-REPORTED prompt claim; ORGANIZER-CONFIRMED: none)</small><br><small>LFI in-anchor fit: 0.2478 · SGMC diagnostic: 0.101163</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>44.37%</strong> within 3 px<br><small>surface &rho; = +0.091 · dot &rho; = +0.023</small></td><td class="no">Peer duplicate (98.02% vs GEMSDOE24) — do not copy</td></tr><tr><th scope="row"><a href="https://github.com/buffedlizard55-lab/GEMSDOE92">GEMSDOE92</a><br><small>Broader fleet sibling</small></th><td><code>visible-collar-r0-excluded</code> (prompt 0.2784 R0 collar variant) &amp; <code>gemsdoe92-listricdip-updip50-37654</code> (37,654 dots)</td><td><strong>0.2784</strong> &amp; <strong>0.0255</strong> <small>(USER-REPORTED; ORGANIZER-CONFIRMED: none)</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>20.20%</strong> vs listricdip &amp; ~41.7% vs R0 collar variant<br><small>surface &rho; = +0.008</small></td><td class="no">0.2784 is an R0 collar variant (&gt;95% overlap vs GEMSDOE32)</td></tr><tr><th scope="row"><a href="../index.html">GEMSDOE91</a><br><small>Prior live slots on this repo</small></th><td><code>gems91-s17-lftg</code> (0.1823), <code>gems91-s17-cwpc-e3</code> (0.1367), earlier slot (0.0298)</td><td><strong>0.1823</strong>, <strong>0.1367</strong>, <strong>0.0298</strong> <small>(USER-REPORTED prompt history; ORGANIZER-CONFIRMED: none in repo)</small></td><td class="ok"><strong>UNIQUE PASS</strong> — <strong>33.65%</strong> vs LFTG · <strong>35.26%</strong> vs CWPC</td><td class="no">Historical slots already spent</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="forensics">3. PhD Forensic Analysis: Why <code>GEMSDOE32</code> Hit <code>0.2778</code> &amp; How to Beat <code>0.2778</code> / Target <code>&gt;0.3195</code></h2>
+<ol>
+  <li><strong>Exact Mathematical Genealogy of <code>GEMSDOE32 = 0.2778</code>:</strong> All nine focus leaders (<code>0.2449</code>–<code>0.2778</code>) descend from one continuous 19-band monogenic/topographic-corroborated ridge posterior (<code>H19-5</code>, 121,131 px, <code>0.1922</code>). Because Distance-Weighted Tversky (<code>&alpha;=0.2, &beta;=0.8, R=300 m</code>) evaluates <code>TP_w</code> via a <strong>max</strong> over predicted pixels per ground-truth pixel while penalizing <code>FP_w</code> via a <strong>linear sum</strong> over predicted pixels, continuous 1-px ridges triple-pay false positives inside every 300 m disk. Thinning <code>H19-5</code> onto a <code>d=2.8 px</code> Poisson disk (44,090 dots, <code>GEMSDOE25/30 = 0.2600</code>) eliminated ~63% of <code>FP_w</code> at near-zero <code>TP_w</code> loss (+0.0678 DTI). <code>GEMSDOE31/28</code> (<code>h27-4</code>, 40,199 dots, <code>0.2708</code>) pruned dots within 1.0 px of mapped faults (+0.0108 DTI). Finally, <strong><code>GEMSDOE32</code> (<code>h33-h33-2-b2-...-zeros</code>, 37,654 dots, <code>0.2778</code>)</strong> pruned the remaining <strong>2,545 dots within 2.0 px of <code>existing_faults.tif</code></strong>—pure dead-weight false positives because organizer scoring masks visible faults and nearby pixels are already covered from &gt;2 px. Substituting <code>&Delta;FP_w = &minus;2,545</code> into <code>DTI = TP_w / (TP_w + 0.2&middot;FP_w + 0.8&middot;FN_w)</code> yields <code>TP_w &approx; 5,073</code> and predicts <code>0.2778</code> to within <code>0.0006</code>.</li>
+  <li><strong>Why <code>H19-5</code> Pruning Asymptotes at ~<code>0.278</code> (and Disqualifies Derivatives):</strong> Every <code>H19-5</code> derivative shares 97.58%–100% 3-px overlap with the nine leaders (immediate Rule-1 duplicate stop) and leaves <code>TP_w &approx; 5,073</code> frozen because <code>H19-5</code> relies heavily on scarp openness (<code>B12/B19</code>), missing blind intrabasin faults and hydrothermal magnetite-destruction troughs where <code>|
+abla TMI|</code> vanishes along the leached core.</li>
+  <li><strong>How to Beat <code>0.2778</code> and Target <code>&gt;0.3195</code>:</strong> Raising DTI from <code>0.278</code> to <code>0.320+</code> at 37,654 dots requires lifting hidden-fault recall by ~20–25% without adding false-positive mass: (a) <strong>de novo physics for blind/subdued faults</strong> (implemented here via <code>CVDC + PMDB + VCTK</code> + Stage-2 8-azimuth relay bridging, lifting v3 <code>HOLDOUT-DTI</code> from <code>0.1203 &rarr; 0.1694</code> and matching <code>GEMSDOE32</code> on blind USGS SGMC faults at <code>0.0952</code> with only 41.74% dot overlap), and (b) <strong>external 1-m USGS 3DEP LiDAR bare-earth scarps + unclipped GeoDAWN K/eU/eTh</strong> on an unrestricted workstation to resolve 0.3–1.5 m Holocene scarps invisible in the 100 m DEM (Hypothesis <code>H27-4</code> in <a href="GEOTHERMAL_AND_FAULT_RESEARCH.md"><code>docs/s27/GEOTHERMAL_AND_FAULT_RESEARCH.md</code></a>).</li>
+</ol>
+
+<h2 id="hypotheses">4. Preregistered Novel Geological Hypotheses &amp; 3-Experiment v3-Fold Ablation</h2>
+<p class="small">Full mathematical derivations, band-by-band forensic verification (including proof that <code>B06</code> is radiometric Total Count and <code>(B18, B11)</code> are horizontal gravity derivatives <code>(&part;x B13, &part;y B13)</code>), and verified public literature links are archived in <a href="GEOTHERMAL_AND_FAULT_RESEARCH.md"><code>docs/s27/GEOTHERMAL_AND_FAULT_RESEARCH.md</code></a> and <a href="preregistration.md"><code>docs/s27/preregistration.md</code></a>.</p>
+<ul>
+  <li><strong>H27-1 · Contour-Potential Strike Discordance (<code>CVDC</code>, Rank 1 — Implemented):</strong> Subsurface density/magnetic contacts (<code>B13, B18, B11, B02, B09</code>) cutting obliquely across smoothed detrended topographic contours (<code>B12, B19</code>) via Rule-of-V sin<sup>2</sup>(&Delta;&theta;) axial discordance, catching range-oblique transfer zones and concealed piedmont step-faults while rejecting range-parallel unfaulted strata.</li>
+  <li><strong>H27-2 · Paired-Flank Magnetite-Destruction Conduit Bridge (<code>PMDB</code>, Rank 2 — Implemented):</strong> Upwelling geothermal fluids alter host-rock magnetite to pyrite/hematite/clay, creating an axial <code>RTP</code> magnetic trough flanked by twin <code>B03</code> gradients co-located with a gravity step, <code>B15</code>-deconfounded shallow MT conductivity excess (<code>B17</code>), and transtensional strain (<code>B04, B07, B08</code>). Built cleanly inside a 17-feature <code>B12/B19</code>-free Pure-Subsurface specialist branch.</li>
+  <li><strong>H27-3 · Valley-Crossing Transverse Knickzone Alignment (<code>VCTK</code>, Rank 3 — Implemented):</strong> Active piedmont normal faults incised by transverse washes leave aligned profile convexities where along-stream slope break aligns perpendicular to channel tangents across 0.8–1.5 km strike windows.</li>
+  <li><strong>H27-4 · External 1-m USGS 3DEP LiDAR Micro-Scarp + Unclipped GeoDAWN K/Th/U (Rank 4 — Documented Next Step for Unrestricted Host):</strong> Free public <a href="https://www.usgs.gov/3d-elevation-program/about-3dep-products-services">USGS 3DEP</a> + <a href="https://doi.org/10.5066/P93LGLVQ">USGS GeoDAWN</a> science-base grids; blocked only by sandbox network egress allowlist.</li>
+</ul>
+
+<div class="table-wrap"><table>
+  <caption>Preregistered 3-Experiment Results on <code>gems57-pooled-hide-v2</code> (<code>label-blind-quadrants-v3-feature-buffered</code>, 60,988 Withheld Positives, 1,000-Draw 20 km Block Bootstrap)</caption>
+  <thead>
+    <tr>
+      <th scope="col">Experiment / Control Arm</th>
+      <th scope="col">Pooled HOLDOUT-DTI [95% CI]</th>
+      <th scope="col">Paired &Delta; vs S25-FABRIC E2 [95% CI]</th>
+      <th scope="col">Paired &Delta; vs Base Control [95% CI]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><th scope="row">E1 · cvdc_e1_stage1_nms<br><small>34 NoData-masked static features (CVDC + PMDB + VCTK) + NMS (3.05 px)</small></th><td><strong>0.164007</strong><br><small>[0.146397, 0.183228]</small></td><td><strong>+0.017995</strong><br><small>[+0.003278, +0.031695]</small></td><td><strong>+0.043734</strong><br><small>[+0.031915, +0.055849]</small></td></tr><tr><th scope="row">E2 · cvdc_e2_stage2_submod (SELECTED)<br><small>Stage-2 8-azimuth axial bridge (0.78 Full + 0.22 PureSub) + 300 m CELF submodular</small></th><td><strong>0.169391</strong><br><small>[0.150545, 0.188903]</small></td><td><strong>+0.023379</strong><br><small>[+0.007929, +0.039110]</small></td><td><strong>+0.049118</strong><br><small>[+0.034698, +0.063542]</small></td></tr><tr><th scope="row">E3 · cvdc_e3_stitched_uniq_submod<br><small>Stage-2 OOF + far-field ramp + 64% uniqueness-capped CELF submodular</small></th><td><strong>0.168921</strong><br><small>[0.149937, 0.188362]</small></td><td><strong>+0.022909</strong><br><small>[+0.007375, +0.038851]</small></td><td><strong>+0.048648</strong><br><small>[+0.034023, +0.062867]</small></td></tr><tr><th scope="row">Matched Incumbent Control<br><small>control_s25_fabric_e2 (same v3 folds)</small></th><td>0.146012<br><small>[0.128885, 0.164275]</small></td><td>baseline (0.000000)</td><td>+0.025739</td></tr><tr><th scope="row">Matched Base Control<br><small>control_oof_base (6 core bands)</small></th><td>0.120273<br><small>[0.107137, 0.133541]</small></td><td>-0.025739</td><td>baseline (0.000000)</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="how-to-submit">5. Step-by-Step DrivenData Submission Guide (When Selector-Approved)</h2>
+<ol>
+  <li><strong>Respect the Automated Gate First:</strong> Never upload a file marked <code>OK TO SUBMIT: NO</code> without explicit human coordinator sign-off on (a) the synthetic dense-lattice exemption (<code>calib_r13lattice_00904.tif</code>) and (b) remaining weekly submission quota (&le;3/week on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions</a>).</li>
+  <li><strong>Verify File Integrity Locally:</strong> Download <code>gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif</code> (or the <code>.zip</code>) above and verify:<br>
+    <code>sha256sum gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif</code> &rarr; must equal <code>fc77890797ae076d5e9be023bd1405541b4d4c0b2fc3754e07da5c45d11554a0</code>.</li>
+  <li><strong>Why the <code>&ldquo;Predicted values must be in range [0, 1]&rdquo;</code> Error Cannot Occur Here:</strong> Earlier submissions failed when <code>float32</code> GeoTIFF writers copied <code>-3.4028235e+38</code> or <code>NaN</code> outside the study polygon. <code>vendor/gems57/submission_writer.py</code> writes <code>0.0</code> outside the footprint, binary <code>{0.0, 1.0}</code> inside, and sets <code>nodata=None</code>; independent <code>rasterio</code> re-read verified all <code>12,279,160</code> pixels are finite in <code>[0.0, 1.0]</code> with exact <code>EPSG:32611</code> CRS, <code>3730&times;3292</code> shape, and <code>(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)</code> transform.</li>
+  <li><strong>Upload Metadata:</strong> Set Submission Name to <code>gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros</code> and Short Note (110/140 chars) to:<br>
+    <code>S27 CVDC contour-potential discordance+valley knickzone stitched OOF 37654 dots; research only, check run-card</code></li>
+  <li><strong>Record Organizer Receipt:</strong> Save screenshot/JSON with submission timestamp, SHA-256, and live score; only an authenticated DrivenData receipt may be labeled <code>ORGANIZER-CONFIRMED</code>. Remember Rules &sect;3.6: select <strong>one single submission</strong> before competition close for both Phase 1 ($50k) and Phase 2 ($250k).</li>
+</ol>
+
+<h2>6. Official Verified Sources &amp; Reproducibility</h2>
+<ul>
+  <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData DOE GEMS Problem Description &amp; DTI Metric</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Live Leaderboard</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Official Rules PDF (NLR/DOE 96647)</a></li>
+  <li><a href="https://gdr.openei.org/submissions/1391">OpenEI GDR Submission 1391 (INGENIOUS Great Basin Dataset)</a> · <a href="https://gbcge.org/current-projects/ingenious/">GBCGE INGENIOUS Project</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN Survey (DOI: 10.5066/P93LGLVQ)</a></li>
+  <li><a href="GEOTHERMAL_AND_FAULT_RESEARCH.md">Session 27 Deep Geothermal &amp; Hidden-Fault Knowledge Base</a> · <a href="preregistration.md">Frozen S27 Preregistration</a> · <a href="REVIEW.md">Session 27 Three-Pass Review</a></li>
+</ul>
+<pre>.venv/bin/python scripts/restore_data.py
+.venv/bin/python scripts/restore_registry.py --available-only
+.venv/bin/python scripts/restore_lfi_anchors.py
+.venv/bin/python scripts/verify_nine_site_leaders.py
+.venv/bin/python scripts/run_s27_cvdc.py features
+.venv/bin/python scripts/run_s27_cvdc.py experiment --exp e1   # then e2, e3
+.venv/bin/python scripts/run_s27_cvdc.py package
+.venv/bin/python scripts/score_s27_diagnostics.py
+.venv/bin/python scripts/audit_downloads.py --output docs/download-audit.json --html docs/download-audit.html
+.venv/bin/python scripts/render_s27_portal.py</pre>
+</main>
+</div>
+</body>
+</html>

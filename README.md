@@ -23,7 +23,20 @@ Start every session with this decision, the full project brief, `LIMITATIONS_AND
 
 ---
 
-> **2026-10-28 S25 verdict (latest session; supersedes the S24 banner beneath): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
+> **2026-10-29 S27 verdict (latest session `arena/2d335bdc-gemsdoe91`; supersedes the S25 banner beneath): NEW UNIQUE (vs all 9 focus leaders AND all 180 competitive non-blanket fleet rasters) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
+> Download for research: [`gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif`](docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.tif) (SHA-256 `fc77890797ae076d…`, 37,654 dots; [single-TIFF ZIP](docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T153044Z-c9ef43d5-zeros.zip) beside it) — [**S27 Executive Summary, Nine-Site Table, Score Evidence & Submission Guide**](docs/s27/executive-summary.html) · [Geothermal & Hidden-Fault Research Knowledge Base](docs/s27/GEOTHERMAL_AND_FAULT_RESEARCH.md) · [3-Pass Review](docs/s27/REVIEW.md) · [Run Card](docs/s27/run-card.json) · [Preregistration](docs/s27/preregistration.md) · [Post-Hoc Diagnostics (SGMC + LFI)](docs/s27/diagnostics.json).
+>
+> | File to download (research) | Strictly labeled score & diagnostic evidence | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36 & fleet? | OK to submit? |
+> |---|---|---|---|
+> | **S27-CVDC E2 TIF above** (`…s27-cvdc-e2-37654dots…c9ef43d5-zeros.tif`) | **ORGANIZER-CONFIRMED: none.** Primary **HOLDOUT-DTI `0.169391 [0.150545, 0.188903]`** (`gems57-pooled-hide-v2`, `label-blind-quadrants-v3-feature-buffered`, 60,988 withheld) — beats S25-FABRIC E2 paired by **`+0.023379 [+0.007929, +0.039110]`** and base control by **`+0.049118 [+0.034698, +0.063542]`**. Blind USGS SGMC off-catalogue diagnostic **`0.095190`** (vs R0 `0.095386`, S25 `0.079042`). Post-hoc LFI `MODEL_PROJECTION_NOT_A_SCORE`: **`0.17747`** (`ridge10: 0.16615`, LOSO RMSE `0.0196`). | **YES vs all 9 focus leaders** (max **44.37%** within 3 px; `41.74%` vs `GEMSDOE32`) **AND YES vs all 180 competitive non-blanket fleet rasters** (`<=90k` px across `GEMSDOE`–`GEMSDOE92`, max **56.81%** within 3 px; surface \|ρ\|max **0.203**). **NO literal** (**99.93%** vs 206,895-dot synthetic `calib_r13lattice_00904.tif`, mathematical floor >=82.34%). | **NO** — literal synthetic lattice gate + mandatory coordinator/selector approval |
+> | S25-FABRIC E2 TIF (prior session) | ORGANIZER-CONFIRMED: none. HOLDOUT-DTI `0.147741 [0.129760, 0.167562]` (v3 folds); SGMC `0.079042`; LFI MODEL projection `0.07917` (in-sample refit placed 45.9% of dots at 3–5 px; cured in S27 at 9.8%). | YES vs nine (max 40.19%); **NO competitive** (74.89% vs `bhar-e3`) | NO |
+> | Best historical focus-site claim = GEMSDOE32 `h33-h33-2-b2` | `0.2778` **USER-REPORTED, not organizer-confirmed** (`GEMSDOE92` collar variant `0.2784` claim); live leaderboard fetched `2026-10-29`: **#1 = `0.4544`** (`xiaofanhu`), **#10 = `0.3405`** | **NO** — all 9 focus leaders share 97.58%–100% 3-px peer overlap (one `H19-5` family) | NO as a new unique attempt |
+>
+> Method: 34 NoData-masked static physics features (`CVDC` Rule-of-V contour-potential strike discordance + `PMDB` paired-flank hydrothermal magnetite-destruction conduit bridge + `VCTK` valley-crossing transverse knickzone alignment; `B06` excluded per `IR-8E8-09`) + 12 nested cross-fitted Stage-2 8-azimuth axial relay-bridge features (`0.78` Full + `0.22` Pure-Subsurface `B12/B19`-free HGB blend) -> stitched 4-fold v3 OOF surface (zero in-sample catalogue refitting) -> 37,654 binary `[0, 1]` dots via 300 m CELF submodular emitter. 3 of 3 budgeted experiments used (`E1=0.164007`, `E2=0.169391`, `E3=0.168921`), 0 weekly slots spent, 235 canary checks PASS (`max symmetric AUC = 0.7403 <= 0.90`). Start every session by reading this status, [`LIMITATIONS_AND_NEXT_STEPS.md`](LIMITATIONS_AND_NEXT_STEPS.md), [`IRREGULARITIES.md`](IRREGULARITIES.md), and the [full project brief](#full-project-brief) below.
+
+---
+
+> **2026-10-28 S25 verdict (prior session; superseded by S27 above): NEW UNIQUE (vs the nine) RESEARCH TIFF · OK TO DOWNLOAD: YES — RESEARCH ONLY · OK TO SUBMIT: NO.**
 > Download for research: [`gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif`](docs/downloads/gems91-s25-fabric-e2-37654dots-20261028T115403Z-3188f6e6-zeros.tif) (SHA-256 `0046fca5…`, 37,654 dots, single-TIFF ZIP beside it) — [**executive summary, nine-site table, estimated-score table & submission guide**](docs/s25/executive-summary.html) · [full review](docs/s25/REVIEW.md) · [run card](docs/s25/run-card.json) · [preregistration](docs/s25/preregistration.md) · [diagnostics (SGMC + LFI model)](docs/s25/diagnostics.json).
 >
 > | File to download (research) | Estimated leaderboard score | Unique vs GEMSDOE24/25/27/28/30/31/32/33/36? | OK to submit? |
@@ -1686,3 +1699,9 @@ Key standing requirements preserved verbatim:
 **Note (IR-S26TLF-01):** the paragraph "you are assigned exactly one method paragraph (below)" has never contained an
 actual paragraph in eight consecutive sessions. S25-TLF therefore declared its own single paragraph in
 `docs/s25-tlf/preregistration.md` and stayed inside it.
+
+**2026-10-29 Session 27 supplied prompt update (preserved verbatim delta for future sessions):**
+- Additional `GEMSDOE91` line in prompt: `gems91-s25-tlf-60000dots-20261028T120039Z-zeros` / earlier third slot reported as `0.0298` (`USER-REPORTED`; no organizer receipt in repo).
+- Additional `GEMSDOE92` line in prompt: `visible-collar-r0-excluded: 0.2784` (`USER-REPORTED`; non-unique collar-pruned `R0` variant).
+- As in prior sessions (`IR-S26TLF-01`), no single method paragraph was appended after the protocol header; Session 27 preregistered its single method lane (`S27-CVDC`) in `docs/s27/preregistration.md` prior to feature construction or holdout evaluation and stayed strictly inside it (`3` of `3` budgeted experiments, `0` live slots used).
+

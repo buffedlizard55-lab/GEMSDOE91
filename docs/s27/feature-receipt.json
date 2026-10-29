@@ -1,0 +1,284 @@
+{
+  "groups": {
+    "base": [
+      "base_grad_b02",
+      "base_grad_b12",
+      "base_grad_b13",
+      "base_grad_b14",
+      "base_slope_b05",
+      "base_slope_b19"
+    ],
+    "cvdc": [
+      "cvdc_sin2_grav_elev_s2",
+      "cvdc_sin2_grav_elev_s5",
+      "cvdc_sin2_rtp_elev_s2",
+      "cvdc_sin2_rtp_elev_s5",
+      "cvdc_pot_align_discord",
+      "cvdc_grav_lap_abs_s2",
+      "cvdc_grav_lap_abs_s5",
+      "cvdc_grav_crest_s2",
+      "cvdc_grav_crest_s4",
+      "cvdc_mag_tilt_abs",
+      "cvdc_mag_tilt_grad",
+      "cvdc_mag_crest_s2",
+      "pmdb_mag_trough_15px",
+      "pmdb_baffle_grav_trough",
+      "pmdb_cond_b15_resid",
+      "pmdb_claycap_step_gate",
+      "pmdb_transtension_index",
+      "pmdb_ns_ew_seam_guard"
+    ],
+    "vctk": [
+      "vctk_valley_concav_s2",
+      "vctk_valley_concav_s4",
+      "vctk_trans_slope_jump",
+      "vctk_thalweg_knick",
+      "vctk_bilat_align_700m",
+      "vctk_bilat_align_1300m",
+      "vctk_slope_crest_s15",
+      "vctk_slope_crest_s35",
+      "vctk_scarp_prominence",
+      "vctk_cover_regime_b15"
+    ],
+    "all_static": [
+      "base_grad_b02",
+      "base_grad_b12",
+      "base_grad_b13",
+      "base_grad_b14",
+      "base_slope_b05",
+      "base_slope_b19",
+      "cvdc_sin2_grav_elev_s2",
+      "cvdc_sin2_grav_elev_s5",
+      "cvdc_sin2_rtp_elev_s2",
+      "cvdc_sin2_rtp_elev_s5",
+      "cvdc_pot_align_discord",
+      "cvdc_grav_lap_abs_s2",
+      "cvdc_grav_lap_abs_s5",
+      "cvdc_grav_crest_s2",
+      "cvdc_grav_crest_s4",
+      "cvdc_mag_tilt_abs",
+      "cvdc_mag_tilt_grad",
+      "cvdc_mag_crest_s2",
+      "pmdb_mag_trough_15px",
+      "pmdb_baffle_grav_trough",
+      "pmdb_cond_b15_resid",
+      "pmdb_claycap_step_gate",
+      "pmdb_transtension_index",
+      "pmdb_ns_ew_seam_guard",
+      "vctk_valley_concav_s2",
+      "vctk_valley_concav_s4",
+      "vctk_trans_slope_jump",
+      "vctk_thalweg_knick",
+      "vctk_bilat_align_700m",
+      "vctk_bilat_align_1300m",
+      "vctk_slope_crest_s15",
+      "vctk_slope_crest_s35",
+      "vctk_scarp_prominence",
+      "vctk_cover_regime_b15"
+    ],
+    "pure_subsurface_static": [
+      "base_grad_b02",
+      "base_grad_b13",
+      "base_grad_b14",
+      "base_slope_b05",
+      "cvdc_grav_lap_abs_s2",
+      "cvdc_grav_lap_abs_s5",
+      "cvdc_grav_crest_s2",
+      "cvdc_grav_crest_s4",
+      "cvdc_mag_tilt_abs",
+      "cvdc_mag_tilt_grad",
+      "cvdc_mag_crest_s2",
+      "pmdb_mag_trough_15px",
+      "pmdb_baffle_grav_trough",
+      "pmdb_cond_b15_resid",
+      "pmdb_claycap_step_gate",
+      "pmdb_transtension_index",
+      "pmdb_ns_ew_seam_guard"
+    ],
+    "surfaces": [
+      "surface_gravgrad"
+    ]
+  },
+  "feature_counts": {
+    "base_grad_b02": {
+      "finite_in_footprint": 5127253,
+      "nan_in_footprint": 40120
+    },
+    "base_grad_b12": {
+      "finite_in_footprint": 5127253,
+      "nan_in_footprint": 40120
+    },
+    "base_grad_b13": {
+      "finite_in_footprint": 5127253,
+      "nan_in_footprint": 40120
+    },
+    "base_grad_b14": {
+      "finite_in_footprint": 5127253,
+      "nan_in_footprint": 40120
+    },
+    "base_slope_b05": {
+      "finite_in_footprint": 5127253,
+      "nan_in_footprint": 40120
+    },
+    "base_slope_b19": {
+      "finite_in_footprint": 5127253,
+      "nan_in_footprint": 40120
+    },
+    "cvdc_sin2_grav_elev_s2": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_sin2_rtp_elev_s2": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_pot_align_discord": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_sin2_grav_elev_s5": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_sin2_rtp_elev_s5": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_grav_lap_abs_s2": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_grav_lap_abs_s5": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_grav_crest_s2": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_grav_crest_s4": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "pmdb_ns_ew_seam_guard": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_mag_tilt_abs": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_mag_tilt_grad": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "cvdc_mag_crest_s2": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "pmdb_mag_trough_15px": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "pmdb_baffle_grav_trough": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "pmdb_cond_b15_resid": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "pmdb_claycap_step_gate": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "pmdb_transtension_index": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_valley_concav_s2": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_valley_concav_s4": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_trans_slope_jump": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_thalweg_knick": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_bilat_align_700m": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_bilat_align_1300m": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_slope_crest_s15": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_slope_crest_s35": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_scarp_prominence": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    },
+    "vctk_cover_regime_b15": {
+      "finite_in_footprint": 4958085,
+      "nan_in_footprint": 209288
+    }
+  },
+  "constants": {
+    "GRAD_SIGMA": 2.0,
+    "GRAD_ERODE_PX": 3,
+    "CVDC_ERODE_PX": 16,
+    "VCTK_ERODE_PX": 16,
+    "b17_on_log1p_b15_ols": {
+      "slope": -0.021869083374242145,
+      "intercept": 2.9720578512756797
+    }
+  },
+  "catalogue_used_in_features": false,
+  "b06_used_in_features": false,
+  "external_unverified_rasters_used": false,
+  "inputs_verified": {
+    "sample_submission": {
+      "path": "data/official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "path": "data/official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "path": "data/bridge/gems-geodawn-numerical-features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    },
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065
+    },
+    "sgmc_faults_control": {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602
+    }
+  },
+  "preregistration": {
+    "path": "docs/s27/preregistration.md",
+    "sha256": "775fb1aac818c02b047a293e62cf06a4966b7ff7ac59f8d9aaf70370c6fab859"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "fetched_utc": "2026-10-29T13:55:00Z",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "metric": "Public DW-Tversky (alpha=0.2, beta=0.8, 300 m triangular kernel)",
+  "note": "Point-in-time public leaderboard snapshot fetched via fetch_page on 2026-10-29. Not an organizer receipt for any GEMSDOE91 raster.",
+  "rows": [
+    {"rank": 1, "team": "xiaofanhu", "best_public_dw_tversky": 0.4544, "submissions": 34},
+    {"rank": 2, "team": "cfld__", "best_public_dw_tversky": 0.3916, "submissions": 21},
+    {"rank": 3, "team": "Batik Shirt Brothers", "best_public_dw_tversky": 0.3911, "submissions": 58},
+    {"rank": 4, "team": "BrandenKMurray", "best_public_dw_tversky": 0.3841, "submissions": 35},
+    {"rank": 5, "team": "op01", "best_public_dw_tversky": 0.3642, "submissions": 15},
+    {"rank": 6, "team": "No Fault of Our Own", "best_public_dw_tversky": 0.3570, "submissions": 50},
+    {"rank": 7, "team": "joeyfezster", "best_public_dw_tversky": 0.3447, "submissions": 28},
+    {"rank": 8, "team": "JerryDataWorks", "best_public_dw_tversky": 0.3418, "submissions": 42},
+    {"rank": 9, "team": "alexoktaba", "best_public_dw_tversky": 0.3416, "submissions": 19},
+    {"rank": 10, "team": "zeaal", "best_public_dw_tversky": 0.3405, "submissions": 31}
+  ]
+}
