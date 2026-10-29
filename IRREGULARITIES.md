@@ -2013,3 +2013,9 @@ mutable card boolean as slot approval. Historical budget exhausted; command now
 blocks before input reads. Fresh delivery and shared reference checks PASS,
 which does not repair the scientific gates. No current organizer receipt or
 leaderboard verified. Full review: `docs/review-de9d7d75/REVIEW.md`.
+
+## S26 (2026-10-29, arena/18fec2a7-gemsdoe91)
+- IR-S26-07: Repo holdout-best comparisons cross split versions: S21's 0.1957 used split v2-era labelling while vendor spatial.folds now yields split v3 (evaluator_version string still says gems57-pooled-hide-v2). Cross-version DTI comparisons are indicative only; flagged, not silently equated.
+- IR-S26-08: R0-static scores HOLDOUT-DTI 0.0067 under the buffered whole-component holdout despite USER-REPORTED live 0.2778. The holdout instrument removes exactly the visible-catalogue continuation signal R0 exploits; holdout-live calibration via R0 is therefore invalid and no leaderboard projection was issued for S26.
+- IR-S26-09: Pre-existing tests/test_release_integration.py failed in a fresh venv only because `imagecodecs` was absent; after installing it the file passes (6 passed, 1 skipped). Environment dependency, not a code defect; requirements.txt should pin imagecodecs (not changed this session to avoid unrelated churn — flagged for owner).
+- IR-S26-10: Leaderboard values in the standing prompt (0.4413 / 0.3195) are stale: official DrivenData leaderboard fetched 2026-10-29 shows #1 = 0.4544. (Updates IR-S26-01.)
