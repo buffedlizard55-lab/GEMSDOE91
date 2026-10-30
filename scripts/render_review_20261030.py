@@ -73,19 +73,31 @@ def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def verify_inputs() -> tuple[dict, dict, dict, dict, dict]:
+def verify_inputs() -> tuple[dict, dict, dict, dict, dict, dict]:
     card = load(REVIEW / "run-card.json")
     preflight = load(REVIEW / "experiment-preflight.json")
     availability = load(REVIEW / "data-availability.json")
     observations = load(REVIEW / "source-observations.json")
     audit = load(AUDIT)
+    format_audit = load(REVIEW / "tif-format-audit.json")
     plan = load(ROOT / "registry/experiment_plan.json")
     expected_reasons = {
         "No assigned single-method paragraph and assignment source",
         "Capacity witness unavailable or invalid; no fallback to archived constants",
     }
+    mirror_audit = availability.get("mirror_route_audit", {})
+    mirror_observation = observations.get("competition_input_mirror_audit", {})
+    data_provenance = card.get("data_provenance", {})
+    format_summary = format_audit.get("summary", {})
     if (plan.get("lane") is not None or plan.get("experiments_used") != 0
             or card.get("branch") != "arena/828b6720-gemsdoe91"
+            or data_provenance.get("manifest_contains_github_mirror_routes") is not True
+            or data_provenance.get("default_restore_path_uses_mirror_routes") is not True
+            or data_provenance.get("rights_authorization_status") != "UNVERIFIED"
+            or data_provenance.get("mirror_fetch_attempted_this_review") is not False
+            or format_summary.get("files") != 70
+            or format_summary.get("with_nan_cells") != 7
+            or format_summary.get("all_finite_in_0_1") != 63
             or card.get("candidate_generated") is not False
             or card.get("ok_to_submit") is not False
             or card.get("raster_sha256") is not None
@@ -105,7 +117,14 @@ def verify_inputs() -> tuple[dict, dict, dict, dict, dict]:
             or availability.get("exit_status") != 1
             or audit.get("organizer_complete_registry") is not False
             or audit.get("schema") != "s27-nine-site-plus-gems92-audit-v1"
-            or observations.get("public_leaderboard", {}).get("evidence_class", "").startswith("ORGANIZER-CONFIRMED")):
+            or observations.get("public_leaderboard", {}).get("evidence_class", "").startswith("ORGANIZER-CONFIRMED")
+            or not mirror_audit.get("manifest_contains_github_mirror_routes")
+            or not mirror_audit.get("default_restore_path_uses_mirror_routes")
+            or mirror_audit.get("rights_authorization_status") != "UNVERIFIED"
+            or mirror_audit.get("mirror_fetch_attempted_this_review") is not False
+            or not mirror_observation.get("default_restore_path_fetches_from_mirrors")
+            or mirror_observation.get("mirror_fetch_attempted_this_review") is not False
+            or observations.get("drivendata_data_page", {}).get("status") != "LOGIN_REQUIRED"):
         raise ValueError("Current review evidence is inconsistent; refusing to render")
     rows = audit.get("nine_focus_sites", [])
     if ({r.get("site") for r in rows} != EXPECTED_SITES or len(rows) != 9
@@ -131,7 +150,7 @@ def verify_inputs() -> tuple[dict, dict, dict, dict, dict]:
             or claim31.get("best_claimed_file", "").find("h27-4") < 0
             or abs(float(claim31.get("user_reported_public_dti", 0)) - 0.2708) > 1e-9):
         raise ValueError("GEMSDOE28/31 separate H36-1 and H27-4 claims changed; reconcile before rendering")
-    return card, preflight, availability, observations, audit
+    return card, preflight, availability, observations, audit, format_audit
 
 
 def render_site_rows(audit: dict) -> str:
@@ -185,15 +204,12 @@ def render_hypotheses() -> str:
     return "\n".join(rows)
 
 
-def render_page(card: dict, preflight: dict, availability: dict, observations: dict, audit: dict) -> str:
+def render_page(card: dict, preflight: dict, availability: dict, observations: dict, audit: dict, format_audit: dict) -> str:
     rows = render_site_rows(audit)
     hypothesis_rows = render_hypotheses()
     claim_32 = next(r for r in audit["nine_focus_sites"] if r["site"] == "GEMSDOE32")
-    claim_36 = next(r for r in audit["nine_focus_sites"] if r["site"] == "GEMSDOE36")
-    claim_31 = next(r for r in audit["nine_focus_sites"] if r["site"] == "GEMSDOE31")
-    claim_25 = next(r for r in audit["nine_focus_sites"] if r["site"] == "GEMSDOE25")
     public = observations["public_leaderboard"]
-    manifest_ids = ", ".join(escape(x) for x in availability["missing_input_ids"])
+    format_summary = format_audit["summary"]
     missing_count = len(availability["missing_input_ids"])
     return f'''<!doctype html>
 <html lang="en">
@@ -214,13 +230,14 @@ def render_page(card: dict, preflight: dict, availability: dict, observations: d
 <p class="lead">This review did not generate a raster, run a geological experiment, or estimate a leaderboard score. The current method lane is unassigned and the official inputs needed to validate a candidate are missing. No historic file is promoted as a current download.</p>
 <div class="stats"><div class="stat"><b>0 / 3</b><small>experiments used in this review</small></div><div class="stat"><b>{missing_count} / 15</b><small>pinned inputs missing; verification-only check</small></div><div class="stat"><b>0</b><small>weekly competition slots used</small></div></div>
 <p><a class="button" href="CURRENT_REVIEW.md">Read the full three-pass review</a> <a class="button" href="run-card.json">Open the negative run card</a></p>
-</div><aside class="verdict" aria-label="Download and submission verdict"><span class="eyebrow">Automated current verdict</span><h2><strong>OK TO DOWNLOAD: NO new candidate</strong></h2><h2><strong>OK TO SUBMIT: NO</strong></h2><p><strong>HOLDOUT-DTI: NOT RUN</strong>; no evaluator result, withheld-positive count, or 95% CI exists. No candidate raster exists, so surface correlation, final-dot overlap, file hash, and format-validation results are also unmeasured. Existing historical artifacts, where linked elsewhere on the site, remain research-only.</p><p class="subtle">Preflight: <strong>{escape(preflight["status"])}</strong>. No slot selection was made.</p></aside></section>
+</div><aside class="verdict" aria-label="Download and submission verdict"><span class="eyebrow">Automated current verdict</span><h2><strong>OK TO DOWNLOAD: NO new candidate</strong></h2><h2><strong>OK TO SUBMIT: NO</strong></h2><p><strong>HOLDOUT-DTI: NOT RUN</strong>; no evaluator result, withheld-positive count, or 95% CI exists. No candidate raster exists, so surface correlation, final-dot overlap, file hash, and format-validation results are also unmeasured. Existing historical artifacts, where linked elsewhere on the site, remain research-only.</p><p class="subtle">Preflight: <strong>{escape(preflight["status"])}</strong>. No slot selection was made.</p><p class="subtle"><strong>Data rights:</strong> mirror routes in the manifest are unverified; this review did not fetch them.</p></aside></section>
 <section class="section"><div class="grid2"><article class="card"><span class="eyebrow">Highest supplied claim within the nine requested sites</span><h2>GEMSDOE32 — 0.2778</h2><p><strong>USER-REPORTED; not organizer-confirmed.</strong> The local audit has no DrivenData receipt binding the claim to the historical raster's SHA-256. The 0.2778 value is not a holdout result, a projection by this review, or proof of vent discovery.</p><p>Within the historical peer audit, this file has {100*claim_32["max_3px_overlap_among_nine"]:.2f}% directed 3-px overlap with its closest peer ({escape(claim_32["closest_peer_among_nine"])}). It is not unique versus the other eight under the stated 70% rule.</p></article>
 <article class="card"><span class="eyebrow">Official public board observation</span><h2>{float(public["rank_one_public_score"]):.4f} — rank one</h2><p><span class="tag neutral">PUBLIC-LEADERBOARD SNAPSHOT · 2026-10-30</span></p><p>This was the public rank-one observation when the official page was fetched. It is not a submission-page receipt for any file in the table and may differ from private-phase and expert-revised Phase 2 results. No score is forecast for a new candidate.</p><a href="{escape(public["url"], quote=True)}">Open the official leaderboard</a></article></div></section>
 <section class="section" id="nine-sites"><span class="eyebrow">Historical file and score evidence</span><h2>Nine-site executive table</h2>
 <p>The “best file” entries below are the last pinned owner/source claims in the 2026-10-29 byte audit. Owner-maintained pages were checked again on 2026-10-30; none authorizes a new submission. File links go to immutable source commits for inspection only; they are <strong>not a recommended download</strong>. Each score is labeled USER-REPORTED, not organizer-confirmed. New-file estimates are unavailable.</p>
 <div class="table-scroll"><table><caption>Peer-only directed overlap: share of the site's dots within 3 pixels of the closest other one of the nine. This is not a full-registry measurement or a score.</caption><thead><tr><th>Site / page</th><th>Best historical claimed file (source only)</th><th>Claimed score / evidence</th><th>Closest peer / overlap</th><th>Unique vs other eight?</th><th>New-file score estimate</th><th>Current download / submit</th></tr></thead><tbody>{rows}</tbody></table></div>
 <p class="note"><strong>Coverage limitation:</strong> the pinned audit says the organizer-complete registry was unavailable. It records every historical leader above the 70% peer threshold, but this cannot establish overlap against every registry raster. No candidate was available for the required pre-placement |ρ| check or final-dot check.</p>
+<p class="subtle"><strong>Local format-only audit (not submission approval):</strong> {format_summary["files"]} historical research TIFFs in <code>docs/downloads/</code> were inspected; {format_summary["with_nan_cells"]} contain NaN cells and {format_summary["all_finite_in_0_1"]} are all-finite within <code>[0,1]</code>. The suspected range-error cause is inference, not reproduced; none of these files is approved as a submission. <a href="tif-format-audit.json">Open the format audit</a>.</p>
 <p class="note"><strong>GEMSDOE28 claim distinction:</strong> the table's <code>0.2710</code> claim belongs to the H36-1 file linked in that row. The earlier R0 lineage report's <code>0.2708</code> claim belongs to a different H27-4 file, recorded as pixel-identical across GEMSDOE28 and GEMSDOE31. Both are USER-REPORTED and neither has an organizer receipt; this review preserves both and does not treat one as a correction to the other.</p>
 <p class="subtle">Audit file: <a href="../s27-osdr/nine-site-audit.json">nine-site-audit.json</a> · Source pages and immutable file commits are linked per row · <a href="../index.html#feed">owner-page / GitHub-head feed</a>. `GEMSDOE92`'s 0.2784 is outside the requested nine and remains USER-REPORTED.</p>
 </section>
@@ -255,7 +272,7 @@ def render_page(card: dict, preflight: dict, availability: dict, observations: d
 <p>Official pages: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem, metric, and format</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">September 2026 Official Rules</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">submission portal (no upload authorized by this review)</a>.</p>
 </section>
 <section class="section"><span class="eyebrow">Evidence and provenance</span><h2>What was checked—and what was not</h2>
-<div class="grid2"><article class="card"><h3>Verified this review</h3><ul><li>Current method assignment field is null.</li><li>Preflight status is BLOCKED; no sample witness, no candidate, zero experiments.</li><li>Verification-only restore check reports 15 missing pinned inputs and no restore.</li><li>Historical nine-site audit labels scores USER-REPORTED and records no organizer-complete registry.</li><li>Official rule/metric pages and named USGS source pages were fetched; regional ComCat query returned records.</li></ul></article><article class="card"><h3>Not verified / not claimed</h3><ul><li>No score receipt tied to any historical file hash.</li><li>No new holdout, CI, leakage test, or live score estimate.</li><li>No current full-registry surface or final-dot comparison.</li><li>No external SGMC, ComCat, 3DEP, or Landsat data bytes/footprint coverage.</li><li>No user's or entity's eligibility; no upload or selector decision.</li></ul></article></div>
+<div class="grid2"><article class="card"><h3>Verified this review</h3><ul><li>Current method assignment field is null.</li><li>Preflight status is BLOCKED; no sample witness, no candidate, zero experiments.</li><li>Verification-only restore check reports 15 missing pinned inputs and no restore.</li><li>Historical nine-site audit labels scores USER-REPORTED and records no organizer-complete registry.</li><li>Official rule/metric pages and named USGS source pages were fetched; regional ComCat query returned records.</li><li>Local format-only audit inspected 70 historical TIFFs; 7 had NaNs and 63 were finite in [0,1].</li><li>Official DrivenData data page redirects anonymous users to login.</li></ul></article><article class="card"><h3>Not verified / not claimed</h3><ul><li>No score receipt tied to any historical file hash.</li><li>No new holdout, CI, leakage test, or live score estimate.</li><li>No current full-registry surface or final-dot comparison.</li><li>No external SGMC, ComCat, 3DEP, or Landsat data bytes/footprint coverage.</li><li>No authorization/provenance for GitHub mirror routes; none were fetched.</li><li>No user's or entity's eligibility; no upload or selector decision.</li></ul></article></div>
 <p class="subtle">Supporting records: <a href="run-card.json">run card</a> · <a href="experiment-preflight.json">preflight</a> · <a href="data-availability.json">input availability</a> · <a href="source-observations.json">dated source observations</a> · <a href="CURRENT_REVIEW.md">full review</a> · <a href="../../IRREGULARITIES.md">repository irregularities</a> · <a href="../../LIMITATIONS_AND_NEXT_STEPS.md">limitations and next steps</a>.</p>
 </section>
 </main>
@@ -267,10 +284,10 @@ def render_page(card: dict, preflight: dict, availability: dict, observations: d
 
 
 def render() -> Path:
-    card, preflight, availability, observations, audit = verify_inputs()
+    card, preflight, availability, observations, audit, format_audit = verify_inputs()
     REVIEW.mkdir(parents=True, exist_ok=True)
     output = REVIEW / "executive-summary.html"
-    output.write_text(render_page(card, preflight, availability, observations, audit), encoding="utf-8")
+    output.write_text(render_page(card, preflight, availability, observations, audit, format_audit), encoding="utf-8")
     return output
 
 

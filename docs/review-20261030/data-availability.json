@@ -2,6 +2,13 @@
   "schema": "gems91.input-availability-audit.v1",
   "checked_utc": "2026-10-30",
   "checker": "scripts/restore_data.py --check (verification-only; no download attempted)",
+  "mirror_route_audit": {
+    "manifest_contains_github_mirror_routes": true,
+    "default_restore_path_uses_mirror_routes": true,
+    "rights_authorization_status": "UNVERIFIED",
+    "mirror_fetch_attempted_this_review": false,
+    "instruction": "Do not use mirror-backed competition inputs until provenance and rights are resolved; use only an authorized official data route."
+  },
   "required_pinned_input_count": 15,
   "verified_input_count": 0,
   "missing_input_ids": [

@@ -68,6 +68,10 @@ def test_preflight_and_data_audit_fail_closed_without_restoring_data():
     assert data["mismatched_input_ids"] == []
     assert data["exit_status"] == 1
     assert "no download attempted" in data["checker"] or "no download was attempted" in data["interpretation"]
+    mirror = data["mirror_route_audit"]
+    assert mirror["default_restore_path_uses_mirror_routes"] is True
+    assert mirror["rights_authorization_status"] == "UNVERIFIED"
+    assert mirror["mirror_fetch_attempted_this_review"] is False
 
 
 def test_summary_contains_nine_user_reported_rows_and_no_download_controls():
@@ -87,6 +91,8 @@ def test_summary_contains_nine_user_reported_rows_and_no_download_controls():
     assert "NOT RUN" in html
     assert "GEMSDOE28 claim distinction" in html
     assert "0.2710" in html and "0.2708" in html
+    assert "70 historical research TIFFs" in html
+    assert "did not fetch them" in html
     # The page names historical source commits but contains no direct download CTA.
     assert not any("download" in attrs for _, attrs in parser.links)
     sites = [f"GEMSDOE{n}" for n in (24, 25, 27, 28, 30, 31, 32, 33, 36)]
@@ -108,6 +114,8 @@ def test_summary_local_links_resolve_and_external_sources_are_official():
     sources = json.loads((REVIEW / "source-observations.json").read_text())
     assert sources["public_leaderboard"]["status"] == "FETCHED"
     assert sources["public_leaderboard"]["evidence_class"].startswith("OFFICIAL PUBLIC-LEADERBOARD")
+    assert sources["drivendata_data_page"]["status"] == "LOGIN_REQUIRED"
+    assert sources["competition_input_mirror_audit"]["rights_authorization_status"] == "UNVERIFIED"
     assert sources["usgs_sgmc"]["status"].startswith("METADATA_AND_DOWNLOAD_LINK_FETCHED")
     assert sources["usgs_comcat"]["status"].startswith("REGIONAL_QUERY_RETURNED_RECORDS")
     assert sources["usgs_3dep"]["status"].endswith("AOI_TILES_NOT_VERIFIED")
@@ -120,6 +128,7 @@ def test_portal_callout_is_current_and_fails_closed():
     assert "OK TO DOWNLOAD: NO NEW CANDIDATE" in callout
     assert "OK TO SUBMIT: NO" in callout
     assert "15/15 pinned inputs missing" in callout
+    assert "Rights/provenance for the configured GitHub mirror routes are unresolved" in callout
     assert "review-20261030/executive-summary.html" in callout
     assert "0.4544" not in callout
 
@@ -149,6 +158,20 @@ def test_readme_preserves_standing_prompt_and_current_branch_status():
     assert "Archived 2026-10-29 S27 status block" in readme
     assert "GEMSDOE28 score labels" in readme
     assert "0.2710" in readme and "0.2708" in readme
+    assert "Do not run the mirror-backed restore" in readme
+    assert "not organizer validation, uniqueness, rights clearance" in readme
+
+
+def test_other_branch_same_day_audit_is_archived_and_not_mislabelled():
+    archive = (REVIEW / "REVIEW.md").read_text()
+    card = json.loads((REVIEW / "run-card-arena-29d7bb05.json").read_text())
+    assert archive.startswith("# Archived same-day repo review")
+    assert "not the active branch's current decision" in archive
+    assert "not an action to submit" in archive
+    assert "PUBLIC-LEADERBOARD SNAPSHOT" in archive
+    assert "ORGANIZER-CONFIRMED** (DrivenData leaderboard" not in archive
+    assert card["organizer_confirmed_scores"] is None
+    assert card["public_leaderboard_snapshot"]["evidence_class"].startswith("PUBLIC-LEADERBOARD SNAPSHOT")
 
 
 def test_limitations_and_irregularities_lead_with_current_blockers():
@@ -157,8 +180,9 @@ def test_limitations_and_irregularities_lead_with_current_blockers():
     assert limitations.startswith("## Active limitations and next steps — 30 October 2026")
     assert "15/15 pinned inputs missing" in limitations
     assert "do not rely on the prior mirrored-sample capacity bound" in limitations
+    assert "Do not run it for restoration until this is cleared" in limitations
     assert irregularities.startswith("## Irregularities — active 2026-10-30 review")
     for code in ("IR-20261030-01", "IR-20261030-02", "IR-20261030-03",
                  "IR-20261030-04", "IR-20261030-05", "IR-20261030-06", "IR-20261030-07",
-                 "IR-20261030-08"):
+                 "IR-20261030-08", "IR-20261030-09"):
         assert code in irregularities

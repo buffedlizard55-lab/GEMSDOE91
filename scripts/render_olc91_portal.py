@@ -432,6 +432,8 @@ def current_review_20261030_callout(root=ROOT) -> str:
             or preflight.get("status") != "BLOCKED"
             or preflight.get("candidate_generated") is not False
             or len(availability.get("missing_input_ids", [])) != 15
+            or availability.get("mirror_route_audit", {}).get("rights_authorization_status") != "UNVERIFIED"
+            or availability.get("mirror_route_audit", {}).get("mirror_fetch_attempted_this_review") is not False
             or plan.get("lane") is not None
             or plan.get("experiments_used") != 0):
         raise ValueError("2026-10-30 current review is not fail-closed; refusing to publish")
@@ -439,6 +441,7 @@ def current_review_20261030_callout(root=ROOT) -> str:
         '<div class="note" role="status" data-review-date="2026-10-30">'
         '<strong>CURRENT REVIEW · 2026-10-30: NO NEW TIFF · OK TO DOWNLOAD: NO NEW CANDIDATE · OK TO SUBMIT: NO.</strong> '
         'No method lane is assigned; the verification-only restore check finds 15/15 pinned inputs missing. '
+        'Rights/provenance for the configured GitHub mirror routes are unresolved, and no mirror was fetched. '
         'Preflight is BLOCKED; zero experiments and zero slots were used. Existing historical files remain research-only; '
         'no score, uniqueness, holdout, or format result is claimed for a new candidate. '
         '<a href="review-20261030/executive-summary.html">Nine-site executive table, 0.2778 evidence review, hypotheses and future submission steps</a> · '

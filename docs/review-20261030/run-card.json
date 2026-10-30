@@ -25,6 +25,14 @@
       "The official sample submission and 14 other pinned inputs are absent; the capacity witness cannot be authenticated or checked"
     ]
   },
+  "data_provenance": {
+    "manifest_contains_github_mirror_routes": true,
+    "default_restore_path_uses_mirror_routes": true,
+    "restore_mode_used": "--check",
+    "mirror_fetch_attempted_this_review": false,
+    "rights_authorization_status": "UNVERIFIED",
+    "status": "BLOCKED_DO_NOT_USE_MIRRORS_UNTIL_RIGHTS_AND_PROVENANCE_RESOLVED"
+  },
   "candidate_generated": false,
   "ok_to_download": false,
   "ok_to_submit": false,
