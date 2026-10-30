@@ -1,31 +1,70 @@
 {
-  "review_id": "review-20261030-arena-29d7bb05",
-  "branch": "arena/29d7bb05-gemsdoe91",
-  "date_utc": "2026-10-30",
-  "verdict": "NO NEW TIFF · OK TO DOWNLOAD: NO NEW CANDIDATE · OK TO SUBMIT: NO",
-  "experiments_used": 0,
-  "experiment_budget": 3,
-  "weekly_submission_slots_used": 0,
-  "hypothesis": "none tested: competition inputs are absent so no candidate can be validated",
-  "holdout_dti": "not computed (no official inputs)",
-  "organizer_confirmed_scores": {
-    "leaderboard_rank_1": {"value": 0.4544, "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/", "label": "ORGANIZER-CONFIRMED (live page, fetched 2026-10-30)"}
+  "schema": "gems91.active-review-run-card.v1",
+  "review_id": "GEMSDOE91-REVIEW-20261030",
+  "review_date_utc": "2026-10-30",
+  "repository_branch": "arena/83350cee-gemsdoe91",
+  "review_status": "BLOCKED",
+  "result": "negative",
+  "candidate_generated": false,
+  "candidate_path": null,
+  "candidate_sha256": null,
+  "ok_to_download_new_candidate": false,
+  "ok_to_submit": false,
+  "historical_reference_files": {
+    "ok_to_download_for_research_or_inspection": true,
+    "ok_to_submit": false,
+    "scope": "Public, commit-pinned prior repository artifacts for provenance/learning only; not current candidates and not cleared by this review."
   },
-  "user_reported_scores": {"GEMSDOE32_h33-h33-2-b2": 0.2778, "label": "USER-REPORTED, not organizer-confirmed"},
-  "format_audit": {
-    "script": "scripts/audit_download_formats.py",
-    "output": "docs/review-20261030/tif-format-audit.json",
-    "files": 70,
-    "files_with_nan_outside_footprint": 7,
-    "files_all_finite_in_0_1": 63,
-    "range_error_cause": "inference: NaN outside footprint in -nan/unsuffixed twins; not reproduced"
-  },
-  "tests": {"command": ".venv/bin/python -m pytest -q", "exit_code": 0},
-  "uniqueness_vs_leaders": "not computed in this session",
-  "raster_sha256": null,
-  "validator_output": "not run: no official sample_submission.tif available for CRS/shape/transform check",
-  "submission_name": null,
+  "unique_submission_name": null,
   "submission_note": null,
-  "verdict_promote_or_negative": "negative (no candidate); blocked on official data placement",
-  "irregularities": ["I-1 mirrored competition rasters in public repos (data-use)", "I-2 conflicting README banners", "I-3 user-reported scores", "I-4 holdout is not leaderboard", "I-5 uniqueness only vs registry", "I-6 prompt scope"]
+  "leaderboard_score_estimate": null,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT RUN",
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "ci95": null
+  },
+  "organizer_confirmed": {
+    "evidence_class": "ORGANIZER-CONFIRMED",
+    "status": "NONE",
+    "value": null,
+    "submission_receipt": null
+  },
+  "experiment_plan": {
+    "lane": null,
+    "assignment_authenticated": false,
+    "experiments_run_this_review": 0,
+    "maximum_experiments": 3,
+    "elapsed_seconds_this_review": 0,
+    "maximum_elapsed_seconds": 7200,
+    "weekly_submission_slots_used": 0
+  },
+  "data_preflight": {
+    "status": "BLOCKED",
+    "pinned_manifest_inputs": 15,
+    "pinned_manifest_inputs_missing": 15,
+    "official_sample_submission_present": false,
+    "source": "scripts/restore_data.py --check and scripts/experiment_preflight.py --output /tmp/gems91-preflight-20261030.json",
+    "candidate_build_started": false
+  },
+  "protocol": {
+    "shared_cached_stack_evaluator_and_writer": "REQUIRED; not invoked because authorization and required inputs are absent",
+    "holdout": "whole-segment buffered hide-and-recover",
+    "pooled_dti_alpha": 0.2,
+    "pooled_dti_beta": 0.8,
+    "distance_support_m": 300,
+    "feature_alone_leakage_canaries": "REQUIRED before any experiment",
+    "registry_preplacement_surface_check": "REQUIRED; stop if any rank correlation exceeds 0.90",
+    "registry_final_dot_check": "REQUIRED; stop if more than 70% of candidate dots are within 3 px of any registry raster",
+    "promotion": "separate human/selector decision; never inferred from format or holdout checks"
+  },
+  "historical_context": {
+    "reported_site_values": "See nine-site-snapshot.json; all are owner-reported values from a dated repository audit, not verified scores or estimates.",
+    "prior_capacity_bound": "The 2026-10-29 repository bound is conditional on an unauthenticated sample/reference mirror and is not treated as a verified impossibility result in this review.",
+    "legacy_pointer_note": "docs/current-run.json remains a validated pointer to a historical S22 research artifact; docs/current-review.json identifies this no-candidate review."
+  },
+  "verdict_reason": "No authorized method lane was supplied, all pinned data-manifest inputs are absent, and the official sample submission raster is unavailable. No experiment or candidate was run or generated. The review therefore cannot support a HOLDOUT-DTI result, an organizer-confirmed score, a leaderboard estimate, or submission approval.",
+  "scope_note": "A historical research download or a format/uniqueness audit is not approval to submit. No automated competition upload was attempted."
 }

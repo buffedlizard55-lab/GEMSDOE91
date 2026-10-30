@@ -304,6 +304,8 @@ def render():
         if (ROOT / 'docs/run-card-S22-XB.json').is_file():
             from scripts.render_s22_xbreed_pages import render as render_s22xb
             render_s22xb()  # its dedicated page remains an explicitly historical artifact
+        from scripts.render_review_20261030 import render as render_active_review
+        render_active_review(ROOT)
         print('Rendered current blocked review; historical pages preserved; no promotion.')
         return
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
@@ -667,7 +669,11 @@ def render():
         render_s22()
     from scripts.render_s25tlf_portal import render as render_tlf_correction
     render_tlf_correction()
-    print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
+    # Keep the current branch's fail-closed review as the final overlay after
+    # all legacy/session renderers have generated their compatibility pages.
+    from scripts.render_review_20261030 import render as render_active_review
+    render_active_review(ROOT)
+    print('Rendered portal: active review is no-candidate; competition submission NO.')
 
 
 if __name__ == '__main__': render()
