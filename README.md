@@ -10,12 +10,18 @@
 >
 > **Maximize P(Win) · Own the Outcome.** Every number is labeled HOLDOUT-DTI, ORGANIZER-CONFIRMED or USER-REPORTED. No projection is a score.
 
+
 ---
 
-> **Parallel 2026-10-30 checkout banner (`arena/22fcac68`, from `main`) follows; it reaches the same verdict.** Earlier banners below are the historical record.
-# GEMSDOE91 — Current checkout review: blocked, research only — NO SUBMISSION APPROVED (2026-10-30)
+# GEMSDOE91 — Current review: blocked, research only — repository review (2026-10-30)
 
-> **Current branch `arena/22fcac68-gemsdoe91`: NEGATIVE / BLOCKED · NO NEW TIFF GENERATED · OK TO DOWNLOAD: NO NEW FILE · OK TO SUBMIT: NO.** The prompt does not include its promised single-method paragraph; `registry/experiment_plan.json` has `lane: null`. The official sample grid and cached feature stack are absent from `data/official/`. No holdout, uniqueness comparison, score estimate, or new raster can be truthfully produced in this checkout. The frozen protocol's experiment budget is a cap, not permission to self-assign. See [current repository review](docs/REPO_REVIEW_20261030.md) and [the nine-site audit, ranked hypotheses and run card](docs/review-arena-f36b3e21-20261030.md). The full test suite passed in this checkout; code tests do not establish candidate or organizer validity. Start with this current decision, then `LIMITATIONS_AND_NEXT_STEPS.md`, `IRREGULARITIES.md`, and the [full standing brief](#full-project-brief). **Maximize P(Win) · Own the Outcome.**
+> **Current checkout:** `arena/7a4ccc3a-gemsdoe91`. **No new submission is approved.** The experiment plan has no assigned lane (`registry/experiment_plan.json`: `lane: null`); competition-grid data and the pinned parent raster are absent; `scripts/preflight.py` reports 0/2 required inputs and blocks every available build axis. This review does not synthesize a candidate by bypassing those conditions. **Do not download any historical research TIFF as a submission.**
+>
+> **Start here:** [Three-pass repository review](docs/repo-review-20261030.md) · [Independent repository audit](docs/REPO_REVIEW_20261030.md) · [Nine-site audit and ranked hypotheses](docs/review-arena-f36b3e21-20261030.md) · [Nine-site executive summary and submission guide](docs/executive-summary.html) · [Limitations / next steps](LIMITATIONS_AND_NEXT_STEPS.md) · [Irregularities log](IRREGULARITIES.md).
+>
+> The supplied highest nine-site result, GEMSDOE32 `h33-h33-2-b2` at **0.2778**, is a **USER-REPORTED** claim, not an organizer-confirmed receipt. No calibrated leaderboard score estimate is available. Historical leaderboard snapshots are dated and may change. The published executive page labels candidate evidence and clearly separates local format validation from organizer acceptance.
+>
+> **Maximize P(Win) · Own the Outcome.** Read this status and the review before running the project. The large README sections below are a preserved historical record; their dated banners and branch names are not current-session status.
 
 ---
 
