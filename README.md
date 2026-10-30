@@ -1,10 +1,14 @@
-# GEMSDOE91 — Current status: no approved submission (reviewed 2026-10-30)
+# GEMSDOE91 — Current checkout review: blocked, research only — NO SUBMISSION APPROVED (2026-10-30)
 
-> **Latest review:** [Repository review, verification results, risks, and unblock plan](docs/REPO_REVIEW_20261030.md). This checkout is on `arena/22fcac68-gemsdoe91`. No new candidate was generated or approved. The shared preflight is blocked because the prompt does not specify an assigned method lane and `data/official/sample_submission.tif` is absent. **OK TO SUBMIT: NO.**
->
-> The session-specific S27-OSDR banner and materials immediately below are preserved historical records from a different branch/session; they are not the current checkout status or an approval to submit.
->
-> **Historical S27-OSDR checkout record (2026-10-29): research-only artifact; `OK TO SUBMIT: NO`.**
+> **Current branch `arena/22fcac68-gemsdoe91`: NEGATIVE / BLOCKED · NO NEW TIFF GENERATED · OK TO DOWNLOAD: NO NEW FILE · OK TO SUBMIT: NO.** The prompt does not include its promised single-method paragraph; `registry/experiment_plan.json` has `lane: null`. The official sample grid and cached feature stack are absent from `data/official/`. No holdout, uniqueness comparison, score estimate, or new raster can be truthfully produced in this checkout. The frozen protocol's experiment budget is a cap, not permission to self-assign. See [current repository review](docs/REPO_REVIEW_20261030.md) and [the nine-site audit, ranked hypotheses and run card](docs/review-arena-f36b3e21-20261030.md). The full test suite passed in this checkout; code tests do not establish candidate or organizer validity. Start with this current decision, then `LIMITATIONS_AND_NEXT_STEPS.md`, `IRREGULARITIES.md`, and the [full standing brief](#full-project-brief). **Maximize P(Win) · Own the Outcome.**
+
+---
+
+# Historical project status (superseded; retained for evidence)
+
+> **Repository review (2026-10-30):** This checkout has no competition `data/` directory and no local test/dependency environment; no model evaluation or TIFF generation was performed. `registry/data_manifest.json` has historical `local_present: true` flags that do not reflect this checkout. Treat those flags as stale; consult the live preflight before running. The findings and verification limits are recorded in [the 2026-10-30 review](docs/REVIEW_20261030.md). This review did not create or approve a submission.
+
+> **Active checkout `arena/7de7860e-gemsdoe91` (`S27-OSDR`) · 2026-10-29: NEW COMPETITIVE-UNIQUE DE NOVO TIF GENERATED · `OK TO DOWNLOAD: YES — AUTOMATED [0, 1] FORMAT CERTIFIED` · `OK TO SUBMIT: NO` (research only; 0 weekly slots spent).**
 > - **Download research GeoTIFF:** [`gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.tif`](docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.tif) (`sha256: 28c610187313bf04…`, 140,275 bytes, 37,654 binary `{0.0, 1.0}` dots, `EPSG:32611`, `3730 × 3292`, `float32`, `nodata=None`, all 12,279,160 pixels finite in `[0, 1]`) · [Single-TIFF `.zip`](docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.zip) · [**S27-OSDR Executive Summary, Nine-Site + GEMSDOE92 Table, 5 Hypotheses & DrivenData Guide**](docs/s27-osdr/executive-summary.html) · [PhD Technical Review](docs/s27-osdr/REVIEW.md) · [Frozen Preregistration](docs/s27-osdr/preregistration.md) · [Run Card](docs/s27-osdr/run-card.json) · [Diagnostics (`SGMC` + `LFI`)](docs/s27-osdr/diagnostics.json) · [Concurrent-Main Overlap Receipt](docs/s27-osdr/concurrent-main-overlap.json).
 > - **Unique Submission Name:** `gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros` · **Note (91/140 chars):** `S27 CVDC contour-potential discordance+OSDR spatial-OOF CELF 37654d; check run-card verdict`
 >
