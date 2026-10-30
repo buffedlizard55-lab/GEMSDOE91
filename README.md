@@ -2,7 +2,7 @@
 
 > **ACTIVE BRANCH: `arena/83350cee-gemsdoe91`. VERDICT: BLOCKED · NO NEW TIFF · `OK TO DOWNLOAD NEW CANDIDATE: NO` · `OK TO SUBMIT: NO`.** No authorized method lane was assigned; the pinned manifest's 15 inputs are missing and the official sample raster is unavailable. No experiment was run, no new TIFF was generated, no HOLDOUT-DTI was measured, and no organizer receipt or leaderboard estimate exists.
 >
-> **Start here:** [three-pass review](docs/review-20261030/REVIEW.md) · [executive summary and GEMSDOE24/25/27/28/30/31/32/33/36 file table](docs/review-20261030/executive-summary.html) · [ranked, untested hypotheses](docs/review-20261030/HYPOTHESES.md) · [current submission guide](docs/submission-guide.html) · [negative run card](docs/review-20261030/run-card.json) · [current-review pointer](docs/current-review.json) · [limitations](LIMITATIONS.md) · [historical limitations and next steps](LIMITATIONS_AND_NEXT_STEPS.md) · [irregularities](IRREGULARITIES.md).
+> **Start here:** [three-pass review](docs/review-20261030/REVIEW.md) · [executive summary and GEMSDOE24/25/27/28/30/31/32/33/36 file table](docs/review-20261030/executive-summary.html) · [ranked, untested hypotheses](docs/review-20261030/HYPOTHESES.md) · [current submission guide](docs/submission-guide.html) · [negative run card](docs/review-20261030/run-card.json) · [current-review pointer](docs/current-review.json) · [limitations](LIMITATIONS.md) · [limitations and next steps](LIMITATIONS_AND_NEXT_STEPS.md) · [irregularities](IRREGULARITIES.md).
 >
 > The pinned nine-site files are **OK TO DOWNLOAD for research/provenance only; `OK TO SUBMIT: NO`**. They are historical references, not a new candidate and not cleared for submission. Their values are explicitly user-reported/unverified; no estimate is supplied. The README's full standing project brief is preserved below at [`#full-project-brief`](#full-project-brief); read that brief and this active status at the start of each session. Older branch/status material is retained as an archive and is not current when inconsistent with this section. **Maximize P(Win) · Own the Outcome.**
 
@@ -12,6 +12,8 @@
 <summary>Historical status snapshots from earlier checkouts — not the active branch</summary>
 
 > The following sections preserve earlier session reports, data snapshots, and their original context. They do not describe this checkout's current lane, data availability, candidate, or submission status. Use the active review above as authoritative.
+>
+> **Other 2026-10-30 repository audits (different checkouts; reference only):** [repository review](docs/repo-review-20261030.md) · [independent repo review](docs/REPO_REVIEW_20261030.md) · [audit of arena/f36b3e21](docs/review-arena-f36b3e21-20261030.md) · [review of arena/29d7bb05](docs/REVIEW_20261030.md). The separate [historical download-format inventory](docs/review-20261030/tif-format-audit.json) audits archived repository files; it does not validate a new candidate or authorize downloading/submitting any file. These records do not override the active branch status above.
 
 ### Preserved 2026-10-29 S27 status snapshot (historical; superseded)
 
