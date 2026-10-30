@@ -1,3 +1,18 @@
+# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED (latest: 2026-10-30 repo review)
+
+> **2026-10-30 · `arena/29d7bb05-gemsdoe91` · REVIEW ONLY: NO NEW TIFF · OK TO DOWNLOAD: NO NEW CANDIDATE · OK TO SUBMIT: NO.**
+> - **Why no file:** the official competition inputs (`sample_submission.tif`, `existing_faults.tif`, training features) are not in `data/`. The sandbox cannot reach DrivenData. Without the official grid, no new raster can be validated.
+> - **Leaderboard (live, ORGANIZER-CONFIRMED):** #1 = **0.4544** ([DrivenData](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)). The prompt's 0.4413 and 0.3195 are stale.
+> - **Rules (official):** one single-band GeoTIFF at 100 m over the entire GeoDAWN area; 3 submissions/week; one final submission; generative-AI use must be disclosed in the narrative ([Official Rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)).
+> - **Range error:** the 7 research TIFs with NaN outside the footprint are the likely cause of "Predicted values must be in range [0, 1]" (inference). Use only the `-zeros` twins, which are finite in {0, 1}. Format audit: [`docs/review-20261030/tif-format-audit.json`](docs/review-20261030/tif-format-audit.json) (`scripts/audit_download_formats.py`).
+> - **Full review, verified facts, irregularities, unblock steps:** [`docs/review-20261030/REVIEW.md`](docs/review-20261030/REVIEW.md) · [run card](docs/review-20261030/run-card.json).
+> - **Flagged for a human decision (I-1):** `restore_data.py` and `registry/data_manifest.json` fetch competition rasters from public GitHub mirrors of other repos. That conflicts with the repo's own rule and with the competition's data terms. Do not use those mirrors; decide whether the mirrored copies must be removed.
+>
+> **Maximize P(Win) · Own the Outcome.** Every number is labeled HOLDOUT-DTI, ORGANIZER-CONFIRMED or USER-REPORTED. No projection is a score.
+
+
+---
+
 # GEMSDOE91 — Current review: blocked, research only — repository review (2026-10-30)
 
 > **Current checkout:** `arena/7a4ccc3a-gemsdoe91`. **No new submission is approved.** The experiment plan has no assigned lane (`registry/experiment_plan.json`: `lane: null`); competition-grid data and the pinned parent raster are absent; `scripts/preflight.py` reports 0/2 required inputs and blocks every available build axis. This review does not synthesize a candidate by bypassing those conditions. **Do not download any historical research TIFF as a submission.**
