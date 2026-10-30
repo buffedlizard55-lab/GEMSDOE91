@@ -1,0 +1,31 @@
+{
+  "review_id": "review-20261030-arena-29d7bb05",
+  "branch": "arena/29d7bb05-gemsdoe91",
+  "date_utc": "2026-10-30",
+  "verdict": "NO NEW TIFF · OK TO DOWNLOAD: NO NEW CANDIDATE · OK TO SUBMIT: NO",
+  "experiments_used": 0,
+  "experiment_budget": 3,
+  "weekly_submission_slots_used": 0,
+  "hypothesis": "none tested: competition inputs are absent so no candidate can be validated",
+  "holdout_dti": "not computed (no official inputs)",
+  "organizer_confirmed_scores": {
+    "leaderboard_rank_1": {"value": 0.4544, "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/", "label": "ORGANIZER-CONFIRMED (live page, fetched 2026-10-30)"}
+  },
+  "user_reported_scores": {"GEMSDOE32_h33-h33-2-b2": 0.2778, "label": "USER-REPORTED, not organizer-confirmed"},
+  "format_audit": {
+    "script": "scripts/audit_download_formats.py",
+    "output": "docs/review-20261030/tif-format-audit.json",
+    "files": 70,
+    "files_with_nan_outside_footprint": 7,
+    "files_all_finite_in_0_1": 63,
+    "range_error_cause": "inference: NaN outside footprint in -nan/unsuffixed twins; not reproduced"
+  },
+  "tests": {"command": ".venv/bin/python -m pytest -q", "exit_code": 0},
+  "uniqueness_vs_leaders": "not computed in this session",
+  "raster_sha256": null,
+  "validator_output": "not run: no official sample_submission.tif available for CRS/shape/transform check",
+  "submission_name": null,
+  "submission_note": null,
+  "verdict_promote_or_negative": "negative (no candidate); blocked on official data placement",
+  "irregularities": ["I-1 mirrored competition rasters in public repos (data-use)", "I-2 conflicting README banners", "I-3 user-reported scores", "I-4 holdout is not leaderboard", "I-5 uniqueness only vs registry", "I-6 prompt scope"]
+}
