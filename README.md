@@ -1,6 +1,21 @@
-# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED (latest: S27-OSDR, S27-CVDC & S27-FABRIC-FAR 2026-10-29)
+# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED (active: 2026-10-30 · `arena/83350cee-gemsdoe91`)
 
-> **Active checkout `arena/7de7860e-gemsdoe91` (`S27-OSDR`) · 2026-10-29: NEW COMPETITIVE-UNIQUE DE NOVO TIF GENERATED · `OK TO DOWNLOAD: YES — AUTOMATED [0, 1] FORMAT CERTIFIED` · `OK TO SUBMIT: NO` (research only; 0 weekly slots spent).**
+> **ACTIVE BRANCH: `arena/83350cee-gemsdoe91`. VERDICT: BLOCKED · NO NEW TIFF · `OK TO DOWNLOAD NEW CANDIDATE: NO` · `OK TO SUBMIT: NO`.** No authorized method lane was assigned; the pinned manifest's 15 inputs are missing and the official sample raster is unavailable. No experiment was run, no new TIFF was generated, no HOLDOUT-DTI was measured, and no organizer receipt or leaderboard estimate exists.
+>
+> **Start here:** [three-pass review](docs/review-20261030/REVIEW.md) · [executive summary and GEMSDOE24/25/27/28/30/31/32/33/36 file table](docs/review-20261030/executive-summary.html) · [ranked, untested hypotheses](docs/review-20261030/HYPOTHESES.md) · [current submission guide](docs/submission-guide.html) · [negative run card](docs/review-20261030/run-card.json) · [current-review pointer](docs/current-review.json) · [limitations](LIMITATIONS.md) · [historical limitations and next steps](LIMITATIONS_AND_NEXT_STEPS.md) · [irregularities](IRREGULARITIES.md).
+>
+> The pinned nine-site files are **OK TO DOWNLOAD for research/provenance only; `OK TO SUBMIT: NO`**. They are historical references, not a new candidate and not cleared for submission. Their values are explicitly user-reported/unverified; no estimate is supplied. The README's full standing project brief is preserved below at [`#full-project-brief`](#full-project-brief); read that brief and this active status at the start of each session. Older branch/status material is retained as an archive and is not current when inconsistent with this section. **Maximize P(Win) · Own the Outcome.**
+
+---
+
+<details>
+<summary>Historical status snapshots from earlier checkouts — not the active branch</summary>
+
+> The following sections preserve earlier session reports, data snapshots, and their original context. They do not describe this checkout's current lane, data availability, candidate, or submission status. Use the active review above as authoritative.
+
+### Preserved 2026-10-29 S27 status snapshot (historical; superseded)
+
+> **Historical checkout `arena/7de7860e-gemsdoe91` (`S27-OSDR`) · 2026-10-29: NEW COMPETITIVE-UNIQUE DE NOVO TIF GENERATED · `OK TO DOWNLOAD: YES — AUTOMATED [0, 1] FORMAT CERTIFIED` · `OK TO SUBMIT: NO` (research only; 0 weekly slots spent).**
 > - **Download research GeoTIFF:** [`gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.tif`](docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.tif) (`sha256: 28c610187313bf04…`, 140,275 bytes, 37,654 binary `{0.0, 1.0}` dots, `EPSG:32611`, `3730 × 3292`, `float32`, `nodata=None`, all 12,279,160 pixels finite in `[0, 1]`) · [Single-TIFF `.zip`](docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.zip) · [**S27-OSDR Executive Summary, Nine-Site + GEMSDOE92 Table, 5 Hypotheses & DrivenData Guide**](docs/s27-osdr/executive-summary.html) · [PhD Technical Review](docs/s27-osdr/REVIEW.md) · [Frozen Preregistration](docs/s27-osdr/preregistration.md) · [Run Card](docs/s27-osdr/run-card.json) · [Diagnostics (`SGMC` + `LFI`)](docs/s27-osdr/diagnostics.json) · [Concurrent-Main Overlap Receipt](docs/s27-osdr/concurrent-main-overlap.json).
 > - **Unique Submission Name:** `gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros` · **Note (91/140 chars):** `S27 CVDC contour-potential discordance+OSDR spatial-OOF CELF 37654d; check run-card verdict`
 >
@@ -11,7 +26,7 @@
 >
 > **Method (`S27-OSDR`):** 38 static physics features (`CVDC` Rule-of-V contour–potential tangent discordance + `OSDR` sign-locked odd-symmetric dip-reversal across `B11, B12, B15, B17, B19, B06 [verified radiometric TC per IR-91-S12-04]` + `MVSD` multi-valley scarp persistence) + 16 nested cross-fitted Stage-2 directional auto-context features -> stitched 4-fold `v3`-buffered OOF surface (`median_dcat = 19.80 px` vs `GEMSDOE32 = 19.65 px`) -> 37,654 binary `{0, 1}` dots via 300 m CELF (`uniqueness_cap = 0.64`). `3/3` experiments used (`E1=0.157054`, `E2=0.159482`, `E3=0.157275`), `0` weekly slots spent, all Rule-4 leakage canaries PASS (`max symmetric AUC = 0.7276 <= 0.90`). Start every session by reading this status, [`LIMITATIONS_AND_NEXT_STEPS.md`](LIMITATIONS_AND_NEXT_STEPS.md), [`IRREGULARITIES.md`](IRREGULARITIES.md), and the [full project brief](#full-project-brief) below. **Maximize P(Win) · Own the Outcome.**
 
-## Session status — 2026-10-29 (branch arena/64fb89ec-gemsdoe91)
+### Historical session status — 2026-10-29 (branch arena/64fb89ec-gemsdoe91)
 
 **Unique TIF generation: BLOCKED — no new submittable TIF exists.**
 
@@ -150,6 +165,8 @@ The following S24 banner is historical, not this session's output.
 > [Historical S22 TIFF, for research only](docs/downloads/gems91-s22-omtj-e1-20261026-a99b8923f0-zeros.tif) · [current Pages portal](docs/index.html). Its all-finite [0,1] local validation is not organizer acceptance; official outside-bounds null/NaN wording remains unresolved. No calibrated score estimate or authenticated submission receipt is available.
 
 **Maximize P(Win):** do not waste a slot on an unsupported or duplicate result. **Own the Outcome:** preserve evidence, make failures reproducible, and report what remains unknown. The original standing prompt is retained below under [Full Project Brief](#full-project-brief); all earlier session outcomes are historical and superseded by this status where inconsistent.
+
+</details>
 
 <details>
 <summary>Earlier README content and preserved full project brief (historical; not current status)</summary>

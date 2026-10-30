@@ -1,5 +1,22 @@
 ## Irregularities — active and historical reviews
 
+## 2026-10-30 active checkout review (`arena/83350cee-gemsdoe91`)
+
+Scope and evidence: `docs/review-20261030/` (`REVIEW.md`, `run-card.json`, `nine-site-snapshot.json`, `sources.json`, `HYPOTHESES.md`). This is a no-run review; no candidate raster or score was produced.
+
+- **IR-91-20261030-01 — Missing authorized lane.** `registry/experiment_plan.json` has `lane: null` and states that no authenticated assignment paragraph/source was supplied. This is a hard authorization blocker; ranked proposals in the new review are not assignments.
+- **IR-91-20261030-02 — Missing official stack and sample.** `scripts/restore_data.py --check` reported all 15 pinned manifest inputs absent. `scripts/experiment_preflight.py` could not find `data/official/sample_submission.tif`; it exited blocked with zero experiments and no candidate. Do not validate against an inferred or substituted grid.
+- **IR-91-20261030-03 — Historical status/pointer ambiguity.** The README's previous leading banner described another branch's 2026-10-29 artifacts as active; the Pages renderer reinjected the older review; `docs/current-run.json` points to a historical S22 research file while `docs/run-card.json` verifies a CED artifact. The README and durable Pages renderer now identify the active 2026-10-30 no-candidate review, and `docs/current-review.json` is a separate pointer. Legacy artifact pointers remain historical and are not silently rewritten as candidate results.
+- **IR-91-20261030-04 — Prior capacity result is conditional.** The archived 2026-10-29 overlap lower bound uses a sample/reference mirror whose authenticity and sample semantics are unverified. It is not used as a proven impossibility bound, a new experiment, a score, or placement guidance.
+- **IR-91-20261030-05 — Nine-site score claims remain unverified.** The 2026-10-29 audit records user-reported values and no organizer receipts. All nine TIFF blobs were re-retrieved through GitHub's API at their audited commit/path and SHA-256 checked in this review, but no owner score page or DrivenData receipt was refreshed. The peer-overlap NO results are not a complete-registry clearance.
+- **IR-91-20261030-06 — GEMSDOE32 explanation is plausible, not causal.** The pinned R0 byte lineage and official DTI asymmetry are consistent with a pruning/false-positive trade-off, but neither the hidden labels nor a receipt bind the reported `0.2778` to the raster. This is not an estimate or organizer-confirmed score.
+- **IR-91-20261030-07 — Official page evidence is not dataset readiness.** DrivenData and USGS pages were rechecked on 2026-10-30, including GeoDAWN, GeMS/SGMC, 3DEP and the 2026 slip/dilation report. No external geology dataset bytes, local clips, or protected competition files were downloaded; exact coverage and source field semantics remain unknown.
++- **IR-91-20261030-08 — Public-mirror authorization remains unresolved.** Earlier repository records (`IR-S26-05`, `IR-91-09`) document public GitHub mirrors of competition data and flag the rights/terms question. This active review did not restore from or use those mirrors, did not make a rights determination, and does not recommend using them; any future restoration must use an authorized source.
+
+See the [three-pass review](docs/review-20261030/REVIEW.md), [executive table and guide](docs/review-20261030/executive-summary.html), [source register](docs/review-20261030/sources.json), and [current limitations](LIMITATIONS.md).
+
+---
+
 ## 2026-10-29 S27-OSDR (`arena/7de7860e-gemsdoe91`) — irregularities flagged for human review
 
 Scope: `S27-OSDR` de novo physics lane on branch `arena/7de7860e-gemsdoe91`. Evidence: `docs/s27-osdr/` (`preregistration.md`, `canaries.json`, `e1..e3/holdout.json`, `surface-checks.json`, `final-dot-checks.json`, `concurrent-main-overlap.json`, `diagnostics.json`, `nine-site-audit.json`, `run-card.json`, `REVIEW.md`).

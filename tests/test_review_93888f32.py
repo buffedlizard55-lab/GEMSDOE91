@@ -6,12 +6,15 @@ from pathlib import Path
 import numpy as np
 import rasterio
 
+from scripts import render_review_20261030
+
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACT = ROOT / "docs/downloads/gems91-s25-tlf-60000dots-20261028T120039Z-zeros.tif"
 ZIP = ARTIFACT.with_suffix(".zip")
 
 
 def test_current_status_is_fail_closed_and_has_a_machine_card():
+    render_review_20261030.render(ROOT)
     readme = (ROOT / "README.md").read_text()
     page = (ROOT / "docs/index.html").read_text()
     review = (ROOT / "docs/review-93888f32-20261028.md").read_text()
@@ -19,7 +22,8 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
 
     assert readme.startswith("# GEMSDOE91 — Current review: blocked, research only")
     assert "DO NOT SUBMIT S25-TLF" in readme
-    assert "2026-10-28 AUDIT: DO NOT SUBMIT S25-TLF" in page
+    assert "ACTIVE REVIEW · 2026-10-30" in page
+    assert "NO NEW TIFF" in page and "OK TO SUBMIT: NO" in page
     assert "ok to submit: no" in page.lower()
     assert "0.36 projection" in review and "withdrawn" in review
     assert card["experiments_run"] == 0

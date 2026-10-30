@@ -7,6 +7,7 @@ import pytest
 
 from gems91.readiness import gates, submission_ready
 from scripts.source_integrity import verify_historical_source
+from scripts import render_review_20261030
 
 ROOT = Path(__file__).resolve().parents[1]
 REVIEW = ROOT / 'docs/review-ad43b4e5'
@@ -79,10 +80,11 @@ def test_lineage_and_peer_recheck_are_separate_from_score_claims():
 
 
 def test_portal_and_guide_link_to_current_fail_closed_run_card():
+    render_review_20261030.render(ROOT)
     for filename in ('index.html', 'executive-summary.html', 'submission-guide.html'):
         html = (ROOT / 'docs' / filename).read_text()
-        assert 'review-ad43b4e5/run-card.json' in html
+        assert 'review-20261030/run-card.json' in html
         assert 'data-submission-ready="false"' in html
     html = (ROOT / 'docs/submission-guide.html').read_text()
-    assert 'No new TIFF was generated' in html
-    assert 'outside-bounds values are null/NaN' in html
+    assert 'There is no new GeoTIFF candidate' in html
+    assert 'correct null/NaN outside bounds' in html

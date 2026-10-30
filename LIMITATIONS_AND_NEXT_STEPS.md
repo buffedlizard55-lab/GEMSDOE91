@@ -1,4 +1,20 @@
-## Current limitations and next steps — 29 October 2026 (`S27-OSDR`, branch `arena/7de7860e-gemsdoe91`)
+# Active limitations and next-session needs — 2026-10-30
+
+**Current branch:** `arena/83350cee-gemsdoe91`<br>
+**Verdict:** BLOCKED · no new candidate · no experiments · no score · `OK TO SUBMIT: NO`. Start with the [active README status](README.md), [three-pass review](docs/review-20261030/REVIEW.md), [current-review card](docs/review-20261030/run-card.json), and [current review pointer](docs/current-review.json).
+
+The method lane remains unassigned. All 15 pinned manifest inputs and the official sample submission raster are absent. The 2026-10-29 capacity bound is conditional on an unauthenticated sample/reference mirror and is not a verified impossibility result. No HOLDOUT-DTI, leaderboard estimate, complete-registry candidate result, selector decision, or organizer receipt exists for this review.
+
+**Next steps:** obtain an authorized single-method paragraph and source; restore/hash-check the official stack and sample via the authorized path; resolve sample semantics; then preregister one hypothesis and controls, reuse the shared cache/evaluator/writer, preserve the whole-segment buffered hide-and-recover protocol, run feature-alone canaries, enforce both registry stops, validate the exact GeoTIFF automatically, remain within three experiments/two hours, and treat any promotion as a separate selector decision. Never convert a projection to a score or submit an old artifact.
+
+**Maximize P(Win) · Own the Outcome.** The records below are historical session snapshots and are not current recommendations where they conflict with the active review.
+
+---
+
+<details>
+<summary>Historical session-by-session limitations and next steps (preserved archive)</summary>
+
+## Historical S27-OSDR limitations and next steps — 29 October 2026 (`arena/7de7860e-gemsdoe91`)
 
 **NEW COMPETITIVE-UNIQUE DE NOVO RESEARCH TIFF; NOT OK TO SUBMIT.** `S27-OSDR E2` (`docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.tif`, SHA-256 `28c610187313bf04…`) implements Rule-of-V contour–potential tangent discordance (`CVDC`), sign-locked odd-symmetric dip-reversal (`OSDR`), and multi-valley scarp persistence (`MVSD`) with stitched 4-fold `v3`-buffered OOF submodular CELF emission (`37,654` dots):
 - **`#1` Blind Off-Catalogue USGS `SGMC` Recall = `0.112925`** (`>500m: 0.105560` — surpassing `GEMSDOE32` `0.095386`, concurrent `S27-CVDC` `0.095190`, `S25-FABRIC` `0.079042`, and `GEMSDOE92` `0.066984`) and **highest `2026-10-29` `S27` post-hoc `LFI` `MODEL_PROJECTION_NOT_A_SCORE` = `0.18967`** (`ridge10: 0.18294`), with **`HOLDOUT-DTI = 0.159482 [0.139292, 0.179660]`** (`+0.013470 [+0.005260, +0.021892]` vs `S25-FABRIC E2`; `+0.014275` above `S27-FABRIC-FAR`).
@@ -500,3 +516,5 @@ experiment or slot in this review. See `docs/review-de9d7d75/REVIEW.md`, shortli
 negative run card and corrected `docs/s25-tlf/executive-summary.html`. Next: explicit
 lane, complete unchanged registry and pinned feature cache, frozen comparable
 incumbent, then both uniqueness phases and paired holdout—not a live upload test.
+
+</details>

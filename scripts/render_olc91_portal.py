@@ -496,5 +496,11 @@ def render() -> None:
     from scripts.render_s25tlf_portal import render as render_correction
     render_correction()
 
+    # The active no-candidate review overlays the historical compatibility
+    # portal only after every legacy renderer has completed. Its own source,
+    # evidence, and fail-closed card are committed and deterministic.
+    from scripts.render_review_20261030 import render as render_active_review
+    render_active_review(ROOT)
+
 if __name__ == "__main__":
     render()

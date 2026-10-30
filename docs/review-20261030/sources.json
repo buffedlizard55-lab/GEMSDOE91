@@ -1,0 +1,89 @@
+{
+  "schema": "gems91.review-20261030.sources.v1",
+  "verified_utc": "2026-10-30",
+  "verification_scope": "Official source pages were checked for their published claims and links. No source dataset bytes, protected competition data, or local AOI coverage were downloaded in this review.",
+  "sources": [
+    {
+      "id": "drivendata-problem",
+      "title": "The Geologic Enhanced Mapping System (GEMS) Prize Challenge — Problem Description",
+      "organization": "DrivenData / competition organizer",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "verified_utc": "2026-10-30",
+      "verified_claims": [
+        "The prediction target is geological faults indicative of geothermal resources; the known public fault data are incomplete and may contain inaccuracies.",
+        "Experts created an initial private set of new faults and later review may expand labels for final-round rescoring.",
+        "The metric uses a triangular distance kernel with 300 m support, alpha 0.2 and beta 0.8.",
+        "The submission must be one-band float32 GeoTIFF on the EPSG:32611 100 m grid, with values in [0,1] and null/NaN outside the competition bounds."
+      ],
+      "limits": "This page does not validate any GEMSDOE91 file, score, receipt, account state, or eligibility."
+    },
+    {
+      "id": "usgs-geodawn",
+      "title": "GeoDAWN: Airborne magnetic and radiometric surveys of the northwestern Great Basin, Nevada and California",
+      "organization": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "doi": "10.5066/P93LGLVQ",
+      "verified_utc": "2026-10-30",
+      "verified_claims": [
+        "USGS and DOE describe GeoDAWN airborne magnetic and radiometric data as supporting geologic/geophysical mapping and geothermal and critical-mineral studies in the Walker Lane and western Great Basin.",
+        "The page describes magnetic information about subsurface structure/geology, radiometric information about surface geology/soil, and coordinated airborne lidar over a similar extent.",
+        "The release is marked CC0 1.0 Universal on the USGS page."
+      ],
+      "limits": "This describes the source and its broad purpose; the release files, feature-band correspondence, spatial masks, and exact local coverage were not downloaded or rechecked here."
+    },
+    {
+      "id": "usgs-gems-sgmc-2026",
+      "title": "Geologic Map Schema (GeMS) version of the State Geologic Map Compilation (SGMC) Geodatabase of the Conterminous United States",
+      "organization": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/data/geologic-map-schema-gems-version-state-geologic-map-compilation-sgmc-geodatabase-conterminous",
+      "doi": "10.5066/P1A3DQZK",
+      "verified_utc": "2026-10-30",
+      "verified_claims": [
+        "The 2026 release provides a GeMS version of the SGMC and is marked CC0 1.0 Universal.",
+        "The compilation combines state geologic maps with scales varying from 1:50,000 to 1:1,000,000.",
+        "The USGS warns that map units remain unreconciled across state boundaries and only bedrock maps are represented in states that also have surficial maps."
+      ],
+      "limits": "Not downloaded or clipped to the competition footprint. Scale heterogeneity and map-unit inconsistency make this a cautious context/stratification layer, not ground truth or a uniformly detailed fault map."
+    },
+    {
+      "id": "usgs-3dep",
+      "title": "About 3DEP Products & Services",
+      "organization": "U.S. Geological Survey",
+      "url": "https://www.usgs.gov/3d-elevation-program/about-3dep-products-services",
+      "verified_utc": "2026-10-30",
+      "verified_claims": [
+        "USGS says The National Map 3DEP products include lidar point clouds and digital elevation models at various horizontal resolutions.",
+        "USGS says 3DEP products are available free of charge and without use restrictions.",
+        "The page links a lidar-availability application and a 1-meter DEM availability application."
+      ],
+      "limits": "This is a product-level availability/rights statement. It does not prove that 1 m data cover the GeoDAWN footprint, identify suitable tile dates/quality, or validate any bytes; no local coverage query or download was performed."
+    },
+    {
+      "id": "usgs-structural-discontinuities",
+      "title": "Structural discontinuities and their control on hydrothermal systems in the Great Basin, USA",
+      "organization": "U.S. Geological Survey Publications Warehouse record for a peer-reviewed article",
+      "url": "https://www.usgs.gov/publications/structural-discontinuities-and-their-control-hydrothermal-systems-great-basin-usa",
+      "doi": "10.1144/geoenergy2023-009",
+      "verified_utc": "2026-10-30",
+      "verified_claims": [
+        "The abstract describes fault interactions/intersections and eight structural-discontinuity settings as controls on many Great Basin hydrothermal systems.",
+        "The reported stress/strain modelling emphasizes fault stepovers and terminations among settings with concentrated effects."
+      ],
+      "limits": "Regional process evidence does not establish that a particular pixel or lineament is a geothermal fault, and it is not a leaderboard-performance result."
+    },
+    {
+      "id": "usgs-slip-dilation-2026",
+      "title": "Slip tendency and dilation tendency of Quaternary faults in the Great Basin region",
+      "organization": "U.S. Geological Survey Scientific Investigations Report 2026-5073",
+      "url": "https://pubs.usgs.gov/publication/sir20265073",
+      "data_doi": "10.5066/P9YL58W6",
+      "report_doi": "10.3133/sir20265073",
+      "verified_utc": "2026-10-30",
+      "verified_claims": [
+        "The report describes slip/dilation tendency calculated for Quaternary fault segments from the USGS Quaternary Fault and Fold Database.",
+        "The abstract says high slip/dilation tendencies in high-strain-rate areas are potentially more prospective for hydrothermal permeability and fluid flow."
+      ],
+      "limits": "Because the calculations are attached to mapped Quaternary fault segments, directly rasterizing their geometry/values risks reproducing the existing-fault catalogue and contaminating a fault holdout. Use only after label-blind leakage review; preferably as a mechanism/control study, not direct evidence of new faults."
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import numpy as np
 import pytest
 
 from gems91.novelty import SurfaceProbe
-from scripts import audit_priority_snapshot, render_priority_review
+from scripts import audit_priority_snapshot, render_priority_review, render_review_20261030
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'docs/review-4239f6e5'
@@ -77,13 +77,15 @@ def test_renderer_refuses_a_promote_flag(monkeypatch):
 
 
 def test_public_frontdoor_and_guide_show_current_stop():
+    # Rebuild the final active-review view after this module's historical renderer checks.
+    render_review_20261030.render(ROOT)
     index = (ROOT / 'docs/index.html').read_text()
     guide = (ROOT / 'docs/submission-guide.html').read_text()
     table = (BASE / 'executive-summary.html').read_text()
-    assert 'CURRENT REVIEW · 2026-10-29' in index
-    assert 'review-4239f6e5/executive-summary.html' in index
-    assert 'review-4239f6e5/run-card.json' in guide
-    assert 'No new TIFF was generated' in guide
+    assert 'ACTIVE REVIEW · 2026-10-30' in index
+    assert 'review-20261030/executive-summary.html' in index
+    assert 'review-20261030/run-card.json' in guide
+    assert 'There is no new GeoTIFF candidate' in guide
     assert '0.2778' in table and 'USER-REPORTED' in table
     assert 'No improvement' not in table or 'unproven' in table
     assert 'OK TO SUBMIT: NO' in table and 'data-submission-ready="true"' not in table
