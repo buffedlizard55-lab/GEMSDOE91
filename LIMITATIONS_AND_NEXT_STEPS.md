@@ -1,4 +1,20 @@
-## Current limitations and next steps — 29 October 2026 (`S27-OSDR`, branch `arena/7de7860e-gemsdoe91`)
+## Active limitations and next steps — 30 October 2026 (`arena/828b6720-gemsdoe91`)
+
+**Status: BLOCKED; no new TIFF; `OK TO DOWNLOAD: NO new candidate`; `OK TO SUBMIT: NO`.** The assigned method lane is `null` in `registry/experiment_plan.json`. `scripts/experiment_preflight.py` is BLOCKED because the lane is absent and the sample-submission witness is missing. `scripts/restore_data.py --check` verified actual files/hashes and found **15/15 pinned inputs missing**; no restore or download was attempted. The stale `local_present` flags in `registry/data_manifest.json` do not reflect this checkout. No feature, holdout, score estimate, registry comparison, or new artifact exists; 0 experiments and 0 weekly slots were used. See [active review](docs/review-20261030/CURRENT_REVIEW.md), [preflight](docs/review-20261030/experiment-preflight.json), [input audit](docs/review-20261030/data-availability.json), and [run card](docs/review-20261030/run-card.json).
+
+**Immediate next steps, in order:**
+1. Obtain the genuine assigned single-method paragraph and its source; do not infer a lane from historical branches or the hypothesis list.
+2. Restore the 15 missing pinned inputs through an authorized route, authenticate the competition sample and input provenance/rights, and repair stale manifest availability metadata only from measured verification.
+3. Verify the complete registry and run the shared pre-placement surface correlation screen; stop if `|rho| > 0.90`. After placement, compare final dots with every registry raster and stop if more than 70% fall within 3 px. Both phases must run; do not rely on the prior mirrored-sample capacity bound, which was conditional on an unauthenticated sample.
+4. Only within the assigned lane and the 3-experiment / 2-hour budget, reuse the shared cached feature stack, `evaluate_holdout.py`, and `submission_writer.py`. Use buffered whole-segment hide/recover, derive catalogue features only from visible faults, preserve the pixel-exact mask, pool DTI with alpha `.2`, beta `.8`, and a 300 m triangular kernel, and test each feature alone for leakage (`AUC > .90` is a warning).
+5. Validate any candidate automatically (no NaN inside the footprint, `[0,1]` values, CRS/shape/transform, hash, and allowed format); record a negative JSON run card if any gate fails. A format pass does not grant permission to download or submit.
+6. A separate selector—not this research review—must decide on any live slot under the actual weekly cap. Capture a submission-page receipt tied to the exact raster hash. Disclose generative-AI use as required by Official Rules §3.2.
+
+**External-data shortlist:** USGS SGMC GeMS metadata and GIS listing, the USGS ComCat regional API, Landsat Collection 2 surface temperature, and USGS 3DEP product pages were checked on 2026-10-30. No external data bytes or exact study-area coverage were verified. See [ranked hypotheses and access checks](docs/review-20261030/HYPOTHESES.md). The top SGMC-conditioned hypothesis was **not** holdout-tested because assignment and input blockers prevent a valid run.
+
+---
+
+## Historical limitations and next steps — 29 October 2026 (`S27-OSDR`, branch `arena/7de7860e-gemsdoe91`)
 
 **NEW COMPETITIVE-UNIQUE DE NOVO RESEARCH TIFF; NOT OK TO SUBMIT.** `S27-OSDR E2` (`docs/downloads/gems91-s27-cvdc-e2-37654dots-20261029T160258Z-7652cef9-zeros.tif`, SHA-256 `28c610187313bf04…`) implements Rule-of-V contour–potential tangent discordance (`CVDC`), sign-locked odd-symmetric dip-reversal (`OSDR`), and multi-valley scarp persistence (`MVSD`) with stitched 4-fold `v3`-buffered OOF submodular CELF emission (`37,654` dots):
 - **`#1` Blind Off-Catalogue USGS `SGMC` Recall = `0.112925`** (`>500m: 0.105560` — surpassing `GEMSDOE32` `0.095386`, concurrent `S27-CVDC` `0.095190`, `S25-FABRIC` `0.079042`, and `GEMSDOE92` `0.066984`) and **highest `2026-10-29` `S27` post-hoc `LFI` `MODEL_PROJECTION_NOT_A_SCORE` = `0.18967`** (`ridge10: 0.18294`), with **`HOLDOUT-DTI = 0.159482 [0.139292, 0.179660]`** (`+0.013470 [+0.005260, +0.021892]` vs `S25-FABRIC E2`; `+0.014275` above `S27-FABRIC-FAR`).

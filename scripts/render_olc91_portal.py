@@ -414,6 +414,39 @@ def s27_callout(root=ROOT) -> str:
 </section>'''
 
 
+def current_review_20261030_callout(root=ROOT) -> str:
+    """Render the active blocked review from its fail-closed run card."""
+    docs = root / "docs"
+    review = docs / "review-20261030"
+    card = json.loads((review / "run-card.json").read_text(encoding="utf-8"))
+    preflight = json.loads((review / "experiment-preflight.json").read_text(encoding="utf-8"))
+    availability = json.loads((review / "data-availability.json").read_text(encoding="utf-8"))
+    plan = json.loads((root / "registry/experiment_plan.json").read_text(encoding="utf-8"))
+    if (card.get("branch") != "arena/828b6720-gemsdoe91"
+            or card.get("verdict") != "negative"
+            or card.get("candidate_generated") is not False
+            or card.get("ok_to_download") is not False
+            or card.get("ok_to_submit") is not False
+            or card.get("raster_sha256") is not None
+            or card.get("estimated_leaderboard_score") is not None
+            or preflight.get("status") != "BLOCKED"
+            or preflight.get("candidate_generated") is not False
+            or len(availability.get("missing_input_ids", [])) != 15
+            or plan.get("lane") is not None
+            or plan.get("experiments_used") != 0):
+        raise ValueError("2026-10-30 current review is not fail-closed; refusing to publish")
+    return (
+        '<div class="note" role="status" data-review-date="2026-10-30">'
+        '<strong>CURRENT REVIEW · 2026-10-30: NO NEW TIFF · OK TO DOWNLOAD: NO NEW CANDIDATE · OK TO SUBMIT: NO.</strong> '
+        'No method lane is assigned; the verification-only restore check finds 15/15 pinned inputs missing. '
+        'Preflight is BLOCKED; zero experiments and zero slots were used. Existing historical files remain research-only; '
+        'no score, uniqueness, holdout, or format result is claimed for a new candidate. '
+        '<a href="review-20261030/executive-summary.html">Nine-site executive table, 0.2778 evidence review, hypotheses and future submission steps</a> · '
+        '<a href="review-20261030/CURRENT_REVIEW.md">Full three-pass review</a> · '
+        '<a href="review-20261030/run-card.json">Negative run card</a>.</div>'
+    )
+
+
 def _root_verdict() -> str:
     """Fail-closed redirect stub; the previous S25-TLF approval was revoked."""
     return (
@@ -429,6 +462,8 @@ def render() -> None:
     render_review_sources()
     from scripts.render_priority_review import render as render_priority_review
     render_priority_review()
+    from scripts.render_review_20261030 import render as render_current_review
+    render_current_review()
     docs = ROOT / "docs"
     current = front_door(ROOT)  # fail before replacing any published page
     # The S22-XB artifact is a historical research run, not the current lane.
@@ -470,14 +505,13 @@ def render() -> None:
                 or latest_pre.get("status") != "BLOCKED" or latest_pre.get("ok_to_submit") is not False
                 or capacity["sample_semantics"]["status"] != "CONFLICT_WITH_ORGANIZER_DESCRIPTION"):
             raise ValueError("Latest review evidence inconsistent; refusing to render")
-        current_notice = (f'<div class="note" role="status"><strong>CURRENT REVIEW · 2026-10-29: NO NEW TIFF IN THIS REVIEW · OK TO SUBMIT: NO.</strong> '
-            f'The method lane is unassigned. At the frozen budget, the measured mirrored-footprint capacity forces at least '
-            f'{capacity["overlap_lower_bound"]:.2%} overlap with the lattice, above 70%. '
-            f'The sample mirror has {capacity["sample_semantics"]["nonzero_inside_footprint"]:,} nonzero cells despite the organizer describing an all-zero sample; authenticity is unverified. '
-            '<a href="review-4239f6e5/executive-summary.html">Executive table and research downloads</a> · '
-            '<a href="review-4239f6e5/REVIEW.md">Full review</a> · '
-            '<a href="review-4239f6e5/run-card.json">Negative run card</a>.</div>')
-        page = page.replace('<main id="main">', '<main id="main">' + current_notice, 1)
+        prior_notice = (f'<div class="note" role="status"><strong>PRIOR REVIEW · 2026-10-29 (superseded as current status).</strong> '
+            f'That review measured a capacity bound of {capacity["overlap_lower_bound"]:.2%} against a mirrored sample whose authenticity was unverified. '
+            'This conditional mirror-based figure is not reused as a current result; the 2026-10-30 preflight cannot inspect the missing sample. '
+            '<a href="review-4239f6e5/executive-summary.html">Prior review and evidence</a> · '
+            '<a href="review-4239f6e5/run-card.json">Prior negative run card</a>.</div>')
+        page = page.replace('<main id="main">', '<main id="main">' + prior_notice, 1)
+        page = page.replace('<main id="main">', '<main id="main">' + current_review_20261030_callout(ROOT), 1)
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     (ROOT / 'index.html').write_text(
@@ -487,9 +521,10 @@ def render() -> None:
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
         '<h1>GEMSDOE91 · Current review</h1>' + _root_verdict() + 
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
-        '<a href="docs/review-4239f6e5/executive-summary.html">Current executive summary, nine-site table and submission guide</a> · '
-        '<a href="docs/s27-osdr/executive-summary.html">S27-OSDR research candidate (#1 blind SGMC) &amp; nine-site forensics</a> · '
-        '<a href="docs/s27-cvdc/executive-summary.html">S27-CVDC research candidate &amp; nine-site forensics</a> · '
+        '<a href="docs/review-20261030/executive-summary.html">2026-10-30 current review, nine-site evidence table and submission guide</a> · '
+        '<a href="docs/review-4239f6e5/executive-summary.html">Historical 2026-10-29 review</a> · '
+        '<a href="docs/s27-osdr/executive-summary.html">S27-OSDR historical research candidate &amp; nine-site forensics</a> · '
+        '<a href="docs/s27-cvdc/executive-summary.html">S27-CVDC historical research candidate &amp; nine-site forensics</a> · '
         '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
         '</main></body></html>\n', encoding='utf-8')
 

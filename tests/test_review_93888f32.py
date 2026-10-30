@@ -17,7 +17,7 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     review = (ROOT / "docs/review-93888f32-20261028.md").read_text()
     card = json.loads((ROOT / "docs/run-card-93888f32-20261028.json").read_text())
 
-    assert readme.startswith("# GEMSDOE91 — Current review: blocked, research only")
+    assert readme.startswith("# GEMSDOE91 — Current review 2026-10-30: BLOCKED")
     assert "DO NOT SUBMIT S25-TLF" in readme
     assert "2026-10-28 AUDIT: DO NOT SUBMIT S25-TLF" in page
     assert "ok to submit: no" in page.lower()

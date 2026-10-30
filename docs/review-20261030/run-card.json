@@ -1,0 +1,72 @@
+{
+  "schema": "gems91.parallel-run-card.v1",
+  "review_date_utc": "2026-10-30",
+  "branch": "arena/828b6720-gemsdoe91",
+  "hypothesis": "PROPOSAL ONLY, NOT EXECUTED: lithology-conditioned local potential-field residuals using USGS SGMC GeMS unit polygons with the cached magnetic and gravity bands, if the assigned method lane permits external geology.",
+  "mechanism": "Model expected magnetic/gravity response within each mapped rock unit, then look for cross-strike residual discontinuities that persist beyond mapped unit contacts. A buried fault may juxtapose or offset units while the local residual rejects ordinary lithologic contact contrast; this is a hypothesis, not a verified fault detector.",
+  "named_non_fault_mimic": "Unfaulted intrusive or volcanic lithologic contact; SGMC map-unit boundary or inter-state compilation seam.",
+  "hypothesis_status": "UNASSIGNED_AND_UNTESTED",
+  "assigned_lane": null,
+  "assignment_source": null,
+  "assignment_authenticated": false,
+  "experiment_budget": {
+    "maximum_experiments": 3,
+    "maximum_elapsed_minutes": 120,
+    "experiments_run": 0,
+    "elapsed_minutes": 0,
+    "weekly_submission_slots_used": 0
+  },
+  "preflight": {
+    "status": "BLOCKED",
+    "report": "experiment-preflight.json",
+    "data_availability_report": "data-availability.json",
+    "reasons": [
+      "No assigned single-method paragraph and assignment source",
+      "The official sample submission and 14 other pinned inputs are absent; the capacity witness cannot be authenticated or checked"
+    ]
+  },
+  "candidate_generated": false,
+  "ok_to_download": false,
+  "ok_to_submit": false,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "withheld_positive_count": null,
+    "evaluator_version": null,
+    "status": "NOT_RUN_NO_ASSIGNED_LANE_OR_INPUTS"
+  },
+  "registry_correlation_overlap": {
+    "preplacement_surface_abs_spearman_max": null,
+    "preplacement_registry_comparison": "NOT_RUN",
+    "final_dot_overlap_within_3px_max": null,
+    "final_dot_registry_comparison": "NOT_RUN",
+    "both_required_phases_status": "NOT_RUN_NO_CANDIDATE",
+    "organizer_complete_registry_available": false
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT_RUN_NO_CANDIDATE"
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "estimated_leaderboard_score": null,
+  "organizer_confirmed_score": null,
+  "historical_focus_site_claim": {
+    "site": "GEMSDOE32",
+    "claimed_value": 0.2778,
+    "evidence_class": "USER-REPORTED; NO ORGANIZER SUBMISSION-PAGE RECEIPT",
+    "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "receipt_to_raster_hash_binding": false
+  },
+  "download_and_submission_permission": {
+    "new_candidate_ok_to_download": false,
+    "new_candidate_ok_to_submit": false,
+    "historical_files": "Research-only archives; not approval to submit"
+  },
+  "verdict": "negative",
+  "reason": "No lane is assigned, the verification-only restore check finds 15/15 pinned inputs missing, and preflight is BLOCKED. No hypothesis, holdout result, registry measurement, candidate raster, score estimate, or live submission decision was produced."
+}

@@ -1,0 +1,27 @@
+{
+  "schema": "gems91.input-availability-audit.v1",
+  "checked_utc": "2026-10-30",
+  "checker": "scripts/restore_data.py --check (verification-only; no download attempted)",
+  "required_pinned_input_count": 15,
+  "verified_input_count": 0,
+  "missing_input_ids": [
+    "sample_submission",
+    "existing_faults",
+    "training_features",
+    "parent_r0_zeros",
+    "parent_r0_nan",
+    "anc_h19_5",
+    "anc_h19_4",
+    "anc_h16_1",
+    "anc_d1_5",
+    "anc_d2_8",
+    "anc_solo_d2_8",
+    "gdr_wellspring_in_footprint",
+    "ext_lidar_scarp_u8",
+    "ext_geodawn_rad_u8",
+    "sgmc_faults_control"
+  ],
+  "mismatched_input_ids": [],
+  "exit_status": 1,
+  "interpretation": "No source data were restored. Manifest local_present flags are stale and are not treated as evidence; the verifier checks actual files and pinned hashes."
+}

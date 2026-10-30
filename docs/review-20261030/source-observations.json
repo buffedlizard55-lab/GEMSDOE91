@@ -1,0 +1,105 @@
+{
+  "schema": "gems91.review-source-observations.v1",
+  "observed_utc": "2026-10-30",
+  "evidence_policy": "Public page observations are not submission receipts. Only an organizer submission-page receipt can bind a score to a raster hash. No holdout or live score was produced by this review.",
+  "drivendata_problem": {
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "observation": "Official target is fault prediction to support geothermal and critical-mineral studies; metric is distance-weighted Tversky with alpha 0.2, beta 0.8, and a 300 m triangular kernel; submission raster requirements are described on the page. This is not direct geothermal-vent detection.",
+    "status": "FETCHED"
+  },
+  "official_rules": {
+    "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "observation": "September 2026 DOE/NLR Official Rules. Sections 1.3 and 3.2 cover eligible competitors, registration and generative-AI disclosure; the rules describe up to three submissions per week under the platform limit and selection of one final submission for the prize phases. Public leaderboard scores can differ from private and expert-revised final evaluations.",
+    "status": "FETCHED"
+  },
+  "public_leaderboard": {
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "observed_date_utc": "2026-10-30",
+    "rank_one_public_score": 0.4544,
+    "evidence_class": "OFFICIAL PUBLIC-LEADERBOARD SNAPSHOT; NOT A SUBMISSION-PAGE RECEIPT FOR ANY NINE-SITE FILE",
+    "status": "FETCHED"
+  },
+  "usgs_sgmc": {
+    "release_url": "https://www.usgs.gov/data/geologic-map-schema-gems-version-state-geologic-map-compilation-sgmc-geodatabase-conterminous",
+    "doi_url": "https://doi.org/10.5066/P1A3DQZK",
+    "observation": "Official USGS release page and NGMDB DOI landing page fetched; NGMDB page exposes a GeMS GIS-data download link. The release is identified as CC0. No GIS bytes, exact AOI coverage, fields, or local rasterization were checked.",
+    "status": "METADATA_AND_DOWNLOAD_LINK_FETCHED; DATA_BYTES_NOT_ACQUIRED"
+  },
+  "usgs_comcat": {
+    "query_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2020-01-01&endtime=2026-10-30&minlatitude=35&maxlatitude=42&minlongitude=-121&maxlongitude=-114&minmagnitude=2.0&limit=100&orderby=time",
+    "observation": "Official API returned event records for a broad Nevada-California bounding box. It does not establish complete event coverage or focal-mechanism density inside the competition footprint. The response was inspected, but no event dataset was saved or ingested into the repository.",
+    "status": "REGIONAL_QUERY_RETURNED_RECORDS; EXACT_FOOTPRINT_NOT_VERIFIED"
+  },
+  "usgs_3dep": {
+    "url": "https://www.usgs.gov/3d-elevation-program/about-3dep-products-services",
+    "observation": "USGS states 3DEP lidar/DEM products are free with no use restrictions. Exact 1 m tile coverage for the competition footprint was not checked and no tiles were acquired.",
+    "status": "PRODUCT_PAGE_FETCHED; AOI_TILES_NOT_VERIFIED"
+  },
+  "usgs_landsat_surface_temperature": {
+    "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature",
+    "observation": "USGS describes global scene-based Collection 2 surface-temperature products with no use restrictions. Exact scenes, cloud-free coverage, date comparability, and footprint intersection were not checked; no scenes were acquired.",
+    "status": "PRODUCT_PAGE_FETCHED; SCENES_NOT_VERIFIED"
+  },
+  "nine_focus_sites": {
+    "audit_path": "../s27-osdr/nine-site-audit.json",
+    "audit_checked_utc": "2026-10-29T16:18:34.263747+00:00",
+    "owner_pages_rechecked_date_utc": "2026-10-30",
+    "observation": "The latest local pinned byte/peer audit labels all nine score values USER-REPORTED, has no organizer-confirmed score, and does not claim a complete organizer registry. The current owner-maintained site pages were checked for submission authorization; they are not organizer receipts."
+  },
+  "focus_site_page_checks": [
+    {
+      "site": "GEMSDOE24",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE24/",
+      "observed_utc": "2026-10-30",
+      "status_observed": "NOT OK TO SUBMIT; the current point-best is described as local HOLDOUT-DTI research only, not a verified cross-site winner or leaderboard prediction."
+    },
+    {
+      "site": "GEMSDOE25",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE25/",
+      "observed_utc": "2026-10-30",
+      "status_observed": "H80 negative; OK TO SUBMIT NO; no competition-ready TIFF; estimated score unknown/not estimated."
+    },
+    {
+      "site": "GEMSDOE27",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+      "observed_utc": "2026-10-30",
+      "status_observed": "No file OK to submit; historical/new research TIFFs are not submission-approved; reported estimates are not leaderboard projections."
+    },
+    {
+      "site": "GEMSDOE28",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "observed_utc": "2026-10-30",
+      "status_observed": "S30 says no file is approved for download/submission; no new TIFF; the nine historical best files exceed the 70%/3-px pair rule."
+    },
+    {
+      "site": "GEMSDOE30",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
+      "observed_utc": "2026-10-30",
+      "status_observed": "Duplicate-stop; no new TIFF in the current review; historical files are research artifacts and not approved entries."
+    },
+    {
+      "site": "GEMSDOE31",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE31/docs/",
+      "observed_utc": "2026-10-30",
+      "status_observed": "Latest research artifact failed score and registry gates; no new TIFF, experiment, score claim, slot selection, or upload."
+    },
+    {
+      "site": "GEMSDOE32",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "observed_utc": "2026-10-30",
+      "status_observed": "B2 0.2778 is labeled an owner-provided submission-log claim with no receipt binding the raster hash; already submitted per owner page, do not resubmit; no file cleared for upload."
+    },
+    {
+      "site": "GEMSDOE33",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE33/",
+      "observed_utc": "2026-10-30",
+      "status_observed": "Three-proposal source screen exhausted; no new TIFF, slot selection, or upload; every file marked OK TO SUBMIT NO."
+    },
+    {
+      "site": "GEMSDOE36",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+      "observed_utc": "2026-10-30",
+      "status_observed": "No candidate authorized; no new TIFF or slot; historical files are research-only and not approved for upload."
+    }
+  ]
+}

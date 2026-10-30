@@ -1,4 +1,19 @@
-## Irregularities — active and historical reviews
+## Irregularities — active 2026-10-30 review and historical records
+
+## Active 2026-10-30 review (`arena/828b6720-gemsdoe91`)
+
+Scope: read-only repository review and source checks; no experiment or candidate artifact. Evidence is in `docs/review-20261030/`.
+
+- **IR-20261030-01 — Assigned method paragraph absent.** `registry/experiment_plan.json` has `lane: null` and no assignment source. The brief calls for one specific method paragraph, but none is supplied. No method was inferred or tested.
+- **IR-20261030-02 — Stale manifest presence flags conflict with the checkout.** `registry/data_manifest.json` retains old `local_present`/`verified_here` claims, while verification-only `scripts/restore_data.py --check` reports all 15 pinned paths missing. `scripts/experiment_preflight.py` consequently reports `BLOCKED` and cannot inspect the sample witness. Do not use manifest flags as current data evidence; no restore was attempted.
+- **IR-20261030-03 — Nine-site score evidence is owner-reported, not organizer-confirmed.** `docs/s27-osdr/nine-site-audit.json` has no organizer-confirmed scores and states `organizer_complete_registry: false`. Its 3-px overlaps are a directed peer-only comparison among the nine focus files. They show each historical file above 70% against a peer, but do not establish complete-registry uniqueness or bind a score to a raster hash.
+- **IR-20261030-04 — GEMSDOE32 lineage explanation remains conditional.** The earlier report says R0 is nested inside a shared family and that pruning 6,436 dots near the catalogue coincides with the 0.2600 → 0.2778 USER-REPORTED claim. The original TIFFs are missing in this checkout; no byte re-hash, score reproduction, or hidden-truth attribution was done on this branch. Pruned points are not proven false positives.
+- **IR-20261030-05 — Prior lattice capacity result is not current evidence.** The 2026-10-29 82.34% lower bound depended on an unauthenticated sample mirror. The current preflight cannot read the missing sample, so the old capacity figure is not reused as a current measured registry result.
+- **IR-20261030-06 — Public leaderboard is not a score receipt.** The 2026-10-30 public-board rank-one value is a dated observation only; public, private, and expert-revised evaluations may differ. No score is attributed to any site file.
+- **IR-20261030-07 — Eligibility is entrant-specific; generative-AI disclosure applies.** Official Rules §1.3 lists eligible individuals, teams and U.S.-based entities and requires an authorized representative's eligibility certification; no entrant's status can be established from this repository. Section 3.2 allows generative AI but requires its use and extent to be disclosed in the narrative. This agent did not register, submit, or certify.
+- **IR-20261030-08 — Preserve the two GEMSDOE28 score/file claims separately.** The pinned nine-site table's best claim is `0.2710` for `gems28-h36-1-rung30-blind-r1-...tif`; the earlier R0 analysis reports `0.2708` for the distinct H27-4 raster, also recorded pixel-identically under GEMSDOE31. Both are USER-REPORTED with no organizer receipt. They are not interchangeable scores for one file; the active review preserves both and explains the distinction.
+
+---
 
 ## 2026-10-29 S27-OSDR (`arena/7de7860e-gemsdoe91`) — irregularities flagged for human review
 

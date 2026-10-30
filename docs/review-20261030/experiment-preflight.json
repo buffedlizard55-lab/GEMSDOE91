@@ -1,0 +1,18 @@
+{
+  "schema": "gems91.experiment-preflight.v1",
+  "status": "BLOCKED",
+  "assignment_metadata_present": false,
+  "assignment_authenticated": false,
+  "reasons": [
+    "No assigned single-method paragraph and assignment source",
+    "Capacity witness unavailable or invalid; no fallback to archived constants"
+  ],
+  "capacity": {
+    "status": "UNVERIFIED",
+    "error": "[Errno 2] No such file or directory: '/home/user/GEMSDOE91/data/official/sample_submission.tif'"
+  },
+  "experiments_run_by_this_command": 0,
+  "candidate_generated": false,
+  "ok_to_submit": false,
+  "scope": "Necessary pre-experiment checks only; feature canaries, both registry phases, matched holdout and separate selector still required."
+}

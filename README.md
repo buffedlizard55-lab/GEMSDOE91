@@ -1,3 +1,25 @@
+# GEMSDOE91 — Current review 2026-10-30: BLOCKED · no new TIFF · NO SUBMISSION APPROVED
+
+> **Active branch:** `arena/828b6720-gemsdoe91` · HEAD `8c52ba3` at review start. **Decision:** no new TIFF was generated; `OK TO DOWNLOAD: NO new candidate`; `OK TO SUBMIT: NO`. Historical downloads remain research-only and are not recommendations.
+>
+> - **Method:** `registry/experiment_plan.json` has `lane: null`; do not infer or self-assign a method.
+> - **Inputs:** `.venv/bin/python scripts/restore_data.py --check` returned 1 with **15/15 pinned inputs missing**, including the official sample raster and training features. No data were restored. The manifest's old `local_present` flags are not evidence of current files.
+> - **Experiment:** preflight is **BLOCKED**; `0 / 3` experiments, 0 minutes, 0 weekly slots; no candidate, holdout, CI, registry comparison, validator result, score estimate, or organizer receipt exists for this review.
+> - **Nine-site decision:** the linked table distinguishes owner-reported score claims from official receipts; every historical best claim is USER-REPORTED, and the saved peer-only audit finds all nine above the 70%/3-px overlap threshold. The organizer-complete registry was unavailable, so no full-registry uniqueness claim is made.
+> - **GEMSDOE32:** `0.2778` is a USER-REPORTED claim, not an organizer receipt. The repository's prior byte-lineage report suggests pruning may explain its advantage; that is a hypothesis, not a score reproduction or proof of newly discovered faults. No numerical forecast is defensible.
+> - **GEMSDOE28 score labels:** the table's `0.2710` applies to its H36-1 file; the earlier R0 lineage report's `0.2708` applies to a different H27-4 file shared with GEMSDOE31. Preserve both as separate USER-REPORTED claims; neither has an organizer receipt.
+> - **Current official public board:** rank one was `0.4544` on the 2026-10-30 fetch; this is a dated public-leaderboard observation, not a receipt for a focus-site file and not a private/final score.
+> - **Official rules:** eligible entrants are individuals, teams, or qualifying U.S. entities subject to the rules; the registered competitor/authorized representative must certify eligibility. Generative AI is allowed but must be disclosed in the required narrative. This agent did not register, submit, or certify.
+>
+> **Start each session by reading this current status, the [full standing project brief](#full-project-brief), the [dated three-pass review](docs/review-20261030/CURRENT_REVIEW.md), and [limitations](LIMITATIONS_AND_NEXT_STEPS.md) / [irregularities](IRREGULARITIES.md).**
+>
+> [**Executive summary, nine-site file/evidence/uniqueness table and future submission guide**](docs/review-20261030/executive-summary.html) · [Full review](docs/review-20261030/CURRENT_REVIEW.md) · [Ranked hypotheses](docs/review-20261030/HYPOTHESES.md) · [Negative run card](docs/review-20261030/run-card.json) · [Preflight](docs/review-20261030/experiment-preflight.json) · [Input availability audit](docs/review-20261030/data-availability.json) · [Official source observations](docs/review-20261030/source-observations.json) · [Current portal and owner-page feed](docs/index.html).
+>
+> **Maximize P(Win) · Own the Outcome.** Negative results and blockers are deliverables; never trade provenance or the assigned-lane rule for a speculative score.
+
+<details>
+<summary>Archived 2026-10-29 S27 status block (preserved as historical evidence; not current for this checkout)</summary>
+
 # GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED (latest: S27-OSDR, S27-CVDC & S27-FABRIC-FAR 2026-10-29)
 
 > **Active checkout `arena/7de7860e-gemsdoe91` (`S27-OSDR`) · 2026-10-29: NEW COMPETITIVE-UNIQUE DE NOVO TIF GENERATED · `OK TO DOWNLOAD: YES — AUTOMATED [0, 1] FORMAT CERTIFIED` · `OK TO SUBMIT: NO` (research only; 0 weekly slots spent).**
@@ -54,6 +76,9 @@ No hallucinations: every number is labeled **HOLDOUT-DTI** (evaluator version, w
 > Method: S25's validated fabric detector rebuilt unchanged (canary reproduced exactly) + the preregistered emission-geometry lane S25 reserved: distance-band quotas (5/15/25/25/30% over (3,5], (5,10], (10,20], (20,40], (40,∞) px — hit **exactly**, 0 redistributed dots) with ≤65% tracking caps vs competitive witnesses. 2 of 3 experiments, 0 weekly slots, every gate automated (no human inspection). **Maximize P(Win):** uniqueness + geometry fixed, far-field ranking still behind — do not spend a slot on a file trailing the incumbent on both live-anchored diagnostics. **Own the Outcome:** negative result with full receipts; the instrument finding (v3 holdout cannot evaluate emission geometry) is preserved for every future lane. Start every session by reading this status, [`LIMITATIONS_AND_NEXT_STEPS.md`](LIMITATIONS_AND_NEXT_STEPS.md), [`IRREGULARITIES.md`](IRREGULARITIES.md), and the [full project brief](#full-project-brief) below. Everything below is the preserved historical record, superseded where inconsistent.
 
 ---
+
+
+</details>
 
 ## Historical status before S27 (superseded where inconsistent)
 
@@ -1761,4 +1786,16 @@ actual paragraph in eight consecutive sessions. S25-TLF therefore declared its o
 - Additional `GEMSDOE91` line in prompt: `gems91-s25-tlf-60000dots-20261028T120039Z-zeros` / earlier third slot reported as `0.0298` (`USER-REPORTED`; no organizer receipt in repo).
 - Additional `GEMSDOE92` line in prompt: `visible-collar-r0-excluded: 0.2784` (`USER-REPORTED`; non-unique collar-pruned `R0` variant).
 - As in prior sessions (`IR-S26TLF-01`), no single method paragraph was appended after the protocol header; Session 27 preregistered its single method lane (`S27-CVDC`) in `docs/s27/preregistration.md` prior to feature construction or holdout evaluation and stayed strictly inside it (`3` of `3` budgeted experiments, `0` live slots used).
+
+
+
+**2026-10-30 current-session addendum (claims and constraints preserved; this review is the active branch evidence):**
+- Review GEMSDOE24/25/27/28/30/31/32/33/36. Provide an executive file table with the best claimed file, evidence class for any score, and uniqueness. Do not call a user/owner claim an organizer-confirmed score; a receipt must bind the exact artifact.
+- Explain GEMSDOE32's reported `0.2778` using official metric mechanics and the repository's prior byte-lineage evidence, while stating that no score receipt or current TIFF is present. Do not give a projected score. Distinguish the current public leaderboard snapshot from private/final evaluation.
+- Rank 3–5 geological hypotheses with named layers, physical signatures, uncatalogued-fault rationale, differences from implemented code, named non-fault mimics, qualitative benefit/cost, and an official source availability check. Validate the top idea on the prescribed whole-segment buffered holdout before any live decision; if assignment/data block it, record a negative run card and stop.
+- Apply the full parallel-run gates: only the one assigned method lane; check pre-placement surface `|rho| <= 0.90` and final-dot overlap `<=70%` within 3 px against the complete registry; hide/recover whole fault segments with a buffer; derive catalogue context only from visible faults; preserve the exact mask; pooled DTI alpha `.2`, beta `.8`, 300 m triangular kernel; test each feature alone for leakage (`AUC > .90` is a warning); use the shared feature stack, evaluator, and writer.
+- Run no more than three experiments or two hours. Do not choose a live competition slot. A separate selector must act within the actual weekly cap. The run card must include hypothesis, mechanism, named mimic, HOLDOUT-DTI plus evaluator/count/95% CI, both registry results, SHA-256, automated raster checks, submission name/note if a candidate exists, and promote/negative verdict. Negative results are deliverables.
+- Do not copy a past submission or generate a TIFF unless the assigned method, data, validation, and protocol permit it. State explicitly whether a new TIFF is permitted to download/submit. No current candidate means both statuses are NO.
+- Verify official eligibility/rules: the rules name eligible individuals/teams/entities and require the registered competitor's authorized representative to certify; generative AI is permitted with required narrative disclosure. An AI agent cannot be the entrant or certify eligibility.
+- Preserve three review passes, official citations, limitations/irregularities, automated checks, and a current website feed. Create a PR and merge only after the change is validated. Start every future project session by rereading this brief and the active review.
 

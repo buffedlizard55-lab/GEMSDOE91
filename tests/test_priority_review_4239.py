@@ -80,8 +80,10 @@ def test_public_frontdoor_and_guide_show_current_stop():
     index = (ROOT / 'docs/index.html').read_text()
     guide = (ROOT / 'docs/submission-guide.html').read_text()
     table = (BASE / 'executive-summary.html').read_text()
-    assert 'CURRENT REVIEW · 2026-10-29' in index
-    assert 'review-4239f6e5/executive-summary.html' in index
+    assert 'CURRENT REVIEW · 2026-10-30' in index
+    assert 'review-20261030/executive-summary.html' in index
+    assert 'PRIOR REVIEW · 2026-10-29' in index
+    assert 'review-4239f6e5/run-card.json' in index
     assert 'review-4239f6e5/run-card.json' in guide
     assert 'No new TIFF was generated' in guide
     assert '0.2778' in table and 'USER-REPORTED' in table
