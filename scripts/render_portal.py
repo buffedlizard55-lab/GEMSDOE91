@@ -299,13 +299,17 @@ def render():
     # A current lane owns its two entry points. Historical reports are immutable
     # evidence, not inputs whose CSS or banners should be rebuilt from that page.
     from scripts.render_olc91_portal import CURRENT, render as render_current
-    if CURRENT['run_card'] == 'run-card-S22-OMTJ.json':
-        render_current()  # OMTJ alone owns the current entry points; XB remains archived.
+    if CURRENT['run_card'] in ('run-card-S22-OMTJ.json', 'run-card-S28-VFCD.json'):
+        render_current()  # the current card alone owns the entry points; XB remains archived.
         if (ROOT / 'docs/run-card-S22-XB.json').is_file():
             from scripts.render_s22_xbreed_pages import render as render_s22xb
             render_s22xb()  # its dedicated page remains an explicitly historical artifact
         from scripts.render_review_20261030 import render as render_active_review
         render_active_review(ROOT)
+        # S91-ALM adds its own certified-unique banner in parallel (additive), after
+        # the S28 front door has been enforced.
+        from scripts.s91_alm_render_portal import render as render_s91_alm
+        render_s91_alm(ROOT)
         print('Rendered current blocked review; historical pages preserved; no promotion.')
         return
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
@@ -673,7 +677,36 @@ def render():
     # all legacy/session renderers have generated their compatibility pages.
     from scripts.render_review_20261030 import render as render_active_review
     render_active_review(ROOT)
-    print('Rendered portal: active review is no-candidate; competition submission NO.')
+    print('Rendered portal: legacy pages rebuilt; active status is owned by S28 (docs/s28/).')
+    # S28 owns the front door from 2026-10-31: never leave a superseded
+    # "no candidate" banner on the deployed site.
+    try:
+        import front_door as _fd  # noqa: PLC0415
+    except ImportError:  # direct script execution
+        import sys as _s
+        from pathlib import Path as _p
+        _s.path.insert(0, str(_p(__file__).resolve().parent))
+        import front_door as _fd  # noqa: PLC0415
+    _fd.enforce()
+
+    # S91-ALM adds its own certified-unique banner in parallel. It runs after the
+    # S28 front door is enforced (additive insertion) so the S91-ALM GeoTIFF stays
+    # one click away without displacing the active S28 status.
+    from scripts.s91_alm_render_portal import render as render_s91_alm
+    render_s91_alm(ROOT)
 
 
-if __name__ == '__main__': render()
+
+def _enforce_front_door():
+
+    try:
+        import front_door  # noqa: PLC0415
+    except ImportError:
+        import sys as _s; from pathlib import Path as _p
+        _s.path.insert(0, str(_p(__file__).resolve().parent)); import front_door
+    front_door.enforce()
+
+
+if __name__ == '__main__':
+    render()
+    _enforce_front_door()

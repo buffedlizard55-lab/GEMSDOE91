@@ -165,66 +165,42 @@ def current_review_pointer(card: dict) -> dict:
     }
 
 
-S91_CAND = "gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c"
-
-
-def _s91_alm_card() -> str:
-    return (
-        '<div class="note" role="status"><strong>NEW · 2026-10-31 · S91-ALM: UNIQUE SUBMISSION GENERATED — '
-        '<span style="color:#155b48">OK TO DOWNLOAD: YES</span> · <span style="color:#7b2b22">OK TO SUBMIT: NO '
-        '(selector step pending)</span>.</strong> A new, format-certified GeoTIFF is <strong>unique</strong> against all '
-        'nine focus sites (max 23.8% of its dots within 3 px of any leader; threshold 70%). It is a negative holdout by '
-        'design (collar-compliant off-catalogue search), so its leaderboard score is <strong>not estimated</strong> — no '
-        'organizer receipt exists. <a href="s91-alm/executive-summary.html">S91-ALM executive summary &amp; download</a> · '
-        '<a href="s91-alm/REVIEW.md">three-pass review</a> · <a href="s91-alm/run-card.json">run card</a> · '
-        f'<a href="downloads/{S91_CAND}-zeros.tif">download the submission GeoTIFF</a>.</div>'
-    )
-
-
 def render(root: Path = ROOT) -> None:
+    """Render the 2026-10-30 review.
+
+    Superseded on 2026-10-31 by S28 (``scripts/s28_render_portal.py``), which now
+    owns the public front door (root ``index.html``, ``docs/index.html`` banner,
+    ``docs/submission-guide.html`` and ``docs/current-review.json``).  This
+    renderer deliberately no longer republishes that stale status; it only keeps
+    its own dated review directory and page consistent.  Status-pinning tests were
+    updated with the S28 hand-over.
+    """
     card, snapshot = validate_inputs(root)
     docs = root / "docs"
     review_dir = docs / "review-20261030"
     review_dir.mkdir(parents=True, exist_ok=True)
     page = executive_html(card, snapshot)
     (review_dir / "executive-summary.html").write_text(page, encoding="utf-8")
-    guide = standalone_guide(card)
-    (docs / "submission-guide.html").write_text(guide + "\n", encoding="utf-8")
+    # Front-door outputs are owned by S28 from 2026-10-31 onward; this renderer
+    # must not overwrite them with a superseded "no candidate" status.
     pointer = current_review_pointer(card)
-    CURRENT_REVIEW_PATH.relative_to(root).parent.mkdir(parents=True, exist_ok=True)
-    CURRENT_REVIEW_PATH.write_text(json.dumps(pointer, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
-    notice = _active_notice()
-    for name in ("index.html", "executive-summary.html"):
-        path = docs / name
-        if not path.is_file():
-            raise FileNotFoundError(path)
-        source = path.read_text(encoding="utf-8")
-        source = _replace_current_notice(source, notice)
-        source = source.replace(
-            'href="review-4239f6e5/run-card.json">Current run card',
-            'href="review-20261030/run-card.json">Active review run card',
-        )
-        # Lead the live portal with the newest (S91-ALM) candidate right after the
-        # current-review notice, so the download is obvious on the GitHub Pages site.
-        card = _s91_alm_card()
-        if card not in source:
-            source = source.replace(notice, notice + card, 1)
-        path.write_text(source, encoding="utf-8")
-    root_html = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta http-equiv="refresh" content="0;url=docs/index.html">'
-        '<meta name="description" content="GEMSDOE91: S91-ALM unique submission (OK TO DOWNLOAD: YES; OK TO SUBMIT: NO).">'
-        '<title>GEMSDOE91 · S91-ALM unique submission · OK TO DOWNLOAD YES · OK TO SUBMIT NO</title></head><body><main>'
-        '<h1>GEMSDOE91 · S91-ALM unique submission</h1>'
-        '<p><strong>OK TO DOWNLOAD: YES</strong> · <strong>OK TO SUBMIT: NO</strong> (selector step pending).</p>'
-        '<p><a href="docs/index.html">Open the portal and active status</a> · '
-        f'<a href="docs/downloads/{S91_CAND}-zeros.tif">Download the S91-ALM submission GeoTIFF</a> · '
-        '<a href="docs/s91-alm/executive-summary.html">S91-ALM executive summary and nine-site table</a> · '
-        '<a href="docs/review-20261030/executive-summary.html">2026-10-30 review executive summary</a> · '
-        '<a href="docs/review-20261030/REVIEW.md">Three-pass review</a> · '
-        '<a href="docs/review-20261030/run-card.json">Negative run card</a></p>'
-        '</main></body></html>\n')
-    (root / "index.html").write_text(root_html, encoding="utf-8")
+    pointer["superseded_by"] = {
+        "review": "s28/executive-summary.html",
+        "run_card": "s28/run-card.json",
+        "date": "2026-10-31",
+        "status": "S28 generated a certified unique candidate; see docs/s28/",
+    }
+    (review_dir / "current-review-superseded.json").write_text(
+        json.dumps(pointer, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+
+    # Never leave a superseded status on the public front door: S28 owns it.
+    try:
+        import front_door as _fd  # noqa: PLC0415
+    except ImportError:  # executed as a bare script
+        import sys as _s
+        _s.path.insert(0, str(Path(__file__).resolve().parent))
+        import front_door as _fd  # noqa: PLC0415
+    _fd.enforce()
 
 
 def main() -> None:

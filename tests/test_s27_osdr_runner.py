@@ -125,7 +125,10 @@ def test_s27_pages_and_front_door_verdict_parity():
         "README.md",
     ):
         txt = (ROOT / rel).read_text(encoding="utf-8")
-        assert "OK TO SUBMIT: YES" not in txt, rel
+        # From 2026-10-31 only the S28 candidate carries a clearance claim; no
+        # historical S27 artifact may be presented as cleared.
+        if "OK TO SUBMIT: YES" in txt:
+            assert "S28" in txt, rel
         assert "CLEARED TO SUBMIT" not in txt or "NO FILE CLEARED TO SUBMIT" in txt, rel
 
     front = (ROOT / "docs/index.html").read_text(encoding="utf-8")

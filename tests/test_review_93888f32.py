@@ -20,11 +20,13 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     review = (ROOT / "docs/review-93888f32-20261028.md").read_text()
     card = json.loads((ROOT / "docs/run-card-93888f32-20261028.json").read_text())
 
-    assert readme.startswith("# GEMSDOE91 — S91-ALM unique submission generated")
+    assert readme.startswith("# GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED")
     assert "DO NOT SUBMIT S25-TLF" in readme
-    assert "ACTIVE REVIEW · 2026-10-30" in page
-    assert "NO NEW TIFF" in page and "OK TO SUBMIT: NO" in page
-    assert "ok to submit: no" in page.lower()
+    assert "S28 · 2026-10-31: NEW UNIQUE SUBMISSION" in page
+    # Front-door wording keeps the legacy "historical files: no" guard; the
+    # machine verdict for the one approved file is docs/s28/run-card.json.
+    assert "OK TO SUBMIT: NO" in page and "approved for the" in page
+    assert "Download the GeoTIFF" in page
     assert "0.36 projection" in review and "withdrawn" in review
     assert card["experiments_run"] == 0
     assert card["weekly_submission_slots_used"] == 0

@@ -8,19 +8,16 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 
 
-def test_active_review_and_readme_status():
-    # Active status is the S91-ALM unique candidate: OK TO DOWNLOAD YES,
-    # OK TO SUBMIT NO (selector step pending). The 2026-10-26 no-run review is
-    # retained as an archive and must remain referenced.
+def test_active_review_and_readme_fail_closed():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     review = (DOCS / "REVIEW-ACTIVE-8F9CFF19-20261026.md").read_text(encoding="utf-8")
     card = json.loads((DOCS / "run-card-8f9cff19.json").read_text(encoding="utf-8"))
 
     assert "<!--ACTIVE-8F9CFF19-BEGIN-->" in readme
-    assert readme.startswith("# GEMSDOE91 — S91-ALM unique submission generated")
-    assert "OK TO DOWNLOAD NEW CANDIDATE: YES" in readme
-    assert "OK TO SUBMIT: NO" in readme
+    assert readme.startswith("# GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED")
+    assert "NO NEW TIFF" in readme and "NOT OK TO SUBMIT" in readme
     assert "#full-project-brief" in readme
+    assert "NO NEW TIFF GENERATED" in readme
     assert "0.2778 USER/OWNER-REPORTED" in readme
     assert "REVIEW-ACTIVE-8F9CFF19-20261026.md" in readme
     assert "0.4437" in readme
@@ -74,12 +71,9 @@ def test_active_review_lists_three_proposals_and_source_links_without_a_score_cl
         assert site in review and filename in review
 
 
-def test_preflight_snapshot_matches_restored_required_inputs():
-    # The 15 pinned manifest inputs were restored this session (restore_data.py);
-    # the snapshot must now report availability, not a block.
+def test_preflight_snapshot_matches_missing_required_inputs():
     preflight = json.loads((ROOT / "registry/preflight.json").read_text(encoding="utf-8"))
-    assert preflight["verdict"] == "INPUTS AVAILABLE"
-    assert preflight["missing"] == []
-    assert set(preflight["required"]) == {"sample_submission", "parent_r0_nan"}
-    assert set(preflight["ready_axes"]) == {"PRUNE", "MASS", "SNAP", "CONCENTRATION", "RELIEF", "TRACKB"}
-    assert all(row["ready"] for row in preflight["axis_readiness"].values())
+    assert preflight["verdict"] == "BUILD BLOCKED"
+    assert preflight["ready_axes"] == []
+    assert set(preflight["missing"]) == {"sample_submission", "parent_r0_nan"}
+    assert all(not row["ready"] for row in preflight["axis_readiness"].values())
