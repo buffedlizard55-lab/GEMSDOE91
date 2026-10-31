@@ -1,0 +1,74 @@
+[
+ {
+  "site": "GEMSDOE24",
+  "file": "gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+  "score": 0.2477,
+  "mine_within_3px": 0.37849896425346574,
+  "theirs_within_3px": 0.2775141920125189,
+  "n_dots": 60069
+ },
+ {
+  "site": "GEMSDOE25",
+  "file": "gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+  "score": 0.26,
+  "mine_within_3px": 0.36062569713709036,
+  "theirs_within_3px": 0.27192107053753684,
+  "n_dots": 44090
+ },
+ {
+  "site": "GEMSDOE27",
+  "file": "gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+  "score": 0.2449,
+  "mine_within_3px": 0.3840229457693738,
+  "theirs_within_3px": 0.27574680406991914,
+  "n_dots": 61328
+ },
+ {
+  "site": "GEMSDOE28",
+  "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+  "score": 0.271,
+  "mine_within_3px": 0.35664205662081055,
+  "theirs_within_3px": 0.294583112055231,
+  "n_dots": 37660
+ },
+ {
+  "site": "GEMSDOE30",
+  "file": "gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+  "score": 0.26,
+  "mine_within_3px": 0.36062569713709036,
+  "theirs_within_3px": 0.27192107053753684,
+  "n_dots": 44090
+ },
+ {
+  "site": "GEMSDOE31",
+  "file": "gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+  "score": 0.2708,
+  "mine_within_3px": 0.3591915865512296,
+  "theirs_within_3px": 0.2957536257120824,
+  "n_dots": 40199
+ },
+ {
+  "site": "GEMSDOE32",
+  "file": "gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+  "score": 0.2778,
+  "mine_within_3px": 0.3573591119137409,
+  "theirs_within_3px": 0.3116003611834068,
+  "n_dots": 37654
+ },
+ {
+  "site": "GEMSDOE33",
+  "file": "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+  "score": 0.2632,
+  "mine_within_3px": 0.3623253837573697,
+  "theirs_within_3px": 0.2859190254389108,
+  "n_dots": 41865
+ },
+ {
+  "site": "GEMSDOE36",
+  "file": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+  "score": 0.275,
+  "mine_within_3px": 0.3617411164816487,
+  "theirs_within_3px": 0.3075873783908993,
+  "n_dots": 38854
+ }
+]

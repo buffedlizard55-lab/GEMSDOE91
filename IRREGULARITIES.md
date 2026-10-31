@@ -9,6 +9,22 @@ Scope: `S28-VFCD` vent-field-conditioned detector lane. Evidence: `docs/s28-vfcd
 - **IR-S28-03 (sample mirror semantics).** The pinned `sample_submission.tif` mirror has 60,988 nonzero cells although the organizer describes an all-zero sample (flagged by the 2026-10-29 review; unresolved). Grid metadata (CRS/shape/transform) is consistent across all pinned references and does not affect validation.
 - **IR-S28-04 (holdout-vs-live instrument mismatch confirmed with new data).** The v3 hide-and-recover holdout measures catalogue recovery (Spearman vs live ≈ +0.105 over 112 anchors); `ref_r0_dots` (the live 0.2778 champion) scores `0.006697` on it while our vent arms — aimed at blind structures — score higher yet project lower. Promote/negative verdicts are gated on the preregistered holdout per protocol; live-aligned expectations are reported separately as labeled MODEL projections. This mismatch is a property of the instrument, not of any candidate.
 - **IR-S28-05 (GDR CSV carries a catalogue-derived column).** `gdr_wellspring_in_footprint.csv` includes `dist_known_fault_px` (computed against the competition catalogue). Reading it would leak catalogue geometry into features. `src/gems91/vfcd28.py` reads only physical columns and a unit test guards this (`test_no_cat_column_ever_parsed`).
+## 2026-10-30 active checkout review (`arena/83350cee-gemsdoe91`)
+
+Scope and evidence: `docs/review-20261030/` (`REVIEW.md`, `run-card.json`, `nine-site-snapshot.json`, `sources.json`, `HYPOTHESES.md`). This is a no-run review; no candidate raster or score was produced.
+
+- **IR-91-20261030-01 — Missing authorized lane.** `registry/experiment_plan.json` has `lane: null` and states that no authenticated assignment paragraph/source was supplied. This is a hard authorization blocker; ranked proposals in the new review are not assignments.
+- **IR-91-20261030-02 — Missing official stack and sample.** `scripts/restore_data.py --check` reported all 15 pinned manifest inputs absent. `scripts/experiment_preflight.py` could not find `data/official/sample_submission.tif`; it exited blocked with zero experiments and no candidate. Do not validate against an inferred or substituted grid.
+- **IR-91-20261030-03 — Historical status/pointer ambiguity.** The README's previous leading banner described another branch's 2026-10-29 artifacts as active; the Pages renderer reinjected the older review; `docs/current-run.json` points to a historical S22 research file while `docs/run-card.json` verifies a CED artifact. The README and durable Pages renderer now identify the active 2026-10-30 no-candidate review, and `docs/current-review.json` is a separate pointer. Legacy artifact pointers remain historical and are not silently rewritten as candidate results.
+- **IR-91-20261030-04 — Prior capacity result is conditional.** The archived 2026-10-29 overlap lower bound uses a sample/reference mirror whose authenticity and sample semantics are unverified. It is not used as a proven impossibility bound, a new experiment, a score, or placement guidance.
+- **IR-91-20261030-05 — Nine-site score claims remain unverified.** The 2026-10-29 audit records user-reported values and no organizer receipts. All nine TIFF blobs were re-retrieved through GitHub's API at their audited commit/path and SHA-256 checked in this review, but no owner score page or DrivenData receipt was refreshed. The peer-overlap NO results are not a complete-registry clearance.
+- **IR-91-20261030-06 — GEMSDOE32 explanation is plausible, not causal.** The pinned R0 byte lineage and official DTI asymmetry are consistent with a pruning/false-positive trade-off, but neither the hidden labels nor a receipt bind the reported `0.2778` to the raster. This is not an estimate or organizer-confirmed score.
+- **IR-91-20261030-07 — Official page evidence is not dataset readiness.** DrivenData and USGS pages were rechecked on 2026-10-30, including GeoDAWN, GeMS/SGMC, 3DEP and the 2026 slip/dilation report. No external geology dataset bytes, local clips, or protected competition files were downloaded; exact coverage and source field semantics remain unknown.
++- **IR-91-20261030-08 — Public-mirror authorization remains unresolved.** Earlier repository records (`IR-S26-05`, `IR-91-09`) document public GitHub mirrors of competition data and flag the rights/terms question. This active review did not restore from or use those mirrors, did not make a rights determination, and does not recommend using them; any future restoration must use an authorized source.
+
+See the [three-pass review](docs/review-20261030/REVIEW.md), [executive table and guide](docs/review-20261030/executive-summary.html), [source register](docs/review-20261030/sources.json), and [current limitations](LIMITATIONS.md).
+
+---
 
 ## 2026-10-29 S27-OSDR (`arena/7de7860e-gemsdoe91`) — irregularities flagged for human review
 
@@ -2074,3 +2090,38 @@ leaderboard verified. Full review: `docs/review-de9d7d75/REVIEW.md`.
 - IR-S26-08: R0-static scores HOLDOUT-DTI 0.0067 under the buffered whole-component holdout despite USER-REPORTED live 0.2778. The holdout instrument removes exactly the visible-catalogue continuation signal R0 exploits; holdout-live calibration via R0 is therefore invalid and no leaderboard projection was issued for S26.
 - IR-S26-09: Pre-existing tests/test_release_integration.py failed in a fresh venv only because `imagecodecs` was absent; after installing it the file passes (6 passed, 1 skipped). Environment dependency, not a code defect; requirements.txt should pin imagecodecs (not changed this session to avoid unrelated churn — flagged for owner).
 - IR-S26-10: Leaderboard values in the standing prompt (0.4413 / 0.3195) are stale: official DrivenData leaderboard fetched 2026-10-29 shows #1 = 0.4544. (Updates IR-S26-01.)
+
+---
+
+## S28 (2026-10-31, `arena/bcdb9324-gemsdoe91`) — five new irregularities
+
+**IR-S28-01 — the nine "focus" sites are one lineage, not nine independent results.**
+Re-measured this session from the SHA-256-pinned bytes: every pairwise directed 3-px overlap among
+GEMSDOE24/25/27/28/30/31/32/33/36 is 97.6–100 %. Their reported scores are therefore not independent
+evidence, and none of them satisfies the protocol's own 70 % uniqueness stop when re-submitted.
+Evidence: `docs/s28/nine-site-forensics.json`.
+
+**IR-S28-02 — no organizer receipt exists for any nine-site score, including the 0.2778 headline.**
+Every value remains `USER-REPORTED`. No DrivenData submission receipt was found in any of the nine
+repositories or in this repository. Treat 0.2778 as a claim; it is used here only as an anchor for geometry,
+never as a validated target.
+
+**IR-S28-03 — `GEMSDOE92:data/bridge/labels.tif` is the same git blob as `existing_faults.tif`.**
+Both resolve to blob `4ad3c1f3f19823e40924589bee7e51e44ae3a2e7` / sha256 `7ba308cc…`. That file is the mapped
+fault catalogue, not ground truth for the scored hidden faults. Any pipeline that trains or evaluates on it as
+"labels" is measuring catalogue recovery, which is what this repository's holdout instrument does by
+construction — a real limitation, not a bug to fix locally.
+
+**IR-S28-04 — `frac_on_net15` is undocumented and cannot be reproduced.**
+The fleet-consensus feature that dominates the 112-anchor score model (Pearson r = 0.82 with live score;
+LOSO R² 0.705) has no construction recipe anywhere in this repository: neither the 15 anchor rasters, the
+kernel, nor the normalisation is recorded. Until it is reconstructed and pinned, any projection that uses it is
+descriptive only. It is also the feature that would push a candidate straight at the 70 % duplicate stop.
+
+**IR-S28-05 — the official sources could not be re-fetched from this sandbox.**
+Outbound access is limited to `github.com`, `codeload.github.com`, `api.github.com`, `pypi.org`,
+`files.pythonhosted.org`. `www.dropbox.com` failed with `SSL_ERROR_SYSCALL`; `drivendata.org` and
+`docs.nlr.gov` are not reachable. Consequences: (a) the metric arithmetic used here is the repository's own
+transcription in `vendor/gems57/metric.py`, cross-checked against its tests, not a fresh read of the rules PDF;
+(b) the official rasters were restored from GitHub mirrors and are authenticated only by matching this
+repository's pinned SHA-256 values, not by an organizer channel.

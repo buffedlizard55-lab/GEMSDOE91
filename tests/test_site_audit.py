@@ -7,6 +7,8 @@ from pathlib import Path
 import re
 from urllib.parse import unquote, urlsplit
 
+from scripts import render_review_20261030
+
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 EXPECTED_SITES = (
@@ -97,16 +99,17 @@ def test_executive_audit_links_resolve_and_exposes_no_current_download_or_submis
 
 
 def test_current_root_and_legacy_download_portal_disambiguate_old_iso91_file():
+    render_review_20261030.render(ROOT)
     root = parse_page(ROOT / "index.html")
     root_text = " ".join(root.text)
-    assert "NO NEW TIFF" in root_text
-    assert "research only" in root_text
+    assert "S28" in root_text and "NEW UNIQUE SUBMISSION" in root_text
+    assert "research/inspection only" in root_text
     assert "OK TO SUBMIT: NO" in root_text
     assert "docs/index.html" in root.links
-    assert "docs/executive-summary.html" in root.links
+    assert "docs/review-20261030/executive-summary.html" in root.links
     current = parse_page(DOCS / "index.html")
-    assert "REVIEW-ARENA-52711765-20261027.md" in current.links
-    assert "review-8e8d86f2/REVIEW.md" in current.links
+    assert "review-20261030/executive-summary.html" in current.links
+    assert "review-20261030/run-card.json" in current.links
 
     # The no-run audit is historical; do not force a later real run to claim
     # that it generated no raster. Its immutable ISO91 pages retain that note.

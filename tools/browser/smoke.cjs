@@ -78,12 +78,24 @@ async function main() {
       throw new Error('Live head status overclaims a page or raster audit');
     }
     await page.getByRole('link', { name: 'Submission guide', exact: true }).first().click();
-    if (!(await page.getByText('Not ready to upload.').count()) ||
-        !(await page.getByText('No new TIFF was generated or approved in this review.').count()) ||
+    if (!(await page.getByText('Do not upload.').count()) ||
+        !(await page.getByText('There is no new GeoTIFF candidate from this review.').count()) ||
+        !(await page.getByText('OK TO DOWNLOAD NEW CANDIDATE: NO').count()) ||
+        !(await page.getByText('OK TO SUBMIT: NO').count()) ||
         await page.locator('[data-submission-ready="false"]').count() !== 1) {
-      throw new Error('Future submission guide is missing the current no-file stop');
+      throw new Error('Current submission guide is missing its no-candidate or no-submit stop');
     }
-    // The latest nine-site table exposes research-only bytes, not a new submission.
+    // The active nine-site table exposes pinned research references, not a new submission.
+    await page.goto(new URL('review-20261030/executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
+    if (await page.locator('[data-submission-ready="false"]').count() !== 1 ||
+        await page.locator('main table tbody tr').count() !== 9 ||
+        !(await page.getByText('USER-REPORTED_PUBLIC_DTI', { exact: false }).count()) ||
+        !(await page.getByText('OK TO DOWNLOAD: YES', { exact: false }).count()) ||
+        !(await page.getByText('OK TO SUBMIT: NO', { exact: false }).count()) ||
+        await page.locator('[data-submission-ready="true"]').count() !== 0) {
+      throw new Error('Active review summary is missing its nine-site research-only and fail-closed states');
+    }
+    // The prior nine-site table remains historical and distinct from this review.
     await page.goto(new URL('review-4239f6e5/executive-summary.html', baseURL).href, { waitUntil: 'networkidle' });
     const latest = JSON.parse(fs.readFileSync(path.join(root, 'docs/review-4239f6e5/run-card.json')));
     if (latest.ok_to_submit !== false || latest.candidate_generated !== false ||

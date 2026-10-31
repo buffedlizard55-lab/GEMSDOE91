@@ -303,7 +303,7 @@ def test_readme_and_governance_files_mention_the_file_keep_the_brief_and_do_not_
     block = readme[readme.index("<!--S22-README-BEGIN-->"):readme.index("<!--S22-README-END-->")]
     assert Path(SUB["tif_file"]).name in block and SUB["sha256"] in block and "Parallel Session 22 lane" in block
     assert readme.index("<details>") < readme.index("<!--S22-README-BEGIN-->")  # older lane is now explicitly historical
-    assert readme.startswith("# GEMSDOE91 — Current review: blocked, research only")
+    assert readme.startswith("# GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED")
     assert "S22-XB lane (claims, not receipts)" in readme and "Session 20 Standing Prompt Addendum" in readme and "full-project-brief" in readme
     for f, tag in (("IRREGULARITIES.md", "IR-S22XB-01"), ("LIMITATIONS_AND_NEXT_STEPS.md", "parallel lane `S22-XB`"),
                    ("SLOT_PLAN.md", "SESSION 22 BANNER"), ("AI_USE.md", "Session 22"), ("PASS_LOG.md", "parallel lane `S22-XB`")):

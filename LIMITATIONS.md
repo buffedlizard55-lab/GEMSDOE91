@@ -1,6 +1,37 @@
-# Limitations and next-session needs — CED91, 2026-10-24
+# Active limitations and next-session needs — 2026-10-30
 
-## Current outcome
+**Active branch:** `arena/83350cee-gemsdoe91`<br>
+**Current outcome:** **BLOCKED; no new TIFF; no experiment; no score; `OK TO SUBMIT: NO`.** The current review card is [`docs/review-20261030/run-card.json`](docs/review-20261030/run-card.json), the public pointer is [`docs/current-review.json`](docs/current-review.json), and the three-pass review is [`docs/review-20261030/REVIEW.md`](docs/review-20261030/REVIEW.md).
+
+## Immediate blockers
+
+1. **No authorized lane paragraph or source.** `registry/experiment_plan.json` has `lane: null`. Do not select a method from the new hypotheses, infer one from an earlier branch, or alter the plan to bypass assignment.
+2. **Required data unavailable.** The last checked pinned manifest has 15 missing inputs; `data/official/sample_submission.tif` is absent. No grid, bounds, sample semantics, or candidate output can be verified in this checkout. Earlier repository records flag the rights/terms status of public GitHub mirrors as unresolved; this review did not use those mirrors. Restore and hash-check from an authorized source before invoking any builder.
+3. **Sample mirror discrepancy unresolved.** A historical local mirror was reported as conflicting with the official all-zero sample description, but its authenticity was not established. The old 2026-10-29 capacity result is conditional on that mirror and is not a verified impossibility proof. Use organizer-controlled bytes to resolve the discrepancy.
+4. **No evidence for promotion.** No experiment, current `HOLDOUT-DTI`, complete-registry candidate comparison, selector clearance, or organizer receipt was produced. Historical owner-reported numbers are not score estimates.
+5. **External geology layers are leads only.** Official DrivenData/USGS pages were checked on 2026-10-30, but no protected competition data or external geological raster bytes were downloaded. Exact GeMS/SGMC, 3DEP, and slip/dilation release coverage/content in the competition footprint remains unverified.
+6. **Legacy artifact pointers remain intentionally distinct.** `docs/current-run.json` points to a historical S22 research file and `docs/run-card.json` is an older CED card. Neither is this no-candidate review; `docs/current-review.json` is the active-review pointer. Do not relabel the legacy files as current candidates.
+
+## Recommended next work, in order
+
+1. Obtain an explicit authorized single-method paragraph and assignment source.
+2. Restore all pinned competition inputs using the authorized data path and verify hashes, masks, CRS, transform, grid, and outside-bounds semantics. Confirm the official sample against organizer-controlled bytes.
+3. Resolve the sample-mirror discrepancy; do not rely on the unauthenticated historical copy or its capacity bound.
+4. Freeze one assigned hypothesis, one named non-fault mimic, controls, and an experiment budget before running. Reuse the shared cached stack, evaluator, and writer. Keep whole-segment buffered hide-and-recover, pooled DTI alpha `0.2`, beta `0.8`, and 300 m support; run feature-alone leakage canaries.
+5. Apply registry stops both before and after placement: stop for any surface rank correlation above `0.90`, or if more than `70%` of candidate dots are within `3 px` of any available registry raster. Validate every output field automatically; never rely on visual review or omit a witness.
+6. Spend at most three experiments or two hours. Only report a numeric measured result as `HOLDOUT-DTI` with evaluator version, withheld-positive count, and 95% CI, or as `ORGANIZER-CONFIRMED` when copied from an actual submission receipt. A projection is not a score.
+7. Treat any passing experiment as research until a separate selector approves promotion. No automatic upload is permitted.
+
+**Maximize P(Win) · Own the Outcome.** The current rational outcome is to protect the slot and stop until authorization and data arrive.
+
+---
+
+<details>
+<summary>Historical CED91 and earlier limitations (preserved archive; not the active review)</summary>
+
+# Historical limitations and next-session needs — CED91, 2026-10-24
+
+## Historical CED91 outcome
 
 A new parent-free TIFF exists and passes local format/range validation. It is a
 **research download, NOT OK TO SUBMIT**. Final registry overlap failed. The
@@ -236,3 +267,5 @@ research artifact or revive legacy model-projected queues.
 3. **Remaining Architectural & Data Ceiling Toward `0.35–0.44+` Live Leaderboard:**
    - **Tabular + 2-Stage Relay/Wash Auto-Context vs End-to-End 2-D GPU U-Net / ConvNeXt:** `H14-2`'s leak-free 6-pair inner-OOF Stage-2 Relay-Ramp & Wash-Bridge Auto-Context delivered `+0.017608` over `S13-PTHA E3` on CPU, proving spatial context across alluvial wash gaps and relay ramps is decisive, but multi-scale 2-D convolutional/vision-transformer spatial decoders trained end-to-end on GPU against differentiable 300 m soft-DTI (`alpha=0.2, beta=0.8`) can learn far richer curved fault-system topology.
    - **Public-Domain Sub-100 m Remote Sensing (`H14-4` USGS 3DEP 1 m LiDAR, Sentinel-1 InSAR, ASTER TIR/SWIR Alteration, Magnetotellurics):** Sandbox outbound firewall rules (`github.com`, `pypi.org`, `npmjs.org` only) prevent direct ingest of external USGS 3DEP 1 m DEM tiles (`links_to_DEM_tiles`), EarthScope/USGS MT resistivity cubes, and ASTER kaolinite/illite/chalcedony alteration ratios (`docs/GEOTHERMAL_VENT_KNOWLEDGE_BASE.md`). Adding 1 m LiDAR micro-scarp channels + GPU Soft-DTI U-Net on an unrestricted GPU workstation is the clear path toward `0.32–0.44+`.
+
+</details>

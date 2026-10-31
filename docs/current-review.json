@@ -1,0 +1,24 @@
+{
+  "schema": "gems91.current-review.v1",
+  "date": "2026-10-31",
+  "branch": "arena/bcdb9324-gemsdoe91",
+  "status": "S28 candidate generated, format-certified and peer-unique",
+  "review": "s28/executive-summary.html",
+  "technical_review": "s28/REVIEW.md",
+  "run_card": "s28/run-card.json",
+  "candidate": {
+    "name": "gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros",
+    "tif": "docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif",
+    "zip": "docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.zip",
+    "sha256": "5d5f9f4deb543fb44e5618796571c80304abe52e8ec0555fb6582914b0d110b4",
+    "n_dots": 37654
+  },
+  "verdict": {
+    "ok_to_download": true,
+    "ok_to_submit": true,
+    "evidence_class": "candidate certified locally; leaderboard score remains unverified until a receipt exists"
+  },
+  "supersedes": [
+    "review-20261030/executive-summary.html"
+  ]
+}

@@ -7,6 +7,7 @@ import pytest
 
 from gems91.readiness import gates, submission_ready
 from scripts.source_integrity import verify_historical_source
+from scripts import render_review_20261030
 
 ROOT = Path(__file__).resolve().parents[1]
 REVIEW = ROOT / 'docs/review-ad43b4e5'
@@ -78,11 +79,20 @@ def test_lineage_and_peer_recheck_are_separate_from_score_claims():
                for site, row in lineage['files'].items())
 
 
-def test_portal_and_guide_link_to_current_fail_closed_run_card():
-    for filename in ('index.html', 'executive-summary.html', 'submission-guide.html'):
+def test_portal_and_guide_link_to_the_active_run_card():
+    """2026-10-31: the active run card is S28's; the fail-closed 2026-10-30 review
+    survives only inside its own dated directory."""
+    render_review_20261030.render(ROOT)
+    # index.html and submission-guide.html are the S28-owned front door; the
+    # legacy docs/executive-summary.html is preserved history and only has to
+    # carry a run-card link of some generation.
+    for filename in ('index.html', 'submission-guide.html'):
         html = (ROOT / 'docs' / filename).read_text()
-        assert 'review-ad43b4e5/run-card.json' in html
-        assert 'data-submission-ready="false"' in html
-    html = (ROOT / 'docs/submission-guide.html').read_text()
-    assert 'No new TIFF was generated' in html
-    assert 'outside-bounds values are null/NaN' in html
+        assert 's28/run-card.json' in html
+    legacy = (ROOT / 'docs' / 'executive-summary.html').read_text()
+    assert 'run-card' in legacy
+    guide = (ROOT / 'docs/submission-guide.html').read_text()
+    assert 'How to submit the S28 candidate' in guide
+    assert 'all-finite, binary, and zero outside the scored footprint' in guide
+    dated = (ROOT / 'docs/review-20261030/executive-summary.html').read_text()
+    assert 'data-submission-ready="false"' in dated

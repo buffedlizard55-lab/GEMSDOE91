@@ -304,6 +304,8 @@ def render():
         if (ROOT / 'docs/run-card-S22-XB.json').is_file():
             from scripts.render_s22_xbreed_pages import render as render_s22xb
             render_s22xb()  # its dedicated page remains an explicitly historical artifact
+        from scripts.render_review_20261030 import render as render_active_review
+        render_active_review(ROOT)
         print('Rendered current blocked review; historical pages preserved; no promotion.')
         return
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
@@ -667,7 +669,34 @@ def render():
         render_s22()
     from scripts.render_s25tlf_portal import render as render_tlf_correction
     render_tlf_correction()
-    print('Rendered portal: research download YES; competition submission NO; evidence-derived gates only.')
+    # Keep the current branch's fail-closed review as the final overlay after
+    # all legacy/session renderers have generated their compatibility pages.
+    from scripts.render_review_20261030 import render as render_active_review
+    render_active_review(ROOT)
+    print('Rendered portal: legacy pages rebuilt; active status is owned by S28 (docs/s28/).')
+    # S28 owns the front door from 2026-10-31: never leave a superseded
+    # "no candidate" banner on the deployed site.
+    try:
+        import front_door as _fd  # noqa: PLC0415
+    except ImportError:  # direct script execution
+        import sys as _s
+        from pathlib import Path as _p
+        _s.path.insert(0, str(_p(__file__).resolve().parent))
+        import front_door as _fd  # noqa: PLC0415
+    _fd.enforce()
 
 
-if __name__ == '__main__': render()
+
+def _enforce_front_door():
+
+    try:
+        import front_door  # noqa: PLC0415
+    except ImportError:
+        import sys as _s; from pathlib import Path as _p
+        _s.path.insert(0, str(_p(__file__).resolve().parent)); import front_door
+    front_door.enforce()
+
+
+if __name__ == '__main__':
+    render()
+    _enforce_front_door()
