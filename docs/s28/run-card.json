@@ -1,6 +1,6 @@
 {
  "schema": "gems91.s28.run-card.v1",
- "generated_utc": "2026-10-31T01:14:00.085733Z",
+ "generated_utc": "2026-10-31T01:16:55.242037Z",
  "hypothesis": "H-S28-1 CPT-19: a supervised transfer classifier trained on mapped faults using the official 19-band GEODAWN stack generalises the multivariate fault signature and ranks unmapped fault locations better than hand-crafted ridge formulas.",
  "mechanism": "Mapped-fault positives vs >=800 m background negatives, 41 catalogue-free layers (robust band z-scores, 400 m context, HG energy, detrended-elevation curvature, basin x conductivity), HistGradientBoosting; emit 37,654 binary dots with >=3-cell Chebyshev separation, zero mass within 300 m of the catalogue, and distance quotas frozen before scoring.",
  "non_fault_process_that_could_mimic_it": "Basin-margin lithological contrast (Quaternary fan-wash edges) and flight-line/processing artefacts in the magnetic and gravity derivatives can produce the same edge energy without a fault.",
@@ -25,7 +25,7 @@
   "nine_site_closest": "GEMSDOE27",
   "local_registry_worst": 0.6639,
   "local_registry_worst_file": "gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
-  "n_priors_compared": 79,
+  "n_priors_compared": 80,
   "registry_scope": "local docs/downloads (this repository, after deleting the lane's superseded variant) + the nine focus-site rasters; NOT the full fleet",
   "stop_threshold": 0.7,
   "verdict": "pass_local_scope"

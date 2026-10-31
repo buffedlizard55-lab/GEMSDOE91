@@ -824,6 +824,18 @@
       "sha256": "295d2d5770a51f540f4e3ff406e509811a86d2d9060bd582133b2a65fccdb063",
       "status": "selector_approved",
       "reason": "Single-TIFF ZIP of the S28 CPT-19 candidate; same clearance as the .tif."
+    },
+    {
+      "path": "docs/downloads/gems91-geothermal-blind-faults-25000dots-20261031T004648Z-40edab72a42d.tif",
+      "sha256": "99a92b7df7ef1332b0cfadee3cf45dbabafa0e613f696b2a705a2b08906e71dd",
+      "status": "current_research_only",
+      "reason": "Concurrent 2026-10-31 lane (arena/e0c9addc) 25,000-dot blind-fault research artifact, merged from main; no organizer receipt and not the active candidate."
+    },
+    {
+      "path": "docs/downloads/gems91-geothermal-blind-faults-25000dots-20261031T004648Z-40edab72a42d.zip",
+      "sha256": "fb683beac4afa06bded8be2bff682efde8dcd41400be0b1ca001c32c6520215d",
+      "status": "current_research_only",
+      "reason": "Concurrent 2026-10-31 lane (arena/e0c9addc) 25,000-dot blind-fault research artifact, merged from main; no organizer receipt and not the active candidate."
     }
   ]
 }

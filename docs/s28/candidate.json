@@ -107,7 +107,7 @@
   "footprint_fraction": 0.007286874781441169
  },
  "uniqueness": {
-  "n_priors_compared": 79,
+  "n_priors_compared": 80,
   "worst": {
    "prior": "gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
    "mine_within_3px": 0.6638869708397515,
