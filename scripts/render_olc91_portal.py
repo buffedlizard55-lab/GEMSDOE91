@@ -501,6 +501,11 @@ def render() -> None:
             '<a href="review-4239f6e5/run-card.json">Negative run card</a>.</div>')
         page = page.replace('<main id="main">', '<main id="main">' + current_notice + previous_notice, 1)
         (docs / target_name).write_text(page, encoding="utf-8")
+    # S91-ALM certified-unique banner rides in parallel with the current card.
+    # This renderer rebuilds the two portal pages from its own templates, so the
+    # banner is re-added here (idempotent) as well as in render_portal.py.
+    from scripts.s91_alm_render_portal import patch_portal_pages as _patch_s91
+    _patch_s91(ROOT)
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     (ROOT / 'index.html').write_text(
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'

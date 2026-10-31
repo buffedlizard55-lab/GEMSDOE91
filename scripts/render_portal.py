@@ -306,6 +306,10 @@ def render():
             render_s22xb()  # its dedicated page remains an explicitly historical artifact
         from scripts.render_review_20261030 import render as render_active_review
         render_active_review(ROOT)
+        # S91-ALM adds its own certified-unique banner in parallel (additive), after
+        # the S28 front door has been enforced.
+        from scripts.s91_alm_render_portal import render as render_s91_alm
+        render_s91_alm(ROOT)
         print('Rendered current blocked review; historical pages preserved; no promotion.')
         return
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
@@ -684,6 +688,12 @@ def render():
         _s.path.insert(0, str(_p(__file__).resolve().parent))
         import front_door as _fd  # noqa: PLC0415
     _fd.enforce()
+
+    # S91-ALM adds its own certified-unique banner in parallel. It runs after the
+    # S28 front door is enforced (additive insertion) so the S91-ALM GeoTIFF stays
+    # one click away without displacing the active S28 status.
+    from scripts.s91_alm_render_portal import render as render_s91_alm
+    render_s91_alm(ROOT)
 
 
 

@@ -1,0 +1,71 @@
+{
+  "schema": "gems91.run-card.v1",
+  "lane": "S91-ALM",
+  "lane_assigned": true,
+  "lane_source": "User prompt: 'MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION' (single method paragraph: alteration-magnetic-low concealed-fault prior)",
+  "hypothesis": "Concealed Great Basin geothermal faults are expressed by an off-catalogue hydrothermal alteration halo (magnetite destruction -> shallow magnetic residual B14-B01 LOW; clay cap -> B17 HIGH; K-depletion -> B06 LOW) plus isostatic gravity-gradient structure (|grad B13|). The nine public leaders all trace one H19-5 magnetic/gravity ridge family; none targets the alteration halo.",
+  "mechanism": "Robust-rank four physics fields (B14-B01, B17, B06, |grad B13|) inside the sample footprint; score = 0.35*(1-rank(B14-B01)) + 0.25*rank(B17) + 0.15*(1-rank(B06)) + 0.25*rank(|grad B13|); greedy top-scoring spatial selection with >=2.5 px min spacing, >3 px catalogue collar, frozen 37,654-dot budget; emit via shared submission_writer.py.",
+  "non_fault_process_mimic": "Unaltered intrusive contacts, volcanic-flow margins, closed-basin evaporite playas (high B17), and irrigated-agriculture moisture anomalies can mimic low magnetic residual / high conductivity.",
+  "holdout_dti": {
+    "value": 0.0,
+    "ci_95": [
+      0.0,
+      0.0
+    ],
+    "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+    "n_withheld_positives": 60988,
+    "note": "Negative result BY DESIGN: dots respect the >3 px catalogue collar, so they cannot cover withheld catalogue segments under the 300 m (3 px) max-credit kernel."
+  },
+  "sgmc_offcatalogue_control": {
+    "value": 0.062396,
+    "evaluator_version": "gems91-hide-recover-v1.1-nohalo",
+    "n_offcatalogue_positives": 62122,
+    "parent_r0_value": 0.095386,
+    "note": "BLIND-SGMC-CONTROL (report only, never a score)."
+  },
+  "organizer_confirmed_score": null,
+  "leaderboard_score_estimate": null,
+  "correlation_overlap_vs_registry": {
+    "nine_focus_leaders_max_3px_overlap_pct": 23.83,
+    "nine_focus_leaders_max_3px_overlap_file": "GEMSDOE27",
+    "all_local_rasters_max_3px_overlap_pct": 33.75,
+    "all_local_rasters_max_3px_overlap_file": "docs/downloads/gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+    "threshold_pct": 70.0,
+    "verdict": "unique"
+  },
+  "raster_sha256": "a6ef90f4136ecfa8d73a4f2c749717da3228c2ec52cbfc44843495b7248d0f12",
+  "validator_output": {
+    "band_count": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform_matches": true,
+    "no_nan_inside_footprint": true,
+    "values_in_range": true,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "n_dots": 37654,
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0,
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true
+  },
+  "experiments_run": 1,
+  "budget_max_experiments": 3,
+  "weekly_submission_slots_used": 0,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "submission_name": "gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros",
+  "submission_note": "S91-ALM off-cat alteration halo (B14-B01 low, B17 high, B06 low, |grad B13|); 37654d; unique vs nine; holdout 0.0 by design",
+  "verdict": "negative",
+  "verdict_reason": "Unique and format-certified, but HOLDOUT-DTI 0.0 (collar-compliant by design) and blind SGMC control 0.0624 below parent R0 0.0954; no organizer receipt; does not beat the supplied 0.2778 claim.",
+  "generated_utc": "2026-10-31T01:01:14Z"
+}
