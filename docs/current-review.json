@@ -1,20 +1,48 @@
 {
   "schema": "gems91.current-review-pointer.v1",
-  "review_id": "GEMSDOE91-REVIEW-20261030",
-  "review_date_utc": "2026-10-30",
-  "branch": "arena/83350cee-gemsdoe91",
-  "status": "BLOCKED",
-  "candidate_generated": false,
-  "ok_to_download_new_candidate": false,
-  "ok_to_submit": false,
-  "holdout_dti": null,
-  "organizer_confirmed": null,
-  "leaderboard_score_estimate": null,
-  "review": "review-20261030/REVIEW.md",
-  "executive_summary": "review-20261030/executive-summary.html",
-  "run_card": "review-20261030/run-card.json",
+  "review_id": "s28-pucc-20261031",
+  "review_date_utc": "2026-10-31",
+  "branch": "arena/db03647e-gemsdoe91",
+  "status": "CANDIDATE_READY",
+  "candidate_generated": true,
+  "candidate_file": "downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif",
+  "candidate_sha256": "8d75b2d1c6891bee275cf3e0aa6065568e5cabe7626528c068b09f81562f656f",
+  "candidate_submission_name": "gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros",
+  "ok_to_download_new_candidate": true,
+  "ok_to_submit": true,
+  "ok_to_submit_conditions": "All automated gates pass (format all-finite [0,1], catalogue mask, leakage canary, uniqueness vs nine sites and 78 registry rasters, budget 3/3 experiments, 0 weekly slots spent). Upload remains a separate manual selector decision. IR-S28-ANTILIVE-01 caveat applies: do not claim the file beats 0.2778.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": 0.12797373836871026,
+    "ci95": [
+      0.10997924835638555,
+      0.14618368646331334
+    ],
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_count": 60988
+  },
+  "leaderboard_score_estimate": {
+    "evidence_class": "MODEL_PROJECTION_NOT_A_SCORE",
+    "value": 0.22155,
+    "ci95": [
+      0.1633,
+      0.2798
+    ],
+    "reliability": "LOW",
+    "method": "cohort bracket over owner-reported non-family matched-budget submissions; in-hull regression retained as audit only"
+  },
+  "organizer_confirmed": {
+    "evidence_class": "ORGANIZER-CONFIRMED",
+    "value": null,
+    "submission_receipt": null
+  },
+  "review": "s28-pucc/run-card.json",
+  "executive_summary": "executive-summary.html",
+  "submission_guide": "submission-guide.html",
+  "run_card": "s28-pucc/run-card.json",
+  "score_estimate": "s28-pucc/score-estimate.json",
   "historical_artifact_pointer": {
     "path": "current-run.json",
-    "meaning": "Legacy pointer to a historical S22 research download; not this active no-candidate review."
+    "meaning": "Legacy pointer to run-card-522615dd.json-era artifacts (currently run-card-S22-OMTJ.json). Superseded by this pointer; retained for audit continuity."
   }
 }

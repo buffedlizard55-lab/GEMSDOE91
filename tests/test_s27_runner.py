@@ -137,8 +137,11 @@ def test_s27_portal_idempotent_and_links_resolve():
     for rel in ("docs/s27-cvdc/executive-summary.html", "docs/index.html", "docs/executive-summary.html", "index.html"):
         page_path = ROOT / rel
         text = page_path.read_text(encoding="utf-8")
-        assert "OK TO SUBMIT: NO" in text
-        assert "OK TO SUBMIT: YES" not in text
+        if rel in ("docs/s27-cvdc/executive-summary.html", "docs/index.html"):
+            assert "OK TO SUBMIT: NO" in text
+        else:
+            # active S28-PUCC front door (2026-10-31)
+            assert "OK TO SUBMIT: YES" in text and "gems91-s28-pucc" in text
         assert "CLEARED TO SUBMIT" not in text.upper()
         parser = _HrefParser()
         parser.feed(text)

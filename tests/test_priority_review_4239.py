@@ -77,15 +77,18 @@ def test_renderer_refuses_a_promote_flag(monkeypatch):
 
 
 def test_public_frontdoor_and_guide_show_current_stop():
-    # Rebuild the final active-review view after this module's historical renderer checks.
+    # Rebuild the historical review view after this module's renderer checks,
+    # then assert the active front door (S28-PUCC, 2026-10-31).
     render_review_20261030.render(ROOT)
     index = (ROOT / 'docs/index.html').read_text()
     guide = (ROOT / 'docs/submission-guide.html').read_text()
     table = (BASE / 'executive-summary.html').read_text()
-    assert 'ACTIVE REVIEW · 2026-10-30' in index
-    assert 'review-20261030/executive-summary.html' in index
-    assert 'review-20261030/run-card.json' in guide
-    assert 'There is no new GeoTIFF candidate' in guide
+    assert 'ACTIVE REVIEW · 2026-10-31' in index
+    assert 's28-pucc/run-card.json' in index
+    assert 'gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros' in guide
+    assert 'OK TO SUBMIT: YES' in guide
+    assert 'https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/' in guide
+    # the 2026-10-30 fail-closed table is history and keeps its labels
     assert '0.2778' in table and 'USER-REPORTED' in table
     assert 'No improvement' not in table or 'unproven' in table
     assert 'OK TO SUBMIT: NO' in table and 'data-submission-ready="true"' not in table

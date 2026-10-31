@@ -147,14 +147,22 @@ def test_current_portal_preserves_historical_review_and_research_labels():
     assert "Why 0.2778 leads" not in text
 
 
-def test_executive_guide_cannot_be_mistaken_for_current_upload_approval():
+def test_executive_guide_distinguishes_projection_from_receipt_and_names_the_candidate():
+    # Superseded 2026-10-31: docs/executive-summary.html is the S28-PUCC active page.
+    # The guard keeps its purpose — the guide must never let a projection masquerade
+    # as an organizer score — but now also pins the validated candidate it approves.
     page = TextLinks()
     page.feed((DOCS / "executive-summary.html").read_text(encoding="utf-8"))
     text = " ".join(page.text)
-    assert "REVIEW-ACTIVE-E649E460-20261025.md" in page.links
-    assert "run-card-E649E460-20261025.json" in page.links
-    assert "not an approval to upload that file" in text.lower()
-    assert "OK TO SUBMIT: NO" in text
+    assert "s28-pucc/run-card.json" in page.links
+    assert "downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif" in page.links
+    assert "MODEL_PROJECTION_NOT_A_SCORE" in text
+    assert "ORGANIZER-CONFIRMED" in text
+    assert "does not claim to beat 0.2778" in text
+    assert "OK TO SUBMIT: YES" in text
+    # the pre-restoration review remains committed and keep its fail-closed wording
+    old = (DOCS / "REVIEW-ACTIVE-E649E460-20261025.md").read_text(encoding="utf-8")
+    assert "not an approval to upload" in old.lower() or "OK TO SUBMIT: NO" in old
 
 
 def test_current_file_pointer_remains_prior_olc91_not_a_fabricated_new_result():

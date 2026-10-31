@@ -1,3 +1,12 @@
+# Session 2026-10-31 — lane `S28-PUCC` (branch `arena/db03647e-gemsdoe91`) — 3-pass complete
+
+- **PASS 1 (design):** repo/README brief re-read; data 15/15 sha256-restored; champion forensics digested (B=2 shell removal pays iff credit/dot<0.0556; margin over runner-up is pruning, not coverage); 5 new hypotheses generated + ranked (H28-1..5, `docs/s28-pucc/HYPOTHESES.md`); preregistration frozen before data access (`docs/s28-pucc/preregistration.md`, 3 experiments, gates G1–G5, SEED=520810).
+- **PASS 2 (implementation):** E1 surface transfer (SGMC-off+blind-vent) 0.09958 [0.08317, 0.11614]; E2 + OSDR corroboration + lidar corridor + vent gates 0.12797 [0.10998, 0.14618] (SELECTED); E3 + seismicity tip relays 0.12404 [0.10578, 0.14181]. Canary max sym-AUC 0.6735 PASS. Anti-live instrument built (IR-S28-ANTILIVE-01: Spearman(live, pooled-fixed)=−0.750). Packaging: CELF 37,654 dots, 0 on catalogue, 12,279,160 px all-finite [0,1], validator all_checks_passed.
+- **PASS 3 (verification):** uniqueness vs 9 site bests (max 39.3% within 3px — PASS) + 78 registry rasters (max 50.1% — PASS); estimator reworked to out-of-hull cohort bracket 0.222 [0.163, 0.280] (regression extrapolation rejected, IR-S28-EST-01); site surfacing (exec summary, submission guide, current-review pointer, root landing, README banner + verbatim 2026-10-31 prompt at #full-project-brief); IR/LIMITATIONS ledgers updated; front-door parity tests rewritten to the CANDIDATE_READY state with the 2026-10-30 review preserved as history; renderer re-scoped to its review directory (no more front-door clobbering).
+- **Outcome:** `promote-to-selector` WITH caveat (never claim >0.2778). Candidate `docs/downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif` (sha256 8d75b2d1…). HOLDOUT-DTI and MODEL_PROJECTION labeled and kept separate everywhere. 3/3 experiments, 0/1 weekly slots spent.
+
+---
+
 ## Active review — 2026-10-30 (`arena/83350cee-gemsdoe91`) — three passes
 
 1. **Pass 1 (status, authorization, and source discovery):** confirmed the active plan has `lane: null`, all 15 pinned inputs are missing, and the official sample TIFF is absent. No experiment, candidate, score, or upload was authorized or run. Rechecked the official DrivenData/USGS pages recorded in `docs/review-20261030/sources.json`; framed geological ideas only as untested proposals. Prior repository records flag public-mirror rights/terms as unresolved; this review did not use those mirrors.

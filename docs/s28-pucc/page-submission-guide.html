@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="How to submit the validated GEMSDOE91 S28-PUCC GeoTIFF to DrivenData: one-click download, paste-ready submission name and note, integrity check, and receipt capture.">
+<title>GEMSDOE91 · Submission guide · S28-PUCC is OK to submit</title>
+<style>
+:root{--ink:#142d29;--muted:#465e57;--paper:#f5f6ef;--line:#d7e1d9;--green:#155b48;--ok:#0f5c36;--okbg:#e7f2ea;--soft:#fff0e8;--amber:#81402b}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{width:min(900px,calc(100% - 40px));margin:auto;padding:30px 0 70px}
+h1{font-size:clamp(26px,4vw,40px);letter-spacing:-.03em;line-height:1.1}
+h2{font-size:22px;margin:2em 0 .5em;border-top:2px solid var(--line);padding-top:1em}
+a{color:#125b49}
+.badge{display:inline-block;border:1px solid var(--ok);background:var(--okbg);color:var(--ok);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:800;margin:2px 5px 2px 0}
+.badge.warn{border-color:#c87a15;background:#fdf3e2;color:#8a5915}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin:18px 0}
+.download{background:linear-gradient(135deg,#155b48,#1d7a5d);color:#fff;border:none}
+.download a{color:#d7f5e6}
+.button{display:inline-block;background:#fff;color:#12402f;padding:13px 22px;border-radius:8px;text-decoration:none;font-weight:800;margin:8px 10px 8px 0}
+.button.ghost{background:transparent;color:#fff;border:1.5px solid #a9dcc2}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:8px 18px}
+dt{font-weight:700;color:var(--muted)}dd{margin:0;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;overflow-wrap:anywhere;background:#eef2ec;border-radius:6px;padding:8px 12px}
+.copy{cursor:pointer;border:1px solid var(--green);background:#fff;color:var(--green);border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700;margin-left:8px}
+ol,ul{padding-left:1.3em}li{margin:8px 0}
+.small{color:var(--muted);font-size:13.5px}
+code{font:12.5px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef2ec;border-radius:4px;padding:1px 5px;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<main id="main" data-submission-ready="true">
+
+<p><span class="badge">2026-10-31 · S28-PUCC</span><span class="badge">OK TO DOWNLOAD: YES</span><span class="badge">OK TO SUBMIT: YES</span><span class="badge warn">Weekly slot: 0 of 1 spent — the upload itself is your call</span></p>
+
+<h1>Submission guide — one validated file, five steps</h1>
+<p>Everything below refers to exactly one artifact. All validation was automated (format, uniqueness, leakage, budget); there is no human-inspection step left for you beyond the optional checksum.</p>
+
+<div class="box download">
+<h2 style="margin-top:0;color:#fff;border:none;padding:0">Step 1 · Download</h2>
+<p><a class="button" href="downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif" download>⬇ GeoTIFF (138 KB)</a>
+<a class="button ghost" href="downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.zip" download>⬇ Zip (contains the TIF)</a></p>
+</div>
+
+<h2>Step 2 · Verify integrity (optional, 10 seconds)</h2>
+<div class="box">
+<dl>
+<dt>sha256sum output <button class="copy" data-copy="8d75b2d1c6891bee275cf3e0aa6065568e5cabe7626528c068b09f81562f656f">copy</button></dt>
+<dd>8d75b2d1c6891bee275cf3e0aa6065568e5cabe7626528c068b09f81562f656f</dd>
+</dl>
+<p class="small">Terminal: <code>sha256sum gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif</code> — must match exactly. The zip contains the same TIF.</p>
+</div>
+
+<h2>Step 3 · Upload at the official page</h2>
+<div class="box">
+<ol>
+<li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submission page</a> (manual upload only — this repo never automates uploads and stores no credentials).</li>
+<li>Upload <code>gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif</code> (or the zip if the form asks for an archive).</li>
+<li>Accept any form fields the page requires beyond the name/note below (e.g. algorithm description).</li>
+</ol>
+</div>
+
+<h2>Step 4 · Paste the submission name and note exactly</h2>
+<div class="box">
+<dl>
+<dt>Submission name <button class="copy" data-copy="gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros">copy</button></dt>
+<dd>gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros</dd>
+<dt>Submission note — 89 chars ≤ 140 <button class="copy" data-copy="S28 PUCC SGMC-off+vent+OSDR+lidar corridor consensus, B2 flank, CELF 37654d; see run-card">copy</button></dt>
+<dd>S28 PUCC SGMC-off+vent+OSDR+lidar corridor consensus, B2 flank, CELF 37654d; see run-card</dd>
+</dl>
+<p class="small">Why these values: the name embeds method (s28-pucc), selection (ee2), dot count (37654), UTC timestamp (20261031T013552Z), content digest (cb42d2ce) and the outside-footprint convention (zeros) — this is the repo's standing submission-naming scheme, so any receipt is traceable to the exact bytes.</p>
+</div>
+
+<h2>Step 5 · Capture the receipt</h2>
+<div class="box">
+<ul>
+<li>Screenshot or save the confirmation page/score email.</li>
+<li>Commit the receipt reference into <code>ledger/submissions.csv</code> (columns <code>receipt_score</code>/<code>receipt_date</code>) and change that row's <code>evidence_class</code> to <strong>ORGANIZER-CONFIRMED</strong>. Until then every number is labeled USER-REPORTED / HOLDOUT-DTI / MODEL projection.</li>
+<li>Update <code>docs/current-review.json</code> and the README banner with the confirmed value.</li>
+</ul>
+</div>
+
+<h2>What the validators already checked for you</h2>
+<div class="box">
+<ul>
+<li><strong>Format (the old failure mode):</strong> single-band float32, EPSG:32611 3292×3730 grid, nodata=None, 12,279,160/12,279,160 finite values in [0, 1], 0 NaN/Inf. The previous "Predicted values must be in range [0, 1]" error came from NaN outside the footprint; this file writes finite zeros there and cannot trigger it.</li>
+<li><strong>Catalogue compliance:</strong> 0 of 37,654 dots on the published catalogue (B=2 flank).</li>
+<li><strong>Uniqueness:</strong> max 39.3% of dots within 3 px of any single GEMSDOE24–36 site raster; max 50.1% vs any of 78 registry rasters — both below the 70% duplicate gate.</li>
+<li><strong>Leakage canary:</strong> every feature-alone symmetric AUC ≤ 0.674 (gate 0.85).</li>
+<li><strong>Selector check (not a veto — a warning):</strong> IR-S28-ANTILIVE-01 shows within-family local holdouts are anti-live. This candidate is a new-geometry bet: it is the best-odds unique file, not a guaranteed score. Do not claim it beats 0.2778.</li>
+</ul>
+<p class="small">Full evidence: <a href="s28-pucc/run-card.json">run-card.json</a> · <a href="executive-summary.html">executive summary</a>.</p>
+</div>
+
+<h2>Quick facts</h2>
+<div class="box">
+<dl>
+<dt>HOLDOUT-DTI</dt><dd>0.12797 [0.10998, 0.14618] · gems57-pooled-hide-v2 · 60,988 withheld positives</dd>
+<dt>MODEL_PROJECTION_NOT_A_SCORE</dt><dd>0.222 [0.163, 0.280] · LOW reliability</dd>
+<dt>ORGANIZER-CONFIRMED</dt><dd>null — no receipt yet</dd>
+<dt>Grid</dt><dd>3292×3730 · EPSG:32611 · 100 m · 37,654 dots</dd>
+</dl>
+</div>
+
+<p class="small">Back to the <a href="executive-summary.html">executive summary</a> · <a href="index.html">docs home</a> · <a href="../README.md">README</a>.</p>
+</main>
+<script>
+document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){
+  navigator.clipboard.writeText(b.getAttribute('data-copy')).then(function(){b.textContent='copied ✓';setTimeout(function(){b.textContent='copy'},1500);});
+});});
+</script>
+</body>
+</html>

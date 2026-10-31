@@ -14,17 +14,20 @@ ZIP = ARTIFACT.with_suffix(".zip")
 
 
 def test_current_status_is_fail_closed_and_has_a_machine_card():
-    render_review_20261030.render(ROOT)
+    render_review_20261030.render(ROOT)  # idempotent; scoped to docs/review-20261030/ since 2026-10-31
     readme = (ROOT / "README.md").read_text()
     page = (ROOT / "docs/index.html").read_text()
     review = (ROOT / "docs/review-93888f32-20261028.md").read_text()
     card = json.loads((ROOT / "docs/run-card-93888f32-20261028.json").read_text())
 
-    assert readme.startswith("# GEMSDOE91 — Current review: blocked, research only")
+    # Active front door is the 2026-10-31 S28-PUCC CANDIDATE_READY review; the
+    # fail-closed S25-TLF ruling and older reviews remain committed as history.
+    assert readme.startswith("# GEMSDOE91 — S28-PUCC: UNIQUE SUBMISSION READY")
     assert "DO NOT SUBMIT S25-TLF" in readme
-    assert "ACTIVE REVIEW · 2026-10-30" in page
-    assert "NO NEW TIFF" in page and "OK TO SUBMIT: NO" in page
-    assert "ok to submit: no" in page.lower()
+    assert "ACTIVE REVIEW · 2026-10-31" in page
+    assert "OK TO SUBMIT: YES" in page
+    assert "s28-pucc/run-card.json" in page
+    assert "OK TO SUBMIT: NO" in page  # superseded verdicts preserved as history
     assert "0.36 projection" in review and "withdrawn" in review
     assert card["experiments_run"] == 0
     assert card["weekly_submission_slots_used"] == 0

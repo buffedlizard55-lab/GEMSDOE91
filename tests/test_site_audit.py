@@ -102,9 +102,10 @@ def test_current_root_and_legacy_download_portal_disambiguate_old_iso91_file():
     render_review_20261030.render(ROOT)
     root = parse_page(ROOT / "index.html")
     root_text = " ".join(root.text)
-    assert "NO NEW TIFF" in root_text
-    assert "research/inspection only" in root_text
-    assert "OK TO SUBMIT: NO" in root_text
+    # Active front door: S28-PUCC candidate READY (2026-10-31).
+    assert "OK TO DOWNLOAD: YES" in root_text
+    assert "OK TO SUBMIT: YES" in root_text
+    assert "gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros" in root_text
     assert "docs/index.html" in root.links
     assert "docs/review-20261030/executive-summary.html" in root.links
     current = parse_page(DOCS / "index.html")
@@ -120,6 +121,7 @@ def test_current_root_and_legacy_download_portal_disambiguate_old_iso91_file():
         assert "2026-10-25" in text, name
         assert "NOT OK TO SUBMIT" in text, name
         assert "nine-site-audit-20261026.html" in page.links, name
-    guide = " ".join(parse_page(DOCS / "executive-summary.html").text)
+    # The S22 warning lives on in the immutable historical executive source.
+    guide = " ".join(parse_page(DOCS / "review-8e8d86f2-exec-src.html").text)
     assert "Do not upload the S22 file" in guide
     assert "not an approval to upload that file" in guide

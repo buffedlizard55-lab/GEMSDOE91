@@ -423,14 +423,15 @@ def _root_verdict() -> str:
     )
 
 def render() -> None:
+    docs = ROOT / "docs"
+    # Fail before replacing any published page: validation first, renders after.
+    current = front_door(ROOT)
     from scripts.render_s22_pages import render_sources as render_s22_sources
     from scripts.render_review_8e8d86f2 import render_sources as render_review_sources
     render_s22_sources()
     render_review_sources()
     from scripts.render_priority_review import render as render_priority_review
     render_priority_review()
-    docs = ROOT / "docs"
-    current = front_door(ROOT)  # fail before replacing any published page
     # The S22-XB artifact is a historical research run, not the current lane.
     # Keep it on its dedicated archive page; never inject its projection or
     # download callout into OMTJ's current entry points. This prevents two
@@ -501,6 +502,11 @@ def render() -> None:
     # evidence, and fail-closed card are committed and deterministic.
     from scripts.render_review_20261030 import render as render_active_review
     render_active_review(ROOT)
+    # The 2026-10-31 S28-PUCC CANDIDATE_READY review is the final overlay: it
+    # owns the front door and must run after every other renderer so the active
+    # verdict can never be silently reverted by a legacy page build.
+    from scripts.render_s28_pucc_portal import render as render_s28_pucc
+    render_s28_pucc(ROOT)
 
 if __name__ == "__main__":
     render()

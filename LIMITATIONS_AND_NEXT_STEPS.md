@@ -1,3 +1,25 @@
+# Active limitations and next-session needs — 2026-10-31 (S28-PUCC, `arena/db03647e-gemsdoe91`)
+
+**Status: candidate READY — `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: YES` (gates pass) · 0/3 weekly slots spent.** File: `docs/downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif`. HOLDOUT-DTI 0.12797 [0.10998, 0.14618] (`gems57-pooled-hide-v2`, 60,988 withheld). MODEL_PROJECTION 0.222 [0.163, 0.280] (LOW reliability).
+
+## Limitations
+1. **No organizer receipts** — every historical score (incl. champion 0.2778) is USER-REPORTED; the projection bracket cannot be tightened without one live receipt.
+2. **IR-S28-ANTILIVE-01** — local hide-and-recover instruments are anti-live within the family; the preregistered G2 gate passes but cannot certify live superiority over 0.2778.
+3. **E2's HGB dilution** — the emitted dots sit 3–20 px off the SGMC-off anchor lines (3.76 % within 3 px, 38.2 % within 8 px): the 50/50 HGB blend pulled mass toward catalogue-fault-like pixels. The label-free E1 emission was not shipped (E2 won the preregistered pooled-DTI selection).
+4. **SGMC-off coverage below the champion's** on the SGMC-off proxy (12.6 % vs 28.8 % within 3 px) — the champion gets proxy credit through proximity hugging; the proxy is not live-aligned (IR-S28-ANTILIVE-01).
+5. **1 m DEM lineaments unavailable** — `1m_DEM_links.csv` requires an authenticated DrivenData download; outbound hosts exclude drivendata.org and dropbox.com. Free official source identified (USGS/3DEP lidar hillshades) but not obtainable in this sandbox.
+6. Budget used: 3/3 experiments, ~45 min compute. H28-4/H28-5 untested by design.
+
+## Ranked next steps for the next session
+1. **Submit the S28-PUCC file** (or a selector-chosen candidate) and capture the receipt → converts the bracket into a calibration anchor and resolves the anti-live question empirically. This is the highest-value action per Maximize P(Win).
+2. **S29 lane: emission-weighted PUCC** — keep the E2 surface but allocate the budget by component quotas (e.g., 45 % SGMC-off corridor crest snapped to anchors, 20 % vent corridor, 20 % OSDR, 15 % lidar) with B=2 hygiene + CELF; preregister the paired test vs the shipped E2 mask on the anti-hugging instrument (step 3).
+3. **Build the anti-hugging holdout instrument** (detached ≥ 600 m withheld + SGMC-off truth, near-catalogue dots excluded from credit) and rerun the 7 anchors to verify live-rank agreement before trusting any promotion gate.
+4. **H28-4 seismicity-gated tip-relay corridors** (pre-registered in `docs/s28-pucc/HYPOTHESES.md`) as the E3 arm of the S29 lane.
+5. **Ingest 1 m DEM hillshade lineaments** once an authenticated machine is available; verify with the official USGS 3DEP links in `docs/DATA.md`.
+6. **Reconcile leaderboard figures** (0.4413 vs 0.3195 vs 0.4544) by fetching the public board at session start; update the nine-site table's context line.
+
+---
+
 # Active limitations and next-session needs — 2026-10-30
 
 **Current branch:** `arena/83350cee-gemsdoe91`<br>

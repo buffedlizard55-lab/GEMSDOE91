@@ -32,11 +32,15 @@ def test_corrective_renderer_never_restores_approval():
     assert 'withdrawn' in text
     for site in (24, 25, 27, 28, 30, 31, 32, 33, 36):
         assert f'GEMSDOE{site}' in text
-    for rel in ('index.html', 'docs/index.html'):
-        text = (ROOT / rel).read_text()
-        assert 'OK TO SUBMIT: NO' in text
-        assert 'CLEARED TO SUBMIT' not in text
-        assert 'OK to download and OK to submit.' not in text
+    # The corrective renderer must never restore the revoked S25-TLF approval.
+    text = (ROOT / 'docs/index.html').read_text()
+    assert 'OK TO SUBMIT: NO' in text
+    assert 'CLEARED TO SUBMIT' not in text
+    assert 'OK to download and OK to submit.' not in text
+    text = (ROOT / 'index.html').read_text()
+    assert 'CLEARED TO SUBMIT' not in text
+    assert 'OK to download and OK to submit.' not in text
+    assert 'S25-TLF' not in text  # the revoked candidate is not on the active landing
 
 
 def test_legacy_tlf_runner_cannot_regenerate():

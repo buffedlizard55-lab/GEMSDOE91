@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="0;url=docs/executive-summary.html">
+<meta name="description" content="GEMSDOE91 S28-PUCC: a new unique GeoTIFF candidate is READY — OK TO DOWNLOAD: YES, OK TO SUBMIT: YES. Download, score estimate, and submission guide.">
+<title>GEMSDOE91 · S28-PUCC candidate READY · download and submission verdict</title>
+<style>
+:root{--ink:#142d29;--muted:#465e57;--paper:#f5f6ef;--line:#d7e1d9;--green:#155b48;--soft:#e7f2ea;--ok:#0f5c36}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{width:min(900px,calc(100% - 36px));margin:auto;padding:38px 0 60px}
+h1{font-size:clamp(26px,4.2vw,42px);line-height:1.08;letter-spacing:-.03em;margin:.2em 0}
+.badge{display:inline-block;border:1px solid var(--ok);background:var(--soft);color:var(--ok);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:800;margin:2px 6px 2px 0}
+.badge.no{border-color:#a24b2a;background:#fdeee7;color:#81402b}
+.box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin:22px 0}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;margin:10px 0}
+dt{font-weight:700;color:var(--muted)} dd{margin:0;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12.5px;overflow-wrap:anywhere}
+.button{display:inline-block;background:var(--green);color:#fff;padding:13px 20px;border-radius:8px;text-decoration:none;font-weight:800;margin:8px 10px 8px 0}
+.button.secondary{background:#fff;color:var(--green);border:1px solid var(--green)}
+h2{font-size:19px;margin:26px 0 8px}
+ol li{margin:6px 0}
+a{color:#125b49}
+.small{color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<main id="main" data-submission-ready="true">
+<p><span class="badge">ACTIVE · 2026-10-31 · branch arena/db03647e-gemsdoe91</span></p>
+<h1>✅ S28-PUCC candidate READY — OK TO DOWNLOAD: YES · OK TO SUBMIT: YES</h1>
+<p><strong>A new, unique GeoTIFF submission is validated and ready.</strong> This is a different file from every prior GEMSDOE91 submission and from the highest-scoring rasters of the nine GEMSDOE24/25/27/28/30/31/32/33/36 sites (max 39.3&nbsp;% of dots within 3&nbsp;px of any one of them). All validation is automated — no human inspection step.</p>
+<p><span class="badge">FORMAT: PASS — all-finite in [0, 1]</span><span class="badge">UNIQUE vs nine sites + 78 registry rasters: PASS</span><span class="badge">LEAKAGE CANARY: PASS</span><span class="badge no">ORGANIZER-CONFIRMED receipts: none (labels are USER-REPORTED)</span></p>
+
+<div class="box">
+<h2 style="margin-top:0">Download the submission file</h2>
+<p><a class="button" href="docs/downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif" download>⬇ Download GeoTIFF (138 KB)</a>
+<a class="button secondary" href="docs/downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.zip" download>⬇ Download .zip</a>
+<a class="button secondary" href="docs/executive-summary.html">Executive summary + how to submit</a></p>
+<dl>
+<dt>File</dt><dd>gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif</dd>
+<dt>sha256</dt><dd>8d75b2d1c6891bee275cf3e0aa6065568e5cabe7626528c068b09f81562f656f</dd>
+<dt>Submission name</dt><dd>gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros</dd>
+<dt>Form note (89 chars)</dt><dd>S28 PUCC SGMC-off+vent+OSDR+lidar corridor consensus, B2 flank, CELF 37654d; see run-card</dd>
+<dt>Grid</dt><dd>3292×3730 px · EPSG:32611 · 100 m · 37,654 dots · 12,279,160 px all-finite in [0,1] · nodata=None</dd>
+</dl>
+</div>
+
+<h2>Score facts (never mixed with predictions)</h2>
+<ul>
+<li><strong>HOLDOUT-DTI 0.12797</strong> [0.10998, 0.14618] — evaluator <code>gems57-pooled-hide-v2</code>, 60,988 withheld positives, 95&nbsp;% CI. <em>Measures blinded recovery on withheld catalogue segments — an instrument, not the leaderboard.</em></li>
+<li><strong>MODEL_PROJECTION_NOT_A_SCORE 0.222</strong> [0.163, 0.280] (LOW reliability) — a bracket over owner-reported non-family results; the organizer-confirmed leader for this family of methods is 0.2778 (GEMSDOE32, USER-REPORTED).</li>
+<li><strong>ORGANIZER-CONFIRMED: none.</strong> Only a DrivenData receipt can confirm a leaderboard score.</li>
+</ul>
+
+<div class="box">
+<h2 style="margin-top:0">If you choose to submit (5 steps)</h2>
+<ol>
+<li>Download the TIF above and verify the sha256 matches.</li>
+<li>Zip it (or use the provided zip) if the form requests an archive.</li>
+<li>Open the official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submission page</a> and upload.</li>
+<li>Use submission name and note exactly as printed above.</li>
+<li>Save the receipt — it becomes the only ORGANIZER-CONFIRMED evidence.</li>
+</ol>
+<p class="small">Why the submission is worth trying: the highest-scoring file of the nine sites (GEMSDOE32's 0.2778) spent its budget pruning catalogue-hugging dots — a strategy with no room left. This candidate puts its 37,654 dots on independently detected vent/fault-corridor geometry, <em>none</em> of them on the known catalogue — the only direction in which new organizer-verified truth can appear. Full analysis, experiments E1–E3, irregularities, and receipts: <a href="docs/executive-summary.html">executive summary</a> · <a href="docs/s28-pucc/run-card.json">run card</a> · <a href="README.md">README (full brief)</a>.</p>
+</div>
+
+<p class="small">Historical verdicts and the 2026-10-30 “no-candidate” review are preserved in the README and the docs pages: <a href="docs/index.html">full history portal</a> · <a href="docs/review-20261030/executive-summary.html">2026-10-30 review</a>. Competition rasters are never committed to git; everything here is derived output or documentation.</p>
+</main>
+</body>
+</html>

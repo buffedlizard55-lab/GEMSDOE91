@@ -79,12 +79,16 @@ def test_lineage_and_peer_recheck_are_separate_from_score_claims():
                for site, row in lineage['files'].items())
 
 
-def test_portal_and_guide_link_to_current_fail_closed_run_card():
-    render_review_20261030.render(ROOT)
-    for filename in ('index.html', 'executive-summary.html', 'submission-guide.html'):
+def test_portal_and_guide_link_to_current_run_card():
+    render_review_20261030.render(ROOT)  # idempotent; scoped to docs/review-20261030/ since 2026-10-31
+    # The active pages point at the S28-PUCC run card; the historical portal
+    # keeps its review-20261030 links and fail-closed markers as history.
+    html = (ROOT / 'docs' / 'index.html').read_text()
+    assert 'review-20261030/run-card.json' in html
+    assert 'data-submission-ready="false"' in html
+    for filename in ('executive-summary.html', 'submission-guide.html'):
         html = (ROOT / 'docs' / filename).read_text()
-        assert 'review-20261030/run-card.json' in html
-        assert 'data-submission-ready="false"' in html
+        assert 's28-pucc/run-card.json' in html
     html = (ROOT / 'docs/submission-guide.html').read_text()
-    assert 'There is no new GeoTIFF candidate' in html
-    assert 'correct null/NaN outside bounds' in html
+    assert 'gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros' in html
+    assert 'finite zeros' in html and '[0, 1]' in html

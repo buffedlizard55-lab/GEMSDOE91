@@ -1,0 +1,240 @@
+{
+  "max_symmetric_auc": 0.6734961162538416,
+  "worst": "sgmc_off fold2",
+  "threshold": 0.9,
+  "all_pass": true,
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "split_version": "label-blind-quadrants-v3-feature-buffered",
+  "checks": [
+    {
+      "feature": "sgmc_off",
+      "scope": "fold0",
+      "auc": 0.5822944087459401,
+      "symmetric_auc": 0.5822944087459401,
+      "n_positive": 29319,
+      "n_negative": 302464
+    },
+    {
+      "feature": "sgmc_off",
+      "scope": "fold1",
+      "auc": 0.6166313252541114,
+      "symmetric_auc": 0.6166313252541114,
+      "n_positive": 12596,
+      "n_negative": 169230
+    },
+    {
+      "feature": "sgmc_off",
+      "scope": "fold2",
+      "auc": 0.6734961162538416,
+      "symmetric_auc": 0.6734961162538416,
+      "n_positive": 9473,
+      "n_negative": 69333
+    },
+    {
+      "feature": "sgmc_off",
+      "scope": "fold3",
+      "auc": 0.5623587132563335,
+      "symmetric_auc": 0.5623587132563335,
+      "n_positive": 9600,
+      "n_negative": 97273
+    },
+    {
+      "feature": "sgmc_off",
+      "scope": "pooled",
+      "auc": 0.5899091845755805,
+      "symmetric_auc": 0.5899091845755805,
+      "n_positive": 60988,
+      "n_negative": 638300
+    },
+    {
+      "feature": "vent_chain",
+      "scope": "fold0",
+      "auc": 0.5370346765808172,
+      "symmetric_auc": 0.5370346765808172,
+      "n_positive": 29319,
+      "n_negative": 302464
+    },
+    {
+      "feature": "vent_chain",
+      "scope": "fold1",
+      "auc": 0.5078706094424624,
+      "symmetric_auc": 0.5078706094424624,
+      "n_positive": 12596,
+      "n_negative": 169230
+    },
+    {
+      "feature": "vent_chain",
+      "scope": "fold2",
+      "auc": 0.4565312346326329,
+      "symmetric_auc": 0.5434687653673671,
+      "n_positive": 9473,
+      "n_negative": 69333
+    },
+    {
+      "feature": "vent_chain",
+      "scope": "fold3",
+      "auc": 0.5020927243214115,
+      "symmetric_auc": 0.5020927243214115,
+      "n_positive": 9600,
+      "n_negative": 97273
+    },
+    {
+      "feature": "vent_chain",
+      "scope": "pooled",
+      "auc": 0.5119256673551846,
+      "symmetric_auc": 0.5119256673551846,
+      "n_positive": 60988,
+      "n_negative": 638300
+    },
+    {
+      "feature": "osdr_crest",
+      "scope": "fold0",
+      "auc": 0.5368142886941493,
+      "symmetric_auc": 0.5368142886941493,
+      "n_positive": 29319,
+      "n_negative": 302464
+    },
+    {
+      "feature": "osdr_crest",
+      "scope": "fold1",
+      "auc": 0.5635494902311625,
+      "symmetric_auc": 0.5635494902311625,
+      "n_positive": 12596,
+      "n_negative": 169230
+    },
+    {
+      "feature": "osdr_crest",
+      "scope": "fold2",
+      "auc": 0.48575154920280805,
+      "symmetric_auc": 0.514248450797192,
+      "n_positive": 9473,
+      "n_negative": 69333
+    },
+    {
+      "feature": "osdr_crest",
+      "scope": "fold3",
+      "auc": 0.5624423256581992,
+      "symmetric_auc": 0.5624423256581992,
+      "n_positive": 9600,
+      "n_negative": 97273
+    },
+    {
+      "feature": "osdr_crest",
+      "scope": "pooled",
+      "auc": 0.5491609934571462,
+      "symmetric_auc": 0.5491609934571462,
+      "n_positive": 60988,
+      "n_negative": 638300
+    },
+    {
+      "feature": "lidar_scarp",
+      "scope": "fold0",
+      "auc": 0.5273169553953926,
+      "symmetric_auc": 0.5273169553953926,
+      "n_positive": 29319,
+      "n_negative": 302464
+    },
+    {
+      "feature": "lidar_scarp",
+      "scope": "fold1",
+      "auc": 0.5480651511946955,
+      "symmetric_auc": 0.5480651511946955,
+      "n_positive": 12596,
+      "n_negative": 169230
+    },
+    {
+      "feature": "lidar_scarp",
+      "scope": "fold2",
+      "auc": 0.6157185788161582,
+      "symmetric_auc": 0.6157185788161582,
+      "n_positive": 9473,
+      "n_negative": 69333
+    },
+    {
+      "feature": "lidar_scarp",
+      "scope": "fold3",
+      "auc": 0.5840656162295806,
+      "symmetric_auc": 0.5840656162295806,
+      "n_positive": 9600,
+      "n_negative": 97273
+    },
+    {
+      "feature": "lidar_scarp",
+      "scope": "pooled",
+      "auc": 0.5650074085428373,
+      "symmetric_auc": 0.5650074085428373,
+      "n_positive": 60988,
+      "n_negative": 638300
+    },
+    {
+      "feature": "consensus_e1",
+      "scope": "fold0",
+      "auc": 0.6001666854493786,
+      "symmetric_auc": 0.6001666854493786,
+      "n_positive": 29319,
+      "n_negative": 302464
+    },
+    {
+      "feature": "consensus_e1",
+      "scope": "fold1",
+      "auc": 0.6004494504248382,
+      "symmetric_auc": 0.6004494504248382,
+      "n_positive": 12596,
+      "n_negative": 169230
+    },
+    {
+      "feature": "consensus_e1",
+      "scope": "fold2",
+      "auc": 0.6073269295264291,
+      "symmetric_auc": 0.6073269295264291,
+      "n_positive": 9473,
+      "n_negative": 69333
+    },
+    {
+      "feature": "consensus_e1",
+      "scope": "fold3",
+      "auc": 0.6079483376253774,
+      "symmetric_auc": 0.6079483376253774,
+      "n_positive": 9600,
+      "n_negative": 97273
+    },
+    {
+      "feature": "consensus_e1",
+      "scope": "pooled",
+      "auc": 0.6050795293251495,
+      "symmetric_auc": 0.6050795293251495,
+      "n_positive": 60988,
+      "n_negative": 638300
+    }
+  ],
+  "inputs_verified": {
+    "sample_submission": {
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597
+    },
+    "existing_faults": {
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830
+    },
+    "training_features": {
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844
+    },
+    "sgmc_faults_control": {
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602
+    },
+    "ext_lidar_scarp_u8": {
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "bytes": 36943606
+    },
+    "gdr_wellspring_in_footprint": {
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "bytes": 2146771
+    }
+  },
+  "preregistration": {
+    "path": "docs/s28-pucc/preregistration.md",
+    "sha256": "0fef62157907742d63fd61ddfdd9ff0a71e8bb5c0c66cf3c7bd9eac6e7362ab4"
+  }
+}

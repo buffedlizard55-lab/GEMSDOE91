@@ -66,26 +66,39 @@ def test_nine_site_snapshot_has_pinned_files_hashes_and_qualified_claims():
         assert row["unique_within_nine_at_70pct"] is False
 
 
-def test_current_pages_and_readme_link_the_active_no_candidate_review():
-    render_review_20261030.render(ROOT)
+def test_current_pages_and_readme_link_the_active_review_and_keep_20261030_as_history():
+    # Superseded 2026-10-31 by the S28-PUCC CANDIDATE_READY review: the front door now
+    # describes that review; the 2026-10-30 no-candidate review must remain reachable
+    # as history and keep its fail-closed labels.
     root = (ROOT / "index.html").read_text(encoding="utf-8")
     index = (DOCS / "index.html").read_text(encoding="utf-8")
     current = (DOCS / "current-review.json").read_text(encoding="utf-8")
     guide = (DOCS / "submission-guide.html").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "url=docs/index.html" in root
-    assert "2026-10-30" in root
-    assert load("docs/current-review.json")["branch"] == "arena/83350cee-gemsdoe91"
-    assert "docs/review-20261030/executive-summary.html" in root
-    assert "ACTIVE REVIEW · 2026-10-30" in index
-    assert "review-20261030/run-card.json" in index
-    assert "candidate_generated\": false" in current
-    assert "OK TO SUBMIT: NO" in guide
-    assert "There is no new GeoTIFF candidate" in guide
+    assert "url=docs/executive-summary.html" in root
+    assert "2026-10-31" in root
+    pointer = load("docs/current-review.json")
+    assert pointer["branch"] == "arena/db03647e-gemsdoe91"
+    assert pointer["status"] == "CANDIDATE_READY"
+    assert pointer["candidate_generated"] is True
+    assert pointer["candidate_sha256"] == (
+        "8d75b2d1c6891bee275cf3e0aa6065568e5cabe7626528c068b09f81562f656f")
+    assert "MODEL_PROJECTION_NOT_A_SCORE" in current
+    assert "OK TO SUBMIT: YES" in guide
+    assert "gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros" in guide
     assert "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" in guide
-    assert "ACTIVE BRANCH: `arena/83350cee-gemsdoe91`" in readme
+    assert "ACTIVE BRANCH: `arena/db03647e-gemsdoe91`" in readme
     assert "Maximize P(Win) · Own the Outcome" in readme
     assert "full-project-brief" in readme
+    # the superseded review is preserved as history with its fail-closed labels
+    hist = (DOCS / "review-20261030" / "executive-summary.html").read_text(encoding="utf-8")
+    assert "OK TO SUBMIT: NO" in hist
+    assert "review-20261030/run-card.json" in index
+    assert "ACTIVE REVIEW · 2026-10-31" in index
+    # the renderer no longer owns the front door and is idempotent in its own scope
+    render_review_20261030.render(ROOT)
+    assert (ROOT / "index.html").read_text(encoding="utf-8") == root
+    assert (DOCS / "current-review.json").read_text(encoding="utf-8") == current
 
 
 def test_executive_table_labels_all_reported_values_and_rejects_score_estimates():
@@ -125,7 +138,10 @@ def test_hypotheses_and_official_sources_are_proposals_with_limits():
 def test_internal_links_in_new_review_pages_resolve():
     pages = [
         REVIEW / "executive-summary.html",
+        REVIEW / "submission-guide.html",
         DOCS / "submission-guide.html",
+        DOCS / "executive-summary.html",
+        ROOT / "index.html",
     ]
     for page in pages:
         text = page.read_text(encoding="utf-8")
@@ -140,6 +156,8 @@ def test_internal_links_in_new_review_pages_resolve():
 
 
 def test_review_renderer_is_idempotent():
+    # Since 2026-10-31 the renderer writes only inside docs/review-20261030/ (history);
+    # the front door is owned by the active review and must not change.
     paths = [
         ROOT / "index.html",
         DOCS / "index.html",
@@ -147,6 +165,8 @@ def test_review_renderer_is_idempotent():
         DOCS / "submission-guide.html",
         DOCS / "current-review.json",
         REVIEW / "executive-summary.html",
+        REVIEW / "submission-guide.html",
+        REVIEW / "current-review-pointer-20261030.json",
     ]
     before = {path: path.read_bytes() for path in paths}
     render_review_20261030.render(ROOT)

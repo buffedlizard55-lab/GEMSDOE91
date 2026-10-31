@@ -80,11 +80,16 @@ def test_current_portal_render_keeps_archived_xbreed_out_of_current_status():
     docs = Path(__file__).resolve().parents[1] / 'docs'
     pointer = json.loads((docs / 'current-run.json').read_text())
     assert pointer['run_card'] == 'run-card-S22-OMTJ.json'
-    for filename in ('index.html', 'executive-summary.html'):
-        page = (docs / filename).read_text()
-        assert 'OMTJ' in page and 'OK TO SUBMIT: NO' in page
-        assert 's22-xb-parallel' not in page
-        assert 'gems91-s22-xbreed-c-37654dots' not in page
+    # The historical portal keeps OMTJ's fail-closed card; the active
+    # executive summary is the S28-PUCC candidate page (2026-10-31).
+    page = (docs / 'index.html').read_text()
+    assert 'OMTJ' in page and 'OK TO SUBMIT: NO' in page
+    assert 's22-xb-parallel' not in page
+    assert 'gems91-s22-xbreed-c-37654dots' not in page
+    page = (docs / 'executive-summary.html').read_text()
+    assert 'S28-PUCC' in page and 'OK TO SUBMIT: YES' in page
+    assert 's22-xb-parallel' not in page
+    assert 'gems91-s22-xbreed-c-37654dots' not in page
     assert (docs / 's22-xbreed-executive-summary.html').is_file()
 
 

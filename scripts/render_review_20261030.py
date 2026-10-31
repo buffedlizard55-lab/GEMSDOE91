@@ -166,6 +166,15 @@ def current_review_pointer(card: dict) -> dict:
 
 
 def render(root: Path = ROOT) -> None:
+    """Render ONLY the archived 2026-10-30 review pages.
+
+    Since the 2026-10-31 S28-PUCC review (CANDIDATE_READY) the front door
+    (root index.html, docs/index.html, docs/executive-summary.html,
+    docs/submission-guide.html, docs/current-review.json) is owned by the
+    active review and is deliberately NOT touched here. All 2026-10-30
+    outputs are scoped to docs/review-20261030/ so this renderer stays an
+    idempotent historical-page generator.
+    """
     card, snapshot = validate_inputs(root)
     docs = root / "docs"
     review_dir = docs / "review-20261030"
@@ -173,35 +182,16 @@ def render(root: Path = ROOT) -> None:
     page = executive_html(card, snapshot)
     (review_dir / "executive-summary.html").write_text(page, encoding="utf-8")
     guide = standalone_guide(card)
-    (docs / "submission-guide.html").write_text(guide + "\n", encoding="utf-8")
+    # The guide template uses docs-relative links; inside the review directory
+    # they must be rewritten so every local link still resolves.
+    for prefix in ("review-20261030/",):
+        guide = guide.replace(f'href="{prefix}', 'href="')
+    guide = guide.replace('href="index.html"', 'href="../index.html"')
+    guide = guide.replace('href="../submission-guide.html"', 'href="../submission-guide.html"')
+    (review_dir / "submission-guide.html").write_text(guide + "\n", encoding="utf-8")
     pointer = current_review_pointer(card)
-    CURRENT_REVIEW_PATH.relative_to(root).parent.mkdir(parents=True, exist_ok=True)
-    CURRENT_REVIEW_PATH.write_text(json.dumps(pointer, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
-    notice = _active_notice()
-    for name in ("index.html", "executive-summary.html"):
-        path = docs / name
-        if not path.is_file():
-            raise FileNotFoundError(path)
-        source = path.read_text(encoding="utf-8")
-        source = _replace_current_notice(source, notice)
-        source = source.replace(
-            'href="review-4239f6e5/run-card.json">Current run card',
-            'href="review-20261030/run-card.json">Active review run card',
-        )
-        path.write_text(source, encoding="utf-8")
-    root_html = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta http-equiv="refresh" content="0;url=docs/index.html">'
-        '<meta name="description" content="Current GEMSDOE91 review: no new candidate; submission blocked.">'
-        '<title>GEMSDOE91 · Active review and verdict</title></head><body><main>'
-        '<h1>GEMSDOE91 · Active review · 2026-10-30</h1>'
-        '<p><strong>NO NEW TIFF. OK TO SUBMIT: NO.</strong> No lane was assigned, required data are missing, and no experiment was run. Historical files: OK TO DOWNLOAD for research/inspection only; OK TO SUBMIT: NO.</p>'
-        '<p><a href="docs/index.html">Open the portal and active status</a> · '
-        '<a href="docs/review-20261030/executive-summary.html">Executive summary, nine-site table, and submission guide</a> · '
-        '<a href="docs/review-20261030/REVIEW.md">Three-pass review</a> · '
-        '<a href="docs/review-20261030/run-card.json">Negative run card</a></p>'
-        '</main></body></html>\n')
-    (root / "index.html").write_text(root_html, encoding="utf-8")
+    (review_dir / "current-review-pointer-20261030.json").write_text(
+        json.dumps(pointer, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
 
 
 def main() -> None:
