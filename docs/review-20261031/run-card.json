@@ -1,0 +1,59 @@
+{
+  "schema": "gems91.run-card.v1",
+  "review_id": "GEMSDOE91-REVIEW-20261031",
+  "date_utc": "2026-10-31",
+  "branch": "arena/92dfcfdc-gemsdoe91",
+  "verdict": "negative_blocked",
+  "candidate_generated": false,
+  "ok_to_download_new_candidate": false,
+  "ok_to_submit": false,
+  "lane": null,
+  "lane_note": "The prompt refers to a single method paragraph but supplies none. No lane was self-assigned.",
+  "experiments_used": 0,
+  "experiment_budget": {"max_experiments": 3, "max_hours": 2},
+  "weekly_slots_used": 0,
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "holdout_dti": {
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "ci_95": null,
+    "label": "not measured: competition inputs absent"
+  },
+  "organizer_confirmed_score": null,
+  "leaderboard_estimate": null,
+  "correlation_and_overlap_vs_registry": {
+    "candidate_surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "nine_site_peer_overlap": "measured on the nine user-named files, not on a candidate: 97.58% to 100.00% max per file (docs/review-20261030/nine-site-snapshot.json; scripts/verify_nine_site_leaders.py)"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_raster": "not applicable: no candidate raster",
+    "nine_site_identity_check": "9/9 SHA-256 match the commit-pinned snapshot (docs/review-20261031/nine-site-encoding-audit.json)",
+    "nine_site_format_check": "9/9 EPSG:32611, 3730x3292, float32, 1 band, finite values in [0,1]",
+    "no_nan_inside_footprint": true,
+    "outside_footprint_encoding": {"nan": ["GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE31"], "zeros": ["GEMSDOE30", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"]}
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_max_chars": 140,
+  "verdict_detail": "No new unique TIFF. The nine user-named files are near-duplicates (max 3-px overlap 97.58%-100.00%) and none has an organizer receipt. GEMSDOE32's 0.2778 is USER-REPORTED. Its dot set is an exact subset of GEMSDOE25/GEMSDOE30 (6,436 dots removed), so pruning it would be a 100% duplicate.",
+  "blocking_inputs": [
+    "training_features.tif (DrivenData login required)",
+    "labels raster / existing faults (DrivenData login required)",
+    "sample_submission.tif (DrivenData login required; outside-bounds encoding unknown)",
+    "single method paragraph (lane) with its source",
+    "exact file and SHA-256 that produced the '[0, 1]' submission error"
+  ],
+  "sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "https://doi.org/10.5066/P93LGLVQ"
+  ]
+}
