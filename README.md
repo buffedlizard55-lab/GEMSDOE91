@@ -1,4 +1,11 @@
-# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED (active: 2026-10-30 · `arena/83350cee-gemsdoe91`)
+# GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED (active: 2026-10-31 · `arena/92dfcfdc-gemsdoe91`)
+
+> **2026-10-31 session (`arena/92dfcfdc-gemsdoe91`): BLOCKED · NO NEW TIFF · `OK TO DOWNLOAD (new candidate): NO` · `OK TO SUBMIT: NO`.** Start here: [2026-10-31 review](docs/review-20261031/REVIEW.md) · [run card](docs/review-20261031/run-card.json) · [nine-site encoding audit](docs/review-20261031/nine-site-encoding-audit.json) · [live leaderboard snapshot](evidence/public-leaderboard-2026-10-31.json).
+>
+> - **Verified today:** official rules and metric (DrivenData page 967; NLR rules PDF); live top-50 leaderboard (#1 `0.4544`; rank-50 cutoff `0.3195`; no user-reported site value appears); the nine user-named files match their pinned SHA-256 and are all EPSG:32611, float32, values in [0, 1].
+> - **Finding:** GEMSDOE32's 37,654 dots are an exact subset of GEMSDOE25/30 (44,090 dots). The user-reported gap to those files is fully explained by the 6,436 removed dots. Any pruned subset of GEMSDOE32 is a 100% duplicate, so pruning cannot produce a unique submission.
+> - **Irregularities:** the "[0, 1]" error cause is still unexplained; the earlier "NaN outside is the likely cause" note conflicts with the official text, which allows NaN outside; four nine-site files use zeros outside the footprint, which conflicts with the literal rule.
+> - **To unblock:** a registered DrivenData user must place the official inputs in `data/` (verify SHA-256 against `registry/data_manifest.json`); the single method paragraph (lane) must be supplied; the exact file behind the "[0, 1]" error must be identified. No public mirrors are used (IR-S26-05, IR-91-09).
 
 > **ACTIVE BRANCH: `arena/83350cee-gemsdoe91`. VERDICT: BLOCKED · NO NEW TIFF · `OK TO DOWNLOAD NEW CANDIDATE: NO` · `OK TO SUBMIT: NO`.** No authorized method lane was assigned; the pinned manifest's 15 inputs are missing and the official sample raster is unavailable. No experiment was run, no new TIFF was generated, no HOLDOUT-DTI was measured, and no organizer receipt or leaderboard estimate exists.
 >
