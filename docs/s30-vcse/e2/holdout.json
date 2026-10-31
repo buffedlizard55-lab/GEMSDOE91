@@ -1,0 +1,278 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+    "vcse_vote_plus_consensus": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 0.0,
+      "fpw": 23287.0,
+      "fnw": 60988.0
+    },
+    "control_random_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.07022822340724215,
+      "ci95": [
+        0.06716837364374834,
+        0.07295927441312576
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 3990.598070634194,
+      "fpw": 36173.8067751325,
+      "fnw": 56997.401929365835
+    },
+    "control_static_r0": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.006697041784474405,
+      "ci95": [
+        0.005969120964122151,
+        0.007449522541025754
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 377.3190358808101,
+      "fpw": 37376.43107272676,
+      "fnw": 60610.68096411921
+    }
+  },
+  "best_comparable_control": "control_random_nms",
+  "paired_differences": {
+    "control_random_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.07022822340724215,
+      "ci95": [
+        -0.07295927441312576,
+        -0.06716837364374834
+      ],
+      "withheld_positive_pixels": 60988
+    },
+    "control_static_r0": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.006697041784474405,
+      "ci95": [
+        -0.007449522541025754,
+        -0.005969120964122151
+      ],
+      "withheld_positive_pixels": 60988
+    }
+  },
+  "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 161,
+    "draws": 1000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+    "evaluate_holdout.py": "4687a28bc83959a3d815c0a37abb43fe72286c523db867877bd1f626c4d094b6",
+    "holdout.py": "41ecfbca6f4a2b615a09c50653e272bd134ce14ab19b84b56a275f97fd75fe78",
+    "metric.py": "d536dc94ecf355aa8068499787cacd425dcb6c8c1a5d6684d5785c4f072bd083",
+    "spatial.py": "dd3c4e5dd770f96341e6beb681c1af89e42b6766257df50c455999bfd68704ed"
+  },
+  "per_fold": [
+    {
+      "arm": "vcse_vote_plus_consensus",
+      "fold": 0,
+      "budget": 17846,
+      "n_truth": 29319,
+      "n_emitted": 10167,
+      "tpw": 0.0,
+      "fpw": 10167.0,
+      "fnw": 29319.0,
+      "fold_dti": 0.0
+    },
+    {
+      "arm": "vcse_vote_plus_consensus",
+      "fold": 1,
+      "budget": 9957,
+      "n_truth": 12596,
+      "n_emitted": 6134,
+      "tpw": 0.0,
+      "fpw": 6134.0,
+      "fnw": 12596.0,
+      "fold_dti": 0.0
+    },
+    {
+      "arm": "vcse_vote_plus_consensus",
+      "fold": 2,
+      "budget": 4111,
+      "n_truth": 9473,
+      "n_emitted": 1246,
+      "tpw": 0.0,
+      "fpw": 1246.0,
+      "fnw": 9473.0,
+      "fold_dti": 0.0
+    },
+    {
+      "arm": "vcse_vote_plus_consensus",
+      "fold": 3,
+      "budget": 5740,
+      "n_truth": 9600,
+      "n_emitted": 5740,
+      "tpw": 0.0,
+      "fpw": 5740.0,
+      "fnw": 9600.0,
+      "fold_dti": 0.0
+    },
+    {
+      "arm": "control_random_nms",
+      "fold": 0,
+      "budget": 17846,
+      "n_truth": 29319,
+      "n_emitted": 17846,
+      "fold_dti": 0.072111
+    },
+    {
+      "arm": "control_random_nms",
+      "fold": 1,
+      "budget": 9957,
+      "n_truth": 12596,
+      "n_emitted": 9957,
+      "fold_dti": 0.070587
+    },
+    {
+      "arm": "control_random_nms",
+      "fold": 2,
+      "budget": 4111,
+      "n_truth": 9473,
+      "n_emitted": 4111,
+      "fold_dti": 0.065836
+    },
+    {
+      "arm": "control_random_nms",
+      "fold": 3,
+      "budget": 5740,
+      "n_truth": 9600,
+      "n_emitted": 5740,
+      "fold_dti": 0.068151
+    },
+    {
+      "arm": "control_static_r0",
+      "fold": 0,
+      "budget": 18028,
+      "n_truth": 29319,
+      "n_emitted": 18028,
+      "fold_dti": 0.006132
+    },
+    {
+      "arm": "control_static_r0",
+      "fold": 1,
+      "budget": 9588,
+      "n_truth": 12596,
+      "n_emitted": 9588,
+      "fold_dti": 0.008544
+    },
+    {
+      "arm": "control_static_r0",
+      "fold": 2,
+      "budget": 4795,
+      "n_truth": 9473,
+      "n_emitted": 4795,
+      "fold_dti": 0.007532
+    },
+    {
+      "arm": "control_static_r0",
+      "fold": 3,
+      "budget": 5243,
+      "n_truth": 9600,
+      "n_emitted": 5243,
+      "fold_dti": 0.005094
+    }
+  ],
+  "fold_receipts": [
+    {
+      "fold": 0,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 29319,
+      "evaluation_px": 2449030,
+      "training_domain_px": 2508386,
+      "held_components": 1830,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1436,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 244
+    },
+    {
+      "fold": 1,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 12596,
+      "evaluation_px": 1366431,
+      "training_domain_px": 3636842,
+      "held_components": 687,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1733,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 82
+    },
+    {
+      "fold": 2,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9473,
+      "evaluation_px": 564135,
+      "training_domain_px": 4383314,
+      "held_components": 382,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 2857,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 483
+    },
+    {
+      "fold": 3,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9600,
+      "evaluation_px": 787777,
+      "training_domain_px": 4263431,
+      "held_components": 329,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1925,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 368
+    }
+  ],
+  "budget_total": 37654,
+  "spacing_px": 3.05,
+  "collar_px": 3.05,
+  "elapsed_seconds": 83.0
+}

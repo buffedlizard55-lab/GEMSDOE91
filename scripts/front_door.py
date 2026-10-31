@@ -7,12 +7,15 @@ superseded "no candidate / do not submit" banner on the deployed Pages site —
 a real production bug, not just a test-order artefact.
 
 ``enforce()`` re-applies the ACTIVE front door after any legacy renderer.
-Active owner from 2026-10-31 (T013552Z, newest leads): **S28-PUCC**.  Canonical
-sources live under ``docs/s28-pucc/page-*.html`` and
+Active owner from 2026-10-31 (ladder, newest first): **S28-PUCC**
+(arena/db03647e; unique TIF, promoted to selector), previously **S30-VCSE**
+(arena/681fc5eb; holdout-gated HOLD) and **S30-VCE** (arena/c2ae33eb).
+Canonical sources live under ``docs/s28-pucc/page-*.html`` and
 ``docs/s28-pucc/page-current-review.json`` (landing page, submission guide,
 executive summary, active-review pointer) plus the active banner
-injected/replaced on the legacy-built portal pages.  S30-VCE, S28, S28-VSD,
-S28-VFCD and S91-ALM are preserved as concurrent session records inside the
+injected/replaced on the legacy-built portal pages.  S30-VCSE, S30-VCE, S28,
+S28-VSD, S28-VFCD, S91-ALM and the geothermal-blind lane are preserved as
+concurrent session records inside the
 pages; legacy renderers keep their own dated pages and simply stop owning the
 status banner.
 

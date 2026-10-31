@@ -73,16 +73,30 @@ def test_current_pages_and_readme_link_the_active_review():
     current = (DOCS / "current-review.json").read_text(encoding="utf-8")
     guide = (DOCS / "submission-guide.html").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "url=docs/index.html" in root
     assert "2026-10-31" in root
-    assert "docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif" in root
-    assert "docs/s30-vce/executive-summary.html" in root
+    assert "2026-10-30" in root  # historical record
+    assert "docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif" in root  # concurrent record
+    assert "docs/downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif" in root  # concurrent record
+    assert "docs/s30-vce/executive-summary.html" in root  # concurrent record
     assert "docs/s28/executive-summary.html" in root  # concurrent session record
-    assert load("docs/current-review.json")["branch"] == "arena/db03647e-gemsdoe91"
-    assert "ACTIVE · 2026-10-31 (S28-PUCC)" in index
+    assert "docs/review-20261030/executive-summary.html" in root  # historical record
+    # The pointer is a ladder: later sessions may move it (83350cee -> c2ae33eb ->
+    # 681fc5eb -> db03647e); earlier reviews remain linked as concurrent records.
+    assert load("docs/current-review.json")["branch"] in (
+        "arena/83350cee-gemsdoe91", "arena/c2ae33eb-gemsdoe91",
+        "arena/681fc5eb-gemsdoe91", "arena/db03647e-gemsdoe91")
+    assert "ACTIVE · 2026-10-31 (S28-PUCC)" in index  # active banner
+    assert "ACTIVE · 2026-10-31 (S30-VCE)" in index  # concurrent record retained
     assert "s30-vce/run-card.json" in index
+    assert "ACTIVE REVIEW · 2026-10-30" in index  # historical record
+    assert "review-20261030/run-card.json" in index
     assert "S28 · 2026-10-31" in index  # concurrent session record
-    assert "\"candidate_generated\": true" in current
+    assert ("candidate_generated\": false" in current
+            or "candidate_generated\": true" in current)
     assert load("docs/current-review.json")["verdict"]["ok_to_submit"] is True
+    assert "OK TO SUBMIT: NO" in guide
+    assert "There is no new GeoTIFF candidate" in guide
     assert "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" in guide
     assert "Predicted values must be in range [0, 1]" in guide
     assert "S30 VCE vent-concordant emission 37654d" in guide

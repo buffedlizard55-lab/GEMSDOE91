@@ -68,6 +68,12 @@
       "review": "s91-alm/executive-summary.html",
       "run_card": "s91-alm/run-card.json",
       "branch": "arena/2664739c-gemsdoe91"
+    },
+    "s30-vcse": {
+      "review": "executive-summary.md",
+      "run_card": "s30-vcse/run-card.json",
+      "branch": "arena/681fc5eb-gemsdoe91",
+      "note": "44,090-dot raster; HOLDOUT-DTI 0.05297 [0.04601, 0.0607] < registered best 0.159482; protocol verdict negative (do not upload)"
     }
   },
   "historical_artifact_pointer": {
