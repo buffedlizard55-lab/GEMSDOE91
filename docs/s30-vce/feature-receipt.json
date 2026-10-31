@@ -1,0 +1,120 @@
+{
+ "inputs_verified": {
+  "sample_submission": {
+   "path": "data/official/sample_submission.tif",
+   "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+   "bytes": 1599597
+  },
+  "existing_faults": {
+   "path": "data/official/existing_faults.tif",
+   "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+   "bytes": 425830
+  },
+  "training_features": {
+   "path": "data/bridge/gems-geodawn-numerical-features.tif",
+   "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+   "bytes": 418912844
+  },
+  "parent_r0_zeros": {
+   "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "bytes": 219065
+  },
+  "gdr_wellspring_in_footprint": {
+   "path": "data/external/gdr_wellspring_in_footprint.csv",
+   "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+   "bytes": 2146771
+  },
+  "ext_lidar_scarp_u8": {
+   "path": "data/external/lidar_scarp_features_u8.tif",
+   "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+   "bytes": 36943606
+  },
+  "ext_geodawn_rad_u8": {
+   "path": "data/external/geodawn_rad_u8.tif",
+   "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+   "bytes": 26612970
+  },
+  "sgmc_faults_control": {
+   "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+   "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+   "bytes": 198602
+  }
+ },
+ "preregistration": {
+  "path": "docs/s30-vce/preregistration.md",
+  "sha256": "0f93c8c6b0a7b3753976104d5dff5865305d808a0410bee4a836222d3726304e"
+ },
+ "label_blind_features": [
+  "vent_kde",
+  "vent_geo_kde",
+  "vent_corridor",
+  "alter_kdep",
+  "alter_uelev",
+  "cond_cap",
+  "strain2",
+  "eq_near",
+  "scarp"
+ ],
+ "leaky_column_dist_known_fault_px_used": false,
+ "ir_h91_03_respected": true,
+ "vent_sites": {
+  "n_unique_sites": 12570,
+  "n_geothermometer_sites": 219,
+  "sigma_px": {
+   "vent_kde": 8.0,
+   "vent_geo_kde": 12.0
+  }
+ },
+ "vent_corridor": {
+  "neighbors": 3,
+  "max_link_px": 40.0,
+  "sigma_px": 2.0
+ },
+ "radiometric": {
+  "bands_used": [
+   "K",
+   "Th",
+   "U",
+   "TC"
+  ],
+  "coverage_fraction": 0.9997507437531604,
+  "kdep_window_px": 31
+ },
+ "training_features_descriptions": {
+  "1": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+  "2": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+  "3": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+  "4": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+  "5": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+  "6": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+  "7": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+  "8": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+  "9": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+  "10": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+  "11": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+  "12": "det_elev - Detrended elevation - topography with regional trends removed",
+  "13": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+  "14": "tmi - Total magnetic intensity - total strength of magnetic field",
+  "15": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+  "16": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+  "17": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+  "18": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+  "19": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+ },
+ "geodawn_band_ids": {
+  "cond_cap": "B17 cond_surf",
+  "strain2": "B4 geod_2ndinv",
+  "eq_near": "1-rank(B10 deq_n100a15); distance->near is positive"
+ },
+ "lidar": {
+  "bands_used": [
+   "ex_max",
+   "coh100",
+   "valid"
+  ],
+  "coverage_fraction": 0.7536634185300732,
+  "neutral_fill_outside_coverage": 0.5
+ },
+ "elapsed_seconds": 13.937051630000042
+}

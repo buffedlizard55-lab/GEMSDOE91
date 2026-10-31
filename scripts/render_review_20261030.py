@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
-"""Render the active 2026-10-30 no-candidate review and fail-closed front door.
+"""Render the historical 2026-10-30 review page AND stamp the active front door.
 
-The renderer consumes only committed review evidence. It never generates or
-approves a prediction raster, uses no hidden labels, and performs no network
-requests. The historical current-run TIFF pointer is preserved separately.
+Two roles since the S30-VCE session (2026-10-31):
+
+1. HISTORICAL: reproduce `docs/review-20261030/executive-summary.html` from the
+   committed 2026-10-30 no-candidate evidence (unchanged, fail-closed checks).
+2. ACTIVE OVERLAY: this module's `render()` is the final overlay that
+   `render_portal.render()` and `render_olc91_portal.render()` call after every
+   legacy renderer. It stamps the CURRENT active review (S30-VCE) onto the
+   shared front-door files from the canonical sources under
+   `docs/s30-vce/pages/`. Whichever legacy renderer runs last in any sequence,
+   the active state is always re-stamped at the end — a stale renderer can
+   never leave the front door showing a superseded verdict.
+
+The overlay consumes only committed evidence. It never generates or approves a
+prediction raster, uses no hidden labels, and performs no network requests.
 """
 from __future__ import annotations
 
@@ -112,18 +123,25 @@ def standalone_guide(card: dict) -> str:
 
 
 def _active_notice() -> str:
-    return ('<div class="note" role="status"><strong>ACTIVE REVIEW · 2026-10-30: NO NEW TIFF · OK TO SUBMIT: NO.</strong> '
-            'No authorized method lane was supplied; all 15 pinned manifest inputs and the official sample raster are absent. '
-            'No experiment was run and no candidate exists. Historical peer files are OK TO DOWNLOAD for research only; OK TO SUBMIT: NO. '
-            '<a href="review-20261030/executive-summary.html">Executive summary and nine-site table</a> · '
-            '<a href="review-20261030/REVIEW.md">Full three-pass review</a> · '
-            '<a href="review-20261030/run-card.json">Negative run card</a>.</div>')
+    return ('<div class="note" role="status"><strong>ACTIVE · 2026-10-31 (S30-VCE): NEW UNIQUE TIF · '
+            'OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · SLOT: CONDITIONAL.</strong> '
+            'A new unique, format-certified GeoTIFF exists: '
+            '<a href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif"><strong>⬇ download the submission .tif</strong></a> '
+            '(or the <a href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.zip">single-TIFF .zip</a>). '
+            '<a href="s30-vce/executive-summary.html"><strong>Executive summary: nine-site table · estimated scores · uniqueness · verdict</strong></a> · '
+            '<a href="submission-guide.html">How to submit (exact steps + note)</a> · '
+            '<a href="s30-vce/run-card.json">Run card</a> · <a href="s30-vce/REVIEW.md">Three-pass review</a> · '
+            '<a href="s30-vce/HYPOTHESES.md">Ranked hypotheses</a>.</div>')
 
 
 def _replace_current_notice(page: str, notice: str) -> str:
+    """Replace the active-review banner, or insert it if absent (idempotent)."""
     markers = (
-        '<strong>CURRENT REVIEW · 2026-10-29:',
+        '<strong>ACTIVE · 2026-10-31 (S30-VCE):',
         '<strong>ACTIVE REVIEW · 2026-10-30:',
+        '<strong>CURRENT REVIEW · 2026-10-29:',
+        '<strong>CURRENT REVIEW · 2026-10-26:',
+        '<strong>ACTIVE REVIEW · 2026-10-25:',
     )
     position = -1
     for marker in markers:
@@ -131,7 +149,10 @@ def _replace_current_notice(page: str, notice: str) -> str:
         if position >= 0:
             break
     if position < 0:
-        raise ValueError("Could not locate current-review banner in portal HTML")
+        anchor = '<main id="main">'
+        if anchor not in page:
+            raise ValueError("Could not locate insertion point in portal HTML")
+        return page.replace(anchor, anchor + notice, 1)
     start = page.rfind('<div class="note" role="status">', 0, position)
     if start < 0:
         raise ValueError("Current-review banner wrapper missing")
@@ -172,11 +193,16 @@ def render(root: Path = ROOT) -> None:
     review_dir.mkdir(parents=True, exist_ok=True)
     page = executive_html(card, snapshot)
     (review_dir / "executive-summary.html").write_text(page, encoding="utf-8")
-    guide = standalone_guide(card)
-    (docs / "submission-guide.html").write_text(guide + "\n", encoding="utf-8")
-    pointer = current_review_pointer(card)
-    CURRENT_REVIEW_PATH.relative_to(root).parent.mkdir(parents=True, exist_ok=True)
-    CURRENT_REVIEW_PATH.write_text(json.dumps(pointer, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+    # ---- ACTIVE OVERLAY (S30-VCE, 2026-10-31) ---------------------------------
+    # Canonical sources live under docs/s30-vce/pages/ and are copied into the
+    # shared front-door slots on every render. Legacy renderers may overwrite
+    # these files earlier in a build; this overlay always runs last and restores
+    # the active state (see module docstring).
+    pages = docs / "s30-vce" / "pages"
+    guide_src = (pages / "submission-guide.html").read_text(encoding="utf-8")
+    (docs / "submission-guide.html").write_text(guide_src + "\n", encoding="utf-8")
+    pointer = (pages / "current-review.json").read_text(encoding="utf-8")
+    CURRENT_REVIEW_PATH.write_text(pointer, encoding="utf-8")
     notice = _active_notice()
     for name in ("index.html", "executive-summary.html"):
         path = docs / name
@@ -184,23 +210,8 @@ def render(root: Path = ROOT) -> None:
             raise FileNotFoundError(path)
         source = path.read_text(encoding="utf-8")
         source = _replace_current_notice(source, notice)
-        source = source.replace(
-            'href="review-4239f6e5/run-card.json">Current run card',
-            'href="review-20261030/run-card.json">Active review run card',
-        )
         path.write_text(source, encoding="utf-8")
-    root_html = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta http-equiv="refresh" content="0;url=docs/index.html">'
-        '<meta name="description" content="Current GEMSDOE91 review: no new candidate; submission blocked.">'
-        '<title>GEMSDOE91 · Active review and verdict</title></head><body><main>'
-        '<h1>GEMSDOE91 · Active review · 2026-10-30</h1>'
-        '<p><strong>NO NEW TIFF. OK TO SUBMIT: NO.</strong> No lane was assigned, required data are missing, and no experiment was run. Historical files: OK TO DOWNLOAD for research/inspection only; OK TO SUBMIT: NO.</p>'
-        '<p><a href="docs/index.html">Open the portal and active status</a> · '
-        '<a href="docs/review-20261030/executive-summary.html">Executive summary, nine-site table, and submission guide</a> · '
-        '<a href="docs/review-20261030/REVIEW.md">Three-pass review</a> · '
-        '<a href="docs/review-20261030/run-card.json">Negative run card</a></p>'
-        '</main></body></html>\n')
+    root_html = (pages / "landing.html").read_text(encoding="utf-8")
     (root / "index.html").write_text(root_html, encoding="utf-8")
 
 

@@ -20,11 +20,13 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     review = (ROOT / "docs/review-93888f32-20261028.md").read_text()
     card = json.loads((ROOT / "docs/run-card-93888f32-20261028.json").read_text())
 
-    assert readme.startswith("# GEMSDOE91 — Current review: blocked, research only")
-    assert "DO NOT SUBMIT S25-TLF" in readme
-    assert "ACTIVE REVIEW · 2026-10-30" in page
-    assert "NO NEW TIFF" in page and "OK TO SUBMIT: NO" in page
-    assert "ok to submit: no" in page.lower()
+    assert readme.startswith("# GEMSDOE91 — ACTIVE: 2026-10-31")
+    assert "DO NOT SUBMIT S25-TLF" in readme  # historical stop stays visible
+    assert "ACTIVE · 2026-10-31 (S30-VCE)" in page
+    assert "OK TO DOWNLOAD: YES" in page and "FORM-SAFE: YES" in page and "SLOT: CONDITIONAL" in page
+    current = json.loads((ROOT / "docs/current-review.json").read_text())
+    assert current["branch"] == "arena/c2ae33eb-gemsdoe91"
+    assert current["candidate_generated"] is True and current["candidate_sha256"]
     assert "0.36 projection" in review and "withdrawn" in review
     assert card["experiments_run"] == 0
     assert card["weekly_submission_slots_used"] == 0

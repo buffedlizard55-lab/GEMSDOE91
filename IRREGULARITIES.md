@@ -2081,3 +2081,68 @@ leaderboard verified. Full review: `docs/review-de9d7d75/REVIEW.md`.
 - IR-S26-08: R0-static scores HOLDOUT-DTI 0.0067 under the buffered whole-component holdout despite USER-REPORTED live 0.2778. The holdout instrument removes exactly the visible-catalogue continuation signal R0 exploits; holdout-live calibration via R0 is therefore invalid and no leaderboard projection was issued for S26.
 - IR-S26-09: Pre-existing tests/test_release_integration.py failed in a fresh venv only because `imagecodecs` was absent; after installing it the file passes (6 passed, 1 skipped). Environment dependency, not a code defect; requirements.txt should pin imagecodecs (not changed this session to avoid unrelated churn — flagged for owner).
 - IR-S26-10: Leaderboard values in the standing prompt (0.4413 / 0.3195) are stale: official DrivenData leaderboard fetched 2026-10-29 shows #1 = 0.4544. (Updates IR-S26-01.)
+
+---
+
+## IR-S30-01 — DrivenData form rejects NaN outside the footprint ("Predicted values must be in range [0, 1]") — 2026-10-31
+
+**Expected:** the problem description's submission-format section says data outside the survey bounds is "null or nan",
+so NaN-outside rasters (`-nan` variants) should be accepted.
+
+**Observed:** the project owner received the portal error "Predicted values must be in range [0, 1]" when submitting a
+downloaded file (session prompt, 2026-10-31). The form's range check evidently treats NaN as out-of-range
+(NaN comparisons are false). Historical `-nan` submissions show scores in the prompt's receipt list, so enforcement may
+have changed over time or the uploaded file was a different artifact — not determinable from the sandbox.
+
+**Handling:** the S30-VCE lane certifies ONLY the all-finite `-zeros` encoding as upload-safe
+(`writer-receipt.json`: `no_nan_anywhere: true`, `form_range_check_0_1: true`, 14/14 checks PASS). NaN twins, if ever
+produced, are research-only. Documented in `docs/submission-guide.html`.
+
+## IR-S30-02 — Nine-site family duplication measured again, and the score ladder is monotone — 2026-10-31
+
+**Finding (measured here, `docs/s30-vce/nine-site-analysis.json`):** all nine focus-site leaders are one dot family
+(pairwise 3-px overlaps 88–100%). Score rises monotonically as dot count falls and median catalogue distance grows:
+121,131 dots/14.6 px → 0.1922; … 44,090/15.0 px → 0.2600; … 37,654/19.7 px → 0.2778. The 0.2778 receipt is
+USER-REPORTED (prompt), not organizer-confirmed in this repo. No resubmission of any family member is informative.
+
+## IR-S30-03 — Prompt leaderboard numbers conflict (carried forward from IR-S26-01) — 2026-10-31
+
+The 2026-10-31 prompt states "0.3195 is the highest score right now" and separately "Current competition leaderboard
+GEMSDOE high score: 0.4413". Both are prompt-supplied snapshots; this sandbox cannot reach drivendata.org to resolve
+them. All leaderboard values on our pages are labeled prompt-supplied.
+
+## IR-S30-04 — Dense calibration lattice makes literal-duplicate gates degenerate — 2026-10-31
+
+`calib_r13lattice_00904.tif` (206,895 dots, ~2 px lattice) contains ~99.8% of ANY sparse candidate's dots within 3 px
+(the 0.2778 champion itself measures 99.97%). A naive ≤70% literal gate therefore fails every competitive raster.
+Handling: competitive uniqueness gate (≤90,000 positive pixels, non-lattice) per the repo's S25/S27 precedent; dense
+blanket overlaps reported as a mathematical floor in `docs/s30-vce/final-dot-checks.json`. No gate was relaxed: a true
+lattice COPY is still detectable by its dot count (206,895) and support digest.
+
+## IR-S30-05 — GitHub REST API quota exhaustion during registry fetch — 2026-10-31
+
+`api.github.com` returned 403 (rate limit 5200/h shared across parallel sessions; 0 remaining until 01:46 UTC).
+Handling: fetched the 62 fleet-registry rasters via `git clone --depth 1 --filter=blob:none --sparse` of
+`buffedlizard55-lab/60GEMSDOE` (git smart-HTTP is not REST-quota-bound) and re-verified every sha256 against
+`registry/comparison_inventory.json` (62/62 ok). `scripts/fetch_fleet_registry.py` is retained for REST fallback.
+
+## IR-S30-06 — Multiple historical renderers fight over the shared front-door pages — 2026-10-31
+
+**Finding (Pass 2 of this session's review).** At least `render_portal.py`, `render_olc91_portal.py`,
+`render_s16_portal.py`, `render_s20_*`, `render_s21_*`, `render_start_here.py`, and
+`render_review_20261030.py` write `index.html` / `docs/index.html` / `docs/executive-summary.html` /
+`docs/submission-guide.html`. The test suite stays green only because every builder chain ends with
+`render_review_20261030.render()` as the final "active review" overlay. When that overlay was
+temporarily disabled early in this session, later historical renderers silently replaced the active
+pages during `pytest` runs (observed twice: the landing page and executive summary were clobbered
+between commands).
+
+**Handling (root fix, not a workaround).** The overlay slot now stamps the S30-VCE active state from
+canonical sources in `docs/s30-vce/pages/` (landing, submission guide, `current-review.json`
+pointer) and injects/replaces the active banner in the legacy-built portal pages. Historical
+renderers still build their compatibility bodies; the overlay always runs last. Regression covered
+by the retargeted consistency tests; full suite 955 passed / 2 skipped on 2026-10-31.
+
+**Rule for future sessions:** never hand-edit the five shared front-door files — edit the canonical
+sources under `docs/s30-vce/pages/` (or the next session's equivalent) and re-run
+`python -c "from scripts.render_review_20261030 import render, ROOT; render(ROOT)"`.

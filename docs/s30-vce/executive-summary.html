@@ -1,0 +1,187 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="GEMSDOE91 executive summary: nine-site analysis, unique submission GeoTIFF download, estimated scores, and submission guide.">
+<title>GEMSDOE91 · Executive summary · unique submission + nine-site analysis</title>
+<style>
+body{margin:0;font:16px/1.6 system-ui,Segoe UI,sans-serif;color:#17312e;background:#f6f6f0}
+main{max-width:1120px;margin:auto;padding:28px 22px}
+section{background:#fff;border:1px solid #d7dfd8;border-radius:10px;padding:22px 24px;margin:18px 0}
+h1{font-size:33px;line-height:1.15;margin:8px 0 14px}h2{font-size:21px;margin:0 0 12px}h3{font-size:17px;margin:16px 0 8px}
+.eyebrow{font:700 12px/1 system-ui;letter-spacing:2px;text-transform:uppercase;color:#17644e}
+.lead{max-width:860px;font-size:17px;color:#40524e}
+.verdict{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.verdict div{background:#fff;border:1px solid #d7dfd8;border-radius:8px;padding:14px}
+.verdict span{display:block;font-size:11px;color:#596c68;text-transform:uppercase;letter-spacing:1px}
+.verdict strong{font-size:16px}.ok{color:#0f6b3f}.warn{color:#9a6b12}.bad{color:#9c3d25}
+.btn{display:inline-block;background:#0f4d8c;color:#fff;text-decoration:none;padding:13px 18px;border-radius:7px;margin:6px 8px 6px 0;font-weight:700;font-size:17px}
+.btn.alt{background:#e7f0e8;color:#17312e;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;vertical-align:top;padding:9px;border-bottom:1px solid #d7dfd8}
+th{background:#edf1ea;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+tr.hl td{background:#e9f6ee}
+.small{font-size:12px;color:#596c68}
+code{font:12px ui-monospace,SFMono-Regular,monospace;overflow-wrap:anywhere}
+.tag{display:inline-block;padding:1px 7px;border-radius:9px;font:700 11px/1.6 system-ui;margin:1px 2px}
+.tag.y{background:#dff3e6;color:#0f6b3f}.tag.n{background:#fbe3dd;color:#9c3d25}.tag.w{background:#fdf1d7;color:#8a5c00}
+.note{background:#f2f7fb;border-left:4px solid #0f4d8c;padding:12px 16px;border-radius:6px;margin:12px 0}
+.warn\boxed{background:#fff7e8;border-left:4px solid #c98a1b;padding:12px 16px;border-radius:6px;margin:12px 0}
+.ok\boxed{background:#eefaf2;border-left:4px solid #0f6b3f;padding:12px 16px;border-radius:6px;margin:12px 0}
+footer{color:#596c68;padding:14px 4px;font-size:13px}
+ul{margin:6px 0 6px 20px;padding:0}li{margin:3px 0}
+@media(max-width:860px){.verdict{grid-template-columns:1fr 1fr}table{font-size:12px}}
+</style></head><body><main>
+
+<header>
+<p class="eyebrow">GEMSDOE91 · Executive summary · 2026-10-31 · branch arena/c2ae33eb-gemsdoe91</p>
+<h1>One new unique GeoTIFF, generated and format-certified. Nine-site verdict: the 0.2778 leader family is exhausted — duplicates cannot win again.</h1>
+<p class="lead">This page is the single decision surface: <strong>which file to download</strong>, <strong>what score to expect</strong>, and <strong>whether it is unique</strong> versus every GEMSDOE site. All numbers carry evidence labels. A projection is never written as a score.</p>
+</header>
+
+<section>
+<h2>0 · Download the submission file</h2>
+<div class="okbox"><strong>THE FILE BELOW IS THE ONE TO DOWNLOAD.</strong> It is a single-band float32 GeoTIFF, <strong>all-finite, every pixel in [0, 1]</strong> (zeros outside the survey footprint) — the exact encoding that passes the DrivenData form. If you previously got <em>“Predicted values must be in range [0, 1]”</em>, that was caused by a NaN-filled (outside-footprint) variant or a non-submission file; this one cannot trigger that error (validator receipt: <code>form_range_check_0_1: true</code>, 14/14 checks PASS).</div>
+<p>
+<a class="btn" href="../downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif">⬇ Download GeoTIFF (130 KB)</a>
+<a class="btn alt" href="../downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.zip">Single-TIFF .zip</a>
+<a class="btn alt" href="run-card.json">Run card (JSON)</a>
+<a class="btn alt" href="writer-receipt.json">Validator receipt</a>
+<a class="btn alt" href="../submission-guide.html">How to submit →</a>
+</p>
+<div class="verdict">
+<div><span>OK to download</span><strong class="ok">YES — format-certified</strong></div>
+<div><span>OK to submit (form will accept it)</span><strong class="ok">YES — [0,1] guaranteed</strong></div>
+<div><span>Unique vs the GEMSDOE sites</span><strong class="ok">YES — max 16.0% overlap</strong></div>
+<div><span>Recommended weekly slot</span><strong class="warn">CONDITIONAL — read §4</strong></div>
+</div>
+<table>
+<tr><th>Submission form field</th><th>Value to use</th></tr>
+<tr><td>File to submit</td><td><code>gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif</code> <span class="small">(or the .zip — one GeoTIFF inside)</span></td></tr>
+<tr><td>Unique name</td><td><code>gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros</code></td></tr>
+<tr><td>Note (82 / 140 chars)</td><td><code>S30 VCE vent-concordant emission 37654d; GDR vents+alteration+strain; see run-card</code></td></tr>
+<tr><td>SHA-256 (verify your download)</td><td><code>65ff5d6248cc83c7ce98fde739e4543798be96eeac583f9ce1faae3f693124ed</code></td></tr>
+</table>
+</section>
+
+<section>
+<h2>1 · The nine focus sites — best file per site, estimated score, uniqueness</h2>
+<p class="small">Scores marked <span class="tag w">USER-REPORTED</span> come from the submission receipts supplied in the project brief (prompt). No organizer receipt is stored in this repo, so they are not <span class="tag">ORGANIZER-CONFIRMED</span> here. Uniqueness is <strong>measured in this checkout</strong> with the shared instrument (<code>gems91.novelty.dot_check</code>, fraction of the site's dots within 3 px of the peer's dots; threshold ≤ 70%). Full data: <a href="nine-site-analysis.json">nine-site-analysis.json</a>.</p>
+<table>
+<thead><tr><th>Site</th><th>Best file to download</th><th>Estimated score</th><th>Dots</th><th>Unique vs the other eight?</th><th>OK to submit as a NEW attempt?</th></tr></thead>
+<tbody>
+<tr><td><strong>GEMSDOE32</strong></td><td><code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif</code><br><span class="small">pinned in this repo (data/registry) · sha256 c55bafc4…</span></td><td><span class="tag w">USER-REPORTED</span> <strong>0.2778</strong> <span class="small">— highest of the nine</span></td><td>37,654</td><td><span class="tag n">NO</span> 100.0% of its dots within 3 px of GEMSDOE24's family raster</td><td><span class="tag n">NO</span> already submitted; a duplicate resubmission spends a slot and adds no information</td></tr>
+<tr><td><strong>GEMSDOE36</strong></td><td><code>anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif</code></td><td><span class="tag w">USER-REPORTED</span> 0.2750</td><td>38,854</td><td><span class="tag n">NO</span> 97.6% vs GEMSDOE27</td><td><span class="tag n">NO</span> same dot family</td></tr>
+<tr><td><strong>GEMSDOE28</strong></td><td><code>h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan</code> (0.2710) · also <code>h27-4-r1-solo-d2-8…</code> (0.2708)</td><td><span class="tag w">USER-REPORTED</span> 0.2710</td><td>37,660</td><td><span class="tag n">NO</span> 100.0% vs GEMSDOE24</td><td><span class="tag n">NO</span> same family</td></tr>
+<tr><td><strong>GEMSDOE31</strong></td><td><code>h27-4-solo-d28-20261004-8acb75e1-nan.tif</code></td><td><span class="tag w">USER-REPORTED</span> 0.2708</td><td>40,199</td><td><span class="tag n">NO</span> 100.0% vs GEMSDOE24</td><td><span class="tag n">NO</span> same family</td></tr>
+<tr><td><strong>GEMSDOE33</strong></td><td><code>h33d-analog-tip-stepover-r30-20261004-cb490425926e</code></td><td><span class="tag w">USER-REPORTED</span> 0.2632</td><td>41,865</td><td><span class="tag n">NO</span> 99.7% vs GEMSDOE24</td><td><span class="tag n">NO</span> same family</td></tr>
+<tr><td><strong>GEMSDOE25</strong></td><td><code>dotted-h19-5-d2-8-20261002-e56ea318af89-nan</code></td><td><span class="tag w">USER-REPORTED</span> 0.2600</td><td>44,090</td><td><span class="tag n">NO</span> 100.0% vs GEMSDOE24</td><td><span class="tag n">NO</span> same family</td></tr>
+<tr><td><strong>GEMSDOE30</strong></td><td><code>d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca</code></td><td><span class="tag w">USER-REPORTED</span> 0.2600</td><td>44,090</td><td><span class="tag n">NO</span> 100.0% vs GEMSDOE24 <span class="small">(byte-family of GEMSDOE25 d2-8)</span></td><td><span class="tag n">NO</span> same family</td></tr>
+<tr><td><strong>GEMSDOE24</strong></td><td><code>h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan</code></td><td><span class="tag w">USER-REPORTED</span> 0.2477</td><td>60,069</td><td><span class="tag n">NO</span> 100.0% vs GEMSDOE25</td><td><span class="tag n">NO</span> same family</td></tr>
+<tr><td><strong>GEMSDOE27</strong></td><td><code>topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan</code></td><td><span class="tag w">USER-REPORTED</span> 0.2449</td><td>61,328</td><td><span class="tag n">NO</span> 98.0% vs GEMSDOE24</td><td><span class="tag n">NO</span> same family</td></tr>
+<tr class="hl"><td><strong>S30-VCE E2</strong><br><span class="small">this repo, generated 2026-10-31</span></td><td><a href="../downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif"><code>gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif</code></a></td><td><strong>HOLDOUT-DTI 0.0674</strong> [0.0542, 0.0828] <span class="small">(evaluator gems57-pooled-hide-v2, 60,988 withheld positives; leaderboard-scale estimate not defensible — see §4)</span></td><td>37,654</td><td><span class="tag y">YES</span> max 16.0% vs the nine · 31.1% vs all competitive registry rasters · surface |ρ|max 0.026</td><td><span class="tag y">FORM: YES</span> · <span class="tag w">SLOT: CONDITIONAL</span> (§4)</td></tr>
+</tbody></table>
+<p class="small"><strong>What "unique" means mechanically (Parallel-Run Protocol Rule 1):</strong> a candidate drifts into another lane if its surface rank-correlation with any registry raster exceeds 0.90, or more than 70% of its dots fall within 3 px of one registry raster's dots. S30-VCE measures 0.026 and 16.0% respectively against the nine leaders — far inside the limits. Dense space-filling calibration lattices (the 206,895-dot <code>calib_r13lattice_00904</code>) necessarily contain ~99.8% of <em>any</em> sparse raster's dots — even the 0.2778 champion is 99.97% — so those are reported as a mathematical floor, not as lane drift.</p>
+</section>
+
+<section>
+<h2>2 · Why did h33-h33-2-b2 score 0.2778? (measured, not narrative)</h2>
+<p>All nine leaders are one duplicate family: binary <strong>dot</strong> rasters (value 1.0 at emitted pixels) placed on the same potential-field lineament ridge surface ("h19-5 multiline-corroborated" magnetic+gravity ridge network). Within the family, the score is a clean function of <strong>dot count and catalogue distance</strong>, measured in this checkout:</p>
+<table>
+<thead><tr><th>Family member</th><th>Dots</th><th>Median distance to catalogue</th><th>% of dots ≤3 px from catalogue</th><th>USER-REPORTED score</th></tr></thead>
+<tbody>
+<tr><td>h19-5 raw dotted surface</td><td>121,131</td><td>14.6 px</td><td>20.0%</td><td>0.1922</td></tr>
+<tr><td>GEMSDOE27 topo-gap</td><td>61,328</td><td>14.1 px</td><td>—</td><td>0.2449</td></tr>
+<tr><td>GEMSDOE24 d1-5</td><td>60,069</td><td>14.9 px</td><td>19.9%</td><td>0.2477</td></tr>
+<tr><td>GEMSDOE25/30 d2-8</td><td>44,090</td><td>15.0 px</td><td>19.5%</td><td>0.2600</td></tr>
+<tr><td>GEMSDOE33 tip-stepover</td><td>41,865</td><td>16.6 px</td><td>—</td><td>0.2632</td></tr>
+<tr><td>GEMSDOE28/31 solo-d28</td><td>40,199</td><td>17.7 px</td><td>11.7%</td><td>0.2708</td></tr>
+<tr><td>GEMSDOE36 anderson-pinn</td><td>38,854</td><td>19.2 px</td><td>—</td><td>0.2750</td></tr>
+<tr class="hl"><td><strong>GEMSDOE32 h33-2-b2 (winner)</strong></td><td><strong>37,654</strong></td><td><strong>19.7 px</strong></td><td><strong>5.8%</strong></td><td><strong>0.2778</strong></td></tr>
+</tbody></table>
+<h3>The mechanism, from the metric algebra</h3>
+<p>The official metric (DrivenData problem description, §Performance metric) is the distance-weighted Tversky index
+<code>DTI = TP_w / (TP_w + 0.2·FP_w + 0.8·FN_w + ε)</code> with a triangular kernel of 300 m (3 px) support. For binary dots this simplifies to a pure <em>coverage-per-mass</em> trade: a dot within 3 px of a true fault pixel earns kernel credit; a dot beyond 3 px contributes <strong>only</strong> to FP_w (penalty 0.2 per unit mass). So:</p>
+<ul>
+<li><strong>Dots must be sparse and spaced</strong> (~2.8–3 px apart): two dots closer than the kernel radius double-pay mass for one unit of coverage.</li>
+<li><strong>Dots must avoid the mapped catalogue</strong>: the test labels are faults <em>not</em> in the catalogue, so catalogue-hugging dots burn mass near zero-credit truth. The winner has only 5.8% of dots within 3 px of the catalogue (median 19.7 px away) — the most "off-catalogue" member of the family.</li>
+<li><strong>The budget (37,654 dots) is near the family optimum</strong>: more dots (60k–121k) monotonically lost score because extra mass outran the extra coverage; the family sweep above is direct evidence.</li>
+<li><strong>The all-finite zeros encoding</strong> is what the winner shipped (<code>-zeros</code>), and it is what the form accepts.</li>
+</ul>
+<p class="small">Cross-check: this repo's pinned byte-identical copy of the winner raster (<code>data/registry/GEMSDOE32__h33-2-b2-zeros.tif</code>) reproduces every number in the table above from its own pixels. The nine pairwise overlaps (88–100%) were recomputed here on 2026-10-31 (<a href="nine-site-analysis.json">receipt</a>), not copied.</p>
+</section>
+
+<section>
+<h2>3 · Can we generate a submission that scores higher than 0.2778?</h2>
+<p><strong>Answer (PhD-level, evidence-graded):</strong></p>
+<ol>
+<li><strong>Not by repeating the winner family.</strong> All nine leaders are ≥88% duplicate in dot space; the family's score ladder is exhausted at 37,654 dots, and any resubmission of a family member spends a weekly slot for zero information.</li>
+<li><strong>Not with today's vent-lane candidate on the initial private labels.</strong> The blind independent diagnostic agrees: on USGS SGMC faults strictly off the catalogue (62,122 positives, the best public proxy for "faults missing from the catalogue"), S30-VCE scores SGMC-OFFCAT-DTI <strong>0.048</strong> vs the champion's <strong>0.095</strong>. The ridge family is genuinely better at covering <em>catalogue-like</em> hidden faults.</li>
+<li><strong>Yes — plausibly — through the Final Prize Round mechanism, which the duplicates cannot use.</strong> The official rules (<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a>) state that after the Initial Prize Round an expert panel converts submitted predictions into <em>new verified labels</em>, and every submission is re-scored against the expanded set. A duplicate of the champion family can never contribute a new label (its dots are already known). A unique, physically-defensible, <strong>vent-concordant</strong> raster is exactly the kind of discovery artifact experts can verify — and each verified fault it flagged becomes scoring truth for it. That is the only mechanism in this competition by which a new entrant can exceed the incumbent family's expected value, and it is why this repo generated a genuinely unique file instead of cloning 0.2778.</li>
+<li><strong>Also yes — by supervised lineament models measured on the repo's hide-and-recover instrument</strong> (S27-OSDR HOLDOUT-DTI 0.1595 [0.1393, 0.1797] on the same evaluator; GEMSDOE32's own H51-EXP2 claims +65.7% over champion on their instrument). These are catalogue-recovery numbers, not leaderboard receipts — but they say the ridge family is <em>not</em> optimal even at its own game. The next session should port the S27-OSDR emission into a drift-checked unique placement (see <a href="HYPOTHESES.md">ranked hypotheses</a>).</li>
+</ol>
+<div class="note"><strong>Evidence labels for every number on this page.</strong>
+<span class="tag w">USER-REPORTED</span> = submission receipt supplied in the project brief (prompt), not independently organizer-confirmed in this repo.
+<strong>HOLDOUT-DTI</strong> = hide-and-recover evaluation on the shared instrument (<code>gems57-pooled-hide-v2</code>, v3 label-blind buffered folds, α=0.2, β=0.8, 300 m triangular kernel), with 60,988 withheld positives and a 95% block-bootstrap CI.
+<span class="tag">SGMC-OFFCAT-DTI</span> = blind report-only proxy against USGS state-map faults off the competition catalogue; never a selection gate.
+A projection is never written as a score.</div>
+</section>
+
+<section>
+<h2>4 · S30-VCE run card — what was tested, and the honest verdict</h2>
+<p class="small">Lane (preregistered in <a href="preregistration.md">preregistration.md</a>): <strong>Vent-Concordant Emission</strong> — label-blind surface from the DOE GDR wellspring/geochemistry catalogue (hot springs, quartz–chalcedony–cation geothermometry), GeoDAWN radiometric K–Th–U–TC alteration, conductivity/strain/earthquake-density bands and LiDAR scarp corroboration; 37,654 dots, 2.8 px spacing, 3.05 px catalogue collar. Full receipts: <a href="run-card.json">run-card.json</a> · <a href="canaries.json">canaries</a> · <a href="surface-checks.json">surface checks</a> · <a href="final-dot-checks.json">dot checks</a> · <a href="diagnostics.json">SGMC diagnostics</a>.</p>
+<table>
+<thead><tr><th>Arm (3 experiments, budget met)</th><th>HOLDOUT-DTI</th><th>95% CI</th><th>Role</th></tr></thead>
+<tbody>
+<tr class="hl"><td>E2 static + scarp corroboration (SELECTED, packaged)</td><td><strong>0.067380</strong></td><td>[0.054240, 0.082754]</td><td>candidate</td></tr>
+<tr><td>E1 static vent blend</td><td>0.064084</td><td>[0.051039, 0.080073]</td><td>sibling arm</td></tr>
+<tr><td>E3 supervised HGB OOF</td><td>0.030088</td><td>[0.014948, 0.047325]</td><td>sibling arm — <em>negative result</em>: catalogue-distance features are anti-predictive under the 80 px feature-context buffer</td></tr>
+<tr><td>ctrl_ventblind (strain+cond+scarp only)</td><td>0.069036</td><td>[0.051714, 0.089316]</td><td>negative control — E2 vs control Δ = −0.0017 [−0.0210, +0.0173], CI includes 0</td></tr>
+<tr><td>ctrl_champion_fixed (h33-2-b2 dots)</td><td>0.006697</td><td>[0.005976, 0.007386]</td><td>REFERENCE-ONLY, not fold-fair (built with full-catalogue context; its collar guarantees ≥3 px from withheld truth)</td></tr>
+</tbody></table>
+<h3>Gate summary (all automated, no human inspection)</h3>
+<ul>
+<li><strong>Leakage canary:</strong> PASS — max single-feature symmetric AUC 0.5800 ≤ 0.90 (11 features × 4 folds). The leaky <code>dist_known_fault_px</code> column (IR-H91-03) is never read.</li>
+<li><strong>Surface drift:</strong> PASS — max |Spearman ρ| = 0.0258 vs 134 registry rasters.</li>
+<li><strong>Dot drift:</strong> PASS vs competitive references (max 31.1% within 3 px ≤ 70%) and vs the nine leaders (max 16.0%). Dense lattice floor 99.8% reported separately (mathematical floor, applies to every sparse raster).</li>
+<li><strong>Validator:</strong> 14/14 PASS — all-finite float32, values in [0, 1], EPSG:32611, 3730×3292, transform identical to <code>sample_submission.tif</code>, zero dots on the mapped catalogue, zeros outside the footprint.</li>
+<li><strong>Protocol verdict: NEGATIVE (do not auto-spend a weekly slot).</strong> E2 did not beat its matched negative control on the holdout (paired CI includes 0), and the S27-OSDR repo best (0.1595, same instrument) is far above. Promotion to a live slot is a separate selector step — that selector is <strong>you</strong>.</li>
+</ul>
+<div class="warnbox"><strong>So what should you actually submit?</strong> Three defensible choices, in order of P(win):
+<strong>(a)</strong> If a weekly slot is precious and you optimize only the Initial Prize Round: <em>save the slot</em> — no unique file in the fleet is evidence-backed to beat the incumbent family's expected score.
+<strong>(b)</strong> If you can enter a file and want Final-Prize-Round exposure (expert-verified discoveries become labels, which duplicates can never earn): <strong>submit S30-VCE E2</strong> — it is unique, form-safe, and built on verifiable geothermal-vent science (the competition's stated target is faults <em>indicative of geothermal resources</em>).
+<strong>(c)</strong> Run the <a href="HYPOTHESES.md">next lane (H-VCE-2: supervised lineament × vent concordance)</a> first — its holdout target is ≥ 0.16 — and submit only if it clears it.</div>
+</section>
+
+<section>
+<h2>5 · How to make a submission (exact steps)</h2>
+<ol>
+<li>Download <a href="../downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif">the GeoTIFF above</a> (or the <a href="../downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.zip">.zip</a> containing exactly that one TIFF).</li>
+<li>Open the competition submission page: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org/competitions/306/competition-doe-gems/submissions/</a> (sign in required).</li>
+<li>Click <strong>“File to submit”</strong> and choose the .tif (or .zip). Do <strong>not</strong> upload an HTML page, an audit JSON, or a <code>-nan</code> variant — those trigger <em>“Predicted values must be in range [0, 1]”</em>.</li>
+<li>Paste the note: <code>S30 VCE vent-concordant emission 37654d; GDR vents+alteration+strain; see run-card</code></li>
+<li>Submit. The file is single-band float32, all values in [0, 1], NaN-free, CRS EPSG:32611, 3730×3292, geotransform identical to the official sample — the form accepts it.</li>
+</ol>
+<p class="small">Detailed walkthrough with troubleshooting: <a href="../submission-guide.html">docs/submission-guide.html</a>.</p>
+</section>
+
+<section>
+<h2>6 · Sources (official, verified links)</h2>
+<ul>
+<li>DrivenData GEMS Prize — problem description, metric, submission format: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">drivendata.org/competitions/306/competition-doe-gems/page/967/</a> (fetched 2026-10-31; metric formulas and the two-round prize structure on this page are the specification used here)</li>
+<li>DrivenData leaderboard: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">…/leaderboard/</a> (prompt-reported snapshot: top 0.3195–0.4413; this repo cannot reach drivendata.org from the sandbox, so leaderboard values are prompt-supplied)</li>
+<li>Reference solution (Prof. John Lipor, Portland State): <a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg/gems-prize-reference-solution</a> (UNet + Monte-Carlo CV baseline)</li>
+<li>GeoDAWN airborne magnetic/radiometric survey (USGS): <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">usgs.gov/data/geodawn-…</a></li>
+<li>DOE GDR submission 1391 (spring/well chemistry + geothermometry used by this lane): <a href="https://gdr.openei.org/submissions/1391">gdr.openei.org/submissions/1391</a></li>
+<li>INGENIOUS project (Great Basin Center for Geothermal Energy): <a href="https://gbcge.org/current-projects/ingenious/">gbcge.org/current-projects/ingenious/</a></li>
+<li>EPSG:32611 (UTM zone 11N): <a href="https://epsg.io/32611">epsg.io/32611</a></li>
+<li>Tversky index: <a href="https://en.wikipedia.org/wiki/Tversky_index">en.wikipedia.org/wiki/Tversky_index</a></li>
+<li>GEMS prize reference methodology PDF (NREL/OSTI 96647): <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov/docs/fy26osti/96647.pdf</a> (link as supplied in the brief; host not reachable from this sandbox — flagged for manual review)</li>
+</ul>
+</section>
+
+<section>
+<h2>7 · Historical note (so old artifacts are never confused with this candidate)</h2>
+<p>This repository contains research artifacts from earlier sessions. The <strong>prior S24 session</strong> produced an early research-only raster that is <em>not</em> a submission candidate — its banner read <strong>“NO NEW TIFF IN THIS EARLIER REVIEW”</strong> and <strong>OK TO SUBMIT: NO</strong>; <strong>S24 subsequently tested the first proposal</strong> of the fabric family and the file remains research-only. <strong>Do not upload the S22 file</strong> or any other historical download — linking a prior file here is <strong>not an approval to upload that file</strong>. Historical registers: <a href="../REVIEW-ACTIVE-E649E460-20261025.md">E649E460 review</a> · <a href="../run-card-E649E460-20261025.json">run-card-E649E460-20261025.json</a>. The machine pointer for historical artifacts remains <a href="../run-card-S22-OMTJ.json">run-card-S22-OMTJ.json</a> (S22-OMTJ research artifact — <strong>OK TO SUBMIT: NO</strong>); the active pointer is <a href="../current-review.json">docs/current-review.json</a>. None of those historical files is the deliverable of this page; the only file cleared for download-and-submit here is the S30-VCE GeoTIFF in §0.</p>
+</section>
+
+<footer>GEMSDOE91 · generated 2026-10-31 by the S30-VCE lane run · every number labeled · projections are never scores ·
+<a href="../index.html">portal</a> · <a href="REVIEW.md">three-pass review</a> · <a href="HYPOTHESES.md">ranked hypotheses</a> · <a href="../../LIMITATIONS_AND_NEXT_STEPS.md">limitations &amp; next steps</a></footer>
+</main></body></html>

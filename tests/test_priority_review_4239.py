@@ -82,10 +82,10 @@ def test_public_frontdoor_and_guide_show_current_stop():
     index = (ROOT / 'docs/index.html').read_text()
     guide = (ROOT / 'docs/submission-guide.html').read_text()
     table = (BASE / 'executive-summary.html').read_text()
-    assert 'ACTIVE REVIEW · 2026-10-30' in index
-    assert 'review-20261030/executive-summary.html' in index
-    assert 'review-20261030/run-card.json' in guide
-    assert 'There is no new GeoTIFF candidate' in guide
+    assert 'ACTIVE · 2026-10-31 (S30-VCE)' in index
+    assert 'downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif' in index
+    assert 's30-vce/run-card.json' in guide
+    assert 'Predicted values must be in range [0, 1]' in guide
     assert '0.2778' in table and 'USER-REPORTED' in table
     assert 'No improvement' not in table or 'unproven' in table
     assert 'OK TO SUBMIT: NO' in table and 'data-submission-ready="true"' not in table

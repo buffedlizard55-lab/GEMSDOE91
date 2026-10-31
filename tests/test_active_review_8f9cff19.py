@@ -14,7 +14,7 @@ def test_active_review_and_readme_fail_closed():
     card = json.loads((DOCS / "run-card-8f9cff19.json").read_text(encoding="utf-8"))
 
     assert "<!--ACTIVE-8F9CFF19-BEGIN-->" in readme
-    assert readme.startswith("# GEMSDOE91 — Current review: blocked, research only")
+    assert readme.startswith("# GEMSDOE91 — ACTIVE: 2026-10-31")
     assert "NO NEW TIFF" in readme and "NOT OK TO SUBMIT" in readme
     assert "#full-project-brief" in readme
     assert "NO NEW TIFF GENERATED" in readme

@@ -79,12 +79,12 @@ def test_lineage_and_peer_recheck_are_separate_from_score_claims():
                for site, row in lineage['files'].items())
 
 
-def test_portal_and_guide_link_to_current_fail_closed_run_card():
+def test_portal_and_guide_link_to_current_active_run_card():
     render_review_20261030.render(ROOT)
     for filename in ('index.html', 'executive-summary.html', 'submission-guide.html'):
         html = (ROOT / 'docs' / filename).read_text()
-        assert 'review-20261030/run-card.json' in html
-        assert 'data-submission-ready="false"' in html
+        assert 's30-vce/run-card.json' in html
+        assert 'data-submission-ready="true"' not in html
     html = (ROOT / 'docs/submission-guide.html').read_text()
-    assert 'There is no new GeoTIFF candidate' in html
-    assert 'correct null/NaN outside bounds' in html
+    assert 'Predicted values must be in range [0, 1]' in html
+    assert 'outside the survey footprint' in html

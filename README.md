@@ -1,3 +1,35 @@
+# GEMSDOE91 — ACTIVE: 2026-10-31 · `arena/c2ae33eb-gemsdoe91` · NEW UNIQUE TIF GENERATED · OK TO DOWNLOAD: YES · FORM-SAFE: YES · SLOT: CONDITIONAL
+
+> **Session S30-VCE (2026-10-31).** A **new unique, format-certified GeoTIFF exists** and is ready to download:
+> [`gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif`](docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif)
+> (sha256 `65ff5d6248cc83c7…`, 37,654 binary dots, all-finite values in `[0, 1]` — passes the DrivenData form's
+> “Predicted values must be in range [0, 1]” check; 14/14 validator checks PASS, zero catalogue mass, grid match) ·
+> [Single-TIFF `.zip`](docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.zip).
+> **Start here:** [**EXECUTIVE SUMMARY + nine-site table + download**](docs/executive-summary.html) ·
+> [**How to submit (exact steps + note)**](docs/submission-guide.html) ·
+> [run card](docs/s30-vce/run-card.json) · [three-pass review](docs/s30-vce/REVIEW.md) ·
+> [ranked hypotheses H-VCE-2…5](docs/s30-vce/HYPOTHESES.md) ·
+> [geothermal-vent research KB (official sources)](docs/s30-vce/GEOTHERMAL_VENT_RESEARCH.md).
+>
+> **Verdict.** `technically_submittable: YES` (unique — 16.0% max 3-px dot overlap vs the nine leaders,
+> 31.1% vs all competitive registry rasters, surface |ρ|max 0.026; format certified).
+> `protocol verdict: NEGATIVE` for an automatic weekly slot — HOLDOUT-DTI **0.067380 [0.054240, 0.082754]**
+> (`gems57-pooled-hide-v2`, v3 folds, 60,988 withheld positives) does not beat the matched control or the
+> S27-OSDR repo best (0.159482). Promotion is the project owner's selector decision; 0 slots spent here.
+> Nine-site answer (executive summary §2–3): all nine leaders are one ≥88%-duplicate dot family; 0.2778 is the
+> top of the family's count/spacing ladder (37,654 dots, median 19.7 px off-catalogue); duplicates cannot win
+> again, and the **Final Prize Round** (expert-verified discoveries become labels) is the mechanism a unique
+> vent-science raster can exploit that clones cannot.
+>
+> **Read at every session start:** this banner, the [full project brief](#full-project-brief) /
+> [Appendix Z standing prompt](#appendix-z--the-standing-prompt-for-this-repository-verbatim-as-received-2026-10-28-read-this-first-each-session),
+> [`LIMITATIONS_AND_NEXT_STEPS.md`](LIMITATIONS_AND_NEXT_STEPS.md), [`IRREGULARITIES.md`](IRREGULARITIES.md).
+> **Maximize P(Win) · Own the Outcome.**
+
+---
+
+> **Everything below this line is the preserved historical record from earlier checkouts — superseded by the 2026-10-31 active banner above where inconsistent.**
+
 # GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED (active: 2026-10-30 · `arena/83350cee-gemsdoe91`)
 
 > **ACTIVE BRANCH: `arena/83350cee-gemsdoe91`. VERDICT: BLOCKED · NO NEW TIFF · `OK TO DOWNLOAD NEW CANDIDATE: NO` · `OK TO SUBMIT: NO`.** No authorized method lane was assigned; the pinned manifest's 15 inputs are missing and the official sample raster is unavailable. No experiment was run, no new TIFF was generated, no HOLDOUT-DTI was measured, and no organizer receipt or leaderboard estimate exists.
@@ -1724,6 +1756,19 @@ Key standing requirements preserved verbatim:
 ---
 
 ## Appendix Z — the standing prompt for this repository (verbatim as received 2026-10-28; read this first each session)
+
+> **Standing-prompt update (2026-10-31, from the latest user message; additive, not replacing the text below).**
+> The user's current score claims: GEMSDOE32 `h33-h33-2-b2…-zeros: 0.2778` remains the best of the nine focus
+> sites; the live leaderboard is claimed at **0.3195 (highest now)** and **0.4413 (top)** in different parts of
+> the message — conflict flagged (IR-S26-01), values are prompt-supplied snapshots, not organizer receipts.
+> New per-site results added to the record (USER-REPORTED): GEMSDOE24 `gems24-gvc1-negative-geothermal-lineament-submod…: 0.0859`;
+> GEMSDOE25 `gems25-h66-mgd-flank-sapd3-0-k3p5…: 0.0742`; GEMSDOE27 `h29-hydrothermal-piedmont-celf…: 0.2190`,
+> `h31-drcg-wl-celf28…: 0.2250`; GEMSDOE28 `s18-mxtp: 0.0217`, `s21-puhgb: 0.0206`; GEMSDOE30 `MSDB1-edge44090: 0.1462`;
+> GEMSDOE33 `s33-seisdil-strain-seismicity…: 0.0963`; GEMSDOE36 `kpl36-exp3…: 0.1647`. Directive restated: generate a
+> **unique** TIF (never copy a previous submission), obvious automated OK-to-download / OK-to-submit verdict, executive
+> summary with the file · estimated score · uniqueness table, prompt kept in this README and read every session,
+> deep geothermal-vent research from official sources, 3–5 new ranked hypotheses validated on the spatially-blocked
+> holdout before any weekly slot, three-pass execution, and a PR merged to `main`. **Maximize P(Win) · Own the Outcome.**
 
 > Review the repo. **THE FOLLOWING IS THE HIGHEST URGENCY AND MUST BE FOLLOWED!** MUST GENERATE A UNIQUE TIF
 > SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE
