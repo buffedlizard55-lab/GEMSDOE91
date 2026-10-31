@@ -79,16 +79,22 @@ def test_lineage_and_peer_recheck_are_separate_from_score_claims():
                for site, row in lineage['files'].items())
 
 
-def test_portal_and_guide_link_to_current_run_card():
-    render_review_20261030.render(ROOT)  # idempotent; scoped to docs/review-20261030/ since 2026-10-31
-    # The active pages point at the S28-PUCC run card; the historical portal
-    # keeps its review-20261030 links and fail-closed markers as history.
-    html = (ROOT / 'docs' / 'index.html').read_text()
-    assert 'review-20261030/run-card.json' in html
-    assert 'data-submission-ready="false"' in html
-    for filename in ('executive-summary.html', 'submission-guide.html'):
+def test_portal_and_guide_link_to_current_active_run_card():
+    """2026-10-31: the active run card is S30-VCE's; earlier sessions survive
+    as concurrent records and the 2026-10-30 review inside its dated directory."""
+    render_review_20261030.render(ROOT)
+    # index.html and submission-guide.html are the S28-owned front door; the
+    # legacy docs/executive-summary.html is preserved history and only has to
+    # carry a run-card link of some generation.
+    for filename in ('index.html', 'submission-guide.html'):
         html = (ROOT / 'docs' / filename).read_text()
-        assert 's28-pucc/run-card.json' in html
+        assert 's30-vce/run-card.json' in html
+        assert 's28/run-card.json' in html  # concurrent session record
+        assert 'data-submission-ready="true"' not in html
     html = (ROOT / 'docs/submission-guide.html').read_text()
-    assert 'gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros' in html
-    assert 'finite zeros' in html and '[0, 1]' in html
+    assert 'Predicted values must be in range [0, 1]' in html
+    assert 'outside the survey footprint' in html
+    assert 'How to submit the S28 candidate' in html
+    assert 'all-finite, binary, and zero outside the scored footprint' in html
+    dated = (ROOT / 'docs/review-20261030/executive-summary.html').read_text()
+    assert 'data-submission-ready="false"' in dated

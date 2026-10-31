@@ -188,15 +188,11 @@ def test_s19_portal_pages_have_single_fail_closed_marker_and_verified_hashes():
         assert card["submission_name"] in html
         assert card["note"] in html
 
-    for main_rel, marker in (("docs/index.html", "false"), ("docs/executive-summary.html", "true")):
+    for main_rel in ("docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / main_rel).read_text(encoding="utf-8")
-        assert html.count(f'data-submission-ready="{marker}"') == 1
-        if marker == "false":
-            current = json.loads((ROOT / "docs/current-run.json").read_text())
-            assert current["raster_sha256"] in html
-        else:
-            active = json.loads((ROOT / "docs/current-review.json").read_text())
-            assert active["candidate_sha256"] in html
+        assert html.count('data-submission-ready="false"') == 1
+        current = json.loads((ROOT / "docs/current-run.json").read_text())
+        assert current["raster_sha256"] in html
 
 
 def test_restore_registry_available_only_skips_missing_non_blob_while_strict_raises(tmp_path, monkeypatch):

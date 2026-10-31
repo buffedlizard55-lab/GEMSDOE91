@@ -44,32 +44,24 @@ def test_current_real_tiff_and_measured_evidence_verify_without_data_download():
     assert result['geological_experiments_rerun'] == 0
 
 
-def test_root_and_docs_expose_one_current_verdict_not_legacy_format_only_approval():
+def test_root_and_docs_expose_one_current_negative_not_legacy_format_only_approval():
     current = json.loads((ROOT / 'docs/current-run.json').read_text())
-    # The legacy research pointer rotates per session; the safety contract below does not.
+    # The current run card rotates per session; the safety contract below does not.
     assert current['run_card'].startswith('run-card-') and current['ok_to_submit'] is False
     card = json.loads((ROOT / 'docs' / current['run_card']).read_text())
     current_tif = Path(card['raster_path']).name
     assert current['raster_sha256'] == card['raster_sha256']
     assert card['ok_to_submit'] is False
-    # Historical portal: one fail-closed marker and the legacy pointer, unchanged.
-    p = Page(); p.feed((ROOT / 'docs/index.html').read_text())
-    text = ' '.join(p.text)
-    assert 'OK TO DOWNLOAD: YES' in text and 'OK TO SUBMIT: NO' in text
-    assert 'NOT OK TO SUBMIT' in text
-    assert p.states == ['false']
-    assert current['run_card'] in p.links
-    assert any(link.endswith(current_tif) for link in p.links)
-    # Active executive summary: one approval marker, tied to the S28-PUCC card.
-    p = Page(); p.feed((ROOT / 'docs/executive-summary.html').read_text())
-    text = ' '.join(p.text)
-    assert 'OK TO DOWNLOAD: YES' in text and 'OK TO SUBMIT: YES' in text
-    assert p.states == ['true']
-    assert 's28-pucc/run-card.json' in p.links
-    assert any(link.endswith('gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif') for link in p.links)
-    root = (ROOT / 'index.html').read_text()
-    if 'OK TO SUBMIT: YES' in root:
-        assert 'gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros' in root
+    for name in ('docs/index.html', 'docs/executive-summary.html'):
+        p = Page(); p.feed((ROOT / name).read_text())
+        text = ' '.join(p.text)
+        assert 'OK TO DOWNLOAD: YES' in text and 'OK TO SUBMIT: NO' in text
+        assert 'NOT OK TO SUBMIT' in text
+        assert p.states == ['false']
+        assert current['run_card'] in p.links
+        assert any(link.endswith(current_tif) for link in p.links)
+        assert 'OK TO SUBMIT: YES' not in text
+    assert 'OK TO SUBMIT: YES' not in (ROOT / 'index.html').read_text()
 
 
 def test_new_primary_pages_have_no_broken_local_targets_or_fragments():

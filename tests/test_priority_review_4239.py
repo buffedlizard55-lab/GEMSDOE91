@@ -77,18 +77,23 @@ def test_renderer_refuses_a_promote_flag(monkeypatch):
 
 
 def test_public_frontdoor_and_guide_show_current_stop():
-    # Rebuild the historical review view after this module's renderer checks,
-    # then assert the active front door (S28-PUCC, 2026-10-31).
+    # Rebuild the historical review, which must no longer republish a superseded
+    # status; the public front door belongs to S28-PUCC from 2026-10-31 onward
+    # (S30-VCE/S28/S28-VFCD/S91-ALM survive as concurrent records).
+    import scripts.s28_render_portal as s28_portal
     render_review_20261030.render(ROOT)
+    s28_portal.render()
     index = (ROOT / 'docs/index.html').read_text()
     guide = (ROOT / 'docs/submission-guide.html').read_text()
     table = (BASE / 'executive-summary.html').read_text()
-    assert 'ACTIVE REVIEW · 2026-10-31' in index
-    assert 's28-pucc/run-card.json' in index
-    assert 'gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros' in guide
-    assert 'OK TO SUBMIT: YES' in guide
-    assert 'https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/' in guide
-    # the 2026-10-30 fail-closed table is history and keeps its labels
+    assert 'ACTIVE · 2026-10-31 (S28-PUCC)' in index
+    assert 'downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif' in index
+    assert 'S28 · 2026-10-31' in index  # concurrent session record preserved
+    assert 's28/executive-summary.html' in index
+    assert 's30-vce/run-card.json' in guide
+    assert 'Predicted values must be in range [0, 1]' in guide
+    assert 's28/run-card.json' in guide
+    assert 'How to submit the S28 candidate' in guide
     assert '0.2778' in table and 'USER-REPORTED' in table
     assert 'No improvement' not in table or 'unproven' in table
     assert 'OK TO SUBMIT: NO' in table and 'data-submission-ready="true"' not in table

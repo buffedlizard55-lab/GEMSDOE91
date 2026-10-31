@@ -236,19 +236,13 @@ def test_portal_render_is_reproducible():
     assert before=={n:(ROOT/'docs'/n).read_bytes() for n in names}, 'Generated portal drift; render before committing.'
     current=(ROOT/'docs/index.html').read_text()
     guide=(ROOT/'docs/executive-summary.html').read_text()
-    pointer = json.loads((ROOT / 'docs/current-run.json').read_text())
-    # Historical portal keeps the S22-OMTJ legacy pointer and its fail-closed labels.
-    assert pointer['tif'] in current and pointer['zip'] in current
-    assert pointer['raster_sha256'] in current
-    assert 'OK TO SUBMIT: NO' in current
-    assert 's22/run-card.json' in current
-    assert 'data-submission-ready="true"' not in current
-    # Active executive summary carries the S28-PUCC candidate verdict (2026-10-31).
-    assert 'OK TO DOWNLOAD: YES' in guide and 'OK TO SUBMIT: YES' in guide
-    assert 'gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros' in guide
-    assert '8d75b2d1c6891bee275cf3e0aa6065568e5cabe7626528c068b09f81562f656f' in guide
-    assert 's28-pucc/run-card.json' in guide
-    assert guide.count('data-submission-ready="true"') == 1
+    for page in (current, guide):
+        pointer = json.loads((ROOT / 'docs/current-run.json').read_text())
+        assert pointer['tif'] in page and pointer['zip'] in page
+        assert pointer['raster_sha256'] in page
+        assert 'OK TO DOWNLOAD: YES' in page and 'OK TO SUBMIT: NO' in page
+        assert 's22/run-card.json' in page
+        assert 'data-submission-ready="true"' not in page
 
 
 def test_download_zip_and_byte_identity_are_revalidated():

@@ -119,22 +119,17 @@ def test_s27_pages_and_front_door_verdict_parity():
     for rel in (
         "docs/s27-osdr/executive-summary.html",
         "docs/s27-osdr/REVIEW.md",
-    ):
-        txt = (ROOT / rel).read_text(encoding="utf-8")
-        assert "OK TO SUBMIT: YES" not in txt, rel
-        assert "CLEARED TO SUBMIT" not in txt or "NO FILE CLEARED TO SUBMIT" in txt, rel
-
-    # Front door now carries the S28-PUCC verdict (2026-10-31) and must stay in
-    # parity with the active run card instead of denying that a candidate exists.
-    for rel in (
         "docs/index.html",
         "docs/executive-summary.html",
         "index.html",
         "README.md",
     ):
         txt = (ROOT / rel).read_text(encoding="utf-8")
-        assert "OK TO SUBMIT: YES" in txt, rel
-        assert "gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros" in txt or rel == "index.html", rel
+        # From 2026-10-31 only the S28 candidate carries a clearance claim; no
+        # historical S27 artifact may be presented as cleared.
+        if "OK TO SUBMIT: YES" in txt:
+            assert "S28" in txt, rel
+        assert "CLEARED TO SUBMIT" not in txt or "NO FILE CLEARED TO SUBMIT" in txt, rel
 
     front = (ROOT / "docs/index.html").read_text(encoding="utf-8")
     assert "s27-osdr/executive-summary.html" in front

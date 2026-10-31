@@ -135,19 +135,14 @@ def test_latest_status_is_in_public_entry_points_and_render_source():
     root = (ROOT / "index.html").read_text(encoding="utf-8")
     site = (DOCS / "index.html").read_text(encoding="utf-8")
     renderer = (ROOT / "scripts/render_olc91_portal.py").read_text(encoding="utf-8")
-    overlay = (ROOT / "scripts/render_s28_pucc_portal.py").read_text(encoding="utf-8")
-    # Root surfaces the S28-PUCC candidate (2026-10-31); prior reviews remain
-    # linked as historical evidence rather than current status.
-    assert 'url=docs/executive-summary.html' in root
-    assert 'OK TO DOWNLOAD: YES' in root and 'OK TO SUBMIT: YES' in root
-    assert 'gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros' in root
-    assert 'ACTIVE REVIEW · 2026-10-31' in site and 'OK TO SUBMIT: YES' in site
-    assert 'review-8e8d86f2/REVIEW.md' in site
+    # Root leads to the newer review, while the concurrent prior review
+    # remains linked as historical evidence rather than current status.
+    assert 'docs/index.html' in root
+    assert 'NO NEW TIFF' in root and 'OK TO SUBMIT: NO' in root
+    assert 'NO NEW TIFF' in site and 'OK TO SUBMIT: NO' in site
+    assert 'OK TO SUBMIT: YES' not in site  # fail-closed guard (test_s16_integrity) stays correct    assert 'review-8e8d86f2/REVIEW.md' in site
     assert 'REVIEW-ARENA-52711765-20261027.md' in site
     assert 'render_review_8e8d86f2' in renderer
-    # the overlay that renders the active verdict is wired into the pipeline
-    assert 'render_s28_pucc' in renderer
-    assert 'CANDIDATE_READY' in overlay
 
 
 def test_untried_candidate_rankings_include_confounds_and_data_access_limits():

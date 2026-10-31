@@ -14,7 +14,11 @@ def test_active_review_and_readme_fail_closed():
     card = json.loads((DOCS / "run-card-8f9cff19.json").read_text(encoding="utf-8"))
 
     assert "<!--ACTIVE-8F9CFF19-BEGIN-->" in readme
-    assert readme.startswith("# GEMSDOE91 — S28-PUCC: UNIQUE SUBMISSION READY")  # superseded 2026-10-31
+    # 2026-10-31 (S28-VSD, merged after S28/S28-VFCD): README banners stack; the
+    # newest active banner leads while earlier same-day banners are retained verbatim.
+    assert readme.startswith("# GEMSDOE91 — ACTIVE STATUS 2026-10-31")
+    assert "# GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED" in readme
+    assert "Current review: blocked, research only" in readme
     assert "NO NEW TIFF" in readme and "NOT OK TO SUBMIT" in readme
     assert "#full-project-brief" in readme
     assert "NO NEW TIFF GENERATED" in readme

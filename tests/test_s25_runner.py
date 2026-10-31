@@ -72,18 +72,14 @@ def test_diagnostics_are_labelled_models_not_scores():
     assert diag["lfi"]["anchor_set"]["set_sha256"]
 
 
-def test_s25_never_gets_submit_yes_on_its_own_pages():
-    # S25's own pages stay fail-closed forever; the front door may only carry
-    # "OK TO SUBMIT: YES" for the validated S28-PUCC candidate (2026-10-31).
+def test_executive_summary_and_front_door_never_say_submit_yes():
+    for rel in ("docs/s25/executive-summary.html", "docs/index.html"):
+        page = (ROOT / rel).read_text()
+        assert "OK TO SUBMIT: NO" in page, rel
+        assert "OK TO SUBMIT: YES" not in page, rel
     page = (ROOT / "docs/s25/executive-summary.html").read_text()
-    assert "OK TO SUBMIT: NO" in page
-    assert "OK TO SUBMIT: YES" not in page
     assert _load("docs/s25/run-card.json")["artifact"]["tif"].split("/")[-1] in page
     assert "MODEL_PROJECTION_NOT_A_SCORE" not in page or "not a score" in page
-    page = (ROOT / "docs/index.html").read_text()
-    assert "OK TO SUBMIT: NO" in page
-    assert page.count("OK TO SUBMIT: YES") == 1  # exactly one: the active S28-PUCC notice
-    assert "gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros" in page
 
 
 def test_canaries_pass_recorded():

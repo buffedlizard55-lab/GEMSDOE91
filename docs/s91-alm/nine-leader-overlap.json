@@ -1,0 +1,35 @@
+{
+  "max_overlap_pct": {
+    "GEMSDOE24": 100.0,
+    "GEMSDOE25": 100.0,
+    "GEMSDOE27": 98.02,
+    "GEMSDOE28": 100.0,
+    "GEMSDOE30": 100.0,
+    "GEMSDOE31": 100.0,
+    "GEMSDOE32": 100.0,
+    "GEMSDOE33": 99.71,
+    "GEMSDOE36": 97.58
+  },
+  "closest_peer": {
+    "GEMSDOE24": "GEMSDOE25",
+    "GEMSDOE25": "GEMSDOE24",
+    "GEMSDOE27": "GEMSDOE24",
+    "GEMSDOE28": "GEMSDOE24",
+    "GEMSDOE30": "GEMSDOE24",
+    "GEMSDOE31": "GEMSDOE24",
+    "GEMSDOE32": "GEMSDOE24",
+    "GEMSDOE33": "GEMSDOE24",
+    "GEMSDOE36": "GEMSDOE24"
+  },
+  "closest_overlap_pct": {
+    "GEMSDOE24": 88.48,
+    "GEMSDOE25": 88.17,
+    "GEMSDOE27": 86.72,
+    "GEMSDOE28": 95.47,
+    "GEMSDOE30": 88.17,
+    "GEMSDOE31": 95.39,
+    "GEMSDOE32": 99.88,
+    "GEMSDOE33": 92.64,
+    "GEMSDOE36": 97.31
+  }
+}
