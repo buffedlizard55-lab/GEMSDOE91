@@ -2081,3 +2081,38 @@ leaderboard verified. Full review: `docs/review-de9d7d75/REVIEW.md`.
 - IR-S26-08: R0-static scores HOLDOUT-DTI 0.0067 under the buffered whole-component holdout despite USER-REPORTED live 0.2778. The holdout instrument removes exactly the visible-catalogue continuation signal R0 exploits; holdout-live calibration via R0 is therefore invalid and no leaderboard projection was issued for S26.
 - IR-S26-09: Pre-existing tests/test_release_integration.py failed in a fresh venv only because `imagecodecs` was absent; after installing it the file passes (6 passed, 1 skipped). Environment dependency, not a code defect; requirements.txt should pin imagecodecs (not changed this session to avoid unrelated churn — flagged for owner).
 - IR-S26-10: Leaderboard values in the standing prompt (0.4413 / 0.3195) are stale: official DrivenData leaderboard fetched 2026-10-29 shows #1 = 0.4544. (Updates IR-S26-01.)
+
+---
+
+## S28 (2026-10-31, `arena/bcdb9324-gemsdoe91`) — five new irregularities
+
+**IR-S28-01 — the nine "focus" sites are one lineage, not nine independent results.**
+Re-measured this session from the SHA-256-pinned bytes: every pairwise directed 3-px overlap among
+GEMSDOE24/25/27/28/30/31/32/33/36 is 97.6–100 %. Their reported scores are therefore not independent
+evidence, and none of them satisfies the protocol's own 70 % uniqueness stop when re-submitted.
+Evidence: `docs/s28/nine-site-forensics.json`.
+
+**IR-S28-02 — no organizer receipt exists for any nine-site score, including the 0.2778 headline.**
+Every value remains `USER-REPORTED`. No DrivenData submission receipt was found in any of the nine
+repositories or in this repository. Treat 0.2778 as a claim; it is used here only as an anchor for geometry,
+never as a validated target.
+
+**IR-S28-03 — `GEMSDOE92:data/bridge/labels.tif` is the same git blob as `existing_faults.tif`.**
+Both resolve to blob `4ad3c1f3f19823e40924589bee7e51e44ae3a2e7` / sha256 `7ba308cc…`. That file is the mapped
+fault catalogue, not ground truth for the scored hidden faults. Any pipeline that trains or evaluates on it as
+"labels" is measuring catalogue recovery, which is what this repository's holdout instrument does by
+construction — a real limitation, not a bug to fix locally.
+
+**IR-S28-04 — `frac_on_net15` is undocumented and cannot be reproduced.**
+The fleet-consensus feature that dominates the 112-anchor score model (Pearson r = 0.82 with live score;
+LOSO R² 0.705) has no construction recipe anywhere in this repository: neither the 15 anchor rasters, the
+kernel, nor the normalisation is recorded. Until it is reconstructed and pinned, any projection that uses it is
+descriptive only. It is also the feature that would push a candidate straight at the 70 % duplicate stop.
+
+**IR-S28-05 — the official sources could not be re-fetched from this sandbox.**
+Outbound access is limited to `github.com`, `codeload.github.com`, `api.github.com`, `pypi.org`,
+`files.pythonhosted.org`. `www.dropbox.com` failed with `SSL_ERROR_SYSCALL`; `drivendata.org` and
+`docs.nlr.gov` are not reachable. Consequences: (a) the metric arithmetic used here is the repository's own
+transcription in `vendor/gems57/metric.py`, cross-checked against its tests, not a fresh read of the rules PDF;
+(b) the official rasters were restored from GitHub mirrors and are authenticated only by matching this
+repository's pinned SHA-256 values, not by an organizer channel.

@@ -812,6 +812,18 @@
       "sha256": "3f96194f69fc0195a11c3e5c385b60b57b710dc5ec2cd5c2a7ba41231f22b8cd",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of S27-OSDR E2 research-only negative; NOT OK TO SUBMIT (docs/s27-osdr/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif",
+      "sha256": "5d5f9f4deb543fb44e5618796571c80304abe52e8ec0555fb6582914b0d110b4",
+      "status": "selector_approved",
+      "reason": "S28 CPT-19 HGB-on-official-19-band candidate; 15/15 format checks; unique vs nine focus sites (max 38.40% at 3 px); run-card verdict promote."
+    },
+    {
+      "path": "docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.zip",
+      "sha256": "295d2d5770a51f540f4e3ff406e509811a86d2d9060bd582133b2a65fccdb063",
+      "status": "selector_approved",
+      "reason": "Single-TIFF ZIP of the S28 CPT-19 candidate; same clearance as the .tif."
     }
   ]
 }

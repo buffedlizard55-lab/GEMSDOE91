@@ -1,0 +1,183 @@
+{
+ "schema": "gems91.s28.candidate.v1",
+ "generated_utc": "20261031T005736Z",
+ "name": "gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros",
+ "tif": "docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif",
+ "zip": "docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.zip",
+ "sha256": "5d5f9f4deb543fb44e5618796571c80304abe52e8ec0555fb6582914b0d110b4",
+ "bytes": 826646,
+ "note": "S28 CPT-19: HGB transfer classifier on the 19 official GEODAWN bands, 37654 dots, 3px lattice, >300m off catalogue",
+ "model": "HistGradientBoostingClassifier(max_iter=200) on 41 catalogue-free layers",
+ "emission": {
+  "n_dots": 37654,
+  "sep_px": 2,
+  "collar_px": 3.0,
+  "quotas": [
+   [
+    3.0,
+    5.0,
+    0.04
+   ],
+   [
+    5.0,
+    10.0,
+    0.14
+   ],
+   [
+    10.0,
+    20.0,
+    0.32
+   ],
+   [
+    20.0,
+    40.0,
+    0.28
+   ],
+   [
+    40.0,
+    Infinity,
+    0.22
+   ]
+  ]
+ },
+ "geometry": {
+  "n_dots": 37654,
+  "median_dcat_px": 20.012493133544922,
+  "frac_le3px": 0.0,
+  "frac_gt10px": 0.8199925638710363,
+  "nn_median_px": 3.1622776601683795,
+  "nn_min_px": 3.0,
+  "on_catalogue": 0,
+  "outside_footprint": 0
+ },
+ "validation": {
+  "file": "/home/user/GEMSDOE91/docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif",
+  "bytes": 826646,
+  "sha256": "5d5f9f4deb543fb44e5618796571c80304abe52e8ec0555fb6582914b0d110b4",
+  "meta": {
+   "crs": "EPSG:32611",
+   "shape": [
+    3730,
+    3292
+   ],
+   "dtype": "float32",
+   "count": 1,
+   "nodata": null,
+   "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+   ],
+   "profile_compress": "lzw"
+  },
+  "band_description": [
+   "predicted_new_fault_probability"
+  ],
+  "n_finite": 12279160,
+  "n_nan": 0,
+  "n_infinite": 0,
+  "min": 0.0,
+  "max": 1.0,
+  "mean": 0.0030664964579045773,
+  "emitted_positive_pixels": 37654,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "all_checks_passed": true,
+  "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+  "on_catalogue_positive_pixels": 0,
+  "in_footprint_positive_pixels": 37654,
+  "footprint_fraction": 0.007286874781441169
+ },
+ "uniqueness": {
+  "n_priors_compared": 79,
+  "worst": {
+   "prior": "gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
+   "mine_within_3px": 0.6638869708397515,
+   "theirs_within_3px": 0.6005205290274606,
+   "prior_dots": 37654
+  },
+  "unique_at_70pct": true,
+  "registry_scope": "local docs/downloads (this repository, after deleting the lane's superseded variant) + the nine focus-site rasters; NOT the full fleet",
+  "top10": [
+   {
+    "prior": "gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
+    "mine_within_3px": 0.6638869708397515,
+    "theirs_within_3px": 0.6005205290274606,
+    "prior_dots": 37654
+   },
+   {
+    "prior": "gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+    "mine_within_3px": 0.6238115472459765,
+    "theirs_within_3px": 0.40805555555555556,
+    "prior_dots": 54000
+   },
+   {
+    "prior": "gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+    "mine_within_3px": 0.570430764327827,
+    "theirs_within_3px": 0.4273728813559322,
+    "prior_dots": 47200
+   },
+   {
+    "prior": "gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
+    "mine_within_3px": 0.5596483773304297,
+    "theirs_within_3px": 0.4495023114405897,
+    "prior_dots": 48022
+   },
+   {
+    "prior": "gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif",
+    "mine_within_3px": 0.5554788335900568,
+    "theirs_within_3px": 0.4263958333333333,
+    "prior_dots": 48000
+   },
+   {
+    "prior": "gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
+    "mine_within_3px": 0.5546821054868009,
+    "theirs_within_3px": 0.4254583333333333,
+    "prior_dots": 48000
+   },
+   {
+    "prior": "gems91-s14-lsrg-ff-20261025T004500Z-1fcf17ee-zeros.tif",
+    "mine_within_3px": 0.5159345620651192,
+    "theirs_within_3px": 0.4931746959154406,
+    "prior_dots": 37654
+   },
+   {
+    "prior": "gems91-s14-hvdc-e2-20261024T223000Z-0a0bb0cb-zeros.tif",
+    "mine_within_3px": 0.5143411058586074,
+    "theirs_within_3px": 0.38354,
+    "prior_dots": 50000
+   },
+   {
+    "prior": "gems91-ddvtc-e1-20261024T120000Z-df50cc0c-zeros.tif",
+    "mine_within_3px": 0.5077017049981409,
+    "theirs_within_3px": 0.475390625,
+    "prior_dots": 38400
+   },
+   {
+    "prior": "gemsdoe91-cwp91-e1-completenesspu-37654-20261025-562325b2.tif",
+    "mine_within_3px": 0.49668029956976684,
+    "theirs_within_3px": 0.4686885855420407,
+    "prior_dots": 37654
+   }
+  ]
+ },
+ "runtime_s": 12.995620489120483
+}

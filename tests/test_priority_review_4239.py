@@ -77,15 +77,18 @@ def test_renderer_refuses_a_promote_flag(monkeypatch):
 
 
 def test_public_frontdoor_and_guide_show_current_stop():
-    # Rebuild the final active-review view after this module's historical renderer checks.
+    # Rebuild the historical review, which must no longer republish a superseded
+    # status; the public front door belongs to S28 from 2026-10-31 onward.
+    import scripts.s28_render_portal as s28_portal
     render_review_20261030.render(ROOT)
+    s28_portal.render()
     index = (ROOT / 'docs/index.html').read_text()
     guide = (ROOT / 'docs/submission-guide.html').read_text()
     table = (BASE / 'executive-summary.html').read_text()
-    assert 'ACTIVE REVIEW · 2026-10-30' in index
-    assert 'review-20261030/executive-summary.html' in index
-    assert 'review-20261030/run-card.json' in guide
-    assert 'There is no new GeoTIFF candidate' in guide
+    assert 'S28 · 2026-10-31' in index
+    assert 's28/executive-summary.html' in index
+    assert 's28/run-card.json' in guide
+    assert 'How to submit the S28 candidate' in guide
     assert '0.2778' in table and 'USER-REPORTED' in table
     assert 'No improvement' not in table or 'unproven' in table
     assert 'OK TO SUBMIT: NO' in table and 'data-submission-ready="true"' not in table

@@ -1,3 +1,30 @@
+# GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED · `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: YES` (active: 2026-10-31 · `arena/bcdb9324-gemsdoe91`)
+
+> **ACTIVE BRANCH: `arena/bcdb9324-gemsdoe91`. VERDICT: PROMOTE · 15/15 FORMAT CHECKS · UNIQUE vs ALL NINE FOCUS SITES.** The 2026-10-30 block was an access problem, not a science problem, and it is now resolved: the three pinned official rasters were restored from GitHub mirrors, each byte-verified against `registry/data_manifest.json` (`sample_submission.tif` `2176d08e…`, `existing_faults.tif` `7ba308cc…`, `gems-geodawn-numerical-features.tif` `4371c82e…`, 418,912,844 B), and the **official 19-band feature stack was used for the first time in this repository**.
+>
+> **Start here:** [executive summary + one-click download](docs/s28/executive-summary.html) · [technical review](docs/s28/REVIEW.md) · [ranked hypotheses](docs/s28/HYPOTHESES.md) · [run card](docs/s28/run-card.json) · [nine-site forensics (recomputed from bytes)](docs/s28/nine-site-forensics.json) · [holdout](docs/s28/holdout.json) · [limitations](LIMITATIONS_AND_NEXT_STEPS.md) · [irregularities](IRREGULARITIES.md).
+>
+> **The submission:** [`gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif`](docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif) (`sha256: 5d5f9f4deb543fb44e5618796571c80304abe52e8ec0555fb6582914b0d110b4`, 826,646 B, 37,654 binary dots, EPSG:32611, 3730×3292, all 12,279,160 cells finite in `[0,1]`, single-TIFF [`.zip`](docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.zip) beside it) · **Note for the form (133/140):** `S28 CPT-19: HGB on the 19 official GEODAWN bands; 37654 dots at 3.16 px lattice, >300 m off catalogue; unique vs all nine focus sites`
+>
+> | Item | Value | Evidence class |
+> |---|---|---|
+> | HOLDOUT-DTI (this lane, HGB on the official stack) | **0.102921** (11,321 withheld positives, 4 folds) | HOLDOUT-DTI — instrument-class, **not** a leaderboard score |
+> | Physics control, identical geometry | 0.042443 | measured, same instrument |
+> | Ranking gain vs control | **×2.43** (logistic intermediate: 0.061739) | measured |
+> | Leakage canary | max single-layer AUC **0.7947** ≤ 0.90 stop | measured |
+> | Leaderboard projection | **0.27–0.30** | **MODEL PROJECTION, NOT A SCORE** (geometry-matched to GEMSDOE32 0.2778 / GEMSDOE36 0.2750; ±0.084 residual) |
+> | Uniqueness, max directed 3-px overlap | **38.40 %** vs nine focus sites (GEMSDOE27); 66.39 % vs S27-FABRIC-FAR, the worst local prior | VERIFIED-FROM-BYTES (70 % stop respected) |
+> | Organizer-confirmed score | **none** — no DrivenData receipt exists | — |
+> | Experiments used / slots spent | 3 / 3 · 0 weekly slots | — |
+>
+> **Why the nine-site 0.2778 won** (recomputed from the pinned bytes, `docs/s28/nine-site-forensics.json`): the nine files are one lineage (97.6–100 % mutual 3-px overlap) and the reported score is a *perfect* monotone function of median distance from the mapped catalogue (Spearman ρ = 1.00, n = 9): GEMSDOE32 sits at 19.65 px with 37,654 dots at 3.00 px spacing. Solving the published Tversky algebra gives TP_w ≈ 5,469 px ≈ 36 % recall of an assumed 15,195-px hidden truth, against an algebra ceiling of ≈ 0.772 at the same dot budget — so the leader is a mediocre detector with good packing, not a solved problem. Across the full 112-anchor fleet, however, distance-from-catalogue has **no** LOSO predictive power (R² = −0.02); the dominant fleet-wide correlate is the undocumented `frac_on_net15` consensus feature (r = 0.82). That is the ranked next lane, and it is flagged as IR-S28-04 because it cannot be reproduced.
+>
+> **Irregularities flagged this session:** IR-S28-01 (nine sites = one lineage), IR-S28-02 (no organizer receipts anywhere; all nine scores USER-REPORTED), IR-S28-03 (`GEMSDOE92:data/bridge/labels.tif` is the *same git blob* as `existing_faults.tif` — it is the catalogue, not hidden truth), IR-S28-04 (`frac_on_net15` undocumented), IR-S28-05 (drivendata.org / docs.nlr.gov / dropbox.com unreachable from this sandbox; metric arithmetic is the repository's transcription, not re-fetched).
+>
+> **Session-start ritual (unchanged):** read this status, the [full project brief](#full-project-brief) below, `LIMITATIONS_AND_NEXT_STEPS.md`, `IRREGULARITIES.md`, and the newest `docs/*/executive-summary.html`. Standing goal: maximise P(Win) — top of the DrivenData DOE GEMS leaderboard; submission = single-band float32 GeoTIFF in `[0,1]`, EPSG:32611, 3730×3292, sample-submission geotransform; metric = pooled distance-weighted Tversky (α 0.2, β 0.8, 300 m triangular kernel). **Maximize P(Win) · Own the Outcome.**
+>
+> <details><summary>Superseded 2026-10-30 status (historical)</summary>
+
 # GEMSDOE91 — Current review: blocked, research only — NO SUBMISSION APPROVED (active: 2026-10-30 · `arena/83350cee-gemsdoe91`)
 
 > **ACTIVE BRANCH: `arena/83350cee-gemsdoe91`. VERDICT: BLOCKED · NO NEW TIFF · `OK TO DOWNLOAD NEW CANDIDATE: NO` · `OK TO SUBMIT: NO`.** No authorized method lane was assigned; the pinned manifest's 15 inputs are missing and the official sample raster is unavailable. No experiment was run, no new TIFF was generated, no HOLDOUT-DTI was measured, and no organizer receipt or leaderboard estimate exists.
@@ -797,6 +824,9 @@ Scientific scoring/writing uses the **unchanged pinned shared template**, not a 
 Concurrent main reviews were integrated, including the S15 holdout/final-selector fix and removal of invented selector/slot approval. Their [S15 dated review](docs/REVIEW-ARENA-BB16B6AE-20261025.md) is historical secondary evidence, not a fresh S16 external-page fetch or a score receipt. Its missing-input state does not describe the restored S16 inputs. The subsequent [full-grid audit](docs/REVIEW-C6BFB72B-20261025.md), its 11 edge-case tests, and S15 prerequisite/registry fixes are also preserved. The later [CED91 review](docs/REVIEW-ACTIVE-0A96AA96-20261025.md) and its [dated portal](docs/review-0a96aa96-home.html) remain accessible as history, not a competing current-candidate recommendation. The [DZ-EDGE retirement review](docs/REVIEW-ACTIVE-6FEB36E3-20261025.md), its frozen [portal snapshot](docs/archive-review-6feb36e3.html), and its builder quarantine are also integrated. A later [parallel H1 landing](docs/archive-h1-landing.html) and its three raster/ZIP artifacts are preserved as quarantined research. They arrived after S16’s frozen registry and were not compared after its duplicate stop.
 
 [Prior README, preserved as historical and unverified](docs/archive/README-before-S16.md). [Detailed limitations and next steps](LIMITATIONS_AND_NEXT_STEPS.md).
+
+
+</details>
 
 <a id="full-project-brief"></a>
 
@@ -1780,4 +1810,3 @@ actual paragraph in eight consecutive sessions. S25-TLF therefore declared its o
 - Additional `GEMSDOE91` line in prompt: `gems91-s25-tlf-60000dots-20261028T120039Z-zeros` / earlier third slot reported as `0.0298` (`USER-REPORTED`; no organizer receipt in repo).
 - Additional `GEMSDOE92` line in prompt: `visible-collar-r0-excluded: 0.2784` (`USER-REPORTED`; non-unique collar-pruned `R0` variant).
 - As in prior sessions (`IR-S26TLF-01`), no single method paragraph was appended after the protocol header; Session 27 preregistered its single method lane (`S27-CVDC`) in `docs/s27/preregistration.md` prior to feature construction or holdout evaluation and stayed strictly inside it (`3` of `3` budgeted experiments, `0` live slots used).
-

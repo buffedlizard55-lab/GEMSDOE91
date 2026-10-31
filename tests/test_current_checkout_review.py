@@ -138,8 +138,9 @@ def test_latest_status_is_in_public_entry_points_and_render_source():
     # Root redirects to the newer review, while the concurrent prior review
     # remains linked as historical evidence rather than current status.
     assert 'url=docs/index.html' in root
-    assert 'NO NEW TIFF' in root and 'OK TO SUBMIT: NO' in root
-    assert 'NO NEW TIFF' in site and 'OK TO SUBMIT: NO' in site
+    # S28 (2026-10-31) supersedes the 2026-10-30 no-candidate status.
+    assert 'OK TO SUBMIT: YES' in root and 'NEW UNIQUE SUBMISSION' in root
+    assert 'OK TO SUBMIT: YES' in site and 'Download the submission GeoTIFF' in site
     assert 'review-8e8d86f2/REVIEW.md' in site
     assert 'REVIEW-ARENA-52711765-20261027.md' in site
     assert 'render_review_8e8d86f2' in renderer

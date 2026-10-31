@@ -94,5 +94,16 @@ def render() -> None:
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
 
 
+
+    # S28 owns the public front door from 2026-10-31; enforce it last.
+    try:
+        import front_door as _fd  # noqa: PLC0415
+    except ImportError:
+        import sys as _s
+        from pathlib import Path as _p
+        _s.path.insert(0, str(_p(__file__).resolve().parent))
+        import front_door as _fd  # noqa: PLC0415
+    _fd.enforce()
+
 if __name__ == "__main__":
     render()
