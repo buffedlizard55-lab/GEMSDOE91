@@ -25,16 +25,18 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     assert readme.startswith("# GEMSDOE91 — ACTIVE STATUS 2026-10-31")
     assert "# GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED" in readme
     assert "DO NOT SUBMIT S25-TLF" in readme
-    assert "ACTIVE · 2026-10-31 (S30-VCE)" in page  # S30-VCE active banner
-    assert "OK TO DOWNLOAD: YES" in page and "FORM-SAFE: YES" in page and "SLOT: CONDITIONAL" in page
+    assert "ACTIVE · 2026-10-31 (S28-PUCC)" in page  # S28-PUCC active banner
+    assert "OK TO DOWNLOAD: YES" in page and "FORM-SAFE: YES" in page and "SLOT: PROMOTE-TO-SELECTOR" in page
     assert "S28 · 2026-10-31: NEW UNIQUE SUBMISSION" in page
     assert "OK TO SUBMIT: NO" in page and "approved for the" in page
     current = json.loads((ROOT / "docs/current-review.json").read_text())
-    assert current["branch"] in ("arena/c2ae33eb-gemsdoe91", "arena/681fc5eb-gemsdoe91")  # pointer ladder: later sessions may move it
+    assert current["branch"] in ("arena/c2ae33eb-gemsdoe91", "arena/681fc5eb-gemsdoe91",
+                                 "arena/db03647e-gemsdoe91")  # pointer ladder: later sessions may move it
     assert current["candidate_generated"] is True and current["candidate_sha256"]
     assert "Download the GeoTIFF" in page
     current = json.loads((ROOT / "docs/current-review.json").read_text())
-    assert current["branch"] in ("arena/c2ae33eb-gemsdoe91", "arena/681fc5eb-gemsdoe91")  # pointer ladder: later sessions may move it
+    assert current["branch"] in ("arena/c2ae33eb-gemsdoe91", "arena/681fc5eb-gemsdoe91",
+                                 "arena/db03647e-gemsdoe91")  # pointer ladder: later sessions may move it
     assert current["candidate_generated"] is True and current["candidate_sha256"]
     assert "0.36 projection" in review and "withdrawn" in review
     assert card["experiments_run"] == 0

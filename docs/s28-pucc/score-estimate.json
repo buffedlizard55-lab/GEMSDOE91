@@ -1,0 +1,219 @@
+{
+  "label": "MODEL_PROJECTION_NOT_A_SCORE",
+  "point": 0.22155,
+  "ci95": [
+    0.1633,
+    0.2798
+  ],
+  "ci_half_width": 0.058249999999999996,
+  "model": "BRACKETING estimator (regression extrapolation rejected: candidate diagnostics lie outside the anchor hull): [min, max+step] of the owner-reported non-family matched-budget cohort vs the family hygiene-matched ceiling",
+  "regression_in_hull_only": {
+    "coefficients": [
+      0.7120968758317869,
+      -0.2629210777881692,
+      -4.526840621132526
+    ],
+    "r2_in_sample": 0.7738079494367953,
+    "loO_residual_sd": 0.032567807315842905,
+    "note": "in-hull fit retained for audit only; NOT used for this candidate"
+  },
+  "cohort_bracket": [
+    {
+      "name": "apartgemsdoe3-h2-cshd-37654",
+      "live_owner_reported": 0.1633
+    },
+    {
+      "name": "gemsdoesass2-hvfd-37654",
+      "live_owner_reported": 0.1881
+    },
+    {
+      "name": "gemsdoekarage3-csst-37654",
+      "live_owner_reported": 0.1978
+    },
+    {
+      "name": "gems27-h29-hydrothermal-piedmont-celf",
+      "live_owner_reported": 0.219
+    },
+    {
+      "name": "gems27-h31-drcg-wl-celf",
+      "live_owner_reported": 0.225
+    },
+    {
+      "name": "gate_ortho_w0.25-40k",
+      "live_owner_reported": 0.2376
+    },
+    {
+      "name": "gems70-p5-dual-submod30k",
+      "live_owner_reported": 0.2478
+    },
+    {
+      "name": "anderson-geothermal-pinn-38854",
+      "live_owner_reported": 0.275
+    }
+  ],
+  "cohort_median": 0.222,
+  "n_anchors": 7,
+  "hull_extrapolation": true,
+  "projection_reliability": "LOW",
+  "reference_lines": {
+    "family_live_ceiling_owner_reported": 0.2778,
+    "non_family_live_ceiling_owner_reported": 0.275,
+    "non_family_ceiling_source": "session-prompt site receipts; GEMSDOE32 arena51 livescore audit independently found no non-family detector above 0.2478 on its 53-mask set"
+  },
+  "caveats": [
+    "all cohort values are OWNER-REPORTED (no organizer receipts in this checkout)",
+    "the hide-and-recover instrument is ANTI-live within the H19-5 family (measured Spearman -0.75 to -0.82): no local instrument can certify a live score above 0.2778 for any candidate",
+    "candidate is non-family; the bracket assumes matched emission hygiene (37,654 dots, B=2 collar, 2.8 px packing) transfers",
+    "this is not a leaderboard score and not an ORGANIZER-CONFIRMED value"
+  ],
+  "anchors": [
+    {
+      "anchor": "h19-5-powerlaw-budget-multiline",
+      "raster": "data/registry/calib_h195_01922.tif",
+      "live_score_owner_reported": 0.1922,
+      "diagnostics": {
+        "n_dots": 121131,
+        "holdout_dti_fixed": 0.16614540232313063,
+        "holdout_dti": 0.13311174574551188,
+        "sgmc_off_dti": 0.09916741840855015,
+        "sgmc_off_detail": {
+          "dti": 0.09916741840855015,
+          "tpw": 7334.024959371844,
+          "fpw": 113957.9429509105,
+          "fnw": 54787.97504062815,
+          "n_truth": 62122,
+          "n_dots": 121131
+        }
+      }
+    },
+    {
+      "anchor": "h19-4-multiline-openness-thermal",
+      "raster": "data/registry/calib_h194_01894.tif",
+      "live_score_owner_reported": 0.1894,
+      "diagnostics": {
+        "n_dots": 123779,
+        "holdout_dti_fixed": 0.16726169772034763,
+        "holdout_dti": 0.1277124118979227,
+        "sgmc_off_dti": 0.10515639342939484,
+        "sgmc_off_detail": {
+          "dti": 0.10515639342939484,
+          "tpw": 7836.539511991097,
+          "fpw": 116289.01523362621,
+          "fnw": 54285.4604880089,
+          "n_truth": 62122,
+          "n_dots": 123779
+        }
+      }
+    },
+    {
+      "anchor": "h16-1-topo-geophys-baseline-ridges",
+      "raster": "data/registry/calib_h161_01855.tif",
+      "live_score_owner_reported": 0.1855,
+      "diagnostics": {
+        "n_dots": 123939,
+        "holdout_dti_fixed": 0.1666515870866546,
+        "holdout_dti": 0.12658812686028437,
+        "sgmc_off_dti": 0.11131583457031845,
+        "sgmc_off_detail": {
+          "dti": 0.11131583457031845,
+          "tpw": 8305.71081196766,
+          "fpw": 116275.89083221367,
+          "fnw": 53816.289188032344,
+          "n_truth": 62122,
+          "n_dots": 123939
+        }
+      }
+    },
+    {
+      "anchor": "h25-1-dotted-h19-5-d1-5",
+      "raster": "data/registry/calib_d15_02477.tif",
+      "live_score_owner_reported": 0.2477,
+      "diagnostics": {
+        "n_dots": 60069,
+        "holdout_dti_fixed": 0.1716896513713997,
+        "holdout_dti": 0.13811656247038148,
+        "sgmc_off_dti": 0.09991134894171928,
+        "sgmc_off_detail": {
+          "dti": 0.09991134894171928,
+          "tpw": 6221.831895114012,
+          "fpw": 56657.79355569221,
+          "fnw": 55900.16810488599,
+          "n_truth": 62122,
+          "n_dots": 60069
+        }
+      }
+    },
+    {
+      "anchor": "dotted-h19-5-d2-8",
+      "raster": "data/registry/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "live_score_owner_reported": 0.26,
+      "diagnostics": {
+        "n_dots": 44090,
+        "holdout_dti_fixed": 0.16150584038345975,
+        "holdout_dti": 0.14218254971834085,
+        "sgmc_off_dti": 0.09417442916119363,
+        "sgmc_off_detail": {
+          "dti": 0.09417442916119363,
+          "tpw": 5568.5296418767975,
+          "fpw": 41593.23916879607,
+          "fnw": 56553.4703581232,
+          "n_truth": 62122,
+          "n_dots": 44090
+        }
+      }
+    },
+    {
+      "anchor": "h27-4-r1-solo-d2-8",
+      "raster": "data/registry/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "live_score_owner_reported": 0.2708,
+      "diagnostics": {
+        "n_dots": 40199,
+        "holdout_dti_fixed": 0.04900108353734264,
+        "holdout_dti": 0.04796291011956434,
+        "sgmc_off_dti": 0.09529485537964633,
+        "sgmc_off_detail": {
+          "dti": 0.09529485537964633,
+          "tpw": 5560.733767728848,
+          "fpw": 37715.902716338045,
+          "fnw": 56561.266232271155,
+          "n_truth": 62122,
+          "n_dots": 40199
+        }
+      }
+    },
+    {
+      "anchor": "h33-h33-2-b2 (champion)",
+      "raster": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "live_score_owner_reported": 0.2778,
+      "diagnostics": {
+        "n_dots": 37654,
+        "holdout_dti_fixed": 0.006697041784474405,
+        "holdout_dti": 0.009448283291777741,
+        "sgmc_off_dti": 0.09538611460482532,
+        "sgmc_off_detail": {
+          "dti": 0.09538611460482532,
+          "tpw": 5517.63670255971,
+          "fpw": 35220.77352594685,
+          "fnw": 56604.363297440286,
+          "n_truth": 62122,
+          "n_dots": 37654
+        }
+      }
+    }
+  ],
+  "candidate_diagnostics": {
+    "n_dots": 37654,
+    "holdout_dti_fixed": 0.0004845593681330077,
+    "holdout_dti": 0.005314039317059273,
+    "sgmc_off_dti": 0.010802077531281385,
+    "sgmc_off_detail": {
+      "dti": 0.010802077531281385,
+      "tpw": 618.8993927528716,
+      "fpw": 37365.490275170196,
+      "fnw": 61503.10060724713,
+      "n_truth": 62122,
+      "n_dots": 37654
+    }
+  },
+  "sgmc_off_truth_pixels": 62122
+}

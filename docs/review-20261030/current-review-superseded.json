@@ -18,9 +18,9 @@
     "meaning": "Legacy pointer to a historical S22 research download; not this active no-candidate review."
   },
   "superseded_by": {
-    "review": "s30-vce/executive-summary.html",
-    "run_card": "s30-vce/run-card.json",
+    "review": "s28-pucc/executive-summary.html",
+    "run_card": "s28-pucc/run-card.json",
     "date": "2026-10-31",
-    "status": "S30-VCE generated a certified unique candidate; see docs/s30-vce/"
+    "status": "S28-PUCC generated a certified unique candidate; see docs/s28-pucc/"
   }
 }

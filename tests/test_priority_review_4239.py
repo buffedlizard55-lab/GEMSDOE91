@@ -78,15 +78,15 @@ def test_renderer_refuses_a_promote_flag(monkeypatch):
 
 def test_public_frontdoor_and_guide_show_current_stop():
     # Rebuild the historical review, which must no longer republish a superseded
-    # status; the public front door belongs to S30-VCE from 2026-10-31 onward
-    # (S28/S28-VFCD/S91-ALM survive as concurrent records).
+    # status; the public front door belongs to S28-PUCC from 2026-10-31 onward
+    # (S30-VCE/S28/S28-VFCD/S91-ALM survive as concurrent records).
     import scripts.s28_render_portal as s28_portal
     render_review_20261030.render(ROOT)
     s28_portal.render()
     index = (ROOT / 'docs/index.html').read_text()
     guide = (ROOT / 'docs/submission-guide.html').read_text()
     table = (BASE / 'executive-summary.html').read_text()
-    assert 'ACTIVE · 2026-10-31 (S30-VCE)' in index
+    assert 'ACTIVE · 2026-10-31 (S28-PUCC)' in index
     assert 'downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif' in index
     assert 'S28 · 2026-10-31' in index  # concurrent session record preserved
     assert 's28/executive-summary.html' in index

@@ -123,28 +123,33 @@ def standalone_guide(card: dict) -> str:
 
 
 def _active_notice() -> str:
-    # Ladder of active owners (newest first). Keep every earlier same-day banner
-    # verbatim as a concurrent record so their witness strings survive.
-    return ('<div class="note" role="status"><strong>ACTIVE · 2026-10-31 (S30-VCSE): NEW UNIQUE TIF · '
-            'OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · OK TO SUBMIT: NO — HOLD.</strong> '
+    return ('<div class="note" role="status"><strong>ACTIVE · 2026-10-31 (S28-PUCC): NEW UNIQUE TIF · '
+            'OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · SLOT: PROMOTE-TO-SELECTOR.</strong> '
             'A new unique, format-certified GeoTIFF exists: '
-            '<a href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif"><strong>⬇ download the submission .tif</strong></a> '
-            '(or the <a href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.zip">single-TIFF .zip</a>). '
-            'HOLDOUT-DTI 0.052966 [0.046011, 0.060650] (gems57-pooled-hide-v2, 60,988 withheld) &lt; registered best 0.159482 '
-            '&rarr; preregistered verdict negative &rarr; 0 weekly slots spent; do not upload this week. '
-            '<a href="executive-summary.md"><strong>Executive summary: nine-site table · estimated scores · uniqueness · verdict</strong></a> · '
+            '<a href="downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif"><strong>⬇ download the submission .tif</strong></a> '
+            '(or the <a href="downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.zip">single-TIFF .zip</a>). '
+            '<a href="s28-pucc/executive-summary.html"><strong>Executive summary: nine-site table · estimated scores · uniqueness · verdict</strong></a> · '
             '<a href="submission-guide.html">How to submit (exact steps + note)</a> · '
-            '<a href="s30-vcse/run-card.json">Run card</a> · '
-            '<a href="s30-vcse/hypotheses.md">Ranked hypotheses</a> · '
+            '<a href="s28-pucc/run-card.json">Run card</a> · <a href="s28-pucc/HYPOTHESES.md">Ranked hypotheses</a> · '
             '<a href="review-20261030/run-card.json">2026-10-30 run card</a> · '
-            '<a href="review-20261030/executive-summary.html">2026-10-30 executive summary</a>. '
-            '<span class="small">Concurrent session records (parallel lanes, retained verbatim): '
+            '<a href="review-20261030/executive-summary.html">2026-10-30 review</a>. '
+            'HOLDOUT-DTI 0.12797 [0.10998, 0.14618] (gems57-pooled-hide-v2, 60,988 withheld) — not a leaderboard score; '
+            'MODEL_PROJECTION_NOT_A_SCORE 0.222 [0.163, 0.280] (LOW). '
+            'This file is approved to submit (the only one); every historical file remains OK TO SUBMIT: NO. '
+            'IR-S28-ANTILIVE-01 caveat: never claim it beats 0.2778. '
+            '<span class="small">Concurrent session records (parallel lanes merged 2026-10-31): '
+            '<strong>ACTIVE · 2026-10-31 (S30-VCSE): NEW UNIQUE TIF · OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · OK TO SUBMIT: NO — HOLD.</strong> '
+            'HOLDOUT-DTI 0.052966 [0.046011, 0.060650] &lt; registered best 0.159482 &rarr; negative &rarr; 0 slots spent; do not upload S30-VCSE. '
+            '<a href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif">S30-VCSE TIF</a> · '
+            '<a href="s30-vcse/run-card.json">s30-vcse/run-card.json</a> · '
             '<strong>ACTIVE · 2026-10-31 (S30-VCE): NEW UNIQUE TIF · OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · SLOT: CONDITIONAL.</strong> '
-            '<a href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif">S30-VCE TIF</a> · '
-            '<a href="s30-vce/executive-summary.html">S30-VCE executive summary</a> · '
-            '<a href="s30-vce/run-card.json">s30-vce/run-card.json</a> · '
-            '<a href="s28/executive-summary.html">S28 · 2026-10-31: NEW UNIQUE SUBMISSION</a> '
-            'its own run card (<a href="s28/run-card.json">s28/run-card.json</a>) approved for the weekly slot · '
+            '<a href="s30-vce/executive-summary.html">S30-VCE · 2026-10-31</a> '
+            '(<a href="s30-vce/run-card.json">s30-vce/run-card.json</a>, '
+            '<a href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif">S30-VCE TIF</a>) · '
+            '<a href="s28/executive-summary.html">S28 · 2026-10-31: NEW UNIQUE SUBMISSION</a> — its own run card '
+            '(<a href="s28/run-card.json">s28/run-card.json</a>) approved for the weekly slot · '
+            '<a href="s28-vfcd/executive-summary.html">S28-VFCD · 2026-10-30</a> · '
+            '<a href="s91-alm/executive-summary.html">S91-ALM · 2026-10-31</a> — separate unique candidates: '
             '<a href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif">Download the GeoTIFF (S28)</a> · '
             '<a href="s28-vfcd/executive-summary.html">S28-VFCD · 2026-10-30</a> · '
             '<a href="s91-alm/executive-summary.html">S91-ALM · 2026-10-31</a> · '
@@ -158,6 +163,8 @@ def _active_notice() -> str:
 def _replace_current_notice(page: str, notice: str) -> str:
     """Replace the active-review banner, or insert it if absent (idempotent)."""
     markers = (
+        '<strong>ACTIVE · 2026-10-31 (S28-PUCC):',
+        '<strong>ACTIVE · 2026-10-31 (S30-VCSE):',
         '<strong>ACTIVE · 2026-10-31 (S30-VCE):',
         '<strong>ACTIVE REVIEW · 2026-10-30:',
         '<strong>CURRENT REVIEW · 2026-10-29:',
@@ -224,20 +231,21 @@ def render(root: Path = ROOT) -> None:
     page = executive_html(card, snapshot)
     (review_dir / "executive-summary.html").write_text(page, encoding="utf-8")
     # Supersession record: the 2026-10-30 no-candidate review is superseded by the
-    # active S30-VCE front door (S28 / S28-VFCD / S91-ALM are concurrent records).
+    # active S28-PUCC front door (S30-VCE / S28 / S28-VFCD / S91-ALM are concurrent
+    # records).
     pointer = current_review_pointer(card)
     pointer["superseded_by"] = {
-        "review": "s30-vce/executive-summary.html",
-        "run_card": "s30-vce/run-card.json",
+        "review": "s28-pucc/executive-summary.html",
+        "run_card": "s28-pucc/run-card.json",
         "date": "2026-10-31",
-        "status": "S30-VCE generated a certified unique candidate; see docs/s30-vce/",
+        "status": "S28-PUCC generated a certified unique candidate; see docs/s28-pucc/",
     }
     (review_dir / "current-review-superseded.json").write_text(
         json.dumps(pointer, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
 
     # Never leave a superseded status on the public front door: the single-owner
-    # front_door module stamps the ACTIVE state (S30-VCE) from canonical sources
-    # under docs/s30-vce/pages/ — landing page, submission guide, active-review
+    # front_door module stamps the ACTIVE state (S28-PUCC) from canonical sources
+    # under docs/s28-pucc/ — landing page, submission guide, active-review
     # pointer, and the banner injected/replaced on the legacy-built portal pages.
     try:
         import front_door as _fd  # noqa: PLC0415

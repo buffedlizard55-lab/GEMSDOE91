@@ -1,0 +1,83 @@
+{
+  "schema": "gems91.current-review.v1",
+  "review_id": "GEMSDOE91-S28-PUCC-20261031",
+  "review_date_utc": "2026-10-31",
+  "date": "2026-10-31",
+  "branch": "arena/db03647e-gemsdoe91",
+  "status": "S28-PUCC candidate READY: unique (max 39.3% within 3px vs nine-site leaders), form-safe ([0,1] certified, 12,279,160/12,279,160 finite); promoted to selector; weekly-slot spend is the selector's decision (0 spent here)",
+  "candidate_generated": true,
+  "candidate_path": "downloads/gems91-s28-pucc-ee2-37654dots-20261031T013552Z-cb42d2ce-zeros.tif",
+  "candidate_sha256": "8d75b2d1c6891bee275cf3e0aa6065568e5cabe7626528c068b09f81562f656f",
+  "ok_to_download_new_candidate": true,
+  "form_safe_zero_one": true,
+  "unique_vs_registry": true,
+  "verdict": {
+    "ok_to_submit": true,
+    "recommend_spending_weekly_slot": true,
+    "protocol_verdict": "promote-to-selector",
+    "note": "ok_to_submit=True is the technical/form gate (all values in [0,1], unique, format-certified, leakage canary pass). Protocol verdict is promote-to-selector WITH caveat: HOLDOUT-DTI 0.12797 [0.10998, 0.14618] leads the concurrent candidates but IR-S28-ANTILIVE-01 shows no local instrument can certify live superiority over the 0.2778 champion. Spending the weekly slot is the project owner's selector decision."
+  },
+  "ok_to_submit": "YES for this file only — S28-PUCC is unique, form-safe and format-certified; every historical file remains NOT approved. Promotion is promote-to-selector WITH caveat (IR-S28-ANTILIVE-01); the weekly-slot decision is the project owner's.",
+  "holdout_dti": {
+    "value": 0.12797373836871026,
+    "ci": [
+      0.10997924835638555,
+      0.14618368646331334
+    ],
+    "evaluator": "gems57-pooled-hide-v2",
+    "withheld_positives": 60988
+  },
+  "organizer_confirmed": null,
+  "leaderboard_score_estimate": {
+    "evidence_class": "MODEL_PROJECTION_NOT_A_SCORE",
+    "value": 0.22155,
+    "ci95": [
+      0.1633,
+      0.2798
+    ],
+    "reliability": "LOW",
+    "method": "cohort bracket over owner-reported non-family matched-budget submissions; in-hull regression audit only"
+  },
+  "review": "s28-pucc/run-card.json",
+  "executive_summary": "s28-pucc/executive-summary.html",
+  "submission_guide": "submission-guide.html",
+  "run_card": "s28-pucc/run-card.json",
+  "concurrent_records": {
+    "s30-vce": {
+      "review": "s30-vce/executive-summary.html",
+      "run_card": "s30-vce/run-card.json",
+      "branch": "arena/c2ae33eb-gemsdoe91",
+      "note": "previous active record (2026-10-31 T012142Z); holdout 0.06738 [0.05424, 0.08275], protocol verdict negative"
+    },
+    "s28": {
+      "review": "s28/executive-summary.html",
+      "run_card": "s28/run-card.json",
+      "branch": "arena/bcdb9324-gemsdoe91"
+    },
+    "s28-vsd": {
+      "review": "index.html",
+      "run_card": "s28-vsd/run-card.json",
+      "branch": "arena/47021548-gemsdoe91"
+    },
+    "s28-vfcd": {
+      "review": "s28-vfcd/executive-summary.html",
+      "run_card": "s28-vfcd/run-card.json",
+      "branch": "arena/ef686adc-gemsdoe91"
+    },
+    "s91-alm": {
+      "review": "s91-alm/executive-summary.html",
+      "run_card": "s91-alm/run-card.json",
+      "branch": "arena/2664739c-gemsdoe91"
+    },
+    "s30-vcse": {
+      "review": "executive-summary.md",
+      "run_card": "s30-vcse/run-card.json",
+      "branch": "arena/681fc5eb-gemsdoe91",
+      "note": "44,090-dot raster; HOLDOUT-DTI 0.05297 [0.04601, 0.0607] < registered best 0.159482; protocol verdict negative (do not upload)"
+    }
+  },
+  "historical_artifact_pointer": {
+    "path": "current-run.json",
+    "meaning": "Legacy pointer (currently run-card-S22-OMTJ.json). Superseded; retained for audit continuity."
+  }
+}

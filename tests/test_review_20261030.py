@@ -77,14 +77,16 @@ def test_current_pages_and_readme_link_the_active_review():
     assert "2026-10-31" in root
     assert "2026-10-30" in root  # historical record
     assert "docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif" in root  # concurrent record
-    assert "docs/downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif" in root
+    assert "docs/downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif" in root  # concurrent record
     assert "docs/s30-vce/executive-summary.html" in root  # concurrent record
-    assert "docs/s28/executive-summary.html" in root  # concurrent record
+    assert "docs/s28/executive-summary.html" in root  # concurrent session record
     assert "docs/review-20261030/executive-summary.html" in root  # historical record
     # The pointer is a ladder: later sessions may move it (83350cee -> c2ae33eb ->
-    # 681fc5eb); earlier reviews remain linked as concurrent records.
+    # 681fc5eb -> db03647e); earlier reviews remain linked as concurrent records.
     assert load("docs/current-review.json")["branch"] in (
-        "arena/83350cee-gemsdoe91", "arena/c2ae33eb-gemsdoe91", "arena/681fc5eb-gemsdoe91")
+        "arena/83350cee-gemsdoe91", "arena/c2ae33eb-gemsdoe91",
+        "arena/681fc5eb-gemsdoe91", "arena/db03647e-gemsdoe91")
+    assert "ACTIVE · 2026-10-31 (S28-PUCC)" in index  # active banner
     assert "ACTIVE · 2026-10-31 (S30-VCE)" in index  # concurrent record retained
     assert "s30-vce/run-card.json" in index
     assert "ACTIVE REVIEW · 2026-10-30" in index  # historical record
@@ -100,7 +102,7 @@ def test_current_pages_and_readme_link_the_active_review():
     assert "S30 VCE vent-concordant emission 37654d" in guide
     assert "How to submit the S28 candidate" in guide  # concurrent session record
     superseded = load("docs/review-20261030/current-review-superseded.json")
-    assert superseded["superseded_by"]["review"] == "s30-vce/executive-summary.html"
+    assert superseded["superseded_by"]["review"] == "s28-pucc/executive-summary.html"
     assert "ACTIVE: 2026-10-31 · `arena/c2ae33eb-gemsdoe91`" in readme
     assert "ACTIVE BRANCH: `arena/bcdb9324-gemsdoe91`" in readme  # concurrent record preserved    assert "Maximize P(Win) · Own the Outcome" in readme
     assert "full-project-brief" in readme

@@ -1,3 +1,20 @@
+# IR-S28 (2026-10-31, `arena/db03647e-gemsdoe91`, S28-PUCC lane)
+
+## IR-S28-ANTILIVE-01 — hide-and-recover instruments are ANTI-live within the H19-5 family (HIGH severity)
+Measured on the 7 byte-pinned registry anchors with owner-reported live scores: Spearman(live, pooled-fixed holdout) = **−0.750**, (live, SGMC-off DTI) = **−0.821**, (live, detached-withheld) = **−0.750**. The champion's B=2 flank removal makes its dots avoid catalogue-derived truth — which is exactly what hide-and-recover uses as truth — so it ranks LAST on every local holdout variant while scoring HIGHEST live (0.2778). **Consequence:** any promotion gate phrased as "beats the champion on hide-and-recover" carries no live-superiority information for family-vs-new comparisons; GEMSDOE91's earlier holdout-based selection rules inherit this defect. Evidence: `docs/s28-pucc/score-estimate.json` anchors block. **Fix needed (next session):** an anti-hugging instrument (detached ≥ 600 m withheld segments + SGMC-off truth with near-catalogue dots excluded) and/or live receipts.
+
+## IR-S28-REVERSELEAK-01 — fixed-mask control scoring is deflated by a reverse leak (MEDIUM; fixed in harness)
+Catalogue-collared rasters systematically avoid withheld truth (which *is* catalogue), so scoring their fixed masks on hide-and-recover measures the collar, not the field: champion fixed = 0.0067 vs S27-E2 fixed = 0.0000 despite S27's own 0.1595 surface measurement. Controls are now re-emitted fold-blind from trough-filled ridge surfaces (`scripts/run_s28_pucc.py::control_surface`); both readings recorded in `docs/s28-pucc/experiment-*.json`.
+
+## IR-S28-EST-01 — naive score-regression extrapolation is garbage outside the anchor hull (MEDIUM; fixed)
+OLS live~diagnostics on 7 anchors fits R²≈0.99 in-sample but extrapolates absurdly outside the hull (printed 0.66 for this candidate via anti-live coefficients). The estimator (`scripts/estimate_score.py`) now rejects out-of-hull extrapolation and substitutes a traceable cohort bracket [0.1633, 0.2798] over owner-reported non-family matched-budget submissions. Projection class: MODEL_PROJECTION_NOT_A_SCORE, reliability LOW.
+
+## IR-S28-LATTICE-01 — inherited literal-lattice rule impassability (LOW; documented)
+IR-51-LATTICE-01: the literal >70 %-within-3px-vs-any-raster rule is mathematically impassable above 22,163 dots against the 206,895-dot synthetic calibration lattice. Applied here to genuine rasters (≤ 100 k dots) with dense artifacts reported separately: candidate max sparse overlap 50.14 % (vs `gems91-spac-e3`), max |Spearman| 0.0736 — both PASS.
+
+## IR-S28-SCORES-01 — all historical site scores are USER-REPORTED, and the prompt's leaderboard figures conflict (MEDIUM)
+No organizer receipt exists in this checkout for any historical score; the supplied prompt quotes both 0.4413 and 0.3195 as "highest" while a 2026-10-28 fetch reported 0.4544 at rank 1 (inherits IR-S26-01). The nine-site table labels every value accordingly.
+
 ## Irregularities — active and historical reviews
 
 ## 2026-10-30 S28-VFCD (`arena/ef686adc-gemsdoe91`) — irregularities flagged for human review
