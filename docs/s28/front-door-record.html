@@ -1,0 +1,74 @@
+<!-- S28 concurrent record: preserved as evidence; the active front door is stamped by scripts/front_door.py (S30-VCE). -->
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="0;url=docs/index.html">
+<meta name="description" content="GEMSDOE91 S28: new unique, format-certified GeoTIFF submission for the DOE GEMS geothermal fault competition.">
+<title>GEMSDOE91 · S28 submission · OK TO SUBMIT</title></head><body><main>
+<h1>GEMSDOE91 · S28 · 2026-10-31</h1>
+<p><strong>NEW UNIQUE SUBMISSION GENERATED · OK TO DOWNLOAD: YES.</strong>
+Historical files remain OK TO SUBMIT: NO; the single approved file is the S28 candidate.
+37,654-dot candidate from the official 19-band GEODAWN stack; 15/15 local format
+checks; at most 38.40% 3-px overlap with any of the nine focus-site leaders.
+Every other file in this repository is research/inspection only.</p>
+<p><a href="docs/index.html">Portal and active status</a> ·
+<a href="docs/s28/executive-summary.html">Executive summary and one-click download</a> ·
+<a href="docs/s28/REVIEW.md">Technical review</a> ·
+<a href="docs/s28/run-card.json">Run card</a> ·
+<a href="docs/review-20261030/executive-summary.html">Superseded 2026-10-30 review</a></p></main></body></html>
+
+<hr>
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Submission guide · S28 · GEMSDOE91</title>
+<style>
+body{margin:0;background:#f4f6ef;color:#132b27;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{width:min(920px,calc(100% - 36px));margin:auto;padding:34px 0 60px}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:-.03em;margin:6px 0 14px}
+h2{font-size:22px;margin:30px 0 10px}a{color:#0f5e49}
+code{font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+.card{background:#fff;border:1px solid #d6e0d8;border-radius:10px;padding:18px;margin:14px 0}
+.btn{display:inline-block;background:#c9f0d3;color:#0c3627!important;border:1px solid #9fd4ae;border-radius:7px;
+padding:13px 18px;font-weight:800;text-decoration:none;margin:6px 8px 6px 0}
+.pill{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;background:#c9f0d3;color:#0c3627}
+ol li{margin:10px 0}.small{color:#4a615a;font-size:13px}
+</style></head><body><div class="wrap">
+<p class="pill">APPROVED FOR THE WEEKLY SLOT</p>
+<h1>How to submit the S28 candidate</h1>
+<p>Everything on this page refers to one file. It is already in the exact format the portal checks, so no
+conversion, re-projection or re-compression is needed.</p>
+<div class="card">
+<p><strong>Download</strong><br>
+<a class="btn" download href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif">GeoTIFF (826,646 B)</a>
+<a class="btn" download href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.zip">single-TIFF ZIP</a></p>
+<p class="small">sha256 <code>5d5f9f4deb543fb44e5618796571c80304abe52e8ec0555fb6582914b0d110b4</code></p>
+</div>
+<h2>Steps</h2>
+<ol>
+<li>Open the DrivenData submission page for competition 306
+(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submissions page</a>)
+and choose <em>New submission</em>.</li>
+<li>Upload <code>gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif</code> (or the ZIP — it contains exactly that one GeoTIFF).</li>
+<li>Name the submission <code>gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros</code>.</li>
+<li>Note (exactly 133/140 characters):
+<code>S28 CPT-19: HGB on the 19 official GEODAWN bands; 37654 dots at 3.16 px lattice, >300 m off catalogue; unique vs all nine focus sites</code></li>
+<li>Submit, then copy the receipt (score + timestamp) into <code>ledger/submissions.csv</code>. That receipt is
+the only thing that turns any number in this project into ORGANIZER-CONFIRMED evidence.</li>
+<li>If the portal rejects the file, record the verbatim error in <code>IRREGULARITIES.md</code> and do not use a
+second slot for a variant in the same week.</li>
+</ol>
+<h2>Why this file cannot trip the earlier range error</h2>
+<p>The previous portal message was <em>"Predicted values must be in range [0, 1]"</em>. This raster is
+all-finite, binary, and zero outside the scored footprint, so neither a NaN cell nor an out-of-range value can
+reach the validator.</p>
+<details open><summary>All 15 local checks</summary><ul><li>PASS — <code>single_band</code></li><li>PASS — <code>dtype_float32</code></li><li>PASS — <code>dimensions_3730x3292</code></li><li>PASS — <code>crs_epsg_32611</code></li><li>PASS — <code>transform_matches_sample_submission</code></li><li>PASS — <code>no_nan_anywhere</code></li><li>PASS — <code>no_inf_anywhere</code></li><li>PASS — <code>no_sentinel_values</code></li><li>PASS — <code>range_0_1_guaranteed</code></li><li>PASS — <code>min_ge_0</code></li><li>PASS — <code>max_le_1</code></li><li>PASS — <code>in_footprint_all_finite</code></li><li>PASS — <code>in_footprint_range_0_1</code></li><li>PASS — <code>outside_footprint_zero</code></li><li>PASS — <code>zero_dots_on_mapped_catalogue</code></li></ul></details>
+<h2>What you are claiming when you press submit</h2>
+<p>That a HistGradientBoosting classifier trained on mapped faults with the official 19-band GEODAWN stack ranks
+unmapped fault locations better than the hand-written ridge formulas that produced the nine focus-site files.
+That claim is supported by a ×2.43 holdout gain over the physics control on this repository's instrument
+(0.102921 vs
+0.042443) and is
+<strong>not</strong> verifiable against the hidden leaderboard truth before you submit.</p>
+<p><a href="s28/executive-summary.html">Executive summary and score estimate</a> ·
+<a href="s28/REVIEW.md">Technical review</a> · <a href="s28/run-card.json">Run card</a> ·
+<a href="s28/HYPOTHESES.md">Next hypotheses</a></p>
+</div></body></html>

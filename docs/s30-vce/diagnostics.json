@@ -1,0 +1,25 @@
+{
+ "label": "SGMC-OFFCAT-CONTROL-DTI (blind report-only proxy; NOT a score, NOT a selection gate)",
+ "evaluator": "scripts/evaluate_holdout.score_off_catalogue_sgmc",
+ "sgmc_sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+ "rows": {
+  "candidate": {
+   "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+   "evaluator_version": "gems91-hide-recover-v1.0",
+   "n_offcatalogue_sgmc_positives": 62122,
+   "dti": 0.048036,
+   "T": 2762.864,
+   "S": 37654.0,
+   "M": 1324.43
+  },
+  "champion_h33-2-b2_reference": {
+   "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+   "evaluator_version": "gems91-hide-recover-v1.0",
+   "n_offcatalogue_sgmc_positives": 62122,
+   "dti": 0.095386,
+   "T": 5517.637,
+   "S": 37654.0,
+   "M": 2433.226
+  }
+ }
+}

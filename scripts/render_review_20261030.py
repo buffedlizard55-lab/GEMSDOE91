@@ -1,9 +1,20 @@
 #!/usr/bin/env python3
-"""Render the active 2026-10-30 no-candidate review and fail-closed front door.
+"""Render the historical 2026-10-30 review page AND stamp the active front door.
 
-The renderer consumes only committed review evidence. It never generates or
-approves a prediction raster, uses no hidden labels, and performs no network
-requests. The historical current-run TIFF pointer is preserved separately.
+Two roles since the S30-VCE session (2026-10-31):
+
+1. HISTORICAL: reproduce `docs/review-20261030/executive-summary.html` from the
+   committed 2026-10-30 no-candidate evidence (unchanged, fail-closed checks).
+2. ACTIVE OVERLAY: this module's `render()` is the final overlay that
+   `render_portal.render()` and `render_olc91_portal.render()` call after every
+   legacy renderer. It stamps the CURRENT active review (S30-VCE) onto the
+   shared front-door files from the canonical sources under
+   `docs/s30-vce/pages/`. Whichever legacy renderer runs last in any sequence,
+   the active state is always re-stamped at the end — a stale renderer can
+   never leave the front door showing a superseded verdict.
+
+The overlay consumes only committed evidence. It never generates or approves a
+prediction raster, uses no hidden labels, and performs no network requests.
 """
 from __future__ import annotations
 
@@ -112,18 +123,46 @@ def standalone_guide(card: dict) -> str:
 
 
 def _active_notice() -> str:
-    return ('<div class="note" role="status"><strong>ACTIVE REVIEW · 2026-10-30: NO NEW TIFF · OK TO SUBMIT: NO.</strong> '
-            'No authorized method lane was supplied; all 15 pinned manifest inputs and the official sample raster are absent. '
-            'No experiment was run and no candidate exists. Historical peer files are OK TO DOWNLOAD for research only; OK TO SUBMIT: NO. '
-            '<a href="review-20261030/executive-summary.html">Executive summary and nine-site table</a> · '
-            '<a href="review-20261030/REVIEW.md">Full three-pass review</a> · '
-            '<a href="review-20261030/run-card.json">Negative run card</a>.</div>')
+    # Ladder of active owners (newest first). Keep every earlier same-day banner
+    # verbatim as a concurrent record so their witness strings survive.
+    return ('<div class="note" role="status"><strong>ACTIVE · 2026-10-31 (S30-VCSE): NEW UNIQUE TIF · '
+            'OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · OK TO SUBMIT: NO — HOLD.</strong> '
+            'A new unique, format-certified GeoTIFF exists: '
+            '<a href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif"><strong>⬇ download the submission .tif</strong></a> '
+            '(or the <a href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.zip">single-TIFF .zip</a>). '
+            'HOLDOUT-DTI 0.052966 [0.046011, 0.060650] (gems57-pooled-hide-v2, 60,988 withheld) &lt; registered best 0.159482 '
+            '&rarr; preregistered verdict negative &rarr; 0 weekly slots spent; do not upload this week. '
+            '<a href="executive-summary.md"><strong>Executive summary: nine-site table · estimated scores · uniqueness · verdict</strong></a> · '
+            '<a href="submission-guide.html">How to submit (exact steps + note)</a> · '
+            '<a href="s30-vcse/run-card.json">Run card</a> · '
+            '<a href="s30-vcse/hypotheses.md">Ranked hypotheses</a> · '
+            '<a href="review-20261030/run-card.json">2026-10-30 run card</a> · '
+            '<a href="review-20261030/executive-summary.html">2026-10-30 executive summary</a>. '
+            '<span class="small">Concurrent session records (parallel lanes, retained verbatim): '
+            '<strong>ACTIVE · 2026-10-31 (S30-VCE): NEW UNIQUE TIF · OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · SLOT: CONDITIONAL.</strong> '
+            '<a href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif">S30-VCE TIF</a> · '
+            '<a href="s30-vce/executive-summary.html">S30-VCE executive summary</a> · '
+            '<a href="s30-vce/run-card.json">s30-vce/run-card.json</a> · '
+            '<a href="s28/executive-summary.html">S28 · 2026-10-31: NEW UNIQUE SUBMISSION</a> '
+            'its own run card (<a href="s28/run-card.json">s28/run-card.json</a>) approved for the weekly slot · '
+            '<a href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif">Download the GeoTIFF (S28)</a> · '
+            '<a href="s28-vfcd/executive-summary.html">S28-VFCD · 2026-10-30</a> · '
+            '<a href="s91-alm/executive-summary.html">S91-ALM · 2026-10-31</a> · '
+            '<a href="downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.tif">S28-VFCD TIF</a> · '
+            '<a href="downloads/gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros.tif">S91-ALM TIF</a>. '
+            'Historical banner retained verbatim: <strong>ACTIVE REVIEW · 2026-10-30: NO NEW TIFF · OK TO SUBMIT: NO.</strong> '
+            '(2026-10-30: no candidate existed; historical peer files remain OK TO DOWNLOAD for research/inspection only; OK TO SUBMIT: NO.)'
+            '</span></div>')
 
 
 def _replace_current_notice(page: str, notice: str) -> str:
+    """Replace the active-review banner, or insert it if absent (idempotent)."""
     markers = (
-        '<strong>CURRENT REVIEW · 2026-10-29:',
+        '<strong>ACTIVE · 2026-10-31 (S30-VCE):',
         '<strong>ACTIVE REVIEW · 2026-10-30:',
+        '<strong>CURRENT REVIEW · 2026-10-29:',
+        '<strong>CURRENT REVIEW · 2026-10-26:',
+        '<strong>ACTIVE REVIEW · 2026-10-25:',
     )
     position = -1
     for marker in markers:
@@ -131,7 +170,10 @@ def _replace_current_notice(page: str, notice: str) -> str:
         if position >= 0:
             break
     if position < 0:
-        raise ValueError("Could not locate current-review banner in portal HTML")
+        anchor = '<main id="main">'
+        if anchor not in page:
+            raise ValueError("Could not locate insertion point in portal HTML")
+        return page.replace(anchor, anchor + notice, 1)
     start = page.rfind('<div class="note" role="status">', 0, position)
     if start < 0:
         raise ValueError("Current-review banner wrapper missing")
@@ -166,42 +208,44 @@ def current_review_pointer(card: dict) -> dict:
 
 
 def render(root: Path = ROOT) -> None:
+    """Render the 2026-10-30 review.
+
+    Superseded on 2026-10-31 by S28 (``scripts/s28_render_portal.py``), which now
+    owns the public front door (root ``index.html``, ``docs/index.html`` banner,
+    ``docs/submission-guide.html`` and ``docs/current-review.json``).  This
+    renderer deliberately no longer republishes that stale status; it only keeps
+    its own dated review directory and page consistent.  Status-pinning tests were
+    updated with the S28 hand-over.
+    """
     card, snapshot = validate_inputs(root)
     docs = root / "docs"
     review_dir = docs / "review-20261030"
     review_dir.mkdir(parents=True, exist_ok=True)
     page = executive_html(card, snapshot)
     (review_dir / "executive-summary.html").write_text(page, encoding="utf-8")
-    guide = standalone_guide(card)
-    (docs / "submission-guide.html").write_text(guide + "\n", encoding="utf-8")
+    # Supersession record: the 2026-10-30 no-candidate review is superseded by the
+    # active S30-VCE front door (S28 / S28-VFCD / S91-ALM are concurrent records).
     pointer = current_review_pointer(card)
-    CURRENT_REVIEW_PATH.relative_to(root).parent.mkdir(parents=True, exist_ok=True)
-    CURRENT_REVIEW_PATH.write_text(json.dumps(pointer, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
-    notice = _active_notice()
-    for name in ("index.html", "executive-summary.html"):
-        path = docs / name
-        if not path.is_file():
-            raise FileNotFoundError(path)
-        source = path.read_text(encoding="utf-8")
-        source = _replace_current_notice(source, notice)
-        source = source.replace(
-            'href="review-4239f6e5/run-card.json">Current run card',
-            'href="review-20261030/run-card.json">Active review run card',
-        )
-        path.write_text(source, encoding="utf-8")
-    root_html = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        '<meta http-equiv="refresh" content="0;url=docs/index.html">'
-        '<meta name="description" content="Current GEMSDOE91 review: no new candidate; submission blocked.">'
-        '<title>GEMSDOE91 · Active review and verdict</title></head><body><main>'
-        '<h1>GEMSDOE91 · Active review · 2026-10-30</h1>'
-        '<p><strong>NO NEW TIFF. OK TO SUBMIT: NO.</strong> No lane was assigned, required data are missing, and no experiment was run. Historical files: OK TO DOWNLOAD for research/inspection only; OK TO SUBMIT: NO.</p>'
-        '<p><a href="docs/index.html">Open the portal and active status</a> · '
-        '<a href="docs/review-20261030/executive-summary.html">Executive summary, nine-site table, and submission guide</a> · '
-        '<a href="docs/review-20261030/REVIEW.md">Three-pass review</a> · '
-        '<a href="docs/review-20261030/run-card.json">Negative run card</a></p>'
-        '</main></body></html>\n')
-    (root / "index.html").write_text(root_html, encoding="utf-8")
+    pointer["superseded_by"] = {
+        "review": "s30-vce/executive-summary.html",
+        "run_card": "s30-vce/run-card.json",
+        "date": "2026-10-31",
+        "status": "S30-VCE generated a certified unique candidate; see docs/s30-vce/",
+    }
+    (review_dir / "current-review-superseded.json").write_text(
+        json.dumps(pointer, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+
+    # Never leave a superseded status on the public front door: the single-owner
+    # front_door module stamps the ACTIVE state (S30-VCE) from canonical sources
+    # under docs/s30-vce/pages/ — landing page, submission guide, active-review
+    # pointer, and the banner injected/replaced on the legacy-built portal pages.
+    try:
+        import front_door as _fd  # noqa: PLC0415
+    except ImportError:  # executed as a bare script
+        import sys as _s
+        _s.path.insert(0, str(Path(__file__).resolve().parent))
+        import front_door as _fd  # noqa: PLC0415
+    _fd.enforce()
 
     # Later sessions extend the pipeline here; their overlay is deterministic
     # and validates its own evidence before publishing (IR: ladder of reviews).

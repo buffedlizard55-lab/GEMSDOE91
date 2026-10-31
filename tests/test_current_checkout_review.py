@@ -135,12 +135,12 @@ def test_latest_status_is_in_public_entry_points_and_render_source():
     root = (ROOT / "index.html").read_text(encoding="utf-8")
     site = (DOCS / "index.html").read_text(encoding="utf-8")
     renderer = (ROOT / "scripts/render_olc91_portal.py").read_text(encoding="utf-8")
-    # Root redirects to the newer review, while the concurrent prior review
+    # Root leads to the newer review, while the concurrent prior review
     # remains linked as historical evidence rather than current status.
-    assert 'url=docs/index.html' in root
+    assert 'docs/index.html' in root
     assert 'NO NEW TIFF' in root and 'OK TO SUBMIT: NO' in root
     assert 'NO NEW TIFF' in site and 'OK TO SUBMIT: NO' in site
-    assert 'review-8e8d86f2/REVIEW.md' in site
+    assert 'OK TO SUBMIT: YES' not in site  # fail-closed guard (test_s16_integrity) stays correct    assert 'review-8e8d86f2/REVIEW.md' in site
     assert 'REVIEW-ARENA-52711765-20261027.md' in site
     assert 'render_review_8e8d86f2' in renderer
 

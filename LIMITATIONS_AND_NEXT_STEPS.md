@@ -1,3 +1,22 @@
+## Current limitations and next steps — 30 October 2026 (`S28-VFCD`, branch `arena/ef686adc-gemsdoe91`)
+
+**NEW COMPETITIVE-UNIQUE RESEARCH TIFF; SCIENCE VERDICT NEGATIVE; OK TO DOWNLOAD: YES; OK TO SUBMIT: NO-BY-POLICY (selector step).** `S28-VFCD E3` (`docs/downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.tif`, SHA-256 `d7843af990f1530a…`) tests the top-ranked untried hypothesis (geothermometer-gated discharge conduit from pinned GDR well/spring chemistry + SGMC-off concordance) in a PU-OOF HGB + 300 m CELF 37,654-dot lane:
+
+- **Negative result (the deliverable):** all three vent arms lose to matched controls on the preregistered holdout (E3 `0.107918 [0.093351, 0.123297]` vs `ctrl_oof_phys 0.152409`; paired Δ `−0.044491 [−0.058797, −0.031879]`). The vent evidence pulls mass off the catalogue toward blind-structure targets — exactly the axis the holdout cannot credit (IR-S28-04). The hypothesis is unvalidated for the live target, not disproven; under the frozen gates the verdict is `negative` (do not promote).
+- **Live-anchored diagnostics (labels):** LFI `MODEL_PROJECTION_NOT_A_SCORE 0.108–0.114 ± 0.0198` (112 anchors, LOSO Spearman 0.957); blind SGMC-off `0.046154` (control, not a score). Both well below GEMSDOE32 R0 (`0.2778 USER-REPORTED` / `0.273 MODEL`).
+- **Uniqueness (PASS):** max 3-px dot overlap `35.73%` vs the nine leaders, `50.11%` vs 192 competitive registry rasters, surface max `|ρ| 0.1502`; dense calibration lattice reported separately (`99.35%`, IR-S28-01).
+- **Budgets honored:** 3/3 experiments used, well under 2 h; 0 weekly submission slots spent; promotion is the separate selector step.
+
+**Why 0.2778 stands (answer delivered at PhD level in `docs/s28-vfcd/executive-summary.html#why-02778` + `docs/R0_ANALYSIS_S22.md`):** R0 = the 0.2600 family raster minus 6,436 near-catalogue dots and nothing else (BYTES); masked catalogue pixels make near-catalogue dots pure FP cost under the pooled DTI; one-parameter model (T≈5,073) predicts the next two live scores to ±0.0008. Beating it requires dead-dot identification (unidentifiable from public data) or new information (supervised `labels.tif` — unpinned; 1 m lidar — hosts unreachable here).
+
+**Next steps (ranked):**
+1. **Selector decision:** no unique file in the repo is projected to beat 0.2778. If the objective is score, do not spend a weekly slot. If the objective is a guaranteed-new unique entry, `S28-VFCD E3` (this session) or `S27-OSDR E2` (projected `0.183–0.190 MODEL`, highest unique) are the two candidates; the selector picks, not this project.
+2. **H3 (untried):** vent-anchored tip/relay connectors (`docs/HYPOTHESES_S28_VFCD.md`) — the next lane if another session tests the vent family on a live-aligned instrument instead of the catalogue-recovery holdout.
+3. **Instrument work:** a holdout variant scoring off-catalogue truth proxies (SGMC-off + LFI-triangulated) would address IR-S28-04; preregister before use.
+4. **External data (blocked in sandbox):** USGS 3DEP 1 m lidar (LidarExplorer / rockyweb.usgs.gov) and organizer `labels.tif` (supervised U-Net reference method) are the two identified information escapes; both need a host/data access this sandbox lacks.
+5. **Infrastructure:** `data/work/s27_cache` + `data/work/s28_cache` are rebuilt by `run_s27_osdr.py prep` / `run_s28_vfcd.py prep` (~10 min); consider a cache-mirroring script like `scripts/restore_data.py` for future sessions.
+
+## Current limitations and next steps — 29 October 2026 (`S27-OSDR`, branch `arena/7de7860e-gemsdoe91`)
 # Active limitations and next-session needs — 2026-10-30
 
 **Current branch:** `arena/83350cee-gemsdoe91`<br>
@@ -518,6 +537,47 @@ lane, complete unchanged registry and pinned feature cache, frozen comparable
 incumbent, then both uniqueness phases and paired holdout—not a live upload test.
 
 </details>
+
+---
+
+## 2026-10-31 (S30-VCE session) — limitations and next steps
+
+### What this session delivered
+- All 15 pinned inputs restored and hash-verified (the 2026-10-30 blocker "data absent" is resolved for every future
+  session: run `python scripts/restore_data.py`).
+- 62 fleet-registry comparison rasters restored (`data/fleet_registry/`, sha256-verified) — uniqueness gates are now
+  runnable against the pinned fleet, not just local downloads.
+- New unique format-certified TIF `gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif` (16.0% max
+  overlap vs the nine leaders; 31.1% vs competitive registry; 14/14 validator checks PASS).
+- Executive summary with the required file · estimated score · uniqueness table (`docs/executive-summary.html`),
+  exact submission guide (`docs/submission-guide.html`), ranked hypotheses (`docs/s30-vce/HYPOTHESES.md`), and a
+  geothermal-vent research KB from official sources (`docs/s30-vce/GEOTHERMAL_VENT_RESEARCH.md`).
+
+### Limitations blocking a top-score submission
+1. **Holdout-to-leaderboard calibration gap.** Hide-and-recover HOLDOUT-DTI (champion fixed raster ≈ 0.0067) and live
+   leaderboard scores (champion 0.2778) live on different scales because the champion's emission collar structurally
+   excludes withheld truth. No honest leaderboard-scale estimate exists for any new file; only relative holdout
+   comparisons are defensible. Resolution: build a calibrated estimator from the 108 USER-REPORTED anchors
+   (`scripts/run_lfi.py`) and validate its LOSO RMSE before quoting any projected number.
+2. **Vent lane does not beat its control on catalogue hide-and-recover** (Δ = −0.0017, CI includes 0). The vent signal
+   is real but weak for point recovery. Next: H-VCE-2 (edge × vent supervised interaction), which targets ≥ 0.16
+   HOLDOUT-DTI (the S25/S27 band) with paired-CI promotion.
+3. **Leaderboard values are prompt-supplied** (0.3195 vs 0.4413 conflict, IR-S30-03). The sandbox cannot reach
+   drivendata.org; the owner should paste current leaderboard/weekly-cap state from the submission page.
+4. **Weekly cap and slot selection are human-side.** This repo never spends slots; promotion remains the owner's
+   selector decision with the run-card evidence in hand.
+5. **1m DEM links and NREL/OSTI 96647 PDF** remain unfetchable from the sandbox (host allowlist). If the lidar lane
+   needs full coverage, download `1m_DEM_links.csv` from the DrivenData data page on an unrestricted machine into
+   `data/official/` (add a manifest pin first).
+
+### Next session, in order (Maximize P(Win))
+1. Run **H-VCE-2** (see `docs/s30-vce/HYPOTHESES.md`): supervised HGB on the 19-band potential-field edge stack
+   interacted with the vent features; controls = edge-only and vent-only arms; promote only if paired CI > 0 against
+   S27-OSDR E2 (0.159482, same instrument) AND uniqueness gates pass (include `data/lane_refs/*` GEMSDOE32 H46/H51).
+2. Refit the LFI anchor model and report MODEL_PROJECTION_NOT_A_SCORE alongside every candidate (never as a score).
+3. If H-VCE-2 clears 0.16: package, then ask the owner to spend one weekly slot; otherwise ship H-VCE-3 (stepover
+   seismicity) within the same 3-experiment budget.
+4. Keep the README standing brief and this file updated at every session start (the prompt demands it).
 
 ## S30-VCSE (2026-10-31, arena/681fc5eb-gemsdoe91)
 Generated unique TIF `gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros`

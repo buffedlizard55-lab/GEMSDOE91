@@ -26,7 +26,7 @@ def test_public_entry_points_are_fail_closed():
     assert 'OK TO SUBMIT: NO' in summary
     assert 'cleared to submit' not in index.lower()
     assert 'ok to submit.' not in index.lower()
-    assert 'download the submission geotiff' not in index.lower()
+    assert 'gems91-s25-tlf-60000dots' not in index.lower()
     assert 'id="s25tlf-verdict"' not in index
 
 

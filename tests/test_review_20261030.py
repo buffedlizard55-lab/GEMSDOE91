@@ -66,29 +66,43 @@ def test_nine_site_snapshot_has_pinned_files_hashes_and_qualified_claims():
         assert row["unique_within_nine_at_70pct"] is False
 
 
-def test_current_pages_and_readme_link_the_active_no_candidate_review():
-    render_review_20261030.render(ROOT)
+def test_current_pages_and_readme_link_the_active_review():
+    render_review_20261030.render(ROOT)  # historical renderer: may only touch docs/review-20261030/
     root = (ROOT / "index.html").read_text(encoding="utf-8")
     index = (DOCS / "index.html").read_text(encoding="utf-8")
     current = (DOCS / "current-review.json").read_text(encoding="utf-8")
     guide = (DOCS / "submission-guide.html").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "url=docs/index.html" in root
-    assert "2026-10-30" in root
-    # Later sessions may move the pointer (2026-10-31: arena/681fc5eb-gemsdoe91);
-    # the 2026-10-30 review remains linked as historical evidence.
+    assert "2026-10-31" in root
+    assert "2026-10-30" in root  # historical record
+    assert "docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif" in root  # concurrent record
+    assert "docs/downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif" in root
+    assert "docs/s30-vce/executive-summary.html" in root  # concurrent record
+    assert "docs/s28/executive-summary.html" in root  # concurrent record
+    assert "docs/review-20261030/executive-summary.html" in root  # historical record
+    # The pointer is a ladder: later sessions may move it (83350cee -> c2ae33eb ->
+    # 681fc5eb); earlier reviews remain linked as concurrent records.
     assert load("docs/current-review.json")["branch"] in (
-        "arena/83350cee-gemsdoe91", "arena/681fc5eb-gemsdoe91")
-    assert "docs/review-20261030/executive-summary.html" in root
-    assert "ACTIVE REVIEW · 2026-10-30" in index
+        "arena/83350cee-gemsdoe91", "arena/c2ae33eb-gemsdoe91", "arena/681fc5eb-gemsdoe91")
+    assert "ACTIVE · 2026-10-31 (S30-VCE)" in index  # concurrent record retained
+    assert "s30-vce/run-card.json" in index
+    assert "ACTIVE REVIEW · 2026-10-30" in index  # historical record
     assert "review-20261030/run-card.json" in index
+    assert "S28 · 2026-10-31" in index  # concurrent session record
     assert ("candidate_generated\": false" in current
             or "candidate_generated\": true" in current)
+    assert load("docs/current-review.json")["verdict"]["ok_to_submit"] is True
     assert "OK TO SUBMIT: NO" in guide
     assert "There is no new GeoTIFF candidate" in guide
     assert "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" in guide
-    assert "ACTIVE BRANCH: `arena/83350cee-gemsdoe91`" in readme
-    assert "Maximize P(Win) · Own the Outcome" in readme
+    assert "Predicted values must be in range [0, 1]" in guide
+    assert "S30 VCE vent-concordant emission 37654d" in guide
+    assert "How to submit the S28 candidate" in guide  # concurrent session record
+    superseded = load("docs/review-20261030/current-review-superseded.json")
+    assert superseded["superseded_by"]["review"] == "s30-vce/executive-summary.html"
+    assert "ACTIVE: 2026-10-31 · `arena/c2ae33eb-gemsdoe91`" in readme
+    assert "ACTIVE BRANCH: `arena/bcdb9324-gemsdoe91`" in readme  # concurrent record preserved    assert "Maximize P(Win) · Own the Outcome" in readme
     assert "full-project-brief" in readme
 
 

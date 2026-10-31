@@ -1,0 +1,93 @@
+{
+  "candidate_id": "gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c",
+  "primary_zeros_tif": {
+    "filename": "gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros.tif",
+    "path": "releases/gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros.tif",
+    "sha256": "a6ef90f4136ecfa8d73a4f2c749717da3228c2ec52cbfc44843495b7248d0f12",
+    "bytes": 179740,
+    "nodata": null,
+    "all_cells_finite": true,
+    "total_cells": 12279160,
+    "nan_cells_anywhere": 0,
+    "min_value": 0.0,
+    "max_value": 1.0
+  },
+  "companion_nan_tif": {
+    "filename": "gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c.tif",
+    "path": "releases/gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c.tif",
+    "sha256": "5834ff6c3b5b569bef94fa21f4b97ac785de3f50dfba51fefa4907d6519b24be",
+    "bytes": 323251,
+    "nodata": "NaN",
+    "nan_inside_footprint": 0,
+    "nan_outside_footprint": 7111787
+  },
+  "zip_bundle": {
+    "path": "docs/downloads/gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros.zip",
+    "filename": "gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros.zip",
+    "inner_geotiff": "gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros.tif",
+    "bytes": 139088,
+    "sha256": "c4eb200f554310d123480b676c6d1ea0286cbb01d9b4ffc2a77e638476ceb1c2"
+  },
+  "browser_tif_bundle": {
+    "path": "docs/downloads/s91_alm_20261031T010114Z_bundle.js",
+    "bytes": 671257,
+    "sha256": "decf28b8fe134ca661545f903615709ebc89de283036585c752473a50c11e314"
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "band_count": 1,
+    "footprint_pixels": 5167373
+  },
+  "dots": {
+    "n_dots": 37654,
+    "dot_set_digest": "242225925f71c2398cba501ae52925d3f370b9521bdb06c7c9fddb477a6b42b2",
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 3.1623,
+    "dots_le_3px": 0
+  },
+  "ok_to_submit": false,
+  "organizer_acceptance_verified": false,
+  "scope": "Local technical checks only; no scientific, registry or selector approval.",
+  "validators": {
+    "gems91_gates_verdict": "CERTIFIED",
+    "release_gates_nan_pass": true,
+    "release_gates_zeros_pass": true,
+    "validate_raster_nan_pass": true,
+    "validate_raster_zeros_pass": true,
+    "range_0_1_portal_safe": true
+  },
+  "method": "S91-ALM alteration-magnetic-low concealed-fault prior",
+  "hypothesis": "concealed geothermal faults expressed by off-catalogue hydrothermal alteration halo (magnetic low, clay cap, K depletion) + gravity gradient",
+  "named_non_fault_mimic": "intrusive contact; volcanic-flow margin; closed-basin evaporite playa; irrigated agriculture",
+  "experiment": 1,
+  "budget_max_experiments": 3,
+  "grid_meta": {
+    "footprint_px": 5167373,
+    "catalogue_px": 60988,
+    "valid_offcat_px": 4710468,
+    "budget": 37654,
+    "collar_px": 3.0,
+    "min_spacing_px": 2.5,
+    "score_weights": {
+      "mag_low": 0.35,
+      "cond": 0.25,
+      "rad_low": 0.15,
+      "grav_grad": 0.25
+    },
+    "n_dots": 37654
+  },
+  "generated_utc": "2026-10-31T01:01:14.032058+00:00"
+}
