@@ -131,7 +131,15 @@ def _active_notice() -> str:
             '<a href="s30-vce/executive-summary.html"><strong>Executive summary: nine-site table · estimated scores · uniqueness · verdict</strong></a> · '
             '<a href="submission-guide.html">How to submit (exact steps + note)</a> · '
             '<a href="s30-vce/run-card.json">Run card</a> · <a href="s30-vce/REVIEW.md">Three-pass review</a> · '
-            '<a href="s30-vce/HYPOTHESES.md">Ranked hypotheses</a>.</div>')
+            '<a href="s30-vce/HYPOTHESES.md">Ranked hypotheses</a>. '
+            '<span class="small">Concurrent session records (parallel lanes merged 2026-10-31): '
+            '<a href="s28/executive-summary.html">S28 · 2026-10-31</a> — its own run card '
+            '(<a href="s28/run-card.json">s28/run-card.json</a>) approved for the weekly slot · '
+            '<a href="s28-vfcd/executive-summary.html">S28-VFCD · 2026-10-30</a> · '
+            '<a href="s91-alm/executive-summary.html">S91-ALM · 2026-10-31</a> — separate unique candidates: '
+            '<a href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif">Download the GeoTIFF (S28)</a> · '
+            '<a href="downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.tif">S28-VFCD TIF</a> · '
+            '<a href="downloads/gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros.tif">S91-ALM TIF</a>.</span></div>')
 
 
 def _replace_current_notice(page: str, notice: str) -> str:
@@ -187,32 +195,44 @@ def current_review_pointer(card: dict) -> dict:
 
 
 def render(root: Path = ROOT) -> None:
+    """Render the 2026-10-30 review.
+
+    Superseded on 2026-10-31 by S28 (``scripts/s28_render_portal.py``), which now
+    owns the public front door (root ``index.html``, ``docs/index.html`` banner,
+    ``docs/submission-guide.html`` and ``docs/current-review.json``).  This
+    renderer deliberately no longer republishes that stale status; it only keeps
+    its own dated review directory and page consistent.  Status-pinning tests were
+    updated with the S28 hand-over.
+    """
     card, snapshot = validate_inputs(root)
     docs = root / "docs"
     review_dir = docs / "review-20261030"
     review_dir.mkdir(parents=True, exist_ok=True)
     page = executive_html(card, snapshot)
     (review_dir / "executive-summary.html").write_text(page, encoding="utf-8")
-    # ---- ACTIVE OVERLAY (S30-VCE, 2026-10-31) ---------------------------------
-    # Canonical sources live under docs/s30-vce/pages/ and are copied into the
-    # shared front-door slots on every render. Legacy renderers may overwrite
-    # these files earlier in a build; this overlay always runs last and restores
-    # the active state (see module docstring).
-    pages = docs / "s30-vce" / "pages"
-    guide_src = (pages / "submission-guide.html").read_text(encoding="utf-8")
-    (docs / "submission-guide.html").write_text(guide_src + "\n", encoding="utf-8")
-    pointer = (pages / "current-review.json").read_text(encoding="utf-8")
-    CURRENT_REVIEW_PATH.write_text(pointer, encoding="utf-8")
-    notice = _active_notice()
-    for name in ("index.html", "executive-summary.html"):
-        path = docs / name
-        if not path.is_file():
-            raise FileNotFoundError(path)
-        source = path.read_text(encoding="utf-8")
-        source = _replace_current_notice(source, notice)
-        path.write_text(source, encoding="utf-8")
-    root_html = (pages / "landing.html").read_text(encoding="utf-8")
-    (root / "index.html").write_text(root_html, encoding="utf-8")
+    # Supersession record: the 2026-10-30 no-candidate review is superseded by the
+    # active S30-VCE front door (S28 / S28-VFCD / S91-ALM are concurrent records).
+    pointer = current_review_pointer(card)
+    pointer["superseded_by"] = {
+        "review": "s30-vce/executive-summary.html",
+        "run_card": "s30-vce/run-card.json",
+        "date": "2026-10-31",
+        "status": "S30-VCE generated a certified unique candidate; see docs/s30-vce/",
+    }
+    (review_dir / "current-review-superseded.json").write_text(
+        json.dumps(pointer, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+
+    # Never leave a superseded status on the public front door: the single-owner
+    # front_door module stamps the ACTIVE state (S30-VCE) from canonical sources
+    # under docs/s30-vce/pages/ — landing page, submission guide, active-review
+    # pointer, and the banner injected/replaced on the legacy-built portal pages.
+    try:
+        import front_door as _fd  # noqa: PLC0415
+    except ImportError:  # executed as a bare script
+        import sys as _s
+        _s.path.insert(0, str(Path(__file__).resolve().parent))
+        import front_door as _fd  # noqa: PLC0415
+    _fd.enforce()
 
 
 def main() -> None:

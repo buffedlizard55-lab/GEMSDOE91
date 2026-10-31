@@ -1,19 +1,29 @@
 {
-  "schema": "gems91.current-review-pointer.v1",
+  "schema": "gems91.current-review.v1",
   "review_id": "GEMSDOE91-S30-VCE-20261031",
   "review_date_utc": "2026-10-31",
+  "date": "2026-10-31",
   "branch": "arena/c2ae33eb-gemsdoe91",
-  "status": "CANDIDATE_READY_SLOT_CONDITIONAL",
+  "status": "S30-VCE candidate generated: unique, form-safe ([0,1] certified); weekly-slot decision reserved to the selector",
   "candidate_generated": true,
   "candidate_path": "downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif",
   "candidate_sha256": "65ff5d6248cc83c7ce98fde739e4543798be96eeac583f9ce1faae3f693124ed",
   "ok_to_download_new_candidate": true,
   "form_safe_zero_one": true,
   "unique_vs_registry": true,
+  "verdict": {
+    "ok_to_submit": true,
+    "recommend_spending_weekly_slot": false,
+    "protocol_verdict": "negative",
+    "note": "ok_to_submit=True is the technical/form gate (all values in [0,1], unique, format-certified). The protocol verdict is negative (holdout does not beat matched control); spending a weekly slot is the project owner's selector decision."
+  },
   "ok_to_submit": "CONDITIONAL — form-safe and unique; weekly-slot recommendation is negative by protocol (holdout does not beat matched control). Selector decision is the project owner's.",
   "holdout_dti": {
     "value": 0.06738005899382123,
-    "ci": [0.05424023944854185, 0.0827543411425186],
+    "ci": [
+      0.05424023944854185,
+      0.0827543411425186
+    ],
     "evaluator": "gems57-pooled-hide-v2",
     "withheld_positives": 60988
   },
@@ -23,6 +33,23 @@
   "executive_summary": "s30-vce/executive-summary.html",
   "submission_guide": "submission-guide.html",
   "run_card": "s30-vce/run-card.json",
+  "concurrent_records": {
+    "s28": {
+      "review": "s28/executive-summary.html",
+      "run_card": "s28/run-card.json",
+      "branch": "arena/bcdb9324-gemsdoe91"
+    },
+    "s28-vfcd": {
+      "review": "s28-vfcd/executive-summary.html",
+      "run_card": "s28-vfcd/run-card.json",
+      "branch": "arena/ef686adc-gemsdoe91"
+    },
+    "s91-alm": {
+      "review": "s91-alm/executive-summary.html",
+      "run_card": "s91-alm/run-card.json",
+      "branch": "arena/2664739c-gemsdoe91"
+    }
+  },
   "historical_artifact_pointer": {
     "path": "current-run.json",
     "meaning": "Legacy pointer to a historical S22-OMTJ research download; not this active review."

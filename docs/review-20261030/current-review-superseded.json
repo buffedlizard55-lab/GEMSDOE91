@@ -1,0 +1,26 @@
+{
+  "schema": "gems91.current-review-pointer.v1",
+  "review_id": "GEMSDOE91-REVIEW-20261030",
+  "review_date_utc": "2026-10-30",
+  "branch": "arena/83350cee-gemsdoe91",
+  "status": "BLOCKED",
+  "candidate_generated": false,
+  "ok_to_download_new_candidate": false,
+  "ok_to_submit": false,
+  "holdout_dti": null,
+  "organizer_confirmed": null,
+  "leaderboard_score_estimate": null,
+  "review": "review-20261030/REVIEW.md",
+  "executive_summary": "review-20261030/executive-summary.html",
+  "run_card": "review-20261030/run-card.json",
+  "historical_artifact_pointer": {
+    "path": "current-run.json",
+    "meaning": "Legacy pointer to a historical S22 research download; not this active no-candidate review."
+  },
+  "superseded_by": {
+    "review": "s28/executive-summary.html",
+    "run_card": "s28/run-card.json",
+    "date": "2026-10-31",
+    "status": "S28 generated a certified unique candidate; see docs/s28/"
+  }
+}

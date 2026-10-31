@@ -24,10 +24,11 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     assert "DO NOT SUBMIT S25-TLF" in readme  # historical stop stays visible
     assert "ACTIVE · 2026-10-31 (S30-VCE)" in page
     assert "OK TO DOWNLOAD: YES" in page and "FORM-SAFE: YES" in page and "SLOT: CONDITIONAL" in page
+    assert "S28 · 2026-10-31" in page  # concurrent session record preserved
+    assert "Download the GeoTIFF" in page
     current = json.loads((ROOT / "docs/current-review.json").read_text())
     assert current["branch"] == "arena/c2ae33eb-gemsdoe91"
-    assert current["candidate_generated"] is True and current["candidate_sha256"]
-    assert "0.36 projection" in review and "withdrawn" in review
+    assert current["candidate_generated"] is True and current["candidate_sha256"]    assert "0.36 projection" in review and "withdrawn" in review
     assert card["experiments_run"] == 0
     assert card["weekly_submission_slots_used"] == 0
     assert card["ok_to_submit"] is False

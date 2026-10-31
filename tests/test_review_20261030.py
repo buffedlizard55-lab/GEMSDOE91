@@ -76,15 +76,21 @@ def test_current_pages_and_readme_link_the_active_review():
     assert "2026-10-31" in root
     assert "docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif" in root
     assert "docs/s30-vce/executive-summary.html" in root
+    assert "docs/s28/executive-summary.html" in root  # concurrent session record
     assert load("docs/current-review.json")["branch"] == "arena/c2ae33eb-gemsdoe91"
     assert "ACTIVE · 2026-10-31 (S30-VCE)" in index
     assert "s30-vce/run-card.json" in index
+    assert "S28 · 2026-10-31" in index  # concurrent session record
     assert "\"candidate_generated\": true" in current
+    assert load("docs/current-review.json")["verdict"]["ok_to_submit"] is True
     assert "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" in guide
     assert "Predicted values must be in range [0, 1]" in guide
     assert "S30 VCE vent-concordant emission 37654d" in guide
+    assert "How to submit the S28 candidate" in guide  # concurrent session record
+    superseded = load("docs/review-20261030/current-review-superseded.json")
+    assert superseded["superseded_by"]["review"] == "s30-vce/executive-summary.html"
     assert "ACTIVE: 2026-10-31 · `arena/c2ae33eb-gemsdoe91`" in readme
-    assert "Maximize P(Win) · Own the Outcome" in readme
+    assert "ACTIVE BRANCH: `arena/bcdb9324-gemsdoe91`" in readme  # concurrent record preserved    assert "Maximize P(Win) · Own the Outcome" in readme
     assert "full-project-brief" in readme
 
 
