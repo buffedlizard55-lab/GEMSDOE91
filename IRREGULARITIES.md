@@ -1,5 +1,15 @@
 ## Irregularities — active and historical reviews
 
+## 2026-10-30 S28-VFCD (`arena/ef686adc-gemsdoe91`) — irregularities flagged for human review
+
+Scope: `S28-VFCD` vent-field-conditioned detector lane. Evidence: `docs/s28-vfcd/` (`preregistration.md`, `canaries.json`, `e1..e3/holdout.json`, `surface-checks.json`, `final-dot-checks.json`, `diagnostics.json`, `run-card.json`), `docs/run-card-S28-VFCD.json`, `docs/HYPOTHESES_S28_VFCD.md`.
+
+- **IR-S28-01 (dense calibration lattice makes the literal dot gate unsatisfiable).** The frozen registry's synthetic `data/fleet_registry/calib_r13lattice_00904.tif` (≥206k dots on a 5-px lattice) forces ≥ 82% 3-px proximity for ANY 37,654-dot raster; measured here `99.35%`. It is a calibration witness, not any lane's submission and not a previous submission. Duplicate determination is therefore vs method/submission rasters (all `<=90k` positive px and the nine leaders + GEMSDOE92): max `50.11%` competitive / `35.73%` nine — PASS. The lattice number is reported openly (never dropped), consistent with S25/S27 precedent. Contradiction with the protocol's literal ">70% of dots within 3 px of a registry raster → duplicate" wording is flagged, not silently resolved.
+- **IR-S28-02 (no ORGANIZER-CONFIRMED receipt exists for any file).** Every score on the S28 executive summary is labeled `USER-REPORTED`, `HOLDOUT-DTI`, `MODEL_PROJECTION_NOT_A_SCORE`, or `BYTES`. The 0.2778 / 0.2750 / 0.2710… focus-site claims have no submission-page receipts in any repo.
+- **IR-S28-03 (sample mirror semantics).** The pinned `sample_submission.tif` mirror has 60,988 nonzero cells although the organizer describes an all-zero sample (flagged by the 2026-10-29 review; unresolved). Grid metadata (CRS/shape/transform) is consistent across all pinned references and does not affect validation.
+- **IR-S28-04 (holdout-vs-live instrument mismatch confirmed with new data).** The v3 hide-and-recover holdout measures catalogue recovery (Spearman vs live ≈ +0.105 over 112 anchors); `ref_r0_dots` (the live 0.2778 champion) scores `0.006697` on it while our vent arms — aimed at blind structures — score higher yet project lower. Promote/negative verdicts are gated on the preregistered holdout per protocol; live-aligned expectations are reported separately as labeled MODEL projections. This mismatch is a property of the instrument, not of any candidate.
+- **IR-S28-05 (GDR CSV carries a catalogue-derived column).** `gdr_wellspring_in_footprint.csv` includes `dist_known_fault_px` (computed against the competition catalogue). Reading it would leak catalogue geometry into features. `src/gems91/vfcd28.py` reads only physical columns and a unit test guards this (`test_no_cat_column_ever_parsed`).
+
 ## 2026-10-29 S27-OSDR (`arena/7de7860e-gemsdoe91`) — irregularities flagged for human review
 
 Scope: `S27-OSDR` de novo physics lane on branch `arena/7de7860e-gemsdoe91`. Evidence: `docs/s27-osdr/` (`preregistration.md`, `canaries.json`, `e1..e3/holdout.json`, `surface-checks.json`, `final-dot-checks.json`, `concurrent-main-overlap.json`, `diagnostics.json`, `nine-site-audit.json`, `run-card.json`, `REVIEW.md`).

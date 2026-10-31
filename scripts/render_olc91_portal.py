@@ -17,10 +17,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 CURRENT = {
-    "run_card": "run-card-S22-OMTJ.json",
+    "run_card": "run-card-S28-VFCD.json",
     "index_src": "review-8e8d86f2-index-src.html",
     "exec_src": "review-8e8d86f2-exec-src.html",
     "previous_run_cards": [
+        "run-card-S22-OMTJ.json",
         "run-card-S20-RHTW.json",
         "run-card-ISO91.json",
         "run-card-OLC91.json",
@@ -415,10 +416,13 @@ def s27_callout(root=ROOT) -> str:
 
 
 def _root_verdict() -> str:
-    """Fail-closed redirect stub; the previous S25-TLF approval was revoked."""
+    """Fail-closed redirect stub; S28-VFCD is the current advertised download."""
     return (
-        "<p>NO NEW TIFF in this audit; historical downloads are research only. "
-        "<strong>OK TO SUBMIT: NO &mdash; NOT OK TO SUBMIT.</strong></p>"
+        "<p><strong>Current download: one NEW unique GeoTIFF (S28-VFCD, 2026-10-30).</strong> "
+        "OK TO DOWNLOAD: YES &mdash; all automated gates PASS. "
+        "OK TO SUBMIT: NO &mdash; NOT OK TO SUBMIT until the separate selector step approves a weekly slot "
+        "(estimated score &asymp; 0.11, below the 0.2778 incumbent). Earlier reviews generated NO NEW TIFF; "
+        "historical downloads remain research only.</p>"
         "<p><a href=\"docs/index.html\">Open current download and automated verdict</a></p>"
     )
 
@@ -470,14 +474,32 @@ def render() -> None:
                 or latest_pre.get("status") != "BLOCKED" or latest_pre.get("ok_to_submit") is not False
                 or capacity["sample_semantics"]["status"] != "CONFLICT_WITH_ORGANIZER_DESCRIPTION"):
             raise ValueError("Latest review evidence inconsistent; refusing to render")
-        current_notice = (f'<div class="note" role="status"><strong>CURRENT REVIEW · 2026-10-29: NO NEW TIFF IN THIS REVIEW · OK TO SUBMIT: NO.</strong> '
-            f'The method lane is unassigned. At the frozen budget, the measured mirrored-footprint capacity forces at least '
+        current_notice = (
+            '<div class="note" role="status"><strong>S28-VFCD · 2026-10-30: ONE NEW UNIQUE TIFF · '
+            'OK TO DOWNLOAD: YES · OK TO SUBMIT: NO-BY-POLICY (selector step).</strong> '
+            'Vent-field-conditioned PU-OOF detector with geothermometer-gated discharge-conduit and '
+            'SGMC-off concordance features; 37,654 zeros-encoded dots via 300 m CELF. All automated gates PASS '
+            '(format, [0,1], NaN-free, grid, catalogue-free; unique vs the nine leaders max 35.73% and vs 192 '
+            'competitive registry rasters max 50.11%; surface max |&rho;| 0.150). Evidence-labeled estimate ≈ 0.11 '
+            '(HOLDOUT-DTI 0.107918 [0.093351, 0.123297]; LFI MODEL projection 0.108&ndash;0.114) &mdash; below the '
+            '0.2778 incumbent, so the science verdict is negative. '
+            '<a href="s28-vfcd/executive-summary.html">Executive summary, nine-site table and submission guide</a> · '
+            '<a href="run-card-S28-VFCD.json">Run card</a> · '
+            '<a href="s28-vfcd/run-card.json">protocol run card</a> · '
+            '<a download href="downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.tif">Download the unique TIF</a> · '
+            '<a download href="downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.zip">Single-TIFF ZIP</a> '
+            '(SHA-256 d7843af990f1530a7eb1be2302b545eea592c09f00469371eef1334f61897bc7). '
+            'The local gates above are not an approval to upload that file: NOT OK TO SUBMIT until the '
+            'separate selector step approves a weekly slot. OK TO SUBMIT: NO-BY-POLICY.</div>')
+        previous_notice = (
+            f'<div class="note" role="status"><strong>CURRENT REVIEW · 2026-10-29: NO NEW TIFF IN THIS REVIEW · OK TO SUBMIT: NO.</strong> '
+            f'The method lane was unassigned. At the frozen budget, the measured mirrored-footprint capacity forces at least '
             f'{capacity["overlap_lower_bound"]:.2%} overlap with the lattice, above 70%. '
             f'The sample mirror has {capacity["sample_semantics"]["nonzero_inside_footprint"]:,} nonzero cells despite the organizer describing an all-zero sample; authenticity is unverified. '
             '<a href="review-4239f6e5/executive-summary.html">Executive table and research downloads</a> · '
             '<a href="review-4239f6e5/REVIEW.md">Full review</a> · '
             '<a href="review-4239f6e5/run-card.json">Negative run card</a>.</div>')
-        page = page.replace('<main id="main">', '<main id="main">' + current_notice, 1)
+        page = page.replace('<main id="main">', '<main id="main">' + current_notice + previous_notice, 1)
         (docs / target_name).write_text(page, encoding="utf-8")
     (docs / "current-run.json").write_text(json.dumps(current, indent=2) + "\n", encoding="utf-8")
     (ROOT / 'index.html').write_text(
@@ -485,12 +507,13 @@ def render() -> None:
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta http-equiv="refresh" content="0;url=docs/index.html">'
         '<title>GEMSDOE91 — current download and verdict</title></head><body><main>'
-        '<h1>GEMSDOE91 · Current review</h1>' + _root_verdict() + 
+        '<h1>GEMSDOE91 · Current download</h1>' + _root_verdict() + 
         '<p><a href="docs/index.html">Open current download and automated verdict</a> · '
-        '<a href="docs/review-4239f6e5/executive-summary.html">Current executive summary, nine-site table and submission guide</a> · '
-        '<a href="docs/s27-osdr/executive-summary.html">S27-OSDR research candidate (#1 blind SGMC) &amp; nine-site forensics</a> · '
-        '<a href="docs/s27-cvdc/executive-summary.html">S27-CVDC research candidate &amp; nine-site forensics</a> · '
-        '<a href="docs/executive-summary.html">Previous nine-site executive summary</a></p>'
+        '<a href="docs/s28-vfcd/executive-summary.html">Executive summary, nine-site table and submission guide</a> · '
+        '<a href="docs/executive-summary.html">Portal submission guide</a> · '
+        '<a href="docs/s28-vfcd/run-card.json">Run card</a> · '
+        '<a href="docs/R0_ANALYSIS_S22.md">Why 0.2778</a> · '
+        '<a href="docs/s27-osdr/executive-summary.html">S27-OSDR research candidate (#1 blind SGMC)</a></p>'
         '</main></body></html>\n', encoding='utf-8')
 
     from scripts.render_s25tlf_portal import render as render_correction

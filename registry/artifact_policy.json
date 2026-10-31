@@ -812,6 +812,18 @@
       "sha256": "3f96194f69fc0195a11c3e5c385b60b57b710dc5ec2cd5c2a7ba41231f22b8cd",
       "status": "current_research_only",
       "reason": "Single-TIFF ZIP of S27-OSDR E2 research-only negative; NOT OK TO SUBMIT (docs/s27-osdr/run-card.json)."
+    },
+    {
+      "path": "docs/downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.tif",
+      "sha256": "d7843af990f1530a7eb1be2302b545eea592c09f00469371eef1334f61897bc7",
+      "status": "current_research_only",
+      "reason": "S28-VFCD unique candidate, automated gates PASS (format/[0,1]/NaN-free/grid/catalogue-free; unique vs nine leaders max 35.73% and competitive refs max 50.11%). Science verdict negative (HOLDOUT-DTI 0.107918 < controls; LFI MODEL projection 0.108-0.114). OK TO DOWNLOAD: YES. OK TO SUBMIT: NO by policy until the selector step approves a weekly slot."
+    },
+    {
+      "path": "docs/downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.zip",
+      "sha256": "1ae94bde3265854b9a134ba8cd5743f9d20e5355a8f5e272288da9bb1ade759b",
+      "status": "current_research_only",
+      "reason": "S28-VFCD unique candidate, automated gates PASS (format/[0,1]/NaN-free/grid/catalogue-free; unique vs nine leaders max 35.73% and competitive refs max 50.11%). Science verdict negative (HOLDOUT-DTI 0.107918 < controls; LFI MODEL projection 0.108-0.114). OK TO DOWNLOAD: YES. OK TO SUBMIT: NO by policy until the selector step approves a weekly slot."
     }
   ]
 }
