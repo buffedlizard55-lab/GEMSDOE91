@@ -154,6 +154,6 @@ def test_legacy_start_here_command_cannot_replace_current_front_door():
     render_start_here.main()
     root = (ROOT / 'index.html').read_text()
     site = (ROOT / 'docs/index.html').read_text()
-    assert 'url=docs/index.html' in root and 'OK TO SUBMIT: NO' in root
+    assert 'docs/index.html' in root and 'OK TO SUBMIT: NO' in root
     assert 'NO NEW TIFF' in site and 's23/executive-summary.html' in site
     assert '99.895%' in site

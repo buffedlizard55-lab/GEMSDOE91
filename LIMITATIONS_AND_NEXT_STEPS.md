@@ -537,3 +537,44 @@ lane, complete unchanged registry and pinned feature cache, frozen comparable
 incumbent, then both uniqueness phases and paired holdout—not a live upload test.
 
 </details>
+
+---
+
+## 2026-10-31 (S30-VCE session) — limitations and next steps
+
+### What this session delivered
+- All 15 pinned inputs restored and hash-verified (the 2026-10-30 blocker "data absent" is resolved for every future
+  session: run `python scripts/restore_data.py`).
+- 62 fleet-registry comparison rasters restored (`data/fleet_registry/`, sha256-verified) — uniqueness gates are now
+  runnable against the pinned fleet, not just local downloads.
+- New unique format-certified TIF `gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif` (16.0% max
+  overlap vs the nine leaders; 31.1% vs competitive registry; 14/14 validator checks PASS).
+- Executive summary with the required file · estimated score · uniqueness table (`docs/executive-summary.html`),
+  exact submission guide (`docs/submission-guide.html`), ranked hypotheses (`docs/s30-vce/HYPOTHESES.md`), and a
+  geothermal-vent research KB from official sources (`docs/s30-vce/GEOTHERMAL_VENT_RESEARCH.md`).
+
+### Limitations blocking a top-score submission
+1. **Holdout-to-leaderboard calibration gap.** Hide-and-recover HOLDOUT-DTI (champion fixed raster ≈ 0.0067) and live
+   leaderboard scores (champion 0.2778) live on different scales because the champion's emission collar structurally
+   excludes withheld truth. No honest leaderboard-scale estimate exists for any new file; only relative holdout
+   comparisons are defensible. Resolution: build a calibrated estimator from the 108 USER-REPORTED anchors
+   (`scripts/run_lfi.py`) and validate its LOSO RMSE before quoting any projected number.
+2. **Vent lane does not beat its control on catalogue hide-and-recover** (Δ = −0.0017, CI includes 0). The vent signal
+   is real but weak for point recovery. Next: H-VCE-2 (edge × vent supervised interaction), which targets ≥ 0.16
+   HOLDOUT-DTI (the S25/S27 band) with paired-CI promotion.
+3. **Leaderboard values are prompt-supplied** (0.3195 vs 0.4413 conflict, IR-S30-03). The sandbox cannot reach
+   drivendata.org; the owner should paste current leaderboard/weekly-cap state from the submission page.
+4. **Weekly cap and slot selection are human-side.** This repo never spends slots; promotion remains the owner's
+   selector decision with the run-card evidence in hand.
+5. **1m DEM links and NREL/OSTI 96647 PDF** remain unfetchable from the sandbox (host allowlist). If the lidar lane
+   needs full coverage, download `1m_DEM_links.csv` from the DrivenData data page on an unrestricted machine into
+   `data/official/` (add a manifest pin first).
+
+### Next session, in order (Maximize P(Win))
+1. Run **H-VCE-2** (see `docs/s30-vce/HYPOTHESES.md`): supervised HGB on the 19-band potential-field edge stack
+   interacted with the vent features; controls = edge-only and vent-only arms; promote only if paired CI > 0 against
+   S27-OSDR E2 (0.159482, same instrument) AND uniqueness gates pass (include `data/lane_refs/*` GEMSDOE32 H46/H51).
+2. Refit the LFI anchor model and report MODEL_PROJECTION_NOT_A_SCORE alongside every candidate (never as a score).
+3. If H-VCE-2 clears 0.16: package, then ask the owner to spend one weekly slot; otherwise ship H-VCE-3 (stepover
+   seismicity) within the same 3-experiment budget.
+4. Keep the README standing brief and this file updated at every session start (the prompt demands it).

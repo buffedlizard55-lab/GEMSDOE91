@@ -1,0 +1,46 @@
+{
+ "verified_utc": "2026-10-31T01:09:58.737116+00:00",
+ "preregistration_sha256": "0f93c8c6b0a7b3753976104d5dff5865305d808a0410bee4a836222d3726304e",
+ "inputs": {
+  "sample_submission": {
+   "path": "data/official/sample_submission.tif",
+   "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+   "bytes": 1599597
+  },
+  "existing_faults": {
+   "path": "data/official/existing_faults.tif",
+   "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+   "bytes": 425830
+  },
+  "training_features": {
+   "path": "data/bridge/gems-geodawn-numerical-features.tif",
+   "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+   "bytes": 418912844
+  },
+  "parent_r0_zeros": {
+   "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+   "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+   "bytes": 219065
+  },
+  "gdr_wellspring_in_footprint": {
+   "path": "data/external/gdr_wellspring_in_footprint.csv",
+   "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+   "bytes": 2146771
+  },
+  "ext_lidar_scarp_u8": {
+   "path": "data/external/lidar_scarp_features_u8.tif",
+   "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+   "bytes": 36943606
+  },
+  "ext_geodawn_rad_u8": {
+   "path": "data/external/geodawn_rad_u8.tif",
+   "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+   "bytes": 26612970
+  },
+  "sgmc_faults_control": {
+   "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+   "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+   "bytes": 198602
+  }
+ }
+}

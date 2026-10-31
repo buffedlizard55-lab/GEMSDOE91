@@ -108,8 +108,8 @@ def test_current_root_and_legacy_download_portal_disambiguate_old_iso91_file():
     assert "docs/index.html" in root.links
     assert "docs/review-20261030/executive-summary.html" in root.links
     current = parse_page(DOCS / "index.html")
-    assert "review-20261030/executive-summary.html" in current.links
-    assert "review-20261030/run-card.json" in current.links
+    assert "s30-vce/executive-summary.html" in current.links
+    assert "s30-vce/run-card.json" in current.links
 
     # The no-run audit is historical; do not force a later real run to claim
     # that it generated no raster. Its immutable ISO91 pages retain that note.

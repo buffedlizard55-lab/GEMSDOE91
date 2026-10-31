@@ -79,20 +79,22 @@ def test_lineage_and_peer_recheck_are_separate_from_score_claims():
                for site, row in lineage['files'].items())
 
 
-def test_portal_and_guide_link_to_the_active_run_card():
-    """2026-10-31: the active run card is S28's; the fail-closed 2026-10-30 review
-    survives only inside its own dated directory."""
+def test_portal_and_guide_link_to_current_active_run_card():
+    """2026-10-31: the active run card is S30-VCE's; earlier sessions survive
+    as concurrent records and the 2026-10-30 review inside its dated directory."""
     render_review_20261030.render(ROOT)
     # index.html and submission-guide.html are the S28-owned front door; the
     # legacy docs/executive-summary.html is preserved history and only has to
     # carry a run-card link of some generation.
     for filename in ('index.html', 'submission-guide.html'):
         html = (ROOT / 'docs' / filename).read_text()
-        assert 's28/run-card.json' in html
-    legacy = (ROOT / 'docs' / 'executive-summary.html').read_text()
-    assert 'run-card' in legacy
-    guide = (ROOT / 'docs/submission-guide.html').read_text()
-    assert 'How to submit the S28 candidate' in guide
-    assert 'all-finite, binary, and zero outside the scored footprint' in guide
+        assert 's30-vce/run-card.json' in html
+        assert 's28/run-card.json' in html  # concurrent session record
+        assert 'data-submission-ready="true"' not in html
+    html = (ROOT / 'docs/submission-guide.html').read_text()
+    assert 'Predicted values must be in range [0, 1]' in html
+    assert 'outside the survey footprint' in html
+    assert 'How to submit the S28 candidate' in html
+    assert 'all-finite, binary, and zero outside the scored footprint' in html
     dated = (ROOT / 'docs/review-20261030/executive-summary.html').read_text()
     assert 'data-submission-ready="false"' in dated

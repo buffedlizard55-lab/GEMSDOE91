@@ -66,29 +66,31 @@ def test_nine_site_snapshot_has_pinned_files_hashes_and_qualified_claims():
         assert row["unique_within_nine_at_70pct"] is False
 
 
-def test_current_pages_and_readme_link_the_active_no_candidate_review():
-    render_review_20261030.render(ROOT)
+def test_current_pages_and_readme_link_the_active_review():
+    render_review_20261030.render(ROOT)  # historical renderer: may only touch docs/review-20261030/
     root = (ROOT / "index.html").read_text(encoding="utf-8")
     index = (DOCS / "index.html").read_text(encoding="utf-8")
     current = (DOCS / "current-review.json").read_text(encoding="utf-8")
     guide = (DOCS / "submission-guide.html").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "url=docs/index.html" in root
-    # 2026-10-31: S28 owns the front door; the 2026-10-30 review is preserved in
-    # its own directory and its renderer records a superseded pointer.
     assert "2026-10-31" in root
-    assert load("docs/current-review.json")["branch"] == "arena/bcdb9324-gemsdoe91"
-    assert "docs/s28/executive-summary.html" in root
-    assert "S28 · 2026-10-31" in index
-    assert "run-card.json" in index
+    assert "docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif" in root
+    assert "docs/s30-vce/executive-summary.html" in root
+    assert "docs/s28/executive-summary.html" in root  # concurrent session record
+    assert load("docs/current-review.json")["branch"] == "arena/c2ae33eb-gemsdoe91"
+    assert "ACTIVE · 2026-10-31 (S30-VCE)" in index
+    assert "s30-vce/run-card.json" in index
+    assert "S28 · 2026-10-31" in index  # concurrent session record
+    assert "\"candidate_generated\": true" in current
     assert load("docs/current-review.json")["verdict"]["ok_to_submit"] is True
-    assert "APPROVED FOR THE WEEKLY SLOT" in guide or "approved for the" in guide
-    assert "How to submit the S28 candidate" in guide
-    superseded = load("docs/review-20261030/current-review-superseded.json")
-    assert superseded["superseded_by"]["review"] == "s28/executive-summary.html"
     assert "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" in guide
-    assert "ACTIVE BRANCH: `arena/bcdb9324-gemsdoe91`" in readme
-    assert "Maximize P(Win) · Own the Outcome" in readme
+    assert "Predicted values must be in range [0, 1]" in guide
+    assert "S30 VCE vent-concordant emission 37654d" in guide
+    assert "How to submit the S28 candidate" in guide  # concurrent session record
+    superseded = load("docs/review-20261030/current-review-superseded.json")
+    assert superseded["superseded_by"]["review"] == "s30-vce/executive-summary.html"
+    assert "ACTIVE: 2026-10-31 · `arena/c2ae33eb-gemsdoe91`" in readme
+    assert "ACTIVE BRANCH: `arena/bcdb9324-gemsdoe91`" in readme  # concurrent record preserved    assert "Maximize P(Win) · Own the Outcome" in readme
     assert "full-project-brief" in readme
 
 

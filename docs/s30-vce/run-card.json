@@ -1,0 +1,193 @@
+{
+ "schema": "gems-parallel-run-card-v1",
+ "lane": "S30-VCE (Vent-Concordant Emission; self-assigned from H-VCE-1)",
+ "hypothesis": "Hidden expert-labelled faults are geothermal-upflow structures; vent, alteration, conductive-cap and strain/seismicity concordance marks them better than potential-field lineament ridges.",
+ "mechanism": "Permeable fault-fracture upflow conduits feed hot springs (GDR #1391); outflow alters K/U/Th (GeoDAWN radiometrics) and leaves conductive clay caps (cond_surf); active slip shows as strain-rate/seismicity localization.",
+ "named_non_fault_mimic": "Playa/lacustrine saline-groundwater conductors and pediment weathering K-depletion without fault control; volcanic-hydrothermal alteration centers not on Quaternary faults.",
+ "preregistration_sha256": "0f93c8c6b0a7b3753976104d5dff5865305d808a0410bee4a836222d3726304e",
+ "evaluator_version": "gems57-pooled-hide-v2",
+ "experiment_selected": "e2",
+ "holdout": {
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "dti": 0.06737980612004928,
+  "ci95": [
+   0.054239521288572956,
+   0.08275367599646723
+  ],
+  "n_withheld_positives": 60988,
+  "paired_vs_ctrl_ventblind": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "delta": -0.00165622906676674,
+   "ci95": [
+    -0.020958194588644584,
+    0.01725491550937728
+   ],
+   "withheld_positive_pixels": 60988
+  },
+  "all_arms": {
+   "e2_static_scarp": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.06737980612004928,
+    "ci95": [
+     0.054239521288572956,
+     0.08275367599646723
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 3821.2012688324303,
+    "fpw": 35783.66011662996,
+    "fnw": 57166.7987311676
+   },
+   "e1_static_blend": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.06408423553526446,
+    "ci95": [
+     0.05103875815234085,
+     0.08007336002540115
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 3632.111186851564,
+    "fpw": 35801.588627955185,
+    "fnw": 57355.88881314841
+   },
+   "e3_oof_hgb": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.03008811550517319,
+    "ci95": [
+     0.014947610850867831,
+     0.047324701652159885
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 1698.5522890862796,
+    "fpw": 36612.43769349326,
+    "fnw": 59289.44771091373
+   },
+   "ctrl_ventblind": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.06903603518681602,
+    "ci95": [
+     0.05171445634287039,
+     0.08931649400683075
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 3916.7992930503274,
+    "fpw": 35809.08591944865,
+    "fnw": 57071.20070694968
+   },
+   "ctrl_champion_fixed": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.006697041784474405,
+    "ci95": [
+     0.005975612213706826,
+     0.007385686879067647
+    ],
+    "withheld_positive_pixels": 60988,
+    "tpw": 377.3190358808101,
+    "fpw": 37376.43107272676,
+    "fnw": 60610.68096411921
+   }
+  }
+ },
+ "leakage_canary": {
+  "max_symmetric_auc": 0.5799566376576196,
+  "worst": "alter_kdep fold1",
+  "pass": true
+ },
+ "correlation_vs_registry": {
+  "max_abs_rho": 0.02578971846660487,
+  "closest": "data/fleet_registry/calib_h25ctx_01280.tif",
+  "pass": true,
+  "references_verified": 124
+ },
+ "overlap_vs_registry": {
+  "gate": "competitive refs (<=90k dots, non-lattice) <= 0.70",
+  "max_3px_overlap_competitive": 0.31112232432145326,
+  "closest_competitive": "data/fleet_registry/calib_h28ridge_01839.tif",
+  "max_3px_overlap_nine_leaders": 0.16030169437509958,
+  "max_3px_overlap_dense_blankets_reported_only": 0.9978753917246508,
+  "dense_note": "Dense space-filling lattices (206,895-dot calib_r13lattice_00904 etc.) are a mathematical floor: every sparse raster including the 0.2778 champion overlaps them ~99.97%. Reported, not a stop (S25/S27 precedent).",
+  "pass_competitive_le_0.70": true,
+  "pass_nine_le_0.70": true
+ },
+ "raster": {
+  "file": "docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif",
+  "sha256": "65ff5d6248cc83c7ce98fde739e4543798be96eeac583f9ce1faae3f693124ed",
+  "bytes": 130097,
+  "zip": "docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.zip",
+  "n_dots": 37654,
+  "support_dot_digest": "0e833d44cbf768692fe80d3654a7fcc3c84af8d12bf53a6f0dcdb264c3b7ef57"
+ },
+ "validator_output": {
+  "all_checks_passed": true,
+  "crs": "EPSG:32611",
+  "shape": [
+   3730,
+   3292
+  ],
+  "count": 1,
+  "dtype": "float32",
+  "transform": [
+   100.0,
+   0.0,
+   243350.0,
+   0.0,
+   -100.0,
+   4508550.0
+  ],
+  "nodata": null,
+  "all_finite": true,
+  "min": 0.0,
+  "max": 1.0,
+  "n_dots": 37654,
+  "on_catalogue": 0,
+  "outside_footprint_positive": 0,
+  "form_range_check_0_1": true
+ },
+ "diagnostics_sgmc_offcat": {
+  "candidate": {
+   "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+   "evaluator_version": "gems91-hide-recover-v1.0",
+   "n_offcatalogue_sgmc_positives": 62122,
+   "dti": 0.048036,
+   "T": 2762.864,
+   "S": 37654.0,
+   "M": 1324.43
+  },
+  "champion_h33-2-b2_reference": {
+   "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+   "evaluator_version": "gems91-hide-recover-v1.0",
+   "n_offcatalogue_sgmc_positives": 62122,
+   "dti": 0.095386,
+   "T": 5517.637,
+   "S": 37654.0,
+   "M": 2433.226
+  }
+ },
+ "submission": {
+  "name": "gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros",
+  "note": "S30 VCE vent-concordant emission 37654d; GDR vents+alteration+strain; see run-card",
+  "label_scores": "USER-REPORTED receipts in the prompt are not ORGANIZER-CONFIRMED to this repo; this candidate has NO receipt yet"
+ },
+ "human_decision": {
+  "technically_submittable": true,
+  "explanation": "technically_submittable = uniqueness + format gates pass: the file WILL pass the DrivenData form ([0,1] all-finite, CRS/shape/transform match). The protocol verdict below is the separate scientific slot recommendation.",
+  "protocol_promote": false
+ },
+ "budget": {
+  "experiments_used": 3,
+  "experiments_allowed": 3,
+  "weekly_slots_spent": 0,
+  "promotion_note": "Promotion to a live weekly slot is a separate selector step (the project owner)."
+ },
+ "verdict": "negative",
+ "ok_to_download": true,
+ "ok_to_submit": true,
+ "recommend_spending_weekly_slot": false,
+ "generated_utc": "2026-10-31T01:21:50.655518+00:00"
+}

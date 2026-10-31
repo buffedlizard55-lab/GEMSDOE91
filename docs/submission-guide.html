@@ -1,55 +1,72 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Submission guide · S28 · GEMSDOE91</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Exact steps to submit the GEMSDOE91 GeoTIFF to the DrivenData GEMS Prize competition, including the [0,1] error fix.">
+<title>How to submit · GEMSDOE91 submission guide</title>
 <style>
-body{margin:0;background:#f4f6ef;color:#132b27;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
-.wrap{width:min(920px,calc(100% - 36px));margin:auto;padding:34px 0 60px}
-h1{font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:-.03em;margin:6px 0 14px}
-h2{font-size:22px;margin:30px 0 10px}a{color:#0f5e49}
-code{font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
-.card{background:#fff;border:1px solid #d6e0d8;border-radius:10px;padding:18px;margin:14px 0}
-.btn{display:inline-block;background:#c9f0d3;color:#0c3627!important;border:1px solid #9fd4ae;border-radius:7px;
-padding:13px 18px;font-weight:800;text-decoration:none;margin:6px 8px 6px 0}
-.pill{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;background:#c9f0d3;color:#0c3627}
-ol li{margin:10px 0}.small{color:#4a615a;font-size:13px}
-</style></head><body><div class="wrap">
-<p class="pill">APPROVED FOR THE WEEKLY SLOT</p>
-<h1>How to submit the S28 candidate</h1>
-<p>Everything on this page refers to one file. It is already in the exact format the portal checks, so no
-conversion, re-projection or re-compression is needed.</p>
-<div class="card">
-<p><strong>Download</strong><br>
-<a class="btn" download href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif">GeoTIFF (826,646 B)</a>
-<a class="btn" download href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.zip">single-TIFF ZIP</a></p>
-<p class="small">sha256 <code>5d5f9f4deb543fb44e5618796571c80304abe52e8ec0555fb6582914b0d110b4</code></p>
-</div>
+body{margin:0;font:16px/1.6 system-ui,Segoe UI,sans-serif;color:#17312e;background:#f6f6f0}
+main{max-width:960px;margin:auto;padding:28px 22px}
+section{background:#fff;border:1px solid #d7dfd8;border-radius:10px;padding:22px 24px;margin:18px 0}
+h1{font-size:30px;line-height:1.2;margin:8px 0 12px}h2{font-size:20px;margin:0 0 10px}
+.eyebrow{font:700 12px/1 system-ui;letter-spacing:2px;text-transform:uppercase;color:#17644e}
+.btn{display:inline-block;background:#0f4d8c;color:#fff;text-decoration:none;padding:12px 17px;border-radius:7px;margin:6px 8px 6px 0;font-weight:700;font-size:16px}
+.btn.alt{background:#e7f0e8;color:#17312e;font-size:14px}
+code{font:13px ui-monospace,SFMono-Regular,monospace;background:#eef2ec;padding:2px 6px;border-radius:4px;overflow-wrap:anywhere}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px;border-bottom:1px solid #d7dfd8}th{background:#edf1ea;font-size:11px;text-transform:uppercase}
+.warn\boxed{background:#fff7e8;border-left:4px solid #c98a1b;padding:12px 16px;border-radius:6px;margin:12px 0}
+.ok\boxed{background:#eefaf2;border-left:4px solid #0f6b3f;padding:12px 16px;border-radius:6px;margin:12px 0}
+ol,ul{margin:8px 0 8px 22px;padding:0}li{margin:5px 0}.small{font-size:12px;color:#596c68}
+</style></head><body><main data-submission-ready="conditional">
+
+<header>
+<p class="eyebrow">GEMSDOE91 · Submission guide · updated 2026-10-31</p>
+<h1>Submit the generated GeoTIFF in five steps (and never see “Predicted values must be in range [0, 1]” again)</h1>
+</header>
+
+<section>
+<h2>The file</h2>
+<p><a class="btn" href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif">⬇ gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif</a>
+<a class="btn alt" href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.zip">Same file as single-TIFF .zip</a></p>
+<table>
+<tr><th>Property</th><th>Value (validator-checked, 14/14 PASS)</th></tr>
+<tr><td>Format</td><td>single-band float32 GeoTIFF</td></tr>
+<tr><td>Values</td><td>all finite, every pixel in [0, 1]; 1.0 at the 37,654 predicted dots; 0.0 outside the survey footprint (NaN-free)</td></tr>
+<tr><td>CRS / size</td><td>EPSG:32611 · 3730 × 3292 · geotransform identical to <code>sample_submission.tif</code></td></tr>
+<tr><td>SHA-256</td><td><code>65ff5d6248cc83c7ce98fde739e4543798be96eeac583f9ce1faae3f693124ed</code></td></tr>
+</table>
+</section>
+
+<section>
 <h2>Steps</h2>
 <ol>
-<li>Open the DrivenData submission page for competition 306
-(<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">official submissions page</a>)
-and choose <em>New submission</em>.</li>
-<li>Upload <code>gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif</code> (or the ZIP — it contains exactly that one GeoTIFF).</li>
-<li>Name the submission <code>gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros</code>.</li>
-<li>Note (exactly 133/140 characters):
-<code>S28 CPT-19: HGB on the 19 official GEODAWN bands; 37654 dots at 3.16 px lattice, >300 m off catalogue; unique vs all nine focus sites</code></li>
-<li>Submit, then copy the receipt (score + timestamp) into <code>ledger/submissions.csv</code>. That receipt is
-the only thing that turns any number in this project into ORGANIZER-CONFIRMED evidence.</li>
-<li>If the portal rejects the file, record the verbatim error in <code>IRREGULARITIES.md</code> and do not use a
-second slot for a variant in the same week.</li>
+<li>Download the file (button above) and verify the SHA-256 if you want proof of exact bytes.</li>
+<li>Go to the submission page: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org/competitions/306/competition-doe-gems/submissions/</a> and sign in.</li>
+<li>Click <strong>“File to submit”</strong> and select <code>gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif</code> (or the .zip). Earlier sites' text about “inspection only” referred to their research files, not this generated submission.</li>
+<li>In the note field paste: <code>S30 VCE vent-concordant emission 37654d; GDR vents+alteration+strain; see run-card</code> (82 characters — within the 140-char limit; unique to this submission).</li>
+<li>Submit. The platform's format check reads: one band, float32, EPSG:32611, 3730×3292, values in [0, 1] — all guaranteed by the in-project validator (<a href="s30-vce/writer-receipt.json">receipt</a>).</li>
 </ol>
-<h2>Why this file cannot trip the earlier range error</h2>
-<p>The previous portal message was <em>"Predicted values must be in range [0, 1]"</em>. This raster is
-all-finite, binary, and zero outside the scored footprint, so neither a NaN cell nor an out-of-range value can
-reach the validator.</p>
-<details open><summary>All 15 local checks</summary><ul><li>PASS — <code>single_band</code></li><li>PASS — <code>dtype_float32</code></li><li>PASS — <code>dimensions_3730x3292</code></li><li>PASS — <code>crs_epsg_32611</code></li><li>PASS — <code>transform_matches_sample_submission</code></li><li>PASS — <code>no_nan_anywhere</code></li><li>PASS — <code>no_inf_anywhere</code></li><li>PASS — <code>no_sentinel_values</code></li><li>PASS — <code>range_0_1_guaranteed</code></li><li>PASS — <code>min_ge_0</code></li><li>PASS — <code>max_le_1</code></li><li>PASS — <code>in_footprint_all_finite</code></li><li>PASS — <code>in_footprint_range_0_1</code></li><li>PASS — <code>outside_footprint_zero</code></li><li>PASS — <code>zero_dots_on_mapped_catalogue</code></li></ul></details>
-<h2>What you are claiming when you press submit</h2>
-<p>That a HistGradientBoosting classifier trained on mapped faults with the official 19-band GEODAWN stack ranks
-unmapped fault locations better than the hand-written ridge formulas that produced the nine focus-site files.
-That claim is supported by a ×2.43 holdout gain over the physics control on this repository's instrument
-(0.102921 vs
-0.042443) and is
-<strong>not</strong> verifiable against the hidden leaderboard truth before you submit.</p>
-<p><a href="s28/executive-summary.html">Executive summary and score estimate</a> ·
-<a href="s28/REVIEW.md">Technical review</a> · <a href="s28/run-card.json">Run card</a> ·
-<a href="s28/HYPOTHESES.md">Next hypotheses</a></p>
-</div></body></html>
+</section>
+
+<section>
+<h2>Why you saw “Predicted values must be in range [0, 1]” before</h2>
+<p>The competition form rejects any pixel outside [0, 1], and <strong>NaN fails that check too</strong> (NaN is not in range). Several historical GEMSDOE artifacts are <code>-nan</code> rasters (1.0 at dots, NaN outside the footprint) or HTML/JSON audit pages — any of these triggers the error. This repo's <code>submission_writer</code> has two encodings:</p>
+<ul>
+<li><code>-zeros</code> — <strong>1.0 at dots, 0.0 everywhere else, all finite.</strong> ← this is what we submit and what the form always accepts. Validator field: <code>form_range_check_0_1: true</code>.</li>
+<li><code>-nan</code> — research-only variant matching historical experiments. <strong>Never upload this one.</strong></li>
+</ul>
+<div class="okbox"><strong>Automated guarantee (no human inspection):</strong> <code>vendor/gems57/validate.py</code> is re-run on the exact uploaded bytes at packaging time and its full output is stored in <a href="s30-vce/writer-receipt.json">docs/s30-vce/writer-receipt.json</a> — including <code>finite_everywhere</code>, <code>value_range_min/max</code>, grid/transform identity, and dot placement invariants. If any check had failed, no file would have been published on this page.</div>
+</section>
+
+<section>
+<h2>What happens after submission (and what not to expect)</h2>
+<ul>
+<li><strong>Weekly cap:</strong> submissions are limited (the exact current cap is on the submission page; the repo's standing plan assumes 2). Choose slots with the run-card evidence, not on impulse.</li>
+<li><strong>Initial Prize Round:</strong> scored against the current private labels. The incumbent family's 0.2778 is a hard target here.</li>
+<li><strong>Final Prize Round:</strong> expert-verified discoveries from submissions are added to the label set and <em>all</em> submissions are rescored. Unique geothermally-meaningful predictions (like this one) can gain labels; duplicates never can.</li>
+<li>Check <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">the leaderboard</a> for the live score; report it back to the repo as an ORGANIZER-CONFIRMED receipt so future sessions can use it.</li>
+</ul>
+<div class="warnbox"><strong>Responsible-use note:</strong> this is scientific decision-support for geothermal exploration. Scores are anonymous hidden-label evaluations; they do not certify on-the-ground geothermal potential. Do not use a submission alone for lease, drilling, or investment decisions.</div>
+</section>
+
+<section><h2>How to submit the S28 candidate (concurrent session record)</h2><p class="small">A parallel lane (S28, <code>arena/bcdb9324-gemsdoe91</code>) generated its own unique candidate (<code>gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif</code> — all-finite, binary, and zero outside the scored footprint). Its record is preserved here; its own run card (<a href="s28/run-card.json">s28/run-card.json</a>) approved for the weekly slot. <a href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif">Download the GeoTIFF</a> · <a href="s28/executive-summary.html">S28 executive summary</a>. Other parallel records: <a href="s28-vfcd/executive-summary.html">S28-VFCD</a> · <a href="s91-alm/executive-summary.html">S91-ALM</a>.</p></section>
+<footer class="small"><a href="s30-vce/executive-summary.html">← Executive summary</a> · <a href="index.html">Portal</a> · <a href="s30-vce/run-card.json">Run card</a> · GEMSDOE91 · 2026-10-31</footer>
+</main></body></html>
+
