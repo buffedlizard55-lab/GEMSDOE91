@@ -8,6 +8,42 @@
 
 ---
 
+## CURRENT SESSION UPDATE — 2026-10-31 · `arena/e0c9addc-gemsdoe91`
+
+> **DATA RESTORED · UNIQUE TIF BUILT AND VALIDATED · `OK TO DOWNLOAD: YES — RESEARCH ONLY` · `OK TO SUBMIT: NO (lane unassigned)`**. All 15 pinned competition inputs restored and hash-verified into `data/`. A unique off-catalogue geothermal blind-fault TIF was built, format-validated (14/14 PASS), and proven unique vs GEMSDOE24/25/27/28/30/31/32/33/36 (max 10.46% within 3 px; stop is 70%). **No authorized method lane is assigned** (`registry/experiment_plan.json` `lane: null`), so no experiment was run, no HOLDOUT-DTI measured, no organizer receipt exists. This file is NOT cleared for submission until a lane is assigned, holdout validation passes, and a separate selector approves promotion.
+>
+> **Download:** [`gems91-geothermal-blind-faults-25000dots-20261031T004648Z-40edab72a42d.tif`](docs/downloads/gems91-geothermal-blind-faults-25000dots-20261031T004648Z-40edab72a42d.tif) · [`...zip`](docs/downloads/gems91-geothermal-blind-faults-25000dots-20261031T004648Z-40edab72a42d.zip) · SHA-256: `99a92b7df7ef1332b0cfadee3cf45dbabafa0e613f696b2a705a2b08906e71dd` · 25,000 dots · single-band float32 · EPSG:32611 · 100 m · 3730×3292 · NaN outside footprint · values [0,1]
+>
+> **Executive summary & submission guide:** [docs/executive-summary.html](docs/executive-summary.html) · **Build script:** [scripts/build_geothermal_blind_faults.py](scripts/build_geothermal_blind_faults.py) · **Hypotheses:** [docs/HYPOTHESES-NEW.md](docs/HYPOTHESES-NEW.md)
+
+---
+
+## PROJECT PROMPT — standing brief (read at the start of every session)
+
+**Goal:** Place top of the DrivenData GEMS competition leaderboard (current high: 0.4413) by generating and submitting a unique single-band GeoTIFF prediction of geological faults indicative of geothermal resources.
+
+**Competition:** https://www.drivendata.org/competitions/306/competition-doe-gems/ — Submission format: one float32 GeoTIFF layer, EPSG:32611, 100 m, same bounds as training data, values in [0,1], NaN/null outside bounds. Metric: distance-weighted Tversky index (α=0.2, β=0.8, 300 m triangular kernel). Weekly submission cap applies.
+
+**Focus sites (highest reported scores):** GEMSDOE24 (0.2477), GEMSDOE25 (0.2600), GEMSDOE27 (0.2449), GEMSDOE28 (0.2710), GEMSDOE30 (0.2600), GEMSDOE31 (0.2708), GEMSDOE32 (0.2778 — highest reported), GEMSDOE33 (0.2632), GEMSDOE36 (0.2750). **All are USER-REPORTED, not organizer-confirmed. None is unique (86–100% within 3 px of another leader). None is OK to submit.**
+
+**MUST DO:** Generate a **unique TIF submission** — not a copy of any previous submission. It must be obvious whether the generated TIF is OK to download and submit. The submission page requires values in [0,1] (a prior upload failed with "Predicted values must be in range [0,1]"). Provide a unique name and short note (max 140 characters).
+
+**Executive summary requirement:** A clear table listing, for every site: what file to download, the estimated score, and whether it is a unique submission unlike any other GEMSDOE site. Make the best submission obvious. Make the download link prominent — easy to click and download.
+
+**Parallel-run protocol (binding):**
+1. **LANE:** Stay inside the single assigned method paragraph. If raster rank-correlation with any registry raster > 0.90, or > 70% of dots within 3 px of one registry raster's dots → log as duplicate and stop. Check surface before placement AND final dots.
+2. **REUSE, DON'T REBUILD:** Use the template's cached feature stack, `scripts/evaluate_holdout.py` and `scripts/submission_writer.py`. Holdout = hide-and-recover with whole-segment buffer. Pooled DTI α=0.2, β=0.8, 300 m triangular kernel. Fix shared tools once in the template; never keep a private fork.
+3. **LABEL EVERY NUMBER** as HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (submission receipt). A projection is never a score.
+4. **LEAKAGE CANARY:** Test each feature alone on holdout before trusting. AUC > 0.90 = leakage until proven otherwise.
+5. **RUN CARD:** End with one JSON card: hypothesis; mechanism; non-fault mimic process; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator output (no NaN inside footprint, values [0,1], CRS/shape/transform match); submission name + note (≤140 chars); verdict promote/negative.
+6. **BUDGET:** Stop after 3 experiments or 2 hours. No submission slot selection — that's a separate step within the weekly cap.
+
+**Candidate hypotheses (ranked):** See `docs/HYPOTHESES-NEW.md`. Rank 1 (H-GEO-BLIND-1: off-catalogue geothermal blind faults from spring + radiometric + LiDAR convergence) has been built and validated. Ranks 2–5 are untested proposals.
+
+**Current build:** `gems91-geothermal-blind-faults-25000dots-20261031T004648Z-40edab72a42d.tif` — 25,000 dots, 0% on catalogue, 9.18–10.46% vs parent rasters (unique), all 14 format gates PASS. SHA-256: `99a92b7df7ef1332b0cfadee3cf45dbabafa0e613f696b2a705a2b08906e71dd`. OK TO DOWNLOAD: YES (research). OK TO SUBMIT: NO (lane unassigned).
+
+---
+
 <details>
 <summary>Historical status snapshots from earlier checkouts — not the active branch</summary>
 
