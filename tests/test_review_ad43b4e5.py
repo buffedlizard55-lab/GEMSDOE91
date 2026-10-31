@@ -81,7 +81,8 @@ def test_lineage_and_peer_recheck_are_separate_from_score_claims():
 
 def test_portal_and_guide_link_to_current_active_run_card():
     """2026-10-31: the active run card is S30-VCE's; earlier sessions survive
-    as concurrent records and the 2026-10-30 review inside its dated directory."""    render_review_20261030.render(ROOT)
+    as concurrent records and the 2026-10-30 review inside its dated directory."""
+    render_review_20261030.render(ROOT)
     # index.html and submission-guide.html are the S28-owned front door; the
     # legacy docs/executive-summary.html is preserved history and only has to
     # carry a run-card link of some generation.

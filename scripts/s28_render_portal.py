@@ -179,12 +179,23 @@ def pointer(cand: dict) -> dict:
 def render() -> None:
     cand = _candidate()
     note = _note()
-    patch_index(cand)
-    (ROOT / "index.html").write_text(root_html(cand), encoding="utf-8")
-    (ROOT / "docs" / "submission-guide.html").write_text(guide_html(cand, note), encoding="utf-8")
-    (ROOT / "docs" / "current-review.json").write_text(
-        json.dumps(pointer(cand), indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
-    print("front door rendered: index.html, docs/index.html, docs/submission-guide.html, docs/current-review.json")
+    # 2026-10-31 single-owner rule (IR-S30-06): the shared front-door files are
+    # owned by scripts/front_door.py (active: S30-VCE). This renderer writes only
+    # the S28 record page and then re-stamps the ACTIVE front door, so S28's
+    # evidence stays reachable while no stale renderer can own the public verdict.
+    record = ROOT / "docs" / "s28" / "front-door-record.html"
+    record.write_text(
+        "<!-- S28 concurrent record: preserved as evidence; the active front door is stamped "
+        "by scripts/front_door.py (S30-VCE). -->\n" + root_html(cand)
+        + "\n<hr>\n" + guide_html(cand, note), encoding="utf-8")
+    try:
+        import front_door as _fd  # noqa: PLC0415
+    except ImportError:  # executed as a bare script
+        import sys as _s
+        _s.path.insert(0, str(Path(__file__).resolve().parent))
+        import front_door as _fd  # noqa: PLC0415
+    _fd.enforce()
+    print("S28 record written to docs/s28/front-door-record.html; active front door re-stamped by front_door.enforce()")
 
 
 if __name__ == "__main__":

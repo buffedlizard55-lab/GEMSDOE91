@@ -78,7 +78,8 @@ def test_renderer_refuses_a_promote_flag(monkeypatch):
 
 def test_public_frontdoor_and_guide_show_current_stop():
     # Rebuild the historical review, which must no longer republish a superseded
-    # status; the public front door belongs to S28 from 2026-10-31 onward.
+    # status; the public front door belongs to S30-VCE from 2026-10-31 onward
+    # (S28/S28-VFCD/S91-ALM survive as concurrent records).
     import scripts.s28_render_portal as s28_portal
     render_review_20261030.render(ROOT)
     s28_portal.render()
@@ -92,7 +93,8 @@ def test_public_frontdoor_and_guide_show_current_stop():
     assert 's30-vce/run-card.json' in guide
     assert 'Predicted values must be in range [0, 1]' in guide
     assert 's28/run-card.json' in guide
-    assert 'How to submit the S28 candidate' in guide    assert '0.2778' in table and 'USER-REPORTED' in table
+    assert 'How to submit the S28 candidate' in guide
+    assert '0.2778' in table and 'USER-REPORTED' in table
     assert 'No improvement' not in table or 'unproven' in table
     assert 'OK TO SUBMIT: NO' in table and 'data-submission-ready="true"' not in table
     for site in ('24', '25', '27', '28', '30', '31', '32', '33', '36'):
