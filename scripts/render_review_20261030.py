@@ -165,6 +165,22 @@ def current_review_pointer(card: dict) -> dict:
     }
 
 
+S91_CAND = "gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c"
+
+
+def _s91_alm_card() -> str:
+    return (
+        '<div class="note" role="status"><strong>NEW · 2026-10-31 · S91-ALM: UNIQUE SUBMISSION GENERATED — '
+        '<span style="color:#155b48">OK TO DOWNLOAD: YES</span> · <span style="color:#7b2b22">OK TO SUBMIT: NO '
+        '(selector step pending)</span>.</strong> A new, format-certified GeoTIFF is <strong>unique</strong> against all '
+        'nine focus sites (max 23.8% of its dots within 3 px of any leader; threshold 70%). It is a negative holdout by '
+        'design (collar-compliant off-catalogue search), so its leaderboard score is <strong>not estimated</strong> — no '
+        'organizer receipt exists. <a href="s91-alm/executive-summary.html">S91-ALM executive summary &amp; download</a> · '
+        '<a href="s91-alm/REVIEW.md">three-pass review</a> · <a href="s91-alm/run-card.json">run card</a> · '
+        f'<a href="downloads/{S91_CAND}-zeros.tif">download the submission GeoTIFF</a>.</div>'
+    )
+
+
 def render(root: Path = ROOT) -> None:
     card, snapshot = validate_inputs(root)
     docs = root / "docs"
@@ -188,16 +204,23 @@ def render(root: Path = ROOT) -> None:
             'href="review-4239f6e5/run-card.json">Current run card',
             'href="review-20261030/run-card.json">Active review run card',
         )
+        # Lead the live portal with the newest (S91-ALM) candidate right after the
+        # current-review notice, so the download is obvious on the GitHub Pages site.
+        card = _s91_alm_card()
+        if card not in source:
+            source = source.replace(notice, notice + card, 1)
         path.write_text(source, encoding="utf-8")
     root_html = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         '<meta http-equiv="refresh" content="0;url=docs/index.html">'
-        '<meta name="description" content="Current GEMSDOE91 review: no new candidate; submission blocked.">'
-        '<title>GEMSDOE91 · Active review and verdict</title></head><body><main>'
-        '<h1>GEMSDOE91 · Active review · 2026-10-30</h1>'
-        '<p><strong>NO NEW TIFF. OK TO SUBMIT: NO.</strong> No lane was assigned, required data are missing, and no experiment was run. Historical files: OK TO DOWNLOAD for research/inspection only; OK TO SUBMIT: NO.</p>'
+        '<meta name="description" content="GEMSDOE91: S91-ALM unique submission (OK TO DOWNLOAD: YES; OK TO SUBMIT: NO).">'
+        '<title>GEMSDOE91 · S91-ALM unique submission · OK TO DOWNLOAD YES · OK TO SUBMIT NO</title></head><body><main>'
+        '<h1>GEMSDOE91 · S91-ALM unique submission</h1>'
+        '<p><strong>OK TO DOWNLOAD: YES</strong> · <strong>OK TO SUBMIT: NO</strong> (selector step pending).</p>'
         '<p><a href="docs/index.html">Open the portal and active status</a> · '
-        '<a href="docs/review-20261030/executive-summary.html">Executive summary, nine-site table, and submission guide</a> · '
+        f'<a href="docs/downloads/{S91_CAND}-zeros.tif">Download the S91-ALM submission GeoTIFF</a> · '
+        '<a href="docs/s91-alm/executive-summary.html">S91-ALM executive summary and nine-site table</a> · '
+        '<a href="docs/review-20261030/executive-summary.html">2026-10-30 review executive summary</a> · '
         '<a href="docs/review-20261030/REVIEW.md">Three-pass review</a> · '
         '<a href="docs/review-20261030/run-card.json">Negative run card</a></p>'
         '</main></body></html>\n')

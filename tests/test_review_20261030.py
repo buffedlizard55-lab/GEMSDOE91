@@ -83,7 +83,7 @@ def test_current_pages_and_readme_link_the_active_no_candidate_review():
     assert "OK TO SUBMIT: NO" in guide
     assert "There is no new GeoTIFF candidate" in guide
     assert "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" in guide
-    assert "ACTIVE BRANCH: `arena/83350cee-gemsdoe91`" in readme
+    assert "ACTIVE BRANCH: `arena/2664739c-gemsdoe91`" in readme
     assert "Maximize P(Win) · Own the Outcome" in readme
     assert "full-project-brief" in readme
 
