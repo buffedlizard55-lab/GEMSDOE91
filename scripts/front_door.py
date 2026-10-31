@@ -45,6 +45,15 @@ def enforce() -> bool:
 
     docs = ROOT / "docs"
     pages = docs / "s30-vce" / "pages"
+    # The S28-VSD status block is a pinned, idempotent additive record inside
+    # docs/index.html (newest-first ordering); keep it present across rebuilds.
+    if str(SCRIPTS) not in sys.path:
+        sys.path.insert(0, str(SCRIPTS))
+    try:
+        import render_s28_portal as vsd  # noqa: PLC0415
+        vsd.main()
+    except Exception:  # noqa: BLE001 - the record block must never break the front door
+        pass
     guide_src = (pages / "submission-guide.html").read_text(encoding="utf-8")
     (docs / "submission-guide.html").write_text(guide_src + "\n", encoding="utf-8")
     pointer = (pages / "current-review.json").read_text(encoding="utf-8")

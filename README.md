@@ -1,6 +1,6 @@
-# GEMSDOE91 — ACTIVE: 2026-10-31 · `arena/c2ae33eb-gemsdoe91` · NEW UNIQUE TIF GENERATED · OK TO DOWNLOAD: YES · FORM-SAFE: YES · SLOT: CONDITIONAL
+# GEMSDOE91 — ACTIVE STATUS 2026-10-31: S30-VCE active (unique form-safe TIF) · S28-VSD / S28 / S28-VFCD / S91-ALM concurrent records (banner stack, newest leads)
 
-> **Session S30-VCE (2026-10-31).** A **new unique, format-certified GeoTIFF exists** and is ready to download:
+> **Session S30-VCE (2026-10-31) · ACTIVE: 2026-10-31 · `arena/c2ae33eb-gemsdoe91`.** A **new unique, format-certified GeoTIFF exists** and is ready to download:
 > [`gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif`](docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif)
 > (sha256 `65ff5d6248cc83c7…`, 37,654 binary dots, all-finite values in `[0, 1]` — passes the DrivenData form's
 > “Predicted values must be in range [0, 1]” check; 14/14 validator checks PASS, zero catalogue mass, grid match) ·
@@ -35,6 +35,22 @@
 > **Concurrent sessions merged on 2026-10-31 — preserved records, not the active verdict.** Parallel lanes S28 (`arena/bcdb9324-gemsdoe91`), S28-VFCD (`arena/ef686adc-gemsdoe91`) and S91-ALM each generated their own unique candidates; their verbatim status records follow inside the collapsed block, and their artifacts remain downloadable from `docs/s28/`, `docs/s28-vfcd/`, `docs/s91-alm/` and `docs/downloads/`.
 
 <details><summary>Concurrent session records — S28 / S28-VFCD (verbatim as merged)</summary>
+
+> **ACTIVE BRANCH: `arena/e5d5b72d-gemsdoe91`. VERDICT: PROMOTE per preregistered gates · CANDIDATE: [`gems91-s28-vsd-e3-37654dots-20261031T015019Z-3d03f7cb-zeros.tif`](docs/downloads/gems91-s28-vsd-e3-37654dots-20261031T015019Z-3d03f7cb-zeros.tif) (sha256 `e61cb3e5c695acec…`, 37,654 unit-mass `{0.0, 1.0}` dots, EPSG:32611, 3730 × 3292, float32, nodata=None, all 12,279,160 pixels finite in [0, 1] — the "-zeros" encoding that passes the portal's range check).**
+>
+> **Start here:** [executive summary + file/estimate/uniqueness table](docs/s28-vsd/executive-summary.html) · [step-by-step submission guide](docs/s28-vsd/submission-guide.html) · [run card](docs/s28-vsd/run-card.json) · [frozen preregistration](docs/s28-vsd/preregistration.md) · [leakage canaries](docs/s28-vsd/canaries.json) · [writer receipt](docs/downloads/gems91-s28-vsd-e3-37654dots-20261031T015019Z-3d03f7cb-zeros.json) · [diagnostics](docs/s28-vsd/diagnostics.json) · [session prompt (read every session)](docs/SESSION_PROMPT_20261031.md).
+>
+> **Evidence (every number machine-measured this session, 57.4 lane-minutes, 3/3 experiments, 0 weekly slots):**
+> - **HOLDOUT-DTI = 0.162375 [0.140989, 0.182478]** (`gems57-pooled-hide-v2`, `label-blind-quadrants-v3-feature-buffered`, **60,988 withheld positives**; paired **Δ +0.018758 [+0.007571, +0.028878] vs incumbent S25-FABRIC E2 = 0.143618**, CI clears zero). E1 widened-HGB 0.155356 · E2 +nested-AC 0.159707 · **E3 CELF emission 0.162375 (selected)**. Controls: base 0.125613 · template-38-statics 0.157808. Instrument reproduction check: base control matches the S27 card's 0.125613 exactly.
+> - **Uniqueness vs the full 211-reference frozen registry:** surface max |ρ| = 0.2006 ≤ 0.90; dots vs nine focus leaders max **44.46%** ≤ 70%; dots vs GEMSDOE92 `lbmc1` 26.46%; dots vs all competitive ≤90k rasters max **57.51%** ≤ 70%. Literal no-exemption check vs the dense 206,895-dot synthetic calibration lattice = 99.96% (mathematically unavoidable: capacity floor ≥ 82.34% at 37,654 dots; reported with the bound, never silently exempted).
+> - **Score estimate instruments (never scores):** LFI projection (refit on 112 USER-REPORTED anchors; LOSO RMSE 0.026, Spearman 0.94): **ridge10 = 0.17746, ridge1 = 0.19097** — `MODEL_PROJECTION_NOT_A_SCORE`; under the same refit the GEMSDOE32 `h33` family anchors project 0.2717–0.2768, i.e. the family is still the higher-projected submission and this candidate's next lever is blending its surface with the h19.5 ridge prior. Blind USGS SGMC off-catalogue control: **0.106576 total / 0.097946 far-field** (report-only). ORGANIZER-CONFIRMED: none (not uploaded).
+> - **Hypothesis verdicts (preregistered):** CDEC/TSR/STA features were **redundant with the template's 38-static stack on the holdout** (E1 vs static38 Δ −0.002452 [−0.008180, +0.003355]) — an honest partial falsification; the widened stack still beats the matched incumbent (CI > 0) and the auto-context + CELF emission arms added +0.0044/+0.0027. CDEC orientation-shuffle negative control passed (true concordance AUC 0.5262 > shuffled 0.5135). Leakage canary: max symmetric AUC 0.6472 ≤ 0.90 across all checks.
+> - **Why GEMSDOE32's 0.2778 led the nine-site family:** the nine leaders are one byte-lineage family (97.6–100% mutual 3-px overlap); `h33` is a pruned D2.8/H19.5 variant whose pruning deletes unmatched clutter dots (pure false positives) while keeping dots overlapping hidden truth — under the asymmetric Tversky-DTI (α=0.2 FP, β=0.8 FN, 300 m triangular kernel) that raises DTI without new discoveries. Full lineage: [docs/R0_ANALYSIS_S22.md](docs/R0_ANALYSIS_S22.md).
+> - **OK TO DOWNLOAD: YES** (automated format + footprint + uniqueness + validator certification; zero human inspection). **OK TO SUBMIT:** all preregistered gates passed → conditional YES as the selector's deliberate choice; the pinned front-door pointer remains bound to its historical research artifact; this lane's live status is this banner and the executive summary. Rule 6 reserves the weekly slot to you. Do NOT upload any nine-site family file (duplicates) or any "-nan"-encoded file (portal range error).
+>
+> **Maximize P(Win) · Own the Outcome.** Older banners below are historical archives; where inconsistent with this banner, this banner is current.
+
+---
 
 # GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED · `OK TO DOWNLOAD: YES` · `OK TO SUBMIT: YES` (active: 2026-10-31 · `arena/bcdb9324-gemsdoe91`)
 

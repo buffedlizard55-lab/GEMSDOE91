@@ -306,11 +306,15 @@ def render():
             render_s22xb()  # its dedicated page remains an explicitly historical artifact
         from scripts.render_review_20261030 import render as render_active_review
         render_active_review(ROOT)
+        # S28-VSD (2026-10-31): the current lane's status card is inserted after the
+        # pinned banner; insertion is idempotent and non-destructive.
+        from scripts.render_s28_portal import main as render_s28_status
+        render_s28_status()
         # S91-ALM adds its own certified-unique banner in parallel (additive), after
         # the S28 front door has been enforced.
         from scripts.s91_alm_render_portal import render as render_s91_alm
         render_s91_alm(ROOT)
-        print('Rendered current blocked review; historical pages preserved; no promotion.')
+        print('Rendered current blocked review + S28-VSD status + S91-ALM; historical pages preserved.')
         return
     card = json.loads((ROOT / 'docs/run-card.json').read_text())
     actual = verify_artifact()

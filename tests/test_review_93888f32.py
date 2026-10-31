@@ -20,11 +20,18 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     review = (ROOT / "docs/review-93888f32-20261028.md").read_text()
     card = json.loads((ROOT / "docs/run-card-93888f32-20261028.json").read_text())
 
-    assert readme.startswith("# GEMSDOE91 — ACTIVE: 2026-10-31")
-    assert "DO NOT SUBMIT S25-TLF" in readme  # historical stop stays visible
-    assert "ACTIVE · 2026-10-31 (S30-VCE)" in page
+    # 2026-10-31 (S28-VSD, merged after S28/S28-VFCD): README banners stack; the
+    # newest active banner leads while earlier same-day banners are retained verbatim.
+    assert readme.startswith("# GEMSDOE91 — ACTIVE STATUS 2026-10-31")
+    assert "# GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED" in readme
+    assert "DO NOT SUBMIT S25-TLF" in readme
+    assert "ACTIVE · 2026-10-31 (S30-VCE)" in page  # S30-VCE active banner
     assert "OK TO DOWNLOAD: YES" in page and "FORM-SAFE: YES" in page and "SLOT: CONDITIONAL" in page
-    assert "S28 · 2026-10-31" in page  # concurrent session record preserved
+    assert "S28 · 2026-10-31: NEW UNIQUE SUBMISSION" in page
+    assert "OK TO SUBMIT: NO" in page and "approved for the" in page
+    current = json.loads((ROOT / "docs/current-review.json").read_text())
+    assert current["branch"] == "arena/c2ae33eb-gemsdoe91"
+    assert current["candidate_generated"] is True and current["candidate_sha256"]
     assert "Download the GeoTIFF" in page
     current = json.loads((ROOT / "docs/current-review.json").read_text())
     assert current["branch"] == "arena/c2ae33eb-gemsdoe91"
