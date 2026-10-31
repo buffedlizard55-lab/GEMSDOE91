@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="GEMSDOE91 submission guide: S30-VCSE candidate, verdicts, concurrent records and fail-closed steps.">
+<title>GEMSDOE91 · Current submission guide</title>
+<style>
+body{font:16px/1.55 system-ui,-apple-system,sans-serif;color:#12263a;margin:0;background:#f8f9fa}
+main{max-width:980px;margin:0 auto;padding:20px}
+.badge{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;margin-right:6px}
+.yes{background:#d3f9d8;color:#2b8a3e} .no{background:#ffe3e3;color:#c92a2a}
+button,a.button{display:inline-block;background:#0b7285;color:#fff;text-decoration:none;padding:11px 16px;border-radius:8px;font-weight:650;margin:4px 6px 4px 0}
+details{border-top:1px solid #dee2e6;padding:12px 0} summary{cursor:pointer;font-weight:700}
+</style></head>
+<body><main id="main" data-submission-ready="false">
+<span class="badge yes">OK-TO-DOWNLOAD: YES</span><span class="badge no">OK-TO-SUBMIT: NO — HOLD</span>
+<h1>S30-VCSE candidate — download yes, submitting this week: no</h1>
+<p>A new, unique GeoTIFF candidate was generated and passes every technical gate
+(validator 13/13; values in [0, 1]; the form check &ldquo;Predicted values must be in
+range [0, 1]&rdquo; passes). The preregistered holdout gate was not cleared, so the
+standing rule holds the weekly submission slot. This page is not an approval to
+upload that file.</p>
+<p><a class="button" href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif">Download the TIF</a>
+<a class="button" href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.zip">Single-TIFF ZIP</a>
+<a class="button" href="executive-summary.md">Executive summary</a>
+<a class="button" href="s30-vcse/run-card.json">Run card</a></p>
+<h2>Identity — use exactly these strings if a future selector ever clears a slot</h2>
+<p><code>submission name: gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros</code><br>
+<code>note (82/140 chars): S30 VCSE vent-concordance rad+cond+GDR+seis+strain CELF dots cap0.64; see run-card</code><br>
+<code>sha256: a5993d3a520aa280ce70744ad2dd772090d54cd248e1d6fdc9d1950fdc8e83ae</code></p>
+<h2>Why HOLD</h2>
+<p>The standing protocol promotes a candidate to a weekly submission slot only if its
+pooled HOLDOUT-DTI beats the registered holdout best 0.159482 (S27-OSDR E2, same
+instrument). The candidate measures 0.052966 [0.046011, 0.060650] — below the bar.
+Do not spend a weekly submission slot on this candidate.</p>
+<h2>Concurrent session records</h2>
+<details><summary>S30-VCE guide (record; its own status marked CONDITIONAL)</summary>
+<div><main data-submission-ready="conditional">
+
+<header>
+<p class="eyebrow">GEMSDOE91 · Submission guide · updated 2026-10-31</p>
+<h1>Submit the generated GeoTIFF in five steps (and never see “Predicted values must be in range [0, 1]” again)</h1>
+</header>
+
+<section>
+<h2>The file</h2>
+<p><a class="btn" href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif">⬇ gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif</a>
+<a class="btn alt" href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.zip">Same file as single-TIFF .zip</a></p>
+<table>
+<tr><th>Property</th><th>Value (validator-checked, 14/14 PASS)</th></tr>
+<tr><td>Format</td><td>single-band float32 GeoTIFF</td></tr>
+<tr><td>Values</td><td>all finite, every pixel in [0, 1]; 1.0 at the 37,654 predicted dots; 0.0 outside the survey footprint (NaN-free)</td></tr>
+<tr><td>CRS / size</td><td>EPSG:32611 · 3730 × 3292 · geotransform identical to <code>sample_submission.tif</code></td></tr>
+<tr><td>SHA-256</td><td><code>65ff5d6248cc83c7ce98fde739e4543798be96eeac583f9ce1faae3f693124ed</code></td></tr>
+</table>
+</section>
+
+<section>
+<h2>Steps</h2>
+<ol>
+<li>Download the file (button above) and verify the SHA-256 if you want proof of exact bytes.</li>
+<li>Go to the submission page: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">drivendata.org/competitions/306/competition-doe-gems/submissions/</a> and sign in.</li>
+<li>Click <strong>“File to submit”</strong> and select <code>gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif</code> (or the .zip). Earlier sites' text about “inspection only” referred to their research files, not this generated submission.</li>
+<li>In the note field paste: <code>S30 VCE vent-concordant emission 37654d; GDR vents+alteration+strain; see run-card</code> (82 characters — within the 140-char limit; unique to this submission).</li>
+<li>Submit. The platform's format check reads: one band, float32, EPSG:32611, 3730×3292, values in [0, 1] — all guaranteed by the in-project validator (<a href="s30-vce/writer-receipt.json">receipt</a>).</li>
+</ol>
+</section>
+
+<section>
+<h2>Why you saw “Predicted values must be in range [0, 1]” before</h2>
+<p>The competition form rejects any pixel outside [0, 1], and <strong>NaN fails that check too</strong> (NaN is not in range). Several historical GEMSDOE artifacts are <code>-nan</code> rasters (1.0 at dots, NaN outside the footprint) or HTML/JSON audit pages — any of these triggers the error. This repo's <code>submission_writer</code> has two encodings:</p>
+<ul>
+<li><code>-zeros</code> — <strong>1.0 at dots, 0.0 everywhere else, all finite.</strong> ← this is what we submit and what the form always accepts. Validator field: <code>form_range_check_0_1: true</code>.</li>
+<li><code>-nan</code> — research-only variant matching historical experiments. <strong>Never upload this one.</strong></li>
+</ul>
+<div class="okbox"><strong>Automated guarantee (no human inspection):</strong> <code>vendor/gems57/validate.py</code> is re-run on the exact uploaded bytes at packaging time and its full output is stored in <a href="s30-vce/writer-receipt.json">docs/s30-vce/writer-receipt.json</a> — including <code>finite_everywhere</code>, <code>value_range_min/max</code>, grid/transform identity, and dot placement invariants. If any check had failed, no file would have been published on this page.</div>
+</section>
+
+<section>
+<h2>What happens after submission (and what not to expect)</h2>
+<ul>
+<li><strong>Weekly cap:</strong> submissions are limited (the exact current cap is on the submission page; the repo's standing plan assumes 2). Choose slots with the run-card evidence, not on impulse.</li>
+<li><strong>Initial Prize Round:</strong> scored against the current private labels. The incumbent family's 0.2778 is a hard target here.</li>
+<li><strong>Final Prize Round:</strong> expert-verified discoveries from submissions are added to the label set and <em>all</em> submissions are rescored. Unique geothermally-meaningful predictions (like this one) can gain labels; duplicates never can.</li>
+<li>Check <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">the leaderboard</a> for the live score; report it back to the repo as an ORGANIZER-CONFIRMED receipt so future sessions can use it.</li>
+</ul>
+<div class="warnbox"><strong>Responsible-use note:</strong> this is scientific decision-support for geothermal exploration. Scores are anonymous hidden-label evaluations; they do not certify on-the-ground geothermal potential. Do not use a submission alone for lease, drilling, or investment decisions.</div>
+</section>
+
+<section><h2>How to submit the S28 candidate (concurrent session record)</h2><p class="small">A parallel lane (S28, <code>arena/bcdb9324-gemsdoe91</code>) generated its own unique candidate (<code>gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif</code> — all-finite, binary, and zero outside the scored footprint). Its record is preserved here; its own run card (<a href="s28/run-card.json">s28/run-card.json</a>) approved for the weekly slot. <a href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif">Download the GeoTIFF</a> · <a href="s28/executive-summary.html">S28 executive summary</a>. Other parallel records: <a href="s28-vfcd/executive-summary.html">S28-VFCD</a> · <a href="s91-alm/executive-summary.html">S91-ALM</a>.</p></section>
+<footer class="small"><a href="s30-vce/executive-summary.html">← Executive summary</a> · <a href="index.html">Portal</a> · <a href="s30-vce/run-card.json">Run card</a> · GEMSDOE91 · 2026-10-31</footer>
+</main></div></details>
+<h2>Guide archive — 2026-10-30 fail-closed guide (superseded; retained as historical evidence)</h2>
+<details><summary>Open the 2026-10-30 guide</summary><div>
+<p><strong>2026-10-30: There is no new GeoTIFF candidate from this review.</strong> OK TO SUBMIT: NO.
+Historical files are OK TO DOWNLOAD for research/inspection only.</p>
+<p>The fail-closed checklist from the 2026-10-30 guide is preserved in
+<a href="review-20261030/executive-summary.html">review-20261030/executive-summary.html</a>
+and <a href="review-20261030/run-card.json">review-20261030/run-card.json</a>: validate the exact
+output GeoTIFF automatically — one float32 band, exact EPSG:32611 grid/transform, values
+in [0,1], and correct null/NaN outside bounds.</p>
+</div></details>
+</main></body></html>

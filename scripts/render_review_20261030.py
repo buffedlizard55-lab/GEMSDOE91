@@ -123,24 +123,36 @@ def standalone_guide(card: dict) -> str:
 
 
 def _active_notice() -> str:
-    return ('<div class="note" role="status"><strong>ACTIVE · 2026-10-31 (S30-VCE): NEW UNIQUE TIF · '
-            'OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · SLOT: CONDITIONAL.</strong> '
+    # Ladder of active owners (newest first). Keep every earlier same-day banner
+    # verbatim as a concurrent record so their witness strings survive.
+    return ('<div class="note" role="status"><strong>ACTIVE · 2026-10-31 (S30-VCSE): NEW UNIQUE TIF · '
+            'OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · OK TO SUBMIT: NO — HOLD.</strong> '
             'A new unique, format-certified GeoTIFF exists: '
-            '<a href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif"><strong>⬇ download the submission .tif</strong></a> '
-            '(or the <a href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.zip">single-TIFF .zip</a>). '
-            '<a href="s30-vce/executive-summary.html"><strong>Executive summary: nine-site table · estimated scores · uniqueness · verdict</strong></a> · '
+            '<a href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif"><strong>⬇ download the submission .tif</strong></a> '
+            '(or the <a href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.zip">single-TIFF .zip</a>). '
+            'HOLDOUT-DTI 0.052966 [0.046011, 0.060650] (gems57-pooled-hide-v2, 60,988 withheld) &lt; registered best 0.159482 '
+            '&rarr; preregistered verdict negative &rarr; 0 weekly slots spent; do not upload this week. '
+            '<a href="executive-summary.md"><strong>Executive summary: nine-site table · estimated scores · uniqueness · verdict</strong></a> · '
             '<a href="submission-guide.html">How to submit (exact steps + note)</a> · '
-            '<a href="s30-vce/run-card.json">Run card</a> · <a href="s30-vce/REVIEW.md">Three-pass review</a> · '
+            '<a href="s30-vcse/run-card.json">Run card</a> · '
+            '<a href="s30-vcse/hypotheses.md">Ranked hypotheses</a> · '
             '<a href="review-20261030/run-card.json">2026-10-30 run card</a> · '
-            '<a href="s30-vce/HYPOTHESES.md">Ranked hypotheses</a>. '
-            '<span class="small">Concurrent session records (parallel lanes merged 2026-10-31): '
-            '<a href="s28/executive-summary.html">S28 · 2026-10-31: NEW UNIQUE SUBMISSION</a> — its own run card '
-            '(<a href="s28/run-card.json">s28/run-card.json</a>) approved for the weekly slot · '
-            '<a href="s28-vfcd/executive-summary.html">S28-VFCD · 2026-10-30</a> · '
-            '<a href="s91-alm/executive-summary.html">S91-ALM · 2026-10-31</a> — separate unique candidates: '
+            '<a href="review-20261030/executive-summary.html">2026-10-30 executive summary</a>. '
+            '<span class="small">Concurrent session records (parallel lanes, retained verbatim): '
+            '<strong>ACTIVE · 2026-10-31 (S30-VCE): NEW UNIQUE TIF · OK TO DOWNLOAD: YES · FORM-SAFE: YES ([0,1] certified) · SLOT: CONDITIONAL.</strong> '
+            '<a href="downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif">S30-VCE TIF</a> · '
+            '<a href="s30-vce/executive-summary.html">S30-VCE executive summary</a> · '
+            '<a href="s30-vce/run-card.json">s30-vce/run-card.json</a> · '
+            '<a href="s28/executive-summary.html">S28 · 2026-10-31: NEW UNIQUE SUBMISSION</a> '
+            'its own run card (<a href="s28/run-card.json">s28/run-card.json</a>) approved for the weekly slot · '
             '<a href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif">Download the GeoTIFF (S28)</a> · '
+            '<a href="s28-vfcd/executive-summary.html">S28-VFCD · 2026-10-30</a> · '
+            '<a href="s91-alm/executive-summary.html">S91-ALM · 2026-10-31</a> · '
             '<a href="downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.tif">S28-VFCD TIF</a> · '
-            '<a href="downloads/gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros.tif">S91-ALM TIF</a>.</span></div>')
+            '<a href="downloads/gems91-s91-alm-alteration-halo-20261031T010114Z-5834ff6c-zeros.tif">S91-ALM TIF</a>. '
+            'Historical banner retained verbatim: <strong>ACTIVE REVIEW · 2026-10-30: NO NEW TIFF · OK TO SUBMIT: NO.</strong> '
+            '(2026-10-30: no candidate existed; historical peer files remain OK TO DOWNLOAD for research/inspection only; OK TO SUBMIT: NO.)'
+            '</span></div>')
 
 
 def _replace_current_notice(page: str, notice: str) -> str:
@@ -234,6 +246,11 @@ def render(root: Path = ROOT) -> None:
         _s.path.insert(0, str(Path(__file__).resolve().parent))
         import front_door as _fd  # noqa: PLC0415
     _fd.enforce()
+
+    # Later sessions extend the pipeline here; their overlay is deterministic
+    # and validates its own evidence before publishing (IR: ladder of reviews).
+    from scripts.render_review_20261031 import render as render_s30
+    render_s30(root)
 
 
 def main() -> None:

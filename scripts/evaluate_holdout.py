@@ -461,6 +461,8 @@ def score_off_catalogue_sgmc(
     """Blind independent geological control: USGS SGMC faults strictly > 3 px
     from the competition catalogue (`existing_faults.tif`), scored with exact DTI.
     """
+    footprint = np.asarray(footprint)
+    footprint = footprint > 0  # accept bool or numeric footprints (shared-tool fix)
     cat = (np.nan_to_num(catalogue, nan=0.0) > 0) & footprint
     d_cat = ndi.distance_transform_edt(~cat)
     sgmc_off = (np.nan_to_num(sgmc_mask, nan=0.0) > 0) & footprint & (d_cat > float(min_cat_dist_px))

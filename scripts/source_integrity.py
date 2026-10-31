@@ -11,6 +11,7 @@ from pathlib import Path
 CORRECTIONS = {
     'src/gems91/omtj22.py': (None, 'evidence/s22/omtj22-source-20261026.py.txt'),
     'src/gems91/novelty.py': ('novelty_gate', 'evidence/s22/novelty-source-20261026.py.txt'),
+    'src/gems91/pdwc21.py': ('pdwc21_ir_s30', 'evidence/s30/pdwc21-source-pre-ir-s30-04.py.txt'),
 }
 
 

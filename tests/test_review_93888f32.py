@@ -30,11 +30,11 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     assert "S28 · 2026-10-31: NEW UNIQUE SUBMISSION" in page
     assert "OK TO SUBMIT: NO" in page and "approved for the" in page
     current = json.loads((ROOT / "docs/current-review.json").read_text())
-    assert current["branch"] == "arena/c2ae33eb-gemsdoe91"
+    assert current["branch"] in ("arena/c2ae33eb-gemsdoe91", "arena/681fc5eb-gemsdoe91")  # pointer ladder: later sessions may move it
     assert current["candidate_generated"] is True and current["candidate_sha256"]
     assert "Download the GeoTIFF" in page
     current = json.loads((ROOT / "docs/current-review.json").read_text())
-    assert current["branch"] == "arena/c2ae33eb-gemsdoe91"
+    assert current["branch"] in ("arena/c2ae33eb-gemsdoe91", "arena/681fc5eb-gemsdoe91")  # pointer ladder: later sessions may move it
     assert current["candidate_generated"] is True and current["candidate_sha256"]
     assert "0.36 projection" in review and "withdrawn" in review
     assert card["experiments_run"] == 0

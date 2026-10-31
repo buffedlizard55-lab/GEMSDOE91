@@ -7,12 +7,14 @@ superseded "no candidate / do not submit" banner on the deployed Pages site —
 a real production bug, not just a test-order artefact.
 
 ``enforce()`` re-applies the ACTIVE front door after any legacy renderer.
-Active owner from 2026-10-31: **S30-VCE** (the newest certified unique
-candidate).  Canonical sources live under ``docs/s30-vce/pages/`` (landing
-page, submission guide, active-review pointer) plus the active banner
-injected/replaced on the legacy-built portal pages.  S28, S28-VFCD and S91-ALM
-are preserved as concurrent session records inside the pages; legacy renderers
-keep their own dated pages and simply stop owning the status banner.
+Active owner from 2026-10-31 (ladder, newest first): **S30-VCSE** (arena/681fc5eb;
+unique TIF, holdout-gated HOLD), previously **S30-VCE** (arena/c2ae33eb).
+Canonical sources live under ``docs/s30-vcse/pages/`` (landing page, submission
+guide, active-review pointer) plus the active banner injected/replaced on the
+legacy-built portal pages.  S30-VCE, S28, S28-VFCD, S91-ALM and the
+geothermal-blind lane are preserved as concurrent session records inside the
+pages; legacy renderers keep their own dated pages and simply stop owning the
+status banner.
 
 Future sessions: point ``active()`` at your canonical pages, update the notice
 in ``render_review_20261030._active_notice`` (kept there for the banner-merge
@@ -28,11 +30,11 @@ SCRIPTS = Path(__file__).resolve().parent
 
 
 def active() -> bool:
-    return (ROOT / "docs" / "s30-vce" / "pages" / "landing.html").is_file()
+    return (ROOT / "docs" / "s30-vcse" / "pages" / "landing.html").is_file()
 
 
 def enforce() -> bool:
-    """Re-stamp the active S30-VCE front door. Returns True if a candidate exists."""
+    """Re-stamp the active S30-VCSE front door. Returns True if a candidate exists."""
     if not active():
         return False
     if str(SCRIPTS) not in sys.path:
@@ -44,7 +46,7 @@ def enforce() -> bool:
     importlib.reload(rr)
 
     docs = ROOT / "docs"
-    pages = docs / "s30-vce" / "pages"
+    pages = docs / "s30-vcse" / "pages"
     # The S28-VSD status block is a pinned, idempotent additive record inside
     # docs/index.html (newest-first ordering); keep it present across rebuilds.
     if str(SCRIPTS) not in sys.path:

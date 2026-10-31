@@ -2188,3 +2188,11 @@ by the retargeted consistency tests; full suite 955 passed / 2 skipped on 2026-1
 **Rule for future sessions:** never hand-edit the five shared front-door files — edit the canonical
 sources under `docs/s30-vce/pages/` (or the next session's equivalent) and re-run
 `python -c "from scripts.render_review_20261030 import render, ROOT; render(ROOT)"`.
+
+## S30-VCSE (2026-10-31, arena/681fc5eb-gemsdoe91)
+- IR-S30-04: Shared CELF emitter (`src/gems91/pdwc21.py`) starved under many overlapping reference halos (static per-ref quota monopolised by the consensus zone + fractional post-check collapse): first package collapsed to 591 of 44,090 dots. Fixed in the shared tool (off-quota reserve outside the largest halo; tests 10/10). Historical bytes archived in `evidence/s30/`, correction registered in `docs/review-8e8d86f2/source-correction.json`.
+- IR-S30-05: The 58-ref uniqueness halo set included dense learning probes (`r11_greedy_mp` 272,853 dots, 3px halo covering 99.87% of candidate domain) that are not listed sites or registry submissions; quotas against them are infeasible for ANY raster. Duplicate-gate set corrected to the nine listed sites + `data/registry/` (34 sha-unique). Logged, not silent.
+- IR-S30-06: `preregistration-amendment.md` froze E3 at 37,654 dots @3.05px; executed code ran 44,090 @2.8px. Drift recorded in the amendment addendum; reported numbers are the executed ones.
+- IR-S30-07: Shared-tool fix in template: `scripts/evaluate_holdout.py::score_off_catalogue_sgmc` crashed on numeric footprints (bool & float); coerced in place, no fork.
+- IR-S30-08: Instrument disagreement left visible: pooled-hide HOLDOUT-DTI ranks public-best GEMSDOE32 (USER-REPORTED 0.2778) second-worst of nine (0.0067) while blind SGMC control ranks our candidate above parent R0. Decision follows the preregistered gate; no cherry-picking.
+- IR-S30-09 (merge): concurrent lanes S30-VCE/S28/S28-VFCD/S91-ALM/geothermal-blind landed on main before this PR; the front-door single-owner ladder now lists S30-VCSE as active with all earlier lanes retained verbatim as concurrent records. Stale "current pointer" witness pins were extended to accept the ladder; the 98 MB debug halo dump was kept out of Git.

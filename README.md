@@ -1,4 +1,28 @@
-# GEMSDOE91 — ACTIVE STATUS 2026-10-31: S30-VCE active (unique form-safe TIF) · S28-VSD / S28 / S28-VFCD / S91-ALM concurrent records (banner stack, newest leads)
+# GEMSDOE91 — ACTIVE STATUS 2026-10-31: S30-VCSE active (unique TIF, holdout-gated HOLD) · S30-VCE / S28-VSD / S28 / S28-VFCD / S91-ALM / geothermal-blind concurrent records (banner stack, newest first)
+
+**Session S30-VCSE (2026-10-31) · ACTIVE: 2026-10-31 · `arena/681fc5eb-gemsdoe91` — newest banner; older same-day banners below are retained verbatim as concurrent records.**
+
+# GEMSDOE91 — S30-VCSE: unique TIF generated · OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — HOLD (active: 2026-10-31 · `arena/681fc5eb-gemsdoe91`)
+
+> **ACTIVE BRANCH: `arena/681fc5eb-gemsdoe91`. NEW UNIQUE SUBMISSION RASTER GENERATED · `OK TO DOWNLOAD NEW CANDIDATE: YES` · `OK TO SUBMIT (weekly slot): NO — HOLD` · weekly slots spent: 0.**
+>
+> **Download:** [`gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif`](docs/downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif) (`sha256: a5993d3a520aa280…e83ae`, 135,773 bytes, 44,090 binary `{0,1}` dots, `float32`, `EPSG:32611`, `3730×3292`, values strictly in [0, 1]) · [single-TIFF `.zip`](docs/downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.zip) · [**GitHub Pages: executive summary + download**](docs/index.html) · [submission guide](docs/submission-guide.html) · [executive summary (full evidence)](docs/executive-summary.md) · [run card](docs/s30-vcse/run-card.json) · [ranked hypotheses](docs/s30-vcse/hypotheses.md) · [preregistration + irregularity addendum](docs/s30-vcse/preregistration-amendment.md) · [nine-site holdout estimates](docs/s30-vcse/nine-site-holdout-estimates.json).
+>
+> **Unique submission name:** `gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros` · **Note (82/140 chars):** `S30 VCSE vent-concordance rad+cond+GDR+seis+strain CELF dots cap0.64; see run-card`
+>
+> | File / Site | Strictly labeled score & evidence | Uniqueness (≤70% 3-px overlap + ρ≤0.90) | Verdict |
+> |---|---|---|---|
+> | **S30-VCSE E3 (this lane)** | **ORGANIZER-CONFIRMED: none (0 slots).** **HOLDOUT-DTI = `0.052966 [0.046011, 0.060650]`** (`gems57-pooled-hide-v2`, 60,988 withheld, 20 km block bootstrap, 95% CI). Blind USGS SGMC off-catalogue control >5 px: **`0.113455`** (beats parent R0 `0.088516`, GEMSDOE36 `0.089855`). Family-inversion `MODEL_NOT_A_SCORE` bracket `0.0699–0.2075`. | **YES** — max 3-px overlap **13.54%** vs any registry raster (**11.80%** vs any of the nine), surface max \|ρ\| **0.0286**; validator 13/13 | **OK TO DOWNLOAD: YES** · **OK TO SUBMIT: NO — HOLD** (pooled HOLDOUT-DTI < registered best `0.159482`, S27-OSDR E2 — preregistered gate) |
+> | Nine focus sites (24/25/27/28/30/31/32/33/36) | HOLDOUT-DTI estimates `0.0067–0.1725` with 95% CI — full table in [executive summary](docs/executive-summary.md); public figures (`0.2449–0.2778`) are USER-REPORTED/unverified | **NO** — one duplicate family (100% pairwise overlaps; 99.71% 33↔27) | research/provenance only; **OK TO SUBMIT: NO** |
+>
+> **Method (S30-VCSE):** 13 catalogue-independent VCSE channels (radiometrics K/Th/U/TC + GDR wellspring vents + conductivity caps + seismicity + strain rate) + basin-floor playa veto (rank ≤0.35 on ex/step ranks) + 0.60·supervised 15-feature OOF catalogue-recovery prior / 0.40·vent-vote blend -> 44,090 dots via the shared CELF emitter (300 m kernel, 2.8 px spacing, uniqueness cap 0.64 vs the nine-site + registry gate set). 3/3 experiments spent (E1 `0.048030`, E2 `0.000000` — honest 80 px guard interaction, E3 `0.052966`), per-feature leakage canaries PASS (max `0.6135` ≤ 0.90), G5 blind gate PASS, holdout gate FAIL → verdict **negative**, 0 slots. Shared-tool fixes IR-S30-04/05/07 logged in [IRREGULARITIES.md](IRREGULARITIES.md). The README's full standing project brief is preserved below at [`#full-project-brief`](#full-project-brief); read that brief and this active status at the start of each session. Older branch/status material is retained as an archive and is not current when inconsistent with this section. **Maximize P(Win) · Own the Outcome.**
+
+
+---
+
+<details>
+<summary>Historical status snapshots from earlier checkouts — not the active branch</summary>
+### Preserved 2026-10-30 status snapshot (branch `arena/83350cee-gemsdoe91`; superseded)
 
 > **Session S30-VCE (2026-10-31) · ACTIVE: 2026-10-31 · `arena/c2ae33eb-gemsdoe91`.** A **new unique, format-certified GeoTIFF exists** and is ready to download:
 > [`gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif`](docs/downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif)

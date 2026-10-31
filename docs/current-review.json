@@ -1,13 +1,13 @@
 {
   "schema": "gems91.current-review.v1",
-  "review_id": "GEMSDOE91-S30-VCE-20261031",
+  "review_id": "GEMSDOE91-S30-VCSE-20261031",
   "review_date_utc": "2026-10-31",
   "date": "2026-10-31",
-  "branch": "arena/c2ae33eb-gemsdoe91",
-  "status": "S30-VCE candidate generated: unique, form-safe ([0,1] certified); weekly-slot decision reserved to the selector",
+  "branch": "arena/681fc5eb-gemsdoe91",
+  "status": "S30-VCSE candidate generated: unique, form-safe ([0,1] certified); weekly-slot decision = HOLD (holdout gate not cleared)",
   "candidate_generated": true,
-  "candidate_path": "downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif",
-  "candidate_sha256": "65ff5d6248cc83c7ce98fde739e4543798be96eeac583f9ce1faae3f693124ed",
+  "candidate_path": "downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif",
+  "candidate_sha256": "a5993d3a520aa280ce70744ad2dd772090d54cd248e1d6fdc9d1950fdc8e83ae",
   "ok_to_download_new_candidate": true,
   "form_safe_zero_one": true,
   "unique_vs_registry": true,
@@ -15,25 +15,30 @@
     "ok_to_submit": true,
     "recommend_spending_weekly_slot": false,
     "protocol_verdict": "negative",
-    "note": "ok_to_submit=True is the technical/form gate (all values in [0,1], unique, format-certified). The protocol verdict is negative (holdout does not beat matched control); spending a weekly slot is the project owner's selector decision."
+    "note": "ok_to_submit=True is the technical/form gate (13/13 validator checks, values in [0,1], unique at 13.54% max 3px overlap). The protocol verdict is negative (HOLDOUT-DTI 0.052966 < registered best 0.159482); do not spend a weekly slot."
   },
-  "ok_to_submit": "CONDITIONAL — form-safe and unique; weekly-slot recommendation is negative by protocol (holdout does not beat matched control). Selector decision is the project owner's.",
+  "ok_to_submit": "HOLD — technically submittable and unique; protocol verdict negative (holdout gate not cleared). No weekly slot.",
   "holdout_dti": {
-    "value": 0.06738005899382123,
+    "value": 0.052966,
     "ci": [
-      0.05424023944854185,
-      0.0827543411425186
+      0.046011,
+      0.06065
     ],
     "evaluator": "gems57-pooled-hide-v2",
     "withheld_positives": 60988
   },
   "organizer_confirmed": null,
   "leaderboard_score_estimate": null,
-  "review": "s30-vce/REVIEW.md",
-  "executive_summary": "s30-vce/executive-summary.html",
+  "executive_summary": "executive-summary.md",
   "submission_guide": "submission-guide.html",
-  "run_card": "s30-vce/run-card.json",
+  "run_card": "s30-vcse/run-card.json",
   "concurrent_records": {
+    "s30-vce": {
+      "review": "s30-vce/executive-summary.html",
+      "run_card": "s30-vce/run-card.json",
+      "branch": "arena/c2ae33eb-gemsdoe91",
+      "candidate": "downloads/gems91-s30-vce-e2-37654dots-20261031T012142Z-0e833d44-zeros.tif"
+    },
     "s28": {
       "review": "s28/executive-summary.html",
       "run_card": "s28/run-card.json",
@@ -48,6 +53,10 @@
       "review": "s91-alm/executive-summary.html",
       "run_card": "s91-alm/run-card.json",
       "branch": "arena/2664739c-gemsdoe91"
+    },
+    "geothermal-blind": {
+      "review": "review-20261031/",
+      "branch": "arena/e0c9addc-gemsdoe91"
     }
   },
   "historical_artifact_pointer": {

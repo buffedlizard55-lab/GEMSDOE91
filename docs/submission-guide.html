@@ -1,20 +1,39 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Exact steps to submit the GEMSDOE91 GeoTIFF to the DrivenData GEMS Prize competition, including the [0,1] error fix.">
-<title>How to submit · GEMSDOE91 submission guide</title>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="GEMSDOE91 submission guide: S30-VCSE candidate, verdicts, concurrent records and fail-closed steps.">
+<title>GEMSDOE91 · Current submission guide</title>
 <style>
-body{margin:0;font:16px/1.6 system-ui,Segoe UI,sans-serif;color:#17312e;background:#f6f6f0}
-main{max-width:960px;margin:auto;padding:28px 22px}
-section{background:#fff;border:1px solid #d7dfd8;border-radius:10px;padding:22px 24px;margin:18px 0}
-h1{font-size:30px;line-height:1.2;margin:8px 0 12px}h2{font-size:20px;margin:0 0 10px}
-.eyebrow{font:700 12px/1 system-ui;letter-spacing:2px;text-transform:uppercase;color:#17644e}
-.btn{display:inline-block;background:#0f4d8c;color:#fff;text-decoration:none;padding:12px 17px;border-radius:7px;margin:6px 8px 6px 0;font-weight:700;font-size:16px}
-.btn.alt{background:#e7f0e8;color:#17312e;font-size:14px}
-code{font:13px ui-monospace,SFMono-Regular,monospace;background:#eef2ec;padding:2px 6px;border-radius:4px;overflow-wrap:anywhere}
-table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px;border-bottom:1px solid #d7dfd8}th{background:#edf1ea;font-size:11px;text-transform:uppercase}
-.warn\boxed{background:#fff7e8;border-left:4px solid #c98a1b;padding:12px 16px;border-radius:6px;margin:12px 0}
-.ok\boxed{background:#eefaf2;border-left:4px solid #0f6b3f;padding:12px 16px;border-radius:6px;margin:12px 0}
-ol,ul{margin:8px 0 8px 22px;padding:0}li{margin:5px 0}.small{font-size:12px;color:#596c68}
-</style></head><body><main data-submission-ready="conditional">
+body{font:16px/1.55 system-ui,-apple-system,sans-serif;color:#12263a;margin:0;background:#f8f9fa}
+main{max-width:980px;margin:0 auto;padding:20px}
+.badge{display:inline-block;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:800;margin-right:6px}
+.yes{background:#d3f9d8;color:#2b8a3e} .no{background:#ffe3e3;color:#c92a2a}
+button,a.button{display:inline-block;background:#0b7285;color:#fff;text-decoration:none;padding:11px 16px;border-radius:8px;font-weight:650;margin:4px 6px 4px 0}
+details{border-top:1px solid #dee2e6;padding:12px 0} summary{cursor:pointer;font-weight:700}
+</style></head>
+<body><main id="main" data-submission-ready="false">
+<span class="badge yes">OK-TO-DOWNLOAD: YES</span><span class="badge no">OK-TO-SUBMIT: NO — HOLD</span>
+<h1>S30-VCSE candidate — download yes, submitting this week: no</h1>
+<p>A new, unique GeoTIFF candidate was generated and passes every technical gate
+(validator 13/13; values in [0, 1]; the form check &ldquo;Predicted values must be in
+range [0, 1]&rdquo; passes). The preregistered holdout gate was not cleared, so the
+standing rule holds the weekly submission slot. This page is not an approval to
+upload that file.</p>
+<p><a class="button" href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif">Download the TIF</a>
+<a class="button" href="downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.zip">Single-TIFF ZIP</a>
+<a class="button" href="executive-summary.md">Executive summary</a>
+<a class="button" href="s30-vcse/run-card.json">Run card</a></p>
+<h2>Identity — use exactly these strings if a future selector ever clears a slot</h2>
+<p><code>submission name: gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros</code><br>
+<code>note (82/140 chars): S30 VCSE vent-concordance rad+cond+GDR+seis+strain CELF dots cap0.64; see run-card</code><br>
+<code>sha256: a5993d3a520aa280ce70744ad2dd772090d54cd248e1d6fdc9d1950fdc8e83ae</code></p>
+<h2>Why HOLD</h2>
+<p>The standing protocol promotes a candidate to a weekly submission slot only if its
+pooled HOLDOUT-DTI beats the registered holdout best 0.159482 (S27-OSDR E2, same
+instrument). The candidate measures 0.052966 [0.046011, 0.060650] — below the bar.
+Do not spend a weekly submission slot on this candidate.</p>
+<h2>Concurrent session records</h2>
+<details><summary>S30-VCE guide (record; its own status marked CONDITIONAL)</summary>
+<div><main data-submission-ready="conditional">
 
 <header>
 <p class="eyebrow">GEMSDOE91 · Submission guide · updated 2026-10-31</p>
@@ -68,5 +87,16 @@ ol,ul{margin:8px 0 8px 22px;padding:0}li{margin:5px 0}.small{font-size:12px;colo
 
 <section><h2>How to submit the S28 candidate (concurrent session record)</h2><p class="small">A parallel lane (S28, <code>arena/bcdb9324-gemsdoe91</code>) generated its own unique candidate (<code>gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif</code> — all-finite, binary, and zero outside the scored footprint). Its record is preserved here; its own run card (<a href="s28/run-card.json">s28/run-card.json</a>) approved for the weekly slot. <a href="downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif">Download the GeoTIFF</a> · <a href="s28/executive-summary.html">S28 executive summary</a>. Other parallel records: <a href="s28-vfcd/executive-summary.html">S28-VFCD</a> · <a href="s91-alm/executive-summary.html">S91-ALM</a>.</p></section>
 <footer class="small"><a href="s30-vce/executive-summary.html">← Executive summary</a> · <a href="index.html">Portal</a> · <a href="s30-vce/run-card.json">Run card</a> · GEMSDOE91 · 2026-10-31</footer>
+</main></div></details>
+<h2>Guide archive — 2026-10-30 fail-closed guide (superseded; retained as historical evidence)</h2>
+<details><summary>Open the 2026-10-30 guide</summary><div>
+<p><strong>2026-10-30: There is no new GeoTIFF candidate from this review.</strong> OK TO SUBMIT: NO.
+Historical files are OK TO DOWNLOAD for research/inspection only.</p>
+<p>The fail-closed checklist from the 2026-10-30 guide is preserved in
+<a href="review-20261030/executive-summary.html">review-20261030/executive-summary.html</a>
+and <a href="review-20261030/run-card.json">review-20261030/run-card.json</a>: validate the exact
+output GeoTIFF automatically — one float32 band, exact EPSG:32611 grid/transform, values
+in [0,1], and correct null/NaN outside bounds.</p>
+</div></details>
 </main></body></html>
 

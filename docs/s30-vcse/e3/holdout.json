@@ -1,0 +1,278 @@
+{
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "pooled": true,
+  "scores": {
+    "vcse_supervised_oof_plus_vent": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.052966465405800474,
+      "ci95": [
+        0.04601079772611925,
+        0.06064965801468803
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 3070.6754787861887,
+      "fpw": 42847.09922303037,
+      "fnw": 57917.3245212138
+    },
+    "control_random_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.08009088920760853,
+      "ci95": [
+        0.07691597726272091,
+        0.08293589833964964
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 4660.647715330862,
+      "fpw": 42347.27053764977,
+      "fnw": 56327.352284669156
+    },
+    "control_static_r0": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.006697041784474405,
+      "ci95": [
+        0.005969120964122151,
+        0.007449522541025754
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 377.3190358808101,
+      "fpw": 37376.43107272676,
+      "fnw": 60610.68096411921
+    }
+  },
+  "best_comparable_control": "control_random_nms",
+  "paired_differences": {
+    "control_random_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.027124423801808052,
+      "ci95": [
+        -0.03433758582046979,
+        -0.018960461849243646
+      ],
+      "withheld_positive_pixels": 60988
+    },
+    "control_static_r0": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.04626942362132607,
+      "ci95": [
+        0.03929761413605891,
+        0.053960713392947154
+      ],
+      "withheld_positive_pixels": 60988
+    }
+  },
+  "bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 161,
+    "draws": 1000,
+    "seed": 520810,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "implementation_sha256": {
+    "evaluate_holdout.py": "4687a28bc83959a3d815c0a37abb43fe72286c523db867877bd1f626c4d094b6",
+    "holdout.py": "41ecfbca6f4a2b615a09c50653e272bd134ce14ab19b84b56a275f97fd75fe78",
+    "metric.py": "d536dc94ecf355aa8068499787cacd425dcb6c8c1a5d6684d5785c4f072bd083",
+    "spatial.py": "dd3c4e5dd770f96341e6beb681c1af89e42b6766257df50c455999bfd68704ed"
+  },
+  "per_fold": [
+    {
+      "arm": "vcse_supervised_oof_plus_vent",
+      "fold": 0,
+      "budget": 20896,
+      "n_truth": 29319,
+      "n_emitted": 20896,
+      "tpw": 1690.335,
+      "fpw": 20201.579,
+      "fnw": 27628.665,
+      "fold_dti": 0.06073
+    },
+    {
+      "arm": "vcse_supervised_oof_plus_vent",
+      "fold": 1,
+      "budget": 11659,
+      "n_truth": 12596,
+      "n_emitted": 11659,
+      "tpw": 652.809,
+      "fpw": 11393.58,
+      "fnw": 11943.191,
+      "fold_dti": 0.052283
+    },
+    {
+      "arm": "vcse_supervised_oof_plus_vent",
+      "fold": 2,
+      "budget": 4813,
+      "n_truth": 9473,
+      "n_emitted": 4813,
+      "tpw": 384.776,
+      "fpw": 4666.852,
+      "fnw": 9088.224,
+      "fold_dti": 0.0448
+    },
+    {
+      "arm": "vcse_supervised_oof_plus_vent",
+      "fold": 3,
+      "budget": 6722,
+      "n_truth": 9600,
+      "n_emitted": 6722,
+      "tpw": 342.755,
+      "fpw": 6585.089,
+      "fnw": 9257.245,
+      "fold_dti": 0.037808
+    },
+    {
+      "arm": "control_random_nms",
+      "fold": 0,
+      "budget": 20896,
+      "n_truth": 29319,
+      "n_emitted": 20896,
+      "fold_dti": 0.081505
+    },
+    {
+      "arm": "control_random_nms",
+      "fold": 1,
+      "budget": 11659,
+      "n_truth": 12596,
+      "n_emitted": 11659,
+      "fold_dti": 0.079472
+    },
+    {
+      "arm": "control_random_nms",
+      "fold": 2,
+      "budget": 4813,
+      "n_truth": 9473,
+      "n_emitted": 4813,
+      "fold_dti": 0.078253
+    },
+    {
+      "arm": "control_random_nms",
+      "fold": 3,
+      "budget": 6722,
+      "n_truth": 9600,
+      "n_emitted": 6722,
+      "fold_dti": 0.07835
+    },
+    {
+      "arm": "control_static_r0",
+      "fold": 0,
+      "budget": 18028,
+      "n_truth": 29319,
+      "n_emitted": 18028,
+      "fold_dti": 0.006132
+    },
+    {
+      "arm": "control_static_r0",
+      "fold": 1,
+      "budget": 9588,
+      "n_truth": 12596,
+      "n_emitted": 9588,
+      "fold_dti": 0.008544
+    },
+    {
+      "arm": "control_static_r0",
+      "fold": 2,
+      "budget": 4795,
+      "n_truth": 9473,
+      "n_emitted": 4795,
+      "fold_dti": 0.007532
+    },
+    {
+      "arm": "control_static_r0",
+      "fold": 3,
+      "budget": 5243,
+      "n_truth": 9600,
+      "n_emitted": 5243,
+      "fold_dti": 0.005094
+    }
+  ],
+  "fold_receipts": [
+    {
+      "fold": 0,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 29319,
+      "evaluation_px": 2449030,
+      "training_domain_px": 2508386,
+      "held_components": 1830,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1436,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 244
+    },
+    {
+      "fold": 1,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 12596,
+      "evaluation_px": 1366431,
+      "training_domain_px": 3636842,
+      "held_components": 687,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1733,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 82
+    },
+    {
+      "fold": 2,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9473,
+      "evaluation_px": 564135,
+      "training_domain_px": 4383314,
+      "held_components": 382,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 2857,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 483
+    },
+    {
+      "fold": 3,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9600,
+      "evaluation_px": 787777,
+      "training_domain_px": 4263431,
+      "held_components": 329,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1925,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 368
+    }
+  ],
+  "budget_total": 44090,
+  "spacing_px": 2.8,
+  "collar_px": 3.05,
+  "elapsed_seconds": 422.2
+}
