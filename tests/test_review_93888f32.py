@@ -20,7 +20,9 @@ def test_current_status_is_fail_closed_and_has_a_machine_card():
     review = (ROOT / "docs/review-93888f32-20261028.md").read_text()
     card = json.loads((ROOT / "docs/run-card-93888f32-20261028.json").read_text())
 
-    assert readme.startswith("# GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED")
+    # 2026-10-31 (S28-VSD): banners stack; newest leads, earlier same-day banners retained.
+    assert readme.startswith("# GEMSDOE91 — ACTIVE STATUS 2026-10-31")
+    assert "# GEMSDOE91 — S28: NEW UNIQUE SUBMISSION GENERATED" in readme
     assert "DO NOT SUBMIT S25-TLF" in readme
     assert "S28 · 2026-10-31: NEW UNIQUE SUBMISSION" in page
     # Front-door wording keeps the legacy "historical files: no" guard; the

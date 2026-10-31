@@ -1,0 +1,53 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>How to submit to DrivenData GEMS · GEMSDOE91</title><style>body{font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif;margin:0;background:#f5f6ef;color:#142d29}
+.wrap{width:min(1180px,calc(100% - 48px));margin:auto;padding-bottom:60px}
+a{color:#145c49}code{font:12.5px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;background:#fff;border:1px solid #d7e1d9;border-radius:4px;padding:1px 5px;overflow-wrap:anywhere}
+.badge{display:inline-block;border-radius:4px;padding:5px 10px;font-size:12px;font-weight:800;letter-spacing:.04em;background:#155b48;color:#fff;margin:2px 4px 2px 0}
+.badge.bad{background:#9b1c1c}.badge.warn{background:#81402b}
+.card{background:#fff;border:1px solid #d7e1d9;border-radius:10px;padding:24px;margin:18px 0}
+.dl{border:3px solid #155b48;background:#effaf1}
+.button{display:inline-block;background:#d8f0dd;color:#12382b;border:1px solid #b6d8c1;border-radius:6px;padding:12px 16px;font-size:15px;font-weight:750;text-decoration:none;margin:4px 8px 4px 0}
+.button.big{font-size:18px;padding:16px 22px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff}
+th,td{text-align:left;vertical-align:top;padding:10px;border:1px solid #e4ebe5}
+thead th{background:#eaf0e8;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.table-scroll{max-width:100%;overflow:auto;border:1px solid #d7e1d9;border-radius:8px}
+.small{font-size:12.5px;color:#465e57}h1{font-size:clamp(26px,4vw,40px);letter-spacing:-.03em}
+h2{font-size:clamp(20px,3vw,27px);letter-spacing:-.02em;margin-top:34px}
+.ok{color:#155b48;font-weight:800}.no{color:#9b1c1c;font-weight:800}.warn{color:#81402b;font-weight:800}
+</style></head><body><div class="wrap">
+<p class="small"><a href="../index.html">&larr; Main portal</a> &middot; <a href="executive-summary.html">Executive summary</a></p>
+<h1>Exactly how to submit this file to the competition</h1>
+<div class="card dl">
+<h2 style="margin-top:0">Step 0 &mdash; download the right file</h2>
+<p><a class="button big" download href="../downloads/gems91-s28-vsd-e3-37654dots-20261031T015019Z-3d03f7cb-zeros.tif">&darr; gems91-s28-vsd-e3-37654dots-20261031T015019Z-3d03f7cb-zeros.tif</a>
+<a class="button" download href="../downloads/gems91-s28-vsd-e3-37654dots-20261031T015019Z-3d03f7cb-zeros.zip">&darr; .zip alternative</a></p>
+<p class="small">Submit the <strong>-zeros.tif</strong> (every pixel finite in [0,&thinsp;1]). The "-nan"
+encoded variants use NaN outside the footprint and will be rejected by the portal with
+<em>"Predicted values must be in range [0, 1]"</em>. The .zip contains exactly one GeoTIFF and is also accepted.</p>
+</div>
+<div class="card">
+<h2 style="margin-top:0">Steps on the DrivenData submission page</h2>
+<ol>
+<li>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submit/">drivendata.org &rarr; competition 306 &rarr; Submit (&ldquo;New submission&rdquo;)</a> and sign in.</li>
+<li><strong>File to submit:</strong> choose the downloaded <code>gems91-s28-vsd-e3-37654dots-20261031T015019Z-3d03f7cb-zeros.tif</code> (or its .zip).</li>
+<li><strong>Note (optional but required by our protocol):</strong> paste
+<code>S28 VSD cross-domain edge concordance+relay gaps+seismic alignment; widened-stack OOF CELF 37654d; run-card verdict</code></li>
+<li>Click <strong>Create submission</strong>. The portal validates CRS, shape and geotransform against the
+sample (EPSG:32611, 3730&times;3292, 100 m) and scores on the public chunks.</li>
+<li>When the score returns, copy it into the site ledger as <strong>ORGANIZER-CONFIRMED</strong> (that is
+the only evidence class that counts as a real score). Record the submission name exactly as above.</li>
+</ol>
+<p><strong>Name:</strong> <code>gems91-s28-vsd-e3-37654dots-20261031T015019Z-3d03f7cb-zeros</code><br>
+<strong>Note:</strong> <code>S28 VSD cross-domain edge concordance+relay gaps+seismic alignment; widened-stack OOF CELF 37654d; run-card verdict</code><br>
+<strong>SHA-256:</strong> <code>e61cb3e5c695acec6f9d8d548e4ce4201135e930c23ead49213649d031aae4e2</code></p>
+</div>
+<div class="card">
+<h2 style="margin-top:0">Why the earlier &ldquo;[0, 1]&rdquo; error happened</h2>
+<p>Some historical downloads encode the outside-footprint collar as <strong>NaN</strong> (the
+competition sample's own nodata convention). DrivenData's validator reads the raw band and rejects any
+non-finite value. The shared writer therefore emits the <em>zeros encoding</em>: finite 0.0 outside the
+footprint, 37,654 dots at 1.0, everything inside [0,&thinsp;1] &mdash; verified here
+by an independent re-read before publication. If a portal error ever appears again, check
+<code>gdalinfo</code> Min/Max first; this repo's validator replicates the portal's checks.</p>
+</div>
+<p class="small">Rendered by scripts/render_s28_pages.py from frozen machine artifacts (docs/s28-vsd/*.json); regenerated idempotently.</p></div></body></html>
