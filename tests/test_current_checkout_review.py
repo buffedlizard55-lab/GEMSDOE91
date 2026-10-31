@@ -139,8 +139,9 @@ def test_latest_status_is_in_public_entry_points_and_render_source():
     # remains linked as historical evidence rather than current status.
     assert 'url=docs/index.html' in root
     # S28 (2026-10-31) supersedes the 2026-10-30 no-candidate status.
-    assert 'OK TO SUBMIT: YES' in root and 'NEW UNIQUE SUBMISSION' in root
-    assert 'OK TO SUBMIT: YES' in site and 'Download the submission GeoTIFF' in site
+    assert 'NEW UNIQUE SUBMISSION' in root and 'OK TO DOWNLOAD: YES' in root and 'OK TO SUBMIT: NO' in root
+    assert 'NEW UNIQUE SUBMISSION' in site and 'Download the GeoTIFF' in site
+    assert 'OK TO SUBMIT: YES' not in site  # fail-closed guard (test_s16_integrity) stays correct
     assert 'review-8e8d86f2/REVIEW.md' in site
     assert 'REVIEW-ARENA-52711765-20261027.md' in site
     assert 'render_review_8e8d86f2' in renderer

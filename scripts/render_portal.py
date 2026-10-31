@@ -299,8 +299,8 @@ def render():
     # A current lane owns its two entry points. Historical reports are immutable
     # evidence, not inputs whose CSS or banners should be rebuilt from that page.
     from scripts.render_olc91_portal import CURRENT, render as render_current
-    if CURRENT['run_card'] == 'run-card-S22-OMTJ.json':
-        render_current()  # OMTJ alone owns the current entry points; XB remains archived.
+    if CURRENT['run_card'] in ('run-card-S22-OMTJ.json', 'run-card-S28-VFCD.json'):
+        render_current()  # the current card alone owns the entry points; XB remains archived.
         if (ROOT / 'docs/run-card-S22-XB.json').is_file():
             from scripts.render_s22_xbreed_pages import render as render_s22xb
             render_s22xb()  # its dedicated page remains an explicitly historical artifact

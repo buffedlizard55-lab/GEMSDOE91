@@ -64,7 +64,9 @@ def patch_index(cand: dict) -> None:
         return
     m = re.search(r'<div class="note" role="status"[^>]*>.*?</div>', src, re.S)
     if m:
-        src = src[:m.start()] + new + src[m.end():]
+        # Insert ahead of the first status note without deleting it: parallel
+        # sessions' banners (e.g. S28-VFCD) are records the merged tests pin.
+        src = src[:m.start()] + new + src[m.start():]
     else:
         # Legacy portals have no status slot; insert right after <body> or <main>.
         anchor = re.search(r'<(body|main)[^>]*>', src)
