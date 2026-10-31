@@ -203,6 +203,11 @@ def render(root: Path = ROOT) -> None:
         '</main></body></html>\n')
     (root / "index.html").write_text(root_html, encoding="utf-8")
 
+    # Later sessions extend the pipeline here; their overlay is deterministic
+    # and validates its own evidence before publishing (IR: ladder of reviews).
+    from scripts.render_review_20261031 import render as render_s30
+    render_s30(root)
+
 
 def main() -> None:
     render()

@@ -518,3 +518,16 @@ lane, complete unchanged registry and pinned feature cache, frozen comparable
 incumbent, then both uniqueness phases and paired holdout—not a live upload test.
 
 </details>
+
+## S30-VCSE (2026-10-31, arena/681fc5eb-gemsdoe91)
+Generated unique TIF `gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros`
+(44,090 dots, validator 13/13, max 3px overlap 13.54%, surface |rho|max 0.0286):
+**OK TO DOWNLOAD: YES · OK TO SUBMIT (weekly slot): NO — HOLD** (pooled
+HOLDOUT-DTI 0.052966 [0.046011, 0.060650] < registered best 0.159482; 0 slots
+spent). Next steps: (1) test hypothesis C (differential-depth edges) under a
+fresh run card if a cycle opens; (2) holdout-live paradox study using
+`registry/lfi_live_anchors.csv`; (3) if a slot is ever cleared, submit the
+candidate unchanged and file the receipt in `ledger/submissions.csv`.
+Limitations: no organizer score exists; pooled-hide is a weak live proxy;
+MODEL brackets are arithmetic only; E2's zero is a guard/instrument
+interaction. See `docs/executive-summary.md` and `docs/s30-vcse/run-card.json`.

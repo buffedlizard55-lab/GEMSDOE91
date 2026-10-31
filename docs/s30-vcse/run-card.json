@@ -1,0 +1,270 @@
+{
+  "schema": "gems91.s30-vcse-run-card.v1",
+  "run_utc": "2026-10-31T02:17:39+00:00",
+  "lane": {
+    "id": "S30-VCSE",
+    "paragraph": "Vent-Concordance Strand Emission: predict unmapped fault strands where geothermal-vent evidence concurs (radiometric alteration K/Th/U/TC, conductive clay-cap cond_surf, GDR warm springs, seismicity deq/ieq, strain 2nd-invariant/shear/dilatation), corroborated by magnetic/gravity edges, cover-thickness steps and lidar scarps; CELF binary-dot emission.",
+    "assignment_source": "standing brief: 'scientific discovery of geothermal vents' + 'find sources of data that others are overlooking'; no other authenticated lane paragraph supplied (IR-S30-01)"
+  },
+  "hypothesis": "Hidden faults in a geothermal province carry a vent/alteration + strain concordance signature that mapped-fault-adjacent ridge networks (the 0.24-0.28 family) do not fully occupy; off-collar dots placed on multi-channel concordance cells recover more hidden truth per dot than family-clutter dots.",
+  "mechanism": "Hydrothermal upflow along permeable fault strands produces K-depletion/Th-U-fractionation anomalies, conductive clay caps and warm springs; seismogenic and straining crust marks active slip; differential-depth edges (gravity vs magnetics vs cover steps) discriminate faults from lithologic contacts.",
+  "non_fault_mimic": "Playa/lake-bottom conductivity: saline basin floors are conductive, K-poor, flat and lidar-incoherent; gated by the basin-floor veto and by requiring structural concurrence (vent evidence alone cannot emit). Alluvial-fan radiometric noise: vetoed by the same rule.",
+  "experiments": {
+    "e1": {
+      "arm": "vcse_vote_scout",
+      "holdout_dti": 0.048029778025630535,
+      "ci95": [
+        0.0414659053586003,
+        0.05502726901797994
+      ]
+    },
+    "e2": {
+      "arm": "vcse_vote_plus_consensus",
+      "holdout_dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "e3": {
+      "arm": "vcse_supervised_oof_plus_vent",
+      "holdout_dti": 0.052966465405800474,
+      "ci95": [
+        0.04601079772611925,
+        0.06064965801468803
+      ]
+    }
+  },
+  "selected_experiment": "e3",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_version": "label-blind-quadrants-v3-feature-buffered",
+    "value": 0.052966465405800474,
+    "ci95": [
+      0.04601079772611925,
+      0.06064965801468803
+    ],
+    "withheld_positive_count": 60988,
+    "pooled_dti_alpha": 0.2,
+    "pooled_dti_beta": 0.8,
+    "distance_support_m": 300,
+    "live_correlation_caveat": "hide-v2-family holdout correlates ~0.105 with live scores across 112 anchors (S22 instruments.json); holdout is a promotion gate, not a leaderboard estimate"
+  },
+  "controls": {
+    "control_random_nms": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.08009088920760853,
+      "ci95": [
+        0.07691597726272091,
+        0.08293589833964964
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 4660.647715330862,
+      "fpw": 42347.27053764977,
+      "fnw": 56327.352284669156
+    },
+    "control_static_r0": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.006697041784474405,
+      "ci95": [
+        0.005969120964122151,
+        0.007449522541025754
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 377.3190358808101,
+      "fpw": 37376.43107272676,
+      "fnw": 60610.68096411921
+    }
+  },
+  "leakage_canaries": {
+    "max_symmetric_auc": 0.613507,
+    "all_pass": true,
+    "threshold": 0.9
+  },
+  "registry_uniqueness": {
+    "surface_max_abs_rank_correlation": 0.028588288289404157,
+    "surface_max_reference": "data/registry/calib_h161_01855.tif",
+    "dot_max_overlap_within_3px": 0.13535949194828759,
+    "dot_max_reference": "data/registry/calib_h161_01855.tif",
+    "thresholds": {
+      "rank_correlation": 0.9,
+      "dot_overlap": 0.7
+    },
+    "references_checked": 34,
+    "unavailable_witnesses": [
+      "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21-zeros.tif (local inherited; no upstream mirror)",
+      "docs/downloads/h33-h33-2-b2-GEOD25m10-20261024-bff9fd21.tif (local inherited; no upstream mirror)"
+    ]
+  },
+  "raster_sha256": "a5993d3a520aa280ce70744ad2dd772090d54cd248e1d6fdc9d1950fdc8e83ae",
+  "validator_output": {
+    "file": "/home/user/GEMSDOE91/docs/downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif",
+    "bytes": 135773,
+    "sha256": "a5993d3a520aa280ce70744ad2dd772090d54cd248e1d6fdc9d1950fdc8e83ae",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.003590636420994997,
+    "emitted_positive_pixels": 44090,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 44090,
+    "footprint_fraction": 0.00853238192791579
+  },
+  "submission": {
+    "name": "gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros",
+    "note": "S30 VCSE vent-concordance rad+cond+GDR+seis+strain CELF dots cap0.64; see run-card",
+    "tif": "docs/downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif",
+    "zip": "docs/downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.zip",
+    "n_dots": 44090,
+    "encoding": "all-finite float32 {0,1} zeros outside dots (safe for 'Predicted values must be in range [0, 1]')"
+  },
+  "leaderboard_estimate": {
+    "organizer_confirmed": null,
+    "model_projection": null,
+    "family_inversion_bracket": {
+      "evidence_class": "MODEL (arithmetic on USER-REPORTED anchors + S22 inversion; NOT A SCORE)",
+      "range": [
+        0.0699,
+        0.2075
+      ],
+      "assumptions": "per-dot truth credit 0.03-0.08 (GEMSDOE36 add-on measured 0.013; R0 average 0.135); |G| 12,100-13,400 (S22 bracket); matched mass M = 0.10-0.25 of n",
+      "reported_family_anchors": {
+        "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros": 0.2778,
+        "dotted-h19-5-d2-8-20261002-e56ea318af89-nan": 0.26
+      }
+    }
+  },
+  "verdict": "negative",
+  "budget": {
+    "experiments_used": 3,
+    "experiments_max": 3,
+    "weekly_submission_slots_used": 0,
+    "elapsed_seconds": 43.7
+  },
+  "diagnostics_sgmc": {
+    "metric_label": "SGMC-OFFCAT-CONTROL-DTI (blind proxy truth; NOT a leaderboard score)",
+    "rows": [
+      {
+        "name": "vcse_candidate",
+        "min_cat_dist_px": 3.0,
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 62122,
+        "dti": 0.109325,
+        "T": 6482.978,
+        "S": 44090.0,
+        "M": 2560.942
+      },
+      {
+        "name": "parent_r0_gemsdoe32",
+        "min_cat_dist_px": 3.0,
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 62122,
+        "dti": 0.095386,
+        "T": 5517.637,
+        "S": 37654.0,
+        "M": 2433.226
+      },
+      {
+        "name": "nine_gemsoe36_anderson",
+        "min_cat_dist_px": 3.0,
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 62122,
+        "dti": 0.09677,
+        "T": 5621.99,
+        "S": 38854.0,
+        "M": 2481.885
+      },
+      {
+        "name": "vcse_candidate",
+        "min_cat_dist_px": 5.0,
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 56822,
+        "dti": 0.113455,
+        "T": 6242.666,
+        "S": 44090.0,
+        "M": 2503.455
+      },
+      {
+        "name": "parent_r0_gemsdoe32",
+        "min_cat_dist_px": 5.0,
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 56822,
+        "dti": 0.088516,
+        "T": 4737.499,
+        "S": 37654.0,
+        "M": 2073.595
+      },
+      {
+        "name": "nine_gemsoe36_anderson",
+        "min_cat_dist_px": 5.0,
+        "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+        "evaluator_version": "gems91-hide-recover-v1.0",
+        "n_offcatalogue_sgmc_positives": 56822,
+        "dti": 0.089855,
+        "T": 4831.588,
+        "S": 38854.0,
+        "M": 2117.593
+      }
+    ]
+  },
+  "verdict_rule": "preregistered: G5 = blind SGMC off-catalogue DTI at 500 m must exceed parent R0's AND the pooled HOLDOUT-DTI must beat the registered holdout best (0.159482); verdict promote iff both pass and uniqueness/canary gates passed. A negative result remains a deliverable.",
+  "g5_blind_sgmc_pass": true,
+  "holdout_gate": {
+    "best_pooled_holdout_dti": 0.052966465405800474,
+    "bar": 0.159482,
+    "pass": false,
+    "bar_source": "S27-OSDR E2, gems57-pooled-hide-v2 (registered holdout best)"
+  },
+  "submission_slot_decision": "hold: do NOT spend a weekly submission slot (see holdout_gate)"
+}

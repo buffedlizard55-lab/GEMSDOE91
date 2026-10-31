@@ -1430,6 +1430,17 @@ def emit_dots_celf_submodular(
     Enforces `overlap_3px(ref_r) <= uniqueness_cap` across all `n_refs` references without
     premature candidate-pool starvation, guaranteeing full `budget` utilization whenever
     geometrically feasible on the allowed domain.
+
+    Fix 2026-10-31 (IR-S30-04): with many overlapping reference halos the pure
+    reward-ordered greedy spent every shared per-reference quota on the
+    multi-reference (consensus) zone first; the remaining off-zone cells then all
+    violated at least one saturated quota, so the emitter starved (28,247 of
+    44,090 placed) and the fractional post-check collapsed the raster to a few
+    hundred dots.  When caps are active the emitter now reserves the off-quota
+    share `budget - floor(uniqueness_cap*budget)` and fills it first from cells
+    outside the largest reference halo before the reward-ordered main loop.  The
+    per-reference semantics and the post-check are unchanged; without caps the
+    code path is byte-identical.
     """
     import heapq
 
@@ -1521,6 +1532,43 @@ def emit_dots_celf_submodular(
                     if r_idx < n_refs:
                         ref_counts[r_idx] += 1
                     word ^= lsb
+
+    # IR-S30-04 fix: the off-quota share (budget - floor(cap*budget)) is
+    # reserved and filled first from cells OUTSIDE the largest reference halo,
+    # so the worst-case per-reference quota cannot be monopolised by the
+    # consensus zone before the reserve is spent.  Reserve dots are at most one
+    # hit on any non-worst reference and zero on the worst one, so the
+    # per-reference quotas stay satisfiable for the main loop and the post-check
+    # never has to repair anything.
+    if use_caps and int(budget) > max_cap_count:
+        ref_hits = np.zeros(n_refs, dtype=np.int64)
+        for r_idx in range(n_refs):
+            ref_hits[r_idx] = int(np.count_nonzero(
+                (ref_halo_words[:, :, r_idx >> 6] >> np.uint64(r_idx & 63)) & np.uint64(1)))
+        r_star = int(ref_hits.argmax()) if n_refs else 0
+        outside = cand_mask & ~((ref_halo_words[:, :, r_star >> 6]
+                                 >> np.uint64(r_star & 63)).astype(bool))
+        sy, sx = np.nonzero(outside)
+        if sy.size:
+            s_ord = np.argsort(-init_gain[sy, sx], kind="mergesort")
+            reserve = int(budget) - max_cap_count
+            for yi, xi in zip(sy[s_ord].tolist(), sx[s_ord].tolist()):
+                if placed >= int(budget) or placed >= reserve:
+                    break
+                y, x = yi, xi
+                if blocked[y, x] or out[y, x] > 0.0:
+                    continue
+                exact_g = 0.0
+                for dy, dx, kw in KERNEL_OFFSETS_3PX:
+                    yy, xx = y + dy, x + dx
+                    if 0 <= yy < h and 0 <= xx < w:
+                        rem = kw - float(cov[yy, xx])
+                        if rem > 0.0:
+                            exact_g += float(reward[yy, xx]) * rem
+                if exact_g <= 0.0:
+                    continue
+                _record_placement(y, x)
+                placed += 1
 
     while heap and placed < int(budget):
         neg_g, idx, y, x = heapq.heappop(heap)

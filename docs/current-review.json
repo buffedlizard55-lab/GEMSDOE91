@@ -1,20 +1,33 @@
 {
   "schema": "gems91.current-review-pointer.v1",
-  "review_id": "GEMSDOE91-REVIEW-20261030",
-  "review_date_utc": "2026-10-30",
-  "branch": "arena/83350cee-gemsdoe91",
-  "status": "BLOCKED",
-  "candidate_generated": false,
-  "ok_to_download_new_candidate": false,
+  "review_id": "GEMSDOE91-REVIEW-20261031",
+  "review_date_utc": "2026-10-31",
+  "branch": "arena/681fc5eb-gemsdoe91",
+  "status": "COMPLETE",
+  "candidate_generated": true,
+  "ok_to_download_new_candidate": true,
   "ok_to_submit": false,
-  "holdout_dti": null,
+  "holdout_dti": {
+    "value": 0.052966,
+    "ci95": [
+      0.046011,
+      0.06065
+    ],
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_count": 60988
+  },
   "organizer_confirmed": null,
   "leaderboard_score_estimate": null,
-  "review": "review-20261030/REVIEW.md",
-  "executive_summary": "review-20261030/executive-summary.html",
-  "run_card": "review-20261030/run-card.json",
-  "historical_artifact_pointer": {
-    "path": "current-run.json",
-    "meaning": "Legacy pointer to a historical S22 research download; not this active no-candidate review."
-  }
+  "verdict": "negative (holdout gate not cleared; hold the weekly slot)",
+  "candidate": {
+    "name": "gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros",
+    "tif": "downloads/gems91-s30-vcse-e3-44090dots-20261031T021738Z-d23f1602-zeros.tif",
+    "sha256": "a5993d3a520aa280ce70744ad2dd772090d54cd248e1d6fdc9d1950fdc8e83ae"
+  },
+  "review": "executive-summary.md",
+  "run_card": "s30-vcse/run-card.json",
+  "historical_reviews": [
+    "review-20261030/REVIEW.md",
+    "review-4239f6e5/REVIEW.md"
+  ]
 }

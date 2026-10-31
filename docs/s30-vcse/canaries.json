@@ -1,0 +1,674 @@
+{
+  "rule": "Rule-4 single-feature holdout leakage canary",
+  "threshold": 0.9,
+  "max_symmetric_auc": 0.613507,
+  "worst": "vent_rad_TC fold3",
+  "all_pass": true,
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "split_version": "label-blind-quadrants-v3-feature-buffered",
+  "fold_receipts": [
+    {
+      "fold": 0,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 29319,
+      "evaluation_px": 2449030,
+      "training_domain_px": 2508386,
+      "held_components": 1830,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1436,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 244
+    },
+    {
+      "fold": 1,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 12596,
+      "evaluation_px": 1366431,
+      "training_domain_px": 3636842,
+      "held_components": 687,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1733,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 82
+    },
+    {
+      "fold": 2,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9473,
+      "evaluation_px": 564135,
+      "training_domain_px": 4383314,
+      "held_components": 382,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 2857,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 483
+    },
+    {
+      "fold": 3,
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "evaluation_region_label_blind": true,
+      "truth_px": 9600,
+      "evaluation_px": 787777,
+      "training_domain_px": 4263431,
+      "held_components": 329,
+      "shared_train_truth_components": 0,
+      "buffer_px": 80.0,
+      "feature_context_buffer_px": 80.0,
+      "known_scoring_mask_pixel_exact": true,
+      "feature_context_catalogue_pixels_removed": 1925,
+      "nearest_visible_to_held_px": 80.00624975587844,
+      "nearest_training_to_region_or_held_px": 80.00624975587844,
+      "nearest_training_to_region_px": 80.00624975587844,
+      "held_pixels_without_feature_support": 0,
+      "held_positive_pixels_outside_this_evaluation_region": 368
+    }
+  ],
+  "canaries": [
+    {
+      "feature": "surface_e1",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.488859,
+      "symmetric_auc": 0.511141
+    },
+    {
+      "feature": "surface_e1",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.455826,
+      "symmetric_auc": 0.544174
+    },
+    {
+      "feature": "surface_e1",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.41857,
+      "symmetric_auc": 0.58143
+    },
+    {
+      "feature": "surface_e1",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.471824,
+      "symmetric_auc": 0.528176
+    },
+    {
+      "feature": "surface_e1",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.469643,
+      "symmetric_auc": 0.530357
+    },
+    {
+      "feature": "vent_rad_K_anom",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.469388,
+      "symmetric_auc": 0.530612
+    },
+    {
+      "feature": "vent_rad_K_anom",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.391389,
+      "symmetric_auc": 0.608611
+    },
+    {
+      "feature": "vent_rad_K_anom",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.424879,
+      "symmetric_auc": 0.575121
+    },
+    {
+      "feature": "vent_rad_K_anom",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.418109,
+      "symmetric_auc": 0.581891
+    },
+    {
+      "feature": "vent_rad_K_anom",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.438828,
+      "symmetric_auc": 0.561172
+    },
+    {
+      "feature": "vent_rad_ThU_anom",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.498012,
+      "symmetric_auc": 0.501988
+    },
+    {
+      "feature": "vent_rad_ThU_anom",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.479762,
+      "symmetric_auc": 0.520238
+    },
+    {
+      "feature": "vent_rad_ThU_anom",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.486211,
+      "symmetric_auc": 0.513789
+    },
+    {
+      "feature": "vent_rad_ThU_anom",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.511564,
+      "symmetric_auc": 0.511564
+    },
+    {
+      "feature": "vent_rad_ThU_anom",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.494231,
+      "symmetric_auc": 0.505769
+    },
+    {
+      "feature": "vent_rad_TC",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.462076,
+      "symmetric_auc": 0.537924
+    },
+    {
+      "feature": "vent_rad_TC",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.428117,
+      "symmetric_auc": 0.571883
+    },
+    {
+      "feature": "vent_rad_TC",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.425304,
+      "symmetric_auc": 0.574696
+    },
+    {
+      "feature": "vent_rad_TC",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.386493,
+      "symmetric_auc": 0.613507
+    },
+    {
+      "feature": "vent_rad_TC",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.447588,
+      "symmetric_auc": 0.552412
+    },
+    {
+      "feature": "vent_cond_cap",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.504934,
+      "symmetric_auc": 0.504934
+    },
+    {
+      "feature": "vent_cond_cap",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.467893,
+      "symmetric_auc": 0.532107
+    },
+    {
+      "feature": "vent_cond_cap",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.454189,
+      "symmetric_auc": 0.545811
+    },
+    {
+      "feature": "vent_cond_cap",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.543176,
+      "symmetric_auc": 0.543176
+    },
+    {
+      "feature": "vent_cond_cap",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.48314,
+      "symmetric_auc": 0.51686
+    },
+    {
+      "feature": "vent_gdr_thermal",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.534436,
+      "symmetric_auc": 0.534436
+    },
+    {
+      "feature": "vent_gdr_thermal",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.504784,
+      "symmetric_auc": 0.504784
+    },
+    {
+      "feature": "vent_gdr_thermal",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.456838,
+      "symmetric_auc": 0.543162
+    },
+    {
+      "feature": "vent_gdr_thermal",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.500683,
+      "symmetric_auc": 0.500683
+    },
+    {
+      "feature": "vent_gdr_thermal",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.509443,
+      "symmetric_auc": 0.509443
+    },
+    {
+      "feature": "struct_seismicity",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.534003,
+      "symmetric_auc": 0.534003
+    },
+    {
+      "feature": "struct_seismicity",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.498534,
+      "symmetric_auc": 0.501466
+    },
+    {
+      "feature": "struct_seismicity",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.479753,
+      "symmetric_auc": 0.520247
+    },
+    {
+      "feature": "struct_seismicity",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.576247,
+      "symmetric_auc": 0.576247
+    },
+    {
+      "feature": "struct_seismicity",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.530652,
+      "symmetric_auc": 0.530652
+    },
+    {
+      "feature": "struct_strain",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.571207,
+      "symmetric_auc": 0.571207
+    },
+    {
+      "feature": "struct_strain",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.526538,
+      "symmetric_auc": 0.526538
+    },
+    {
+      "feature": "struct_strain",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.581715,
+      "symmetric_auc": 0.581715
+    },
+    {
+      "feature": "struct_strain",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.506749,
+      "symmetric_auc": 0.506749
+    },
+    {
+      "feature": "struct_strain",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.569917,
+      "symmetric_auc": 0.569917
+    },
+    {
+      "feature": "struct_dilatation",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.497927,
+      "symmetric_auc": 0.502073
+    },
+    {
+      "feature": "struct_dilatation",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.540111,
+      "symmetric_auc": 0.540111
+    },
+    {
+      "feature": "struct_dilatation",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.457834,
+      "symmetric_auc": 0.542166
+    },
+    {
+      "feature": "struct_dilatation",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.56864,
+      "symmetric_auc": 0.56864
+    },
+    {
+      "feature": "struct_dilatation",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.525686,
+      "symmetric_auc": 0.525686
+    },
+    {
+      "feature": "struct_mag_edge",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.504712,
+      "symmetric_auc": 0.504712
+    },
+    {
+      "feature": "struct_mag_edge",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.429126,
+      "symmetric_auc": 0.570874
+    },
+    {
+      "feature": "struct_mag_edge",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.458754,
+      "symmetric_auc": 0.541246
+    },
+    {
+      "feature": "struct_mag_edge",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.423266,
+      "symmetric_auc": 0.576734
+    },
+    {
+      "feature": "struct_mag_edge",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.481986,
+      "symmetric_auc": 0.518014
+    },
+    {
+      "feature": "struct_grav_edge",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.468315,
+      "symmetric_auc": 0.531685
+    },
+    {
+      "feature": "struct_grav_edge",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.570459,
+      "symmetric_auc": 0.570459
+    },
+    {
+      "feature": "struct_grav_edge",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.486582,
+      "symmetric_auc": 0.513418
+    },
+    {
+      "feature": "struct_grav_edge",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.508344,
+      "symmetric_auc": 0.508344
+    },
+    {
+      "feature": "struct_grav_edge",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.499646,
+      "symmetric_auc": 0.500354
+    },
+    {
+      "feature": "struct_cover_edge",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.529979,
+      "symmetric_auc": 0.529979
+    },
+    {
+      "feature": "struct_cover_edge",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.590828,
+      "symmetric_auc": 0.590828
+    },
+    {
+      "feature": "struct_cover_edge",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.519253,
+      "symmetric_auc": 0.519253
+    },
+    {
+      "feature": "struct_cover_edge",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.589468,
+      "symmetric_auc": 0.589468
+    },
+    {
+      "feature": "struct_cover_edge",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.552777,
+      "symmetric_auc": 0.552777
+    },
+    {
+      "feature": "struct_lidar_scarp",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.52213,
+      "symmetric_auc": 0.52213
+    },
+    {
+      "feature": "struct_lidar_scarp",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.545674,
+      "symmetric_auc": 0.545674
+    },
+    {
+      "feature": "struct_lidar_scarp",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.609209,
+      "symmetric_auc": 0.609209
+    },
+    {
+      "feature": "struct_lidar_scarp",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.586755,
+      "symmetric_auc": 0.586755
+    },
+    {
+      "feature": "struct_lidar_scarp",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.561324,
+      "symmetric_auc": 0.561324
+    },
+    {
+      "feature": "struct_relief_scarp",
+      "scope": "fold0",
+      "n_positive": 29319,
+      "n_negative": 604928,
+      "auc": 0.547883,
+      "symmetric_auc": 0.547883
+    },
+    {
+      "feature": "struct_relief_scarp",
+      "scope": "fold1",
+      "n_positive": 12596,
+      "n_negative": 338459,
+      "auc": 0.554227,
+      "symmetric_auc": 0.554227
+    },
+    {
+      "feature": "struct_relief_scarp",
+      "scope": "fold2",
+      "n_positive": 9473,
+      "n_negative": 138666,
+      "auc": 0.592284,
+      "symmetric_auc": 0.592284
+    },
+    {
+      "feature": "struct_relief_scarp",
+      "scope": "fold3",
+      "n_positive": 9600,
+      "n_negative": 194545,
+      "auc": 0.569584,
+      "symmetric_auc": 0.569584
+    },
+    {
+      "feature": "struct_relief_scarp",
+      "scope": "pooled",
+      "n_positive": 60988,
+      "n_negative": 1276598,
+      "auc": 0.557718,
+      "symmetric_auc": 0.557718
+    },
+    {
+      "feature": "e3_oof_surface",
+      "scope": "fold0",
+      "auc": 0.493843,
+      "symmetric_auc": 0.506157
+    },
+    {
+      "feature": "e3_oof_surface",
+      "scope": "fold1",
+      "auc": 0.480796,
+      "symmetric_auc": 0.519204
+    },
+    {
+      "feature": "e3_oof_surface",
+      "scope": "fold2",
+      "auc": 0.459289,
+      "symmetric_auc": 0.540711
+    },
+    {
+      "feature": "e3_oof_surface",
+      "scope": "fold3",
+      "auc": 0.406296,
+      "symmetric_auc": 0.593704
+    }
+  ],
+  "elapsed_seconds": 62.7
+}
