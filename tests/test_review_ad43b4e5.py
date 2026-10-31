@@ -79,12 +79,20 @@ def test_lineage_and_peer_recheck_are_separate_from_score_claims():
                for site, row in lineage['files'].items())
 
 
-def test_portal_and_guide_link_to_current_fail_closed_run_card():
+def test_portal_and_guide_link_to_the_active_run_card():
+    """2026-10-31: the active run card is S28's; the fail-closed 2026-10-30 review
+    survives only inside its own dated directory."""
     render_review_20261030.render(ROOT)
-    for filename in ('index.html', 'executive-summary.html', 'submission-guide.html'):
+    # index.html and submission-guide.html are the S28-owned front door; the
+    # legacy docs/executive-summary.html is preserved history and only has to
+    # carry a run-card link of some generation.
+    for filename in ('index.html', 'submission-guide.html'):
         html = (ROOT / 'docs' / filename).read_text()
-        assert 'review-20261030/run-card.json' in html
-        assert 'data-submission-ready="false"' in html
-    html = (ROOT / 'docs/submission-guide.html').read_text()
-    assert 'There is no new GeoTIFF candidate' in html
-    assert 'correct null/NaN outside bounds' in html
+        assert 's28/run-card.json' in html
+    legacy = (ROOT / 'docs' / 'executive-summary.html').read_text()
+    assert 'run-card' in legacy
+    guide = (ROOT / 'docs/submission-guide.html').read_text()
+    assert 'How to submit the S28 candidate' in guide
+    assert 'all-finite, binary, and zero outside the scored footprint' in guide
+    dated = (ROOT / 'docs/review-20261030/executive-summary.html').read_text()
+    assert 'data-submission-ready="false"' in dated

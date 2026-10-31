@@ -1,5 +1,14 @@
 ## Irregularities — active and historical reviews
 
+## 2026-10-30 S28-VFCD (`arena/ef686adc-gemsdoe91`) — irregularities flagged for human review
+
+Scope: `S28-VFCD` vent-field-conditioned detector lane. Evidence: `docs/s28-vfcd/` (`preregistration.md`, `canaries.json`, `e1..e3/holdout.json`, `surface-checks.json`, `final-dot-checks.json`, `diagnostics.json`, `run-card.json`), `docs/run-card-S28-VFCD.json`, `docs/HYPOTHESES_S28_VFCD.md`.
+
+- **IR-S28-01 (dense calibration lattice makes the literal dot gate unsatisfiable).** The frozen registry's synthetic `data/fleet_registry/calib_r13lattice_00904.tif` (≥206k dots on a 5-px lattice) forces ≥ 82% 3-px proximity for ANY 37,654-dot raster; measured here `99.35%`. It is a calibration witness, not any lane's submission and not a previous submission. Duplicate determination is therefore vs method/submission rasters (all `<=90k` positive px and the nine leaders + GEMSDOE92): max `50.11%` competitive / `35.73%` nine — PASS. The lattice number is reported openly (never dropped), consistent with S25/S27 precedent. Contradiction with the protocol's literal ">70% of dots within 3 px of a registry raster → duplicate" wording is flagged, not silently resolved.
+- **IR-S28-02 (no ORGANIZER-CONFIRMED receipt exists for any file).** Every score on the S28 executive summary is labeled `USER-REPORTED`, `HOLDOUT-DTI`, `MODEL_PROJECTION_NOT_A_SCORE`, or `BYTES`. The 0.2778 / 0.2750 / 0.2710… focus-site claims have no submission-page receipts in any repo.
+- **IR-S28-03 (sample mirror semantics).** The pinned `sample_submission.tif` mirror has 60,988 nonzero cells although the organizer describes an all-zero sample (flagged by the 2026-10-29 review; unresolved). Grid metadata (CRS/shape/transform) is consistent across all pinned references and does not affect validation.
+- **IR-S28-04 (holdout-vs-live instrument mismatch confirmed with new data).** The v3 hide-and-recover holdout measures catalogue recovery (Spearman vs live ≈ +0.105 over 112 anchors); `ref_r0_dots` (the live 0.2778 champion) scores `0.006697` on it while our vent arms — aimed at blind structures — score higher yet project lower. Promote/negative verdicts are gated on the preregistered holdout per protocol; live-aligned expectations are reported separately as labeled MODEL projections. This mismatch is a property of the instrument, not of any candidate.
+- **IR-S28-05 (GDR CSV carries a catalogue-derived column).** `gdr_wellspring_in_footprint.csv` includes `dist_known_fault_px` (computed against the competition catalogue). Reading it would leak catalogue geometry into features. `src/gems91/vfcd28.py` reads only physical columns and a unit test guards this (`test_no_cat_column_ever_parsed`).
 ## 2026-10-30 active checkout review (`arena/83350cee-gemsdoe91`)
 
 Scope and evidence: `docs/review-20261030/` (`REVIEW.md`, `run-card.json`, `nine-site-snapshot.json`, `sources.json`, `HYPOTHESES.md`). This is a no-run review; no candidate raster or score was produced.
@@ -2081,3 +2090,38 @@ leaderboard verified. Full review: `docs/review-de9d7d75/REVIEW.md`.
 - IR-S26-08: R0-static scores HOLDOUT-DTI 0.0067 under the buffered whole-component holdout despite USER-REPORTED live 0.2778. The holdout instrument removes exactly the visible-catalogue continuation signal R0 exploits; holdout-live calibration via R0 is therefore invalid and no leaderboard projection was issued for S26.
 - IR-S26-09: Pre-existing tests/test_release_integration.py failed in a fresh venv only because `imagecodecs` was absent; after installing it the file passes (6 passed, 1 skipped). Environment dependency, not a code defect; requirements.txt should pin imagecodecs (not changed this session to avoid unrelated churn — flagged for owner).
 - IR-S26-10: Leaderboard values in the standing prompt (0.4413 / 0.3195) are stale: official DrivenData leaderboard fetched 2026-10-29 shows #1 = 0.4544. (Updates IR-S26-01.)
+
+---
+
+## S28 (2026-10-31, `arena/bcdb9324-gemsdoe91`) — five new irregularities
+
+**IR-S28-01 — the nine "focus" sites are one lineage, not nine independent results.**
+Re-measured this session from the SHA-256-pinned bytes: every pairwise directed 3-px overlap among
+GEMSDOE24/25/27/28/30/31/32/33/36 is 97.6–100 %. Their reported scores are therefore not independent
+evidence, and none of them satisfies the protocol's own 70 % uniqueness stop when re-submitted.
+Evidence: `docs/s28/nine-site-forensics.json`.
+
+**IR-S28-02 — no organizer receipt exists for any nine-site score, including the 0.2778 headline.**
+Every value remains `USER-REPORTED`. No DrivenData submission receipt was found in any of the nine
+repositories or in this repository. Treat 0.2778 as a claim; it is used here only as an anchor for geometry,
+never as a validated target.
+
+**IR-S28-03 — `GEMSDOE92:data/bridge/labels.tif` is the same git blob as `existing_faults.tif`.**
+Both resolve to blob `4ad3c1f3f19823e40924589bee7e51e44ae3a2e7` / sha256 `7ba308cc…`. That file is the mapped
+fault catalogue, not ground truth for the scored hidden faults. Any pipeline that trains or evaluates on it as
+"labels" is measuring catalogue recovery, which is what this repository's holdout instrument does by
+construction — a real limitation, not a bug to fix locally.
+
+**IR-S28-04 — `frac_on_net15` is undocumented and cannot be reproduced.**
+The fleet-consensus feature that dominates the 112-anchor score model (Pearson r = 0.82 with live score;
+LOSO R² 0.705) has no construction recipe anywhere in this repository: neither the 15 anchor rasters, the
+kernel, nor the normalisation is recorded. Until it is reconstructed and pinned, any projection that uses it is
+descriptive only. It is also the feature that would push a candidate straight at the 70 % duplicate stop.
+
+**IR-S28-05 — the official sources could not be re-fetched from this sandbox.**
+Outbound access is limited to `github.com`, `codeload.github.com`, `api.github.com`, `pypi.org`,
+`files.pythonhosted.org`. `www.dropbox.com` failed with `SSL_ERROR_SYSCALL`; `drivendata.org` and
+`docs.nlr.gov` are not reachable. Consequences: (a) the metric arithmetic used here is the repository's own
+transcription in `vendor/gems57/metric.py`, cross-checked against its tests, not a fresh read of the rules PDF;
+(b) the official rasters were restored from GitHub mirrors and are authenticated only by matching this
+repository's pinned SHA-256 values, not by an organizer channel.

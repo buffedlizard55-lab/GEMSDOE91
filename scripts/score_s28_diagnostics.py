@@ -1,123 +1,139 @@
 #!/usr/bin/env python3
-"""S28-VSD post-hoc diagnostics (run strictly AFTER the candidate raster is frozen).
+"""Post-hoc diagnostics for the S28-VFCD packaged candidate.
 
-Outputs docs/s28-vsd/diagnostics.json with, all explicitly labelled:
-  1. SGMC-OFFCAT-CONTROL-DTI — blind USGS SGMC off-catalogue control via the
-     shared scripts/evaluate_holdout.score_off_catalogue_sgmc (total + >500 m
-     far-field), a report-only proxy, NEVER a leaderboard score.
-  2. LFI MODEL_PROJECTION_NOT_A_SCORE — leaderboard-feedback inversion refit on
-     the restored USER-REPORTED anchors (ridge 1 and 10), projected on this
-     candidate's dots. A projection is never written as a score.
-  3. Radial dot-geography profile vs catalogue and h19-5 network.
-
-Creates NO candidate and spends ZERO weekly submission slots.
+Reproduces the S27 diagnostics instrument exactly (same anchors, same LFI
+refit recipe via scripts/run_lfi.py) and scores the new candidate:
+  1) blind USGS SGMC off-catalogue DTI (>3 px and >500 m from the catalogue);
+  2) LFI leaderboard-feedback inversion projections (MODEL_PROJECTION_NOT_A_SCORE).
+Nine-site rows are inherited from docs/s27-osdr/diagnostics.json (same anchor
+fit, set sha256 recorded there) and never re-derived here.
 """
 from __future__ import annotations
 
+import hashlib
 import json
+import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "scripts"), str(ROOT / "src"), str(ROOT)]
 
-import numpy as np
-import rasterio
-from scipy import ndimage as ndi
+import numpy as np  # noqa: E402
+import rasterio  # noqa: E402
+from scipy import ndimage as ndi  # noqa: E402
 
-import run_lfi as R
-from gems91 import lfi as L
-from vendor.gems57 import grid as G
+from evaluate_holdout import score_off_catalogue_sgmc  # noqa: E402
+from gems91 import lfi as L  # noqa: E402
 
-OUT = ROOT / "docs/s28-vsd"
-WORK = ROOT / "work/lfi"
+
+def sha(path: Path) -> str:
+    h = hashlib.sha256()
+    with Path(path).open("rb") as f:
+        for b in iter(lambda: f.read(1 << 20), b""):
+            h.update(b)
+    return h.hexdigest()
+
+
+def run(cmd: list[str]) -> None:
+    print("+", " ".join(cmd), flush=True)
+    subprocess.run(cmd, cwd=ROOT, check=True)
 
 
 def main() -> int:
-    card = json.loads((OUT / "run-card.json").read_text())
-    pred_path = ROOT / card["raster_file"]
-    g = G.load_grid(ROOT / "data/official")
+    rc = json.loads((ROOT / "docs/s28-vfcd/run-card.json").read_text())
+    cand_rel = rc["raster_file"]
+    if sha(ROOT / cand_rel) != rc["raster_sha256"]:
+        raise ValueError("Frozen S28 candidate raster drifted")
 
-    with rasterio.open(pred_path) as ds:
-        assert ds.count == 1 and (ds.height, ds.width) == g.shape
-        a = ds.read(1)
-    p = np.where(np.isfinite(a), a, 0.0).astype(np.float32)
-    p = np.where(g.footprint, p, 0.0)
-    assert p.min() >= 0.0 and p.max() <= 1.0
-    pos = p > 0
-
-    # ---- 1. SGMC off-catalogue blind control --------------------------------
-    import dti as D  # shared canonical DTI (scripts/evaluate_holdout delegates here too)
-    import evaluate_holdout as LEH
-
+    with rasterio.open(ROOT / "data/official/sample_submission.tif") as ds:
+        footprint = np.isfinite(ds.read(1))
+    with rasterio.open(ROOT / "data/official/existing_faults.tif") as ds:
+        catalogue = ds.read(1)
     with rasterio.open(ROOT / "data/external/derived_sgmc_faults_100m_u8.tif") as ds:
-        sg = ds.read(1)
-    sgmc_mask = (np.nan_to_num(sg, nan=0.0) > 0) & g.footprint
-    res_total = LEH.score_off_catalogue_sgmc(p, sgmc_mask, g.catalogue, g.footprint)
-    cat_d = ndi.distance_transform_edt(~((np.nan_to_num(g.catalogue, nan=0.0) > 0) & g.footprint))
-    far = sgmc_mask & (cat_d > 5.0)
-    res_far = LEH.score_off_catalogue_sgmc(p, far, g.catalogue, g.footprint)
-    sgmc_block = {
-        "metric_label": "SGMC-OFFCAT-CONTROL-DTI (blind independent control; not a leaderboard score)",
-        "total": res_total,
-        "far_field_gt500m": res_far,
-    }
+        sgmc = ds.read(1)
+    cat_bool = (np.nan_to_num(catalogue) > 0) & footprint
+    dcat = ndi.distance_transform_edt(~cat_bool)
+    sgmc_gt500 = np.where(dcat > 5.0, sgmc, 0)
 
-    # ---- 2. LFI projection ---------------------------------------------------
-    z = np.load(WORK / "agg.npz")
-    meta = json.loads((WORK / "anchors.json").read_text())
-    nb = meta["n_bins"]
-    bins = np.load(WORK / "bins.npy")
-    N, C = L.aggregate(p, bins, nb, g.catalogue)
-    lm = z["L"] if "L" in z.files else z["Lm"]
-    X = np.hstack([np.ones((lm.shape[0], 1)), lm])
-    projections = {}
-    for ridge, tag in ((1.0, "fit_r1.0_fNone"), (10.0, "fit_r10.0_fNone")):
-        fjson = WORK / f"{tag}.json"
-        theta_np = WORK / f"{tag}_theta.npy"
-        if not fjson.is_file() or not theta_np.is_file():
-            continue
-        theta = np.load(theta_np)
-        f = float(theta[-1])
-        pr, parts = L.predict(theta[:-1], f, X, N[None, :], C[None, :], z["A"])
-        projections[f"ridge{int(ridge)}"] = {
-            "label": "MODEL_PROJECTION_NOT_A_SCORE",
-            "projected_public_dti": float(np.asarray(pr).ravel()[0]),
-            "f_public_fraction": f,
-            "fit_rmse_in_sample": json.loads(fjson.read_text())["rmse_in_sample"],
-            "fit_rmse_loso": json.loads(fjson.read_text())["rmse_loso"],
+    with rasterio.open(ROOT / cand_rel) as ds:
+        pred = ds.read(1)
+    sgmc_all = score_off_catalogue_sgmc(pred, sgmc, catalogue, footprint)
+    sgmc_500 = score_off_catalogue_sgmc(pred, sgmc_gt500, catalogue, footprint)
+
+    work = ROOT / "work/lfi"
+    py = sys.executable
+    if not (work / "fit_r10.0_fNone.json").is_file() or not (work / "cons_votes.npy").is_file():
+        run([py, "scripts/run_lfi.py", "aggregate"])
+        (work / "anchors_base.json").write_bytes((work / "anchors.json").read_bytes())
+        run([py, "scripts/run_lfi.py", "aggregate"])
+        run([py, "scripts/run_lfi.py", "fit", "--ridge", "1"])
+        run([py, "scripts/run_lfi.py", "fit", "--ridge", "10"])
+
+    meta = json.loads((work / "anchors.json").read_text())
+    used = [r for r in meta["rows"] if r.get("used")]
+    anchor_set_hash = hashlib.sha256(
+        "\n".join(sorted(f"{r['name']}|{r['sha256']}" for r in used)).encode()
+    ).hexdigest()
+    z = np.load(work / "agg.npz")
+    A, Lm = z["A"], z["L"]
+    bins = np.load(work / "bins.npy")
+    nb = int(meta["n_bins"])
+    pnames = meta["param_names"]
+    X = np.hstack([np.ones((Lm.shape[0], 1)), Lm])
+
+    fits = {}
+    for tag, fn in (("ridge1", "fit_r1.0_fNone.json"), ("ridge10", "fit_r10.0_fNone.json")):
+        fd = json.loads((work / fn).read_text())
+        fits[tag] = {
+            "theta": [fd["theta"][k] for k in pnames],
+            "f": float(fd["f"]),
+            "rmse_loso": fd["rmse_loso"],
+            "spearman_loso": fd["spearman_loso"],
+            "n_anchors": fd["n_anchors"],
+            "fit_file": f"work/lfi/{fn}",
         }
 
-    # ---- 3. dot geography ----------------------------------------------------
-    net = (np.nan_to_num(_read(R.NET), nan=0.0) > 0) & g.footprint
-    d_cat = ndi.distance_transform_edt(~((np.nan_to_num(g.catalogue, nan=0.0) > 0) & g.footprint))
-    d_net = ndi.distance_transform_edt(~net)
-    prof = {
-        "n_dots": int(pos.sum()),
-        "median_px_to_catalogue": float(np.median(d_cat[pos])),
-        "frac_within_2px_catalogue": float((d_cat[pos] <= 2.01).mean()),
-        "median_px_to_h195_net": float(np.median(d_net[pos])),
-        "frac_within_1p5px_h195": float((d_net[pos] <= 1.51).mean()),
-    }
+    a = np.where(footprint, np.nan_to_num(pred.astype(np.float64), nan=0.0), 0.0)
+    N_c, C_c = L.aggregate(a.astype(np.float32), bins, nb, cat_bool)
+    lfi_row = {"name": "s28_vfcd_candidate", "path": cand_rel, "sha256": rc["raster_sha256"],
+               "label_class": "MODEL_PROJECTION_NOT_A_SCORE"}
+    for tag, fd in fits.items():
+        y_hat, _ = L.predict(np.array(fd["theta"], dtype=np.float64), fd["f"], X, N_c[None, :], C_c[None, :], A)
+        lfi_row[tag] = round(float(y_hat[0]), 5)
 
+    s27_diag = json.loads((ROOT / "docs/s27-osdr/diagnostics.json").read_text())
     out = {
-        "generated_utc": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
-        "raster": card["raster_file"],
-        "raster_sha256": card["raster_sha256"],
-        "sgmc_off_catalogue_control": sgmc_block,
-        "lfi": projections,
-        "dot_geography": prof,
-        "evidence_policy": "every number here is a MODEL projection or a blind control, never a leaderboard score",
+        "schema": "s28-vfcd-posthoc-diagnostics-v1",
+        "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "label": "POST-HOC DIAGNOSTICS — SGMC-OFFCAT-CONTROL-DTI + LFI MODEL_PROJECTION_NOT_A_SCORE. "
+                 "No ORGANIZER-CONFIRMED receipt exists for any row. Protocol Rule 3: a projection is never a score.",
+        "candidate": {"path": cand_rel, "sha256": rc["raster_sha256"],
+                      "sgmc_offcat_3px": sgmc_all, "sgmc_offcat_500m": sgmc_500},
+        "lfi": {
+            "anchor_set": {"n_used": len(used), "set_sha256": anchor_set_hash},
+            "fits": {t: {k: v for k, v in f.items() if k != "theta"} for t, f in fits.items()},
+            "rows": [lfi_row],
+            "caveats": [
+                "MODEL projection fitted to USER-REPORTED sibling scores; LOSO RMSE "
+                f"{fits['ridge10']['rmse_loso']:.4f}.",
+                "All 112 anchors are USER-REPORTED claims without organizer receipts.",
+            ],
+        },
+        "inherited_nine_site_rows": {
+            "source": "docs/s27-osdr/diagnostics.json",
+            "anchor_set_sha256_match": s27_diag["lfi"]["anchor_set"]["set_sha256"] == anchor_set_hash,
+            "lfi_rows": s27_diag["lfi"]["rows"],
+            "sgmc_rows": [r for r in s27_diag.get("sgmc", {}).get("rows", [])],
+        },
     }
-    (OUT / "diagnostics.json").write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
-    print(json.dumps({k: out[k] for k in ("lfi", "dot_geography")}, indent=1))
-    print("SGMC off-cat total:", res_total.get("dti"), "far:", res_far.get("dti"))
+    out_path = ROOT / "docs/s28-vfcd/diagnostics.json"
+    out_path.write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
+    print(f"LFI candidate: ridge1={lfi_row['ridge1']} ridge10={lfi_row['ridge10']}")
+    print(f"SGMC candidate: all={sgmc_all['dti']} 500m={sgmc_500['dti']}")
+    print(f"wrote {out_path}")
     return 0
-
-
-def _read(path: Path) -> np.ndarray:
-    with rasterio.open(path) as ds:
-        return ds.read(1)
 
 
 if __name__ == "__main__":

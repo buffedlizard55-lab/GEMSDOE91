@@ -77,10 +77,15 @@ def _ensure_portal_state():
 def test_portal_insertion_preserves_pinned_banner():
     _ensure_portal_state()
     index = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
-    assert "ACTIVE REVIEW · 2026-10-30" in index  # pinned marker must survive
-    assert "ACTIVE STATUS · 2026-10-31" in index
-    assert "review-20261030/run-card.json" in index
-    assert "gems91-s28-vsd-e3-37654dots" in index
+    # Post-merge (2026-10-31): the portal stack is newest-first after <main id="main">;
+    # the concurrent lanes' pinned notes must survive the S28-VSD insertion.
+    assert index.count('<!-- S28-VSD status block (') == 1  # exactly one block, no duplication
+    assert index.index('S28-VSD status block') < index.index('S28 · 2026-10-31: NEW UNIQUE SUBMISSION')  # newest first
+    assert 'S28 · 2026-10-31: NEW UNIQUE SUBMISSION' in index  # concurrent lane's pinned note survives
+    assert 'S28-VFCD · 2026-10-30: ONE NEW UNIQUE TIFF' in index  # concurrent lane's pinned note survives
+    assert 'ACTIVE STATUS · 2026-10-31' in index
+    assert 'review-20261030/run-card.json' in index
+    assert 'gems91-s28-vsd-e3-37654dots' in index
 
 
 def test_s28_renderer_is_idempotent():

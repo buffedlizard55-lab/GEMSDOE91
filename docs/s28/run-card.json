@@ -1,0 +1,69 @@
+{
+ "schema": "gems91.s28.run-card.v1",
+ "generated_utc": "2026-10-31T01:16:55.242037Z",
+ "hypothesis": "H-S28-1 CPT-19: a supervised transfer classifier trained on mapped faults using the official 19-band GEODAWN stack generalises the multivariate fault signature and ranks unmapped fault locations better than hand-crafted ridge formulas.",
+ "mechanism": "Mapped-fault positives vs >=800 m background negatives, 41 catalogue-free layers (robust band z-scores, 400 m context, HG energy, detrended-elevation curvature, basin x conductivity), HistGradientBoosting; emit 37,654 binary dots with >=3-cell Chebyshev separation, zero mass within 300 m of the catalogue, and distance quotas frozen before scoring.",
+ "non_fault_process_that_could_mimic_it": "Basin-margin lithological contrast (Quaternary fan-wash edges) and flight-line/processing artefacts in the magnetic and gravity derivatives can produce the same edge energy without a fault.",
+ "holdout": {
+  "dti": 0.102921,
+  "evaluator": "vendor/gems57 metric.dti_exact via buffered whole-component LOQO (hide_frac 0.20, buffer 3 px, alpha 0.2, beta 0.8, R 3 px)",
+  "withheld_positives": 11321,
+  "ci95": null,
+  "ci_note": "No CI quoted: the four fold scores are not independent draws of the leaderboard truth, so a bootstrap over folds would overstate precision.",
+  "control_same_geometry": {
+   "physics_baseline": 0.042443,
+   "logistic": 0.061739
+  },
+  "leakage_canary": {
+   "max_single_layer_auc": 0.7947,
+   "stop_threshold": 0.9,
+   "verdict": "pass"
+  }
+ },
+ "correlation_overlap_vs_registry": {
+  "nine_site_max_directed_3px_overlap": 0.384,
+  "nine_site_closest": "GEMSDOE27",
+  "local_registry_worst": 0.6639,
+  "local_registry_worst_file": "gems91-s27-fabricfar-37654dots-20261029T144455Z-aa90130a-zeros.tif",
+  "n_priors_compared": 80,
+  "registry_scope": "local docs/downloads (this repository, after deleting the lane's superseded variant) + the nine focus-site rasters; NOT the full fleet",
+  "stop_threshold": 0.7,
+  "verdict": "pass_local_scope"
+ },
+ "raster_sha256": "5d5f9f4deb543fb44e5618796571c80304abe52e8ec0555fb6582914b0d110b4",
+ "raster_bytes": 826646,
+ "validator": {
+  "all_checks_passed": true,
+  "checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "no_nan_inside_footprint": true,
+  "values_in_0_1": true,
+  "crs_shape_transform_match": true
+ },
+ "submission": {
+  "name": "gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros",
+  "note": "S28 CPT-19: HGB on the 19 official GEODAWN bands; 37654 dots at 3.16 px lattice, >300 m off catalogue; unique vs all nine focus sites",
+  "note_chars": 133,
+  "tif": "docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.tif",
+  "zip": "docs/downloads/gems91-s28-cpt19-hgb-37654dots-20261031T010000Z-5d5f9f4d-zeros.zip"
+ },
+ "experiments_used": 3,
+ "weekly_slots_spent": 0,
+ "verdict": "promote",
+ "what_this_is_not": "The holdout DTI is a catalogue-recovery proxy, not a leaderboard score. The leaderboard projection is a model projection and is not a score."
+}

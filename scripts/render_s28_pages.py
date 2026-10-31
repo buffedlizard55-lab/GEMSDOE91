@@ -275,7 +275,7 @@ CRS/shape/transform match: {v['crs_shape_transform_match']} &middot; dots on cat
 .venv/bin/python scripts/run_s28_vsd.py experiment --exp e2
 .venv/bin/python scripts/run_s28_vsd.py experiment --exp e3
 .venv/bin/python scripts/run_s28_vsd.py package     # writes the TIF + run card
-.venv/bin/python scripts/score_s28_diagnostics.py   # SGMC blind control + LFI projection
+.venv/bin/python scripts/score_s28_vsd_diagnostics.py   # SGMC blind control + LFI projection (renamed; VFCD lane owns the original name)
 .venv/bin/python scripts/render_s28_pages.py        # this page</pre>
 
 <h2>10) Official sources</h2>

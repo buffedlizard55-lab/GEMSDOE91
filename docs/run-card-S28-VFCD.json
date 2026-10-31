@@ -1,0 +1,246 @@
+{
+  "schema_version": "gems91.run-card.v2",
+  "generated_utc": "2026-10-31T00:19:56+00:00",
+  "lane": "S28-VFCD (self-assigned; geothermometer-gated discharge conduit + SGMC-off concordance, PU-OOF CELF)",
+  "hypothesis": "H1 geothermometer-gated discharge conduit (+H2 SGMC-off concordance): high-enthalpy discharge corridors and USGS-mapped/INGENIOUS-unmapped fault segments are surface evidence of blind faults missing from the USGS/INGENIOUS catalogue (docs/HYPOTHESES_S28_VFCD.md).",
+  "mechanism": "Permeable fault damage zones tapping the brittle-ductive transition channel high-enthalpy fluid; vent-to-vent alignment marks the concealed strand. 12 GDR-derived features (geothermometer-weighted kernels, vent-lineament corridor density, SGMC-off concordance) + the template's cached S25/S27 physics stacks feed a 4-fold PU-OOF HGB; 37,654 unit dots are placed by 300 m CELF submodular emission with >=3.05 px catalogue collar.",
+  "named_non_fault_mimic": "Groundwater discharge on permeable ash-flow tuffs / carbonate contact karst; basin-margin fan springs; 1:250 k SGMC generalization lines beyond field verification (all documented, none removed).",
+  "result": "negative",
+  "verdict": {
+    "promote": false,
+    "OK_TO_SUBMIT": "NO",
+    "protocol_verdict": "negative",
+    "protocol_rule": "promote iff paired HOLDOUT-DTI difference vs BOTH matched controls (ctrl_oof_base, ctrl_oof_phys) has 95% CI lower bound > 0 (preregistered gate); otherwise negative. Reference-only: ref_r0_dots holdout is an unmatched-budget learning anchor and does not enter this gate.",
+    "technical_submission_safety": "PASS (format, range [0,1], no NaN, CRS/grid, zero catalogue mass; zero-encoding avoids the organizer range error)",
+    "uniqueness": "PASS vs every listed GEMSDOE submission and competitive registry raster",
+    "score_strategy": "NO - evidence-labeled estimate ~0.11 below the 0.2778 incumbent",
+    "selector_note": "Promotion to a live weekly slot is the separate selector step (parallel-run protocol Rule 6). This project spends 0 slots and never sets ok_to_submit true."
+  },
+  "ok_to_submit": false,
+  "submission_ready": false,
+  "ok_to_download": true,
+  "download_scope": "Unique research artifact, format-certified by automated gates; download is safe. A local format pass is not organizer acceptance.",
+  "submission_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "leaderboard_score_estimate": {
+    "HOLDOUT-DTI": {
+      "value": 0.107918,
+      "ci95": [
+        0.093351,
+        0.123297
+      ],
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "split_version": "label-blind-quadrants-v3-feature-buffered",
+      "n_withheld_positives": 60988
+    },
+    "LFI_MODEL_projection_not_a_score": {
+      "ridge1": 0.11409,
+      "ridge10": 0.10844,
+      "rmse_loso": 0.0198,
+      "evidence_class": "MODEL_PROJECTION_NOT_A_SCORE"
+    },
+    "SGMC_off_catalogue_control": {
+      "dti_3px": 0.046154,
+      "dti_500m": 0.043548,
+      "evidence_class": "BLIND_CONTROL"
+    }
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_version": "label-blind-quadrants-v3-feature-buffered",
+    "n_withheld_positives": 60988,
+    "selected_arm": "vfcd_e3_vent_phys_cons_celf",
+    "scores": {
+      "vfcd_e1_vent_celf": {
+        "dti": 0.09435811563297083,
+        "ci95": [
+          0.08072571707948129,
+          0.10858910920403679
+        ]
+      },
+      "vfcd_e2_vent_phys_celf": {
+        "dti": 0.10419913277083857,
+        "ci95": [
+          0.08911786020223904,
+          0.11907233732248329
+        ]
+      },
+      "vfcd_e3_vent_phys_cons_celf": {
+        "dti": 0.10791839092239588,
+        "ci95": [
+          0.09335110799616493,
+          0.12329719264575512
+        ]
+      }
+    },
+    "controls": {
+      "ctrl_oof_base": {
+        "dti": 0.12879605720923137,
+        "ci95": [
+          0.11316519063771337,
+          0.14468107328792257
+        ]
+      },
+      "ctrl_oof_phys": {
+        "dti": 0.152409274563811,
+        "ci95": [
+          0.1356531234823673,
+          0.17042816501147498
+        ]
+      },
+      "ref_r0_dots": {
+        "dti": 0.006697041784474405,
+        "ci95": [
+          0.005969120964122151,
+          0.007449522541025754
+        ]
+      }
+    },
+    "paired_differences": {
+      "ctrl_oof_base": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.02087766628683549,
+        "ci95": [
+          -0.03582568006176377,
+          -0.007234901808051368
+        ],
+        "withheld_positive_pixels": 60988
+      },
+      "ctrl_oof_phys": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -0.044490883641415124,
+        "ci95": [
+          -0.05879720870092512,
+          -0.031878864882113105
+        ],
+        "withheld_positive_pixels": 60988
+      },
+      "ref_r0_dots": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.10122134913792148,
+        "ci95": [
+          0.08663541472617495,
+          0.11628324471736427
+        ],
+        "withheld_positive_pixels": 60988
+      }
+    }
+  },
+  "leakage_canary": {
+    "status": "PASS",
+    "max_symmetric_auc": 0.6472,
+    "threshold": 0.9,
+    "n_checks": 304,
+    "receipt": "docs/s28-vfcd/canaries.json"
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": 0.150209428510519,
+    "surface_closest": "data/fleet_registry/19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+    "surface_threshold": 0.9,
+    "surface_pass": true,
+    "dots_max_3px_overlap_competitive": 0.5010888617411164,
+    "dots_closest_competitive": "data/lfi_anchors/GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros.tif",
+    "dots_threshold": 0.7,
+    "dots_nine_leaders_max_3px": 0.3573059967068572,
+    "dense_blanket_calibration_max_3px": 0.9934668295533011,
+    "dots_competitive_pass": true,
+    "irregularity": "IR-S28-01: a >=206k-dot synthetic calibration lattice in data/fleet_registry forces >=82% 3-px proximity for ANY 37,654-dot raster; it is not a lane submission nor a previous submission. Duplicate determination is vs method/submission rasters; the lattice number is reported, not silently dropped."
+  },
+  "exact_file_hash_unseen_in_frozen_registry": true,
+  "raster_path": "docs/downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.tif",
+  "raster_sha256": "d7843af990f1530a7eb1be2302b545eea592c09f00469371eef1334f61897bc7",
+  "zip_path": "docs/downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.zip",
+  "zip_sha256": "1ae94bde3265854b9a134ba8cd5743f9d20e5355a8f5e272288da9bb1ade759b",
+  "raster": {
+    "path": "docs/downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.tif",
+    "zip": "docs/downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.zip",
+    "sha256": "d7843af990f1530a7eb1be2302b545eea592c09f00469371eef1334f61897bc7",
+    "zip_sha256": "1ae94bde3265854b9a134ba8cd5743f9d20e5355a8f5e272288da9bb1ade759b",
+    "dots": 37654,
+    "encoding": "zeros (all-finite)",
+    "grid": "EPSG:32611 3730x3292"
+  },
+  "validator_output": {
+    "file": "/home/user/GEMSDOE91/docs/downloads/gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros.tif",
+    "bytes": 134705,
+    "sha256": "d7843af990f1530a7eb1be2302b545eea592c09f00469371eef1334f61897bc7",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "submission_name": "gems91-s28-vfcd_e3_vent_phys_cons_celf-37654dots-20261031T001943Z-13949183-zeros",
+  "submission_note": "S28 VFCD geothermometer-gated discharge conduit + SGMC-off concordance PU-OOF CELF 37654d",
+  "note_chars": 89,
+  "experiments_run": 3,
+  "budget_max_experiments": 3,
+  "within_two_hour_budget": true,
+  "registry_scope": "211-entry frozen registry (docs/s27-osdr/frozen-registry.json) + 11 extra docs/downloads rasters checked at package time",
+  "scientific_validity": "Negative result is a deliverable: the vent-field hypothesis lost to matched controls on the preregistered holdout (paired CIs strictly < 0). Not disproven for the live target (holdout-vs-live Spearman +0.105), but unvalidated for it; under frozen gates verdict is negative.",
+  "stop_reason": "3/3 experiments used (protocol Rule 6); packaging proceeded on the frozen argmax-HOLDOUT-DTI selection rule (E3).",
+  "irregularities": [
+    "IR-S28-01 dense calibration lattice forces >=82% proximity for any 37,654-dot raster; measured 99.35%, reported not dropped; it is not a submission",
+    "IR-S28-02 no ORGANIZER-CONFIRMED receipt exists for any file on this page",
+    "IR-S28-03 sample mirror has 60,988 nonzero cells despite organizer all-zero description"
+  ],
+  "previous_run_cards": [
+    "run-card-S22-OMTJ.json",
+    "run-card-S20-RHTW.json",
+    "run-card-ISO91.json",
+    "run-card-OLC91.json",
+    "run-card-XG91.json",
+    "run-card-GEO91.json"
+  ]
+}

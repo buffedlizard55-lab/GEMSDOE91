@@ -34,11 +34,14 @@ def load():
 def block(card, wr, h, u, verdict) -> str:
     tif_name = Path(wr["file"]).name
     if verdict == "promote":
-        sub = ("<span class=\"badge\" style=\"background:#155b48;color:#fff\">OK TO SUBMIT: YES — CONDITIONAL "
-               "RECOMMENDATION (all preregistered gates passed; Rule-6 selector = you; use the weekly slot "
+        # Portal pages stay fail-closed on main (test_current_checkout_review forbids the
+        # literal OK TO SUBMIT: YES anywhere in docs/index.html): the weekly slot is the
+        # selector's deliberate act, not a property of the file or the portal.
+        sub = ("<span class=\"badge\" style=\"background:#155b48;color:#fff\">OK TO SUBMIT: NO-BY-POLICY "
+               "(all preregistered gates passed; Rule-6 selector decides; use the weekly slot "
                "deliberately)</span>")
-        sub_plain = ("OK TO SUBMIT: YES - CONDITIONAL RECOMMENDATION (all preregistered gates passed; "
-                     "Rule-6 selector = you; use the weekly slot deliberately)")
+        sub_plain = ("OK TO SUBMIT: NO-BY-POLICY (all preregistered gates passed; "
+                     "Rule-6 selector decides; use the weekly slot deliberately)")
         border, bg = "#155b48", "#effaf1"
     else:
         sub = ("<span class=\"badge\" style=\"background:#9b1c1c;color:#fff\">OK TO SUBMIT: NO — RESEARCH ONLY "
@@ -85,14 +88,13 @@ def main() -> int:
         post = page.split(END, 1)[1].lstrip("\n")
         page = pre + "\n" + new_block + "\n" + post
     else:
-        marker = '<div class="note" role="status"><strong>ACTIVE REVIEW · 2026-10-30:'
+        # 2026-10-31 (post-merge): main's portal stack opens with the newest note
+        # directly after <main id="main">; insert there (newest-first ordering).
+        marker = '<main id="main">'
         pos = page.find(marker)
         if pos < 0:
-            raise ValueError("2026-10-30 banner not found; refusing to insert blindly")
-        end = page.find("</div>", pos)
-        if end < 0:
-            raise ValueError("2026-10-30 banner closing tag missing")
-        end += len("</div>")
+            raise ValueError("portal <main id=\"main\"> anchor not found; refusing to insert blindly")
+        end = pos + len(marker)
         pre = page[:end].rstrip("\n")
         post = page[end:].lstrip("\n")
         page = pre + "\n" + new_block + "\n" + post
