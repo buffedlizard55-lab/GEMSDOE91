@@ -1,0 +1,41 @@
+{
+  "module_static": "gems91.cvdc_osdr27.compute_cvdc27_features (template cached stack)",
+  "module_vsd": "cached",
+  "inputs_verified": {
+    "sample_submission": {
+      "path": "data/official/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    "existing_faults": {
+      "path": "data/official/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    "training_features": {
+      "path": "data/bridge/gems-geodawn-numerical-features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+    },
+    "parent_r0_zeros": {
+      "path": "data/registry/GEMSDOE32__h33-2-b2-zeros.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    "sgmc_faults_control": {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0"
+    }
+  },
+  "preregistration": {
+    "path": "docs/s28-vsd/preregistration.md",
+    "sha256": "ce5068e934e3063c8382dd95a12596becb70e9cc899bc8b82af580b172bfa318"
+  },
+  "frozen_registry": {
+    "path": "docs/s27-osdr/frozen-registry.json",
+    "sha256": "18ea52af8a2aa3c92004e18acf3f482e84de9c0fad11c8405e72324a59edeb77",
+    "n_references": 211
+  },
+  "wall_minutes_at_prep_end": 27.73,
+  "negative_control_cdec": {
+    "cdec_pooled_auc": 0.5262010089157168,
+    "cdec_orientation_shuffled_pooled_auc": 0.5134554829809314,
+    "shuffled_weaker": true
+  }
+}

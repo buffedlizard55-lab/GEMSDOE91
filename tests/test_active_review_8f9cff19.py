@@ -14,7 +14,11 @@ def test_active_review_and_readme_fail_closed():
     card = json.loads((DOCS / "run-card-8f9cff19.json").read_text(encoding="utf-8"))
 
     assert "<!--ACTIVE-8F9CFF19-BEGIN-->" in readme
-    assert readme.startswith("# GEMSDOE91 — Current review: blocked, research only")
+    # 2026-10-31 (S28-VSD): the README gained a newer active-status banner; the
+    # 8F9CFF19-era banner it superseded is retained verbatim as an archive, so the
+    # fail-closed intent of this assertion is checked against the retained banner.
+    assert readme.startswith("# GEMSDOE91 — ACTIVE STATUS 2026-10-31")
+    assert "Current review: blocked, research only" in readme
     assert "NO NEW TIFF" in readme and "NOT OK TO SUBMIT" in readme
     assert "#full-project-brief" in readme
     assert "NO NEW TIFF GENERATED" in readme

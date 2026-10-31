@@ -1,0 +1,50 @@
+{
+  "generated_utc": "2026-10-31T01:51:30.543854+00:00",
+  "raster": "docs/downloads/gems91-s28-vsd-e3-37654dots-20261031T015019Z-3d03f7cb-zeros.tif",
+  "raster_sha256": "e61cb3e5c695acec6f9d8d548e4ce4201135e930c23ead49213649d031aae4e2",
+  "sgmc_off_catalogue_control": {
+    "metric_label": "SGMC-OFFCAT-CONTROL-DTI (blind independent control; not a leaderboard score)",
+    "total": {
+      "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_offcatalogue_sgmc_positives": 62122,
+      "dti": 0.106576,
+      "T": 6177.282,
+      "S": 37654.0,
+      "M": 2511.843
+    },
+    "far_field_gt500m": {
+      "metric_label": "SGMC-OFFCAT-CONTROL-DTI",
+      "evaluator_version": "gems91-hide-recover-v1.0",
+      "n_offcatalogue_sgmc_positives": 56822,
+      "dti": 0.097946,
+      "T": 5249.882,
+      "S": 37654.0,
+      "M": 2193.722
+    }
+  },
+  "lfi": {
+    "ridge1": {
+      "label": "MODEL_PROJECTION_NOT_A_SCORE",
+      "projected_public_dti": 0.19096911703902347,
+      "f_public_fraction": 0.483233062628451,
+      "fit_rmse_in_sample": 0.020362792591695288,
+      "fit_rmse_loso": 0.02521902831277197
+    },
+    "ridge10": {
+      "label": "MODEL_PROJECTION_NOT_A_SCORE",
+      "projected_public_dti": 0.17745991467498198,
+      "f_public_fraction": 0.7089210749033831,
+      "fit_rmse_in_sample": 0.0233451663476687,
+      "fit_rmse_loso": 0.02620930706841895
+    }
+  },
+  "dot_geography": {
+    "n_dots": 37654,
+    "median_px_to_catalogue": 19.1049731745428,
+    "frac_within_2px_catalogue": 0.0,
+    "median_px_to_h195_net": 3.1622776601683795,
+    "frac_within_1p5px_h195": 0.29728581292824136
+  },
+  "evidence_policy": "every number here is a MODEL projection or a blind control, never a leaderboard score"
+}
