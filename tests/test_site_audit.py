@@ -102,7 +102,7 @@ def test_current_root_and_legacy_download_portal_disambiguate_old_iso91_file():
     render_review_20261030.render(ROOT)
     root = parse_page(ROOT / "index.html")
     root_text = " ".join(root.text)
-    assert "NO NEW TIFF" in root_text
+    assert "S28" in root_text and "NEW UNIQUE SUBMISSION" in root_text
     assert "research/inspection only" in root_text
     assert "OK TO SUBMIT: NO" in root_text
     assert "docs/index.html" in root.links

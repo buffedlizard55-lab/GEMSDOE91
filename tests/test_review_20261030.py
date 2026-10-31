@@ -74,16 +74,20 @@ def test_current_pages_and_readme_link_the_active_no_candidate_review():
     guide = (DOCS / "submission-guide.html").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "url=docs/index.html" in root
-    assert "2026-10-30" in root
-    assert load("docs/current-review.json")["branch"] == "arena/83350cee-gemsdoe91"
-    assert "docs/review-20261030/executive-summary.html" in root
-    assert "ACTIVE REVIEW · 2026-10-30" in index
-    assert "review-20261030/run-card.json" in index
-    assert "candidate_generated\": false" in current
-    assert "OK TO SUBMIT: NO" in guide
-    assert "There is no new GeoTIFF candidate" in guide
+    # 2026-10-31: S28 owns the front door; the 2026-10-30 review is preserved in
+    # its own directory and its renderer records a superseded pointer.
+    assert "2026-10-31" in root
+    assert load("docs/current-review.json")["branch"] == "arena/bcdb9324-gemsdoe91"
+    assert "docs/s28/executive-summary.html" in root
+    assert "S28 · 2026-10-31" in index
+    assert "run-card.json" in index
+    assert load("docs/current-review.json")["verdict"]["ok_to_submit"] is True
+    assert "APPROVED FOR THE WEEKLY SLOT" in guide or "approved for the" in guide
+    assert "How to submit the S28 candidate" in guide
+    superseded = load("docs/review-20261030/current-review-superseded.json")
+    assert superseded["superseded_by"]["review"] == "s28/executive-summary.html"
     assert "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/" in guide
-    assert "ACTIVE BRANCH: `arena/83350cee-gemsdoe91`" in readme
+    assert "ACTIVE BRANCH: `arena/bcdb9324-gemsdoe91`" in readme
     assert "Maximize P(Win) · Own the Outcome" in readme
     assert "full-project-brief" in readme
 
